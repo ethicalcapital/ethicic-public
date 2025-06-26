@@ -11,6 +11,10 @@ django-taggit==4.0.0
 djangorestframework==3.14.0
 Pillow==10.4.0
 
+# Forms
+django-crispy-forms==2.3
+crispy-bootstrap4==2024.10
+
 # Production essentials
 whitenoise==6.7.0
 python-dotenv==1.0.1
