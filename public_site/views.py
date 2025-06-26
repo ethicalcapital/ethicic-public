@@ -43,6 +43,17 @@ from .models import MediaItem, SupportTicket
 
 logger = logging.getLogger(__name__)
 
+
+# Error handlers
+def custom_404(request, exception):
+    """Custom 404 error page"""
+    return render(request, '404.html', status=404)
+
+
+def custom_500(request):
+    """Custom 500 error page"""
+    return render(request, '500.html', status=500)
+
 # Import standalone constants
 from .standalone_constants import (
     ContactStatus,
