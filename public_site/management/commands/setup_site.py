@@ -14,7 +14,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--admin-password',
             type=str,
-            default='ethicic2024!',
+            default='dyzxuc-4muBzy-woqbam',
             help='Password for the admin user'
         )
         parser.add_argument(
@@ -28,14 +28,14 @@ class Command(BaseCommand):
         User = get_user_model()
         
         # Create superuser if it doesn't exist
-        if not User.objects.filter(username='admin').exists():
+        if not User.objects.filter(username='srvo').exists():
             User.objects.create_superuser(
-                'admin', 
-                'admin@ethicic.com', 
+                'srvo', 
+                'sloane@ethicic.com', 
                 options['admin_password']
             )
             self.stdout.write(
-                self.style.SUCCESS('Created superuser: admin')
+                self.style.SUCCESS('Created superuser: srvo')
             )
         else:
             self.stdout.write('Superuser already exists')
