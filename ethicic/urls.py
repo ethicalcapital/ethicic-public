@@ -29,7 +29,7 @@ urlpatterns = [
     path('api/v1/media-items/', views.media_items_api, name='media_items_api'),
     
     # Contact form submissions
-    path('contact/submit/', views.accessible_contact_form_submit, name='accessible_contact_form_submit'),
+    path('contact/submit/', views.contact_form_submit, name='contact_form_submit'),
     path('newsletter/signup/', views.newsletter_signup, name='newsletter_signup'),
     path('onboarding/submit/', views.onboarding_form_submit, name='onboarding_form_submit'),
     
