@@ -15,52 +15,18 @@ import wagtail.images.blocks
 
 class Migration(migrations.Migration):
 
-    replaces = [
-        # From 0001_initial_squashed (migrations 0001-0020)
-        ('public_site', '0001_initial'),
-        ('public_site', '0002_processpage_researchpage_and_more'),
-        ('public_site', '0003_onboardingpage'),
-        ('public_site', '0005_alter_homepage_cta_description_and_more'),
-        ('public_site', '0006_strategypage'),
-        ('public_site', '0007_encyclopediaentry_encyclopediaindexpage'),
-        ('public_site', '0008_contactformpage_supportarticle_supportindexpage_and_more'),
-        ('public_site', '0009_remove_encyclopediaindexpage_page_ptr_and_more'),
-        ('public_site', '0010_add_knowledge_base_categories'),
-        ('public_site', '0011_advisorpage_institutionalpage'),
-        ('public_site', '0012_alter_advisorpage_options_and_more'),
-        ('public_site', '0013_create_research_page_table'),
-        ('public_site', '0014_alter_supportindexpage_contact_email'),
-        ('public_site', '0015_strategylistpage'),
-        ('public_site', '0016_researchpage_description_and_more'),
-        ('public_site', '0017_strategypage_inception_date'),
-        ('public_site', '0018_add_consultation_guide_criteria_pages'),
-        ('public_site', '0019_alter_advisorpage_hero_description_and_more'),
-        ('public_site', '0020_add_streamfield_to_blog'),
-        # From 0021_add_pages_squashed (migrations 0021-0036)
-        ('public_site', '0023_add_solutionspage'),
-        ('public_site', '0024_add_priddqpage'),
-        ('public_site', '0026_add_priddqpage_last_updated'),
-        ('public_site', '0027_add_priddqpage_missing_fields'),
-        ('public_site', '0028_expand_homepage_fields'),
-        ('public_site', '0029_remove_fee_structure_field'),
-        ('public_site', '0030_rename_support_to_faq'),
-        ('public_site', '0031_encyclopediaentry_encyclopediaindexpage_and_more'),
-        ('public_site', '0032_fix_encyclopedia_columns'),
-        ('public_site', '0033_add_missing_page_columns'),
-        ('public_site', '0033_rename_encyclopedia_article_to_entry'),
-        ('public_site', '0034_merge_migrations'),
-        ('public_site', '0035_add_blogpost_featured_image'),
-        ('public_site', '0036_add_blogpost_updated_at_field'),
-        # MediaItem migration
-        ('public_site', '0004_add_featured_field_to_mediaitem'),
-    ]
+    # Note: The replaces directive has been removed to avoid Django migration state
+    # reconstruction issues. The individual migrations listed below were previously
+    # applied and are now consolidated into this single migration for cleaner history.
+    # Original replaced migrations:
+    # 0001_initial through 0036_add_blogpost_updated_at_field + 0004_add_featured_field_to_mediaitem
 
     initial = True
 
     dependencies = [
         ('taggit', '0005_auto_20220424_2025'),
-        ('wagtailcore', '0094_alter_page_locale'),
-        ('wagtailimages', '0026_delete_uploadedimage'),
+        ('wagtailcore', '0089_log_entry_data_json_null_to_object'),
+        ('wagtailimages', '0025_alter_image_file_alter_rendition_file'),
     ]
 
     operations = [
