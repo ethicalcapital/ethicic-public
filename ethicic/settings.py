@@ -110,10 +110,18 @@ WSGI_APPLICATION = 'ethicic.wsgi.application'
 # Check for DATABASE_URL first (Kinsta format), otherwise use individual vars
 DATABASE_URL = os.getenv('DATABASE_URL')
 
-if DATABASE_URL:
+if DATABASE_URL and DATABASE_URL != 'sqlite':
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+    }
+elif os.getenv('USE_SQLITE', 'False').lower() == 'true' or DATABASE_URL == 'sqlite':
+    # Use SQLite for initial deployment
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
 else:
     DATABASES = {
