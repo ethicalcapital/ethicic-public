@@ -39,8 +39,7 @@ urlpatterns = [
     # ============================================================================
     # GARDEN PLATFORM ACCESS
     # ============================================================================
-    # Garden platform redirect (must come before garden/ pattern)
-    re_path(r"^garden/platform/", views.garden_platform_redirect, name="garden_platform_redirect"),
+    # Garden platform redirect - removed for standalone deployment
     # Garden platform overview and access
     path("garden/", views.garden_overview, name="garden_overview"),
     path("api/garden/interest/", views.garden_interest_registration, name="garden_interest_registration"),
