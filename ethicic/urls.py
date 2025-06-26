@@ -24,8 +24,8 @@ urlpatterns = [
     path('documents/', include(wagtaildocs_urls)),
     
     # API endpoints
-    path('api/v1/contact/', views.contact_form_api, name='contact_form_api'),
-    path('api/v1/newsletter/', views.newsletter_signup_api, name='newsletter_signup_api'),
+    path('api/v1/contact/', views.contact_api, name='contact_form_api'),
+    path('api/v1/newsletter/', views.newsletter_api, name='newsletter_signup_api'),
     path('api/v1/media-items/', views.media_items_api, name='media_items_api'),
     
     # Contact form submissions
