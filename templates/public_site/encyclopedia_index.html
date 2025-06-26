@@ -1,0 +1,222 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}Investment Encyclopedia | Ethical Capital{% endblock %}
+
+{% block body_class %}encyclopedia-index{% endblock %}
+
+{% block content %}
+<!-- Encyclopedia Page - Full Width Layout -->
+<section class="page-section">
+    <div class="page-content">
+        <div class="page-container">
+            <!-- Page Header -->
+            <header class="page-header">
+                <h1 class="page-title">{{ page.title }}</h1>
+            </header>
+
+            <!-- Search Box -->
+            <div class="encyclopedia-search search-section">
+                <div class="search-header">
+                    <h2 class="search-title">Search Encyclopedia</h2>
+                </div>
+                <div class="search-input-group">
+                    <label for="encyclopedia-search" class="sr-only">Search terms and definitions</label>
+                    <input type="text" id="encyclopedia-search" placeholder="Search terms and definitions..." 
+                           class="garden-input search-input"
+                           aria-describedby="search-help">
+                    <div class="search-results search-dropdown" id="search-results" aria-live="polite"></div>
+                    <p id="search-help" class="sr-only">Type to search through encyclopedia entries</p>
+                </div>
+            </div>
+
+            <!-- Entry Count -->
+            <div class="entry-count count-display">
+                {% if selected_letter %}
+                    Showing {{ entries.count }} term{{ entries.count|pluralize }} starting with "{{ selected_letter }}"
+                {% else %}
+                    {{ entries.count }} term{{ entries.count|pluralize }} available
+                {% endif %}
+            </div>
+
+            <!-- Encyclopedia Entries -->
+            <div class="encyclopedia-entries entries-list">
+                {% for entry in entries %}
+                    <div class="encyclopedia-entry entry-card" data-title="{{ entry.title|lower }}" data-category="{{ entry.category|default:'' }}">
+                        <!-- Entry Header with Title and Tags -->
+                        <div class="entry-header">
+                            <div class="entry-title-group">
+                                <h3 class="entry-title">{{ entry.title }}</h3>
+                                <div class="entry-tags">
+                                    {% if entry.category %}
+                                        <span class="entry-tag">
+                                            {{ entry.get_category_display }}
+                                        </span>
+                                    {% endif %}
+                                    {% if entry.difficulty_level %}
+                                        <span class="difficulty-tag difficulty-{{ entry.difficulty_level }}">
+                                            {{ entry.get_difficulty_level_display }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Summary - Always visible by default -->
+                        <div class="entry-summary entry-content">
+                            {{ entry.summary }}
+                        </div>
+                        
+                        <!-- Expandable detailed content (only show if additional content exists) -->
+                        {% if entry.detailed_content or entry.examples or entry.further_reading or entry.related_terms %}
+                            <details class="entry-details-toggle">
+                                <summary class="details-toggle-header">
+                                    <span class="toggle-text">Show More Details</span>
+                                    <span class="expand-icon" aria-hidden="true">+</span>
+                                </summary>
+                                
+                                <div class="entry-details">
+                                    {% if entry.detailed_content %}
+                                        <div class="detailed-content entry-section">
+                                            <h4 class="section-header">Detailed Explanation</h4>
+                                            {{ entry.detailed_content|safe }}
+                                        </div>
+                                    {% endif %}
+                                    
+                                    {% if entry.examples %}
+                                        <div class="examples-content entry-section">
+                                            <h4 class="section-header">Examples & Use Cases</h4>
+                                            {{ entry.examples|safe }}
+                                        </div>
+                                    {% endif %}
+                                    
+                                    {% if entry.further_reading %}
+                                        <div class="further-reading-content entry-section">
+                                            <h4 class="section-header">Further Reading</h4>
+                                            {{ entry.further_reading|safe }}
+                                        </div>
+                                    {% endif %}
+                                    
+                                    {% if entry.related_terms %}
+                                        <div class="related-terms entry-section">
+                                            <h4 class="section-header">Related Terms</h4>
+                                            <p class="related-terms-text">{{ entry.related_terms }}</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </details>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <div class="no-entries empty-state">
+                        {% if selected_letter %}
+                            <h3>No entries found</h3>
+                            <p>No encyclopedia entries start with "{{ selected_letter }}". 
+                            <a href="{{ page.url }}" class="garden-action secondary">View all entries</a></p>
+                        {% else %}
+                            <h3>Encyclopedia coming soon</h3>
+                            <p>We're building our comprehensive investing encyclopedia. Check back soon for detailed explanations of investment terms and concepts.</p>
+                            <a href="/contact/" class="garden-action primary">Contact us with questions</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Encyclopedia Search and Filter Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('encyclopedia-search');
+    const searchResults = document.getElementById('search-results');
+    const entries = document.querySelectorAll('.encyclopedia-entry');
+    
+    // Search functionality
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            
+            if (query.length === 0) {
+                // Show all entries
+                entries.forEach(entry => {
+                    entry.style.display = 'block';
+                });
+                if (searchResults) {
+                    searchResults.style.display = 'none';
+                }
+                updateCount();
+                return;
+            }
+            
+            if (query.length < 2) {
+                return;
+            }
+            
+            // Filter entries
+            entries.forEach(entry => {
+                const title = entry.dataset.title || '';
+                const summary = entry.querySelector('.entry-summary');
+                const summaryText = summary ? summary.textContent.toLowerCase() : '';
+                
+                if (title.includes(query) || summaryText.includes(query)) {
+                    entry.style.display = 'block';
+                } else {
+                    entry.style.display = 'none';
+                }
+            });
+            
+            updateCount(`matching term(s) for "${query}"`);
+        });
+    }
+    
+    function updateCount(suffix = 'term(s) available') {
+        const visibleCount = Array.from(entries).filter(entry => 
+            entry.style.display !== 'none'
+        ).length;
+        
+        const countElement = document.querySelector('.entry-count');
+        if (countElement) {
+            countElement.textContent = `${visibleCount} ${suffix}`;
+        }
+    }
+    
+    // Initialize count
+    updateCount();
+    
+    // Clear search when clicking outside
+    document.addEventListener('click', function(e) {
+        if (searchInput && searchResults && 
+            !searchInput.contains(e.target) && 
+            !searchResults.contains(e.target)) {
+            searchResults.style.display = 'none';
+        }
+    });
+    
+    // Update expand icons for detailed content toggles
+    const detailsElements = document.querySelectorAll('details.entry-details-toggle');
+    detailsElements.forEach(details => {
+        const summary = details.querySelector('summary.details-toggle-header');
+        const expandIcon = summary.querySelector('.expand-icon');
+        const toggleText = summary.querySelector('.toggle-text');
+        
+        if (expandIcon && toggleText) {
+            // Update icon and text based on initial state
+            expandIcon.textContent = details.open ? '−' : '+';
+            toggleText.textContent = details.open ? 'Show Less Details' : 'Show More Details';
+            
+            // Listen for toggle events
+            details.addEventListener('toggle', function() {
+                expandIcon.textContent = this.open ? '−' : '+';
+                toggleText.textContent = this.open ? 'Show Less Details' : 'Show More Details';
+                summary.setAttribute('aria-expanded', this.open);
+            });
+        }
+    });
+});
+</script>
+{% endblock %}

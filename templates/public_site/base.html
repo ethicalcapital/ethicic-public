@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ current_theme|default:'light' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ page_title|default:"Ethical Capital" }}{% endblock %}</title>
+    
+    {% load static %}
+    <!-- Optimized font loading strategy -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- DNS prefetch for performance -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <!-- IMMEDIATE THEME INITIALIZATION: Apply theme before any CSS loading -->
+    <script>
+        // Apply theme immediately to prevent FOUC
+        (function() {
+            try {
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } catch (e) {
+                // Fallback if localStorage is not available
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    
+    <!-- Critical fonts - load synchronously to prevent font FOUC -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+    
+    <!-- Secondary fonts - still deferred for performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- CRITICAL FOUC PREVENTION: Minimal inline CSS for immediate rendering -->
+    <style>
+        /* Absolute minimum to prevent FOUC - everything else moved to external files */
+        html {
+            background: #fff;
+            color: #1a1a1a;
+        }
+        
+        [data-theme="dark"] html {
+            background: #0a0a0a;
+            color: #e0e0e0;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+    </style>
+    
+    <!-- OPTIMIZED CSS LOADING STRATEGY -->
+    
+    <!-- Phase 1: Critical FOUC Prevention - load immediately -->
+    <link rel="stylesheet" href="{% static 'css/critical-fouc-prevention.css' %}">
+    
+    <!-- Phase 2: Garden UI Design System - core theme and variables -->
+    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}">
+    
+    <!-- Phase 2.5: Garden UI Utilities - common classes to reduce duplication -->
+    <link rel="stylesheet" href="{% static 'css/garden-ui-utilities.css' %}">
+    
+    <!-- Phase 3: Layout and Structure - synchronous for layout stability -->
+    <link rel="stylesheet" href="{% static 'css/public-site-layout-fixes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/critical.css' %}">
+    <link rel="stylesheet" href="{% static 'css/container-structure-enhancements.css' %}">
+    <link rel="stylesheet" href="{% static 'css/garden-widgets.css' %}">
+    
+    <!-- CRITICAL FIXES: Load last to override any conflicting styles -->
+    <link rel="stylesheet" href="{% static 'css/critical-fixes.css' %}">
+    
+    <!-- EMERGENCY INLINE HEADER FIX: Bypass CDN cache until critical-fixes.css updates -->
+    <style>
+        /* NUCLEAR HEADER POSITIONING - BYPASS CACHE */
+        html body.public-site-context header.garden-header,
+        html body.public-site-context.public-site-context header.garden-header,
+        html body header.garden-header,
+        body.public-site-context header.garden-header,
+        header.garden-header,
+        .garden-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 60px !important;
+            max-height: 80px !important;
+            z-index: 2147483647 !important; /* Maximum possible z-index */
+            background: var(--color-primary, #553c9a) !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+        
+        /* EMERGENCY BODY PADDING */
+        html body.public-site-context,
+        html body.public-site-context.public-site-context,
+        html body,
+        body.public-site-context,
+        body {
+            padding-top: 80px !important;
+            margin-top: 0 !important;
+        }
+        
+        /* EMERGENCY Z-INDEX RESET */
+        html body.public-site-context *:not(.garden-header):not(.garden-header *):not(.skip-link) {
+            z-index: 1 !important;
+        }
+        
+        /* EMERGENCY CONTENT POSITIONING */
+        html body.public-site-context main,
+        html body.public-site-context .main-content,
+        html body.public-site-context section,
+        html body.public-site-context .garden-panel,
+        html body.public-site-context .hero-panel {
+            z-index: 1 !important;
+            position: relative !important;
+        }
+        
+        /* Remove any whitespace above header */
+        html {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+    </style>
+    
+    <!-- Phase 4: Page-specific styling - deferred for performance -->
+    <link rel="preload" href="{% static 'css/page-specific-overrides.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{% static 'css/critical-page-overrides.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Phase 5: Garden UI Components - deferred loading -->
+    <link rel="preload" href="{% static 'css/garden-data-table.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{% static 'css/garden-blog.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{% static 'css/garden-blog-streamfield.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="{% static 'css/public-site-modular.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Fallback for JavaScript-disabled browsers -->
+    <noscript>
+        <link href="{% static 'css/page-specific-overrides.css' %}" rel="stylesheet">
+        <link href="{% static 'css/critical-page-overrides.css' %}" rel="stylesheet">
+        <link href="{% static 'css/garden-data-table.css' %}" rel="stylesheet">
+        <link href="{% static 'css/garden-blog.css' %}" rel="stylesheet">
+        <link href="{% static 'css/garden-blog-streamfield.css' %}" rel="stylesheet">
+        <link href="{% static 'css/public-site-modular.css' %}" rel="stylesheet">
+    </noscript>
+    
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'favicon-16x16.png' %}" sizes="16x16" type="image/png">
+    <link rel="icon" href="{% static 'favicon-32x32.png' %}" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}" sizes="180x180">
+    <link rel="icon" href="{% static 'android-chrome-192x192.png' %}" sizes="192x192" type="image/png">
+    <link rel="icon" href="{% static 'android-chrome-512x512.png' %}" sizes="512x512" type="image/png">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <link rel="manifest" href="{% static 'manifest.json' %}?v=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block meta_description %}Ethical Capital - Institutional-Grade Ethical Investing{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}investment intelligence, compliance, portfolio management, financial advisory{% endblock %}">
+    <meta name="author" content="Ethical Capital">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{% block canonical_url %}{{ request.build_absolute_uri }}{% endblock %}">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="{% block og_title %}{{ page_title|default:'Ethical Capital - Institutional-Grade Ethical Investing' }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}SEC-registered investment advisor specializing in ethical investing, sustainable investing, and ESG investment strategies. Hand-screened companies for responsible investing where ethics and excellence converge.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% load static %}{% static 'images/og-default.png' %}{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:site_name" content="Ethical Capital">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ethicalcapital">
+    <meta name="twitter:creator" content="@ethicalcapital">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ page_title|default:'Ethical Capital - Institutional-Grade Ethical Investing' }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}SEC-registered investment advisor specializing in ethical investing, sustainable investing, and ESG investment strategies.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% load static %}{% static 'images/twitter-card.png' %}{% endblock %}">
+    <meta name="twitter:image:alt" content="{% block twitter_image_alt %}Ethical Capital - Where ethics and excellence converge in responsible investing{% endblock %}">
+    
+    <!-- LinkedIn Meta Tags -->
+    <meta property="linkedin:owner" content="ethical-capital">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="application-name" content="Ethical Capital">
+    <meta name="msapplication-TileColor" content="#8b5cf6">
+    <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}">
+    
+    <!-- CSRF Token for JavaScript -->
+    {% csrf_token %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    
+    <!-- Performance Optimization -->
+    <meta name="theme-color" content="#8b5cf6">
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Schema.org Structured Data for SEO -->
+    {% include "public_site/schema/financial_service_schema.html" %}
+    {% include "public_site/schema/local_business_schema.html" %}
+    {% include "public_site/schema/person_schema.html" %}
+    {% include "public_site/schema/financial_products_schema.html" %}
+    {% include "public_site/schema/breadcrumb_schema.html" %}
+    {% block extra_schema %}{% endblock %}
+    
+    {% block extra_css %}{% endblock %}
+    
+</head>
+<body class="public-site-context {% block body_class %}{% endblock %}">
+    <!-- Skip navigation links for screen readers - WCAG 2.1 AA -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-navigation" class="skip-link">Skip to navigation</a>
+    <a href="#search" class="skip-link">Skip to search</a>
+    
+    <!-- ARIA live regions for announcements and status updates -->
+    <div aria-live="polite" aria-atomic="true" class="sr-announcements" id="announcements"></div>
+    <div aria-live="assertive" aria-atomic="true" class="sr-only" id="urgent-announcements"></div>
+    
+    <!-- Garden UI Compliant Navigation Header -->
+    <header class="garden-header" role="banner">
+        <div class="garden-header-content">
+            <!-- Left: Brand + Navigation -->
+            <div class="garden-nav-left">
+                <a href="/" class="garden-brand" aria-label="Ethical Capital Home">
+                    ETHICAL CAPITAL
+                </a>
+                
+                <!-- Mobile hamburger menu button -->
+                <button class="garden-mobile-menu-toggle" 
+                        aria-label="Toggle navigation menu"
+                        aria-expanded="false"
+                        aria-controls="main-navigation"
+                        type="button"
+                        onclick="toggleMobileMenu()">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                
+                <nav class="garden-nav-main" role="navigation" aria-label="Main navigation" id="main-navigation">
+                    <a href="/about/" class="garden-nav-item" aria-describedby="about-desc">
+                        About
+                        <span id="about-desc" class="sr-only">Learn about our investment philosophy and team</span>
+                    </a>
+                    <a href="/process/" class="garden-nav-item" aria-describedby="process-desc">
+                        Process
+                        <span id="process-desc" class="sr-only">Our ethical investment screening process</span>
+                    </a>
+                    <a href="/solutions/" class="garden-nav-item" aria-describedby="solutions-desc">
+                        Solutions
+                        <span id="solutions-desc" class="sr-only">Investment solutions for individuals and institutions</span>
+                    </a>
+                    <a href="/blog/" class="garden-nav-item" aria-describedby="blog-desc">
+                        Blog
+                        <span id="blog-desc" class="sr-only">Investment insights and market analysis</span>
+                    </a>
+                    <a href="/faq/" class="garden-nav-item" aria-describedby="faq-desc">
+                        FAQ
+                        <span id="faq-desc" class="sr-only">Frequently asked questions about our services</span>
+                    </a>
+                    <a href="/contact/" class="garden-nav-item" aria-describedby="contact-desc">
+                        Contact
+                        <span id="contact-desc" class="sr-only">Get in touch with our team</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <!-- Right: Search + User Actions + Theme Toggle -->
+            <div class="garden-nav-right">
+                <!-- Search - WCAG AA Compliant -->
+                <form method="get" action="/search/" class="garden-search" role="search" id="search">
+                    <label for="search-input" class="sr-only">Search the site</label>
+                    <input type="text" 
+                           id="search-input"
+                           name="q" 
+                           placeholder="Search... (⌘K)" 
+                           class="garden-search-input"
+                           aria-label="Search the site"
+                           aria-describedby="search-help"
+                           autocomplete="off">
+                    <button type="submit" 
+                            class="garden-search-btn" 
+                            aria-label="Submit search"
+                            title="Submit search">
+                        <span class="sr-only">Submit search</span>
+                        <span aria-hidden="true">🔍</span>
+                    </button>
+                    <div id="search-help" class="sr-only">Press Enter or click the search button to search the site</div>
+                </form>
+                
+                <!-- User Actions Group: Login + CTA -->
+                <div class="nav-user-actions">
+                    <!-- Login Dropdown -->
+                    <div class="garden-dropdown" id="loginDropdown">
+                        <button class="garden-dropdown-trigger" onclick="toggleDropdown()" aria-expanded="false" aria-haspopup="true">
+                            Login
+                            <span class="garden-dropdown-arrow">▼</span>
+                        </button>
+                        <div class="garden-dropdown-menu" role="menu">
+                            <a href="https://app.altruist.com/login" class="garden-dropdown-item" role="menuitem">
+                                👤 Client Login
+                            </a>
+                            <a href="/garden/" class="garden-dropdown-item" role="menuitem">
+                                🌱 Garden Login
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Primary CTA -->
+                    {% include 'components/garden_action.html' with text="Get Started" url="/process/" variant="primary" aria_label="Start the investment process" %}
+                </div>
+                
+                <!-- Theme Toggle - Site Utility -->
+                <button class="garden-theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark theme">
+                    <span id="theme-icon">☾</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main content area -->
+    <main class="main-content" id="main-content" role="main">
+        <!-- Breadcrumb Navigation -->
+        {% block breadcrumbs %}
+            {% if page.get_parent %}
+                <nav class="article-breadcrumb" aria-label="Breadcrumb">
+                    <a href="/" class="breadcrumb-link">Home</a>
+                    {% for ancestor in page.get_ancestors|slice:"1:" %}
+                        <span class="breadcrumb-separator">▶</span>
+                        <a href="{{ ancestor.url }}" class="breadcrumb-link">{{ ancestor.title }}</a>
+                    {% endfor %}
+                    {% if page.title %}
+                        <span class="breadcrumb-separator">▶</span>
+                        <span class="breadcrumb-current">{{ page.title }}</span>
+                    {% endif %}
+                </nav>
+            {% endif %}
+        {% endblock %}
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message-banner {{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer class="garden-footer" role="contentinfo">
+        <div class="garden-footer-content">
+            <div class="garden-footer-grid">
+                <div class="garden-footer-section">
+                    <h3>Company</h3>
+                    <ul class="garden-footer-links">
+                        <li><a href="/about/" class="garden-footer-link">About</a></li>
+                        <li><a href="/media/" class="garden-footer-link">Media</a></li>
+                        <li><a href="/disclosures/" class="garden-footer-link">Disclosures</a></li>
+                        <li><a href="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf" class="garden-footer-link">Form ADV</a></li>
+                    </ul>
+                </div>
+                
+                <div class="garden-footer-section">
+                    <h3>Resources</h3>
+                    <ul class="garden-footer-links">
+                        <li><a href="/blog/" class="garden-footer-link">Blog</a></li>
+                        <li><a href="/encyclopedia/" class="garden-footer-link">Encyclopedia</a></li>
+                        <li><a href="/faq/" class="garden-footer-link">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="garden-footer-section">
+                    <h3>Investing</h3>
+                    <ul class="garden-footer-links">
+                        <li><a href="/solutions/" class="garden-footer-link">Solutions</a></li>
+                        <li><a href="/pricing/" class="garden-footer-link">Pricing</a></li>
+                        <li><a href="/process/" class="garden-footer-link">Process</a></li>
+                    </ul>
+                </div>
+                
+                <div class="garden-footer-section">
+                    <h3>Connect</h3>
+                    <ul class="garden-footer-links">
+                        <li><a href="mailto:hello@ethicic.com" class="garden-footer-link">Email</a></li>
+                        <li><a href="/contact/" class="garden-footer-link">Contact</a></li>
+                        <li><a href="/contact/" class="garden-footer-link">Schedule Call</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="garden-footer-bottom">
+                <div class="garden-footer-legal">
+                    <p>&copy; {% now "Y" %} Ethical Capital. All rights reserved.</p>
+                    
+                    <p>Investment advisory services offered through Ethical Capital Investment Management LLC, a Registered Investment Advisor. Past performance does not guarantee future results. All investments involve risk. Please see our ADV Part 2 for important disclosures.</p>
+                    
+                    <p>*Based on our analysis of S&P 500 constituents, approximately 57% failed one or more of our exclusion criteria. This percentage varies as companies and our criteria evolve.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Essential JavaScript -->
+    <script>
+        // Theme management using Garden UI with loading state
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.querySelector('.garden-theme-toggle');
+            const icon = document.getElementById('theme-icon');
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            // Show loading state
+            themeToggle.style.opacity = '0.7';
+            themeToggle.style.pointerEvents = 'none';
+            icon.textContent = '⟳'; // Spinning loading icon
+            
+            // Simulate brief loading delay for better UX feedback
+            setTimeout(() => {
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                
+                // Update theme toggle button
+                if (newTheme === 'dark') {
+                    icon.textContent = '☾';
+                } else {
+                    icon.textContent = '☀';
+                }
+                
+                // Reset loading state
+                themeToggle.style.opacity = '1';
+                themeToggle.style.pointerEvents = 'auto';
+            }, 150); // Brief delay for loading feedback
+        }
+        
+        // Dropdown management with focus trapping
+        function toggleDropdown() {
+            const dropdown = document.getElementById('loginDropdown');
+            const btn = dropdown.querySelector('.garden-dropdown-trigger');
+            const menu = dropdown.querySelector('.garden-dropdown-menu');
+            const menuItems = menu.querySelectorAll('.garden-dropdown-item');
+            const isOpen = dropdown.classList.contains('open');
+            
+            if (isOpen) {
+                dropdown.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.focus(); // Return focus to trigger
+            } else {
+                dropdown.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+                
+                // Focus first menu item
+                if (menuItems.length > 0) {
+                    menuItems[0].focus();
+                }
+                
+                // Set up keyboard navigation
+                setupDropdownKeyboard(dropdown, btn, menuItems);
+            }
+        }
+        
+        // Keyboard navigation for dropdown
+        function setupDropdownKeyboard(dropdown, trigger, items) {
+            let currentIndex = 0;
+            
+            function focusItem(index) {
+                if (items[index]) {
+                    items[index].focus();
+                    currentIndex = index;
+                }
+            }
+            
+            function handleKeydown(e) {
+                switch(e.key) {
+                    case 'Escape':
+                        e.preventDefault();
+                        dropdown.classList.remove('open');
+                        trigger.setAttribute('aria-expanded', 'false');
+                        trigger.focus();
+                        document.removeEventListener('keydown', handleKeydown);
+                        break;
+                        
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        currentIndex = (currentIndex + 1) % items.length;
+                        focusItem(currentIndex);
+                        break;
+                        
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        currentIndex = (currentIndex - 1 + items.length) % items.length;
+                        focusItem(currentIndex);
+                        break;
+                        
+                    case 'Tab':
+                        // Allow tabbing to close dropdown
+                        dropdown.classList.remove('open');
+                        trigger.setAttribute('aria-expanded', 'false');
+                        document.removeEventListener('keydown', handleKeydown);
+                        break;
+                }
+            }
+            
+            document.addEventListener('keydown', handleKeydown);
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('loginDropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('open');
+                dropdown.querySelector('.garden-dropdown-trigger').setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Mobile hamburger menu functionality
+        function toggleMobileMenu() {
+            const menuToggle = document.querySelector('.garden-mobile-menu-toggle');
+            const navMain = document.getElementById('main-navigation');
+            const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+            
+            if (isOpen) {
+                // Close menu
+                menuToggle.setAttribute('aria-expanded', 'false');
+                navMain.classList.remove('mobile-menu-open');
+                navMain.setAttribute('aria-hidden', 'true');
+            } else {
+                // Open menu
+                menuToggle.setAttribute('aria-expanded', 'true');
+                navMain.classList.add('mobile-menu-open');
+                navMain.setAttribute('aria-hidden', 'false');
+                
+                // Focus first navigation item for accessibility
+                const firstNavItem = navMain.querySelector('.garden-nav-item');
+                if (firstNavItem) {
+                    firstNavItem.focus();
+                }
+            }
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menuToggle = document.querySelector('.garden-mobile-menu-toggle');
+            const navMain = document.getElementById('main-navigation');
+            
+            if (menuToggle && navMain && 
+                !menuToggle.contains(event.target) && 
+                !navMain.contains(event.target) &&
+                navMain.classList.contains('mobile-menu-open')) {
+                
+                menuToggle.setAttribute('aria-expanded', 'false');
+                navMain.classList.remove('mobile-menu-open');
+                navMain.setAttribute('aria-hidden', 'true');
+            }
+        });
+        
+        // Close mobile menu when pressing Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const menuToggle = document.querySelector('.garden-mobile-menu-toggle');
+                const navMain = document.getElementById('main-navigation');
+                
+                if (menuToggle && navMain && navMain.classList.contains('mobile-menu-open')) {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    navMain.classList.remove('mobile-menu-open');
+                    navMain.setAttribute('aria-hidden', 'true');
+                    menuToggle.focus(); // Return focus to menu button
+                }
+            }
+        });
+        
+        // Universal form loading states
+        function addFormLoadingStates() {
+            const forms = document.querySelectorAll('form');
+            
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+                    if (submitBtn) {
+                        // Store original text
+                        const originalText = submitBtn.textContent || submitBtn.value;
+                        
+                        // Add loading state
+                        submitBtn.style.opacity = '0.7';
+                        submitBtn.style.pointerEvents = 'none';
+                        
+                        if (submitBtn.tagName === 'BUTTON') {
+                            submitBtn.innerHTML = '⟳ Submitting...';
+                        } else {
+                            submitBtn.value = '⟳ Submitting...';
+                        }
+                        
+                        // Reset after 3 seconds as fallback (in case of errors)
+                        setTimeout(() => {
+                            submitBtn.style.opacity = '1';
+                            submitBtn.style.pointerEvents = 'auto';
+                            if (submitBtn.tagName === 'BUTTON') {
+                                submitBtn.textContent = originalText;
+                            } else {
+                                submitBtn.value = originalText;
+                            }
+                        }, 3000);
+                    }
+                });
+            });
+        }
+        
+        // Initialize theme on page load (theme already applied in head)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme is already applied in head script, just update the icon
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const icon = document.getElementById('theme-icon');
+            if (icon) {
+                if (savedTheme === 'dark') {
+                    icon.textContent = '☾';
+                } else {
+                    icon.textContent = '☀';
+                }
+            }
+            
+            // Initialize form loading states
+            addFormLoadingStates();
+        });
+        
+        // Command+K search hotkey handler
+        document.addEventListener('keydown', function(e) {
+            // Check for Command+K (Mac) or Ctrl+K (Windows/Linux)
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
+                e.preventDefault();
+                const searchInput = document.querySelector('.garden-search-input');
+                if (searchInput) {
+                    searchInput.focus();
+                    searchInput.select();
+                    announce('Search focused');
+                }
+            }
+        });
+        
+        // ARIA announcements for screen readers
+        function announce(message) {
+            const announcements = document.getElementById('announcements');
+            announcements.textContent = message;
+            setTimeout(() => {
+                announcements.textContent = '';
+            }, 1000);
+        }
+
+        // Loading states for forms and dynamic content
+        function showLoadingState(element, message = 'Loading...') {
+            if (!element) return;
+            
+            // Store original content
+            element.dataset.originalContent = element.innerHTML;
+            element.dataset.originalDisabled = element.disabled;
+            
+            // Add loading class and disable if it's a button
+            element.classList.add('loading');
+            if (element.tagName === 'BUTTON' || element.type === 'submit') {
+                element.disabled = true;
+                element.innerHTML = `<span class="loading-spinner"></span> ${message}`;
+            }
+            
+            // Announce loading for screen readers
+            announce(message);
+        }
+
+        function hideLoadingState(element) {
+            if (!element) return;
+            
+            // Restore original content and state
+            element.classList.remove('loading');
+            if (element.dataset.originalContent) {
+                element.innerHTML = element.dataset.originalContent;
+                delete element.dataset.originalContent;
+            }
+            if (element.dataset.originalDisabled !== undefined) {
+                element.disabled = element.dataset.originalDisabled === 'true';
+                delete element.dataset.originalDisabled;
+            }
+        }
+
+        // Enhanced form submission with loading states
+        function handleFormSubmission(form) {
+            const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
+            
+            form.addEventListener('submit', function(e) {
+                // Show loading state
+                showLoadingState(submitButton, 'Submitting...');
+                
+                // For AJAX forms, prevent default and handle submission
+                if (form.classList.contains('ajax-form')) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(form);
+                    const action = form.action || window.location.href;
+                    
+                    fetch(action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                        }
+                    })
+                    .then(response => {
+                        hideLoadingState(submitButton);
+                        if (response.ok) {
+                            announce('Form submitted successfully');
+                            // Handle success (could trigger a custom event)
+                            form.dispatchEvent(new CustomEvent('formSuccess', {detail: {response}}));
+                        } else {
+                            announce('Form submission failed');
+                            form.dispatchEvent(new CustomEvent('formError', {detail: {response}}));
+                        }
+                    })
+                    .catch(error => {
+                        hideLoadingState(submitButton);
+                        announce('Form submission failed');
+                        form.dispatchEvent(new CustomEvent('formError', {detail: {error}}));
+                    });
+                }
+                // For regular forms, just show loading state (will redirect)
+            });
+        }
+
+        // Search form enhancement with loading feedback
+        function enhanceSearchForm() {
+            const searchForm = document.querySelector('.garden-search');
+            const searchInput = document.querySelector('.garden-search-input');
+            const searchButton = document.querySelector('.garden-search-btn');
+            
+            if (searchForm && searchInput && searchButton) {
+                searchForm.addEventListener('submit', function(e) {
+                    if (searchInput.value.trim()) {
+                        showLoadingState(searchButton, 'Searching...');
+                        announce('Searching site...');
+                    } else {
+                        e.preventDefault();
+                        searchInput.focus();
+                        announce('Please enter a search term');
+                    }
+                });
+            }
+        }
+
+        // Theme toggle enhancement with feedback
+        function enhanceThemeToggle() {
+            const themeToggle = document.querySelector('.garden-theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    announce(`Switched to ${newTheme} theme`);
+                });
+            }
+        }
+
+        // Enhanced toast notification system
+        function showToast(message, type = 'info', duration = 5000) {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const iconMap = {
+                success: '✓',
+                error: '⚠',
+                warning: '⚠',
+                info: 'ℹ'
+            };
+            
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <span class="toast-icon">${iconMap[type] || 'ℹ'}</span>
+                    <div class="toast-message">${message}</div>
+                    <button class="toast-close" onclick="this.parentElement.parentElement.remove()" aria-label="Close notification">×</button>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Auto-remove after duration
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.style.animation = 'slideInFromTop 0.3s ease reverse';
+                    setTimeout(() => toast.remove(), 300);
+                }
+            }, duration);
+            
+            return toast;
+        }
+
+        // Enhanced error handling with visual feedback
+        function handleError(error, context = '') {
+            console.error('Error:', error, context);
+            
+            let message = 'An unexpected error occurred.';
+            if (error.message) {
+                message = error.message;
+            } else if (typeof error === 'string') {
+                message = error;
+            }
+            
+            showToast(message, 'error');
+            announce(`Error: ${message}`);
+        }
+
+        // Enhanced success feedback
+        function handleSuccess(message) {
+            showToast(message, 'success');
+            announce(`Success: ${message}`);
+        }
+
+        // Skeleton loading for content areas
+        function showSkeleton(container, type = 'default') {
+            if (!container) return;
+            
+            const skeletonTemplates = {
+                default: `
+                    <div class="skeleton skeleton-text title"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text short"></div>
+                `,
+                card: `
+                    <div class="skeleton skeleton-card"></div>
+                `,
+                list: `
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text short"></div>
+                    <div class="skeleton skeleton-text"></div>
+                `
+            };
+            
+            container.innerHTML = skeletonTemplates[type] || skeletonTemplates.default;
+            container.classList.add('loading-content');
+        }
+
+        function hideSkeleton(container, content) {
+            if (!container) return;
+            
+            container.classList.remove('loading-content');
+            if (content) {
+                container.innerHTML = content;
+            }
+        }
+
+        // Enhanced form validation with real-time feedback
+        function enhanceFormValidation() {
+            document.querySelectorAll('input, textarea, select').forEach(field => {
+                // Real-time validation on blur
+                field.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                // Clear validation on focus
+                field.addEventListener('focus', function() {
+                    clearFieldValidation(this);
+                });
+            });
+        }
+
+        function validateField(field) {
+            const value = field.value.trim();
+            let isValid = true;
+            let message = '';
+            
+            // Required field validation
+            if (field.hasAttribute('required') && !value) {
+                isValid = false;
+                message = 'This field is required';
+            }
+            
+            // Email validation
+            if (field.type === 'email' && value && !isValidEmail(value)) {
+                isValid = false;
+                message = 'Please enter a valid email address';
+            }
+            
+            // Show validation feedback
+            if (!isValid) {
+                showFieldError(field, message);
+            } else if (value) {
+                showFieldSuccess(field);
+            }
+            
+            return isValid;
+        }
+
+        function showFieldError(field, message) {
+            field.classList.add('form-error');
+            field.classList.remove('form-success');
+            
+            // Remove existing error message
+            const existingError = field.parentElement.querySelector('.error-message');
+            if (existingError) existingError.remove();
+            
+            // Add new error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.innerHTML = `<span>⚠</span> ${message}`;
+            field.parentElement.appendChild(errorDiv);
+        }
+
+        function showFieldSuccess(field) {
+            field.classList.add('form-success');
+            field.classList.remove('form-error');
+            
+            // Remove error message
+            const existingError = field.parentElement.querySelector('.error-message');
+            if (existingError) existingError.remove();
+        }
+
+        function clearFieldValidation(field) {
+            field.classList.remove('form-error', 'form-success');
+            const errorMessage = field.parentElement.querySelector('.error-message');
+            if (errorMessage) errorMessage.remove();
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Enhanced page transitions
+        function initPageTransitions() {
+            // Add fade-in animation to main content
+            const mainContent = document.querySelector('main, #main-content');
+            if (mainContent) {
+                mainContent.classList.add('fade-in');
+            }
+            
+            // Enhanced link navigation with loading feedback
+            document.querySelectorAll('a[href^="/"], a[href^="./"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Only for same-origin navigation
+                    if (this.href.startsWith(window.location.origin)) {
+                        const loadingIndicator = document.createElement('div');
+                        loadingIndicator.className = 'page-loading-indicator';
+                        loadingIndicator.innerHTML = '<div class="loading-spinner"></div>';
+                        loadingIndicator.style.cssText = `
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            height: 3px;
+                            background: var(--color-primary);
+                            z-index: 9999;
+                            animation: pulse 1s ease-in-out infinite;
+                        `;
+                        document.body.appendChild(loadingIndicator);
+                    }
+                });
+            });
+        }
+
+        // Initialize enhanced forms and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enhance all forms with loading states
+            document.querySelectorAll('form').forEach(handleFormSubmission);
+            
+            // Enhance search functionality
+            enhanceSearchForm();
+            
+            // Enhance theme toggle
+            enhanceThemeToggle();
+            
+            // Initialize enhanced features
+            enhanceFormValidation();
+            initPageTransitions();
+            
+            // Handle navigation errors
+            window.addEventListener('error', function(e) {
+                handleError(e.error || e.message, 'Page Error');
+            });
+            
+            // Handle unhandled promise rejections
+            window.addEventListener('unhandledrejection', function(e) {
+                handleError(e.reason, 'Promise Rejection');
+                e.preventDefault(); // Prevent console error
+            });
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

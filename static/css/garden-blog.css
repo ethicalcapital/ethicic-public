@@ -1,0 +1,983 @@
+/* Garden Blog Styling - Fully Integrated with Garden UI Design System */
+
+/* ===============================================
+   BLOG STATISTICS HEADER - Garden UI Style
+   =============================================== */
+
+.blog-stats-enhanced {
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-6) var(--space-4);
+    margin-bottom: 0;
+    position: relative;
+}
+
+/* Add subtle background pattern for visual interest */
+.blog-stats-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, var(--color-primary-alpha-subtle) 50%, transparent 100%);
+    pointer-events: none;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-6);
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+}
+
+.stat-primary,
+.stat-secondary {
+    text-align: center;
+    font-family: var(--font-mono);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.stat-primary:hover,
+.stat-secondary:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-primary-alpha);
+}
+
+.stat-primary .stat-value {
+    font-size: var(--font-3xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    display: block;
+    line-height: 1;
+    margin-bottom: var(--space-2);
+}
+
+.stat-secondary .stat-value {
+    font-size: var(--font-xl);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    display: block;
+    line-height: 1;
+    margin-bottom: var(--space-1);
+}
+
+.stat-label {
+    font-size: var(--font-xs);
+    color: var(--color-on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: var(--font-medium);
+    display: block;
+}
+
+/* ===============================================
+   BLOG DATA HEADER - Article Statistics
+   =============================================== */
+
+.blog-data-header {
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4);
+    margin-bottom: 0;
+}
+
+.data-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-4);
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+}
+
+.data-stat {
+    text-align: center;
+    font-family: var(--font-mono);
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+}
+
+.data-value {
+    display: block;
+    font-size: var(--font-2xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: var(--space-1);
+}
+
+.data-label {
+    display: block;
+    font-size: var(--font-xs);
+    color: var(--color-on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: var(--font-medium);
+}
+
+/* ===============================================
+   GARDEN PANEL STYLING - Consistent with Theme
+   =============================================== */
+
+.garden-panel {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    margin-bottom: var(--space-8);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+/* Panel headers now inherit proper styling from garden-panel.css */
+
+.garden-panel .garden-panel-content {
+    padding: var(--space-6);
+}
+
+/* Hero Panel Specific Styling */
+.hero-panel .garden-panel-content {
+    text-align: center;
+    padding: var(--space-8) var(--space-6);
+}
+
+/* ===============================================
+   MAIN CONTENT LAYOUT - Clean Garden UI
+   =============================================== */
+
+/* Blog container layout */
+.blog-container {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    gap: var(--space-6);
+}
+
+/* Article containers */
+.article-container,
+.article-wrapper {
+    max-width: var(--content-width-normal);
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    gap: var(--space-6);
+}
+
+/* ===============================================
+   TYPOGRAPHY - Garden UI Compliant
+   =============================================== */
+
+.hero-title {
+    font-size: var(--font-3xl);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    margin-bottom: var(--space-6);
+    line-height: var(--line-tight);
+    color: var(--color-on-surface);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-subtitle {
+    font-size: var(--font-lg);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    color: var(--color-on-surface-variant);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: var(--line-relaxed);
+}
+
+/* ===============================================
+   ARTICLES GRID - Modern Layout
+   =============================================== */
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+    margin: 0;
+}
+
+.article-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.article-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--color-primary-alpha);
+}
+
+.article-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.article-card:hover .article-image img {
+    transform: scale(1.05);
+}
+
+.article-content {
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.article-card .article-title {
+    font-size: var(--font-lg);
+    font-family: var(--font-mono);
+    font-weight: var(--font-semibold);
+    margin-bottom: var(--space-3);
+    line-height: var(--line-tight);
+}
+
+.article-body a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    transition: opacity 0.2s ease;
+}
+
+/* Additional pagination link styles - placed before article body hover for proper specificity */
+.pagination-alternate a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 var(--space-1);
+    padding: 0 var(--space-3);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-on-surface);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: var(--font-sm);
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.pagination-alternate a:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--garden-bg);
+    transform: translateY(-1px);
+}
+
+.article-body a:hover {
+    opacity: 0.8;
+}
+
+.article-card .article-title a {
+    color: var(--color-on-surface);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.article-card .article-title a:hover {
+    color: var(--color-primary);
+}
+
+.article-excerpt {
+    font-size: var(--font-sm);
+    color: var(--color-on-surface-variant);
+    line-height: var(--line-relaxed);
+    margin-bottom: var(--space-4);
+    flex-grow: 1;
+}
+
+/* ===============================================
+   ARTICLE META AND TAGS
+   =============================================== */
+
+.article-meta {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    font-size: var(--font-xs);
+    color: var(--color-on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+}
+
+.meta-item {
+    font-family: var(--font-mono);
+    font-size: var(--font-xs);
+    color: var(--color-on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: var(--font-medium);
+}
+
+.article-tags,
+.article-list-tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-4);
+    justify-content: center;
+}
+
+/* Article list specific tag styling */
+.article-list-tag {
+    background: var(--color-surface-variant);
+    color: var(--color-on-surface-variant);
+    border: 1px solid var(--color-border);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-xs);
+    font-family: var(--font-mono);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: var(--font-medium);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-sm);
+}
+
+.article-list-tag:hover {
+    background: var(--color-primary-alpha-light);
+    color: var(--color-on-surface);
+    border-color: var(--color-primary);
+}
+
+.article-tag {
+    background: var(--color-surface);
+    color: var(--color-on-surface-variant);
+    border: 1px solid var(--color-border);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-xs);
+    font-family: var(--font-mono);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: var(--font-medium);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-sm);
+}
+
+.article-tag:hover {
+    background: var(--color-surface-variant);
+    color: var(--color-on-surface);
+    border-color: var(--color-border);
+}
+
+.article-actions {
+    margin-top: auto;
+    text-align: center;
+}
+
+/* ===============================================
+   BLOG POST SPECIFIC STYLES
+   =============================================== */
+
+
+.article-excerpt.rich-text {
+    font-size: var(--font-lg);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    color: var(--color-on-surface-variant);
+    line-height: var(--line-relaxed);
+    font-style: italic;
+    padding: var(--space-4);
+    background: var(--color-primary-alpha-light);
+    border-left: 4px solid var(--color-primary);
+}
+
+.article-body {
+    font-size: var(--font-base);
+    font-family: var(--font-sans);
+    line-height: var(--line-relaxed);
+    color: var(--color-on-surface);
+}
+
+.article-body h2,
+.article-body h3,
+.article-body h4,
+.article-body h5,
+.article-body h6 {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--color-on-surface);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+}
+
+.article-body h2 {
+    font-size: var(--font-2xl);
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: var(--space-2);
+}
+
+.article-body h3 {
+    font-size: var(--font-xl);
+}
+
+.article-body h4 {
+    font-size: var(--font-lg);
+}
+
+.article-body p {
+    margin-bottom: var(--space-6);
+}
+
+.article-body blockquote {
+    margin: var(--space-8) 0;
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-primary-alpha-light);
+    border-left: 4px solid var(--color-primary);
+    font-style: italic;
+}
+
+/* No articles notice */
+.no-articles p {
+    font-size: var(--font-sm);
+    color: var(--color-on-surface-variant);
+}
+
+/* Featured notice text */
+.featured-notice p {
+    font-size: var(--font-sm);
+    color: var(--color-on-surface-variant);
+    margin: 0;
+}
+
+.tag-filter p {
+    margin-bottom: var(--space-4);
+    color: var(--color-on-surface-variant);
+}
+
+.article-body blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.article-body ul,
+.article-body ol {
+    margin-bottom: var(--space-6);
+    padding-left: var(--space-6);
+}
+
+.article-body li {
+    margin-bottom: var(--space-2);
+    line-height: var(--line-relaxed);
+}
+
+
+.article-body code {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    padding: var(--space-1) var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--font-sm);
+    color: var(--color-primary);
+}
+
+.article-body pre {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    padding: var(--space-4);
+    overflow-x: auto;
+    margin: var(--space-6) 0;
+    border-left: 4px solid var(--color-primary);
+}
+
+.article-body pre code {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* ===============================================
+   SPECIAL ELEMENTS
+   =============================================== */
+
+.no-articles {
+    text-align: center;
+    padding: var(--space-12) var(--space-6);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+}
+
+.no-articles h3 {
+    font-size: var(--font-lg);
+    font-family: var(--font-mono);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.featured-notice {
+    background: var(--color-primary-alpha);
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-primary);
+    text-align: center;
+    margin-top: var(--space-6);
+}
+
+.featured-badge {
+    font-family: var(--font-mono);
+    font-size: var(--font-xs);
+    font-weight: var(--font-medium);
+    color: var(--color-on-surface-variant);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: var(--space-2);
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+}
+
+/* ===============================================
+   PAGINATION - Garden UI Style
+   =============================================== */
+
+.pagination-container {
+    margin-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-6);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+    padding: var(--space-4);
+}
+
+.pagination-btn {
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-surface);
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    font-size: var(--font-sm);
+    font-family: var(--font-mono);
+    font-weight: var(--font-medium);
+    text-transform: none;
+    letter-spacing: 0;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-sm);
+}
+
+.pagination-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+}
+
+.pagination-info {
+    color: var(--color-on-surface-variant);
+    font-size: var(--font-sm);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: var(--font-medium);
+}
+
+/* ===============================================
+   BLOG BUTTONS - MINIMAL STYLING
+   =============================================== */
+
+/* Blog-specific garden-action overrides for minimal appearance */
+.blog-container .garden-action,
+.article-container .garden-action,
+.article-wrapper .garden-action,
+.article-card .garden-action {
+    padding: var(--space-2) var(--space-3);
+    min-height: auto;
+    min-width: auto;
+    font-size: var(--font-xs);
+    font-weight: var(--font-medium);
+    border-radius: var(--radius-sm);
+}
+
+/* Ensure secondary buttons in blog are minimal */
+.blog-container .garden-action.secondary,
+.article-container .garden-action.secondary,
+.article-wrapper .garden-action.secondary,
+.article-card .garden-action.secondary {
+    background: var(--color-surface);
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+}
+
+.blog-container .garden-action.secondary:hover,
+.article-container .garden-action.secondary:hover,
+.article-wrapper .garden-action.secondary:hover,
+.article-card .garden-action.secondary:hover {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+}
+
+/* ===============================================
+   ARTICLE NAVIGATION
+   =============================================== */
+
+.article-navigation {
+    margin-bottom: var(--space-6);
+    text-align: center;
+}
+
+/* ===============================================
+   BLOG UTILITIES SECTION - Search and Media
+   =============================================== */
+
+.blog-utilities-section {
+    margin-bottom: var(--space-8);
+}
+
+.utilities-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+}
+
+/* Search Panel Styling */
+.search-panel .garden-panel-content {
+    padding: var(--space-6);
+}
+
+.blog-search-form {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 250px;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-sans);
+    font-size: var(--font-base);
+    transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-alpha);
+}
+
+.search-input::placeholder {
+    color: var(--color-on-surface-variant);
+}
+
+/* Media Panel Styling */
+.media-panel .garden-panel-content {
+    padding: var(--space-6);
+}
+
+.media-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.media-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-3);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.media-item:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-alpha-light);
+    transform: translateY(-1px);
+}
+
+.media-source {
+    font-family: var(--font-mono);
+    font-size: var(--font-xs);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: var(--font-semibold);
+}
+
+.media-title {
+    font-size: var(--font-sm);
+    color: var(--color-on-surface);
+    line-height: var(--line-relaxed);
+}
+
+/* ===============================================
+   FILTER SECTIONS
+   =============================================== */
+
+.tag-filter {
+    background: var(--color-primary-alpha-light);
+    border-left: 4px solid var(--color-primary);
+}
+
+.tag-filter .garden-panel-content {
+    text-align: center;
+}
+
+.tag-filter strong {
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+}
+
+/* ===============================================
+   RESPONSIVE DESIGN
+   =============================================== */
+
+@media (max-width: 1024px) {
+    .main-content {
+        padding: 0 var(--space-3);
+    }
+    
+    .stats-grid,
+    .data-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-4);
+    }
+}
+
+@media (max-width: 768px) {
+    .utilities-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .blog-search-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-input {
+        min-width: auto;
+    }
+    
+    .articles-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .article-card {
+        margin: 0;
+    }
+    
+    .article-content {
+        padding: var(--space-4);
+    }
+    
+    .hero-title {
+        font-size: var(--font-2xl);
+    }
+    
+    .hero-subtitle {
+        font-size: var(--font-base);
+    }
+    
+    .article-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-2);
+    }
+    
+    .article-tags {
+        margin-top: var(--space-3);
+        justify-content: center;
+    }
+    
+    .pagination {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+    
+    .stats-grid,
+    .data-stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+    
+    .stat-primary .stat-value {
+        font-size: var(--font-2xl);
+    }
+    
+    .stat-secondary .stat-value {
+        font-size: var(--font-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .garden-panel .panel-content {
+        padding: var(--space-4);
+    }
+    
+    .hero-panel .panel-content {
+        padding: var(--space-6) var(--space-4);
+    }
+    
+    .article-excerpt.rich-text {
+        font-size: var(--font-base);
+        padding: var(--space-3);
+    }
+    
+    .article-body {
+        font-size: var(--font-sm);
+    }
+    
+    .article-body h2 {
+        font-size: var(--font-xl);
+    }
+    
+    .article-body h3 {
+        font-size: var(--font-lg);
+    }
+}
+
+/* ===============================================
+   INLINE DATA VISUALIZATIONS AND STATISTICS
+   =============================================== */
+
+.stat-highlight {
+    font-family: var(--font-mono);
+    font-size: var(--font-lg);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    background: var(--color-primary-alpha);
+    padding: var(--space-1) var(--space-2);
+    border-radius: 0;
+    border-left: 3px solid var(--color-primary);
+    margin: 0 var(--space-1);
+}
+
+.inline-stat-callout {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin: var(--space-4) 0;
+    padding: var(--space-3);
+    border-left: 4px solid var(--color-primary);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+}
+
+.stat-context {
+    font-size: var(--font-sm);
+    color: var(--color-on-surface-variant);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ascii-chart,
+.ascii-visual {
+    font-family: var(--font-mono);
+    font-size: var(--font-sm);
+    line-height: 1.2;
+    color: var(--color-primary);
+    background: var(--color-background);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    overflow-x: auto;
+    white-space: pre;
+    margin: var(--space-4) 0;
+}
+
+.data-callout {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin: var(--space-4) 0;
+    padding: var(--space-3);
+    border-left: 4px solid var(--color-primary);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+}
+
+.data-callout .data-value {
+    font-size: var(--font-xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+}
+
+.data-callout .data-description {
+    font-size: var(--font-sm);
+    color: var(--color-on-surface-variant);
+    margin-left: var(--space-2);
+}
+
+/* ===============================================
+   PAGINATION - Platform Aligned
+   =============================================== */
+
+/* Remove duplicate pagination styles - keeping only the first instance */
+/* Pagination styles are defined above in the main pagination section */
+
+/* Pagination styles consolidated above - duplicate removed */
+
+.pagination .current {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--garden-bg);
+    cursor: default;
+}
+
+/* Panel header visibility now handled globally in garden-ui-theme.css */
+
+/* ===============================================
+   BLOG POST LAYOUT - Clean Garden UI
+   =============================================== */
+
+/* Garden panels in blog posts */
+.article-container .garden-panel,
+.article-wrapper .garden-panel {
+    max-width: 100%;
+    width: 100%;
+}

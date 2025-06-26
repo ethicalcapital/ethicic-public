@@ -1,0 +1,25 @@
+{% comment %}
+BreadcrumbList Schema for Navigation
+Helps search engines understand site structure and hierarchy
+{% endcomment %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ request.scheme }}://{{ request.get_host }}/"
+    }{% if breadcrumb_items %}{% for item in breadcrumb_items %},
+    {
+      "@type": "ListItem", 
+      "position": {{ forloop.counter|add:1 }},
+      "name": "{{ item.name }}",
+      "item": "{{ request.scheme }}://{{ request.get_host }}{{ item.url }}"
+    }{% endfor %}{% endif %}
+  ]
+}
+</script>

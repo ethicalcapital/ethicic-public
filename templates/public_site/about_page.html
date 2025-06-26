@@ -1,0 +1,140 @@
+{% extends "public_site/base.html" %}
+{% load static %}
+
+{% block title %}{{ page.title }} | Ethical Capital{% endblock %}
+
+{% block meta_description %}{{ page.search_description|default:"Learn about Ethical Capital's mission, values, and approach to institutional-grade ethical investing." }}{% endblock %}
+
+{% block body_class %}
+    {% if page.slug == 'solutions' %}solutions-page{% else %}about-page{% endif %}
+{% endblock %}
+
+{% block content %}
+<!-- About Sloane Section -->
+<main class="about-section garden-panel" role="main" aria-labelledby="about-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">ABOUT</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <div class="about-hero">
+            <div class="about-image">
+                <img src="{{ page.headshot_image }}" 
+                     alt="{{ page.headshot_alt_text }}" 
+                     class="headshot"
+                     loading="lazy"
+                     width="300" 
+                     height="400">
+            </div>
+            
+            <div class="about-content">
+                <div class="sloane-sez">
+                    {{ page.philosophy_quote|safe }}
+                    <footer class="quote-attribution">
+                        <cite>
+                            <a href="{{ page.philosophy_quote_link }}" class="garden-action secondary">
+                                {{ page.philosophy_quote_link_text }}
+                            </a>
+                        </cite>
+                    </footer>
+                </div>
+                
+                <div class="about-identity">
+                    <h1 class="name">{{ page.name }}</h1>
+                    <div class="title">{{ page.professional_title }}</div>
+                </div>
+                
+                <div class="social-links">
+                    <!-- Primary CTA Calendar Link -->
+                    {% if page.calendar_url %}
+                    <div class="social-cta">
+                        <a href="{{ page.calendar_url }}" target="_blank" rel="noopener noreferrer" class="social-cta-link garden-action primary">
+                            <span class="social-icon">📅</span>
+                            <span class="social-text">Schedule Meeting</span>
+                        </a>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Social Media Grid -->
+                    <div class="social-grid">
+                        {% if page.linkedin_url %}
+                        <a href="{{ page.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <span class="social-icon">🔗</span>
+                            <span class="social-text">LinkedIn</span>
+                        </a>
+                        {% endif %}
+                        {% if page.twitter_url %}
+                        <a href="{{ page.twitter_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <span class="social-icon">🐦</span>
+                            <span class="social-text">Twitter</span>
+                        </a>
+                        {% endif %}
+                        {% if page.bluesky_url %}
+                        <a href="{{ page.bluesky_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <span class="social-icon">🦋</span>
+                            <span class="social-text">Bluesky</span>
+                        </a>
+                        {% endif %}
+                        {% if page.instagram_url %}
+                        <a href="{{ page.instagram_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <span class="social-icon">📷</span>
+                            <span class="social-text">Instagram</span>
+                        </a>
+                        {% endif %}
+                        {% if page.tiktok_url %}
+                        <a href="{{ page.tiktok_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <span class="social-icon">🎵</span>
+                            <span class="social-text">TikTok</span>
+                        </a>
+                        {% endif %}
+                        {% if page.sec_info_url %}
+                        <a href="{{ page.sec_info_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <span class="social-icon">📋</span>
+                            <span class="social-text">BrokerCheck</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="about-details">
+            <div class="detail-section">
+                <h3>{{ page.professional_background_title }}</h3>
+                {{ page.professional_background_content|safe }}
+            </div>
+            
+            <div class="detail-section">
+                <h3>{{ page.external_roles_title }}</h3>
+                {{ page.external_roles_content|safe }}
+            </div>
+            
+            <div class="detail-section">
+                <h3>{{ page.speaking_writing_title }}</h3>
+                {{ page.speaking_writing_content|safe }}
+                
+                <div class="speaking-cta">
+                    {{ page.speaking_cta_text|safe }}
+                    <div class="contact-note">
+                        {{ page.speaking_contact_note|safe }}
+                        {% if page.calendar_link %}
+                        <a href="{{ page.calendar_link }}" class="garden-action" target="_blank" rel="noopener noreferrer">{{ page.calendar_link_text }}</a>
+                        {% endif %}
+                        {% if page.email_link %}
+                        <a href="mailto:{{ page.email_link }}" class="garden-action secondary">{{ page.email_link_text }}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>{{ page.personal_interests_title }}</h3>
+                {{ page.personal_interests_content|safe }}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/layers/22-about-page.css' %}">
+{% endblock %}

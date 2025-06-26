@@ -1,0 +1,235 @@
+/*!
+ * Critical Page Overrides CSS - V2 Optimized with Utilities
+ * High-specificity fixes using Garden UI utilities where possible
+ * Reduced redundancy through utility class integration
+ */
+
+/* ===== MAXIMUM SPECIFICITY CONTAINER WIDTH OVERRIDES ===== */
+/* Use utility classes with high specificity selectors */
+html body.public-site-context main.main-content,
+html body.public-site-context .main-content,
+html body.public-site-context section.garden-panel,
+html body.public-site-context .garden-panel,
+html body.public-site-context .garden-panel-content,
+html body.public-site-context .panel-content,
+html body.public-site-context .garden-panel .garden-panel-content,
+html body.public-site-context div.garden-panel-content,
+html body.public-site-context div.panel-content,
+html body.public-site-context section.garden-panel div.garden-panel-content {
+    /* Use utility class pattern */
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* ===== HERO PANEL LAYOUT FIXES ===== */
+.public-site-context .home-page {
+    width: 100%;
+}
+
+.public-site-context .hero-panel {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.public-site-context .hero-panel .panel-content,
+.public-site-context .hero-panel .garden-panel-content,
+.public-site-context .hero-panel .hero-panel-content {
+    /* Combines garden-container + garden-center + garden-padding */
+    max-width: var(--content-width-normal);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* ===== HEADER POSITIONING DELEGATED TO CRITICAL-FIXES.CSS ===== */
+/* Header positioning is now handled in critical-fixes.css with maximum specificity */
+/* This avoids conflicts and ensures the bulletproof fixes take precedence */
+
+/* ===== SOLUTIONS PAGE FIXES ===== */
+.public-site-context .solution-card .card-header,
+.solutions-page .card-header {
+    background: transparent;
+    background-color: transparent;
+    padding: 0;
+}
+
+.public-site-context .solution-card h3.card-title,
+.public-site-context h3.card-title,
+.solutions-page .card-title,
+.solutions-page h3.card-title {
+    /* Uses garden-text-primary + garden-text-reset pattern */
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    font-size: var(--font-lg);
+    font-weight: var(--font-semibold);
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    margin: 0;
+    text-indent: 0;
+    overflow: visible;
+    white-space: normal;
+    height: auto;
+    line-height: 1.3;
+    background: transparent;
+}
+
+/* ===== GRID SECTIONS - CONTAINER PATTERN ===== */
+.public-site-context .audiences-grid,
+.public-site-context .advantages-grid,
+.public-site-context .delivery-grid,
+.public-site-context .solutions-grid,
+.public-site-context .garden-panel__content {
+    /* Standard garden-container pattern */
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* ===== CTA BUTTON LAYOUT ===== */
+.public-site-context .cta-actions {
+    /* Uses garden-flex-row pattern */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .public-site-context .cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ===== PROCESS PAGE STEP NUMBERS ===== */
+body.process-page .step-number {
+    /* Uses garden-step-number pattern */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: var(--font-bold);
+    margin: 0 0 var(--space-4) 0;
+    flex-shrink: 0;
+}
+
+/* Step number hiding with high specificity */
+body.process-page .process-step > h3:first-child,
+body.process-page .process-step > span:first-child,
+body.process-page .process-step > div:first-child:not(.step-number),
+body.process-page .process-step > p:first-child {
+    display: none;
+}
+
+/* ===== CONSOLIDATED PAGE LAYOUTS ===== */
+/* All page types use the same container pattern */
+body.process-page .garden-panel-content,
+body.process-page .garden-panel__content,
+body.process-page .garden-panel-header,
+body.process-page .panel-title,
+body.process-page .process-steps,
+body.process-page .principles-grid,
+body.process-page .hero-panel .garden-panel-content,
+body.process-page section.garden-panel > div,
+.pricing-page .hero-section .panel-content,
+.blog-post-page .blog-article,
+.blog-post-page .article-header,
+.blog-post-page .article-header-content,
+.blog-post-page .article-content,
+.blog-post-page .article-body,
+.blog-post-page .article-footer,
+.blog-index-page .main-content,
+.blog-index-page .blog-container,
+.blog-index-page .garden-panel-content,
+.blog-index-page .articles-grid,
+.faq-page .main-content,
+.faq-page .garden-panel-content,
+.encyclopedia-page .main-content,
+.encyclopedia-page .garden-panel-content,
+.strategy-page .main-content,
+.strategy-page .garden-panel-content,
+.about-page .main-content,
+.about-page .garden-panel-content,
+.contact-page .main-content,
+.contact-page .garden-panel-content {
+    /* Unified garden-container pattern */
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* ===== TEXT CONTENT OPTIMIZATION ===== */
+.blog-post-page .article-body p,
+.blog-post-page .article-body div,
+.blog-post-page .article-body blockquote,
+.blog-post-page .article-body ul,
+.blog-post-page .article-body ol,
+.blog-post-page .article-excerpt,
+.blog-post-page .article-title,
+.blog-post-page .rich-text {
+    max-width: none;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== RESPONSIVE CONTENT PADDING ===== */
+@media (max-width: 768px) {
+    .blog-post-page .article-body,
+    .blog-index-page .main-content,
+    .faq-page .main-content,
+    .encyclopedia-page .main-content,
+    .strategy-page .main-content,
+    .about-page .main-content,
+    .contact-page .main-content {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-post-page .article-body,
+    .blog-index-page .main-content,
+    .faq-page .main-content,
+    .encyclopedia-page .main-content,
+    .strategy-page .main-content,
+    .about-page .main-content,
+    .contact-page .main-content {
+        padding-left: var(--space-3);
+        padding-right: var(--space-3);
+    }
+}
+
+/* ===== PRICING PAGE TEXT ALIGNMENT ===== */
+.pricing-page .hero-section .panel-content h1 {
+    text-align: center;
+}
+
+/* ===== FINAL LAYOUT UTILITIES ===== */
+.public-site-context .garden-panel-content,
+.public-site-context .panel-content {
+    /* Standard container with padding and layout reset */
+    max-width: var(--content-width-normal);
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+    float: none;
+    clear: both;
+}

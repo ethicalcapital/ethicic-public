@@ -1,0 +1,63 @@
+{% load wagtailcore_tags %}
+
+<div class="wagtail-table-block">
+    {% if value.caption %}
+        <div class="wagtail-table-caption">
+            <h4>{{ value.caption }}</h4>
+        </div>
+    {% endif %}
+    
+    {% if value.description %}
+        <div class="wagtail-table-description">
+            {{ value.description|richtext }}
+        </div>
+    {% endif %}
+
+    <div class="wagtail-table-wrapper">
+        {% if value.table and value.table.data %}
+            <table class="wagtail-data-table">
+                {% for row in value.table.data %}
+                    {% if forloop.first and value.table.first_row_is_table_header %}
+                        <thead>
+                            <tr>
+                                {% for cell in row %}
+                                    {% if cell %}
+                                        <th>{{ cell }}</th>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                    {% elif forloop.first and not value.table.first_row_is_table_header %}
+                        <tbody>
+                        <tr>
+                            {% for cell in row %}
+                                {% if cell %}
+                                    <td>{{ cell }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% else %}
+                        <tr>
+                            {% for cell in row %}
+                                {% if cell %}
+                                    <td>{{ cell }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No table data found</p>
+        {% endif %}
+    </div>
+
+    {% if value.source %}
+        <div class="wagtail-table-source">
+            <small>Source: {{ value.source }}</small>
+        </div>
+    {% endif %}
+</div>
+

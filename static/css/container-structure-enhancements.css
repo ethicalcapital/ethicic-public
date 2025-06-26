@@ -1,0 +1,145 @@
+/*!
+ * Container Structure Enhancements
+ * Ensures consistent container widths and adds subtle borders for clarity
+ * Integrated with Garden UI design system
+ */
+
+/* ===== UNIVERSAL CONTAINER WIDTH CONSISTENCY ===== */
+/* Ensure all major containers use the same max-width */
+.public-site-context .main-content,
+.public-site-context .garden-panel-content,
+.public-site-context .panel-content,
+.public-site-context .garden-footer-content,
+.public-site-context .garden-header-content,
+.hero-panel .panel-content,
+.hero-panel .garden-panel-content {
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* ===== FOOTER WIDTH ENFORCEMENT DELEGATED TO CRITICAL-FIXES.CSS ===== */
+/* Footer width constraints are now handled in critical-fixes.css with maximum specificity */
+/* This avoids conflicts and ensures the bulletproof fixes take precedence */
+.public-site-context .garden-footer {
+    width: 100%;
+    background: var(--color-surface);
+}
+
+/* ===== SUBTLE CONTAINER BORDERS FOR STRUCTURE CLARITY ===== */
+/* Add very subtle borders to make container structure visible */
+
+/* Main content sections */
+.public-site-context .garden-panel {
+    border: 1px solid var(--color-border-subtle, rgba(0,0,0,0.05));
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-4);
+    box-shadow: var(--shadow-xs, 0 1px 2px rgba(0,0,0,0.05));
+    background: var(--color-surface);
+}
+
+/* Panel content padding adjustment for borders */
+.public-site-context .garden-panel .garden-panel-content {
+    padding: var(--space-6);
+}
+
+/* Header visual separation */
+.public-site-context .garden-header {
+    border-bottom: 1px solid var(--color-border-subtle, rgba(255,255,255,0.1));
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Footer visual separation */
+.public-site-context .garden-footer {
+    border-top: 2px solid var(--color-border);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    margin-top: var(--space-8);
+}
+
+/* ===== CONTENT AREA STRUCTURE ===== */
+/* Make main content area more visually defined */
+.public-site-context .main-content {
+    background: var(--color-background);
+    min-height: calc(100vh - 200px); /* Account for header and footer */
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin: var(--space-4) auto;
+    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
+}
+
+/* ===== HERO PANEL SPECIAL TREATMENT ===== */
+/* Hero panels should span full width but content should be contained */
+.public-site-context .hero-panel {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    border: none; /* Remove border for hero sections */
+    border-radius: 0;
+    background: var(--color-primary-alpha, rgba(85, 60, 154, 0.05));
+    border-bottom: 1px solid var(--color-border);
+}
+
+.public-site-context .hero-panel .panel-content,
+.public-site-context .hero-panel .garden-panel-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    padding: var(--space-10) var(--space-6);
+    text-align: center;
+}
+
+/* ===== RESPONSIVE BORDER ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .public-site-context .garden-panel {
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        margin-bottom: var(--space-3);
+    }
+    
+    .public-site-context .main-content {
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    
+    /* Footer responsive padding delegated to critical-fixes.css */
+}
+
+/* Footer responsive padding delegated to critical-fixes.css */
+
+/* ===== DARK THEME ADJUSTMENTS ===== */
+[data-theme="dark"] .public-site-context .garden-panel {
+    border-color: var(--color-border, rgba(255,255,255,0.1));
+    background: var(--color-surface-variant);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .public-site-context .main-content {
+    background: var(--color-surface);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .public-site-context .hero-panel {
+    background: var(--color-primary-alpha, rgba(124, 58, 237, 0.1));
+    border-bottom-color: var(--color-border);
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+/* Ensure borders don't interfere with focus states */
+.public-site-context .garden-panel:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-alpha);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .public-site-context .garden-panel {
+        border-width: 2px;
+        border-color: var(--color-text-primary);
+    }
+    
+    .public-site-context .garden-footer {
+        border-top-width: 3px;
+    }
+}

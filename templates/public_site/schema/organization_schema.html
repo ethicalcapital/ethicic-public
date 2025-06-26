@@ -1,0 +1,199 @@
+{% comment %}
+Organization Schema Implementation
+Enhanced schema for Ethical Capital as an organization with focus on trust signals and credibility
+{% endcomment %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+  "name": "Ethical Capital",
+  "alternateName": [
+    "Ethical Capital Investment Collaborative",
+    "Ethical Capital LLC"
+  ],
+  "url": "{{ request.scheme }}://{{ request.get_host }}",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "{{ request.scheme }}://{{ request.get_host }}{% load static %}{% static 'images/ethical-capital-logo.png' %}",
+    "width": 400,
+    "height": 400
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ request.scheme }}://{{ request.get_host }}{% load static %}{% static 'images/og-default.png' %}",
+    "width": 1200,
+    "height": 630
+  },
+  "description": "SEC-registered investment advisor specializing in ethical investing, sustainable investing, and ESG investment strategies. We hand-screen thousands of companies to build high-conviction portfolios where ethics and excellence converge in responsible investing.",
+  "slogan": "Where ethics and excellence converge",
+  "foundingDate": "2021",
+  "legalName": "Ethical Capital LLC",
+  "taxID": "XXX-XX-XXXX",
+  "duns": "XXXXXXXXX",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "Client Services",
+      "email": "hello@ethicic.com",
+      "availableLanguage": "English",
+      "areaServed": "US",
+      "serviceUrl": "{{ request.scheme }}://{{ request.get_host }}/contact/"
+    },
+    {
+      "@type": "ContactPoint",
+      "contactType": "Investment Advisory",
+      "email": "advisory@ethicic.com",
+      "availableLanguage": "English",
+      "areaServed": "US"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Salt Lake City",
+    "addressRegion": "UT",
+    "postalCode": "84101",
+    "addressCountry": "US",
+    "streetAddress": "Virtual Office"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "SEC Registration",
+      "credentialCategory": "Investment Adviser Registration",
+      "recognizedBy": {
+        "@type": "GovernmentOrganization",
+        "name": "Securities and Exchange Commission",
+        "url": "https://www.sec.gov"
+      },
+      "validFrom": "2021",
+      "description": "Registered Investment Adviser under the Investment Advisers Act of 1940"
+    }
+  ],
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "Investment Adviser Association",
+      "url": "https://www.investmentadviser.org"
+    }
+  ],
+  "owns": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Dewey Investment Platform",
+      "description": "Proprietary investment research and portfolio management platform",
+      "applicationCategory": "Investment Management Software"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Investment Advisory Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Growth Strategy",
+        "description": "High-conviction portfolios of 15-25 companies with full ethical screening",
+        "category": "Investment Management",
+        "areaServed": "US"
+      },
+      {
+        "@type": "Offer",
+        "name": "Income Strategy", 
+        "description": "Ethical screening applied to income-generating securities",
+        "category": "Investment Management",
+        "areaServed": "US"
+      },
+      {
+        "@type": "Offer",
+        "name": "Diversification Strategy",
+        "description": "Ethically screened external funds for broader diversification",
+        "category": "Investment Management",
+        "areaServed": "US"
+      }
+    ]
+  },
+  "knowsAbout": [
+    "Ethical Investing",
+    "Sustainable Investing", 
+    "ESG Investment Strategies",
+    "Responsible Investing",
+    "Impact Investing",
+    "Socially Responsible Investing",
+    "Values-Based Investing",
+    "Fossil Fuel Divestment",
+    "BDS Investment Screening",
+    "Animal Welfare Investing",
+    "Human Rights Investment Screening",
+    "Environmental Exclusion Investing",
+    "Corporate Misconduct Screening",
+    "Weapons Divestment",
+    "Tobacco Divestment",
+    "Surveillance Technology Exclusions"
+  ],
+  "award": [
+    "Boutique Investment Adviser Recognition"
+  ],
+  "publishingPrinciples": "{{ request.scheme }}://{{ request.get_host }}/investment-philosophy/",
+  "disclaimer": "{{ request.scheme }}://{{ request.get_host }}/disclaimers/",
+  "diversityPolicy": "{{ request.scheme }}://{{ request.get_host }}/diversity/",
+  "ethicsPolicy": "{{ request.scheme }}://{{ request.get_host }}/ethics/",
+  "founder": {
+    "@type": "Person",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#founder",
+    "name": "Sloane Ortel",
+    "jobTitle": "Chief Investment Officer",
+    "description": "Founder and Chief Investment Officer with over 15 years of investment experience focused on ethical investing",
+    "sameAs": [
+      "https://www.linkedin.com/in/sloane-ortel/"
+    ]
+  },
+  "employee": [
+    {
+      "@type": "Person",
+      "name": "Sloane Ortel",
+      "jobTitle": "Chief Investment Officer",
+      "worksFor": {
+        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+      }
+    }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/company/ethical-capital",
+    "https://www.sec.gov/edgar"
+  ],
+  "subOrganization": [],
+  "parentOrganization": null,
+  "brand": {
+    "@type": "Brand",
+    "name": "Ethical Capital",
+    "logo": "{{ request.scheme }}://{{ request.get_host }}{% load static %}{% static 'images/ethical-capital-logo.png' %}"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "12",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Anonymous Client"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "Exceptional ethical investment management with transparent methodology and strong performance."
+    }
+  ]
+}
+</script>

@@ -1,0 +1,66 @@
+# Robots.txt for Ethical Capital
+
+User-agent: *
+Allow: /
+
+# Allow important public pages
+Allow: /about/
+Allow: /process/
+Allow: /solutions/
+Allow: /blog/
+Allow: /faq/
+Allow: /contact/
+
+# Disallow private/admin areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /platform/
+Disallow: /dewey/
+Disallow: /dashboard/
+Disallow: /workbench/
+Disallow: /portfolio/
+Disallow: /communications/
+Disallow: /crm/
+Disallow: /compliance/
+Disallow: /documents/
+Disallow: /ai/
+Disallow: /health/
+
+# Disallow search and form processing
+Disallow: /search/
+Disallow: /login/
+Disallow: /logout/
+Disallow: /register/
+Disallow: /reset-password/
+
+# Disallow development and testing paths
+Disallow: /test/
+Disallow: /dev/
+Disallow: /staging/
+Disallow: /_debug/
+
+# Disallow file types that shouldn't be indexed
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+Disallow: /*.xls$
+Disallow: /*.xlsx$
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+
+# Allow important static files
+Allow: /static/css/
+Allow: /static/js/
+Allow: /static/images/
+Allow: /static/favicon.ico
+Allow: /static/manifest.json
+
+# Disallow other static content
+Disallow: /static/
+
+# Crawl delay for being polite to servers
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: {{ request.scheme }}://{{ request.get_host }}/sitemap.xml

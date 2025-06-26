@@ -1,0 +1,186 @@
+from typing import ClassVar
+
+
+"""
+Wagtail hooks for the public_site app.
+Clean, simplified admin interface without AI features.
+"""
+from django.utils.html import format_html
+from wagtail import hooks
+from wagtail.snippets.models import register_snippet
+from wagtail.snippets.views.snippets import SnippetViewSet
+
+from .models import (
+    SupportTicket,
+)
+
+
+# Register SupportTicket as a snippet for easier management
+@register_snippet
+class SupportTicketSnippetViewSet(SnippetViewSet):
+    model = SupportTicket
+    list_display: ClassVar[list] = ['first_name', 'last_name', 'subject', 'status', 'created_at']
+    list_filter: ClassVar[list] = ['status', 'category', 'created_at']
+    search_fields: ClassVar[list] = ['first_name', 'last_name', 'email', 'subject', 'message']
+    ordering: ClassVar[list] = ['-created_at']
+
+
+# Add clean admin CSS to improve page editing experience
+@hooks.register('insert_global_admin_css')
+def global_admin_css():
+    return '''<style>
+        /* Improve Wagtail admin styling for public site pages */
+        .page-editor .object h2.c-panel__heading {
+            background-color: #f3f3f3;
+            padding: 1rem;
+            margin-bottom: 0;
+        }
+
+        .page-editor .object .field {
+            margin-bottom: 1.5rem;
+        }
+
+        .page-editor .help {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 0.5rem;
+        }
+
+        /* Make rich text fields taller */
+        .page-editor .Draftail-Editor__wrapper {
+            min-height: 200px;
+        }
+
+        /* Improve panel visibility */
+        .page-editor .c-panel {
+            border: 1px solid #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+        /* StreamField specific styling */
+        .stream-field .sequence-controls {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .stream-field .sequence-member {
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .stream-field .sequence-member-inner {
+            padding: 15px;
+        }
+
+        .stream-field .sequence-type-label {
+            background: #007cba;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* Block-specific styling */
+        .stream-field .sequence-type-label[data-streamfield-block-type="image"] {
+            background: #28a745;
+        }
+
+        .stream-field .sequence-type-label[data-streamfield-block-type="quote"] {
+            background: #6f42c1;
+        }
+
+        .stream-field .sequence-type-label[data-streamfield-block-type="callout"] {
+            background: #fd7e14;
+        }
+
+        .stream-field .sequence-type-label[data-streamfield-block-type="key_statistic"] {
+            background: #dc3545;
+        }
+
+        /* Legacy field styling */
+        .object[data-field="body"] {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .object[data-field="body"] .object-label {
+            color: #856404;
+        }
+
+        .object[data-field="body"] .object-label::after {
+            content: " (Legacy - Consider migrating to StreamField)";
+            font-size: 0.8em;
+            font-weight: normal;
+            color: #856404;
+        }
+
+        /* Collapsed panel styling */
+        .collapsed .c-panel__content {
+            display: none;
+        }
+
+        .collapsed .c-panel__heading::after {
+            content: " (Click to expand)";
+            font-size: 0.8em;
+            font-weight: normal;
+            color: #666;
+        }
+
+        /* Help text styling */
+        .c-panel__content .help {
+            color: #666;
+            font-size: 0.85em;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+    </style>'''
+
+
+@hooks.register('construct_homepage_panels')
+def add_public_site_instructions(request, panels):
+    """Add helpful instructions panel to the homepage admin."""
+    from wagtail.admin.panels import Panel
+
+    class InstructionsPanel(Panel):
+        def __init__(self):
+            super().__init__()
+            self.order = 100  # Set display order for the panel
+
+        @property
+        def media(self):
+            """Return empty Media object since this panel doesn't need additional CSS/JS."""
+            from django.forms import Media
+            return Media()
+
+        def render(self):
+            return format_html(
+                '''
+                <div class="help-block">
+                    <h3>📋 Content Management Tips</h3>
+                    <ul>
+                        <li><strong>Blog Posts:</strong> Use StreamField blocks for rich content layout</li>
+                        <li><strong>Key Statistics:</strong> Use the Key Statistic block to highlight important data</li>
+                        <li><strong>Images:</strong> Always add alt text for accessibility</li>
+                        <li><strong>SEO:</strong> Fill in meta description and search keywords</li>
+                    </ul>
+                    <p>
+                        <a href="/admin/pages/" class="button">📄 Manage Pages</a>
+                        <a href="/admin/snippets/public_site/supportticket/" class="button">🎫 Support Tickets</a>
+                    </p>
+                </div>
+                '''
+            )
+
+    panels.append(InstructionsPanel())

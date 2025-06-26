@@ -1,0 +1,395 @@
+/*
+ * GARDEN BLOG SIDEBAR - Sticky Subscribe & Connect Component
+ * Garden UI compliant sticky sidebar for blog pages
+ */
+
+/* ========================================================================
+   BLOG LAYOUT WITH SIDEBAR - Garden UI Grid System
+   ======================================================================== */
+
+/* Main blog content area */
+.blog-main-content {
+    min-width: 0; /* Prevent overflow */
+    width: 100%;
+}
+
+/* ========================================================================
+   STICKY SIDEBAR - Garden UI Component
+   ======================================================================== */
+
+.blog-sticky-sidebar {
+    position: sticky;
+    top: var(--space-8);
+    flex: 1;
+    width: 33.333%;
+    min-width: 300px;
+    max-width: 400px;
+    max-height: calc(100vh - var(--space-16));
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+}
+
+.blog-sticky-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.blog-sticky-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.blog-sticky-sidebar::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--radius-sm);
+}
+
+.blog-sticky-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-hover);
+}
+
+/* ========================================================================
+   SIDEBAR SECTIONS - Garden UI Panel Pattern
+   ======================================================================== */
+
+.sidebar-section {
+    margin-bottom: var(--space-6);
+}
+
+.sidebar-section:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar-section .garden-panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-normal);
+    overflow: hidden;
+}
+
+.sidebar-section .garden-panel:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.sidebar-section .garden-panel-content {
+    padding: var(--space-5);
+}
+
+/* ========================================================================
+   NEWSLETTER SECTION - Enhanced Styling
+   ======================================================================== */
+
+/* Newsletter section panel header */
+.newsletter-section .garden-panel-header {
+    background: var(--color-primary);
+    color: var(--color-surface);
+    border-bottom: none;
+    padding: var(--space-4) var(--space-5);
+}
+
+.newsletter-section .garden-panel-header .panel-title {
+    color: var(--color-surface);
+    font-family: var(--font-mono);
+    font-size: var(--font-sm);
+    font-weight: var(--font-bold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
+}
+
+/* Enhanced newsletter content styling */
+.newsletter-section .garden-panel-content {
+    background: var(--color-surface);
+    border-top: 3px solid var(--color-primary);
+}
+
+/* ========================================================================
+   CONNECT SECTION - Enhanced Styling
+   ======================================================================== */
+
+/* Connect section panel header */
+.connect-section .garden-panel-header {
+    background: var(--color-surface-variant);
+    color: var(--color-on-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) var(--space-5);
+}
+
+.connect-section .panel-title {
+    color: var(--color-on-surface);
+    font-family: var(--font-mono);
+    font-size: var(--font-sm);
+    font-weight: var(--font-bold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
+}
+
+/* Enhanced connect content styling */
+.connect-section .garden-panel-content {
+    background: var(--color-surface);
+}
+
+/* ========================================================================
+   SIDEBAR CONTENT - Garden UI Typography
+   ======================================================================== */
+
+.sidebar-description {
+    font-size: var(--font-sm);
+    color: var(--color-on-surface);
+    margin: 0 0 var(--space-4) 0;
+    line-height: 1.5;
+}
+
+.sidebar-privacy {
+    margin: var(--space-3) 0 0 0;
+    font-size: var(--font-xs);
+    color: var(--color-on-surface-variant);
+    text-align: center;
+    line-height: 1.4;
+}
+
+.sidebar-privacy small {
+    font-size: inherit;
+}
+
+/* ========================================================================
+   NEWSLETTER FORM - Garden UI Form Component
+   ======================================================================== */
+
+.sidebar-newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.form-group {
+    margin: 0;
+}
+
+.sidebar-input {
+    width: 100%;
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border);
+    color: var(--color-on-surface);
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-sm);
+    font-family: var(--font-sans);
+    transition: all var(--transition-fast);
+    box-sizing: border-box;
+}
+
+.sidebar-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-alpha);
+    background: var(--color-surface);
+}
+
+.sidebar-input::placeholder {
+    color: var(--color-on-surface-variant);
+    opacity: 1;
+}
+
+.garden-action.full-width {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+/* ========================================================================
+   SOCIAL LINKS - Garden UI Link Component Pattern
+   ======================================================================== */
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-on-surface);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    font-size: var(--font-sm);
+    font-weight: var(--font-medium);
+    border: 1px solid transparent;
+}
+
+.social-link:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border);
+    transform: translateX(2px);
+}
+
+.social-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+}
+
+.social-text {
+    flex: 1;
+}
+
+/* Platform-specific hover colors */
+.social-link.linkedin:hover {
+    background: var(--color-primary-alpha-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.social-link.tiktok:hover {
+    background: var(--color-primary-alpha-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.social-link.email:hover {
+    background: var(--color-primary-alpha-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.social-link.contact:hover {
+    background: var(--color-primary-alpha);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* ========================================================================
+   FAQ SIDEBAR STYLES - FAQ-specific navigation and support links
+   ======================================================================== */
+
+.faq-nav-links,
+.support-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.faq-nav-link,
+.support-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-on-surface);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    font-size: var(--font-sm);
+    font-weight: var(--font-medium);
+    border: 1px solid transparent;
+}
+
+.faq-nav-link:hover,
+.support-link:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border);
+    transform: translateX(2px);
+}
+
+.nav-icon,
+.support-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+}
+
+.nav-text,
+.support-text {
+    flex: 1;
+}
+
+/* FAQ Navigation hover colors */
+.faq-nav-link:hover {
+    background: var(--color-primary-alpha-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* Support link hover colors */
+.support-link:hover {
+    background: var(--color-primary-alpha-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* ========================================================================
+   RESPONSIVE DESIGN - Garden UI Breakpoints
+   ======================================================================== */
+
+@media (max-width: 1024px) {
+    .blog-sticky-sidebar {
+        width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-sticky-sidebar {
+        position: static;
+        width: 100%;
+        max-height: none;
+        order: -1; /* Show sidebar above content on mobile */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+        margin-bottom: var(--space-6);
+    }
+    
+    .sidebar-section {
+        margin-bottom: 0;
+    }
+    
+    .sidebar-section .garden-panel-content {
+        padding: var(--space-4);
+    }
+    
+    .social-links {
+        gap: var(--space-1);
+    }
+    
+    .social-link {
+        padding: var(--space-2);
+        font-size: var(--font-xs);
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-sticky-sidebar {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+    
+    .sidebar-section .garden-panel-content {
+        padding: var(--space-3);
+    }
+    
+    .sidebar-description {
+        font-size: var(--font-xs);
+    }
+    
+    .sidebar-input {
+        padding: var(--space-2);
+        font-size: var(--font-xs);
+    }
+    
+    .social-link {
+        padding: var(--space-2);
+    }
+    
+    .social-icon {
+        font-size: 14px;
+        width: 18px;
+    }
+}

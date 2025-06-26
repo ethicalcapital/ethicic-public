@@ -1,0 +1,1197 @@
+"""Public Site Views - Minimal version without CRM dependencies
+Provides basic form handling and API endpoints for Wagtail-based public site
+"""
+
+import json
+import logging
+
+from django.conf import settings
+
+
+# Import requests for mocking purposes in tests
+try:
+    import requests
+except ImportError:
+    requests = None
+from django.contrib import messages
+from django.core.cache import cache
+from django.core.paginator import Paginator
+from django.shortcuts import redirect, render
+from django.utils import timezone
+from django.views.decorators.cache import cache_page
+from django.views.decorators.http import require_http_methods
+from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from wagtail.models import Page
+
+
+# Try to import Query, fallback if not available
+try:
+    from wagtail.search.models import Query
+except ImportError:
+    Query = None
+
+from .forms import (
+    AccessibleContactForm,
+    AccessibleNewsletterForm,
+    OnboardingForm,
+)
+from .models import MediaItem, SupportTicket
+
+
+logger = logging.getLogger(__name__)
+
+# Import standalone constants
+from .standalone_constants import (
+    ContactStatus,
+    ContactType,
+    PriorityLevel,
+)
+
+
+# Try to import CRM models for database operations
+try:
+    from crm.models import Contact
+    from crm.models.interactions import ContactInteraction
+    CRM_AVAILABLE = True
+    logger.info("CRM integration available - using direct database access")
+except ImportError:
+    # CRM models not available (public site running independently)
+    Contact = None
+    ContactInteraction = None
+    CRM_AVAILABLE = False
+    logger.info("CRM integration not available - using fallback handling")
+
+# Try to import AI services
+try:
+    from ai_services.providers import get_provider
+    AI_SERVICES_AVAILABLE = True
+    logger.info("AI services available")
+except ImportError:
+    AI_SERVICES_AVAILABLE = False
+    logger.info("AI services not available - features will be disabled")
+
+
+def send_fallback_email(contact_data):
+    """Send email when API is unavailable"""
+    if hasattr(settings, "CONTACT_EMAIL") and settings.CONTACT_EMAIL:
+        try:
+            from .standalone_email_utils import send_compliance_email
+
+            message = f"""
+New contact form submission from public website:
+
+Name: {contact_data["name"]}
+Email: {contact_data["email"]}
+Company: {contact_data.get("company", "Not provided")}
+Subject: {contact_data["subject"]}
+
+Message:
+{contact_data["message"]}
+
+NOTE: This was submitted via email fallback because the main platform API was unavailable.
+            """
+
+            send_compliance_email(
+                subject=f"New Contact Form: {contact_data['subject']}",
+                message=message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.CONTACT_EMAIL],
+                fail_silently=True,
+            )
+        except Exception:
+            logger.exception("Failed to send fallback contact form email")
+
+
+@require_http_methods(["POST"])
+def contact_form_submit(request):
+    """Handle contact form submissions from public site via API calls"""
+    form = AccessibleContactForm(request.POST, request=request)
+
+    if form.is_valid():
+        contact_data = form.cleaned_data
+
+        try:
+            # Create SupportTicket directly for simplicity and reliability
+            from public_site.models import SupportTicket
+
+            # Split name into first and last name
+            name_parts = contact_data["name"].split() if contact_data["name"] else [""]
+            first_name = name_parts[0] if name_parts else ""
+            last_name = " ".join(name_parts[1:]) if len(name_parts) > 1 else ""
+
+            # Create support ticket
+            ticket = SupportTicket.objects.create(
+                first_name=first_name,
+                last_name=last_name,
+                email=contact_data["email"],
+                subject=f"{contact_data['subject']} - {contact_data.get('company', 'Individual')}",
+                message=contact_data["message"],
+                category=contact_data["subject"],
+                status='open'
+            )
+
+            logger.info("Contact form submitted successfully, created ticket #%s", ticket.id)
+
+            # Optional: Still try to submit to main platform API if available
+            try:
+                api_url = getattr(settings, 'MAIN_PLATFORM_API_URL', None)
+                if api_url and requests:
+                    submission_data = {
+                        'first_name': first_name,
+                        'last_name': last_name,
+                        'email': contact_data["email"],
+                        'subject': ticket.subject,
+                        'message': contact_data["message"],
+                        'category': contact_data["subject"],
+                        'company': contact_data.get("company", ""),
+                        'source': 'public_website'
+                    }
+
+                    response = requests.post(
+                        f"{api_url}contact/submit/",
+                        json=submission_data,
+                        timeout=5,  # Shorter timeout since this is optional
+                        headers={'Content-Type': 'application/json'}
+                    )
+
+                    if response.status_code == 201:
+                        logger.info("Also submitted to main platform API successfully")
+                    else:
+                        logger.info("Main platform API submission failed (non-critical): %s", response.status_code)
+
+            except Exception as e:
+                logger.info("Main platform API submission failed (non-critical): %s", e)
+                # Use fallback email as backup notification method
+                send_fallback_email(contact_data)
+
+            messages.success(
+                request,
+                "Thank you for your message! We will get back to you within 24 hours.",
+            )
+
+            # Redirect back to contact page with success
+            return redirect("/contact/")
+
+        except Exception:
+            logger.exception("Error processing contact form")
+            messages.error(
+                request,
+                "There was an error processing your request. Please try again or email us directly.",
+            )
+            return redirect("/contact/")
+
+    else:
+        # Form has errors - redirect back with error message
+        error_messages = []
+        for field, errors in form.errors.items():
+            for error in errors:
+                error_messages.append(f"{field}: {error}")
+
+        logger.error("Contact form validation errors: %s", form.errors)
+        messages.error(
+            request, f"Please correct the following errors: {', '.join(error_messages)}",
+        )
+        return redirect("/contact/")
+
+
+@require_http_methods(["POST"])
+def newsletter_signup(request):
+    """Handle newsletter signup submissions"""
+    form = AccessibleNewsletterForm(request.POST)
+
+    if form.is_valid():
+        email = form.cleaned_data["email"]
+
+        try:
+            # Log the signup
+            logger.info("Newsletter signup: %s", email)
+
+            # Try to create/update CRM Contact for newsletter subscriber
+            try:
+                from crm.models import Contact
+                from crm.models.choices import ContactType, ContactStatus
+                
+                # Check if contact already exists
+                contact, created = Contact.objects.get_or_create(
+                    email=email,
+                    defaults={
+                        'full_name': 'Newsletter Subscriber',
+                        'first_name': 'Newsletter',
+                        'last_name': 'Subscriber',
+                        'contact_type': ContactType.INDIVIDUAL,
+                        'status': ContactStatus.COLD_LEAD,
+                        'opt_in_marketing': True,
+                        'source': 'Blog Newsletter Signup',
+                        'notes': 'Subscribed via blog newsletter form',
+                        'preferences': {
+                            'newsletter_subscribed': True,
+                            'newsletter_subscribed_date': timezone.now().isoformat(),
+                            'newsletter_source': 'blog_sidebar'
+                        }
+                    }
+                )
+                
+                if not created:
+                    # Update existing contact to subscribe to newsletter
+                    contact.opt_in_marketing = True
+                    newsletter_prefs = contact.preferences.get('newsletter_subscribed', False)
+                    if not newsletter_prefs:
+                        contact.preferences.update({
+                            'newsletter_subscribed': True,
+                            'newsletter_subscribed_date': timezone.now().isoformat(),
+                            'newsletter_source': 'blog_sidebar'
+                        })
+                        contact.notes = (contact.notes or '') + f'\nRe-subscribed to newsletter on {timezone.now().date()}'
+                        contact.save()
+                    
+                logger.info(f"{'Created' if created else 'Updated'} CRM contact for newsletter subscriber: {email}")
+                
+            except ImportError:
+                # Fallback to SupportTicket if CRM models not available
+                logger.warning("CRM models not available, falling back to SupportTicket")
+                SupportTicket.objects.create(
+                    first_name="Newsletter",
+                    last_name="Subscriber",
+                    email=email,
+                    subject="Newsletter Signup",
+                    message="Newsletter subscription request",
+                    category="general",
+                    status="resolved",
+                )
+
+            messages.success(
+                request,
+                "Thank you for subscribing! You will receive our newsletter updates.",
+            )
+
+        except Exception:
+            logger.exception("Error processing newsletter signup")
+            messages.error(
+                request, "There was an error with your subscription. Please try again.",
+            )
+
+    else:
+        messages.error(request, "Please provide a valid email address.")
+
+    # Redirect back to the page they came from
+    return redirect(request.META.get("HTTP_REFERER", "/"))
+
+
+def classify_contact_priority(form_type, form_data):
+    """Classify contact priority and status based on engagement AND business criteria."""
+    # Import here to avoid dependency issues
+    try:
+        from crm.models.choices import ContactStatus, PriorityLevel
+    except ImportError:
+        # Fallback for when CRM is not available
+        class ContactStatus:
+            COLD_LEAD = "COLD_LEAD"
+            WARM_LEAD = "WARM_LEAD"
+            PROSPECT = "PROSPECT"
+        class PriorityLevel:
+            LOW = 1
+            MEDIUM = 2
+            HIGH = 3
+            CRITICAL = 4
+
+    importance_score = 0.5  # Default
+    priority_level = PriorityLevel.MEDIUM
+    contact_status = ContactStatus.COLD_LEAD  # Default to cold lead
+
+    return contact_status, priority_level, importance_score
+
+
+def create_or_update_contact(email, form_data, form_type, user=None):
+    """Create or update CRM contact with business-focused deduplication and classification."""
+    # Import here to avoid dependency issues
+    try:
+        from crm.models import Contact
+        from crm.models.choices import ContactStatus, ContactType, PriorityLevel
+
+        # Get contact classification
+        contact_status, priority_level, importance_score = classify_contact_priority(form_type, form_data)
+
+        # Try to find existing contact
+        contact = Contact.objects.filter(email=email).first()
+        created = False
+
+        if contact:
+            # Update existing contact with new information
+            if form_data.get('name') and not contact.full_name:
+                contact.full_name = form_data['name']
+            contact.last_interaction = timezone.now()
+            contact.interaction_count += 1
+            contact.save()
+        else:
+            # Create new contact
+            created = True
+            full_name = form_data.get('name') or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
+
+            contact = Contact.objects.create(
+                email=email,
+                full_name=full_name,
+                first_name=form_data.get('first_name', ''),
+                last_name=form_data.get('last_name', ''),
+                company=form_data.get('company', ''),
+                job_title=form_data.get('role', ''),
+                phone_primary=form_data.get('phone', ''),
+                status=contact_status,
+                priority_level=priority_level,
+                importance_score=importance_score,
+                last_interaction=timezone.now(),
+                interaction_count=1,
+                source=f'website_{form_type}',
+                created_by=user,
+            )
+
+        return contact, created
+    except ImportError:
+        # When CRM is not available, return a mock object
+        class MockContact:
+            def __init__(self):
+                self.id = 1
+                self.email = email
+                self.full_name = form_data.get('name', '')
+                self.contact_status = 'COLD_LEAD'
+        return MockContact(), True
+
+
+@require_http_methods(["POST"])
+def onboarding_form_submit(request):
+    """Handle comprehensive onboarding form submissions"""
+    form = OnboardingForm(request.POST)
+
+    if form.is_valid():
+        form_data = form.cleaned_data
+
+        try:
+            # Create basic support ticket for onboarding
+            full_name = f"{form_data['first_name']} {form_data['last_name']}"
+
+            SupportTicket.objects.create(
+                first_name=form_data['first_name'],
+                last_name=form_data['last_name'],
+                email=form_data['email'],
+                subject=f"Onboarding Application - {full_name}",
+                message=f"Onboarding application submitted with ${form_data['initial_investment']:,.0f} initial investment",
+                category="account",
+                status="open",
+            )
+
+            messages.success(
+                request,
+                "Thank you for your application! We have received your information and will review it shortly."
+            )
+
+            return redirect("/onboarding/thank-you/")
+
+        except Exception:
+            logger.exception("Error processing onboarding form")
+            messages.error(
+                request,
+                "There was an error processing your application. Please try again or contact us directly."
+            )
+            return redirect("/onboarding/")
+
+    else:
+        # Form has errors
+        error_messages = []
+        for field, errors in form.errors.items():
+            for error in errors:
+                error_messages.append(f"{field}: {error}")
+
+        messages.error(
+            request, f"Please correct the following errors: {', '.join(error_messages)}",
+        )
+        return redirect("/onboarding/")
+
+
+def onboarding_thank_you(request):
+    """Thank you page after onboarding application submission"""
+    context = {
+        "page_title": "Application Received",
+        "heading": "Thank You for Your Application!",
+        "message": "We have received your onboarding application and will review it shortly.",
+        "next_steps": [
+            "Account review and approval (1-2 business days)",
+            "Schedule a consultation with your adviser",
+            "Fund your account and begin investing",
+            "Access your personalized investment dashboard",
+        ],
+    }
+
+    return render(request, "public_site/onboarding_thank_you.html", context)
+
+
+
+
+def contact_success(request):
+    """Contact form success page"""
+    context = {
+        "page_title": "Message Sent",
+        "heading": "Thank You for Contacting Us!",
+        "message": "We have received your message and will respond within 24 hours.",
+    }
+    return render(request, "public_site/contact_success.html", context)
+
+
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def contact_api(request):
+    """API endpoint for contact form submissions"""
+    try:
+        # Use DRF request.data which handles both JSON and form data
+        # This will also handle JSON parsing errors automatically
+        try:
+            data = request.data
+        except Exception as parse_error:
+            logger.warning("JSON parse error in contact API: %s", parse_error)
+            return Response(
+                {
+                    "success": False,
+                    "message": "Invalid JSON format in request.",
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Create a mock request object for the form with necessary attributes
+        class MockRequest:
+            def __init__(self):
+                self.META = {}
+
+        mock_request = MockRequest()
+
+        # For API endpoints, add required spam protection fields if missing
+        if 'human_check' not in data:
+            # Add a simple default value for API usage
+            data = data.copy() if hasattr(data, 'copy') else dict(data)
+            data['human_check'] = '2'  # Simple default for API
+
+        form = AccessibleContactForm(data, request=mock_request)
+        # For API usage, set a simple math answer to bypass validation
+        form.math_answer = 2
+
+        if form.is_valid():
+            contact_data = form.cleaned_data
+
+            # Create support ticket
+            ticket = SupportTicket.objects.create(
+                first_name=contact_data["name"].split()[0] if contact_data["name"] else "",
+                last_name=" ".join(contact_data["name"].split()[1:]) if len(contact_data["name"].split()) > 1 else "",
+                email=contact_data["email"],
+                subject=f"{contact_data['subject']} - {contact_data.get('company', 'Individual')}",
+                message=contact_data["message"],
+                category=contact_data["subject"],
+                status="open",
+            )
+
+            # Send notification email (if configured)
+            if hasattr(settings, "CONTACT_EMAIL") and settings.CONTACT_EMAIL:
+                try:
+                    from .standalone_email_utils import send_compliance_email
+
+                    message = f"""
+New contact form submission:
+
+Name: {contact_data["name"]}
+Email: {contact_data["email"]}
+Company: {contact_data.get("company", "Not provided")}
+Subject: {contact_data["subject"]}
+
+Message:
+{contact_data["message"]}
+
+Support Ticket ID: {ticket.id}
+                    """
+
+                    send_compliance_email(
+                        subject=f"New Contact Form: {contact_data['subject']}",
+                        message=message,
+                        from_email=settings.DEFAULT_FROM_EMAIL,
+                        recipient_list=[settings.CONTACT_EMAIL],
+                        fail_silently=True,
+                    )
+                except Exception:
+                    logger.exception("Failed to send contact form email")
+
+            return Response(
+                {
+                    "success": True,
+                    "message": "Thank you for your message! We will get back to you within 24 hours.",
+                    "ticket_id": ticket.id,
+                },
+                status=status.HTTP_201_CREATED,
+            )
+
+        return Response(
+            {
+                "success": False,
+                "message": "Please correct the form errors.",
+                "errors": form.errors,
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    except Exception:
+        logger.exception("Error in contact API")
+        return Response(
+            {
+                "success": False,
+                "message": "There was an error processing your request. Please try again.",
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def newsletter_api(request):
+    """API endpoint for newsletter signup"""
+    try:
+        # Use DRF request.data which handles both JSON and form data
+        data = request.data
+
+        form = AccessibleNewsletterForm(data)
+
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+
+            # Create a simple support ticket to track newsletter signups
+            SupportTicket.objects.create(
+                first_name="Newsletter",
+                last_name="Subscriber",
+                email=email,
+                subject="Newsletter Signup",
+                message="Newsletter subscription request via API",
+                category="general",
+                status="resolved",
+            )
+
+            logger.info("Newsletter signup via API: %s", email)
+
+            return Response(
+                {
+                    "success": True,
+                    "message": "Thank you for subscribing! You will receive our newsletter updates.",
+                },
+                status=status.HTTP_201_CREATED,
+            )
+
+        return Response(
+            {
+                "success": False,
+                "message": "Please provide a valid email address.",
+                "errors": form.errors,
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    except Exception:
+        logger.exception("Error in newsletter API")
+        return Response(
+            {
+                "success": False,
+                "message": "There was an error with your subscription. Please try again.",
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def site_status_api(request):
+    """API endpoint for site status and health check"""
+    try:
+        from django.db import connection
+
+        # Test database connection
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+
+        # Get basic site statistics
+        stats = {
+            "status": "healthy",
+            "timestamp": timezone.now().isoformat(),
+            "database": "connected",
+            "support_tickets": {
+                "total": SupportTicket.objects.count(),
+                "open": SupportTicket.objects.filter(status="open").count(),
+                "resolved": SupportTicket.objects.filter(status="resolved").count(),
+            },
+        }
+
+        return Response(stats, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        logger.exception("Site status check failed")
+        return Response(
+            {
+                "status": "unhealthy",
+                "timestamp": timezone.now().isoformat(),
+                "error": str(e),
+            },
+            status=status.HTTP_503_SERVICE_UNAVAILABLE,
+        )
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def get_site_navigation(request):
+    """API endpoint to get site navigation structure"""
+    from wagtail.models import Page
+
+    try:
+        # Get the site root page
+        root_page = Page.objects.filter(depth=2).first()
+
+        if root_page:
+            # Get main navigation pages (depth 3)
+            nav_pages = Page.objects.child_of(root_page).live().public().in_menu()
+
+            navigation = []
+            for page in nav_pages:
+                navigation.append(
+                    {
+                        "title": page.title,
+                        "url": page.url,
+                        "slug": page.slug,
+                    },
+                )
+
+            # Only return the navigation if we have items, otherwise fall back
+            if navigation:
+                return Response(
+                    {"navigation": navigation}, status=status.HTTP_200_OK,
+                )
+
+    except Exception:
+        logger.exception("Error getting site navigation")
+
+    # Fallback navigation structure - updated to use /blog/ instead of /research/
+    fallback_navigation = [
+        {"title": "Home", "url": "/", "slug": "home"},
+        {"title": "About", "url": "/about/", "slug": "about"},
+        {"title": "Blog", "url": "/blog/", "slug": "blog"},
+        {"title": "Process", "url": "/process/", "slug": "process"},
+        {"title": "Pricing", "url": "/pricing/", "slug": "pricing"},
+        {"title": "Support", "url": "/support/", "slug": "support"},
+        {"title": "Contact", "url": "/contact/", "slug": "contact"},
+    ]
+
+    return Response(
+        {"navigation": fallback_navigation}, status=status.HTTP_200_OK,
+    )
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def get_footer_links(request):
+    """API endpoint to get footer link structure"""
+    footer_links = {
+        "company": [
+            {"title": "About Us", "url": "/about/"},
+            {"title": "Our Process", "url": "/process/"},
+            {"title": "Blog", "url": "/blog/"},  # Updated from research to blog
+            {"title": "Media", "url": "/media/"},
+        ],
+        "services": [
+            {"title": "For Advisers", "url": "/adviser/"},
+            {"title": "For Institutions", "url": "/institutions/"},
+            {"title": "Investment Strategies", "url": "/strategies/"},
+            {"title": "Support", "url": "/support/"},
+        ],
+        "legal": [
+            {"title": "Privacy Policy", "url": "/disclosures/privacy/"},
+            {"title": "Terms of Service", "url": "/disclosures/terms/"},
+            {"title": "Disclosures", "url": "/disclosures/disclosures/"},
+            {"title": "Form ADV", "url": "https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf"},
+        ],
+        "connect": [
+            {"title": "Contact Us", "url": "/contact/"},
+            {"title": "Newsletter", "url": "/newsletter/"},
+            {"title": "Blog", "url": "/blog/"},
+            {"title": "LinkedIn", "url": "https://linkedin.com/company/ecic"},
+        ],
+    }
+
+    return Response(footer_links, status=status.HTTP_200_OK)
+
+
+
+
+
+
+def classify_contact_priority(form_type, form_data):
+    """Classify contact priority and status based on engagement AND business criteria.
+
+    This is a simplified version for the public site that works without full CRM integration.
+    """
+    importance_score = 0.5  # Default
+    priority_level = PriorityLevel.MEDIUM
+    contact_status = ContactStatus.COLD_LEAD  # Default to cold lead
+
+    email = form_data.get('email', '').lower()
+    company = form_data.get('company', '').lower()
+    subject = form_data.get('subject', '').lower()
+
+    # Business email domains get higher priority
+    business_domains = ['.edu', '.org', '.gov']
+    personal_domains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com']
+
+    is_business_email = any(domain in email for domain in business_domains)
+    is_personal_email = any(domain in email for domain in personal_domains)
+
+    # Investment adviser indicators
+    adviser_keywords = ['ria', 'investment advisor', 'investment adviser', 'financial advisor', 'financial adviser', 'portfolio manager']
+    institutional_keywords = ['endowment', 'foundation', 'pension', 'university', 'college', 'fund', 'trust']
+
+    is_adviser = any(keyword in company for keyword in adviser_keywords) or any(keyword in subject for keyword in adviser_keywords)
+    is_institutional = any(keyword in company for keyword in institutional_keywords) or any(keyword in subject for keyword in institutional_keywords)
+
+    # Contact status based on form type and content
+    if form_type == 'onboarding':
+        contact_status = ContactStatus.PROSPECT
+        priority_level = PriorityLevel.HIGH
+        importance_score = 0.85
+    elif form_type == 'contact_form':
+        contact_status = ContactStatus.WARM_LEAD
+        if is_institutional:
+            priority_level = PriorityLevel.CRITICAL
+            importance_score = 0.95
+        elif is_adviser:
+            priority_level = PriorityLevel.HIGH
+            importance_score = 0.90
+        elif is_business_email and not is_personal_email:
+            priority_level = PriorityLevel.MEDIUM
+            importance_score = 0.65
+        else:
+            priority_level = PriorityLevel.MEDIUM
+            importance_score = 0.60
+    elif form_type == 'newsletter':
+        contact_status = ContactStatus.COLD_LEAD
+        priority_level = PriorityLevel.LOW
+        importance_score = 0.30
+    else:
+        contact_status = ContactStatus.COLD_LEAD
+        priority_level = PriorityLevel.MEDIUM
+        importance_score = 0.50
+
+    return contact_status, priority_level, importance_score
+
+
+def create_or_update_contact(email, form_data, form_type, user=None):
+    """Create or update CRM contact with business-focused deduplication and classification.
+
+    This is a simplified version for the public site that works without full CRM integration.
+    """
+    # Get contact classification
+    contact_status, priority_level, importance_score = classify_contact_priority(form_type, form_data)
+
+    if not CRM_AVAILABLE or Contact is None:
+        # Create a mock contact object for testing
+        class MockContact:
+            def __init__(self, email, **kwargs):
+                self.email = email
+                self.full_name = kwargs.get('full_name', '')
+                self.first_name = kwargs.get('first_name', '')
+                self.last_name = kwargs.get('last_name', '')
+                self.company = kwargs.get('company', '')
+                self.job_title = kwargs.get('job_title', '')
+                self.phone_primary = kwargs.get('phone_primary', '')
+                self.contact_status = kwargs.get('contact_status', contact_status)
+                self.priority_level = kwargs.get('priority_level', priority_level)
+                self.importance_score = kwargs.get('importance_score', importance_score)
+                self.contact_type = kwargs.get('contact_type', ContactType.INDIVIDUAL)
+                self.last_interaction = timezone.now()
+                self.interaction_count = 1
+                self.source = f'website_{form_type}'
+                self.created_by = user
+                self.custom_fields = {}
+
+            def save(self):
+                pass
+
+        # Create mock contact
+        full_name = form_data.get('name') or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
+        contact = MockContact(
+            email=email,
+            full_name=full_name,
+            first_name=form_data.get('first_name', ''),
+            last_name=form_data.get('last_name', ''),
+            company=form_data.get('company', ''),
+            job_title=form_data.get('role', ''),
+            phone_primary=form_data.get('phone', ''),
+            contact_status=contact_status,
+            priority_level=priority_level,
+            importance_score=importance_score,
+        )
+        return contact, True
+
+    # If CRM is available, use real Contact model
+    try:
+        contact = Contact.objects.filter(email=email).first()
+        created = False
+
+        if contact:
+            # Update existing contact
+            if form_data.get('name') and not contact.full_name:
+                contact.full_name = form_data['name']
+            if importance_score > contact.importance_score:
+                contact.importance_score = importance_score
+                contact.priority_level = priority_level
+            contact.last_interaction = timezone.now()
+            contact.interaction_count += 1
+        else:
+            # Create new contact
+            created = True
+            full_name = form_data.get('name') or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
+
+            contact = Contact.objects.create(
+                email=email,
+                full_name=full_name,
+                first_name=form_data.get('first_name', ''),
+                last_name=form_data.get('last_name', ''),
+                company=form_data.get('company', ''),
+                job_title=form_data.get('role', ''),
+                phone_primary=form_data.get('phone', ''),
+                status=contact_status,
+                priority_level=priority_level,
+                importance_score=importance_score,
+                last_interaction=timezone.now(),
+                interaction_count=1,
+                source=f'website_{form_type}',
+                created_by=user,
+            )
+
+        contact.save()
+        return contact, created
+
+    except Exception:
+        logger.exception("Error creating/updating contact")
+        # Return a mock contact if database operation fails
+        contact = type('MockContact', (), {
+            'email': email,
+            'full_name': form_data.get('name', ''),
+            'contact_status': contact_status,
+            'priority_level': priority_level,
+            'importance_score': importance_score,
+        })()
+        return contact, True
+
+
+def site_search(request):
+    """Simple site search using Wagtail's built-in search functionality."""
+    query_string = request.GET.get('q', '').strip()
+
+    if query_string:
+        try:
+            # Use Wagtail's search functionality
+            search_results = Page.objects.live().search(query_string)
+
+            # Log the query (if Query model is available)
+            if Query:
+                Query.get(query_string).add_hit()
+
+            # Paginate results
+            paginator = Paginator(search_results, 10)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+
+            context = {
+                'query_string': query_string,
+                'search_results': page_obj,
+                'total_results': paginator.count,
+            }
+        except Exception as e:
+            # If search fails (e.g., in testing with missing FTS tables), fall back to simple filtering
+            logger.warning("Search functionality failed, using fallback: %s", e)
+
+            # Simple fallback search on page titles
+            pages = Page.objects.live().filter(title__icontains=query_string)
+            paginator = Paginator(pages, 10)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+
+            context = {
+                'query_string': query_string,
+                'search_results': page_obj,
+                'total_results': paginator.count,
+            }
+    else:
+        context = {
+            'query_string': '',
+            'search_results': None,
+            'total_results': 0,
+        }
+
+    return render(request, 'public_site/search_results.html', context)
+
+
+def current_holdings(request):
+    """Current Holdings transparency page showing top holdings and portfolio statistics."""
+    context = {
+        'page_title': 'Current Holdings',
+        'page_description': 'Transparent disclosure of our current portfolio holdings and statistics',
+        'current_theme': request.session.get('theme', 'light'),
+        # Add any dynamic data here if needed in the future
+        'last_updated': '2024-12-31',  # This could be dynamic from a model
+        'quarter': 'Q4 2024',
+    }
+
+    return render(request, 'public_site/current_holdings.html', context)
+
+
+# ============================================================================
+# GARDEN PLATFORM VIEWS
+# ============================================================================
+
+def garden_overview(request):
+    """Garden platform overview with features, login access, and interest registration."""
+
+    # Garden platform features
+    garden_features = [
+        {
+            'title': 'Portfolio Intelligence',
+            'icon': '📊',
+            'description': 'Thoughtful portfolio curation and performance understanding with integrated ethical framework.',
+            'highlights': [
+                'Deep portfolio understanding and performance analytics',
+                'Multi-strategy support (Growth, Income, Diversification)',
+                'Intelligent rebalancing recommendations and insights',
+                'Comprehensive risk assessment with downside protection analysis',
+                'Tax-loss harvesting optimization and detailed reporting'
+            ]
+        },
+        {
+            'title': 'Research Platform',
+            'icon': '🔍',
+            'description': 'Deep research tools for thoughtful analysis and cultivating investment wisdom.',
+            'highlights': [
+                'Company screening with our full exclusion criteria',
+                'AI-enhanced fundamental analysis and valuation models',
+                'ESG integration with proprietary ethical scoring framework',
+                'Market sentiment analysis and pattern recognition',
+                'Curated research reports and analytical summaries'
+            ]
+        },
+        {
+            'title': 'Client Communication Hub',
+            'icon': '💬',
+            'description': 'Thoughtful client relationship management with intelligent communication tools.',
+            'highlights': [
+                'Curated client reporting with personalized insights',
+                'Meeting scheduling and portfolio review management',
+                'Document sharing with secure client portal access',
+                'Communication history and relationship tracking',
+                'Compliance monitoring and regulatory documentation'
+            ]
+        },
+        {
+            'title': 'AI-Enhanced Wisdom',
+            'icon': '🤖',
+            'description': 'Intelligent assistance for deeper research, analysis, and learning from patterns.',
+            'highlights': [
+                'Human-in-the-loop (HITL) quality assurance and learning processes',
+                'Thoughtful data curation from multiple sources',
+                'Natural language query interface for complex analysis',
+                'Pattern recognition for market insights and opportunities',
+                'Workflow orchestration that learns from your practice'
+            ]
+        },
+        {
+            'title': 'Compliance & Risk Stewardship',
+            'icon': '🛡️',
+            'description': 'Thoughtful regulatory compliance and risk understanding with intelligent guidance.',
+            'highlights': [
+                'Fiduciary standard compliance monitoring and reporting',
+                'Intelligent regulatory filing and deadline tracking',
+                'Risk assessment with stress testing and scenario analysis',
+                'Comprehensive audit trail and documentation management',
+                'Privacy protection with PII detection and encryption'
+            ]
+        },
+        {
+            'title': 'Knowledge Integration Canvas',
+            'icon': '🔗',
+            'description': 'Unified knowledge platform weaving together financial, operational, and market insights.',
+            'highlights': [
+                'Comprehensive market data feeds with price synchronization',
+                'Multi-custodian account aggregation and reconciliation',
+                'Document management with Paperless-ngx integration',
+                'Knowledge graph for understanding entity relationships and insights',
+                'Thoughtful API integrations with Sharadar, SEC EDGAR, and more'
+            ]
+        }
+    ]
+
+    context = {
+        'page_title': 'Garden Investment Platform',
+        'garden_features': garden_features,
+        'platform_login_url': '/garden/platform/auth/login/',
+        'total_features': len(garden_features),
+        'feature_count': len(garden_features),
+        'highlights_per_feature': 5,
+    }
+
+    return render(request, 'public_site/garden_overview.html', context)
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def garden_interest_registration(request):
+    """Handle Garden platform interest registration form submissions."""
+
+    try:
+        # Use DRF request.data which handles both JSON and form data
+        data = request.data
+
+        # Extract form fields
+        name = data.get('name', '').strip()
+        email = data.get('email', '').strip()
+        company = data.get('company', '').strip()
+        role = data.get('role', '').strip()
+        interest_areas = data.get('interest_areas', [])
+        message = data.get('message', '').strip()
+
+        # Basic validation
+        if not name or not email:
+            return Response({
+                'success': False,
+                'error': 'Name and email are required fields.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Email format validation
+        import re
+        email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        if not re.match(email_pattern, email):
+            return Response({
+                'success': False,
+                'error': 'Please enter a valid email address.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create a support ticket to track Garden interest
+        try:
+            SupportTicket.objects.create(
+                first_name=name.split(' ')[0] if ' ' in name else name,
+                last_name=' '.join(name.split(' ')[1:]) if ' ' in name else '',
+                email=email,
+                subject=f"Garden Platform Interest - {role if role else 'Professional'}",
+                message=f"""Garden Platform Access Request:
+
+Company: {company}
+Role: {role}
+Interest Areas: {', '.join(interest_areas)}
+
+Message:
+{message}""",
+                category="garden_interest",
+                status="open",
+            )
+        except Exception as e:
+            logger.warning("Could not create support ticket for Garden interest: %s", e)
+
+        # Log the registration
+        logger.info("Garden interest registration: %s (%s) from %s", name, email, company)
+        logger.info("Role: %s, Interests: %s", role, ', '.join(interest_areas))
+        logger.info("Message: %s", message)
+
+        # Return success response
+        return Response({
+            'success': True,
+            'message': 'Thank you for your interest! We will contact you soon to discuss Garden platform access.'
+        }, status=status.HTTP_201_CREATED)
+
+    except json.JSONDecodeError:
+        return Response({
+            'success': False,
+            'error': 'Invalid request format.'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+    except Exception:
+        # Log error
+        logger.exception("Error processing Garden interest registration")
+
+        return Response({
+            'success': False,
+            'error': 'An error occurred processing your request. Please try again.'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def media_items_api(request):
+    """API endpoint for paginated media items for infinite scroll"""
+    try:
+        # Get page and per_page parameters
+        page = int(request.GET.get('page', 1))
+        per_page = int(request.GET.get('per_page', 6))
+
+        # Limit per_page to reasonable values
+        per_page = min(max(per_page, 1), 50)
+
+        # Get all media items ordered by featured first, then by date
+        media_items = MediaItem.objects.select_related('page').order_by('-featured', '-publication_date')
+
+        # Apply pagination
+        paginator = Paginator(media_items, per_page)
+
+        try:
+            page_obj = paginator.page(page)
+        except Exception:
+            # If page is out of range, return empty results
+            return Response({
+                'items': [],
+                'has_next': False,
+                'total_pages': paginator.num_pages,
+                'current_page': page,
+                'total_items': paginator.count
+            }, status=status.HTTP_200_OK)
+
+        # Serialize the media items
+        items = []
+        for item in page_obj:
+            # Process description to remove HTML tags for API response
+            description = item.description
+            if description:
+                import re
+                # Simple HTML tag removal for API
+                description = re.sub(r'<[^>]+>', '', description)
+                description = description.strip()
+
+            items.append({
+                'id': item.id,
+                'title': item.title,
+                'description': description,
+                'publication': item.publication,
+                'publication_date': item.publication_date.isoformat() if item.publication_date else None,
+                'external_url': item.external_url,
+                'featured': item.featured,
+            })
+
+        return Response({
+            'items': items,
+            'has_next': page_obj.has_next(),
+            'total_pages': paginator.num_pages,
+            'current_page': page,
+            'total_items': paginator.count
+        }, status=status.HTTP_200_OK)
+
+    except ValueError:
+        return Response({
+            'error': 'Invalid page or per_page parameter'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+    except Exception:
+        logger.exception("Error in media items API")
+        return Response({
+            'error': 'Internal server error'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+

@@ -1,0 +1,10 @@
+{% load wagtailcore_tags blog_filters %}
+
+<!-- Clean KPI Display -->
+<div class="kpi-card" data-category="{{ value.statistic_category }}">
+    <div class="kpi-value">{{ value.value }}</div>
+    <div class="kpi-label">{{ value.label }}</div>
+    {% if value.description %}
+        <div class="kpi-description">{{ value.description }}</div>
+    {% endif %}
+</div>

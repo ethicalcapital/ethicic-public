@@ -1,0 +1,151 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}Garden Platform - Open Source Research Platform{% endblock %}
+
+{% block meta_description %}Learn about Garden Platform, our open-source research and portfolio management platform. Schedule a demo or contribute to the project.{% endblock %}
+
+{% block content %}
+<div class="garden-page">
+    <!-- Hero Section -->
+    <section class="hero-section garden-panel" role="banner" aria-labelledby="hero-heading">
+        <div class="panel-header">GARDEN PLATFORM</div>
+        <div class="panel-content hero-content">
+            <h1 id="hero-heading" class="hero-title">
+                Open Source Research & Portfolio Management
+            </h1>
+            <p class="hero-subtitle">
+                The platform powering ethical investing research and portfolio management at Ethical Capital
+            </p>
+            
+            <div class="hero-description">
+                <p>Garden Platform is our open-source research and portfolio management system, built to support sophisticated investment research, compliance monitoring, and client relationship management. Originally developed for our own use, we're exploring ways to make it available as a hosted service.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section garden-panel" role="main" aria-labelledby="features-heading">
+        <div class="panel-header">PLATFORM CAPABILITIES</div>
+        <div class="panel-content">
+            <div class="features-intro">
+                <p>Garden Platform combines research workflows, portfolio management, compliance monitoring, and client communication in a unified, extensible system.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-item garden-panel">
+                    <div class="panel-header">RESEARCH WORKFLOWS</div>
+                    <div class="panel-content">
+                        <p>Structured research processes, entity extraction, knowledge graph construction, and AI-powered analysis tools.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item garden-panel">
+                    <div class="panel-header">PORTFOLIO MANAGEMENT</div>
+                    <div class="panel-content">
+                        <p>Complete portfolio construction, risk analysis, performance attribution, and rebalancing automation.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item garden-panel">
+                    <div class="panel-header">COMPLIANCE MONITORING</div>
+                    <div class="panel-content">
+                        <p>Automated compliance checks, regulatory reporting, and audit trail management for investment advisers.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item garden-panel">
+                    <div class="panel-header">CLIENT COMMUNICATIONS</div>
+                    <div class="panel-content">
+                        <p>Integrated CRM, automated reporting, and client portal for transparent investment management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Details Section -->
+    <section class="tech-section garden-panel" role="region" aria-labelledby="tech-heading">
+        <div class="panel-header">TECHNICAL ARCHITECTURE</div>
+        <div class="panel-content">
+            <div class="tech-intro">
+                <p>Built with modern web technologies and designed for scalability, extensibility, and compliance.</p>
+            </div>
+            
+            <div class="tech-list">
+                <ul class="tech-bullets">
+                    <li><strong>Django Backend</strong> — Full-featured web framework with PostgreSQL database and Redis caching</li>
+                    <li><strong>AI Integration</strong> — Multi-provider AI system with OpenAI, Anthropic, and open-source model support</li>
+                    <li><strong>Real-time Updates</strong> — WebSocket connections for live portfolio updates and research collaboration</li>
+                    <li><strong>Extensible Design</strong> — Modular architecture supporting custom workflows and integrations</li>
+                    <li><strong>Compliance Ready</strong> — Built-in audit logging, data retention, and regulatory reporting capabilities</li>
+                    <li><strong>Open Source</strong> — Available on GitHub with active development and community contributions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Options Section -->
+    <section class="contact-section garden-panel" role="region" aria-labelledby="contact-heading">
+        <div class="panel-header">GET IN TOUCH</div>
+        <div class="panel-content">
+            <div class="contact-grid">
+                <div class="contact-option">
+                    <h3>Hosted Service Interest</h3>
+                    <p>Interested in Garden Platform as a hosted service for your investment practice or institution?</p>
+                    <a href="mailto:hello@ethicic.com?subject=Garden Platform Hosted Service" class="garden-action primary">Contact Our Team</a>
+                </div>
+                
+                <div class="contact-option">
+                    <h3>Open Source Contributions</h3>
+                    <p>Want to contribute to the project or explore the codebase?</p>
+                    <a href="https://github.com/ethicalcapital/garden" target="_blank" rel="noopener" class="garden-action secondary">View on GitHub</a>
+                </div>
+                
+                <div class="contact-option">
+                    <h3>Technical Questions</h3>
+                    <p>Have technical questions about implementation or architecture?</p>
+                    <a href="https://github.com/ethicalcapital/garden/discussions" target="_blank" rel="noopener" class="garden-action secondary">Join Discussions</a>
+                </div>
+                
+                <div class="contact-option">
+                    <h3>Demo Request</h3>
+                    <p>Want to see Garden Platform in action?</p>
+                    <a href="https://tidycal.com/ecic/garden-demo" target="_blank" rel="noopener" class="garden-action primary">Schedule Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Section -->
+    <section class="development-section garden-panel" role="region" aria-labelledby="development-heading">
+        <div class="panel-header">DEVELOPMENT STATUS</div>
+        <div class="panel-content">
+            <div class="development-intro">
+                <p>Garden Platform is actively developed and used in production at Ethical Capital. We're exploring options for making it available as a hosted service for other investment advisers and institutions.</p>
+            </div>
+            
+            <div class="status-items">
+                <div class="status-item">
+                    <div class="status-label">Current Version</div>
+                    <div class="status-value">Beta - Production Use</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Development Status</div>
+                    <div class="status-value">Active Development</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Hosted Service</div>
+                    <div class="status-value">Limited Availability</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Open Source</div>
+                    <div class="status-value">Available on GitHub</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% block extra_css %}
+{% endblock %}
+{% endblock %}

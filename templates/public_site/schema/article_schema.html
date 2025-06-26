@@ -1,0 +1,73 @@
+{% comment %}
+Article Schema for Blog Posts and Educational Content
+Implements Article and BlogPosting schema with proper author attribution
+{% endcomment %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ article_type|default:'Article' }}",
+  "@id": "{{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}#article",
+  "headline": "{{ article_title|default:'Investment Insights and Market Analysis' }}",
+  "description": "{{ article_description|default:'Expert insights on ethical investing, market analysis, and financial planning from Ethical Capital.' }}",
+  "image": "{{ article_image|default:request.scheme }}://{{ request.get_host }}{% load static %}{% static 'favicon-512x512.png' %}",
+  "datePublished": "{{ article_date_published|default:'2024-01-01' }}",
+  "dateModified": "{{ article_date_modified|default:article_date_published|default:'2024-01-01' }}",
+  "author": {
+    "@type": "Person",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#founder",
+    "name": "Sloane Ortel",
+    "jobTitle": "Chief Investment Officer",
+    "worksFor": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}"
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Ethical Investing"
+    },
+    {
+      "@type": "Thing", 
+      "name": "Investment Management"
+    },
+    {
+      "@type": "Thing",
+      "name": "Financial Planning"
+    }
+  ],
+  "mentions": [
+    {
+      "@type": "FinancialProduct",
+      "name": "Ethical Investment Strategies",
+      "provider": {
+        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+      }
+    }
+  ],
+  "keywords": "{{ article_keywords|default:'ethical investing, investment management, financial planning, ESG, sustainable investing' }}",
+  "articleSection": "{{ article_section|default:'Investment Insights' }}",
+  "wordCount": "{{ article_word_count|default:'1000' }}",
+  "inLanguage": "en-US",
+  "copyrightHolder": {
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+  },
+  "copyrightYear": "{% now 'Y' %}",
+  "license": "{{ request.scheme }}://{{ request.get_host }}/terms/",
+  "isAccessibleForFree": true,
+  "hasPart": [
+    {
+      "@type": "WebPageElement",
+      "isAccessibleForFree": true,
+      "cssSelector": ".article-content"
+    }
+  ]
+}
+</script>

@@ -1,0 +1,11 @@
+<div class="separator-block separator-{{ value.style }} separator-{{ value.spacing }}">
+    {% if value.style == "line" %}
+        <hr class="separator-line">
+    {% elif value.style == "dots" %}
+        <div class="separator-dots">• • •</div>
+    {% elif value.style == "stars" %}
+        <div class="separator-stars">★ ★ ★</div>
+    {% elif value.style == "space" %}
+        <div class="separator-space"></div>
+    {% endif %}
+</div>

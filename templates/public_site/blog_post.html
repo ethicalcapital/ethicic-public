@@ -1,0 +1,89 @@
+{% extends "public_site/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static blog_filters %}
+
+{% block title %}{{ page.title }} - Ethical Capital Blog{% endblock %}
+
+{% block meta_description %}{{ page.excerpt|default:page.search_description }}{% endblock %}
+
+{% block body_class %}blog-post-page{% endblock %}
+
+{% block content %}
+<!-- Clean Article Layout -->
+<div class="blog-article">
+    <!-- Key Statistics Hero Section - Above Title -->
+    {% if page.content %}
+        {% with key_stats=page.content|select_key_statistics %}
+            {% if key_stats %}
+                <section class="article-kpis-hero">
+                    <div class="kpis-hero-container">
+                        {% for block in key_stats %}
+                            {% include_block block %}
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header-content">
+            <div class="article-meta">
+                {% if page.author %}
+                    <span class="meta-item">By {{ page.author }}</span>
+                {% endif %}
+                {% if page.publish_date %}
+                    <time class="meta-item" datetime="{{ page.publish_date|date:'Y-m-d' }}">{{ page.publish_date|date:"F j, Y" }}</time>
+                {% else %}
+                    <time class="meta-item" datetime="{{ page.first_published_at|date:'Y-m-d' }}">{{ page.first_published_at|date:"F j, Y" }}</time>
+                {% endif %}
+                {% if page.updated_at %}
+                    <span class="meta-item meta-updated">Updated {{ page.updated_at|date:"F j, Y" }}</span>
+                {% endif %}
+            </div>
+            
+            <h1 class="article-title">{{ page.title }}</h1>
+            
+            {% if page.excerpt %}
+                <div class="article-excerpt">
+                    {{ page.excerpt|richtext }}
+                </div>
+            {% endif %}
+            
+            {% if page.tags.all %}
+                <div class="article-tags">
+                    {% for tag in page.tags.all %}
+                        <a href="{{ page.get_parent.url }}tag/{{ tag.slug }}/" class="article-tag">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <main class="article-content">
+        <div class="article-body">
+            {% if page.content %}
+                {% for block in page.content %}
+                    {% if block.block_type != 'key_statistic' and block.block_type != 'ai_statistic' %}
+                        {% include_block block %}
+                    {% endif %}
+                {% endfor %}
+            {% elif page.body %}
+                {{ page.body|richtext }}
+            {% endif %}
+        </div>
+    </main>
+
+    <!-- Article Footer -->
+    <footer class="article-footer">
+        <div class="article-navigation">
+            <a href="/blog/" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </footer>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<!-- garden-blog.css and garden-blog-streamfield.css load in base template -->
+{% endblock %}

@@ -1,0 +1,363 @@
+/**
+ * Garden Widget Library Styles
+ * Financial and business component styling
+ */
+
+/* Base Widget Styles */
+.garden-widget {
+  display: inline-block;
+  font-family: var(--font-mono);
+  animation: widget-fade-in var(--duration-normal) ease-out;
+}
+
+/* Metric Card Widget */
+.garden-widget.metric-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--garden-bg);
+  border: 1px solid var(--garden-border);
+  border-radius: var(--radius-sm);
+  min-width: 200px;
+}
+
+.metric-card .widget-icon {
+  font-size: var(--font-2xl);
+  opacity: 0.8;
+}
+
+.metric-card .widget-content {
+  flex: 1;
+}
+
+.metric-card .widget-label {
+  font-size: var(--font-xs);
+  color: var(--garden-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-1);
+}
+
+.metric-card .widget-value {
+  font-size: var(--font-2xl);
+  font-weight: var(--font-bold);
+  color: var(--garden-fg);
+  line-height: 1.2;
+}
+
+.metric-card .widget-change {
+  font-size: var(--font-sm);
+  margin-top: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.metric-card .widget-change.positive {
+  color: var(--positive);
+}
+
+.metric-card .widget-change.negative {
+  color: var(--negative);
+}
+
+.metric-card .widget-trend {
+  margin-top: var(--space-2);
+}
+
+/* Sparkline Widget */
+.garden-widget.sparkline {
+  display: inline-flex;
+  align-items: center;
+}
+
+.sparkline-svg {
+  display: block;
+}
+
+/* Gauge Widget */
+.garden-widget.gauge {
+  text-align: center;
+}
+
+.gauge-value {
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  fill: var(--garden-fg);
+}
+
+.gauge-label {
+  font-size: var(--font-sm);
+  fill: var(--garden-muted);
+}
+
+/* Progress Ring Widget */
+.garden-widget.progress-ring {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.ring-value {
+  font-size: var(--font-lg);
+  font-weight: var(--font-bold);
+  fill: var(--garden-fg);
+}
+
+.progress-ring .widget-label {
+  font-size: var(--font-sm);
+  color: var(--garden-muted);
+  text-transform: uppercase;
+}
+
+/* Ticker Widget */
+.garden-widget.ticker {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--garden-bg);
+  border: 1px solid var(--garden-border);
+  border-radius: var(--radius-sm);
+  min-width: 150px;
+}
+
+.ticker-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.ticker-symbol {
+  font-weight: var(--font-bold);
+  font-size: var(--font-sm);
+  text-transform: uppercase;
+}
+
+.ticker-name {
+  font-size: var(--font-xs);
+  color: var(--garden-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticker-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.ticker-price {
+  font-size: var(--font-lg);
+  font-weight: var(--font-semibold);
+}
+
+.ticker-change {
+  font-size: var(--font-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.ticker-change.positive {
+  color: var(--positive);
+}
+
+.ticker-change.negative {
+  color: var(--negative);
+}
+
+.ticker-sparkline {
+  margin-top: var(--space-1);
+}
+
+.ticker-stats {
+  display: flex;
+  gap: var(--space-3);
+  font-size: var(--font-xs);
+  color: var(--garden-muted);
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--garden-border);
+}
+
+/* Trend Indicator Widget */
+.garden-widget.trend-indicator {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.trend-value {
+  font-weight: var(--font-semibold);
+}
+
+.trend-change {
+  font-size: var(--font-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.trend-indicator.positive .trend-change {
+  color: var(--positive);
+}
+
+.trend-indicator.negative .trend-change {
+  color: var(--negative);
+}
+
+/* Currency Display Widget */
+.garden-widget.currency-display {
+  font-weight: var(--font-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Percentage Change Widget */
+.garden-widget.percentage-change {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: var(--font-semibold);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.percentage-change.positive {
+  color: var(--positive);
+  background: var(--color-success-alpha, rgb(5, 150, 105, 0.1));
+}
+
+.percentage-change.negative {
+  color: var(--negative);
+  background: var(--color-error-alpha, rgb(220, 38, 38, 0.1));
+}
+
+/* Widget Grid Layout */
+.widget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-4);
+}
+
+.widget-grid.compact {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-3);
+}
+
+/* Widget Dashboard Layout */
+.widget-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.widget-row {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.widget-row.metrics {
+  gap: var(--space-3);
+}
+
+.widget-row.tickers {
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .garden-widget.metric-card {
+    min-width: 100%;
+  }
+  
+  .widget-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .widget-row {
+    flex-direction: column;
+  }
+  
+  .widget-row.tickers {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+}
+
+/* Theme Adjustments */
+[data-theme="dark"] .garden-widget {
+  /* Widgets automatically inherit theme colors through CSS variables */
+}
+
+/* Animation Classes */
+
+@keyframes widget-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Live Update Animation */
+.garden-widget[data-updating="true"] {
+  animation: widget-pulse 0.5s ease-in-out;
+}
+
+@keyframes widget-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Widget States */
+.garden-widget.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.garden-widget.error {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.garden-widget.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  filter: grayscale(100%);
+}
+
+/* Widget Hover Effects */
+.garden-widget.interactive:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+/* Print Styles */
+@media print {
+  .garden-widget {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .widget-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

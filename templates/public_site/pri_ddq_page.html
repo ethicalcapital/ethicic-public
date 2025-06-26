@@ -1,0 +1,245 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}{{ page.title }} | Ethical Capital{% endblock %}
+
+{% block body_class %}pri-ddq-page{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">PRI DUE DILIGENCE</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h1 id="hero-heading" class="hero-title">{{ page.hero_title }}</h1>
+        <p class="hero-subtitle">{{ page.hero_subtitle }}</p>
+        {% if page.hero_description %}
+            <div class="hero-description">{{ page.hero_description|safe }}</div>
+        {% endif %}
+        {% if page.updated_at %}
+            <div class="last-updated">
+                <span class="last-updated-label">Last Updated:</span>
+                <span class="last-updated-date">{{ page.updated_at }}</span>
+            </div>
+        {% endif %}
+        <div class="faq-notice">
+            <p><strong>💡 Quick FAQ Access:</strong> Looking for specific answers? All PRI DDQ questions are also available as <a href="/faq/" class="faq-link">searchable FAQ items</a> for easier browsing.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Executive Summary -->
+<section class="garden-panel" role="main" aria-labelledby="summary-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">EXECUTIVE SUMMARY</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="summary-heading" class="section-title">Responsible Investment Overview</h2>
+        {% if page.executive_summary %}
+            <div class="executive-summary">{{ page.executive_summary|safe }}</div>
+        {% else %}
+            <div class="executive-summary">
+                <p><em>Please populate the Executive Summary field in the admin interface.</em></p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Strategy & Governance -->
+<section class="garden-panel" role="section" aria-labelledby="strategy-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">STRATEGY & GOVERNANCE</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="strategy-heading" class="section-title">Responsible Investment Strategy & Governance</h2>
+        
+        {% if page.strategy_governance_content %}
+            {{ page.strategy_governance_content|safe }}
+        {% else %}
+            <div class="ddq-responses">
+                <p><em>Please populate the Strategy & Governance content field in the admin interface.</em></p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ESG Integration -->
+<section class="garden-panel" role="section" aria-labelledby="esg-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">ESG INTEGRATION</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="esg-heading" class="section-title">ESG Integration Methodology</h2>
+        
+        {% if page.esg_integration_content %}
+            {{ page.esg_integration_content|safe }}
+        {% else %}
+            <div class="ddq-responses">
+                <p><em>Please populate the ESG Integration content field in the admin interface.</em></p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Stewardship -->
+<section class="garden-panel" role="section" aria-labelledby="stewardship-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">STEWARDSHIP & ENGAGEMENT</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="stewardship-heading" class="section-title">Active Stewardship Practices</h2>
+        
+        {% if page.stewardship_content %}
+            {{ page.stewardship_content|safe }}
+        {% else %}
+            <div class="ddq-responses">
+                <p><em>Please populate the Stewardship content field in the admin interface.</em></p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+
+<!-- Transparency -->
+<section class="garden-panel" role="section" aria-labelledby="transparency-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">TRANSPARENCY</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="transparency-heading" class="section-title">Transparency & Disclosure</h2>
+        
+        {% if page.transparency_content %}
+            {{ page.transparency_content|safe }}
+        {% else %}
+            <div class="ddq-responses">
+                <p><em>Please populate the Transparency content field in the admin interface.</em></p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Climate & Environment -->
+<section class="garden-panel" role="section" aria-labelledby="climate-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">CLIMATE & ENVIRONMENT</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="climate-heading" class="section-title">Climate & Environmental Considerations</h2>
+        
+        {% if page.climate_content %}
+            {{ page.climate_content|safe }}
+        {% else %}
+            <div class="ddq-responses">
+                <p><em>Please populate the Climate & Environment content field in the admin interface.</em></p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Reporting & Verification -->
+<section class="garden-panel" role="section" aria-labelledby="reporting-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">REPORTING AND VERIFICATION</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="reporting-heading" class="section-title">Reporting and Verification</h2>
+        
+        {% if page.reporting_verification_content %}
+            {{ page.reporting_verification_content|safe }}
+        {% else %}
+            <div class="ddq-responses">
+                <p><em>Please populate the Reporting & Verification content field in the admin interface.</em></p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+
+<!-- Additional Information -->
+<section class="garden-panel" role="section" aria-labelledby="additional-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">ADDITIONAL INFORMATION</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="additional-heading" class="section-title">Additional Information</h2>
+        
+        {% if page.additional_content %}
+            {{ page.additional_content|safe }}
+        {% else %}
+            <div class="ddq-responses">
+                <p><em>Please populate the Additional Information content field in the admin interface.</em></p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Enhanced accessibility and interaction for PRI DDQ page
+document.addEventListener('DOMContentLoaded', function() {
+    // Add smooth scrolling for anchor links
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Set focus for accessibility
+                targetElement.setAttribute('tabindex', '-1');
+                targetElement.focus();
+            }
+        });
+    });
+    
+    // Add keyboard navigation for DDQ questions
+    const ddqQuestions = document.querySelectorAll('.ddq-question');
+    ddqQuestions.forEach(question => {
+        // Make questions focusable
+        question.setAttribute('tabindex', '0');
+        
+        // Add expand/collapse functionality
+        const header = question.querySelector('h3');
+        if (header) {
+            header.style.cursor = 'pointer';
+            header.addEventListener('click', function() {
+                const answer = question.querySelector('.ddq-answer');
+                if (answer) {
+                    const isExpanded = answer.style.display !== 'none';
+                    answer.style.display = isExpanded ? 'none' : 'block';
+                    header.setAttribute('aria-expanded', !isExpanded);
+                }
+            });
+        }
+    });
+    
+    // Track external link clicks for analytics
+    const externalLinks = document.querySelectorAll('a[href^="http"]');
+    externalLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            console.log('External link clicked:', this.href);
+            // Add analytics tracking here if needed
+        });
+    });
+    
+    // Add print-friendly behavior
+    window.addEventListener('beforeprint', function() {
+        // Expand all DDQ answers for printing
+        const answers = document.querySelectorAll('.ddq-answer');
+        answers.forEach(answer => {
+            answer.style.display = 'block';
+        });
+    });
+});
+</script>
+{% endblock %}

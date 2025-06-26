@@ -1,0 +1,70 @@
+{% comment %}
+Person Schema for Financial Professionals
+Implements Person schema with compliance-focused credential representation
+{% endcomment %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{ request.scheme }}://{{ request.get_host }}/#founder",
+  "name": "Sloane Ortel",
+  "givenName": "Sloane",
+  "familyName": "Ortel", 
+  "jobTitle": "Chief Investment Officer",
+  "description": "Sloane Ortel is Chief Investment Officer of Ethical Capital with extensive experience in ethical investment screening and portfolio management. She founded Ethical Capital to provide institutional-grade ethical investing with boutique attention for investors who refuse to compromise.",
+  "worksFor": {
+    "@type": "FinancialService",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+    "name": "Ethical Capital"
+  },
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Investment Management Experience",
+      "credentialCategory": "Professional Experience",
+      "description": "Over 15 years of experience in investment management and ethical screening"
+    },
+    {
+      "@type": "EducationalOccupationalCredential", 
+      "name": "SEC Registration",
+      "credentialCategory": "Regulatory Compliance",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Securities and Exchange Commission"
+      }
+    }
+  ],
+  "knowsAbout": [
+    "Ethical Investment Screening",
+    "Portfolio Management",
+    "Financial Planning", 
+    "ESG Analysis",
+    "Fiduciary Responsibility",
+    "Investment Research"
+  ],
+  "email": "sloane@ethicic.com",
+  "url": "{{ request.scheme }}://{{ request.get_host }}/about/",
+  "alumniOf": {
+    "@type": "Organization",
+    "name": "Financial Services Industry"
+  },
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "Investment Philosophy",
+      "value": "Ethics as investment discipline - combining rigorous screening with fundamental analysis"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Specialization", 
+      "value": "Concentrated ethical portfolios for high-net-worth individuals and institutions"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Disclaimer",
+      "value": "Past performance does not guarantee future results. Investment advice involves risk. All investments carry the potential for loss."
+    }
+  ]
+}
+</script>

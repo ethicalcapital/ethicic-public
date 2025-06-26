@@ -1,0 +1,124 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}{{ page.hero_title }} | Ethical Capital{% endblock %}
+
+{% block body_class %}guide-page{% endblock %}
+
+{% block content %}
+<main class="guide-page">
+    <!-- Hero Section -->
+    <section class="hero garden-panel" role="banner">
+        <div class="panel-content hero-content">
+            <h1 class="hero-title">{{ page.hero_title }}</h1>
+            <p class="hero-subtitle">{{ page.hero_subtitle }}</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        {% if page.guide_description %}
+        <section class="description garden-panel">
+            <div class="panel-header">What's Included</div>
+            <div class="panel-content">
+                {{ page.guide_description|safe }}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Download Section -->
+        <section class="download-section garden-panel">
+            <div class="panel-header">Download Guide</div>
+            <div class="panel-content">
+                {% if page.guide_document %}
+                    <div class="download-option">
+                        <div class="download-info">
+                            <h3>{{ page.guide_document.title }}</h3>
+                            <p>File size: {{ page.guide_document.file_size|filesizeformat }}</p>
+                            <p>Format: {{ page.guide_document.file_extension|upper }}</p>
+                        </div>
+                        <a href="{{ page.guide_document.url }}" 
+                           class="garden-action primary download- garden-action"
+                           download="{{ page.guide_document.filename }}">
+                            Download PDF Guide
+                        </a>
+                    </div>
+                {% elif page.external_guide_url %}
+                    <div class="download-option">
+                        <div class="download-info">
+                            <h3>Investment Guide</h3>
+                            <p>Access our comprehensive guide to ethical investing principles and strategies.</p>
+                        </div>
+                        <a href="{{ page.external_guide_url }}" 
+                           class="garden-action primary download- garden-action"
+                           target="_blank" 
+                           rel="noopener">
+                            View Guide
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="coming-soon">
+                        <h3>Guide Coming Soon</h3>
+                        <p>We're currently preparing a comprehensive investment guide. In the meantime, 
+                        you can learn about our approach on our <a href="/process/">process page</a> 
+                        or <a href="/contact/">contact us</a> with any questions.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Additional Resources -->
+        <section class="resources garden-panel">
+            <div class="panel-header">Additional Resources</div>
+            <div class="panel-content">
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <h4>Our Process</h4>
+                        <p>Learn about our three-step ethical investment approach.</p>
+                        <a href="/process/" class="garden-action secondary">View Process</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <h4>Investment Strategies</h4>
+                        <p>Explore our three core strategies and how they can be combined.</p>
+                        <a href="/strategies/" class="garden-action secondary">View Strategies</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <h4>Screening Criteria</h4>
+                        <p>Review our transparent, open-source ethical screening criteria.</p>
+                        <a href="/criteria/" class="garden-action secondary">View Criteria</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <h4>Schedule Consultation</h4>
+                        <p>Discuss how our approach might fit your investment goals.</p>
+                        <a href="/consultation/" class="garden-action secondary">Schedule Call</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="newsletter garden-panel">
+            <div class="panel-header">Stay Updated</div>
+            <div class="panel-content">
+                <div class="newsletter-signup">
+                    <p>Get updates on new resources, market insights, and ethical investing research.</p>
+                    <form action="/newsletter/subscribe/" method="post" class="newsletter-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="email" 
+                                   name="email" 
+                                   placeholder="Enter your email address" 
+                                   required 
+                                   class="email-input">
+                            <button type="submit" class="garden-action primary">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+{% endblock %}

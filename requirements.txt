@@ -1,0 +1,24 @@
+# Core Django
+Django==4.2.16
+gunicorn==21.2.0
+psycopg2-binary==2.9.9
+
+# Wagtail CMS
+wagtail==5.2.6
+django-modelcluster==6.3
+django-taggit==5.0.1
+djangorestframework==3.14.0
+Pillow==10.4.0
+
+# Production essentials
+whitenoise==6.7.0
+python-dotenv==1.0.1
+dj-database-url==2.2.0
+
+# Optional but recommended
+redis==5.0.8
+hiredis==3.0.0
+
+# Security and monitoring
+django-cors-headers==4.4.0
+sentry-sdk==2.14.0

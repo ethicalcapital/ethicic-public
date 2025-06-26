@@ -1,0 +1,248 @@
+{% extends "public_site/base.html" %}
+{% load wagtailcore_tags static %}
+
+{% block title %}{{ page.title|default:"Media & Press" }} | {{ block.super }}{% endblock %}
+
+{% block meta_description %}{{ page.intro_text|striptags|truncatechars:160 }}{% endblock %}
+
+{% block body_class %}media-page{% endblock %}
+
+{% block content %}
+<!-- Media Coverage -->
+<section class="articles-section">
+    <div class="articles-content">
+        <div class="articles-container">
+            <!-- Media Articles Content -->
+            <div class="articles-main">
+                <div class="section-title-wrapper">
+                    <h1 class="section-title">RECENT MEDIA MENTIONS</h1>
+                    <div class="section-count" id="article-count">{{ page.media_items.all.count }} ARTICLES</div>
+                </div>
+                
+                {% if page.media_items.all %}
+                    <div class="articles-list" id="articles-container">
+                        {% for item in page.media_items.all|slice:":6" %}
+                        <article class="article-list-item{% if item.featured %} featured-item{% endif %}" data-item-id="{{ item.id }}">
+                            {% if item.featured %}
+                                <div class="featured-badge">FEATURED</div>
+                            {% endif %}
+                            <div class="article-list-text">
+                                <div class="article-list-meta">
+                                    <div class="article-list-tags">
+                                        {% if item.publication %}
+                                            <span class="article-list-tag">{{ item.publication|upper }}</span>
+                                        {% endif %}
+                                        {% if item.publication_date %}
+                                            <span class="article-list-date">{{ item.publication_date|date:"M j, Y"|upper }}</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <h2 class="article-list-title">
+                                    {% if item.external_url %}
+                                        <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+                                    {% else %}
+                                        {{ item.title }}
+                                    {% endif %}
+                                </h2>
+                                
+                                {% if item.description %}
+                                    <div class="article-list-description">
+                                        {{ item.description|richtext }}
+                                    </div>
+                                {% endif %}
+                                
+                                {% if item.external_url %}
+                                    <div class="article-list-actions">
+                                        <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer" class="garden-action secondary small">READ ARTICLE</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Loading indicator -->
+                    <div id="loading-indicator" class="loading-indicator loading-hidden">
+                        <div class="loading-spinner"></div>
+                        <p>Loading more articles...</p>
+                    </div>
+                    
+                    <!-- End of articles indicator -->
+                    <div id="end-of-articles" class="end-indicator end-indicator-hidden">
+                        <p>You've reached the end of our media coverage.</p>
+                    </div>
+                {% else %}
+                    <div class="no-articles">
+                        <h3>NO MEDIA COVERAGE YET</h3>
+                        <p>For press inquiries, please <a href="/contact-form/">contact us directly</a>.</p>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Sidebar -->
+            <aside class="blog-sticky-sidebar">
+                <div class="sidebar-section">
+                    <div class="garden-panel">
+                        <div class="garden-panel__header garden-panel-header">
+                            <div class="panel-title">SCHEDULE INTERVIEW</div>
+                        </div>
+                        <div class="garden-panel__content garden-panel-content">
+                            <p class="sidebar-description">Book a time to speak with our Chief Investment Officer about sustainable investing and our mission.</p>
+                            <div class="contact-method">
+                                <a href="https://tidycal.com/ecic/interview" target="_blank" rel="noopener noreferrer" class="garden-action primary full-width">BOOK INTERVIEW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="garden-panel">
+                        <div class="garden-panel__header garden-panel-header">
+                            <div class="panel-title">MEDIA CONTACT</div>
+                        </div>
+                        <div class="garden-panel__content garden-panel-content">
+                            <p class="sidebar-description">For press inquiries and additional information.</p>
+                            <div class="contact-method">
+                                <a href="/contact/" class="garden-action secondary full-width">CONTACT US</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/garden-blog.css' %}?v=20250621-dark-mode-badge-fix">
+<link rel="stylesheet" href="{% static 'css/garden-blog-articles.css' %}?v=20250621-dark-mode-badge-fix">
+<link rel="stylesheet" href="{% static 'css/garden-blog-panels.css' %}?v=20250621-dark-mode-badge-fix">
+<link rel="stylesheet" href="{% static 'css/garden-blog-sidebar.css' %}?v=20250621-dark-mode-badge-fix">
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let currentPage = 1;
+    let isLoading = false;
+    let hasMoreContent = true;
+    const itemsPerPage = 6;
+    
+    const articlesContainer = document.getElementById('articles-container');
+    const loadingIndicator = document.getElementById('loading-indicator');
+    const endIndicator = document.getElementById('end-of-articles');
+    
+    if (!articlesContainer) return;
+    
+    // Create API endpoint for loading more media items
+    async function loadMoreItems() {
+        if (isLoading || !hasMoreContent) return;
+        
+        isLoading = true;
+        loadingIndicator.style.display = 'block';
+        
+        try {
+            const response = await fetch(`/api/media-items/?page=${currentPage + 1}&per_page=${itemsPerPage}`);
+            const data = await response.json();
+            
+            if (data.items && data.items.length > 0) {
+                currentPage++;
+                appendItems(data.items);
+                
+                if (data.items.length < itemsPerPage) {
+                    hasMoreContent = false;
+                    endIndicator.style.display = 'block';
+                }
+            } else {
+                hasMoreContent = false;
+                endIndicator.style.display = 'block';
+            }
+        } catch (error) {
+            console.error('Error loading more items:', error);
+        } finally {
+            isLoading = false;
+            loadingIndicator.style.display = 'none';
+        }
+    }
+    
+    function appendItems(items) {
+        items.forEach(item => {
+            const article = createArticleElement(item);
+            articlesContainer.appendChild(article);
+        });
+    }
+    
+    function createArticleElement(item) {
+        const article = document.createElement('article');
+        article.className = `article-list-item${item.featured ? ' featured-item' : ''}`;
+        article.setAttribute('data-item-id', item.id);
+        
+        const formattedDate = item.publication_date ? 
+            new Date(item.publication_date).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            }).toUpperCase() : '';
+        
+        article.innerHTML = `
+            ${item.featured ? '<div class="featured-badge">FEATURED</div>' : ''}
+            <div class="article-list-text">
+                <div class="article-list-meta">
+                    <div class="article-list-tags">
+                        ${item.publication ? `<span class="article-list-tag">${item.publication.toUpperCase()}</span>` : ''}
+                        ${formattedDate ? `<span class="article-list-date">${formattedDate}</span>` : ''}
+                    </div>
+                </div>
+                
+                <h2 class="article-list-title">
+                    ${item.external_url ? 
+                        `<a href="${item.external_url}" target="_blank" rel="noopener noreferrer">${item.title}</a>` :
+                        item.title
+                    }
+                </h2>
+                
+                ${item.description ? `<div class="article-list-description">${item.description}</div>` : ''}
+                
+                ${item.external_url ? 
+                    `<div class="article-list-actions">
+                        <a href="${item.external_url}" target="_blank" rel="noopener noreferrer" class="garden-action secondary small">READ ARTICLE</a>
+                    </div>` : ''
+                }
+            </div>
+        `;
+        
+        return article;
+    }
+    
+    // Infinite scroll detection
+    function handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Trigger load when user is 200px from bottom
+        if (scrollTop + windowHeight >= documentHeight - 200) {
+            loadMoreItems();
+        }
+    }
+    
+    // Throttle scroll events
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(handleScroll, 100);
+    });
+    
+    // Initial load check (in case content is short)
+    setTimeout(() => {
+        if (document.documentElement.scrollHeight <= window.innerHeight + 200) {
+            loadMoreItems();
+        }
+    }, 500);
+});
+</script>
+{% endblock %}

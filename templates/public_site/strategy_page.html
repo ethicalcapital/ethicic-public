@@ -1,0 +1,677 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}{{ page.title }} | Ethical Capital{% endblock %}
+
+{% block body_class %}strategy-page{% endblock %}
+
+{% block content %}
+    <!-- Strategy Header -->
+    <section class="garden-panel" role="banner" aria-labelledby="strategy-heading">
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">{{ page.title|upper }}</div>
+            {% if page.strategy_label %}
+                <div class="strategy-badge">{{ page.strategy_label }}</div>
+            {% endif %}
+        </div>
+        <div class="garden-panel__content garden-panel-content">
+            <h1 id="strategy-heading" class="strategy-title">{{ page.title }}</h1>
+            {% if page.strategy_subtitle %}
+                <div class="strategy-subtitle">{{ page.strategy_subtitle }}</div>
+            {% endif %}
+            {% if page.strategy_description %}
+                <div class="strategy-description">{{ page.strategy_description|safe }}</div>
+            {% endif %}
+            
+            <!-- Quick Access Actions -->
+            <div class="quick-actions">
+                <a href="#performance" class="garden-action secondary">View Performance</a>
+                <a href="#portfolio" class="garden-action secondary">Portfolio Details</a>
+                <a href="#documents" class="garden-action primary">Documents & Reports</a>
+                <a href="/contact/" class="garden-action secondary">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Summary -->
+    <section class="garden-panel" role="complementary" aria-labelledby="performance-heading">
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">PERFORMANCE SUMMARY</div>
+        </div>
+        <div class="garden-panel__content garden-panel-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">{{ page.ytd_return }}</div>
+                    <div class="stat-label">YTD Return</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ page.one_year_return }}</div>
+                    <div class="stat-label">1 Year</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ page.three_year_return }}</div>
+                    <div class="stat-label">3 Year (Annualized)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ page.since_inception_return }}</div>
+                    <div class="stat-label">Since Inception</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Details -->
+    <section id="performance" class="garden-panel" role="main">
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">PERFORMANCE DETAILS</div>
+        </div>
+        <div class="garden-panel__content garden-panel-content">
+            <!-- Performance Comparison Table -->
+            <div class="performance-table-container">
+                <div class="performance-table">
+                    <div class="table-header">
+                        <div class="header-cell period">Period</div>
+                        <div class="header-cell strategy">Strategy</div>
+                        <div class="header-cell benchmark">Benchmark</div>
+                        <div class="header-cell difference">Difference</div>
+                    </div>
+                    <div class="table-body">
+                        <div class="table-row">
+                            <div class="cell period-cell">Year to Date</div>
+                            <div class="cell strategy-cell positive">{{ page.ytd_return }}</div>
+                            <div class="cell benchmark-cell">7.1%</div>
+                            <div class="cell difference-cell positive">+1.1%</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="cell period-cell">1 Year</div>
+                            <div class="cell strategy-cell positive">{{ page.one_year_return }}</div>
+                            <div class="cell benchmark-cell">14.2%</div>
+                            <div class="cell difference-cell positive">+1.5%</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="cell period-cell">3 Year (Annualized)</div>
+                            <div class="cell strategy-cell positive">{{ page.three_year_return }}</div>
+                            <div class="cell benchmark-cell">8.9%</div>
+                            <div class="cell difference-cell positive">+0.9%</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="cell period-cell">Since Inception</div>
+                            <div class="cell strategy-cell positive">{{ page.since_inception_return }}</div>
+                            <div class="cell benchmark-cell">11.3%</div>
+                            <div class="cell difference-cell positive">+0.8%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Metrics -->
+            <h3 class="section-subheading">Risk & Quality Metrics</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">16.2%</div>
+                    <div class="metric-label">Standard Deviation</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">0.78</div>
+                    <div class="metric-label">Sharpe Ratio</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">-22.1%</div>
+                    <div class="metric-label">Max Drawdown</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">0.94</div>
+                    <div class="metric-label">Beta vs ACWI</div>
+                </div>
+            </div>
+
+            <div class="performance-disclaimer">
+                <p><strong>Important:</strong> Past performance does not guarantee future results. All returns are net of fees. 
+                {% if 'income' in page.title|lower or 'income' in page.strategy_label|lower|default:'' %}
+                Benchmark: iShares Core US Aggregate Bond ETF (AGG) and iShares Preferred and Income Securities ETF (PFF).
+                {% else %}
+                Benchmark: iShares MSCI ACWI ETF (ACWI).
+                {% endif %}
+                Performance data is as of the most recent month-end.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Composition -->
+    <section id="portfolio" class="garden-panel">
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">PORTFOLIO COMPOSITION</div>
+        </div>
+        <div class="garden-panel__content garden-panel-content">
+                
+                <!-- Portfolio Characteristics -->
+                <div class="portfolio-stats">
+                    <div class="stat-grid">
+                        <div class="stat-box">
+                            <div class="stat-title">Holdings Count</div>
+                            <div class="stat-number">{{ page.holdings_count|default:"15-25" }}</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-title">Cash Allocation</div>
+                            <div class="stat-number">0.93%</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-title">Inception Date</div>
+                            <div class="stat-number">{{ page.inception_date|default:"October 2021" }}</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-title">Benchmark</div>
+                            <div class="stat-number">{% if 'income' in page.title|lower or 'income' in page.strategy_label|lower|default:'' %}AGG / PFF{% else %}ACWI{% endif %}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Geographic Composition -->
+                <div class="geographic-section">
+                    <h3 class="subsection-header">GEOGRAPHIC COMPOSITION</h3>
+                    
+                    <div class="geographic-table">
+                        <div class="geographic-header">
+                            <div class="col-region">REGION</div>
+                            <div class="col-allocation">ALLOCATION</div>
+                            <div class="col-benchmark">BENCHMARK</div>
+                            <div class="col-difference">DIFFERENCE</div>
+                        </div>
+                        
+                        <div class="geographic-row">
+                            <div class="region-name">United States</div>
+                            <div class="metric-value weight-heavy">78.0%</div>
+                            <div class="metric-value">62.0%</div>
+                            <div class="metric-value positive">+16.0%</div>
+                        </div>
+                        
+                        <div class="geographic-row">
+                            <div class="region-name">International</div>
+                            <div class="metric-value weight-medium">22.0%</div>
+                            <div class="metric-value">38.0%</div>
+                            <div class="metric-value">-16.0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sector Positioning -->
+                <div class="sector-section">
+                    <h3 class="subsection-header">SECTOR POSITIONING</h3>
+                    
+                    <div class="sector-positioning">
+                        <div class="positioning-grid">
+                            <div class="positioning-card overweight">
+                                <h4>OVERWEIGHTS</h4>
+                                <ul>
+                                    <li>Real Estate</li>
+                                    <li>Industrials</li>
+                                    <li>Financial Services</li>
+                                </ul>
+                                <p class="positioning-note">Higher conviction in these sectors</p>
+                            </div>
+                            
+                            <div class="positioning-card exclusions">
+                                <h4>EXCLUSIONS</h4>
+                                <ul>
+                                    <li>Basic Materials</li>
+                                    <li>Energy</li>
+                                    <li>Healthcare*</li>
+                                    <li>Utilities</li>
+                                </ul>
+                                <p class="positioning-note">22% of benchmark index excluded</p>
+                            </div>
+                        </div>
+                        
+                        <div class="exclusion-note">
+                            <p><em>* Healthcare exclusions are selective and based on specific ethical criteria rather than sector-wide exclusion.</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Holdings Transparency -->
+                <div class="current-holdings-section">
+                    <h3 class="subsection-header">TOP 5 HOLDINGS</h3>
+                    <div class="holdings-disclaimer">
+                        <p><em>As of most recent quarter-end. Updated quarterly with detailed commentary.</em></p>
+                    </div>
+                    
+                    <div class="holdings-grid">
+                        <div class="holding-card">
+                            <div class="holding-header">
+                                <div class="company-name">Agricultural Mortgage Corporation</div>
+                                <div class="company-ticker">(Farmer Mac)</div>
+                                <div class="holding-weight">~8.4%</div>
+                            </div>
+                            <div class="vertical-tag lending">Lending</div>
+                            <div class="holding-thesis">
+                                <strong>Investment Thesis:</strong> Increases availability of long-term credit at stable interest rates for America's rural communities. Farmers invest $2 locally for every dollar saved on interest.
+                            </div>
+                            <div class="holding-financials">
+                                <strong>Key Metrics:</strong> Consistent ROE in high teens, 90%+ recurring revenue
+                            </div>
+                        </div>
+
+                        <div class="holding-card">
+                            <div class="holding-header">
+                                <div class="company-name">Alexandria Real Estate</div>
+                                <div class="company-ticker">(ARE)</div>
+                                <div class="holding-weight">~8.4%</div>
+                            </div>
+                            <div class="vertical-tag real-estate">Real Estate</div>
+                            <div class="holding-thesis">
+                                <strong>Investment Thesis:</strong> Mission-critical lab space for biotech R&D. Tenants responsible for 50% of novel FDA-approved therapies 2013-2023.
+                            </div>
+                            <div class="holding-financials">
+                                <strong>Key Metrics:</strong> Double-digit revenue growth, crisis-level valuations
+                            </div>
+                        </div>
+
+                        <div class="holding-card">
+                            <div class="holding-header">
+                                <div class="company-name">Duolingo</div>
+                                <div class="company-ticker">(DUOL)</div>
+                                <div class="holding-weight">~8.4%</div>
+                            </div>
+                            <div class="vertical-tag innovation">Innovation</div>
+                            <div class="holding-thesis">
+                                <strong>Investment Thesis:</strong> Private tutor experience for everyone via technology. Language learning enables economic opportunity.
+                            </div>
+                            <div class="holding-financials">
+                                <strong>Key Metrics:</strong> 40%+ annual revenue growth, AI market leader
+                            </div>
+                        </div>
+
+                        <div class="holding-card">
+                            <div class="holding-header">
+                                <div class="company-name">Lemonade</div>
+                                <div class="company-ticker">(LMND)</div>
+                                <div class="holding-weight">~8.4%</div>
+                            </div>
+                            <div class="vertical-tag innovation">Innovation</div>
+                            <div class="holding-thesis">
+                                <strong>Investment Thesis:</strong> Public benefit corporation with charitable giving core feature. NPS scores ~70, purchased at 1/5 IPO price.
+                            </div>
+                            <div class="holding-financials">
+                                <strong>Key Metrics:</strong> 40%+ revenue growth, narrowing losses, well-capitalized
+                            </div>
+                        </div>
+
+                        <div class="holding-card">
+                            <div class="holding-header">
+                                <div class="company-name">Crocs</div>
+                                <div class="company-ticker">(CROX)</div>
+                                <div class="holding-weight">~8.4%</div>
+                            </div>
+                            <div class="vertical-tag innovation">Innovation</div>
+                            <div class="holding-thesis">
+                                <strong>Investment Thesis:</strong> Comfort utility in popular culture. 50% bio-based materials by 2030, recycling program.
+                            </div>
+                            <div class="holding-financials">
+                                <strong>Key Metrics:</strong> 25%+ FCF growth expected, solid global growth trajectory
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vertical Allocation Table -->
+                <div class="vertical-allocation-section">
+                    <h3 class="subsection-header">PORTFOLIO ALLOCATION BY VERTICAL</h3>
+                    
+                    <div class="allocation-table">
+                        <div class="allocation-header">
+                            <div class="col-vertical">VERTICAL</div>
+                            <div class="col-weight">WEIGHT</div>
+                            <div class="col-div-yield">DIV YIELD</div>
+                            <div class="col-pe">P/E RATIO</div>
+                            <div class="col-revenue">REV CAGR</div>
+                            <div class="col-fcf">FCF/MCap</div>
+                        </div>
+                        
+                        <div class="allocation-row">
+                            <div class="vertical-name">Innovation</div>
+                            <div class="metric-value weight-heavy">41.53%</div>
+                            <div class="metric-value">0.08%</div>
+                            <div class="metric-value">30.81</div>
+                            <div class="metric-value positive">32.52%</div>
+                            <div class="metric-value">3.50%</div>
+                        </div>
+                        
+                        <div class="allocation-row">
+                            <div class="vertical-name">Infrastructure</div>
+                            <div class="metric-value weight-medium">24.95%</div>
+                            <div class="metric-value">0.74%</div>
+                            <div class="metric-value">20.50</div>
+                            <div class="metric-value positive">10.62%</div>
+                            <div class="metric-value">6.01%</div>
+                        </div>
+                        
+                        <div class="allocation-row">
+                            <div class="vertical-name">Lending</div>
+                            <div class="metric-value weight-medium">18.74%</div>
+                            <div class="metric-value">2.84%</div>
+                            <div class="metric-value attractive">9.76</div>
+                            <div class="metric-value positive">12.86%</div>
+                            <div class="metric-value attractive">25.90%</div>
+                        </div>
+                        
+                        <div class="allocation-row">
+                            <div class="vertical-name">Real Estate</div>
+                            <div class="metric-value weight-medium">13.85%</div>
+                            <div class="metric-value attractive">5.27%</div>
+                            <div class="metric-value">59.38</div>
+                            <div class="metric-value positive">21.07%</div>
+                            <div class="metric-value">6.27%</div>
+                        </div>
+                        
+                        <div class="allocation-row">
+                            <div class="vertical-name">Cash</div>
+                            <div class="metric-value weight-light">0.93%</div>
+                            <div class="metric-value">—</div>
+                            <div class="metric-value">—</div>
+                            <div class="metric-value">—</div>
+                            <div class="metric-value">—</div>
+                        </div>
+                        
+                        <div class="allocation-row total-row">
+                            <div class="vertical-name"><strong>Portfolio Total</strong></div>
+                            <div class="metric-value"><strong>100%</strong></div>
+                            <div class="metric-value"><strong>1.48%</strong></div>
+                            <div class="metric-value"><strong>27.95</strong></div>
+                            <div class="metric-value positive"><strong>21.48%</strong></div>
+                            <div class="metric-value"><strong>8.68%</strong></div>
+                        </div>
+                        
+                        <div class="allocation-row benchmark-row">
+                            <div class="vertical-name"><em>Benchmark ({% if 'income' in page.title|lower or 'income' in page.strategy_label|lower|default:'' %}AGG/PFF{% else %}ACWI{% endif %})</em></div>
+                            <div class="metric-value">—</div>
+                            <div class="metric-value"><em>1.73%</em></div>
+                            <div class="metric-value"><em>23.10</em></div>
+                            <div class="metric-value">—</div>
+                            <div class="metric-value"><em>2.45%</em></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Content -->
+                {% if page.portfolio_content %}
+                    <div class="portfolio-description">
+                        {{ page.portfolio_content|safe }}
+                    </div>
+                {% else %}
+                    <div class="portfolio-description">
+                        <h3>Investment Universe</h3>
+                        <p>This strategy invests in companies that pass our comprehensive ethical screening process, 
+                        focusing on businesses that create positive societal impact while delivering strong financial returns.</p>
+                        
+                        <h3>Portfolio Construction</h3>
+                        <p>We maintain a concentrated portfolio of our highest-conviction ideas, typically holding 
+                        15-25 positions with target allocation of approximately 4% per holding. This approach allows 
+                        us to maintain meaningful exposure to our best ideas while ensuring adequate diversification.</p>
+                        
+                        <h3>Sector Allocation</h3>
+                        <p>Our sector allocation is driven by bottom-up security selection rather than top-down 
+                        sector targets. We maintain broad diversification across sectors while avoiding industries 
+                        that conflict with our ethical criteria.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Commentary Tab -->
+        <div id="commentary" class="tab-content">
+            <div class="section">
+                <h2 class="section-header">{{ page.commentary_title|default:"STRATEGY COMMENTARY" }}</h2>
+                
+                {% if page.commentary_content %}
+                    <div class="commentary-content">
+                        {{ page.commentary_content|safe }}
+                    </div>
+                {% else %}
+                    <div class="commentary-content">
+                        <h3>Current Market Environment</h3>
+                        <p>We continue to find attractive opportunities in companies that are creating positive 
+                        societal impact while maintaining strong competitive positions. Our research process 
+                        has identified several compelling investment themes that align with both our ethical 
+                        criteria and financial objectives.</p>
+                        
+                        <h3>Strategy Positioning</h3>
+                        <p>The strategy remains positioned for long-term value creation through our disciplined 
+                        approach to ethical investing. We maintain our focus on companies with sustainable 
+                        business models, strong management teams, and clear paths to continued growth.</p>
+                        
+                        <h3>Outlook</h3>
+                        <p>While market volatility creates near-term uncertainty, we remain optimistic about 
+                        the long-term prospects for ethical investing. Our research continues to identify 
+                        companies that can deliver both financial returns and positive societal impact.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Process Tab -->
+        <div id="process" class="tab-content">
+            <div class="section">
+                <h2 class="section-header">{{ page.process_title|default:"OUR PROCESS" }}</h2>
+                
+                {% if page.process_content %}
+                    <div class="process-content">
+                        {{ page.process_content|safe }}
+                    </div>
+                {% else %}
+                    <div class="process-content">
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Ethical Screening</h3>
+                                    <p>We apply comprehensive ethical criteria to exclude companies involved in 
+                                    weapons, tobacco, fossil fuels, human rights violations, and other harmful activities.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Fundamental Analysis</h3>
+                                    <p>Our research team conducts deep fundamental analysis on each potential 
+                                    investment, evaluating financial metrics, competitive positioning, and management quality.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Portfolio Construction</h3>
+                                    <p>We build concentrated portfolios of our highest-conviction ideas while 
+                                    maintaining appropriate diversification and risk management.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3>Ongoing Monitoring</h3>
+                                    <p>We continuously monitor portfolio holdings for changes in ethical profile, 
+                                    business fundamentals, and market conditions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+    <!-- Documents & Reports -->
+    <section id="documents" class="garden-panel">
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">DOCUMENTS & REPORTS</div>
+        </div>
+        <div class="garden-panel__content garden-panel-content">
+            {% if page.documents_content %}
+                {{ page.documents_content|safe }}
+            {% else %}
+                <div class="documents-grid">
+                    <!-- Performance Reports -->
+                    <div class="document-category">
+                        <h3>Performance Reports</h3>
+                        <div class="document-list">
+                            <a href="/reports/{{ page.slug }}-monthly-performance.pdf" class="document-link">
+                                <span class="document-icon">📊</span>
+                                <div class="document-info">
+                                    <div class="document-title">Monthly Performance Report</div>
+                                    <div class="document-desc">Latest monthly performance data and commentary</div>
+                                </div>
+                            </a>
+                            <a href="/reports/{{ page.slug }}-quarterly-commentary.pdf" class="document-link">
+                                <span class="document-icon">📈</span>
+                                <div class="document-info">
+                                    <div class="document-title">Quarterly Commentary</div>
+                                    <div class="document-desc">Detailed quarterly analysis and outlook</div>
+                                </div>
+                            </a>
+                            <a href="/reports/{{ page.slug }}-annual-review.pdf" class="document-link">
+                                <span class="document-icon">📋</span>
+                                <div class="document-info">
+                                    <div class="document-title">Annual Strategy Review</div>
+                                    <div class="document-desc">Comprehensive annual performance review</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Strategy Information -->
+                    <div class="document-category">
+                        <h3>Strategy Information</h3>
+                        <div class="document-list">
+                            <a href="/documents/{{ page.slug }}-fact-sheet.pdf" class="document-link">
+                                <span class="document-icon">📄</span>
+                                <div class="document-info">
+                                    <div class="document-title">Strategy Fact Sheet</div>
+                                    <div class="document-desc">One-page strategy overview and key metrics</div>
+                                </div>
+                            </a>
+                            <a href="/process/" class="document-link">
+                                <span class="document-icon">⚙️</span>
+                                <div class="document-info">
+                                    <div class="document-title">Investment Process</div>
+                                    <div class="document-desc">Our four-step investment methodology</div>
+                                </div>
+                            </a>
+                            <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" class="document-link" target="_blank" rel="noopener">
+                                <span class="document-icon">🔍</span>
+                                <div class="document-info">
+                                    <div class="document-title">Ethical Screening Criteria</div>
+                                    <div class="document-desc">Complete screening methodology (Open Source)</div>
+                                </div>
+                            </a>
+                            <a href="/pri-ddq/" class="document-link">
+                                <span class="document-icon">🤝</span>
+                                <div class="document-info">
+                                    <div class="document-title">PRI Due Diligence Questionnaire</div>
+                                    <div class="document-desc">Principles for Responsible Investment responses</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Regulatory Disclosures -->
+                    <div class="document-category">
+                        <h3>Regulatory Disclosures</h3>
+                        <div class="document-list">
+                            <a href="/disclosures/form-adv/" class="document-link">
+                                <span class="document-icon">📑</span>
+                                <div class="document-info">
+                                    <div class="document-title">Form ADV</div>
+                                    <div class="document-desc">SEC-required investment advisor disclosure</div>
+                                </div>
+                            </a>
+                            <a href="/disclosures/disclosures/" class="document-link">
+                                <span class="document-icon">⚠️</span>
+                                <div class="document-info">
+                                    <div class="document-title">Important Disclosures</div>
+                                    <div class="document-desc">Risk disclosures and legal notices</div>
+                                </div>
+                            </a>
+                            <a href="/disclosures/privacy/" class="document-link">
+                                <span class="document-icon">🔒</span>
+                                <div class="document-info">
+                                    <div class="document-title">Privacy Policy</div>
+                                    <div class="document-desc">How we protect your information</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+        </div>
+    </main>
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function showTab(tabName) {
+    // Hide all tab contents
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Remove active class from all tab buttons
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(button => {
+        button.classList.remove('active');
+    });
+    
+    // Show selected tab content
+    const selectedTab = document.getElementById(tabName);
+    if (selectedTab) {
+        selectedTab.classList.add('active');
+    }
+    
+    // Add active class to clicked button
+    const clickedButton = event.target;
+    clickedButton.classList.add('active');
+}
+
+function requestDocument(documentType) {
+    // Show document request modal
+    const modal = document.createElement('div');
+    modal.innerHTML = `
+        <div class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-title">Document Request</div>
+                <div class="modal-body">
+                    To access this document, please contact our investor relations team:
+                    <br><br>
+                    📧 Email: <a href="mailto:ir@ethicalcapital.com">ir@ethicalcapital.com</a><br>
+                    📞 Phone: (555) 123-4567<br><br>
+                    Document: ${getDocumentTitle(documentType)}
+                </div>
+                <div class="modal-actions">
+                    <button onclick="window.location.href='mailto:ir@ethicalcapital.com?subject=Document Request: ${documentType}'" class="modal-button modal-button-primary">SEND EMAIL</button>
+                    <button onclick="this.closest('.modal-overlay').remove()" class="modal-button modal-button-secondary">CLOSE</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function getDocumentTitle(type) {
+    const titles = {
+        'monthly-report': 'Monthly Performance Report',
+        'quarterly-commentary': 'Quarterly Commentary',
+        'annual-review': 'Annual Strategy Review',
+        'fact-sheet': 'Strategy Fact Sheet',
+        'process-overview': 'Investment Process Overview',
+        'screening-criteria': 'Ethical Screening Criteria',
+        'pri-ddq': 'PRI Due Diligence Questionnaire'
+    };
+    return titles[type] || 'Document';
+}
+</script>
+{% endblock %}

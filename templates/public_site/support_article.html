@@ -1,0 +1,155 @@
+{% extends "public_site/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{{ page.title }} | Support | {{ block.super }}{% endblock %}
+
+{% block body_class %}support-article{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb Navigation -->
+<section class="garden-panel breadcrumb-panel">
+    <div class="panel-content">
+        <nav class="breadcrumb" aria-label="Page navigation">
+            <a href="/" class="breadcrumb-link">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="{% pageurl page.get_parent %}" class="breadcrumb-link">Support</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">{{ page.title }}</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Article Header -->
+<section class="garden-panel hero-panel" role="banner" aria-labelledby="article-heading">
+    <div class="panel-header">SUPPORT ARTICLE</div>
+    <div class="panel-content">
+        <h1 id="article-heading" class="article-title">{{ page.title }}</h1>
+        {% if page.summary %}
+            <div class="article-summary">{{ page.summary }}</div>
+        {% endif %}
+        
+        <!-- Article Metadata -->
+        <div class="article-meta">
+            <span class="category-badge">{{ page.get_category_display|upper }}</span>
+            {% if page.featured %}
+                <span class="featured-badge">FEATURED ARTICLE</span>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="article-container">
+        <!-- Article Content Panel -->
+        <section class="garden-panel content-panel">
+            <div class="panel-header">ARTICLE CONTENT</div>
+            <div class="panel-content">
+                <div class="article-body">
+                    {{ page.content|richtext }}
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Articles -->
+        {% if page.get_related_articles_list %}
+        <section class="garden-panel related-panel">
+            <div class="panel-header">RELATED ARTICLES</div>
+            <div class="panel-content">
+                <div class="related-grid">
+                    {% for related in page.get_related_articles_list %}
+                    <div class="related-card">
+                        <div class="related-content">
+                            <h3 class="related-title">
+                                <a href="{% pageurl related %}">{{ related.title }}</a>
+                            </h3>
+                            <p class="related-summary">{{ related.summary|truncatewords:20 }}</p>
+                            <div class="related-actions">
+                                <a href="{% pageurl related %}" class="garden-action secondary">read article</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Help Section -->
+        <section class="garden-panel help-panel">
+            <div class="panel-header">STILL NEED HELP?</div>
+            <div class="panel-content">
+                <p class="help-description">If you couldn't find the answer you were looking for, our team is here to help.</p>
+                <div class="help-options">
+                    {% if page.get_parent.specific.contact_email %}
+                    <a href="mailto:{{ page.get_parent.specific.contact_email }}" class="garden-action primary">
+                        Email Support
+                    </a>
+                    {% endif %}
+                    {% if page.get_parent.specific.contact_phone %}
+                    <a href="tel:{{ page.get_parent.specific.contact_phone }}" class="garden-action secondary">
+                        Call Us
+                    </a>
+                    {% endif %}
+                    {% if page.get_parent.specific.meeting_link %}
+                    <a href="{{ page.get_parent.specific.meeting_link }}" target="_blank" class="garden-action secondary">
+                        Schedule a Meeting
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Feedback Section -->
+        <section class="garden-panel feedback-panel">
+            <div class="panel-header">ARTICLE FEEDBACK</div>
+            <div class="panel-content">
+                <h3 class="feedback-question">Was this article helpful?</h3>
+                <div class="feedback-buttons">
+                    <button class="feedback- garden-action helpful" data-helpful="yes">👍 Yes</button>
+                    <button class="feedback- garden-action not-helpful" data-helpful="no">👎 No</button>
+                </div>
+                <div class="feedback-message feedback-message-hidden">
+                    <p>Thank you for your feedback!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Article Feedback
+document.addEventListener('DOMContentLoaded', function() {
+    const feedbackButtons = document.querySelectorAll('.feedback-btn');
+    const feedbackMessage = document.querySelector('.feedback-message');
+    
+    feedbackButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const helpful = this.dataset.helpful;
+            
+            // Hide buttons and show message
+            document.querySelector('.feedback-buttons').style.display = 'none';
+            feedbackMessage.style.display = 'block';
+            
+            // Track feedback (you can send this to your analytics)
+            console.log('Article feedback:', helpful);
+            
+            // Optional: Send feedback to server
+            // fetch('/api/article-feedback/', {
+            //     method: 'POST',
+            //     headers: {'Content-Type': 'application/json'},
+            //     body: JSON.stringify({
+            //         article: '{{ page.id }}',
+            //         helpful: helpful === 'yes'
+            //     })
+            // });
+        });
+    });
+});
+</script>
+{% endblock %}

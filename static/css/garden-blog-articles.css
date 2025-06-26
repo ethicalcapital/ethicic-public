@@ -1,0 +1,835 @@
+/*
+ * GARDEN BLOG ARTICLES - Garden UI Compliant Stylesheet
+ * Article list layout and styling using Garden UI design system
+ */
+
+/* ========================================================================
+   BLOG LAYOUT CONSTRAINTS - Full Width Flexbox System
+   ======================================================================== */
+
+.blog-content {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Articles section main container */
+.articles-content {
+    max-width: var(--content-width-normal);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    box-sizing: border-box;
+}
+
+.articles-container {
+    display: flex;
+    gap: var(--space-6);
+    align-items: start;
+    position: relative;
+}
+
+.blog-container {
+    max-width: var(--content-width-normal);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    box-sizing: border-box;
+    display: flex;
+    gap: var(--space-6);
+    align-items: start;
+    position: relative;
+}
+
+/* Override inherited constraints - Garden UI compliant */
+.blog-posts .garden-panel-content {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: var(--space-6);
+    box-sizing: border-box;
+}
+
+/* Main content should use 2/3 of available space */
+.articles-main {
+    flex: 2;
+    min-width: 0; /* Allow shrinking */
+    width: 66.666%;
+    max-width: none; /* Remove any width constraints */
+}
+
+.blog-main-content {
+    flex: 2;
+    min-width: 0; /* Allow shrinking */
+    width: 66.666%;
+    max-width: none; /* Remove any width constraints */
+}
+
+/* ========================================================================
+   ARTICLES LIST LAYOUT - Garden UI Grid System
+   ======================================================================== */
+
+.articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: var(--space-6) 0;
+}
+
+.article-list-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.article-list-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--color-primary);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    transform-origin: bottom;
+}
+
+.article-list-item:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgb(0, 0, 0, 0.1), 0 0 0 1px var(--color-primary-alpha);
+}
+
+.article-list-item:hover::before {
+    transform: scaleY(1);
+}
+
+/* ========================================================================
+   ARTICLE CONTENT LAYOUT - Garden UI Grid Pattern
+   ======================================================================== */
+
+.article-list-content {
+    display: grid;
+    grid-template-columns: 140px minmax(300px, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+    width: 100%;
+    overflow: visible;
+}
+
+.article-list-image {
+    border-radius: var(--radius-sm);
+    overflow: visible;
+    aspect-ratio: 3/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-list-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.article-list-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: 100%;
+    flex: 1;
+    min-width: 300px;
+    max-width: none;
+    flex-grow: 1;
+    flex-shrink: 1;
+    box-sizing: border-box;
+}
+
+/* Enhanced KPI Header Styling - consolidated below */
+
+.kpi-header-item {
+    background: var(--color-primary-alpha-light);
+    border: 1px solid var(--color-primary-alpha);
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    transition: all 0.2s ease;
+}
+
+.kpi-header-item:hover {
+    background: var(--color-primary-alpha);
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.article-list-item:hover .kpi-header-item {
+    background: var(--color-primary-alpha);
+    border-color: var(--color-primary);
+}
+
+/* KPI header value styling moved to unified section below */
+
+/* KPI header label styling moved to unified section below */
+
+/* ========================================================================
+   ARTICLE TEXT ELEMENTS - Garden UI Typography
+   ======================================================================== */
+
+.article-list-meta {
+    margin-bottom: var(--space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-xs);
+    color: var(--color-on-surface-variant);
+}
+
+.article-list-tags {
+    display: flex;
+    gap: var(--space-1);
+    flex-wrap: wrap;
+}
+
+.article-list-tag {
+    background: var(--color-primary-alpha-light);
+    color: var(--color-primary);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-xs);
+    font-weight: var(--font-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.article-list-title {
+    font-size: var(--font-xl);
+    font-weight: var(--font-semibold);
+    line-height: 1.3;
+    margin: 0;
+    hyphens: none;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    width: 100%;
+    text-wrap: balance;
+    color: var(--color-on-surface);
+    margin-bottom: var(--space-3);
+    transition: color 0.2s ease;
+}
+
+.article-list-title a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    transition: color 0.2s ease;
+}
+
+.article-list-title a:hover,
+.article-list-item:hover .article-list-title a {
+    color: var(--color-primary);
+}
+
+.article-list-excerpt {
+    color: var(--color-on-surface-variant);
+    line-height: 1.7;
+    margin: 0;
+    hyphens: none;
+    overflow-wrap: break-word;
+    word-break: keep-all;
+    width: 100%;
+    text-wrap: pretty;
+    font-size: var(--font-base);
+    margin-bottom: var(--space-3);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.article-list-actions {
+    margin-top: var(--space-2);
+}
+
+/* ========================================================================
+   LOADING INDICATOR - Garden UI Component Pattern
+   ======================================================================== */
+
+.loading-indicator {
+    text-align: center;
+    padding: var(--space-8);
+    color: var(--color-on-surface-variant);
+    width: 100%;
+}
+
+.loading-indicator.hidden {
+    display: none;
+}
+
+/* ========================================================================
+   ENHANCED RESPONSIVE DESIGN - Mobile First Approach
+   ======================================================================== */
+
+@media (max-width: 768px) {
+    .blog-container {
+        padding: 0 var(--space-4);
+        gap: var(--space-4);
+    }
+
+    .articles-list {
+        gap: var(--space-6);
+        padding: var(--space-4) 0;
+    }
+
+    .article-list-item {
+        padding: var(--space-4);
+        margin-bottom: var(--space-4);
+    }
+
+    .article-list-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .article-list-image {
+        order: -1;
+        aspect-ratio: 16/9;
+        max-height: 200px;
+    }
+
+    .article-list-text {
+        gap: var(--space-3);
+        min-width: unset;
+    }
+
+    .article-list-title {
+        font-size: var(--font-lg);
+        margin-bottom: var(--space-2);
+    }
+
+    .article-list-excerpt {
+        -webkit-line-clamp: 2;
+        margin-bottom: var(--space-2);
+    }
+
+    .article-kpi-header {
+        gap: var(--space-2);
+        margin-bottom: var(--space-2);
+    }
+
+    .kpi-header-item {
+        min-width: 70px;
+        padding: var(--space-1) var(--space-2);
+    }
+
+    .kpi-header-value {
+        font-size: var(--font-xs);
+    }
+
+    .article-list-tags {
+        gap: var(--space-1);
+    }
+
+    .article-list-tag {
+        padding: var(--space-1);
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-list-item {
+        padding: var(--space-3);
+    }
+
+    .article-list-content {
+        gap: var(--space-3);
+    }
+
+    .article-kpi-header {
+        justify-content: center;
+    }
+
+    .kpi-header-item {
+        min-width: 60px;
+        padding: var(--space-1);
+    }
+
+    .article-list-title {
+        font-size: var(--font-base);
+        line-height: 1.4;
+    }
+
+    .article-list-excerpt {
+        font-size: var(--font-sm);
+    }
+}
+
+/* ========================================================================
+   ENHANCED VISUAL STATES AND ACCESSIBILITY
+   ======================================================================== */
+
+/* Focus states for keyboard navigation */
+.article-list-item:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.article-list-item .article-list-title a:focus {
+    outline: none;
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary);
+    text-underline-offset: 2px;
+}
+
+/* Reading indicators */
+.article-list-item[data-read="true"] {
+    opacity: 0.8;
+}
+
+.article-list-item[data-read="true"]::before {
+    background: var(--color-on-surface-variant);
+}
+
+/* Article type indicators */
+.article-list-item[data-article-type="featured"] {
+    border-color: var(--color-primary);
+    background: var(--color-primary-alpha-light);
+}
+
+.article-list-item[data-article-type="featured"]::before {
+    transform: scaleY(1);
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+}
+
+/* Enhanced meta information merged above */
+
+.article-meta-date {
+    font-family: var(--font-mono);
+}
+
+.article-meta-separator {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-on-surface-variant);
+}
+
+.article-read-time {
+    font-style: italic;
+}
+
+.loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--color-border);
+    border-top: 3px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--space-2);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ========================================================================
+   ARTICLE KPI SHOWCASE - Garden UI Component
+   ======================================================================== */
+
+/* Article KPI Header - Positioned Above Title */
+.article-kpi-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    padding: var(--space-3);
+    background: linear-gradient(135deg, var(--color-surface-variant) 0%, var(--color-surface) 100%);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.article-kpi-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light, var(--color-primary)));
+    opacity: 0.6;
+}
+
+.article-kpi-header:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-alpha);
+}
+
+/* KPI header item styling consolidated above */
+
+/* KPI header item hover styling consolidated above */
+
+.kpi-header-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-primary);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.kpi-header-item:hover::after {
+    opacity: 1;
+}
+
+.kpi-header-value {
+    font-family: var(--font-mono);
+    font-size: var(--font-base);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    line-height: 1.2;
+    margin-bottom: var(--space-1);
+    display: block;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.kpi-header-item:hover .kpi-header-value {
+    color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.kpi-header-label {
+    font-family: var(--font-mono);
+    font-size: var(--font-xs);
+    font-weight: var(--font-semibold);
+    color: var(--color-on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+    display: block;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.kpi-header-item:hover .kpi-header-label {
+    color: var(--color-on-surface);
+    transform: translateY(-1px);
+}
+
+/* KPI Header Count Badge */
+.kpi-header-count {
+    position: absolute;
+    top: var(--space-1);
+    right: var(--space-1);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: var(--font-bold);
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+    line-height: 1;
+    min-width: 16px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Article Thumbnail KPIs (for image replacement) */
+.article-thumbnail-kpis {
+    width: 140px;
+    height: 90px;
+    background: linear-gradient(135deg, var(--color-surface-variant) 0%, var(--color-surface) 100%);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.article-thumbnail-kpis:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.thumbnail-kpi {
+    text-align: center;
+    padding: var(--space-2);
+    width: 100%;
+}
+
+.thumbnail-kpi-value {
+    font-family: var(--font-mono);
+    font-size: var(--font-base);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    line-height: 1.1;
+    margin-bottom: var(--space-1);
+    text-shadow: none;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.thumbnail-kpi-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: var(--font-semibold);
+    color: var(--color-on-surface-variant);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+    word-break: break-all;
+    display: block;
+}
+
+.thumbnail-kpi-count {
+    position: absolute;
+    bottom: var(--space-1);
+    right: var(--space-1);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--color-on-surface-variant);
+    background: var(--color-surface);
+    padding: 2px var(--space-1);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    line-height: 1;
+}
+
+/* ========================================================================
+   RESPONSIVE DESIGN - Garden UI Breakpoints
+   ======================================================================== */
+
+@media (max-width: 1024px) {
+    .blog-container {
+        gap: var(--space-8);
+    }
+    
+    .blog-sticky-sidebar {
+        width: 280px;
+        min-width: 280px;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-container {
+        flex-direction: column;
+        gap: var(--space-6);
+        padding: 0 var(--space-4);
+    }
+    
+    .blog-sticky-sidebar {
+        position: static;
+        width: 100%;
+        min-width: auto;
+        max-width: none;
+        order: -1;
+    }
+    
+    .article-list-content {
+        grid-template-columns: 100px 1fr;
+        gap: var(--space-4);
+    }
+    
+    .article-list-text {
+        min-width: 0; /* Allow shrinking on mobile */
+    }
+    
+    .article-list-item {
+        padding: var(--space-6);
+    }
+    
+    .articles-list {
+        gap: var(--space-4);
+        padding: var(--space-3) 0;
+    }
+    
+    .article-list-title {
+        font-size: var(--font-base);
+        line-height: 1.3;
+    }
+    
+    .article-list-excerpt {
+        font-size: var(--font-sm);
+        line-height: 1.5;
+    }
+    
+    /* Article KPI Header mobile responsiveness */
+    .article-kpi-header {
+        gap: var(--space-1);
+        padding: var(--space-2);
+        margin-bottom: var(--space-2);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .kpi-header-item {
+        min-width: 65px;
+        max-width: 100px;
+        padding: var(--space-1) var(--space-2);
+        flex: 0 1 auto;
+    }
+    
+    .kpi-header-value {
+        font-size: var(--font-sm);
+        margin-bottom: 2px;
+    }
+    
+    .kpi-header-label {
+        font-size: 9px;
+        letter-spacing: 0.2px;
+    }
+    
+    .article-thumbnail-kpis {
+        width: 100px;
+        height: 70px;
+        padding: var(--space-1);
+    }
+    
+    .thumbnail-kpi {
+        padding: var(--space-1);
+    }
+    
+    .thumbnail-kpi-value {
+        font-size: var(--font-sm);
+        margin-bottom: 2px;
+    }
+    
+    .thumbnail-kpi-label {
+        font-size: 8px;
+        letter-spacing: 0.2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-container {
+        padding: 0 var(--space-2);
+    }
+    
+    .article-list-content {
+        grid-template-columns: 80px 1fr;
+        gap: var(--space-3);
+    }
+    
+    .article-list-item {
+        padding: var(--space-4);
+    }
+    
+    .article-list-title {
+        font-size: var(--font-sm);
+    }
+    
+    /* Article KPI Header extra small screen responsiveness */
+    .article-kpi-header {
+        gap: 4px;
+        padding: var(--space-1);
+        margin-bottom: var(--space-2);
+        justify-content: space-between;
+    }
+    
+    .kpi-header-item {
+        min-width: 55px;
+        max-width: 85px;
+        padding: 4px 6px;
+        border-radius: 4px;
+    }
+    
+    .kpi-header-value {
+        font-size: clamp(9px, 2.5vw, 11px);
+        margin-bottom: 1px;
+        line-height: 1.1;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+    }
+    
+    .kpi-header-label {
+        font-size: clamp(6px, 1.8vw, 7px);
+        letter-spacing: 0.1px;
+        line-height: 1;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+    }
+    
+    .article-thumbnail-kpis {
+        width: 80px;
+        height: 60px;
+    }
+    
+    .thumbnail-kpi {
+        padding: 4px;
+    }
+    
+    .thumbnail-kpi-value {
+        font-size: clamp(9px, 2.8vw, 11px);
+        margin-bottom: 1px;
+        line-height: 1.1;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .thumbnail-kpi-label {
+        font-size: clamp(6px, 2vw, 7px);
+        letter-spacing: 0.1px;
+        line-height: 1;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .kpi-header-count,
+    .thumbnail-kpi-count {
+        font-size: 8px;
+        padding: 1px 3px;
+    }
+}

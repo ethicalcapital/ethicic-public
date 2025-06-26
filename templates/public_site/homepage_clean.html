@@ -1,0 +1,59 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block content %}
+<main class="homepage-main">
+    <!-- Clean Hero Section -->
+    <section class="homepage-hero-section">
+        <h1 class="homepage-hero-title">
+            We're not like other firms. Good.
+        </h1>
+        <p class="homepage-hero-subtitle">
+            Turning ethics into peace of mind through disciplined investment research
+        </p>
+        
+        <div class="homepage-hero-stats">
+            <div class="homepage-stat-item">
+                <div class="homepage-stat-value">SINCE 2021</div>
+                <div class="homepage-stat-label">Serving Ethical Investors</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <div class="homepage-content-wrapper">
+        <section class="homepage-features-section">
+            <h2 class="homepage-section-title">
+                WHAT MAKES US DIFFERENT
+            </h2>
+            <div class="homepage-features-grid">
+                <div class="homepage-feature-card">
+                    <h3 class="homepage-feature-title">PROPRIETARY RESEARCH</h3>
+                    <p class="homepage-feature-description">We hand-screen thousands of companies, identifying ethical concerns that third-party ESG ratings often miss.</p>
+                </div>
+                <div class="homepage-feature-card">
+                    <h3 class="homepage-feature-title">RADICAL TRANSPARENCY</h3>
+                    <p class="homepage-feature-description">We "show the garage" - providing access to our exclusion lists and methodologies.</p>
+                </div>
+                <div class="homepage-feature-card">
+                    <h3 class="homepage-feature-title">CLIENT PARTNERSHIP</h3>
+                    <p class="homepage-feature-description">Your ethical concerns can drive portfolio-wide reviews.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="homepage-cta-section">
+            <h2 class="homepage-cta-title">Ready to find value in your values?</h2>
+            <p class="homepage-cta-subtitle">Join sophisticated investors aligning their portfolios with their principles.</p>
+            <a href="/contact/" class="homepage-cta-button">
+                START A CONVERSATION
+            </a>
+            <p class="homepage-disclaimer">
+                Investment strategies involve risk. Past performance does not guarantee future results.
+            </p>
+        </section>
+    </div>
+</main>
+{% endblock %}

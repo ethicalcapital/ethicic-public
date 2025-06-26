@@ -1,0 +1,210 @@
+{% extends "public_site/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}
+{% if query_string %}
+Search Results for "{{ query_string }}" | Ethical Capital
+{% else %}
+Search | Ethical Capital
+{% endif %}
+{% endblock %}
+
+{% block body_class %}search-results-page{% endblock %}
+
+{% block content %}
+<section class="garden-panel search-results-header" role="banner" aria-labelledby="search-heading">
+    <div class="panel-header">SEARCH RESULTS</div>
+    <div class="panel-content">
+        <div class="search-header-layout">
+            <div class="search-info">
+                <h1 id="search-heading" class="search-title">
+                    {% if query_string %}
+                        Search Results for "{{ query_string }}"
+                    {% else %}
+                        Site Search
+                    {% endif %}
+                </h1>
+                {% if total_results > 0 %}
+                    <p class="search-summary">Found {{ total_results }} result{{ total_results|pluralize }} across all pages</p>
+                {% elif query_string %}
+                    <p class="search-summary no-results">No results found for "{{ query_string }}"</p>
+                {% else %}
+                    <p class="search-summary">Enter your search terms to find pages, articles, and information across our site.</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Search Form -->
+        <div class="search-form-container">
+            <form method="get" action="{% url 'public_site:search' %}" class="site-search-form" role="search">
+                <div class="search-input-wrapper">
+                    <input type="text" 
+                           id="search-input" 
+                           name="q" 
+                           placeholder="Search our site..." 
+                           class="garden-input search-input"
+                           value="{{ query_string }}"
+                           aria-label="Search the site"
+                           autofocus>
+                    <button type="submit" class="search- garden-action garden-action primary" aria-label="Search">
+                        <span class="search-icon">🔍</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Search Results -->
+{% if query_string %}
+<main class="search-results-container">
+    {% if search_results %}
+    <section class="garden-panel search-results-list">
+        <div class="panel-header">
+            SEARCH RESULTS
+            {% if total_results > 0 %}
+            <span class="results-count">{{ total_results }} result{{ total_results|pluralize }}</span>
+            {% endif %}
+        </div>
+        <div class="panel-content">
+            <div class="results-grid">
+                {% for result in search_results %}
+                <div class="search-result-item">
+                    <div class="result-header">
+                        <h2 class="result-title">
+                            <a href="{% pageurl result %}">{{ result.title }}</a>
+                        </h2>
+                        <span class="result-type">{{ result.content_type.model|title }}</span>
+                    </div>
+                    
+                    {% if result.search_description %}
+                    <p class="result-description">{{ result.search_description|striptags|truncatewords:30 }}</p>
+                    {% elif result.excerpt %}
+                    <p class="result-description">{{ result.excerpt|striptags|truncatewords:30 }}</p>
+                    {% endif %}
+                    
+                    <div class="result-footer">
+                        <span class="result-url">{{ result.url }}</span>
+                        <a href="{% pageurl result %}" class="result-link">VIEW PAGE →</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pagination -->
+    {% if search_results.has_other_pages %}
+    <div class="search-pagination">
+        {% if search_results.has_previous %}
+            <a href="?q={{ query_string }}&page={{ search_results.previous_page_number }}" 
+               class="pagination-link prev">← PREVIOUS</a>
+        {% endif %}
+        
+        <span class="page-info">Page {{ search_results.number }} of {{ search_results.paginator.num_pages }}</span>
+        
+        {% if search_results.has_next %}
+            <a href="?q={{ query_string }}&page={{ search_results.next_page_number }}" 
+               class="pagination-link next">NEXT →</a>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+    {% else %}
+    <!-- No Results -->
+    <section class="garden-panel no-results-panel">
+        <div class="panel-header">NO RESULTS FOUND</div>
+        <div class="panel-content">
+            <div class="no-results-content">
+                <div class="no-results-icon">🔍</div>
+                <h3>No results found for "{{ query_string }}"</h3>
+                <div class="search-suggestions">
+                    <h4>Search Tips:</h4>
+                    <ul>
+                        <li>Check your spelling</li>
+                        <li>Try different keywords</li>
+                        <li>Use broader terms</li>
+                        <li>Try searching for partial words</li>
+                    </ul>
+                </div>
+                
+                <div class="helpful-links">
+                    <h4>Popular Pages:</h4>
+                    <div class="link-grid">
+                        <a href="/research/" class="garden-action secondary">Research & Analysis</a>
+                        <a href="/process/" class="garden-action secondary">Investment Process</a>
+                        <a href="/about/" class="garden-action secondary">About Us</a>
+                        <a href="/contact/" class="garden-action secondary">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+</main>
+{% endif %}
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Enhanced search functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    
+    if (searchInput) {
+        // Focus search input
+        searchInput.focus();
+        
+        // Select all text if there's a search query
+        if (searchInput.value) {
+            searchInput.select();
+        }
+        
+        // Enhanced keyboard navigation
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                this.blur();
+            }
+        });
+        
+        // Auto-focus when search icon is clicked
+        const searchIcon = document.querySelector('.search-icon');
+        if (searchIcon) {
+            searchIcon.addEventListener('click', function() {
+                searchInput.focus();
+            });
+        }
+    }
+    
+    // Track search interactions
+    const searchForm = document.querySelector('.site-search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', function(e) {
+            const query_string = searchInput.value.trim();
+            if (!query_string) {
+                e.preventDefault();
+                searchInput.focus();
+                return;
+            }
+            
+            // Track search submission
+            console.log('Search submitted:', query_string);
+        });
+    }
+    
+    // Keyboard shortcut to focus search (/)
+    document.addEventListener('keydown', function(e) {
+        if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
+            e.preventDefault();
+            if (searchInput) {
+                searchInput.focus();
+                searchInput.select();
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

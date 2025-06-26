@@ -1,0 +1,30 @@
+{% load wagtailcore_tags %}
+
+<div class="callout-block callout-{{ value.type }}">
+    <div class="callout-icon">
+        {% if value.type == "info" %}
+            <span aria-hidden="true">ℹ️</span>
+        {% elif value.type == "tip" %}
+            <span aria-hidden="true">💡</span>
+        {% elif value.type == "warning" %}
+            <span aria-hidden="true">⚠️</span>
+        {% elif value.type == "insight" %}
+            <span aria-hidden="true">🔍</span>
+        {% elif value.type == "note" %}
+            <span aria-hidden="true">📝</span>
+        {% elif value.type == "success" %}
+            <span aria-hidden="true">✅</span>
+        {% elif value.type == "error" %}
+            <span aria-hidden="true">❌</span>
+        {% endif %}
+    </div>
+    
+    <div class="callout-content">
+        {% if value.title %}
+            <h4 class="callout-title">{{ value.title }}</h4>
+        {% endif %}
+        <div class="callout-body">
+            {{ value.content|richtext }}
+        </div>
+    </div>
+</div>

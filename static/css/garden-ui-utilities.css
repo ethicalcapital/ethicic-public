@@ -1,0 +1,204 @@
+/*!
+ * Garden UI Utilities CSS
+ * Common utility classes to eliminate CSS duplication
+ * These classes provide consistent spacing, layout, and sizing patterns
+ */
+
+/* ===== CONTAINER UTILITIES ===== */
+/* Standard content container with max-width */
+.garden-container {
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* Full-width container utility */
+.garden-container-full {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* Centered content utility */
+.garden-center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* ===== SPACING UTILITIES ===== */
+/* Standard content padding */
+.garden-padding {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+}
+
+/* Responsive padding for mobile */
+.garden-padding-responsive {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+}
+
+@media (max-width: 768px) {
+    .garden-padding-responsive {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+    }
+}
+
+@media (max-width: 480px) {
+    .garden-padding-responsive {
+        padding-left: var(--space-3);
+        padding-right: var(--space-3);
+    }
+}
+
+/* ===== LAYOUT UTILITIES ===== */
+/* Flex utilities for button groups */
+.garden-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.garden-flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .garden-flex-responsive {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ===== POSITIONING UTILITIES ===== */
+/* Header positioning utility */
+.garden-header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background: var(--color-primary);
+}
+
+/* Content z-index utility */
+.garden-content-layer {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== VISUAL UTILITIES ===== */
+/* Background transparency utility */
+.garden-transparent {
+    background: transparent;
+    background-color: transparent;
+}
+
+/* Text visibility utilities */
+.garden-visible {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+.garden-hidden {
+    display: none;
+}
+
+/* ===== TYPOGRAPHY UTILITIES ===== */
+/* Standard text styling */
+.garden-text-primary {
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    font-size: var(--font-lg);
+    font-weight: var(--font-semibold);
+}
+
+.garden-text-reset {
+    margin: 0;
+    text-indent: 0;
+    overflow: visible;
+    white-space: normal;
+    height: auto;
+    line-height: 1.3;
+}
+
+/* ===== COMPONENT UTILITIES ===== */
+/* Step number component utility */
+.garden-step-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: var(--font-bold);
+    margin: 0 0 var(--space-4) 0;
+    flex-shrink: 0;
+}
+
+/* ===== RESPONSIVE GRID UTILITIES ===== */
+/* Standard grid sections */
+.garden-grid-section {
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* ===== LAYOUT RESET UTILITIES ===== */
+/* Clean float and positioning reset */
+.garden-layout-reset {
+    float: none;
+    clear: both;
+    position: static;
+}
+
+/* ===== HIGH SPECIFICITY UTILITIES ===== */
+/* For use when normal utilities don't have enough specificity */
+.garden-force-container {
+    max-width: var(--content-width-normal) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+.garden-force-width {
+    width: 100% !important;
+}
+
+.garden-force-center {
+    text-align: center !important;
+}
+
+/* ===== ACCESSIBILITY UTILITIES ===== */
+/* Screen reader utilities */
+.garden-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus utilities */
+.garden-focus {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+}

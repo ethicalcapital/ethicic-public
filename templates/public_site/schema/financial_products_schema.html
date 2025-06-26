@@ -1,0 +1,142 @@
+{% comment %}
+Financial Products Schema for Investment Strategies
+Implements FinancialProduct schema for each investment strategy
+{% endcomment %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FinancialProduct",
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/strategies/growth/#product",
+      "name": "Growth Strategy",
+      "description": "High-conviction ethical investing portfolios of 15-25 companies with comprehensive divestment screening including fossil fuel divestment, BDS screening, weapons divestment, and animal welfare exclusions. Our flagship responsible investing approach combining institutional rigor with boutique attention.",
+      "provider": {
+        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+      },
+      "feesAndCommissionsSpecification": "1% annual management fee on assets under management",
+      "amount": {
+        "@type": "MonetaryAmount",
+        "minAmount": "250000",
+        "currency": "USD"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Holdings",
+          "value": "15-25 Companies"
+        },
+        {
+          "@type": "PropertyValue", 
+          "name": "Screening",
+          "value": "Full Divestment Criteria Implementation"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Management Style", 
+          "value": "Active & Continuous"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Ownership",
+          "value": "Direct Securities"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Risk Disclaimer",
+          "value": "Past performance does not guarantee future results. Investment advice involves risk."
+        }
+      ],
+      "category": "Ethical Investing"
+    },
+    {
+      "@type": "FinancialProduct",
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/strategies/income/#product", 
+      "name": "Income Strategy",
+      "description": "Ethical investing meets yield generation. The same rigorous divestment screening including fossil fuel divestment, tobacco divestment, and human rights screening applied to income-generating securities including ESG-compliant fixed income and dividend-focused equities.",
+      "provider": {
+        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+      },
+      "feesAndCommissionsSpecification": "1% annual management fee on assets under management",
+      "amount": {
+        "@type": "MonetaryAmount",
+        "minAmount": "250000", 
+        "currency": "USD"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Focus",
+          "value": "Income Generation"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Securities",
+          "value": "Fixed Income & Dividends"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Screening",
+          "value": "Full Divestment Criteria Applied"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Ownership", 
+          "value": "Direct Securities"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Risk Disclaimer",
+          "value": "Past performance does not guarantee future results. Investment advice involves risk."
+        }
+      ],
+      "category": "Sustainable Income Investing"
+    },
+    {
+      "@type": "FinancialProduct",
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/strategies/diversification/#product",
+      "name": "Diversification Strategy", 
+      "description": "We curate the best available external options for ethical investing diversification. Broader sustainable investing exposure through ESG-screened external funds with fossil fuel divestment and comprehensive exclusion criteria with client discretion on implementation.",
+      "provider": {
+        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+      },
+      "feesAndCommissionsSpecification": "1% annual management fee plus underlying fund expenses",
+      "amount": {
+        "@type": "MonetaryAmount",
+        "minAmount": "250000",
+        "currency": "USD"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Approach",
+          "value": "External Funds"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Selection",
+          "value": "Ethically Screened"
+        },
+        {
+          "@type": "PropertyValue", 
+          "name": "Exposure",
+          "value": "Wider Exposure"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Control",
+          "value": "Client Discretion"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Risk Disclaimer",
+          "value": "Past performance does not guarantee future results. Investment advice involves risk."
+        }
+      ],
+      "category": "Diversified ESG Investing",
+      "disclaimer": "External funds may not meet all our criteria. Important disclosures apply."
+    }
+  ]
+}
+</script>

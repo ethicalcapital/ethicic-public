@@ -1,0 +1,191 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}{{ page.hero_title }} | Ethical Capital{% endblock %}
+
+{% block body_class %}criteria-page{% endblock %}
+
+{% block content %}
+<main class="criteria-page">
+    <!-- Hero Section -->
+    <section class="hero garden-panel" role="banner">
+        <div class="panel-content hero-content">
+            <h1 class="hero-title">{{ page.hero_title }}</h1>
+            <p class="hero-subtitle">{{ page.hero_subtitle }}</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        {% if page.criteria_description %}
+        <section class="description garden-panel">
+            <div class="panel-header">Our Approach</div>
+            <div class="panel-content">
+                {{ page.criteria_description|safe }}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- GitHub Link Section -->
+        <section class="github-section garden-panel">
+            <div class="panel-header">Open Source Transparency</div>
+            <div class="panel-content">
+                <div class="github-link-container">
+                    <div class="github-info">
+                        <h3>Complete Screening Policy</h3>
+                        <p>Our ethical screening criteria are publicly available on GitHub. 
+                        This ensures complete transparency about what we exclude and why.</p>
+                        <ul class="transparency-benefits">
+                            <li>Full documentation of exclusion criteria</li>
+                            <li>Regular updates as our research evolves</li>
+                            <li>Community feedback and discussion</li>
+                            <li>Version history and change tracking</li>
+                        </ul>
+                    </div>
+                    <div class="github-action">
+                        <a href="{{ page.github_criteria_url }}" 
+                           class="garden-action primary github- garden-action"
+                           target="_blank" 
+                           rel="noopener">
+                            <span class="github-icon">📋</span>
+                            View Screening Policy
+                        </a>
+                        <p class="github-note">Opens in new tab</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Exclusions Overview -->
+        <section class="exclusions-overview garden-panel">
+            <div class="panel-header">Key Exclusion Categories</div>
+            <div class="panel-content">
+                <div class="exclusions-grid">
+                    <div class="exclusion-category">
+                        <h4>🚫 Weapons & Violence</h4>
+                        <p>Weapons manufacturers, defense contractors, civilian firearms, surveillance technology for oppression</p>
+                    </div>
+                    
+                    <div class="exclusion-category">
+                        <h4>🚭 Harmful Products</h4>
+                        <p>Tobacco & vaping, alcohol producers, gambling operations, adult entertainment, predatory lending</p>
+                    </div>
+                    
+                    <div class="exclusion-category">
+                        <h4>🌍 Environmental Damage</h4>
+                        <p>Fossil fuel extraction, coal utilities, deforestation, high emissions without transition plans</p>
+                    </div>
+                    
+                    <div class="exclusion-category">
+                        <h4>👥 Human Rights</h4>
+                        <p>Prison labor, child labor, UN Global Compact violations, systematic labor violations, BDS list</p>
+                    </div>
+                    
+                    <div class="exclusion-category">
+                        <h4>🐾 Animal Exploitation</h4>
+                        <p>Factory farming, animal testing (non-medical), fur and exotic leather, entertainment using animals</p>
+                    </div>
+                    
+                    <div class="exclusion-category">
+                        <h4>⚖️ Governance Failures</h4>
+                        <p>Systematic fraud, regulatory capture, executive misconduct, transparency failures</p>
+                    </div>
+                </div>
+                
+                <div class="exclusions-note">
+                    <p><strong>Important:</strong> This is a high-level overview. The complete criteria, 
+                    methodology, and specific examples are detailed in our GitHub repository.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section garden-panel">
+            <div class="panel-header">How We Apply These Criteria</div>
+            <div class="panel-content">
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Initial Screening</h4>
+                            <p>Every company is evaluated against our published exclusion criteria before consideration for any portfolio.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Ongoing Monitoring</h4>
+                            <p>We continuously monitor holdings for changes in business practices, new controversies, or policy violations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Client Input Integration</h4>
+                            <p>Client concerns drive portfolio-wide policy updates. Your input helps us identify issues we may have missed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="statistics garden-panel">
+            <div class="panel-header">By the Numbers</div>
+            <div class="panel-content">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">57%</div>
+                        <div class="stat-label">of S&P 500 companies excluded</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">40%</div>
+                        <div class="stat-label">of exclusions from proprietary research</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label">transparency in our process</div>
+                    </div>
+                </div>
+                <p class="stats-note">
+                    *Based on our analysis of S&P 500 constituents. Percentages vary as companies and our criteria evolve.
+                </p>
+            </div>
+        </section>
+
+        {% if page.additional_resources %}
+        <section class="additional-resources garden-panel">
+            <div class="panel-header">Additional Resources</div>
+            <div class="panel-content">
+                {{ page.additional_resources|safe }}
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Related Links -->
+        <section class="related-links garden-panel">
+            <div class="panel-header">Learn More</div>
+            <div class="panel-content">
+                <div class="links-grid">
+                    <a href="/process/" class="related-link">
+                        <h4>Our Process</h4>
+                        <p>How we apply these criteria in practice</p>
+                    </a>
+                    
+                    <a href="/strategies/" class="related-link">
+                        <h4>Investment Strategies</h4>
+                        <p>How criteria implementation varies by strategy</p>
+                    </a>
+                    
+                    <a href="/consultation/" class="related-link">
+                        <h4>Schedule Consultation</h4>
+                        <p>Discuss how our criteria align with your values</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+{% endblock %}

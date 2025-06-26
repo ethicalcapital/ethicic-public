@@ -1,0 +1,283 @@
+{% extends "public_site/base.html" %}
+{% load wagtailcore_tags static %}
+
+{% block title %}{{ page.title }} | Ethical Capital{% endblock %}
+
+{% block body_class %}strategy-list{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="garden-panel garden-panel--hero hero-panel" role="banner" aria-labelledby="hero-heading">
+    <div class="garden-panel__content garden-panel-content">
+        <h1 id="hero-heading" class="hero-title">{{ page.title }}</h1>
+        {% if page.intro_text %}
+            <div class="hero-subtitle">{{ page.intro_text|safe }}</div>
+        {% endif %}
+        {% if page.description %}
+            <div class="hero-description">{{ page.description|safe }}</div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Investment Strategies Grid -->
+{% if strategies %}
+<section class="garden-panel" role="main" aria-labelledby="strategies-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">INVESTMENT STRATEGIES</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="strategies-heading" class="section-title">Available Investment Strategies</h2>
+        <p class="strategies-intro">Our comprehensive suite of ethical investment strategies, each designed to meet specific investor objectives while maintaining our commitment to values-based investing.</p>
+        
+        <div class="solutions-grid">
+            {% for strategy in strategies %}
+            <div class="solution-card strategy-card" role="article" aria-labelledby="strategy-{{ strategy.id }}-heading" data-strategy="{{ strategy.slug }}">
+                <div class="card-header">
+                    <span class="card-icon" aria-hidden="true">
+                        {% if strategy.strategy_label == "Growth" %}🚀
+                        {% elif strategy.strategy_label == "Income" %}💰
+                        {% elif strategy.strategy_label == "Diversification" %}⚖️
+                        {% else %}📈{% endif %}
+                    </span>
+                    <h3 id="strategy-{{ strategy.id }}-heading" class="card-title">{{ strategy.title }}</h3>
+                    {% if strategy.strategy_label %}
+                        <span class="strategy-label">{{ strategy.strategy_label }}</span>
+                    {% endif %}
+                </div>
+                
+                <div class="card-content">
+                    {% if strategy.strategy_subtitle %}
+                        <p class="card-description"><strong>{{ strategy.strategy_subtitle }}</strong></p>
+                    {% endif %}
+                    
+                    <!-- Performance Stats -->
+                    <div class="strategy-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">YTD Return:</span>
+                            <span class="stat-value stat-positive">{{ strategy.ytd_return|default:"--" }}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">1 Year:</span>
+                            <span class="stat-value stat-positive">{{ strategy.one_year_return|default:"--" }}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">3 Year:</span>
+                            <span class="stat-value stat-positive">{{ strategy.three_year_return|default:"--" }}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Since Inception:</span>
+                            <span class="stat-value stat-positive">{{ strategy.since_inception_return|default:"--" }}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Strategy Details -->
+                    <ul class="feature-list">
+                        {% if strategy.risk_level %}
+                            <li>Risk Level: {{ strategy.risk_level }}</li>
+                        {% endif %}
+                        {% if strategy.holdings_count %}
+                            <li>Holdings: {{ strategy.holdings_count }}</li>
+                        {% endif %}
+                        {% if strategy.ethical_implementation %}
+                            <li>{{ strategy.ethical_implementation }}</li>
+                        {% endif %}
+                        {% if strategy.best_for %}
+                            <li>Best For: {{ strategy.best_for }}</li>
+                        {% endif %}
+                        {% if strategy.inception_date %}
+                            <li>Inception: {{ strategy.inception_date|date:"M Y" }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                
+                <div class="card-footer">
+                    <a href="{% pageurl strategy %}" class="garden-action primary" aria-label="Learn more about {{ strategy.title }}">VIEW DETAILS →</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="garden-panel">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">NO STRATEGIES AVAILABLE</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <p>No investment strategies are currently available. Please check back later or <a href="/contact/">contact us</a> for more information.</p>
+    </div>
+</section>
+{% endif %}
+
+<!-- Strategy Comparison -->
+{% if strategies.count > 1 %}
+<section class="garden-panel" role="region" aria-labelledby="comparison-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">{{ page.comparison_title|default:"STRATEGY COMPARISON" }}</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="comparison-heading" class="section-title">Compare Our Strategies</h2>
+        {% if page.comparison_description %}
+            <div class="comparison-intro">{{ page.comparison_description|safe }}</div>
+        {% endif %}
+        
+        <div class="comparison-table">
+            <div class="comparison-header">
+                <div class="comparison-label">STRATEGY</div>
+                <div class="comparison-label">YTD</div>
+                <div class="comparison-label">1 YEAR</div>
+                <div class="comparison-label">3 YEAR</div>
+                <div class="comparison-label">RISK LEVEL</div>
+                <div class="comparison-label">HOLDINGS</div>
+            </div>
+            
+            {% for strategy in strategies %}
+            <div class="comparison-row">
+                <div class="comparison-strategy">
+                    <a href="{% pageurl strategy %}" class="strategy-name">{{ strategy.title }}</a>
+                    <div class="strategy-meta">{{ strategy.strategy_subtitle }}</div>
+                </div>
+                <div class="comparison-value stat-positive">{{ strategy.ytd_return|default:"--" }}</div>
+                <div class="comparison-value stat-positive">{{ strategy.one_year_return|default:"--" }}</div>
+                <div class="comparison-value stat-positive">{{ strategy.three_year_return|default:"--" }}</div>
+                <div class="comparison-value">{{ strategy.risk_level|default:"--" }}</div>
+                <div class="comparison-value">{{ strategy.holdings_count|default:"--" }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Strategy Resources -->
+<section class="garden-panel" role="region" aria-labelledby="resources-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">STRATEGY RESOURCES</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="resources-heading" class="section-title">Documentation & Research</h2>
+        <p>Learn more about our investment approach, methodology, and compliance practices.</p>
+        
+        <div class="delivery-grid">
+            <div class="delivery-item">
+                <h3 class="delivery-title">Investment Process</h3>
+                <p>Systematic four-step approach combining quantitative analysis with ethical screening</p>
+                <ul class="delivery-features">
+                    <li><a href="/process/" class="resource-link">Our Investment Process</a></li>
+                    <li><a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener" class="resource-link">Ethical Screening Criteria</a></li>
+                </ul>
+            </div>
+            
+            <div class="delivery-item">
+                <h3 class="delivery-title">Due Diligence</h3>
+                <p>Comprehensive documentation for institutional due diligence processes</p>
+                <ul class="delivery-features">
+                    <li><a href="/pri-ddq/" class="resource-link">PRI Due Diligence Questionnaire</a></li>
+                    <li><a href="/disclosures/form-adv/" class="resource-link">Form ADV</a></li>
+                </ul>
+            </div>
+            
+            <div class="delivery-item">
+                <h3 class="delivery-title">Performance & Reporting</h3>
+                <p>Transparent performance tracking and comprehensive client reporting</p>
+                <ul class="delivery-features">
+                    <li><a href="/performance/" class="resource-link">Historical Performance</a></li>
+                    <li><a href="/disclosures/" class="resource-link">All Disclosures</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="garden-panel cta-panel" role="region" aria-labelledby="cta-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">GET STARTED</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <div class="cta-content">
+            <h2 id="cta-heading" class="cta-title">Ready to Align Your Investments with Your Values?</h2>
+            <p class="cta-description">Our team is here to help you choose the strategy that best fits your financial goals and ethical principles.</p>
+            
+            <div class="cta-actions">
+                <a href="/contact/" class="garden-action primary" aria-label="Schedule a consultation to get started">SCHEDULE CONSULTATION</a>
+                <a href="/onboarding/" class="garden-action secondary" aria-label="Start the onboarding process">START ONBOARDING</a>
+                <a href="/process/" class="garden-action secondary" aria-label="Learn more about our investment process">LEARN OUR PROCESS</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<!-- Garden UI compliant stylesheets -->
+<link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025-strategies-update">
+<link rel="stylesheet" href="{% static 'css/garden-blog-panels.css' %}?v=2025-strategies-update">
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Enhanced accessibility and dynamic highlighting for strategies page
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Add keyboard navigation for strategy cards
+    const strategyCards = document.querySelectorAll('.solution-card');
+    
+    strategyCards.forEach(card => {
+        // Make cards focusable
+        card.setAttribute('tabindex', '0');
+        
+        // Add keyboard event listeners
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const cta = card.querySelector('.garden-action');
+                if (cta) {
+                    cta.click();
+                }
+            }
+        });
+        
+        // Add focus visual feedback
+        card.addEventListener('focus', function() {
+            this.style.borderColor = 'var(--color-primary)';
+        });
+        
+        card.addEventListener('blur', function() {
+            this.style.borderColor = '';
+        });
+        
+        // Add hover effects
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Performance comparison highlighting
+    const comparisonRows = document.querySelectorAll('.comparison-row');
+    
+    comparisonRows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.background = 'var(--color-surface-hover)';
+        });
+        
+        row.addEventListener('mouseleave', function() {
+            this.style.background = 'transparent';
+        });
+    });
+    
+    // Smooth scroll for internal links
+    const internalLinks = document.querySelectorAll('a[href^="/"]');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Track navigation for analytics if needed
+            console.log('Navigation:', this.href);
+        });
+    });
+});
+</script>
+{% endblock %}

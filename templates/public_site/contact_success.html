@@ -1,0 +1,63 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}Message Sent - Ethical Capital{% endblock %}
+
+{% block content %}
+<main class="homepage-main">
+    <section class="homepage-hero-section">
+        <h1 class="homepage-hero-title">
+            Message Sent Successfully
+        </h1>
+        <p class="homepage-hero-subtitle">
+            Thank you for contacting Ethical Capital. We'll get back to you within 24 hours.
+        </p>
+        
+        <div class="homepage-hero-stats">
+            <div class="homepage-stat-item">
+                <div class="homepage-stat-value">✓</div>
+                <div class="homepage-stat-label">Message Delivered</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="homepage-content-wrapper">
+        <section class="homepage-features-section">
+            <h2 class="homepage-section-title">
+                WHAT HAPPENS NEXT
+            </h2>
+            <div class="homepage-features-grid">
+                <div class="homepage-feature-card">
+                    <h3 class="homepage-feature-title">REVIEW & RESPONSE</h3>
+                    <p class="homepage-feature-description">
+                        Your message will be reviewed by our investment team within 24 hours.
+                    </p>
+                </div>
+                <div class="homepage-feature-card">
+                    <h3 class="homepage-feature-title">INITIAL CONSULTATION</h3>
+                    <p class="homepage-feature-description">
+                        If appropriate, we'll schedule a brief consultation to discuss your needs.
+                    </p>
+                </div>
+                <div class="homepage-feature-card">
+                    <h3 class="homepage-feature-title">CUSTOM PROPOSAL</h3>
+                    <p class="homepage-feature-description">
+                        We'll develop a customized approach that aligns with your values and goals.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="homepage-cta-section">
+            <h2 class="homepage-cta-title">While You Wait</h2>
+            <p class="homepage-cta-subtitle">
+                Explore our investment philosophy and recent insights.
+            </p>
+            
+            <div class="contact-success-actions">
+                <a href="/process/" class="homepage-cta-button">Our Process</a>
+                <a href="/insights/" class="homepage-cta-button contact-secondary-cta">Recent Insights</a>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}

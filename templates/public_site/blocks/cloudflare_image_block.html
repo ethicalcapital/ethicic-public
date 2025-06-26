@@ -1,0 +1,81 @@
+{% comment %}
+Cloudflare Image Block Template
+
+Renders an image served through Cloudflare Images CDN with optimizations
+and responsive features.
+{% endcomment %}
+
+{% load static %}
+
+{% if configured and image_url %}
+    <figure class="cloudflare-image-block cloudflare-image-block--{{ value.alignment }} cloudflare-image-block--{{ value.size }}{% if value.enable_zoom %} cloudflare-image-block--zoomable{% endif %}">
+        <picture>
+            {% comment %}Modern formats for better compression{% endcomment %}
+            {% if image_url_avif %}
+                <source srcset="{{ image_url_avif }}" type="image/avif">
+            {% endif %}
+            {% if image_url_webp %}
+                <source srcset="{{ image_url_webp }}" type="image/webp">
+            {% endif %}
+            
+            {% comment %}Responsive srcset for different screen densities{% endcomment %}
+            <img 
+                src="{{ image_url }}"
+                {% if responsive_urls %}
+                    srcset="{{ responsive_urls.1x }} 1x, {{ responsive_urls.2x }} 2x"
+                {% endif %}
+                alt="{{ value.alt_text|default:'Image' }}"
+                class="cloudflare-image{% if value.lazy_loading %} lazyload{% endif %}"
+                {% if value.lazy_loading %}
+                    loading="lazy"
+                {% endif %}
+                {% if value.enable_zoom %}
+                    data-zoom-src="{{ image_url }}"
+                    data-bs-toggle="modal"
+                    data-bs-target="#imageZoomModal"
+                {% endif %}
+            >
+        </picture>
+        
+        {% if value.caption %}
+            <figcaption class="cloudflare-image-caption">
+                {{ value.caption|linebreaks }}
+            </figcaption>
+        {% endif %}
+    </figure>
+    
+    {% comment %}Zoom modal (if enabled){% endcomment %}
+    {% if value.enable_zoom %}
+        <div class="modal fade" id="imageZoomModal" tabindex="-1" aria-labelledby="imageZoomModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageZoomModalLabel">
+                            {{ value.alt_text|default:'Image' }}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="{{ image_url }}" alt="{{ value.alt_text|default:'Image' }}" class="img-fluid">
+                        {% if value.caption %}
+                            <p class="mt-3 text-muted">{{ value.caption }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% else %}
+    {% comment %}Fallback for when Cloudflare Images is not configured{% endcomment %}
+    <div class="alert alert-warning" role="alert">
+        <strong>Image not available:</strong> 
+        {% if not configured %}
+            Cloudflare Images is not configured.
+        {% else %}
+            Image ID "{{ value.image_id }}" not found.
+        {% endif %}
+    </div>
+{% endif %}
+
+{% comment %}CSS Styles{% endcomment %}

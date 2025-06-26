@@ -1,0 +1,350 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}Garden Investment Platform - Overview{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section with Login CTA -->
+<section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
+    <div class="panel-header">GARDEN INVESTMENT PLATFORM</div>
+    <div class="panel-content">
+        <!-- Platform Login CTA in upper right -->
+        <div class="platform-login-cta">
+            <a href="{{ platform_login_url }}" class="platform-login-btn garden-action">
+                🔐 Platform Login
+            </a>
+        </div>
+        
+        <div class="hero-tagline">Garden, compound, wisdom, organically</div>
+        <h1 id="hero-heading" class="hero-title">Garden: Built to help us build cumulative knowledge over the course of our firm's history</h1>
+        <div class="hero-subtitle">
+            <p>Our comprehensive platform combining research, communication, compliance, charts, graphs and other stuff I never quite thought I'd see in a financial platform into one thoughtful, elegant and reliable source.</p>
+            
+            <p>We intend to open source the code in Q3 of 2025, and we'll be making limited access available and hope to have access available for clients in our community by the end of the year.</p>
+            
+            <p class="author-signature">
+                —<a href="/about/" class="author-link">Sloane Ortel</a>, June 18th, 2025
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Platform Features -->
+<section class="garden-panel" role="main" aria-labelledby="features-heading">
+    <div class="panel-header">YOUR CANVAS</div>
+    <div class="panel-content">
+        <h2 id="features-heading" class="features-section-heading">Everything You Need for the Liberal Art of Investing</h2>
+        
+        <div class="features-grid">
+            {% for feature in garden_features %}
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">{{ feature.icon }}</div>
+                    <div>
+                        <div class="feature-title">{{ feature.title }}</div>
+                        <div class="feature-description">{{ feature.description }}</div>
+                    </div>
+                </div>
+                <div class="feature-content">
+                    <ul class="feature-highlights">
+                        {% for highlight in feature.highlights %}
+                        <li>{{ highlight }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Interest Registration -->
+<section class="garden-panel interest-panel">
+    <div class="panel-header">REQUEST PLATFORM ACCESS</div>
+    <div class="panel-content">
+        <h2 class="text-center margin-bottom-6">Interested in Garden Platform Access?</h2>
+        <p class="text-center margin-bottom-8 max-width-md margin-auto">
+            Garden is currently in limited release to select investment professionals and institutions. Submit your information to learn more about platform access and capabilities.
+        </p>
+        
+        <form class="interest-form" id="garden-interest-form">
+            <div id="form-messages"></div>
+            
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="company">Company/Organization</label>
+                <input type="text" id="company" name="company">
+            </div>
+            
+            <div class="form-group">
+                <label for="role">Professional Role</label>
+                <select id="role" name="role">
+                    <option value="">Select your role</option>
+                    <option value="investment_advisor">Investment Advisor</option>
+                    <option value="portfolio_manager">Portfolio Manager</option>
+                    <option value="wealth_manager">Wealth Manager</option>
+                    <option value="family_office">Family Office Professional</option>
+                    <option value="institutional_investor">Institutional Investor</option>
+                    <option value="research_analyst">Research Analyst</option>
+                    <option value="compliance_officer">Compliance Officer</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Areas of Interest</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="interest_portfolio" name="interest_areas" value="portfolio_management">
+                        <label for="interest_portfolio">Portfolio Management</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="interest_research" name="interest_areas" value="research_tools">
+                        <label for="interest_research">Research Tools</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="interest_compliance" name="interest_areas" value="compliance">
+                        <label for="interest_compliance">Compliance & Risk</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="interest_client" name="interest_areas" value="client_management">
+                        <label for="interest_client">Client Management</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="interest_ai" name="interest_areas" value="ai_workflows">
+                        <label for="interest_ai">AI Workflows</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="interest_integration" name="interest_areas" value="data_integration">
+                        <label for="interest_integration">Data Integration</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">How do you think this could help you?</label>
+                <textarea id="message" name="message" placeholder="Tell us about your investment management needs, AUM, client base, or specific Garden features of interest..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn garden-action" id="submit-btn">
+                Submit Interest Request
+            </button>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Garden Interest Registration Form
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('garden-interest-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const messagesDiv = document.getElementById('form-messages');
+    
+    // Helper functions for improved error handling
+    function validateFormData(data) {
+        const errors = [];
+        
+        // Required field validation
+        if (!data.name || data.name.trim().length < 2) {
+            errors.push({ field: 'name', message: 'Name must be at least 2 characters long' });
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!data.email || !emailRegex.test(data.email)) {
+            errors.push({ field: 'email', message: 'Please enter a valid email address' });
+        }
+        
+        // Message validation
+        if (!data.message || data.message.trim().length < 10) {
+            errors.push({ field: 'message', message: 'Message must be at least 10 characters long' });
+        }
+        
+        return errors;
+    }
+    
+    function showSuccessMessage(message) {
+        messagesDiv.innerHTML = `
+            <div class="form-message success" role="alert" aria-live="polite">
+                <strong>✓ Success!</strong> ${escapeHtml(message)}
+            </div>
+        `;
+        messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    function showErrorMessage(message) {
+        messagesDiv.innerHTML = `
+            <div class="form-message error" role="alert" aria-live="assertive">
+                <strong>⚠ Error:</strong> ${escapeHtml(message)}
+            </div>
+        `;
+        messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    function showValidationErrors(errors) {
+        const errorMessages = errors.map(error => `• ${error.message}`).join('<br>');
+        messagesDiv.innerHTML = `
+            <div class="form-message error" role="alert" aria-live="assertive">
+                <strong>⚠ Please fix the following errors:</strong><br>
+                ${errorMessages}
+            </div>
+        `;
+        
+        // Highlight first error field
+        if (errors.length > 0) {
+            const firstErrorField = document.querySelector(`[name="${errors[0].field}"]`);
+            if (firstErrorField) {
+                firstErrorField.focus();
+                firstErrorField.classList.add('error');
+                setTimeout(() => firstErrorField.classList.remove('error'), 3000);
+            }
+        }
+        
+        messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    function showFieldErrors(errors) {
+        const errorMessages = Object.entries(errors)
+            .map(([field, message]) => `• ${field}: ${message}`)
+            .join('<br>');
+        messagesDiv.innerHTML = `
+            <div class="form-message error" role="alert" aria-live="assertive">
+                <strong>⚠ Validation errors:</strong><br>
+                ${errorMessages}
+            </div>
+        `;
+        messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    function resetSubmitButton() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Interest Request';
+    }
+    
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Disable submit button
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+        
+        // Clear previous messages
+        messagesDiv.innerHTML = '';
+        
+        // Collect form data
+        const formData = new FormData(form);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            company: formData.get('company'),
+            role: formData.get('role'),
+            interest_areas: formData.getAll('interest_areas'),
+            message: formData.get('message')
+        };
+        
+        // Client-side validation
+        const validationErrors = validateFormData(data);
+        if (validationErrors.length > 0) {
+            showValidationErrors(validationErrors);
+            resetSubmitButton();
+            return;
+        }
+        
+        // Submit to API with improved error handling
+        fetch('/api/garden-interest/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            // Check if response is ok
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            // Check if response is JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error('Server returned invalid response format');
+            }
+            
+            return response.json();
+        })
+        .then(result => {
+            if (result.success) {
+                showSuccessMessage(result.message || 'Thank you for your interest! We\'ll be in touch soon.');
+                form.reset();
+                
+                // Optional: Track successful submission for analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_submit', {
+                        event_category: 'Garden Interest',
+                        event_label: 'Success'
+                    });
+                }
+                
+            } else {
+                // Handle server-side validation errors
+                if (result.errors && typeof result.errors === 'object') {
+                    showFieldErrors(result.errors);
+                } else {
+                    showErrorMessage(result.error || 'Unable to process your request. Please try again.');
+                }
+            }
+            resetSubmitButton();
+        })
+        .catch(error => {
+            console.error('Garden Interest Form Error:', error);
+            
+            // Determine error type and show appropriate message
+            let errorMessage = 'An unexpected error occurred. Please try again.';
+            
+            if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                errorMessage = 'Network connection error. Please check your internet connection and try again.';
+            } else if (error.message.includes('HTTP 429')) {
+                errorMessage = 'Too many requests. Please wait a moment and try again.';
+            } else if (error.message.includes('HTTP 500')) {
+                errorMessage = 'Server error. Please try again later or contact support if the problem persists.';
+            } else if (error.message.includes('HTTP 403')) {
+                errorMessage = 'Request forbidden. Please refresh the page and try again.';
+            } else if (error.message.includes('invalid response format')) {
+                errorMessage = 'Server error. Please try again later.';
+            }
+            
+            showErrorMessage(errorMessage);
+            resetSubmitButton();
+            
+            // Track error for analytics (optional)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_error', {
+                    event_category: 'Garden Interest',
+                    event_label: error.message || 'Unknown error'
+                });
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,332 @@
+{% extends "public_site/base.html" %}
+{% load static %}
+
+{% block title %}{{ page.title }} | Ethical Capital{% endblock %}
+
+{% block meta_description %}{{ page.search_description }}{% endblock %}
+
+{% block body_class %}solutions-page{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="garden-panel garden-panel--hero hero-panel" role="banner" aria-labelledby="hero-heading">
+    <div class="garden-panel__content garden-panel-content">
+        <h1 id="hero-heading" class="hero-title">Investment Solutions</h1>
+        {% if page.intro_text %}
+            <div class="hero-subtitle">{{ page.intro_text|safe }}</div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Investment Strategies Grid -->
+<section class="garden-panel" role="main" aria-labelledby="strategies-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">INVESTMENT STRATEGIES</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="strategies-heading" class="section-title">Three Strategies, Infinite Possibilities</h2>
+        <p class="strategies-intro">Our investment solutions are built around three core strategies, tailored to three distinct audiences, and delivered through multiple channels to meet you where you are.</p>
+        
+        <div class="solutions-grid">
+            <!-- Growth Strategy (Flagship) -->
+            <div class="solution-card" role="article" aria-labelledby="growth-heading" data-strategy="growth">
+                <div class="card-header">
+                    <span class="card-icon" aria-hidden="true">🚀</span>
+                    <h3 id="growth-heading" class="card-title">Growth Strategy</h3>
+                </div>
+                <div class="card-content">
+                    <p class="card-description"><strong>Long-term capital appreciation through ethical equity investing</strong></p>
+                    <ul class="feature-list">
+                        <li>Full market exposure with 100% ethical criteria</li>
+                        <li>~25 carefully selected positions</li>
+                        <li>Focus on quality companies with competitive advantages</li>
+                        <li>Ideal for long-term wealth building</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    {% include 'components/garden_action.html' with text="Explore Growth →" url="/strategies/growth/" variant="primary" aria_label="Learn more about our Growth Strategy" %}
+                </div>
+            </div>
+
+            <!-- Income Strategy -->
+            <div class="solution-card" role="article" aria-labelledby="income-heading" data-strategy="income">
+                <div class="card-header">
+                    <span class="card-icon" aria-hidden="true">💰</span>
+                    <h3 id="income-heading" class="card-title">Income Strategy</h3>
+                </div>
+                <div class="card-content">
+                    <p class="card-description"><strong>Sustainable income generation with ethical standards</strong></p>
+                    <ul class="feature-list">
+                        <li>Dividend-focused ethical equity portfolio</li>
+                        <li>Emphasis on companies with sustainable dividend policies</li>
+                        <li>Regular income distributions</li>
+                        <li>Perfect for retirees and income-focused investors</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    {% include 'components/garden_action.html' with text="Explore Income →" url="/strategies/income/" variant="primary" aria_label="Learn more about our Income Strategy" %}
+                </div>
+            </div>
+
+            <!-- Diversification Strategy -->
+            <div class="solution-card" role="article" aria-labelledby="diversification-heading" data-strategy="diversification">
+                <div class="card-header">
+                    <span class="card-icon" aria-hidden="true">⚖️</span>
+                    <h3 id="diversification-heading" class="card-title">Diversification Strategy</h3>
+                </div>
+                <div class="card-content">
+                    <p class="card-description"><strong>Broader diversification with flexible ethical implementation</strong></p>
+                    <ul class="feature-list">
+                        <li>Enhanced diversification across sectors and asset classes</li>
+                        <li>Flexible screening criteria for broader investment universe</li>
+                        <li>Trade-off between ethical purity and financial risk</li>
+                        <li>Suitable for risk-conscious investors seeking diversification</li>
+                    </ul>
+                    <div class="strategy-note">
+                        <p><em>Note: This strategy involves a direct trade-off between ethical purity and financial risk reduction.</em></p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    {% include 'components/garden_action.html' with text="Explore Diversification →" url="/strategies/diversification/" variant="primary" aria_label="Learn more about our Diversification Strategy" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Target Audiences -->
+<section class="garden-panel" role="region" aria-labelledby="audiences-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">FOR EVERY INVESTOR</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="audiences-heading" class="section-title">Tailored for Three Audiences</h2>
+        
+        <div class="audiences-grid">
+            <!-- Individual Investors -->
+            <div class="audience-card" role="article" aria-labelledby="individuals-heading">
+                <div class="audience-header">
+                    <span class="audience-icon" aria-hidden="true">👤</span>
+                    <h3 id="individuals-heading" class="audience-title">Individual Investors</h3>
+                </div>
+                <div class="audience-content">
+                    <p>Direct access to institutional-quality ethical investing with personalized service and transparent reporting.</p>
+                    <div class="audience-strategies">
+                        <span class="strategy-tag" data-strategy-tag="growth">Growth</span>
+                        <span class="strategy-tag">Income</span>
+                        <span class="strategy-tag">Diversification</span>
+                    </div>
+                </div>
+                <div class="audience-footer">
+                    {% include 'components/garden_action.html' with text="Get Started →" url="/onboarding/" variant="secondary" %}
+                </div>
+            </div>
+
+            <!-- Investment Advisors -->
+            <div class="audience-card" role="article" aria-labelledby="advisors-heading">
+                <div class="audience-header">
+                    <span class="audience-icon" aria-hidden="true">🤝</span>
+                    <h3 id="advisors-heading" class="audience-title">Investment Advisers</h3>
+                </div>
+                <div class="audience-content">
+                    <p>Partnership solutions to enhance your client service offering with specialized ethical investment expertise.</p>
+                    <div class="audience-strategies">
+                        <span class="strategy-tag">Growth</span>
+                        <span class="strategy-tag">Income</span>
+                        <span class="strategy-tag">Diversification</span>
+                    </div>
+                </div>
+                <div class="audience-footer">
+                    {% include 'components/garden_action.html' with text="Partner With Us →" url="/advisers/" variant="secondary" %}
+                </div>
+            </div>
+
+            <!-- Institutional Clients -->
+            <div class="audience-card" role="article" aria-labelledby="institutions-heading">
+                <div class="audience-header">
+                    <span class="audience-icon" aria-hidden="true">🏛️</span>
+                    <h3 id="institutions-heading" class="audience-title">Institutions</h3>
+                </div>
+                <div class="audience-content">
+                    <p>Scalable solutions for endowments, foundations, and pension funds requiring institutional-grade capabilities.</p>
+                    <div class="audience-strategies">
+                        <span class="strategy-tag">Growth</span>
+                        <span class="strategy-tag">Income</span>
+                        <span class="strategy-tag">Diversification</span>
+                    </div>
+                </div>
+                <div class="audience-footer">
+                    {% include 'components/garden_action.html' with text="Learn More →" url="/institutions/" variant="secondary" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How We Deliver -->
+<section class="garden-panel" role="region" aria-labelledby="delivery-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">HOW WE DELIVER</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="delivery-heading" class="section-title">Multiple Ways to Access Our Strategies</h2>
+        
+        <div class="delivery-grid">
+            <div class="delivery-item">
+                <h3 class="delivery-title">Direct Management</h3>
+                <p>Full discretionary portfolio management with direct fiduciary relationship and personalized service.</p>
+                <ul class="delivery-features">
+                    <li>Individual account management</li>
+                    <li>Customized reporting</li>
+                    <li>Direct adviser access</li>
+                </ul>
+            </div>
+            
+            <div class="delivery-item">
+                <h3 class="delivery-title">Adviser Partnership</h3>
+                <p>White-label solutions and research support for investment advisers serving values-aligned clients.</p>
+                <ul class="delivery-features">
+                    <li>Separately Managed Accounts (SMAs)</li>
+                    <li>Research and due diligence support</li>
+                    <li>Operational assistance</li>
+                </ul>
+            </div>
+            
+            <div class="delivery-item">
+                <h3 class="delivery-title">Institutional Solutions</h3>
+                <p>Scalable investment management for institutions requiring sophisticated ethical investment capabilities.</p>
+                <ul class="delivery-features">
+                    <li>Custom mandate development</li>
+                    <li>Institutional-scale operations</li>
+                    <li>ESG integration and reporting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Investment Approach -->
+<section class="garden-panel" role="region" aria-labelledby="approach-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">OUR APPROACH</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="approach-heading" class="section-title">Evidence-Based Ethical Investing</h2>
+        <div class="approach-content">
+            <p class="lead-text">At Ethical Capital, we believe that superior investment performance and ethical principles are not mutually exclusive. Our rigorous four-step process ensures institutional-grade analysis while maintaining strict adherence to your values.</p>
+            
+            <div class="approach-grid">
+                <div class="approach-item">
+                    <h3 class="approach-title">Investment Process</h3>
+                    <p>Systematic four-step approach combining quantitative analysis with ethical screening</p>
+                    {% include 'components/garden_action.html' with text="View Process →" url="/process/" variant="secondary" %}
+                </div>
+                
+                <div class="approach-item">
+                    <h3 class="approach-title">Investment Strategies</h3>
+                    <p>Diversified portfolio options designed to meet specific risk and return objectives</p>
+                    {% include 'components/garden_action.html' with text="View Strategies →" url="/strategies/" variant="secondary" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Ethical Capital -->
+<section class="garden-panel" role="region" aria-labelledby="advantages-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">COMPETITIVE ADVANTAGES</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="advantages-heading" class="section-title">Why Choose Ethical Capital?</h2>
+        
+        <div class="advantages-grid">
+            <div class="advantage-item">
+                <h3 class="advantage-title">Institutional Expertise</h3>
+                <p>Professional investment management with fiduciary responsibility and institutional-grade research capabilities</p>
+            </div>
+            
+            <div class="advantage-item">
+                <h3 class="advantage-title">Ethical Leadership</h3>
+                <p>Pioneering values-based investment approaches with transparent, open-source screening methodology</p>
+            </div>
+            
+            <div class="advantage-item">
+                <h3 class="advantage-title">Transparent Process</h3>
+                <p>Clear investment methodology with publicly available screening criteria and comprehensive reporting</p>
+            </div>
+            
+            <div class="advantage-item">
+                <h3 class="advantage-title">Superior Technology</h3>
+                <p>Advanced portfolio management systems and real-time reporting infrastructure</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="garden-panel cta-panel" role="region" aria-labelledby="cta-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">GET STARTED</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <div class="cta-content">
+            <h2 id="cta-heading" class="cta-title">Ready to Align Your Investments with Your Values?</h2>
+            <p class="cta-description">Discover how our institutional-grade approach can enhance your investment outcomes while advancing positive social and environmental impact.</p>
+            
+            <div class="cta-actions">
+                {% include 'components/garden_action.html' with text="Schedule Consultation" url="/contact/" variant="primary" aria_label="Schedule a consultation to get started" %}
+                {% include 'components/garden_action.html' with text="View Pricing" url="/pricing/" variant="secondary" aria_label="View our pricing and fee structure" %}
+                {% include 'components/garden_action.html' with text="Learn Our Process" url="/process/" variant="secondary" aria_label="Learn more about our investment process" %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}{% endblock %}
+
+{% block extra_js %}
+<script>
+// Enhanced accessibility and dynamic highlighting for solutions page
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Add keyboard navigation for solution cards and audience cards
+    const interactiveCards = document.querySelectorAll('.solution-card, .audience-card');
+    
+    interactiveCards.forEach(card => {
+        // Make cards focusable
+        card.setAttribute('tabindex', '0');
+        
+        // Add keyboard event listeners
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const cta = card.querySelector('.garden-action');
+                if (cta) {
+                    cta.click();
+                }
+            }
+        });
+        
+        // Add focus visual feedback
+        card.addEventListener('focus', function() {
+            this.style.borderColor = 'var(--color-primary)';
+        });
+        
+        card.addEventListener('blur', function() {
+            this.style.borderColor = '';
+        });
+    });
+    
+    // Smooth scroll for internal links
+    const internalLinks = document.querySelectorAll('a[href^="/"]');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Track navigation for analytics if needed
+            console.log('Navigation:', this.href);
+        });
+    });
+});
+</script>
+{% endblock %}

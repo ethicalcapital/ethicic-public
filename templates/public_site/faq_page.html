@@ -1,0 +1,73 @@
+{% extends "public_site/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{{ page.title }} - Ethical Capital{% endblock %}
+
+{% block content %}
+<!-- FAQ Hero Section -->
+<section class="garden-panel" role="banner" aria-labelledby="faq-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">{{ page.title }}</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        {% if page.intro_text %}
+            <div class="hero-description">
+                {{ page.intro_text|richtext }}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- FAQ Content Section -->
+<section class="garden-panel">
+    <div class="garden-panel__content garden-panel-content">
+        <div class="faq-content">
+            {% for faq in page.faq_items.all %}
+                <details class="faq-item" data-faq-id="{{ forloop.counter }}">
+                    <summary class="faq-question" aria-expanded="false">
+                        <h3 class="question-title">{{ faq.question }}</h3>
+                        <span class="expand-icon" aria-hidden="true">+</span>
+                    </summary>
+                    <div class="faq-answer">
+                        {{ faq.answer|richtext }}
+                    </div>
+                </details>
+            {% empty %}
+                <div class="no-faqs empty-state">
+                    <h3>No FAQs Available</h3>
+                    <p>We're building our FAQ section. In the meantime, please don't hesitate to contact us directly with any questions.</p>
+                    <a href="/contact/" class="garden-action primary">Contact Us</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Update expand icons for FAQ details elements
+    const faqElements = document.querySelectorAll('details.faq-item');
+    
+    faqElements.forEach(details => {
+        const summary = details.querySelector('summary');
+        const expandIcon = summary.querySelector('.expand-icon');
+        
+        if (expandIcon) {
+            // Update icon based on initial state
+            expandIcon.textContent = details.open ? '−' : '+';
+            
+            // Listen for toggle events
+            details.addEventListener('toggle', function() {
+                expandIcon.textContent = this.open ? '−' : '+';
+                summary.setAttribute('aria-expanded', this.open);
+            });
+        }
+    });
+});
+</script>
+{% endblock %}

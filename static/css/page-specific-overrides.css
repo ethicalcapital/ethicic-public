@@ -1,0 +1,127 @@
+/*! 
+ * Page-Specific Overrides
+ * Clean, production-ready fixes for specific page layouts
+ * Integrated with Garden UI design system
+ */
+
+/* ===== PRICING PAGE FIXES ===== */
+.pricing-page .hero-section .panel-content,
+.pricing-page .hero-section .panel-content h1 {
+    text-align: center;
+}
+
+.pricing-page .cta-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .pricing-page .cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ===== BLOG PAGE FIXES ===== */
+.blog-post-page .blog-article,
+.blog-post-page .article-header,
+.blog-post-page .article-header-content,
+.blog-post-page .article-content,
+.blog-post-page .article-body,
+.blog-post-page .article-footer,
+.blog-index-page .main-content,
+.blog-index-page .blog-container,
+.blog-index-page .garden-panel-content,
+.blog-index-page .articles-grid {
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Blog content text width management */
+.blog-post-page .article-body p,
+.blog-post-page .article-body div,
+.blog-post-page .article-body blockquote,
+.blog-post-page .article-body ul,
+.blog-post-page .article-body ol,
+.blog-post-page .article-excerpt,
+.blog-post-page .article-title,
+.blog-post-page .rich-text {
+    max-width: none;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== FAQ PAGE FIXES ===== */
+.faq-page .main-content,
+.faq-page .garden-panel-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* ===== ENCYCLOPEDIA PAGE FIXES ===== */
+.encyclopedia-page .main-content,
+.encyclopedia-page .garden-panel-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* ===== STRATEGY PAGE FIXES ===== */
+.strategy-page .main-content,
+.strategy-page .garden-panel-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* ===== ABOUT PAGE FIXES ===== */
+.about-page .main-content,
+.about-page .garden-panel-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* ===== CONTACT PAGE FIXES ===== */
+.contact-page .main-content,
+.contact-page .garden-panel-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* ===== RESPONSIVE OVERRIDES ===== */
+@media (max-width: 768px) {
+    .blog-post-page .article-body,
+    .blog-index-page .main-content,
+    .faq-page .main-content,
+    .encyclopedia-page .main-content,
+    .strategy-page .main-content,
+    .about-page .main-content,
+    .contact-page .main-content {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-post-page .article-body,
+    .blog-index-page .main-content,
+    .faq-page .main-content,
+    .encyclopedia-page .main-content,
+    .strategy-page .main-content,
+    .about-page .main-content,
+    .contact-page .main-content {
+        padding-left: var(--space-3);
+        padding-right: var(--space-3);
+    }
+}

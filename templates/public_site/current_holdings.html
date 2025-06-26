@@ -1,0 +1,300 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}Current Holdings | Ethical Capital{% endblock %}
+
+{% block body_class %}current-holdings-page{% endblock %}
+
+{% block content %}
+    <!-- Holdings Header -->
+    <section class="holdings-header garden-panel" role="banner" aria-labelledby="holdings-heading">
+        <div class="panel-header">PORTFOLIO TRANSPARENCY</div>
+        <div class="panel-content">
+            <h1 id="holdings-heading">Current Holdings</h1>
+            <div class="holdings-meta">As of Q4 2024</div>
+            <div class="holdings-description">
+                <p>We believe in complete transparency with our clients and prospective investors. Below are our current top holdings and portfolio statistics, updated quarterly to provide insight into our investment approach and portfolio construction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Holdings -->
+    <section class="top-holdings garden-panel" role="complementary" aria-labelledby="top-holdings-heading">
+        <div class="panel-header">TOP 5 HOLDINGS</div>
+        <div class="panel-content">
+            <h2 id="top-holdings-heading" class="sr-only">Top Five Portfolio Holdings</h2>
+            <div class="holdings-grid">
+                <div class="holding-card">
+                    <div class="holding-header">
+                        <div class="holding-name">Agricultural Mortgage Corporation</div>
+                        <div class="holding-ticker">(Farmer Mac)</div>
+                    </div>
+                    <div class="holding-details">
+                        <div class="holding-sector">Lending</div>
+                        <div class="holding-weight">~8.4%</div>
+                    </div>
+                    <div class="holding-description">
+                        Government-sponsored enterprise supporting agricultural lending
+                    </div>
+                </div>
+
+                <div class="holding-card">
+                    <div class="holding-header">
+                        <div class="holding-name">Alexandria Real Estate</div>
+                        <div class="holding-ticker">(ARE)</div>
+                    </div>
+                    <div class="holding-details">
+                        <div class="holding-sector">Real Estate</div>
+                        <div class="holding-weight">~8.4%</div>
+                    </div>
+                    <div class="holding-description">
+                        Life science and technology real estate investment trust
+                    </div>
+                </div>
+
+                <div class="holding-card">
+                    <div class="holding-header">
+                        <div class="holding-name">Duolingo</div>
+                        <div class="holding-ticker">(DUOL)</div>
+                    </div>
+                    <div class="holding-details">
+                        <div class="holding-sector">Innovation</div>
+                        <div class="holding-weight">~8.4%</div>
+                    </div>
+                    <div class="holding-description">
+                        Leading language learning platform democratizing education
+                    </div>
+                </div>
+
+                <div class="holding-card">
+                    <div class="holding-header">
+                        <div class="holding-name">Lemonade</div>
+                        <div class="holding-ticker">(LMND)</div>
+                    </div>
+                    <div class="holding-details">
+                        <div class="holding-sector">Innovation</div>
+                        <div class="holding-weight">~8.4%</div>
+                    </div>
+                    <div class="holding-description">
+                        Technology-driven insurance company with social impact focus
+                    </div>
+                </div>
+
+                <div class="holding-card">
+                    <div class="holding-header">
+                        <div class="holding-name">Crocs</div>
+                        <div class="holding-ticker">(CROX)</div>
+                    </div>
+                    <div class="holding-details">
+                        <div class="holding-sector">Innovation</div>
+                        <div class="holding-weight">~8.4%</div>
+                    </div>
+                    <div class="holding-description">
+                        Footwear company with sustainable manufacturing initiatives
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Statistics -->
+    <section class="portfolio-statistics garden-panel" role="complementary" aria-labelledby="stats-heading">
+        <div class="panel-header">PORTFOLIO STATISTICS</div>
+        <div class="panel-content">
+            <h2 id="stats-heading" class="sr-only">Portfolio Statistical Breakdown</h2>
+            
+            <!-- Statistics Table -->
+            <div class="statistics-table">
+                <div class="stats-header">
+                    <div class="metric-header">Metric</div>
+                    <div class="sector-header">Real Estate</div>
+                    <div class="sector-header">Infrastructure</div>
+                    <div class="sector-header">Innovation</div>
+                    <div class="sector-header">Lending</div>
+                    <div class="sector-header">Cash</div>
+                    <div class="total-header">Portfolio Total</div>
+                    <div class="benchmark-header">Benchmark (MSCI ACWI)</div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="metric-label">Weight (%)</div>
+                    <div class="stat-value">18.2</div>
+                    <div class="stat-value">16.7</div>
+                    <div class="stat-value">32.1</div>
+                    <div class="stat-value">29.8</div>
+                    <div class="stat-value">3.2</div>
+                    <div class="stat-value total">100.0</div>
+                    <div class="stat-value benchmark">—</div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="metric-label">Dividend Yield (%)</div>
+                    <div class="stat-value">4.2</div>
+                    <div class="stat-value">3.8</div>
+                    <div class="stat-value">0.7</div>
+                    <div class="stat-value">5.1</div>
+                    <div class="stat-value">5.2</div>
+                    <div class="stat-value total">2.8</div>
+                    <div class="stat-value benchmark">2.1</div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="metric-label">PE Ratio</div>
+                    <div class="stat-value">16.4</div>
+                    <div class="stat-value">18.9</div>
+                    <div class="stat-value">28.7</div>
+                    <div class="stat-value">12.3</div>
+                    <div class="stat-value">—</div>
+                    <div class="stat-value total">19.2</div>
+                    <div class="stat-value benchmark">16.8</div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="metric-label">Revenue CAGR (3yr) (%)</div>
+                    <div class="stat-value">8.1</div>
+                    <div class="stat-value">12.4</div>
+                    <div class="stat-value">24.6</div>
+                    <div class="stat-value">6.7</div>
+                    <div class="stat-value">—</div>
+                    <div class="stat-value total">13.2</div>
+                    <div class="stat-value benchmark">8.9</div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="metric-label">FCF/Market Cap (%)</div>
+                    <div class="stat-value">5.8</div>
+                    <div class="stat-value">4.2</div>
+                    <div class="stat-value">2.9</div>
+                    <div class="stat-value">7.1</div>
+                    <div class="stat-value">—</div>
+                    <div class="stat-value total">4.7</div>
+                    <div class="stat-value benchmark">4.1</div>
+                </div>
+            </div>
+
+            <!-- Key Insights -->
+            <div class="portfolio-insights">
+                <h3 class="insights-header">KEY PORTFOLIO CHARACTERISTICS</h3>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-title">Diversification</div>
+                        <div class="insight-description">Balanced exposure across four key sectors aligned with our ethical investment criteria</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-title">Income Generation</div>
+                        <div class="insight-description">Portfolio dividend yield of 2.8% exceeds benchmark while maintaining growth focus</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-title">Growth Profile</div>
+                        <div class="insight-description">Revenue CAGR of 13.2% reflects focus on companies with sustainable competitive advantages</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-title">Value Discipline</div>
+                        <div class="insight-description">PE ratio of 19.2x balanced against strong growth and free cash flow generation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology & Disclosures -->
+    <section class="methodology garden-panel" role="complementary" aria-labelledby="methodology-heading">
+        <div class="panel-header">METHODOLOGY & DISCLOSURES</div>
+        <div class="panel-content">
+            <h2 id="methodology-heading" class="sr-only">Update Methodology and Important Disclosures</h2>
+            
+            <div class="methodology-content">
+                <div class="methodology-section">
+                    <h3>Update Schedule</h3>
+                    <p>Holdings data is updated quarterly following the end of each calendar quarter. Current data reflects positions as of December 31, 2024. Individual position weights may fluctuate due to market movements between disclosure periods.</p>
+                </div>
+
+                <div class="methodology-section">
+                    <h3>Data Sources</h3>
+                    <p>Portfolio statistics are calculated using proprietary analysis combined with data from FactSet, Bloomberg, and company filings. All metrics represent weighted averages based on current portfolio allocations.</p>
+                </div>
+
+                <div class="methodology-section">
+                    <h3>Important Disclosures</h3>
+                    <ul>
+                        <li>Past performance does not guarantee future results</li>
+                        <li>Portfolio holdings and statistics subject to change without notice</li>
+                        <li>This information is for educational purposes and does not constitute investment advice</li>
+                        <li>Individual account holdings may vary based on client restrictions and timing of investments</li>
+                        <li>Benchmark data sourced from MSCI. MSCI data provided "as is" without any express or implied warranties</li>
+                    </ul>
+                </div>
+
+                <div class="methodology-section">
+                    <h3>Additional Resources</h3>
+                    <p>For complete portfolio information, regulatory filings, and detailed investment criteria, please visit our <a href="/process/" class="methodology-link">investment process page</a> or <a href="/contact/" class="methodology-link">contact our team</a> directly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Add accessibility enhancements
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add focus management for holding cards
+        const holdingCards = document.querySelectorAll('.holding-card');
+        holdingCards.forEach(card => {
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'article');
+            
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    // Could expand card or navigate to detailed view
+                    card.focus();
+                }
+            });
+        });
+
+        // Add sorting functionality to statistics table
+        const statsTable = document.querySelector('.statistics-table');
+        if (statsTable) {
+            statsTable.setAttribute('role', 'table');
+            statsTable.setAttribute('aria-label', 'Portfolio statistics by sector');
+        }
+
+        // Announce page load for screen readers
+        const announcements = document.getElementById('announcements');
+        if (announcements) {
+            setTimeout(() => {
+                announcements.textContent = 'Current holdings page loaded. Navigate through sections using headings or tab key.';
+                setTimeout(() => {
+                    announcements.textContent = '';
+                }, 3000);
+            }, 1000);
+        }
+    });
+
+    // Add keyboard navigation for insights
+    function handleInsightNavigation(event) {
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            const insights = Array.from(document.querySelectorAll('.insight-card'));
+            const currentIndex = insights.indexOf(event.target);
+            let nextIndex;
+            
+            if (event.key === 'ArrowDown') {
+                nextIndex = (currentIndex + 1) % insights.length;
+            } else {
+                nextIndex = currentIndex > 0 ? currentIndex - 1 : insights.length - 1;
+            }
+            
+            insights[nextIndex].focus();
+            event.preventDefault();
+        }
+    }
+
+    // Enable keyboard navigation
+    document.querySelectorAll('.insight-card').forEach(card => {
+        card.setAttribute('tabindex', '0');
+        card.addEventListener('keydown', handleInsightNavigation);
+    });
+</script>
+{% endblock %}

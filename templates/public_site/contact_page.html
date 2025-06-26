@@ -1,0 +1,72 @@
+{% extends "public_site/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{{ page.title }} - Ethical Capital{% endblock %}
+
+{% block content %}
+<div class="public-main contact-main">
+    <div class="garden-layout-grid">
+        <div class="main-content">
+            {% if page.contact_description %}
+                {% include 'components/garden_panel.html' with title="ABOUT OUR SERVICES" content=page.contact_description|richtext variant="description" classes="description-panel" %}
+            {% endif %}
+
+            {% if page.show_contact_form %}
+                {% load crispy_forms_tags %}
+                <div class="garden-panel garden-panel--form form-panel">
+                    <div class="garden-panel__header garden-panel-header">
+                        <h2 class="garden-panel__title panel-title">CONTACT FORM</h2>
+                    </div>
+                    <div class="garden-panel__content garden-panel-content">
+                        {{ contact_form|crispy }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+        <aside class="sidebar">
+            <div class="garden-panel contact-info-panel">
+                <h3 class="panel-title">CONTACT INFORMATION</h3>
+                <div class="panel-content">
+                    <div class="contact-info-grid">
+                        <div class="contact-item">
+                            <div class="contact-label">EMAIL:</div>
+                            <a href="mailto:{{ page.email|default:'hello@ethicic.com' }}" class="contact-link">
+                                {{ page.email|default:'hello@ethicic.com' }}
+                            </a>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-label">PHONE:</div>
+                            <a href="tel:{{ page.phone|default:'+13476259000' }}" class="contact-link">
+                                {{ page.phone|default:'+1 347 625 9000' }}
+                            </a>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-label">ADDRESS:</div>
+                            <div class="contact-value">{{ page.address|default:'90 N 400 E, Provo, UT 84606'|safe }}</div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-label">SCHEDULING:</div>
+                            {% include 'components/garden_action.html' with text="SCHEDULE CONSULTATION" url="https://tidycal.com/ecic" variant="secondary" size="small" target="_blank" rel="noopener noreferrer" aria_label="Schedule a consultation with Ethical Capital" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="garden-panel onboarding-panel">
+                <h3 class="panel-title">GET STARTED</h3>
+                <div class="panel-content">
+                    <p class="panel-description">Ready to align your investments with your values? Start your journey with ethical investing today.</p>
+                    {% include 'components/garden_action.html' with text="START ONBOARDING" url="/onboarding/" variant="primary" aria_label="Begin the onboarding process" %}
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}

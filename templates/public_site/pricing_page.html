@@ -1,0 +1,144 @@
+{% extends "public_site/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{{ page.title }} | Ethical Capital{% endblock %}
+
+{% block body_class %}pricing-page{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section garden-panel" role="banner" aria-labelledby="pricing-heading">
+    <div class="garden-panel__header panel-header">PRICING & PLANS</div>
+    <div class="garden-panel__content panel-content">
+        <h1 id="pricing-heading">{{ page.title }}</h1>
+        {% if page.intro_text %}
+            <div class="intro-text">
+                {{ page.intro_text|richtext }}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Investment Management Overview -->
+<section class="pricing-overview garden-panel" role="main">
+    <div class="garden-panel__header panel-header">INVESTMENT MANAGEMENT FEES</div>
+    <div class="garden-panel__content panel-content">
+        <div class="fee-overview">
+            <p>Our investment advisory fees are transparent, competitive, and aligned with your success. We offer two primary access points for our ethical investment strategies:</p>
+        </div>
+    </div>
+</section>
+
+<!-- Fee Structure -->
+<section class="pricing-tiers garden-panel" role="main" aria-labelledby="fees-heading">
+    <div class="garden-panel__header panel-header">TRANSPARENT FEE STRUCTURE</div>
+    <div class="garden-panel__content panel-content">
+        <div class="tiers-grid">
+            <div class="pricing-card premium">
+                <div class="card-badge">DIRECT CLIENT</div>
+                <div class="card-header">DIRECT MANAGEMENT</div>
+                <div class="price-display">
+                    <span class="amount">1.00%</span>
+                    <span class="period">annually</span>
+                </div>
+                <div class="features-list">
+                    <div class="feature-item">✓ Direct client relationship</div>
+                    <div class="feature-item">✓ Personalized portfolio management</div>
+                    <div class="feature-item">✓ Quarterly client meetings</div>
+                    <div class="feature-item">✓ Custom ethical screening</div>
+                    <div class="feature-item">✓ Direct access to CIO</div>
+                    <div class="feature-item">✓ Comprehensive reporting</div>
+                    <div class="feature-item">✓ Educational workshops included</div>
+                </div>
+                <div class="card-action">
+                    <a href="/consultation/" class="garden-action primary">SCHEDULE CONSULTATION</a>
+                </div>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="card-header">SCHWAB PLATFORM</div>
+                <div class="price-display">
+                    <span class="amount">0.50%</span>
+                    <span class="period">annually</span>
+                </div>
+                <div class="features-list">
+                    <div class="feature-item">✓ Schwab Advisor platform access</div>
+                    <div class="feature-item">✓ Professional adviser relationship</div>
+                    <div class="feature-item">✓ SMA implementation</div>
+                    <div class="feature-item">✓ Standard ethical screening</div>
+                    <div class="feature-item">✓ Quarterly performance reporting</div>
+                    <div class="feature-item">✓ Strategy documentation</div>
+                    <div class="feature-item">✓ Ongoing monitoring</div>
+                </div>
+                <div class="card-action">
+                    <a href="/advisers/" class="garden-action primary">FIND AN ADVISOR</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="fee-details">
+            <div class="detail-item">
+                <h4>Fee Calculation</h4>
+                <p>Fees are calculated quarterly based on average daily balance and debited directly from your account. No hidden costs or transaction fees.</p>
+            </div>
+            <div class="detail-item">
+                <h4>Minimum Investment</h4>
+                <p>Direct management minimums vary by strategy. Schwab platform accounts follow standard SMA minimums. Contact us for current requirements.</p>
+            </div>
+            <div class="detail-item">
+                <h4>Fee Comparison</h4>
+                <p>Our 1.00% direct fee is competitive with boutique investment managers. The 0.50% platform fee reflects shared service delivery through adviser partners.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Services -->
+<section class="enterprise-section garden-panel" role="complementary">
+    <div class="garden-panel__header panel-header">ADDITIONAL SERVICES</div>
+    <div class="garden-panel__content panel-content">
+        <div class="services-grid">
+            <div class="service-item">
+                <h4>Educational Workshops</h4>
+                <p>Customized ethical investing education sessions for clients, ranging from introductory concepts to advanced strategy discussions.</p>
+                <div class="service-fee">$100 - $3,000 per session</div>
+            </div>
+            <div class="service-item">
+                <h4>Institutional Consulting</h4>
+                <p>Sub-advisory services for RIAs, family offices, and institutions seeking ethical investment expertise.</p>
+                <div class="service-fee">Custom fee arrangements</div>
+            </div>
+            <div class="service-item">
+                <h4>Garden Platform Access</h4>
+                <p>Our proprietary research and portfolio management platform for qualified financial professionals.</p>
+                <div class="service-fee">Alpha access - contact for details</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="pricing-cta garden-panel" role="complementary">
+    <div class="garden-panel__header panel-header">BEGIN YOUR ETHICAL INVESTMENT JOURNEY</div>
+    <div class="garden-panel__content panel-content">
+        <div class="cta-content">
+            <h3>Ready to align your wealth with your values?</h3>
+            <p>We work with a select number of clients who share our commitment to ethical excellence. Schedule a consultation to discuss how our investment approach can serve your financial goals.</p>
+            
+            <div class="cta-actions">
+                <a href="/consultation/" class="garden-action primary">SCHEDULE CONSULTATION</a>
+                <a href="/process/" class="garden-action">LEARN OUR PROCESS</a>
+                <a href="/contact/" class="garden-action">ASK QUESTIONS</a>
+            </div>
+            
+            <div class="cta-note">
+                <strong>Important:</strong> Investment advisory services are offered through Ethical Capital Investment Management LLC, a Registered Investment Adviser. Please see our ADV Part 2 for complete fee disclosure and important information.
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}

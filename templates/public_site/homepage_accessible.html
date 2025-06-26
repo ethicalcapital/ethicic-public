@@ -1,0 +1,323 @@
+{% extends "public_site/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}Ethical Capital - Where Ethics Drive Investment Excellence{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
+    <div class="garden-panel__content garden-panel-content">
+        <div class="hero-tagline">{{ page.hero_tagline }}</div>
+        <h1 id="hero-heading" class="hero-title">{{ page.hero_title }}</h1>
+        <div class="hero-subtitle">{{ page.hero_subtitle|richtext }}</div>
+        
+        <div class="cta-actions">
+            <a href="/consultation/" class="garden-action primary">Schedule Consultation</a>
+            <a href="/process/" class="garden-action secondary">View Our Process</a>
+        </div>
+        
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-bar">
+                    <div class="stat-fill stat-fill-57"></div>
+                </div>
+                <span class="stat-value">{{ page.excluded_percentage }}</span>
+                <span class="stat-label">S&P 500 EXCLUDED</span>
+            </div>
+            <div class="stat-item">
+                <div class="stat-indicator"></div>
+                <span class="stat-value">{{ page.since_year }}</span>
+                <span class="stat-label">FIDUCIARY STANDARD</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Investment Philosophy Section -->
+<section class="garden-panel" role="main" aria-labelledby="philosophy-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">OUR INVESTMENT PHILOSOPHY</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <div class="philosophy-content">
+            <h2 id="philosophy-heading">{{ page.philosophy_title }}</h2>
+            {{ page.philosophy_content|richtext }}
+            <p class="philosophy-highlight">
+                {{ page.philosophy_highlight }}
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Principles Section -->
+<section class="garden-panel" role="main" aria-labelledby="principles-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">PRINCIPLES THAT GUIDE OUR WORK</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        {{ page.principles_intro|richtext }}
+        
+        <div class="principles-category">
+            <h3 class="category-header">Process</h3>
+            <div class="principles-grid">
+                <div class="principle-item">
+                    <h4 class="principle-title">{{ page.process_principle_1_title }}</h4>
+                    <p>{{ page.process_principle_1_content }}</p>
+                </div>
+                <div class="principle-item">
+                    <h4 class="principle-title">{{ page.process_principle_2_title }}</h4>
+                    <p>{{ page.process_principle_2_content }}</p>
+                </div>
+                <div class="principle-item">
+                    <h4 class="principle-title">{{ page.process_principle_3_title }}</h4>
+                    <p>{{ page.process_principle_3_content }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="principles-category">
+            <h3 class="category-header">Practice</h3>
+            <div class="principles-grid">
+                <div class="principle-item">
+                    <h4 class="principle-title">{{ page.practice_principle_1_title }}</h4>
+                    <p>{{ page.practice_principle_1_content }}</p>
+                </div>
+                <div class="principle-item">
+                    <h4 class="principle-title">{{ page.practice_principle_2_title }}</h4>
+                    <p>{{ page.practice_principle_2_content }}</p>
+                </div>
+                <div class="principle-item">
+                    <h4 class="principle-title">{{ page.practice_principle_3_title }}</h4>
+                    <p>{{ page.practice_principle_3_content }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Strategies Section -->
+<section class="garden-panel" role="main" aria-labelledby="strategies-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">THREE CORE STRATEGIES—MULTIPLE PATHS FORWARD</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        {{ page.strategies_intro|richtext }}
+        
+        <div class="strategies-grid">
+            <div class="strategy-card">
+                <table class="strategy-table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                Growth Strategy
+                                <div class="subtitle">Our Flagship Approach</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="label">Focus:</td>
+                            <td>15-25 Companies</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Screening:</td>
+                            <td>Full Implementation</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Management:</td>
+                            <td>Active & Continuous</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Ownership:</td>
+                            <td>Direct Securities</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="strategy-features">
+                    <p>High-conviction portfolios where our ethical criteria can be fully implemented without compromise.</p>
+                    <a href="/strategies/growth/" class="garden-action">Explore Growth Strategy →</a>
+                </div>
+            </div>
+            
+            <div class="strategy-card">
+                <table class="strategy-table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                Income Strategy
+                                <div class="subtitle">Ethics Meets Yield</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="label">Focus:</td>
+                            <td>Income Generation</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Screening:</td>
+                            <td>Full Implementation</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Management:</td>
+                            <td>Active & Continuous</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Ownership:</td>
+                            <td>Direct Securities</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="strategy-features">
+                    <p>The same rigorous ethical screening applied to income-generating securities.</p>
+                    <a href="/strategies/income/" class="garden-action">Explore Income Strategy →</a>
+                </div>
+            </div>
+            
+            <div class="strategy-card">
+                <table class="strategy-table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                Diversification Strategy
+                                <div class="subtitle">Discretionary Management</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="label">Focus:</td>
+                            <td>Broader Markets</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Screening:</td>
+                            <td>Ethical Alignment</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Management:</td>
+                            <td>Active & Continuous</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Ownership:</td>
+                            <td>External Funds</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="strategy-features">
+                    <p>We identify and manage allocations to external funds whose approaches align with ethical investing principles.</p>
+                    <a href="/strategies/diversification/" class="garden-action">Explore Diversification →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="garden-panel" role="main" aria-labelledby="process-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">OUR SIGNATURE PROCESS</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2 id="process-heading" class="text-center">How We Build Ethical Portfolios</h2>
+        
+        <div class="process-container">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>{{ page.process_step_1_title }}</h3>
+                    <p>{{ page.process_step_1_content }}</p>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>{{ page.process_step_2_title }}</h3>
+                    <p>{{ page.process_step_2_content }}</p>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>{{ page.process_step_3_title }}</h3>
+                    <p>{{ page.process_step_3_content }}</p>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>{{ page.process_step_4_title }}</h3>
+                    <p>{{ page.process_step_4_content }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center margin-top-8">
+            <a href="/process/" class="garden-action primary">Review Our Investment Process →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Who We Serve Section -->
+<section class="garden-panel" role="main" aria-labelledby="serve-heading">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">WHO WE SERVE</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <div class="serve-grid">
+            <div class="serve-item">
+                <h3>{{ page.serve_individual_title }}</h3>
+                <p>{{ page.serve_individual_content }}</p>
+                <a href="/onboarding/" class="garden-action secondary">Get Started →</a>
+            </div>
+            
+            <div class="serve-item">
+                <h3>{{ page.serve_advisor_title }}</h3>
+                <p>{{ page.serve_advisor_content }}</p>
+                <a href="/advisers/" class="garden-action secondary">Partner With Us →</a>
+            </div>
+            
+            <div class="serve-item">
+                <h3>{{ page.serve_institution_title }}</h3>
+                <p>{{ page.serve_institution_content }}</p>
+                <a href="/institutions/" class="garden-action secondary">Learn More →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="garden-panel cta-panel">
+    <div class="garden-panel__header garden-panel-header">
+        <div class="panel-title">BEGIN YOUR ETHICAL INVESTMENT JOURNEY</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+        <h2>{{ page.cta_title }}</h2>
+        {{ page.cta_description|richtext }}
+        
+        <div class="cta-actions">
+            <a href="/consultation/" class="garden-action primary">Schedule a Consultation</a>
+            <a href="/guide/" class="garden-action secondary">Download Investment Guide</a>
+        </div>
+        
+        <div class="cta-info">
+            <div class="cta-info-item">
+                <strong>NEW CLIENT AVAILABILITY</strong>
+                {{ page.client_availability_text }}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block disclaimer %}
+<div class="disclaimer">
+    {{ page.disclaimer_text|richtext }}
+</div>
+{% endblock %}
