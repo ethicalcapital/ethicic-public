@@ -6,7 +6,7 @@ psycopg2-binary==2.9.9
 # Wagtail CMS
 wagtail==5.2.6
 django-modelcluster==6.3
-django-taggit==5.0.1
+django-taggit==4.0.0
 djangorestframework==3.14.0
 Pillow==10.4.0
 
