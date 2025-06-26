@@ -17,15 +17,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY environment variable must be set")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 # Add Kinsta temporary domain support
 if os.getenv('KINSTA_DOMAIN'):
     ALLOWED_HOSTS.append(os.getenv('KINSTA_DOMAIN'))
     ALLOWED_HOSTS.append(f"*.{os.getenv('KINSTA_DOMAIN')}")
+    
+# Temporary: Allow all hosts if not specified
+if ALLOWED_HOSTS == ['*']:
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [

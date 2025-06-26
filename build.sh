@@ -4,7 +4,8 @@
 echo "Running Django collectstatic..."
 python manage.py collectstatic --noinput
 
-echo "Running Django migrations..."
-python manage.py migrate --noinput
+# Skip migrations during build - run them manually after deployment
+echo "Skipping migrations during build phase"
+echo "Run 'python manage.py migrate' manually after deployment"
 
 echo "Build complete!"
