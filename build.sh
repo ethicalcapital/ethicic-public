@@ -29,6 +29,10 @@ echo "   Reason: Cannot connect to external databases during Docker build"
 export USE_SQLITE=true
 export SKIP_UBICLOUD=true
 
+# Use build-specific Django settings
+export DJANGO_SETTINGS_MODULE=ethicic.build_settings
+echo "   Using DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE"
+
 # Set up SSL certificates if provided (for runtime use)
 if [ ! -z "$DB_CA_CERT" ] || [ ! -z "$DB_CLIENT_CERT" ]; then
     echo ""
@@ -58,7 +62,22 @@ echo "✅ Static files collected successfully"
 echo ""
 echo "=== Database Migrations ==="
 echo "🗄️  Running migrations (SQLite mode)..."
+echo "   USE_SQLITE=$USE_SQLITE"
 echo "   Database: $(python -c "from pathlib import Path; print(Path('db.sqlite3').resolve())")"
+
+# Double-check we're using SQLite
+python -c "
+import os
+print(f'   Python sees USE_SQLITE: {os.getenv(\"USE_SQLITE\")}')
+print(f'   Python sees UBI_DATABASE_URL: {\"SET\" if os.getenv(\"UBI_DATABASE_URL\") else \"NOT SET\"}')
+"
+
+# Show which database Django will use
+python manage.py shell -c "
+from django.conf import settings
+print(f'   Django default database engine: {settings.DATABASES[\"default\"][\"ENGINE\"]}')
+"
+
 python manage.py migrate --noinput 2>&1 || {
     echo "❌ ERROR: migrate failed"
     echo "   Check the error output above"

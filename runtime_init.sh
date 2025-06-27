@@ -9,6 +9,10 @@ echo "Time: $(date)"
 echo "Container ID: $(hostname)"
 echo ""
 
+# Reset to normal Django settings (not build settings)
+export DJANGO_SETTINGS_MODULE=ethicic.settings
+echo "Reset DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE"
+
 # Show runtime environment
 echo "Runtime Environment:"
 echo "- UBI_DATABASE_URL: $([ ! -z "$UBI_DATABASE_URL" ] && echo "SET" || echo "NOT SET")"

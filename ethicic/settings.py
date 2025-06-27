@@ -112,7 +112,16 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 UBI_DATABASE_URL = os.getenv('UBI_DATABASE_URL')
 
 # Configure databases based on environment
-if UBI_DATABASE_URL:
+# IMPORTANT: Check USE_SQLITE first for build phase
+if os.getenv('USE_SQLITE', 'False').lower() == 'true':
+    # Build phase or development - use SQLite only
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+elif UBI_DATABASE_URL:
     # Production mode: Use Ubicloud as primary with local cache
     import dj_database_url
     
@@ -175,14 +184,6 @@ elif DATABASE_URL and DATABASE_URL != 'sqlite':
         'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
     
-elif os.getenv('USE_SQLITE', 'False').lower() == 'true' or DATABASE_URL == 'sqlite':
-    # Development mode: SQLite only
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
 else:
     # Manual PostgreSQL configuration
     DATABASES = {
