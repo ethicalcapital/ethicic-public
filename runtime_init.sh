@@ -15,6 +15,7 @@ echo "Reset DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE"
 
 # Show runtime environment
 echo "Runtime Environment:"
+echo "- PORT: ${PORT:-NOT SET}"
 echo "- UBI_DATABASE_URL: $([ ! -z "$UBI_DATABASE_URL" ] && echo "SET" || echo "NOT SET")"
 echo "- REDIS_URL: $([ ! -z "$REDIS_URL" ] && echo "SET" || echo "NOT SET")"
 echo "- USE_SQLITE: $USE_SQLITE"
@@ -144,6 +145,12 @@ echo ""
 echo "Starting application with command: $@"
 echo "=========================================="
 echo ""
+
+# Ensure PORT is set (Kinsta should provide this)
+if [ -z "$PORT" ]; then
+    echo "⚠️  WARNING: PORT environment variable not set, defaulting to 8080"
+    export PORT=8080
+fi
 
 # Start the application
 exec "$@"

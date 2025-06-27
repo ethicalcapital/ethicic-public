@@ -87,6 +87,7 @@ class Command(BaseCommand):
                 
                 # Add SSL options following garden app pattern
                 conn_params['sslmode'] = 'require'
+                conn_params['connect_timeout'] = 10
                 
                 # Check for SSL certificate
                 ssl_cert_paths = [
@@ -101,6 +102,14 @@ class Command(BaseCommand):
                         conn_params['sslrootcert'] = cert_path
                         self.stdout.write(f'  Using SSL certificate: {cert_path}')
                         break
+                
+                # Debug connection parameters
+                self.stdout.write('  Connection parameters:')
+                self.stdout.write(f'    Host: {conn_params["host"]}')
+                self.stdout.write(f'    Port: {conn_params["port"]}')
+                self.stdout.write(f'    Database: {conn_params["database"]}')
+                self.stdout.write(f'    User: {conn_params["user"]}')
+                self.stdout.write(f'    SSL Mode: {conn_params["sslmode"]}')
                 
                 conn = psycopg2.connect(**conn_params)
                 cur = conn.cursor()

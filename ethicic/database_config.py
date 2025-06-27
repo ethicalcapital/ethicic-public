@@ -72,8 +72,7 @@ def get_database_config(database_url=None):
     ssl_options = {
         'application_name': 'ethicic_public',
         'sslmode': 'require',  # Use require instead of verify-full for compatibility
-        'options': '-c search_path=public,pg_catalog -c statement_timeout=60s',
-        'connect_timeout': '30',
+        'connect_timeout': '10',  # Reduce timeout to match garden app
     }
     
     # Add SSL certificate if available
