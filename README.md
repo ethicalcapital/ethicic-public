@@ -25,7 +25,8 @@ Required environment variables (set in Kinsta dashboard):
 
 Optional:
 - `DEBUG` - Set to "False" in production (default: False)
-- `UBI_DATABASE_URL` - Ubicloud database URL for importing existing content (automatically imports if set)
+- `UBI_DATABASE_URL` - Ubicloud database URL - when set, uses hybrid approach with local cache
+- `REDIS_URL` - Redis URL for session/query caching (recommended for production)
 - `EMAIL_HOST` - SMTP server for sending emails
 - `EMAIL_HOST_USER` - SMTP username
 - `EMAIL_HOST_PASSWORD` - SMTP password
@@ -78,6 +79,24 @@ python manage.py import_from_ubicloud
 - `/public_site` - Django app containing views, models, and forms
 - `/static` - Garden UI framework and custom CSS/JS
 - `/templates` - HTML templates
+
+### Hybrid Database Architecture
+
+When `UBI_DATABASE_URL` is set, the site uses a hybrid approach:
+- **Ubicloud** - Primary database for all writes and source of truth
+- **Local SQLite** - Cache for frequently accessed content (pages, blog posts)
+- **Redis** - Session storage and query result caching
+
+This approach minimizes database costs while maintaining good performance:
+1. All writes go to Ubicloud
+2. Common read queries use local cache
+3. Cache is automatically synced from Ubicloud
+4. Changes are propagated to cache via Django signals
+
+To manually sync the cache:
+```bash
+python manage.py sync_cache
+```
 
 ## License
 

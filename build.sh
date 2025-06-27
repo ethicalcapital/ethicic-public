@@ -19,10 +19,17 @@ python manage.py collectstatic --noinput || {
 }
 
 echo "Running migrations..."
+# Migrate main database
 python manage.py migrate --noinput || {
     echo "❌ migrate failed"
     exit 1
 }
+
+# If using hybrid mode, also migrate cache database
+if [ ! -z "$UBI_DATABASE_URL" ]; then
+    echo "Setting up cache database..."
+    python manage.py migrate --database=cache --noinput || echo "Cache database migration skipped"
+fi
 
 # Create superuser (don't fail if it already exists)
 echo "Creating superuser..."
@@ -72,5 +79,11 @@ python manage.py import_from_ubicloud 2>&1 || {
     echo "⚠️  Data import not available or failed - continuing with empty site"
     echo "   This is normal for initial deployments or when UBI_DATABASE_URL is not set"
 }
+
+# Sync cache if using hybrid mode
+if [ ! -z "$UBI_DATABASE_URL" ]; then
+    echo "Syncing data to local cache..."
+    python manage.py sync_cache || echo "Cache sync skipped"
+fi
 
 echo "=== Build complete! ==="

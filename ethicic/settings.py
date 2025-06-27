@@ -106,18 +106,40 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ethicic.wsgi.application'
 
-# Database
-# Check for DATABASE_URL first (Kinsta format), otherwise use individual vars
+# Database Configuration
+# Hybrid approach: Ubicloud as primary, local SQLite as cache
 DATABASE_URL = os.getenv('DATABASE_URL')
-UBI_DATABASE_URL = os.getenv('UBI_DATABASE_URL')  # Ubicloud database for data import
+UBI_DATABASE_URL = os.getenv('UBI_DATABASE_URL')
 
-if DATABASE_URL and DATABASE_URL != 'sqlite':
+# Configure databases based on environment
+if UBI_DATABASE_URL:
+    # Production mode: Use Ubicloud as primary with local cache
+    import dj_database_url
+    
+    DATABASES = {
+        # Ubicloud as primary database
+        'default': dj_database_url.parse(UBI_DATABASE_URL, conn_max_age=600),
+        'ubicloud': dj_database_url.parse(UBI_DATABASE_URL, conn_max_age=600),
+        
+        # Local SQLite cache for frequently accessed data
+        'cache': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'cache.sqlite3',
+        }
+    }
+    
+    # Use database router for hybrid approach
+    DATABASE_ROUTERS = ['public_site.db_router.HybridDatabaseRouter']
+    
+elif DATABASE_URL and DATABASE_URL != 'sqlite':
+    # Kinsta database only (fallback)
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
+    
 elif os.getenv('USE_SQLITE', 'False').lower() == 'true' or DATABASE_URL == 'sqlite':
-    # Use SQLite for initial deployment
+    # Development mode: SQLite only
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -125,6 +147,7 @@ elif os.getenv('USE_SQLITE', 'False').lower() == 'true' or DATABASE_URL == 'sqli
         }
     }
 else:
+    # Manual PostgreSQL configuration
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -146,11 +169,6 @@ else:
             ]) else {}
         }
     }
-
-# Add Ubicloud database connection if URL is provided
-if UBI_DATABASE_URL:
-    import dj_database_url
-    DATABASES['ubicloud'] = dj_database_url.parse(UBI_DATABASE_URL, conn_max_age=600)
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -252,13 +270,48 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     X_FRAME_OPTIONS = 'DENY'
 
-# Cache configuration
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': os.getenv('REDIS_URL', 'redis://127.0.0.1:6379/1'),
-    } if os.getenv('REDIS_URL') else {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
+# Cache configuration - Use Redis for query/session caching
+REDIS_URL = os.getenv('REDIS_URL')
+
+if REDIS_URL:
+    # Production: Use Redis for caching
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+            'LOCATION': REDIS_URL,
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+                'PARSER_CLASS': 'redis.connection.HiredisParser',
+                'CONNECTION_POOL_KWARGS': {
+                    'max_connections': 50,
+                    'retry_on_timeout': True,
+                },
+                'PICKLE_VERSION': -1,
+            }
+        },
+        # Separate cache for sessions
+        'session': {
+            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+            'LOCATION': REDIS_URL,
+            'KEY_PREFIX': 'session',
+            'TIMEOUT': 86400,  # 24 hours
+        }
     }
-}
+    
+    # Use Redis for sessions
+    SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+    SESSION_CACHE_ALIAS = 'session'
+    
+else:
+    # Development: Use local memory cache
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'unique-snowflake',
+        }
+    }
+
+# Cache middleware settings
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 300  # 5 minutes
+CACHE_MIDDLEWARE_KEY_PREFIX = 'ethicic'
