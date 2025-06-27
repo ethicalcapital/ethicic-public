@@ -9,8 +9,16 @@ echo "Current directory: $(pwd)"
 echo "Directory contents:"
 ls -la
 
-# Ensure we're using SQLite for initial setup
-export USE_SQLITE=true
+# Set up SSL certificates if provided
+if [ ! -z "$DB_CA_CERT" ] || [ ! -z "$DB_CLIENT_CERT" ]; then
+    echo "Setting up SSL certificates..."
+    python scripts/setup_certs.py || echo "Certificate setup skipped"
+fi
+
+# Ensure we're using SQLite for initial setup if no UBI_DATABASE_URL
+if [ -z "$UBI_DATABASE_URL" ]; then
+    export USE_SQLITE=true
+fi
 
 echo "Running Django collectstatic..."
 python manage.py collectstatic --noinput || {

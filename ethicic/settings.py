@@ -116,10 +116,47 @@ if UBI_DATABASE_URL:
     # Production mode: Use Ubicloud as primary with local cache
     import dj_database_url
     
+    # Parse base connection
+    ubicloud_config = dj_database_url.parse(UBI_DATABASE_URL, conn_max_age=600)
+    
+    # Add SSL certificate options if provided
+    ssl_options = {}
+    
+    # CA certificate for secure connection
+    if os.getenv('DB_CA_CERT'):
+        # If certificate content is provided directly
+        ca_cert_path = BASE_DIR / 'certs' / 'ca-certificate.crt'
+        ca_cert_path.parent.mkdir(exist_ok=True)
+        ca_cert_path.write_text(os.getenv('DB_CA_CERT'))
+        ssl_options['sslrootcert'] = str(ca_cert_path)
+    elif os.getenv('DB_CA_CERT_PATH'):
+        # If certificate path is provided
+        ssl_options['sslrootcert'] = os.getenv('DB_CA_CERT_PATH')
+    
+    # Client certificate if needed
+    if os.getenv('DB_CLIENT_CERT'):
+        client_cert_path = BASE_DIR / 'certs' / 'client-cert.crt'
+        client_cert_path.write_text(os.getenv('DB_CLIENT_CERT'))
+        ssl_options['sslcert'] = str(client_cert_path)
+    
+    # Client key if needed
+    if os.getenv('DB_CLIENT_KEY'):
+        client_key_path = BASE_DIR / 'certs' / 'client-key.key'
+        client_key_path.write_text(os.getenv('DB_CLIENT_KEY'))
+        ssl_options['sslkey'] = str(client_key_path)
+    
+    # SSL mode (default to require for security)
+    ssl_options['sslmode'] = os.getenv('DB_SSLMODE', 'require')
+    
+    # Apply SSL options to connection
+    if ssl_options:
+        ubicloud_config.setdefault('OPTIONS', {})
+        ubicloud_config['OPTIONS'].update(ssl_options)
+    
     DATABASES = {
-        # Ubicloud as primary database
-        'default': dj_database_url.parse(UBI_DATABASE_URL, conn_max_age=600),
-        'ubicloud': dj_database_url.parse(UBI_DATABASE_URL, conn_max_age=600),
+        # Ubicloud as primary database with SSL
+        'default': ubicloud_config,
+        'ubicloud': ubicloud_config.copy(),
         
         # Local SQLite cache for frequently accessed data
         'cache': {

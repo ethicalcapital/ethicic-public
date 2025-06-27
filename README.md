@@ -32,6 +32,13 @@ Optional:
 - `EMAIL_HOST_PASSWORD` - SMTP password
 - `CONTACT_EMAIL` - Email address for contact form submissions
 
+SSL Certificate Options (for secure Ubicloud connections):
+- `DB_CA_CERT` - CA certificate content (will be written to file)
+- `DB_CA_CERT_PATH` - Path to CA certificate file (alternative to DB_CA_CERT)
+- `DB_CLIENT_CERT` - Client certificate content (if required)
+- `DB_CLIENT_KEY` - Client key content (if required)
+- `DB_SSLMODE` - SSL mode: disable, allow, prefer, require, verify-ca, verify-full (default: require)
+
 ### Local Development
 
 1. Clone the repository
