@@ -157,7 +157,7 @@ echo ""
 echo "=== Runtime Initialization Complete ==="
 echo "✅ Ready to start web server at $(date)"
 echo ""
-echo "Starting application with command: $@"
+echo "Starting application with: $@"
 echo "=========================================="
 echo ""
 
@@ -167,7 +167,8 @@ if [ -z "$PORT" ]; then
     export PORT=8080
 fi
 
-echo "📍 Using PORT: $PORT"
+echo "📍 PORT is set to: $PORT"
+echo "📍 Gunicorn will automatically bind to 0.0.0.0:$PORT"
 
-# Start the application
+# Start the application with exec to preserve environment
 exec "$@"
