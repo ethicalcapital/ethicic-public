@@ -25,6 +25,7 @@ Required environment variables (set in Kinsta dashboard):
 
 Optional:
 - `DEBUG` - Set to "False" in production (default: False)
+- `UBI_DATABASE_URL` - Ubicloud database URL for importing existing content (automatically imports if set)
 - `EMAIL_HOST` - SMTP server for sending emails
 - `EMAIL_HOST_USER` - SMTP username
 - `EMAIL_HOST_PASSWORD` - SMTP password
@@ -48,6 +49,28 @@ Optional:
 4. Deploy
 
 The site uses Gunicorn as the WSGI server (configured in `Procfile`).
+
+During deployment, the build script (`build.sh`) will automatically:
+- Collect static files
+- Run database migrations
+- Create admin user (username: `srvo`)
+- Set up initial site structure
+- Import existing content from Ubicloud database (if `UBI_DATABASE_URL` is set)
+
+### Data Import
+
+The site will automatically attempt to import data from your existing Ubicloud database during deployment. This includes:
+- Homepage content
+- Blog posts
+- Media items
+- Recent support tickets
+
+If `UBI_DATABASE_URL` is not set or the import fails, the site will continue with an empty content structure that can be managed through the Wagtail CMS at `/cms/`.
+
+To manually run data import after deployment:
+```bash
+python manage.py import_from_ubicloud
+```
 
 ## Architecture
 

@@ -109,6 +109,7 @@ WSGI_APPLICATION = 'ethicic.wsgi.application'
 # Database
 # Check for DATABASE_URL first (Kinsta format), otherwise use individual vars
 DATABASE_URL = os.getenv('DATABASE_URL')
+UBI_DATABASE_URL = os.getenv('UBI_DATABASE_URL')  # Ubicloud database for data import
 
 if DATABASE_URL and DATABASE_URL != 'sqlite':
     import dj_database_url
@@ -145,6 +146,11 @@ else:
             ]) else {}
         }
     }
+
+# Add Ubicloud database connection if URL is provided
+if UBI_DATABASE_URL:
+    import dj_database_url
+    DATABASES['ubicloud'] = dj_database_url.parse(UBI_DATABASE_URL, conn_max_age=600)
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
