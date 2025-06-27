@@ -28,6 +28,18 @@ python manage.py test_db_connection 2>&1 || {
     echo "   Will continue with available databases"
 }
 
+# Check SSL certificate availability
+echo "=== SSL Certificate Check ==="
+if [ -f "/app/config/ssl/ubicloud-root-ca.pem" ]; then
+    echo "✅ SSL certificate found at /app/config/ssl/ubicloud-root-ca.pem"
+    export SSL_ROOT_CERT="/app/config/ssl/ubicloud-root-ca.pem"
+elif [ -f "./config/ssl/ubicloud-root-ca.pem" ]; then
+    echo "✅ SSL certificate found at ./config/ssl/ubicloud-root-ca.pem"
+    export SSL_ROOT_CERT="./config/ssl/ubicloud-root-ca.pem"
+else
+    echo "⚠️  No SSL certificate found - connection will use sslmode=require without cert validation"
+fi
+
 # Check if we need to sync from Ubicloud
 if [ ! -z "$UBI_DATABASE_URL" ] && [ -z "$SKIP_UBICLOUD" ]; then
     echo ""
@@ -37,17 +49,29 @@ if [ ! -z "$UBI_DATABASE_URL" ] && [ -z "$SKIP_UBICLOUD" ]; then
     timeout 5 python -c "
 import psycopg2
 import os
+import sys
 try:
     from urllib.parse import urlparse
     url = urlparse(os.getenv('UBI_DATABASE_URL'))
-    conn = psycopg2.connect(
-        host=url.hostname,
-        port=url.port or 5432,
-        database=url.path[1:],
-        user=url.username,
-        password=url.password,
-        connect_timeout=5
-    )
+    
+    # Connection parameters
+    conn_params = {
+        'host': url.hostname,
+        'port': url.port or 5432,
+        'database': url.path[1:],
+        'user': url.username,
+        'password': url.password,
+        'connect_timeout': 5,
+        'sslmode': 'require'
+    }
+    
+    # Add SSL certificate if available
+    ssl_cert = os.getenv('SSL_ROOT_CERT')
+    if ssl_cert and os.path.exists(ssl_cert):
+        conn_params['sslrootcert'] = ssl_cert
+        print(f'   Using SSL certificate: {ssl_cert}')
+    
+    conn = psycopg2.connect(**conn_params)
     conn.close()
     print('✅ Ubicloud is reachable')
     exit(0)

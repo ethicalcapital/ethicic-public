@@ -123,66 +123,32 @@ if os.getenv('USE_SQLITE', 'False').lower() == 'true':
     }
 elif UBI_DATABASE_URL:
     # Production mode: Use Ubicloud as primary with local cache
-    import dj_database_url
+    from .database_config import get_database_config, get_cache_database_config
     
-    # Parse base connection
-    ubicloud_config = dj_database_url.parse(UBI_DATABASE_URL, conn_max_age=600)
+    # Get Ubicloud configuration with SSL and optimization
+    ubicloud_config = get_database_config(UBI_DATABASE_URL)
     
-    # Add connection timeout to prevent hanging
-    ubicloud_config.setdefault('OPTIONS', {})
-    ubicloud_config['OPTIONS'].update({
-        'connect_timeout': 10,  # 10 second timeout
-        'options': '-c statement_timeout=30000'  # 30 second statement timeout
-    })
-    
-    # Add SSL certificate options if provided
-    ssl_options = {}
-    
-    # CA certificate for secure connection
-    if os.getenv('DB_CA_CERT'):
-        # If certificate content is provided directly
-        ca_cert_path = BASE_DIR / 'certs' / 'ca-certificate.crt'
-        ca_cert_path.parent.mkdir(exist_ok=True)
-        ca_cert_path.write_text(os.getenv('DB_CA_CERT'))
-        ssl_options['sslrootcert'] = str(ca_cert_path)
-    elif os.getenv('DB_CA_CERT_PATH'):
-        # If certificate path is provided
-        ssl_options['sslrootcert'] = os.getenv('DB_CA_CERT_PATH')
-    
-    # Client certificate if needed
-    if os.getenv('DB_CLIENT_CERT'):
-        client_cert_path = BASE_DIR / 'certs' / 'client-cert.crt'
-        client_cert_path.write_text(os.getenv('DB_CLIENT_CERT'))
-        ssl_options['sslcert'] = str(client_cert_path)
-    
-    # Client key if needed
-    if os.getenv('DB_CLIENT_KEY'):
-        client_key_path = BASE_DIR / 'certs' / 'client-key.key'
-        client_key_path.write_text(os.getenv('DB_CLIENT_KEY'))
-        ssl_options['sslkey'] = str(client_key_path)
-    
-    # SSL mode (default to require for security)
-    ssl_options['sslmode'] = os.getenv('DB_SSLMODE', 'require')
-    
-    # Apply SSL options to connection
-    if ssl_options:
-        ubicloud_config.setdefault('OPTIONS', {})
-        ubicloud_config['OPTIONS'].update(ssl_options)
-    
-    DATABASES = {
-        # Ubicloud as primary database with SSL
-        'default': ubicloud_config,
-        'ubicloud': ubicloud_config.copy(),
-        
-        # Local SQLite cache for frequently accessed data
-        'cache': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'cache.sqlite3',
+    if ubicloud_config:
+        DATABASES = {
+            # Ubicloud as primary database with SSL
+            'default': ubicloud_config,
+            'ubicloud': ubicloud_config.copy(),
+            
+            # Local SQLite cache for frequently accessed data
+            'cache': get_cache_database_config()
         }
-    }
-    
-    # Use database router for hybrid approach
-    DATABASE_ROUTERS = ['public_site.db_router.HybridDatabaseRouter']
+        
+        # Use database router for hybrid approach
+        DATABASE_ROUTERS = ['public_site.db_router.HybridDatabaseRouter']
+    else:
+        # Fallback to SQLite if configuration fails
+        print("⚠️  Failed to configure Ubicloud database, falling back to SQLite")
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
     
 elif DATABASE_URL and DATABASE_URL != 'sqlite':
     # Kinsta database only (fallback)

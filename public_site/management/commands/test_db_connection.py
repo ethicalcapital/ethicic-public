@@ -85,10 +85,22 @@ class Command(BaseCommand):
                     'password': url.password,
                 }
                 
-                # Add SSL options
-                if os.getenv('DB_CA_CERT_PATH'):
-                    conn_params['sslmode'] = os.getenv('DB_SSLMODE', 'require')
-                    conn_params['sslrootcert'] = os.getenv('DB_CA_CERT_PATH')
+                # Add SSL options following garden app pattern
+                conn_params['sslmode'] = 'require'
+                
+                # Check for SSL certificate
+                ssl_cert_paths = [
+                    os.getenv('SSL_ROOT_CERT'),
+                    os.getenv('DB_CA_CERT_PATH'),
+                    '/app/config/ssl/ubicloud-root-ca.pem',
+                    './config/ssl/ubicloud-root-ca.pem',
+                ]
+                
+                for cert_path in ssl_cert_paths:
+                    if cert_path and os.path.exists(cert_path):
+                        conn_params['sslrootcert'] = cert_path
+                        self.stdout.write(f'  Using SSL certificate: {cert_path}')
+                        break
                 
                 conn = psycopg2.connect(**conn_params)
                 cur = conn.cursor()

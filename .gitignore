@@ -38,7 +38,7 @@ cache.sqlite3
 cache.sqlite3-journal
 media/
 staticfiles/
-certs/
+# certs/ - SSL certificates need to be included for deployment
 
 # Environment files
 .env
