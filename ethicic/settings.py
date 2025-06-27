@@ -128,6 +128,13 @@ elif UBI_DATABASE_URL:
     # Parse base connection
     ubicloud_config = dj_database_url.parse(UBI_DATABASE_URL, conn_max_age=600)
     
+    # Add connection timeout to prevent hanging
+    ubicloud_config.setdefault('OPTIONS', {})
+    ubicloud_config['OPTIONS'].update({
+        'connect_timeout': 10,  # 10 second timeout
+        'options': '-c statement_timeout=30000'  # 30 second statement timeout
+    })
+    
     # Add SSL certificate options if provided
     ssl_options = {}
     

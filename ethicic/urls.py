@@ -8,6 +8,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import JsonResponse
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
@@ -15,7 +16,18 @@ from wagtail.documents import urls as wagtaildocs_urls
 # Import public site views
 from public_site import views
 
+
+def health_check(request):
+    """Simple health check endpoint for Kinsta"""
+    return JsonResponse({
+        'status': 'healthy',
+        'service': 'ethicic-public'
+    })
+
 urlpatterns = [
+    # Health check (must be first)
+    path('health/', health_check, name='health_check'),
+    
     # Admin
     path('admin/', admin.site.urls),
     path('cms/', include(wagtailadmin_urls)),
