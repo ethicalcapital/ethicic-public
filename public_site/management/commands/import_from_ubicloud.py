@@ -30,27 +30,46 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
+        self.stdout.write("\n" + "=" * 60)
+        self.stdout.write("Data Import from Ubicloud")
+        self.stdout.write("=" * 60)
+        
         # Check if Ubicloud database is configured
         if 'ubicloud' not in connections:
             self.stdout.write(
                 self.style.WARNING(
-                    'UBI_DATABASE_URL not configured. Skipping data import.'
+                    '\n⚠️  UBI_DATABASE_URL not configured'
                 )
             )
-            return  # Exit gracefully instead of sys.exit(1)
+            self.stdout.write('   Skipping data import - no source database')
+            self.stdout.write("=" * 60 + "\n")
+            return  # Exit gracefully
+
+        # Show connection info (sanitized)
+        conn_settings = connections['ubicloud'].settings_dict
+        self.stdout.write(f"\nConnection settings:")
+        self.stdout.write(f"  Host: {conn_settings.get('HOST', 'N/A')}")
+        self.stdout.write(f"  Port: {conn_settings.get('PORT', 'N/A')}")
+        self.stdout.write(f"  Database: {conn_settings.get('NAME', 'N/A')}")
+        self.stdout.write(f"  SSL Mode: {conn_settings.get('OPTIONS', {}).get('sslmode', 'N/A')}")
 
         # Test Ubicloud connection
+        self.stdout.write("\nTesting connection...")
         try:
             with connections['ubicloud'].cursor() as cursor:
-                cursor.execute("SELECT 1")
-            self.stdout.write(
-                self.style.SUCCESS('Successfully connected to Ubicloud database')
-            )
+                cursor.execute("SELECT version()")
+                version = cursor.fetchone()[0]
+                self.stdout.write(
+                    self.style.SUCCESS(f'✅ Connected to Ubicloud database')
+                )
+                self.stdout.write(f'   PostgreSQL {version.split(",")[0]}')
         except Exception as e:
             self.stdout.write(
-                self.style.WARNING(f'Could not connect to Ubicloud database: {e}')
+                self.style.ERROR(f'\n❌ Connection failed: {e}')
             )
-            self.stdout.write('Continuing without data import.')
+            self.stdout.write('   Check your UBI_DATABASE_URL and network connectivity')
+            self.stdout.write('   Continuing without data import')
+            self.stdout.write("=" * 60 + "\n")
             return  # Exit gracefully
 
         # Import data
@@ -64,9 +83,11 @@ class Command(BaseCommand):
             if not options['skip_tickets']:
                 self._import_support_tickets()
 
+        self.stdout.write("\n" + "=" * 60)
         self.stdout.write(
-            self.style.SUCCESS('Data import completed successfully!')
+            self.style.SUCCESS('✅ Data import completed successfully!')
         )
+        self.stdout.write("=" * 60 + "\n")
 
     def _import_pages(self):
         """Import Wagtail pages from Ubicloud"""

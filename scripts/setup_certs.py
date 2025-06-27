@@ -18,35 +18,66 @@ def setup_certificates():
     base_dir = Path(__file__).parent.parent
     certs_dir = base_dir / 'certs'
     
+    print("SSL Certificate Setup")
+    print("=" * 50)
+    print(f"Base directory: {base_dir}")
+    print(f"Certificates directory: {certs_dir}")
+    
     # Create certs directory if it doesn't exist
     certs_dir.mkdir(exist_ok=True)
+    print(f"✓ Created/verified certs directory")
+    
+    cert_count = 0
     
     # CA Certificate
     ca_cert = os.getenv('DB_CA_CERT')
     if ca_cert:
+        print("\nProcessing CA certificate...")
         ca_cert_path = certs_dir / 'ca-certificate.crt'
         ca_cert_path.write_text(ca_cert)
         os.chmod(ca_cert_path, 0o600)  # Secure permissions
-        print(f"✓ Created CA certificate: {ca_cert_path}")
+        
+        # Verify certificate
+        lines = ca_cert.strip().split('\n')
+        print(f"  ✓ Created: {ca_cert_path}")
+        print(f"  ✓ Size: {len(ca_cert)} bytes")
+        print(f"  ✓ Lines: {len(lines)}")
+        print(f"  ✓ Permissions: 0600 (read/write owner only)")
         
         # Set the path environment variable for the app
         os.environ['DB_CA_CERT_PATH'] = str(ca_cert_path)
+        print(f"  ✓ Set DB_CA_CERT_PATH environment variable")
+        cert_count += 1
+    else:
+        print("\n  ℹ️  No CA certificate provided")
     
     # Client Certificate
     client_cert = os.getenv('DB_CLIENT_CERT')
     if client_cert:
+        print("\nProcessing client certificate...")
         client_cert_path = certs_dir / 'client-cert.crt'
         client_cert_path.write_text(client_cert)
         os.chmod(client_cert_path, 0o600)
-        print(f"✓ Created client certificate: {client_cert_path}")
+        print(f"  ✓ Created: {client_cert_path}")
+        print(f"  ✓ Size: {len(client_cert)} bytes")
+        print(f"  ✓ Permissions: 0600")
+        cert_count += 1
+    else:
+        print("\n  ℹ️  No client certificate provided")
     
     # Client Key
     client_key = os.getenv('DB_CLIENT_KEY')
     if client_key:
+        print("\nProcessing client key...")
         client_key_path = certs_dir / 'client-key.key'
         client_key_path.write_text(client_key)
         os.chmod(client_key_path, 0o600)
-        print(f"✓ Created client key: {client_key_path}")
+        print(f"  ✓ Created: {client_key_path}")
+        print(f"  ✓ Size: {len(client_key)} bytes")
+        print(f"  ✓ Permissions: 0600")
+        cert_count += 1
+    else:
+        print("\n  ℹ️  No client key provided")
     
     # Create a README in certs directory
     readme_path = certs_dir / 'README.md'
@@ -57,8 +88,11 @@ These files are generated from environment variables during deployment.
 
 DO NOT commit these files to version control!
 """)
+    print(f"\n✓ Created README: {readme_path}")
     
-    print("Certificate setup complete.")
+    print("\n" + "=" * 50)
+    print(f"Certificate setup complete: {cert_count} certificates processed")
+    print("=" * 50)
 
 if __name__ == '__main__':
     setup_certificates()
