@@ -9,15 +9,16 @@ echo "Current directory: $(pwd)"
 echo "Directory contents:"
 ls -la
 
-# Set up SSL certificates if provided
-if [ ! -z "$DB_CA_CERT" ] || [ ! -z "$DB_CLIENT_CERT" ]; then
-    echo "Setting up SSL certificates..."
-    python scripts/setup_certs.py || echo "Certificate setup skipped"
-fi
+# IMPORTANT: During build phase, we can't connect to external databases
+# Force SQLite mode for the build process
+echo "Build phase detected - using SQLite for initial setup"
+export USE_SQLITE=true
+export SKIP_UBICLOUD=true
 
-# Ensure we're using SQLite for initial setup if no UBI_DATABASE_URL
-if [ -z "$UBI_DATABASE_URL" ]; then
-    export USE_SQLITE=true
+# Set up SSL certificates if provided (for runtime use)
+if [ ! -z "$DB_CA_CERT" ] || [ ! -z "$DB_CLIENT_CERT" ]; then
+    echo "Setting up SSL certificates for runtime..."
+    python scripts/setup_certs.py || echo "Certificate setup skipped"
 fi
 
 echo "Running Django collectstatic..."
@@ -27,17 +28,11 @@ python manage.py collectstatic --noinput || {
 }
 
 echo "Running migrations..."
-# Migrate main database
+# During build, we're in SQLite mode
 python manage.py migrate --noinput || {
     echo "❌ migrate failed"
     exit 1
 }
-
-# If using hybrid mode, also migrate cache database
-if [ ! -z "$UBI_DATABASE_URL" ]; then
-    echo "Setting up cache database..."
-    python manage.py migrate --database=cache --noinput || echo "Cache database migration skipped"
-fi
 
 # Create superuser (don't fail if it already exists)
 echo "Creating superuser..."
@@ -81,17 +76,7 @@ else:
     print('No homepage found, skipping site configuration')
 "
 
-# Import data from Ubicloud (default behavior, fails gracefully)
-echo "Attempting to import data from Ubicloud database..."
-python manage.py import_from_ubicloud 2>&1 || {
-    echo "⚠️  Data import not available or failed - continuing with empty site"
-    echo "   This is normal for initial deployments or when UBI_DATABASE_URL is not set"
-}
-
-# Sync cache if using hybrid mode
-if [ ! -z "$UBI_DATABASE_URL" ]; then
-    echo "Syncing data to local cache..."
-    python manage.py sync_cache || echo "Cache sync skipped"
-fi
+# Skip data import during build phase
+echo "Build phase - skipping data import (will run at runtime)"
 
 echo "=== Build complete! ==="

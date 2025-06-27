@@ -1,2 +1,2 @@
 release: ./build.sh
-web: gunicorn ethicic.wsgi --log-file -
+web: ./runtime_init.sh gunicorn ethicic.wsgi --log-file -
