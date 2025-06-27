@@ -3,18 +3,33 @@
 
 echo "=== Starting build script ==="
 
+# Show environment info for debugging
+echo "Python version: $(python --version)"
+echo "Current directory: $(pwd)"
+echo "Directory contents:"
+ls -la
+
 # Ensure we're using SQLite for initial setup
 export USE_SQLITE=true
 
 echo "Running Django collectstatic..."
-python manage.py collectstatic --noinput
+python manage.py collectstatic --noinput || {
+    echo "❌ collectstatic failed"
+    exit 1
+}
 
 echo "Running migrations..."
-python manage.py migrate --noinput
+python manage.py migrate --noinput || {
+    echo "❌ migrate failed"
+    exit 1
+}
 
 # Set up initial site data
 echo "Setting up initial site data..."
-python manage.py setup_site --hostname="${KINSTA_DOMAIN:-ethicic-public-svoo7.kinsta.app}"
+python manage.py setup_site --hostname="${KINSTA_DOMAIN:-ethicic-public-svoo7.kinsta.app}" || {
+    echo "❌ setup_site failed"
+    exit 1
+}
 
 # Import data from Ubicloud (default behavior, fails gracefully)
 echo "Attempting to import data from Ubicloud database..."
