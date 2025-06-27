@@ -169,6 +169,11 @@ fi
 
 echo "📍 PORT is set to: $PORT"
 echo "📍 Gunicorn will automatically bind to 0.0.0.0:$PORT"
+echo ""
+
+# Show the actual command being executed
+echo "Executing: $@"
+echo ""
 
 # Start the application with exec to preserve environment
 exec "$@"
