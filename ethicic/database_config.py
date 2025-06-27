@@ -12,25 +12,18 @@ def get_ssl_cert_path():
     Find SSL certificate following garden app's pattern
     Checks multiple locations in order of preference
     """
-    base_dir = Path(__file__).resolve().parent.parent
-    
-    cert_locations = [
-        # Environment variable override
-        os.getenv('SSL_ROOT_CERT'),
-        os.getenv('DB_CA_CERT_PATH'),
-        # Production Docker path
-        '/app/config/ssl/ubicloud-root-ca.pem',
-        # Local development path
-        base_dir / 'config' / 'ssl' / 'ubicloud-root-ca.pem',
-        # Garden shared certificate
-        base_dir.parent / 'config' / 'ssl' / 'ubicloud-root-ca.pem',
-        # Fallback certs directory
-        base_dir / 'certs' / 'ca-certificate.crt',
+    # SSL certificate paths for different environments
+    ssl_cert_paths = [
+        '/app/config/ssl/ubicloud-root-ca.pem',           # Docker/production (Kinsta)
+        '/home/ec1c/garden/ethicic-public/config/ssl/ubicloud-root-ca.pem',  # Full path
+        os.environ.get('SSL_ROOT_CERT'),                  # Environment override
+        os.environ.get('DB_CA_CERT_PATH'),                # Alternative env var
     ]
     
-    for cert_path in cert_locations:
+    # Find the first available SSL certificate
+    for cert_path in ssl_cert_paths:
         if cert_path and Path(cert_path).exists():
-            return str(cert_path)
+            return str(cert_path)  # Ensure it's a string, not Path object
     
     return None
 
@@ -49,6 +42,26 @@ def get_database_config(database_url=None):
     # Parse database URL
     parsed = urlparse(database_url)
     
+    print(f"🔍 Configuring database connection to: {parsed.hostname}")
+    print(f"   Port: {parsed.port or 5432}")
+    print(f"   Database: {parsed.path[1:]}")
+    
+    # SSL options following garden app pattern
+    ssl_options = {
+        'application_name': 'ethicic_public',
+        'sslmode': 'require',  # Use require instead of verify-full for compatibility
+        'options': '-c search_path=public,pg_catalog -c statement_timeout=60s',
+        'connect_timeout': '30',
+    }
+    
+    # Add SSL certificate if available
+    ssl_cert_path = get_ssl_cert_path()
+    if ssl_cert_path:
+        ssl_options['sslrootcert'] = ssl_cert_path
+        print(f"✅ Using SSL certificate: {ssl_cert_path}")
+    else:
+        print("⚠️  No SSL certificate found - connection will use sslmode=require without cert validation")
+    
     config = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': parsed.path[1:],  # Remove leading slash
@@ -56,23 +69,10 @@ def get_database_config(database_url=None):
         'PASSWORD': parsed.password,
         'HOST': parsed.hostname,
         'PORT': parsed.port or 5432,
+        'OPTIONS': ssl_options,
         'CONN_MAX_AGE': 600,  # 10 minutes connection pooling
         'CONN_HEALTH_CHECKS': True,  # Enable health checks
-        'OPTIONS': {
-            'application_name': 'ethicic_public',
-            'sslmode': 'require',
-            'connect_timeout': '30',
-            'options': '-c search_path=public,pg_catalog -c statement_timeout=60s',
-        }
     }
-    
-    # Add SSL certificate if available
-    ssl_cert = get_ssl_cert_path()
-    if ssl_cert:
-        config['OPTIONS']['sslrootcert'] = ssl_cert
-        print(f"✅ Using SSL certificate: {ssl_cert}")
-    else:
-        print("⚠️  No SSL certificate found - connection will use sslmode=require without cert validation")
     
     return config
 
