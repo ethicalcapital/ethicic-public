@@ -33,11 +33,20 @@ echo "=== SSL Certificate Check ==="
 if [ -f "/app/config/ssl/ubicloud-root-ca.pem" ]; then
     echo "✅ SSL certificate found at /app/config/ssl/ubicloud-root-ca.pem"
     export SSL_ROOT_CERT="/app/config/ssl/ubicloud-root-ca.pem"
+    # Verify certificate is readable
+    head -n 1 /app/config/ssl/ubicloud-root-ca.pem | grep -q "BEGIN CERTIFICATE" && echo "   Certificate format verified" || echo "   ⚠️ Certificate format issue"
+    ls -la /app/config/ssl/ubicloud-root-ca.pem
 elif [ -f "./config/ssl/ubicloud-root-ca.pem" ]; then
     echo "✅ SSL certificate found at ./config/ssl/ubicloud-root-ca.pem"
     export SSL_ROOT_CERT="./config/ssl/ubicloud-root-ca.pem"
+    # Verify certificate is readable
+    head -n 1 ./config/ssl/ubicloud-root-ca.pem | grep -q "BEGIN CERTIFICATE" && echo "   Certificate format verified" || echo "   ⚠️ Certificate format issue"
+    ls -la ./config/ssl/ubicloud-root-ca.pem
 else
     echo "⚠️  No SSL certificate found - connection will use sslmode=require without cert validation"
+    echo "   Checking directory contents:"
+    ls -la /app/config/ssl/ 2>/dev/null || echo "   /app/config/ssl/ not found"
+    ls -la ./config/ssl/ 2>/dev/null || echo "   ./config/ssl/ not found"
 fi
 
 # Check if we need to sync from Ubicloud

@@ -39,12 +39,34 @@ def get_database_config(database_url=None):
     if not database_url:
         return None
     
-    # Parse database URL
-    parsed = urlparse(database_url)
-    
-    print(f"🔍 Configuring database connection to: {parsed.hostname}")
-    print(f"   Port: {parsed.port or 5432}")
-    print(f"   Database: {parsed.path[1:]}")
+    # Parse database URL - use dj_database_url for better parsing
+    try:
+        import dj_database_url
+        base_config = dj_database_url.parse(database_url)
+        
+        print(f"🔍 Configuring database connection to: {base_config['HOST']}")
+        print(f"   Port: {base_config['PORT']}")
+        print(f"   Database: {base_config['NAME']}")
+        
+        # Extract connection details from parsed config
+        host = base_config['HOST']
+        port = base_config['PORT']
+        name = base_config['NAME']
+        user = base_config['USER']
+        password = base_config['PASSWORD']
+        
+    except ImportError:
+        # Fallback to manual parsing
+        parsed = urlparse(database_url)
+        print(f"🔍 Configuring database connection to: {parsed.hostname}")
+        print(f"   Port: {parsed.port or 5432}")
+        print(f"   Database: {parsed.path[1:]}")
+        
+        host = parsed.hostname
+        port = parsed.port or 5432
+        name = parsed.path[1:]
+        user = parsed.username
+        password = parsed.password
     
     # SSL options following garden app pattern
     ssl_options = {
@@ -64,11 +86,11 @@ def get_database_config(database_url=None):
     
     config = {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': parsed.path[1:],  # Remove leading slash
-        'USER': parsed.username,
-        'PASSWORD': parsed.password,
-        'HOST': parsed.hostname,
-        'PORT': parsed.port or 5432,
+        'NAME': name,
+        'USER': user,
+        'PASSWORD': password,
+        'HOST': host,
+        'PORT': port,
         'OPTIONS': ssl_options,
         'CONN_MAX_AGE': 600,  # 10 minutes connection pooling
         'CONN_HEALTH_CHECKS': True,  # Enable health checks
