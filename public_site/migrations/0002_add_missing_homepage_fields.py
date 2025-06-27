@@ -1,0 +1,63 @@
+# Migration to add missing fields to HomePage
+from django.db import migrations, models
+import wagtail.fields
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('public_site', '0001_initial'),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='homepage',
+            name='hero_tagline',
+            field=models.CharField(blank=True, default="We're not like other firms. Good.", max_length=100),
+        ),
+        migrations.AddField(
+            model_name='homepage',
+            name='excluded_percentage',
+            field=models.CharField(blank=True, default='57%', help_text='Percentage of S&P 500 excluded', max_length=10),
+        ),
+        migrations.AddField(
+            model_name='homepage',
+            name='since_year',
+            field=models.CharField(blank=True, default='SINCE 2021', help_text='Year established or founding info', max_length=20),
+        ),
+        migrations.AddField(
+            model_name='homepage',
+            name='trust_text',
+            field=models.CharField(blank=True, default='Trust', max_length=50),
+        ),
+        migrations.AddField(
+            model_name='homepage',
+            name='commitment_text',
+            field=models.CharField(blank=True, default='Commitment', max_length=50),
+        ),
+        migrations.AddField(
+            model_name='homepage',
+            name='consistency_text',
+            field=models.CharField(blank=True, default='Consistency', max_length=50),
+        ),
+        migrations.AddField(
+            model_name='homepage',
+            name='footer_cta_title',
+            field=models.CharField(blank=True, default='Ready to invest with purpose?', max_length=255),
+        ),
+        migrations.AddField(
+            model_name='homepage',
+            name='footer_cta_text',
+            field=models.CharField(blank=True, default='Join forward-thinking investors who refuse to profit from harm.', max_length=255),
+        ),
+        migrations.AddField(
+            model_name='homepage',
+            name='footer_cta_button_text',
+            field=models.CharField(blank=True, default='Start a Conversation', max_length=100),
+        ),
+        migrations.AddField(
+            model_name='homepage',
+            name='footer_cta_button_link',
+            field=models.CharField(blank=True, default='/contact/', max_length=255),
+        ),
+    ]

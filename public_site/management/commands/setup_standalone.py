@@ -35,25 +35,38 @@ class Command(BaseCommand):
             # Create home page if it doesn't exist
             home_page = HomePage.objects.first()
             if not home_page:
+                # Check if there's already a page at the home slug
+                existing_home = root_page.get_children().filter(slug='home').first()
+                if existing_home and not isinstance(existing_home, HomePage):
+                    # Delete the existing non-HomePage at this slug
+                    existing_home.delete()
+                    self.stdout.write('Removed existing non-HomePage at /home/')
+                
                 home_page = HomePage(
                     title='Ethical Capital',
                     slug='home',
                     hero_title='Ethical Capital',
                     hero_subtitle='Mission-driven investment management',
+                    hero_tagline="We're not like other firms. Good.",
                     live=True,
                 )
                 root_page.add_child(instance=home_page)
                 self.stdout.write(self.style.SUCCESS('✓ Created home page'))
+            else:
+                self.stdout.write('Home page already exists')
             
             # Update site to point to home page
             site = Site.objects.first()
             if site:
-                site.root_page = home_page
-                site.hostname = 'localhost'
-                site.port = 80
-                site.site_name = 'Ethical Capital'
-                site.save()
-                self.stdout.write(self.style.SUCCESS('✓ Updated site configuration'))
+                if site.root_page != home_page:
+                    site.root_page = home_page
+                    site.hostname = 'localhost'
+                    site.port = 80
+                    site.site_name = 'Ethical Capital'
+                    site.save()
+                    self.stdout.write(self.style.SUCCESS('✓ Updated site configuration'))
+                else:
+                    self.stdout.write('Site already configured correctly')
             else:
                 Site.objects.create(
                     hostname='localhost',
@@ -66,6 +79,8 @@ class Command(BaseCommand):
                 
         except Exception as e:
             self.stdout.write(self.style.ERROR(f'Error setting up site: {e}'))
+            import traceback
+            traceback.print_exc()
         
         self.stdout.write(self.style.SUCCESS('\n✓ Standalone setup complete!'))
         self.stdout.write('You can now access the site and admin at /cms/')

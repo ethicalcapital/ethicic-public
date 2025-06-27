@@ -104,6 +104,13 @@ except Exception as e:
         echo "=== Hybrid Database Mode ==="
         echo "🔄 Ubicloud database connected - setting up hybrid mode"
         
+        # Run migrations to ensure schema is up to date
+        echo ""
+        echo "📊 Running database migrations..."
+        python manage.py migrate --noinput 2>&1 || {
+            echo "⚠️  Migration completed with warnings"
+        }
+        
         # Import data from Ubicloud
         echo ""
         echo "📥 Importing data from Ubicloud..."
