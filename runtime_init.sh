@@ -16,6 +16,8 @@ echo "Reset DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE"
 # Show runtime environment
 echo "Runtime Environment:"
 echo "- PORT: ${PORT:-NOT SET}"
+echo "- All environment variables containing PORT:"
+env | grep -i port || echo "  None found"
 echo "- UBI_DATABASE_URL: $([ ! -z "$UBI_DATABASE_URL" ] && echo "SET" || echo "NOT SET")"
 echo "- REDIS_URL: $([ ! -z "$REDIS_URL" ] && echo "SET" || echo "NOT SET")"
 echo "- USE_SQLITE: $USE_SQLITE"
@@ -48,6 +50,13 @@ else
     echo "   Checking directory contents:"
     ls -la /app/config/ssl/ 2>/dev/null || echo "   /app/config/ssl/ not found"
     ls -la ./config/ssl/ 2>/dev/null || echo "   ./config/ssl/ not found"
+fi
+
+# Run connection diagnostics if available
+if [ -f "./diagnose_connection.py" ] && [ ! -z "$UBI_DATABASE_URL" ]; then
+    echo ""
+    echo "=== Running Connection Diagnostics ==="
+    python diagnose_connection.py 2>&1 || echo "Diagnostics completed with errors"
 fi
 
 # Check if we need to sync from Ubicloud
@@ -130,6 +139,12 @@ except Exception as e:
         # Disable Ubicloud for this session
         export USE_SQLITE=true
         unset UBI_DATABASE_URL
+        
+        # Setup standalone database if needed
+        echo ""
+        echo "🔧 Setting up standalone database..."
+        python manage.py migrate --noinput 2>&1 || echo "   Migration completed with warnings"
+        python manage.py setup_standalone 2>&1 || echo "   Standalone setup completed with warnings"
     fi
 else
     echo ""
@@ -151,6 +166,8 @@ if [ -z "$PORT" ]; then
     echo "⚠️  WARNING: PORT environment variable not set, defaulting to 8080"
     export PORT=8080
 fi
+
+echo "📍 Using PORT: $PORT"
 
 # Start the application
 exec "$@"
