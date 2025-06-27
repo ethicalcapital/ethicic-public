@@ -16,24 +16,26 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ethicic.settings')
 def setup_certificates():
     """Create certificate files from environment variables."""
     base_dir = Path(__file__).parent.parent
-    certs_dir = base_dir / 'certs'
+    
+    # Use config/ssl directory to match what the app expects
+    ssl_dir = base_dir / 'config' / 'ssl'
     
     print("SSL Certificate Setup")
     print("=" * 50)
     print(f"Base directory: {base_dir}")
-    print(f"Certificates directory: {certs_dir}")
+    print(f"SSL directory: {ssl_dir}")
     
-    # Create certs directory if it doesn't exist
-    certs_dir.mkdir(exist_ok=True)
-    print(f"✓ Created/verified certs directory")
+    # Create config/ssl directory if it doesn't exist
+    ssl_dir.mkdir(parents=True, exist_ok=True)
+    print(f"✓ Created/verified SSL directory")
     
     cert_count = 0
     
-    # CA Certificate
+    # CA Certificate - save as ubicloud-root-ca.pem to match expected filename
     ca_cert = os.getenv('DB_CA_CERT')
     if ca_cert:
         print("\nProcessing CA certificate...")
-        ca_cert_path = certs_dir / 'ca-certificate.crt'
+        ca_cert_path = ssl_dir / 'ubicloud-root-ca.pem'
         ca_cert_path.write_text(ca_cert)
         os.chmod(ca_cert_path, 0o600)  # Secure permissions
         
@@ -46,7 +48,8 @@ def setup_certificates():
         
         # Set the path environment variable for the app
         os.environ['DB_CA_CERT_PATH'] = str(ca_cert_path)
-        print(f"  ✓ Set DB_CA_CERT_PATH environment variable")
+        os.environ['SSL_ROOT_CERT'] = str(ca_cert_path)
+        print(f"  ✓ Set DB_CA_CERT_PATH and SSL_ROOT_CERT environment variables")
         cert_count += 1
     else:
         print("\n  ℹ️  No CA certificate provided")
@@ -55,7 +58,7 @@ def setup_certificates():
     client_cert = os.getenv('DB_CLIENT_CERT')
     if client_cert:
         print("\nProcessing client certificate...")
-        client_cert_path = certs_dir / 'client-cert.crt'
+        client_cert_path = ssl_dir / 'client-cert.crt'
         client_cert_path.write_text(client_cert)
         os.chmod(client_cert_path, 0o600)
         print(f"  ✓ Created: {client_cert_path}")
@@ -69,7 +72,7 @@ def setup_certificates():
     client_key = os.getenv('DB_CLIENT_KEY')
     if client_key:
         print("\nProcessing client key...")
-        client_key_path = certs_dir / 'client-key.key'
+        client_key_path = ssl_dir / 'client-key.key'
         client_key_path.write_text(client_key)
         os.chmod(client_key_path, 0o600)
         print(f"  ✓ Created: {client_key_path}")
@@ -79,8 +82,8 @@ def setup_certificates():
     else:
         print("\n  ℹ️  No client key provided")
     
-    # Create a README in certs directory
-    readme_path = certs_dir / 'README.md'
+    # Create a README in ssl directory
+    readme_path = ssl_dir / 'README.md'
     readme_path.write_text("""# SSL Certificates Directory
 
 This directory contains SSL certificates for secure database connections.

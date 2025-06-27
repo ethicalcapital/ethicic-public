@@ -15,9 +15,11 @@ def get_ssl_cert_path():
     # SSL certificate paths for different environments
     ssl_cert_paths = [
         '/app/config/ssl/ubicloud-root-ca.pem',           # Docker/production (Kinsta)
+        './config/ssl/ubicloud-root-ca.pem',              # Relative path from app root
         '/home/ec1c/garden/ethicic-public/config/ssl/ubicloud-root-ca.pem',  # Full path
         os.environ.get('SSL_ROOT_CERT'),                  # Environment override
         os.environ.get('DB_CA_CERT_PATH'),                # Alternative env var
+        os.environ.get('UBI_DB_CA_CERT_PATH'),            # Ubicloud specific env var
     ]
     
     # Find the first available SSL certificate
@@ -71,17 +73,21 @@ def get_database_config(database_url=None):
     # SSL options following garden app pattern
     ssl_options = {
         'application_name': 'ethicic_public',
-        'sslmode': 'require',  # Use require instead of verify-full for compatibility
         'connect_timeout': '10',  # Reduce timeout to match garden app
     }
     
-    # Add SSL certificate if available
+    # Configure SSL - try certificate first if available
     ssl_cert_path = get_ssl_cert_path()
+    
     if ssl_cert_path:
+        # Try full SSL verification with certificate first
+        ssl_options['sslmode'] = 'verify-full'
         ssl_options['sslrootcert'] = ssl_cert_path
-        print(f"✅ Using SSL certificate: {ssl_cert_path}")
+        print(f"✅ Found SSL certificate, attempting secure connection: {ssl_cert_path}")
     else:
-        print("⚠️  No SSL certificate found - connection will use sslmode=require without cert validation")
+        # Fallback to SSL without certificate verification (still encrypted)
+        ssl_options['sslmode'] = 'require'
+        print("⚠️  No SSL certificate found - using encrypted connection without verification")
     
     config = {
         'ENGINE': 'django.db.backends.postgresql',

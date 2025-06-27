@@ -81,14 +81,39 @@ try:
         'user': url.username,
         'password': url.password,
         'connect_timeout': 5,
-        'sslmode': 'require'
+        'sslmode': 'require'  # Use SSL but don't verify certificate
     }
     
-    # Add SSL certificate if available
+    # Try with certificate first if available
     ssl_cert = os.getenv('SSL_ROOT_CERT')
+    if not ssl_cert:
+        # Check other possible locations
+        for path in ['/app/config/ssl/ubicloud-root-ca.pem', './config/ssl/ubicloud-root-ca.pem']:
+            if os.path.exists(path):
+                ssl_cert = path
+                break
+    
+    connection_successful = False
+    
+    # First attempt: Try with SSL certificate if available
     if ssl_cert and os.path.exists(ssl_cert):
-        conn_params['sslrootcert'] = ssl_cert
-        print(f'   Using SSL certificate: {ssl_cert}')
+        try:
+            conn_params['sslrootcert'] = ssl_cert
+            conn_params['sslmode'] = 'verify-full'
+            print(f'   Attempting connection with SSL certificate: {ssl_cert}')
+            test_conn = psycopg2.connect(**conn_params)
+            test_conn.close()
+            print('   ✅ SSL certificate connection successful')
+            connection_successful = True
+        except Exception as e:
+            print(f'   ⚠️  SSL certificate connection failed: {e}')
+            # Remove certificate for fallback attempt
+            conn_params.pop('sslrootcert', None)
+            conn_params['sslmode'] = 'require'
+    
+    # Second attempt: Try without certificate verification
+    if not connection_successful:
+        print('   Attempting connection with SSL but no certificate verification...')
     
     conn = psycopg2.connect(**conn_params)
     conn.close()
