@@ -3,7 +3,8 @@ Management command to set up initial site data
 """
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
-from wagtail.models import Site, Page
+from django.contrib.contenttypes.models import ContentType
+from wagtail.models import Site, Page, Locale
 from public_site.models import HomePage
 
 
@@ -40,30 +41,60 @@ class Command(BaseCommand):
         else:
             self.stdout.write('Superuser already exists')
 
+        # Ensure default locale exists
+        try:
+            locale = Locale.objects.get_default()
+        except Locale.DoesNotExist:
+            # Create default locale
+            Locale.objects.create(language_code='en-us')
+            locale = Locale.objects.get_default()
+            self.stdout.write('Created default locale')
+
         # Create homepage if it doesn't exist
         if not HomePage.objects.exists():
-            # Get the root page
-            root = Page.objects.get(id=1)
-            
-            # Create homepage
-            home = HomePage(
-                title='Ethical Capital',
-                slug='home',
-                hero_title='Welcome to Ethical Capital',
-                hero_subtitle='Sustainable investing for a better future'
-            )
-            root.add_child(instance=home)
-            
-            # Set up the site
-            Site.objects.all().delete()  # Remove any existing sites
-            Site.objects.create(
-                hostname=options['hostname'],
-                root_page=home,
-                is_default_site=True
-            )
-            self.stdout.write(
-                self.style.SUCCESS('Created homepage and site configuration')
-            )
+            try:
+                # Get the root page - Wagtail should create this during migrations
+                root = Page.objects.filter(depth=1).first()
+                
+                if not root:
+                    # If no root exists, we need to run migrations first
+                    self.stdout.write(
+                        self.style.ERROR(
+                            'No root page found. Please run migrations first: python manage.py migrate'
+                        )
+                    )
+                    return
+                
+                # Create homepage
+                home = HomePage(
+                    title='Ethical Capital',
+                    slug='home',
+                    hero_title='Welcome to Ethical Capital',
+                    hero_subtitle='Sustainable investing for a better future',
+                    locale=locale
+                )
+                
+                # Save without adding as child first to get an ID
+                home.save()
+                
+                # Now add as child
+                root.add_child(instance=home)
+                
+                # Set up the site
+                Site.objects.all().delete()  # Remove any existing sites
+                Site.objects.create(
+                    hostname=options['hostname'],
+                    root_page=home,
+                    is_default_site=True
+                )
+                self.stdout.write(
+                    self.style.SUCCESS('Created homepage and site configuration')
+                )
+            except Exception as e:
+                self.stdout.write(
+                    self.style.ERROR(f'Failed to create homepage: {e}')
+                )
+                self.stdout.write('Site setup will continue without homepage')
         else:
             self.stdout.write('Homepage already exists')
             
