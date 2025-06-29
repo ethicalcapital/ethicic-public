@@ -16,7 +16,7 @@ python manage.py setup_site
 
 # Try to import from Ubicloud
 echo "Attempting data import from Ubicloud..."
-python manage.py import_from_ubicloud || echo "Data import skipped or failed"
+python manage.py safe_import_from_ubicloud || echo "Data import skipped or failed"
 
 echo "=== Setup complete! ==="
 echo ""

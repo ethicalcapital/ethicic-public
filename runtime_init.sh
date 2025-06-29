@@ -214,7 +214,7 @@ except Exception:
         echo "   This may take a few moments..."
         
         start_time=$(date +%s)
-        python manage.py import_from_ubicloud 2>&1 || {
+        python manage.py safe_import_from_ubicloud 2>&1 || {
             echo "⚠️  Data import failed or skipped"
             echo "   The site will start with empty content"
         }
