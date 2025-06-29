@@ -176,8 +176,14 @@ except Exception as e:
         # Run migrations to ensure schema is up to date
         echo ""
         echo "📊 Running database migrations..."
-        python manage.py migrate --noinput 2>&1 || {
-            echo "⚠️  Migration completed with warnings"
+        
+        # First, try to fake-apply existing migrations to avoid conflicts
+        echo "   Checking for existing schema conflicts..."
+        python manage.py migrate --fake-initial --noinput 2>&1 || {
+            echo "   ⚠️  Fake-initial failed, trying regular migration..."
+            python manage.py migrate --noinput 2>&1 || {
+                echo "   ⚠️  Migration completed with warnings"
+            }
         }
         
         # Import data from Ubicloud

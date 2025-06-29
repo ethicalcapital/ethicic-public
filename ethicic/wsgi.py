@@ -26,8 +26,19 @@ try:
     # Run database migrations on startup
     print("📊 Running database migrations...")
     from django.core.management import call_command
-    call_command('migrate', verbosity=0, interactive=False)
-    print("✅ Database migrations completed")
+    try:
+        # Try fake-initial first to handle existing schemas
+        call_command('migrate', fake_initial=True, verbosity=0, interactive=False)
+        print("✅ Database migrations completed (fake-initial)")
+    except Exception as e:
+        print(f"⚠️  Fake-initial failed: {e}")
+        try:
+            # Fall back to regular migration
+            call_command('migrate', verbosity=0, interactive=False)
+            print("✅ Database migrations completed (regular)")
+        except Exception as e2:
+            print(f"⚠️  Migration warnings: {e2}")
+            print("   Site will start but may have schema issues")
     
     # Collect static files (essential for CSS/JS serving)
     print("📁 Collecting static files...")
