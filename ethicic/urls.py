@@ -120,6 +120,43 @@ def serve_css(request, filename):
     except Exception as e:
         raise Http404(f"Error reading CSS file: {e}")
 
+def debug_static_file(request, filepath):
+    """Debug what's happening with static file requests"""
+    import os
+    from django.conf import settings
+    from django.http import JsonResponse
+    
+    full_path = os.path.join(settings.STATIC_ROOT, filepath)
+    
+    debug_info = {
+        'requested_path': filepath,
+        'full_path': full_path,
+        'static_root': str(settings.STATIC_ROOT),
+        'file_exists': os.path.exists(full_path),
+        'static_root_exists': os.path.exists(settings.STATIC_ROOT),
+        'directory_contents': []
+    }
+    
+    if os.path.exists(full_path):
+        debug_info['file_size'] = os.path.getsize(full_path)
+        if filepath.endswith('.css'):
+            try:
+                with open(full_path, 'r', encoding='utf-8') as f:
+                    content = f.read()[:200]  # First 200 chars
+                debug_info['file_preview'] = content
+            except Exception as e:
+                debug_info['read_error'] = str(e)
+    
+    # Check directory contents
+    dir_path = os.path.dirname(full_path)
+    if os.path.exists(dir_path):
+        try:
+            debug_info['directory_contents'] = os.listdir(dir_path)[:10]
+        except Exception as e:
+            debug_info['directory_error'] = str(e)
+    
+    return JsonResponse(debug_info)
+
 def emergency_homepage(request):
     """Emergency bypass homepage for debugging"""
     from django.http import HttpResponse
@@ -157,6 +194,7 @@ urlpatterns = [
     path('test/', simple_test, name='simple_test'),
     path('debug-homepage/', debug_homepage, name='debug_homepage'),
     path('debug-static/', debug_static, name='debug_static'),
+    path('debug-file/<path:filepath>', debug_static_file, name='debug_static_file'),
     path('emergency-css/<str:filename>', serve_css, name='serve_css'),
     path('favicon.ico', favicon_view, name='favicon'),
     
@@ -178,14 +216,55 @@ urlpatterns = [
 ]
 
 # Serve static and media files
-# Force Django to serve static files in production (bypassing WhiteNoise issues)
-from django.views.static import serve
-from django.urls import re_path
-import os
+# Custom static file serving with explicit MIME types
+def serve_static_with_mimetype(request, path):
+    """Serve static files with explicit MIME types"""
+    import os
+    import mimetypes
+    from django.http import HttpResponse, Http404
+    from django.conf import settings
+    
+    # Security check
+    if '..' in path or path.startswith('/'):
+        raise Http404("Invalid path")
+    
+    file_path = os.path.join(settings.STATIC_ROOT, path)
+    
+    if not os.path.exists(file_path) or not os.path.isfile(file_path):
+        raise Http404("File not found")
+    
+    # Determine MIME type
+    content_type, _ = mimetypes.guess_type(file_path)
+    
+    # Force correct MIME types for common file types
+    if path.endswith('.css'):
+        content_type = 'text/css'
+    elif path.endswith('.js'):
+        content_type = 'application/javascript'
+    elif path.endswith('.json'):
+        content_type = 'application/json'
+    elif not content_type:
+        content_type = 'application/octet-stream'
+    
+    try:
+        if content_type.startswith('text/') or content_type in ['application/javascript', 'application/json']:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+        else:
+            with open(file_path, 'rb') as f:
+                content = f.read()
+        
+        response = HttpResponse(content, content_type=content_type)
+        response['Cache-Control'] = 'max-age=3600'  # 1 hour cache
+        return response
+    except Exception as e:
+        raise Http404(f"Error reading file: {e}")
 
-# Always serve static files directly
+from django.urls import re_path
+
+# Use custom static file serving
 urlpatterns += [
-    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve_static_with_mimetype, name='static_files'),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]
 
