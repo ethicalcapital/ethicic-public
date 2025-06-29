@@ -36,10 +36,16 @@ def simple_test(request):
     """Simple test endpoint that doesn't require database"""
     return JsonResponse({'message': 'Hello from ethicic-public!', 'status': 'ok'})
 
+def favicon_view(request):
+    """Simple favicon handler to prevent 500 errors"""
+    from django.http import HttpResponse
+    return HttpResponse(status=204)  # No content
+
 urlpatterns = [
     # Health check (must be first)
     path('health/', health_check, name='health_check'),
     path('test/', simple_test, name='simple_test'),
+    path('favicon.ico', favicon_view, name='favicon'),
     
     # Admin
     path('admin/', admin.site.urls),

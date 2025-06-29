@@ -51,8 +51,27 @@ def custom_404(request, exception):
 
 
 def custom_500(request):
-    """Custom 500 error page"""
-    return render(request, '500.html', status=500)
+    """Custom 500 error page with fallback"""
+    try:
+        return render(request, '500.html', status=500)
+    except Exception as e:
+        # Fallback if template rendering fails
+        from django.http import HttpResponse
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.error(f"Error handler failed to render template: {e}")
+        
+        html = """
+        <!DOCTYPE html>
+        <html>
+        <head><title>Server Error</title></head>
+        <body>
+            <h1>500 - Server Error</h1>
+            <p>An error occurred while processing your request.</p>
+        </body>
+        </html>
+        """
+        return HttpResponse(html, status=500, content_type='text/html')
 
 # Import standalone constants
 from .standalone_constants import (
@@ -135,13 +154,13 @@ def contact_form_submit(request):
 
             # Create support ticket
             ticket = SupportTicket.objects.create(
-                first_name=first_name,
-                last_name=last_name,
+                name=contact_data["name"],
                 email=contact_data["email"],
+                company=contact_data.get("company", ""),
                 subject=f"{contact_data['subject']} - {contact_data.get('company', 'Individual')}",
                 message=contact_data["message"],
-                category=contact_data["subject"],
-                status='open'
+                ticket_type="contact",
+                status='new'
             )
 
             logger.info("Contact form submitted successfully, created ticket #%s", ticket.id)
@@ -264,12 +283,11 @@ def newsletter_signup(request):
                 # Fallback to SupportTicket if CRM models not available
                 logger.warning("CRM models not available, falling back to SupportTicket")
                 SupportTicket.objects.create(
-                    first_name="Newsletter",
-                    last_name="Subscriber",
+                    name="Newsletter Subscriber",
                     email=email,
                     subject="Newsletter Signup",
                     message="Newsletter subscription request",
-                    category="general",
+                    ticket_type="newsletter",
                     status="resolved",
                 )
 
@@ -383,13 +401,12 @@ def onboarding_form_submit(request):
             full_name = f"{form_data['first_name']} {form_data['last_name']}"
 
             SupportTicket.objects.create(
-                first_name=form_data['first_name'],
-                last_name=form_data['last_name'],
+                name=full_name,
                 email=form_data['email'],
                 subject=f"Onboarding Application - {full_name}",
                 message=f"Onboarding application submitted with ${form_data['initial_investment']:,.0f} initial investment",
-                category="account",
-                status="open",
+                ticket_type="onboarding",
+                status="new",
             )
 
             messages.success(
@@ -492,13 +509,13 @@ def contact_api(request):
 
             # Create support ticket
             ticket = SupportTicket.objects.create(
-                first_name=contact_data["name"].split()[0] if contact_data["name"] else "",
-                last_name=" ".join(contact_data["name"].split()[1:]) if len(contact_data["name"].split()) > 1 else "",
+                name=contact_data["name"],
                 email=contact_data["email"],
+                company=contact_data.get("company", ""),
                 subject=f"{contact_data['subject']} - {contact_data.get('company', 'Individual')}",
                 message=contact_data["message"],
-                category=contact_data["subject"],
-                status="open",
+                ticket_type="contact",
+                status="new",
             )
 
             # Send notification email (if configured)
@@ -523,9 +540,7 @@ Support Ticket ID: {ticket.id}
                     send_compliance_email(
                         subject=f"New Contact Form: {contact_data['subject']}",
                         message=message,
-                        from_email=settings.DEFAULT_FROM_EMAIL,
-                        recipient_list=[settings.CONTACT_EMAIL],
-                        fail_silently=True,
+                        recipient_email=settings.CONTACT_EMAIL,
                     )
                 except Exception:
                     logger.exception("Failed to send contact form email")
@@ -574,12 +589,11 @@ def newsletter_api(request):
 
             # Create a simple support ticket to track newsletter signups
             SupportTicket.objects.create(
-                first_name="Newsletter",
-                last_name="Subscriber",
+                name="Newsletter Subscriber",
                 email=email,
                 subject="Newsletter Signup",
                 message="Newsletter subscription request via API",
-                category="general",
+                ticket_type="newsletter",
                 status="resolved",
             )
 
@@ -1088,9 +1102,9 @@ def garden_interest_registration(request):
         # Create a support ticket to track Garden interest
         try:
             SupportTicket.objects.create(
-                first_name=name.split(' ')[0] if ' ' in name else name,
-                last_name=' '.join(name.split(' ')[1:]) if ' ' in name else '',
+                name=name,
                 email=email,
+                company=company,
                 subject=f"Garden Platform Interest - {role if role else 'Professional'}",
                 message=f"""Garden Platform Access Request:
 
@@ -1100,8 +1114,9 @@ Interest Areas: {', '.join(interest_areas)}
 
 Message:
 {message}""",
-                category="garden_interest",
-                status="open",
+                ticket_type="contact",
+                priority="high",
+                status="new",
             )
         except Exception as e:
             logger.warning("Could not create support ticket for Garden interest: %s", e)
