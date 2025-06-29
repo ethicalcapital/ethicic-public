@@ -151,10 +151,10 @@ class NewsletterSubscriptionFlowTest(BasePublicSiteTestCase, FormTestMixin):
         # Mock existing contact
         existing_contact = Mock()
         existing_contact.opt_in_marketing = False
-        existing_contact.preferences = {}
         existing_contact.notes = 'Existing notes'
         
-        # Mock preferences.get() method
+        # Mock preferences as a Mock object instead of a regular dict
+        existing_contact.preferences = Mock()
         existing_contact.preferences.get = Mock(return_value=False)
         
         mock_contact_model.objects.get_or_create.return_value = (existing_contact, False)
@@ -444,7 +444,7 @@ class MediaBrowsingFlowTest(WagtailPublicSiteTestCase, APITestMixin):
 
 
 @override_settings(TESTING=True)
-class ErrorHandlingFlowTest(BasePublicSiteTestCase):
+class ErrorHandlingFlowTest(BasePublicSiteTestCase, FormTestMixin):
     """Test error handling in user flows."""
     
     def test_contact_form_spam_detection_flow(self):

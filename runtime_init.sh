@@ -9,24 +9,45 @@ echo "Time: $(date)"
 echo "Container ID: $(hostname)"
 echo ""
 
-# Install Python dependencies if not already installed
-echo "=== Python Dependencies Check ==="
-if ! command -v gunicorn &> /dev/null; then
-    echo "📦 Installing Python dependencies..."
-    if command -v uv &> /dev/null; then
-        echo "   Using uv for installation..."
-        uv sync
-    elif command -v pip &> /dev/null; then
-        echo "   Using pip for installation..."
-        pip install -r requirements.txt
-    else
-        echo "❌ No Python package manager found!"
-        exit 1
-    fi
-    echo "✅ Dependencies installed"
-else
-    echo "✅ Dependencies already available"
-fi
+# Check Python environment
+echo "=== Python Environment Check ==="
+echo "Python executable: $(which python 2>/dev/null || echo 'Not found')"
+echo "Python3 executable: $(which python3 2>/dev/null || echo 'Not found')"
+echo "Pip executable: $(which pip 2>/dev/null || echo 'Not found')"
+echo "Pip3 executable: $(which pip3 2>/dev/null || echo 'Not found')"
+echo "UV executable: $(which uv 2>/dev/null || echo 'Not found')"
+
+# Check if dependencies are already available
+echo "=== Dependencies Check ==="
+echo "Gunicorn: $(which gunicorn 2>/dev/null || echo 'Not found')"
+echo "Django: $(python -c 'import django; print(django.__version__)' 2>/dev/null || echo 'Not found')"
+
+# Check Python path and installed packages
+echo "=== Python Path Information ==="
+python -c "
+import sys
+print('Python version:', sys.version)
+print('Python path:')
+for path in sys.path:
+    print('  ', path)
+print('Installed packages check:')
+try:
+    import django
+    print('  ✅ Django available:', django.__version__)
+except ImportError:
+    print('  ❌ Django not available')
+try:
+    import gunicorn
+    print('  ✅ Gunicorn available:', gunicorn.__version__)
+except ImportError:
+    print('  ❌ Gunicorn not available')
+" 2>/dev/null || echo "Python not available for diagnostics"
+
+# Try to find gunicorn in various locations
+echo "=== Searching for Gunicorn ==="
+find /usr -name "gunicorn*" 2>/dev/null | head -5 || echo "No results from /usr search"
+find /opt -name "gunicorn*" 2>/dev/null | head -5 || echo "No results from /opt search"
+find . -name "gunicorn*" 2>/dev/null | head -5 || echo "No results from current directory search"
 
 # Reset to normal Django settings (not build settings)
 export DJANGO_SETTINGS_MODULE=ethicic.settings
@@ -230,5 +251,18 @@ echo ""
 echo "Executing: $@"
 echo ""
 
-# Start the application with exec to preserve environment
-exec "$@"
+# Check if the command contains gunicorn and if gunicorn is available
+if [[ "$*" == *"gunicorn"* ]] && ! command -v gunicorn &> /dev/null; then
+    echo "⚠️  Gunicorn not found, falling back to Django development server"
+    echo "   This is not ideal for production but will allow the site to start"
+    
+    # Extract port from environment or default
+    PORT=${PORT:-8080}
+    
+    # Start Django development server instead
+    echo "🚀 Starting Django development server on 0.0.0.0:$PORT"
+    exec python manage.py runserver 0.0.0.0:$PORT
+else
+    # Start the application with exec to preserve environment
+    exec "$@"
+fi
