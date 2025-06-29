@@ -50,14 +50,13 @@ class ContactInquiryFlowTest(BasePublicSiteTestCase, FormTestMixin):
         ticket = SupportTicket.objects.first()
         self.assertIsNotNone(ticket)
         self.assertEqual(ticket.email, 'test@example.com')
-        self.assertEqual(ticket.status, 'open')
+        self.assertEqual(ticket.status, 'new')  # Default status is 'new'
         self.assertIn('general', ticket.subject)
         self.assertIn('Test Company', ticket.subject)
         
         # Step 5: Verify ticket details
-        self.assertEqual(ticket.first_name, 'Test')
-        self.assertEqual(ticket.last_name, 'User')
-        self.assertEqual(ticket.category, 'general')
+        self.assertEqual(ticket.name, 'Test User')
+        self.assertEqual(ticket.ticket_type, 'contact')
         self.assertIn('learn more about your investment services', ticket.message)
     
     def test_investment_inquiry_flow(self):
@@ -78,7 +77,7 @@ class ContactInquiryFlowTest(BasePublicSiteTestCase, FormTestMixin):
         ticket = SupportTicket.objects.first()
         self.assertEqual(ticket.email, 'jane@investmentfirm.com')
         self.assertIn('Investment Firm LLC', ticket.subject)
-        self.assertEqual(ticket.category, 'investment_inquiry')
+        self.assertEqual(ticket.ticket_type, 'contact')
     
     def test_adviser_partnership_inquiry_flow(self):
         """Test adviser partnership inquiry flow."""
@@ -95,7 +94,7 @@ class ContactInquiryFlowTest(BasePublicSiteTestCase, FormTestMixin):
         
         # Verify high-priority handling for advisers
         ticket = SupportTicket.objects.first()
-        self.assertEqual(ticket.category, 'adviser_partnership')
+        self.assertEqual(ticket.ticket_type, 'contact')
         self.assertIn('Registered Investment Advisors', ticket.subject)
     
     @patch('public_site.views.requests')
@@ -210,12 +209,11 @@ class OnboardingFlowTest(BasePublicSiteTestCase, FormTestMixin):
         
         # Step 6: Verify onboarding ticket was created
         ticket = SupportTicket.objects.first()
-        self.assertEqual(ticket.first_name, 'Sarah')
-        self.assertEqual(ticket.last_name, 'Investor')
+        self.assertEqual(ticket.name, 'Sarah Investor')
         self.assertIn('Onboarding Application', ticket.subject)
         self.assertIn('$100,000', ticket.message)
-        self.assertEqual(ticket.status, 'open')
-        self.assertEqual(ticket.category, 'account')
+        self.assertEqual(ticket.status, 'new')
+        self.assertEqual(ticket.ticket_type, 'onboarding')
     
     def test_onboarding_validation_flow(self):
         """Test onboarding with validation errors."""
@@ -263,9 +261,8 @@ class APIIntegrationFlowTest(BasePublicSiteTestCase, APITestMixin):
         # Step 3: Verify ticket was created
         ticket = SupportTicket.objects.get(id=result['ticket_id'])
         self.assertEqual(ticket.email, 'api@external.com')
-        self.assertEqual(ticket.first_name, 'API')
-        self.assertEqual(ticket.last_name, 'Integration Test')
-        self.assertEqual(ticket.category, 'partnership')
+        self.assertEqual(ticket.name, 'API Integration Test')
+        self.assertEqual(ticket.ticket_type, 'contact')
     
     def test_newsletter_api_flow(self):
         """Test newsletter subscription via API."""
@@ -344,9 +341,8 @@ class GardenPlatformFlowTest(BasePublicSiteTestCase, APITestMixin):
         
         # Step 4: Verify ticket was created
         ticket = SupportTicket.objects.first()
-        self.assertEqual(ticket.first_name, 'Jane')
-        self.assertEqual(ticket.last_name, 'Adviser')
-        self.assertEqual(ticket.category, 'garden_interest')
+        self.assertEqual(ticket.name, 'Jane Adviser')
+        self.assertEqual(ticket.ticket_type, 'contact')
         self.assertIn('Chief Investment Officer', ticket.subject)
         self.assertIn('$100M', ticket.message)
     

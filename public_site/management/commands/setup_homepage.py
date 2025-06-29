@@ -1,24 +1,56 @@
 """
-Management command to set up the homepage for production deployment.
+Management command to set up the complete site structure for production deployment.
 """
 from django.core.management.base import BaseCommand
+from django.contrib.auth.models import User
 from wagtail.models import Site, Page
-from public_site.models import HomePage
+from public_site.models import HomePage, BlogIndexPage, ContactPage, AboutPage
 
 
 class Command(BaseCommand):
-    help = 'Set up the homepage and site configuration'
+    help = 'Set up the complete site structure including homepage and essential pages'
 
     def handle(self, *args, **options):
-        """Set up the homepage and site configuration."""
+        """Set up the complete site structure."""
+        
+        self.stdout.write(self.style.SUCCESS("Setting up complete site structure..."))
+        
+        # Create superuser if none exists
+        self.setup_superuser()
         
         # Get root page
         root = Page.get_first_root_node()
         self.stdout.write(f"Root page: {root.title} (ID: {root.id})")
         
-        # Delete any existing sites
+        # Delete any existing sites to start fresh
         sites_deleted = Site.objects.all().delete()
         self.stdout.write(f"Cleared {sites_deleted[0]} existing sites")
+        
+        # Set up homepage
+        homepage = self.setup_homepage(root)
+        
+        # Set up essential pages
+        self.setup_essential_pages(homepage)
+        
+        # Configure site
+        self.setup_site(homepage)
+        
+        self.stdout.write(self.style.SUCCESS("Site setup complete!"))
+    
+    def setup_superuser(self):
+        """Create superuser if none exists."""
+        if not User.objects.filter(is_superuser=True).exists():
+            User.objects.create_superuser(
+                username='admin',
+                email='admin@ethicic.com', 
+                password='admin123'  # Should be changed in production
+            )
+            self.stdout.write(self.style.SUCCESS("Created superuser admin/admin123"))
+        else:
+            self.stdout.write("Superuser already exists")
+    
+    def setup_homepage(self, root):
+        """Set up the homepage."""
         
         # Check if HomePage already exists
         existing_homepage = HomePage.objects.first()
@@ -87,6 +119,76 @@ class Command(BaseCommand):
                 return
         
         # Create site pointing to homepage
+        try:
+            site = Site.objects.create(
+                hostname='*',  # Accept any hostname
+                port=80,
+                root_page=homepage,
+                is_default_site=True,
+                site_name='Ethical Capital'
+            )
+            
+            self.stdout.write(self.style.SUCCESS(f"Site created: {site.hostname}:{site.port} -> {homepage.title}"))
+            self.stdout.write(f"Homepage URL: {homepage.url}")
+            self.stdout.write(f"Homepage live: {homepage.live}")
+            self.stdout.write(f"Homepage content type: {homepage.content_type}")
+            
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f"Error creating site: {e}"))
+            
+        return homepage
+    
+    def setup_essential_pages(self, homepage):
+        """Create essential pages for the site."""
+        self.stdout.write("Creating essential pages...")
+        
+        # About page
+        try:
+            about_page = AboutPage(
+                title='About Us',
+                slug='about',
+                mission_statement='<p>Our mission is to provide ethical investment management.</p>',
+                team_intro='<p>Meet our experienced team.</p>',
+                company_story='<p>Founded to bridge the gap between values and investing.</p>'
+            )
+            homepage.add_child(instance=about_page)
+            about_page.save_revision().publish()
+            self.stdout.write(f"  ✓ Created About page")
+        except Exception as e:
+            self.stdout.write(f"  ✗ About page: {e}")
+        
+        # Blog index
+        try:
+            blog_index = BlogIndexPage(
+                title='Blog',
+                slug='blog', 
+                intro_text='<p>Insights on ethical investing and market commentary.</p>'
+            )
+            homepage.add_child(instance=blog_index)
+            blog_index.save_revision().publish()
+            self.stdout.write(f"  ✓ Created Blog index")
+        except Exception as e:
+            self.stdout.write(f"  ✗ Blog index: {e}")
+        
+        # Contact page
+        try:
+            contact_page = ContactPage(
+                title='Contact',
+                slug='contact',
+                intro_text='<p>Get in touch to learn more about our services.</p>',
+                show_contact_form=True,
+                email='hello@ethicic.com',
+                phone='555-123-4567',
+                address='<p>123 Investment St<br>Suite 100<br>City, State 12345</p>'
+            )
+            homepage.add_child(instance=contact_page)
+            contact_page.save_revision().publish()
+            self.stdout.write(f"  ✓ Created Contact page")
+        except Exception as e:
+            self.stdout.write(f"  ✗ Contact page: {e}")
+    
+    def setup_site(self, homepage):
+        """Configure the site to point to the homepage."""
         try:
             site = Site.objects.create(
                 hostname='*',  # Accept any hostname

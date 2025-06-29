@@ -408,7 +408,7 @@ def onboarding_form_submit(request):
                 name=full_name,
                 email=form_data['email'],
                 subject=f"Onboarding Application - {full_name}",
-                message=f"Onboarding application submitted with ${form_data['initial_investment']:,.0f} initial investment",
+                message=f"Onboarding application submitted with ${float(form_data['initial_investment']):,.0f} initial investment",
                 ticket_type="onboarding",
                 status="new",
             )

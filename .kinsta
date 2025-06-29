@@ -1,0 +1,14 @@
+# Kinsta Application Hosting Configuration
+
+# Build command
+build_command = "bash kinsta-build.sh"
+
+# Start command  
+start_command = "python manage.py runserver 0.0.0.0:8080"
+
+# Environment variables
+env_vars = [
+    "SECRET_KEY",
+    "DATABASE_URL", 
+    "DEBUG"
+]
