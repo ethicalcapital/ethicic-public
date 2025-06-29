@@ -29,9 +29,13 @@ from wagtail.models import Page
 
 # Try to import Query, fallback if not available
 try:
-    from wagtail.search.models import Query
+    from wagtail.contrib.search_promotions.models import Query
 except ImportError:
-    Query = None
+    try:
+        # Fallback to old location for backward compatibility
+        from wagtail.search.models import Query
+    except ImportError:
+        Query = None
 
 from .forms import (
     AccessibleContactForm,

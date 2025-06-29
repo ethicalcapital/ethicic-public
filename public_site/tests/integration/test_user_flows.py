@@ -155,6 +155,9 @@ class NewsletterSubscriptionFlowTest(BasePublicSiteTestCase, FormTestMixin):
         existing_contact.preferences = {}
         existing_contact.notes = 'Existing notes'
         
+        # Mock preferences.get() method
+        existing_contact.preferences.get = Mock(return_value=False)
+        
         mock_contact_model.objects.get_or_create.return_value = (existing_contact, False)
         
         newsletter_data = self.create_test_newsletter_data()
@@ -162,8 +165,9 @@ class NewsletterSubscriptionFlowTest(BasePublicSiteTestCase, FormTestMixin):
         with patch('public_site.views.CRM_AVAILABLE', True):
             response = self.submit_form('/newsletter/subscribe/', newsletter_data)
         
-        # Verify contact was updated
+        # Verify contact was updated (the view sets this to True)
         self.assertTrue(existing_contact.opt_in_marketing)
+        # Verify save was called
         existing_contact.save.assert_called_once()
 
 

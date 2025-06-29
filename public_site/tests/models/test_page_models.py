@@ -402,25 +402,22 @@ class SupportTicketTest(TestCase):
     def test_support_ticket_creation(self):
         """Test creating a support ticket."""
         ticket = SupportTicket.objects.create(
-            first_name="John",
-            last_name="Doe",
+            name="John Doe",
             email="john.doe@example.com",
             subject="Test Subject",
             message="Test message content",
-            category="general",
-            status="open"
+            status="new"
         )
         
-        self.assertEqual(ticket.full_name, "John Doe")
-        self.assertEqual(ticket.status, "open")
+        self.assertEqual(ticket.name, "John Doe")
+        self.assertEqual(ticket.status, "new")
         self.assertEqual(str(ticket), f"#{ticket.id} - Test Subject - john.doe@example.com")
     
     def test_support_ticket_ordering(self):
         """Test support tickets are ordered by creation date."""
         # Create tickets with different timestamps
         old_ticket = SupportTicket.objects.create(
-            first_name="Old",
-            last_name="Ticket",
+            name="Old Ticket",
             email="old@example.com",
             subject="Old",
             message="Old message"
@@ -431,8 +428,7 @@ class SupportTicketTest(TestCase):
         time.sleep(0.1)
         
         new_ticket = SupportTicket.objects.create(
-            first_name="New",
-            last_name="Ticket",
+            name="New Ticket",
             email="new@example.com",
             subject="New",
             message="New message"
