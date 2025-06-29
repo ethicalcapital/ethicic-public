@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  # Main web application
+  app:
+    build: .
+    image: ethicic-public:latest
+    container_name: ethicic-public-app
+    # ports:
+    #   - "8080:8080"
+    environment:
+      - DJANGO_SETTINGS_MODULE=ethicic.settings
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=False
+      - ALLOWED_HOSTS=ec1c.com,www.ec1c.com,localhost,127.0.0.1,ethicic-public-app
+      - UBI_DATABASE_URL=${UBI_DATABASE_URL}
+      - USE_SQLITE=false
+      - DATABASE_URL=${DATABASE_URL}
+      # - REDIS_URL=${REDIS_URL}  # Temporarily disabled for homepage creation
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_PORT=${EMAIL_PORT}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - EMAIL_USE_TLS=${EMAIL_USE_TLS}
+      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL}
+      - CONTACT_EMAIL=${CONTACT_EMAIL}
+      - DB_SSLMODE=${DB_SSLMODE}
+    volumes:
+      - ./config/ssl:/app/config/ssl:ro
+      - static_files:/app/staticfiles
+      - media_files:/app/media
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8080/health/', timeout=10)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - ethicic-network
+
+  # Cloudflare Tunnel
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: ethicic-cloudflared
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    restart: unless-stopped
+    networks:
+      - ethicic-network
+    depends_on:
+      - app
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:20241/metrics", "||", "exit", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Redis cache (optional but recommended)
+  redis:
+    image: redis:7-alpine
+    container_name: ethicic-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - ethicic-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+volumes:
+  static_files:
+  media_files:
+  redis_data:
+
+networks:
+  ethicic-network:
+    driver: bridge

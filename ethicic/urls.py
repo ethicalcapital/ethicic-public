@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from public_site.homepage_view import homepage_view
 
 
 def health_check(request):
@@ -121,41 +122,73 @@ def serve_css(request, filename):
         raise Http404(f"Error reading CSS file: {e}")
 
 def debug_static_file(request, filepath):
-    """Debug what's happening with static file requests"""
+    """Serve static files with proper MIME types"""
     import os
+    import mimetypes
     from django.conf import settings
-    from django.http import JsonResponse
+    from django.http import HttpResponse, Http404, JsonResponse
     
+    # For CSS and other static files, serve them directly
     full_path = os.path.join(settings.STATIC_ROOT, filepath)
     
-    debug_info = {
-        'requested_path': filepath,
-        'full_path': full_path,
-        'static_root': str(settings.STATIC_ROOT),
-        'file_exists': os.path.exists(full_path),
-        'static_root_exists': os.path.exists(settings.STATIC_ROOT),
-        'directory_contents': []
-    }
-    
-    if os.path.exists(full_path):
-        debug_info['file_size'] = os.path.getsize(full_path)
+    # Special handling for missing static files - return appropriate empty content instead of 404
+    if not os.path.exists(full_path):
         if filepath.endswith('.css'):
-            try:
-                with open(full_path, 'r', encoding='utf-8') as f:
-                    content = f.read()[:200]  # First 200 chars
-                debug_info['file_preview'] = content
-            except Exception as e:
-                debug_info['read_error'] = str(e)
+            response = HttpResponse('/* CSS file not found - serving empty CSS to prevent MIME type errors */', content_type='text/css')
+            response['Cache-Control'] = 'max-age=60'  # Short cache for missing files
+            return response
+        elif filepath.endswith('.js'):
+            response = HttpResponse('// JS file not found', content_type='application/javascript')
+            response['Cache-Control'] = 'max-age=60'
+            return response
+        elif filepath.endswith(('.png', '.jpg', '.jpeg', '.gif', '.ico')):
+            # Return a 1x1 transparent pixel for missing images
+            from base64 import b64decode
+            pixel = b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==')
+            response = HttpResponse(pixel, content_type='image/png')
+            response['Cache-Control'] = 'max-age=60'
+            return response
+        elif filepath.endswith('.json'):
+            response = HttpResponse('{}', content_type='application/json')
+            response['Cache-Control'] = 'max-age=60'
+            return response
     
-    # Check directory contents
-    dir_path = os.path.dirname(full_path)
-    if os.path.exists(dir_path):
-        try:
-            debug_info['directory_contents'] = os.listdir(dir_path)[:10]
-        except Exception as e:
-            debug_info['directory_error'] = str(e)
+    if not os.path.exists(full_path):
+        raise Http404(f"Static file not found: {filepath}")
     
-    return JsonResponse(debug_info)
+    # Get MIME type
+    content_type, _ = mimetypes.guess_type(full_path)
+    if not content_type:
+        # Default MIME types for common extensions
+        if filepath.endswith('.css'):
+            content_type = 'text/css'
+        elif filepath.endswith('.js'):
+            content_type = 'application/javascript'
+        elif filepath.endswith('.png'):
+            content_type = 'image/png'
+        elif filepath.endswith('.jpg') or filepath.endswith('.jpeg'):
+            content_type = 'image/jpeg'
+        elif filepath.endswith('.svg'):
+            content_type = 'image/svg+xml'
+        else:
+            content_type = 'application/octet-stream'
+    
+    try:
+        # For text files, read as text
+        if content_type.startswith('text/') or content_type in ['application/javascript', 'image/svg+xml']:
+            with open(full_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+        else:
+            # For binary files, read as binary
+            with open(full_path, 'rb') as f:
+                content = f.read()
+        
+        response = HttpResponse(content, content_type=content_type)
+        response['Cache-Control'] = 'max-age=3600'  # 1 hour cache
+        return response
+        
+    except Exception as e:
+        raise Http404(f"Error reading static file: {e}")
 
 def emergency_homepage(request):
     """Emergency bypass homepage for debugging"""
@@ -189,6 +222,12 @@ def emergency_homepage(request):
     return HttpResponse(html)
 
 urlpatterns = [
+    # Static file serving - must be first to handle static requests
+    path('static/<path:filepath>', debug_static_file, name='debug_static_serve'),
+    
+    # Homepage - MUST be first after static
+    path('', homepage_view, name='homepage'),
+    
     # Health check 
     path('health/', health_check, name='health_check'),
     path('test/', simple_test, name='simple_test'),
@@ -211,7 +250,7 @@ urlpatterns = [
     # Include all public_site URLs
     path('', include('public_site.urls')),
     
-    # Wagtail CMS URLs - this will handle homepage and all other Wagtail pages
+    # Wagtail CMS URLs - this will handle other Wagtail pages
     path('', include(wagtail_urls)),
 ]
 

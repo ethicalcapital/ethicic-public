@@ -16,14 +16,15 @@ class HybridDatabaseRouter:
     """
     
     # Models that should be cached locally for performance
+    # TEMPORARILY DISABLED - All models should use Ubicloud until cache sync is implemented
     CACHED_MODELS = {
-        'public_site.homepage',
-        'public_site.blogpost',
-        'public_site.mediaitem',
-        'public_site.encyclopediaentry',
-        'wagtailcore.page',
-        'wagtailcore.site',
-        'taggit.tag',
+        # 'public_site.homepage',
+        # 'public_site.blogpost', 
+        # 'public_site.mediaitem',
+        # 'public_site.encyclopediaentry',
+        # 'wagtailcore.page',
+        # 'wagtailcore.site',
+        # 'taggit.tag',
     }
     
     # Models that should always use remote database

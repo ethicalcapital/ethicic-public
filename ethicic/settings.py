@@ -117,13 +117,23 @@ UBI_DATABASE_URL = os.getenv('UBI_DATABASE_URL')
 # Configure databases based on environment
 # IMPORTANT: Check USE_SQLITE first for build phase
 if os.getenv('USE_SQLITE', 'False').lower() == 'true':
-    # Build phase or development - use SQLite only
+    # Use SQLite as default but still include Ubicloud if available
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+    
+    # Add Ubicloud database for importing if configured
+    if UBI_DATABASE_URL:
+        try:
+            from .database_config import get_database_config
+            ubicloud_config = get_database_config(UBI_DATABASE_URL)
+            if ubicloud_config:
+                DATABASES['ubicloud'] = ubicloud_config
+        except Exception as e:
+            pass  # Silently continue if Ubicloud database cannot be configured
 elif UBI_DATABASE_URL:
     # Production mode: Try Ubicloud, fallback to SQLite
     from .database_config import get_database_config, get_cache_database_config
@@ -166,16 +176,11 @@ elif UBI_DATABASE_URL:
     if ubicloud_config and test_database_connection(ubicloud_config):
         print("✅ Ubicloud database connection successful")
         DATABASES = {
-            # Ubicloud as primary database with SSL
+            # Ubicloud as primary database with SSL - SIMPLIFIED
             'default': ubicloud_config,
-            'ubicloud': ubicloud_config.copy(),
-            
-            # Local SQLite cache for frequently accessed data
-            'cache': get_cache_database_config()
         }
         
-        # Use database router for hybrid approach
-        DATABASE_ROUTERS = ['public_site.db_router.HybridDatabaseRouter']
+        # Removed hybrid database setup to fix routing issues
     else:
         # Fallback to SQLite if Ubicloud is unavailable
         print("⚠️  Ubicloud database unavailable, using SQLite fallback")
@@ -357,15 +362,6 @@ if REDIS_URL:
         'default': {
             'BACKEND': 'django.core.cache.backends.redis.RedisCache',
             'LOCATION': REDIS_URL,
-            'OPTIONS': {
-                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-                'PARSER_CLASS': 'redis.connection.HiredisParser',
-                'CONNECTION_POOL_KWARGS': {
-                    'max_connections': 50,
-                    'retry_on_timeout': True,
-                },
-                'PICKLE_VERSION': -1,
-            }
         },
         # Separate cache for sessions
         'session': {
