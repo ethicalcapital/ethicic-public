@@ -15,10 +15,26 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ethicic.settings')
 # Initialize Django
 application = get_wsgi_application()
 
-# Run database setup on first startup
+# Run essential setup on first startup
 try:
     from django.core.management import call_command
     from django.db import connection
+    from django.conf import settings
+    import os
+    
+    # Ensure static files are collected
+    print("📁 Ensuring static files are available...")
+    try:
+        # Check if staticfiles directory exists and has content
+        static_root = settings.STATIC_ROOT
+        if not os.path.exists(static_root) or not os.listdir(static_root):
+            print("   Collecting static files...")
+            call_command('collectstatic', verbosity=0, interactive=False, clear=False)
+            print("✅ Static files collected")
+        else:
+            print("✅ Static files already available")
+    except Exception as e:
+        print(f"⚠️  Static file collection failed: {e}")
     
     # Quick check if basic tables exist
     with connection.cursor() as cursor:
