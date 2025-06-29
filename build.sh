@@ -20,9 +20,18 @@ if command -v python &> /dev/null; then
     
     # Try to collect static files with build-safe settings
     echo "📁 Attempting to collect static files..."
-    python manage.py collectstatic --noinput --clear 2>&1 || {
+    
+    # First create static directories to ensure they exist
+    mkdir -p static staticfiles
+    
+    # Try collectstatic with safer options
+    python manage.py collectstatic --noinput --ignore="*.scss" --ignore="*.less" 2>&1 || {
         echo "⚠️  Static files collection failed (will retry at runtime)"
-        echo "   This is normal if templates reference dynamic content"
+        echo "   This is normal during build phase - runtime will handle this"
+        
+        # Ensure basic static directory structure exists
+        mkdir -p staticfiles/css staticfiles/js staticfiles/images
+        echo "📁 Created basic static file structure for runtime"
     }
     
     # Basic Django validation (skip deployment checks in build)

@@ -247,7 +247,14 @@ STATICFILES_DIRS = [
 ]
 
 # WhiteNoise settings for static file serving
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Use safer storage during build phase, full storage in production
+if os.getenv('USE_SQLITE') == 'true':
+    # Build phase: use simpler storage to avoid manifest issues
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+else:
+    # Production: use full manifest storage
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 WHITENOISE_USE_FINDERS = True
 WHITENOISE_AUTOREFRESH = DEBUG
 
