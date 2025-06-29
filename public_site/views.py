@@ -1114,7 +1114,7 @@ Interest Areas: {', '.join(interest_areas)}
 
 Message:
 {message}""",
-                ticket_type="contact",
+                ticket_type="garden_interest",
                 priority="high",
                 status="new",
             )

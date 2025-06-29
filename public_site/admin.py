@@ -17,17 +17,18 @@ class SupportTicketAdmin(admin.ModelAdmin):
 
     list_display: ClassVar[list] = [
         "id",
-        "first_name",
-        "last_name",
+        "name",
         "email",
+        "company",
         "subject",
-        "category",
+        "ticket_type",
         "status",
+        "priority",
         "created_at",
         "updated_at",
     ]
-    list_filter: ClassVar[list] = ["status", "category", "created_at", "updated_at"]
-    search_fields: ClassVar[list] = ["first_name", "last_name", "email", "subject", "message"]
+    list_filter: ClassVar[list] = ["status", "ticket_type", "priority", "created_at", "updated_at"]
+    search_fields: ClassVar[list] = ["name", "email", "company", "subject", "message"]
     readonly_fields: ClassVar[list] = ["created_at", "updated_at"]
     list_per_page = 25
     ordering: ClassVar[list] = ["-created_at"]
@@ -35,12 +36,16 @@ class SupportTicketAdmin(admin.ModelAdmin):
     fieldsets = (
         (
             "Contact Information",
-            {"fields": ("first_name", "last_name", "email", "phone")},
+            {"fields": ("name", "email", "company")},
         ),
-        ("Inquiry Details", {"fields": ("subject", "category", "message")}),
+        ("Inquiry Details", {"fields": ("ticket_type", "subject", "message")}),
         (
-            "Status & Assignment",
-            {"fields": ("status", "assigned_to", "internal_notes")},
+            "Status & Priority",
+            {"fields": ("status", "priority", "resolved_at")},
+        ),
+        (
+            "Internal",
+            {"fields": ("notes",)},
         ),
         (
             "Metadata",

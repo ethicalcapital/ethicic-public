@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thank You for Your Application</title>
+</head>
+<body>
+    <h1>Application Received</h1>
+    <h2>Thank You for Your Application</h2>
+    <p>We've received your application and will be in touch within 24 hours.</p>
+    
+    {% if next_steps %}
+    <h3>Next Steps:</h3>
+    <ul>
+    {% for step in next_steps %}
+        <li>{{ step }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

@@ -1687,53 +1687,61 @@ class SupportTicket(models.Model):
     """Support ticket/contact form submission."""
 
     # Contact information
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=255)
     email = models.EmailField()
-    phone = models.CharField(max_length=20, blank=True)
+    company = models.CharField(max_length=255, blank=True, null=True)
+
+    # Ticket type
+    ticket_type = models.CharField(
+        max_length=20,
+        default="contact",
+        choices=[
+            ("contact", "Contact Form"),
+            ("newsletter", "Newsletter Signup"),
+            ("onboarding", "Onboarding Request"),
+        ],
+    )
 
     # Inquiry details
-    subject = models.CharField(max_length=200, blank=True)
+    subject = models.CharField(max_length=255)
     message = models.TextField()
-    category = models.CharField(
-        max_length=100,
-        blank=True,
+
+    # Status and priority
+    status = models.CharField(
+        max_length=20,
+        default="new",
         choices=[
-            ("account", "Account Questions"),
-            ("investment", "Investment Questions"),
-            ("technical", "Technical Support"),
-            ("general", "General Inquiry"),
+            ("new", "New"),
+            ("in_progress", "In Progress"),
+            ("resolved", "Resolved"),
+            ("closed", "Closed"),
+        ],
+    )
+    priority = models.CharField(
+        max_length=10,
+        default="medium",
+        choices=[
+            ("low", "Low"),
+            ("medium", "Medium"),
+            ("high", "High"),
+            ("urgent", "Urgent"),
         ],
     )
 
     # Metadata
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.CharField(
-        max_length=20,
-        default="open",
-        choices=[
-            ("open", "Open"),
-            ("in_progress", "In Progress"),
-            ("resolved", "Resolved"),
-            ("closed", "Closed"),
-        ],
-    )
+    resolved_at = models.DateTimeField(blank=True, null=True)
 
     # Internal notes
-    internal_notes = models.TextField(
-        blank=True, help_text="Internal notes (not visible to customer)",
+    notes = models.TextField(
+        blank=True, help_text="Internal notes about this ticket",
     )
-    assigned_to = models.CharField(max_length=100, blank=True)
 
     class Meta:
         verbose_name = "Support Ticket"
-        ordering: ClassVar[list] = ["-created_at"]
-
-    @property
-    def full_name(self):
-        """Return the full name combining first and last name."""
-        return f"{self.first_name} {self.last_name}".strip()
+        verbose_name_plural = "Support Tickets"
+        ordering = ["-created_at"]
 
     def __str__(self):
         return (

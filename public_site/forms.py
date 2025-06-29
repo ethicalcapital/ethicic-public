@@ -474,7 +474,7 @@ class AccessibleNewsletterForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = "post"
-        self.helper.form_action = "/newsletter/subscribe/"
+        self.helper.form_action = "/newsletter/signup/"
         self.helper.form_class = "newsletter-form"
         self.helper.form_id = "newsletter-signup"
 

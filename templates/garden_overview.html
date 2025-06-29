@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Garden Platform Overview</title>
+</head>
+<body>
+    <h1>Garden Platform</h1>
+    
+    {% if garden_features %}
+    <h2>Features:</h2>
+    {% for feature in garden_features %}
+    <div>
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.description }}</p>
+        <ul>
+        {% for highlight in feature.highlights %}
+            <li>{{ highlight }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+    {% endif %}
+    
+    {% if platform_login_url %}
+    <p><a href="{{ platform_login_url }}">Login to Garden Platform</a></p>
+    {% endif %}
+</body>
+</html>
