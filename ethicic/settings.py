@@ -247,12 +247,16 @@ STATICFILES_DIRS = [
 ]
 
 # WhiteNoise settings for static file serving
-# Force simpler storage to avoid manifest issues in production
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# Use basic storage without compression to ensure proper MIME types
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 WHITENOISE_USE_FINDERS = True
-WHITENOISE_AUTOREFRESH = DEBUG
-WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br']
-WHITENOISE_MAX_AGE = 31536000  # 1 year
+WHITENOISE_AUTOREFRESH = True  # Always refresh to ensure files are served
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br', 'css', 'js']
+WHITENOISE_MAX_AGE = 0  # No caching for debugging
+WHITENOISE_MIMETYPES = {
+    '.css': 'text/css',
+    '.js': 'application/javascript',
+}
 
 # Media files
 MEDIA_URL = '/media/'

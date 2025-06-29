@@ -95,6 +95,31 @@ def debug_static(request):
     
     return JsonResponse(static_info)
 
+def serve_css(request, filename):
+    """Emergency CSS serving function"""
+    import os
+    from django.conf import settings
+    from django.http import HttpResponse, Http404
+    
+    # Security: only serve CSS files
+    if not filename.endswith('.css'):
+        raise Http404("Not a CSS file")
+    
+    file_path = os.path.join(settings.STATIC_ROOT, 'css', filename)
+    
+    if not os.path.exists(file_path):
+        raise Http404("CSS file not found")
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        response = HttpResponse(content, content_type='text/css')
+        response['Cache-Control'] = 'max-age=3600'  # 1 hour cache
+        return response
+    except Exception as e:
+        raise Http404(f"Error reading CSS file: {e}")
+
 def emergency_homepage(request):
     """Emergency bypass homepage for debugging"""
     from django.http import HttpResponse
@@ -132,6 +157,7 @@ urlpatterns = [
     path('test/', simple_test, name='simple_test'),
     path('debug-homepage/', debug_homepage, name='debug_homepage'),
     path('debug-static/', debug_static, name='debug_static'),
+    path('emergency-css/<str:filename>', serve_css, name='serve_css'),
     path('favicon.ico', favicon_view, name='favicon'),
     
     # Admin
@@ -151,10 +177,10 @@ urlpatterns = [
     path('', include(wagtail_urls)),
 ]
 
-# Serve media files in development
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# Serve static and media files
+# Always serve static files to ensure they work regardless of DEBUG setting
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Custom error handlers
 handler404 = 'public_site.views.custom_404'
