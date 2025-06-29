@@ -41,10 +41,66 @@ def favicon_view(request):
     from django.http import HttpResponse
     return HttpResponse(status=204)  # No content
 
+def debug_homepage(request):
+    """Debug homepage bypass for testing"""
+    try:
+        from wagtail.models import Site
+        from public_site.models import HomePage
+        
+        sites = list(Site.objects.all())
+        homepages = list(HomePage.objects.all())
+        
+        debug_info = {
+            'message': 'Debug homepage endpoint',
+            'sites_count': len(sites),
+            'homepages_count': len(homepages),
+            'sites': [{'hostname': s.hostname, 'root_page_title': s.root_page.title if s.root_page else 'None'} for s in sites],
+            'homepages': [{'title': h.title, 'live': h.live, 'url': h.url} for h in homepages]
+        }
+        
+        return JsonResponse(debug_info)
+    except Exception as e:
+        return JsonResponse({'error': str(e), 'type': type(e).__name__})
+
+def emergency_homepage(request):
+    """Emergency bypass homepage for debugging"""
+    from django.http import HttpResponse
+    html = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Ethical Capital - Emergency Mode</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; }
+            .status { background: #e8f5e8; padding: 20px; border-radius: 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="status">
+            <h1>Ethical Capital Investment Collaborative</h1>
+            <p><strong>Status:</strong> Emergency mode - site is operational</p>
+            <p><strong>Working endpoints:</strong></p>
+            <ul>
+                <li><a href="/health/">Health Check</a></li>
+                <li><a href="/test/">Simple Test</a></li>
+                <li><a href="/debug-homepage/">Debug Info</a></li>
+                <li><a href="/cms/">Admin Panel</a></li>
+            </ul>
+            <p>If you're seeing this, the application is running correctly but Wagtail routing may need configuration.</p>
+        </div>
+    </body>
+    </html>
+    """
+    return HttpResponse(html)
+
 urlpatterns = [
-    # Health check (must be first)
+    # EMERGENCY: Direct root route bypass to test if Wagtail is the issue
+    path('', emergency_homepage, name='emergency_homepage'),
+    
+    # Health check 
     path('health/', health_check, name='health_check'),
     path('test/', simple_test, name='simple_test'),
+    path('debug-homepage/', debug_homepage, name='debug_homepage'),
     path('favicon.ico', favicon_view, name='favicon'),
     
     # Admin
@@ -55,10 +111,10 @@ urlpatterns = [
     path('documents/', include(wagtaildocs_urls)),
     
     # Include all public_site URLs
-    path('', include('public_site.urls')),
+    path('wagtail/', include('public_site.urls')),
     
-    # Wagtail CMS URLs (should be last)
-    path('', include(wagtail_urls)),
+    # Wagtail CMS URLs (moved to wagtail/ path for now)
+    path('wagtail/', include(wagtail_urls)),
 ]
 
 # Serve media files in development
