@@ -30,23 +30,18 @@ class ContactInquiryFlowTest(BasePublicSiteTestCase, FormTestMixin):
     
     def test_general_inquiry_flow(self):
         """Test a complete general inquiry flow from form to ticket."""
-        # Step 1: User visits contact page
-        contact_page_response = self.client.get('/contact/')
-        if contact_page_response.status_code == 404:
-            self.skipTest("Contact page not available - Wagtail pages not set up")
-        self.assertEqual(contact_page_response.status_code, 200)
-        
-        # Step 2: User fills out and submits contact form
+        # Test contact form submission directly (no page dependency)
+        # Step 1: User fills out and submits contact form
         contact_data = self.create_test_contact_data()
         contact_data['subject'] = 'general'
         contact_data['message'] = 'I would like to learn more about your investment services.'
         
         submit_response = self.submit_form('/contact/submit/', contact_data)
         
-        # Step 3: Verify redirect to contact page with success message
+        # Step 2: Verify redirect to contact page with success message
         self.assert_redirect(submit_response, '/contact/')
         
-        # Step 4: Verify support ticket was created
+        # Step 3: Verify support ticket was created
         ticket = SupportTicket.objects.first()
         self.assertIsNotNone(ticket)
         self.assertEqual(ticket.email, 'test@example.com')
@@ -54,7 +49,7 @@ class ContactInquiryFlowTest(BasePublicSiteTestCase, FormTestMixin):
         self.assertIn('general', ticket.subject)
         self.assertIn('Test Company', ticket.subject)
         
-        # Step 5: Verify ticket details
+        # Step 4: Verify ticket details
         self.assertEqual(ticket.name, 'Test User')
         self.assertEqual(ticket.ticket_type, 'contact')
         self.assertIn('learn more about your investment services', ticket.message)
@@ -122,24 +117,19 @@ class NewsletterSubscriptionFlowTest(BasePublicSiteTestCase, FormTestMixin):
     """Test newsletter subscription user flow."""
     
     def test_newsletter_signup_from_blog(self):
-        """Test newsletter signup flow from blog sidebar."""
-        # Step 1: User visits blog page
-        blog_response = self.client.get('/blog/')
-        if blog_response.status_code == 404:
-            self.skipTest("Blog page not available - Wagtail pages not set up")
-        self.assertEqual(blog_response.status_code, 200)
-        
-        # Step 2: User enters email in newsletter form
+        """Test newsletter signup flow (tests form submission directly)."""
+        # Test newsletter form submission directly (no page dependency)
+        # Step 1: User enters email in newsletter form
         newsletter_data = self.create_test_newsletter_data()
         newsletter_data['email'] = 'blog_reader@example.com'
         
-        # Step 3: Submit newsletter form
-        response = self.submit_form('/newsletter/subscribe/', newsletter_data)
+        # Step 2: Submit newsletter form
+        response = self.submit_form('/newsletter/signup/', newsletter_data)
         
-        # Step 4: Verify redirect back to referring page
+        # Step 3: Verify redirect back to referring page
         self.assertEqual(response.status_code, 302)
         
-        # Step 5: Verify ticket was created
+        # Step 4: Verify ticket was created
         ticket = SupportTicket.objects.first()
         self.assertEqual(ticket.email, 'blog_reader@example.com')
         self.assertEqual(ticket.subject, 'Newsletter Signup')
@@ -176,13 +166,8 @@ class OnboardingFlowTest(BasePublicSiteTestCase, FormTestMixin):
     
     def test_complete_onboarding_flow(self):
         """Test complete onboarding flow from form to confirmation."""
-        # Step 1: User visits onboarding page
-        onboarding_page = self.client.get('/onboarding/')
-        if onboarding_page.status_code == 404:
-            self.skipTest("Onboarding page not available - Wagtail pages not set up")
-        self.assertEqual(onboarding_page.status_code, 200)
-        
-        # Step 2: User fills out comprehensive onboarding form
+        # Test onboarding form submission directly (no page dependency)
+        # Step 1: User fills out comprehensive onboarding form
         onboarding_data = self.create_test_onboarding_data()
         onboarding_data.update({
             'first_name': 'Sarah',
@@ -196,18 +181,18 @@ class OnboardingFlowTest(BasePublicSiteTestCase, FormTestMixin):
             'impact_areas': ['renewable_energy', 'healthcare'],
         })
         
-        # Step 3: Submit onboarding form
+        # Step 2: Submit onboarding form
         response = self.submit_form('/onboarding/submit/', onboarding_data)
         
-        # Step 4: Verify redirect to thank you page
+        # Step 3: Verify redirect to thank you page
         self.assert_redirect(response, '/onboarding/thank-you/')
         
-        # Step 5: Follow redirect to thank you page
+        # Step 4: Follow redirect to thank you page
         thank_you_response = self.client.get('/onboarding/thank-you/')
         self.assertEqual(thank_you_response.status_code, 200)
         self.assertIn('Application Received', thank_you_response.content.decode())
         
-        # Step 6: Verify onboarding ticket was created
+        # Step 5: Verify onboarding ticket was created
         ticket = SupportTicket.objects.first()
         self.assertEqual(ticket.name, 'Sarah Investor')
         self.assertIn('Onboarding Application', ticket.subject)
@@ -217,11 +202,7 @@ class OnboardingFlowTest(BasePublicSiteTestCase, FormTestMixin):
     
     def test_onboarding_validation_flow(self):
         """Test onboarding with validation errors."""
-        # Check if onboarding page exists first
-        onboarding_check = self.client.get('/onboarding/')
-        if onboarding_check.status_code == 404:
-            self.skipTest("Onboarding page not available - Wagtail pages not set up")
-            
+        # Test onboarding form validation directly (no page dependency)
         # Invalid data - below minimum investment
         invalid_data = self.create_test_onboarding_data()
         invalid_data['initial_investment'] = '10000'  # Below $25k minimum

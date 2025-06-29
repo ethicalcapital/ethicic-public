@@ -44,9 +44,9 @@ try:
         except Exception:
             print("🔧 Setting up database...")
             try:
-                # Try migrations
-                call_command('migrate', verbosity=0, interactive=False)
-                print("✅ Migrations completed")
+                # Fix migration conflicts first
+                call_command('fix_migration_conflict')
+                print("✅ Migration conflicts resolved")
                 
                 # Set up homepage
                 call_command('setup_homepage')
