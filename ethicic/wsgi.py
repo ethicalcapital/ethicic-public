@@ -23,6 +23,17 @@ try:
     from django.conf import settings
     print(f"✅ Django settings loaded: DEBUG={settings.DEBUG}")
     
+    # Run database migrations on startup
+    print("📊 Running database migrations...")
+    from django.core.management import call_command
+    call_command('migrate', verbosity=0, interactive=False)
+    print("✅ Database migrations completed")
+    
+    # Collect static files
+    print("📁 Collecting static files...")
+    call_command('collectstatic', verbosity=0, interactive=False)
+    print("✅ Static files collected")
+    
     # Test database connection
     from django.db import connection
     with connection.cursor() as cursor:
