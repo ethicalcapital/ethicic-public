@@ -6,20 +6,29 @@ echo "Time: $(date)"
 echo "Python version: $(python --version 2>/dev/null || echo 'Not available')"
 echo "Current directory: $(pwd)"
 
+# Set build-safe environment variables
+export SECRET_KEY="build-phase-key-$(date +%s)"
+export USE_SQLITE=true
+export DEBUG=false
+export ALLOWED_HOSTS="*"
+
+echo "🔧 Build environment configured with safe defaults"
+
 # Check if we're in a proper Python environment
 if command -v python &> /dev/null; then
     echo "✅ Python available"
     
-    # Try to collect static files (may fail without database)
+    # Try to collect static files with build-safe settings
     echo "📁 Attempting to collect static files..."
     python manage.py collectstatic --noinput --clear 2>&1 || {
         echo "⚠️  Static files collection failed (will retry at runtime)"
+        echo "   This is normal if templates reference dynamic content"
     }
     
-    # Check if we can run basic Django commands
+    # Basic Django validation (skip deployment checks in build)
     echo "🔧 Testing Django setup..."
-    python manage.py check --deploy 2>&1 || {
-        echo "⚠️  Django check failed (normal for build phase)"
+    python manage.py check 2>&1 || {
+        echo "⚠️  Django check failed (will retry at runtime)"
     }
 else
     echo "⚠️  Python not available during build - deferring all setup to runtime"

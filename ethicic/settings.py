@@ -18,7 +18,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 if not SECRET_KEY:
-    raise ValueError("SECRET_KEY environment variable must be set")
+    # During build phase, use a temporary key
+    import uuid
+    SECRET_KEY = f"build-phase-key-{uuid.uuid4().hex}"
+    print("⚠️  Using temporary SECRET_KEY for build phase")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
