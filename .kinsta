@@ -1,14 +1,14 @@
 # Kinsta Application Hosting Configuration
 
-# Build command
-build_command = "bash kinsta-build.sh"
-
-# Start command  
-start_command = "python manage.py runserver 0.0.0.0:8080"
+# Use Docker for build
+build_method = "docker"
 
 # Environment variables
 env_vars = [
     "SECRET_KEY",
     "DATABASE_URL", 
-    "DEBUG"
+    "DEBUG",
+    "UBI_DATABASE_URL",
+    "DB_CA_CERT",
+    "KINSTA_DOMAIN"
 ]
