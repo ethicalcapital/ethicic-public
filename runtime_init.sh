@@ -9,6 +9,25 @@ echo "Time: $(date)"
 echo "Container ID: $(hostname)"
 echo ""
 
+# Install Python dependencies if not already installed
+echo "=== Python Dependencies Check ==="
+if ! command -v gunicorn &> /dev/null; then
+    echo "📦 Installing Python dependencies..."
+    if command -v uv &> /dev/null; then
+        echo "   Using uv for installation..."
+        uv sync
+    elif command -v pip &> /dev/null; then
+        echo "   Using pip for installation..."
+        pip install -r requirements.txt
+    else
+        echo "❌ No Python package manager found!"
+        exit 1
+    fi
+    echo "✅ Dependencies installed"
+else
+    echo "✅ Dependencies already available"
+fi
+
 # Reset to normal Django settings (not build settings)
 export DJANGO_SETTINGS_MODULE=ethicic.settings
 echo "Reset DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE"
@@ -26,10 +45,14 @@ echo ""
 
 # Test database connectivity
 echo "=== Database Connectivity Test ==="
-python manage.py test_db_connection 2>&1 || {
-    echo "⚠️  Database connection test failed (non-fatal)"
-    echo "   Will continue with available databases"
-}
+if command -v python &> /dev/null; then
+    python manage.py test_db_connection 2>&1 || {
+        echo "⚠️  Database connection test failed (non-fatal)"
+        echo "   Will continue with available databases"
+    }
+else
+    echo "⚠️  Python not available for database test (non-fatal)"
+fi
 
 # Check SSL certificate availability
 echo "=== SSL Certificate Check ==="
@@ -53,7 +76,7 @@ else
 fi
 
 # Run connection diagnostics if available
-if [ -f "./diagnose_connection.py" ] && [ ! -z "$UBI_DATABASE_URL" ]; then
+if [ -f "./diagnose_connection.py" ] && [ ! -z "$UBI_DATABASE_URL" ] && command -v python &> /dev/null; then
     echo ""
     echo "=== Running Connection Diagnostics ==="
     python diagnose_connection.py 2>&1 || echo "Diagnostics completed with errors"

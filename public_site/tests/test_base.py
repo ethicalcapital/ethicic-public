@@ -56,17 +56,23 @@ class BasePublicSiteTestCase(TestCase):
             'last_name': 'User',
             'email': 'onboarding@example.com',
             'phone': '555-123-4567',
+            'location': 'New York, NY',
             'initial_investment': '50000',
             'monthly_contribution': '1000',
+            'time_horizon': '5-10',
             'accredited_investor': True,
             'primary_goal': 'growth',
             'risk_tolerance': 'moderate',
             'investment_experience': 'intermediate',
+            'experience_level': 'intermediate',
             'exclusions': ['fossil_fuels', 'weapons'],
             'impact_areas': ['renewable_energy'],
             'referral_source': 'web_search',
             'additional_notes': 'Test notes',
             'consent': True,
+            'agree_terms': True,
+            'terms_accepted': True,
+            'confirm_accuracy': True,
         }
         data.update(overrides)
         return data

@@ -197,8 +197,8 @@ class OnboardingFormViewTest(BasePublicSiteTestCase, FormTestMixin):
         # Check ticket was created
         ticket = SupportTicket.objects.first()
         self.assertIsNotNone(ticket)
-        self.assertEqual(ticket.name, 'John Doe')
-        self.assertEqual(ticket.email, 'john.doe@example.com')
+        self.assertEqual(ticket.name, 'Test User')
+        self.assertEqual(ticket.email, 'onboarding@example.com')
         self.assertIn('Onboarding Application', ticket.subject)
         self.assertIn('$50,000', ticket.message)
     
