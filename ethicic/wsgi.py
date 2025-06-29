@@ -29,10 +29,19 @@ try:
     call_command('migrate', verbosity=0, interactive=False)
     print("✅ Database migrations completed")
     
-    # Collect static files
+    # Collect static files (essential for CSS/JS serving)
     print("📁 Collecting static files...")
-    call_command('collectstatic', verbosity=0, interactive=False)
-    print("✅ Static files collected")
+    try:
+        call_command('collectstatic', verbosity=1, interactive=False, clear=True)
+        print("✅ Static files collected successfully")
+    except Exception as e:
+        print(f"⚠️  Static files collection failed: {e}")
+        # Try without clear flag as fallback
+        try:
+            call_command('collectstatic', verbosity=1, interactive=False)
+            print("✅ Static files collected (fallback method)")
+        except Exception as e2:
+            print(f"❌ Static files collection completely failed: {e2}")
     
     # Test database connection
     from django.db import connection
