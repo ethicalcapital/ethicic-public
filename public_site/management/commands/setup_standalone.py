@@ -37,10 +37,13 @@ class Command(BaseCommand):
             if not home_page:
                 # Check if there's already a page at the home slug
                 existing_home = root_page.get_children().filter(slug='home').first()
-                if existing_home and not isinstance(existing_home, HomePage):
+                if existing_home and not isinstance(existing_home.specific, HomePage):
                     # Delete the existing non-HomePage at this slug
                     existing_home.delete()
                     self.stdout.write('Removed existing non-HomePage at /home/')
+                    
+                    # Refresh root page after deletion to fix tree structure
+                    root_page.refresh_from_db()
                 
                 home_page = HomePage(
                     title='Ethical Capital',
@@ -50,8 +53,21 @@ class Command(BaseCommand):
                     hero_tagline="We're not like other firms. Good.",
                     live=True,
                 )
-                root_page.add_child(instance=home_page)
-                self.stdout.write(self.style.SUCCESS('✓ Created home page'))
+                
+                # Use safer method to add child page
+                try:
+                    home_page = root_page.add_child(instance=home_page)
+                    self.stdout.write(self.style.SUCCESS('✓ Created home page'))
+                except Exception as e:
+                    # Alternative approach if tree is corrupted
+                    self.stdout.write(f'Standard add_child failed: {e}')
+                    self.stdout.write('Trying alternative creation method...')
+                    
+                    home_page.path = root_page.get_next_child_path()
+                    home_page.depth = root_page.depth + 1
+                    home_page.save()
+                    self.stdout.write(self.style.SUCCESS('✓ Created home page (alternative method)'))
+                    
             else:
                 self.stdout.write('Home page already exists')
             

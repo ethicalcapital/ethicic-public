@@ -122,13 +122,46 @@ if os.getenv('USE_SQLITE', 'False').lower() == 'true':
         }
     }
 elif UBI_DATABASE_URL:
-    # Production mode: Use Ubicloud as primary with local cache
+    # Production mode: Try Ubicloud, fallback to SQLite
     from .database_config import get_database_config, get_cache_database_config
     
-    # Get Ubicloud configuration with SSL and optimization
+    # Test if we can connect to Ubicloud first
+    def test_database_connection(config):
+        """Test database connection without hanging the startup"""
+        try:
+            import psycopg2
+            import socket
+            
+            # Quick socket test first (1 second timeout)
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(1)
+            result = sock.connect_ex((config['HOST'], int(config['PORT'])))
+            sock.close()
+            
+            if result != 0:
+                return False
+                
+            # Quick database connection test
+            conn = psycopg2.connect(
+                host=config['HOST'],
+                port=config['PORT'],
+                database=config['NAME'],
+                user=config['USER'],
+                password=config['PASSWORD'],
+                connect_timeout=3,
+                sslmode='require'
+            )
+            conn.close()
+            return True
+        except Exception as e:
+            print(f"⚠️  Database connection test failed: {e}")
+            return False
+    
+    # Get Ubicloud configuration
     ubicloud_config = get_database_config(UBI_DATABASE_URL)
     
-    if ubicloud_config:
+    if ubicloud_config and test_database_connection(ubicloud_config):
+        print("✅ Ubicloud database connection successful")
         DATABASES = {
             # Ubicloud as primary database with SSL
             'default': ubicloud_config,
@@ -141,8 +174,8 @@ elif UBI_DATABASE_URL:
         # Use database router for hybrid approach
         DATABASE_ROUTERS = ['public_site.db_router.HybridDatabaseRouter']
     else:
-        # Fallback to SQLite if configuration fails
-        print("⚠️  Failed to configure Ubicloud database, falling back to SQLite")
+        # Fallback to SQLite if Ubicloud is unavailable
+        print("⚠️  Ubicloud database unavailable, using SQLite fallback")
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.sqlite3',
