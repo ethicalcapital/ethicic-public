@@ -26,19 +26,42 @@ try:
     # Run database migrations on startup
     print("📊 Running database migrations...")
     from django.core.management import call_command
+    
+    # First, ensure we're using the right database settings
+    print(f"   Database engine: {settings.DATABASES['default']['ENGINE']}")
+    print(f"   Database name: {settings.DATABASES['default']['NAME']}")
+    
     try:
-        # Try fake-initial first to handle existing schemas
-        call_command('migrate', fake_initial=True, verbosity=0, interactive=False)
-        print("✅ Database migrations completed (fake-initial)")
+        # Run migrations without fake-initial first to ensure all tables are created
+        print("   Running full migrations...")
+        call_command('migrate', verbosity=1, interactive=False)
+        print("✅ Database migrations completed successfully")
     except Exception as e:
-        print(f"⚠️  Fake-initial failed: {e}")
-        try:
-            # Fall back to regular migration
-            call_command('migrate', verbosity=0, interactive=False)
-            print("✅ Database migrations completed (regular)")
-        except Exception as e2:
-            print(f"⚠️  Migration warnings: {e2}")
-            print("   Site will start but may have schema issues")
+        print(f"⚠️  Full migration failed: {e}")
+        print("   Trying to create missing tables...")
+        
+        # Try to run specific app migrations
+        critical_apps = ['contenttypes', 'auth', 'wagtailcore', 'wagtailadmin', 'public_site']
+        for app in critical_apps:
+            try:
+                print(f"   Migrating {app}...")
+                call_command('migrate', app, verbosity=1, interactive=False)
+                print(f"   ✅ {app} migrated")
+            except Exception as app_error:
+                print(f"   ⚠️  {app} migration failed: {app_error}")
+    
+    # Verify critical tables exist
+    from django.db import connection
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'wagtail%'")
+            tables = cursor.fetchall()
+            if tables:
+                print(f"✅ Found Wagtail tables: {[t[0] for t in tables[:5]]}")
+            else:
+                print("⚠️  No Wagtail tables found")
+    except Exception as e:
+        print(f"⚠️  Could not verify tables: {e}")
     
     # Collect static files (essential for CSS/JS serving)
     print("📁 Collecting static files...")

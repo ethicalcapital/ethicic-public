@@ -177,14 +177,36 @@ except Exception as e:
         echo ""
         echo "📊 Running database migrations..."
         
-        # First, try to fake-apply existing migrations to avoid conflicts
-        echo "   Checking for existing schema conflicts..."
-        python manage.py migrate --fake-initial --noinput 2>&1 || {
-            echo "   ⚠️  Fake-initial failed, trying regular migration..."
+        # Check if this is a fresh database or has existing schema
+        echo "   Checking database state..."
+        
+        # Try to check if wagtailcore_site table exists
+        python -c "
+from django.db import connection
+try:
+    with connection.cursor() as cursor:
+        cursor.execute(\"SELECT COUNT(*) FROM wagtailcore_site\")
+        print('Database has existing Wagtail schema')
+        exit(0)
+except Exception:
+    print('Database appears to be fresh or incomplete')
+    exit(1)
+" 2>/dev/null
+
+        if [ $? -eq 0 ]; then
+            echo "   Using fake-initial for existing schema..."
+            python manage.py migrate --fake-initial --noinput 2>&1 || {
+                echo "   ⚠️  Fake-initial failed, trying regular migration..."
+                python manage.py migrate --noinput 2>&1 || {
+                    echo "   ⚠️  Migration completed with warnings"
+                }
+            }
+        else
+            echo "   Running full migration for fresh database..."
             python manage.py migrate --noinput 2>&1 || {
                 echo "   ⚠️  Migration completed with warnings"
             }
-        }
+        fi
         
         # Import data from Ubicloud
         echo ""
@@ -225,9 +247,10 @@ except Exception as e:
         # Setup standalone database if needed
         echo ""
         echo "🔧 Setting up standalone database..."
-        python manage.py migrate --fake-initial --noinput 2>&1 || {
-            python manage.py migrate --noinput 2>&1 || echo "   Migration completed with warnings"
-        }
+        
+        # For standalone mode, always run full migrations since it's likely a fresh SQLite database
+        echo "   Running full migrations for standalone mode..."
+        python manage.py migrate --noinput 2>&1 || echo "   Migration completed with warnings"
         
         # Ensure homepage is set up
         echo "🏠 Setting up homepage..."
