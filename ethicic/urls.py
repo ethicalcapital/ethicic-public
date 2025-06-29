@@ -94,9 +94,6 @@ def emergency_homepage(request):
     return HttpResponse(html)
 
 urlpatterns = [
-    # EMERGENCY: Direct root route bypass to test if Wagtail is the issue
-    path('', emergency_homepage, name='emergency_homepage'),
-    
     # Health check 
     path('health/', health_check, name='health_check'),
     path('test/', simple_test, name='simple_test'),
@@ -111,10 +108,10 @@ urlpatterns = [
     path('documents/', include(wagtaildocs_urls)),
     
     # Include all public_site URLs
-    path('wagtail/', include('public_site.urls')),
+    path('', include('public_site.urls')),
     
-    # Wagtail CMS URLs (moved to wagtail/ path for now)
-    path('wagtail/', include(wagtail_urls)),
+    # Wagtail CMS URLs - this will handle homepage and all other Wagtail pages
+    path('', include(wagtail_urls)),
 ]
 
 # Serve media files in development
