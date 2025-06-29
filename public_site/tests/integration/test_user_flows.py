@@ -342,7 +342,7 @@ class GardenPlatformFlowTest(BasePublicSiteTestCase, APITestMixin):
         # Step 4: Verify ticket was created
         ticket = SupportTicket.objects.first()
         self.assertEqual(ticket.name, 'Jane Adviser')
-        self.assertEqual(ticket.ticket_type, 'contact')
+        self.assertEqual(ticket.ticket_type, 'garden_interest')
         self.assertIn('Chief Investment Officer', ticket.subject)
         self.assertIn('$100M', ticket.message)
     

@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Ethical Capital Investment Collaborative - Public Website",
   "scripts": {
-    "build": "bash kinsta-build.sh",
-    "start": "python manage.py runserver 0.0.0.0:8080",
-    "post-deploy": "bash scripts/post-deploy.sh"
+    "build": "echo 'Build completed - Python setup will run on startup'",
+    "start": "python manage.py runserver 0.0.0.0:8080"
   },
   "engines": {
     "python": ">=3.11"

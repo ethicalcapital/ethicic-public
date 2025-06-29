@@ -1699,6 +1699,7 @@ class SupportTicket(models.Model):
             ("contact", "Contact Form"),
             ("newsletter", "Newsletter Signup"),
             ("onboarding", "Onboarding Request"),
+            ("garden_interest", "Garden Platform Interest"),
         ],
     )
 
