@@ -62,6 +62,39 @@ def debug_homepage(request):
     except Exception as e:
         return JsonResponse({'error': str(e), 'type': type(e).__name__})
 
+def debug_static(request):
+    """Debug static files configuration"""
+    import os
+    from django.conf import settings
+    
+    static_info = {
+        'STATIC_URL': settings.STATIC_URL,
+        'STATIC_ROOT': str(settings.STATIC_ROOT),
+        'STATICFILES_STORAGE': settings.STATICFILES_STORAGE,
+        'WHITENOISE_USE_FINDERS': getattr(settings, 'WHITENOISE_USE_FINDERS', None),
+        'static_root_exists': os.path.exists(settings.STATIC_ROOT),
+        'static_files': []
+    }
+    
+    # Check if static files exist
+    if os.path.exists(settings.STATIC_ROOT):
+        css_dir = os.path.join(settings.STATIC_ROOT, 'css')
+        if os.path.exists(css_dir):
+            css_files = os.listdir(css_dir)
+            static_info['css_files'] = css_files[:10]  # First 10 files
+        
+        # Check specific critical files
+        critical_files = ['css/garden-ui-theme.css', 'css/critical.css']
+        for file_path in critical_files:
+            full_path = os.path.join(settings.STATIC_ROOT, file_path)
+            static_info['static_files'].append({
+                'path': file_path,
+                'exists': os.path.exists(full_path),
+                'size': os.path.getsize(full_path) if os.path.exists(full_path) else 0
+            })
+    
+    return JsonResponse(static_info)
+
 def emergency_homepage(request):
     """Emergency bypass homepage for debugging"""
     from django.http import HttpResponse
@@ -98,6 +131,7 @@ urlpatterns = [
     path('health/', health_check, name='health_check'),
     path('test/', simple_test, name='simple_test'),
     path('debug-homepage/', debug_homepage, name='debug_homepage'),
+    path('debug-static/', debug_static, name='debug_static'),
     path('favicon.ico', favicon_view, name='favicon'),
     
     # Admin

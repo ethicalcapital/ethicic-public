@@ -42,17 +42,49 @@ try:
     
     # Collect static files (essential for CSS/JS serving)
     print("📁 Collecting static files...")
+    
+    # Ensure staticfiles directory exists
+    import os
+    staticfiles_root = settings.STATIC_ROOT
+    os.makedirs(staticfiles_root, exist_ok=True)
+    
     try:
+        # First try with clear flag
         call_command('collectstatic', verbosity=1, interactive=False, clear=True)
         print("✅ Static files collected successfully")
     except Exception as e:
-        print(f"⚠️  Static files collection failed: {e}")
-        # Try without clear flag as fallback
+        print(f"⚠️  Clear collectstatic failed: {e}")
         try:
+            # Try without clear flag
             call_command('collectstatic', verbosity=1, interactive=False)
-            print("✅ Static files collected (fallback method)")
+            print("✅ Static files collected (without clear)")
         except Exception as e2:
-            print(f"❌ Static files collection completely failed: {e2}")
+            print(f"⚠️  Standard collectstatic failed: {e2}")
+            try:
+                # Force collection ignoring errors
+                call_command('collectstatic', verbosity=0, interactive=False, ignore_errors=True)
+                print("✅ Static files collected (ignoring errors)")
+            except Exception as e3:
+                print(f"❌ All static file collection methods failed: {e3}")
+                print("   CSS/JS may not load correctly")
+    
+    # Verify critical CSS files exist
+    import os
+    critical_files = [
+        'css/garden-ui-theme.css',
+        'css/critical.css'
+    ]
+    
+    missing_files = []
+    for file_path in critical_files:
+        full_path = os.path.join(staticfiles_root, file_path)
+        if not os.path.exists(full_path):
+            missing_files.append(file_path)
+    
+    if missing_files:
+        print(f"⚠️  Missing critical CSS files: {missing_files}")
+    else:
+        print("✅ Critical CSS files verified")
     
     # Test database connection
     from django.db import connection

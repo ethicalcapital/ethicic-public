@@ -247,16 +247,12 @@ STATICFILES_DIRS = [
 ]
 
 # WhiteNoise settings for static file serving
-# Use safer storage during build phase, full storage in production
-if os.getenv('USE_SQLITE') == 'true':
-    # Build phase: use simpler storage to avoid manifest issues
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-else:
-    # Production: use full manifest storage
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+# Force simpler storage to avoid manifest issues in production
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 WHITENOISE_USE_FINDERS = True
 WHITENOISE_AUTOREFRESH = DEBUG
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br']
+WHITENOISE_MAX_AGE = 31536000  # 1 year
 
 # Media files
 MEDIA_URL = '/media/'
