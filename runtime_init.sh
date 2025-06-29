@@ -263,6 +263,11 @@ if [[ "$*" == *"gunicorn"* ]] && ! command -v gunicorn &> /dev/null; then
     echo "🚀 Starting Django development server on 0.0.0.0:$PORT"
     exec python manage.py runserver 0.0.0.0:$PORT
 else
+    # Ensure PORT is available in the environment for gunicorn
+    export PORT=${PORT:-8080}
+    echo "📍 Final PORT check: $PORT"
+    echo "📍 Command to execute: $@"
+    
     # Start the application with exec to preserve environment
     exec "$@"
 fi
