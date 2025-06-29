@@ -1,8 +1,0 @@
-{
-  "name": "ethicic-public",
-  "version": "1.0.0",
-  "description": "Ethical Capital Investment Collaborative - Public Website",
-  "engines": {
-    "python": ">=3.11"
-  }
-}
