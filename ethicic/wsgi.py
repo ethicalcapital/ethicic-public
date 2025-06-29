@@ -66,30 +66,36 @@ try:
         from wagtail.models import Site
         from public_site.models import HomePage
         
-        # Check if we have a proper homepage configured
-        sites = Site.objects.filter(is_default_site=True)
-        if not sites.exists():
-            print("🏠 No default site found - running auto-setup...")
-            from django.core.management import call_command
-            call_command('setup_homepage')
-            print("✅ Site setup completed automatically")
-        else:
-            site = sites.first()
-            try:
-                # Check if root page is a HomePage
-                if not isinstance(site.root_page.specific, HomePage):
-                    print("🏠 Default site not pointing to HomePage - running auto-setup...")
-                    from django.core.management import call_command
-                    call_command('setup_homepage')
-                    print("✅ Site setup completed automatically")
-                else:
-                    print("✅ Site already properly configured")
-            except Exception:
-                # If there's any issue checking the homepage, just run setup
-                print("🏠 Issue with current site config - running auto-setup...")
-                from django.core.management import call_command
+        # Always ensure homepage is properly configured
+        print("🏠 Checking homepage configuration...")
+        from django.core.management import call_command
+        
+        try:
+            # Check if we have a proper homepage configured
+            sites = Site.objects.filter(is_default_site=True)
+            homepage_needs_setup = True
+            
+            if sites.exists():
+                site = sites.first()
+                try:
+                    # Check if root page is a HomePage
+                    if isinstance(site.root_page.specific, HomePage):
+                        # Check if homepage has content
+                        homepage = site.root_page.specific
+                        if homepage.title and homepage.title != "Welcome to your new Wagtail site!":
+                            print("✅ Homepage already properly configured")
+                            homepage_needs_setup = False
+                except Exception as e:
+                    print(f"⚠️  Error checking homepage: {e}")
+            
+            if homepage_needs_setup:
+                print("🏠 Setting up homepage...")
                 call_command('setup_homepage')
-                print("✅ Site setup completed automatically")
+                print("✅ Homepage setup completed")
+                
+        except Exception as setup_error:
+            print(f"⚠️  Homepage setup failed: {setup_error}")
+            print("   Site will start but may show 404 for homepage")
                 
     except Exception as setup_error:
         print(f"⚠️  Auto-setup failed (non-critical): {setup_error}")

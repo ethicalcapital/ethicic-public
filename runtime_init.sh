@@ -225,8 +225,13 @@ except Exception as e:
         # Setup standalone database if needed
         echo ""
         echo "🔧 Setting up standalone database..."
-        python manage.py migrate --noinput 2>&1 || echo "   Migration completed with warnings"
-        python manage.py setup_standalone 2>&1 || echo "   Standalone setup completed with warnings"
+        python manage.py migrate --fake-initial --noinput 2>&1 || {
+            python manage.py migrate --noinput 2>&1 || echo "   Migration completed with warnings"
+        }
+        
+        # Ensure homepage is set up
+        echo "🏠 Setting up homepage..."
+        python manage.py setup_homepage 2>&1 || echo "   Homepage setup completed with warnings"
     fi
 else
     echo ""

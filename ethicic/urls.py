@@ -107,6 +107,9 @@ urlpatterns = [
     # Documents
     path('documents/', include(wagtaildocs_urls)),
     
+    # Emergency homepage for debugging
+    path('emergency/', emergency_homepage, name='emergency_homepage'),
+    
     # Include all public_site URLs
     path('', include('public_site.urls')),
     
