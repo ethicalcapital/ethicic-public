@@ -262,23 +262,55 @@ echo ""
 echo "Executing: $@"
 echo ""
 
-# Check if the command contains gunicorn and if gunicorn is available
-if [[ "$*" == *"gunicorn"* ]] && ! command -v gunicorn &> /dev/null; then
-    echo "⚠️  Gunicorn not found, falling back to Django development server"
-    echo "   This is not ideal for production but will allow the site to start"
-    
-    # Extract port from environment or default
+# Check if we have arguments (command to execute)
+if [ $# -eq 0 ]; then
+    echo "⚠️  No command provided, starting Django development server"
     PORT=${PORT:-8080}
-    
-    # Start Django development server instead
     echo "🚀 Starting Django development server on 0.0.0.0:$PORT"
     exec python manage.py runserver 0.0.0.0:$PORT
-else
-    # Ensure PORT is available in the environment for gunicorn
-    export PORT=${PORT:-8080}
-    echo "📍 Final PORT check: $PORT"
-    echo "📍 Command to execute: $@"
-    
-    # Start the application with exec to preserve environment
-    exec "$@"
 fi
+
+# Check if the command contains gunicorn and if gunicorn is available
+if [[ "$*" == *"gunicorn"* ]]; then
+    if ! command -v gunicorn &> /dev/null; then
+        echo "⚠️  Gunicorn not found, falling back to Django development server"
+        echo "   This is not ideal for production but will allow the site to start"
+        
+        # Extract port from environment or default
+        PORT=${PORT:-8080}
+        
+        # Start Django development server instead
+        echo "🚀 Starting Django development server on 0.0.0.0:$PORT"
+        exec python manage.py runserver 0.0.0.0:$PORT
+    else
+        echo "✅ Gunicorn is available, proceeding with gunicorn startup"
+    fi
+fi
+
+# Ensure PORT is available in the environment for gunicorn
+export PORT=${PORT:-8080}
+echo "📍 Final PORT check: $PORT"
+echo "📍 Command to execute: $@"
+
+# Test port binding before starting
+echo "📍 Testing port binding capability..."
+python -c "
+import socket
+port = int('$PORT')
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+try:
+    sock.bind(('0.0.0.0', port))
+    print(f'✅ Port {port} is available for binding')
+    sock.close()
+except Exception as e:
+    print(f'❌ Cannot bind to port {port}: {e}')
+    exit(1)
+"
+
+if [ $? -ne 0 ]; then
+    echo "⚠️  Port binding test failed, trying Django development server instead"
+    exec python manage.py runserver 0.0.0.0:$PORT
+fi
+
+# Start the application with exec to preserve environment
+exec "$@"
