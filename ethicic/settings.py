@@ -77,7 +77,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # For static files in production
+    # Temporarily disable WhiteNoise to debug static file issues
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',  # For static files in production
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -246,17 +247,18 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# WhiteNoise settings for static file serving
-# Use basic storage without compression to ensure proper MIME types
+# Static files storage - use default Django storage
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-WHITENOISE_USE_FINDERS = True
-WHITENOISE_AUTOREFRESH = True  # Always refresh to ensure files are served
-WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br', 'css', 'js']
-WHITENOISE_MAX_AGE = 0  # No caching for debugging
-WHITENOISE_MIMETYPES = {
-    '.css': 'text/css',
-    '.js': 'application/javascript',
-}
+
+# WhiteNoise settings (disabled for debugging)
+# WHITENOISE_USE_FINDERS = True
+# WHITENOISE_AUTOREFRESH = True
+# WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br', 'css', 'js']
+# WHITENOISE_MAX_AGE = 0
+# WHITENOISE_MIMETYPES = {
+#     '.css': 'text/css',
+#     '.js': 'application/javascript',
+# }
 
 # Media files
 MEDIA_URL = '/media/'

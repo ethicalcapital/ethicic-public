@@ -178,9 +178,16 @@ urlpatterns = [
 ]
 
 # Serve static and media files
-# Always serve static files to ensure they work regardless of DEBUG setting
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Force Django to serve static files in production (bypassing WhiteNoise issues)
+from django.views.static import serve
+from django.urls import re_path
+import os
+
+# Always serve static files directly
+urlpatterns += [
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+]
 
 # Custom error handlers
 handler404 = 'public_site.views.custom_404'
