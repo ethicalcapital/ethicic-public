@@ -1,2 +1,1 @@
-release: ./build.sh
-web: ./runtime_init.sh gunicorn ethicic.wsgi --log-file - --log-level info --access-logfile - --error-logfile -
+web: ./runtime_init.sh gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 60 ethicic.wsgi:application

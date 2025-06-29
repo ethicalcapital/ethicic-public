@@ -2,10 +2,6 @@
   "name": "ethicic-public",
   "version": "1.0.0",
   "description": "Ethical Capital Investment Collaborative - Public Website",
-  "scripts": {
-    "build": "./build.sh",
-    "start": "./runtime_init.sh gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 60 ethicic.wsgi:application"
-  },
   "engines": {
     "python": ">=3.11"
   }
