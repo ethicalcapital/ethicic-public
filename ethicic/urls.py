@@ -13,20 +13,33 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-# Import public site views
-from public_site import views
-
 
 def health_check(request):
     """Simple health check endpoint for Kinsta"""
+    try:
+        # Test database connection
+        from django.db import connection
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+            db_status = "connected"
+    except Exception as e:
+        db_status = f"error: {str(e)}"
+    
     return JsonResponse({
         'status': 'healthy',
-        'service': 'ethicic-public'
+        'service': 'ethicic-public',
+        'database': db_status,
+        'debug': getattr(settings, 'DEBUG', False)
     })
+
+def simple_test(request):
+    """Simple test endpoint that doesn't require database"""
+    return JsonResponse({'message': 'Hello from ethicic-public!', 'status': 'ok'})
 
 urlpatterns = [
     # Health check (must be first)
     path('health/', health_check, name='health_check'),
+    path('test/', simple_test, name='simple_test'),
     
     # Admin
     path('admin/', admin.site.urls),
@@ -35,15 +48,8 @@ urlpatterns = [
     # Documents
     path('documents/', include(wagtaildocs_urls)),
     
-    # API endpoints
-    path('api/v1/contact/', views.contact_api, name='contact_form_api'),
-    path('api/v1/newsletter/', views.newsletter_api, name='newsletter_signup_api'),
-    path('api/v1/media-items/', views.media_items_api, name='media_items_api'),
-    
-    # Contact form submissions
-    path('contact/submit/', views.contact_form_submit, name='contact_form_submit'),
-    path('newsletter/signup/', views.newsletter_signup, name='newsletter_signup'),
-    path('onboarding/submit/', views.onboarding_form_submit, name='onboarding_form_submit'),
+    # Include all public_site URLs
+    path('', include('public_site.urls')),
     
     # Wagtail CMS URLs (should be last)
     path('', include(wagtail_urls)),
