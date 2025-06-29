@@ -246,13 +246,11 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# Static files storage - use WhiteNoise without compression for stability
-STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
+# Static files storage 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# WhiteNoise settings - minimal configuration for reliability
+# WhiteNoise settings
 WHITENOISE_USE_FINDERS = True
-WHITENOISE_AUTOREFRESH = True
-WHITENOISE_INDEX_FILE = True
 
 # Media files
 MEDIA_URL = '/media/'

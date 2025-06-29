@@ -1,2 +1,2 @@
-[start]
-cmd = "./start.sh"
+# Let Nixpacks use the Procfile for startup
+# This follows Kinsta's recommended Django deployment pattern
