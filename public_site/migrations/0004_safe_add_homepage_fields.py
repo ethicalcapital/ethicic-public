@@ -57,7 +57,7 @@ def reverse_safe_add_homepage_fields(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('public_site', '0003_add_philosophy_fields'),
+        ('public_site', '0001_initial'),
     ]
 
     operations = [

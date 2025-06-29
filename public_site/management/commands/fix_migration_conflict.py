@@ -14,42 +14,19 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("🔧 Fixing migration conflicts...")
         
-        # Check if the problematic migration is already applied
+        # First, check if we need to clean up any references to the removed 0002 migration
         with connection.cursor() as cursor:
+            # Remove any stale migration records for the deleted 0002 migration
             cursor.execute("""
-                SELECT * FROM django_migrations 
+                DELETE FROM django_migrations 
                 WHERE app = 'public_site' AND name = '0002_add_missing_homepage_fields'
             """)
-            migration_exists = cursor.fetchone()
-            
-            # Check if the columns actually exist
-            if 'postgresql' in settings.DATABASES['default']['ENGINE']:
-                cursor.execute("""
-                    SELECT column_name 
-                    FROM information_schema.columns 
-                    WHERE table_name = 'public_site_homepage' AND column_name = 'hero_tagline'
-                """)
-            else:  # SQLite
-                cursor.execute("PRAGMA table_info(public_site_homepage)")
-                
-            column_exists = cursor.fetchone()
-        
-        if column_exists and not migration_exists:
-            self.stdout.write("📋 Columns exist but migration not recorded - marking as fake applied")
-            try:
-                # Mark the problematic migration as fake applied
-                call_command('migrate', 'public_site', '0002', '--fake', verbosity=1, interactive=False)
-                self.stdout.write(self.style.SUCCESS("✅ Migration 0002 marked as fake applied"))
-            except Exception as e:
-                self.stdout.write(self.style.ERROR(f"❌ Failed to fake apply migration: {e}"))
-                return
-        elif migration_exists:
-            self.stdout.write("✅ Migration already recorded")
-        else:
-            self.stdout.write("⚠️  Columns don't exist yet")
+            deleted_count = cursor.rowcount
+            if deleted_count > 0:
+                self.stdout.write(f"🗑️  Removed {deleted_count} stale migration record(s)")
         
         # Now run normal migrations
-        self.stdout.write("🔄 Running normal migrations...")
+        self.stdout.write("🔄 Running migrations...")
         try:
             call_command('migrate', verbosity=1, interactive=False)
             self.stdout.write(self.style.SUCCESS("✅ Migrations completed successfully"))
