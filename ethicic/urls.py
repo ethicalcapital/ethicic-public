@@ -216,57 +216,9 @@ urlpatterns = [
 ]
 
 # Serve static and media files
-# Custom static file serving with explicit MIME types
-def serve_static_with_mimetype(request, path):
-    """Serve static files with explicit MIME types"""
-    import os
-    import mimetypes
-    from django.http import HttpResponse, Http404
-    from django.conf import settings
-    
-    # Security check
-    if '..' in path or path.startswith('/'):
-        raise Http404("Invalid path")
-    
-    file_path = os.path.join(settings.STATIC_ROOT, path)
-    
-    if not os.path.exists(file_path) or not os.path.isfile(file_path):
-        raise Http404("File not found")
-    
-    # Determine MIME type
-    content_type, _ = mimetypes.guess_type(file_path)
-    
-    # Force correct MIME types for common file types
-    if path.endswith('.css'):
-        content_type = 'text/css'
-    elif path.endswith('.js'):
-        content_type = 'application/javascript'
-    elif path.endswith('.json'):
-        content_type = 'application/json'
-    elif not content_type:
-        content_type = 'application/octet-stream'
-    
-    try:
-        if content_type.startswith('text/') or content_type in ['application/javascript', 'application/json']:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-        else:
-            with open(file_path, 'rb') as f:
-                content = f.read()
-        
-        response = HttpResponse(content, content_type=content_type)
-        response['Cache-Control'] = 'max-age=3600'  # 1 hour cache
-        return response
-    except Exception as e:
-        raise Http404(f"Error reading file: {e}")
-
-from django.urls import re_path
-
-# Use custom static file serving
-urlpatterns += [
-    re_path(r'^static/(?P<path>.*)$', serve_static_with_mimetype, name='static_files'),
-    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-]
+# Simplified approach - re-enable WhiteNoise with better configuration
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Custom error handlers
 handler404 = 'public_site.views.custom_404'

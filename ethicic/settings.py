@@ -77,8 +77,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # Temporarily disable WhiteNoise to debug static file issues
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',  # For static files in production
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Re-enable for static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -247,18 +246,13 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# Static files storage - use default Django storage
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# Static files storage - use WhiteNoise without compression for stability
+STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
 
-# WhiteNoise settings (disabled for debugging)
-# WHITENOISE_USE_FINDERS = True
-# WHITENOISE_AUTOREFRESH = True
-# WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br', 'css', 'js']
-# WHITENOISE_MAX_AGE = 0
-# WHITENOISE_MIMETYPES = {
-#     '.css': 'text/css',
-#     '.js': 'application/javascript',
-# }
+# WhiteNoise settings - minimal configuration for reliability
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_AUTOREFRESH = True
+WHITENOISE_INDEX_FILE = True
 
 # Media files
 MEDIA_URL = '/media/'
