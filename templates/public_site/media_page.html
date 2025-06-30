@@ -8,6 +8,7 @@
 {% block body_class %}media-page{% endblock %}
 
 {% block content %}
+<div class="garden-container">
 <!-- Media Coverage -->
 <section class="articles-section">
     <div class="articles-content">
@@ -62,15 +63,23 @@
                         {% endfor %}
                     </div>
                     
-                    <!-- Loading indicator -->
-                    <div id="loading-indicator" class="loading-indicator loading-hidden">
-                        <div class="loading-spinner"></div>
-                        <p>Loading more articles...</p>
+                    <!-- HTMX Infinite Scroll Trigger -->
+                    {% if page.media_items.all.count > 6 %}
+                    <div id="load-more-trigger"
+                         hx-get="/api/media-items/?page=2&per_page=6"
+                         hx-trigger="revealed"
+                         hx-target="#articles-container"
+                         hx-swap="beforeend"
+                         hx-indicator="#loading-indicator"
+                         class="load-more-trigger">
+                        <!-- This div triggers loading when it comes into view -->
                     </div>
+                    {% endif %}
                     
-                    <!-- End of articles indicator -->
-                    <div id="end-of-articles" class="end-indicator end-indicator-hidden">
-                        <p>You've reached the end of our media coverage.</p>
+                    <!-- Loading indicator -->
+                    <div id="loading-indicator" class="loading-indicator htmx-indicator">
+                        <div class="loading-spinner">⟳</div>
+                        <p>Loading more articles...</p>
                     </div>
                 {% else %}
                     <div class="no-articles">
@@ -113,6 +122,7 @@
         </div>
     </div>
 </section>
+</div>
 {% endblock %}
 
 {% block extra_css %}
@@ -122,127 +132,41 @@
 <link rel="stylesheet" href="{% static 'css/garden-blog-sidebar.css' %}?v=20250621-dark-mode-badge-fix">
 {% endblock %}
 
+{% block extra_css %}
+<style>
+/* HTMX loading indicator */
+.htmx-indicator {
+    display: none;
+}
+
+.htmx-request .htmx-indicator {
+    display: block;
+}
+
+.loading-indicator {
+    text-align: center;
+    padding: 2rem;
+    color: var(--color-text-secondary);
+}
+
+.loading-spinner {
+    font-size: 2rem;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.load-more-trigger {
+    height: 1px;
+    margin-top: 2rem;
+}
+</style>
+{% endblock %}
+
 {% block extra_js %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    let currentPage = 1;
-    let isLoading = false;
-    let hasMoreContent = true;
-    const itemsPerPage = 6;
-    
-    const articlesContainer = document.getElementById('articles-container');
-    const loadingIndicator = document.getElementById('loading-indicator');
-    const endIndicator = document.getElementById('end-of-articles');
-    
-    if (!articlesContainer) return;
-    
-    // Create API endpoint for loading more media items
-    async function loadMoreItems() {
-        if (isLoading || !hasMoreContent) return;
-        
-        isLoading = true;
-        loadingIndicator.style.display = 'block';
-        
-        try {
-            const response = await fetch(`/api/media-items/?page=${currentPage + 1}&per_page=${itemsPerPage}`);
-            const data = await response.json();
-            
-            if (data.items && data.items.length > 0) {
-                currentPage++;
-                appendItems(data.items);
-                
-                if (data.items.length < itemsPerPage) {
-                    hasMoreContent = false;
-                    endIndicator.style.display = 'block';
-                }
-            } else {
-                hasMoreContent = false;
-                endIndicator.style.display = 'block';
-            }
-        } catch (error) {
-            console.error('Error loading more items:', error);
-        } finally {
-            isLoading = false;
-            loadingIndicator.style.display = 'none';
-        }
-    }
-    
-    function appendItems(items) {
-        items.forEach(item => {
-            const article = createArticleElement(item);
-            articlesContainer.appendChild(article);
-        });
-    }
-    
-    function createArticleElement(item) {
-        const article = document.createElement('article');
-        article.className = `article-list-item${item.featured ? ' featured-item' : ''}`;
-        article.setAttribute('data-item-id', item.id);
-        
-        const formattedDate = item.publication_date ? 
-            new Date(item.publication_date).toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric' 
-            }).toUpperCase() : '';
-        
-        article.innerHTML = `
-            ${item.featured ? '<div class="featured-badge">FEATURED</div>' : ''}
-            <div class="article-list-text">
-                <div class="article-list-meta">
-                    <div class="article-list-tags">
-                        ${item.publication ? `<span class="article-list-tag">${item.publication.toUpperCase()}</span>` : ''}
-                        ${formattedDate ? `<span class="article-list-date">${formattedDate}</span>` : ''}
-                    </div>
-                </div>
-                
-                <h2 class="article-list-title">
-                    ${item.external_url ? 
-                        `<a href="${item.external_url}" target="_blank" rel="noopener noreferrer">${item.title}</a>` :
-                        item.title
-                    }
-                </h2>
-                
-                ${item.description ? `<div class="article-list-description">${item.description}</div>` : ''}
-                
-                ${item.external_url ? 
-                    `<div class="article-list-actions">
-                        <a href="${item.external_url}" target="_blank" rel="noopener noreferrer" class="garden-action secondary small">READ ARTICLE</a>
-                    </div>` : ''
-                }
-            </div>
-        `;
-        
-        return article;
-    }
-    
-    // Infinite scroll detection
-    function handleScroll() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        
-        // Trigger load when user is 200px from bottom
-        if (scrollTop + windowHeight >= documentHeight - 200) {
-            loadMoreItems();
-        }
-    }
-    
-    // Throttle scroll events
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-        }
-        scrollTimeout = setTimeout(handleScroll, 100);
-    });
-    
-    // Initial load check (in case content is short)
-    setTimeout(() => {
-        if (document.documentElement.scrollHeight <= window.innerHeight + 200) {
-            loadMoreItems();
-        }
-    }, 500);
-});
-</script>
+<!-- HTMX handles infinite scroll automatically -->
 {% endblock %}

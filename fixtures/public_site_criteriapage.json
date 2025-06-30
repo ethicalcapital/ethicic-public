@@ -1,0 +1,13 @@
+[
+{
+  "model": "public_site.criteriapage",
+  "pk": 105,
+  "fields": {
+    "hero_title": "Our Ethical Criteria",
+    "hero_subtitle": "Transparent, rigorous screening criteria that guide our investment decisions.",
+    "criteria_description": "\n            <p>We believe in radical transparency when it comes to our ethical screening process. Our criteria are publicly available, regularly updated, and based on extensive research into corporate practices.</p>\n            \n            <h3>Our Screening Philosophy</h3>\n            <p>We exclude companies involved in activities that cause direct harm to people, animals, or the environment. This isn't about perfect companies—it's about avoiding the worst actors and supporting businesses that align with our values.</p>\n            \n            <h3>How We Developed These Criteria</h3>\n            <ul>\n                <li><strong>Research-Based:</strong> Built on academic research, industry reports, and stakeholder feedback</li>\n                <li><strong>Client-Informed:</strong> Refined based on conversations with hundreds of ethical investors</li>\n                <li><strong>Continuously Updated:</strong> Regularly revised as new information becomes available</li>\n                <li><strong>Transparent Process:</strong> Methodology and reasoning are fully documented</li>\n            </ul>\n            \n            <p>We exclude approximately 57% of S&P 500 companies based on these criteria, with 40% of our exclusions coming from proprietary research that identifies issues other rating agencies miss.</p>\n            ",
+    "github_criteria_url": "https://github.com/ethicalcapital/sage/blob/main/screening_policy.md",
+    "additional_resources": "\n            <h3>Additional Resources</h3>\n            <ul>\n                <li><a href=\"/process/\">Our Investment Process</a> - How we apply these criteria in practice</li>\n                <li><a href=\"/strategies/\">Investment Strategies</a> - How criteria implementation varies by strategy</li>\n                <li><a href=\"https://apartheid-free.org/pledge/\" target=\"_blank\">Apartheid Free Pledge</a> - Our commitment to Palestinian human rights</li>\n                <li><a href=\"/consultation/\">Schedule a Consultation</a> - Discuss how our criteria align with your values</li>\n            </ul>\n            \n            <p><strong>Questions about our criteria?</strong> We welcome feedback and questions about our screening process. Your input helps us identify issues we may have missed and continuously improve our approach.</p>\n            "
+  }
+}
+]

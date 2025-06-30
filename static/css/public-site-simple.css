@@ -1,0 +1,186 @@
+/*
+ * Public Site Simple CSS
+ * Consolidated styles to reduce override complexity
+ */
+
+/* ===== HEADER STYLING ===== */
+.garden-header {
+    background: var(--theme-primary, #553C9A); /* Use theme purple variable */
+    color: white;
+    border-bottom: none;
+}
+
+.garden-header .garden-brand {
+    color: white;
+    font-weight: var(--font-semibold, 600);
+}
+
+.garden-header .garden-nav a {
+    color: white;
+    opacity: 0.9;
+}
+
+.garden-header .garden-nav a:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== HOMEPAGE HERO SECTION ===== */
+.home-page .hero-panel {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--color-surface, #ffffff);
+}
+
+/* Hero tagline - smaller and properly spaced */
+.home-page .hero-tagline {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary, #666);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.home-page .hero-tagline::before {
+    content: "> ";
+    color: var(--theme-primary, #553C9A);
+}
+
+/* Hero title - the main heading */
+.home-page .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary, #1a1a1a);
+    line-height: 1.2;
+    margin: 0 auto 1.5rem;
+    max-width: 900px;
+}
+
+/* Hero subtitle */
+.home-page .hero-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-secondary, #666);
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.home-page .hero-subtitle p {
+    margin: 0;
+}
+
+/* CTA buttons */
+.home-page .hero-panel .cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    flex-wrap: wrap;
+}
+
+.home-page .hero-panel .cta-actions .garden-action {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    min-width: 180px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.home-page .hero-panel .cta-actions .garden-action.primary {
+    background: var(--theme-primary, #553C9A);
+    color: white;
+    border: 2px solid var(--theme-primary, #553C9A);
+}
+
+.home-page .hero-panel .cta-actions .garden-action.secondary {
+    background: transparent;
+    color: var(--theme-primary, #553C9A);
+    border: 2px solid var(--theme-primary, #553C9A);
+}
+
+/* Stats section */
+.home-page .hero-stats {
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.home-page .stat-fill-57 {
+    width: 57%;
+}
+
+/* ===== SECTION HEADERS ===== */
+.garden-panel__header {
+    background: #f5f5f5;
+    padding: 1rem 2rem;
+    margin: 0 -2rem 2rem;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.garden-panel__header .panel-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 0;
+}
+
+/* Investment Philosophy section */
+.philosophy-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.philosophy-content h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Process section */
+.process-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.process-container h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .home-page .hero-title {
+        font-size: 2rem;
+    }
+    
+    .home-page .hero-panel .cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .home-page .hero-panel .cta-actions .garden-action {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .home-page .hero-stats {
+        gap: 2rem;
+    }
+}

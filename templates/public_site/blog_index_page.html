@@ -6,7 +6,7 @@
 {% block body_class %}blog-index-page{% endblock %}
 
 {% block content %}
-
+<div class="garden-container">
 <!-- Streamlined Hero Section -->
 <section class="hero-panel" role="banner" aria-labelledby="hero-heading">
     <div class="hero-panel-content">
@@ -193,9 +193,22 @@
                     {% endfor %}
                 </div>
                 
+                <!-- HTMX Infinite Scroll Trigger -->
+                {% if posts.has_next %}
+                <div id="load-more-trigger"
+                     hx-get="?page={{ posts.next_page_number }}"
+                     hx-trigger="revealed"
+                     hx-target="#articles-container"
+                     hx-swap="beforeend"
+                     hx-indicator="#loading-indicator"
+                     class="load-more-trigger">
+                    <!-- This div will trigger loading when it comes into view -->
+                </div>
+                {% endif %}
+                
                 <!-- Loading indicator for infinite scroll -->
-                <div id="loading-indicator" class="loading-indicator hidden">
-                    <div class="loading-spinner"></div>
+                <div id="loading-indicator" class="loading-indicator htmx-indicator">
+                    <div class="loading-spinner">⟳</div>
                     <p>Loading more articles...</p>
                 </div>
                 
@@ -207,9 +220,9 @@
             {% endif %}
         </section>
 
-        <!-- Pagination -->
+        <!-- Pagination (hidden when HTMX infinite scroll is active) -->
         {% if paginator.num_pages > 1 %}
-        <div class="pagination-container">
+        <div class="pagination-container" x-data="{ htmxEnabled: document.body.classList.contains('htmx-settling') || typeof htmx !== 'undefined' }" x-show="!htmxEnabled">
             <nav class="pagination" aria-label="Article pagination">
                 {% if posts.has_previous %}
                     <a href="?page={{ posts.previous_page_number }}" class="pagination-btn garden-action secondary">← Previous</a>
@@ -289,7 +302,7 @@
         </div>
     </div>
 </section>
-
+</div>
 {% endblock %}
 
 {% block extra_css %}

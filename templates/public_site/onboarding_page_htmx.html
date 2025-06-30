@@ -1,0 +1,823 @@
+{% extends "public_site/base.html" %}
+
+{% block title %}Get Started{% endblock %}
+
+{% block body_class %}onboarding-page{% endblock %}
+
+{% block content %}
+<div class="garden-container" 
+     x-data="onboardingForm()"
+     x-init="init()">
+
+<!-- Hero Section -->
+<section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
+    <div class="panel-header">ETHICAL CAPITAL ONBOARDING</div>
+    <div class="panel-content">
+        <h1 id="hero-heading" class="hero-title">Take Your First Step Toward Ethical Investing</h1>
+        <p class="hero-subtitle">{{ page.intro_text|safe }}</p>
+    </div>
+</section>
+
+<main class="main-content">
+    <!-- Form Container -->
+    <div class="form-container">
+
+        <!-- Progress Indicator Panel -->
+        <section class="garden-panel progress-panel">
+            <div class="panel-header">PROGRESS</div>
+            <div class="panel-content">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" 
+                             :style="`width: ${(currentStep / totalSteps) * 100}%`"></div>
+                    </div>
+                    <div class="progress-text" x-text="progressText"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Onboarding Form -->
+        <form id="onboardingForm" 
+              hx-post="/onboarding/submit/"
+              hx-target="#form-response"
+              hx-indicator="#submit-indicator"
+              @htmx:before-request="if(currentStep !== totalSteps) { $event.preventDefault(); return false; }"
+              @htmx:after-request="handleFormResponse($event)">
+            {% csrf_token %}
+            
+            <!-- Section 1: Personal Information -->
+            <section class="garden-panel form-section" 
+                     x-show="currentStep === 1"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform translate-x-4"
+                     x-transition:enter-end="opacity-100 transform translate-x-0">
+                <div class="panel-header">STEP 1: PERSONAL INFORMATION</div>
+                <div class="panel-content">
+                    <div class="section-description">Let's start with the basics so we can personalize your experience.</div>
+                    <div class="name-fields">
+                        <div class="form-group">
+                            <label class="form-label required" for="firstName">First Name</label>
+                            <input type="text" 
+                                   id="firstName" 
+                                   name="first_name" 
+                                   x-model="formData.firstName"
+                                   class="form-input" 
+                                   required
+                                   @blur="validateField('firstName')">
+                            <span class="error-message" x-show="errors.firstName" x-text="errors.firstName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required" for="lastName">Last Name</label>
+                            <input type="text" 
+                                   id="lastName" 
+                                   name="last_name" 
+                                   x-model="formData.lastName"
+                                   class="form-input" 
+                                   required
+                                   @blur="validateField('lastName')">
+                            <span class="error-message" x-show="errors.lastName" x-text="errors.lastName"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required" for="email">Email Address</label>
+                        <div class="form-subtext">We'll use this to send you updates and portfolio information.</div>
+                        <input type="email" 
+                               id="email" 
+                               name="email" 
+                               x-model="formData.email"
+                               class="form-input" 
+                               required
+                               @blur="validateField('email')"
+                               hx-post="/api/validate-email/"
+                               hx-trigger="blur changed delay:500ms"
+                               hx-target="#email-validation"
+                               hx-indicator="#email-indicator">
+                        <span id="email-validation"></span>
+                        <span id="email-indicator" class="htmx-indicator">Checking...</span>
+                        <span class="error-message" x-show="errors.email" x-text="errors.email"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number</label>
+                        <div class="form-subtext">Optional - for important account notifications only.</div>
+                        <input type="tel" 
+                               id="phone" 
+                               name="phone" 
+                               x-model="formData.phone"
+                               class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required" for="location">Location</label>
+                        <div class="form-subtext">City and state/country for regulatory compliance.</div>
+                        <input type="text" 
+                               id="location" 
+                               name="location" 
+                               x-model="formData.location"
+                               class="form-input" 
+                               placeholder="e.g., San Francisco, CA" 
+                               required
+                               @blur="validateField('location')">
+                        <span class="error-message" x-show="errors.location" x-text="errors.location"></span>
+                    </div>
+                    <div class="form-navigation">
+                        <div></div>
+                        <button type="button" 
+                                class="garden-action primary" 
+                                @click="nextStep()"
+                                :disabled="!canProceed">Continue</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Investment Goals -->
+            <section class="garden-panel form-section" 
+                     x-show="currentStep === 2"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform translate-x-4"
+                     x-transition:enter-end="opacity-100 transform translate-x-0">
+                <div class="panel-header">STEP 2: INVESTMENT GOALS</div>
+                <div class="panel-content">
+                    <div class="section-description">Help us understand what you're trying to achieve with your investments.</div>
+                    <div class="form-group">
+                        <label class="form-label required">Primary Investment Goal</label>
+                        <div class="radio-group">
+                            <div class="radio-option" 
+                                 :class="{ selected: formData.primaryGoal === 'growth' }"
+                                 @click="formData.primaryGoal = 'growth'; validateField('primaryGoal')">
+                                <input type="radio" 
+                                       name="primary_goal" 
+                                       value="growth" 
+                                       x-model="formData.primaryGoal"
+                                       class="radio-input">
+                                <div class="radio-label">
+                                    <div class="radio-title">Long-term Growth</div>
+                                    <div class="radio-description">Building wealth over time, comfortable with market volatility</div>
+                                </div>
+                            </div>
+                            <div class="radio-option" 
+                                 :class="{ selected: formData.primaryGoal === 'income' }"
+                                 @click="formData.primaryGoal = 'income'; validateField('primaryGoal')">
+                                <input type="radio" 
+                                       name="primary_goal" 
+                                       value="income" 
+                                       x-model="formData.primaryGoal"
+                                       class="radio-input">
+                                <div class="radio-label">
+                                    <div class="radio-title">Current Income</div>
+                                    <div class="radio-description">Regular income from investments, with some growth potential</div>
+                                </div>
+                            </div>
+                            <div class="radio-option" 
+                                 :class="{ selected: formData.primaryGoal === 'balanced' }"
+                                 @click="formData.primaryGoal = 'balanced'; validateField('primaryGoal')">
+                                <input type="radio" 
+                                       name="primary_goal" 
+                                       value="balanced" 
+                                       x-model="formData.primaryGoal"
+                                       class="radio-input">
+                                <div class="radio-label">
+                                    <div class="radio-title">Balanced Approach</div>
+                                    <div class="radio-description">Mix of growth and income, moderate risk tolerance</div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="error-message" x-show="errors.primaryGoal" x-text="errors.primaryGoal"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required" for="timeHorizon">Investment Time Horizon</label>
+                        <div class="form-subtext">How long before you'll need to access these funds?</div>
+                        <select id="timeHorizon" 
+                                name="time_horizon" 
+                                x-model="formData.timeHorizon"
+                                class="form-input" 
+                                required
+                                @change="validateField('timeHorizon')">
+                            <option value="">Select time horizon</option>
+                            <option value="1-3">1-3 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5-10">5-10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                        <span class="error-message" x-show="errors.timeHorizon" x-text="errors.timeHorizon"></span>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" 
+                                class="garden-action secondary" 
+                                @click="prevStep()">Back</button>
+                        <button type="button" 
+                                class="garden-action primary" 
+                                @click="nextStep()"
+                                :disabled="!canProceed">Continue</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Ethical Preferences -->
+            <section class="garden-panel form-section" 
+                     x-show="currentStep === 3"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform translate-x-4"
+                     x-transition:enter-end="opacity-100 transform translate-x-0">
+                <div class="panel-header">STEP 3: ETHICAL PREFERENCES</div>
+                <div class="panel-content">
+                    <div class="section-description">Select the issues that matter most to you. We'll build your portfolio accordingly.</div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Exclusions</label>
+                        <div class="form-subtext">Industries or practices you want to avoid in your portfolio</div>
+                        <div class="checkbox-group">
+                            <template x-for="exclusion in exclusionOptions" :key="exclusion.value">
+                                <div class="checkbox-option" 
+                                     :class="{ selected: formData.exclusions.includes(exclusion.value) }"
+                                     @click="toggleExclusion(exclusion.value)">
+                                    <input type="checkbox" 
+                                           :name="'exclusions'" 
+                                           :value="exclusion.value"
+                                           :checked="formData.exclusions.includes(exclusion.value)"
+                                           class="checkbox-input">
+                                    <div class="checkbox-label">
+                                        <div class="checkbox-title" x-text="exclusion.title"></div>
+                                        <div class="checkbox-description" x-text="exclusion.description"></div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Positive Impact Areas</label>
+                        <div class="form-subtext">Themes you want to actively support through your investments</div>
+                        <div class="checkbox-group">
+                            <template x-for="impact in impactOptions" :key="impact.value">
+                                <div class="checkbox-option" 
+                                     :class="{ selected: formData.impactAreas.includes(impact.value) }"
+                                     @click="toggleImpact(impact.value)">
+                                    <input type="checkbox" 
+                                           :name="'impact_areas'" 
+                                           :value="impact.value"
+                                           :checked="formData.impactAreas.includes(impact.value)"
+                                           class="checkbox-input">
+                                    <div class="checkbox-label">
+                                        <div class="checkbox-title" x-text="impact.title"></div>
+                                        <div class="checkbox-description" x-text="impact.description"></div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" 
+                                class="garden-action secondary" 
+                                @click="prevStep()">Back</button>
+                        <button type="button" 
+                                class="garden-action primary" 
+                                @click="nextStep()">Continue</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Investment Experience -->
+            <section class="garden-panel form-section" 
+                     x-show="currentStep === 4"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform translate-x-4"
+                     x-transition:enter-end="opacity-100 transform translate-x-0">
+                <div class="panel-header">STEP 4: INVESTMENT EXPERIENCE</div>
+                <div class="panel-content">
+                    <div class="section-description">This helps us tailor our communication and recommendations to your experience level.</div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">Investment Experience</label>
+                        <div class="radio-group">
+                            <template x-for="level in experienceLevels" :key="level.value">
+                                <div class="radio-option" 
+                                     :class="{ selected: formData.experienceLevel === level.value }"
+                                     @click="formData.experienceLevel = level.value; validateField('experienceLevel')">
+                                    <input type="radio" 
+                                           name="experience_level" 
+                                           :value="level.value"
+                                           x-model="formData.experienceLevel"
+                                           class="radio-input">
+                                    <div class="radio-label">
+                                        <div class="radio-title" x-text="level.title"></div>
+                                        <div class="radio-description" x-text="level.description"></div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                        <span class="error-message" x-show="errors.experienceLevel" x-text="errors.experienceLevel"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required" for="initialInvestment">Initial Investment Amount</label>
+                        <div class="form-subtext">Minimum initial investment is $25,000</div>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" 
+                                   id="initialInvestment" 
+                                   name="initial_investment" 
+                                   x-model.number="formData.initialInvestment"
+                                   class="form-input" 
+                                   min="25000" 
+                                   step="1000" 
+                                   required
+                                   @blur="validateField('initialInvestment')"
+                                   @input="formatCurrency('initialInvestment')">
+                        </div>
+                        <span class="error-message" x-show="errors.initialInvestment" x-text="errors.initialInvestment"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="monthlyContribution">Monthly Contribution (Optional)</label>
+                        <div class="form-subtext">Regular contributions help build wealth over time</div>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" 
+                                   id="monthlyContribution" 
+                                   name="monthly_contribution" 
+                                   x-model.number="formData.monthlyContribution"
+                                   class="form-input" 
+                                   min="0" 
+                                   step="100"
+                                   @input="formatCurrency('monthlyContribution')">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">
+                            <input type="checkbox" 
+                                   name="accredited_investor" 
+                                   x-model="formData.accreditedInvestor"
+                                   @change="validateField('accreditedInvestor')"
+                                   required>
+                            I am an accredited investor
+                        </label>
+                        <div class="form-subtext">
+                            An accredited investor meets specific SEC requirements regarding income or net worth. 
+                            <a href="/faq/accredited-investor/" target="_blank">Learn more</a>
+                        </div>
+                        <span class="error-message" x-show="errors.accreditedInvestor" x-text="errors.accreditedInvestor"></span>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" 
+                                class="garden-action secondary" 
+                                @click="prevStep()">Back</button>
+                        <button type="button" 
+                                class="garden-action primary" 
+                                @click="nextStep()"
+                                :disabled="!canProceed">Continue</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Review and Submit -->
+            <section class="garden-panel form-section" 
+                     x-show="currentStep === 5"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform translate-x-4"
+                     x-transition:enter-end="opacity-100 transform translate-x-0">
+                <div class="panel-header">STEP 5: REVIEW AND SUBMIT</div>
+                <div class="panel-content">
+                    <div class="section-description">Please review your information before submitting.</div>
+                    
+                    <div class="review-summary" x-html="getReviewSummary()"></div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">
+                            <input type="checkbox" 
+                                   name="terms_accepted" 
+                                   x-model="formData.termsAccepted"
+                                   @change="validateField('termsAccepted')"
+                                   required>
+                            I have read and agree to the <a href="/disclosures/terms/" target="_blank">Terms of Service</a> 
+                            and <a href="/disclosures/privacy/" target="_blank">Privacy Policy</a>
+                        </label>
+                        <span class="error-message" x-show="errors.termsAccepted" x-text="errors.termsAccepted"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">
+                            <input type="checkbox" 
+                                   name="advisory_agreement" 
+                                   x-model="formData.advisoryAgreement"
+                                   @change="validateField('advisoryAgreement')"
+                                   required>
+                            I understand that this begins the process of establishing an investment advisory relationship
+                        </label>
+                        <span class="error-message" x-show="errors.advisoryAgreement" x-text="errors.advisoryAgreement"></span>
+                    </div>
+                    
+                    <div id="form-response"></div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" 
+                                class="garden-action secondary" 
+                                @click="prevStep()">Back</button>
+                        <button type="submit" 
+                                class="garden-action primary large"
+                                :disabled="!canSubmit || submitting">
+                            <span x-show="!submitting">Submit Application</span>
+                            <span x-show="submitting" id="submit-indicator">
+                                <span class="spinner">⟳</span> Submitting...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </form>
+
+    </div>
+</main>
+</div>
+
+<script>
+function onboardingForm() {
+    return {
+        currentStep: 1,
+        totalSteps: 5,
+        submitting: false,
+        formData: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            location: '',
+            primaryGoal: '',
+            timeHorizon: '',
+            exclusions: [],
+            impactAreas: [],
+            experienceLevel: '',
+            initialInvestment: 25000,
+            monthlyContribution: null,
+            accreditedInvestor: false,
+            termsAccepted: false,
+            advisoryAgreement: false
+        },
+        errors: {},
+        
+        // Options data
+        exclusionOptions: [
+            { value: 'weapons', title: 'Weapons & Defense', description: 'Companies involved in weapons manufacturing or defense contracting' },
+            { value: 'tobacco', title: 'Tobacco', description: 'Tobacco production, distribution, or significant retail' },
+            { value: 'fossil_fuels', title: 'Fossil Fuels', description: 'Oil, gas, and coal extraction or refining' },
+            { value: 'gambling', title: 'Gambling', description: 'Casinos, online gambling, or lottery systems' },
+            { value: 'alcohol', title: 'Alcohol', description: 'Alcohol production or distribution' },
+            { value: 'animal_testing', title: 'Animal Testing', description: 'Non-medical animal testing for cosmetics or consumer products' }
+        ],
+        
+        impactOptions: [
+            { value: 'renewable_energy', title: 'Renewable Energy', description: 'Solar, wind, and other clean energy technologies' },
+            { value: 'healthcare', title: 'Healthcare Innovation', description: 'Medical technology and accessible healthcare solutions' },
+            { value: 'education', title: 'Education', description: 'Educational technology and accessible learning' },
+            { value: 'sustainable_agriculture', title: 'Sustainable Agriculture', description: 'Organic farming and sustainable food systems' },
+            { value: 'social_justice', title: 'Social Justice', description: 'Companies promoting equality and fair labor practices' },
+            { value: 'clean_water', title: 'Clean Water', description: 'Water purification and conservation technologies' }
+        ],
+        
+        experienceLevels: [
+            { value: 'beginner', title: 'Beginner', description: 'New to investing or limited experience' },
+            { value: 'intermediate', title: 'Intermediate', description: 'Some investment experience, understand basic concepts' },
+            { value: 'experienced', title: 'Experienced', description: 'Extensive investment experience, comfortable with complex strategies' }
+        ],
+        
+        get progressText() {
+            const stepNames = {
+                1: 'Personal Information',
+                2: 'Investment Goals',
+                3: 'Ethical Preferences',
+                4: 'Investment Experience',
+                5: 'Review and Submit'
+            };
+            return `Step ${this.currentStep} of ${this.totalSteps}: ${stepNames[this.currentStep]}`;
+        },
+        
+        get canProceed() {
+            return this.validateStep(this.currentStep);
+        },
+        
+        get canSubmit() {
+            return this.validateStep(5) && !this.submitting;
+        },
+        
+        init() {
+            // Initialize any saved form data from localStorage
+            const savedData = localStorage.getItem('onboardingFormData');
+            if (savedData) {
+                try {
+                    const parsed = JSON.parse(savedData);
+                    Object.assign(this.formData, parsed);
+                } catch (e) {
+                    console.error('Error loading saved form data:', e);
+                }
+            }
+            
+            // Save form data on changes
+            this.$watch('formData', () => {
+                localStorage.setItem('onboardingFormData', JSON.stringify(this.formData));
+            }, { deep: true });
+        },
+        
+        validateField(field) {
+            this.errors[field] = '';
+            
+            switch(field) {
+                case 'firstName':
+                case 'lastName':
+                    if (!this.formData[field].trim()) {
+                        this.errors[field] = 'This field is required';
+                        return false;
+                    }
+                    break;
+                    
+                case 'email':
+                    if (!this.formData.email.trim()) {
+                        this.errors.email = 'Email is required';
+                        return false;
+                    }
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.formData.email)) {
+                        this.errors.email = 'Please enter a valid email address';
+                        return false;
+                    }
+                    break;
+                    
+                case 'location':
+                    if (!this.formData.location.trim()) {
+                        this.errors.location = 'Location is required';
+                        return false;
+                    }
+                    break;
+                    
+                case 'primaryGoal':
+                    if (!this.formData.primaryGoal) {
+                        this.errors.primaryGoal = 'Please select your primary investment goal';
+                        return false;
+                    }
+                    break;
+                    
+                case 'timeHorizon':
+                    if (!this.formData.timeHorizon) {
+                        this.errors.timeHorizon = 'Please select your investment time horizon';
+                        return false;
+                    }
+                    break;
+                    
+                case 'experienceLevel':
+                    if (!this.formData.experienceLevel) {
+                        this.errors.experienceLevel = 'Please select your experience level';
+                        return false;
+                    }
+                    break;
+                    
+                case 'initialInvestment':
+                    if (!this.formData.initialInvestment || this.formData.initialInvestment < 25000) {
+                        this.errors.initialInvestment = 'Minimum initial investment is $25,000';
+                        return false;
+                    }
+                    break;
+                    
+                case 'accreditedInvestor':
+                    if (!this.formData.accreditedInvestor) {
+                        this.errors.accreditedInvestor = 'You must be an accredited investor to proceed';
+                        return false;
+                    }
+                    break;
+                    
+                case 'termsAccepted':
+                    if (!this.formData.termsAccepted) {
+                        this.errors.termsAccepted = 'You must accept the terms to proceed';
+                        return false;
+                    }
+                    break;
+                    
+                case 'advisoryAgreement':
+                    if (!this.formData.advisoryAgreement) {
+                        this.errors.advisoryAgreement = 'You must acknowledge the advisory relationship';
+                        return false;
+                    }
+                    break;
+            }
+            
+            return true;
+        },
+        
+        validateStep(step) {
+            switch(step) {
+                case 1:
+                    return this.validateField('firstName') && 
+                           this.validateField('lastName') && 
+                           this.validateField('email') && 
+                           this.validateField('location');
+                case 2:
+                    return this.validateField('primaryGoal') && 
+                           this.validateField('timeHorizon');
+                case 3:
+                    return true; // Ethical preferences are optional
+                case 4:
+                    return this.validateField('experienceLevel') && 
+                           this.validateField('initialInvestment') && 
+                           this.validateField('accreditedInvestor');
+                case 5:
+                    return this.validateField('termsAccepted') && 
+                           this.validateField('advisoryAgreement');
+            }
+            return true;
+        },
+        
+        nextStep() {
+            if (this.validateStep(this.currentStep) && this.currentStep < this.totalSteps) {
+                this.currentStep++;
+                window.scrollTo(0, 0);
+                announce(`Moving to step ${this.currentStep} of ${this.totalSteps}`);
+            }
+        },
+        
+        prevStep() {
+            if (this.currentStep > 1) {
+                this.currentStep--;
+                window.scrollTo(0, 0);
+                announce(`Moving back to step ${this.currentStep} of ${this.totalSteps}`);
+            }
+        },
+        
+        toggleExclusion(value) {
+            const index = this.formData.exclusions.indexOf(value);
+            if (index > -1) {
+                this.formData.exclusions.splice(index, 1);
+            } else {
+                this.formData.exclusions.push(value);
+            }
+        },
+        
+        toggleImpact(value) {
+            const index = this.formData.impactAreas.indexOf(value);
+            if (index > -1) {
+                this.formData.impactAreas.splice(index, 1);
+            } else {
+                this.formData.impactAreas.push(value);
+            }
+        },
+        
+        formatCurrency(field) {
+            // Format number as currency for display
+            if (this.formData[field]) {
+                const value = this.formData[field].toString().replace(/[^0-9]/g, '');
+                this.formData[field] = parseInt(value) || 0;
+            }
+        },
+        
+        getReviewSummary() {
+            let html = '<div class="review-grid">';
+            
+            // Personal Information
+            html += `
+                <div class="review-item">
+                    <div class="review-label">Personal Information</div>
+                    <div class="review-value">
+                        <strong>Name:</strong> ${this.formData.firstName} ${this.formData.lastName}<br>
+                        <strong>Email:</strong> ${this.formData.email}<br>
+                        <strong>Location:</strong> ${this.formData.location}
+                        ${this.formData.phone ? `<br><strong>Phone:</strong> ${this.formData.phone}` : ''}
+                    </div>
+                </div>
+            `;
+            
+            // Investment Goals
+            const goalTitles = {
+                'growth': 'Long-term Growth',
+                'income': 'Current Income',
+                'balanced': 'Balanced Approach'
+            };
+            html += `
+                <div class="review-item">
+                    <div class="review-label">Investment Goals</div>
+                    <div class="review-value">
+                        <strong>Primary Goal:</strong> ${goalTitles[this.formData.primaryGoal] || this.formData.primaryGoal}<br>
+                        <strong>Time Horizon:</strong> ${this.formData.timeHorizon} years
+                    </div>
+                </div>
+            `;
+            
+            // Ethical Preferences
+            html += `
+                <div class="review-item">
+                    <div class="review-label">Ethical Preferences</div>
+                    <div class="review-value">
+                        <strong>Exclusions:</strong> ${this.formData.exclusions.length ? this.formData.exclusions.map(e => {
+                            const option = this.exclusionOptions.find(o => o.value === e);
+                            return option ? option.title : e;
+                        }).join(', ') : 'None selected'}<br>
+                        <strong>Impact Areas:</strong> ${this.formData.impactAreas.length ? this.formData.impactAreas.map(i => {
+                            const option = this.impactOptions.find(o => o.value === i);
+                            return option ? option.title : i;
+                        }).join(', ') : 'None selected'}
+                    </div>
+                </div>
+            `;
+            
+            // Investment Details
+            const expTitles = {
+                'beginner': 'Beginner',
+                'intermediate': 'Intermediate',
+                'experienced': 'Experienced'
+            };
+            html += `
+                <div class="review-item">
+                    <div class="review-label">Investment Details</div>
+                    <div class="review-value">
+                        <strong>Experience Level:</strong> ${expTitles[this.formData.experienceLevel] || this.formData.experienceLevel}<br>
+                        <strong>Initial Investment:</strong> $${this.formData.initialInvestment.toLocaleString()}
+                        ${this.formData.monthlyContribution ? `<br><strong>Monthly Contribution:</strong> $${this.formData.monthlyContribution.toLocaleString()}` : ''}
+                    </div>
+                </div>
+            `;
+            
+            html += '</div>';
+            return html;
+        },
+        
+        handleFormResponse(event) {
+            if (event.detail.successful) {
+                this.submitting = false;
+                // Clear saved form data on successful submission
+                localStorage.removeItem('onboardingFormData');
+                announce('Application submitted successfully');
+            } else {
+                this.submitting = false;
+                announce('There was an error submitting your application');
+            }
+        }
+    }
+}
+</script>
+
+<style>
+/* Additional styles for Alpine.js transitions */
+[x-cloak] { display: none !important; }
+
+.form-section {
+    position: relative;
+}
+
+.error-message {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.htmx-indicator {
+    display: none;
+    color: var(--color-primary);
+    font-size: 0.875rem;
+}
+
+.htmx-request .htmx-indicator {
+    display: inline;
+}
+
+.spinner {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.review-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.review-item {
+    border: 1px solid var(--color-border);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-surface-variant);
+}
+
+.review-label {
+    font-weight: var(--font-semibold);
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+}
+
+.review-value {
+    color: var(--color-text-primary);
+}
+
+.review-value strong {
+    font-weight: var(--font-medium);
+}
+</style>
+{% endblock %}

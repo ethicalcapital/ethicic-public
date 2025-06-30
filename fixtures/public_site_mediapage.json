@@ -1,0 +1,11 @@
+[
+{
+  "model": "public_site.mediapage",
+  "pk": 98,
+  "fields": {
+    "intro_text": "\n            <p>Ethical Capital Investment Collaborative has been featured in leading financial publications \n            and media outlets for our innovative approach to values-aligned investing, LGBTQ+ inclusive \n            financial planning, and commitment to democratizing investment intelligence.</p>\n            ",
+    "press_kit_title": "Press Resources",
+    "press_kit_description": "\n            <p><strong>About EC1C:</strong> Ethical Capital Investment Collaborative (EC1C) is a values-driven \n            investment management firm specializing in BDS-compliant, fossil fuel free, and socially responsible \n            portfolio construction. We serve progressive individuals, families, and institutions seeking to align \n            their investments with their values.</p>\n            \n            <p><strong>Areas of Expertise:</strong></p>\n            <ul>\n                <li>BDS-compliant investment strategies</li>\n                <li>LGBTQ+ inclusive financial planning</li>\n                <li>Fossil fuel free portfolio construction</li>\n                <li>Impact measurement and ESG integration</li>\n                <li>Accessible investment management for underserved communities</li>\n            </ul>\n            \n            <p><strong>Media Contact:</strong> For press inquiries, expert commentary, or interview requests, \n            please contact our media team through the form below.</p>\n            "
+  }
+}
+]

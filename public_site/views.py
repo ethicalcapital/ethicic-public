@@ -16,6 +16,7 @@ except ImportError:
 from django.contrib import messages
 from django.core.cache import cache
 from django.core.paginator import Paginator
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.views.decorators.cache import cache_page
@@ -396,6 +397,9 @@ def create_or_update_contact(email, form_data, form_type, user=None):
 def onboarding_form_submit(request):
     """Handle comprehensive onboarding form submissions"""
     form = OnboardingForm(request.POST)
+    
+    # Check if this is an HTMX request
+    is_htmx = request.headers.get('HX-Request') == 'true'
 
     if form.is_valid():
         form_data = form.cleaned_data
@@ -404,7 +408,7 @@ def onboarding_form_submit(request):
             # Create basic support ticket for onboarding
             full_name = f"{form_data['first_name']} {form_data['last_name']}"
 
-            SupportTicket.objects.create(
+            ticket = SupportTicket.objects.create(
                 name=full_name,
                 email=form_data['email'],
                 subject=f"Onboarding Application - {full_name}",
@@ -413,6 +417,14 @@ def onboarding_form_submit(request):
                 status="new",
             )
 
+            # Handle HTMX request
+            if is_htmx:
+                return render(request, 'public_site/partials/onboarding_success.html', {
+                    'message': "Thank you for your application!",
+                    'details': "We have received your information and will review it shortly.",
+                    'ticket_id': ticket.id if ticket else None,
+                })
+            
             messages.success(
                 request,
                 "Thank you for your application! We have received your information and will review it shortly."
@@ -420,8 +432,15 @@ def onboarding_form_submit(request):
 
             return redirect("/onboarding/thank-you/")
 
-        except Exception:
+        except Exception as e:
             logger.exception("Error processing onboarding form")
+            
+            if is_htmx:
+                return render(request, 'public_site/partials/onboarding_error.html', {
+                    'message': "There was an error processing your application.",
+                    'details': "Please try again or contact us directly."
+                })
+            
             messages.error(
                 request,
                 "There was an error processing your application. Please try again or contact us directly."
@@ -430,6 +449,12 @@ def onboarding_form_submit(request):
 
     else:
         # Form has errors
+        if is_htmx:
+            return render(request, 'public_site/partials/onboarding_error.html', {
+                'message': "Please correct the following errors:",
+                'errors': form.errors
+            })
+        
         error_messages = []
         for field, errors in form.errors.items():
             for error in errors:
@@ -475,14 +500,21 @@ def contact_success(request):
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def contact_api(request):
-    """API endpoint for contact form submissions"""
+    """API endpoint for contact form submissions - supports both JSON and HTMX"""
     try:
+        # Check if this is an HTMX request
+        is_htmx = request.headers.get('HX-Request') == 'true'
+        
         # Use DRF request.data which handles both JSON and form data
         # This will also handle JSON parsing errors automatically
         try:
             data = request.data
         except Exception as parse_error:
             logger.warning("JSON parse error in contact API: %s", parse_error)
+            if is_htmx:
+                return render(request, 'public_site/partials/form_error.html', {
+                    'message': 'Invalid form data. Please check your input and try again.'
+                })
             return Response(
                 {
                     "success": False,
@@ -549,6 +581,13 @@ Support Ticket ID: {ticket.id}
                 except Exception:
                     logger.exception("Failed to send contact form email")
 
+            # Return appropriate response based on request type
+            if is_htmx:
+                return render(request, 'public_site/partials/form_success.html', {
+                    'message': "Thank you for your message! We will get back to you within 24 hours.",
+                    'ticket_id': ticket.id,
+                })
+            
             return Response(
                 {
                     "success": True,
@@ -558,6 +597,13 @@ Support Ticket ID: {ticket.id}
                 status=status.HTTP_201_CREATED,
             )
 
+        # Form has errors
+        if is_htmx:
+            return render(request, 'public_site/partials/form_error.html', {
+                'message': "Please correct the form errors.",
+                'errors': form.errors,
+            })
+        
         return Response(
             {
                 "success": False,
@@ -569,6 +615,11 @@ Support Ticket ID: {ticket.id}
 
     except Exception:
         logger.exception("Error in contact API")
+        if is_htmx:
+            return render(request, 'public_site/partials/form_error.html', {
+                'message': "There was an error processing your request. Please try again.",
+            })
+        
         return Response(
             {
                 "success": False,
@@ -581,8 +632,11 @@ Support Ticket ID: {ticket.id}
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def newsletter_api(request):
-    """API endpoint for newsletter signup"""
+    """API endpoint for newsletter signup - supports both JSON and HTMX"""
     try:
+        # Check if this is an HTMX request
+        is_htmx = request.headers.get('HX-Request') == 'true'
+        
         # Use DRF request.data which handles both JSON and form data
         data = request.data
 
@@ -603,6 +657,11 @@ def newsletter_api(request):
 
             logger.info("Newsletter signup via API: %s", email)
 
+            if is_htmx:
+                return render(request, 'public_site/partials/newsletter_success.html', {
+                    'email': email,
+                })
+            
             return Response(
                 {
                     "success": True,
@@ -611,6 +670,11 @@ def newsletter_api(request):
                 status=status.HTTP_201_CREATED,
             )
 
+        if is_htmx:
+            return render(request, 'public_site/partials/newsletter_error.html', {
+                'errors': form.errors,
+            })
+        
         return Response(
             {
                 "success": False,
@@ -622,6 +686,11 @@ def newsletter_api(request):
 
     except Exception:
         logger.exception("Error in newsletter API")
+        if is_htmx:
+            return render(request, 'public_site/partials/newsletter_error.html', {
+                'message': "There was an error with your subscription. Please try again.",
+            })
+        
         return Response(
             {
                 "success": False,
@@ -961,6 +1030,56 @@ def site_search(request):
     return render(request, 'public_site/search_results.html', context)
 
 
+def site_search_live(request):
+    """Live search endpoint for HTMX - returns partial HTML results."""
+    query_string = request.GET.get('q', '').strip()
+    
+    # Check if this is an HTMX request
+    is_htmx = request.headers.get('HX-Request') == 'true'
+    
+    if not query_string or len(query_string) < 2:
+        # Return empty results for short queries
+        return render(request, 'public_site/partials/search_results_live.html', {
+            'query_string': query_string,
+            'search_results': [],
+            'total_results': 0,
+        })
+
+    try:
+        # Use Wagtail's search functionality - limit to 5 results for live search
+        search_results = Page.objects.live().search(query_string)[:5]
+        
+        # Convert to list to get count without extra query
+        results_list = list(search_results)
+        
+        context = {
+            'query_string': query_string,
+            'search_results': results_list,
+            'total_results': len(results_list),
+            'show_more': len(results_list) >= 5,  # Show "View all results" if we hit the limit
+        }
+    except Exception as e:
+        # Fallback to simple title search
+        logger.warning("Live search failed, using fallback: %s", e)
+        
+        pages = Page.objects.live().filter(title__icontains=query_string)[:5]
+        results_list = list(pages)
+        
+        context = {
+            'query_string': query_string,
+            'search_results': results_list,
+            'total_results': len(results_list),
+            'show_more': len(results_list) >= 5,
+        }
+    
+    # Return partial template for HTMX
+    if is_htmx:
+        return render(request, 'public_site/partials/search_results_live.html', context)
+    else:
+        # For non-HTMX requests, redirect to full search
+        return redirect(f'/search/?q={query_string}')
+
+
 def current_holdings(request):
     """Current Holdings transparency page showing top holdings and portfolio statistics."""
     context = {
@@ -1163,6 +1282,9 @@ def media_items_api(request):
 
         # Limit per_page to reasonable values
         per_page = min(max(per_page, 1), 50)
+        
+        # Check if this is an HTMX request
+        is_htmx = request.headers.get('HX-Request') == 'true'
 
         # Get all media items ordered by featured first, then by date
         media_items = MediaItem.objects.select_related('page').order_by('-featured', '-publication_date')
@@ -1174,6 +1296,9 @@ def media_items_api(request):
             page_obj = paginator.page(page)
         except Exception:
             # If page is out of range, return empty results
+            if is_htmx:
+                return HttpResponse('')  # Empty response for HTMX
+            
             return Response({
                 'items': [],
                 'has_next': False,
@@ -1182,7 +1307,29 @@ def media_items_api(request):
                 'total_items': paginator.count
             }, status=status.HTTP_200_OK)
 
-        # Serialize the media items
+        # For HTMX request, return HTML partial
+        if is_htmx:
+            # Create the next page trigger if there are more pages
+            next_page_html = ''
+            if page_obj.has_next():
+                next_page_html = f'''
+                <div id="load-more-trigger"
+                     hx-get="/api/media-items/?page={page + 1}&per_page={per_page}"
+                     hx-trigger="revealed"
+                     hx-target="#articles-container"
+                     hx-swap="beforeend"
+                     hx-indicator="#loading-indicator"
+                     hx-swap-oob="true"
+                     class="load-more-trigger">
+                </div>
+                '''
+            
+            return render(request, 'public_site/partials/media_items.html', {
+                'media_items': page_obj,
+                'next_page_trigger': next_page_html
+            })
+        
+        # For regular API request, return JSON
         items = []
         for item in page_obj:
             # Process description to remove HTML tags for API response
@@ -1221,6 +1368,135 @@ def media_items_api(request):
         return Response({
             'error': 'Internal server error'
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+def live_stats_api(request):
+    """API endpoint for live statistics with HTMX polling"""
+    import random
+    from django.utils import timezone
+    
+    # In a real application, these would come from your database or analytics
+    # For demo purposes, we'll show slightly varying numbers
+    base_screened = 3000
+    base_holdings = 18
+    
+    stats = {
+        'companies_screened': f"{base_screened + random.randint(0, 50):,}+",
+        'excluded_percentage': "57%",
+        'active_holdings': str(base_holdings + random.randint(-2, 2)),
+        'years_research': "15+",
+        'last_updated': timezone.now()
+    }
+    
+    # Check if this is an HTMX request
+    is_htmx = request.headers.get('HX-Request') == 'true'
+    
+    if is_htmx:
+        # Return just the partial template for HTMX
+        return render(request, 'public_site/partials/live_stats_data.html', stats)
+    else:
+        # Return JSON for regular API calls
+        return JsonResponse(stats)
+
+
+def notifications_count_api(request):
+    """API endpoint for notification count"""
+    # In a real app, this would check the user's unread notifications
+    # For demo, return a random count
+    import random
+    
+    count = random.choice([0, 0, 0, 1, 2, 3])  # Mostly 0, occasionally some notifications
+    
+    # For HTMX requests, return just the count as HTML
+    if request.headers.get('HX-Request') == 'true':
+        if count > 0:
+            return HttpResponse(str(count))
+        else:
+            return HttpResponse('')  # Empty for 0 count
+    
+    return JsonResponse({'count': count})
+
+
+def notifications_api(request):
+    """API endpoint for notifications list"""
+    # Demo notifications - in production, these would come from your database
+    from datetime import timedelta
+    from django.utils import timezone
+    
+    notifications = [
+        {
+            'id': 1,
+            'content': 'New research report available: Q1 2025 Market Analysis',
+            'time': timezone.now() - timedelta(hours=2),
+            'unread': True,
+            'url': '/research/q1-2025-analysis/'
+        },
+        {
+            'id': 2,
+            'content': 'Portfolio update: AAPL position adjusted',
+            'time': timezone.now() - timedelta(days=1),
+            'unread': True,
+            'url': '/portfolio/updates/'
+        },
+        {
+            'id': 3,
+            'content': 'Monthly newsletter published',
+            'time': timezone.now() - timedelta(days=3),
+            'unread': False,
+            'url': '/blog/'
+        }
+    ]
+    
+    # For HTMX requests, return partial template
+    if request.headers.get('HX-Request') == 'true':
+        return render(request, 'public_site/partials/notification_list.html', {
+            'notifications': notifications
+        })
+    
+    return JsonResponse({'notifications': notifications})
+
+
+def mark_notifications_read_api(request):
+    """Mark all notifications as read"""
+    if request.method == 'POST':
+        # In production, update the database to mark notifications as read
+        # For demo, just return an empty notification list
+        
+        if request.headers.get('HX-Request') == 'true':
+            return render(request, 'public_site/partials/notification_list.html', {
+                'notifications': [],
+                'message': 'All notifications marked as read'
+            })
+        
+        return JsonResponse({'success': True})
+    
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+
+def validate_email_api(request):
+    """Validate email address for forms (HTMX endpoint)"""
+    if request.method == 'POST':
+        email = request.POST.get('email', '').strip()
+        
+        if not email:
+            return HttpResponse('<span class="field-error">Email is required</span>')
+        
+        # Basic email validation
+        import re
+        email_regex = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
+        if not re.match(email_regex, email):
+            return HttpResponse('<span class="field-error">Please enter a valid email address</span>')
+        
+        # Check if email is already in use (for demo, check some common domains)
+        blocked_domains = ['tempmail.com', 'throwaway.email', '10minutemail.com']
+        domain = email.split('@')[1].lower()
+        if domain in blocked_domains:
+            return HttpResponse('<span class="field-error">Please use a valid email domain</span>')
+        
+        # Success
+        return HttpResponse('<span class="field-success">✓ Email is valid</span>')
+    
+    return HttpResponse('')
 
 
 

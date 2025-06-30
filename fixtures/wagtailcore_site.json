@@ -1,0 +1,24 @@
+[
+{
+  "model": "wagtailcore.site",
+  "pk": 3,
+  "fields": {
+    "hostname": "localhost",
+    "port": 8000,
+    "site_name": "Ethical Capital WordPress Migration",
+    "root_page": 3,
+    "is_default_site": false
+  }
+},
+{
+  "model": "wagtailcore.site",
+  "pk": 4,
+  "fields": {
+    "hostname": "www.ec1c.com",
+    "port": 443,
+    "site_name": "Ethical Capital Investment Collaborative (www)",
+    "root_page": 3,
+    "is_default_site": true
+  }
+}
+]

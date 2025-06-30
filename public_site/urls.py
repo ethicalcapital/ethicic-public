@@ -48,6 +48,14 @@ urlpatterns = [
     # ============================================================================
     # Site-wide search using Wagtail search
     path("search/", views.site_search, name="search"),
+    path("search/live/", views.site_search_live, name="search_live"),
+    # HTMX polling endpoints
+    path("api/live-stats/", views.live_stats_api, name="api_live_stats"),
+    path("api/notifications/count/", views.notifications_count_api, name="api_notifications_count"),
+    path("api/notifications/", views.notifications_api, name="api_notifications"),
+    path("api/notifications/mark-all-read/", views.mark_notifications_read_api, name="api_notifications_mark_read"),
+    # Form validation endpoints
+    path("api/validate-email/", views.validate_email_api, name="api_validate_email"),
     # Current Holdings transparency page - temporarily disabled for testing
     # path("holdings/", views.current_holdings, name="current_holdings"),
     # ============================================================================

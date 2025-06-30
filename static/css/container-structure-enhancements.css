@@ -121,7 +121,7 @@
 }
 
 [data-theme="dark"] .public-site-context .hero-panel {
-    background: var(--color-primary-alpha, rgba(124, 58, 237, 0.1));
+    background: var(--color-primary-alpha, rgba(85, 60, 154, 0.1));
     border-bottom-color: var(--color-border);
 }
 

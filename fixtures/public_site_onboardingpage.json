@@ -1,0 +1,13 @@
+[
+{
+  "model": "public_site.onboardingpage",
+  "pk": 13,
+  "fields": {
+    "intro_text": "<p>Take your first step toward ethical investing or jump in with both feet. Let's find the perfect mix of strategies for your values and needs.</p>",
+    "form_description": "<p>This comprehensive form helps us understand your investment goals, risk tolerance, and ethical priorities to create your personalized portfolio strategy.</p>",
+    "enable_form": true,
+    "thank_you_title": "Thank You!",
+    "thank_you_message": "<p>We've received your information and will be in touch within 1-2 business days to discuss your personalized investment strategy.</p>"
+  }
+}
+]

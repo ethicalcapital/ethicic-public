@@ -4,6 +4,7 @@
 {% block title %}Research & Analysis | {{ block.super }}{% endblock %}
 
 {% block content %}
+<div class="garden-container">
     <!-- Hero Section with Enhanced Design -->
     <section class="research-hero">
         <div class="hero-background"></div>
@@ -264,13 +265,23 @@
         <div class="newsletter-content">
             <h2>Stay Updated with Our Research</h2>
             <p>Get our latest research insights and market analysis delivered directly to your inbox.</p>
-            <form class="newsletter-form" id="newsletter-form">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit" class="garden-action">Subscribe</button>
+            <form class="newsletter-form" 
+                  id="newsletter-form"
+                  hx-post="/api/newsletter/"
+                  hx-target="#newsletter-response"
+                  hx-indicator="#newsletter-submit-indicator">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Enter your email address" required>
+                <button type="submit" class="garden-action">
+                    <span class="button-text">Subscribe</span>
+                    <span id="newsletter-submit-indicator" class="htmx-indicator">⟳ Subscribing...</span>
+                </button>
             </form>
+            <div id="newsletter-response"></div>
             <p class="newsletter-disclaimer">We respect your privacy. Unsubscribe at any time.</p>
         </div>
     </section>
+</div>
 {% endblock %}
 
 {% block extra_css %}
@@ -286,7 +297,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const categoryCards = document.querySelectorAll('.category-card');
     const viewBtns = document.querySelectorAll('.view-btn');
     const articlesContainer = document.getElementById('articles-grid');
-    const newsletterForm = document.getElementById('newsletter-form');
     
     let currentFilter = 'all';
     let currentSearch = '';
@@ -381,21 +391,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Newsletter form submission
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            
-            // Simple validation
-            if (email && email.includes('@')) {
-                alert('Thank you for subscribing! You will receive our research updates.');
-                this.reset();
-            } else {
-                alert('Please enter a valid email address.');
-            }
-        });
-    }
     
     // Keyboard shortcuts
     document.addEventListener('keydown', function(e) {

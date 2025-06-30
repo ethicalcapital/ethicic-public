@@ -12,6 +12,7 @@ Search | Ethical Capital
 {% block body_class %}search-results-page{% endblock %}
 
 {% block content %}
+<div class="garden-container">
 <section class="garden-panel search-results-header" role="banner" aria-labelledby="search-heading">
     <div class="panel-header">SEARCH RESULTS</div>
     <div class="panel-content">
@@ -36,15 +37,19 @@ Search | Ethical Capital
         
         <!-- Search Form -->
         <div class="search-form-container">
-            <form method="get" action="{% url 'public_site:search' %}" class="site-search-form" role="search">
+            <form method="get" action="{% url 'public_site:search' %}" class="site-search-form" role="search"
+                  x-data="{ query: '{{ query_string }}' }">
                 <div class="search-input-wrapper">
                     <input type="text" 
                            id="search-input" 
                            name="q" 
                            placeholder="Search our site..." 
                            class="garden-input search-input"
-                           value="{{ query_string }}"
+                           x-model="query"
                            aria-label="Search the site"
+                           x-init="$el.focus(); if (query) $el.select()"
+                           @keydown.escape="$el.blur()"
+                           @submit.prevent="if (!query.trim()) { $el.focus(); return false; }"
                            autofocus>
                     <button type="submit" class="search- garden-action garden-action primary" aria-label="Search">
                         <span class="search-icon">🔍</span>
@@ -143,68 +148,25 @@ Search | Ethical Capital
     {% endif %}
 </main>
 {% endif %}
+</div>
 {% endblock %}
 
 {% block extra_css %}
 {% endblock %}
 
 {% block extra_js %}
+<!-- 💀 LEGACY JAVASCRIPT ANNIHILATED - 58+ lines eliminated and replaced with Alpine.js -->
 <script>
-// Enhanced search functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('search-input');
-    
-    if (searchInput) {
-        // Focus search input
-        searchInput.focus();
-        
-        // Select all text if there's a search query
-        if (searchInput.value) {
+// Global keyboard shortcut for search (/)
+document.addEventListener('keydown', function(e) {
+    if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
+        e.preventDefault();
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.focus();
             searchInput.select();
         }
-        
-        // Enhanced keyboard navigation
-        searchInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                this.blur();
-            }
-        });
-        
-        // Auto-focus when search icon is clicked
-        const searchIcon = document.querySelector('.search-icon');
-        if (searchIcon) {
-            searchIcon.addEventListener('click', function() {
-                searchInput.focus();
-            });
-        }
     }
-    
-    // Track search interactions
-    const searchForm = document.querySelector('.site-search-form');
-    if (searchForm) {
-        searchForm.addEventListener('submit', function(e) {
-            const query_string = searchInput.value.trim();
-            if (!query_string) {
-                e.preventDefault();
-                searchInput.focus();
-                return;
-            }
-            
-            // Track search submission
-            console.log('Search submitted:', query_string);
-        });
-    }
-    
-    // Keyboard shortcut to focus search (/)
-    document.addEventListener('keydown', function(e) {
-        if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
-            e.preventDefault();
-            if (searchInput) {
-                searchInput.focus();
-                searchInput.select();
-            }
-        }
-    });
 });
 </script>
 {% endblock %}

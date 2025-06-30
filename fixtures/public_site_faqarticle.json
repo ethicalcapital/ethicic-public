@@ -1,0 +1,535 @@
+[
+{
+  "model": "public_site.faqarticle",
+  "pk": 80,
+  "fields": {
+    "summary": "Learn about sweep programs that automatically invest unallocated cash in money market funds to generate additional yield.",
+    "content": "<p>There are countless ways to hold cash in your investment account.</p>\n\n<p>In the simplest form, you can just hold cash itself. But there are downsides to that. Specifically, cash doesn't generally pay any interest.</p>\n\n<p>Sweep programs are designed to take unallocated cash and invest it in a money market fund so that clients can generate a small additional yield on their cash holdings. They rarely make the difference between success and failure of an investment program, but can definitely be helpful at the margin.</p>\n\n<p>We encourage clients to opt into Altruist's sweep program for that reason, but clients are free not to do so.</p>",
+    "category": "altruist",
+    "priority": 10,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "sweep program, cash management, money market fund, yield, interest"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 81,
+  "fields": {
+    "summary": "Understand how dividend reinvestment programs work and whether you should opt in when your account is professionally managed.",
+    "content": "<p>When you receive a dividend from a stock that you own, it typically arrives in your account as cash. Dividend Reinvestment Programs automatically reinvest those dividends into the securities that sent you the dividend, and can significantly increase your total return.</p>\n\n<p>If your account is managed here, it will be automatically rebalanced about once a month. In effect, this means that we are continuously reallocating all new income and dividends regularly, so it's unlikely that a mountain of dividend cash will build up in your account.</p>\n\n<p>The practical implication of this for our clients is simple: you can opt into the program or not. Your account will be looked after either way.</p>",
+    "category": "altruist",
+    "priority": 9,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "DRIP, dividend reinvestment, automatic rebalancing, dividends, portfolio management"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 82,
+  "fields": {
+    "summary": "Learn about securities lending programs, their risks and benefits, and whether participation makes sense for your account.",
+    "content": "<p>While opening your account, you will be asked whether you'd like to opt into this program or not. Before we get to whether or not you should, here's a bit of an overview of what securities lending is.</p>\n\n<p>Securities lending involves temporarily transferring securities, such as stocks or bonds, from one party (the lender) to another (the borrower).</p>\n\n<p>The borrower typically needs these securities to cover short positions, facilitate trading strategies, or meet collateral requirements. In return, the borrower provides collateral, usually in the form of cash or other securities, to the lender and pays a lending fee.</p>\n\n<p>This activity can be somewhat abstract. If you're relatively new to markets, that's sort of scary on its own. But the risks of allowing your securities to be lent out are extremely limited. And in many cases, the firms sponsoring these securities lending programs share the extra income with clients.</p>\n\n<p>In the case of Altruist, those fees are not shared with our clients. So while we do not see a tangible harm to participating in this program at this time we also don't mind if our clients opt out of it.</p>",
+    "category": "altruist",
+    "priority": 8,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "securities lending, lending fees, collateral, short positions, program participation"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 83,
+  "fields": {
+    "summary": "Understanding Ethical Capital's fee structure and what you pay for investment management services.",
+    "content": "<p>Clients pay Ethical Capital 1% of their account's value each year in quarterly installments.</p>",
+    "category": "company",
+    "priority": 10,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "fees, cost, 1%, quarterly, investment management fees"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 84,
+  "fields": {
+    "summary": "Learn about the minimum investment required to open an account with Ethical Capital.",
+    "content": "<p>Our internally managed strategies have a minimum investment of $1.</p>",
+    "category": "company",
+    "priority": 9,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "minimum investment, $1, account opening, investment requirements"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 85,
+  "fields": {
+    "summary": "Eligibility requirements for opening an investment account with Ethical Capital.",
+    "content": "<p>Anyone eligible to open a US Bank account can open an investment account with us.</p>",
+    "category": "company",
+    "priority": 8,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "eligibility, US bank account, investment account, requirements"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 86,
+  "fields": {
+    "summary": "Absolutely yes. Being a fiduciary is fundamental to everything we do - there is no compromise on this commitment to putting your interests first.",
+    "content": "<p><strong>Yes, Ethical Capital is unequivocally a fiduciary.</strong></p>\n\n<p>This isn't just a legal designation for us - it's the foundation of our entire business philosophy. Being a fiduciary means we are legally and ethically bound to put your interests before our own, always.</p>\n\n<p><strong>Our commitment to fiduciary duty is absolute.</strong> There is no situation, no incentive, no pressure that would make us compromise on this responsibility. Your financial wellbeing and trust are sacred to us.</p>\n\n<p>What this means for you:</p>\n<ul>\n<li><strong>Your interests come first, period.</strong> Every recommendation, every strategy, every decision is made solely with your benefit in mind.</li>\n<li><strong>Complete transparency.</strong> You'll always know exactly how we're compensated and why we're recommending specific investments.</li>\n<li><strong>No conflicts of interest.</strong> We don't sell products for commissions or receive kickbacks that could bias our advice.</li>\n<li><strong>Legal accountability.</strong> We're held to the highest standard of care under the law, not just industry best practices.</li>\n</ul>\n\n<p>Many financial advisors operate under a \"suitability\" standard, which only requires that investments be appropriate for you. As a fiduciary, we must go far beyond that - we must ensure every recommendation is in your <em>best interest</em>, not just suitable.</p>\n\n<p><strong>This commitment isn't negotiable.</strong> It's who we are, and it's why you can trust us with your financial future.</p>",
+    "category": "company",
+    "priority": 7,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "fiduciary, fiduciary duty, regulatory status, client protection"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 87,
+  "fields": {
+    "summary": "Learn how to customize your portfolio by excluding specific stocks that don't align with your values.",
+    "content": "<p>Yes, Ethical Capital is happy to discuss and can easily implement stock exclusions according to your preferences.</p>",
+    "category": "investment",
+    "priority": 10,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "stock exclusions, portfolio customization, ethical preferences, values alignment"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 88,
+  "fields": {
+    "summary": "Exploring the ethical considerations around real estate investing and how Ethical Capital approaches this sector.",
+    "content": "<p>There's a lot of informed apprehension about investing in real estate.</p>\n\n<p>After all, it's not hard to find examples of landlords or real estate developers behaving improperly. But there's a lot of nuance in a deeper ethical analysis of this massive sector.</p>\n\n<p>In response to a question from a client, Sloane explores the ethical considerations that are relevant to these investments from her standpoint and gives an overview of the investments we currently hold in our flagship Global Opportunities strategy.</p>",
+    "category": "investment",
+    "priority": 8,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "real estate, ethical investing, landlords, property development, Global Opportunities strategy"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 89,
+  "fields": {
+    "summary": "Practical guidance on sustainable philanthropy and balancing personal financial security with generous giving.",
+    "content": "<p>When Gabe pulled together some resources to help you on your philanthropic journey, he took care to include the following guidance for folks interested in giving generously at the top of the article:</p>\n\n<p>Giving is best understood as a continuous practice, not a one-time check writing extravaganza. The most effective donors tend to view it as something they try to get better at over time, and often develop an intensely personal sense of what matters.</p>\n\n<p>In other words, even though it would be amazing to make a huge donation to your favorite organization through great personal sacrifice, it would be much healthier to support them in ways that are sustainable for you.</p>\n\n<p>That can include giving non-monetary resources like your time and energy, but also remembering that you're no good to the causes you care about if you don't take care of yourself.</p>\n\n<p>Think about what they tell you on airplanes: 'put on your own oxygen mask first before assisting other passengers.' This is intensely practical! If you help others without thinking about yourself, you stand a very good chance of making things worse overall by putting yourself into a position where you need saving.</p>\n\n<p>So what should you do? Here are a couple of steps that might feel productive and impactful apart from volunteering:</p>\n\n<ul>\n<li>Identify the organizations you'd like to support and put them in your will. That way the organizations you care about will get your resources when you're no longer using them.</li>\n<li>Organize a get-together with a suggested donation to your favorite organization. For bonus points, provide some resources to the folks who attend that help them see why the cause matters to you.</li>\n<li>Spend time amplifying messages from activists and organizations you care about on your social media platforms.</li>\n<li>Decide in advance to give a percentage of any extra money you come into to causes you care about, but only if it doesn't put your personal finances in peril.</li>\n<li>Take steps to be someone that others can rely on in emergency situations by keeping things like naloxone and band-aids handy while you're out moving through the world.</li>\n</ul>\n\n<p>The most important thing to remember is that you're not alone. As you navigate these complex tradeoffs, please never hesitate to use the team at Ethical Capital as a resource.</p>\n\n<p>Thanks to Jasmine Rashid for asking these questions in her newsletter and inspiring us to pull this help page together.</p>",
+    "category": "planning",
+    "priority": 9,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "philanthropy, giving, sustainable donating, financial planning, charity, ethical tradeoffs"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 90,
+  "fields": {
+    "summary": "Understanding the difference between yield projections and actual historical returns for better investment decisions.",
+    "content": "<p>When evaluating investments, it's crucial to understand the distinction between forward-looking yield (APY) and historical total return.</p>\n\n<h2>Forward-Looking Yield (APY)</h2>\n<p>Annual Percentage Yield (APY) represents the expected return on an investment based on current income distributions. This is a projection of future performance based on:</p>\n<ul>\n<li>Current dividend or interest rates</li>\n<li>Assumed reinvestment of distributions</li>\n<li>Compound interest calculations</li>\n</ul>\n\n<h2>Historical Total Return</h2>\n<p>Historical total return shows what an investment actually achieved in the past, including:</p>\n<ul>\n<li>Price appreciation or depreciation</li>\n<li>Dividends or interest received</li>\n<li>Reinvestment of distributions</li>\n</ul>\n\n<h2>Key Differences</h2>\n<p>1. <strong>Time Perspective:</strong> APY looks forward, while total return looks backward.</p>\n<p>2. <strong>Components:</strong> APY typically focuses on yield/income, while total return includes both income and capital gains/losses.</p>\n<p>3. <strong>Reliability:</strong> Historical returns are factual, while APY is an estimate subject to change.</p>\n\n<h2>Why Both Matter</h2>\n<p>Smart investors consider both metrics:</p>\n<ul>\n<li>Historical returns provide evidence of past performance and volatility</li>\n<li>APY helps estimate future income potential</li>\n<li>Together, they offer a more complete investment picture</li>\n</ul>\n\n<p>Remember: Past performance doesn't guarantee future results, and projected yields may not materialize as expected. Always consider both metrics within your overall investment strategy and risk tolerance.</p>",
+    "category": "investing_101",
+    "priority": 10,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "APY, yield, total return, investment returns, performance metrics"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 91,
+  "fields": {
+    "summary": "Curated resources and recommendations for improving your financial literacy and money management skills.",
+    "content": "<p>Financial literacy is a journey, not a destination. Here are some excellent resources to help you build your knowledge and confidence in managing your finances.</p>\n\n<h2>Books for Beginners</h2>\n<ul>\n<li><strong>\"The Index Card\" by Helaine Olen and Harold Pollack</strong> - Simple rules for financial success that fit on an index card</li>\n<li><strong>\"A Random Walk Down Wall Street\" by Burton Malkiel</strong> - Classic introduction to investing principles</li>\n<li><strong>\"The Bogleheads' Guide to Investing\" by Taylor Larimore</strong> - Practical advice based on Jack Bogle's investment philosophy</li>\n<li><strong>\"Your Money or Your Life\" by Vicki Robin</strong> - Transforming your relationship with money</li>\n</ul>\n\n<h2>Online Resources</h2>\n<ul>\n<li><strong>Bogleheads.org</strong> - Community forum focused on passive investing</li>\n<li><strong>Morningstar.com</strong> - Investment research and education</li>\n<li><strong>Consumer Financial Protection Bureau (CFPB)</strong> - Government resources for financial education</li>\n<li><strong>Khan Academy Personal Finance</strong> - Free courses on financial basics</li>\n</ul>\n\n<h2>Podcasts</h2>\n<ul>\n<li><strong>The Investors Podcast</strong> - Value investing and financial markets</li>\n<li><strong>Planet Money</strong> - Making economics accessible and interesting</li>\n<li><strong>So Money with Farnoosh Torabi</strong> - Personal finance strategies and stories</li>\n<li><strong>ChooseFI</strong> - Financial independence and smart money management</li>\n</ul>\n\n<h2>Key Topics to Explore</h2>\n<ol>\n<li><strong>Budgeting:</strong> Understanding income, expenses, and cash flow</li>\n<li><strong>Emergency Funds:</strong> Building financial security</li>\n<li><strong>Debt Management:</strong> Strategies for paying down debt effectively</li>\n<li><strong>Investing Basics:</strong> Stocks, bonds, mutual funds, and ETFs</li>\n<li><strong>Retirement Planning:</strong> 401(k)s, IRAs, and long-term strategies</li>\n<li><strong>Tax Efficiency:</strong> Understanding how taxes impact your investments</li>\n</ol>\n\n<h2>Working with Professionals</h2>\n<p>While self-education is valuable, consider working with:</p>\n<ul>\n<li><strong>Fee-only financial advisors</strong> for comprehensive planning</li>\n<li><strong>Certified Public Accountants (CPAs)</strong> for tax strategies</li>\n<li><strong>Estate planning attorneys</strong> for wills and trusts</li>\n</ul>\n\n<p>Remember, the best financial education combines learning with action. Start small, be consistent, and don't be afraid to ask questions. At Ethical Capital, we're always happy to help explain concepts and support your financial journey.</p>",
+    "category": "investing_101",
+    "priority": 9,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "financial literacy, personal finance, investment education, money management, financial resources"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 92,
+  "fields": {
+    "summary": "Learn about our mission to democratize institutional-quality ethical investment management.",
+    "content": "<p>Ethical Capital Investment Collaborative is a registered investment advisor dedicated to making institutional-quality ethical investment management accessible to everyone.</p>\n\n<h2>Our Mission</h2>\n<p>We believe that everyone deserves access to professional investment management that aligns with their values, regardless of account size. Our mission is to democratize ethical investing by:</p>\n<ul>\n<li>Eliminating high minimum investments (we accept accounts starting at $1)</li>\n<li>Providing transparent, values-aligned portfolio management</li>\n<li>Offering institutional-quality research and screening</li>\n<li>Maintaining radical transparency in our processes</li>\n</ul>\n\n<h2>What Makes Us Different</h2>\n<p><strong>1. True Ethical Screening:</strong> We hand-screen thousands of companies, going beyond standard ESG ratings to identify concerns that automated systems miss.</p>\n\n<p><strong>2. Radical Transparency:</strong> We \"show the garage\" - providing full access to our exclusion lists, research methodologies, and investment decisions.</p>\n\n<p><strong>3. Client Partnership:</strong> We work directly with clients to understand their values and customize portfolios accordingly.</p>\n\n<p><strong>4. No Greenwashing:</strong> We don't just avoid the worst companies - we actively seek out businesses making positive contributions.</p>\n\n<h2>Our Approach</h2>\n<p>We manage globally diversified portfolios that are:</p>\n<ul>\n<li>BDS-compliant</li>\n<li>Fossil fuel free</li>\n<li>Tobacco free</li>\n<li>Weapons free</li>\n<li>Aligned with additional client-specific values</li>\n</ul>\n\n<h2>Who We Serve</h2>\n<p>Our clients include:</p>\n<ul>\n<li>Individuals seeking values-aligned investing</li>\n<li>Families building generational wealth ethically</li>\n<li>Organizations with specific ethical mandates</li>\n<li>Anyone who believes their investments should reflect their values</li>\n</ul>\n\n<p>At Ethical Capital, we're not just managing money - we're building a movement toward more conscious, ethical capitalism.</p>",
+    "category": "ethical_capital",
+    "priority": 10,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "ethical capital, mission, values investing, ethical screening, transparency"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 93,
+  "fields": {
+    "summary": "Understand our core investment beliefs and how we build portfolios that balance returns with values.",
+    "content": "<p>Our investment philosophy is built on the belief that strong returns and strong values are not mutually exclusive. Here's how we think about investing.</p>\n\n<h2>Core Principles</h2>\n\n<h3>1. Values Without Compromise</h3>\n<p>We believe investors shouldn't have to choose between their values and their returns. Our research shows that thoughtfully constructed ethical portfolios can perform as well as, or better than, conventional portfolios.</p>\n\n<h3>2. True Diversification</h3>\n<p>We build globally diversified portfolios with typically 40-60 holdings, targeting around 2% per position. This provides meaningful exposure to each company while managing concentration risk.</p>\n\n<h3>3. Active Ethical Screening</h3>\n<p>We go beyond basic ESG scores. Our team hand-screens thousands of companies, identifying issues that automated systems miss. We look for:</p>\n<ul>\n<li>Business practices that harm communities</li>\n<li>Environmental degradation</li>\n<li>Labor violations</li>\n<li>Products that cause social harm</li>\n</ul>\n\n<h3>4. Positive Selection</h3>\n<p>We don't just exclude harmful companies - we actively seek businesses making positive contributions:</p>\n<ul>\n<li>Renewable energy leaders</li>\n<li>Sustainable agriculture</li>\n<li>Ethical technology</li>\n<li>Community development</li>\n</ul>\n\n<h2>Portfolio Construction</h2>\n<p>Our portfolios are built using:</p>\n<ul>\n<li><strong>Quality Focus:</strong> We invest in financially strong companies with sustainable business models</li>\n<li><strong>Long-term Perspective:</strong> We're investors, not traders, with typical holding periods measured in years</li>\n<li><strong>Risk Management:</strong> Diversification across sectors, geographies, and company sizes</li>\n<li><strong>Cost Efficiency:</strong> We minimize trading costs and tax impacts through thoughtful execution</li>\n</ul>\n\n<h2>Continuous Improvement</h2>\n<p>Our philosophy evolves as we learn. We:</p>\n<ul>\n<li>Regularly review and update our screening criteria</li>\n<li>Incorporate client feedback and concerns</li>\n<li>Adapt to new ethical challenges as they emerge</li>\n<li>Share our learnings transparently with clients</li>\n</ul>\n\n<p>This philosophy guides every investment decision we make, ensuring your portfolio reflects both your financial goals and your values.</p>",
+    "category": "ethical_capital",
+    "priority": 9,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "investment philosophy, portfolio construction, ethical screening, diversification, values-based investing"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 94,
+  "fields": {
+    "summary": "A detailed look at our proprietary screening process and how we identify ethical investment opportunities.",
+    "content": "<p>Our screening process is the heart of what makes Ethical Capital different. Here's exactly how we evaluate potential investments.</p>\n\n<h2>Multi-Layer Screening Approach</h2>\n\n<h3>Layer 1: Categorical Exclusions</h3>\n<p>We start by excluding entire categories of harmful businesses:</p>\n<ul>\n<li><strong>Fossil Fuels:</strong> Coal, oil, gas extraction and refining</li>\n<li><strong>Tobacco:</strong> Manufacturing and significant distribution</li>\n<li><strong>Weapons:</strong> Military contractors and firearms manufacturers</li>\n<li><strong>Gambling:</strong> Casinos and online gambling platforms</li>\n<li><strong>Adult Entertainment:</strong> Production and distribution</li>\n</ul>\n\n<h3>Layer 2: BDS Compliance</h3>\n<p>We maintain a comprehensive list of companies involved in the occupation of Palestinian territories, updated quarterly based on UN reports and civil society research.</p>\n\n<h3>Layer 3: Proprietary Research</h3>\n<p>Our analysts hand-screen remaining companies for:</p>\n<ul>\n<li>Labor practices and workers' rights</li>\n<li>Environmental impact beyond carbon</li>\n<li>Community relations and indigenous rights</li>\n<li>Product safety and social impact</li>\n<li>Corporate governance and transparency</li>\n</ul>\n\n<h3>Layer 4: Client Customization</h3>\n<p>We work with clients to implement additional screens based on their specific values:</p>\n<ul>\n<li>Animal welfare concerns</li>\n<li>Specific religious requirements</li>\n<li>Political activity restrictions</li>\n<li>Supply chain requirements</li>\n</ul>\n\n<h2>Research Sources</h2>\n<p>We aggregate information from:</p>\n<ul>\n<li>Company filings and reports</li>\n<li>NGO investigations and campaigns</li>\n<li>News media and investigative journalism</li>\n<li>Academic research</li>\n<li>Government regulatory actions</li>\n<li>Direct company engagement</li>\n</ul>\n\n<h2>Dynamic Monitoring</h2>\n<p>Screening isn't a one-time event. We:</p>\n<ul>\n<li>Monitor portfolio companies continuously</li>\n<li>Review exclusion decisions quarterly</li>\n<li>Add new companies to exclusion lists as issues emerge</li>\n<li>Remove companies that meaningfully reform practices</li>\n</ul>\n\n<h2>Transparency and Accountability</h2>\n<p>Unlike most managers, we:</p>\n<ul>\n<li>Publish our complete exclusion lists</li>\n<li>Explain specific reasons for each exclusion</li>\n<li>Welcome client input and challenges</li>\n<li>Admit when we make mistakes and correct them</li>\n</ul>\n\n<p>This rigorous process ensures your investments truly align with your values while maintaining a high-quality, diversified portfolio.</p>",
+    "category": "ethical_capital",
+    "priority": 8,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "screening process, exclusions, BDS compliance, ethical research, transparency"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 95,
+  "fields": {
+    "summary": "Complete transparency on our fees, how they work, and what you get for your investment.",
+    "content": "<p>We believe in complete fee transparency. Here's exactly what you pay and what you receive in return.</p>\n\n<h2>Our Simple Fee Structure</h2>\n<p><strong>1% Annual Management Fee</strong></p>\n<ul>\n<li>Charged quarterly (0.25% per quarter)</li>\n<li>Calculated on your account value</li>\n<li>Automatically deducted from your account</li>\n<li>No hidden charges or surprise fees</li>\n</ul>\n\n<h2>What's Included</h2>\n<p>Your 1% fee covers everything:</p>\n<ul>\n<li>Professional portfolio management</li>\n<li>Proprietary ethical screening</li>\n<li>Regular rebalancing</li>\n<li>Tax-loss harvesting</li>\n<li>Quarterly reporting</li>\n<li>Direct access to our team</li>\n<li>Portfolio customization</li>\n</ul>\n\n<h2>What's NOT Included</h2>\n<p>We don't charge extra for:</p>\n<ul>\n<li>Account setup or closing</li>\n<li>Deposits or withdrawals</li>\n<li>Portfolio customization requests</li>\n<li>Additional screening criteria</li>\n<li>Phone calls or meetings</li>\n<li>Rush requests or special handling</li>\n</ul>\n\n<h2>How Fees Are Calculated</h2>\n<p>Example for a $100,000 account:</p>\n<ul>\n<li>Annual fee: $1,000 (1%)</li>\n<li>Quarterly fee: $250 (0.25%)</li>\n<li>Monthly equivalent: ~$83</li>\n</ul>\n\n<h2>Fee Comparison</h2>\n<p>Traditional wealth managers often charge:</p>\n<ul>\n<li>1.5-2% annual fees</li>\n<li>High minimum investments ($250k-$1M+)</li>\n<li>Additional fees for customization</li>\n<li>Transaction or trading fees</li>\n</ul>\n\n<p>Robo-advisors typically charge:</p>\n<ul>\n<li>0.25-0.5% annual fees</li>\n<li>But offer no customization</li>\n<li>Limited or no ethical screening</li>\n<li>No human support</li>\n</ul>\n\n<h2>Our Value Proposition</h2>\n<p>For 1% annually, you get:</p>\n<ul>\n<li>Human portfolio managers with institutional experience</li>\n<li>Proprietary ethical research you can't get elsewhere</li>\n<li>Complete portfolio customization</li>\n<li>Direct access to decision makers</li>\n<li>True alignment with your values</li>\n</ul>\n\n<p>We believe this represents exceptional value for investors who care about both returns and impact.</p>",
+    "category": "ethical_capital",
+    "priority": 7,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "fees, pricing, cost, management fee, value proposition"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 97,
+  "fields": {
+    "summary": "Exploring the fundamental question of whether capitalism and ethics can coexist, and our role in making markets more moral.",
+    "content": "<p>This is perhaps the biggest question we grapple with at Ethical Capital. Can a system built on profit maximization ever truly serve the common good?</p>\n\n<h2>The Challenge</h2>\n<p>Traditional capitalism often rewards behaviors that harm society:</p>\n<ul>\n<li>Externalizing environmental costs</li>\n<li>Exploiting workers to reduce expenses</li>\n<li>Creating addictive or harmful products</li>\n<li>Prioritizing short-term gains over long-term sustainability</li>\n</ul>\n\n<p>These aren't bugs in the system - they're features that maximize shareholder returns at the expense of other stakeholders.</p>\n\n<h2>The Opportunity</h2>\n<p>But capitalism also has unique strengths:</p>\n<ul>\n<li>Efficient resource allocation</li>\n<li>Innovation incentives</li>\n<li>Wealth creation potential</li>\n<li>Individual choice and freedom</li>\n</ul>\n\n<p>The question isn't whether to abandon capitalism, but how to reshape it.</p>\n\n<h2>Our Approach: Conscious Capitalism</h2>\n<p>We believe ethical capitalism is possible when:</p>\n\n<h3>1. Investors Demand Better</h3>\n<p>Every investment is a vote for the kind of world we want. By directing capital toward ethical companies and away from harmful ones, we create powerful incentives for change.</p>\n\n<h3>2. Companies Expand Their Purpose</h3>\n<p>The best companies already know that serving all stakeholders - employees, communities, environment, and shareholders - creates more sustainable value than exploitation.</p>\n\n<h3>3. Transparency Increases</h3>\n<p>Markets work best with perfect information. By demanding radical transparency and sharing what we learn, we help markets price in true costs and benefits.</p>\n\n<h3>4. Time Horizons Extend</h3>\n<p>Short-termism drives many harmful behaviors. By investing for the long term and supporting companies that do the same, we can align capitalism with sustainability.</p>\n\n<h2>Real-World Examples</h2>\n<p>We see ethical capitalism working in companies that:</p>\n<ul>\n<li>Pay living wages and provide good benefits</li>\n<li>Invest in renewable energy and circular economy</li>\n<li>Create products that genuinely improve lives</li>\n<li>Build wealth in underserved communities</li>\n<li>Practice radical transparency and accountability</li>\n</ul>\n\n<h2>The Path Forward</h2>\n<p>Making capitalism ethical requires:</p>\n<ul>\n<li><strong>Individual Action:</strong> Aligning our investments with our values</li>\n<li><strong>Collective Power:</strong> Building communities of conscious investors</li>\n<li><strong>Systemic Change:</strong> Advocating for policies that internalize costs</li>\n<li><strong>Cultural Shift:</strong> Redefining success beyond pure profit</li>\n</ul>\n\n<h2>Our Commitment</h2>\n<p>At Ethical Capital, we're proving that ethical investing isn't just possible - it's profitable. By carefully selecting companies that do well by doing good, we're building portfolios that generate both returns and positive impact.</p>\n\n<p>The question isn't whether capitalism can be ethical. The question is whether we'll choose to make it so. Every investment decision is an opportunity to vote for the economy we want to see.</p>\n\n<p>Join us in building a more conscious, ethical form of capitalism - one investment at a time.</p>",
+    "category": "big_questions",
+    "priority": 10,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "ethical capitalism, conscious capitalism, impact investing, stakeholder capitalism, sustainable investing"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 110,
+  "fields": {
+    "summary": "Ethical Capital exists to create industry-leading responsible investment strategies. Our mission is to align our clients' capital with companies that avoid preventable harm to living things and make meaningful contributions to a better future. We do this because we believe it leads to better client outcomes. The companies we exclude are generally lower-quality businesses, and our process benefits significantly from not having to engage with them ...",
+    "content": "<p>Ethical Capital exists to create industry-leading responsible investment strategies. Our mission is to align our clients' capital with companies that avoid preventable harm to living things and make meaningful contributions to a better future. We do this because we believe it leads to better client outcomes. The companies we exclude are generally lower-quality businesses, and our process benefits significantly from not having to engage with them in much depth.</p>",
+    "category": "investment_approach",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 111,
+  "fields": {
+    "summary": "We do not segregate responsible investing from regular investing. All of our policy documents can be found on the process page of our website.",
+    "content": "<p>We do not segregate responsible investing from regular investing. All of our policy documents can be found on the process page of our website.</p>",
+    "category": "investment_approach",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 112,
+  "fields": {
+    "summary": "We are signatories to the plant based treaty and work closely with the investor community whenever we can to advance our mission. As a matter of policy, we do not sign onto statements that require membership payments to the sponsoring body, only activist-led initiatives.",
+    "content": "<p>We are signatories to the plant based treaty and work closely with the investor community whenever we can to advance our mission. As a matter of policy, we do not sign onto statements that require membership payments to the sponsoring body, only activist-led initiatives.</p>",
+    "category": "investment_approach",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 113,
+  "fields": {
+    "summary": "Responsible investment is inseparable from regular investment at our organisation. Accordingly, all relevant processes are overseen by our founder and chief investment officer.",
+    "content": "<p>Responsible investment is inseparable from regular investment at our organisation. Accordingly, all relevant processes are overseen by our founder and chief investment officer.</p>",
+    "category": "investment_approach",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 114,
+  "fields": {
+    "summary": "We evaluate all teams on a holistic basis. There is no separate responsibility section.",
+    "content": "<p>We evaluate all teams on a holistic basis. There is no separate responsibility section.</p>",
+    "category": "investment_approach",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 115,
+  "fields": {
+    "summary": "All non-founding staff have undergone a rigorous training program designed to acquaint them with a holistic view of how companies create shared long-term value. Over the first six months of employee tenure, this happens in regular dialogues with the rest of the investment team. After that, it happens through staff-specific development plans that include external service opportunities, content generation activities, and other opportunities as they...",
+    "content": "<p>All non-founding staff have undergone a rigorous training program designed to acquaint them with a holistic view of how companies create shared long-term value. Over the first six months of employee tenure, this happens in regular dialogues with the rest of the investment team. After that, it happens through staff-specific development plans that include external service opportunities, content generation activities, and other opportunities as they arise.</p>",
+    "category": "investment_approach",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 116,
+  "fields": {
+    "summary": "We focus on the degree to which a firm's revenue is directly associated with positive real-world outcomes. We do not use third-party tools, standards, or data to complete this analysis.",
+    "content": "<p>We focus on the degree to which a firm's revenue is directly associated with positive real-world outcomes. We do not use third-party tools, standards, or data to complete this analysis.</p>",
+    "category": "esg_integration",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 117,
+  "fields": {
+    "summary": "In the last twelve months: We exited a position in Eiffage SA (OTC:EFGSY) after uncovering evidence that the firm has failed to properly supervise some of its projects in the middle east, resulting in significant human rights challenges. We continued adding to our position in Badger Meter (NYSE:BMI) as their value-added water meters continued to add value to many municipal water systems. We re-entered our position in ELF cosmetics (NYSE:ELF) afte...",
+    "content": "<p>In the last twelve months: We exited a position in Eiffage SA (OTC:EFGSY) after uncovering evidence that the firm has failed to properly supervise some of its projects in the middle east, resulting in significant human rights challenges. We continued adding to our position in Badger Meter (NYSE:BMI) as their value-added water meters continued to add value to many municipal water systems. We re-entered our position in ELF cosmetics (NYSE:ELF) after a significant selloff in their stock price coincided with a stronger impact case and continued sales momentum.</p>",
+    "category": "esg_integration",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 118,
+  "fields": {
+    "summary": "We operate a distinctive screening process that materially informs all investment strategies we manage. We are able to apply client-directed screens to our strategies, but prefer to incorporate client ethical concerns into our overall strategy so that all clients can benefit from any given client's oversight.",
+    "content": "<p>We operate a distinctive screening process that materially informs all investment strategies we manage. We are able to apply client-directed screens to our strategies, but prefer to incorporate client ethical concerns into our overall strategy so that all clients can benefit from any given client's oversight.</p>",
+    "category": "esg_integration",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 119,
+  "fields": {
+    "summary": "We use our own judgement to determine whether each company's revenue is associated with a positive outcome. With that said, we do not seek to shape sustainability outcomes as defined by the SDGs or other frameworks.",
+    "content": "<p>We use our own judgement to determine whether each company's revenue is associated with a positive outcome. With that said, we do not seek to shape sustainability outcomes as defined by the SDGs or other frameworks.</p>",
+    "category": "esg_integration",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 120,
+  "fields": {
+    "summary": "We promptly reach out to all named investor contacts in response to any perceived, potential, or documented ESG Incident. In these cases, we always take care to include tracking beacons in our emails that allow us to see how our inquiry is progressing through the company. This, coupled with our approach to lie detection and the strategic use of evidence, allows us to evaluate company responses for forthrightness. If we sense that a management tea...",
+    "content": "<p>We promptly reach out to all named investor contacts in response to any perceived, potential, or documented ESG Incident. In these cases, we always take care to include tracking beacons in our emails that allow us to see how our inquiry is progressing through the company. This, coupled with our approach to lie detection and the strategic use of evidence, allows us to evaluate company responses for forthrightness. If we sense that a management team is misrepresenting any detail of the incident, we do not hesitate to reduce exposure. Our overall philosophy is that we want to be in business with teams we trust, so there is no such thing as a minor misrepresentation.</p>",
+    "category": "esg_integration",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 121,
+  "fields": {
+    "summary": "In our annual performance discussion, we contrast our strategy's performance with the performance of our index as well as a naive implementation of our ethical criteria.",
+    "content": "<p>In our annual performance discussion, we contrast our strategy's performance with the performance of our index as well as a naive implementation of our ethical criteria.</p>",
+    "category": "esg_integration",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 122,
+  "fields": {
+    "summary": "We do not have a stewardship policy at this time. Our firm has historically prioritised making its strategies accessible to all clients, regardless of how much money they have available to invest. This has required us to make certain trade-offs. One of the most material is that we are not currently able to vote our proxies. If we were to secure an institutional client relationship, we would promptly work to address this.",
+    "content": "<p>We do not have a stewardship policy at this time. Our firm has historically prioritised making its strategies accessible to all clients, regardless of how much money they have available to invest. This has required us to make certain trade-offs. One of the most material is that we are not currently able to vote our proxies.</p>",
+    "category": "stewardship",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 123,
+  "fields": {
+    "summary": "When we determine that an issue affects substantially all of the companies in our portfolio, we will work to make our views public (as we did in the case of decarbonization). In other cases, we seek to uncover company-specific opportunities for a given firm to address. In general, we seek to make sure that these opportunities align with the company's current priorities as they express them. This allows us to ensure that we are always engaging in ...",
+    "content": "<p>When we determine that an issue affects substantially all of the companies in our portfolio, we will work to make our views public (as we did in the case of decarbonization). In other cases, we seek to uncover company-specific opportunities for a given firm to address. In general, we seek to make sure that these opportunities align with the company's current priorities as they express them. This allows us to ensure that we are always engaging in a way that is constructive, but also builds a deeper understanding of the opportunities and risks a given company is associated with.</p>",
+    "category": "stewardship",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 124,
+  "fields": {
+    "summary": "We sought to develop an open letter campaign around carbon removals late last year, but our firm's small size led potential partners to demur from working with us. In general, we emphasise collaborative engagement with the company's management teams. We have found that by asking good questions, expressing our appreciation for their work, and highlighting opportunities we see we can be quite effective. With that said, we hope to grow in size so th...",
+    "content": "<p>We sought to develop an open letter campaign around carbon removals late last year, but our firm's small size led potential partners to demur from working with us. In general, we emphasise collaborative engagement with the company's management teams. We have found that by asking good questions, expressing our appreciation for their work, and highlighting opportunities we see we can be quite effective. With that said, we hope to grow in size so that we'll be able to use other methods in the future if they are appropriate.</p>",
+    "category": "stewardship",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 125,
+  "fields": {
+    "summary": "As noted earlier, we have chosen to prioritise making our strategies available to low-income and low-asset households over voting our proxies at this time. This was a painful decision, and we hope that growth in our asset base will allow us to vote on client securities in time.",
+    "content": "<p>As noted earlier, we have chosen to prioritise making our strategies available to low-income and low-asset households over voting our proxies at this time. This was a painful decision, and we hope that growth in our asset base will allow us to vote on client securities in time.</p>",
+    "category": "stewardship",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 126,
+  "fields": {
+    "summary": "One of our largest positions (Agricultural Mortgage Corporation, NYSE:AGM) was selected in part because we believe that constructive engagement with its management team over time will allow us to drive positive outcomes for animals. They are the largest agricultural lender in the United States, which includes a number of loans to animal agriculture that we are not excited about. However, they are still a high quality business with a material role...",
+    "content": "<p>One of our largest positions (Agricultural Mortgage Corporation, NYSE:AGM) was selected in part because we believe that constructive engagement with its management team over time will allow us to drive positive outcomes for animals. They are the largest agricultural lender in the United States, which includes a number of loans to animal agriculture that we are not excited about. However, they are still a high quality business with a material role to play in the future of agriculture. We note that since our shareholding began, they have adopted at least one policy we have advocated for: discounted interest rates for farmers using regenerative agricultural practices like no-till, cover crops, and other such practices.</p>",
+    "category": "stewardship",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 127,
+  "fields": {
+    "summary": "We view stewardship activities as part of the investment research process, and consider the clearest indicator of their effectiveness to be whether we continue to hold the position. In the case of our Farmer Mac (AGM) shareholding, our regular meetings with management have only deepened our understanding of the firm and our conviction that it is driving positive outcomes throughout rural america. It's nice to see them enact programs that we've pu...",
+    "content": "<p>We view stewardship activities as part of the investment research process, and consider the clearest indicator of their effectiveness to be whether we continue to hold the position. In the case of our Farmer Mac (AGM) shareholding, our regular meetings with management have only deepened our understanding of the firm and our conviction that it is driving positive outcomes throughout rural america. It's nice to see them enact programs that we've pushed for at various times, but we lack the ability to directly attribute such actions to our engagement. With that said, we remain happy shareholders. In the case of our Welltower shareholding, we uncovered a failure of governance that was compounded by managerial misrepresentations. We sold the position as a result, and consider that to be a positive outcome for our clients.</p>",
+    "category": "stewardship",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 128,
+  "fields": {
+    "summary": "We choose to emphasise firm-specific outcomes in our client reporting rather than ratings, carbon intensity, or other data. For instance, we devoted a section of our client letter to discussion of how one of our companies, a real estate investment trust, was able to preserve a historic mill as a center of commerce in a rural town. We then emphasised that the firm's strategy of building multi-use developments makes this part of a pattern, not a ph...",
+    "content": "<p>We choose to emphasise firm-specific outcomes in our client reporting rather than ratings, carbon intensity, or other data. For instance, we devoted a section of our client letter to discussion of how one of our companies, a real estate investment trust, was able to preserve a historic mill as a center of commerce in a rural town.</p>",
+    "category": "reporting",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 129,
+  "fields": {
+    "summary": "We are not subject to jurisdiction-specific regulation or reporting, and do not report in alignment with any third-party framework.",
+    "content": "<p>We are not subject to jurisdiction-specific regulation or reporting, and do not report in alignment with any third-party framework.</p>",
+    "category": "reporting",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 130,
+  "fields": {
+    "summary": "We routinely look for third-party groups that credibly assess companies for their alignment with various indicators of sound corporate practice, and will routinely spot check our exclusions to ensure that we are adequately incorporating the latest and deepest analysis of companies implicated in objectionable behavior. Additionally, we seek to update our internal assessments of our investable universe no less than quarterly, which helps us ensure ...",
+    "content": "<p>We routinely look for third-party groups that credibly assess companies for their alignment with various indicators of sound corporate practice, and will routinely spot check our exclusions to ensure that we are adequately incorporating the latest and deepest analysis of companies implicated in objectionable behavior.</p>",
+    "category": "reporting",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 131,
+  "fields": {
+    "summary": "Our internal approach to managing ESG risks is relatively radical, and involves avoiding flights wherever possible, partnering with a sibling company (https://woodcache.org) to originate high-quality carbon removals, and continuously seeking community with others in the investment community to exceed our own expectations.",
+    "content": "<p>Our internal approach to managing ESG risks is relatively radical, and involves avoiding flights wherever possible, partnering with a sibling company (https://woodcache.org) to originate high-quality carbon removals, and continuously seeking community with others in the investment community to exceed our own expectations.</p>",
+    "category": "general",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 132,
+  "fields": {
+    "summary": "We believe that the investment industry's \"original sin\" is the way it prioritises the perspectives of the wealthy over all other stakeholders. Our firm has been designed to counteract this by ensuring that our strategies are both accessible and understandable to clients regardless of how much wealth they happen to have access to. This is a structural governance advantage, as it allows us to not only serve a more diverse client base than traditio...",
+    "content": "<p>We believe that the investment industry's \"original sin\" is the way it prioritises the perspectives of the wealthy over all other stakeholders. Our firm has been designed to counteract this by ensuring that our strategies are both accessible and understandable to clients regardless of how much wealth they happen to have access to. This is a structural governance advantage, as it allows us to not only serve a more diverse client base than traditional wealth managers, but also maintain direct dialogue with individuals that are deeply engaged with sustainability themes.</p>",
+    "category": "general",
+    "priority": 5,
+    "featured": false,
+    "related_articles": "",
+    "keywords": "PRI DDQ responsible investment ESG"
+  }
+},
+{
+  "model": "public_site.faqarticle",
+  "pk": 133,
+  "fields": {
+    "summary": "No. We have no affiliation or association with Ethical Capital Partners, the Canadian private equity firm that owns Pornhub.",
+    "content": "<p data-block-key=\"ahixi\">However, we have no ethical criteria that would prohibit us from purchasing stock in Pornhub (or other companies in the adult industry) if they were available for purchase on the public markets and met our other criteria.</p>",
+    "category": "general",
+    "priority": 1,
+    "featured": true,
+    "related_articles": "",
+    "keywords": "Pornhub, Ethical Capital"
+  }
+}
+]

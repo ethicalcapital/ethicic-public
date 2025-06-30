@@ -1,0 +1,180 @@
+{% load crispy_forms_tags %}
+
+<form id="contact-form"
+      hx-post="/api/contact/"
+      hx-target="#form-response"
+      hx-indicator="#form-loading"
+      hx-swap="innerHTML"
+      class="garden-form"
+      x-data="{ 
+          submitting: false,
+          handleSubmit() {
+              this.submitting = true;
+          },
+          handleResponse() {
+              this.submitting = false;
+          }
+      }"
+      @htmx:before-request="handleSubmit()"
+      @htmx:after-request="handleResponse()">
+    
+    {% csrf_token %}
+    
+    <div class="form-wrapper">
+        <!-- Name Field -->
+        <div class="form-group">
+            {{ contact_form.name|as_crispy_field }}
+        </div>
+        
+        <!-- Email Field with inline validation -->
+        <div class="form-group">
+            <label for="{{ contact_form.email.id_for_label }}">{{ contact_form.email.label }}</label>
+            <input type="email" 
+                   name="{{ contact_form.email.name }}"
+                   id="{{ contact_form.email.id_for_label }}"
+                   class="form-input"
+                   placeholder="{{ contact_form.email.widget.attrs.placeholder }}"
+                   autocomplete="{{ contact_form.email.widget.attrs.autocomplete }}"
+                   required
+                   hx-post="/api/validate-email/"
+                   hx-trigger="blur changed"
+                   hx-target="#email-feedback"
+                   hx-indicator="#email-spinner"
+                   :disabled="submitting">
+            <span id="email-spinner" class="htmx-indicator field-spinner">⟳</span>
+            <div id="email-feedback" class="field-feedback"></div>
+            {% if contact_form.email.help_text %}
+                <small class="form-text text-muted">{{ contact_form.email.help_text }}</small>
+            {% endif %}
+        </div>
+        
+        <!-- Company Field -->
+        <div class="form-group">
+            {{ contact_form.company|as_crispy_field }}
+        </div>
+        
+        <!-- Subject Field -->
+        <div class="form-group">
+            {{ contact_form.subject|as_crispy_field }}
+        </div>
+        
+        <!-- Message Field -->
+        <div class="form-group">
+            {{ contact_form.message|as_crispy_field }}
+        </div>
+        
+        <!-- Spam Protection (if present) -->
+        {% if contact_form.human_check %}
+            <div class="form-group">
+                {{ contact_form.human_check|as_crispy_field }}
+            </div>
+        {% endif %}
+        
+        <!-- Submit Button -->
+        <div class="form-actions">
+            <button type="submit" 
+                    class="garden-button garden-button--primary"
+                    :disabled="submitting">
+                <span x-show="!submitting">Send Message</span>
+                <span x-show="submitting" x-cloak>
+                    <span class="spinner">⟳</span> Sending...
+                </span>
+            </button>
+            
+            <button type="reset" 
+                    class="garden-button garden-button--secondary"
+                    :disabled="submitting"
+                    @click="$refs.formResponse.innerHTML = ''">
+                Clear Form
+            </button>
+        </div>
+    </div>
+    
+    <!-- Loading indicator -->
+    <div id="form-loading" class="htmx-indicator form-loading-overlay">
+        <div class="loading-content">
+            <div class="spinner-large">⟳</div>
+            <p>Sending your message...</p>
+        </div>
+    </div>
+</form>
+
+<!-- Response container -->
+<div id="form-response" x-ref="formResponse" class="form-response-container"></div>
+
+<style>
+    /* Form Loading States */
+    .form-loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.9);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        border-radius: var(--radius-md);
+    }
+    
+    .htmx-request .form-loading-overlay {
+        display: flex;
+    }
+    
+    .loading-content {
+        text-align: center;
+    }
+    
+    .spinner-large {
+        font-size: 2rem;
+        animation: spin 1s linear infinite;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+    
+    .field-spinner {
+        margin-left: 0.5rem;
+        display: none;
+    }
+    
+    .htmx-request .field-spinner {
+        display: inline-block;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+    
+    /* Field Feedback */
+    .field-feedback {
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+    }
+    
+    .field-feedback.valid {
+        color: var(--color-success);
+    }
+    
+    .field-feedback.invalid {
+        color: var(--color-error);
+    }
+    
+    /* Dark mode adjustments */
+    [data-theme="dark"] .form-loading-overlay {
+        background: rgba(0, 0, 0, 0.9);
+        color: var(--color-text-primary);
+    }
+    
+    /* Disabled state */
+    .form-input:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    
+    /* Form response container */
+    .form-response-container {
+        margin-top: 1rem;
+    }
+</style>

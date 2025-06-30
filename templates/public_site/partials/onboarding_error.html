@@ -1,0 +1,95 @@
+<div class="form-response error" x-data="{ show: true }" x-show="show" x-transition>
+    <div class="response-icon">⚠</div>
+    <div class="response-content">
+        <h4>{{ message }}</h4>
+        {% if details %}
+            <p>{{ details }}</p>
+        {% endif %}
+        
+        {% if errors %}
+            <div class="error-list">
+                {% for field, field_errors in errors.items %}
+                    {% for error in field_errors %}
+                        <div class="error-item">
+                            <strong>{{ field|title }}:</strong> {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <div class="response-actions">
+            <button type="button" 
+                    @click="show = false; setTimeout(() => window.scrollTo(0, 0), 300)" 
+                    class="garden-action secondary">
+                Try Again
+            </button>
+            <a href="/contact/" class="garden-action secondary">Contact Support</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-response.error {
+        background-color: var(--color-error-alpha);
+        border: 1px solid var(--color-error);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        margin: 1rem 0;
+    }
+    
+    .form-response.error .response-icon {
+        font-size: 3rem;
+        color: var(--color-error);
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .form-response.error h4 {
+        color: var(--color-error);
+        margin: 0 0 0.5rem 0;
+        text-align: center;
+    }
+    
+    .form-response.error p {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--color-text-primary);
+    }
+    
+    .error-list {
+        background: var(--color-background);
+        padding: 1rem;
+        border-radius: var(--radius-md);
+        margin: 1rem 0;
+    }
+    
+    .error-item {
+        color: var(--color-text-primary);
+        margin-bottom: 0.5rem;
+    }
+    
+    .error-item:last-child {
+        margin-bottom: 0;
+    }
+    
+    .error-item strong {
+        color: var(--color-error);
+    }
+    
+    .response-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+    
+    /* Dark mode */
+    [data-theme="dark"] .form-response.error {
+        background-color: rgba(239, 68, 68, 0.1);
+    }
+    
+    [data-theme="dark"] .error-list {
+        background: var(--color-surface-dark);
+    }
+</style>

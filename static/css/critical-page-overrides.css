@@ -233,3 +233,77 @@ body.process-page section.garden-panel > div,
     float: none;
     clear: both;
 }
+
+/* ===== PRINCIPLES SECTION STYLING ===== */
+.process-page .principles-section {
+    margin-top: var(--space-8);
+}
+
+.process-page .principles-tagline {
+    text-align: center;
+    margin-bottom: var(--space-6);
+    padding: var(--space-4) var(--space-6);
+}
+
+.process-page .tagline-text {
+    font-size: var(--font-size-xl);
+    color: var(--color-primary-600);
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.process-page .principles-intro {
+    text-align: center;
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    margin-bottom: var(--space-8);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.process-page .principles-section-divider {
+    margin: var(--space-8) 0 var(--space-6) 0;
+    border-bottom: 2px solid var(--color-border-primary);
+    padding-bottom: var(--space-3);
+}
+
+.process-page .principles-section-title {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-lg);
+    color: var(--color-primary-600);
+    letter-spacing: 0.05em;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Override principle card styling for new layout */
+.process-page .principles-section .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+.process-page .principles-section .principle-card {
+    background: var(--color-surface-secondary);
+    padding: var(--space-6);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-border-secondary);
+}
+
+.process-page .principles-section .principle-card h4 {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+    color: var(--color-text-primary);
+    line-height: 1.4;
+}
+
+.process-page .principles-section .principle-card p {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    margin: 0;
+    color: var(--color-text-secondary);
+}

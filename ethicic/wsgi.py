@@ -37,14 +37,15 @@ try:
         print(f"⚠️  Static file collection failed: {e}")
     
     # Import data from Ubicloud if available
-    print("📥 Importing data from Ubicloud...")
-    print("   This may take a few moments...")
-    try:
-        call_command('safe_import_from_ubicloud')
-        print("✅ Data import completed")
-    except Exception as e:
-        print(f"⚠️  Data import failed: {e}")
-        print("   Site will start without imported data")
+    # TEMPORARILY DISABLED - using local SQLite data
+    # print("📥 Importing data from Ubicloud...")
+    # print("   This may take a few moments...")
+    # try:
+    #     call_command('safe_import_from_ubicloud')
+    #     print("✅ Data import completed")
+    # except Exception as e:
+    #     print(f"⚠️  Data import failed: {e}")
+    #     print("   Site will start without imported data")
     
     # Quick check if basic tables exist
     with connection.cursor() as cursor:

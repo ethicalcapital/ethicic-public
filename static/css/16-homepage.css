@@ -47,8 +47,10 @@
 
     /* Hero Panel Styling */
     .hero-panel {
+        text-align: center;
+        padding: var(--space-12) var(--space-6);
+        background: var(--color-surface);
         margin-bottom: var(--space-4);
-        padding: var(--space-8) var(--space-6);
     }
 
     .hero-tagline {

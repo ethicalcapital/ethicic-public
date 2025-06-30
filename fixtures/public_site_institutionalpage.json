@@ -1,0 +1,19 @@
+[
+{
+  "model": "public_site.institutionalpage",
+  "pk": 100,
+  "fields": {
+    "hero_title": "Institutional Investment Solutions",
+    "hero_subtitle": "Scalable ethical investment solutions for institutions, endowments, and pension funds",
+    "hero_description": "<p>Custom investment strategies and compliance solutions designed for institutional scale and requirements.</p>",
+    "solutions_title": "Institutional Solutions",
+    "solutions_content": "<p>We work with institutions to implement ethical investment strategies at scale, providing comprehensive portfolio management and ESG compliance solutions.</p>",
+    "capabilities_title": "Our Capabilities",
+    "capabilities_content": "<ul><li>Advanced portfolio analytics and risk management</li><li>Custom ESG frameworks and screening</li><li>Institutional reporting and compliance</li><li>API integrations and data feeds</li><li>Dedicated institutional support team</li></ul>",
+    "scale_title": "Institutional Scale",
+    "scale_content": "<p>Our technology platform scales to handle institutional portfolio sizes and complexity, supporting assets under management from $100M to multi-billion dollar portfolios.</p>",
+    "cta_title": "Discuss Your Needs",
+    "cta_description": "<p>Contact our institutional team to discuss how we can support your organization's investment goals and ethical mandates.</p>"
+  }
+}
+]

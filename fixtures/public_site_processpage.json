@@ -1,0 +1,18 @@
+[
+{
+  "model": "public_site.processpage",
+  "pk": 42,
+  "fields": {
+    "intro_text": "<p>Learn about our investment methodology and approach.</p>",
+    "process_overview": "<p>Our investment process combines ethical screening with disciplined portfolio construction.</p>",
+    "step1_title": "Ethical Screening",
+    "step1_content": "<p>Comprehensive values alignment: BDS-compliant, fossil fuel free, tobacco free, weapons free.</p>",
+    "step2_title": "Proprietary Research",
+    "step2_content": "<p>Hand-screening of companies to identify concerns beyond standard ESG ratings.</p>",
+    "step3_title": "Portfolio Construction",
+    "step3_content": "<p>Disciplined diversification with concentration targets around 2% per holding.</p>",
+    "step4_title": "Ongoing Monitoring",
+    "step4_content": "<p>Continuous research updates and client partnership in identifying new concerns.</p>"
+  }
+}
+]

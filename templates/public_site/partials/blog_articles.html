@@ -1,0 +1,57 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% for post in posts %}
+{% if not forloop.first or page_number > 1 %}
+<article class="article-list-item" data-article-id="{{ post.id }}">
+    <div class="article-list-content">
+        <!-- Featured Image Only (no KPIs here) -->
+        {% if post.featured_image %}
+            <div class="article-list-image">
+                {% image post.featured_image width-200 as list_img %}
+                <img src="{{ list_img.url }}" 
+                     alt="{{ post.featured_image.title|default:post.title }}"
+                     loading="lazy">
+            </div>
+        {% endif %}
+        
+        <div class="article-list-text">
+            <!-- Simplified for testing without KPI filters -->
+            
+            <div class="article-list-meta">
+                {% if post.tags.all %}
+                    <div class="article-list-tags">
+                        {% for tag in post.tags.all|slice:":2" %}
+                            <span class="article-list-tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <h2 class="article-list-title">
+                <a href="{% pageurl post %}">{{ post.title }}</a>
+            </h2>
+            
+            {% if post.excerpt %}
+                <p class="article-list-excerpt">{{ post.excerpt|truncatewords:25 }}</p>
+            {% endif %}
+            
+            <div class="article-list-actions">
+                <a href="{% pageurl post %}" class="garden-action secondary small">READ MORE</a>
+            </div>
+        </div>
+    </div>
+</article>
+{% endif %}
+{% endfor %}
+
+<!-- Next page trigger for infinite scroll -->
+{% if posts.has_next %}
+<div hx-get="?page={{ posts.next_page_number }}"
+     hx-trigger="revealed"
+     hx-target="#articles-container"
+     hx-swap="beforeend"
+     hx-indicator="#loading-indicator"
+     hx-swap-oob="true">
+    <!-- This will replace the previous trigger -->
+</div>
+{% endif %}

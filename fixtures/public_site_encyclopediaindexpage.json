@@ -1,0 +1,10 @@
+[
+{
+  "model": "public_site.encyclopediaindexpage",
+  "pk": 43,
+  "fields": {
+    "intro_text": "<p data-block-key=\"tgqjj\">The investment industry has a lot of jargon. This page exists to help you understand what's really going on in plain english.</p>",
+    "description": ""
+  }
+}
+]

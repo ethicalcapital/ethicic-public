@@ -1,0 +1,97 @@
+<div class="form-response success" x-data="{ show: true }" x-show="show" x-transition>
+    <div class="response-icon">✓</div>
+    <div class="response-content">
+        <h3>{{ message }}</h3>
+        <p>{{ details }}</p>
+        {% if ticket_id %}
+            <p class="ticket-info">Reference #{{ ticket_id }}</p>
+        {% endif %}
+        
+        <div class="next-steps">
+            <h4>Next Steps:</h4>
+            <ul>
+                <li>Account review and approval (1-2 business days)</li>
+                <li>Schedule a consultation with your adviser</li>
+                <li>Fund your account and begin investing</li>
+                <li>Access your personalized investment dashboard</li>
+            </ul>
+        </div>
+        
+        <div class="response-actions">
+            <a href="/onboarding/thank-you/" class="garden-action primary">View Full Details</a>
+            <a href="/contact/" class="garden-action secondary">Contact Us</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-response.success {
+        background-color: var(--color-success-alpha);
+        border: 1px solid var(--color-success);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        margin: 1rem 0;
+    }
+    
+    .response-icon {
+        font-size: 3rem;
+        color: var(--color-success);
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .response-content h3 {
+        color: var(--color-success);
+        margin: 0 0 0.5rem 0;
+        text-align: center;
+    }
+    
+    .response-content p {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .ticket-info {
+        font-size: 0.875rem;
+        color: var(--color-text-secondary);
+        font-style: italic;
+    }
+    
+    .next-steps {
+        background: var(--color-background);
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        margin: 1.5rem 0;
+    }
+    
+    .next-steps h4 {
+        margin: 0 0 1rem 0;
+        color: var(--color-text-primary);
+    }
+    
+    .next-steps ul {
+        margin: 0;
+        padding-left: 1.5rem;
+    }
+    
+    .next-steps li {
+        margin-bottom: 0.5rem;
+        color: var(--color-text-secondary);
+    }
+    
+    .response-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+    
+    /* Dark mode */
+    [data-theme="dark"] .form-response.success {
+        background-color: rgba(52, 211, 153, 0.1);
+    }
+    
+    [data-theme="dark"] .next-steps {
+        background: var(--color-surface-dark);
+    }
+</style>

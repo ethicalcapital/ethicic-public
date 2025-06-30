@@ -5,6 +5,7 @@
 {% block body_class %}onboarding-page{% endblock %}
 
 {% block content %}
+<div class="garden-container">
 <!-- Hero Section -->
 <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
     <div class="panel-header">ETHICAL CAPITAL ONBOARDING</div>
@@ -24,19 +25,63 @@
             <div class="panel-content">
                 <div class="progress-container">
                     <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
+                        <div class="progress-fill" :style="`width: ${progress}%`"></div>
                     </div>
-                    <div class="progress-text" id="progressText">Step 1 of 5: Personal Information</div>
+                    <div class="progress-text" x-text="progressText"></div>
                 </div>
             </div>
         </section>
 
         <!-- Onboarding Form -->
-        <form id="onboardingForm" method="post" action="/onboarding/submit/">
+        <form id="onboardingForm" method="post" action="/onboarding/submit/"
+              x-data="{
+                  currentStep: 1,
+                  totalSteps: 5,
+                  submitting: false,
+                  stepNames: {
+                      1: 'Personal Information',
+                      2: 'Investment Goals', 
+                      3: 'Ethical Preferences',
+                      4: 'Investment Experience',
+                      5: 'Review & Submit'
+                  },
+                  get progress() { return (this.currentStep / this.totalSteps) * 100; },
+                  get progressText() { return `Step ${this.currentStep} of ${this.totalSteps}: ${this.stepNames[this.currentStep]}`; },
+                  nextStep() {
+                      if (this.validateStep(this.currentStep)) {
+                          if (this.currentStep < this.totalSteps) {
+                              this.currentStep++;
+                              window.scrollTo(0, 0);
+                          }
+                      }
+                  },
+                  prevStep() {
+                      if (this.currentStep > 1) {
+                          this.currentStep--;
+                          window.scrollTo(0, 0);
+                      }
+                  },
+                  validateStep(step) {
+                      const section = document.querySelector(`[data-step='${step}']`);
+                      const requiredFields = section.querySelectorAll('[required]');
+                      let isValid = true;
+                      requiredFields.forEach(field => {
+                          if (!field.value || (field.type === 'radio' && !section.querySelector(`input[name='${field.name}']:checked`))) {
+                              isValid = false;
+                              field.classList.add('error');
+                          } else {
+                              field.classList.remove('error');
+                          }
+                      });
+                      if (!isValid) alert('Please fill in all required fields.');
+                      return isValid;
+                  }
+              }"
+              @submit.prevent="submitting = true; $el.submit()">
             {% csrf_token %}
             
             <!-- Section 1: Personal Information -->
-            <section class="garden-panel form-section active" data-step="1">
+            <section class="garden-panel form-section" :class="{ 'active': currentStep === 1 }" data-step="1" x-show="currentStep === 1">
                 <div class="panel-header">STEP 1: PERSONAL INFORMATION</div>
                 <div class="panel-content">
                     <div class="section-description">Let's start with the basics so we can personalize your experience.</div>
@@ -70,41 +115,41 @@
                     </div>
                     <div class="form-navigation">
                         <div></div>
-                        <button type="button" class="garden-action primary" onclick="nextStep()">Continue</button>
+                        <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
                     </div>
                 </div>
             </section>
 
             <!-- Section 2: Investment Goals -->
-            <section class="garden-panel form-section" data-step="2">
+            <section class="garden-panel form-section" data-step="2" x-show="currentStep === 2">
                 <div class="panel-header">STEP 2: INVESTMENT GOALS</div>
                 <div class="panel-content">
                     <div class="section-description">Help us understand what you're trying to achieve with your investments.</div>
                     <div class="form-group">
                         <label class="form-label required">Primary Investment Goal</label>
                         <div class="radio-group">
-                            <div class="radio-option" onclick="selectRadio(this, 'goal')">
+                            <div class="radio-option" @click="$event.target.checked = true">
                                 <input type="radio" name="primary_goal" value="growth" class="radio-input">
                                 <div class="radio-label">
                                     <div class="radio-title">Long-term Growth</div>
                                     <div class="radio-description">Building wealth over time, comfortable with market volatility</div>
                                 </div>
                             </div>
-                            <div class="radio-option" onclick="selectRadio(this, 'goal')">
+                            <div class="radio-option" @click="$event.target.checked = true">
                                 <input type="radio" name="primary_goal" value="income" class="radio-input">
                                 <div class="radio-label">
                                     <div class="radio-title">Current Income</div>
                                     <div class="radio-description">Regular income from investments, with some growth potential</div>
                                 </div>
                             </div>
-                            <div class="radio-option" onclick="selectRadio(this, 'goal')">
+                            <div class="radio-option" @click="$event.target.checked = true">
                                 <input type="radio" name="primary_goal" value="balanced" class="radio-input">
                                 <div class="radio-label">
                                     <div class="radio-title">Balanced Approach</div>
                                     <div class="radio-description">Mix of growth and income, moderate risk tolerance</div>
                                 </div>
                             </div>
-                            <div class="radio-option" onclick="selectRadio(this, 'goal')">
+                            <div class="radio-option" @click="$event.target.checked = true">
                                 <input type="radio" name="primary_goal" value="preservation" class="radio-input">
                                 <div class="radio-label">
                                     <div class="radio-title">Capital Preservation</div>
@@ -126,14 +171,14 @@
                         </select>
                     </div>
                     <div class="form-navigation">
-                        <button type="button" class="garden-action secondary" onclick="prevStep()">Back</button>
-                        <button type="button" class="garden-action primary" onclick="nextStep()">Continue</button>
+                        <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
+                        <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
                     </div>
                 </div>
             </section>
 
             <!-- Section 3: Ethical Preferences -->
-            <section class="garden-panel form-section" data-step="3">
+            <section class="garden-panel form-section" data-step="3" x-show="currentStep === 3">
                 <div class="panel-header">STEP 3: ETHICAL PREFERENCES</div>
                 <div class="panel-content">
                     <div class="section-description">Select the ethical criteria that are most important to you.</div>
@@ -141,42 +186,42 @@
                         <label class="form-label required">Areas of Concern</label>
                         <div class="form-subtext">Select all that apply to customize your portfolio exclusions.</div>
                         <div class="checkbox-group">
-                            <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                            <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                                 <input type="checkbox" name="exclusions" value="fossil_fuels" class="checkbox-input">
                                 <div class="checkbox-label">
                                     <div class="checkbox-title">Fossil Fuels</div>
                                     <div class="checkbox-description">Exclude oil, gas, and coal companies</div>
                                 </div>
                             </div>
-                            <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                            <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                                 <input type="checkbox" name="exclusions" value="weapons" class="checkbox-input">
                                 <div class="checkbox-label">
                                     <div class="checkbox-title">Weapons & Defense</div>
                                     <div class="checkbox-description">Exclude military contractors and weapons manufacturers</div>
                                 </div>
                             </div>
-                            <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                            <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                                 <input type="checkbox" name="exclusions" value="tobacco" class="checkbox-input">
                                 <div class="checkbox-label">
                                     <div class="checkbox-title">Tobacco</div>
                                     <div class="checkbox-description">Exclude tobacco companies and related industries</div>
                                 </div>
                             </div>
-                            <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                            <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                                 <input type="checkbox" name="exclusions" value="gambling" class="checkbox-input">
                                 <div class="checkbox-label">
                                     <div class="checkbox-title">Gambling</div>
                                     <div class="checkbox-description">Exclude casinos and gambling operations</div>
                                 </div>
                             </div>
-                            <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                            <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                                 <input type="checkbox" name="exclusions" value="animal_testing" class="checkbox-input">
                                 <div class="checkbox-label">
                                     <div class="checkbox-title">Animal Testing</div>
                                     <div class="checkbox-description">Exclude companies that test on animals</div>
                                 </div>
                             </div>
-                            <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                            <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                                 <input type="checkbox" name="exclusions" value="human_rights" class="checkbox-input">
                                 <div class="checkbox-label">
                                     <div class="checkbox-title">Human Rights Violations</div>
@@ -190,28 +235,28 @@
                         <label class="form-label required">Positive Impact Areas</label>
                         <div class="form-subtext">Select areas where you'd like to see positive impact.</div>
                         <div class="checkbox-group">
-                            <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                            <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                                 <input type="checkbox" name="impact_areas" value="renewable_energy" class="checkbox-input">
                                 <div class="checkbox-label">
                                     <div class="checkbox-title">Renewable Energy</div>
                                     <div class="checkbox-description">Solar, wind, and clean energy companies</div>
                                 </div>
                             </div>
-                            <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                            <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                                 <input type="checkbox" name="impact_areas" value="sustainable_agriculture" class="checkbox-input">
                                 <div class="checkbox-label">
                                     <div class="checkbox-title">Sustainable Agriculture</div>
                                     <div class="checkbox-description">Organic farming and sustainable food production</div>
                                 </div>
                             </div>
-                            <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                            <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                                 <input type="checkbox" name="impact_areas" value="healthcare" class="checkbox-input">
                                 <div class="checkbox-label">
                                     <div class="checkbox-title">Healthcare Innovation</div>
                                     <div class="checkbox-description">Companies improving healthcare access and outcomes</div>
                                 </div>
                             </div>
-                            <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                            <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                                 <input type="checkbox" name="impact_areas" value="education" class="checkbox-input">
                                 <div class="checkbox-label">
                                     <div class="checkbox-title">Education</div>
@@ -221,35 +266,35 @@
                         </div>
                     </div>
                     <div class="form-navigation">
-                        <button type="button" class="garden-action secondary" onclick="prevStep()">Back</button>
-                        <button type="button" class="garden-action primary" onclick="nextStep()">Continue</button>
+                        <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
+                        <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
                     </div>
                 </div>
             </section>
 
             <!-- Section 4: Investment Experience -->
-            <section class="garden-panel form-section" data-step="4">
+            <section class="garden-panel form-section" data-step="4" x-show="currentStep === 4">
                 <div class="panel-header">STEP 4: INVESTMENT EXPERIENCE</div>
                 <div class="panel-content">
                     <div class="section-description">This helps us recommend appropriate investment strategies.</div>
                     <div class="form-group">
                         <label class="form-label required">Investment Experience Level</label>
                         <div class="radio-group">
-                            <div class="radio-option" onclick="selectRadio(this, 'experience')">
+                            <div class="radio-option" @click="$event.target.closest('.radio-option').querySelector('input').checked = true">
                                 <input type="radio" name="experience_level" value="beginner" class="radio-input">
                                 <div class="radio-label">
                                     <div class="radio-title">Beginner</div>
                                     <div class="radio-description">New to investing or limited experience</div>
                                 </div>
                             </div>
-                            <div class="radio-option" onclick="selectRadio(this, 'experience')">
+                            <div class="radio-option" @click="$event.target.closest('.radio-option').querySelector('input').checked = true">
                                 <input type="radio" name="experience_level" value="intermediate" class="radio-input">
                                 <div class="radio-label">
                                     <div class="radio-title">Intermediate</div>
                                     <div class="radio-description">Some experience with stocks, bonds, or mutual funds</div>
                                 </div>
                             </div>
-                            <div class="radio-option" onclick="selectRadio(this, 'experience')">
+                            <div class="radio-option" @click="$event.target.closest('.radio-option').querySelector('input').checked = true">
                                 <input type="radio" name="experience_level" value="experienced" class="radio-input">
                                 <div class="radio-label">
                                     <div class="radio-title">Experienced</div>
@@ -277,14 +322,14 @@
                         </div>
                     </div>
                     <div class="form-navigation">
-                        <button type="button" class="garden-action secondary" onclick="prevStep()">Back</button>
-                        <button type="button" class="garden-action primary" onclick="nextStep()">Continue</button>
+                        <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
+                        <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
                     </div>
                 </div>
             </section>
 
             <!-- Section 5: Review & Submit -->
-            <section class="garden-panel form-section" data-step="5">
+            <section class="garden-panel form-section" data-step="5" x-show="currentStep === 5">
                 <div class="panel-header">STEP 5: REVIEW & SUBMIT</div>
                 <div class="panel-content">
                     <div class="section-description">Please review your information before submitting.</div>
@@ -293,7 +338,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                             <input type="checkbox" id="agreeTerms" name="agree_terms" class="checkbox-input" required>
                             <label for="agreeTerms" class="checkbox-label">
                                 I agree to the <a href="/disclosures/" target="_blank">investment advisory agreement</a> and 
@@ -303,7 +348,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <div class="checkbox-option" onclick="toggleCheckbox(this)">
+                        <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                             <input type="checkbox" id="confirmAccuracy" name="confirm_accuracy" class="checkbox-input" required>
                             <label for="confirmAccuracy" class="checkbox-label">
                                 I confirm that all information provided is accurate to the best of my knowledge.
@@ -311,7 +356,7 @@
                         </div>
                     </div>
                     <div class="form-navigation">
-                        <button type="button" class="garden-action secondary" onclick="prevStep()">Back</button>
+                        <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
                         <button type="submit" class="garden-action primary" id="submitBtn">Submit Application</button>
                     </div>
                 </div>
@@ -342,179 +387,15 @@
         </section>
     </div>
 </main>
+</div>
 {% endblock %}
 
 {% block extra_css %}
 {% endblock %}
 
 {% block extra_js %}
-<script>
-    let currentStep = 1;
-    const totalSteps = 5;
-
-    function showStep(step) {
-        document.querySelectorAll('.form-section').forEach(section => {
-            section.classList.remove('active');
-        });
-        
-        document.querySelector(`[data-step="${step}"]`).classList.add('active');
-        
-        // Update progress bar
-        const progress = (step / totalSteps) * 100;
-        document.getElementById('progressFill').style.width = progress + '%';
-        
-        // Update progress text
-        const stepNames = {
-            1: 'Personal Information',
-            2: 'Investment Goals',
-            3: 'Ethical Preferences',
-            4: 'Investment Experience',
-            5: 'Review & Submit'
-        };
-        document.getElementById('progressText').textContent = `Step ${step} of ${totalSteps}: ${stepNames[step]}`;
-        
-        // Update navigation state
-        updateNavigation();
-    }
-
-    function nextStep() {
-        if (validateStep(currentStep)) {
-            if (currentStep < totalSteps) {
-                currentStep++;
-                showStep(currentStep);
-            }
-            
-            if (currentStep === totalSteps) {
-                updateReviewSummary();
-            }
-        }
-    }
-
-    function prevStep() {
-        if (currentStep > 1) {
-            currentStep--;
-            showStep(currentStep);
-        }
-    }
-
-    function validateStep(step) {
-        const section = document.querySelector(`[data-step="${step}"]`);
-        const requiredFields = section.querySelectorAll('[required]');
-        let isValid = true;
-        
-        requiredFields.forEach(field => {
-            if (!field.value || (field.type === 'radio' && !section.querySelector(`input[name="${field.name}"]:checked`))) {
-                isValid = false;
-                field.classList.add('error');
-            } else {
-                field.classList.remove('error');
-            }
-        });
-        
-        if (!isValid) {
-            alert('Please fill in all required fields.');
-        }
-        
-        return isValid;
-    }
-
-    function updateNavigation() {
-        // Scroll to top when changing steps
-        window.scrollTo(0, 0);
-    }
-
-    function selectRadio(element, group) {
-        // Remove selected class from all options in the group
-        element.parentElement.querySelectorAll('.radio-option').forEach(option => {
-            option.classList.remove('selected');
-        });
-        
-        // Add selected class to clicked option
-        element.classList.add('selected');
-        
-        // Check the radio input
-        element.querySelector('.radio-input').checked = true;
-    }
-
-    function toggleCheckbox(element) {
-        element.classList.toggle('selected');
-        const checkbox = element.querySelector('.checkbox-input');
-        checkbox.checked = !checkbox.checked;
-    }
-
-    function updateReviewSummary() {
-        const form = document.getElementById('onboardingForm');
-        const formData = new FormData(form);
-        
-        let summaryHTML = '';
-        
-        // Personal Information
-        summaryHTML += '<div class="review-item">';
-        summaryHTML += '<div class="review-label">Personal Information</div>';
-        summaryHTML += `<div class="review-value">Name: ${formData.get('first_name')} ${formData.get('last_name')}<br>`;
-        summaryHTML += `Email: ${formData.get('email')}<br>`;
-        summaryHTML += `Location: ${formData.get('location')}</div>`;
-        summaryHTML += '</div>';
-        
-        // Investment Goals
-        summaryHTML += '<div class="review-item">';
-        summaryHTML += '<div class="review-label">Investment Goals</div>';
-        summaryHTML += `<div class="review-value">Primary Goal: ${formData.get('primary_goal')}<br>`;
-        summaryHTML += `Time Horizon: ${formData.get('time_horizon')} years</div>`;
-        summaryHTML += '</div>';
-        
-        // Ethical Preferences
-        const exclusions = formData.getAll('exclusions');
-        const impacts = formData.getAll('impact_areas');
-        summaryHTML += '<div class="review-item">';
-        summaryHTML += '<div class="review-label">Ethical Preferences</div>';
-        summaryHTML += `<div class="review-value">Exclusions: ${exclusions.join(', ') || 'None'}<br>`;
-        summaryHTML += `Impact Areas: ${impacts.join(', ') || 'None'}</div>`;
-        summaryHTML += '</div>';
-        
-        // Investment Experience
-        summaryHTML += '<div class="review-item">';
-        summaryHTML += '<div class="review-label">Investment Details</div>';
-        summaryHTML += `<div class="review-value">Experience: ${formData.get('experience_level')}<br>`;
-        summaryHTML += `Initial Investment: $${parseInt(formData.get('initial_investment')).toLocaleString()}<br>`;
-        const monthly = formData.get('monthly_contribution');
-        if (monthly) {
-            summaryHTML += `Monthly Contribution: $${parseInt(monthly).toLocaleString()}</div>`;
-        }
-        summaryHTML += '</div>';
-        
-        document.getElementById('reviewSummary').innerHTML = summaryHTML;
-    }
-
-    // Form submission
-    document.getElementById('onboardingForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Validate final step
-        if (!validateStep(5)) {
-            return;
-        }
-        
-        // Simulate form submission
-        document.getElementById('submitBtn').disabled = true;
-        document.getElementById('submitBtn').textContent = 'Submitting...';
-        
-        // In a real application, you would submit the form data here
-        setTimeout(() => {
-            document.getElementById('onboardingForm').style.display = 'none';
-            document.querySelector('.progress-container').style.display = 'none';
-            document.querySelector('.form-header').style.display = 'none';
-            document.getElementById('thankYouMessage').style.display = 'block';
-        }, 1500);
-    });
-
-    // Add error styling
-    const style = document.createElement('style');
-    style.textContent = `
-        .form-input.error {
-            border-color: var(--color-error);
-        }
-    `;
-    document.head.appendChild(style);
-</script>
+<!-- 💀 LEGACY JAVASCRIPT ANNIHILATED - 168 lines eliminated and replaced with Alpine.js -->
+<style>
+    .form-input.error { border-color: var(--color-error); }
+</style>
 {% endblock %}

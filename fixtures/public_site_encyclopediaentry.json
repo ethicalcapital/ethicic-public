@@ -1,0 +1,444 @@
+[
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 134,
+  "fields": {
+    "summary": "Active portfolio management involves the selection of securities based on research and analysis with the goal of outperforming a benchmark.",
+    "detailed_content": "<p>Active management is an investment strategy where portfolio managers make specific investments with the goal of outperforming an investment benchmark index. Unlike passive management, which seeks to replicate index performance, active managers use research, analysis, and their own judgment to select securities.</p>",
+    "category": "strategy",
+    "related_terms": "passive management, portfolio management, security selection, benchmark",
+    "difficulty_level": "beginner",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 135,
+  "fields": {
+    "summary": "ADRs are securities designed to simplify the process of investing in foreign companies by allowing trading in U.S. dollars on American exchanges.",
+    "detailed_content": "<p data-block-key=\"gaeo3\">American Depositary Receipts (ADRs) are negotiable certificates issued by U.S. banks that represent shares in foreign companies. They allow American investors to buy shares in foreign companies without dealing with foreign exchanges or currency conversion.</p><h3 data-block-key=\"q1cma\">How ADRs Work</h3><p data-block-key=\"hg0u4\">A U.S. bank purchases shares of a foreign company and holds them in trust. The bank then issues ADRs that represent these underlying shares, typically on a 1:1 ratio, though this can vary. These ADRs trade on U.S. exchanges just like domestic stocks.</p><p data-block-key=\"9h4dp\">The U.S. Bank typically charges a nominal fee for this service.</p><h3 data-block-key=\"1m9ve\">Benefits for Investors</h3><ul><li data-block-key=\"8r7rf\"><b>Convenience:</b> Trade in U.S. dollars during U.S. market hours</li><li data-block-key=\"myn18\"><b>Regulation:</b> Subject to U.S. securities laws and reporting requirements</li><li data-block-key=\"nul3i\"><b>Diversification:</b> Easy access to international markets</li><li data-block-key=\"3tjgr\"><b>Dividends:</b> Receive dividends in U.S. dollars</li></ul>",
+    "category": "instruments",
+    "related_terms": "foreign securities, international investing, currency risk, depositary receipts",
+    "difficulty_level": "intermediate",
+    "examples": "<p data-block-key=\"h64p7\"><b>Example:</b> Nintendo, a Japanese company, has ADRs that trade on U.S. exchanges under the ticker NTDOY. American investors can buy these ADRs just like any U.S. stock, receiving exposure to Nintendo without dealing with Japanese Yen currency conversion or Japanese exchange regulations.</p>",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 136,
+  "fields": {
+    "summary": "The risk of loss from fluctuating foreign exchange rates when a portfolio has exposure to foreign currencies through international investments.",
+    "detailed_content": "<p>Currency risk, also known as exchange rate risk, is the potential for investment losses due to changes in currency exchange rates. This risk affects any investment denominated in a currency different from the investor's base currency.</p>\n                    \n                    <h3>Types of Currency Risk</h3>\n                    <ul>\n                        <li><strong>Transaction Risk:</strong> Risk from currency fluctuations between transaction date and settlement</li>\n                        <li><strong>Translation Risk:</strong> Risk from converting foreign subsidiaries' financial statements</li>\n                        <li><strong>Economic Risk:</strong> Long-term risk from sustained currency movements affecting company valuations</li>\n                    </ul>\n                    \n                    <h3>Impact on Returns</h3>\n                    <p>Even if a foreign investment performs well in its local currency, unfavorable currency movements can reduce or eliminate gains when converted back to the investor's base currency. Conversely, favorable currency movements can enhance returns.</p>\n                    \n                    <h3>Managing Currency Risk</h3>\n                    <p>Investors can manage currency risk through hedging strategies, currency-hedged funds, or by diversifying across multiple currencies.</p>",
+    "category": "risk",
+    "related_terms": "foreign securities, international investing, hedging, exchange rates",
+    "difficulty_level": "intermediate",
+    "examples": "<p><strong>Example:</strong> A U.S. investor buys European stocks worth €10,000 when the EUR/USD exchange rate is 1.20 (costing $12,000). If the stock value stays the same in euros but the exchange rate falls to 1.10, the investment is now worth only $11,000 in U.S. dollars, representing a $1,000 currency loss despite no change in the underlying stock price.</p>",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 137,
+  "fields": {
+    "summary": "Environmental, Social, and Governance risks that can impact investment performance through regulatory, reputational, or operational challenges.",
+    "detailed_content": "<p>ESG risk refers to the potential negative impact on investment returns from environmental, social, and governance factors. These risks have become increasingly important as stakeholders demand greater corporate responsibility and regulators implement stricter requirements.</p>\n                    \n                    <h3>Environmental Risks</h3>\n                    <ul>\n                        <li>Climate change and extreme weather events</li>\n                        <li>Resource scarcity and environmental degradation</li>\n                        <li>Regulatory changes related to environmental protection</li>\n                        <li>Transition costs to sustainable business models</li>\n                    </ul>\n                    \n                    <h3>Social Risks</h3>\n                    <ul>\n                        <li>Labor practices and human rights violations</li>\n                        <li>Product safety and quality issues</li>\n                        <li>Data privacy and cybersecurity breaches</li>\n                        <li>Community relations and social license to operate</li>\n                    </ul>\n                    \n                    <h3>Governance Risks</h3>\n                    <ul>\n                        <li>Poor board oversight and executive compensation</li>\n                        <li>Lack of transparency and disclosure</li>\n                        <li>Corruption and unethical business practices</li>\n                        <li>Inadequate risk management systems</li>\n                    </ul>",
+    "category": "ethics",
+    "related_terms": "sustainable investing, corporate governance, environmental risk, social responsibility",
+    "difficulty_level": "intermediate",
+    "examples": "<p><strong>Environmental Example:</strong> An oil company faces stranded asset risk as renewable energy adoption accelerates and carbon pricing policies are implemented.</p>\n                    \n                    <p><strong>Social Example:</strong> A technology company experiences reputational damage and regulatory fines due to data privacy violations, leading to decreased user trust and potential loss of business.</p>\n                    \n                    <p><strong>Governance Example:</strong> A company with poor board oversight experiences an accounting scandal, resulting in regulatory penalties, legal costs, and significant stock price decline.</p>",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 138,
+  "fields": {
+    "summary": "Investment funds that trade on stock exchanges like individual stocks, typically tracking an index, commodity, bonds, or basket of assets.",
+    "detailed_content": "<p>Exchange-Traded Funds (ETFs) are investment vehicles that combine features of mutual funds and individual stocks. They hold a basket of securities and trade on stock exchanges throughout the trading day at market-determined prices.</p>\n                    \n                    <h3>Key Features</h3>\n                    <ul>\n                        <li><strong>Intraday Trading:</strong> Can be bought and sold during market hours</li>\n                        <li><strong>Lower Costs:</strong> Generally have lower expense ratios than actively managed mutual funds</li>\n                        <li><strong>Transparency:</strong> Holdings are disclosed daily</li>\n                        <li><strong>Tax Efficiency:</strong> Structure typically results in fewer taxable events</li>\n                    </ul>\n                    \n                    <h3>Types of ETFs</h3>\n                    <ul>\n                        <li><strong>Index ETFs:</strong> Track specific market indices</li>\n                        <li><strong>Sector ETFs:</strong> Focus on specific industries</li>\n                        <li><strong>Commodity ETFs:</strong> Provide exposure to commodities</li>\n                        <li><strong>Bond ETFs:</strong> Hold fixed-income securities</li>\n                        <li><strong>ESG ETFs:</strong> Focus on environmental, social, and governance criteria</li>\n                    </ul>",
+    "category": "instruments",
+    "related_terms": "index funds, passive investing, diversification, expense ratios",
+    "difficulty_level": "beginner",
+    "examples": "<p><strong>Example:</strong> The SPDR S&P 500 ETF (SPY) tracks the S&P 500 index, giving investors exposure to 500 large U.S. companies in a single, tradeable security with an expense ratio of just 0.09%.</p>",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 139,
+  "fields": {
+    "summary": "Investment analysis method that evaluates securities by examining underlying economic, financial, and other qualitative factors.",
+    "detailed_content": "<p>Fundamental analysis is a method of evaluating securities by examining the underlying factors that affect a company's actual business and its future prospects. This analysis attempts to determine the intrinsic value of a security.</p>\n                    \n                    <h3>Key Components</h3>\n                    <ul>\n                        <li><strong>Financial Statements:</strong> Analysis of income statements, balance sheets, and cash flow statements</li>\n                        <li><strong>Economic Factors:</strong> GDP growth, inflation, interest rates, and industry trends</li>\n                        <li><strong>Company Management:</strong> Quality of leadership and strategic direction</li>\n                        <li><strong>Competitive Position:</strong> Market share, competitive advantages, and industry dynamics</li>\n                    </ul>\n                    \n                    <h3>Financial Ratios</h3>\n                    <p>Fundamental analysts use various ratios to evaluate companies:</p>\n                    <ul>\n                        <li><strong>Valuation Ratios:</strong> P/E ratio, P/B ratio, EV/EBITDA</li>\n                        <li><strong>Profitability Ratios:</strong> ROE, ROA, profit margins</li>\n                        <li><strong>Liquidity Ratios:</strong> Current ratio, quick ratio</li>\n                        <li><strong>Leverage Ratios:</strong> Debt-to-equity, interest coverage</li>\n                    </ul>",
+    "category": "analysis",
+    "related_terms": "technical analysis, valuation, financial ratios, intrinsic value",
+    "difficulty_level": "intermediate",
+    "examples": "<p><strong>Example:</strong> An analyst examining Apple Inc. would review its iPhone sales trends, service revenue growth, cash flow generation, competitive position against Android, management's capital allocation strategy, and compare valuation metrics to peers like Microsoft and Google to determine if the stock is fairly valued.</p>",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 140,
+  "fields": {
+    "summary": "The risk that an investor will not be able to buy or sell an investment quickly enough to prevent or minimize a loss.",
+    "detailed_content": "<p>Liquidity risk is the risk that an investor may not be able to quickly convert an investment into cash without significantly affecting the security's price. This risk is particularly important during market stress when trading volumes may decline.</p>\n                    \n                    <h3>Types of Liquidity Risk</h3>\n                    <ul>\n                        <li><strong>Market Liquidity Risk:</strong> Risk that a market becomes illiquid, making it difficult to trade</li>\n                        <li><strong>Funding Liquidity Risk:</strong> Risk that an investor cannot meet short-term financial obligations</li>\n                        <li><strong>Asset Liquidity Risk:</strong> Risk specific to certain assets that naturally have limited trading volume</li>\n                    </ul>\n                    \n                    <h3>Factors Affecting Liquidity</h3>\n                    <ul>\n                        <li>Market capitalization and trading volume</li>\n                        <li>Number of market participants</li>\n                        <li>Market maker presence</li>\n                        <li>Economic conditions and market volatility</li>\n                    </ul>\n                    \n                    <h3>Managing Liquidity Risk</h3>\n                    <p>Investors can manage liquidity risk by maintaining cash reserves, diversifying across liquid securities, and understanding the liquidity characteristics of their investments.</p>",
+    "category": "risk",
+    "related_terms": "market risk, trading volume, bid-ask spread, market makers",
+    "difficulty_level": "intermediate",
+    "examples": "<p><strong>High Liquidity Example:</strong> Large-cap stocks like Apple or Microsoft can typically be sold immediately during market hours with minimal impact on price due to high trading volumes.</p>\n                    \n                    <p><strong>Low Liquidity Example:</strong> Small-cap stocks or certain bonds may have limited buyers, requiring investors to accept lower prices for quick sales or wait longer to find buyers at desired prices.</p>",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 141,
+  "fields": {
+    "summary": "The risk of losses due to factors that affect the overall performance of financial markets, also known as systematic risk.",
+    "detailed_content": "<p>Market risk, also called systematic risk, is the possibility of an investor experiencing losses due to factors that affect the overall performance of the financial markets. This type of risk cannot be eliminated through diversification because it affects the entire market.</p>\n                    \n                    <h3>Components of Market Risk</h3>\n                    <ul>\n                        <li><strong>Interest Rate Risk:</strong> Risk from changes in interest rates</li>\n                        <li><strong>Inflation Risk:</strong> Risk that purchasing power will be eroded by inflation</li>\n                        <li><strong>Currency Risk:</strong> Risk from fluctuating exchange rates</li>\n                        <li><strong>Political Risk:</strong> Risk from political instability or policy changes</li>\n                    </ul>\n                    \n                    <h3>Measurement</h3>\n                    <p>Market risk is often measured using:</p>\n                    <ul>\n                        <li><strong>Beta:</strong> Measures sensitivity to market movements</li>\n                        <li><strong>Value at Risk (VaR):</strong> Estimates potential losses over a specific time period</li>\n                        <li><strong>Standard Deviation:</strong> Measures volatility of returns</li>\n                    </ul>\n                    \n                    <h3>Managing Market Risk</h3>\n                    <p>While market risk cannot be eliminated, it can be managed through asset allocation, hedging strategies, and maintaining appropriate time horizons for investments.</p>",
+    "category": "risk",
+    "related_terms": "systematic risk, beta, volatility, diversification",
+    "difficulty_level": "beginner",
+    "examples": "<p><strong>Example:</strong> During the 2008 financial crisis, most stocks declined regardless of individual company fundamentals because the entire market was affected by systemic issues in the financial system. Even well-diversified portfolios experienced significant losses due to market risk.</p>",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 142,
+  "fields": {
+    "summary": "Investment strategy that aims to replicate the performance of a market index rather than outperform it through active security selection.",
+    "detailed_content": "<p>Passive management is an investment approach that seeks to replicate the performance of a specific market index or benchmark. Rather than trying to beat the market through active stock selection, passive managers aim to match market returns while minimizing costs.</p>\n                    \n                    <h3>Key Principles</h3>\n                    <ul>\n                        <li><strong>Index Replication:</strong> Holdings mirror those of a chosen benchmark index</li>\n                        <li><strong>Low Turnover:</strong> Minimal buying and selling reduces transaction costs</li>\n                        <li><strong>Cost Efficiency:</strong> Lower management fees due to reduced research and trading</li>\n                        <li><strong>Market Return:</strong> Accepts market returns rather than attempting to exceed them</li>\n                    </ul>\n                    \n                    <h3>Advantages</h3>\n                    <ul>\n                        <li>Lower expenses and fees</li>\n                        <li>Broad market diversification</li>\n                        <li>Transparency of holdings</li>\n                        <li>Tax efficiency due to low turnover</li>\n                        <li>Consistent with efficient market theory</li>\n                    </ul>\n                    \n                    <h3>Common Vehicles</h3>\n                    <p>Passive management is typically implemented through index funds and ETFs that track major indices like the S&P 500, Total Stock Market, or bond indices.</p>",
+    "category": "strategy",
+    "related_terms": "active management, index funds, ETFs, efficient market hypothesis",
+    "difficulty_level": "beginner",
+    "examples": "<p><strong>Example:</strong> The Vanguard S&P 500 Index Fund (VFIAX) is a passive fund that holds all 500 stocks in the S&P 500 index in the same proportions, providing investors with market returns at a very low 0.04% expense ratio.</p>",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 143,
+  "fields": {
+    "summary": "Risk management strategy that mixes a variety of investments within a portfolio to reduce exposure to any single asset or risk.",
+    "detailed_content": "<p>Portfolio diversification is a risk management technique that combines different types of investments in a single portfolio. The goal is to reduce risk by spreading investments across various asset classes, sectors, and securities that would each react differently to the same economic event.</p>\n                    \n                    <h3>Types of Diversification</h3>\n                    <ul>\n                        <li><strong>Asset Class Diversification:</strong> Mixing stocks, bonds, commodities, and cash</li>\n                        <li><strong>Geographic Diversification:</strong> Investing across different countries and regions</li>\n                        <li><strong>Sector Diversification:</strong> Spreading investments across various industries</li>\n                        <li><strong>Style Diversification:</strong> Combining growth and value investing approaches</li>\n                        <li><strong>Time Diversification:</strong> Dollar-cost averaging over time</li>\n                    </ul>\n                    \n                    <h3>Benefits</h3>\n                    <ul>\n                        <li>Reduces portfolio volatility</li>\n                        <li>Minimizes impact of poor-performing investments</li>\n                        <li>Provides exposure to multiple growth opportunities</li>\n                        <li>Helps preserve capital during market downturns</li>\n                    </ul>\n                    \n                    <h3>Limitations</h3>\n                    <p>Diversification cannot eliminate all risk, particularly systematic risk that affects entire markets. Over-diversification can also lead to mediocre returns and increased complexity.</p>",
+    "category": "strategy",
+    "related_terms": "risk management, asset allocation, correlation, systematic risk",
+    "difficulty_level": "beginner",
+    "examples": "<p><strong>Example:</strong> A diversified portfolio might include 60% stocks (split between U.S. and international, across various sectors), 30% bonds (government and corporate), 5% commodities, and 5% cash, rather than investing everything in a single stock or asset class.</p>",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 144,
+  "fields": {
+    "summary": "Natural or man-made catastrophes can disrupt financial markets and impact securities prices. Examples include terrorist attacks, natural disasters, war, and so forth.",
+    "detailed_content": "<p>Natural or man-made catastrophes can disrupt financial markets and impact securities prices. Examples include terrorist attacks, natural disasters, war, and so forth. Investment companies can use \"exigent circumstances\" or \"force majeure\" as a defense against claims of loss by investors.</p>",
+    "category": "risk",
+    "related_terms": "force majeure, exigent circumstances, natural disasters, war, terrorism",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 145,
+  "fields": {
+    "summary": "Company or industry-specific risk that is inherent to each company or issuer. This is also referred to as unsystematic risk and can be reduced through diversification.",
+    "detailed_content": "<p>When investing in securities, such as stocks, there is always a certain level of company or industry-specific risk that is inherent to each company or issuer.</p><p>These include the risk that the company will perform poorly or have its value reduced based on factors specific to the company or its industry. This is also referred to as unsystematic risk and can be reduced or mitigated through diversification.</p>",
+    "category": "risk",
+    "related_terms": "unsystematic risk, diversification, industry risk, issuer risk",
+    "difficulty_level": "beginner",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 146,
+  "fields": {
+    "summary": "Risks associated with relying on commercially available software, vendor information, and third-party data for investment decisions.",
+    "detailed_content": "<p>Most investment firms rely on commercially available software or services to design and implement their investment strategies. Over-reliance on these vendors can lead to risks, as a firm is relying on the accuracy and validity of the information or capabilities provided by selected vendors, rating services, market data, and the issuers themselves.</p><p>The investment strategies managed by Ethical Capital are primarily based on internal research. This may reduce the risk of receiving incomplete information from third parties, but also comes with the risk that our own research processes will miss key factors, which may lead to worse investment outcomes.</p>",
+    "category": "analysis",
+    "related_terms": "vendor risk, data accuracy, third-party information, internal research",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 147,
+  "fields": {
+    "summary": "Stocks are susceptible to general market fluctuations and may experience volatile changes in value based on market confidence and perceptions of their issuers.",
+    "detailed_content": "<p>Stocks are susceptible to general market fluctuations, which may include volatile increases or decreases in value as market confidence in and perceptions of their issuers change.</p><p>If an investor held common stock or common stock equivalents of any given issuer, these instruments may be exposed to greater risk than if the investor held preferred stocks and debt obligations of the issuer.</p><p>Preferred stocks can be affected by interest rate and liquidity risks. Also note that preferred stock dividend payments are not guaranteed; some are subject to a call provision, meaning the issuer can redeem its preferred shares on demand, and usually when interest rates have fallen.</p>",
+    "category": "risk",
+    "related_terms": "common stock, preferred stock, market fluctuations, call provision",
+    "difficulty_level": "beginner",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 148,
+  "fields": {
+    "summary": "Exchange-traded funds and exchange-traded notes carry risks from their underlying securities and can be affected by market, currency, credit, and other risk factors.",
+    "detailed_content": "<p>Exchange-traded funds and exchange-traded note risks include risks due to their underlying securities (e.g., stocks, bonds, derivatives, etc.), and can be affected by risks such as market, currency, credit, political, interest rate, etc.</p><p>The liquidity of the underlying stocks in the index can affect their liquidity. Liquidity risk can result from an insufficient number of \"active participants\" performing their duties as intermediaries and liquidity providers in the market. \"Spread risk\" may also occur, which is the difference between the bid and the ask price of a security.</p><p>Since ETF/ETN transactions are priced throughout the day and are traded on the exchanges like stocks, widening spreads may occur and have an impact on certain portfolios or transactions. As with any security, if the ETF/ETN \"fails,\" the investor may lose their gains and invested principal. ETFs and ETNs can carry additional expenses based on their share of operating expenses and certain brokerage fees. Some ETFs and ETNs have the potential to be affected by \"active risk;\" a deviation from its stated index.</p>",
+    "category": "instruments",
+    "related_terms": "exchange-traded funds, spread risk, liquidity providers, active risk",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 149,
+  "fields": {
+    "summary": "Excessive borrowing to finance business operations increases profitability risk because companies must meet loan obligations in both good times and bad.",
+    "detailed_content": "<p>Excessive borrowing to finance a business operation increases profitability risk because the company must meet the terms of its obligations in good times and bad.</p><p>This activity can also be defined as \"leverage\" (or leverage risk). During periods of financial stress, the inability to meet loan obligations can result in bankruptcy and/or a declining market value.</p>",
+    "category": "risk",
+    "related_terms": "leverage, leverage risk, bankruptcy, debt obligations",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 150,
+  "fields": {
+    "summary": "Investments in foreign companies can be more volatile than U.S. investments due to diplomatic, political, or economic developments, currency fluctuations, and different regulatory standards.",
+    "detailed_content": "<p>Investments in securities of foreign companies (including direct investments as well as investments through ADRs) can be more volatile than investments in U.S. companies. Diplomatic, political, or economic developments, including nationalization or appropriation, could affect investments in foreign companies.</p><p>Foreign securities markets generally have less trading volume and less liquidity than U.S. markets. In addition, the value of securities denominated in foreign currencies, and of dividends from these securities, can change significantly when foreign currencies strengthen or weaken relative to the U.S. dollar.</p><p>Financial statements of foreign issuers are governed by different accounting, auditing, and financial reporting standards than the financial statements of U.S. issuers and may be less transparent and uniform than in the United States. Thus, there may be less information publicly available about foreign issuers than about most U.S. issuers.</p><p>Transaction costs generally are higher than those in the United States and expenses for custodial arrangements of foreign securities may be somewhat greater than typical expenses for custodial arrangements of similar U.S. securities. Some foreign governments levy withholding taxes against dividend and interest income.</p>",
+    "category": "risk",
+    "related_terms": "ADRs, currency risk, nationalization, withholding taxes, foreign exchange",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 151,
+  "fields": {
+    "summary": "Also called purchasing power risk; the chance that cash flows from an investment will not be worth as much in the future because of changes in purchasing power due to inflation.",
+    "detailed_content": "<p>Also called purchasing power risk; the chance that the cash flows from an investment will not be worth as much in the future because of changes in purchasing power due to inflation.</p>",
+    "category": "risk",
+    "related_terms": "purchasing power risk, purchasing power, cash flows",
+    "difficulty_level": "beginner",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 152,
+  "fields": {
+    "summary": "The risk that the value of fixed income or similar holdings will decrease because of an increase in interest rates.",
+    "detailed_content": "<p>The risk that the value of the fixed income or similar holding will decrease because of an increase in interest rates.</p>",
+    "category": "risk",
+    "related_terms": "fixed income, bond risk, interest rates, bond values",
+    "difficulty_level": "beginner",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 153,
+  "fields": {
+    "summary": "Investment vehicles that pool money from many investors to express a particular strategy. They carry risks based on their underlying securities and additional expenses.",
+    "detailed_content": "<p>Mutual Funds pool investments from many individuals and institutions into a vehicle designed to express a particular strategy. As with ETFs and ETNs, the risk of owning a mutual fund is reflected in the underlying security(ies). Mutual funds are affected by risks such as market, interest rate, currency, credit, political, active risk, etc.</p><p>It is important to note that even \"conservative\" funds, such as a money market fund or fixed income fund, can and have lost their value below the principal amount invested. Mutual funds typically carry additional expenses based on their share of operating expenses and trading (brokerage) fees, which may result in the potential duplication of certain fees paid by the investor.</p><p>There are essentially nine main types of mutual fund shares classes, as well as sub-classes for some of these. Some open and closed-ended funds are sold through brokerage firms and assess a commission (\"load\") in addition to their underlying fees, while others are offered through investment advisers, retirement plans and other institutions. \"No load\" funds are also available to the public through brokerage firms, and they usually incur trading (brokerage) fees.</p>",
+    "category": "instruments",
+    "related_terms": "pooled investments, load funds, no load funds, expense ratios, share classes",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 154,
+  "fields": {
+    "summary": "The risk of financial and market loss because of political decisions or disruptions in a particular country or region; also known as geopolitical risk.",
+    "detailed_content": "<p>The risk of financial and market loss because of political decisions or disruptions in a particular country or region; also known as \"geopolitical risk.\"</p>",
+    "category": "risk",
+    "related_terms": "geopolitical risk, country risk, political disruptions, regulatory risk",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 155,
+  "fields": {
+    "summary": "Real Estate Investment Trusts are investment vehicles that generally hold real estate or real estate-linked securities, with specific risks related to property values and operations.",
+    "detailed_content": "<p>REITs, or Real Estate Investment Trusts, are investment vehicles that generally hold real estate or real estate-linked securities.</p><p>REIT risks include (i) following the sale or distribution of assets an investor could receive less than their principal invested, (ii) fluctuations involving the value of the assets within the REIT, (iii) a reliance on the investment manager to select and manage assets, (iv) changes in interest rates, laws, operating expenses, and insurance costs, (v) tenant turnover, and (iv) the impact of current market conditions.</p>",
+    "category": "instruments",
+    "related_terms": "real estate investment trusts, property investment, tenant turnover, real estate assets",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 156,
+  "fields": {
+    "summary": "A research discipline that attempts to uncover patterns and project future price movements based on charts, graphs, and market behavior patterns.",
+    "detailed_content": "<p>Technical analysis is a research discipline which attempts to uncover patterns and project future price movements based on patterns in charts, graphs, and market behavior.</p><p>The risk of investing based on technical analysis is that they may not consistently predict a future price movement; the current price of a security may reflect all known information. A change in the market price of a security may follow a random pattern and may not be as predictable as desired. This may occur due to analyst bias or misinterpretation, a sector analysis error, late recognition of a trend, etc.</p><p>We do not predicate investment decisions on technical analysis, but do occasionally use these techniques to manage risk and rebalance our investment portfolios.</p>",
+    "category": "analysis",
+    "related_terms": "chart patterns, price movements, market behavior, trend analysis",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 157,
+  "fields": {
+    "summary": "Companies with smaller market capitalizations that may have fewer financial resources than larger competitors, potentially offering higher returns but with increased volatility and risk.",
+    "detailed_content": "<p>Our investment strategies may invest in the securities of companies that are generally described as \"small cap\" or \"mid cap.\" This refers to the outstanding value of their securities, and indicates that the company may have fewer financial resources than larger competitors.</p><p>Such companies may be more vulnerable to adverse business or economic events than larger, more established companies. In particular, investments in these small- and mid-sized companies may pose additional risks, including liquidity risk, because these companies tend to have limited product lines, markets and financial resources, and may depend upon a relatively small management group. Small- and mid-cap stocks, therefore, may be more volatile than those of larger companies. These securities may be traded over-the-counter (OTC) or listed on an exchange.</p><p>With that said, these companies may be involved in innovative businesses which provide unusual impact and the prospect for higher returns. We carefully construct our portfolios to balance the risk of investing in these firms with their potential benefits.</p>",
+    "category": "instruments",
+    "related_terms": "market capitalization, small cap, mid cap, volatility, liquidity risk",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 158,
+  "fields": {
+    "summary": "Risks associated with options trading including covered calls and protected puts for downside hedging, detailed in specialized CBOE documentation.",
+    "detailed_content": "<p>Though we have not historically made use of options, our strategies may involve covered calls and protected puts for downside hedging. Risks involving options trading are detailed in the Chicago Board Options Exchange's \"The Characteristics and Risks of Standardized Options\" brochure that we will provide to the client upon request or may be found at their website.</p>",
+    "category": "instruments",
+    "related_terms": "covered calls, protected puts, downside hedging, CBOE, derivatives",
+    "difficulty_level": "advanced",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 159,
+  "fields": {
+    "summary": "The process by which funds and securities are exchanged, with associated settlement risk when one party may fail to deliver contract terms.",
+    "detailed_content": "<p>Settlement is the process by which funds and securities are exchanged to invest new capital or withdraw capital from the market. Though infrequent, there is a risk that one party will fail to deliver the terms of an investment contract with another party (contra-party) at the time of settlement. Settlement risk can be a risk associated with default, along with any timing differences in a settlement between the two parties.</p>",
+    "category": "markets",
+    "related_terms": "settlement risk, contra-party risk, default risk, trade settlement",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 160,
+  "fields": {
+    "summary": "Financial ratios that compare owner equity to debt, measuring a company's financial leverage and the degree to which operations are funded by equity versus debt.",
+    "detailed_content": "<p>Gearing ratios are financial ratios that compare some form of owner equity (or capital) to debt, or funds borrowed by a company.</p><p>\"Gearing\" is a measurement of the entity's financial leverage, and demonstrates the degree to which a firm's activities are funded by its shareholders' funds versus creditors' funds.</p><p>The gearing ratio demonstrates the degree to which a firm's operations are funded by equity capital versus debt financing. Gearing ratios have more meaning when they are compared against the gearing ratios of other companies in the same industry.</p>",
+    "category": "analysis",
+    "related_terms": "financial leverage, debt-to-equity, capital structure, financial ratios",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 161,
+  "fields": {
+    "summary": "IT companies face intense competition, rapid technological obsolescence, and dependency on intellectual property rights, which can affect profit margins and competitiveness.",
+    "detailed_content": "<p>Information technology companies face intense competition, both domestically and internationally, which may have an adverse effect on profit margins. As with other technology companies, information technology companies may have limited product lines, markets, financial resources, or personnel.</p><p>In addition to that, the products of information technology companies may face obsolescence due to rapid technological developments, frequent new product introduction, unpredictable changes in growth rates, and competition for the services of qualified personnel. Companies in the information technology sector are also heavily dependent on patent and intellectual property rights. The loss or impairment of these rights may adversely affect the profitability of these companies.</p>",
+    "category": "risk",
+    "related_terms": "technology obsolescence, patent rights, intellectual property, sector concentration",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 162,
+  "fields": {
+    "summary": "The risk of instability in a region due to war, terrorism, pandemics, etc., that might affect investment markets.",
+    "detailed_content": "<p>Socio-political risk refers to the potential for instability in a region that can arise from various factors such as war, terrorism, and pandemics. These factors can significantly impact investment markets, as they create an environment of uncertainty that can deter investment and affect the overall economic landscape.</p>",
+    "category": "risk",
+    "related_terms": "geopolitical risk, regional instability, war, terrorism, pandemics",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 163,
+  "fields": {
+    "summary": "Risk derived from the behavior of industries and governments, including fiscal and monetary policies, trade flows, and political developments that can affect investment portfolios.",
+    "detailed_content": "<p>Macroeconomic risk derives from the behavior of industries and governments and the relationships between them rather than from individual companies.</p><p>It concerns fiscal and monetary policies, trade and investment flows and political developments on a national and international scale. Business cycles, depressions, inflation, unemployment, interest rates, valuations, prices, and imports/exports volumes are all unpredictable and can lower or destroy the value of investment portfolios.</p><p>Central banks and governments often resort to inflationary policies and excessive fiat currency issuance through borrowing and printing. These macroeconomic maneuvers may possibly support or increase the nominal value of investment assets short term but can also lead to inflation and asset bubbles and later crashes.</p>",
+    "category": "risk",
+    "related_terms": "fiscal policy, monetary policy, business cycles, asset bubbles, fiat currency",
+    "difficulty_level": "advanced",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 164,
+  "fields": {
+    "summary": "Tax considerations for ETFs and mutual funds where certain asset classes or short holding periods may not qualify for favorable dividend tax treatment.",
+    "detailed_content": "<p>While ETFs/ETNs and mutual funds are known for their potential tax-efficiency and higher \"qualified dividend income\" (QDI) percentages, there are asset classes within these investment vehicles or holding periods that do not benefit.</p><p>Shorter holding periods, as well as commodities and currencies (which may be an underlying holding of an ETF, ETN or mutual fund), may be considered \"non-qualified\" under certain tax code provisions. We consider a holding's QDI when tax-efficiency is an important aspect of the client's portfolio.</p>",
+    "category": "regulation",
+    "related_terms": "qualified dividend income, tax efficiency, holding periods, commodities",
+    "difficulty_level": "advanced",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 165,
+  "fields": {
+    "summary": "Risk that political upheaval, financial troubles, or natural disasters in specific regions may adversely affect securities values, amplified by climate change and global volatility.",
+    "detailed_content": "<p>Events such as political upheaval, financial troubles, or natural disasters may adversely affect the value of securities issued in those areas.</p><p>The combination of climate change, political polarization, and deep social inequality could exacerbate these stresses wherever in the world they may occur. This may be further magnified by the nature of global investing, since certain international markets may be substantially more volatile and less liquid than domestic securities. Because registered investment company securities (e.g., a mutual fund) may invest a large portion of their assets in securities located in any one country or region, their performance may be hurt disproportionately by the poor performance of its investments in that area.</p>",
+    "category": "risk",
+    "related_terms": "political upheaval, natural disasters, climate change, global investing",
+    "difficulty_level": "intermediate",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 166,
+  "fields": {
+    "summary": "The risk that withdrawals from investment accounts may coincide with periods of poor performance, forcing clients to sell at inopportune times.",
+    "detailed_content": "<p>Withdrawals from investment accounts may coincide with periods of low or negative investment performance, which can lead to circumstances where clients are forced to sell at inopportune times. We work hard to ensure that our clients are able to weather these periods, and encourage them to reach out if they feel they may need to withdraw funds sooner than expected.</p><p>Where necessary, we seek to mitigate this risk by ensuring that a proportion of a clients' account is invested in less volatile securities (like fixed income instruments or money market funds) so that the necessary funds are less exposed to market volatility.</p>",
+    "category": "risk",
+    "related_terms": "withdrawal timing, portfolio timing, fixed income, money market funds",
+    "difficulty_level": "advanced",
+    "examples": "",
+    "further_reading": ""
+  }
+},
+{
+  "model": "public_site.encyclopediaentry",
+  "pk": 167,
+  "fields": {
+    "summary": "Securities that enable holders to purchase a security at a fixed price for a fixed period, typically longer-dated than options with potentially high volatility.",
+    "detailed_content": "<p>Warrants are securities that enable the holder to purchase a security at a fixed price (referred to as the exercise price) for a fixed period of time. Generally these are longer-dated than options, and can have volatile values based on current market conditions.</p><p>This volatility can be high and operate to an investor's disadvantage. The value of the certificate can drop to zero and, if it happens before it is exercised, the warrant could lose any of its redemption value. In addition, a warrant holder has no voting, shareholder, or dividend rights and therefore has no say in the functioning of the company, even though they are affected by the decisions and policies of that company and its management.</p><p>We do not generally purchase warrants outright, but have occasionally received them by participating in SPAC transactions or Initial Public Offerings.</p>",
+    "category": "instruments",
+    "related_terms": "exercise price, SPAC transactions, IPO, derivative securities",
+    "difficulty_level": "advanced",
+    "examples": "",
+    "further_reading": ""
+  }
+}
+]

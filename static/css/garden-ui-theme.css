@@ -153,7 +153,7 @@
   --focus-ring: 2px solid var(--garden-accent);
   --focus-offset: 2px;
   --platform-primary: var(--garden-accent);
-  --platform-primary-hover: #6B46C1;
+  --platform-primary-hover: var(--theme-primary-hover, #6B46C1);
   --platform-primary-dark: #2D1B69;
   --header-bg: var(--theme-primary, var(--platform-primary));
   --header-text: var(--theme-on-primary, var(--garden-bg));
@@ -175,7 +175,7 @@
   /* ===== PURPLE DARK THEME (Default) ===== */
 :root, [data-theme="purple-dark"] {
   --theme-primary: var(--garden-accent);
-  --theme-primary-hover: #6B46C1;
+  --theme-primary-hover: #6B46C1; /* Consistent purple hover shade */
   --theme-primary-alpha: color-mix(in srgb, var(--garden-accent) 15%, transparent);
   --theme-primary-rgb: 85, 60, 154;
   --theme-on-primary: #fff;

@@ -6,10 +6,13 @@
 {% block extra_css %}
 {% endblock %}
 
+{% block body_class %}home-page{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
-<section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
-    <div class="garden-panel__content garden-panel-content">
+<div class="garden-container">
+    <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
+        <div class="garden-panel__content garden-panel-content">
         <div class="hero-tagline">{{ page.hero_tagline }}</div>
         <h1 id="hero-heading" class="hero-title">{{ page.hero_title }}</h1>
         <div class="hero-subtitle">{{ page.hero_subtitle|richtext }}</div>
@@ -33,13 +36,14 @@
                 <span class="stat-label">FIDUCIARY STANDARD</span>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 <!-- Investment Philosophy Section -->
-<section class="garden-panel" role="main" aria-labelledby="philosophy-heading">
+<div class="garden-container">
+    <section class="garden-panel" role="main" aria-labelledby="philosophy-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">OUR INVESTMENT PHILOSOPHY</div>
+        <div class="panel-title">{{ page.philosophy_section_header|default:"OUR INVESTMENT PHILOSOPHY" }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
         <div class="philosophy-content">
@@ -49,59 +53,69 @@
                 {{ page.philosophy_highlight }}
             </p>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 <!-- Principles Section -->
-<section class="garden-panel" role="main" aria-labelledby="principles-heading">
-    <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">PRINCIPLES THAT GUIDE OUR WORK</div>
-    </div>
-    <div class="garden-panel__content garden-panel-content">
-        {{ page.principles_intro|richtext }}
+<div class="garden-container">
+    <section class="garden-panel principles-panel" role="main" aria-labelledby="principles-heading">
+        <!-- Purple Header Banner -->
+        <div class="principles-header">
+            <h2 class="principles-title">{{ page.principles_section_header|default:"PRINCIPLES THAT GUIDE OUR WORK" }}</h2>
+        </div>
         
-        <div class="principles-category">
-            <h3 class="category-header">Process</h3>
-            <div class="principles-grid">
-                <div class="principle-item">
-                    <h4 class="principle-title">{{ page.process_principle_1_title }}</h4>
-                    <p>{{ page.process_principle_1_content }}</p>
+        <!-- Main Content -->
+        <div class="principles-content">
+            <div class="principles-intro">
+                {{ page.principles_intro|richtext }}
+            </div>
+            
+            <!-- Process Section -->
+            <div class="principles-section">
+                <h3 class="principles-section-header">// PROCESS</h3>
+                <div class="principles-grid" style="display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 2rem !important; width: 100% !important;">
+                    <div class="principle-card">
+                        <h4 class="principle-title">▸{{ page.process_principle_1_title }}</h4>
+                        <p class="principle-content">{{ page.process_principle_1_content }}</p>
+                    </div>
+                    <div class="principle-card">
+                        <h4 class="principle-title">▸{{ page.process_principle_2_title }}</h4>
+                        <p class="principle-content">{{ page.process_principle_2_content }}</p>
+                    </div>
+                    <div class="principle-card">
+                        <h4 class="principle-title">▸{{ page.process_principle_3_title }}</h4>
+                        <p class="principle-content">{{ page.process_principle_3_content }}</p>
+                    </div>
                 </div>
-                <div class="principle-item">
-                    <h4 class="principle-title">{{ page.process_principle_2_title }}</h4>
-                    <p>{{ page.process_principle_2_content }}</p>
-                </div>
-                <div class="principle-item">
-                    <h4 class="principle-title">{{ page.process_principle_3_title }}</h4>
-                    <p>{{ page.process_principle_3_content }}</p>
+            </div>
+            
+            <!-- Practice Section -->
+            <div class="principles-section">
+                <h3 class="principles-section-header">// PRACTICE</h3>
+                <div class="principles-grid" style="display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 2rem !important; width: 100% !important;">
+                    <div class="principle-card">
+                        <h4 class="principle-title">▸{{ page.practice_principle_1_title }}</h4>
+                        <p class="principle-content">{{ page.practice_principle_1_content }}</p>
+                    </div>
+                    <div class="principle-card">
+                        <h4 class="principle-title">▸{{ page.practice_principle_2_title }}</h4>
+                        <p class="principle-content">{{ page.practice_principle_2_content }}</p>
+                    </div>
+                    <div class="principle-card">
+                        <h4 class="principle-title">▸{{ page.practice_principle_3_title }}</h4>
+                        <p class="principle-content">{{ page.practice_principle_3_content }}</p>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="principles-category">
-            <h3 class="category-header">Practice</h3>
-            <div class="principles-grid">
-                <div class="principle-item">
-                    <h4 class="principle-title">{{ page.practice_principle_1_title }}</h4>
-                    <p>{{ page.practice_principle_1_content }}</p>
-                </div>
-                <div class="principle-item">
-                    <h4 class="principle-title">{{ page.practice_principle_2_title }}</h4>
-                    <p>{{ page.practice_principle_2_content }}</p>
-                </div>
-                <div class="principle-item">
-                    <h4 class="principle-title">{{ page.practice_principle_3_title }}</h4>
-                    <p>{{ page.practice_principle_3_content }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
+</div>
 
 <!-- Strategies Section -->
-<section class="garden-panel" role="main" aria-labelledby="strategies-heading">
+<div class="garden-container">
+    <section class="garden-panel" role="main" aria-labelledby="strategies-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">THREE CORE STRATEGIES—MULTIPLE PATHS FORWARD</div>
+        <div class="panel-title">{{ page.strategies_section_header|default:"THREE CORE STRATEGIES—MULTIPLE PATHS FORWARD" }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
         {{ page.strategies_intro|richtext }}
@@ -212,13 +226,14 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
-<!-- Process Section -->
-<section class="garden-panel" role="main" aria-labelledby="process-heading">
+<!-- Process Section - Updated -->
+<div class="garden-container">
+    <section class="garden-panel" role="main" aria-labelledby="process-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">OUR SIGNATURE PROCESS</div>
+        <div class="panel-title">{{ page.process_section_header|default:"OUR SIGNATURE PROCESS" }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
         <h2 id="process-heading" class="text-center">How We Build Ethical Portfolios</h2>
@@ -260,13 +275,14 @@
         <div class="text-center margin-top-8">
             <a href="/process/" class="garden-action primary">Review Our Investment Process →</a>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 <!-- Who We Serve Section -->
-<section class="garden-panel" role="main" aria-labelledby="serve-heading">
+<div class="garden-container">
+    <section class="garden-panel" role="main" aria-labelledby="serve-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">WHO WE SERVE</div>
+        <div class="panel-title">{{ page.serve_section_header|default:"WHO WE SERVE" }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
         <div class="serve-grid">
@@ -288,15 +304,16 @@
                 <a href="/institutions/" class="garden-action secondary">Learn More →</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 <!-- CTA Section -->
-<section class="garden-panel cta-panel">
-    <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">BEGIN YOUR ETHICAL INVESTMENT JOURNEY</div>
-    </div>
-    <div class="garden-panel__content garden-panel-content">
+<div class="garden-container">
+    <section class="garden-panel cta-panel">
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">{{ page.cta_section_header|default:"BEGIN YOUR ETHICAL INVESTMENT JOURNEY" }}</div>
+        </div>
+        <div class="garden-panel__content garden-panel-content">
         <h2>{{ page.cta_title }}</h2>
         {{ page.cta_description|richtext }}
         
@@ -311,8 +328,8 @@
                 {{ page.client_availability_text }}
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 {% endblock %}
 

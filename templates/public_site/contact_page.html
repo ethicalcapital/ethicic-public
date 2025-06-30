@@ -4,8 +4,9 @@
 {% block title %}{{ page.title }} - Ethical Capital{% endblock %}
 
 {% block content %}
-<div class="public-main contact-main">
-    <div class="garden-layout-grid">
+<div class="garden-container">
+    <div class="public-main contact-main">
+        <div class="garden-layout-grid">
         <div class="main-content">
             {% if page.contact_description %}
                 {% include 'components/garden_panel.html' with title="ABOUT OUR SERVICES" content=page.contact_description|richtext variant="description" classes="description-panel" %}
@@ -64,6 +65,7 @@
                 </div>
             </div>
         </aside>
+        </div>
     </div>
 </div>
 {% endblock %}

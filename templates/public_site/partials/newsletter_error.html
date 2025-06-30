@@ -1,0 +1,31 @@
+<div class="newsletter-response error" x-data="{ show: true }" x-show="show" x-transition>
+    <div class="response-icon">⚠</div>
+    <div class="response-content">
+        <h4>Subscription Error</h4>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% elif errors %}
+            {% for field, field_errors in errors.items %}
+                {% for error in field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            <p>Please provide a valid email address.</p>
+        {% endif %}
+    </div>
+    <button type="button" @click="show = false" class="close-btn" aria-label="Close">×</button>
+</div>
+
+<style>
+    .newsletter-response.error {
+        background-color: var(--color-error-alpha);
+        border: 1px solid var(--color-error);
+        color: var(--color-error);
+    }
+    
+    /* Dark mode */
+    [data-theme="dark"] .newsletter-response.error {
+        background-color: rgba(239, 68, 68, 0.1);
+    }
+</style>

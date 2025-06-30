@@ -1,0 +1,13 @@
+[
+{
+  "model": "public_site.consultationpage",
+  "pk": 103,
+  "fields": {
+    "hero_title": "Schedule a Consultation",
+    "hero_subtitle": "Let's discuss how we can help align your investments with your values.",
+    "introduction": "\n            <p>We believe in finding the right fit for both parties. Our consultation process is designed to understand your values, investment goals, and how our approach might align with your needs.</p>\n            \n            <p>During our conversation, we'll explore:</p>\n            <ul>\n                <li>Your current investment situation and goals</li>\n                <li>Your ethical concerns and priorities</li>\n                <li>How our screening criteria align with your values</li>\n                <li>Which of our strategies might be the best fit</li>\n                <li>The onboarding process and next steps</li>\n            </ul>\n            \n            <p>There's no obligation to move forward, and we're happy to answer questions even if we're not the right match for you.</p>\n            ",
+    "contact_email": "hello@ec1c.com",
+    "scheduling_embed_code": ""
+  }
+}
+]

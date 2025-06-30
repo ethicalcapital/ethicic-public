@@ -72,9 +72,9 @@
 /* Auto dark theme based on system preference */
 @media (prefers-color-scheme: dark) {
     [data-theme="auto"] {
-        --theme-primary: #7c3aed;
-        --theme-primary-hover: #8b5cf6;
-        --theme-primary-alpha: rgba(124, 58, 237, 0.2);
+        --theme-primary: #553C9A;
+        --theme-primary-hover: #6B46C1;
+        --theme-primary-alpha: rgba(85, 60, 154, 0.2);
         --theme-surface: #1a1a1a;
         --theme-on-surface: #e0e0e0;
         --theme-surface-variant: #2a2a2a;

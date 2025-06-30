@@ -1,0 +1,9 @@
+{% extends "public_site/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <!-- Blog-specific CSS - only loaded on blog pages -->
+    <link rel="stylesheet" href="{% static 'css/garden-blog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/garden-blog-streamfield.css' %}">
+    <link rel="stylesheet" href="{% static 'css/garden-data-table.css' %}">
+{% endblock %}

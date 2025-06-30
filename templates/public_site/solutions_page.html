@@ -8,8 +8,9 @@
 {% block body_class %}solutions-page{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="garden-panel garden-panel--hero hero-panel" role="banner" aria-labelledby="hero-heading">
+<div class="garden-container">
+    <!-- Hero Section -->
+    <section class="garden-panel garden-panel--hero hero-panel" role="banner" aria-labelledby="hero-heading">
     <div class="garden-panel__content garden-panel-content">
         <h1 id="hero-heading" class="hero-title">Investment Solutions</h1>
         {% if page.intro_text %}
@@ -282,6 +283,7 @@
         </div>
     </div>
 </section>
+</div>
 {% endblock %}
 
 {% block extra_css %}{% endblock %}

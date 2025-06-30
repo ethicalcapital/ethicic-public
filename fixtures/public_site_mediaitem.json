@@ -1,0 +1,268 @@
+[
+{
+  "model": "public_site.mediaitem",
+  "pk": 4,
+  "fields": {
+    "sort_order": 6,
+    "page": 98,
+    "title": "Trans Financial Planning",
+    "description": "<p>In-depth coverage of financial planning for the transgender community, featuring insights from EC1C on creating inclusive investment strategies.</p>",
+    "publication": "Autostraddle",
+    "publication_date": "2023-06-15",
+    "external_url": "https://www.autostraddle.com/trans-financial-planning/",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 5,
+  "fields": {
+    "sort_order": 4,
+    "page": 98,
+    "title": "Financial Planning's 2023 Rising Stars Award Winners",
+    "description": "<p>EC1C recognized among Financial Planning's Rising Stars for innovative approaches to ethical investment management and client service.</p>",
+    "publication": "Financial Planning",
+    "publication_date": "2023-09-12",
+    "external_url": "https://www.financial-planning.com/list/financial-plannings-2023-rising-stars-award-winners",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 6,
+  "fields": {
+    "sort_order": 0,
+    "page": 98,
+    "title": "Why Budgeting is Terrible Advice for Lower-Income People",
+    "description": "<p>Featured commentary on systemic financial inequality and the need for accessible investment strategies beyond traditional budgeting advice.</p>",
+    "publication": "Salon",
+    "publication_date": "2024-10-09",
+    "external_url": "https://www.salon.com/2024/10/09/why-budgeting-is-terrible-advice-for-lower-income-people/",
+    "featured": true
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 7,
+  "fields": {
+    "sort_order": 1,
+    "page": 98,
+    "title": "20 LGBTQ Business Leaders on Importance of Visibility",
+    "description": "<p>EC1C leadership featured among prominent LGBTQ business leaders discussing the importance of visibility in financial services.</p>",
+    "publication": "Inc.",
+    "publication_date": "2024-06-28",
+    "external_url": "https://www.inc.com/tim-crino/20-lgbtq-business-leaders-on-importance-of-visibility.html",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 8,
+  "fields": {
+    "sort_order": 2,
+    "page": 98,
+    "title": "Women Entrepreneurs Behind Animal-Friendly Companies",
+    "description": "<p>PETA highlights EC1C's commitment to cruelty-free investing and ethical portfolio construction.</p>",
+    "publication": "PETA",
+    "publication_date": "2024-03-08",
+    "external_url": "https://www.peta.org/features/women-entrepreneurs-animal-friendly-companies/",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 9,
+  "fields": {
+    "sort_order": 3,
+    "page": 98,
+    "title": "The Liquidation of the LGBTQ+ ESG100 ETF",
+    "description": "<p>Expert analysis on the challenges facing ESG investing and EC1C's approach to authentic values-aligned investment management.</p>",
+    "publication": "Financial Planning",
+    "publication_date": "2024-01-24",
+    "external_url": "https://www.financial-planning.com/news/the-liquidation-of-the-lgbtq-esg100-etf",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 10,
+  "fields": {
+    "sort_order": 5,
+    "page": 98,
+    "title": "Gay on Wall Street",
+    "description": "<p>Institutional Investor profiles EC1C's work in creating inclusive investment strategies and challenging traditional Wall Street culture.</p>",
+    "publication": "Institutional Investor",
+    "publication_date": "2023-06-30",
+    "external_url": "https://www.institutionalinvestor.com/article/2bsvy0t4uzk4mhxh5rls0/culture/gay-on-wall-street",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 11,
+  "fields": {
+    "sort_order": 0,
+    "page": 98,
+    "title": "Sloane Ortel explains why she's launching a unique kind of investment firm",
+    "description": "<p>Sloane's last regular column discussing her unique investment approach and the launch of her firm.</p>",
+    "publication": "Citywire RIA",
+    "publication_date": "2022-01-06",
+    "external_url": "https://citywireusa.com/registered-investment-advisor/news/inclusion-in-wealth-the-vegan-investor/a2375491",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 12,
+  "fields": {
+    "sort_order": 1,
+    "page": 98,
+    "title": "Put your money where your mouth is: vegetarian and vegan investing",
+    "description": "<p>Article highlighting how Invest Vegan and other companies are forging a pathway to help investors better align their investing with their values.</p>",
+    "publication": "CFA Institute Enterprising Investor",
+    "publication_date": "2021-12-19",
+    "external_url": "https://blogs.cfainstitute.org/investor/2021/12/19/put-your-money-where-your-mouth-is-vegetarian-and-vegan-investing/",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 13,
+  "fields": {
+    "sort_order": 2,
+    "page": 98,
+    "title": "How Vegan Values Help Identify Investment Opportunity",
+    "description": "<p>Interview with Stephanie Redcross West discussing how vegan values can help identify investment opportunities.</p>",
+    "publication": "Vegan Mainstream",
+    "publication_date": "2021-10-12",
+    "external_url": "https://twitter.com/Veganmainstream/status/1447971252748967937",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 14,
+  "fields": {
+    "sort_order": 3,
+    "page": 98,
+    "title": "Socially responsible investing startup aims to work with RIAs",
+    "description": "<p>Coverage of the launch of Invest Vegan, focusing on working at the intersection of vegan ethics and investment management.</p>",
+    "publication": "Financial Planning",
+    "publication_date": "2021-09-10",
+    "external_url": "https://www.financial-planning.com/news/sloane-ortel-launches-invest-vegan",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 15,
+  "fields": {
+    "sort_order": 4,
+    "page": 98,
+    "title": "High Returns Are Possible With Low Carbon",
+    "description": "<p>Article discussing the need to radically update how we think about investment opportunities beyond traditional benchmarks like the S&P 500.</p>",
+    "publication": "Institutional Investor",
+    "publication_date": "2021-08-10",
+    "external_url": "https://www.institutionalinvestor.com/article/b1t2vcvcck9cjx/As-UN-Sounds-New-Warning-on-Climate-Change-Research-Shows-High-Returns-Are-Possible-With-Low-Carbon",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 16,
+  "fields": {
+    "sort_order": null,
+    "page": 98,
+    "title": "Stallion Capital Podcast",
+    "description": "Video content featuring Ethical Capital investment insights and analysis.",
+    "publication": "Stallion Capital",
+    "publication_date": "2024-01-01",
+    "external_url": "https://youtu.be/Y1xGFLC6VU4?si=qVnpTc37lkGlGbWP",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 17,
+  "fields": {
+    "sort_order": null,
+    "page": 98,
+    "title": "Ep 76: Sloane Ortel \"What You've Heard about Carbon Recapture is Wrong\"",
+    "description": "Video content featuring Ethical Capital investment insights and analysis.",
+    "publication": "CFA Society NY Compound Insights Podcast",
+    "publication_date": "2024-02-01",
+    "external_url": "https://youtu.be/Jlm4nO5ZV8U?si=6usHYRun-JP07duB",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 18,
+  "fields": {
+    "sort_order": null,
+    "page": 98,
+    "title": "Sloane Ortel of Invest Vegan - How Vegan Values Help Identify Investment Opportunity",
+    "description": "Video content featuring Ethical Capital investment insights and analysis.",
+    "publication": "Women Working in Wealth Podcast",
+    "publication_date": "2024-03-01",
+    "external_url": "https://www.youtube.com/live/7ADwOfseUXs?si=yq9VdEJqROUJmVMt",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 19,
+  "fields": {
+    "sort_order": null,
+    "page": 98,
+    "title": "Ethical Investing Insights",
+    "description": "Video content featuring Ethical Capital investment insights and analysis.",
+    "publication": "YouTube",
+    "publication_date": "2024-04-01",
+    "external_url": "https://youtu.be/0RTnCqXm7z0?si=KO7v4Wloovn0x3j-",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 20,
+  "fields": {
+    "sort_order": null,
+    "page": 98,
+    "title": "Portfolio Construction Discussion",
+    "description": "Video content featuring Ethical Capital investment insights and analysis.",
+    "publication": "YouTube",
+    "publication_date": "2024-05-01",
+    "external_url": "https://youtu.be/1Q67Y9L-7mY?si=5tvRI0bT9hz9C4YQ",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 21,
+  "fields": {
+    "sort_order": null,
+    "page": 98,
+    "title": "Sustainable Finance Analysis",
+    "description": "Video content featuring Ethical Capital investment insights and analysis.",
+    "publication": "YouTube",
+    "publication_date": "2024-06-01",
+    "external_url": "https://youtu.be/PcOfBWbd7Mw?si=a0a1TcconoNNuWF8",
+    "featured": false
+  }
+},
+{
+  "model": "public_site.mediaitem",
+  "pk": 22,
+  "fields": {
+    "sort_order": null,
+    "page": 98,
+    "title": "Investment Philosophy Presentation",
+    "description": "Video content featuring Ethical Capital investment insights and analysis.",
+    "publication": "YouTube",
+    "publication_date": "2024-07-01",
+    "external_url": "https://youtu.be/oYlOZzl4_N8?si=UOUKHW7iuxyYrazl",
+    "featured": false
+  }
+}
+]
