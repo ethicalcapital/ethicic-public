@@ -167,3 +167,13 @@
 - always use garden ui componoents and widgets to impplement new pages
 - use garden ui, not bootstrap
 - always use garden ui
+
+## UI Implementation Standards
+- **Garden UI ONLY** - Use `garden-panel`, `garden-action`, `garden-input` classes exclusively
+- **HTMX + Alpine.js** - No vanilla JavaScript. HTMX for server interactions, Alpine.js for reactivity
+- **No hardcoded colors/styles** - Use CSS variables from `garden-ui-theme.css`
+- **Template structure**: `{% extends "public_site/base.html" %}` → Garden panels → Content
+- **Forms**: Use `forms/contact_form_htmx.html` pattern with HTMX submission + Alpine.js state
+- **Components**: Reuse existing in `/templates/public_site/components/`
+- **CMS-first**: All content must be manageable via Wagtail page fields or SiteConfiguration
+- **Responsive**: Garden UI handles breakpoints, use `garden-container` for layout

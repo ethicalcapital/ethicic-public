@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'django.contrib.humanize',
     
     # Wagtail dependencies
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
+    'wagtail.contrib.settings',
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
@@ -145,9 +147,9 @@ elif UBI_DATABASE_URL:
             import psycopg2
             import socket
             
-            # Quick socket test first (1 second timeout)
+            # Quick socket test first (5 second timeout)
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.settimeout(1)
+            sock.settimeout(5)
             result = sock.connect_ex((config['HOST'], int(config['PORT'])))
             sock.close()
             
@@ -161,7 +163,7 @@ elif UBI_DATABASE_URL:
                 database=config['NAME'],
                 user=config['USER'],
                 password=config['PASSWORD'],
-                connect_timeout=3,
+                connect_timeout=10,
                 sslmode='require'
             )
             conn.close()
@@ -178,6 +180,8 @@ elif UBI_DATABASE_URL:
         DATABASES = {
             # Ubicloud as primary database with SSL - SIMPLIFIED
             'default': ubicloud_config,
+            # Also add as 'ubicloud' for import commands
+            'ubicloud': ubicloud_config,
         }
         
         # Removed hybrid database setup to fix routing issues
@@ -190,6 +194,9 @@ elif UBI_DATABASE_URL:
                 'NAME': BASE_DIR / 'db.sqlite3',
             }
         }
+        # Still try to add Ubicloud for import commands if we have config
+        if ubicloud_config:
+            DATABASES['ubicloud'] = ubicloud_config
     
 elif DATABASE_URL and DATABASE_URL != 'sqlite':
     # Kinsta database only (fallback)

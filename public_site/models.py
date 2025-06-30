@@ -64,6 +64,44 @@ class HomePage(Page):
         help_text="Key philosophy statement"
     )
 
+    # Section Headers - CMS Manageable
+    philosophy_section_header = models.CharField(
+        max_length=100,
+        default="OUR INVESTMENT PHILOSOPHY",
+        blank=True,
+        help_text="Section header for investment philosophy"
+    )
+    principles_section_header = models.CharField(
+        max_length=100,
+        default="PRINCIPLES THAT GUIDE OUR WORK",
+        blank=True,
+        help_text="Section header for principles"
+    )
+    strategies_section_header = models.CharField(
+        max_length=100,
+        default="THREE CORE STRATEGIES—MULTIPLE PATHS FORWARD",
+        blank=True,
+        help_text="Section header for strategies"
+    )
+    process_section_header = models.CharField(
+        max_length=100,
+        default="OUR SIGNATURE PROCESS",
+        blank=True,
+        help_text="Section header for process"
+    )
+    serve_section_header = models.CharField(
+        max_length=100,
+        default="WHO WE SERVE",
+        blank=True,
+        help_text="Section header for who we serve"
+    )
+    cta_section_header = models.CharField(
+        max_length=100,
+        default="BEGIN YOUR ETHICAL INVESTMENT JOURNEY",
+        blank=True,
+        help_text="Section header for call to action"
+    )
+
     # Principles Section
     principles_intro = RichTextField(
         blank=True,
@@ -141,7 +179,77 @@ class HomePage(Page):
         help_text="Legal disclaimer and footnotes"
     )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel("hero_tagline"), FieldPanel("hero_title"), FieldPanel("hero_subtitle"), FieldPanel("excluded_percentage"), FieldPanel("since_year")], heading="Hero Section"), MultiFieldPanel([FieldPanel("philosophy_title"), FieldPanel("philosophy_content"), FieldPanel("philosophy_highlight")], heading="Investment Philosophy"), MultiFieldPanel([FieldPanel("principles_intro")], heading="Principles Introduction"), MultiFieldPanel([FieldPanel("process_principle_1_title"), FieldPanel("process_principle_1_content"), FieldPanel("process_principle_2_title"), FieldPanel("process_principle_2_content"), FieldPanel("process_principle_3_title"), FieldPanel("process_principle_3_content")], heading="Process Principles"), MultiFieldPanel([FieldPanel("practice_principle_1_title"), FieldPanel("practice_principle_1_content"), FieldPanel("practice_principle_2_title"), FieldPanel("practice_principle_2_content"), FieldPanel("practice_principle_3_title"), FieldPanel("practice_principle_3_content")], heading="Practice Principles"), MultiFieldPanel([FieldPanel("strategies_intro")], heading="Strategies Introduction"), MultiFieldPanel([FieldPanel("process_title"), FieldPanel("process_step_1_title"), FieldPanel("process_step_1_content"), FieldPanel("process_step_2_title"), FieldPanel("process_step_2_content"), FieldPanel("process_step_3_title"), FieldPanel("process_step_3_content"), FieldPanel("process_step_4_title"), FieldPanel("process_step_4_content")], heading="Process Steps"), MultiFieldPanel([FieldPanel("serve_individual_title"), FieldPanel("serve_individual_content"), FieldPanel("serve_advisor_title"), FieldPanel("serve_advisor_content"), FieldPanel("serve_institution_title"), FieldPanel("serve_institution_content")], heading="Who We Serve"), MultiFieldPanel([FieldPanel("cta_title"), FieldPanel("cta_description"), FieldPanel("minimum_investment_text"), FieldPanel("client_availability_text")], heading="Call to Action"), MultiFieldPanel([FieldPanel("disclaimer_text")], heading="Footer & Disclaimer")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        MultiFieldPanel([
+            FieldPanel("hero_tagline"),
+            FieldPanel("hero_title"),
+            FieldPanel("hero_subtitle"),
+            FieldPanel("excluded_percentage"),
+            FieldPanel("since_year")
+        ], heading="Hero Section"),
+        MultiFieldPanel([
+            FieldPanel("philosophy_section_header"),
+            FieldPanel("philosophy_title"),
+            FieldPanel("philosophy_content"),
+            FieldPanel("philosophy_highlight")
+        ], heading="Investment Philosophy"),
+        MultiFieldPanel([
+            FieldPanel("principles_section_header"),
+            FieldPanel("principles_intro")
+        ], heading="Principles Introduction"),
+        MultiFieldPanel([
+            FieldPanel("process_principle_1_title"),
+            FieldPanel("process_principle_1_content"),
+            FieldPanel("process_principle_2_title"),
+            FieldPanel("process_principle_2_content"),
+            FieldPanel("process_principle_3_title"),
+            FieldPanel("process_principle_3_content")
+        ], heading="Process Principles"),
+        MultiFieldPanel([
+            FieldPanel("practice_principle_1_title"),
+            FieldPanel("practice_principle_1_content"),
+            FieldPanel("practice_principle_2_title"),
+            FieldPanel("practice_principle_2_content"),
+            FieldPanel("practice_principle_3_title"),
+            FieldPanel("practice_principle_3_content")
+        ], heading="Practice Principles"),
+        MultiFieldPanel([
+            FieldPanel("strategies_section_header"),
+            FieldPanel("strategies_intro")
+        ], heading="Strategies Introduction"),
+        MultiFieldPanel([
+            FieldPanel("process_section_header"),
+            FieldPanel("process_title"),
+            FieldPanel("process_step_1_title"),
+            FieldPanel("process_step_1_content"),
+            FieldPanel("process_step_2_title"),
+            FieldPanel("process_step_2_content"),
+            FieldPanel("process_step_3_title"),
+            FieldPanel("process_step_3_content"),
+            FieldPanel("process_step_4_title"),
+            FieldPanel("process_step_4_content")
+        ], heading="Process Steps"),
+        MultiFieldPanel([
+            FieldPanel("serve_section_header"),
+            FieldPanel("serve_individual_title"),
+            FieldPanel("serve_individual_content"),
+            FieldPanel("serve_advisor_title"),
+            FieldPanel("serve_advisor_content"),
+            FieldPanel("serve_institution_title"),
+            FieldPanel("serve_institution_content")
+        ], heading="Who We Serve"),
+        MultiFieldPanel([
+            FieldPanel("cta_section_header"),
+            FieldPanel("cta_title"),
+            FieldPanel("cta_description"),
+            FieldPanel("minimum_investment_text"),
+            FieldPanel("client_availability_text")
+        ], heading="Call to Action"),
+        MultiFieldPanel([
+            FieldPanel("disclaimer_text")
+        ], heading="Footer & Disclaimer")
+    ]
 
     class Meta:
         verbose_name = "Homepage"
@@ -704,6 +812,23 @@ class BlogIndexPage(RoutablePageMixin, Page):
         paginator = Paginator(posts, 12)  # 12 posts per page
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
+        # Handle HTMX requests for infinite scroll
+        is_htmx = request.headers.get('HX-Request') == 'true'
+        
+        if is_htmx and page_number and int(page_number) > 1:
+            # Return only the article list for infinite scroll
+            from django.template.loader import render_to_string
+            html = render_to_string(
+                'public_site/partials/blog_articles.html',
+                {
+                    'posts': page_obj,
+                    'has_next': page_obj.has_next(),
+                    'next_page_num': page_obj.next_page_number() if page_obj.has_next() else None,
+                },
+                request=request
+            )
+            from django.http import HttpResponse
+            return HttpResponse(html)
 
         return self.render(
             request,
@@ -718,7 +843,6 @@ class BlogIndexPage(RoutablePageMixin, Page):
                 "paginator": paginator,
             },
         )
-
     @path("tag/<str:tag>/")
     def post_by_tag(self, request, tag):
         """Filter posts by tag."""
@@ -986,7 +1110,7 @@ class MediaPage(Page):
 class MediaItem(Orderable):
     """Individual media/press item."""
 
-    page = ParentalKey(MediaPage, on_delete=models.CASCADE, related_name="media_items")
+    page = ParentalKey(MediaPage, on_delete=models.CASCADE, related_name="media_items", null=True, blank=True)
     title = models.CharField(max_length=300)
     description = RichTextField(blank=True)
     publication = models.CharField(
@@ -2246,3 +2370,295 @@ class PRIDDQPage(Page):
 
     class Meta:
         verbose_name = "PRI DDQ Page"
+
+
+# Site Configuration Model for Global Settings
+from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
+from modelcluster.models import ClusterableModel
+
+@register_setting
+class SiteConfiguration(ClusterableModel, BaseSiteSetting):
+    """Global site configuration and branding settings."""
+    
+    # Company Information
+    company_name = models.CharField(
+        max_length=100, 
+        default="Ethical Capital",
+        help_text="Company brand name displayed in navigation and footer"
+    )
+    company_tagline = models.CharField(
+        max_length=200,
+        default="Institutional-Grade Ethical Investing",
+        help_text="Main tagline for SEO and social media"
+    )
+    company_description = models.TextField(
+        default="SEC-registered investment advisor specializing in ethical portfolio management and concentrated sustainable investing strategies.",
+        help_text="Company description for meta tags and schema markup"
+    )
+    
+    # Contact Information
+    primary_email = models.EmailField(
+        default="hello@ethicic.com",
+        help_text="Primary contact email address"
+    )
+    support_email = models.EmailField(
+        default="hello@ethicic.com",
+        help_text="Support and accessibility contact email"
+    )
+    cio_email = models.EmailField(
+        default="sloane@ethicic.com",
+        help_text="Chief Investment Officer email"
+    )
+    primary_phone = models.CharField(
+        max_length=20,
+        default="+1 347 625 9000",
+        help_text="Primary phone number"
+    )
+    accessibility_phone = models.CharField(
+        max_length=20,
+        default="+1 (801) 123-4567",
+        help_text="Accessibility support phone number"
+    )
+    
+    # Address Information
+    street_address = models.CharField(
+        max_length=200,
+        default="90 N 400 E",
+        help_text="Street address"
+    )
+    city = models.CharField(
+        max_length=100,
+        default="Provo",
+        help_text="City"
+    )
+    state = models.CharField(
+        max_length=50,
+        default="UT",
+        help_text="State or region"
+    )
+    postal_code = models.CharField(
+        max_length=20,
+        default="84606",
+        help_text="Postal/ZIP code"
+    )
+    country = models.CharField(
+        max_length=100,
+        default="United States",
+        help_text="Country"
+    )
+    
+    # Social Media
+    twitter_handle = models.CharField(
+        max_length=50,
+        default="@ethicalcapital",
+        help_text="Twitter handle (include @)"
+    )
+    linkedin_url = models.URLField(
+        blank=True,
+        help_text="LinkedIn company page URL"
+    )
+    
+    # SEO and Meta
+    default_meta_description = models.TextField(
+        default="Ethical Capital - Institutional-Grade Ethical Investing",
+        help_text="Default meta description for pages without custom descriptions"
+    )
+    meta_keywords = models.CharField(
+        max_length=300,
+        default="investment intelligence, compliance, portfolio management, financial advisory",
+        help_text="Default meta keywords"
+    )
+    
+    # Legal and Compliance
+    founding_year = models.CharField(
+        max_length=4,
+        default="2021",
+        help_text="Company founding year"
+    )
+    copyright_text = models.CharField(
+        max_length=200,
+        default="Ethical Capital Investment Collaborative. All rights reserved.",
+        help_text="Footer copyright text"
+    )
+    
+    # Business Information
+    business_hours = models.CharField(
+        max_length=100,
+        default="Monday - Friday, 9:00 AM - 5:00 PM MT",
+        help_text="Business hours display text"
+    )
+    minimum_investment = models.CharField(
+        max_length=20,
+        default="$25,000",
+        help_text="Minimum investment amount"
+    )
+    
+    # Form Messages
+    contact_success_message = models.TextField(
+        default="Thank you for your message! We will get back to you within 24 hours.",
+        help_text="Success message for contact form submissions"
+    )
+    contact_error_message = models.TextField(
+        default="Please correct the errors below and try again.",
+        help_text="Error message for contact form submissions"
+    )
+    newsletter_success_message = models.TextField(
+        default="Thank you for subscribing to our newsletter!",
+        help_text="Success message for newsletter subscriptions"
+    )
+    
+    # Newsletter Widget Content
+    newsletter_title = models.CharField(
+        max_length=100,
+        default="Stay Updated",
+        help_text="Newsletter signup widget title"
+    )
+    newsletter_description = models.TextField(
+        default="Get our latest insights on ethical investing delivered to your inbox.",
+        help_text="Newsletter signup description"
+    )
+    newsletter_privacy_text = models.CharField(
+        max_length=200,
+        default="We respect your privacy. Unsubscribe at any time.",
+        help_text="Newsletter privacy notice"
+    )
+    
+    # Investment Form Content
+    investment_goal_growth_title = models.CharField(
+        max_length=50,
+        default="Long-term Growth",
+        help_text="Growth investment goal title"
+    )
+    investment_goal_growth_desc = models.TextField(
+        default="Building wealth over time, comfortable with market volatility",
+        help_text="Growth investment goal description"
+    )
+    investment_goal_income_title = models.CharField(
+        max_length=50,
+        default="Current Income",
+        help_text="Income investment goal title"
+    )
+    investment_goal_income_desc = models.TextField(
+        default="Regular income from investments, with some growth potential",
+        help_text="Income investment goal description"
+    )
+    investment_goal_balanced_title = models.CharField(
+        max_length=50,
+        default="Balanced Approach",
+        help_text="Balanced investment goal title"
+    )
+    investment_goal_balanced_desc = models.TextField(
+        default="Mix of growth and income, moderate risk tolerance",
+        help_text="Balanced investment goal description"
+    )
+    investment_goal_preservation_title = models.CharField(
+        max_length=50,
+        default="Capital Preservation",
+        help_text="Preservation investment goal title"
+    )
+    investment_goal_preservation_desc = models.TextField(
+        default="Protecting principal, minimal risk, steady returns",
+        help_text="Preservation investment goal description"
+    )
+    
+    # Content Management Settings
+    panels = [
+        MultiFieldPanel([
+            FieldPanel('company_name'),
+            FieldPanel('company_tagline'),
+            FieldPanel('company_description'),
+        ], heading="Company Information"),
+        MultiFieldPanel([
+            FieldPanel('primary_email'),
+            FieldPanel('support_email'),
+            FieldPanel('cio_email'),
+            FieldPanel('primary_phone'),
+            FieldPanel('accessibility_phone'),
+        ], heading="Contact Information"),
+        MultiFieldPanel([
+            FieldPanel('street_address'),
+            FieldPanel('city'),
+            FieldPanel('state'),
+            FieldPanel('postal_code'),
+            FieldPanel('country'),
+            FieldPanel('business_hours'),
+        ], heading="Address & Hours"),
+        MultiFieldPanel([
+            FieldPanel('twitter_handle'),
+            FieldPanel('linkedin_url'),
+        ], heading="Social Media"),
+        MultiFieldPanel([
+            FieldPanel('default_meta_description'),
+            FieldPanel('meta_keywords'),
+        ], heading="SEO & Meta Tags"),
+        MultiFieldPanel([
+            FieldPanel('founding_year'),
+            FieldPanel('copyright_text'),
+            FieldPanel('minimum_investment'),
+        ], heading="Business Information"),
+        MultiFieldPanel([
+            FieldPanel('contact_success_message'),
+            FieldPanel('contact_error_message'),
+            FieldPanel('newsletter_success_message'),
+        ], heading="Form Messages"),
+        MultiFieldPanel([
+            FieldPanel('newsletter_title'),
+            FieldPanel('newsletter_description'),
+            FieldPanel('newsletter_privacy_text'),
+        ], heading="Newsletter Widget Content"),
+        MultiFieldPanel([
+            FieldPanel('investment_goal_growth_title'),
+            FieldPanel('investment_goal_growth_desc'),
+            FieldPanel('investment_goal_income_title'),
+            FieldPanel('investment_goal_income_desc'),
+            FieldPanel('investment_goal_balanced_title'),
+            FieldPanel('investment_goal_balanced_desc'),
+            FieldPanel('investment_goal_preservation_title'),
+            FieldPanel('investment_goal_preservation_desc'),
+        ], heading="Investment Goal Options"),
+        InlinePanel('nav_items', label="Navigation Menu Items"),
+    ]
+    
+    class Meta:
+        verbose_name = "Site Configuration"
+
+
+class NavigationMenuItem(Orderable):
+    """Individual navigation menu item."""
+    
+    parent = ParentalKey('SiteConfiguration', related_name='nav_items')
+    
+    label = models.CharField(
+        max_length=50,
+        help_text="Text displayed in navigation"
+    )
+    url = models.CharField(
+        max_length=200,
+        help_text="URL or path (e.g., /about/, /process/)"
+    )
+    external = models.BooleanField(
+        default=False,
+        help_text="Open in new tab/window"
+    )
+    show_in_nav = models.BooleanField(
+        default=True,
+        help_text="Display this item in the main navigation"
+    )
+    show_in_footer = models.BooleanField(
+        default=True,
+        help_text="Display this item in the footer"
+    )
+    
+    panels = [
+        FieldPanel('label'),
+        FieldPanel('url'),
+        FieldPanel('external'),
+        FieldPanel('show_in_nav'),
+        FieldPanel('show_in_footer'),
+    ]
+    
+    def __str__(self):
+        return self.label
+    
+    class Meta:
+        verbose_name = "Navigation Menu Item"

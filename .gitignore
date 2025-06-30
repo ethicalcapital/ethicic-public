@@ -70,3 +70,24 @@ wagtail_media/
 *.pid
 *.seed
 *.pid.lock
+
+# Database dumps and temporary files
+database_dump_*.sql
+dump_database.sh
+export_ubicloud_data.py
+copy_all_content.py
+copy_ubicloud_content.py
+simple_copy_content.py
+check_db_content.py
+debug_server.py
+minimal_runserver.py
+load_fixtures_safely.py
+migrate-database-script.sh
+
+# Screenshots and temp images
+*.png
+!static/favicon-*.png
+!static/manifest.json
+
+# Temporary scripts
+test_*.py

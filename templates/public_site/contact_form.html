@@ -1,0 +1,118 @@
+{% extends "public_site/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{{ page.title }} - Ethical Capital{% endblock %}
+
+{% block content %}
+<div class="garden-container">
+    <!-- Hero Section -->
+    <section class="garden-panel" role="banner" aria-labelledby="contact-heading">
+        <div class="panel-header">CONTACT US</div>
+        <div class="panel-content">
+            <h1 id="contact-heading" class="hero-title">{{ page.title }}</h1>
+            {% if page.intro_text %}
+                <div class="hero-description">
+                    {{ page.intro_text|richtext }}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="garden-panel">
+        <div class="panel-header">SEND MESSAGE</div>
+        <div class="panel-content">
+            {% if page.form_description %}
+                <div class="form-description">
+                    {{ page.form_description|richtext }}
+                </div>
+            {% endif %}
+            
+            <!-- Include the HTMX contact form -->
+            {% include 'public_site/forms/contact_form_htmx.html' %}
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="garden-panel">
+        <div class="panel-header">CONTACT INFORMATION</div>
+        <div class="panel-content">
+            <div class="contact-info-grid">
+                <div class="contact-item">
+                    <div class="contact-label">EMAIL:</div>
+                    <a href="mailto:hello@ethicic.com" class="contact-link">
+                        hello@ethicic.com
+                    </a>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-label">PHONE:</div>
+                    <a href="tel:+13476259000" class="contact-link">
+                        +1 347 625 9000
+                    </a>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-label">ADDRESS:</div>
+                    <div class="contact-value">90 N 400 E, Provo, UT 84606</div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-label">BUSINESS HOURS:</div>
+                    <div class="contact-value">Monday - Friday, 9:00 AM - 5:00 PM MT</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .contact-info-grid {
+        display: grid;
+        gap: 2rem;
+        margin-top: 1rem;
+    }
+
+    .contact-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .contact-label {
+        font-weight: 600;
+        color: var(--color-text-secondary);
+        font-size: 0.875rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    .contact-link {
+        color: var(--color-primary);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .contact-link:hover {
+        text-decoration: underline;
+    }
+
+    .contact-value {
+        color: var(--color-text-primary);
+        line-height: 1.5;
+    }
+
+    .form-description {
+        margin-bottom: 2rem;
+        color: var(--color-text-secondary);
+    }
+
+    @media (min-width: 768px) {
+        .contact-info-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>
+{% endblock %}
