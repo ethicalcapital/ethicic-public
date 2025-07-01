@@ -33,22 +33,22 @@
 }
 
 /* Hero tagline - purple and larger */
-.home-page .hero-tagline {
-    font-size: 1.25rem;
-    font-weight: 600;
-    background: var(--theme-primary);
-    color: var(--color-surface);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-sm);
-    display: inline-block;
-    margin-bottom: 2rem;
+.home-page .hero-panel .hero-tagline {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    background: var(--theme-primary) !important;
+    color: var(--color-surface) !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: var(--radius-sm) !important;
+    display: inline-block !important;
+    margin-bottom: 2rem !important;
 }
 
-.home-page .hero-tagline::before {
-    content: "> ";
-    color: var(--color-surface);
+.home-page .hero-panel .hero-tagline::before {
+    content: "> " !important;
+    color: var(--color-surface) !important;
 }
 
 /* Hero title - the main heading */
@@ -109,42 +109,42 @@
 }
 
 /* Stats section - enhanced callouts */
-.home-page .hero-stats {
-    margin-top: 3rem;
-    padding: 2rem;
-    background: var(--color-surface-secondary);
-    border-radius: var(--radius-md);
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    flex-wrap: wrap;
-    border: 2px solid var(--theme-primary);
+.home-page .hero-panel .hero-stats {
+    margin-top: 3rem !important;
+    padding: 2rem !important;
+    background: var(--color-surface-secondary) !important;
+    border-radius: var(--radius-md) !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 4rem !important;
+    flex-wrap: wrap !important;
+    border: 2px solid var(--theme-primary) !important;
 }
 
-.home-page .hero-stats .stat-item {
-    background: var(--color-surface);
-    padding: 1.5rem;
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--color-border);
-    min-width: 180px;
-    text-align: center;
+.home-page .hero-panel .hero-stats .stat-item {
+    background: var(--color-surface) !important;
+    padding: 1.5rem !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: var(--shadow-sm) !important;
+    border: 1px solid var(--color-border) !important;
+    min-width: 180px !important;
+    text-align: center !important;
 }
 
-.home-page .hero-stats .stat-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--theme-primary);
-    display: block;
-    margin-bottom: 0.5rem;
+.home-page .hero-panel .hero-stats .stat-value {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: var(--theme-primary) !important;
+    display: block !important;
+    margin-bottom: 0.5rem !important;
 }
 
-.home-page .hero-stats .stat-label {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 600;
+.home-page .hero-panel .hero-stats .stat-label {
+    font-size: 0.875rem !important;
+    color: var(--color-text-secondary) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    font-weight: 600 !important;
 }
 
 .home-page .stat-fill-57 {
@@ -217,14 +217,14 @@
 }
 
 /* All section headers - purple styling */
-.home-page .garden-panel__header .panel-title {
-    background: var(--theme-primary);
-    color: var(--color-surface);
-    padding: 1rem 2rem;
-    margin: 0 -2rem 0 -2rem;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+.home-page .garden-container .garden-panel .garden-panel__header .panel-title {
+    background: var(--theme-primary) !important;
+    color: var(--color-surface) !important;
+    padding: 1rem 2rem !important;
+    margin: 0 -2rem 0 -2rem !important;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
 }
