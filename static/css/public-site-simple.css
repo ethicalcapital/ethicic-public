@@ -74,13 +74,26 @@
     margin: 0;
 }
 
-/* CTA buttons */
+/* CTA buttons - force side by side layout */
 .home-page .hero-panel .cta-actions {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem auto;
-    flex-wrap: wrap;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    margin: 2rem auto !important;
+    flex-wrap: wrap !important;
+}
+
+/* Also target the general .cta-actions class used throughout */
+.home-page .cta-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    margin: 2rem auto !important;
+    flex-wrap: wrap !important;
 }
 
 .home-page .hero-panel .cta-actions .garden-action {
@@ -208,14 +221,16 @@
 
 /* Only stack buttons on very small mobile screens */
 @media (max-width: 480px) {
-    .home-page .hero-panel .cta-actions {
-        flex-direction: column;
-        align-items: center;
+    .home-page .hero-panel .cta-actions,
+    .home-page .cta-actions {
+        flex-direction: column !important;
+        align-items: center !important;
     }
     
-    .home-page .hero-panel .cta-actions .garden-action {
-        width: 100%;
-        max-width: 300px;
+    .home-page .hero-panel .cta-actions .garden-action,
+    .home-page .cta-actions .garden-action {
+        width: 100% !important;
+        max-width: 300px !important;
     }
 }
 
@@ -277,13 +292,19 @@
     margin-top: 1rem !important;
 }
 
-/* Final CTA section buttons - side by side */
-.home-page .cta-panel .cta-actions {
+/* High specificity override for all CTA buttons - FORCE side by side */
+.home-page .garden-container .garden-panel .cta-actions,
+.home-page .garden-container section .cta-actions,
+.home-page .cta-panel .cta-actions,
+.home-page .hero-panel .cta-actions {
     display: flex !important;
+    flex-direction: row !important;
     justify-content: center !important;
+    align-items: center !important;
     gap: 1.5rem !important;
-    margin: 2rem 0 !important;
+    margin: 2rem auto !important;
     flex-wrap: wrap !important;
+    width: 100% !important;
 }
 
 .home-page .cta-panel .cta-actions .garden-action {
