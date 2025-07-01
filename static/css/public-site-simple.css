@@ -201,6 +201,13 @@
         font-size: 2rem;
     }
     
+    .home-page .hero-stats {
+        gap: 2rem;
+    }
+}
+
+/* Only stack buttons on very small mobile screens */
+@media (max-width: 480px) {
     .home-page .hero-panel .cta-actions {
         flex-direction: column;
         align-items: center;
@@ -209,10 +216,6 @@
     .home-page .hero-panel .cta-actions .garden-action {
         width: 100%;
         max-width: 300px;
-    }
-    
-    .home-page .hero-stats {
-        gap: 2rem;
     }
 }
 
@@ -237,4 +240,98 @@
     font-weight: 600 !important;
     letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
+}
+
+/* WHO WE SERVE section - ensure 3-column layout */
+.home-page .serve-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+}
+
+.home-page .serve-item {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    padding: 1.5rem !important;
+    border-radius: var(--radius-sm) !important;
+    text-align: center !important;
+    transition: all 0.2s ease !important;
+}
+
+.home-page .serve-item:hover {
+    border-color: var(--theme-primary) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.home-page .serve-item h3 {
+    color: var(--theme-primary) !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 1rem !important;
+}
+
+.home-page .serve-item .garden-action {
+    margin-top: 1rem !important;
+}
+
+/* Final CTA section buttons - side by side */
+.home-page .cta-panel .cta-actions {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 1.5rem !important;
+    margin: 2rem 0 !important;
+    flex-wrap: wrap !important;
+}
+
+.home-page .cta-panel .cta-actions .garden-action {
+    min-width: 200px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    text-align: center !important;
+    transition: all 0.2s ease !important;
+}
+
+.home-page .cta-panel .cta-actions .garden-action.primary {
+    background: var(--theme-primary) !important;
+    color: var(--color-surface) !important;
+    border: 2px solid var(--theme-primary) !important;
+}
+
+.home-page .cta-panel .cta-actions .garden-action.secondary {
+    background: transparent !important;
+    color: var(--theme-primary) !important;
+    border: 2px solid var(--theme-primary) !important;
+}
+
+.home-page .cta-panel .cta-actions .garden-action.secondary:hover {
+    background: var(--theme-primary) !important;
+    color: var(--color-surface) !important;
+}
+
+/* Responsive: collapse WHO WE SERVE to single column only on mobile */
+@media (max-width: 640px) {
+    .home-page .serve-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+    
+    /* Stack final CTA buttons on mobile */
+    .home-page .cta-panel .cta-actions {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .home-page .cta-panel .cta-actions .garden-action {
+        width: 100% !important;
+        max-width: 300px !important;
+    }
 }
