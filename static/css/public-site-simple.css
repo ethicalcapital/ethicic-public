@@ -178,8 +178,7 @@
     background: var(--color-surface-secondary);
     padding: 1rem 2rem;
     margin: 0 -2rem 2rem;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
+    border: none !important;
 }
 
 .garden-panel__header .panel-title {
@@ -191,23 +190,41 @@
     margin: 0;
 }
 
+/* Clean up garden panels - remove borders */
+.home-page .garden-panel {
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 3rem !important;
+}
+
+.home-page .garden-container {
+    margin-bottom: 2rem !important;
+}
+
 /* Investment Philosophy section */
 .philosophy-content {
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
+    color: var(--color-text-primary) !important;
 }
 
 .philosophy-content h2 {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 1rem;
+    color: var(--color-text-primary) !important;
+}
+
+.philosophy-content p {
+    color: var(--color-text-primary) !important;
 }
 
 /* Process section */
 .process-container {
     max-width: 800px;
     margin: 0 auto;
+    color: var(--color-text-primary) !important;
 }
 
 .process-container h2 {
@@ -215,6 +232,27 @@
     font-weight: 600;
     margin-bottom: 2rem;
     text-align: center;
+    color: var(--color-text-primary) !important;
+}
+
+/* Ensure all section content has proper text color */
+.home-page .garden-panel__content,
+.home-page .garden-panel-content {
+    color: var(--color-text-primary) !important;
+}
+
+.home-page .garden-panel__content h2,
+.home-page .garden-panel__content h3,
+.home-page .garden-panel__content h4,
+.home-page .garden-panel-content h2,
+.home-page .garden-panel-content h3,
+.home-page .garden-panel-content h4 {
+    color: var(--color-text-primary) !important;
+}
+
+.home-page .garden-panel__content p,
+.home-page .garden-panel-content p {
+    color: var(--color-text-primary) !important;
 }
 
 /* Responsive adjustments */
@@ -366,6 +404,144 @@
         width: 100% !important;
         max-width: 300px !important;
     }
+}
+
+/* Strategy tables styling */
+.home-page .strategies-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 2rem !important;
+    margin: 2rem 0 !important;
+}
+
+.home-page .strategy-card {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.home-page .strategy-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 !important;
+}
+
+.home-page .strategy-table th {
+    background: var(--theme-primary) !important;
+    color: var(--color-surface) !important;
+    padding: 1rem !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+}
+
+.home-page .strategy-table td {
+    padding: 0.75rem 1rem !important;
+    border-bottom: 1px solid var(--color-border) !important;
+    color: var(--color-text-primary) !important;
+}
+
+.home-page .strategy-table .label {
+    font-weight: 600 !important;
+    color: var(--color-text-secondary) !important;
+}
+
+.home-page .strategy-features {
+    padding: 1rem !important;
+    background: var(--color-surface) !important;
+}
+
+.home-page .strategy-features p {
+    color: var(--color-text-primary) !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Process steps styling */
+.home-page .process-step {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    margin-bottom: 2rem !important;
+    padding: 1.5rem !important;
+    background: var(--color-surface) !important;
+    border-radius: var(--radius-sm) !important;
+    border: 1px solid var(--color-border) !important;
+}
+
+.home-page .step-number {
+    background: var(--theme-primary) !important;
+    color: var(--color-surface) !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 700 !important;
+    flex-shrink: 0 !important;
+}
+
+.home-page .step-content h3 {
+    color: var(--color-text-primary) !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.home-page .step-content p {
+    color: var(--color-text-primary) !important;
+    margin: 0 !important;
+}
+
+/* Principles section styling */
+.home-page .principles-header {
+    background: var(--theme-primary) !important;
+    color: var(--color-surface) !important;
+    padding: 1rem 2rem !important;
+    margin: 0 -2rem 2rem !important;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
+}
+
+.home-page .principles-title {
+    color: var(--color-surface) !important;
+    margin: 0 !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+}
+
+.home-page .principles-content {
+    color: var(--color-text-primary) !important;
+}
+
+.home-page .principles-intro p {
+    color: var(--color-text-primary) !important;
+}
+
+.home-page .principles-section-header {
+    color: var(--theme-primary) !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    margin: 2rem 0 1rem !important;
+}
+
+.home-page .principle-card {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 1.5rem !important;
+}
+
+.home-page .principle-title {
+    color: var(--theme-primary) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.home-page .principle-content {
+    color: var(--color-text-primary) !important;
+    margin: 0 !important;
 }
 
 } /* End @layer overrides */
