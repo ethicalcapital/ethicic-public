@@ -91,35 +91,40 @@
     <!-- SIMPLIFIED CSS LOADING STRATEGY -->
     
     <!-- Core styles - consolidated essential CSS -->
-    <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v=2025070109">
+    <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v=2025070110">
     
     <!-- Garden UI Theme - design system variables (keeping for now as it has extensive theming) -->
-    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025070109">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025070110">
     
     <!-- Public site specific styles -->
-    <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070109">
+    <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070110">
     
-    <!-- Emergency CTA button fix - inline styles to override everything -->
+    <!-- Emergency CTA button fix - using CSS Grid instead of Flexbox -->
     <style>
-        /* Nuclear option - force CTA buttons side by side */
+        /* Ultra nuclear option - CSS Grid to bypass flexbox entirely */
         .home-page .cta-actions {
-            display: flex !important;
-            flex-direction: row !important;
-            justify-content: center !important;
-            align-items: center !important;
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
             gap: 1.5rem !important;
-            flex-wrap: wrap !important;
+            justify-items: center !important;
+            width: 100% !important;
+            max-width: 600px !important;
+            margin: 2rem auto !important;
+            padding: 0 !important;
         }
         
         .home-page .cta-actions .garden-action {
-            flex: 0 0 auto !important;
-            margin: 0.5rem !important;
+            width: 100% !important;
+            max-width: 250px !important;
+            text-align: center !important;
+            justify-self: center !important;
         }
         
-        /* Only stack on very small mobile */
+        /* Stack on mobile */
         @media (max-width: 480px) {
             .home-page .cta-actions {
-                flex-direction: column !important;
+                grid-template-columns: 1fr !important;
+                max-width: 300px !important;
             }
         }
     </style>
