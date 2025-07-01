@@ -13,13 +13,10 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        (
-            "taggit",
-            "0006_rename_taggeditem_content_type_object_id_taggit_tagg_content_8fc721_idx",
-        ),
-        ("wagtailcore", "0095_query_searchpromotion_querydailyhits"),
-        ("wagtaildocs", "0014_alter_document_file_size"),
-        ("wagtailimages", "0027_image_description"),
+        ("taggit", "0005_auto_20220424_2025"),
+        ("wagtailcore", "0089_log_entry_data_json_null_to_object"),
+        ("wagtaildocs", "0012_uploadeddocument"),
+        ("wagtailimages", "0025_alter_image_file_alter_rendition_file"),
     ]
 
     operations = [
