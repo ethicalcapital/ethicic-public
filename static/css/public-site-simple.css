@@ -108,7 +108,9 @@
     letter-spacing: 0.05em;
     min-width: 180px;
     text-decoration: none;
-    display: inline-block;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     text-align: center;
 }
 
@@ -134,33 +136,35 @@
     justify-content: center !important;
     gap: 4rem !important;
     flex-wrap: wrap !important;
-    border: 2px solid var(--theme-primary) !important;
+    border: none !important;
 }
 
 .home-page .hero-panel .hero-stats .stat-item {
-    background: var(--color-surface) !important;
+    background: transparent !important;
     padding: 1.5rem !important;
     border-radius: var(--radius-sm) !important;
-    box-shadow: var(--shadow-sm) !important;
-    border: 1px solid var(--color-border) !important;
+    box-shadow: none !important;
+    border: none !important;
     min-width: 180px !important;
     text-align: center !important;
 }
 
 .home-page .hero-panel .hero-stats .stat-value {
-    font-size: 2rem !important;
+    font-size: 3rem !important;
     font-weight: 700 !important;
     color: var(--theme-primary) !important;
     display: block !important;
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1 !important;
 }
 
 .home-page .hero-panel .hero-stats .stat-label {
-    font-size: 0.875rem !important;
+    font-size: 0.75rem !important;
     color: var(--color-text-secondary) !important;
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
     font-weight: 600 !important;
+    margin-top: 0.25rem !important;
 }
 
 .home-page .stat-fill-57 {
@@ -319,7 +323,9 @@
     letter-spacing: 0.05em !important;
     border-radius: 4px !important;
     text-decoration: none !important;
-    display: inline-block !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     text-align: center !important;
     transition: all 0.2s ease !important;
 }
