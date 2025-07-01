@@ -10,7 +10,7 @@
 }
 
 .strategy-page .garden-container {
-    max-width: var(--content-width-wide);
+    max-width: var(--content-width-normal); /* Changed from wide (1600px) to normal (1200px) to match homepage */
     margin: 0 auto;
     padding: var(--space-4) var(--space-6);
 }

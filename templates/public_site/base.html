@@ -99,8 +99,10 @@
     <!-- Public site specific styles -->
     <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070116">
     
-    <!-- Public site modular styles with all page-specific layers -->
-    <link rel="stylesheet" href="{% static 'css/public-site-modular.css' %}?v=2025070117">
+    <!-- About page specific styles -->
+    {% if page and page.slug == 'about' %}
+    <link rel="stylesheet" href="{% static 'css/layers/22-about-page.css' %}?v=1">
+    {% endif %}
     
     <!-- Emergency CTA button fix - using CSS Grid instead of Flexbox -->
     <style>
