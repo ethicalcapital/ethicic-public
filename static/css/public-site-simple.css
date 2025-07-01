@@ -217,12 +217,22 @@
 }
 
 /* All section headers - purple styling */
-.home-page .garden-container .garden-panel .garden-panel__header .panel-title {
+.home-page .garden-container .garden-panel .garden-panel__header {
     background: var(--theme-primary) !important;
     color: var(--color-surface) !important;
     padding: 1rem 2rem !important;
-    margin: 0 -2rem 0 -2rem !important;
+    margin: 0 !important;
     border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
+    border-bottom: none !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.home-page .garden-container .garden-panel .garden-panel__header .panel-title {
+    background: transparent !important;
+    color: var(--color-surface) !important;
+    padding: 0 !important;
+    margin: 0 !important;
     font-size: 1rem !important;
     font-weight: 600 !important;
     letter-spacing: 0.1em !important;
