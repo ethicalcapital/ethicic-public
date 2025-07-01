@@ -129,9 +129,31 @@
     margin-bottom: 0;
 }
 
+/* Process intro section - moved from main panel */
+.process-intro-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.process-intro-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text-primary, #1a1a1a) !important;
+    margin-bottom: 1.5rem;
+}
+
+.process-intro-section > p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-primary, #1a1a1a) !important;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
 /* Process Steps Section */
 .process-steps {
     margin-bottom: 2rem;
+    margin-top: 3rem;
 }
 
 .process-step {

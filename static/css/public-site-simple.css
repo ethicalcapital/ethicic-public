@@ -8,24 +8,35 @@
 
 /* ===== HEADER STYLING ===== */
 .garden-header {
-    background: var(--theme-primary, #553C9A); /* Use theme purple variable */
-    color: white;
+    background: var(--theme-primary, #553C9A) !important; /* Use theme purple variable */
+    color: white !important;
     border-bottom: none;
 }
 
 .garden-header .garden-brand {
-    color: white;
+    color: white !important;
     font-weight: var(--font-semibold, 600);
 }
 
-.garden-header .garden-nav a {
-    color: white;
+.garden-header .garden-nav-item,
+.garden-header .garden-nav-main a {
+    color: white !important;
     opacity: 0.9;
 }
 
-.garden-header .garden-nav a:hover {
+.garden-header .garden-nav-item:hover,
+.garden-header .garden-nav-main a:hover {
     opacity: 1;
     background: rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure process page header is visible */
+.process-page .garden-header {
+    background: var(--theme-primary, #553C9A) !important;
+}
+
+.process-page .garden-header * {
+    color: white !important;
 }
 
 /* ===== HOMEPAGE HERO SECTION ===== */
