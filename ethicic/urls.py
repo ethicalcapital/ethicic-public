@@ -65,8 +65,12 @@ def debug_static(request):
         'STATIC_URL': settings.STATIC_URL,
         'STATIC_ROOT': str(settings.STATIC_ROOT),
         'STATICFILES_STORAGE': settings.STATICFILES_STORAGE,
+        'STATICFILES_DIRS': [str(d) for d in settings.STATICFILES_DIRS],
         'WHITENOISE_USE_FINDERS': getattr(settings, 'WHITENOISE_USE_FINDERS', None),
+        'WHITENOISE_AUTOREFRESH': getattr(settings, 'WHITENOISE_AUTOREFRESH', None),
         'static_root_exists': os.path.exists(settings.STATIC_ROOT),
+        'static_dirs_exist': [{'dir': str(d), 'exists': os.path.exists(d)} for d in settings.STATICFILES_DIRS],
+        'middleware_installed': 'whitenoise.middleware.WhiteNoiseMiddleware' in settings.MIDDLEWARE,
         'static_files': []
     }
     
@@ -78,7 +82,7 @@ def debug_static(request):
             static_info['css_files'] = css_files[:10]  # First 10 files
         
         # Check specific critical files
-        critical_files = ['css/garden-ui-theme.css', 'css/critical.css']
+        critical_files = ['css/garden-ui-theme.css', 'css/core-styles.css', 'css/public-site-simple.css']
         for file_path in critical_files:
             full_path = os.path.join(settings.STATIC_ROOT, file_path)
             static_info['static_files'].append({
@@ -86,6 +90,21 @@ def debug_static(request):
                 'exists': os.path.exists(full_path),
                 'size': os.path.getsize(full_path) if os.path.exists(full_path) else 0
             })
+    
+    # Also check source static directory
+    static_info['source_static_files'] = []
+    if settings.STATICFILES_DIRS:
+        source_dir = settings.STATICFILES_DIRS[0]
+        if os.path.exists(source_dir):
+            css_dir = os.path.join(source_dir, 'css')
+            if os.path.exists(css_dir):
+                for file_name in ['garden-ui-theme.css', 'core-styles.css', 'public-site-simple.css']:
+                    full_path = os.path.join(css_dir, file_name)
+                    static_info['source_static_files'].append({
+                        'path': f'css/{file_name}',
+                        'exists': os.path.exists(full_path),
+                        'size': os.path.getsize(full_path) if os.path.exists(full_path) else 0
+                    })
     
     return JsonResponse(static_info)
 

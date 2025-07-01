@@ -112,6 +112,24 @@ if [ -z "$DB_URL" ] && [ -f "./diagnose_connection.py" ] && [ ! -z "$UBI_DATABAS
     python diagnose_connection.py 2>&1 || echo "Diagnostics completed with errors"
 fi
 
+# Collect static files if not already done
+echo ""
+echo "=== Static Files Collection ==="
+if [ ! -d "staticfiles" ] || [ -z "$(ls -A staticfiles 2>/dev/null)" ]; then
+    echo "📁 Static files directory empty or missing - collecting now..."
+    python manage.py collectstatic --noinput --clear 2>&1 || {
+        echo "⚠️  Static files collection failed"
+        echo "   Site may have styling issues"
+    }
+else
+    echo "✅ Static files already collected"
+    # List some key files to verify
+    echo "   Key CSS files:"
+    ls -la staticfiles/css/garden-ui-theme.css 2>/dev/null && echo "   ✅ garden-ui-theme.css found" || echo "   ❌ garden-ui-theme.css missing"
+    ls -la staticfiles/css/core-styles.css 2>/dev/null && echo "   ✅ core-styles.css found" || echo "   ❌ core-styles.css missing"
+    ls -la staticfiles/css/public-site-simple.css 2>/dev/null && echo "   ✅ public-site-simple.css found" || echo "   ❌ public-site-simple.css missing"
+fi
+
 # Process based on database configuration
 if [ ! -z "$DB_URL" ]; then
     echo ""

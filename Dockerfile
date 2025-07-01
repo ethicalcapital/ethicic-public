@@ -28,6 +28,9 @@ RUN chmod +x runtime_init.sh build.sh 2>/dev/null || true
 # Run build script
 RUN ./build.sh
 
+# Ensure static files are collected during build
+RUN python manage.py collectstatic --noinput --clear || echo "Static collection will be retried at runtime"
+
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash app && chown -R app:app /app
 USER app
