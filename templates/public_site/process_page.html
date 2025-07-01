@@ -6,12 +6,12 @@
 
 {% block extra_css %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/process-page.css' %}">
+<link rel="stylesheet" href="{% static 'css/process-page.css' %}?v=2">
 {% endblock %}
 
 {% block content %}
 <div class="garden-container">
-    <!-- Main Process Panel -->
+    <!-- Main Process Panel - Matching process_format.png -->
     <section class="garden-panel process-main-panel" role="main">
         <div class="garden-panel__content garden-panel-content">
             <!-- Header Section -->
@@ -87,6 +87,318 @@
                 </div>
             </div>
 
+            <!-- Conduct-Based Exclusions Section -->
+            <div class="exclusions-section">
+                <h2 class="exclusions-section-title">CONDUCT-BASED EXCLUSIONS</h2>
+                <div class="exclusions-underline"></div>
+                <p class="exclusions-subtitle">Even companies making beneficial products can cause harm through their conduct. We track patterns of behavior that damage communities, workers, and ecosystems.</p>
+                
+                <div class="exclusions-grid">
+                    <div class="exclusion-card">
+                        <h3 class="exclusion-title">👥 Human Rights Violations</h3>
+                        <ul class="exclusion-list">
+                            <li>→ Labor rights violations</li>
+                            <li>→ Child labor exploitation</li>
+                            <li>→ Anti-union activities</li>
+                            <li>→ Human trafficking involvement</li>
+                            <li>→ Workplace safety negligence</li>
+                            <li>→ Discrimination & harassment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exclusion-card">
+                        <h3 class="exclusion-title">🌍 Environmental Damage</h3>
+                        <ul class="exclusion-list">
+                            <li>→ Deforestation & habitat destruction</li>
+                            <li>→ Climate change acceleration</li>
+                            <li>→ Pollution & toxic waste</li>
+                            <li>→ Environmental cover-ups</li>
+                            <li>→ Ecosystem destruction</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exclusion-card">
+                        <h3 class="exclusion-title">⚖️ Corporate Misconduct</h3>
+                        <ul class="exclusion-list">
+                            <li>→ Corruption & bribery</li>
+                            <li>→ Tax avoidance schemes</li>
+                            <li>→ Consumer fraud</li>
+                            <li>→ Regulatory capture attempts</li>
+                            <li>→ Greenwashing & deception</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exclusion-card">
+                        <h3 class="exclusion-title">🌐 Global Impact</h3>
+                        <ul class="exclusion-list">
+                            <li>→ Supply chain responsibility failures</li>
+                            <li>→ International law violations</li>
+                            <li>→ Community displacement</li>
+                            <li>→ Indigenous rights violations</li>
+                            <li>→ Developing nation exploitation</li>
+                            <li>→ Predatory lending practices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keep all the existing process steps and content -->
+    <section class="garden-panel" role="main" aria-labelledby="process-heading">
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">OUR SIGNATURE PROCESS</div>
+        </div>
+        <div class="garden-panel__content garden-panel-content">
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Do Our Best, Then Do Better</h3>
+                        <p>Our criteria are meant to avoid involvement with all preventable harms we are aware of. This excludes 57% of the S&P 500 (as of June 14, 2025). Our complete methodology is <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener noreferrer" class="policy-link">open source on GitHub</a> under an MIT license.</p>
+                        
+                        <div class="screening-stats">
+                            <div class="stat-card">
+                                <div class="stat-number">57%</div>
+                                <div class="stat-label">of S&P 500 excluded<br><small>(as of June 14, 2025)</small></div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">Open Source</div>
+                                <div class="stat-label">methodology</div>
+                            </div>
+                        </div>
+                        
+                        <div class="policy-transparency">
+                            <h4>🔓 Open Source & Collaborative</h4>
+                            <p>Our complete framework lives on GitHub under an MIT license with full version control—think of it as a living document with a conversation attached. Want to suggest changes? Send us a pull request. See something we missed? Raise an issue. Have ideas for improvement? Join the discussion forum. This collaborative approach helps us catch blind spots and adapt to emerging patterns of harm we haven't considered yet.</p>
+                            <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener noreferrer" class="garden-action secondary">
+                                Join the Collaboration →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Intersectional Company Analysis</h3>
+                        <p>We make sure these are real companies with sustainable business models through intersectional analysis that maintains a holistic view. While we consider six key areas that matter for long-term success, our analysis isn't limited to these. About 1-2% of stocks generate 99% of returns over multiple long-term periods (<a href="https://wpcarey.asu.edu/department-finance/faculty-research/do-stocks-outperform-treasury-bills" target="_blank" rel="noopener noreferrer" class="policy-link">ASU research</a>), and those amazing, successful companies are often unique in—you guessed it—unique ways. We don't want to limit our analysis to some rubric because these are living organisms that evolve and adapt. Any single factor can be dispositive, moving a company's Tick rating from 0 to 10 or vice versa:</p>
+                        
+                        <div class="criteria-grid">
+                            <div class="criteria-card">
+                                <h4>👥 People</h4>
+                                <ul class="criteria-list">
+                                    <li>Staff retention rates</li>
+                                    <li>Governance quality</li>
+                                    <li>Company culture</li>
+                                </ul>
+                            </div>
+                            <div class="criteria-card">
+                                <h4>🛠️ Product</h4>
+                                <ul class="criteria-list">
+                                    <li>Innovation potential</li>
+                                    <li>Market share position</li>
+                                    <li>Strategic KPIs</li>
+                                </ul>
+                            </div>
+                            <div class="criteria-card">
+                                <h4>⚡ Execution</h4>
+                                <ul class="criteria-list">
+                                    <li>R&D returns</li>
+                                    <li>Sales effectiveness</li>
+                                    <li>Operational results</li>
+                                </ul>
+                            </div>
+                            <div class="criteria-card">
+                                <h4>💰 Valuation</h4>
+                                <ul class="criteria-list">
+                                    <li>Price-to-earnings ratios</li>
+                                    <li>Asset valuations</li>
+                                    <li>Free cash flow</li>
+                                </ul>
+                            </div>
+                            <div class="criteria-card">
+                                <h4>🏰 Moat</h4>
+                                <ul class="criteria-list">
+                                    <li>Disruption resistance</li>
+                                    <li>Competitive pressures</li>
+                                    <li>Community engagement</li>
+                                </ul>
+                            </div>
+                            <div class="criteria-card">
+                                <h4>⚠️ Risk</h4>
+                                <ul class="criteria-list">
+                                    <li>Adoption challenges</li>
+                                    <li>Regulatory risks</li>
+                                    <li>Capital loss potential</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Strategy Design & Portfolio Customization</h3>
+                        <p>First, we design core strategies using only the top 1% of securities that pass our analysis. Then we meet with you to customize the perfect mix of strategies for your specific needs, risk tolerance, and ethical priorities. Position sizing comes directly from our scoring process, ensuring each holding earns its place.</p>
+                        
+                        <div class="strategy-overview">
+                            <div class="strategy-comparison">
+                                <h4 class="heading-mono-accent margin-bottom-4">Our Three Core Strategies</h4>
+                                
+                                <div class="criteria-grid">
+                                    <div class="criteria-card">
+                                        <h4>🚀 Growth Strategy</h4>
+                                        <ul class="criteria-list">
+                                            <li>Full ethical criteria implementation</li>
+                                            <li>~25 concentrated positions</li>
+                                            <li>Long-term growth focus</li>
+                                            <li>Our flagship strategy</li>
+                                        </ul>
+                                        <div class="strategy-card-actions">
+                                            <a href="/strategies/growth/" class="garden-action secondary extra-small">
+                                                Learn More →
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="criteria-card">
+                                        <h4>💰 Income Strategy</h4>
+                                        <ul class="criteria-list">
+                                            <li>Income-generating focus</li>
+                                            <li>Ethical dividend companies</li>
+                                            <li>Balanced risk approach</li>
+                                            <li>Regular distributions</li>
+                                        </ul>
+                                        <div class="process-action-spacing">
+                                            <a href="/strategies/income/" class="garden-action secondary process-action-small">
+                                                Learn More →
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="criteria-card">
+                                        <h4>⚖️ Diversification Strategy</h4>
+                                        <ul class="criteria-list">
+                                            <li>Broader diversification</li>
+                                            <li>Risk management focus</li>
+                                            <li>Ethical foundation</li>
+                                            <li>Portfolio stabilization</li>
+                                        </ul>
+                                        <div class="process-action-spacing">
+                                            <a href="/strategies/diversification/" class="garden-action secondary process-action-small">
+                                                Learn More →
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Decision Refinement & Continuous Improvement</h3>
+                        <p>We don't just monitor—we actively refine our decisions through rigorous analysis and systematic learning. This isn't set-and-forget investing; it's a continuous cycle of improvement that makes our process stronger over time.</p>
+                        
+                        <div class="methodology-card methodology-card-spacing">
+                            <h4>📊 Our Refinement Process</h4>
+                            <ul class="methodology-list">
+                                <li><strong>Scenario Analysis:</strong> Testing how portfolios perform under different market conditions</li>
+                                <li><strong>Collaborative Review:</strong> Internal team analysis of investment decisions and outcomes</li>
+                                <li><strong>Mental Model Assessment:</strong> Identifying and evaluating our decision-making frameworks</li>
+                                <li><strong>Weakness Analysis:</strong> Systematic evaluation of past investment decision weaknesses</li>
+                                <li><strong>Regular Re-scoring:</strong> Continuous updates to company scores based on new information</li>
+                                <li><strong>Criteria Evolution:</strong> Updating our ethical framework as new patterns emerge</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="insight-callout insight-callout-spacing">
+                            <strong>A Natural Cycle:</strong> We rebalance portfolios on the new moon—a systematic timing approach that removes emotional decision-making from our process while ensuring regular review cycles.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="insight-callout">
+                <strong>KEY INSIGHT:</strong> We help you take your first step or go all-in, whatever feels right for you. 
+                Mix our strategies to target your exact risk tolerance and income needs. The goal is progress, not perfection—helping 
+                you invest as ethically as possible within your real-world constraints.
+            </div>
+        </div>
+    </section>
+
+    <!-- Guiding Principles -->
+    <section class="garden-panel principles-section" role="main" aria-labelledby="principles-heading">
+        <!-- Tagline -->
+        <div class="principles-tagline">
+            <p class="tagline-text">When ethics and excellence converge, sustainable investing outcomes follow.</p>
+        </div>
+        
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">PRINCIPLES THAT GUIDE OUR WORK</div>
+        </div>
+        <div class="garden-panel__content garden-panel-content">
+            <p class="principles-intro">
+                Sophisticated ethical investing requires both conviction and nuance. These principles shape how we serve investors who refuse to compromise.
+            </p>
+            
+            <!-- Process Section -->
+            <div class="principles-section-divider">
+                <h3 class="principles-section-title">// PROCESS</h3>
+            </div>
+            
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <h4>▸Institutional Rigor, Boutique Attention</h4>
+                    <p>We combine analytical depth with personalized service. Every holding is hand-researched, every client relationship carefully tended.</p>
+                </div>
+                <div class="principle-card">
+                    <h4>▸Radical Transparency</h4>
+                    <p>Our exclusion criteria are open source. Our process is documented. Our reasoning is clear. You deserve to understand exactly what you own and why.</p>
+                </div>
+                <div class="principle-card">
+                    <h4>▸High-Conviction Concentration</h4>
+                    <p>We maintain focused portfolios of 15-25 companies. Depth of research over breadth of holdings.</p>
+                </div>
+            </div>
+            
+            <!-- Practice Section -->
+            <div class="principles-section-divider">
+                <h3 class="principles-section-title">// PRACTICE</h3>
+            </div>
+            
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <h4>▸Continuous Evolution</h4>
+                    <p>Ethics is not static. As companies evolve and disappoint we adapt. Our screening is a living framework, refined through ongoing research and client dialogue.</p>
+                </div>
+                <div class="principle-card">
+                    <h4>▸Intellectual Honesty</h4>
+                    <p>We acknowledge uncertainty, learn from mistakes, and evolve our approach. Humility serves our clients better than false certainty.</p>
+                </div>
+                <div class="principle-card">
+                    <h4>▸Business-Focused Investing</h4>
+                    <p>We invest in companies, not stories. Real businesses with proven models, sustainable advantages, and ethical operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="garden-panel cta-panel">
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">BEGIN YOUR ETHICAL INVESTMENT JOURNEY</div>
+        </div>
+        <div class="garden-panel__content garden-panel-content">
+            <h2 class="cta-title">Ready to take your first step or jump in with both feet?</h2>
+            <p class="cta-description">
+                Let's find the perfect mix of strategies for your values and needs.
+            </p>
+            <a href="/contact/" class="garden-action primary" aria-label="Start a conversation about ethical investing">
+                START A CONVERSATION
+            </a>
         </div>
     </section>
 </div>

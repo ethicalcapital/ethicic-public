@@ -112,9 +112,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ethicic.wsgi.application'
 
 # Database Configuration
-# Hybrid approach: Ubicloud as primary, local SQLite as cache
+# Priority: New Ethicic Public DB > Ubicloud > SQLite fallback
 DATABASE_URL = os.getenv('DATABASE_URL')
 UBI_DATABASE_URL = os.getenv('UBI_DATABASE_URL')
+DB_URL = os.getenv('DB_URL')
 
 # Configure databases based on environment
 # IMPORTANT: Check USE_SQLITE first for build phase
@@ -136,6 +137,25 @@ if os.getenv('USE_SQLITE', 'False').lower() == 'true':
                 DATABASES['ubicloud'] = ubicloud_config
         except Exception as e:
             pass  # Silently continue if Ubicloud database cannot be configured
+elif DB_URL:
+    # Primary: Use new Ethicic Public PostgreSQL database
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.parse(DB_URL, conn_max_age=600)
+    }
+    
+    # Add Ubicloud as secondary database for importing content
+    if UBI_DATABASE_URL:
+        try:
+            from .database_config import get_database_config
+            ubicloud_config = get_database_config(UBI_DATABASE_URL)
+            if ubicloud_config:
+                DATABASES['ubicloud'] = ubicloud_config
+                print(f"✅ Added Ubicloud database for content import")
+        except Exception as e:
+            print(f"⚠️  Could not configure Ubicloud database: {e}")
+    
+    print(f"✅ Using Ethicic Public PostgreSQL database: {os.getenv('DB_HOST')}")
 elif UBI_DATABASE_URL:
     # Production mode: Try Ubicloud, fallback to SQLite
     from .database_config import get_database_config, get_cache_database_config

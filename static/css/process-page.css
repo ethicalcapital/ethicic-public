@@ -1,37 +1,39 @@
-/* Process Page Styles - Matches process_format.png design */
+/* Process Page Styles - Matches process_format.png design exactly */
 
 .process-main-panel {
     max-width: 1200px;
-    margin: 2rem auto;
-    border: 1px solid var(--color-border, #e2e8f0);
-    border-radius: 12px;
-    background: var(--color-surface, #ffffff);
+    margin: 3rem auto;
+    border: 2px solid #d1d5db;
+    border-radius: 16px;
+    background: #ffffff;
     padding: 3rem;
+    box-shadow: none;
 }
 
 .process-header {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .process-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-text-primary, #1a1a1a);
+    font-size: 2.25rem;
+    font-weight: 400;
+    color: #1f2937;
     margin-bottom: 1.5rem;
-    line-height: 1.2;
+    line-height: 1.3;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 }
 
 .process-intro {
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.6;
-    color: var(--color-text-secondary, #4a5568);
-    max-width: 800px;
+    color: #374151;
+    margin-bottom: 3rem;
 }
 
 .process-link {
     color: var(--theme-primary, #553C9A);
     text-decoration: underline;
-    font-weight: 600;
+    font-weight: normal;
 }
 
 .process-link:hover {
@@ -40,55 +42,69 @@
 
 /* Exclusions Sections */
 .exclusions-section {
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+}
+
+.exclusions-section:last-child {
+    margin-bottom: 0;
 }
 
 .exclusions-section-title {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 700;
     color: var(--theme-primary, #553C9A);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.025em;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .exclusions-underline {
     width: 100%;
-    height: 2px;
+    height: 1px;
     background: var(--theme-primary, #553C9A);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .exclusions-subtitle {
     font-size: 1rem;
-    line-height: 1.6;
-    color: var(--color-text-secondary, #4a5568);
+    line-height: 1.5;
+    color: #374151;
     margin-bottom: 2rem;
     font-style: italic;
 }
 
-/* Exclusions Grid */
+/* Exclusions Grid - 5 columns for product-based, 4 for conduct-based */
 .exclusions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
+/* Force 5 columns for product-based (first section) */
+.exclusions-section:first-of-type .exclusions-grid {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+/* Force 4 columns for conduct-based (second section) */
+.exclusions-section:last-of-type .exclusions-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
 .exclusion-card {
-    background: var(--color-surface-secondary, #f8fafc);
-    border: 1px solid var(--color-border, #e2e8f0);
-    border-radius: 8px;
-    padding: 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
 }
 
 .exclusion-title {
-    font-size: 1.125rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--theme-primary, #553C9A);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    display: block;
+    line-height: 1.4;
 }
 
 .exclusion-list {
@@ -100,8 +116,8 @@
 .exclusion-list li {
     font-size: 0.875rem;
     line-height: 1.5;
-    color: var(--color-text-secondary, #4a5568);
-    margin-bottom: 0.5rem;
+    color: #374151;
+    margin-bottom: 0.25rem;
     padding-left: 0;
 }
 
@@ -110,23 +126,31 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .exclusions-section:first-of-type .exclusions-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .exclusions-section:last-of-type .exclusions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .process-main-panel {
         margin: 1rem;
         padding: 2rem 1.5rem;
+        border-radius: 12px;
     }
     
     .process-title {
-        font-size: 2rem;
+        font-size: 1.875rem;
     }
     
-    .exclusions-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .exclusion-card {
-        padding: 1rem;
+    .exclusions-section:first-of-type .exclusions-grid,
+    .exclusions-section:last-of-type .exclusions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
     }
 }
 
@@ -134,34 +158,39 @@
     .process-main-panel {
         margin: 0.5rem;
         padding: 1.5rem 1rem;
+        border-radius: 8px;
     }
     
     .process-title {
-        font-size: 1.75rem;
+        font-size: 1.625rem;
     }
     
     .process-intro {
-        font-size: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .exclusions-section:first-of-type .exclusions-grid,
+    .exclusions-section:last-of-type .exclusions-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 }
 
 /* Dark theme support */
 [data-theme="dark"] .process-main-panel {
-    background: var(--color-surface-dark, #1a1a1a);
-    border-color: var(--color-border-dark, #374151);
-}
-
-[data-theme="dark"] .exclusion-card {
-    background: var(--color-surface-secondary-dark, #2d3748);
-    border-color: var(--color-border-dark, #374151);
+    background: #1f2937;
+    border-color: #4b5563;
 }
 
 [data-theme="dark"] .process-title {
-    color: var(--color-text-primary-dark, #f7fafc);
+    color: #f9fafb;
 }
 
 [data-theme="dark"] .process-intro,
-[data-theme="dark"] .exclusions-subtitle,
+[data-theme="dark"] .exclusions-subtitle {
+    color: #d1d5db;
+}
+
 [data-theme="dark"] .exclusion-list li {
-    color: var(--color-text-secondary-dark, #cbd5e0);
+    color: #d1d5db;
 }
