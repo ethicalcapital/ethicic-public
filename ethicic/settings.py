@@ -280,8 +280,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# Static files storage - use simple storage to avoid manifest issues
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# Static files storage - use manifest storage for cache busting
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # WhiteNoise settings
 WHITENOISE_USE_FINDERS = True
