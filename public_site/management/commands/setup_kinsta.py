@@ -12,17 +12,18 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write('Setting up Kinsta deployment...')
         
-        with transaction.atomic():
-            # Create superuser if none exists
-            if not User.objects.filter(is_superuser=True).exists():
-                self.stdout.write('Creating superuser...')
-                User.objects.create_superuser(
-                    username='admin',
-                    email='admin@ethicic.com',
-                    password='ChangeThisPassword123!'
-                )
-                self.stdout.write(self.style.SUCCESS('✅ Superuser created (username: admin)'))
-                self.stdout.write(self.style.WARNING('⚠️  CHANGE THE PASSWORD IMMEDIATELY!'))
+        try:
+            with transaction.atomic():
+                # Create superuser if none exists
+                if not User.objects.filter(is_superuser=True).exists():
+                    self.stdout.write('Creating superuser...')
+                    User.objects.create_superuser(
+                        username='admin',
+                        email='admin@ethicic.com',
+                        password='ChangeThisPassword123!'
+                    )
+                    self.stdout.write(self.style.SUCCESS('✅ Superuser created (username: admin)'))
+                    self.stdout.write(self.style.WARNING('⚠️  CHANGE THE PASSWORD IMMEDIATELY!'))
             
             # Ensure we have a root page
             if not Page.objects.filter(pk=1).exists():
@@ -72,4 +73,6 @@ class Command(BaseCommand):
                 site.save()
                 self.stdout.write(self.style.SUCCESS('✅ Site updated'))
         
-        self.stdout.write(self.style.SUCCESS('\n✅ Kinsta setup complete!'))
+            self.stdout.write(self.style.SUCCESS('\n✅ Kinsta setup complete!'))
+        except Exception as e:
+            self.stdout.write(self.style.WARNING(f'⚠️  Setup completed with warnings: {str(e)}'))

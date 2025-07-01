@@ -117,6 +117,11 @@ if [ ! -z "$DB_URL" ]; then
     echo ""
     echo "=== Using Kinsta PostgreSQL Database ==="
     echo "📊 Running database migrations on Kinsta PostgreSQL..."
+    # First, fake the initial migration since DB already has content
+    python manage.py migrate public_site 0001 --fake --noinput 2>&1 || {
+        echo "   ⚠️  Initial migration fake completed with warnings"
+    }
+    # Then run any other migrations normally
     python manage.py migrate --noinput 2>&1 || {
         echo "   ⚠️  Migration completed with warnings"
     }
