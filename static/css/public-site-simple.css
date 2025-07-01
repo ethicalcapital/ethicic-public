@@ -147,15 +147,17 @@
     border: none !important;
     min-width: 180px !important;
     text-align: center !important;
+    display: grid !important;
+    grid-template-rows: auto auto !important;
+    gap: 0.25rem !important;
 }
 
 .home-page .hero-panel .hero-stats .stat-value {
     font-size: 3rem !important;
     font-weight: 700 !important;
     color: var(--theme-primary) !important;
-    display: block !important;
-    margin-bottom: 0.25rem !important;
     line-height: 1 !important;
+    grid-row: 1 !important;
 }
 
 .home-page .hero-panel .hero-stats .stat-label {
@@ -164,7 +166,7 @@
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
     font-weight: 600 !important;
-    margin-top: 0.25rem !important;
+    grid-row: 2 !important;
 }
 
 .home-page .stat-fill-57 {
