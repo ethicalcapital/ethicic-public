@@ -1,11 +1,11 @@
 # Core Django
 # Updated: 2024-06-26 - Fixed django-taggit version conflict
-Django==4.2.16
+Django==5.1.5
 gunicorn==21.2.0
 psycopg2-binary==2.9.9
 
 # Wagtail CMS
-wagtail==5.2.6
+wagtail==7.0.1
 django-modelcluster==6.3
 django-taggit==4.0.0
 djangorestframework==3.14.0
