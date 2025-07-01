@@ -28,10 +28,8 @@ RUN chmod +x runtime_init.sh build.sh 2>/dev/null || true
 # Run build script
 RUN ./build.sh
 
-# Ensure static files are collected during build with safe environment
-RUN export DJANGO_SETTINGS_MODULE=ethicic.settings_build && \
-    export SECRET_KEY="build-phase-key" && \
-    python manage.py collectstatic --noinput --clear || echo "Static collection will be retried at runtime"
+# Skip collectstatic during build - runtime will handle it
+# This avoids build errors from missing environment variables
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash app && chown -R app:app /app

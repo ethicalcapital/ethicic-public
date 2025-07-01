@@ -26,15 +26,13 @@ if command -v python &> /dev/null; then
     # First create static directories to ensure they exist
     mkdir -p static staticfiles
     
-    # Try collectstatic with safer options
-    python manage.py collectstatic --noinput --ignore="*.scss" --ignore="*.less" 2>&1 || {
-        echo "⚠️  Static files collection failed (will retry at runtime)"
-        echo "   This is normal during build phase - runtime will handle this"
-        
-        # Ensure basic static directory structure exists
-        mkdir -p staticfiles/css staticfiles/js staticfiles/images
-        echo "📁 Created basic static file structure for runtime"
-    }
+    # Skip collectstatic during build - runtime will handle it
+    echo "⏭️  Skipping static files collection during build"
+    echo "   Runtime will handle static files with proper environment"
+    
+    # Ensure basic static directory structure exists
+    mkdir -p staticfiles/css staticfiles/js staticfiles/images
+    echo "📁 Created basic static file structure for runtime"
     
     # Basic Django validation (skip deployment checks in build)
     echo "🔧 Testing Django setup..."
