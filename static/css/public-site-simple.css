@@ -195,10 +195,16 @@
     border: none !important;
     box-shadow: none !important;
     margin-bottom: 3rem !important;
+    overflow: visible !important;
 }
 
 .home-page .garden-container {
     margin-bottom: 2rem !important;
+}
+
+/* Ensure content padding doesn't conflict with full-width headers */
+.home-page .garden-panel__content {
+    padding: 2rem !important;
 }
 
 /* Investment Philosophy section */
@@ -286,10 +292,10 @@
     background: var(--theme-primary) !important;
     color: var(--color-surface) !important;
     padding: 1rem 2rem !important;
-    margin: 0 !important;
+    margin: 0 -2rem !important;
+    width: calc(100% + 4rem) !important;
     border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
     border-bottom: none !important;
-    width: 100% !important;
     box-sizing: border-box !important;
 }
 
