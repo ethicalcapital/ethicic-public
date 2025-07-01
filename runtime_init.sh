@@ -64,15 +64,24 @@ echo "- USE_SQLITE: $USE_SQLITE"
 echo "- SKIP_UBICLOUD: $SKIP_UBICLOUD"
 echo ""
 
-# Test database connectivity
-echo "=== Database Connectivity Test ==="
-if command -v python &> /dev/null; then
-    python manage.py test_db_connection 2>&1 || {
-        echo "⚠️  Database connection test failed (non-fatal)"
-        echo "   Will continue with available databases"
-    }
+# Check if we have Kinsta DB_URL first - skip other tests if we do
+if [ ! -z "$DB_URL" ]; then
+    echo "=== Kinsta Database Detected ==="
+    echo "✅ Using Kinsta PostgreSQL - skipping Ubicloud connection tests"
+    echo "   Host: $DB_HOST"
+    echo "   Database: $DB_DATABASE"
+    export SKIP_UBICLOUD=true
 else
-    echo "⚠️  Python not available for database test (non-fatal)"
+    # Test database connectivity only if not using Kinsta
+    echo "=== Database Connectivity Test ==="
+    if command -v python &> /dev/null; then
+        python manage.py test_db_connection 2>&1 || {
+            echo "⚠️  Database connection test failed (non-fatal)"
+            echo "   Will continue with available databases"
+        }
+    else
+        echo "⚠️  Python not available for database test (non-fatal)"
+    fi
 fi
 
 # Check SSL certificate availability
@@ -96,23 +105,17 @@ else
     ls -la ./config/ssl/ 2>/dev/null || echo "   ./config/ssl/ not found"
 fi
 
-# Run connection diagnostics if available
-if [ -f "./diagnose_connection.py" ] && [ ! -z "$UBI_DATABASE_URL" ] && command -v python &> /dev/null; then
+# Run connection diagnostics if available (skip if using Kinsta)
+if [ -z "$DB_URL" ] && [ -f "./diagnose_connection.py" ] && [ ! -z "$UBI_DATABASE_URL" ] && command -v python &> /dev/null; then
     echo ""
     echo "=== Running Connection Diagnostics ==="
     python diagnose_connection.py 2>&1 || echo "Diagnostics completed with errors"
 fi
 
-# Check if we have Kinsta DB_URL first
+# Process based on database configuration
 if [ ! -z "$DB_URL" ]; then
     echo ""
     echo "=== Using Kinsta PostgreSQL Database ==="
-    echo "✅ DB_URL is configured - using Kinsta's PostgreSQL"
-    echo "   Host: $DB_HOST"
-    echo "   Database: $DB_DATABASE"
-    
-    # Run migrations on Kinsta database
-    echo ""
     echo "📊 Running database migrations on Kinsta PostgreSQL..."
     python manage.py migrate --noinput 2>&1 || {
         echo "   ⚠️  Migration completed with warnings"
@@ -124,9 +127,6 @@ if [ ! -z "$DB_URL" ]; then
     python manage.py setup_kinsta 2>&1 || {
         echo "   ⚠️  Setup completed with warnings"
     }
-    
-    # Skip Ubicloud sync since we're using Kinsta DB
-    export SKIP_UBICLOUD=true
     
 # Otherwise check if we need to sync from Ubicloud
 elif [ ! -z "$UBI_DATABASE_URL" ] && [ -z "$SKIP_UBICLOUD" ]; then
