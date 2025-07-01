@@ -103,8 +103,33 @@ if [ -f "./diagnose_connection.py" ] && [ ! -z "$UBI_DATABASE_URL" ] && command 
     python diagnose_connection.py 2>&1 || echo "Diagnostics completed with errors"
 fi
 
-# Check if we need to sync from Ubicloud
-if [ ! -z "$UBI_DATABASE_URL" ] && [ -z "$SKIP_UBICLOUD" ]; then
+# Check if we have Kinsta DB_URL first
+if [ ! -z "$DB_URL" ]; then
+    echo ""
+    echo "=== Using Kinsta PostgreSQL Database ==="
+    echo "✅ DB_URL is configured - using Kinsta's PostgreSQL"
+    echo "   Host: $DB_HOST"
+    echo "   Database: $DB_DATABASE"
+    
+    # Run migrations on Kinsta database
+    echo ""
+    echo "📊 Running database migrations on Kinsta PostgreSQL..."
+    python manage.py migrate --noinput 2>&1 || {
+        echo "   ⚠️  Migration completed with warnings"
+    }
+    
+    # Set up initial data
+    echo ""
+    echo "🔧 Setting up initial Kinsta data..."
+    python manage.py setup_kinsta 2>&1 || {
+        echo "   ⚠️  Setup completed with warnings"
+    }
+    
+    # Skip Ubicloud sync since we're using Kinsta DB
+    export SKIP_UBICLOUD=true
+    
+# Otherwise check if we need to sync from Ubicloud
+elif [ ! -z "$UBI_DATABASE_URL" ] && [ -z "$SKIP_UBICLOUD" ]; then
     echo ""
     echo "=== Checking Ubicloud Connectivity ==="
     
