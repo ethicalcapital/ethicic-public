@@ -167,10 +167,30 @@ if [ ! -z "$DB_URL" ]; then
     echo ""
     echo "=== Using Kinsta PostgreSQL Database ==="
     echo "📊 Running database migrations on Kinsta PostgreSQL..."
-    # First, fake the initial migration since DB already has content
-    python manage.py migrate public_site 0001 --fake --noinput 2>&1 || {
-        echo "   ⚠️  Initial migration fake completed with warnings"
-    }
+    
+    # Check if migrations table exists and has entries
+    python -c "
+from django.db import connection
+with connection.cursor() as cursor:
+    try:
+        cursor.execute(\"SELECT COUNT(*) FROM django_migrations WHERE app='public_site'\")
+        count = cursor.fetchone()[0]
+        print(f'Found {count} existing public_site migrations')
+        exit(0 if count > 0 else 1)
+    except Exception as e:
+        print('No migrations table or no entries found')
+        exit(1)
+" 2>/dev/null
+
+    if [ $? -eq 0 ]; then
+        echo "   ✅ Migrations already applied, skipping fake migration"
+    else
+        echo "   Applying fake initial migration..."
+        python manage.py migrate public_site 0001 --fake --noinput 2>&1 || {
+            echo "   ⚠️  Initial migration fake completed with warnings"
+        }
+    fi
+    
     # Then run any other migrations normally
     python manage.py migrate --noinput 2>&1 || {
         echo "   ⚠️  Migration completed with warnings"
