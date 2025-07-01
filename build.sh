@@ -11,8 +11,10 @@ export SECRET_KEY="build-phase-key-$(date +%s)"
 export USE_SQLITE=true
 export DEBUG=false
 export ALLOWED_HOSTS="*"
+export DJANGO_SETTINGS_MODULE=ethicic.settings_build
 
 echo "🔧 Build environment configured with safe defaults"
+echo "   Using settings: $DJANGO_SETTINGS_MODULE"
 
 # Check if we're in a proper Python environment
 if command -v python &> /dev/null; then
