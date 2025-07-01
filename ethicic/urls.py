@@ -13,24 +13,17 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from public_site.homepage_view import homepage_view
+import datetime
 
 
 def health_check(request):
     """Simple health check endpoint for Kinsta"""
-    try:
-        # Test database connection
-        from django.db import connection
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT 1")
-            db_status = "connected"
-    except Exception as e:
-        db_status = f"error: {str(e)}"
-    
+    # Don't test database on health check to avoid 503s
     return JsonResponse({
         'status': 'healthy',
         'service': 'ethicic-public',
-        'database': db_status,
-        'debug': getattr(settings, 'DEBUG', False)
+        'version': '1.0',
+        'timestamp': datetime.datetime.now().isoformat()
     })
 
 def simple_test(request):

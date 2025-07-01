@@ -116,6 +116,10 @@ WSGI_APPLICATION = 'ethicic.wsgi.application'
 DB_URL = os.getenv('DB_URL')
 UBI_DATABASE_URL = os.getenv('UBI_DATABASE_URL')
 
+# Check for DATABASE_URL=sqlite override (Kinsta specific)
+if os.getenv('DATABASE_URL') == 'sqlite':
+    DB_URL = None  # Force SQLite usage
+
 # Configure databases based on environment
 # IMPORTANT: Check USE_SQLITE first for build phase
 if os.getenv('USE_SQLITE', 'False').lower() == 'true':
