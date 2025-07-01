@@ -112,10 +112,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ethicic.wsgi.application'
 
 # Database Configuration
-# Priority: New Ethicic Public DB > Ubicloud > SQLite fallback
-DATABASE_URL = os.getenv('DATABASE_URL')
-UBI_DATABASE_URL = os.getenv('UBI_DATABASE_URL')
+# Priority: DB_URL (Kinsta) > UBI_DATABASE_URL (Ubicloud) > SQLite fallback
 DB_URL = os.getenv('DB_URL')
+UBI_DATABASE_URL = os.getenv('UBI_DATABASE_URL')
 
 # Configure databases based on environment
 # IMPORTANT: Check USE_SQLITE first for build phase
