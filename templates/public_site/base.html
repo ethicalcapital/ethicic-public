@@ -91,13 +91,38 @@
     <!-- SIMPLIFIED CSS LOADING STRATEGY -->
     
     <!-- Core styles - consolidated essential CSS -->
-    <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v=2025070108">
+    <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v=2025070109">
     
     <!-- Garden UI Theme - design system variables (keeping for now as it has extensive theming) -->
-    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025070108">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025070109">
     
     <!-- Public site specific styles -->
-    <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070108">
+    <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070109">
+    
+    <!-- Emergency CTA button fix - inline styles to override everything -->
+    <style>
+        /* Nuclear option - force CTA buttons side by side */
+        .home-page .cta-actions {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 1.5rem !important;
+            flex-wrap: wrap !important;
+        }
+        
+        .home-page .cta-actions .garden-action {
+            flex: 0 0 auto !important;
+            margin: 0.5rem !important;
+        }
+        
+        /* Only stack on very small mobile */
+        @media (max-width: 480px) {
+            .home-page .cta-actions {
+                flex-direction: column !important;
+            }
+        }
+    </style>
     
     <!-- Footer grid override -->
     <style>
