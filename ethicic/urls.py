@@ -258,14 +258,14 @@ def emergency_homepage(request):
     return HttpResponse(html)
 
 urlpatterns = [
-    # Static file serving - must be first to handle static requests
-    path('static/<path:filepath>', debug_static_file, name='debug_static_serve'),
+    # Let WhiteNoise handle static files - don't intercept them
+    # path('static/<path:filepath>', debug_static_file, name='debug_static_serve'),
     
     # Manifest.json disabled due to serving issues
     # path('manifest.json', serve_manifest, name='serve_manifest'),
     # path('static/manifest.json', serve_manifest, name='serve_manifest_static'),
     
-    # Homepage - MUST be first after static
+    # Homepage - MUST be first
     path('', homepage_view, name='homepage'),
     
     # Health check 
