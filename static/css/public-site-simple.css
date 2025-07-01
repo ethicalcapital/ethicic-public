@@ -1,7 +1,10 @@
 /*
  * Public Site Simple CSS
  * Consolidated styles to reduce override complexity
+ * Using overrides layer to ensure highest priority over @layer components
  */
+
+@layer overrides {
 
 /* ===== HEADER STYLING ===== */
 .garden-header {
@@ -356,3 +359,5 @@
         max-width: 300px !important;
     }
 }
+
+} /* End @layer overrides */
