@@ -45,4 +45,4 @@ EXPOSE 8080
 # Start with runtime initialization
 ENTRYPOINT ["./runtime_init.sh"]
 # Use sh -c to allow environment variable expansion
-CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 2 --timeout 60 ethicic.wsgi:application"]
+CMD ["sh", "-c", "echo 'Starting gunicorn on port ${PORT:-8080}...' && gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 2 --timeout 60 --access-logfile - --error-logfile - ethicic.wsgi:application"]
