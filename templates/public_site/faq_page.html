@@ -1,7 +1,9 @@
 {% extends "public_site/base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags static %}
 
 {% block title %}{{ page.title }} - Ethical Capital{% endblock %}
+
+{% block body_class %}faq-page{% endblock %}
 
 {% block content %}
 <div class="garden-container">
@@ -50,6 +52,7 @@
 {% endblock %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/faq-page-fixes.css' %}?v=2025-01-fix-visibility">
 {% endblock %}
 
 {% block extra_js %}

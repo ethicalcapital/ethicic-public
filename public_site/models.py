@@ -276,10 +276,11 @@ class AboutPage(Page):
         default="<p>\"There is no checklist comprehensive enough to rely upon. You have to pay attention.\"</p>",
         help_text="Philosophy quote in the hero section"
     )
-    philosophy_quote_link = models.URLField(
+    philosophy_quote_link = models.CharField(
+        max_length=500,
         blank=True,
         default="/blog/how-i-became-an-active-manager/",
-        help_text="Link for the philosophy quote attribution"
+        help_text="Link for the philosophy quote attribution (can be relative or absolute URL)"
     )
     philosophy_quote_link_text = models.CharField(
         max_length=200,
