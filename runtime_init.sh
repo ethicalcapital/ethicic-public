@@ -129,32 +129,29 @@ else
     css_missing=true
 fi
 
-if [ ! -d "staticfiles" ] || [ -z "$(ls -A staticfiles 2>/dev/null)" ] || [ "$css_missing" = true ]; then
-    echo "📁 Static files missing or incomplete - collecting now..."
-    
-    # First check if source files exist
-    echo "   Checking source static files..."
-    if [ -d "static/css" ]; then
-        echo "   ✅ Source static/css directory found"
-        ls -la static/css/*.css 2>/dev/null | head -5 || echo "   ⚠️ No CSS files in source directory"
-    else
-        echo "   ❌ Source static/css directory missing!"
-    fi
-    
-    # Clear and recollect
-    python manage.py collectstatic --noinput --clear 2>&1 || {
-        echo "⚠️  Static files collection failed"
-        echo "   Site may have styling issues"
-        
-        # Try copying manually as fallback
-        if [ -d "static" ] && [ ! -d "staticfiles" ]; then
-            echo "   Attempting manual copy as fallback..."
-            cp -r static staticfiles 2>/dev/null && echo "   ✅ Manual copy completed" || echo "   ❌ Manual copy failed"
-        fi
-    }
+echo "📁 Force collecting static files to ensure latest versions..."
+
+# First check if source files exist
+echo "   Checking source static files..."
+if [ -d "static/css" ]; then
+    echo "   ✅ Source static/css directory found"
+    ls -la static/css/*.css 2>/dev/null | head -5 || echo "   ⚠️ No CSS files in source directory"
 else
-    echo "✅ Static files already collected"
+    echo "   ❌ Source static/css directory missing!"
 fi
+
+# Always clear and recollect to ensure fresh files
+python manage.py collectstatic --noinput --clear 2>&1 || {
+    echo "⚠️  Static files collection failed"
+    echo "   Site may have styling issues"
+    
+    # Try copying manually as fallback
+    if [ -d "static" ]; then
+        echo "   Attempting manual copy as fallback..."
+        rm -rf staticfiles 2>/dev/null
+        cp -r static staticfiles 2>/dev/null && echo "   ✅ Manual copy completed" || echo "   ❌ Manual copy failed"
+    fi
+}
 
 # Always verify key files
 echo "   Verifying key CSS files:"
