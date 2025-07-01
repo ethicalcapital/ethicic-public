@@ -121,6 +121,30 @@ def serve_css(request, filename):
     except Exception as e:
         raise Http404(f"Error reading CSS file: {e}")
 
+def serve_manifest(request):
+    """Serve manifest.json with correct content type"""
+    import os
+    import json
+    from django.conf import settings
+    from django.http import JsonResponse, Http404
+    
+    manifest_path = os.path.join(settings.STATIC_ROOT, 'manifest.json')
+    if not os.path.exists(manifest_path):
+        # Try static directory if staticfiles not collected
+        manifest_path = os.path.join(settings.BASE_DIR, 'static', 'manifest.json')
+    
+    if os.path.exists(manifest_path):
+        try:
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                manifest_data = json.load(f)
+            response = JsonResponse(manifest_data)
+            response['Cache-Control'] = 'max-age=3600'
+            return response
+        except Exception as e:
+            raise Http404(f"Error reading manifest: {e}")
+    else:
+        raise Http404("Manifest file not found")
+
 def debug_static_file(request, filepath):
     """Serve static files with proper MIME types"""
     import os
@@ -224,6 +248,10 @@ def emergency_homepage(request):
 urlpatterns = [
     # Static file serving - must be first to handle static requests
     path('static/<path:filepath>', debug_static_file, name='debug_static_serve'),
+    
+    # Manifest.json with proper content type
+    path('manifest.json', serve_manifest, name='serve_manifest'),
+    path('static/manifest.json', serve_manifest, name='serve_manifest_static'),
     
     # Homepage - MUST be first after static
     path('', homepage_view, name='homepage'),
