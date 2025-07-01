@@ -242,9 +242,9 @@ urlpatterns = [
     # Static file serving - must be first to handle static requests
     path('static/<path:filepath>', debug_static_file, name='debug_static_serve'),
     
-    # Manifest.json with proper content type
-    path('manifest.json', serve_manifest, name='serve_manifest'),
-    path('static/manifest.json', serve_manifest, name='serve_manifest_static'),
+    # Manifest.json disabled due to serving issues
+    # path('manifest.json', serve_manifest, name='serve_manifest'),
+    # path('static/manifest.json', serve_manifest, name='serve_manifest_static'),
     
     # Homepage - MUST be first after static
     path('', homepage_view, name='homepage'),
