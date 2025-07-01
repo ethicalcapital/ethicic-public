@@ -620,7 +620,7 @@
     }
     
     /* Responsive improvements for stats */
-    @media (max-width: var(--content-width-narrow)) {
+    @media (max-width: 768px) {
         .hero-stats {
             gap: var(--space-8);
             margin: var(--space-6) 0;
@@ -658,7 +658,7 @@
         }
     }
 
-    @media (max-width: var(--breakpoint-xs)) {
+    @media (max-width: 480px) {
         .hero-stats {
             gap: var(--space-6);
             justify-content: space-around;
@@ -680,7 +680,7 @@
         }
     }
 
-    @media (min-width: var(--breakpoint-md)) {
+    @media (min-width: 768px) {
         .cta-actions {
             flex-direction: row !important;
             justify-content: center !important;
