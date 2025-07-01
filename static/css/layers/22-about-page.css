@@ -3,7 +3,7 @@
 /* ========================================================================== */
 
 .about-page {
-    --about-max-width: 1200px;
+    --about-max-width: var(--content-width-normal); /* Use CSS variable instead of hardcoded 1200px */
 }
 
 /* About Section Layout */

@@ -382,7 +382,7 @@ html body.public-site-context main.main-content,
 html body.public-site-context .garden-panel:not(.hero-panel) .garden-panel-content,
 html body.public-site-context div.garden-panel-content:not(.hero-panel div.garden-panel-content, .hero-panel div.garden-panel__content),
 html body.public-site-context div.panel-content:not(.hero-panel div.panel-content) {
-    max-width: 1200px !important;
+    max-width: var(--content-width-normal) !important; /* Use CSS variable instead of hardcoded 1200px */
     margin-left: auto !important;
     margin-right: auto !important;
     box-sizing: border-box !important;
@@ -391,7 +391,7 @@ html body.public-site-context div.panel-content:not(.hero-panel div.panel-conten
 /* Additional ultra-specific rules for the exact elements we see - excluding hero panels */
 html body.public-site-context section.garden-panel:not(.hero-panel) div.garden-panel-content,
 html body.public-site-context section.garden-panel:not(.hero-panel) div.garden-panel__content {
-    max-width: 1200px !important;
+    max-width: var(--content-width-normal) !important; /* Use CSS variable instead of hardcoded 1200px */
     margin-left: auto !important;
     margin-right: auto !important;
     box-sizing: border-box !important;

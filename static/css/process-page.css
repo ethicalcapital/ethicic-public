@@ -5,7 +5,7 @@
 }
 
 .process-main-panel {
-    max-width: 1200px;
+    max-width: var(--content-width-normal); /* Use CSS variable instead of hardcoded 1200px */
     margin: 3rem auto;
     border: none !important;
     border-radius: 8px;

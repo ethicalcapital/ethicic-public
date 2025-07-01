@@ -89,7 +89,7 @@ body {
 }
 
 .garden-container {
-    max-width: 1200px;
+    max-width: var(--content-width-normal); /* Use CSS variable instead of hardcoded 1200px */
     margin: 0 auto;
     padding: 0 1rem;
 }
