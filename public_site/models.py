@@ -1095,14 +1095,32 @@ class MediaPage(Page):
     """Media/Press page."""
 
     intro_text = RichTextField(
-        blank=True, default="<p>Media coverage, press releases, and company news.</p>",
+        blank=True, 
+        default="<p>Media coverage, press releases, and company news.</p>",
+        help_text="Introduction text that appears at the top of the media page"
     )
 
     # Press kit information
-    press_kit_title = models.CharField(max_length=200, default="Press Kit", blank=True)
-    press_kit_description = RichTextField(blank=True)
+    press_kit_title = models.CharField(
+        max_length=200, 
+        default="Press Kit", 
+        blank=True,
+        help_text="Title for the press kit section"
+    )
+    press_kit_description = RichTextField(
+        blank=True,
+        help_text="Description and information about available press materials"
+    )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), MultiFieldPanel([FieldPanel("press_kit_title"), FieldPanel("press_kit_description")], heading="Press Kit"), InlinePanel("media_items", label="Media Items")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels, 
+        FieldPanel("intro_text"), 
+        MultiFieldPanel([
+            FieldPanel("press_kit_title"), 
+            FieldPanel("press_kit_description")
+        ], heading="Press Kit"), 
+        InlinePanel("media_items", label="Media Items", help_text="Add media coverage items here")
+    ]
 
     class Meta:
         verbose_name = "Media Page"

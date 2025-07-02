@@ -12,6 +12,7 @@ from wagtail.snippets.views.snippets import SnippetViewSet
 
 from .models import (
     SupportTicket,
+    MediaItem,
 )
 
 
@@ -184,3 +185,24 @@ def add_public_site_instructions(request, panels):
             )
 
     panels.append(InstructionsPanel())
+
+
+# Register MediaItem as a snippet for easier management
+@register_snippet
+class MediaItemSnippetViewSet(SnippetViewSet):
+    model = MediaItem
+    list_display: ClassVar[list] = ['title', 'publication', 'publication_date', 'featured', 'get_page_title']
+    list_filter: ClassVar[list] = ['featured', 'publication', 'publication_date']
+    search_fields: ClassVar[list] = ['title', 'description', 'publication']
+    ordering: ClassVar[list] = ['-featured', '-publication_date']
+    menu_label = 'Media Items'
+    menu_icon = 'doc-full'
+    menu_order = 200
+    
+    def get_page_title(self, obj):
+        """Display the parent page title."""
+        return obj.page.title if obj.page else 'No page'
+    
+    # Add the method to the model for display
+    MediaItem.get_page_title = get_page_title
+    MediaItem.get_page_title.short_description = 'Page'
