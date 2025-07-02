@@ -19,8 +19,8 @@
     <div class="garden-panel__content garden-panel-content">
         <div class="about-hero">
             <div class="about-image">
-                <img src="{{ page.headshot_image }}" 
-                     alt="{{ page.headshot_alt_text }}" 
+                <img src="{{ page.headshot_image|default:'https://pub-324a685032214395a8bcad478c265d4b.r2.dev/headshot%20sketch_slim.png' }}" 
+                     alt="{{ page.headshot_alt_text|default:'Sloane Ortel headshot' }}" 
                      class="headshot"
                      loading="lazy"
                      width="300" 
