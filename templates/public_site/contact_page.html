@@ -27,8 +27,10 @@
         
         <aside class="sidebar">
             <div class="garden-panel contact-info-panel">
-                <h3 class="panel-title">CONTACT INFORMATION</h3>
-                <div class="panel-content">
+                <div class="garden-panel__header garden-panel-header">
+                    <h3 class="panel-title">CONTACT INFORMATION</h3>
+                </div>
+                <div class="garden-panel__content garden-panel-content">
                     <div class="contact-info-grid">
                         <div class="contact-item">
                             <div class="contact-label">EMAIL:</div>
@@ -58,8 +60,10 @@
             </div>
             
             <div class="garden-panel onboarding-panel">
-                <h3 class="panel-title">GET STARTED</h3>
-                <div class="panel-content">
+                <div class="garden-panel__header garden-panel-header">
+                    <h3 class="panel-title">GET STARTED</h3>
+                </div>
+                <div class="garden-panel__content garden-panel-content">
                     <p class="panel-description">Ready to align your investments with your values? Start your journey with ethical investing today.</p>
                     {% include 'components/garden_action.html' with text="START ONBOARDING" url="/onboarding/" variant="primary" aria_label="Begin the onboarding process" %}
                 </div>
