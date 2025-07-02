@@ -39,6 +39,30 @@
     color: white !important;
 }
 
+/* Header CTA Button - White background with purple text */
+.garden-header .nav-user-actions .garden-action.primary {
+    background: var(--color-surface) !important;
+    color: var(--theme-primary) !important;
+    border: 2px solid var(--color-surface) !important;
+    padding: 0.5rem 1.5rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    font-size: 0.875rem !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+}
+
+.garden-header .nav-user-actions .garden-action.primary:hover {
+    background: rgba(255, 255, 255, 0.9) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
 /* ===== HOMEPAGE HERO SECTION ===== */
 .home-page .hero-panel {
     text-align: center;
@@ -629,26 +653,5 @@
     }
 }
 
-/* DEBUG: Add borders to all sections to visualize layout issues */
-.home-page .garden-panel {
-    border: 2px solid red !important;
-    margin-bottom: 2rem !important;
-}
-
-.home-page .garden-panel__content {
-    border: 2px solid blue !important;
-}
-
-.home-page .principles-grid {
-    border: 2px solid green !important;
-}
-
-.home-page .principle-card {
-    border: 2px solid orange !important;
-}
-
-.home-page section {
-    border: 2px solid purple !important;
-}
 
 } /* End @layer overrides */
