@@ -549,15 +549,18 @@
     margin: 2rem 0 1rem !important;
 }
 
-/* Principles grid layout */
+/* Principles grid layout - ULTRA HIGH SPECIFICITY */
+.home-page .garden-container .principles-panel .principles-content .principles-section .principles-grid,
 .home-page .principles-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 2rem !important;
     margin-bottom: 2rem !important;
-    align-items: start !important;
+    align-items: stretch !important;
+    width: 100% !important;
 }
 
+.home-page .garden-container .principles-panel .principles-content .principles-section .principles-grid .principle-card,
 .home-page .principle-card {
     background: var(--color-surface) !important;
     border: 1px solid var(--color-border) !important;
@@ -566,25 +569,47 @@
     height: 100% !important;
     display: flex !important;
     flex-direction: column !important;
+    box-sizing: border-box !important;
 }
 
-.home-page .principle-title {
+.home-page .garden-container .principles-panel .principles-content .principles-section .principles-grid .principle-card .principle-title,
+.home-page .principle-card .principle-title,
+.home-page .principle-card h4 {
     color: var(--theme-primary) !important;
     font-size: 1rem !important;
     font-weight: 600 !important;
-    margin-bottom: 0.75rem !important;
-    display: flex !important;
-    align-items: flex-start !important;
+    margin: 0 0 0.75rem 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    line-height: 1.4 !important;
 }
 
-.home-page .principle-content {
+.home-page .garden-container .principles-panel .principles-content .principles-section .principles-grid .principle-card .principle-content,
+.home-page .principle-card .principle-content,
+.home-page .principle-card p {
     color: var(--color-text-primary) !important;
     margin: 0 !important;
+    padding: 0 !important;
     flex: 1 !important;
+    line-height: 1.6 !important;
+    font-size: 0.95rem !important;
+}
+
+/* Ensure the container has proper styling */
+.home-page .principles-panel {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-sm) !important;
+    overflow: hidden !important;
+}
+
+.home-page .principles-panel .principles-content {
+    padding: 2rem !important;
 }
 
 /* Responsive: stack principles on mobile */
 @media (max-width: 768px) {
+    .home-page .garden-container .principles-panel .principles-content .principles-section .principles-grid,
     .home-page .principles-grid {
         grid-template-columns: 1fr !important;
         gap: 1.5rem !important;

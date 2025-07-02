@@ -97,7 +97,7 @@
     <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025070110">
     
     <!-- Public site specific styles -->
-    <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070117">
+    <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070118">
     
     <!-- About page specific styles -->
     {% if page and page.slug == 'about' %}
@@ -158,6 +158,50 @@
             .garden-footer-grid {
                 grid-template-columns: 1fr !important;
                 gap: 1rem !important;
+            }
+        }
+    </style>
+    
+    <!-- Emergency principles grid fix - NUCLEAR OPTION -->
+    <style>
+        /* Force principles grid to work with ultra-specific selectors */
+        .home-page .principles-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 2rem !important;
+            margin-bottom: 2rem !important;
+            width: 100% !important;
+        }
+        
+        .home-page .principle-card {
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 1.5rem !important;
+            background: #ffffff !important;
+            border: 1px solid #e5e5e5 !important;
+            border-radius: 8px !important;
+            height: 100% !important;
+            box-sizing: border-box !important;
+        }
+        
+        .home-page .principle-card h4 {
+            color: #553C9A !important;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            margin: 0 0 0.75rem 0 !important;
+            line-height: 1.4 !important;
+        }
+        
+        .home-page .principle-card p {
+            color: #1a1a1a !important;
+            margin: 0 !important;
+            line-height: 1.6 !important;
+            font-size: 0.95rem !important;
+        }
+        
+        @media (max-width: 768px) {
+            .home-page .principles-grid {
+                grid-template-columns: 1fr !important;
             }
         }
     </style>
