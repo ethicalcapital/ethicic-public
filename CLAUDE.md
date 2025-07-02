@@ -1,17 +1,3 @@
-# CLAUDE.md - Project Memory & Context
-
-## 🔥 **HOT-RELOAD IS ENABLED - NO RESTARTS NEEDED!** 🔥
-- **Django runs only in docker** with hot-reload via `docker compose --watch`
-- ### ⚡ **Code changes auto-reload** - NO REBUILD NEEDED, JUST SAVE FILES! ⚡
-- **Start all services**: `docker compose -f docker-compose.yml -f docker-compose.dev.yml --profile tunnel --profile monitoring up --watch`
-
-### 🚨 **ALWAYS USE DJANGO SHELL - NEVER SPAWN NEW INSTANCES!** 🚨
-- **WRONG**: `docker exec garden-platform python manage.py <command>` ❌ (spawns new Django instance)
-- **RIGHT**: `docker exec garden-platform python manage.py shell -c "from django.core.management import call_command; call_command('<command>')"` ✅
-- **Why**: Reuses existing Django instance, avoids 4-5 second startup penalty, more reliable
-- **Emergency rebuild**: `./scripts/update_code.sh` if hot-reload fails *(but you shouldn't need this!)*
-
----
 
 ## CRITICAL RULES ___ DO NOT VIOLATE
 <!--**TO AVOID ERRORS, WASTED TIME, AND BAD VIBES __ALWAYS__ TREAT THIS SECTION AS **GOSPEL** -->
@@ -26,23 +12,10 @@
 
 
 ### Development Rules
-- **Fix deeper issues** - If you come across a deeper issue when performing a maintenance task, fix the deeper issue
+- **Fix deeper issues** - If you come across a deeper issue when performing a maintenance task, **fix the deeper issue**
 - **NEVER create mock data or simplified components** unless explicitly told to d>
 - **ALWAYS work with the existing codebase** - do not create new scripts unless you get my permission
 - **If you discover database migration issues, shift gears to fixing the database migration issues. We need to keep our database healthy.**
-
-### Testing Requirements
-- **THEN TEST BEFORE YOU SHOW ME FIXES**
-  - **run** 
-    ```
-    docker exec garden-platform python manage.py shell -c "from django.core.management import call_command; call_command('check_model_errors', app='<app_name>')"
-    ```
-    every time you modify a page or a model
-  - Specify the app name when you run it to minimize the time
-  - This reuses the existing Django instance instead of spawning a new one
-  - Run ruff, standardjs, and fix identified formatting errors.
-- **When working on tests, align with underlying methods**
-  - If you come across a stub method, mark it as TODO so we can easily find it later
 
 ### File Management
 - **DO NOT OVERWRITE MY .env FILE** or i will resent you for it :(
