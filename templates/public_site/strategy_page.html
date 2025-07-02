@@ -622,7 +622,8 @@
 
 /* Ensure consistent container width with homepage */
 .strategy-page .garden-container {
-    max-width: var(--content-width-normal) !important; /* 1200px to match homepage */
+    max-width: var(--content-width-normal, 1200px) !important; /* 1200px to match homepage */
+    margin: 0 auto !important; /* Ensure centering */
 }
 
 /* Fix text contrast globally */
@@ -1102,6 +1103,20 @@
     .strategy-page .stat-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Final override to ensure container width is constrained */
+body.strategy-page .garden-container {
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ensure no parent element overrides this */
+body.strategy-page main {
+    width: 100%;
 }
 </style>
 {% endblock %}
