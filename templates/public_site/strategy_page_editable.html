@@ -203,7 +203,7 @@
                         <div class="region-name">{{ geo.region }}</div>
                         <div class="allocation-value">{{ geo.allocation_percent }}</div>
                         <div class="benchmark-value">{{ geo.benchmark_percent }}</div>
-                        <div class="difference-value {% if geo.difference_percent|slice:":1" == '+' %}positive{% else %}negative{% endif %}">
+                        <div class="difference-value {% if geo.difference_percent and geo.difference_percent.0 == '+' %}positive{% else %}negative{% endif %}">
                             {{ geo.difference_percent }}
                         </div>
                     </div>
