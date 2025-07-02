@@ -217,42 +217,41 @@
                 <h3 class="subsection-header">SECTOR POSITIONING</h3>
                 
                 <div class="positioning-grid">
-                    {% with overweights=page.sector_positions.filter|filter:"position_type:overweight" %}
-                    {% if overweights %}
-                    <div class="positioning-card overweight">
-                        <h4>OVERWEIGHTS</h4>
-                        <ul>
-                            {% for sector in overweights %}
-                            <li>{{ sector.sector_name }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% if page.overweights_note %}
-                        <p class="positioning-note">{{ page.overweights_note }}</p>
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                    {% endwith %}
+                    {% comment %}Group sectors by position type{% endcomment %}
+                    {% regroup page.sector_positions.all by position_type as position_groups %}
                     
-                    {% with exclusions=page.sector_positions.filter|filter:"position_type:exclusion" %}
-                    {% if exclusions %}
-                    <div class="positioning-card exclusions">
-                        <h4>EXCLUSIONS</h4>
-                        <ul>
-                            {% for sector in exclusions %}
-                            <li>{{ sector.sector_name }}{% if sector.note %}*{% endif %}</li>
-                            {% endfor %}
-                        </ul>
-                        {% if page.exclusions_note %}
-                        <p class="positioning-note">{{ page.exclusions_note }}</p>
-                        {% endif %}
-                        {% if page.healthcare_exclusion_note %}
-                        <div class="exclusion-note">
-                            <p>{{ page.healthcare_exclusion_note }}</p>
+                    {% for group in position_groups %}
+                        {% if group.grouper == 'overweight' %}
+                        <div class="positioning-card overweight">
+                            <h4>OVERWEIGHTS</h4>
+                            <ul>
+                                {% for sector in group.list %}
+                                <li>{{ sector.sector_name }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% if page.overweights_note %}
+                            <p class="positioning-note">{{ page.overweights_note }}</p>
+                            {% endif %}
+                        </div>
+                        {% elif group.grouper == 'exclusion' %}
+                        <div class="positioning-card exclusions">
+                            <h4>EXCLUSIONS</h4>
+                            <ul>
+                                {% for sector in group.list %}
+                                <li>{{ sector.sector_name }}{% if sector.note %}*{% endif %}</li>
+                                {% endfor %}
+                            </ul>
+                            {% if page.exclusions_note %}
+                            <p class="positioning-note">{{ page.exclusions_note }}</p>
+                            {% endif %}
+                            {% if page.healthcare_exclusion_note %}
+                            <div class="exclusion-note">
+                                <p>{{ page.healthcare_exclusion_note }}</p>
+                            </div>
+                            {% endif %}
                         </div>
                         {% endif %}
-                    </div>
-                    {% endif %}
-                    {% endwith %}
+                    {% endfor %}
                 </div>
             </div>
             {% endif %}
