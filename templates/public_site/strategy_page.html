@@ -612,7 +612,7 @@
 
 {% block extra_css %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=4">
+<link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=5">
 <style>
 /* Strategy Page Formatting Fixes */
 .strategy-page {
@@ -624,6 +624,26 @@
 .strategy-page .garden-container {
     max-width: var(--content-width-normal, 1200px) !important; /* 1200px to match homepage */
     margin: 0 auto !important; /* Ensure centering */
+}
+
+/* Explicit fallback for specificity issues */
+body.strategy-page .garden-container,
+.strategy-page main .garden-container,
+.strategy-page > .garden-container:first-child {
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Ensure it works on larger screens */
+@media (min-width: 1201px) {
+    body.strategy-page .garden-container {
+        max-width: 1200px !important;
+    }
 }
 
 /* Fix text contrast globally */
