@@ -305,19 +305,28 @@
     }
 }
 
-/* All section headers - purple styling */
-.home-page .garden-container .garden-panel .garden-panel__header {
+/* ===== MASTER COMPONENT: Garden Panel ===== */
+/* All sections should use this consistent structure */
+.home-page .garden-panel {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-sm) !important;
+    margin-bottom: 2rem !important;
+    overflow: hidden !important;
+}
+
+/* Panel headers - purple banner style */
+.home-page .garden-panel .garden-panel__header {
     background: var(--theme-primary) !important;
     color: var(--color-surface) !important;
     padding: 1rem 2rem !important;
     margin: 0 !important;
     width: 100% !important;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
     border-bottom: none !important;
     box-sizing: border-box !important;
 }
 
-.home-page .garden-container .garden-panel .garden-panel__header .panel-title {
+.home-page .garden-panel .garden-panel__header .panel-title {
     background: transparent !important;
     color: var(--color-surface) !important;
     padding: 0 !important;
@@ -326,6 +335,22 @@
     font-weight: 600 !important;
     letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
+}
+
+/* Panel content - consistent padding */
+.home-page .garden-panel .garden-panel__content {
+    padding: 2rem !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .home-page .garden-panel .garden-panel__content {
+        padding: 1.5rem !important;
+    }
+    
+    .home-page .garden-panel .garden-panel__header {
+        padding: 0.75rem 1.5rem !important;
+    }
 }
 
 /* WHO WE SERVE section - ensure 3-column layout */
@@ -516,26 +541,9 @@
     margin: 0 !important;
 }
 
-/* Principles section styling */
-.home-page .principles-header {
-    background: var(--theme-primary) !important;
-    color: var(--color-surface) !important;
-    padding: 1rem 2rem !important;
-    margin: 0 -2rem 2rem !important;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
-}
-
-.home-page .principles-title {
-    color: var(--color-surface) !important;
-    margin: 0 !important;
-    font-size: 1rem !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-}
-
-.home-page .principles-content {
-    color: var(--color-text-primary) !important;
+/* Principles section styling - now using standard garden-panel structure */
+.home-page .principles-intro {
+    margin-bottom: 2rem;
 }
 
 .home-page .principles-intro p {
@@ -547,19 +555,10 @@
     font-size: 1.1rem !important;
     font-weight: 600 !important;
     margin: 2rem 0 1rem !important;
+    text-transform: uppercase !important;
 }
 
-/* Principles section styling - Clean implementation */
-.home-page .principles-panel {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-}
-
-.home-page .principles-panel .principles-content {
-    padding: 2rem;
-}
+/* Principles section specific styles */
 
 .home-page .principles-section {
     margin-bottom: 2rem;
@@ -628,6 +627,28 @@
     .home-page .principles-panel .principles-content {
         padding: 1.5rem;
     }
+}
+
+/* DEBUG: Add borders to all sections to visualize layout issues */
+.home-page .garden-panel {
+    border: 2px solid red !important;
+    margin-bottom: 2rem !important;
+}
+
+.home-page .garden-panel__content {
+    border: 2px solid blue !important;
+}
+
+.home-page .principles-grid {
+    border: 2px solid green !important;
+}
+
+.home-page .principle-card {
+    border: 2px solid orange !important;
+}
+
+.home-page section {
+    border: 2px solid purple !important;
 }
 
 } /* End @layer overrides */

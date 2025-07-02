@@ -59,13 +59,10 @@
 <!-- Principles Section -->
 <div class="garden-container">
     <section class="garden-panel principles-panel" role="main" aria-labelledby="principles-heading">
-        <!-- Purple Header Banner -->
-        <div class="principles-header">
-            <h2 class="principles-title">{{ page.principles_section_header|default:"PRINCIPLES THAT GUIDE OUR WORK" }}</h2>
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">{{ page.principles_section_header|default:"PRINCIPLES THAT GUIDE OUR WORK" }}</div>
         </div>
-        
-        <!-- Main Content -->
-        <div class="principles-content">
+        <div class="garden-panel__content garden-panel-content">
             <div class="principles-intro">
                 {{ page.principles_intro|richtext }}
             </div>
