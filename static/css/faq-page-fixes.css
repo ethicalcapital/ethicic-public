@@ -1,0 +1,221 @@
+/* ========================================
+   FAQ BUTTON FIXES
+   Ensures proper button styling and contrast in FAQ pages
+   Inherits from blog-button-fixes with FAQ-specific additions
+   ======================================== */
+
+/* ===== FAQ BUTTON VISIBILITY FIXES ===== */
+/* Ensure all buttons on FAQ pages have proper contrast */
+.faq-page .garden-action,
+.faq-index-page .garden-action,
+.faq-article .garden-action {
+    /* Ensure buttons are always visible */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Primary buttons - purple bg, white text */
+.faq-page .garden-action.primary,
+.faq-index-page .garden-action.primary,
+.faq-article .garden-action.primary {
+    background: var(--color-primary) !important;
+    color: var(--color-on-primary) !important;
+    border: 2px solid var(--color-primary) !important;
+}
+
+.faq-page .garden-action.primary:hover,
+.faq-index-page .garden-action.primary:hover,
+.faq-article .garden-action.primary:hover {
+    background: var(--color-primary-dark) !important;
+    border-color: var(--color-primary-dark) !important;
+    transform: translateY(-1px);
+}
+
+/* Secondary buttons - transparent bg, purple text */
+.faq-page .garden-action.secondary,
+.faq-index-page .garden-action.secondary,
+.faq-article .garden-action.secondary {
+    background: transparent !important;
+    color: var(--color-primary) !important;
+    border: 2px solid var(--color-border) !important;
+}
+
+.faq-page .garden-action.secondary:hover,
+.faq-index-page .garden-action.secondary:hover,
+.faq-article .garden-action.secondary:hover {
+    background: var(--color-surface-secondary) !important;
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+/* ===== FAQ SPECIFIC ELEMENTS ===== */
+/* Category filter buttons */
+.faq-categories .category-btn {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    margin: 0.25rem;
+}
+
+.faq-categories .category-btn:hover,
+.faq-categories .category-btn.active {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+}
+
+/* Search button */
+.faq-search-form .garden-action {
+    height: 100%;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* ===== SIDEBAR BUTTON FIXES ===== */
+/* Contact methods and CTAs in sidebar */
+.blog-sticky-sidebar .garden-action,
+.faq-sidebar .garden-action {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.contact-method .garden-action.primary {
+    background: var(--color-primary) !important;
+    color: var(--color-on-primary) !important;
+    font-weight: 600;
+}
+
+.contact-method .full-width {
+    width: 100%;
+}
+
+/* ===== FAQ ACCORDION BUTTONS ===== */
+/* Expand/collapse buttons for FAQ items */
+.faq-toggle,
+.accordion-toggle {
+    background: transparent;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.faq-toggle:hover,
+.accordion-toggle:hover {
+    transform: scale(1.1);
+}
+
+.faq-toggle[aria-expanded="true"],
+.accordion-toggle[aria-expanded="true"] {
+    transform: rotate(180deg);
+}
+
+/* ===== DARK MODE SPECIFIC FIXES ===== */
+[data-theme="dark"] {
+    /* Ensure buttons remain visible in dark mode */
+    .faq-page .garden-action,
+    .faq-index-page .garden-action,
+    .faq-article .garden-action {
+        /* Primary buttons stay purple with white text */
+        &.primary {
+            background: var(--color-primary) !important;
+            color: var(--color-on-primary) !important;
+        }
+        
+        /* Secondary buttons need visible borders */
+        &.secondary {
+            border-color: var(--color-border) !important;
+            color: var(--color-primary) !important;
+        }
+    }
+    
+    /* Category buttons in dark mode */
+    .faq-categories .category-btn {
+        background: var(--color-surface);
+        border-color: var(--color-border);
+        color: var(--color-text-primary);
+    }
+    
+    .faq-categories .category-btn:hover,
+    .faq-categories .category-btn.active {
+        background: var(--color-primary);
+        color: var(--color-on-primary);
+    }
+}
+
+/* ===== MOBILE RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+    .faq-page .garden-action,
+    .faq-index-page .garden-action,
+    .faq-article .garden-action {
+        /* Ensure touch-friendly sizing */
+        min-height: 44px;
+        padding: 0.75rem 1.5rem;
+    }
+    
+    /* Full width buttons on mobile */
+    .faq-sidebar .garden-action,
+    .contact-method .garden-action {
+        width: 100%;
+    }
+    
+    /* Stack category filters */
+    .faq-categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .faq-categories .category-btn {
+        flex: 1 1 calc(50% - 0.5rem);
+        text-align: center;
+    }
+}
+
+/* ===== FOCUS AND ACCESSIBILITY ===== */
+.faq-page .garden-action:focus-visible,
+.faq-index-page .garden-action:focus-visible,
+.faq-article .garden-action:focus-visible,
+.faq-categories .category-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+    .faq-page .garden-action,
+    .faq-index-page .garden-action,
+    .faq-article .garden-action,
+    .faq-categories .category-btn {
+        border-width: 3px !important;
+        font-weight: bold !important;
+    }
+}
+
+/* ===== PAGINATION FIXES (if FAQ has pagination) ===== */
+.faq-pagination .garden-action {
+    min-width: 40px;
+    padding: 0.5rem 1rem;
+}
+
+.faq-pagination .garden-action.current {
+    background: var(--color-primary) !important;
+    color: var(--color-on-primary) !important;
+    cursor: default;
+}
+
+.faq-pagination .garden-action:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
