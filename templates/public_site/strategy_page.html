@@ -605,14 +605,12 @@
             {% endif %}
         </div>
     </section>
-        </div>
-    </main>
 </div>
 {% endblock %}
 
 {% block extra_css %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=5">
+<link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=7-table-width-fix">
 <style>
 /* Strategy Page Formatting Fixes */
 .strategy-page {
@@ -1137,6 +1135,49 @@ body.strategy-page .garden-container {
 /* Ensure no parent element overrides this */
 body.strategy-page main {
     width: 100%;
+}
+
+/* Extra safety: ensure all sections stay within bounds */
+body.strategy-page .garden-panel {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ensure no section can break out of container */
+body.strategy-page section {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* CRITICAL: Force ALL content to respect container width */
+body.strategy-page .allocation-table,
+body.strategy-page .performance-table,
+body.strategy-page .geographic-table,
+body.strategy-page .vertical-allocation-section,
+body.strategy-page .documents-section,
+body.strategy-page .portfolio-details,
+body.strategy-page .investor-communications,
+body.strategy-page .holdings-section {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Ensure tables don't force page width */
+body.strategy-page .allocation-header,
+body.strategy-page .allocation-row {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Force responsive behavior on wider tables */
+@media (max-width: 1200px) {
+    body.strategy-page .allocation-table,
+    body.strategy-page .performance-table,
+    body.strategy-page .geographic-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 </style>
 {% endblock %}
