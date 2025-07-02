@@ -32,10 +32,10 @@
 
 /* Main content sections */
 .public-site-context .garden-panel {
-    border: 1px solid var(--color-border-subtle, rgba(0,0,0,0.05));
+    border: 1px solid var(--color-border-subtle, rgb(0,0,0,0.05));
     border-radius: var(--radius-md);
     margin-bottom: var(--space-4);
-    box-shadow: var(--shadow-xs, 0 1px 2px rgba(0,0,0,0.05));
+    box-shadow: var(--shadow-xs, 0 1px 2px rgb(0,0,0,0.05));
     background: var(--color-surface);
 }
 
@@ -46,14 +46,14 @@
 
 /* Header visual separation */
 .public-site-context .garden-header {
-    border-bottom: 1px solid var(--color-border-subtle, rgba(255,255,255,0.1));
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-bottom: 1px solid var(--color-border-subtle, rgb(255,255,255,0.1));
+    box-shadow: 0 2px 8px rgb(0,0,0,0.1);
 }
 
 /* Footer visual separation */
 .public-site-context .garden-footer {
     border-top: 2px solid var(--color-border);
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 -2px 8px rgb(0,0,0,0.05);
     margin-top: var(--space-8);
 }
 
@@ -65,7 +65,7 @@
     padding: var(--space-6);
     border-radius: var(--radius-lg);
     margin: var(--space-4) auto;
-    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
+    box-shadow: var(--shadow-sm, 0 1px 3px rgb(0,0,0,0.1));
 }
 
 /* ===== HERO PANEL SPECIAL TREATMENT ===== */
@@ -76,7 +76,7 @@
     margin-right: 0;
     border: none; /* Remove border for hero sections */
     border-radius: 0;
-    background: var(--color-primary-alpha, rgba(85, 60, 154, 0.05));
+    background: var(--color-primary-alpha, rgb(85, 60, 154, 0.05));
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -110,18 +110,18 @@
 
 /* ===== DARK THEME ADJUSTMENTS ===== */
 [data-theme="dark"] .public-site-context .garden-panel {
-    border-color: var(--color-border, rgba(255,255,255,0.1));
+    border-color: var(--color-border, rgb(255,255,255,0.1));
     background: var(--color-surface-variant);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 3px rgb(0,0,0,0.3);
 }
 
 [data-theme="dark"] .public-site-context .main-content {
     background: var(--color-surface);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 3px rgb(0,0,0,0.4);
 }
 
 [data-theme="dark"] .public-site-context .hero-panel {
-    background: var(--color-primary-alpha, rgba(85, 60, 154, 0.1));
+    background: var(--color-primary-alpha, rgb(85, 60, 154, 0.1));
     border-bottom-color: var(--color-border);
 }
 

@@ -22,8 +22,8 @@ header.garden-header,
     max-height: 80px !important;
     z-index: 2147483647 !important; /* Maximum possible z-index */
     background: var(--color-primary, var(--garden-accent)) !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    box-shadow: 0 2px 8px rgb(0,0,0,0.15) !important;
+    border-bottom: 1px solid rgb(255,255,255,0.1) !important;
     margin: 0 !important;
     padding: 0 !important;
     transform: none !important;
@@ -90,7 +90,7 @@ html body.public-site-context * {
 }
 
 /* NUCLEAR OPTION: Completely override all z-index values */
-html body.public-site-context *:not(.garden-header):not(.garden-header *):not(.skip-link) {
+html body.public-site-context *:not(.garden-header, .garden-header *, .skip-link) {
     z-index: 1 !important; /* Force everything WAY below header */
 }
 

@@ -1457,7 +1457,7 @@ button, input, optgroup, select, textarea {
   font-size: var(--font-xs);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.75rem;
   font-weight: 600;
   font-family: var(--font-ui);
 }
@@ -1473,7 +1473,7 @@ button, input, optgroup, select, textarea {
   font-size: var(--font-xs);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.75rem;
   font-weight: 600;
   font-family: var(--font-ui);
 }
@@ -6798,7 +6798,7 @@ to {
 
 /* Strategy note styling */
 .strategy-note {
-    background: rgba(85, 60, 154, 0.1) !important;
+    background: rgb(85, 60, 154, 0.1) !important;
     padding: var(--space-3) !important;
     font-size: var(--font-sm) !important;
     font-family: var(--font-sans) !important;

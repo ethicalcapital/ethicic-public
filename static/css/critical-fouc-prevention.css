@@ -12,7 +12,7 @@
     /* Light theme variables (default) */
     --theme-primary: var(--garden-accent);
     --theme-primary-hover: #442f7a;
-    --theme-primary-alpha: rgba(85, 60, 154, 0.1);
+    --theme-primary-alpha: rgb(85, 60, 154, 0.1);
     --theme-primary-rgb: 85, 60, 154;
     --theme-on-primary: #fff;
     --theme-surface: #fff;
@@ -22,33 +22,33 @@
     --theme-background: #fff;
     --theme-on-background: #1a1a1a;
     --theme-hover: #f0f0f0;
-    --theme-focus: rgba(85, 60, 154, 0.2);
-    --theme-active: rgba(85, 60, 154, 0.3);
-    --theme-selection: rgba(85, 60, 154, 0.1);
+    --theme-focus: rgb(85, 60, 154, 0.2);
+    --theme-active: rgb(85, 60, 154, 0.3);
+    --theme-selection: rgb(85, 60, 154, 0.1);
     --theme-border: #e0e0e0;
     --theme-border-variant: #f0f0f0;
     --theme-divider: #eee;
     --theme-success: #22c55e;
-    --theme-success-alpha: rgba(34, 197, 94, 0.1);
+    --theme-success-alpha: rgb(34, 197, 94, 0.1);
     --theme-warning: #f59e0b;
-    --theme-warning-alpha: rgba(245, 158, 11, 0.1);
+    --theme-warning-alpha: rgb(245, 158, 11, 0.1);
     --theme-error: #ef4444;
-    --theme-error-alpha: rgba(239, 68, 68, 0.1);
+    --theme-error-alpha: rgb(239, 68, 68, 0.1);
     --theme-info: #3b82f6;
-    --theme-info-alpha: rgba(59, 130, 246, 0.1);
+    --theme-info-alpha: rgb(59, 130, 246, 0.1);
     --theme-text-primary: #1a1a1a;
     --theme-text-secondary: #666;
     --theme-text-tertiary: #999;
     --theme-text-inverse: #fff;
-    --theme-shadow: rgba(0, 0, 0, 0.1);
-    --theme-shadow-variant: rgba(0, 0, 0, 0.05);
+    --theme-shadow: rgb(0, 0, 0, 0.1);
+    --theme-shadow-variant: rgb(0, 0, 0, 0.05);
 }
 
 /* Dark theme override */
 [data-theme="dark"] {
     --theme-primary: #7c3aed;
     --theme-primary-hover: #8b5cf6;
-    --theme-primary-alpha: rgba(124, 58, 237, 0.2);
+    --theme-primary-alpha: rgb(124, 58, 237, 0.2);
     --theme-surface: #1a1a1a;
     --theme-on-surface: #e0e0e0;
     --theme-surface-variant: #2a2a2a;
@@ -56,17 +56,17 @@
     --theme-background: #0a0a0a;
     --theme-on-background: #e0e0e0;
     --theme-hover: #2a2a2a;
-    --theme-focus: rgba(124, 58, 237, 0.3);
-    --theme-active: rgba(124, 58, 237, 0.4);
-    --theme-selection: rgba(124, 58, 237, 0.2);
+    --theme-focus: rgb(124, 58, 237, 0.3);
+    --theme-active: rgb(124, 58, 237, 0.4);
+    --theme-selection: rgb(124, 58, 237, 0.2);
     --theme-border: #333;
     --theme-border-variant: #2a2a2a;
     --theme-divider: #333;
     --theme-text-primary: #e0e0e0;
     --theme-text-secondary: #999;
     --theme-text-tertiary: #666;
-    --theme-shadow: rgba(0, 0, 0, 0.3);
-    --theme-shadow-variant: rgba(0, 0, 0, 0.2);
+    --theme-shadow: rgb(0, 0, 0, 0.3);
+    --theme-shadow-variant: rgb(0, 0, 0, 0.2);
 }
 
 /* Auto dark theme based on system preference */
@@ -74,7 +74,7 @@
     [data-theme="auto"] {
         --theme-primary: #553C9A;
         --theme-primary-hover: #6B46C1;
-        --theme-primary-alpha: rgba(85, 60, 154, 0.2);
+        --theme-primary-alpha: rgb(85, 60, 154, 0.2);
         --theme-surface: #1a1a1a;
         --theme-on-surface: #e0e0e0;
         --theme-surface-variant: #2a2a2a;
@@ -98,7 +98,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.6;
     background: inherit;
     color: inherit;
@@ -131,7 +131,7 @@ body {
     justify-content: space-between;
     min-height: 60px;
     /* Critical font loading shift prevention */
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-display: swap;
     contain: layout style;
 }
@@ -525,7 +525,7 @@ input.error,
 textarea.error,
 select.error {
     border-color: var(--theme-error, #ef4444);
-    box-shadow: 0 0 0 2px var(--theme-error-alpha, rgba(239, 68, 68, 0.1));
+    box-shadow: 0 0 0 2px var(--theme-error-alpha, rgb(239, 68, 68, 0.1));
 }
 
 /* Form help text */

@@ -97,114 +97,13 @@
     <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025070110">
     
     <!-- Public site specific styles -->
-    <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070118">
+    <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070119">
     
     <!-- About page specific styles -->
     {% if page and page.slug == 'about' %}
     <link rel="stylesheet" href="{% static 'css/layers/22-about-page.css' %}?v=1">
     {% endif %}
     
-    <!-- Emergency CTA button fix - using CSS Grid instead of Flexbox -->
-    <style>
-        /* Ultra nuclear option - CSS Grid to bypass flexbox entirely */
-        .home-page .cta-actions {
-            display: grid !important;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
-            gap: 1.5rem !important;
-            justify-items: center !important;
-            width: 100% !important;
-            max-width: 600px !important;
-            margin: 2rem auto !important;
-            padding: 0 !important;
-        }
-        
-        .home-page .cta-actions .garden-action {
-            width: 100% !important;
-            max-width: 250px !important;
-            text-align: center !important;
-            justify-self: center !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-        }
-        
-        /* Stack on mobile */
-        @media (max-width: 480px) {
-            .home-page .cta-actions {
-                grid-template-columns: 1fr !important;
-                max-width: 300px !important;
-            }
-        }
-    </style>
-    
-    <!-- Footer grid override -->
-    <style>
-        .garden-footer-grid {
-            display: grid !important;
-            grid-template-columns: repeat(4, 1fr) !important;
-            gap: 2rem !important;
-            margin-bottom: 2rem !important;
-            width: 100% !important;
-        }
-        
-        @media (max-width: 768px) {
-            .garden-footer-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 1.5rem !important;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .garden-footer-grid {
-                grid-template-columns: 1fr !important;
-                gap: 1rem !important;
-            }
-        }
-    </style>
-    
-    <!-- Emergency principles grid fix - NUCLEAR OPTION -->
-    <style>
-        /* Force principles grid to work with ultra-specific selectors */
-        .home-page .principles-grid {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 2rem !important;
-            margin-bottom: 2rem !important;
-            width: 100% !important;
-        }
-        
-        .home-page .principle-card {
-            display: flex !important;
-            flex-direction: column !important;
-            padding: 1.5rem !important;
-            background: #ffffff !important;
-            border: 1px solid #e5e5e5 !important;
-            border-radius: 8px !important;
-            height: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        .home-page .principle-card h4 {
-            color: #553C9A !important;
-            font-size: 1rem !important;
-            font-weight: 600 !important;
-            margin: 0 0 0.75rem 0 !important;
-            line-height: 1.4 !important;
-        }
-        
-        .home-page .principle-card p {
-            color: #1a1a1a !important;
-            margin: 0 !important;
-            line-height: 1.6 !important;
-            font-size: 0.95rem !important;
-        }
-        
-        @media (max-width: 768px) {
-            .home-page .principles-grid {
-                grid-template-columns: 1fr !important;
-            }
-        }
-    </style>
     
     
     <!-- Phase 4: Page-specific styling - deferred for performance -->

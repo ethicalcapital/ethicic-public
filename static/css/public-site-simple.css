@@ -27,7 +27,7 @@
 .garden-header .garden-nav-item:hover,
 .garden-header .garden-nav-main a:hover {
     opacity: 1;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255, 255, 255, 0.1);
 }
 
 /* Ensure process page header is visible */
@@ -43,7 +43,7 @@
 .home-page .hero-panel {
     text-align: center;
     padding: 4rem 2rem;
-    background: var(--color-surface, #ffffff);
+    background: var(--color-surface, #fff);
 }
 
 /* Hero tagline - purple and larger */
@@ -549,70 +549,84 @@
     margin: 2rem 0 1rem !important;
 }
 
-/* Principles grid layout - ULTRA HIGH SPECIFICITY */
-.home-page .garden-container .principles-panel .principles-content .principles-section .principles-grid,
-.home-page .principles-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 2rem !important;
-    margin-bottom: 2rem !important;
-    align-items: stretch !important;
-    width: 100% !important;
-}
-
-.home-page .garden-container .principles-panel .principles-content .principles-section .principles-grid .principle-card,
-.home-page .principle-card {
-    background: var(--color-surface) !important;
-    border: 1px solid var(--color-border) !important;
-    border-radius: var(--radius-sm) !important;
-    padding: 1.5rem !important;
-    height: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    box-sizing: border-box !important;
-}
-
-.home-page .garden-container .principles-panel .principles-content .principles-section .principles-grid .principle-card .principle-title,
-.home-page .principle-card .principle-title,
-.home-page .principle-card h4 {
-    color: var(--theme-primary) !important;
-    font-size: 1rem !important;
-    font-weight: 600 !important;
-    margin: 0 0 0.75rem 0 !important;
-    padding: 0 !important;
-    display: block !important;
-    line-height: 1.4 !important;
-}
-
-.home-page .garden-container .principles-panel .principles-content .principles-section .principles-grid .principle-card .principle-content,
-.home-page .principle-card .principle-content,
-.home-page .principle-card p {
-    color: var(--color-text-primary) !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    flex: 1 !important;
-    line-height: 1.6 !important;
-    font-size: 0.95rem !important;
-}
-
-/* Ensure the container has proper styling */
+/* Principles section styling - Clean implementation */
 .home-page .principles-panel {
-    background: var(--color-surface) !important;
-    border: 1px solid var(--color-border) !important;
-    border-radius: var(--radius-sm) !important;
-    overflow: hidden !important;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
 }
 
 .home-page .principles-panel .principles-content {
-    padding: 2rem !important;
+    padding: 2rem;
 }
 
-/* Responsive: stack principles on mobile */
-@media (max-width: 768px) {
-    .home-page .garden-container .principles-panel .principles-content .principles-section .principles-grid,
+.home-page .principles-section {
+    margin-bottom: 2rem;
+}
+
+.home-page .principles-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Principles grid - Clean 3-column layout */
+.home-page .principles-grid,
+.home-page .principles-panel .principles-grid,
+.home-page .principles-section .principles-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+    margin-top: 1rem !important;
+    width: 100% !important;
+}
+
+/* Principle cards */
+.home-page .principle-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Principle titles */
+.home-page .principle-card h4,
+.home-page .principle-title {
+    color: var(--theme-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.4;
+}
+
+/* Principle content */
+.home-page .principle-card p,
+.home-page .principle-content {
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    flex: 1;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
     .home-page .principles-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1.5rem !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-page .principles-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .home-page .principles-panel .principles-content {
+        padding: 1.5rem;
     }
 }
 
