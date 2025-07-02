@@ -1,4 +1,5 @@
 {% extends "public_site/base.html" %}
+{% load static wagtailcore_tags %}
 
 {% block title %}{{ page.title }} | Ethical Capital{% endblock %}
 
@@ -20,7 +21,7 @@
                 <div class="strategy-subtitle">{{ page.strategy_subtitle }}</div>
             {% endif %}
             {% if page.strategy_description %}
-                <div class="strategy-description">{{ page.strategy_description|safe }}</div>
+                <div class="strategy-description">{{ page.strategy_description|richtext }}</div>
             {% endif %}
             
             <!-- Quick Access Actions -->
@@ -103,7 +104,7 @@
                 
                 {% if page.performance_disclaimer %}
                     <div class="performance-disclaimer">
-                        {{ page.performance_disclaimer|safe }}
+                        {{ page.performance_disclaimer|richtext }}
                     </div>
                 {% endif %}
             </div>
@@ -259,7 +260,7 @@
             <!-- Portfolio Content -->
             {% if page.portfolio_content %}
             <div class="portfolio-description">
-                {{ page.portfolio_content|safe }}
+                {{ page.portfolio_content|richtext }}
             </div>
             {% endif %}
 
@@ -328,7 +329,7 @@
         </div>
         <div class="garden-panel__content garden-panel-content">
             <div class="commentary-content">
-                {{ page.commentary_content|safe }}
+                {{ page.commentary_content|richtext }}
             </div>
         </div>
     </section>
@@ -342,7 +343,7 @@
         </div>
         <div class="garden-panel__content garden-panel-content">
             <div class="process-content">
-                {{ page.process_content|safe }}
+                {{ page.process_content|richtext }}
             </div>
         </div>
     </section>
@@ -356,7 +357,7 @@
         <div class="garden-panel__content garden-panel-content">
             {% if page.documents_content %}
             <div class="documents-intro">
-                {{ page.documents_content|safe }}
+                {{ page.documents_content|richtext }}
             </div>
             {% endif %}
             
@@ -391,7 +392,6 @@
 {% endblock %}
 
 {% block extra_css %}
-{% load static %}
 <link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=7-table-width-fix">
 <style>
 /* Use the same styles from the original template */

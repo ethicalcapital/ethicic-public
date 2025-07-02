@@ -1094,6 +1094,8 @@ class LegalPage(Page):
 class MediaPage(Page):
     """Media/Press page."""
 
+    template = "public_site/media_page.html"
+
     intro_text = RichTextField(
         blank=True, 
         default="<p>Media coverage, press releases, and company news.</p>",
