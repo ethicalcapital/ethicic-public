@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             "taggit",
             "0006_rename_taggeditem_content_type_object_id_taggit_tagg_content_8fc721_idx",
         ),
-        ("wagtailcore", "0095_query_searchpromotion_querydailyhits"),
+        ("wagtailcore", "0094_alter_page_locale"),
         ("wagtaildocs", "0014_alter_document_file_size"),
         ("wagtailimages", "0027_image_description"),
     ]
