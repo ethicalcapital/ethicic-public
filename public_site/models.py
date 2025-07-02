@@ -1388,10 +1388,139 @@ class OnboardingPage(Page):
         verbose_name = "Onboarding Page"
 
 
+# Strategy Page Related Models
+
+class StrategyRiskMetric(models.Model):
+    """Risk and quality metrics for a strategy"""
+    page = ParentalKey('StrategyPage', on_delete=models.CASCADE, related_name='risk_metrics')
+    
+    standard_deviation = models.CharField(max_length=20, blank=True, help_text="e.g., 16.2%")
+    sharpe_ratio = models.CharField(max_length=20, blank=True, help_text="e.g., 0.78")
+    max_drawdown = models.CharField(max_length=20, blank=True, help_text="e.g., -22.1%")
+    beta = models.CharField(max_length=20, blank=True, help_text="e.g., 0.94")
+    
+    panels = [
+        FieldPanel('standard_deviation'),
+        FieldPanel('sharpe_ratio'),
+        FieldPanel('max_drawdown'),
+        FieldPanel('beta'),
+    ]
+
+
+class StrategyGeographicAllocation(Orderable):
+    """Geographic allocation for a strategy"""
+    page = ParentalKey('StrategyPage', on_delete=models.CASCADE, related_name='geographic_allocations')
+    
+    region = models.CharField(max_length=100, help_text="e.g., United States, International")
+    allocation_percent = models.CharField(max_length=20, help_text="e.g., 78.0%")
+    benchmark_percent = models.CharField(max_length=20, help_text="e.g., 62.0%")
+    difference_percent = models.CharField(max_length=20, help_text="e.g., +16.0%")
+    
+    panels = [
+        FieldPanel('region'),
+        FieldPanel('allocation_percent'),
+        FieldPanel('benchmark_percent'),
+        FieldPanel('difference_percent'),
+    ]
+
+
+class StrategySectorPosition(Orderable):
+    """Sector overweights/exclusions for a strategy"""
+    page = ParentalKey('StrategyPage', on_delete=models.CASCADE, related_name='sector_positions')
+    
+    POSITION_TYPE_CHOICES = [
+        ('overweight', 'Overweight'),
+        ('exclusion', 'Exclusion'),
+    ]
+    
+    position_type = models.CharField(max_length=20, choices=POSITION_TYPE_CHOICES)
+    sector_name = models.CharField(max_length=100)
+    note = models.TextField(blank=True, help_text="Additional notes about this sector")
+    
+    panels = [
+        FieldPanel('position_type'),
+        FieldPanel('sector_name'),
+        FieldPanel('note'),
+    ]
+
+
+class StrategyHolding(Orderable):
+    """Top holdings for a strategy"""
+    page = ParentalKey('StrategyPage', on_delete=models.CASCADE, related_name='holdings')
+    
+    company_name = models.CharField(max_length=200)
+    ticker_symbol = models.CharField(max_length=20)
+    weight_percent = models.CharField(max_length=20, help_text="e.g., ~8.4%")
+    vertical = models.CharField(max_length=100, help_text="e.g., Lending, Real Estate, Innovation")
+    investment_thesis = models.TextField()
+    key_metrics = models.TextField(help_text="e.g., 40%+ annual revenue growth, AI market leader")
+    
+    panels = [
+        FieldPanel('company_name'),
+        FieldPanel('ticker_symbol'),
+        FieldPanel('weight_percent'),
+        FieldPanel('vertical'),
+        FieldPanel('investment_thesis'),
+        FieldPanel('key_metrics'),
+    ]
+
+
+class StrategyVerticalAllocation(Orderable):
+    """Vertical allocation breakdown for a strategy"""
+    page = ParentalKey('StrategyPage', on_delete=models.CASCADE, related_name='vertical_allocations')
+    
+    vertical_name = models.CharField(max_length=100)
+    weight_percent = models.CharField(max_length=20)
+    dividend_yield = models.CharField(max_length=20)
+    pe_ratio = models.CharField(max_length=20)
+    revenue_cagr = models.CharField(max_length=20)
+    fcf_market_cap = models.CharField(max_length=20)
+    is_total_row = models.BooleanField(default=False, help_text="Check for portfolio total row")
+    is_benchmark_row = models.BooleanField(default=False, help_text="Check for benchmark comparison row")
+    
+    panels = [
+        FieldPanel('vertical_name'),
+        FieldPanel('weight_percent'),
+        FieldPanel('dividend_yield'),
+        FieldPanel('pe_ratio'),
+        FieldPanel('revenue_cagr'),
+        FieldPanel('fcf_market_cap'),
+        FieldPanel('is_total_row'),
+        FieldPanel('is_benchmark_row'),
+    ]
+
+
+class StrategyDocument(Orderable):
+    """Documents related to a strategy"""
+    page = ParentalKey('StrategyPage', on_delete=models.CASCADE, related_name='documents')
+    
+    DOCUMENT_CATEGORY_CHOICES = [
+        ('performance', 'Performance Reports'),
+        ('strategy', 'Strategy Information'),
+        ('regulatory', 'Regulatory Disclosures'),
+    ]
+    
+    category = models.CharField(max_length=20, choices=DOCUMENT_CATEGORY_CHOICES)
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=300)
+    icon = models.CharField(max_length=10, default="📄", help_text="Emoji icon for document")
+    document_url = models.URLField(blank=True, help_text="Link to document if available")
+    requires_request = models.BooleanField(default=True, help_text="Document requires request")
+    
+    panels = [
+        FieldPanel('category'),
+        FieldPanel('title'),
+        FieldPanel('description'),
+        FieldPanel('icon'),
+        FieldPanel('document_url'),
+        FieldPanel('requires_request'),
+    ]
+
+
 class StrategyPage(Page):
     """Investment strategy detail page with performance data and portfolio information."""
 
-    template = "public_site/strategy_page.html"
+    template = "public_site/strategy_page_editable.html"
 
     # Strategy overview
     strategy_subtitle = models.CharField(
@@ -1414,17 +1543,35 @@ class StrategyPage(Page):
         max_length=100, blank=True, default="100% Full Criteria",
     )
     holdings_count = models.CharField(
-        max_length=50, blank=True, default="~25 positions",
+        max_length=50, blank=True, default="15-25",
     )
     best_for = models.CharField(max_length=100, blank=True, default="Long-term growth")
+    cash_allocation = models.CharField(max_length=20, blank=True, default="0.93%")
+    
+    # Benchmark information
+    benchmark_name = models.CharField(
+        max_length=50, blank=True, default="ACWI",
+        help_text="e.g., ACWI, AGG/PFF, S&P 500"
+    )
 
-    # Performance data (for display purposes)
+    # Performance data (enhanced with benchmark)
     ytd_return = models.CharField(max_length=20, blank=True, default="8.2%")
+    ytd_benchmark = models.CharField(max_length=20, blank=True, default="5.1%")
+    ytd_difference = models.CharField(max_length=20, blank=True, default="+3.1%")
+    
     one_year_return = models.CharField(max_length=20, blank=True, default="15.7%")
+    one_year_benchmark = models.CharField(max_length=20, blank=True, default="12.3%")
+    one_year_difference = models.CharField(max_length=20, blank=True, default="+3.4%")
+    
     three_year_return = models.CharField(max_length=20, blank=True, default="9.8%")
+    three_year_benchmark = models.CharField(max_length=20, blank=True, default="7.2%")
+    three_year_difference = models.CharField(max_length=20, blank=True, default="+2.6%")
+    
     since_inception_return = models.CharField(
         max_length=20, blank=True, default="12.1%",
     )
+    since_inception_benchmark = models.CharField(max_length=20, blank=True, default="9.5%")
+    since_inception_difference = models.CharField(max_length=20, blank=True, default="+2.6%")
     inception_date = models.DateField(
         blank=True, null=True, help_text="Strategy inception date",
     )
@@ -1432,6 +1579,18 @@ class StrategyPage(Page):
     # Portfolio information
     portfolio_content = RichTextField(
         blank=True, help_text="Portfolio composition and holdings information",
+    )
+    
+    # Sector positioning notes
+    overweights_note = models.CharField(
+        max_length=300, blank=True, default="Higher conviction in these sectors"
+    )
+    exclusions_note = models.CharField(
+        max_length=300, blank=True, default="22% of benchmark index excluded"
+    )
+    healthcare_exclusion_note = models.TextField(
+        blank=True, 
+        default="* Healthcare exclusions are selective, focused on companies that directly support abortion procedures or controversial research practices"
     )
 
     # Commentary section
@@ -1455,8 +1614,95 @@ class StrategyPage(Page):
     documents_content = RichTextField(
         blank=True, help_text="Links to relevant documents and disclosures",
     )
+    
+    # Performance disclaimer
+    performance_disclaimer = RichTextField(
+        blank=True,
+        default="<p>Past performance is not indicative of future results. Investment returns and principal value will fluctuate.</p>"
+    )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel("strategy_subtitle"), FieldPanel("strategy_description"), FieldPanel("strategy_label")], heading="Strategy Overview"), MultiFieldPanel([FieldPanel("risk_level"), FieldPanel("ethical_implementation"), FieldPanel("holdings_count"), FieldPanel("best_for")], heading="Strategy Characteristics"), MultiFieldPanel([FieldPanel("ytd_return"), FieldPanel("one_year_return"), FieldPanel("three_year_return"), FieldPanel("since_inception_return"), FieldPanel("inception_date")], heading="Performance Data"), MultiFieldPanel([FieldPanel("portfolio_content")], heading="Portfolio Information"), MultiFieldPanel([FieldPanel("commentary_title"), FieldPanel("commentary_content")], heading="Commentary"), MultiFieldPanel([FieldPanel("process_title"), FieldPanel("process_content")], heading="Process"), MultiFieldPanel([FieldPanel("documents_title"), FieldPanel("documents_content")], heading="Documents")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        # Strategy Overview
+        MultiFieldPanel([
+            FieldPanel("strategy_subtitle"),
+            FieldPanel("strategy_description"),
+            FieldPanel("strategy_label"),
+        ], heading="Strategy Overview"),
+        
+        # Strategy Characteristics
+        MultiFieldPanel([
+            FieldPanel("risk_level"),
+            FieldPanel("ethical_implementation"),
+            FieldPanel("holdings_count"),
+            FieldPanel("best_for"),
+            FieldPanel("cash_allocation"),
+            FieldPanel("benchmark_name"),
+        ], heading="Strategy Characteristics"),
+        
+        # Performance Data
+        MultiFieldPanel([
+            FieldPanel("ytd_return"),
+            FieldPanel("ytd_benchmark"),
+            FieldPanel("ytd_difference"),
+            FieldPanel("one_year_return"),
+            FieldPanel("one_year_benchmark"),
+            FieldPanel("one_year_difference"),
+            FieldPanel("three_year_return"),
+            FieldPanel("three_year_benchmark"),
+            FieldPanel("three_year_difference"),
+            FieldPanel("since_inception_return"),
+            FieldPanel("since_inception_benchmark"),
+            FieldPanel("since_inception_difference"),
+            FieldPanel("inception_date"),
+        ], heading="Performance Data"),
+        
+        # Risk Metrics
+        InlinePanel('risk_metrics', max_num=1, heading="Risk & Quality Metrics"),
+        
+        # Geographic Allocation
+        InlinePanel('geographic_allocations', heading="Geographic Composition"),
+        
+        # Sector Positioning
+        MultiFieldPanel([
+            FieldPanel("overweights_note"),
+            FieldPanel("exclusions_note"),
+            FieldPanel("healthcare_exclusion_note"),
+        ], heading="Sector Positioning Notes"),
+        InlinePanel('sector_positions', heading="Sector Positions"),
+        
+        # Holdings
+        MultiFieldPanel([
+            FieldPanel("portfolio_content"),
+        ], heading="Portfolio Information"),
+        InlinePanel('holdings', heading="Top Holdings"),
+        
+        # Vertical Allocation
+        InlinePanel('vertical_allocations', heading="Vertical Allocation"),
+        
+        # Commentary & Process
+        MultiFieldPanel([
+            FieldPanel("commentary_title"),
+            FieldPanel("commentary_content"),
+        ], heading="Commentary"),
+        
+        MultiFieldPanel([
+            FieldPanel("process_title"),
+            FieldPanel("process_content"),
+        ], heading="Process"),
+        
+        # Documents
+        MultiFieldPanel([
+            FieldPanel("documents_title"),
+            FieldPanel("documents_content"),
+        ], heading="Documents Section"),
+        InlinePanel('documents', heading="Strategy Documents"),
+        
+        # Disclaimers
+        MultiFieldPanel([
+            FieldPanel("performance_disclaimer"),
+        ], heading="Disclaimers"),
+    ]
 
     class Meta:
         verbose_name = "Strategy Page"
