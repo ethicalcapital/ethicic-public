@@ -13,10 +13,10 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
     color: #1a1a1a;
-    background: #ffffff;
+    background: #fff;
 }
 
 /* Theme support - Dark mode for entire page */
@@ -104,7 +104,7 @@ body {
     background: var(--theme-primary, #553C9A);
     color: white;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgb(0,0,0,0.1);
 }
 
 .garden-header-content {
@@ -167,7 +167,7 @@ body {
 .garden-nav a:hover,
 .garden-nav-item:hover {
     opacity: 1;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255, 255, 255, 0.1);
 }
 
 /* Search form */
@@ -180,16 +180,16 @@ body {
 
 .garden-search-input {
     padding: 0.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgb(255, 255, 255, 0.3);
     border-radius: 4px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255, 255, 255, 0.1);
     color: white;
     font-size: 0.875rem;
     min-width: 150px;
 }
 
 .garden-search-input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgb(255, 255, 255, 0.7);
 }
 
 .garden-search-btn {
@@ -203,7 +203,7 @@ body {
 }
 
 .garden-search-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255, 255, 255, 0.1);
 }
 
 /* User actions and dropdown */
@@ -220,7 +220,7 @@ body {
 
 .garden-dropdown-trigger {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgb(255, 255, 255, 0.3);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -233,7 +233,7 @@ body {
 }
 
 .garden-dropdown-trigger:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255, 255, 255, 0.1);
 }
 
 .garden-dropdown-menu {
@@ -243,7 +243,7 @@ body {
     background: white;
     border: 1px solid #e5e5e5;
     border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgb(0, 0, 0, 0.1);
     min-width: 150px;
     z-index: 1001;
     display: none;
@@ -269,7 +269,7 @@ body {
 /* Theme toggle */
 .garden-theme-toggle {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgb(255, 255, 255, 0.3);
     color: white;
     font-size: 1.25rem;
     cursor: pointer;
@@ -284,7 +284,7 @@ body {
 }
 
 .garden-theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255, 255, 255, 0.1);
 }
 
 /* Action button styles */
@@ -342,7 +342,7 @@ body {
 
 /* ===== PANELS & SECTIONS ===== */
 .garden-panel {
-    background: #ffffff;
+    background: #fff;
     margin-bottom: 2rem;
     border-radius: 8px;
     overflow: hidden;
@@ -587,7 +587,7 @@ input, textarea, select {
 input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: var(--theme-primary, #553C9A);
-    box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+    box-shadow: 0 0 0 3px rgb(107, 70, 193, 0.1);
 }
 
 /* ===== TABLES ===== */
@@ -777,7 +777,7 @@ section.principles-panel .principles-grid {
 }
 
 .search-result-item:hover {
-    background-color: rgba(139, 92, 246, 0.1);
+    background-color: rgb(139, 92, 246, 0.1);
 }
 
 .search-result-title {
@@ -820,7 +820,7 @@ section.principles-panel .principles-grid {
 }
 
 [data-theme="dark"] .search-result-item:hover {
-    background-color: rgba(139, 92, 246, 0.2);
+    background-color: rgb(139, 92, 246, 0.2);
 }
 
 [data-theme="dark"] .search-result-title {
