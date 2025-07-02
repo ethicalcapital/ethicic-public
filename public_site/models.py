@@ -2340,10 +2340,25 @@ class GuidePage(Page):
         verbose_name = "Guide Page"
 
 
+class ExclusionCategory(Orderable):
+    """Exclusion category for criteria page."""
+    page = ParentalKey('CriteriaPage', on_delete=models.CASCADE, related_name='exclusion_categories')
+    
+    icon = models.CharField(max_length=10, default='🚫', help_text="Emoji icon for category")
+    title = models.CharField(max_length=100, help_text="Category title")
+    description = models.TextField(help_text="Description of what is excluded in this category")
+    
+    panels = [
+        FieldPanel('icon'),
+        FieldPanel('title'),
+        FieldPanel('description'),
+    ]
+
+
 class CriteriaPage(Page):
     """Ethical criteria page - links to GitHub."""
 
-    template = "public_site/criteria_page.html"
+    template = "public_site/criteria_page_editable.html"
 
     # Hero content
     hero_title = models.CharField(
@@ -2363,10 +2378,39 @@ class CriteriaPage(Page):
         help_text="Description of the criteria and screening process"
     )
 
-    # GitHub link
+    # GitHub link section
+    transparency_section_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Open Source Transparency",
+        help_text="Title for transparency section"
+    )
+    transparency_description = RichTextField(
+        blank=True,
+        default="<p>Our ethical screening criteria are publicly available on GitHub. This ensures complete transparency about what we exclude and why.</p>",
+        help_text="Description of transparency approach"
+    )
+    transparency_benefits = models.TextField(
+        blank=True,
+        default="Full documentation of exclusion criteria\nRegular updates as our research evolves\nCommunity feedback and discussion\nVersion history and change tracking",
+        help_text="Benefits of transparency, one per line"
+    )
     github_criteria_url = models.URLField(
         default="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md",
         help_text="URL to GitHub screening policy"
+    )
+
+    # Exclusions section
+    exclusions_section_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Key Exclusion Categories",
+        help_text="Title for exclusions section"
+    )
+    exclusions_note = RichTextField(
+        blank=True,
+        default="<p><strong>Important:</strong> This is a high-level overview. The complete criteria, methodology, and specific examples are detailed in our GitHub repository.</p>",
+        help_text="Note about exclusions"
     )
 
     # Additional resources
@@ -2375,16 +2419,54 @@ class CriteriaPage(Page):
         help_text="Links to additional resources and documentation"
     )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel('hero_title'), FieldPanel('hero_subtitle')], heading="Hero Section"), FieldPanel('criteria_description'), FieldPanel('github_criteria_url'), FieldPanel('additional_resources')]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        MultiFieldPanel([
+            FieldPanel('hero_title'),
+            FieldPanel('hero_subtitle')
+        ], heading="Hero Section"),
+        FieldPanel('criteria_description'),
+        MultiFieldPanel([
+            FieldPanel('transparency_section_title'),
+            FieldPanel('transparency_description'),
+            FieldPanel('transparency_benefits'),
+            FieldPanel('github_criteria_url'),
+        ], heading="Transparency Section"),
+        MultiFieldPanel([
+            FieldPanel('exclusions_section_title'),
+            InlinePanel('exclusion_categories', label="Exclusion Categories"),
+            FieldPanel('exclusions_note'),
+        ], heading="Exclusions Section"),
+        FieldPanel('additional_resources')
+    ]
 
     class Meta:
         verbose_name = "Criteria Page"
 
 
+class StrategyCard(Orderable):
+    """Strategy card for solutions page."""
+    page = ParentalKey('SolutionsPage', on_delete=models.CASCADE, related_name='strategy_cards')
+    
+    icon = models.CharField(max_length=10, default='🚀', help_text="Emoji icon for strategy")
+    title = models.CharField(max_length=100, help_text="Strategy title")
+    description = models.TextField(help_text="Brief description of the strategy")
+    features = models.TextField(help_text="Strategy features, one per line")
+    url = models.CharField(max_length=200, help_text="URL to strategy page")
+    
+    panels = [
+        FieldPanel('icon'),
+        FieldPanel('title'),
+        FieldPanel('description'),
+        FieldPanel('features'),
+        FieldPanel('url'),
+    ]
+
+
 class SolutionsPage(Page):
     """Solutions page showcasing services for individuals, institutions, and advisers."""
 
-    template = "public_site/solutions_page.html"
+    template = "public_site/solutions_page_editable.html"
 
     # Hero content
     hero_title = models.CharField(
@@ -2401,6 +2483,19 @@ class SolutionsPage(Page):
         blank=True,
         default="<p>Whether you're an individual investor, institutional client, or investment adviser, we provide sophisticated ethical investment solutions that align your portfolio with your principles.</p>",
         help_text="Hero section description"
+    )
+
+    # Strategies section
+    strategies_section_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Three Strategies, Infinite Possibilities",
+        help_text="Title for strategies section"
+    )
+    strategies_intro = models.TextField(
+        blank=True,
+        default="Our investment solutions are built around three core strategies, tailored to three distinct audiences, and delivered through multiple channels to meet you where you are.",
+        help_text="Introduction text for strategies section"
     )
 
     # Individuals section
@@ -2439,7 +2534,35 @@ class SolutionsPage(Page):
         default="<p>Let's find the perfect solution for your needs. Contact us to discuss how we can help you achieve your investment goals while staying true to your values.</p>"
     )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel('hero_title'), FieldPanel('hero_subtitle'), FieldPanel('hero_description')], heading="Hero Section"), MultiFieldPanel([FieldPanel('individuals_title'), FieldPanel('individuals_content')], heading="For Individuals"), MultiFieldPanel([FieldPanel('institutions_title'), FieldPanel('institutions_content')], heading="For Institutions"), MultiFieldPanel([FieldPanel('advisors_title'), FieldPanel('advisors_content')], heading="For Investment Advisers"), MultiFieldPanel([FieldPanel('cta_title'), FieldPanel('cta_description')], heading="Call to Action")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        MultiFieldPanel([
+            FieldPanel('hero_title'),
+            FieldPanel('hero_subtitle'),
+            FieldPanel('hero_description')
+        ], heading="Hero Section"),
+        MultiFieldPanel([
+            FieldPanel('strategies_section_title'),
+            FieldPanel('strategies_intro'),
+            InlinePanel('strategy_cards', label="Strategy Cards"),
+        ], heading="Investment Strategies"),
+        MultiFieldPanel([
+            FieldPanel('individuals_title'),
+            FieldPanel('individuals_content')
+        ], heading="For Individuals"),
+        MultiFieldPanel([
+            FieldPanel('institutions_title'),
+            FieldPanel('institutions_content')
+        ], heading="For Institutions"),
+        MultiFieldPanel([
+            FieldPanel('advisors_title'),
+            FieldPanel('advisors_content')
+        ], heading="For Investment Advisers"),
+        MultiFieldPanel([
+            FieldPanel('cta_title'),
+            FieldPanel('cta_description')
+        ], heading="Call to Action")
+    ]
 
     class Meta:
         verbose_name = "Solutions Page"
