@@ -1,0 +1,194 @@
+/* ========================================
+   BUTTON CONTRAST FIXES
+   Ensures proper text/background contrast in all themes
+   ======================================== */
+
+/* ===== HEADER BUTTON FIX ===== */
+/* Fix the potentially problematic white button in header */
+.garden-header .nav-user-actions .garden-action.primary {
+    /* Use theme-aware colors instead of hardcoded white */
+    background: var(--color-surface) !important;
+    color: var(--color-primary) !important; /* Purple on white in light mode */
+    border: 2px solid var(--color-primary) !important;
+}
+
+.garden-header .nav-user-actions .garden-action.primary:hover {
+    background: var(--color-primary) !important;
+    color: var(--color-on-primary) !important; /* White on purple */
+    border-color: var(--color-primary) !important;
+}
+
+/* ===== ENSURE PROPER CONTRAST FOR ALL BUTTONS ===== */
+/* Primary buttons - purple bg, white text */
+.garden-action.primary,
+.garden-action:not(.secondary):not(.surface):not(.outline):not(.ghost) {
+    background: var(--color-primary) !important;
+    color: var(--color-on-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+/* Secondary buttons - transparent bg, purple text */
+.garden-action.secondary {
+    background: transparent !important;
+    color: var(--color-primary) !important;
+    border-color: var(--color-border) !important;
+}
+
+.garden-action.secondary:hover {
+    background: var(--color-surface-secondary) !important;
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+/* Surface buttons - ensure text is always visible */
+.garden-action.surface {
+    background: var(--color-surface) !important;
+    color: var(--color-text-primary) !important; /* Use text color, not on-surface */
+    border-color: var(--color-border) !important;
+}
+
+.garden-action.surface:hover {
+    background: var(--color-surface-secondary) !important;
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+
+/* ===== DARK MODE SPECIFIC FIXES ===== */
+[data-theme="dark"] {
+    /* Ensure buttons have proper contrast in dark mode */
+    .garden-action.primary {
+        /* Primary buttons stay the same - purple bg, white text */
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    .garden-action.secondary {
+        /* Secondary buttons need to be visible on dark background */
+        color: var(--color-primary) !important;
+        border-color: var(--color-border) !important;
+    }
+    
+    .garden-action.surface {
+        /* Surface buttons use dark surface with light text */
+        background: var(--color-surface) !important;
+        color: var(--color-text-primary) !important;
+    }
+    
+    /* Special header button handling in dark mode */
+    .garden-header .nav-user-actions .garden-action.primary {
+        background: var(--color-surface) !important;
+        color: var(--color-text-primary) !important;
+        border-color: var(--color-border) !important;
+    }
+    
+    .garden-header .nav-user-actions .garden-action.primary:hover {
+        background: var(--color-primary) !important;
+        color: var(--color-on-primary) !important;
+        border-color: var(--color-primary) !important;
+    }
+}
+
+/* ===== REMOVE HARDCODED WHITE COLORS ===== */
+/* Override any hardcoded white text that might cause issues */
+.garden-action {
+    /* Never use hardcoded white - use theme variables */
+    color: var(--color-on-primary);
+}
+
+/* Fix any inline white text */
+[style*="color: white"],
+[style*="color:#fff"],
+[style*="color: #fff"],
+[style*="color:#ffffff"],
+[style*="color: #ffffff"] {
+    color: var(--color-text-primary) !important;
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+/* Ensure minimum contrast ratios */
+.garden-action:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .garden-action {
+        border-width: 3px !important;
+        font-weight: bold !important;
+    }
+}
+
+/* ===== SPECIFIC PAGE FIXES ===== */
+/* Strategy page button fixes */
+.strategy-page .garden-action {
+    /* Ensure buttons on strategy pages have proper contrast */
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Blog page button fixes */
+.blog-page .garden-action,
+.blog-post .garden-action {
+    /* Ensure blog buttons are visible */
+    z-index: 1;
+    position: relative;
+}
+
+/* ===== FIX SPECIFIC WHITE TEXT ISSUES ===== */
+/* Fix hardcoded white text in core-styles.css */
+.garden-pill,
+.step-number,
+.section-meta,
+.metric-change.positive,
+.metric-change.negative {
+    /* Use theme-aware colors instead of hardcoded white */
+    color: var(--color-on-primary);
+}
+
+/* Fix process page step numbers */
+.process-step .step-number {
+    background: var(--color-primary);
+    color: var(--color-on-primary); /* White on purple is safe */
+}
+
+/* Fix strategy page tags */
+.strategy-card .strategy-label,
+.featured-badge,
+.strategy-badge {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+/* ===== BUTTON STATE FIXES ===== */
+/* Disabled state with proper contrast */
+.garden-action:disabled,
+.garden-action.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    /* Maintain color contrast even when disabled */
+    background: var(--color-surface-secondary) !important;
+    color: var(--color-text-secondary) !important;
+    border-color: var(--color-border) !important;
+}
+
+/* Loading state */
+.garden-action.loading {
+    color: transparent !important;
+    position: relative;
+}
+
+.garden-action.loading::after {
+    content: "⟳";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    color: var(--color-on-primary);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}

@@ -99,6 +99,9 @@
     <!-- Public site specific styles -->
     <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070123">
     
+    <!-- Button contrast fixes for light/dark mode -->
+    <link rel="stylesheet" href="{% static 'css/button-contrast-fixes.css' %}?v=1">
+    
     <!-- About page specific styles -->
     {% if page and page.slug == 'about' %}
     <link rel="stylesheet" href="{% static 'css/layers/22-about-page.css' %}?v=1">
