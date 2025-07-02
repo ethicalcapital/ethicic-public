@@ -21,7 +21,7 @@
 /* ===== ENSURE PROPER CONTRAST FOR ALL BUTTONS ===== */
 /* Primary buttons - purple bg, white text */
 .garden-action.primary,
-.garden-action:not(.secondary):not(.surface):not(.outline):not(.ghost) {
+.garden-action:not(.secondary, .surface, .outline, .ghost) {
     background: var(--color-primary) !important;
     color: var(--color-on-primary) !important;
     border-color: var(--color-primary) !important;
@@ -58,7 +58,7 @@
     /* Ensure buttons have proper contrast in dark mode */
     .garden-action.primary {
         /* Primary buttons stay the same - purple bg, white text */
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        text-shadow: 0 1px 2px rgb(0, 0, 0, 0.3);
     }
     
     .garden-action.secondary {
@@ -110,8 +110,8 @@
     outline-offset: 2px;
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
+/* High contrast mode support - using more instead of high for browser compatibility */
+@media (prefers-contrast: more) {
     .garden-action {
         border-width: 3px !important;
         font-weight: bold !important;

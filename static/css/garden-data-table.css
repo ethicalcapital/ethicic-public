@@ -482,7 +482,7 @@
 }
 
 /* High contrast mode support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .pagination-btn, .page-btn {
     border-width: 2px;
   }

@@ -50,7 +50,7 @@
     box-shadow: 0 2px 8px rgb(0,0,0,0.1);
 }
 
-/* Footer visual separation */
+/* Footer visual separation - extending previous footer styles */
 .public-site-context .garden-footer {
     border-top: 2px solid var(--color-border);
     box-shadow: 0 -2px 8px rgb(0,0,0,0.05);
@@ -133,7 +133,7 @@
 }
 
 /* High contrast mode support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
     .public-site-context .garden-panel {
         border-width: 2px;
         border-color: var(--color-text-primary);

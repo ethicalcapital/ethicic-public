@@ -4527,10 +4527,7 @@ to {
   }
 }
 
-.garden-modal-overlay {
-  animation: fade-in 0.2s ease-out;
-}
-
+.garden-modal-overlay,
 .feedback-modal {
   animation: fade-in 0.2s ease-out;
 }
