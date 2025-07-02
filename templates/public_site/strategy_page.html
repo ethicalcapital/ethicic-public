@@ -612,12 +612,17 @@
 
 {% block extra_css %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=3">
 <style>
 /* Strategy Page Formatting Fixes */
 .strategy-page {
     background: var(--color-surface);
     color: var(--color-text-primary);
+}
+
+/* Ensure consistent container width with homepage */
+.strategy-page .garden-container {
+    max-width: var(--content-width-normal) !important; /* 1200px to match homepage */
 }
 
 /* Fix text contrast globally */
