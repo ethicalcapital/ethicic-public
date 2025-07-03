@@ -5,6 +5,45 @@
 
 {% block body_class %}blog-index-page{% endblock %}
 
+{% block extra_css %}
+    {{ block.super }}
+    <style>
+        /* Force immediate blog formatting fixes */
+        .newsletter-section .garden-panel-header,
+        .connect-section .garden-panel-header {
+            background: var(--color-surface-variant) !important;
+            color: var(--color-on-surface) !important;
+            border-bottom: 1px solid var(--color-border) !important;
+        }
+        
+        .newsletter-section .panel-title,
+        .connect-section .panel-title {
+            color: var(--color-on-surface) !important;
+        }
+        
+        .newsletter-section .garden-panel-content {
+            border-top: none !important;
+            background: var(--color-surface) !important;
+        }
+        
+        .article-list-tag {
+            background: var(--color-surface-variant) !important;
+            color: var(--color-on-surface-variant) !important;
+            border: 1px solid var(--color-border) !important;
+            border-radius: var(--radius-sm) !important;
+            padding: var(--space-1) var(--space-3) !important;
+        }
+        
+        .article-list-title a {
+            color: var(--color-on-surface) !important;
+        }
+        
+        .article-list-excerpt {
+            color: var(--color-on-surface-variant) !important;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
 <div class="garden-container">
 <!-- Streamlined Hero Section -->
@@ -69,7 +108,7 @@
                             
                             <!-- Title -->
                             <h2 class="featured-title">
-                                <a href="{% pageurl featured_post %}">{{ featured_post.title }}</a>
+                                <a href="{{ featured_post.url_path }}">{{ featured_post.title }}</a>
                             </h2>
                             
                             <!-- Excerpt -->
@@ -79,7 +118,7 @@
                             
                             <!-- Action Button -->
                             <div class="featured-actions">
-                                <a href="{% pageurl featured_post %}" class="garden-action primary large">READ FEATURED ARTICLE</a>
+                                <a href="{{ featured_post.url_path }}" class="garden-action primary large">READ FEATURED ARTICLE</a>
                             </div>
                         </div>
                     </div>
@@ -176,7 +215,7 @@
                                 </div>
                                 
                                 <h2 class="article-list-title">
-                                    <a href="{% pageurl post %}">{{ post.title }}</a>
+                                    <a href="{{ post.url_path }}">{{ post.title }}</a>
                                 </h2>
                                 
                                 {% if post.excerpt %}
@@ -184,7 +223,7 @@
                                 {% endif %}
                                 
                                 <div class="article-list-actions">
-                                    <a href="{% pageurl post %}" class="garden-action secondary small">READ MORE</a>
+                                    <a href="{{ post.url_path }}" class="garden-action secondary small">READ MORE</a>
                                 </div>
                             </div>
                         </div>
@@ -312,6 +351,7 @@
 <link rel="stylesheet" href="{% static 'css/garden-blog-panels.css' %}?v=20250621-dark-mode-badge-fix">
 <link rel="stylesheet" href="{% static 'css/garden-blog-sidebar.css' %}?v=2025-newsletter-styling-v2">
 <link rel="stylesheet" href="{% static 'css/blog-button-fixes.css' %}?v=2025-01-fix-visibility">
+<link rel="stylesheet" href="{% static 'css/blog-formatting-fixes.css' %}?v=2025-01-fix-purple-sections">
 {% endblock %}
 
 {% block extra_js %}

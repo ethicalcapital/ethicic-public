@@ -54,7 +54,7 @@
             {% if page.tags.all %}
                 <div class="article-tags">
                     {% for tag in page.tags.all %}
-                        <a href="{{ page.get_parent.url }}tag/{{ tag.slug }}/" class="article-tag">{{ tag }}</a>
+                        <a href="{{ page.get_parent.url_path }}tag/{{ tag.slug }}/" class="article-tag">{{ tag }}</a>
                     {% endfor %}
                 </div>
             {% endif %}
@@ -89,4 +89,5 @@
 {% block extra_css %}
 <!-- garden-blog.css and garden-blog-streamfield.css load in base template -->
 <link rel="stylesheet" href="{% static 'css/blog-button-fixes.css' %}?v=2025-01-fix-visibility">
+<link rel="stylesheet" href="{% static 'css/blog-formatting-fixes.css' %}?v=2025-01-fix-purple-sections">
 {% endblock %}

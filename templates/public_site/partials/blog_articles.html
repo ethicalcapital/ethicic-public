@@ -28,7 +28,7 @@
             </div>
             
             <h2 class="article-list-title">
-                <a href="{% pageurl post %}">{{ post.title }}</a>
+                <a href="{{ post.url_path }}">{{ post.title }}</a>
             </h2>
             
             {% if post.excerpt %}
@@ -36,7 +36,7 @@
             {% endif %}
             
             <div class="article-list-actions">
-                <a href="{% pageurl post %}" class="garden-action secondary small">READ MORE</a>
+                <a href="{{ post.url_path }}" class="garden-action secondary small">READ MORE</a>
             </div>
         </div>
     </div>
