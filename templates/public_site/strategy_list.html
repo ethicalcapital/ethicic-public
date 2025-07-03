@@ -92,7 +92,7 @@
                 </div>
                 
                 <div class="card-footer">
-                    <a href="{% pageurl strategy %}" class="garden-action primary" aria-label="Learn more about {{ strategy.title }}">VIEW DETAILS →</a>
+                    <a href="{{ strategy.url_path }}" class="garden-action primary" aria-label="Learn more about {{ strategy.title }}">VIEW DETAILS →</a>
                 </div>
             </div>
             {% endfor %}
@@ -135,7 +135,7 @@
             {% for strategy in strategies %}
             <div class="comparison-row">
                 <div class="comparison-strategy">
-                    <a href="{% pageurl strategy %}" class="strategy-name">{{ strategy.title }}</a>
+                    <a href="{{ strategy.url_path }}" class="strategy-name">{{ strategy.title }}</a>
                     <div class="strategy-meta">{{ strategy.strategy_subtitle }}</div>
                 </div>
                 <div class="comparison-value stat-positive">{{ strategy.ytd_return|default:"--" }}</div>

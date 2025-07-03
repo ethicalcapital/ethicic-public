@@ -77,7 +77,7 @@ Search | Ethical Capital
                 <div class="search-result-item">
                     <div class="result-header">
                         <h2 class="result-title">
-                            <a href="{% pageurl result %}">{{ result.title }}</a>
+                            <a href="{{ result.url_path }}">{{ result.title }}</a>
                         </h2>
                         <span class="result-type">{{ result.content_type.model|title }}</span>
                     </div>
@@ -90,7 +90,7 @@ Search | Ethical Capital
                     
                     <div class="result-footer">
                         <span class="result-url">{{ result.url }}</span>
-                        <a href="{% pageurl result %}" class="result-link">VIEW PAGE →</a>
+                        <a href="{{ result.url_path }}" class="result-link">VIEW PAGE →</a>
                     </div>
                 </div>
                 {% endfor %}
