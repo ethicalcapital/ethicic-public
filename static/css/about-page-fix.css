@@ -1,0 +1,288 @@
+/* 
+ * ABOUT PAGE COMPREHENSIVE FIX
+ * This overrides conflicting styles and ensures proper layout
+ */
+
+/* Fix panel header */
+.about-page .garden-panel__header {
+    padding: var(--garden-spacing-md) var(--garden-spacing-lg);
+    background: var(--garden-primary);
+    color: white;
+}
+
+.about-page .panel-title {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* Fix content spacing */
+.about-page .garden-panel__content {
+    padding: var(--garden-spacing-xl);
+}
+
+/* Fix hero layout */
+.about-page .about-hero {
+    display: flex;
+    gap: var(--garden-spacing-xl);
+    margin-bottom: var(--garden-spacing-xl);
+    align-items: flex-start;
+}
+
+.about-page .about-image {
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.about-page .headshot {
+    width: 100%;
+    height: auto;
+    border-radius: var(--garden-border-radius);
+    box-shadow: none;
+}
+
+.about-page .about-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--garden-spacing-lg);
+}
+
+/* Fix quote box */
+.about-page .sloane-sez {
+    background: var(--garden-surface-elevated);
+    padding: var(--garden-spacing-md) var(--garden-spacing-lg);
+    border-radius: var(--garden-border-radius);
+    border: 1px solid var(--garden-border);
+    font-style: normal;
+    margin-bottom: var(--garden-spacing-lg);
+}
+
+.about-page .sloane-sez p {
+    margin: 0 0 var(--garden-spacing-sm) 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--garden-text-primary);
+    font-style: italic;
+}
+
+.about-page .quote-attribution {
+    text-align: left;
+    font-style: normal;
+    font-size: 0.875rem;
+    margin-top: var(--garden-spacing-sm);
+}
+
+.about-page .quote-attribution a {
+    color: var(--garden-link);
+    text-decoration: none;
+}
+
+.about-page .quote-attribution a:hover {
+    text-decoration: underline;
+}
+
+/* Fix identity section */
+.about-page .about-identity {
+    margin-bottom: var(--garden-spacing-lg);
+}
+
+.about-page .about-identity .name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 var(--garden-spacing-xs) 0;
+    color: var(--garden-text-primary);
+    letter-spacing: -0.5px;
+}
+
+.about-page .about-identity .title {
+    font-size: 1.125rem;
+    color: var(--garden-text-secondary);
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Fix social links */
+.about-page .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--garden-spacing-md);
+}
+
+.about-page .social-cta {
+    margin-bottom: var(--garden-spacing-md);
+}
+
+.about-page .social-cta .garden-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--garden-spacing-sm);
+}
+
+.about-page .social-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--garden-spacing-lg);
+    margin: 0;
+}
+
+.about-page .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: var(--garden-spacing-xs) 0;
+    background: transparent;
+    border: none;
+    text-decoration: none;
+    color: var(--garden-link);
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+}
+
+.about-page .social-link:hover {
+    color: var(--garden-link-hover);
+    text-decoration: underline;
+}
+
+.about-page .social-icon {
+    font-size: 1rem;
+}
+
+.about-page .social-text {
+    font-weight: 400;
+}
+
+/* Fix details sections */
+.about-page .about-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--garden-spacing-xl);
+    max-width: 100%;
+}
+
+.about-page .detail-section {
+    padding: 0;
+    border-bottom: none;
+    margin-bottom: var(--garden-spacing-xl);
+}
+
+.about-page .detail-section:last-child {
+    margin-bottom: 0;
+}
+
+.about-page .detail-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 var(--garden-spacing-md) 0;
+    color: var(--garden-text-primary);
+}
+
+.about-page .detail-section p {
+    line-height: 1.6;
+    color: var(--garden-text-primary);
+    margin: 0 0 var(--garden-spacing-md) 0;
+    font-size: 1rem;
+}
+
+.about-page .detail-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* Fix lists in detail sections */
+.about-page .detail-section ul,
+.about-page .detail-section ol {
+    margin: var(--garden-spacing-sm) 0;
+    padding-left: var(--garden-spacing-lg);
+}
+
+.about-page .detail-section li {
+    margin-bottom: var(--garden-spacing-xs);
+    line-height: 1.6;
+    font-size: 1rem;
+    color: var(--garden-text-primary);
+}
+
+.about-page .detail-section strong {
+    color: var(--garden-text-primary);
+    font-weight: 600;
+}
+
+/* Fix speaking CTA */
+.about-page .speaking-cta {
+    margin-top: var(--garden-spacing-lg);
+}
+
+.about-page .speaking-cta p {
+    margin: 0 0 var(--garden-spacing-md) 0;
+}
+
+.about-page .contact-note {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--garden-text-secondary);
+    margin-top: var(--garden-spacing-md);
+}
+
+.about-page .contact-note p {
+    margin: 0 0 var(--garden-spacing-sm) 0;
+}
+
+.about-page .contact-note .garden-action {
+    display: inline-block;
+    margin-right: var(--garden-spacing-md);
+}
+
+/* Fix buttons */
+.about-page .garden-action {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+}
+
+.about-page .garden-action.primary {
+    background: var(--garden-primary);
+    color: white;
+    border: 2px solid var(--garden-primary);
+}
+
+.about-page .garden-action.primary:hover {
+    background: var(--garden-primary-hover);
+    border-color: var(--garden-primary-hover);
+}
+
+.about-page .garden-action.secondary {
+    background: white;
+    color: var(--garden-primary);
+    border: 2px solid var(--garden-primary);
+}
+
+.about-page .garden-action.secondary:hover {
+    background: var(--garden-surface-hover);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-page .about-hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .about-page .about-image {
+        margin: 0 auto var(--garden-spacing-lg);
+    }
+    
+    .about-page .about-identity .name {
+        font-size: 1.75rem;
+    }
+    
+    .about-page .social-grid {
+        justify-content: center;
+    }
+    
+    .about-page .garden-panel__content {
+        padding: var(--garden-spacing-lg);
+    }
+}

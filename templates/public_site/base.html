@@ -108,6 +108,7 @@
     <!-- About page specific styles -->
     {% if page and page.slug == 'about' %}
     <link rel="stylesheet" href="{% static 'css/layers/22-about-page.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/about-page-fix.css' %}?v=1">
     {% endif %}
     
     <!-- Homepage specific styles -->
@@ -116,7 +117,7 @@
     {% endif %}
     
     <!-- NUCLEAR BUTTON FIX - MUST LOAD ABSOLUTE LAST -->
-    <link rel="stylesheet" href="{% static 'css/blog-nuclear-button-fix.css' %}?v=2025-nuclear-final">
+    <link rel="stylesheet" href="{% static 'css/blog-nuclear-button-fix.css' %}?v=2025-nuclear-no-layers">
     
     <!-- Phase 4: Page-specific styling - deferred for performance -->
     <!-- Commented out to reduce CSS complexity - styles moved to public-site-simple.css -->
@@ -368,7 +369,7 @@
     <main class="main-content" id="main-content" role="main">
         <!-- Breadcrumb Navigation -->
         {% block breadcrumbs %}
-            {% if page.get_parent %}
+            {% if page and page.get_parent and page.get_parent.id != 1 %}
                 <nav class="article-breadcrumb" aria-label="Breadcrumb">
                     <a href="/" class="breadcrumb-link">Home</a>
                     {% for ancestor in page.get_ancestors|slice:"1:" %}

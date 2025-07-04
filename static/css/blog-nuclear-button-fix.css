@@ -2,9 +2,10 @@
  * NUCLEAR BUTTON FIX - OVERRIDES EVERYTHING
  * This file MUST be loaded LAST to override all conflicting rules
  * Using maximum specificity and !important on everything
+ * NOT using layers to ensure we override all layered styles
  */
 
-/* KILL ALL WHITE TEXT ON SECONDARY BUTTONS */
+/* KILL ALL WHITE TEXT ON SECONDARY BUTTONS - ABSOLUTE OVERRIDE */
 html body .blog-index-page .article-list-actions a.garden-action.secondary.small,
 html body .blog-index-page .article-list-actions a.garden-action.secondary.small:link,
 html body .blog-index-page .article-list-actions a.garden-action.secondary.small:visited,
@@ -15,6 +16,9 @@ html body .blog-index-page a.garden-action.secondary:visited,
 html body .blog-index-page a.garden-action.secondary:active,
 html body .blog-index-page .garden-action.secondary,
 html body .blog-index-page button.garden-action.secondary,
+html body.blog-index-page .garden-action.secondary,
+html body.blog-index-page a.garden-action.secondary,
+html body.blog-index-page button.garden-action.secondary,
 html body a.garden-action.secondary.small,
 html body a.garden-action.secondary,
 html body .garden-action.secondary,
@@ -26,7 +30,9 @@ html body a[href][class*="garden-action"][class*="secondary"],
 .blog-index-page .articles-main .article-list-item .article-list-actions a,
 .blog-index-page .articles-main .article-list-item .article-list-actions a.garden-action,
 .blog-index-page .articles-main .article-list-item .article-list-actions a.garden-action.secondary,
-.blog-index-page .articles-main .article-list-item .article-list-actions a.garden-action.secondary.small {
+.blog-index-page .articles-main .article-list-item .article-list-actions a.garden-action.secondary.small,
+.blog-page .garden-action.secondary,
+.blog-post .garden-action.secondary {
     background: #FFFFFF !important;
     background-color: #FFFFFF !important;
     color: #553C9A !important;

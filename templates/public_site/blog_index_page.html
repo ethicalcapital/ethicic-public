@@ -314,7 +314,8 @@
 <link rel="stylesheet" href="{% static 'css/blog-button-fixes.css' %}?v=2025-01-fix-visibility">
 <link rel="stylesheet" href="{% static 'css/blog-formatting-fixes.css' %}?v=2025-01-fix-purple-sections">
 
-<!-- All button fixes now handled by blog-nuclear-button-fix.css in base template -->
+<!-- Nuclear button fix MUST load last to override everything -->
+<link rel="stylesheet" href="{% static 'css/blog-nuclear-button-fix.css' %}?v=2025-absolute-final">
 {% endblock %}
 
 {% block extra_js %}
