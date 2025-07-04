@@ -229,6 +229,9 @@ def contact_form_submit(request):
 def newsletter_signup(request):
     """Handle newsletter signup submissions"""
     form = AccessibleNewsletterForm(request.POST)
+    
+    # Check if this is an HTMX request
+    is_htmx = request.headers.get('HX-Request') == 'true'
 
     if form.is_valid():
         email = form.cleaned_data["email"]
@@ -252,12 +255,12 @@ def newsletter_signup(request):
                         'contact_type': ContactType.INDIVIDUAL,
                         'status': ContactStatus.COLD_LEAD,
                         'opt_in_marketing': True,
-                        'source': 'Blog Newsletter Signup',
-                        'notes': 'Subscribed via blog newsletter form',
+                        'source': 'Newsletter Page Signup',
+                        'notes': 'Subscribed via newsletter page',
                         'preferences': {
                             'newsletter_subscribed': True,
                             'newsletter_subscribed_date': timezone.now().isoformat(),
-                            'newsletter_source': 'blog_sidebar'
+                            'newsletter_source': 'newsletter_page'
                         }
                     }
                 )
@@ -270,7 +273,7 @@ def newsletter_signup(request):
                         contact.preferences.update({
                             'newsletter_subscribed': True,
                             'newsletter_subscribed_date': timezone.now().isoformat(),
-                            'newsletter_source': 'blog_sidebar'
+                            'newsletter_source': 'newsletter_page'
                         })
                         contact.notes = (contact.notes or '') + f'\nRe-subscribed to newsletter on {timezone.now().date()}'
                         contact.save()
@@ -289,6 +292,12 @@ def newsletter_signup(request):
                     status="resolved",
                 )
 
+            # Handle HTMX response
+            if is_htmx:
+                return render(request, 'public_site/partials/newsletter_success.html', {
+                    'email': email
+                })
+            
             messages.success(
                 request,
                 "Thank you for subscribing! You will receive our newsletter updates.",
@@ -296,11 +305,23 @@ def newsletter_signup(request):
 
         except Exception:
             logger.exception("Error processing newsletter signup")
+            
+            if is_htmx:
+                return render(request, 'public_site/partials/newsletter_error.html', {
+                    'error': 'There was an error with your subscription. Please try again.'
+                })
+            
             messages.error(
                 request, "There was an error with your subscription. Please try again.",
             )
 
     else:
+        if is_htmx:
+            return render(request, 'public_site/newsletter_page.html', {
+                'form': form,
+                'errors': form.errors
+            })
+        
         messages.error(request, "Please provide a valid email address.")
 
     # Redirect back to the page they came from

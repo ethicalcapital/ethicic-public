@@ -8,7 +8,7 @@
 {% block content %}
 <div class="garden-container">
     <!-- Strategy Header -->
-    <section class="garden-panel" role="banner" aria-labelledby="strategy-heading">
+    <section class="garden-panel strategy-header-panel" role="banner" aria-labelledby="strategy-heading">
         <div class="garden-panel__header garden-panel-header">
             <div class="panel-title">{{ page.title|upper }}</div>
             {% if page.strategy_label %}
@@ -424,6 +424,33 @@
 /* Use the same styles from the original template */
 {% include "public_site/strategy_page_styles.html" %}
 
+/* Strategy badge - make more prominent */
+.strategy-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: var(--theme-primary);
+    color: var(--color-surface);
+    padding: 0.75rem 2rem;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid var(--color-surface);
+}
+
+.strategy-header-panel .garden-panel__header {
+    position: relative;
+    padding-right: 12rem; /* Make room for badge */
+}
+
+/* Adjust panel title to not overlap with badge */
+.strategy-header-panel .panel-title {
+    max-width: calc(100% - 200px);
+}
+
 /* Quick actions - ensure buttons stay on one line */
 .quick-actions {
     display: flex;
@@ -531,6 +558,26 @@
     .quick-actions .garden-action {
         width: 100%;
         text-align: center;
+    }
+    
+    /* Adjust badge on mobile */
+    .strategy-badge {
+        position: static;
+        display: inline-block;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        padding: 0.5rem 1.5rem;
+    }
+    
+    .strategy-header-panel .garden-panel__header {
+        padding-right: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .strategy-header-panel .panel-title {
+        max-width: 100%;
     }
 }
 
