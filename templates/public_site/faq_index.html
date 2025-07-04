@@ -186,7 +186,6 @@
                         <div class="panel-title">RESOURCES</div>
                     </div>
                     <div class="garden-panel__content garden-panel-content">
-                        <p class="sidebar-description">Explore our comprehensive resources for ethical investing.</p>
                         <div class="resource-links">
                             <a href="/encyclopedia/" class="resource-link" aria-label="Browse our investing encyclopedia">
                                 <div class="resource-link-content">
@@ -287,6 +286,98 @@
 
 .faq-item .article-list-text {
     width: 100% !important;
+}
+
+/* Enhanced Resource Links Styling */
+.resource-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.resource-link {
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.resource-link-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border-variant);
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.resource-link:hover .resource-link-content {
+    background: var(--color-primary-alpha-light);
+    border-color: var(--color-primary);
+    transform: translateX(4px);
+}
+
+.resource-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--color-background);
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+}
+
+.resource-icon {
+    font-size: 1.5rem;
+    filter: grayscale(0.2);
+}
+
+.resource-text-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+}
+
+.resource-text {
+    color: var(--color-text-primary);
+    font-weight: var(--font-semibold);
+    font-size: var(--font-md);
+    line-height: 1.2;
+}
+
+.resource-subtext {
+    color: var(--color-text-secondary);
+    font-size: var(--font-sm);
+    line-height: 1.2;
+}
+
+.resource-arrow {
+    color: var(--color-text-secondary);
+    font-size: var(--font-lg);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.resource-link:hover .resource-arrow {
+    transform: translateX(4px);
+    color: var(--color-primary);
+}
+
+/* Focus states for accessibility */
+.resource-link:focus-visible .resource-link-content {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Active state */
+.resource-link:active .resource-link-content {
+    transform: scale(0.98);
 }
 </style>
 {% endblock %}

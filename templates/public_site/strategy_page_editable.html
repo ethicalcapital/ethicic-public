@@ -424,6 +424,18 @@
 /* Use the same styles from the original template */
 {% include "public_site/strategy_page_styles.html" %}
 
+/* Quick actions - ensure buttons stay on one line */
+.quick-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: nowrap;
+}
+
+.quick-actions .garden-action {
+    white-space: nowrap;
+}
+
 /* Additional styles for two-column layout */
 .strategy-content-grid {
     display: grid;
@@ -485,6 +497,23 @@
     .sidebar-column {
         position: static;
         order: -1; /* Move to top on mobile */
+    }
+    
+    /* Allow wrapping on tablets and below */
+    .quick-actions {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stack buttons on mobile */
+    .quick-actions {
+        flex-direction: column;
+    }
+    
+    .quick-actions .garden-action {
+        width: 100%;
+        text-align: center;
     }
 }
 

@@ -3147,3 +3147,7 @@ class NavigationMenuItem(Orderable):
     
     class Meta:
         verbose_name = "Navigation Menu Item"
+
+
+# Import new page models
+from .models_newsletter import NewsletterPage, AccessibilityPage
