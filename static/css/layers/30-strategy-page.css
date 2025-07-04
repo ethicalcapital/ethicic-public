@@ -18,24 +18,29 @@
 /* Ensure header can contain absolute positioned badge */
 .strategy-page .strategy-header-panel .garden-panel__header {
     position: relative;
+    overflow: hidden;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
 }
 
 /* ===== STRATEGY HEADER ===== */
 .strategy-page .strategy-badge {
     position: absolute;
-    top: 0.75rem;
-    right: 1rem;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
     display: inline-block;
-    padding: 0.75rem 2rem;
+    padding: 0.5rem 1.5rem;
     background: var(--theme-primary);
     color: #ffffff !important;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .strategy-page .strategy-title {

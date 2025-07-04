@@ -82,24 +82,24 @@
         </main>
 
         <!-- Newsletter CTA Section -->
-        <section class="article-newsletter-cta">
-            <div class="newsletter-cta-wrapper">
-                <h3 class="newsletter-cta-title">Stay Informed on Ethical Investing</h3>
-                <p class="newsletter-cta-description">Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.</p>
-                <form method="post" action="/newsletter/signup/" class="article-newsletter-form">
+        <section class="article-newsletter-cta" style="background: #f8f4ff; padding: 48px 24px; margin: 48px 0; border-radius: 12px; text-align: center;">
+            <div style="max-width: 600px; margin: 0 auto;">
+                <h3 style="font-size: 1.75rem; margin: 0 0 16px 0; color: #1a1a1a; font-weight: 700;">Stay Informed on Ethical Investing</h3>
+                <p style="color: #666; margin: 0 0 32px 0; line-height: 1.6; font-size: 1.1rem;">Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.</p>
+                <form method="post" action="/newsletter/signup/" style="margin-bottom: 16px;">
                     {% csrf_token %}
                     <input type="hidden" name="source" value="blog-article">
-                    <div class="newsletter-form-row">
+                    <div class="newsletter-form-container">
                         <input type="email" 
                                name="email" 
                                placeholder="Your email address"
-                               class="newsletter-email-input"
+                               class="newsletter-input-field"
                                required
                                aria-label="Email address for newsletter subscription">
-                        <button type="submit" class="newsletter-submit-btn">SUBSCRIBE</button>
+                        <button type="submit" class="newsletter-button">SUBSCRIBE</button>
                     </div>
                 </form>
-                <p class="newsletter-privacy">We respect your privacy. Unsubscribe anytime.</p>
+                <p style="color: #888; font-size: 0.875rem; margin: 0;">We respect your privacy. Unsubscribe anytime.</p>
             </div>
         </section>
 
@@ -572,6 +572,77 @@
 [data-theme="dark"] .garden-action.secondary {
     background: var(--color-surface) !important;
     color: var(--color-primary) !important;
+}
+
+/* Newsletter Form Fix */
+.newsletter-form-container {
+    display: flex;
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+.newsletter-input-field {
+    flex: 1;
+    min-width: 0; /* Important for flex items */
+    height: 52px;
+    padding: 14px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: white !important;
+    color: #1a1a1a !important;
+    font-size: 16px;
+    font-family: inherit;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.newsletter-input-field::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+.newsletter-input-field:focus {
+    border-color: #6a4c93;
+    outline: none;
+}
+
+.newsletter-button {
+    height: 52px;
+    padding: 0 32px;
+    background: #6a4c93 !important;
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.newsletter-button:hover {
+    background: #553a7a !important;
+}
+
+/* Mobile styles for newsletter form */
+@media (max-width: 600px) {
+    .newsletter-form-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .newsletter-input-field,
+    .newsletter-button {
+        width: 100%;
+    }
 }
 </style>
 {% endblock %}

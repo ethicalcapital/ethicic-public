@@ -18,6 +18,8 @@ from django.urls import reverse
 def test_all_urls():
     """Test all public URLs."""
     client = Client()
+    # Set proper hostname for Wagtail pages
+    client.defaults['SERVER_NAME'] = 'ec1c.com'
     
     # List of URLs to test with expected status codes
     urls_to_test = [
