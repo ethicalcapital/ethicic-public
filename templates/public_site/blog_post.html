@@ -83,29 +83,23 @@
 
         <!-- Newsletter CTA Section -->
         <section class="article-newsletter-cta">
-            <div class="garden-panel">
-                <div class="garden-panel__content">
-                    <div class="newsletter-cta-content">
-                        <h3 class="newsletter-cta-title">Stay Informed on Ethical Investing</h3>
-                        <p class="newsletter-cta-description">Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.</p>
-                        <form method="post" action="/newsletter/signup/" class="article-newsletter-form">
-                            {% csrf_token %}
-                            <input type="hidden" name="source" value="blog-article">
-                            <div class="newsletter-form-row">
-                                <input type="email" 
-                                       name="email" 
-                                       placeholder="Your email address"
-                                       class="garden-input newsletter-email"
-                                       required
-                                       aria-label="Email address for newsletter subscription">
-                                <button type="submit" class="garden-action primary">SUBSCRIBE</button>
-                            </div>
-                        </form>
-                        <p class="newsletter-privacy">
-                            <small>We respect your privacy. Unsubscribe anytime.</small>
-                        </p>
+            <div class="newsletter-cta-wrapper">
+                <h3 class="newsletter-cta-title">Stay Informed on Ethical Investing</h3>
+                <p class="newsletter-cta-description">Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.</p>
+                <form method="post" action="/newsletter/signup/" class="article-newsletter-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="source" value="blog-article">
+                    <div class="newsletter-form-row">
+                        <input type="email" 
+                               name="email" 
+                               placeholder="Your email address"
+                               class="newsletter-email-input"
+                               required
+                               aria-label="Email address for newsletter subscription">
+                        <button type="submit" class="newsletter-submit-btn">SUBSCRIBE</button>
                     </div>
-                </div>
+                </form>
+                <p class="newsletter-privacy">We respect your privacy. Unsubscribe anytime.</p>
             </div>
         </section>
 
@@ -271,81 +265,89 @@
 
 /* Newsletter CTA Styling */
 .article-newsletter-cta {
-    background: var(--color-surface-variant);
-    border-radius: var(--radius-lg);
-    padding: var(--space-8) var(--space-6);
-    margin: var(--space-8) 0;
+    background: #f8f4ff; /* Light purple background */
+    border-radius: 12px;
+    padding: 48px 32px;
+    margin: 48px 0;
     text-align: center;
 }
 
-.article-newsletter-cta .garden-panel {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-}
-
-.article-newsletter-cta .garden-panel__content {
-    padding: 0;
-}
-
-.newsletter-cta-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-4);
+.newsletter-cta-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .newsletter-cta-title {
-    font-size: 1.6rem;
-    margin-bottom: 0;
-    color: var(--color-on-surface);
-    font-weight: 600;
+    font-size: 1.75rem;
+    margin: 0 0 16px 0;
+    color: #1a1a1a;
+    font-weight: 700;
 }
 
 .newsletter-cta-description {
-    color: var(--color-on-surface-variant);
-    margin-bottom: 0;
-    max-width: 500px;
-    line-height: 1.5;
+    color: #666;
+    margin: 0 0 32px 0;
+    line-height: 1.6;
+    font-size: 1.1rem;
 }
 
 .article-newsletter-form {
-    width: 100%;
-    max-width: 500px;
+    margin-bottom: 16px;
 }
 
 .newsletter-form-row {
     display: flex;
-    gap: var(--space-3);
-    margin-bottom: var(--space-3);
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+    align-items: stretch;
 }
 
-.newsletter-email {
+.newsletter-email-input {
     flex: 1;
-    min-height: 48px;
-    padding: var(--space-3) var(--space-4);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    background: var(--color-surface);
-    color: var(--color-on-surface);
-    font-size: 1rem;
+    min-height: 52px;
+    padding: 14px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    color: #1a1a1a;
+    font-size: 16px;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
 }
 
-.newsletter-email:focus {
-    border-color: var(--color-primary);
+.newsletter-email-input::placeholder {
+    color: #999;
+}
+
+.newsletter-email-input:focus {
+    border-color: #6a4c93;
     outline: none;
 }
 
-.article-newsletter-form .garden-action.primary {
-    min-height: 48px;
-    padding: var(--space-3) var(--space-5);
-    font-weight: 600;
+.newsletter-submit-btn {
+    min-height: 52px;
+    padding: 14px 32px;
+    background: #6a4c93;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
     white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.newsletter-submit-btn:hover {
+    background: #553a7a;
+    transform: translateY(-1px);
 }
 
 .newsletter-privacy {
-    color: var(--color-on-surface-variant);
-    font-size: 0.85rem;
+    color: #888;
+    font-size: 0.875rem;
     margin: 0;
 }
 
@@ -431,16 +433,31 @@
         gap: var(--space-1);
     }
     
+    .article-newsletter-cta {
+        padding: 32px 20px;
+        margin: 32px 0;
+    }
+    
+    .newsletter-cta-title {
+        font-size: 1.5rem;
+    }
+    
+    .newsletter-cta-description {
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+    
     .newsletter-form-row {
         flex-direction: column;
-        gap: var(--space-2);
+        gap: 12px;
     }
     
-    .newsletter-email {
+    .newsletter-email-input {
         width: 100%;
+        font-size: 16px; /* Prevents zoom on iOS */
     }
     
-    .article-newsletter-form .garden-action.primary {
+    .newsletter-submit-btn {
         width: 100%;
     }
     

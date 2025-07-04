@@ -155,11 +155,12 @@
 
 /* Fix strategy page tags */
 .strategy-card .strategy-label,
-.featured-badge,
-.strategy-badge {
+.featured-badge {
     background: var(--color-primary);
     color: var(--color-on-primary);
 }
+
+/* Strategy badge has its own specific styling in strategy-page.css */
 
 /* ===== BUTTON STATE FIXES ===== */
 /* Disabled state with proper contrast */

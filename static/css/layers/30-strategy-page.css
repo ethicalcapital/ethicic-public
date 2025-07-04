@@ -15,16 +15,27 @@
     padding: var(--space-4) var(--space-6);
 }
 
+/* Ensure header can contain absolute positioned badge */
+.strategy-page .strategy-header-panel .garden-panel__header {
+    position: relative;
+}
+
 /* ===== STRATEGY HEADER ===== */
 .strategy-page .strategy-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
     display: inline-block;
-    padding: var(--space-2) var(--space-4);
-    background: rgb(139, 92, 246, 0.1); /* Light purple background */
-    color: var(--color-accent);
-    border-radius: var(--radius-full);
-    font-size: var(--text-sm);
-    font-weight: var(--font-semibold);
-    margin-left: var(--space-4);
+    padding: 0.75rem 2rem;
+    background: var(--theme-primary);
+    color: #ffffff !important;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #ffffff;
 }
 
 .strategy-page .strategy-title {
