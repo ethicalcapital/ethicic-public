@@ -84,6 +84,7 @@ minimal_runserver.py
 load_fixtures_safely.py
 migrate-database-script.sh
 wordpress-export.xml
+wordpress-exportxml.xml
 
 # Screenshots and temp images
 *.png
