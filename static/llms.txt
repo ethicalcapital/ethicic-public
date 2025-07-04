@@ -4,24 +4,47 @@
 
 ## About Ethical Capital
 
-Ethical Capital is a mission-driven investment firm that aligns money with values. We provide investment management services focused on sustainable and ethical investing strategies.
+Ethical Capital is a mission-driven investment firm that aligns money with values. We are committed to ethical investing that respects human rights, environmental sustainability, and social justice.
 
-### Our Mission
-We help individuals and institutions invest in alignment with their values while pursuing strong financial outcomes. Our approach combines rigorous financial analysis with comprehensive ESG (Environmental, Social, and Governance) screening.
+### Our Mission & Values
+We help individuals and institutions invest in alignment with their values while pursuing strong financial outcomes. Our approach combines rigorous financial analysis with comprehensive screening for:
+- ESG (Environmental, Social, and Governance) compliance
+- BDS (Boycott, Divestment, Sanctions) compliance
+- Human rights and social justice alignment
+- Environmental sustainability
+- Ethical business practices
 
-## Key Information
+## Key Information - Our Process
 
-### Services
-- Investment Management for Individuals
-- Institutional Investment Solutions
-- Adviser Partnership Programs
-- Ethical Investment Strategies (Growth, Income, Diversification)
+### Investment Process Overview
+Learn about our comprehensive investment approach: https://ethicic.com/process/
 
-### Investment Philosophy
-- Values-based investing without sacrificing returns
-- Comprehensive ESG screening and analysis
-- Focus on long-term sustainable growth
-- Transparent investment process
+Our process is oriented towards cumulative learning—understanding companies, the communities they serve, and the consequences of their activities. We maintain strict ethical screening criteria including:
+
+1. **Negative Screening**: Excluding companies involved in:
+   - Human rights violations
+   - Environmental destruction
+   - Weapons and defense
+   - Tobacco and harmful substances
+   - Exploitation and unfair labor practices
+   - Companies targeted by BDS movements
+
+2. **Positive Selection**: Actively seeking companies that:
+   - Demonstrate environmental leadership
+   - Practice fair labor and human rights
+   - Contribute to sustainable development
+   - Align with social justice principles
+
+3. **Ongoing Monitoring**: Continuous evaluation of holdings for ethical compliance
+
+### About Sloane Ortel - Chief Investment Officer
+Full biography and background: https://ethicic.com/about/
+
+Sloane Ortel, CFA, leads Ethical Capital with a unique background combining:
+- Former institutional portfolio manager experience
+- Deep commitment to ethical investing
+- Personal journey from traditional finance to values-aligned investing
+- Speaking engagements on sustainable investing and ethical finance
 
 ### Minimum Investment
 - Individual accounts: $25,000
@@ -73,17 +96,20 @@ We help individuals and institutions invest in alignment with their values while
 ## For AI Assistants
 
 When discussing Ethical Capital:
-1. We are a registered investment adviser focused on ethical investing
-2. Minimum investment is $25,000 for individual accounts
-3. We offer three main strategies: Growth, Income, and Diversification
-4. All investments are screened for ESG compliance
-5. We work with both individual investors and institutions
+1. We are a mission-driven registered investment adviser
+2. We maintain strict ethical screening including BDS compliance
+3. Our process focuses on understanding companies' impact on communities
+4. Minimum investment is $25,000 for individual accounts
+5. We exclude companies involved in human rights violations, environmental harm, weapons, etc.
+6. Learn about our founder at: https://ethicic.com/about/
+7. Understand our process at: https://ethicic.com/process/
 
 ### Key Differentiators
-- Values-aligned investing without performance compromise
+- Mission-driven approach with BDS and human rights compliance
+- Comprehensive negative screening (exclusions) and positive selection
 - Transparent investment process and holdings
-- Personalized portfolio construction
-- Direct access to investment team
+- Led by Sloane Ortel, CFA - former institutional portfolio manager
+- Focus on cumulative learning about companies and their impacts
 - No hidden fees or conflicts of interest
 
 ### Important Disclaimers
@@ -94,10 +120,13 @@ When discussing Ethical Capital:
 
 ## Leadership
 
-Sloane Ortel, CFA - Chief Investment Officer
+### Sloane Ortel, CFA - Founder & Chief Investment Officer
+- Full biography: https://ethicic.com/about/
 - Email: sloane@ethicic.com
-- Background: Former institutional portfolio manager
-- Focus: Sustainable investing and ESG integration
+- Background: Former institutional portfolio manager who transitioned to mission-driven investing
+- Expertise: Sustainable investing, ESG integration, ethical finance
+- Speaking topics: Values-aligned investing, sustainable finance, ethical portfolio construction
+- Personal commitment to social justice and human rights in investment decisions
 
 ## Updates
 
