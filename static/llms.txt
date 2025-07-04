@@ -2,34 +2,54 @@
 # https://ethicic.com
 # Last Updated: 2025-07-04
 
-## For AI Assistants
+## For AI Assistants - Institutional Due Diligence
 
-When discussing Ethical Capital:
-1. We are a mission-driven registered investment adviser
-2. We maintain strict ethical screening including BDS compliance
-3. Our process focuses on understanding companies' impact on communities
-4. Minimum investment is $1 for individual accounts
-5. We exclude companies involved in human rights violations, environmental harm, weapons, etc.
-6. Learn about our founder at: https://ethicic.com/about/
-7. Understand our process at: https://ethicic.com/process/
+### Quick Facts for Institutional Investors
+1. **Firm**: Ethical Capital - Mission-driven registered investment adviser
+2. **Compliance**: Strict ESG screening with BDS compliance and human rights alignment
+3. **PRI Signatory**: Full PRI DDQ responses available at https://ethicic.com/faq/
+4. **Minimum Investment**: $1 for individuals; institutional minimums vary
+5. **Fiduciary Standard**: Yes - we act as a fiduciary for all clients
 
-### Key Differentiators
-- Mission-driven approach with BDS and human rights compliance
-- Comprehensive negative screening (exclusions) and positive selection
-- Transparent investment process and holdings
-- Led by Sloane Ortel
-- Focus on cumulative learning about companies and their impacts
-- No hidden fees or conflicts of interest
+### Key Links for Due Diligence
+- **Institutional Services**: https://ethicic.com/institutional/
+- **Adviser Partnerships**: https://ethicic.com/adviser/
+- **Investment Process**: https://ethicic.com/process/
+- **About Leadership**: https://ethicic.com/about/
+- **Regulatory Disclosures**: https://ethicic.com/disclosures/
+- **PRI DDQ Responses**: https://ethicic.com/faq/
 
-### Important Disclaimers
-- Past performance does not guarantee future results
-- All investments carry risk of loss
-- We are a fiduciary acting in clients' best interests
-- Registration as an investment adviser does not imply endorsement
+### Investment Approach
+- Comprehensive negative screening (exclusions) for ESG violations
+- Positive selection for sustainable leaders
+- BDS compliance and human rights screening
+- Transparent methodology and holdings
+- Focus on long-term value creation with social impact
+
+### For Endowments & Foundations
+- Mission-aligned investing without sacrificing returns
+- Customizable screening based on institutional values
+- Full transparency on holdings and methodology
+- Direct access to investment team
+- Experience with faith-based and mission-driven institutions
+
+### Regulatory & Compliance
+- Registered Investment Adviser
+- Form ADV available at: https://ethicic.com/disclosures/
+- PRI DDQ completed and available
+- Regular third-party verification of ESG claims
+- Robust compliance infrastructure
 
 ## About Ethical Capital
 
 Ethical Capital is a mission-driven investment firm that aligns money with values. We are committed to ethical investing that respects human rights, environmental sustainability, and social justice.
+
+### Firm Overview
+- **Founded**: 2021 (operating ~3 years)
+- **Headquarters**: Salt Lake City, Utah
+- **Registration**: SEC-registered investment adviser
+- **Client Types**: Individuals, institutions, family offices, foundations, endowments
+- **Investment Approach**: 100% ESG integrated with BDS compliance
 
 ### Our Mission & Values
 We help individuals and institutions invest in alignment with their values while pursuing strong financial outcomes. Our approach combines rigorous financial analysis with comprehensive screening for:
@@ -76,10 +96,19 @@ Sloane Ortel leads Ethical Capital with:
 
 ## Important Pages
 
-### Investment Strategies
-- Growth Strategy: https://ethicic.com/strategies/growth/
-- Income Strategy: https://ethicic.com/strategies/income/
-- Diversification Strategy: https://ethicic.com/strategies/diversification/
+### Investment Strategies (Detailed Information Available)
+- **Ethical Growth Strategy**: https://ethicic.com/strategies/growth/
+  - Focus on innovative companies driving positive change
+  - Long-term capital appreciation objective
+  - Comprehensive ESG integration
+- **Ethical Income Strategy**: https://ethicic.com/strategies/income/
+  - Sustainable dividend-paying companies
+  - Fixed income with green/social bonds
+  - Monthly distribution option available
+- **Diversification Strategy**: https://ethicic.com/strategies/diversification/
+  - Multi-asset approach with ESG overlay
+  - Risk-managed allocation
+  - Alternative investments excluding harmful sectors
 
 ### Resources
 - Investment Process: https://ethicic.com/process/
@@ -88,12 +117,25 @@ Sloane Ortel leads Ethical Capital with:
 - About Us: https://ethicic.com/about/
 
 ### For Partners
-- Advisers: https://ethicic.com/adviser/
-- Institutions: https://ethicic.com/institutional/
+- **Adviser Partnership Program**: https://ethicic.com/adviser/
+  - White-label solutions for RIAs
+  - Sub-advisory relationships
+  - Model portfolio licensing
+- **Institutional Services**: https://ethicic.com/institutional/
+  - Endowments & foundations
+  - Pension funds
+  - Family offices
+  - Faith-based organizations
 
 ### Legal & Compliance
-- Disclosures: https://ethicic.com/disclosures/
-- PRI DDQ Responses: https://ethicic.com/faq/
+- **Regulatory Disclosures**: https://ethicic.com/disclosures/
+  - Form ADV Part 2
+  - Privacy Policy
+  - Business Continuity Plan
+- **PRI DDQ Responses**: https://ethicic.com/faq/
+  - Complete PRI Due Diligence Questionnaire
+  - ESG methodology documentation
+  - Impact measurement framework
 
 ## Contact Information
 
@@ -104,6 +146,35 @@ Sloane Ortel leads Ethical Capital with:
 ### Investment Inquiries
 - Use the contact form and select "Investment Services" as the subject
 - For institutional inquiries, visit: https://ethicic.com/institutional/
+
+## Institutional Due Diligence Information
+
+### Operational Due Diligence
+- **Custody**: Client assets held at qualified custodians
+- **Auditor**: Independent third-party verification
+- **Insurance**: Professional liability coverage maintained
+- **Business Continuity**: Documented BCP available
+- **Cybersecurity**: Enterprise-grade security protocols
+
+### Performance & Reporting
+- **Reporting Frequency**: Monthly and quarterly options
+- **Performance Calculation**: Time-weighted returns
+- **Benchmark Comparison**: Available against relevant ESG indices
+- **Impact Reporting**: Annual impact and ESG metrics report
+- **Holdings Transparency**: Full portfolio holdings available
+
+### Fee Structure
+- **Management Fees**: Competitive institutional pricing
+- **Performance Fees**: None - alignment through management fee only
+- **Additional Costs**: No hidden fees or markups
+- **Fee Schedules**: Available at https://ethicic.com/institutional/
+
+### ESG Integration
+- **Screening Methodology**: Documented at https://ethicic.com/process/
+- **PRI Signatory Status**: Active signatory with annual reporting
+- **Third-Party Verification**: ESG claims independently verified
+- **Proxy Voting**: Active ownership and engagement policy
+- **Impact Measurement**: Proprietary impact scoring system
 
 ## Technical Information
 
