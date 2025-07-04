@@ -2,6 +2,7 @@
 import pytest
 from django.test import Client
 from wagtail.models import Page, Site
+from wagtail.models.i18n import Locale
 from wagtail.test.utils import WagtailPageTestCase
 
 
@@ -26,8 +27,19 @@ def authenticated_client(client, django_user_model):
 @pytest.fixture
 def wagtail_site(db):
     """Create a Wagtail site for testing."""
+    # Create default locale first
+    locale, created = Locale.objects.get_or_create(
+        language_code='en',
+        defaults={'language_code': 'en'}
+    )
+    
     # Get or create root page
-    root = Page.objects.get(id=1)
+    from wagtail.models import Page
+    
+    # Create root page if it doesn't exist
+    root = Page.objects.filter(id=1).first()
+    if not root:
+        root = Page.add_root(title='Root', locale=locale)
     
     # Create a home page if it doesn't exist
     from public_site.models import HomePage
@@ -38,7 +50,8 @@ def wagtail_site(db):
             title="Test Home",
             slug="home",
             hero_title="Test Hero Title",
-            hero_subtitle="<p>Test subtitle</p>"
+            hero_subtitle="<p>Test subtitle</p>",
+            locale=locale
         )
         root.add_child(instance=home)
         home.save_revision().publish()
@@ -63,6 +76,10 @@ def wagtail_site(db):
 def blog_index_page(wagtail_site):
     """Create a blog index page."""
     from public_site.models import BlogIndexPage
+    from wagtail.models.i18n import Locale
+    
+    # Get default locale
+    locale = Locale.objects.get(language_code='en')
     
     home = wagtail_site.root_page
     blog = BlogIndexPage.objects.filter(slug='blog').first()
@@ -71,7 +88,8 @@ def blog_index_page(wagtail_site):
         blog = BlogIndexPage(
             title="Blog",
             slug="blog",
-            intro="<p>Test blog intro</p>"
+            intro_text="<p>Test blog intro</p>",
+            locale=locale
         )
         home.add_child(instance=blog)
         blog.save_revision().publish()
@@ -83,13 +101,18 @@ def blog_index_page(wagtail_site):
 def sample_blog_post(blog_index_page):
     """Create a sample blog post."""
     from public_site.models import BlogPost
+    from wagtail.models.i18n import Locale
+    
+    # Get default locale
+    locale = Locale.objects.get(language_code='en')
     
     post = BlogPost(
         title="Test Blog Post",
         slug="test-blog-post",
         author="Test Author",
         excerpt="Test excerpt",
-        body="<p>Test body content</p>"
+        body="<p>Test body content</p>",
+        locale=locale
     )
     blog_index_page.add_child(instance=post)
     post.save_revision().publish()
@@ -101,6 +124,10 @@ def sample_blog_post(blog_index_page):
 def faq_index_page(wagtail_site):
     """Create an FAQ index page."""
     from public_site.models import FAQIndexPage
+    from wagtail.models.i18n import Locale
+    
+    # Get default locale
+    locale = Locale.objects.get(language_code='en')
     
     home = wagtail_site.root_page
     faq = FAQIndexPage.objects.filter(slug='faq').first()
@@ -109,7 +136,8 @@ def faq_index_page(wagtail_site):
         faq = FAQIndexPage(
             title="FAQ",
             slug="faq",
-            intro="<p>Frequently asked questions</p>"
+            intro_text="<p>Frequently asked questions</p>",
+            locale=locale
         )
         home.add_child(instance=faq)
         faq.save_revision().publish()

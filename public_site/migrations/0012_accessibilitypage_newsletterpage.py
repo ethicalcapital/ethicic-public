@@ -9,7 +9,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("public_site", "0011_fix_migration_state"),
-        ("wagtailcore", "0095_query_searchpromotion_querydailyhits"),
     ]
 
     operations = [
