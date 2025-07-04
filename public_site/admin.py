@@ -1,10 +1,8 @@
-from typing import ClassVar
-
-
 """
 Django admin configuration for public site models.
 CRITICAL: All models must be registered for proper content management.
 """
+from typing import ClassVar
 
 from django.contrib import admin
 

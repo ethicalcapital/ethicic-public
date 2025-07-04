@@ -2,7 +2,9 @@
 Build-time settings for Kinsta deployment
 Forces SQLite to avoid external database connections during Docker build
 """
-from .settings import *
+
+# Import only what we need from settings
+from .settings import BASE_DIR
 
 # Override database configuration for build phase
 DATABASES = {

@@ -35,7 +35,7 @@ class Command(BaseCommand):
         try:
             with connections['ubicloud'].cursor() as cursor:
                 cursor.execute("SELECT version()")
-                version = cursor.fetchone()[0]
+                cursor.fetchone()[0]  # Test connection
                 self.stdout.write(
                     self.style.SUCCESS('✅ Connected to Ubicloud database')
                 )
@@ -105,7 +105,6 @@ class Command(BaseCommand):
     def _safe_import_pages(self, schemas):
         """Safely import pages based on available columns"""
         homepage_table = 'public_site_homepage'
-        blogpost_table = 'public_site_blogpost'
         
         if homepage_table not in schemas:
             self.stdout.write("⚠️  No homepage table found, skipping page import")

@@ -1,12 +1,9 @@
-from typing import ClassVar
-
-
 """
 AI-Powered Admin Panels for Enhanced Blog Content Creation
 Integrates Maverick AI agents with Wagtail admin interface
 """
-
 # import asyncio  # No longer needed - using synchronous API calls
+from typing import ClassVar
 
 from django import forms
 from django.forms.widgets import TextInput as AdminTextInput

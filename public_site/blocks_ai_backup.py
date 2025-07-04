@@ -26,7 +26,7 @@ AI_API_BASE_URL = getattr(settings, 'AI_API_BASE_URL', 'http://garden-platform:8
 
 # Try to import AI services for direct integration
 try:
-    from ai_services.providers import get_provider
+    from ai_services.providers import get_provider  # noqa: F401
     AI_SERVICES_DIRECT = True
     logger.info("AI services available for direct integration")
 except ImportError:

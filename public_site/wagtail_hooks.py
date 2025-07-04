@@ -1,10 +1,9 @@
-from typing import ClassVar
-
-
 """
 Wagtail hooks for the public_site app.
 Clean, simplified admin interface without AI features.
 """
+from typing import ClassVar
+
 from django.utils.html import format_html
 from wagtail import hooks
 from wagtail.snippets.models import register_snippet

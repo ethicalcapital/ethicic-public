@@ -4,10 +4,12 @@ from django.core.paginator import Paginator
 from django.db import models
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
 from taggit.models import TaggedItemBase
 from wagtail import blocks
 from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path
+from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.fields import RichTextField, StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -725,8 +727,6 @@ class ContactPage(RoutablePageMixin, Page):
     def _create_crm_contact(self, form_data, request):
         """Create a contact in the CRM system."""
         try:
-            from django.contrib.auth.models import User
-
             from crm.models import Contact
 
             # Check if contact already exists
@@ -2833,9 +2833,6 @@ class PRIDDQPage(Page):
 
 
 # Site Configuration Model for Global Settings
-from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
-from modelcluster.models import ClusterableModel
-
 @register_setting
 class SiteConfiguration(ClusterableModel, BaseSiteSetting):
     """Global site configuration and branding settings."""

@@ -1,11 +1,8 @@
-from typing import ClassVar
-
-
 """Accessible forms for the public site using django-crispy-forms
 """
-
 import random
 import re
+from typing import ClassVar
 
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper

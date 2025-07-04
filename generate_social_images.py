@@ -47,8 +47,8 @@ def generate_social_pngs():
                     str(png_file)
                 ], check=True)
                 print(f"✅ Generated {png_name} using ImageMagick")
-            except:
-                print(f"⚠️  Could not generate {png_name}")
+            except Exception as e:
+                print(f"⚠️  Could not generate {png_name}: {e}")
 
 if __name__ == '__main__':
     generate_social_pngs()

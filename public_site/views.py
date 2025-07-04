@@ -76,12 +76,7 @@ def custom_500(request):
         """
         return HttpResponse(html, status=500, content_type='text/html')
 
-# Import standalone constants
-from .standalone_constants import (
-    ContactStatus,
-    ContactType,
-    PriorityLevel,
-)
+# Standalone constants already imported above
 
 
 # Try to import CRM models for database operations
@@ -99,7 +94,7 @@ except ImportError:
 
 # Try to import AI services
 try:
-    from ai_services.providers import get_provider
+    from ai_services.providers import get_provider  # noqa: F401
     AI_SERVICES_AVAILABLE = True
     logger.info("AI services available")
 except ImportError:
@@ -341,7 +336,7 @@ def create_or_update_contact(email, form_data, form_type, user=None):
     # Import here to avoid dependency issues
     try:
         from crm.models import Contact
-        from crm.models.choices import ContactStatus, ContactType, PriorityLevel
+        from crm.models.choices import ContactStatus, ContactType, PriorityLevel  # noqa: F401
 
         # Get contact classification
         contact_status, priority_level, importance_score = classify_contact_priority(form_type, form_data)
@@ -820,164 +815,6 @@ def get_footer_links(request):
 
 
 
-
-
-def classify_contact_priority(form_type, form_data):
-    """Classify contact priority and status based on engagement AND business criteria.
-
-    This is a simplified version for the public site that works without full CRM integration.
-    """
-    importance_score = 0.5  # Default
-    priority_level = PriorityLevel.MEDIUM
-    contact_status = ContactStatus.COLD_LEAD  # Default to cold lead
-
-    email = form_data.get('email', '').lower()
-    company = form_data.get('company', '').lower()
-    subject = form_data.get('subject', '').lower()
-
-    # Business email domains get higher priority
-    business_domains = ['.edu', '.org', '.gov']
-    personal_domains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com']
-
-    is_business_email = any(domain in email for domain in business_domains)
-    is_personal_email = any(domain in email for domain in personal_domains)
-
-    # Investment adviser indicators
-    adviser_keywords = ['ria', 'investment advisor', 'investment adviser', 'financial advisor', 'financial adviser', 'portfolio manager']
-    institutional_keywords = ['endowment', 'foundation', 'pension', 'university', 'college', 'fund', 'trust']
-
-    is_adviser = any(keyword in company for keyword in adviser_keywords) or any(keyword in subject for keyword in adviser_keywords)
-    is_institutional = any(keyword in company for keyword in institutional_keywords) or any(keyword in subject for keyword in institutional_keywords)
-
-    # Contact status based on form type and content
-    if form_type == 'onboarding':
-        contact_status = ContactStatus.PROSPECT
-        priority_level = PriorityLevel.HIGH
-        importance_score = 0.85
-    elif form_type == 'contact_form':
-        contact_status = ContactStatus.WARM_LEAD
-        if is_institutional:
-            priority_level = PriorityLevel.CRITICAL
-            importance_score = 0.95
-        elif is_adviser:
-            priority_level = PriorityLevel.HIGH
-            importance_score = 0.90
-        elif is_business_email and not is_personal_email:
-            priority_level = PriorityLevel.MEDIUM
-            importance_score = 0.65
-        else:
-            priority_level = PriorityLevel.MEDIUM
-            importance_score = 0.60
-    elif form_type == 'newsletter':
-        contact_status = ContactStatus.COLD_LEAD
-        priority_level = PriorityLevel.LOW
-        importance_score = 0.30
-    else:
-        contact_status = ContactStatus.COLD_LEAD
-        priority_level = PriorityLevel.MEDIUM
-        importance_score = 0.50
-
-    return contact_status, priority_level, importance_score
-
-
-def create_or_update_contact(email, form_data, form_type, user=None):
-    """Create or update CRM contact with business-focused deduplication and classification.
-
-    This is a simplified version for the public site that works without full CRM integration.
-    """
-    # Get contact classification
-    contact_status, priority_level, importance_score = classify_contact_priority(form_type, form_data)
-
-    if not CRM_AVAILABLE or Contact is None:
-        # Create a mock contact object for testing
-        class MockContact:
-            def __init__(self, email, **kwargs):
-                self.email = email
-                self.full_name = kwargs.get('full_name', '')
-                self.first_name = kwargs.get('first_name', '')
-                self.last_name = kwargs.get('last_name', '')
-                self.company = kwargs.get('company', '')
-                self.job_title = kwargs.get('job_title', '')
-                self.phone_primary = kwargs.get('phone_primary', '')
-                self.contact_status = kwargs.get('contact_status', contact_status)
-                self.priority_level = kwargs.get('priority_level', priority_level)
-                self.importance_score = kwargs.get('importance_score', importance_score)
-                self.contact_type = kwargs.get('contact_type', ContactType.INDIVIDUAL)
-                self.last_interaction = timezone.now()
-                self.interaction_count = 1
-                self.source = f'website_{form_type}'
-                self.created_by = user
-                self.custom_fields = {}
-
-            def save(self):
-                pass
-
-        # Create mock contact
-        full_name = form_data.get('name') or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
-        contact = MockContact(
-            email=email,
-            full_name=full_name,
-            first_name=form_data.get('first_name', ''),
-            last_name=form_data.get('last_name', ''),
-            company=form_data.get('company', ''),
-            job_title=form_data.get('role', ''),
-            phone_primary=form_data.get('phone', ''),
-            contact_status=contact_status,
-            priority_level=priority_level,
-            importance_score=importance_score,
-        )
-        return contact, True
-
-    # If CRM is available, use real Contact model
-    try:
-        contact = Contact.objects.filter(email=email).first()
-        created = False
-
-        if contact:
-            # Update existing contact
-            if form_data.get('name') and not contact.full_name:
-                contact.full_name = form_data['name']
-            if importance_score > contact.importance_score:
-                contact.importance_score = importance_score
-                contact.priority_level = priority_level
-            contact.last_interaction = timezone.now()
-            contact.interaction_count += 1
-        else:
-            # Create new contact
-            created = True
-            full_name = form_data.get('name') or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
-
-            contact = Contact.objects.create(
-                email=email,
-                full_name=full_name,
-                first_name=form_data.get('first_name', ''),
-                last_name=form_data.get('last_name', ''),
-                company=form_data.get('company', ''),
-                job_title=form_data.get('role', ''),
-                phone_primary=form_data.get('phone', ''),
-                status=contact_status,
-                priority_level=priority_level,
-                importance_score=importance_score,
-                last_interaction=timezone.now(),
-                interaction_count=1,
-                source=f'website_{form_type}',
-                created_by=user,
-            )
-
-        contact.save()
-        return contact, created
-
-    except Exception:
-        logger.exception("Error creating/updating contact")
-        # Return a mock contact if database operation fails
-        contact = type('MockContact', (), {
-            'email': email,
-            'full_name': form_data.get('name', ''),
-            'contact_status': contact_status,
-            'priority_level': priority_level,
-            'importance_score': importance_score,
-        })()
-        return contact, True
 
 
 def site_search(request):

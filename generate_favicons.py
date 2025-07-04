@@ -10,7 +10,7 @@ def check_dependencies():
     """Check if required tools are installed"""
     try:
         # Try cairosvg first (preferred)
-        import cairosvg
+        import cairosvg  # noqa: F401
         return 'cairosvg'
     except ImportError:
         # Check for rsvg-convert command

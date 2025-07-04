@@ -17,9 +17,10 @@ from django.views import View
 from django.core.cache import cache
 
 import logging
-logger = logging.getLogger(__name__)
 
 from ai_services.services.blog_content_analysis_service import BlogAnalysisService
+
+logger = logging.getLogger(__name__)
 
 
 class AIContentAnalysisView(View):

@@ -70,6 +70,24 @@
         color: var(--color-primary);
         font-weight: bold;
     }
+    
+    /* Hero CTA Buttons */
+    .hero-panel .cta-actions {
+        margin: var(--space-6) 0 !important;
+    }
+    
+    .hero-panel .cta-actions .garden-action {
+        min-width: 240px !important;
+        max-width: 240px !important;
+        width: 240px !important;
+    }
+    
+    /* Override mobile width rule from garden-ui-theme */
+    @media (max-width: 768px) {
+        .hero-panel .cta-actions .garden-action {
+            width: 240px !important;
+        }
+    }
 
     /* ===== STATS DISPLAY ===== */
     
@@ -133,16 +151,7 @@
         color: var(--color-primary);
         display: block;
         font-family: var(--font-sans);
-    }
-    
-    .stat-value-label {
-        font-size: var(--font-base);
-        font-weight: var(--font-semibold);
-        color: var(--color-primary);
-        display: block;
-        font-family: var(--font-sans);
-        margin-top: calc(var(--space-1) * -1);
-        margin-bottom: var(--space-1);
+        white-space: nowrap;
     }
 
     .stat-label {
@@ -558,16 +567,18 @@
     
     /* New accepting clients banner */
     .accepting-clients-banner {
-        display: inline-flex;
+        display: flex;
         align-items: center;
+        justify-content: center;
         gap: var(--space-3);
         background: var(--color-primary);
         color: var(--color-on-primary);
         padding: var(--space-3) var(--space-6);
-        border-radius: var(--radius-full);
-        margin: var(--space-4) 0 var(--space-6) 0;
+        border-radius: var(--radius-md);
+        margin: var(--space-4) auto var(--space-6) auto;
         box-shadow: var(--shadow-md);
         animation: pulse-glow 2s ease-in-out infinite;
+        max-width: fit-content;
     }
     
     @keyframes pulse-glow {
@@ -804,12 +815,6 @@
             flex-direction: row !important;
             justify-content: center !important;
             gap: 24px !important;
-        }
-        
-        .cta-actions .garden-action {
-            min-width: calc(var(--space-24) * 2.29) !important; /* 220px using design system */
-            max-width: calc(var(--space-24) * 3.125) !important; /* 300px using design system */
-            margin: 0 !important;
         }
     }
 }

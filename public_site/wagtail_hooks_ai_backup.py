@@ -1,11 +1,10 @@
-from typing import ClassVar
-
-
 """
 Wagtail hooks for the public_site app.
 This ensures pages are properly editable in the Wagtail admin.
 Uses Wagtail's modern admin viewsets instead of deprecated wagtail-modeladmin.
 """
+from typing import ClassVar
+
 from django.urls import reverse
 from django.utils.html import format_html
 from wagtail import hooks
