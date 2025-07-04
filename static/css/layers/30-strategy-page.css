@@ -402,7 +402,7 @@
 
 .strategy-page .vertical-tag.lending {
     background: rgb(59, 130, 246, 0.1); /* Light blue background */
-    color: #3B82F6; /* Blue */
+    color: #1545b3; /* Even darker blue for 7:1 contrast */
 }
 
 .strategy-page .vertical-tag.real-estate {

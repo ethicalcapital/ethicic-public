@@ -1,10 +1,251 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Not Found</title>
-</head>
-<body>
-    <h1>404 - Page Not Found</h1>
-    <p>The page you are looking for does not exist.</p>
-</body>
-</html>
+{% extends "public_site/base.html" %}
+{% load static %}
+
+{% block title %}Page Not Found (404) - Ethical Capital{% endblock %}
+
+{% block meta_description %}The page you're looking for could not be found. Navigate back to our homepage or explore our ethical investment solutions.{% endblock %}
+
+{% block body_class %}error-page error-404{% endblock %}
+
+{% block content %}
+<div class="garden-container">
+    <main class="error-content" role="main" aria-labelledby="error-heading">
+        <div class="garden-panel">
+            <div class="garden-panel__header">
+                <h1 id="error-heading" class="error-title">
+                    <span class="error-code" aria-label="Error code">404</span>
+                    Page Not Found
+                </h1>
+            </div>
+            
+            <div class="garden-panel__content">
+                <div class="error-message">
+                    <p class="error-description">
+                        We're sorry, but the page you're looking for doesn't exist or may have been moved.
+                    </p>
+                    
+                    <p class="error-suggestion">
+                        Here are some helpful options to get you back on track:
+                    </p>
+                </div>
+                
+                <nav class="error-navigation" aria-label="Recovery options">
+                    <ul class="error-nav-list">
+                        <li>
+                            <a href="/" class="garden-action primary" aria-describedby="home-desc">
+                                Return to Homepage
+                            </a>
+                            <span id="home-desc" class="sr-only">Go back to the main page</span>
+                        </li>
+                        <li>
+                            <a href="/solutions/" class="garden-action secondary" aria-describedby="solutions-desc">
+                                Explore Investment Solutions
+                            </a>
+                            <span id="solutions-desc" class="sr-only">Browse our ethical investment options</span>
+                        </li>
+                        <li>
+                            <a href="/contact/" class="garden-action secondary" aria-describedby="contact-desc">
+                                Contact Us
+                            </a>
+                            <span id="contact-desc" class="sr-only">Get in touch with our team</span>
+                        </li>
+                        <li>
+                            <a href="/blog/" class="garden-action secondary" aria-describedby="blog-desc">
+                                Read Our Blog
+                            </a>
+                            <span id="blog-desc" class="sr-only">Learn about ethical investing insights</span>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <div class="error-search" role="search" aria-label="Site search">
+                    <h2 class="error-search-title">Search Our Site</h2>
+                    <form method="get" action="/search/" class="search-form">
+                        <label for="error-search-input" class="sr-only">
+                            Search for content on our website
+                        </label>
+                        <div class="search-input-group">
+                            <input type="search" 
+                                   id="error-search-input"
+                                   name="q" 
+                                   placeholder="Search for ethical investing topics..."
+                                   class="search-input"
+                                   aria-describedby="search-help"
+                                   autocomplete="off">
+                            <button type="submit" 
+                                    class="search-button garden-action primary"
+                                    aria-label="Submit search">
+                                Search
+                            </button>
+                        </div>
+                        <div id="search-help" class="search-help">
+                            Try searching for investment strategies, ESG criteria, or company analysis
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.error-page {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.error-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-on-surface);
+    line-height: 1.2;
+}
+
+.error-code {
+    display: block;
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+}
+
+.error-description {
+    font-size: 1.1rem;
+    color: var(--color-on-surface-variant);
+    margin-bottom: var(--space-4);
+    line-height: 1.6;
+}
+
+.error-suggestion {
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+    color: var(--color-on-surface);
+}
+
+.error-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-8) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: center;
+}
+
+.error-nav-list li {
+    width: 100%;
+    max-width: 300px;
+}
+
+.error-nav-list .garden-action {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.error-search {
+    background: var(--color-surface-variant);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-top: var(--space-6);
+}
+
+.error-search-title {
+    font-size: 1.3rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-on-surface);
+}
+
+.search-input-group {
+    display: flex;
+    gap: var(--space-2);
+    max-width: 400px;
+    margin: 0 auto var(--space-3) auto;
+}
+
+.search-input {
+    flex: 1;
+    padding: var(--space-3);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+.search-button {
+    padding: var(--space-3) var(--space-4);
+    white-space: nowrap;
+    min-height: auto;
+}
+
+.search-help {
+    font-size: 0.875rem;
+    color: var(--color-on-surface-variant);
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .error-title {
+        font-size: 2rem;
+    }
+    
+    .error-code {
+        font-size: 3rem;
+    }
+    
+    .search-input-group {
+        flex-direction: column;
+    }
+    
+    .search-button {
+        width: 100%;
+    }
+    
+    .error-search {
+        padding: var(--space-4);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+    .error-code {
+        border: 2px solid currentColor;
+        padding: var(--space-2);
+    }
+    
+    .search-input {
+        border-width: 3px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .garden-action {
+        transition: none;
+    }
+}
+</style>
+{% endblock %}

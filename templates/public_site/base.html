@@ -41,12 +41,12 @@
         /* Absolute minimum to prevent FOUC - everything else moved to external files */
         html {
             background: #fff;
-            color: #1a1a1a;
+            color: #111111;
         }
         
         [data-theme="dark"] html {
             background: #0a0a0a;
-            color: #e0e0e0;
+            color: #f0f0f0;
         }
         
         body {
@@ -93,6 +93,9 @@
     <!-- Garden UI Theme - design system variables MUST LOAD FIRST for CSS variables -->
     <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025070111">
     
+    <!-- High contrast mode for accessibility compliance -->
+    <link rel="stylesheet" href="{% static 'css/high-contrast-mode.css' %}?v=2025070401">
+    
     <!-- Core styles - consolidated essential CSS -->
     <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v=2025070110">
     
@@ -101,6 +104,18 @@
     
     <!-- Button contrast fixes for light/dark mode -->
     <link rel="stylesheet" href="{% static 'css/button-contrast-fixes.css' %}?v=1">
+    
+    <!-- WCAG AA Accessibility Focus Indicators -->
+    <link rel="stylesheet" href="{% static 'css/accessibility-focus.css' %}?v=1">
+    
+    <!-- WCAG AA Form Accessibility -->
+    <link rel="stylesheet" href="{% static 'css/accessibility-forms.css' %}?v=1">
+    
+    <!-- WCAG AA Mobile Accessibility Fixes -->
+    <link rel="stylesheet" href="{% static 'css/accessibility-mobile-fixes.css' %}?v=1">
+    
+    <!-- WCAG AA Color Contrast Fixes -->
+    <link rel="stylesheet" href="{% static 'css/accessibility-color-contrast.css' %}?v=1">
     
     <!-- Breadcrumb spacing fix -->
     <link rel="stylesheet" href="{% static 'css/layers/99-breadcrumb-fix.css' %}?v=1">
@@ -203,6 +218,12 @@
     
     <!-- Alpine.js for lightweight client-side reactivity -->
     <script defer src="https://unpkg.com/alpinejs@3.13.7/dist/cdn.min.js"></script>
+    
+    <!-- WCAG AA Accessibility Enhancements for HTMX -->
+    <script src="{% static 'js/accessibility-htmx.js' %}?v=1"></script>
+    
+    <!-- WCAG AA Focus Trapping for Modals and Overlays -->
+    <script src="{% static 'js/accessibility-focus-trap.js' %}?v=1"></script>
     
     <!-- HTMX configuration -->
     <meta name="htmx-config" content="{&quot;defaultSwapStyle&quot;:&quot;innerHTML&quot;,&quot;defaultSwapDelay&quot;:0,&quot;defaultSettleDelay&quot;:20}">

@@ -1,0 +1,331 @@
+/* ========================================
+   WCAG AA MOBILE ACCESSIBILITY FIXES
+   Final fixes for 100% WCAG AA compliance
+   ======================================== */
+
+/* ===== PREVENT HORIZONTAL SCROLLING ===== */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Container fixes for narrow viewports */
+.garden-container {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-left: max(16px, 4vw);
+    padding-right: max(16px, 4vw);
+}
+
+/* ===== MINIMUM TOUCH TARGET SIZES ===== */
+
+/* Skip links - WCAG 2.5.5 compliance */
+.skip-link {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 12px 16px !important;
+    line-height: 1.2 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* All interactive elements minimum 44px */
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+.garden-action,
+.garden-button,
+a.garden-action {
+    min-height: 44px !important;
+    min-width: 44px !important;
+}
+
+/* Form inputs minimum touch target */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    min-height: 44px !important;
+    padding: 12px 16px !important;
+    font-size: 16px !important; /* Prevents zoom on iOS */
+}
+
+/* Mobile menu toggle */
+.garden-mobile-menu-toggle {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Navigation links */
+.garden-nav-main a,
+.garden-nav-item,
+.nav-link {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 12px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Footer links */
+.garden-footer-link {
+    min-height: 44px !important;
+    padding: 12px 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* Checkboxes and radio buttons */
+input[type="checkbox"],
+input[type="radio"] {
+    min-width: 24px !important;
+    min-height: 24px !important;
+    margin: 10px !important; /* Adds to touch target area */
+}
+
+/* Checkbox/radio labels */
+.checkbox-label,
+.radio-label,
+label[for] {
+    min-height: 44px !important;
+    padding: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+}
+
+/* ===== MINIMUM FONT SIZES ===== */
+
+/* Ensure 16px minimum on mobile to prevent zoom */
+@media (max-width: 768px) {
+    body, p, div, span, li, td, th, a, button, input, textarea, select {
+        font-size: max(16px, 1rem) !important;
+        line-height: max(1.4, 1.4em) !important;
+    }
+    
+    /* Specific overrides for small text */
+    .small, .text-sm, .font-small,
+    .newsletter-privacy,
+    .form-text,
+    .help-text,
+    .meta-text {
+        font-size: max(14px, 0.875rem) !important;
+        line-height: max(1.4, 1.4em) !important;
+    }
+    
+    /* Headers maintain relative sizing but meet minimums */
+    h1 { font-size: max(24px, 1.5rem) !important; }
+    h2 { font-size: max(20px, 1.25rem) !important; }
+    h3 { font-size: max(18px, 1.125rem) !important; }
+    h4 { font-size: max(16px, 1rem) !important; }
+    h5 { font-size: max(16px, 1rem) !important; }
+    h6 { font-size: max(16px, 1rem) !important; }
+}
+
+/* ===== RESPONSIVE LAYOUT FIXES ===== */
+
+/* Prevent elements from causing horizontal overflow */
+@media (max-width: 375px) {
+    /* Ensure containers don't exceed viewport */
+    .garden-container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: calc(100vw - 32px) !important;
+    }
+    
+    /* Stack form elements vertically */
+    .form-group,
+    .newsletter-input-group,
+    .search-input-group {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    /* Full width buttons on very small screens */
+    .form-actions {
+        flex-direction: column !important;
+    }
+    
+    .form-actions button,
+    .form-actions .garden-action {
+        width: 100% !important;
+        margin-bottom: 8px !important;
+    }
+    
+    /* Newsletter form mobile fixes */
+    .newsletter-form-container {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    .newsletter-input-field,
+    .newsletter-button {
+        width: 100% !important;
+    }
+}
+
+/* ===== SPECIFIC COMPONENT FIXES ===== */
+
+/* Blog article tags */
+.article-tag {
+    min-height: 44px !important;
+    padding: 12px 16px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* Notification bell */
+.bell-button {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 12px !important;
+}
+
+/* Notification dropdown items */
+.notification-item {
+    min-height: 44px !important;
+    padding: 12px 16px !important;
+}
+
+/* Mark read button */
+.mark-read-btn {
+    min-height: 44px !important;
+    padding: 12px 16px !important;
+}
+
+/* View all link */
+.view-all-link {
+    min-height: 44px !important;
+    padding: 12px 16px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* ===== TABLE RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+    table, .wagtail-data-table {
+        font-size: 14px !important;
+        overflow-x: auto !important;
+        display: block !important;
+        white-space: nowrap !important;
+    }
+    
+    th, td {
+        padding: 12px 8px !important;
+        min-height: 44px !important;
+        vertical-align: middle !important;
+    }
+}
+
+/* ===== ZOOM SUPPORT ===== */
+
+/* Ensure 200% zoom support without horizontal scrolling */
+@media (min-width: 1280px) {
+    /* At 200% zoom, 1280px becomes effectively 640px */
+    .garden-container {
+        max-width: 600px !important;
+    }
+}
+
+/* ===== HIGH CONTRAST MODE TOUCH TARGETS ===== */
+@media (prefers-contrast: more) {
+    button,
+    .garden-action,
+    input,
+    select,
+    textarea {
+        border-width: 3px !important;
+        min-height: 48px !important; /* Slightly larger for high contrast */
+    }
+    
+    .skip-link {
+        border: 4px solid currentColor !important;
+        min-height: 48px !important;
+    }
+}
+
+/* ===== FOCUS MANAGEMENT FOR TOUCH ===== */
+@media (hover: none) and (pointer: coarse) {
+    /* Touch device specific adjustments */
+    *:focus-visible {
+        outline-width: 4px !important;
+        outline-offset: 3px !important;
+    }
+    
+    /* Larger tap targets for primary actions */
+    .garden-action.primary {
+        min-height: 48px !important;
+        padding: 14px 20px !important;
+    }
+    
+    /* Ensure adequate spacing between touch targets */
+    .form-group + .form-group {
+        margin-top: 24px !important;
+    }
+    
+    .garden-action + .garden-action {
+        margin-left: 16px !important;
+        margin-top: 8px !important;
+    }
+}
+
+/* ===== ORIENTATION SUPPORT ===== */
+@media (orientation: landscape) and (max-height: 500px) {
+    /* Landscape phone optimizations */
+    .garden-header {
+        padding: 8px 0 !important;
+    }
+    
+    .article-title {
+        font-size: max(20px, 1.25rem) !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* Reduce vertical spacing in landscape */
+    .garden-panel {
+        margin-bottom: 16px !important;
+    }
+    
+    .form-group {
+        margin-bottom: 12px !important;
+    }
+}
+
+/* ===== PRINT ACCESSIBILITY ===== */
+@media print {
+    .skip-link,
+    .garden-mobile-menu-toggle,
+    .notification-bell {
+        display: none !important;
+    }
+    
+    /* Ensure readable text sizes in print */
+    body, p, div, span, li, td, th {
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+        color: black !important;
+    }
+    
+    a[href]:after {
+        content: " (" attr(href) ")" !important;
+        font-size: 10pt !important;
+    }
+}

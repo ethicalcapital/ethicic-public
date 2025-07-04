@@ -28,7 +28,10 @@
         
         <!-- Email Field with inline validation -->
         <div class="form-group">
-            <label for="{{ contact_form.email.id_for_label }}">{{ contact_form.email.label }}</label>
+            <label for="{{ contact_form.email.id_for_label }}">
+                {{ contact_form.email.label }}
+                {% if contact_form.email.field.required %}<span class="required-indicator" aria-label="required">*</span>{% endif %}
+            </label>
             <input type="email" 
                    name="{{ contact_form.email.name }}"
                    id="{{ contact_form.email.id_for_label }}"
@@ -40,11 +43,20 @@
                    hx-trigger="blur changed"
                    hx-target="#email-feedback"
                    hx-indicator="#email-spinner"
-                   :disabled="submitting">
-            <span id="email-spinner" class="htmx-indicator field-spinner">⟳</span>
-            <div id="email-feedback" class="field-feedback"></div>
+                   :disabled="submitting"
+                   aria-describedby="email-feedback{% if contact_form.email.help_text %} email-help{% endif %}"
+                   aria-invalid="false">
+            <span id="email-spinner" 
+                  class="htmx-indicator field-spinner" 
+                  role="status" 
+                  aria-label="Validating email">⟳</span>
+            <div id="email-feedback" 
+                 class="field-feedback" 
+                 role="status" 
+                 aria-live="polite" 
+                 aria-atomic="true"></div>
             {% if contact_form.email.help_text %}
-                <small class="form-text text-muted">{{ contact_form.email.help_text }}</small>
+                <small id="email-help" class="form-text text-muted">{{ contact_form.email.help_text }}</small>
             {% endif %}
         </div>
         
@@ -74,33 +86,43 @@
         <div class="form-actions">
             <button type="submit" 
                     class="garden-button garden-button--primary"
-                    :disabled="submitting">
+                    :disabled="submitting"
+                    aria-describedby="form-response">
                 <span x-show="!submitting">Send Message</span>
                 <span x-show="submitting" x-cloak>
-                    <span class="spinner">⟳</span> Sending...
+                    <span class="spinner" role="status" aria-label="Loading">⟳</span> Sending...
                 </span>
             </button>
             
             <button type="reset" 
                     class="garden-button garden-button--secondary"
                     :disabled="submitting"
-                    @click="$refs.formResponse.innerHTML = ''">
+                    @click="$refs.formResponse.innerHTML = ''"
+                    aria-label="Clear all form fields">
                 Clear Form
             </button>
         </div>
     </div>
     
     <!-- Loading indicator -->
-    <div id="form-loading" class="htmx-indicator form-loading-overlay">
+    <div id="form-loading" 
+         class="htmx-indicator form-loading-overlay"
+         role="status"
+         aria-label="Form submission in progress">
         <div class="loading-content">
-            <div class="spinner-large">⟳</div>
+            <div class="spinner-large" aria-hidden="true">⟳</div>
             <p>Sending your message...</p>
         </div>
     </div>
 </form>
 
 <!-- Response container -->
-<div id="form-response" x-ref="formResponse" class="form-response-container"></div>
+<div id="form-response" 
+     x-ref="formResponse" 
+     class="form-response-container"
+     role="status"
+     aria-live="polite"
+     aria-atomic="true"></div>
 
 <style>
     /* Form Loading States */

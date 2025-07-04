@@ -12,7 +12,8 @@
           hx-swap="innerHTML"
           @htmx:before-request="submitting = true"
           @htmx:after-request="submitting = false; if ($event.detail.successful) email = ''"
-          class="newsletter-form">
+          class="newsletter-form"
+          aria-label="Newsletter subscription form">
         {% csrf_token %}
         
         <div class="newsletter-input-group">
@@ -23,22 +24,31 @@
                    required
                    :disabled="submitting"
                    class="newsletter-input"
-                   aria-label="Email address for newsletter">
+                   aria-label="Email address for newsletter subscription"
+                   aria-describedby="newsletter-response newsletter-privacy"
+                   autocomplete="email">
             
             <button type="submit"
                     :disabled="submitting || !email"
-                    class="newsletter-submit">
+                    class="newsletter-submit"
+                    aria-label="Subscribe to newsletter">
                 <span x-show="!submitting">Subscribe</span>
                 <span x-show="submitting" x-cloak>
-                    <span id="newsletter-indicator" class="spinner">⟳</span>
+                    <span id="newsletter-indicator" 
+                          class="spinner" 
+                          role="status" 
+                          aria-label="Loading">⟳</span>
                 </span>
             </button>
         </div>
     </form>
     
-    <div id="newsletter-response"></div>
+    <div id="newsletter-response" 
+         role="status" 
+         aria-live="polite" 
+         aria-atomic="true"></div>
     
-    <p class="newsletter-privacy">
+    <p id="newsletter-privacy" class="newsletter-privacy">
         {{ site_config.newsletter_privacy_text|default:"We respect your privacy. Unsubscribe at any time." }}
     </p>
 </div>

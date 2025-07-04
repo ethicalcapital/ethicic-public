@@ -149,13 +149,18 @@ def faq_index_page(wagtail_site):
 def sample_faq_article(faq_index_page):
     """Create a sample FAQ article."""
     from public_site.models import FAQArticle
+    from wagtail.models.i18n import Locale
+    
+    # Get default locale
+    locale = Locale.objects.get(language_code='en')
     
     article = FAQArticle(
         title="What is the minimum investment?",
         slug="minimum-investment",
         summary="The minimum investment is $100,000",
-        answer="<p>Our minimum investment is $100,000.</p>",
-        category="general"
+        content="<p>Our minimum investment is $100,000.</p>",
+        category="general",
+        locale=locale
     )
     faq_index_page.add_child(instance=article)
     article.save_revision().publish()

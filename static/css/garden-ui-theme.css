@@ -176,11 +176,11 @@
   --theme-primary-rgb: 85, 60, 154;
   --theme-on-primary: #fff;
   --theme-surface: #111;
-  --theme-on-surface: #e0e0e0;
+  --theme-on-surface: #f0f0f0;
   --theme-surface-variant: #333;
   --theme-on-surface-variant: #d0d0d0;
   --theme-background: #0a0a0a;
-  --theme-on-background: #e0e0e0;
+  --theme-on-background: #f0f0f0;
   --theme-hover: #1a1a1a;
   --theme-focus: #2a2a2a;
   --theme-active: #333;
@@ -188,23 +188,23 @@
   --theme-border: #333;
   --theme-border-variant: #444;
   --theme-divider: #2a2a2a;
-  --theme-success: #0b815a;
-  --theme-success-alpha: color-mix(in srgb, #0b815a 15%, transparent);
-  --theme-warning: #9f6607;
-  --theme-warning-alpha: color-mix(in srgb, #9f6607 15%, transparent);
-  --theme-error: #b12e2e;
-  --theme-error-alpha: color-mix(in srgb, #b12e2e 15%, transparent);
-  --theme-info: #2563EB;
-  --theme-info-alpha: color-mix(in srgb, #2563EB 15%, transparent);
-  --theme-text-primary: #e0e0e0;
-  --theme-text-secondary: #888;
-  --theme-text-tertiary: #666;
+  --theme-success: #065d42;
+  --theme-success-alpha: color-mix(in srgb, #065d42 15%, transparent);
+  --theme-warning: #7a4f05;
+  --theme-warning-alpha: color-mix(in srgb, #7a4f05 15%, transparent);
+  --theme-error: #8b2222;
+  --theme-error-alpha: color-mix(in srgb, #8b2222 15%, transparent);
+  --theme-info: #1d4ed8;
+  --theme-info-alpha: color-mix(in srgb, #1d4ed8 15%, transparent);
+  --theme-text-primary: #f0f0f0;
+  --theme-text-secondary: #b0b0b0;
+  --theme-text-tertiary: #a0a0a0;
   --theme-text-inverse: #1a1a1a;
   --theme-shadow: color-mix(in srgb, var(--garden-text) 30%, transparent);
   --theme-shadow-variant: color-mix(in srgb, var(--garden-text) 20%, transparent);
   --garden-bg: var(--theme-background);
   --garden-fg: var(--theme-on-background);
-  --garden-accent: #553C9A;
+  --garden-accent: #3d2970;
   --garden-muted: var(--theme-text-secondary);
   --garden-border: var(--theme-border);
   --garden-hover: var(--theme-hover);
@@ -246,11 +246,11 @@
   --theme-primary-rgb: 85, 60, 154;
   --theme-on-primary: #fff;
   --theme-surface: #fff;
-  --theme-on-surface: #1a1a1a;
+  --theme-on-surface: #111111;
   --theme-surface-variant: #f9fafb;
   --theme-on-surface-variant: var(--theme-text-secondary);
   --theme-background: #fff;
-  --theme-on-background: #1a1a1a;
+  --theme-on-background: #111111;
   --theme-hover: #f9fafb;
   --theme-focus: #f3f4f6;
   --theme-active: #e5e7eb;
@@ -258,15 +258,15 @@
   --theme-border: #e5e7eb;
   --theme-border-variant: #d1d5db;
   --theme-divider: #f3f4f6;
-  --theme-success: #0b815a;
-  --theme-success-alpha: color-mix(in srgb, #0b815a 10%, transparent);
-  --theme-warning: #9f6607;
-  --theme-warning-alpha: color-mix(in srgb, #9f6607 10%, transparent);
-  --theme-error: #d73d3d;
-  --theme-error-alpha: color-mix(in srgb, #d73d3d 10%, transparent);
-  --theme-info: #326ed1;
-  --theme-info-alpha: color-mix(in srgb, #326ed1 10%, transparent);
-  --theme-text-primary: #1a1a1a;
+  --theme-success: #065d42;
+  --theme-success-alpha: color-mix(in srgb, #065d42 10%, transparent);
+  --theme-warning: #7a4f05;
+  --theme-warning-alpha: color-mix(in srgb, #7a4f05 10%, transparent);
+  --theme-error: #8b2222;
+  --theme-error-alpha: color-mix(in srgb, #8b2222 10%, transparent);
+  --theme-info: #1d4ed8;
+  --theme-info-alpha: color-mix(in srgb, #1d4ed8 10%, transparent);
+  --theme-text-primary: #111111;
   --theme-text-secondary: color-mix(in srgb, var(--theme-text-primary) 60%, var(--theme-background));
   --theme-text-tertiary: color-mix(in srgb, var(--theme-text-primary) 40%, var(--theme-background));
   --theme-text-inverse: #fff;
@@ -274,7 +274,7 @@
   --theme-shadow-variant: color-mix(in srgb, var(--garden-text) 8%, transparent);
   --garden-bg: var(--theme-background);
   --garden-fg: var(--theme-on-background);
-  --garden-accent: #553C9A;
+  --garden-accent: #3d2970;
   --garden-muted: var(--theme-text-secondary);
   --garden-border: var(--theme-border);
   --garden-hover: var(--theme-hover);
@@ -319,17 +319,17 @@
   --theme-primary-alpha: color-mix(in srgb, var(--garden-accent) 10%, transparent);
   --theme-on-primary: #fff;
   --theme-surface: #fff;
-  --theme-on-surface: #1a1a1a;
+  --theme-on-surface: #111111;
   --theme-background: #fff;
-  --theme-on-background: #1a1a1a;
+  --theme-on-background: #111111;
   --theme-hover: #f9fafb;
   --theme-border: #e5e7eb;
-  --theme-text-primary: #1a1a1a;
+  --theme-text-primary: #111111;
   --theme-text-secondary: var(--garden-text-muted);
   --theme-shadow: color-mix(in srgb, var(--garden-text) 15%, transparent);
   --garden-bg: var(--theme-background);
   --garden-fg: var(--theme-on-background);
-  --garden-accent: #553C9A;
+  --garden-accent: #3d2970;
   --garden-muted: var(--theme-text-secondary);
   --garden-border: var(--theme-border);
   --garden-hover: var(--theme-hover);
@@ -355,7 +355,7 @@
   --theme-text-primary: #1a1a1a;
   --theme-text-secondary: var(--garden-text-muted);
   --theme-shadow: color-mix(in srgb, var(--garden-text) 15%, transparent);
-  --garden-accent: #553C9A;
+  --garden-accent: #3d2970;
   --accent-text: var(--theme-on-primary);
 }
   
@@ -370,10 +370,10 @@
   --theme-on-background: #e0e0e0;
   --theme-hover: #1a1a1a;
   --theme-border: #333;
-  --theme-text-primary: #e0e0e0;
-  --theme-text-secondary: #888;
+  --theme-text-primary: #f0f0f0;
+  --theme-text-secondary: #b0b0b0;
   --theme-shadow: color-mix(in srgb, var(--garden-text) 30%, transparent);
-  --garden-accent: #553C9A;
+  --garden-accent: #3d2970;
   --accent-text: var(--theme-on-primary);
 }
   
@@ -392,7 +392,7 @@
   --theme-text-primary: #1a1a1a;
   --theme-text-secondary: var(--garden-text-muted);
   --theme-shadow: color-mix(in srgb, var(--garden-text) 15%, transparent);
-  --garden-accent: #553C9A;
+  --garden-accent: #3d2970;
   --accent-text: var(--theme-on-primary);
 }
 }

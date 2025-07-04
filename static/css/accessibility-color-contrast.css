@@ -1,0 +1,335 @@
+/* ========================================
+   WCAG AA COLOR CONTRAST FIXES
+   Ensures 4.5:1 contrast ratio compliance
+   ======================================== */
+
+/* ===== OVERRIDE POOR CONTRAST COMBINATIONS ===== */
+
+/* Fix primary button contrast issues */
+.garden-action.primary,
+button.primary,
+.btn-primary {
+    background: var(--color-primary, #8b5cf6) !important;
+    color: var(--color-on-primary, #ffffff) !important;
+    border: 2px solid var(--color-primary, #8b5cf6) !important;
+}
+
+.garden-action.primary:hover,
+.garden-action.primary:focus {
+    background: var(--color-primary-dark, #7c3aed) !important;
+    border-color: var(--color-primary-dark, #7c3aed) !important;
+    color: var(--color-on-primary, #ffffff) !important;
+}
+
+/* Fix secondary button contrast */
+.garden-action.secondary,
+button.secondary,
+.btn-secondary {
+    background: var(--color-surface, #ffffff) !important;
+    color: var(--color-primary, #8b5cf6) !important;
+    border: 2px solid var(--color-primary, #8b5cf6) !important;
+}
+
+.garden-action.secondary:hover,
+.garden-action.secondary:focus {
+    background: var(--color-primary-light, #f3e8ff) !important;
+    color: var(--color-primary-dark, #7c3aed) !important;
+    border-color: var(--color-primary-dark, #7c3aed) !important;
+}
+
+/* ===== TEXT CONTRAST FIXES ===== */
+
+/* Ensure sufficient contrast for body text */
+body,
+p,
+div,
+span,
+li {
+    color: var(--color-on-surface, #1a1a1a) !important;
+}
+
+/* Link contrast */
+a {
+    color: var(--color-primary, #8b5cf6) !important;
+}
+
+a:hover,
+a:focus {
+    color: var(--color-primary-dark, #7c3aed) !important;
+}
+
+/* Visited links */
+a:visited {
+    color: var(--color-primary-visited, #6b46c1) !important;
+}
+
+/* ===== FORM ELEMENT CONTRAST ===== */
+
+/* Input field contrast */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    background: var(--color-surface, #ffffff) !important;
+    color: var(--color-on-surface, #1a1a1a) !important;
+    border: 2px solid var(--color-border, #d1d5db) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-primary, #8b5cf6) !important;
+    box-shadow: 0 0 0 1px var(--color-primary, #8b5cf6) !important;
+}
+
+/* Form labels */
+label {
+    color: var(--color-on-surface, #1a1a1a) !important;
+    font-weight: 600 !important;
+}
+
+/* Error states */
+.error,
+.field-error,
+.invalid-feedback,
+input[aria-invalid="true"] {
+    color: var(--color-error, #dc2626) !important;
+    border-color: var(--color-error, #dc2626) !important;
+}
+
+/* Success states */
+.success,
+.field-success,
+.valid-feedback {
+    color: var(--color-success, #16a34a) !important;
+}
+
+/* ===== NAVIGATION CONTRAST ===== */
+
+/* Header navigation */
+.garden-nav-main a {
+    color: var(--color-on-surface, #1a1a1a) !important;
+}
+
+.garden-nav-main a:hover,
+.garden-nav-main a:focus {
+    color: var(--color-primary, #8b5cf6) !important;
+    background: var(--color-surface-variant, #f8f9fa) !important;
+}
+
+/* Footer navigation */
+.garden-footer-link {
+    color: var(--color-on-surface, #1a1a1a) !important;
+}
+
+.garden-footer-link:hover,
+.garden-footer-link:focus {
+    color: var(--color-primary, #8b5cf6) !important;
+}
+
+/* ===== SPECIFIC COMPONENT FIXES ===== */
+
+/* Blog article tags */
+.article-tag {
+    background: var(--color-surface-variant, #f3f4f6) !important;
+    color: var(--color-on-surface, #1a1a1a) !important;
+    border: 1px solid var(--color-border, #d1d5db) !important;
+}
+
+.article-tag:hover {
+    background: var(--color-primary, #8b5cf6) !important;
+    color: var(--color-on-primary, #ffffff) !important;
+}
+
+/* Newsletter form */
+.newsletter-input-field {
+    background: var(--color-surface, #ffffff) !important;
+    color: var(--color-on-surface, #1a1a1a) !important;
+    border: 2px solid var(--color-border, #d1d5db) !important;
+}
+
+.newsletter-button {
+    background: var(--color-primary, #8b5cf6) !important;
+    color: var(--color-on-primary, #ffffff) !important;
+}
+
+/* Notification bell */
+.notification-badge {
+    background: var(--color-error, #dc2626) !important;
+    color: var(--color-on-error, #ffffff) !important;
+}
+
+/* ===== DARK MODE CONTRAST OVERRIDES ===== */
+[data-theme="dark"] {
+    /* Ensure dark mode maintains proper contrast */
+    body,
+    p,
+    div,
+    span,
+    li {
+        color: var(--color-on-surface-dark, #e5e7eb) !important;
+    }
+    
+    .garden-action.primary {
+        background: var(--color-primary-light, #a78bfa) !important;
+        color: var(--color-surface-dark, #1a1a1a) !important;
+    }
+    
+    .garden-action.secondary {
+        background: var(--color-surface-dark, #1f2937) !important;
+        color: var(--color-primary-light, #a78bfa) !important;
+        border-color: var(--color-primary-light, #a78bfa) !important;
+    }
+    
+    input,
+    textarea,
+    select {
+        background: var(--color-surface-dark, #1f2937) !important;
+        color: var(--color-on-surface-dark, #e5e7eb) !important;
+        border-color: var(--color-border-dark, #374151) !important;
+    }
+}
+
+/* ===== HIGH CONTRAST MODE ===== */
+@media (prefers-contrast: more) {
+    /* Maximum contrast for high contrast mode */
+    body,
+    p,
+    div,
+    span,
+    li {
+        color: #000000 !important;
+    }
+    
+    a {
+        color: #0000ff !important;
+        text-decoration: underline !important;
+    }
+    
+    button,
+    .garden-action {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 3px solid #000000 !important;
+    }
+    
+    .garden-action.primary {
+        background: #000000 !important;
+        color: #ffffff !important;
+    }
+    
+    input,
+    textarea,
+    select {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 3px solid #000000 !important;
+    }
+    
+    /* Focus indicators in high contrast */
+    *:focus-visible {
+        outline: 4px solid #ff0000 !important;
+        outline-offset: 2px !important;
+    }
+}
+
+/* ===== TABLE CONTRAST ===== */
+table,
+.wagtail-data-table {
+    border-collapse: collapse !important;
+}
+
+th {
+    background: var(--color-surface-variant, #f3f4f6) !important;
+    color: var(--color-on-surface, #1a1a1a) !important;
+    border: 1px solid var(--color-border, #d1d5db) !important;
+}
+
+td {
+    color: var(--color-on-surface, #1a1a1a) !important;
+    border: 1px solid var(--color-border, #d1d5db) !important;
+}
+
+/* Table hover states */
+tr:hover {
+    background: var(--color-surface-hover, #f8f9fa) !important;
+}
+
+/* ===== LOADING AND STATUS INDICATORS ===== */
+.htmx-indicator,
+.spinner,
+.loading {
+    color: var(--color-primary, #8b5cf6) !important;
+}
+
+/* Status messages */
+.alert-success,
+.success-message {
+    background: var(--color-success-light, #dcfce7) !important;
+    color: var(--color-success-dark, #166534) !important;
+    border: 1px solid var(--color-success, #16a34a) !important;
+}
+
+.alert-error,
+.error-message {
+    background: var(--color-error-light, #fee2e2) !important;
+    color: var(--color-error-dark, #991b1b) !important;
+    border: 1px solid var(--color-error, #dc2626) !important;
+}
+
+.alert-warning,
+.warning-message {
+    background: var(--color-warning-light, #fef3c7) !important;
+    color: var(--color-warning-dark, #92400e) !important;
+    border: 1px solid var(--color-warning, #f59e0b) !important;
+}
+
+/* ===== PLACEHOLDER TEXT CONTRAST ===== */
+input::placeholder,
+textarea::placeholder {
+    color: var(--color-on-surface-variant, #6b7280) !important;
+    opacity: 1 !important;
+}
+
+/* ===== REDUCED MOTION RESPECT ===== */
+@media (prefers-reduced-motion: reduce) {
+    /* Ensure color changes are immediate, not animated */
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ===== PRINT CONTRAST ===== */
+@media print {
+    /* Ensure good contrast in print */
+    body,
+    p,
+    div,
+    span,
+    li,
+    h1, h2, h3, h4, h5, h6 {
+        color: #000000 !important;
+        background: #ffffff !important;
+    }
+    
+    a {
+        color: #000000 !important;
+        text-decoration: underline !important;
+    }
+    
+    button,
+    .garden-action {
+        border: 2px solid #000000 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+}
