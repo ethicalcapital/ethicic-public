@@ -59,38 +59,32 @@
                     <div class="social-grid">
                         {% if page.linkedin_url %}
                         <a href="{{ page.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <span class="social-icon">🔗</span>
-                            <span class="social-text">LinkedIn</span>
+                            <span class="social-icon">🔗</span><span class="social-text">LinkedIn</span>
                         </a>
                         {% endif %}
                         {% if page.twitter_url %}
                         <a href="{{ page.twitter_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <span class="social-icon">🐦</span>
-                            <span class="social-text">Twitter</span>
+                            <span class="social-icon">🐦</span><span class="social-text">Twitter</span>
                         </a>
                         {% endif %}
                         {% if page.bluesky_url %}
                         <a href="{{ page.bluesky_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <span class="social-icon">🦋</span>
-                            <span class="social-text">Bluesky</span>
+                            <span class="social-icon">🦋</span><span class="social-text">Bluesky</span>
                         </a>
                         {% endif %}
                         {% if page.instagram_url %}
                         <a href="{{ page.instagram_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <span class="social-icon">📷</span>
-                            <span class="social-text">Instagram</span>
+                            <span class="social-icon">📷</span><span class="social-text">Instagram</span>
                         </a>
                         {% endif %}
                         {% if page.tiktok_url %}
                         <a href="{{ page.tiktok_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <span class="social-icon">🎵</span>
-                            <span class="social-text">TikTok</span>
+                            <span class="social-icon">🎵</span><span class="social-text">TikTok</span>
                         </a>
                         {% endif %}
                         {% if page.sec_info_url %}
                         <a href="{{ page.sec_info_url }}" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <span class="social-icon">📋</span>
-                            <span class="social-text">BrokerCheck</span>
+                            <span class="social-icon">📋</span><span class="social-text">BrokerCheck</span>
                         </a>
                         {% endif %}
                     </div>
@@ -113,17 +107,20 @@
                 <h3>{{ page.speaking_writing_title }}</h3>
                 {{ page.speaking_writing_content|safe }}
                 
+                {% if page.speaking_cta_text %}
                 <div class="speaking-cta">
                     {{ page.speaking_cta_text|safe }}
-                    <div class="contact-note">
-                        {{ page.speaking_contact_note|safe }}
-                        {% if page.calendar_link %}
-                        <a href="{{ page.calendar_link }}" class="garden-action" target="_blank" rel="noopener noreferrer">{{ page.calendar_link_text }}</a>
-                        {% endif %}
-                        {% if page.email_link %}
-                        <a href="mailto:{{ page.email_link }}" class="garden-action secondary">{{ page.email_link_text }}</a>
-                        {% endif %}
-                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="contact-note">
+                    <p>{{ page.speaking_contact_note|safe }}</p>
+                    {% if page.calendar_link %}
+                    <a href="{{ page.calendar_link }}" class="garden-action primary" target="_blank" rel="noopener noreferrer">{{ page.calendar_link_text }}</a>
+                    {% endif %}
+                    {% if page.email_link %}
+                    <a href="mailto:{{ page.email_link }}" class="garden-action secondary">{{ page.email_link_text }}</a>
+                    {% endif %}
                 </div>
             </div>
             

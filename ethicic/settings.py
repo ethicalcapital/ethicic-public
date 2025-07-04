@@ -281,7 +281,10 @@ STATICFILES_DIRS = [
 ]
 
 # Static files storage - use manifest storage for cache busting
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+if DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+else:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # WhiteNoise settings
 WHITENOISE_USE_FINDERS = True
