@@ -2,7 +2,7 @@
 Complete URL routing for Wagtail-based public site with form handling and API endpoints
 """
 
-from django.urls import path, re_path
+from django.urls import path
 from django.views.generic import RedirectView
 
 from . import views

@@ -134,6 +134,16 @@
         display: block;
         font-family: var(--font-sans);
     }
+    
+    .stat-value-label {
+        font-size: var(--font-base);
+        font-weight: var(--font-semibold);
+        color: var(--color-primary);
+        display: block;
+        font-family: var(--font-sans);
+        margin-top: calc(var(--space-1) * -1);
+        margin-bottom: var(--space-1);
+    }
 
     .stat-label {
         font-size: var(--font-xs);
@@ -613,27 +623,22 @@
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        min-width: 200px !important;
-        max-width: calc(var(--space-24) * 3) !important; /* 288px using design system */
+        min-width: 240px !important;
+        max-width: 240px !important;
         text-align: center !important;
         margin: 8px !important;
+        padding: var(--space-3) var(--space-5) !important;
         background: var(--color-primary) !important;
         color: var(--color-on-primary) !important;
         border: 2px solid var(--color-primary) !important;
         transition: all 0.3s ease !important;
+        font-size: var(--font-base) !important;
+        font-weight: var(--font-medium) !important;
     }
     
-    .cta-actions .garden-action.large {
-        min-width: 280px !important;
-        padding: var(--space-4) var(--space-6) !important;
-        font-size: var(--font-lg) !important;
-        font-weight: var(--font-semibold) !important;
-        box-shadow: var(--shadow-md) !important;
-    }
-    
-    .cta-actions .garden-action.large:hover {
+    .cta-actions .garden-action:hover {
         transform: translateY(-2px) !important;
-        box-shadow: var(--shadow-lg) !important;
+        box-shadow: var(--shadow-md) !important;
     }
 
     .cta-actions .garden-action.secondary {

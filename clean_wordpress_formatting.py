@@ -3,7 +3,6 @@
 Clean WordPress formatting from imported content
 """
 import os
-import sys
 import django
 import re
 
@@ -11,7 +10,6 @@ import re
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ethicic.settings')
 django.setup()
 
-from wagtail.models import Page
 from public_site.models import BlogPost, FAQArticle, EncyclopediaEntry
 from django.db import transaction
 
@@ -92,7 +90,7 @@ def clean_all_content():
             encyclopedia_cleaned += 1
             print(f"  - Cleaned: {entry.title[:50]}... ({original_length} → {new_length} chars)")
     
-    print(f"\nCleaning complete!")
+    print("\nCleaning complete!")
     print(f"Blog posts cleaned: {blog_cleaned}")
     print(f"FAQ articles cleaned: {faq_cleaned}")
     print(f"Encyclopedia entries cleaned: {encyclopedia_cleaned}")

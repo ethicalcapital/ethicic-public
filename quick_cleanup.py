@@ -3,7 +3,6 @@
 Quick cleanup of remaining placeholder content
 """
 import os
-import sys
 import django
 
 # Setup Django

@@ -3,7 +3,6 @@
 Verify that Kinsta and Ubicloud databases are in sync
 """
 import os
-import sys
 import django
 
 # Setup Django

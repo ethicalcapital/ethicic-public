@@ -153,7 +153,7 @@ class Command(BaseCommand):
             )
             homepage.add_child(instance=about_page)
             about_page.save_revision().publish()
-            self.stdout.write(f"  ✓ Created About page")
+            self.stdout.write("  ✓ Created About page")
         except Exception as e:
             self.stdout.write(f"  ✗ About page: {e}")
         
@@ -166,7 +166,7 @@ class Command(BaseCommand):
             )
             homepage.add_child(instance=blog_index)
             blog_index.save_revision().publish()
-            self.stdout.write(f"  ✓ Created Blog index")
+            self.stdout.write("  ✓ Created Blog index")
         except Exception as e:
             self.stdout.write(f"  ✗ Blog index: {e}")
         
@@ -183,7 +183,7 @@ class Command(BaseCommand):
             )
             homepage.add_child(instance=contact_page)
             contact_page.save_revision().publish()
-            self.stdout.write(f"  ✓ Created Contact page")
+            self.stdout.write("  ✓ Created Contact page")
         except Exception as e:
             self.stdout.write(f"  ✗ Contact page: {e}")
     

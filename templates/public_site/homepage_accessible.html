@@ -35,8 +35,9 @@
             </div>
             <div class="stat-item">
                 <div class="stat-indicator"></div>
-                <span class="stat-value">{{ page.since_year }}</span>
-                <span class="stat-label">FIDUCIARY STANDARD</span>
+                <span class="stat-value" id="years-counter">3+</span>
+                <span class="stat-value-label">YEARS</span>
+                <span class="stat-label">OF FIDUCIARY COUNSEL</span>
             </div>
         </div>
     </section>
@@ -326,12 +327,44 @@
         </div>
         
         <div class="cta-actions">
-            <a href="/process/" class="garden-action primary large">View Our Process →</a>
+            <a href="/process/" class="garden-action primary">View Our Process →</a>
             <a href="/consultation/" class="garden-action secondary">Schedule Consultation</a>
         </div>
     </section>
 </div>
 
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Calculate years since October 2021
+    document.addEventListener('DOMContentLoaded', function() {
+        const startDate = new Date('2021-10-01');
+        const currentDate = new Date();
+        
+        // Calculate years difference
+        let years = currentDate.getFullYear() - startDate.getFullYear();
+        const monthDiff = currentDate.getMonth() - startDate.getMonth();
+        
+        // Adjust if we haven't reached October yet in the current year
+        if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < startDate.getDate())) {
+            years--;
+        }
+        
+        // Update the counter
+        const counter = document.getElementById('years-counter');
+        if (counter) {
+            counter.textContent = years + '+';
+            
+            // Add a subtle animation
+            counter.style.opacity = '0';
+            setTimeout(() => {
+                counter.style.transition = 'opacity 0.5s ease-in';
+                counter.style.opacity = '1';
+            }, 100);
+        }
+    });
+</script>
 {% endblock %}
 
 {% block disclaimer %}

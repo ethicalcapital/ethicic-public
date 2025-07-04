@@ -2,10 +2,8 @@
 """
 Generate PNG favicon files from SVG for Ethical Capital
 """
-import os
 from pathlib import Path
 import subprocess
-import sys
 
 # Check if we have required tools
 def check_dependencies():

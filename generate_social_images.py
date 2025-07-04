@@ -2,7 +2,6 @@
 """
 Generate social media PNG files from SVG for Ethical Capital
 """
-import os
 from pathlib import Path
 import subprocess
 

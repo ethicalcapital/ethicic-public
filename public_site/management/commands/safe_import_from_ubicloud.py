@@ -1,12 +1,10 @@
 """
 Safe import command that checks column existence before importing
 """
-import sys
 from django.core.management.base import BaseCommand
 from django.db import connections, transaction
-from django.apps import apps
-from wagtail.models import Page, Site
-from public_site.models import HomePage, BlogPost, MediaItem, SupportTicket
+from wagtail.models import Page
+from public_site.models import HomePage, MediaItem, SupportTicket
 
 
 class Command(BaseCommand):
@@ -39,7 +37,7 @@ class Command(BaseCommand):
                 cursor.execute("SELECT version()")
                 version = cursor.fetchone()[0]
                 self.stdout.write(
-                    self.style.SUCCESS(f'✅ Connected to Ubicloud database')
+                    self.style.SUCCESS('✅ Connected to Ubicloud database')
                 )
         except Exception as e:
             self.stdout.write(

@@ -59,7 +59,7 @@ try:
     ssl_sock = context.wrap_socket(sock, server_hostname=host)
     ssl_sock.connect((host, port))
     
-    print(f"✅ SSL connection established")
+    print("✅ SSL connection established")
     print(f"   SSL Version: {ssl_sock.version()}")
     print(f"   Cipher: {ssl_sock.cipher()}")
     
@@ -74,7 +74,7 @@ try:
 except ssl.SSLError as e:
     print(f"❌ SSL error: {e}")
 except socket.timeout:
-    print(f"❌ Connection timeout")
+    print("❌ Connection timeout")
 except Exception as e:
     print(f"❌ Connection error: {e}")
 

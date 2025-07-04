@@ -86,31 +86,8 @@ class Command(BaseCommand):
             contact.save_revision().publish()
             self.stdout.write('✓ Created ContactPage')
         else:
-            self.stdout.write('✓ ContactPage already exists')d reflect our values, not compromise them.</p>',
-                philosophy_quote_link='/blog/',
-                philosophy_quote_link_text='Read more about our philosophy →',
-            )
-            home.add_child(instance=about)
-            self.stdout.write('✓ Created AboutPage')
-        else:
-            self.stdout.write('✓ AboutPage already exists')
-
-        # Create Contact page
-        contact = ContactPage.objects.filter(slug='contact').first()
-        if not contact:
-            contact = ContactPage(
-                title='Contact',
-                slug='contact',
-                intro_text='<p>Ready to transform your investment research and compliance workflow?</p>',
-                phone='+1 (555) 123-4567',
-                email='hello@ethicic.com',
-                address='90 N 400 E, Provo, UT, 84606',
-                show_contact_form=True,
-            )
-            home.add_child(instance=contact)
-            self.stdout.write('✓ Created ContactPage')
-        else:
             self.stdout.write('✓ ContactPage already exists')
+
 
         # Show final page structure
         self.stdout.write('\n📄 Final Page Structure:')

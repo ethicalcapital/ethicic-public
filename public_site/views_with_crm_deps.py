@@ -20,8 +20,8 @@ from rest_framework.response import Response
 from wagtail.models import Page
 
 # Import CRM models and choices for contact classification
-from crm.models import Contact
-from crm.models.choices import ContactStatus, ContactType, PriorityLevel
+from crm.models import Contact, ContactInteraction, SupportTicket
+from crm.models.choices import ContactStatus, ContactType, InteractionType, PriorityLevel
 
 from .forms import (
     AccessibleContactForm,

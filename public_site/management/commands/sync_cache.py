@@ -2,7 +2,7 @@
 Sync data from Ubicloud to local cache database
 """
 from django.core.management.base import BaseCommand
-from django.db import connections, transaction
+from django.db import transaction
 from django.apps import apps
 from public_site.db_router import HybridDatabaseRouter
 import logging

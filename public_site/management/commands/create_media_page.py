@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from wagtail.models import Page, Site
+from wagtail.models import Page
 from public_site.models import MediaPage, MediaItem
 from datetime import date
 

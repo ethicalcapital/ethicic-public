@@ -3,7 +3,6 @@
 Clean up placeholder and test content from the database
 """
 import os
-import sys
 import django
 
 # Setup Django
@@ -11,7 +10,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ethicic.settings')
 django.setup()
 
 from wagtail.models import Page
-from public_site.models import BlogPost, FAQArticle, EncyclopediaEntry
 
 def cleanup_content():
     print("Starting cleanup of placeholder content...")
@@ -85,7 +83,7 @@ def cleanup_content():
         except Exception as e:
             print(f"  - Error deleting page ID {page_id}: {e}")
     
-    print(f"\nCleanup complete!")
+    print("\nCleanup complete!")
     print(f"Blog posts deleted: {blog_deleted}")
     print(f"FAQ articles deleted: {faq_deleted}")
     print(f"Encyclopedia entries deleted: {encyclopedia_deleted}")

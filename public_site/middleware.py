@@ -3,11 +3,8 @@ Middleware for cache management in hybrid database setup
 """
 import logging
 from django.core.cache import cache
-from django.db import transaction
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from public_site.models import HomePage, BlogPost, MediaItem
-from wagtail.models import Page
 
 logger = logging.getLogger(__name__)
 

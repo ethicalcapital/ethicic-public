@@ -1,10 +1,8 @@
 """
 Management command to import public site data from Ubicloud database
 """
-import sys
 from django.core.management.base import BaseCommand
 from django.db import connections, transaction
-from django.apps import apps
 from wagtail.models import Page, Site
 from public_site.models import HomePage, BlogPost, MediaItem, SupportTicket
 
@@ -47,7 +45,7 @@ class Command(BaseCommand):
 
         # Show connection info (sanitized)
         conn_settings = connections['ubicloud'].settings_dict
-        self.stdout.write(f"\nConnection settings:")
+        self.stdout.write("\nConnection settings:")
         self.stdout.write(f"  Host: {conn_settings.get('HOST', 'N/A')}")
         self.stdout.write(f"  Port: {conn_settings.get('PORT', 'N/A')}")
         self.stdout.write(f"  Database: {conn_settings.get('NAME', 'N/A')}")
@@ -60,7 +58,7 @@ class Command(BaseCommand):
                 cursor.execute("SELECT version()")
                 version = cursor.fetchone()[0]
                 self.stdout.write(
-                    self.style.SUCCESS(f'✅ Connected to Ubicloud database')
+                    self.style.SUCCESS('✅ Connected to Ubicloud database')
                 )
                 self.stdout.write(f'   PostgreSQL {version.split(",")[0]}')
         except Exception as e:

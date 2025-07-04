@@ -14,12 +14,10 @@ try:
 except ImportError:
     requests = None
 from django.contrib import messages
-from django.core.cache import cache
 from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
-from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
@@ -432,7 +430,7 @@ def onboarding_form_submit(request):
 
             return redirect("/onboarding/thank-you/")
 
-        except Exception as e:
+        except Exception:
             logger.exception("Error processing onboarding form")
             
             if is_htmx:
@@ -1576,7 +1574,7 @@ def disclosures_page(request):
         
         return render(request, 'public_site/legal_page.html', context)
         
-    except Exception as e:
+    except Exception:
         logger.exception("Error loading disclosures page")
         # Fallback with basic content
         context = {

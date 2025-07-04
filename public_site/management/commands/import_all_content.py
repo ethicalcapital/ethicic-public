@@ -4,11 +4,9 @@ Django management command to safely import ALL data from Ubicloud
 Handles schema differences between environments
 """
 from django.core.management.base import BaseCommand
-from django.db import connections, transaction
-from django.contrib.contenttypes.models import ContentType
+from django.db import connections
 from wagtail.models import Page, Site
 from public_site.models import MediaItem, SupportTicket
-import json
 from datetime import datetime
 
 

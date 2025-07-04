@@ -115,6 +115,7 @@ WSGI_APPLICATION = 'ethicic.wsgi.application'
 # Priority: DB_URL (Kinsta) > UBI_DATABASE_URL (Ubicloud) > SQLite fallback
 DB_URL = os.getenv('DB_URL')
 UBI_DATABASE_URL = os.getenv('UBI_DATABASE_URL')
+DATABASE_URL = os.getenv('DATABASE_URL', DB_URL)  # Support both DATABASE_URL and DB_URL
 
 # Kinsta provides DB_URL, not DATABASE_URL
 # Don't check DATABASE_URL=sqlite, just use DB_URL if available
@@ -137,7 +138,7 @@ if os.getenv('USE_SQLITE', 'False').lower() == 'true':
             ubicloud_config = get_database_config(UBI_DATABASE_URL)
             if ubicloud_config:
                 DATABASES['ubicloud'] = ubicloud_config
-        except Exception as e:
+        except Exception:
             pass  # Silently continue if Ubicloud database cannot be configured
 elif DB_URL:
     # Primary: Use new Ethicic Public PostgreSQL database
@@ -153,14 +154,14 @@ elif DB_URL:
             ubicloud_config = get_database_config(UBI_DATABASE_URL)
             if ubicloud_config:
                 DATABASES['ubicloud'] = ubicloud_config
-                print(f"✅ Added Ubicloud database for content import")
+                print("✅ Added Ubicloud database for content import")
         except Exception as e:
             print(f"⚠️  Could not configure Ubicloud database: {e}")
     
     print(f"✅ Using Ethicic Public PostgreSQL database: {os.getenv('DB_HOST')}")
 elif UBI_DATABASE_URL:
     # Production mode: Try Ubicloud, fallback to SQLite
-    from .database_config import get_database_config, get_cache_database_config
+    from .database_config import get_database_config
     
     # Test if we can connect to Ubicloud first
     def test_database_connection(config):

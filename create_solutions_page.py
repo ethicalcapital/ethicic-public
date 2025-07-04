@@ -3,7 +3,6 @@
 Create proper SolutionsPage to replace the current legalpage
 """
 import os
-import sys
 import django
 
 # Setup Django

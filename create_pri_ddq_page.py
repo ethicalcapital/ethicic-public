@@ -3,7 +3,6 @@
 Create PRI DDQ page from markdown content
 """
 import os
-import sys
 import django
 import re
 
@@ -11,7 +10,6 @@ import re
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ethicic.settings')
 django.setup()
 
-from wagtail.models import Page
 from public_site.models import PRIDDQPage, HomePage
 from django.utils import timezone
 
@@ -245,8 +243,8 @@ def create_pri_ddq_page():
         home_page.add_child(instance=pri_ddq_page)
         pri_ddq_page.save_revision().publish()
         
-        print(f"PRI DDQ page created successfully!")
-        print(f"URL: /pri-ddq/")
+        print("PRI DDQ page created successfully!")
+        print("URL: /pri-ddq/")
 
 if __name__ == "__main__":
     create_pri_ddq_page()

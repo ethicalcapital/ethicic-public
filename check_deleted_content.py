@@ -3,7 +3,6 @@
 Check for content that exists in Kinsta but has been deleted from Ubicloud
 """
 import os
-import sys
 import django
 import psycopg2
 from psycopg2.extras import DictCursor

@@ -159,7 +159,7 @@ def main():
     e = EncyclopediaEntry.objects.count()
     t = b + f + e
     
-    print(f"\n🎯 Final Status:")
+    print("\n🎯 Final Status:")
     print(f"  Blog Posts: {b}/20 ({b/20*100:.0f}%)")
     print(f"  FAQ Articles: {f}/41 ({f/41*100:.0f}%)")
     print(f"  Encyclopedia: {e}/34 ({e/34*100:.0f}%)")

@@ -3,7 +3,6 @@ import os
 import sys
 import django
 import json
-from datetime import datetime
 import re
 
 # Setup Django
@@ -12,8 +11,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ethicic.settings')
 django.setup()
 
 from django.db import transaction, connection
-from wagtail.models import Page, Site
-from public_site.models import BlogPost, FAQArticle, EncyclopediaEntry, BlogIndexPage, FAQIndexPage, EncyclopediaIndexPage, HomePage
+from wagtail.models import Page
+from public_site.models import BlogPost, FAQArticle, EncyclopediaEntry, FAQIndexPage, EncyclopediaIndexPage, HomePage
 
 def extract_title_from_content(content, default_title):
     """Extract title from content by looking for headers or first sentence"""
@@ -327,7 +326,7 @@ def main():
     faq_count = FAQArticle.objects.count()
     encyclopedia_count = EncyclopediaEntry.objects.count()
     
-    print(f"\n📊 Current Status:")
+    print("\n📊 Current Status:")
     print(f"  - Blog Posts: {blog_count}/20")
     print(f"  - FAQ Articles: {faq_count}/41")
     print(f"  - Encyclopedia Entries: {encyclopedia_count}/34")
@@ -344,7 +343,7 @@ def main():
     total_items = final_blog + final_faq + final_encyclopedia
     total_expected = 20 + 41 + 34  # 95 total
     
-    print(f"\n🎯 Final Import Status:")
+    print("\n🎯 Final Import Status:")
     print(f"  - Blog Posts: {final_blog}/20 ({final_blog/20*100:.0f}%)")
     print(f"  - FAQ Articles: {final_faq}/41 ({final_faq/41*100:.0f}%)")
     print(f"  - Encyclopedia Entries: {final_encyclopedia}/34 ({final_encyclopedia/34*100:.0f}%)")

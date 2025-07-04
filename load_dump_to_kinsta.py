@@ -27,10 +27,8 @@ import re
 import argparse
 import logging
 import subprocess
-import tempfile
 from datetime import datetime
-from typing import List, Optional
-from contextlib import contextmanager
+from typing import List
 
 try:
     import psycopg2
@@ -257,7 +255,7 @@ class KinstaDumpLoader:
             logger.info(f"DRY RUN: Would create backup: {backup_file}")
             return backup_file
         
-        logger.info(f"Creating backup of Kinsta database...")
+        logger.info("Creating backup of Kinsta database...")
         
         try:
             # Parse connection URL
@@ -302,7 +300,7 @@ class KinstaDumpLoader:
             logger.info(f"DRY RUN: Would load {filtered_dump} to Kinsta database")
             return True
         
-        logger.info(f"Loading filtered dump to Kinsta database...")
+        logger.info("Loading filtered dump to Kinsta database...")
         
         try:
             # Parse connection URL

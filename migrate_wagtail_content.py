@@ -22,11 +22,10 @@ Security:
 
 import os
 import sys
-import json
 import argparse
 import logging
 from datetime import datetime
-from typing import Dict, List, Tuple, Any, Optional
+from typing import Dict, List
 from contextlib import contextmanager
 
 try:

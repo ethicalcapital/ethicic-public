@@ -3,7 +3,6 @@ import os
 import sys
 import django
 import json
-from datetime import datetime
 import re
 
 # Setup Django
@@ -261,7 +260,7 @@ def direct_import_remaining_content():
     total_items = final_blog + final_faq + final_encyclopedia
     total_expected = 95
     
-    print(f"\n🎯 Final Import Status:")
+    print("\n🎯 Final Import Status:")
     print(f"  - Blog Posts: {final_blog}/20 ({final_blog/20*100:.0f}%)")
     print(f"  - FAQ Articles: {final_faq}/41 ({final_faq/41*100:.0f}%)")
     print(f"  - Encyclopedia Entries: {final_encyclopedia}/34 ({final_encyclopedia/34*100:.0f}%)")

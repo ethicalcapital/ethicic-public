@@ -3,7 +3,6 @@
 Quick WordPress formatting cleanup using direct SQL
 """
 import os
-import sys
 import django
 
 # Setup Django

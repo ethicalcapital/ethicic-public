@@ -3,7 +3,6 @@
 Create PRI DDQ page from markdown content (simplified version)
 """
 import os
-import sys
 import django
 import re
 
@@ -11,9 +10,7 @@ import re
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ethicic.settings')
 django.setup()
 
-from wagtail.models import Page
-from public_site.models import PRIDDQPage, HomePage
-from django.utils import timezone
+from public_site.models import PRIDDQPage
 
 def parse_ddq_content():
     """Parse the PRI DDQ markdown file into sections."""

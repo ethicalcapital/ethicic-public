@@ -2,7 +2,7 @@
 Check database schema and migrations status
 """
 from django.core.management.base import BaseCommand
-from django.db import connection, connections
+from django.db import connection
 from django.db.migrations.recorder import MigrationRecorder
 
 

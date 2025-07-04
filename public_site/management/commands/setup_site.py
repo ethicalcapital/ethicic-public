@@ -3,7 +3,6 @@ Management command to set up initial site data
 """
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
-from django.contrib.contenttypes.models import ContentType
 from wagtail.models import Site, Page, Locale
 from public_site.models import HomePage
 

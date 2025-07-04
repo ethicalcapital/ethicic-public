@@ -27,7 +27,7 @@ def setup_certificates():
     
     # Create config/ssl directory if it doesn't exist
     ssl_dir.mkdir(parents=True, exist_ok=True)
-    print(f"✓ Created/verified SSL directory")
+    print("✓ Created/verified SSL directory")
     
     cert_count = 0
     
@@ -44,12 +44,12 @@ def setup_certificates():
         print(f"  ✓ Created: {ca_cert_path}")
         print(f"  ✓ Size: {len(ca_cert)} bytes")
         print(f"  ✓ Lines: {len(lines)}")
-        print(f"  ✓ Permissions: 0600 (read/write owner only)")
+        print("  ✓ Permissions: 0600 (read/write owner only)")
         
         # Set the path environment variable for the app
         os.environ['DB_CA_CERT_PATH'] = str(ca_cert_path)
         os.environ['SSL_ROOT_CERT'] = str(ca_cert_path)
-        print(f"  ✓ Set DB_CA_CERT_PATH and SSL_ROOT_CERT environment variables")
+        print("  ✓ Set DB_CA_CERT_PATH and SSL_ROOT_CERT environment variables")
         cert_count += 1
     else:
         print("\n  ℹ️  No CA certificate provided")
@@ -63,7 +63,7 @@ def setup_certificates():
         os.chmod(client_cert_path, 0o600)
         print(f"  ✓ Created: {client_cert_path}")
         print(f"  ✓ Size: {len(client_cert)} bytes")
-        print(f"  ✓ Permissions: 0600")
+        print("  ✓ Permissions: 0600")
         cert_count += 1
     else:
         print("\n  ℹ️  No client certificate provided")
@@ -77,7 +77,7 @@ def setup_certificates():
         os.chmod(client_key_path, 0o600)
         print(f"  ✓ Created: {client_key_path}")
         print(f"  ✓ Size: {len(client_key)} bytes")
-        print(f"  ✓ Permissions: 0600")
+        print("  ✓ Permissions: 0600")
         cert_count += 1
     else:
         print("\n  ℹ️  No client key provided")

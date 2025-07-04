@@ -3,7 +3,6 @@
 Update strategy cards to match exact content from strategy pages
 """
 import os
-import sys
 import django
 
 # Setup Django

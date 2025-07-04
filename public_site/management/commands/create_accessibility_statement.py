@@ -3,7 +3,6 @@ Management command to create the Accessibility Statement page in Wagtail.
 """
 
 from django.core.management.base import BaseCommand
-from wagtail.models import Page
 
 from public_site.models import LegalPage
 

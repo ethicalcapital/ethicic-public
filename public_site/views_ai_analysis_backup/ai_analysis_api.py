@@ -6,8 +6,6 @@ Provides endpoints for AI-powered content analysis using Maverick agents
 import json
 import asyncio
 import re
-import hashlib
-from decimal import Decimal
 from typing import Dict, Any
 
 from django.http import JsonResponse

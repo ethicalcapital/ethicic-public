@@ -162,7 +162,7 @@ def debug_static_file(request, filepath):
     import os
     import mimetypes
     from django.conf import settings
-    from django.http import HttpResponse, Http404, JsonResponse
+    from django.http import HttpResponse, Http404
     
     # For CSS and other static files, serve them directly
     full_path = os.path.join(settings.STATIC_ROOT, filepath)

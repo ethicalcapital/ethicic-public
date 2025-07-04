@@ -3,7 +3,6 @@
 Fix strategy cards to match actual strategies: Growth, Income, Diversification
 """
 import os
-import sys
 import django
 
 # Setup Django

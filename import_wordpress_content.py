@@ -3,7 +3,6 @@
 Import WordPress content into Django/Wagtail database
 """
 import os
-import sys
 import django
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -16,7 +15,6 @@ django.setup()
 
 from django.utils.text import slugify
 from django.utils import timezone
-from wagtail.models import Page
 from public_site.models import BlogPost, BlogIndexPage, FAQArticle, FAQIndexPage, EncyclopediaEntry, EncyclopediaIndexPage
 
 def clean_content(content):
@@ -125,7 +123,7 @@ def import_content():
             except Exception as e:
                 print(f"  - ERROR importing glossary term {term_name}: {e}")
     
-    print(f"\nProcessing posts...")
+    print("\nProcessing posts...")
     
     for item in channel.findall('item'):
         # Get basic info
@@ -238,7 +236,7 @@ def import_content():
                 except Exception as e:
                     print(f"  - ERROR importing {title}: {e}")
     
-    print(f"\nImport complete!")
+    print("\nImport complete!")
     print(f"Blog posts imported: {posts_imported}")
     print(f"FAQ articles imported: {faqs_imported}")
     print(f"Encyclopedia entries imported: {encyclopedia_imported}")
