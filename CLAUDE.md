@@ -150,3 +150,11 @@
 - **Components**: Reuse existing in `/templates/public_site/components/`
 - **CMS-first**: All content must be manageable via Wagtail page fields or SiteConfiguration
 - **Responsive**: Garden UI handles breakpoints, use `garden-container` for layout
+
+## CSS Conflict Prevention System
+- **CRITICAL**: See `CSS_MAINTENANCE_GUIDE.md` for comprehensive CSS management system
+- **Before any CSS changes**: Run `make css-check` to verify no conflicts
+- **Git hooks**: Pre-commit automatically blocks CSS conflicts and undefined variables
+- **Testing**: Use `make css-test` to run full CSS conflict test suite
+- **Monitoring**: System tracks 300+ CSS variables across 44+ files
+- **⚠️ UPDATE CSS_MAINTENANCE_GUIDE.md** when making architectural CSS changes

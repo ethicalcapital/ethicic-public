@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# Pre-commit hook to prevent CSS conflicts
+# This hook runs CSS conflict checks before each commit
+#
+
+set -e
+
+echo "🔍 Running CSS conflict checks..."
+
+# Check if CSS monitoring script exists
+if [ ! -f "css_monitoring.py" ]; then
+    echo "⚠️  CSS monitoring script not found, skipping checks"
+    exit 0
+fi
+
+# Run CSS conflict check
+if python css_monitoring.py --check; then
+    echo "✅ CSS conflict check passed"
+else
+    echo "❌ CSS conflict check failed!"
+    echo ""
+    echo "CSS regressions detected. Please fix before committing:"
+    echo "  1. Run: python css_monitoring.py --report"
+    echo "  2. Fix any undefined variables or conflicts"
+    echo "  3. Update baseline if changes are intentional: python css_monitoring.py --create-baseline"
+    echo ""
+    exit 1
+fi
+
+# Check for common CSS anti-patterns in staged files
+staged_css_files=$(git diff --cached --name-only | grep '\.css$' || true)
+
+if [ -n "$staged_css_files" ]; then
+    echo "🔍 Checking staged CSS files for anti-patterns..."
+    
+    # Check for hardcoded colors in new CSS
+    for file in $staged_css_files; do
+        if [ -f "$file" ]; then
+            # Count hardcoded hex colors (excluding comments)
+            hardcoded_count=$(grep -v '/\*' "$file" | grep -v '^\s*\*' | grep -o '#[0-9a-fA-F]\{3,6\}' | wc -l || echo "0")
+            
+            if [ "$hardcoded_count" -gt 5 ]; then
+                echo "⚠️  Warning: $file has $hardcoded_count hardcoded colors"
+                echo "   Consider using CSS variables instead"
+            fi
+            
+            # Check for deprecated class names
+            if grep -q 'form-control\|form-input\|btn-primary' "$file"; then
+                echo "❌ $file contains deprecated CSS classes"
+                echo "   Use Garden UI classes instead: garden-input, garden-action, etc."
+                exit 1
+            fi
+        fi
+    done
+fi
+
+echo "✅ All CSS checks passed!"

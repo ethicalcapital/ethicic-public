@@ -61,7 +61,7 @@
                                    id="firstName" 
                                    name="first_name" 
                                    x-model="formData.firstName"
-                                   class="form-input" 
+                                   class="garden-input" 
                                    required
                                    @blur="validateField('firstName')">
                             <span class="error-message" x-show="errors.firstName" x-text="errors.firstName"></span>
@@ -72,7 +72,7 @@
                                    id="lastName" 
                                    name="last_name" 
                                    x-model="formData.lastName"
-                                   class="form-input" 
+                                   class="garden-input" 
                                    required
                                    @blur="validateField('lastName')">
                             <span class="error-message" x-show="errors.lastName" x-text="errors.lastName"></span>
@@ -86,7 +86,7 @@
                                id="email" 
                                name="email" 
                                x-model="formData.email"
-                               class="form-input" 
+                               class="garden-input" 
                                required
                                @blur="validateField('email')"
                                hx-post="/api/validate-email/"
@@ -105,7 +105,7 @@
                                id="phone" 
                                name="phone" 
                                x-model="formData.phone"
-                               class="form-input">
+                               class="garden-input">
                     </div>
                     
                     <div class="form-group">
@@ -115,7 +115,7 @@
                                id="location" 
                                name="location" 
                                x-model="formData.location"
-                               class="form-input" 
+                               class="garden-input" 
                                placeholder="e.g., San Francisco, CA" 
                                required
                                @blur="validateField('location')">
@@ -192,7 +192,7 @@
                         <select id="timeHorizon" 
                                 name="time_horizon" 
                                 x-model="formData.timeHorizon"
-                                class="form-input" 
+                                class="garden-input" 
                                 required
                                 @change="validateField('timeHorizon')">
                             <option value="">Select time horizon</option>
@@ -322,7 +322,7 @@
                                    id="initialInvestment" 
                                    name="initial_investment" 
                                    x-model.number="formData.initialInvestment"
-                                   class="form-input" 
+                                   class="garden-input" 
                                    min="25000" 
                                    step="1000" 
                                    required
@@ -341,7 +341,7 @@
                                    id="monthlyContribution" 
                                    name="monthly_contribution" 
                                    x-model.number="formData.monthlyContribution"
-                                   class="form-input" 
+                                   class="garden-input" 
                                    min="0" 
                                    step="100"
                                    @input="formatCurrency('monthlyContribution')">
