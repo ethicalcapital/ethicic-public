@@ -93,7 +93,7 @@ class Command(BaseCommand):
 
         # Show what child pages will be affected
         current_home_pages = Page.objects.filter(
-            id__in=sites_to_fix.values_list('root_page_id', flat=True)
+            id__in=sites_to_fix.values_list("root_page_id", flat=True)
         )
 
         for home_page in current_home_pages:
@@ -103,8 +103,8 @@ class Command(BaseCommand):
                 for child in child_pages:
                     old_url = child.url_path
                     # Calculate what the new URL would be
-                    new_url = old_url.replace(home_page.url_path, '/')
-                    if new_url.startswith('//'):
+                    new_url = old_url.replace(home_page.url_path, "/")
+                    if new_url.startswith("//"):
                         new_url = new_url[1:]  # Remove double slash
                     self.stdout.write(f"    {child.title}: {old_url} → {new_url}")
 
@@ -123,7 +123,7 @@ class Command(BaseCommand):
         )
         confirm = input("Are you sure you want to proceed? (yes/no): ")
 
-        if confirm.lower() != 'yes':
+        if confirm.lower() != "yes":
             self.stdout.write("Operation cancelled.")
             return
 

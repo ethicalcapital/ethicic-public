@@ -1,0 +1,72 @@
+# Ruff configuration for Ethical Capital
+# Enhanced security and quality standards for financial software
+
+# Target Python 3.9+ for modern features
+target-version = "py39"
+line-length = 88
+
+[lint]
+# Enable comprehensive rule sets for financial software
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings  
+    "F",    # Pyflakes
+    "S",    # flake8-bandit (security)
+    "B",    # flake8-bugbear (common bugs)
+    "C90",  # mccabe complexity
+    "I",    # isort imports
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "PL",   # pylint
+    "PT",   # pytest-style
+    "Q",    # flake8-quotes
+    "RET",  # flake8-return
+    "SIM",  # flake8-simplify
+    "ERA",  # eradicate (commented code)
+    "PIE",  # flake8-pie
+    "T20",  # flake8-print
+    "ARG",  # flake8-unused-arguments
+    "DTZ",  # flake8-datetimez
+    "PERF", # perflint
+]
+
+# Ignore specific rules that conflict with Django patterns
+ignore = [
+    "S101",    # Use of assert (common in tests)
+    "S311",    # Random generators (OK for non-crypto use)
+    "PLR0913", # Too many arguments (Django views often need many)
+    "PLR2004", # Magic values (Django settings often have these)
+    "T201",    # print statements (allow for debugging)
+    "ERA001",  # commented code (sometimes needed for reference)
+]
+
+# File-specific ignores
+[lint.per-file-ignores]
+"**/migrations/*.py" = ["ALL"]  # Django migrations can be messy
+"**/tests/*.py" = ["S101", "PLR2004", "ARG001"]  # Tests have different patterns
+"**/settings/*.py" = ["S105", "S106"]  # Settings may have dummy secrets
+"manage.py" = ["T201"]  # Django manage.py uses print
+
+[lint.mccabe]
+max-complexity = 8  # Lower complexity for financial code
+
+[lint.pylint]
+max-args = 6
+max-statements = 40
+max-returns = 5
+max-branches = 10
+
+[format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+# Exclude common non-Python files
+exclude = [
+    "node_modules",
+    ".venv",
+    "staticfiles",
+    "migrations",
+    "__pycache__",
+    ".git",
+]

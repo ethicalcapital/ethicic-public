@@ -19,30 +19,30 @@ from .blocks import call_ai_analysis_api
 class AIAssistantWidget(AdminTextInput):
     """Widget that provides AI assistance for content creation."""
 
-    template_name = 'public_site/admin/ai_assistant_widget.html'
+    template_name = "public_site/admin/ai_assistant_widget.html"
 
-    def __init__(self, attrs=None, analysis_type='statistics'):
+    def __init__(self, attrs=None, analysis_type="statistics"):
         super().__init__(attrs)
         self.analysis_type = analysis_type
 
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
         context.update({
-            'analysis_type': self.analysis_type,
-            'ai_endpoint': reverse('public_site:ai_analysis_api'),
-            'widget_id': attrs.get('id', name)
+            "analysis_type": self.analysis_type,
+            "ai_endpoint": reverse("public_site:ai_analysis_api"),
+            "widget_id": attrs.get("id", name)
         })
         return context
 
     class Media:
-        css: ClassVar[dict] = {'all': ('css/admin/ai-assistant.css',)}
-        js = ('js/admin/ai-assistant.js',)
+        css: ClassVar[dict] = {"all": ("css/admin/ai-assistant.css",)}
+        js = ("js/admin/ai-assistant.js",)
 
 
 class AIStatisticsPanel(FieldPanel):
     """Panel that shows AI-extracted statistics with enhanced editing capabilities."""
 
-    template = 'public_site/admin/ai_statistics_panel.html'
+    template = "public_site/admin/ai_statistics_panel.html"
 
     def __init__(self, field_name, **kwargs):
         super().__init__(field_name, **kwargs)
@@ -54,7 +54,7 @@ class AIStatisticsPanel(FieldPanel):
     def get_form_options(self):
         opts = super().get_form_options()
         opts.update({
-            'widget': AIAssistantWidget(analysis_type='statistics')
+            "widget": AIAssistantWidget(analysis_type="statistics")
         })
         return opts
 
@@ -74,27 +74,27 @@ class AIStatisticsPanel(FieldPanel):
         """Get AI analysis for the blog post via API call."""
         # Extract content from the instance
         content_text = ""
-        if hasattr(instance, 'body') and instance.body:
+        if hasattr(instance, "body") and instance.body:
             content_text += str(instance.body)
-        if hasattr(instance, 'content') and instance.content:
+        if hasattr(instance, "content") and instance.content:
             for block in instance.content:
-                if hasattr(block, 'value') and isinstance(block.value, str):
+                if hasattr(block, "value") and isinstance(block.value, str):
                     content_text += block.value
 
         if not content_text.strip():
-            return {'meaningful_statistics': [], 'key_insights': [], 'recommended_charts': []}
+            return {"meaningful_statistics": [], "key_insights": [], "recommended_charts": []}
 
         # Make API call to main garden web container
         content_data = {
-            'title': getattr(instance, 'title', ''),
-            'body': content_text
+            "title": getattr(instance, "title", ""),
+            "body": content_text
         }
 
-        analysis = call_ai_analysis_api(content_data, 'comprehensive')
+        analysis = call_ai_analysis_api(content_data, "comprehensive")
         if analysis:
             return analysis
         # Return fallback data if API call fails
-        return {'meaningful_statistics': [], 'key_insights': [], 'recommended_charts': []}
+        return {"meaningful_statistics": [], "key_insights": [], "recommended_charts": []}
 
     def _render_no_content_message(self):
         """Render message when no content is available for analysis."""
@@ -107,64 +107,64 @@ class AIStatisticsPanel(FieldPanel):
 
     def _render_with_analysis(self, instance, analysis, request):
         """Render the panel with AI analysis results."""
-        stats = analysis.get('meaningful_statistics', [])
-        insights = analysis.get('key_insights', [])
-        charts = analysis.get('recommended_charts', [])
+        stats = analysis.get("meaningful_statistics", [])
+        insights = analysis.get("key_insights", [])
+        charts = analysis.get("recommended_charts", [])
 
         html_parts = [
             '<div class="ai-statistics-panel">',
-            '<h3>🤖 AI-Identified Statistics</h3>',
+            "<h3>🤖 AI-Identified Statistics</h3>",
         ]
 
         if stats:
             html_parts.extend([
                 '<div class="ai-stats-grid">',
                 self._render_statistics_grid(stats),
-                '</div>',
+                "</div>",
             ])
         else:
             html_parts.append('<p class="ai-no-stats">No meaningful statistics detected in content.</p>')
 
         if insights:
             html_parts.extend([
-                '<h4>💡 Key Insights</h4>',
+                "<h4>💡 Key Insights</h4>",
                 '<ul class="ai-insights">',
-                ''.join(f'<li>{insight}</li>' for insight in insights),
-                '</ul>',
+                "".join(f"<li>{insight}</li>" for insight in insights),
+                "</ul>",
             ])
 
         if charts:
             html_parts.extend([
-                '<h4>📊 Recommended Charts</h4>',
+                "<h4>📊 Recommended Charts</h4>",
                 '<div class="ai-chart-recommendations">',
                 self._render_chart_recommendations(charts),
-                '</div>',
+                "</div>",
             ])
 
         html_parts.extend([
             '<div class="ai-panel-actions">',
             f'<button type="button" class="button" onclick="refreshAIAnalysis({instance.pk})">',
-            '🔄 Refresh Analysis</button>',
+            "🔄 Refresh Analysis</button>",
             '<button type="button" class="button bicolor" onclick="applyAIStatistics()">',
-            '✨ Apply to Content</button>',
-            '</div>',
-            '</div>'
+            "✨ Apply to Content</button>",
+            "</div>",
+            "</div>"
         ])
 
-        return mark_safe(''.join(html_parts))
+        return mark_safe("".join(html_parts))
 
     def _render_statistics_grid(self, stats):
         """Render grid of AI-identified statistics."""
         grid_items = []
 
         for i, stat in enumerate(stats[:8]):  # Limit to 8 most relevant
-            confidence = stat.get('confidence', 0.5)
-            significance = stat.get('significance', 'medium')
+            confidence = stat.get("confidence", 0.5)
+            significance = stat.get("significance", "medium")
 
-            confidence_color = 'green' if confidence > 0.8 else 'orange' if confidence > 0.6 else 'red'
-            significance_icon = '🔥' if significance == 'high' else '⚡' if significance == 'medium' else '💡'
+            confidence_color = "green" if confidence > 0.8 else "orange" if confidence > 0.6 else "red"
+            significance_icon = "🔥" if significance == "high" else "⚡" if significance == "medium" else "💡"
 
-            grid_items.append(f'''
+            grid_items.append(f"""
                 <div class="ai-stat-card" data-stat-index="{i}">
                     <div class="ai-stat-header">
                         <span class="ai-stat-significance">{significance_icon}</span>
@@ -186,16 +186,16 @@ class AIStatisticsPanel(FieldPanel):
                         </button>
                     </div>
                 </div>
-            ''')
+            """)
 
-        return ''.join(grid_items)
+        return "".join(grid_items)
 
     def _render_chart_recommendations(self, charts):
         """Render recommended chart configurations."""
         chart_items = []
 
         for i, chart in enumerate(charts[:4]):  # Limit to 4 recommendations
-            chart_items.append(f'''
+            chart_items.append(f"""
                 <div class="ai-chart-rec" data-chart-index="{i}">
                     <div class="ai-chart-header">
                         <strong>{chart.get('title', 'Untitled Chart')}</strong>
@@ -209,9 +209,9 @@ class AIStatisticsPanel(FieldPanel):
                         Add Chart Block
                     </button>
                 </div>
-            ''')
+            """)
 
-        return ''.join(chart_items)
+        return "".join(chart_items)
 
     def _render_error_message(self, error):
         """Render error message when analysis fails."""
@@ -228,7 +228,7 @@ class AIStatisticsPanel(FieldPanel):
 class AIContentAssistantPanel(FieldPanel):
     """Panel that provides AI-powered content assistance and suggestions."""
 
-    template = 'public_site/admin/ai_content_assistant_panel.html'
+    template = "public_site/admin/ai_content_assistant_panel.html"
 
     def __init__(self, field_name, **kwargs):
         super().__init__(field_name, **kwargs)
@@ -303,7 +303,7 @@ class AIContentAssistantPanel(FieldPanel):
 class AIVisualizationPanel(FieldPanel):
     """Panel for AI-powered chart and visualization management."""
 
-    template = 'public_site/admin/ai_visualization_panel.html'
+    template = "public_site/admin/ai_visualization_panel.html"
 
     def render_html(self, instance, request):
         """Render visualization management interface."""
@@ -331,23 +331,23 @@ class AIEnhancedBlogPostEdit(TabbedInterface):
         if children is None:
             children = [
                 ObjectList([
-                    FieldPanel('title'),
-                    FieldPanel('body'),  # This should use BlogStreamField
+                    FieldPanel("title"),
+                    FieldPanel("body"),  # This should use BlogStreamField
                 ], heading="Content"),
 
                 ObjectList([
-                    AIStatisticsPanel('body'),
-                    AIContentAssistantPanel('body'),
+                    AIStatisticsPanel("body"),
+                    AIContentAssistantPanel("body"),
                 ], heading="🤖 AI Assistant"),
 
                 ObjectList([
-                    AIVisualizationPanel('body'),
+                    AIVisualizationPanel("body"),
                 ], heading="📊 Visualizations"),
 
                 ObjectList([
-                    FieldPanel('tags'),
-                    FieldPanel('search_description'),
-                    FieldPanel('seo_title'),
+                    FieldPanel("tags"),
+                    FieldPanel("search_description"),
+                    FieldPanel("seo_title"),
                 ], heading="Settings"),
             ]
 
@@ -362,10 +362,10 @@ class AIEnhancedBlogPostForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         # Add AI assistance to relevant fields
-        if 'body' in self.fields:
-            self.fields['body'].widget.attrs.update({
-                'data-ai-enabled': 'true',
-                'data-analysis-endpoint': reverse('public_site:ai_analysis_api'),
+        if "body" in self.fields:
+            self.fields["body"].widget.attrs.update({
+                "data-ai-enabled": "true",
+                "data-analysis-endpoint": reverse("public_site:ai_analysis_api"),
             })
 
     def clean(self):
@@ -373,16 +373,16 @@ class AIEnhancedBlogPostForm(forms.ModelForm):
         cleaned_data = super().clean()
 
         # Run AI validation if content is provided
-        if cleaned_data.get('body'):
+        if cleaned_data.get("body"):
             # This could include AI-powered content validation
             pass
 
         return cleaned_data
 
     class Media:
-        css: ClassVar[dict] = {'all': ('css/admin/ai-enhanced-form.css',)}
+        css: ClassVar[dict] = {"all": ("css/admin/ai-enhanced-form.css",)}
         js = (
-            'js/admin/ai-enhanced-form.js',
-            'js/admin/chart-generator.js',
-            'js/admin/statistics-extractor.js',
+            "js/admin/ai-enhanced-form.js",
+            "js/admin/chart-generator.js",
+            "js/admin/statistics-extractor.js",
         )

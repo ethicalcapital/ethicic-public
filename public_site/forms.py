@@ -22,7 +22,7 @@ class AccessibleContactForm(forms.Form):
         label="Full Name",
         help_text="Enter your first and last name so we can address you properly in our response",
         error_messages={
-            'required': 'Please enter your full name so we can address you properly.',
+            "required": "Please enter your full name so we can address you properly.",
         },
         widget=forms.TextInput(
             attrs={
@@ -38,8 +38,8 @@ class AccessibleContactForm(forms.Form):
         label="Email Address",
         help_text="We'll use this email to respond to your inquiry within 24 hours",
         error_messages={
-            'required': 'Please provide your email address so we can respond to your inquiry.',
-            'invalid': 'Please enter a valid email address (e.g., name@domain.com).',
+            "required": "Please provide your email address so we can respond to your inquiry.",
+            "invalid": "Please enter a valid email address (e.g., name@domain.com).",
         },
         widget=forms.EmailInput(
             attrs={
@@ -79,7 +79,7 @@ class AccessibleContactForm(forms.Form):
         label="Subject",
         help_text="Choose the topic that best matches your inquiry to help us route your message",
         error_messages={
-            'required': 'Please select a subject that best describes your inquiry.',
+            "required": "Please select a subject that best describes your inquiry.",
         },
         widget=forms.Select(attrs={
             "class": "form-input",
@@ -101,9 +101,9 @@ class AccessibleContactForm(forms.Form):
         min_length=10,
         max_length=2000,
         error_messages={
-            'required': 'Please provide a detailed message describing your inquiry.',
-            'min_length': 'Please provide more details (at least 10 characters).',
-            'max_length': 'Please keep your message under 2000 characters.',
+            "required": "Please provide a detailed message describing your inquiry.",
+            "min_length": "Please provide more details (at least 10 characters).",
+            "max_length": "Please keep your message under 2000 characters.",
         },
     )
 
@@ -111,21 +111,21 @@ class AccessibleContactForm(forms.Form):
     website = forms.CharField(
         required=False,
         widget=forms.TextInput(attrs={
-            'style': 'display: none !important;',
-            'tabindex': '-1',
-            'autocomplete': 'off',
+            "style": "display: none !important;",
+            "tabindex": "-1",
+            "autocomplete": "off",
         }),
-        label='Website (leave blank)',
+        label="Website (leave blank)",
     )
 
     honeypot = forms.CharField(
         required=False,
         widget=forms.TextInput(attrs={
-            'style': 'position: absolute; left: -9999px; top: -9999px;',
-            'tabindex': '-1',
-            'autocomplete': 'off',
+            "style": "position: absolute; left: -9999px; top: -9999px;",
+            "tabindex": "-1",
+            "autocomplete": "off",
         }),
-        label='If you are human, leave this field blank',
+        label="If you are human, leave this field blank",
     )
 
     human_check = forms.CharField(
@@ -133,14 +133,14 @@ class AccessibleContactForm(forms.Form):
         label="Simple verification",
         help_text="Please solve this simple math problem to help us prevent automated spam",
         error_messages={
-            'required': 'Please solve the math problem to verify you are human.',
+            "required": "Please solve the math problem to verify you are human.",
         },
         widget=forms.TextInput(attrs={
-            'placeholder': 'Enter the answer (numbers only)',
-            'class': 'form-input',
-            'aria-describedby': 'id_human_check_help',
-            'inputmode': 'numeric',
-            'pattern': '[0-9]*',
+            "placeholder": "Enter the answer (numbers only)",
+            "class": "form-input",
+            "aria-describedby": "id_human_check_help",
+            "inputmode": "numeric",
+            "pattern": "[0-9]*",
         }),
     )
 
@@ -152,7 +152,7 @@ class AccessibleContactForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         # Extract request for spam protection setup
-        request = kwargs.pop('request', None)
+        request = kwargs.pop("request", None)
         super().__init__(*args, **kwargs)
 
         # Set up spam protection
@@ -219,8 +219,8 @@ class AccessibleContactForm(forms.Form):
         # Generate math challenge - always use proper security validation
         # SECURITY: Removed testing bypass to prevent production vulnerabilities
         import sys
-        is_running_tests = 'test' in sys.argv or 'pytest' in sys.modules
-        
+        is_running_tests = "test" in sys.argv or "pytest" in sys.modules
+
         if is_running_tests:
             # Only in actual test execution: use predictable values
             self.math_a = 1
@@ -233,16 +233,16 @@ class AccessibleContactForm(forms.Form):
             self.math_answer = self.math_a + self.math_b
 
         # Store the answer in form's initial data
-        if not hasattr(self, 'initial') or self.initial is None:
+        if not hasattr(self, "initial") or self.initial is None:
             self.initial = {}
 
         # Set form start time for timing analysis
         current_time = timezone.now().timestamp()
-        self.initial['form_start_time'] = str(current_time)
+        self.initial["form_start_time"] = str(current_time)
 
         # Update human_check field with math question
-        self.fields['human_check'].help_text = f"What is {self.math_a} + {self.math_b}? (This helps us prevent spam)"
-        self.fields['human_check'].label = f"What is {self.math_a} + {self.math_b}?"
+        self.fields["human_check"].help_text = f"What is {self.math_a} + {self.math_b}? (This helps us prevent spam)"
+        self.fields["human_check"].label = f"What is {self.math_a} + {self.math_b}?"
 
     def _check_rate_limiting(self, request):
         """Check if this IP is rate limited."""
@@ -265,11 +265,11 @@ class AccessibleContactForm(forms.Form):
 
     def _get_client_ip(self, request):
         """Get the client's IP address."""
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
         if x_forwarded_for:
-            ip = x_forwarded_for.split(',')[0]
+            ip = x_forwarded_for.split(",")[0]
         else:
-            ip = request.META.get('REMOTE_ADDR')
+            ip = request.META.get("REMOTE_ADDR")
         return ip
 
     def clean(self):
@@ -277,53 +277,53 @@ class AccessibleContactForm(forms.Form):
         cleaned_data = super().clean()
 
         # Check honeypot fields
-        if cleaned_data.get('website'):
+        if cleaned_data.get("website"):
             raise forms.ValidationError({
-                'website': 'We detected unusual activity. Please contact us directly if you\'re having trouble.'
+                "website": "We detected unusual activity. Please contact us directly if you're having trouble."
             })
 
-        if cleaned_data.get('honeypot'):
+        if cleaned_data.get("honeypot"):
             raise forms.ValidationError({
-                'honeypot': 'We detected unusual activity. Please contact us directly if you\'re having trouble.'
+                "honeypot": "We detected unusual activity. Please contact us directly if you're having trouble."
             })
 
         # Check human verification - same validation in testing and production
-        human_answer = cleaned_data.get('human_check', '')
-        
+        human_answer = cleaned_data.get("human_check", "")
+
         try:
-            if hasattr(self, 'math_answer') and int(human_answer) != self.math_answer:
+            if hasattr(self, "math_answer") and int(human_answer) != self.math_answer:
                 raise forms.ValidationError({
-                    'human_check': 'Please solve the math problem correctly to verify you are human.'
+                    "human_check": "Please solve the math problem correctly to verify you are human."
                 })
-            if not hasattr(self, 'math_answer'):
+            if not hasattr(self, "math_answer"):
                 # If math_answer is not set (shouldn't happen), require any non-empty value
                 if not human_answer or not human_answer.strip():
                     raise forms.ValidationError({
-                        'human_check': 'Please provide a value for verification.'
+                        "human_check": "Please provide a value for verification."
                     })
         except (ValueError, AttributeError):
             raise forms.ValidationError({
-                'human_check': 'Please enter a number to solve the math problem.'
+                "human_check": "Please enter a number to solve the math problem."
             })
 
         # Check form timing (too fast submissions are likely bots)
         # Always validate timing to ensure security logic is tested
         import sys
         # SECURITY: Use more secure test detection that doesn't rely on settings
-        is_testing = 'test' in sys.argv or 'pytest' in sys.modules
-        
-        form_start_time = cleaned_data.get('form_start_time')
+        is_testing = "test" in sys.argv or "pytest" in sys.modules
+
+        form_start_time = cleaned_data.get("form_start_time")
         if form_start_time:
             try:
                 start_time = float(form_start_time)
-                
+
                 if is_testing:
                     # In testing, use a predictable current time for consistent validation
                     # Assume test forms are filled in exactly 30 seconds (valid timing)
                     current_time = start_time + 30.0
                 else:
                     current_time = timezone.now().timestamp()
-                    
+
                 elapsed_time = current_time - start_time
 
                 # Require at least 10 seconds to fill out the form
@@ -385,7 +385,7 @@ class AccessibleContactForm(forms.Form):
             )
 
         # Check for excessive URLs
-        url_pattern = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+        url_pattern = r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
         urls = re.findall(url_pattern, message)
         if len(urls) > 2:
             msg = (
@@ -462,11 +462,11 @@ class AccessibleNewsletterForm(forms.Form):
     honeypot = forms.CharField(
         required=False,
         widget=forms.TextInput(attrs={
-            'style': 'position: absolute; left: -9999px; top: -9999px;',
-            'tabindex': '-1',
-            'autocomplete': 'off',
+            "style": "position: absolute; left: -9999px; top: -9999px;",
+            "tabindex": "-1",
+            "autocomplete": "off",
         }),
-        label='If you are human, leave this field blank',
+        label="If you are human, leave this field blank",
     )
 
     def __init__(self, *args, **kwargs):
@@ -489,9 +489,9 @@ class AccessibleNewsletterForm(forms.Form):
         cleaned_data = super().clean()
 
         # Check honeypot field
-        if cleaned_data.get('honeypot'):
+        if cleaned_data.get("honeypot"):
             raise forms.ValidationError({
-                'honeypot': 'We detected unusual activity. Please contact us directly if you\'re having trouble.'
+                "honeypot": "We detected unusual activity. Please contact us directly if you're having trouble."
             })
 
         return cleaned_data
@@ -908,11 +908,11 @@ class OnboardingForm(forms.Form):
     honeypot = forms.CharField(
         required=False,
         widget=forms.TextInput(attrs={
-            'style': 'position: absolute; left: -9999px; top: -9999px;',
-            'tabindex': '-1',
-            'autocomplete': 'off',
+            "style": "position: absolute; left: -9999px; top: -9999px;",
+            "tabindex": "-1",
+            "autocomplete": "off",
         }),
-        label='If you are human, leave this field blank',
+        label="If you are human, leave this field blank",
     )
 
     def clean_initial_investment(self):
@@ -935,22 +935,22 @@ class OnboardingForm(forms.Form):
         cleaned_data = super().clean()
 
         # Check honeypot field
-        if cleaned_data.get('honeypot'):
+        if cleaned_data.get("honeypot"):
             msg = "We detected unusual activity. Please contact us directly if you're having trouble."
             raise forms.ValidationError(
                 msg
             )
 
         # Validate accredited investor requirement
-        if not cleaned_data.get('accredited_investor'):
+        if not cleaned_data.get("accredited_investor"):
             raise forms.ValidationError({
-                'accredited_investor': 'You must be an accredited investor to use our services.'
+                "accredited_investor": "You must be an accredited investor to use our services."
             })
 
         # Validate terms acceptance
-        if not cleaned_data.get('terms_accepted'):
+        if not cleaned_data.get("terms_accepted"):
             raise forms.ValidationError({
-                'terms_accepted': 'You must accept the terms and conditions to proceed.'
+                "terms_accepted": "You must accept the terms and conditions to proceed."
             })
 
         return cleaned_data
@@ -959,21 +959,21 @@ class OnboardingForm(forms.Form):
 class CustomUserEditForm(UserEditForm):
     """
     Custom user edit form that excludes avatar uploads.
-    
+
     This prevents 404 errors caused by uploaded avatars that don't persist
     in the media storage on Kinsta hosting. Users can still have avatars
     by using external URLs if needed, but uploads are disabled.
     """
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
+
         # Remove avatar field if it exists in the form
-        if 'avatar' in self.fields:
-            del self.fields['avatar']
-            
+        if "avatar" in self.fields:
+            del self.fields["avatar"]
+
         # Add a helpful note about avatars
-        if hasattr(self, 'helper'):
+        if hasattr(self, "helper"):
             self.helper.form_text = (
                 "Avatar uploads are disabled to prevent issues with media storage. "
                 "Contact an administrator if you need to set a profile image."

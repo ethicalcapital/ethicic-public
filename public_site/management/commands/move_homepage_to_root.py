@@ -96,7 +96,7 @@ class Command(BaseCommand):
         )
         confirm = input("Are you sure you want to proceed? (yes/no): ")
 
-        if confirm.lower() != 'yes':
+        if confirm.lower() != "yes":
             self.stdout.write("Operation cancelled.")
             return
 
@@ -104,10 +104,10 @@ class Command(BaseCommand):
         try:
             with transaction.atomic():
                 # Move the homepage to be a child of root
-                homepage.move(root_page, pos='last-child')
+                homepage.move(root_page, pos="last-child")
 
                 # Update the homepage URL path to "/"
-                homepage.slug = ''  # Empty slug for homepage
+                homepage.slug = ""  # Empty slug for homepage
                 homepage.save()
 
                 self.stdout.write(

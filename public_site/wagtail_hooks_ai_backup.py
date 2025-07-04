@@ -27,16 +27,16 @@ from .models import (
 @register_snippet
 class SupportTicketSnippetViewSet(SnippetViewSet):
     model = SupportTicket
-    list_display: ClassVar[list] = ['first_name', 'last_name', 'subject', 'status', 'created_at']
-    list_filter: ClassVar[list] = ['status', 'category', 'created_at']
-    search_fields: ClassVar[list] = ['first_name', 'last_name', 'email', 'subject', 'message']
-    ordering: ClassVar[list] = ['-created_at']
+    list_display: ClassVar[list] = ["first_name", "last_name", "subject", "status", "created_at"]
+    list_filter: ClassVar[list] = ["status", "category", "created_at"]
+    search_fields: ClassVar[list] = ["first_name", "last_name", "email", "subject", "message"]
+    ordering: ClassVar[list] = ["-created_at"]
 
 
 # Add AI-enhanced admin CSS to improve page editing experience
-@hooks.register('insert_global_admin_css')
+@hooks.register("insert_global_admin_css")
 def global_admin_css():
-    return '''<style>
+    return """<style>
         /* Improve Wagtail admin styling for public site pages */
         .page-editor .object h2.c-panel__heading {
             background-color: #f3f3f3;
@@ -254,52 +254,52 @@ def global_admin_css():
         .add-stat-btn:hover {
             background: #059669;
         }
-    </style>'''
+    </style>"""
 
 
 # Custom page permissions hook
-@hooks.register('register_permissions')
+@hooks.register("register_permissions")
 def register_public_site_permissions():
     """Register custom permissions for public site pages."""
     return [
-        'public_site.add_homepage',
-        'public_site.change_homepage',
-        'public_site.delete_homepage',
-        'public_site.add_aboutpage',
-        'public_site.change_aboutpage',
-        'public_site.delete_aboutpage',
-        'public_site.add_contactpage',
-        'public_site.change_contactpage',
-        'public_site.delete_contactpage',
-        'public_site.add_blogpost',
-        'public_site.change_blogpost',
-        'public_site.delete_blogpost',
-        'public_site.add_researchpage',
-        'public_site.change_researchpage',
-        'public_site.delete_researchpage',
-        'public_site.add_strategypage',
-        'public_site.change_strategypage',
-        'public_site.delete_strategypage',
+        "public_site.add_homepage",
+        "public_site.change_homepage",
+        "public_site.delete_homepage",
+        "public_site.add_aboutpage",
+        "public_site.change_aboutpage",
+        "public_site.delete_aboutpage",
+        "public_site.add_contactpage",
+        "public_site.change_contactpage",
+        "public_site.delete_contactpage",
+        "public_site.add_blogpost",
+        "public_site.change_blogpost",
+        "public_site.delete_blogpost",
+        "public_site.add_researchpage",
+        "public_site.change_researchpage",
+        "public_site.delete_researchpage",
+        "public_site.add_strategypage",
+        "public_site.change_strategypage",
+        "public_site.delete_strategypage",
     ]
 
 
 # Add page preview templates
-@hooks.register('register_page_preview_template')
+@hooks.register("register_page_preview_template")
 def register_preview_templates():
     """Register preview templates for better editing experience."""
     return {
-        'public_site.HomePage': 'public_site/preview/homepage_preview.html',
-        'public_site.AboutPage': 'public_site/preview/aboutpage_preview.html',
-        'public_site.ContactPage': 'public_site/preview/contactpage_preview.html',
-        'public_site.BlogPost': 'public_site/preview/blogpost_preview.html',
-        'public_site.ResearchPage': 'public_site/preview/researchpage_preview.html',
+        "public_site.HomePage": "public_site/preview/homepage_preview.html",
+        "public_site.AboutPage": "public_site/preview/aboutpage_preview.html",
+        "public_site.ContactPage": "public_site/preview/contactpage_preview.html",
+        "public_site.BlogPost": "public_site/preview/blogpost_preview.html",
+        "public_site.ResearchPage": "public_site/preview/researchpage_preview.html",
     }
 
 
 # Add AI assistant JavaScript to admin
-@hooks.register('insert_editor_js')
+@hooks.register("insert_editor_js")
 def editor_js():
-    return '''<script>
+    return """<script>
         document.addEventListener('DOMContentLoaded', function() {
             // Add helpful tooltips for public site pages
             const pageTitle = document.querySelector('h1.icon');
@@ -433,31 +433,31 @@ def editor_js():
             window.aiAssistant = new window.AIContentAssistant();
             window.aiAssistant.init();
         }
-    </script>'''
+    </script>"""
 
 
 # Modern Wagtail Page Listing ViewSets (replaces deprecated ModelAdmin)
 class HomePageListingViewSet(PageListingViewSet):
     model = HomePage
-    menu_label = 'Home Pages'
-    icon = 'home'
+    menu_label = "Home Pages"
+    icon = "home"
     menu_order = 100
     add_to_admin_menu = True
-    list_display: ClassVar[list] = ['title', 'hero_title', 'live', 'latest_revision_created_at', 'has_features_content', 'has_cta_content']
-    search_fields: ClassVar[list] = ['title', 'hero_title', 'hero_subtitle']
-    list_filter: ClassVar[list] = ['live', 'latest_revision_created_at']
+    list_display: ClassVar[list] = ["title", "hero_title", "live", "latest_revision_created_at", "has_features_content", "has_cta_content"]
+    search_fields: ClassVar[list] = ["title", "hero_title", "hero_subtitle"]
+    list_filter: ClassVar[list] = ["live", "latest_revision_created_at"]
 
     def has_features_content(self, obj):
         """Show whether the page has features content."""
         return bool(obj.features_content and obj.features_content.strip())
     has_features_content.boolean = True
-    has_features_content.short_description = 'Has Features'
+    has_features_content.short_description = "Has Features"
 
     def has_cta_content(self, obj):
         """Show whether the page has CTA content."""
         return bool(obj.cta_description and obj.cta_description.strip())
     has_cta_content.boolean = True
-    has_cta_content.short_description = 'Has CTA'
+    has_cta_content.short_description = "Has CTA"
 
     def get_queryset(self, request):
         return super().get_queryset(request).filter(depth__gte=2)
@@ -465,121 +465,121 @@ class HomePageListingViewSet(PageListingViewSet):
 
 class AboutPageListingViewSet(PageListingViewSet):
     model = AboutPage
-    menu_label = 'About Pages'
-    icon = 'info-circle'
+    menu_label = "About Pages"
+    icon = "info-circle"
     menu_order = 110
     add_to_admin_menu = True
-    list_display: ClassVar[list] = ['title', 'live', 'latest_revision_created_at']
-    search_fields: ClassVar[list] = ['title', 'intro_text']
-    list_filter: ClassVar[list] = ['live', 'latest_revision_created_at']
+    list_display: ClassVar[list] = ["title", "live", "latest_revision_created_at"]
+    search_fields: ClassVar[list] = ["title", "intro_text"]
+    list_filter: ClassVar[list] = ["live", "latest_revision_created_at"]
 
 
 class BlogPostListingViewSet(PageListingViewSet):
     model = BlogPost
-    menu_label = 'Blog Posts'
-    icon = 'edit'
+    menu_label = "Blog Posts"
+    icon = "edit"
     menu_order = 120
     add_to_admin_menu = True
-    list_display: ClassVar[list] = ['title', 'author', 'publish_date', 'featured', 'live', 'has_streamfield_content']
-    list_filter: ClassVar[list] = ['live', 'featured', 'publish_date', 'author']
-    search_fields: ClassVar[list] = ['title', 'excerpt']
+    list_display: ClassVar[list] = ["title", "author", "publish_date", "featured", "live", "has_streamfield_content"]
+    list_filter: ClassVar[list] = ["live", "featured", "publish_date", "author"]
+    search_fields: ClassVar[list] = ["title", "excerpt"]
 
     def has_streamfield_content(self, obj):
         """Show whether the post uses the new StreamField."""
         return bool(obj.content)
     has_streamfield_content.boolean = True
-    has_streamfield_content.short_description = 'Uses StreamField'
+    has_streamfield_content.short_description = "Uses StreamField"
 
 
 class StrategyPageListingViewSet(PageListingViewSet):
     model = StrategyPage
-    menu_label = 'Strategy Pages'
-    icon = 'tasks'
+    menu_label = "Strategy Pages"
+    icon = "tasks"
     menu_order = 130
     add_to_admin_menu = True
-    list_display: ClassVar[list] = ['title', 'risk_level', 'live', 'latest_revision_created_at']
-    search_fields: ClassVar[list] = ['title', 'strategy_description']
-    list_filter: ClassVar[list] = ['live', 'latest_revision_created_at']
+    list_display: ClassVar[list] = ["title", "risk_level", "live", "latest_revision_created_at"]
+    search_fields: ClassVar[list] = ["title", "strategy_description"]
+    list_filter: ClassVar[list] = ["live", "latest_revision_created_at"]
 
 
 class FAQArticleListingViewSet(PageListingViewSet):
     model = FAQArticle
-    menu_label = 'FAQ Articles'
-    icon = 'help'
+    menu_label = "FAQ Articles"
+    icon = "help"
     menu_order = 140
     add_to_admin_menu = True
-    list_display: ClassVar[list] = ['title', 'category', 'priority', 'featured', 'live']
-    list_filter: ClassVar[list] = ['category', 'featured', 'live']
-    search_fields: ClassVar[list] = ['title', 'summary']
+    list_display: ClassVar[list] = ["title", "category", "priority", "featured", "live"]
+    list_filter: ClassVar[list] = ["category", "featured", "live"]
+    search_fields: ClassVar[list] = ["title", "summary"]
 
 
 class PRIDDQPageListingViewSet(PageListingViewSet):
     model = PRIDDQPage
-    menu_label = 'PRI DDQ Pages'
-    icon = 'doc-full'
+    menu_label = "PRI DDQ Pages"
+    icon = "doc-full"
     menu_order = 150
     add_to_admin_menu = True
-    list_display: ClassVar[list] = ['title', 'last_updated', 'live', 'latest_revision_created_at']
-    search_fields: ClassVar[list] = ['title', 'hero_title', 'hero_subtitle', 'executive_summary']
-    list_filter: ClassVar[list] = ['live', 'latest_revision_created_at']
+    list_display: ClassVar[list] = ["title", "last_updated", "live", "latest_revision_created_at"]
+    search_fields: ClassVar[list] = ["title", "hero_title", "hero_subtitle", "executive_summary"]
+    list_filter: ClassVar[list] = ["live", "latest_revision_created_at"]
 
 
 # Register the ViewSets with Wagtail using hooks
-@hooks.register('register_admin_viewset')
+@hooks.register("register_admin_viewset")
 def register_homepage_viewset():
-    return HomePageListingViewSet('homepage_listing')
+    return HomePageListingViewSet("homepage_listing")
 
-@hooks.register('register_admin_viewset')
+@hooks.register("register_admin_viewset")
 def register_aboutpage_viewset():
-    return AboutPageListingViewSet('aboutpage_listing')
+    return AboutPageListingViewSet("aboutpage_listing")
 
-@hooks.register('register_admin_viewset')
+@hooks.register("register_admin_viewset")
 def register_blogpost_viewset():
-    return BlogPostListingViewSet('blogpost_listing')
+    return BlogPostListingViewSet("blogpost_listing")
 
-@hooks.register('register_admin_viewset')
+@hooks.register("register_admin_viewset")
 def register_strategypage_viewset():
-    return StrategyPageListingViewSet('strategypage_listing')
+    return StrategyPageListingViewSet("strategypage_listing")
 
-@hooks.register('register_admin_viewset')
+@hooks.register("register_admin_viewset")
 def register_faqarticle_viewset():
-    return FAQArticleListingViewSet('faqarticle_listing')
+    return FAQArticleListingViewSet("faqarticle_listing")
 
-@hooks.register('register_admin_viewset')
+@hooks.register("register_admin_viewset")
 def register_priddqpage_viewset():
-    return PRIDDQPageListingViewSet('priddqpage_listing')
+    return PRIDDQPageListingViewSet("priddqpage_listing")
 
 
 # Custom admin menu items for quick access
-@hooks.register('register_admin_menu_item')
+@hooks.register("register_admin_menu_item")
 def register_public_pages_menu_item():
     """Add quick access menu item for public pages."""
     from wagtail.admin.menu import MenuItem
 
     return MenuItem(
-        'Edit Homepage',
-        reverse('wagtailadmin_pages:edit', args=[3]),  # ID 3 is the HomePage
-        icon_name='home',
+        "Edit Homepage",
+        reverse("wagtailadmin_pages:edit", args=[3]),  # ID 3 is the HomePage
+        icon_name="home",
         order=201
     )
 
 
 # Add additional menu item for page explorer
-@hooks.register('register_admin_menu_item')
+@hooks.register("register_admin_menu_item")
 def register_page_explorer_menu_item():
     """Add page explorer menu item."""
     from wagtail.admin.menu import MenuItem
 
     return MenuItem(
-        'Page Explorer',
-        reverse('wagtailadmin_explore_root'),
-        icon_name='folder-open',
+        "Page Explorer",
+        reverse("wagtailadmin_explore_root"),
+        icon_name="folder-open",
         order=202
     )
 
 
 # Hook to ensure pages show in explorer
-@hooks.register('construct_explorer_page_queryset')
+@hooks.register("construct_explorer_page_queryset")
 def show_public_pages_in_explorer(parent_page, pages, request):
     """Ensure public site pages are visible in explorer."""
     # Return the queryset as-is to show all pages
@@ -587,22 +587,22 @@ def show_public_pages_in_explorer(parent_page, pages, request):
 
 
 # Add page listing buttons
-@hooks.register('register_page_listing_buttons')
+@hooks.register("register_page_listing_buttons")
 def page_listing_buttons(page, user, next_url=None):
     """Add custom buttons to page listings."""
     from wagtail.admin import widgets as wagtailadmin_widgets
 
     # Add "View Live" button for all public pages
-    if hasattr(page.specific, 'url') and page.live:
+    if hasattr(page.specific, "url") and page.live:
         yield wagtailadmin_widgets.ListingButton(
-            'View Live',
+            "View Live",
             page.specific.url,
             priority=10
         )
 
 
 # Add StreamField-specific hooks
-@hooks.register('after_create_page')
+@hooks.register("after_create_page")
 def after_create_blog_post(request, page):
     """Handle actions after creating a blog post."""
     if isinstance(page, BlogPost):
@@ -621,7 +621,7 @@ def after_create_blog_post(request, page):
             )
 
 
-@hooks.register('after_edit_page')
+@hooks.register("after_edit_page")
 def after_edit_blog_post(request, page):
     """Handle actions after editing a blog post."""
     if isinstance(page, BlogPost):
@@ -640,7 +640,7 @@ def after_edit_blog_post(request, page):
             )
 
 
-@hooks.register('after_edit_page')
+@hooks.register("after_edit_page")
 def after_edit_homepage(request, page):
     """Handle actions after editing the homepage."""
     if isinstance(page, HomePage):
@@ -682,7 +682,7 @@ def after_edit_homepage(request, page):
 
 
 # Hook to add instructions to the Wagtail admin dashboard
-@hooks.register('construct_homepage_panels')
+@hooks.register("construct_homepage_panels")
 def add_public_site_instructions(request, panels):
     """Add instructions for editing public site pages."""
     from wagtail.admin.panels import Panel
@@ -699,7 +699,7 @@ def add_public_site_instructions(request, panels):
             return Media()
 
         def render_html(self, parent_context=None):
-            return format_html('''
+            return format_html("""
                 <div class="help-block help-info" style="padding: 20px; margin: 20px 0;">
                     <h2>Editing Public Site Pages</h2>
                     <p>To edit pages on the public-facing website:</p>
@@ -717,7 +717,7 @@ def add_public_site_instructions(request, panels):
                         <li><a href="/cms-admin/pages/add/public_site/homepage/3/">Add New Page</a></li>
                     </ul>
                 </div>
-            ''')
+            """)
 
         def render_as_object(self):
             return self.render_html()
@@ -726,22 +726,22 @@ def add_public_site_instructions(request, panels):
 
 
 # Include AI assistant JavaScript and CSS files
-@hooks.register('insert_global_admin_js')
+@hooks.register("insert_global_admin_js")
 def global_admin_js():
     """Include AI assistant JavaScript for blog editing."""
-    return '''
+    return """
     <script src="/static/js/admin/ai-assistant.js"></script>
-    '''
+    """
 
 
-@hooks.register('insert_global_admin_css')
+@hooks.register("insert_global_admin_css")
 def ai_admin_css():
     """Include AI assistant CSS for admin interface."""
-    return '''<link rel="stylesheet" type="text/css" href="/static/css/admin/ai-assistant.css">'''
+    return """<link rel="stylesheet" type="text/css" href="/static/css/admin/ai-assistant.css">"""
 
 
 # Register AI panels for BlogPost model
-@hooks.register('register_page_action_menu_item')
+@hooks.register("register_page_action_menu_item")
 def register_ai_assistant_menu_item():
     """Add AI Assistant menu item to BlogPost pages."""
     from wagtail.admin.action_menu import ActionMenuItem
@@ -754,7 +754,7 @@ def register_ai_assistant_menu_item():
 
         def is_shown(self, context):
             # Only show for BlogPost pages
-            page = context.get('page')
-            return page and hasattr(page, 'content')  # Has StreamField
+            page = context.get("page")
+            return page and hasattr(page, "content")  # Has StreamField
 
     return AIAssistantMenuItem(order=100)

@@ -9,7 +9,6 @@ from django import template
 from django.utils.html import strip_tags
 from django.utils.safestring import mark_safe
 
-
 register = template.Library()
 
 
@@ -27,14 +26,14 @@ def extract_key_stats(content):
     text_content = strip_tags(str(content))
 
     patterns = {
-        'percentages': r'([+-]?\d+\.?\d*%)',
-        'dollar_amounts': r'\$(\d+(?:,\d{3})*(?:\.\d{2})?[BMK]?)',
-        'returns': r'([+-]?\d+\.?\d*%)\s*(?:return|performance|gain|loss)',
-        'years': r'(20\d{2})',
-        'positions': r'(\d+\.?\d*%)\s*(?:of|position|weight|allocation|holding)',
-        'ratios': r'(\d+\.?\d*)\s*(?:ratio|multiple|times|x)',
-        'basis_points': r'(\d+)\s*(?:basis points|bps)',
-        'market_cap': r'\$(\d+(?:\.\d+)?[BMT]?)\s*(?:market cap|billion|million)',
+        "percentages": r"([+-]?\d+\.?\d*%)",
+        "dollar_amounts": r"\$(\d+(?:,\d{3})*(?:\.\d{2})?[BMK]?)",
+        "returns": r"([+-]?\d+\.?\d*%)\s*(?:return|performance|gain|loss)",
+        "years": r"(20\d{2})",
+        "positions": r"(\d+\.?\d*%)\s*(?:of|position|weight|allocation|holding)",
+        "ratios": r"(\d+\.?\d*)\s*(?:ratio|multiple|times|x)",
+        "basis_points": r"(\d+)\s*(?:basis points|bps)",
+        "market_cap": r"\$(\d+(?:\.\d+)?[BMT]?)\s*(?:market cap|billion|million)",
     }
 
     stats = {}
@@ -58,9 +57,9 @@ def highlight_stats(content):
 
     # Patterns to highlight
     highlight_patterns = [
-        (r'([+-]?\d+\.?\d*%)', r'<span class="stat-highlight">\1</span>'),
-        (r'(\$\d+(?:,\d{3})*(?:\.\d{2})?[BMK]?)', r'<span class="stat-highlight">\1</span>'),
-        (r'(\d+\.?\d*)\s*(basis points|bps)', r'<span class="stat-highlight">\1 \2</span>'),
+        (r"([+-]?\d+\.?\d*%)", r'<span class="stat-highlight">\1</span>'),
+        (r"(\$\d+(?:,\d{3})*(?:\.\d{2})?[BMK]?)", r'<span class="stat-highlight">\1</span>'),
+        (r"(\d+\.?\d*)\s*(basis points|bps)", r'<span class="stat-highlight">\1 \2</span>'),
     ]
 
     highlighted_content = str(content)
@@ -82,9 +81,9 @@ def generate_data_header(post):
 
     # Extract content from both new StreamField and legacy body field
     content = ""
-    if hasattr(post, 'content') and post.content:
+    if hasattr(post, "content") and post.content:
         content = str(post.content)
-    elif hasattr(post, 'body') and post.body:
+    elif hasattr(post, "body") and post.body:
         content = str(post.body)
 
     stats = extract_key_stats(content)
@@ -93,36 +92,36 @@ def generate_data_header(post):
     data_points = []
 
     # Portfolio positions and weights
-    if stats.get('positions'):
-        for pos in stats['positions'][:2]:
+    if stats.get("positions"):
+        for pos in stats["positions"][:2]:
             data_points.append({
-                'value': pos,
-                'label': 'PORTFOLIO WEIGHT'
+                "value": pos,
+                "label": "PORTFOLIO WEIGHT"
             })
 
     # Performance returns
-    if stats.get('returns'):
-        for ret in stats['returns'][:2]:
+    if stats.get("returns"):
+        for ret in stats["returns"][:2]:
             data_points.append({
-                'value': ret,
-                'label': 'PERFORMANCE'
+                "value": ret,
+                "label": "PERFORMANCE"
             })
 
     # General percentages
-    if stats.get('percentages') and len(data_points) < 4:
-        for pct in stats['percentages'][:2]:
-            if pct not in [dp['value'] for dp in data_points]:  # Avoid duplicates
+    if stats.get("percentages") and len(data_points) < 4:
+        for pct in stats["percentages"][:2]:
+            if pct not in [dp["value"] for dp in data_points]:  # Avoid duplicates
                 data_points.append({
-                    'value': pct,
-                    'label': 'KEY METRIC'
+                    "value": pct,
+                    "label": "KEY METRIC"
                 })
 
     # Dollar amounts
-    if stats.get('dollar_amounts') and len(data_points) < 4:
-        for amt in stats['dollar_amounts'][:1]:
+    if stats.get("dollar_amounts") and len(data_points) < 4:
+        for amt in stats["dollar_amounts"][:1]:
             data_points.append({
-                'value': f'${amt}',
-                'label': 'VALUE'
+                "value": f"${amt}",
+                "label": "VALUE"
             })
 
     return data_points[:4]  # Maximum 4 data points for header
@@ -137,14 +136,14 @@ def generate_post_visual(post):
     post_type = extract_post_type(post)
     content = ""
 
-    if hasattr(post, 'content') and post.content:
+    if hasattr(post, "content") and post.content:
         content = str(post.content)
-    elif hasattr(post, 'body') and post.body:
+    elif hasattr(post, "body") and post.body:
         content = str(post.body)
 
-    if post_type == 'performance':
+    if post_type == "performance":
         return generate_performance_visual(content)
-    if post_type == 'holdings':
+    if post_type == "holdings":
         return generate_holdings_visual(content)
     return generate_general_visual(content)
 
@@ -153,10 +152,10 @@ def generate_performance_visual(content):
     """Create performance-focused ASCII visual."""
     stats = extract_key_stats(content)
 
-    if stats.get('returns'):
-        returns = stats['returns'][:2]
+    if stats.get("returns"):
+        returns = stats["returns"][:2]
         try:
-            values = [float(re.search(r'[\d.]+', ret).group()) for ret in returns if re.search(r'[\d.]+', ret)]
+            values = [float(re.search(r"[\d.]+", ret).group()) for ret in returns if re.search(r"[\d.]+", ret)]
             if len(values) >= 2:
                 portfolio_return = values[0]
                 benchmark_return = values[1] if len(values) > 1 else 0
@@ -178,18 +177,18 @@ def generate_holdings_visual(content):
     """Create holdings-focused ASCII visual."""
     stats = extract_key_stats(content)
 
-    if stats.get('positions'):
-        positions = stats['positions'][:4]
+    if stats.get("positions"):
+        positions = stats["positions"][:4]
         try:
             visual_lines = ["PORTFOLIO ALLOCATION", "═" * 30]
 
             for pos in positions:
-                val = float(re.search(r'[\d.]+', pos).group())
+                val = float(re.search(r"[\d.]+", pos).group())
                 bar_length = int(val / 2)  # Scale for display
                 bar = "█" * bar_length
                 visual_lines.append(f"Position Weight  {bar:<15} {val:>6.1f}%")
 
-            return mark_safe('<pre class="ascii-visual">\n' + '\n'.join(visual_lines) + '\n</pre>')
+            return mark_safe('<pre class="ascii-visual">\n' + "\n".join(visual_lines) + "\n</pre>")
         except (ValueError, AttributeError):
             pass
 
@@ -203,16 +202,16 @@ def generate_general_visual(content):
     # Create a summary box with key stats
     visual_lines = ["KEY METRICS SUMMARY", "─" * 25]
 
-    if stats.get('percentages'):
-        for pct in stats['percentages'][:3]:
+    if stats.get("percentages"):
+        for pct in stats["percentages"][:3]:
             visual_lines.append(f"• {pct} Key Percentage")
 
-    if stats.get('dollar_amounts'):
-        for amt in stats['dollar_amounts'][:2]:
+    if stats.get("dollar_amounts"):
+        for amt in stats["dollar_amounts"][:2]:
             visual_lines.append(f"• ${amt} Value Reference")
 
     if len(visual_lines) > 2:  # Only show if we have actual stats
-        return mark_safe('<pre class="ascii-visual">\n' + '\n'.join(visual_lines) + '\n</pre>')
+        return mark_safe('<pre class="ascii-visual">\n' + "\n".join(visual_lines) + "\n</pre>")
 
     return ""
 
@@ -244,10 +243,10 @@ def generate_ascii_bar_chart(data):
 
     for item in data:
         if isinstance(item, dict):
-            val = item.get('value', 0)
-            label = item.get('label', 'Item')
+            val = item.get("value", 0)
+            label = item.get("label", "Item")
         else:
-            val = float(re.search(r'[\d.]+', str(item)).group()) if re.search(r'[\d.]+', str(item)) else 0
+            val = float(re.search(r"[\d.]+", str(item)).group()) if re.search(r"[\d.]+", str(item)) else 0
             label = str(item)
 
         values.append(val)
@@ -269,7 +268,7 @@ def generate_ascii_bar_chart(data):
         padding = " " * (chart_width - bar_length)
         chart_lines.append(f"{label:<15} {bar}{padding} {val:>6.1f}%")
 
-    return mark_safe('<pre class="ascii-chart">\n' + '\n'.join(chart_lines) + '\n</pre>')
+    return mark_safe('<pre class="ascii-chart">\n' + "\n".join(chart_lines) + "\n</pre>")
 
 
 def generate_ascii_performance_chart(data):
@@ -279,8 +278,8 @@ def generate_ascii_performance_chart(data):
     chart_lines.append("┌─────────────────────────────────────┐")
 
     if data and len(data) >= 2:
-        portfolio_val = data[0] if isinstance(data[0], int | float) else float(re.search(r'[\d.]+', str(data[0])).group())
-        benchmark_val = data[1] if isinstance(data[1], int | float) else float(re.search(r'[\d.]+', str(data[1])).group())
+        portfolio_val = data[0] if isinstance(data[0], int | float) else float(re.search(r"[\d.]+", str(data[0])).group())
+        benchmark_val = data[1] if isinstance(data[1], int | float) else float(re.search(r"[\d.]+", str(data[1])).group())
 
         chart_lines.append(f"│  Portfolio: {portfolio_val:+.2f}%   Benchmark: {benchmark_val:+.2f}%   │")
 
@@ -297,7 +296,7 @@ def generate_ascii_performance_chart(data):
 
     chart_lines.append("└─────────────────────────────────────┘")
 
-    return mark_safe('<pre class="ascii-chart">\n' + '\n'.join(chart_lines) + '\n</pre>')
+    return mark_safe('<pre class="ascii-chart">\n' + "\n".join(chart_lines) + "\n</pre>")
 
 
 @register.filter
@@ -307,33 +306,33 @@ def extract_post_type(post):
     Returns: 'performance', 'holdings', 'analysis', or 'general'
     """
     if not post:
-        return 'general'
+        return "general"
 
     # Extract content
     content = ""
-    title = getattr(post, 'title', '').lower()
+    title = getattr(post, "title", "").lower()
 
-    if hasattr(post, 'content') and post.content:
+    if hasattr(post, "content") and post.content:
         content = str(post.content).lower()
-    elif hasattr(post, 'body') and post.body:
+    elif hasattr(post, "body") and post.body:
         content = str(post.body).lower()
 
     # Check for performance-related content
-    performance_keywords = ['performance', 'return', 'quarterly', 'annual', 'benchmark', 'outperform']
+    performance_keywords = ["performance", "return", "quarterly", "annual", "benchmark", "outperform"]
     if any(keyword in title or keyword in content for keyword in performance_keywords):
-        return 'performance'
+        return "performance"
 
     # Check for holdings/position analysis
-    holdings_keywords = ['holding', 'position', 'portfolio', 'allocation', 'weight']
+    holdings_keywords = ["holding", "position", "portfolio", "allocation", "weight"]
     if any(keyword in title or keyword in content for keyword in holdings_keywords):
-        return 'holdings'
+        return "holdings"
 
     # Check for company/security analysis
-    analysis_keywords = ['analysis', 'review', 'deep dive', 'company', 'stock', 'security']
+    analysis_keywords = ["analysis", "review", "deep dive", "company", "stock", "security"]
     if any(keyword in title or keyword in content for keyword in analysis_keywords):
-        return 'analysis'
+        return "analysis"
 
-    return 'general'
+    return "general"
 
 
 @register.filter
@@ -394,7 +393,7 @@ def select_key_statistics(content):
 
     key_stats = []
     for block in content:
-        if hasattr(block, 'block_type') and block.block_type in ['key_statistic', 'ai_statistic']:
+        if hasattr(block, "block_type") and block.block_type in ["key_statistic", "ai_statistic"]:
             key_stats.append(block)
 
     return key_stats
@@ -417,8 +416,8 @@ def blog_stats_summary(blog_index_page):
         total_posts = posts.count()
 
         # Get publication date range
-        first_post = posts.order_by('first_published_at').first()
-        latest_post = posts.order_by('-first_published_at').first()
+        first_post = posts.order_by("first_published_at").first()
+        latest_post = posts.order_by("-first_published_at").first()
 
         since_year = first_post.first_published_at.year if first_post else None
 
@@ -430,17 +429,17 @@ def blog_stats_summary(blog_index_page):
         tags_count = len(all_tags)
 
         return {
-            'total_posts': total_posts,
-            'featured_count': featured_count,
-            'tags_count': tags_count,
-            'since_year': since_year,
-            'latest_date': latest_post.first_published_at if latest_post else None,
+            "total_posts": total_posts,
+            "featured_count": featured_count,
+            "tags_count": tags_count,
+            "since_year": since_year,
+            "latest_date": latest_post.first_published_at if latest_post else None,
         }
     except Exception:
         return {
-            'total_posts': 0,
-            'featured_count': 0,
-            'tags_count': 0,
-            'since_year': None,
-            'latest_date': None,
+            "total_posts": 0,
+            "featured_count": 0,
+            "tags_count": 0,
+            "since_year": None,
+            "latest_date": None,
         }

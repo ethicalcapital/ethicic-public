@@ -46,13 +46,13 @@ class Command(BaseCommand):
 
         try:
             homepage = HomePage.objects.get()
-            if homepage.slug == '':
+            if homepage.slug == "":
                 self.stdout.write("  ✅ Homepage slug is empty (correct)")
             else:
                 self.stdout.write(f"  ❌ Homepage slug is '{homepage.slug}' (should be empty)")
                 success = False
 
-            if homepage.url_path == '/':
+            if homepage.url_path == "/":
                 self.stdout.write("  ✅ Homepage URL path is '/' (correct)")
             else:
                 self.stdout.write(f"  ❌ Homepage URL path is '{homepage.url_path}' (should be '/')")
@@ -64,7 +64,7 @@ class Command(BaseCommand):
 
         # Check child page URLs
         self.stdout.write("\n📄 Child Page URLs:")
-        if 'homepage' in locals():
+        if "homepage" in locals():
             child_pages = homepage.get_children().live()[:10]  # Sample of child pages
 
             for child in child_pages:
@@ -77,7 +77,7 @@ class Command(BaseCommand):
 
         # Check for any remaining /home/ URLs
         self.stdout.write("\n🔍 Checking for remaining /home/ URLs:")
-        pages_with_home = Page.objects.filter(url_path__contains='/home/').live()
+        pages_with_home = Page.objects.filter(url_path__contains="/home/").live()
 
         if pages_with_home.exists():
             self.stdout.write(f"  ❌ Found {pages_with_home.count()} pages with /home/ in URL:")

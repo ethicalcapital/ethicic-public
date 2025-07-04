@@ -4,23 +4,29 @@ This project uses multiple linting tools to maintain code quality and consistenc
 
 ## Tools Configured
 
-### Python - Ruff
-- **Tool**: [Ruff](https://github.com/astral-sh/ruff) - Fast Python linter
+### Python - Ruff (Enhanced Security)
+- **Tool**: [Ruff](https://github.com/astral-sh/ruff) - Fast Python linter with security focus
+- **Rules**: Pycodestyle (E/W), Pyflakes (F), Security (S), Bugbear (B), Complexity (C90), Import sorting (I), Naming (N), PyUpgrade (UP), Pylint (PL), and more
+- **Config**: `ruff.toml` with financial-grade security standards
 - **Command**: `make lint-python` or `ruff check .`
 - **Auto-fix**: `ruff check --fix .`
+- **Security**: Includes bandit security checks for vulnerabilities
 
-### CSS - Stylelint
-- **Tool**: [Stylelint](https://stylelint.io/) - CSS linter
-- **Config**: `.stylelintrc.json`
+### CSS - Stylelint (Hardcoded Color Detection)
+- **Tool**: [Stylelint](https://stylelint.io/) - CSS linter with Garden UI enforcement
+- **Rules**: Standard CSS rules PLUS hardcoded color detection, !important detection, CSS variable enforcement
+- **Config**: `.stylelintrc.json` - blocks hardcoded colors, RGB/HSL functions, named colors
 - **Command**: `make lint-css` or `stylelint "static/css/**/*.css"`
 - **Auto-fix**: `stylelint "static/css/**/*.css" --fix`
+- **Theme Exception**: `garden-ui-theme.css` is excluded (it defines the base colors)
 
-### JavaScript - ESLint
-- **Tool**: [ESLint](https://eslint.org/) - JavaScript linter
-- **Config**: `eslint.config.js`
+### JavaScript - ESLint (Production Standards)
+- **Tool**: [ESLint](https://eslint.org/) - JavaScript linter with production-grade rules
+- **Rules**: Error prevention, security, complexity limits, no alerts/console (warn), modern JS enforcement
+- **Config**: `eslint.config.js` - enhanced for financial software
 - **Command**: `make lint-js` or `npx eslint "static/js/**/*.js"`
 - **Auto-fix**: `npx eslint "static/js/**/*.js" --fix`
-- **Ignore**: `.eslintignore`
+- **Ignore**: `.eslintignore` - excludes libraries and generated files
 
 ### CSS Conflicts - Custom Tool
 - **Tool**: Custom CSS monitoring system

@@ -4,10 +4,11 @@
 import secrets
 import string
 
+
 def generate_secret_key(length=50):
     """Generate a secure random string for Django SECRET_KEY"""
     characters = string.ascii_letters + string.digits + "!@#$%^&*(-_=+)"
-    return ''.join(secrets.choice(characters) for _ in range(length))
+    return "".join(secrets.choice(characters) for _ in range(length))
 
 if __name__ == "__main__":
     print("\n=== Django SECRET_KEY Generator ===\n")

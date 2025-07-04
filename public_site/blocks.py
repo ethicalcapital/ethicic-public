@@ -10,7 +10,6 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 
-
 # ============================================================================
 # BASIC STREAMFIELD BLOCKS
 # ============================================================================
@@ -19,33 +18,33 @@ class HeadingBlock(blocks.StructBlock):
     """Heading block with size options."""
     heading_text = blocks.CharBlock(classname="title")
     size = blocks.ChoiceBlock(choices=[
-        ('h2', 'H2'),
-        ('h3', 'H3'),
-        ('h4', 'H4'),
-    ], default='h2')
+        ("h2", "H2"),
+        ("h3", "H3"),
+        ("h4", "H4"),
+    ], default="h2")
 
     class Meta:
-        template = 'blocks/heading_block.html'
-        icon = 'title'
-        label = 'Heading'
+        template = "blocks/heading_block.html"
+        icon = "title"
+        label = "Heading"
 
 
 class ParagraphBlock(blocks.RichTextBlock):
     """Rich text paragraph block."""
 
     class Meta:
-        template = 'blocks/paragraph_block.html'
-        icon = 'pilcrow'
-        label = 'Paragraph'
+        template = "blocks/paragraph_block.html"
+        icon = "pilcrow"
+        label = "Paragraph"
 
 
 class RichTextBlock(blocks.RichTextBlock):
     """Standard rich text block."""
 
     class Meta:
-        template = 'blocks/rich_text_block.html'
-        icon = 'pilcrow'
-        label = 'Rich Text'
+        template = "blocks/rich_text_block.html"
+        icon = "pilcrow"
+        label = "Rich Text"
 
 
 class ImageBlock(blocks.StructBlock):
@@ -54,27 +53,27 @@ class ImageBlock(blocks.StructBlock):
     caption = blocks.CharBlock(required=False)
     alignment = blocks.ChoiceBlock(
         choices=[
-            ('left', 'Left'),
-            ('right', 'Right'),
-            ('center', 'Center'),
-            ('full', 'Full Width'),
+            ("left", "Left"),
+            ("right", "Right"),
+            ("center", "Center"),
+            ("full", "Full Width"),
         ],
-        default='center'
+        default="center"
     )
 
     class Meta:
-        template = 'blocks/image_block.html'
-        icon = 'image'
-        label = 'Image'
+        template = "blocks/image_block.html"
+        icon = "image"
+        label = "Image"
 
 
 class EmbedVideoBlock(EmbedBlock):
     """Video embed block."""
 
     class Meta:
-        template = 'blocks/video_block.html'
-        icon = 'media'
-        label = 'Video'
+        template = "blocks/video_block.html"
+        icon = "media"
+        label = "Video"
 
 
 class DocumentBlock(blocks.StructBlock):
@@ -83,9 +82,9 @@ class DocumentBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=False)
 
     class Meta:
-        template = 'blocks/document_block.html'
-        icon = 'doc-full'
-        label = 'Document'
+        template = "blocks/document_block.html"
+        icon = "doc-full"
+        label = "Document"
 
 
 class QuoteBlock(blocks.StructBlock):
@@ -95,9 +94,9 @@ class QuoteBlock(blocks.StructBlock):
     source = blocks.CharBlock(required=False)
 
     class Meta:
-        template = 'blocks/quote_block.html'
-        icon = 'openquote'
-        label = 'Quote'
+        template = "blocks/quote_block.html"
+        icon = "openquote"
+        label = "Quote"
 
 
 class CalloutBlock(blocks.StructBlock):
@@ -106,18 +105,18 @@ class CalloutBlock(blocks.StructBlock):
     content = blocks.RichTextBlock()
     style = blocks.ChoiceBlock(
         choices=[
-            ('info', 'Information'),
-            ('warning', 'Warning'),
-            ('success', 'Success'),
-            ('error', 'Error'),
+            ("info", "Information"),
+            ("warning", "Warning"),
+            ("success", "Success"),
+            ("error", "Error"),
         ],
-        default='info'
+        default="info"
     )
 
     class Meta:
-        template = 'blocks/callout_block.html'
-        icon = 'help'
-        label = 'Callout'
+        template = "blocks/callout_block.html"
+        icon = "help"
+        label = "Callout"
 
 
 class KeyStatisticBlock(blocks.StructBlock):
@@ -137,28 +136,28 @@ class KeyStatisticBlock(blocks.StructBlock):
     )
 
     class Meta:
-        template = 'blocks/key_statistic_simple.html'
-        icon = 'snippet'
-        label = 'Key Statistic'
+        template = "blocks/key_statistic_simple.html"
+        icon = "snippet"
+        label = "Key Statistic"
 
 
 class SimpleTableBlock(TableBlock):
     """Table block for data presentation."""
 
     class Meta:
-        template = 'blocks/table_block.html'
-        icon = 'table'
-        label = 'Table'
+        template = "blocks/table_block.html"
+        icon = "table"
+        label = "Table"
 
 
 class DividerBlock(blocks.StaticBlock):
     """Horizontal divider."""
 
     class Meta:
-        template = 'blocks/divider_block.html'
-        icon = 'horizontalrule'
-        label = 'Divider'
-        admin_text = 'Horizontal line separator'
+        template = "blocks/divider_block.html"
+        icon = "horizontalrule"
+        label = "Divider"
+        admin_text = "Horizontal line separator"
 
 
 # ============================================================================
@@ -170,18 +169,18 @@ class BlogStreamField(StreamField):
 
     def __init__(self, *args, **kwargs):
         block_types = [
-            ('heading', HeadingBlock()),
-            ('paragraph', ParagraphBlock()),
-            ('rich_text', RichTextBlock()),
-            ('image', ImageBlock()),
-            ('video', EmbedVideoBlock()),
-            ('document', DocumentBlock()),
-            ('quote', QuoteBlock()),
-            ('callout', CalloutBlock()),
-            ('key_statistic', KeyStatisticBlock()),
-            ('table', SimpleTableBlock()),
-            ('divider', DividerBlock()),
+            ("heading", HeadingBlock()),
+            ("paragraph", ParagraphBlock()),
+            ("rich_text", RichTextBlock()),
+            ("image", ImageBlock()),
+            ("video", EmbedVideoBlock()),
+            ("document", DocumentBlock()),
+            ("quote", QuoteBlock()),
+            ("callout", CalloutBlock()),
+            ("key_statistic", KeyStatisticBlock()),
+            ("table", SimpleTableBlock()),
+            ("divider", DividerBlock()),
         ]
 
-        kwargs.setdefault('block_types', block_types)
+        kwargs.setdefault("block_types", block_types)
         super().__init__(*args, **kwargs)

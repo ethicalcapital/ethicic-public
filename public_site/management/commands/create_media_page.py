@@ -1,7 +1,9 @@
+from datetime import date
+
 from django.core.management.base import BaseCommand
 from wagtail.models import Page
-from public_site.models import MediaPage, MediaItem
-from datetime import date
+
+from public_site.models import MediaItem, MediaPage
 
 
 class Command(BaseCommand):
@@ -15,8 +17,8 @@ class Command(BaseCommand):
             return
 
         # Check if media page already exists
-        media_page = MediaPage.objects.filter(slug='media').first()
-        
+        media_page = MediaPage.objects.filter(slug="media").first()
+
         if media_page:
             self.stdout.write(self.style.WARNING(f"Media page already exists at: {media_page.url}"))
             return
@@ -29,10 +31,10 @@ class Command(BaseCommand):
             press_kit_title="Press Kit & Resources",
             press_kit_description="<p>For journalists and media professionals, we offer comprehensive resources about Ethical Capital, including our mission, investment philosophy, and impact data. Contact us for high-resolution images, logos, and additional materials.</p>",
         )
-        
+
         root_page.add_child(instance=media_page)
         media_page.save_revision().publish()
-        
+
         self.stdout.write(self.style.SUCCESS(f"Created Media page: {media_page.title}"))
 
         # Add sample media items
@@ -89,6 +91,6 @@ class Command(BaseCommand):
 
         for item_data in sample_items:
             MediaItem.objects.create(page=media_page, **item_data)
-        
+
         self.stdout.write(self.style.SUCCESS(f"Added {len(sample_items)} media items"))
         self.stdout.write(self.style.SUCCESS(f"Media page available at: {media_page.url}"))

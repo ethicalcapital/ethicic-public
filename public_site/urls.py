@@ -7,7 +7,6 @@ from django.views.generic import RedirectView
 
 from . import views
 
-
 app_name = "public_site"
 
 urlpatterns = [
@@ -59,7 +58,7 @@ urlpatterns = [
     # Current Holdings transparency page - temporarily disabled for testing
     # path("holdings/", views.current_holdings, name="current_holdings"),
     # Note: Media files are served by Django/WhiteNoise and configured in main urls.py
-    
+
     # ============================================================================
     # URL REDIRECTS - Ethicic.com to EC1C.com Migration
     # ============================================================================

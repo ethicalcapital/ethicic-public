@@ -6,20 +6,19 @@ Provides image blocks that integrate with Cloudflare Images for optimized delive
 import contextlib
 
 from django.utils.html import format_html
+from integrations.services.cloudflare_images_service import cloudflare_images
 from wagtail import blocks
 from wagtail.admin.widgets import AdminTextInput
-
-from integrations.services.cloudflare_images_service import cloudflare_images
 
 
 class CloudflareImageChooserWidget(AdminTextInput):
     """Custom widget for choosing Cloudflare Images."""
 
-    template_name = 'wagtailadmin/widgets/cloudflare_image_chooser.html'
+    template_name = "wagtailadmin/widgets/cloudflare_image_chooser.html"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.media_files = ['js/cloudflare-image-chooser.js', 'css/cloudflare-image-chooser.css']
+        self.media_files = ["js/cloudflare-image-chooser.js", "css/cloudflare-image-chooser.css"]
 
     def render(self, name, value, attrs=None, renderer=None):
         """Render the widget with upload and URL generation functionality."""
@@ -27,8 +26,8 @@ class CloudflareImageChooserWidget(AdminTextInput):
             attrs = {}
 
         attrs.update({
-            'class': 'cloudflare-image-input',
-            'data-cloudflare-enabled': str(cloudflare_images.is_configured()).lower(),
+            "class": "cloudflare-image-input",
+            "data-cloudflare-enabled": str(cloudflare_images.is_configured()).lower(),
         })
 
         html = super().render(name, value, attrs, renderer)
@@ -41,12 +40,12 @@ class CloudflareImageChooserWidget(AdminTextInput):
 
             upload_button = format_html(
                 '<button type="button" class="button cloudflare-upload-btn" data-target="{}">Upload Image</button>',
-                attrs.get('id', name)
+                attrs.get("id", name)
             )
 
             preview_html = format_html(
                 '<div class="cloudflare-image-preview" data-target="{}"><img src="{}" style="max-width: 200px; max-height: 200px;" /></div>',
-                attrs.get('id', name),
+                attrs.get("id", name),
                 preview_url
             )
 
@@ -162,42 +161,42 @@ class CloudflareImageBlock(blocks.StructBlock):
         """Add image URLs to the template context."""
         context = super().get_context(value, parent_context)
 
-        if value.get('image_id') and cloudflare_images.is_configured():
-            image_id = value['image_id']
-            variant = value.get('variant', 'public')
-            size = value.get('size', 'medium')
+        if value.get("image_id") and cloudflare_images.is_configured():
+            image_id = value["image_id"]
+            variant = value.get("variant", "public")
+            size = value.get("size", "medium")
 
             # Size mappings
             size_map = {
-                'small': {'width': 400},
-                'medium': {'width': 600},
-                'large': {'width': 800},
-                'xl': {'width': 1000},
-                'full': {}  # No size constraints for full width
+                "small": {"width": 400},
+                "medium": {"width": 600},
+                "large": {"width": 800},
+                "xl": {"width": 1000},
+                "full": {}  # No size constraints for full width
             }
 
             transforms = size_map.get(size, {})
 
             # Generate URLs for different formats
             context.update({
-                'image_url': cloudflare_images.get_image_url(image_id, variant=variant, **transforms),
-                'image_url_webp': cloudflare_images.get_image_url(image_id, variant=variant, format='webp', **transforms),
-                'image_url_avif': cloudflare_images.get_image_url(image_id, variant=variant, format='avif', **transforms),
-                'thumbnail_url': cloudflare_images.get_image_url(image_id, variant=variant, width=300, height=200),
-                'configured': True,
+                "image_url": cloudflare_images.get_image_url(image_id, variant=variant, **transforms),
+                "image_url_webp": cloudflare_images.get_image_url(image_id, variant=variant, format="webp", **transforms),
+                "image_url_avif": cloudflare_images.get_image_url(image_id, variant=variant, format="avif", **transforms),
+                "thumbnail_url": cloudflare_images.get_image_url(image_id, variant=variant, width=300, height=200),
+                "configured": True,
             })
 
             # Generate responsive image URLs
-            if size != 'full':
-                base_width = transforms.get('width', 600)
-                context['responsive_urls'] = {
-                    '1x': cloudflare_images.get_image_url(image_id, variant=variant, width=base_width),
-                    '2x': cloudflare_images.get_image_url(image_id, variant=variant, width=base_width * 2),
+            if size != "full":
+                base_width = transforms.get("width", 600)
+                context["responsive_urls"] = {
+                    "1x": cloudflare_images.get_image_url(image_id, variant=variant, width=base_width),
+                    "2x": cloudflare_images.get_image_url(image_id, variant=variant, width=base_width * 2),
                 }
         else:
             context.update({
-                'image_url': None,
-                'configured': False,
+                "image_url": None,
+                "configured": False,
             })
 
         return context
@@ -215,9 +214,9 @@ class CloudflareGalleryBlock(blocks.StructBlock):
     )
     images = blocks.ListBlock(
         blocks.StructBlock([
-            ('image_id', CloudflareImageField(help_text="Cloudflare Images ID")),
-            ('caption', blocks.CharBlock(required=False, max_length=200, help_text="Image caption")),
-            ('alt_text', blocks.CharBlock(required=False, max_length=200, help_text="Alt text for accessibility")),
+            ("image_id", CloudflareImageField(help_text="Cloudflare Images ID")),
+            ("caption", blocks.CharBlock(required=False, max_length=200, help_text="Image caption")),
+            ("alt_text", blocks.CharBlock(required=False, max_length=200, help_text="Alt text for accessibility")),
         ]),
         min_num=1,
         max_num=12,
@@ -263,25 +262,25 @@ class CloudflareGalleryBlock(blocks.StructBlock):
         context = super().get_context(value, parent_context)
 
         if cloudflare_images.is_configured():
-            variant = value.get('variant', 'public')
+            variant = value.get("variant", "public")
             processed_images = []
 
-            for image_data in value.get('images', []):
-                image_id = image_data.get('image_id')
+            for image_data in value.get("images", []):
+                image_id = image_data.get("image_id")
                 if image_id:
                     processed_images.append({
-                        'id': image_id,
-                        'caption': image_data.get('caption', ''),
-                        'alt_text': image_data.get('alt_text', ''),
-                        'thumbnail_url': cloudflare_images.get_image_url(image_id, variant=variant, width=400, height=300),
-                        'full_url': cloudflare_images.get_image_url(image_id, variant=variant, width=1200),
-                        'original_url': cloudflare_images.get_image_url(image_id, variant=variant),
+                        "id": image_id,
+                        "caption": image_data.get("caption", ""),
+                        "alt_text": image_data.get("alt_text", ""),
+                        "thumbnail_url": cloudflare_images.get_image_url(image_id, variant=variant, width=400, height=300),
+                        "full_url": cloudflare_images.get_image_url(image_id, variant=variant, width=1200),
+                        "original_url": cloudflare_images.get_image_url(image_id, variant=variant),
                     })
 
-            context['processed_images'] = processed_images
-            context['configured'] = True
+            context["processed_images"] = processed_images
+            context["configured"] = True
         else:
-            context['configured'] = False
+            context["configured"] = False
 
         return context
 
@@ -342,19 +341,19 @@ class CloudflareHeroImageBlock(blocks.StructBlock):
         """Generate optimized URLs for hero image."""
         context = super().get_context(value, parent_context)
 
-        if value.get('image_id') and cloudflare_images.is_configured():
-            image_id = value['image_id']
+        if value.get("image_id") and cloudflare_images.is_configured():
+            image_id = value["image_id"]
 
             # Generate URLs for different screen sizes
             context.update({
-                'mobile_url': cloudflare_images.get_image_url(image_id, width=768, quality=80),
-                'tablet_url': cloudflare_images.get_image_url(image_id, width=1024, quality=85),
-                'desktop_url': cloudflare_images.get_image_url(image_id, width=1920, quality=90),
-                'retina_url': cloudflare_images.get_image_url(image_id, width=3840, quality=85),
-                'webp_url': cloudflare_images.get_image_url(image_id, width=1920, format='webp', quality=80),
-                'configured': True,
+                "mobile_url": cloudflare_images.get_image_url(image_id, width=768, quality=80),
+                "tablet_url": cloudflare_images.get_image_url(image_id, width=1024, quality=85),
+                "desktop_url": cloudflare_images.get_image_url(image_id, width=1920, quality=90),
+                "retina_url": cloudflare_images.get_image_url(image_id, width=3840, quality=85),
+                "webp_url": cloudflare_images.get_image_url(image_id, width=1920, format="webp", quality=80),
+                "configured": True,
             })
         else:
-            context['configured'] = False
+            context["configured"] = False
 
         return context

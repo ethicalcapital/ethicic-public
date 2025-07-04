@@ -1,19 +1,20 @@
 from django.core.management.base import BaseCommand
+
 from public_site.models import AboutPage
 
 
 class Command(BaseCommand):
-    help = 'Update AboutPage content from about_text.md'
+    help = "Update AboutPage content from about_text.md"
 
     def handle(self, *args, **options):
         # Get the first AboutPage instance (there should only be one)
         try:
             about_page = AboutPage.objects.first()
             if not about_page:
-                self.stdout.write(self.style.ERROR('No AboutPage found in database'))
+                self.stdout.write(self.style.ERROR("No AboutPage found in database"))
                 return
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f'Error accessing AboutPage: {e}'))
+            self.stdout.write(self.style.ERROR(f"Error accessing AboutPage: {e}"))
             return
 
         # Update professional_background_content with "What I do around here" and "What I did Before This"
@@ -65,10 +66,10 @@ class Command(BaseCommand):
         about_page.professional_background_content = professional_content
         about_page.external_roles_content = external_roles_content
         about_page.speaking_writing_content = speaking_writing_content
-        
+
         # Save the page
         try:
             about_page.save_revision().publish()
-            self.stdout.write(self.style.SUCCESS('Successfully updated AboutPage content'))
+            self.stdout.write(self.style.SUCCESS("Successfully updated AboutPage content"))
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f'Error saving AboutPage: {e}'))
+            self.stdout.write(self.style.ERROR(f"Error saving AboutPage: {e}"))

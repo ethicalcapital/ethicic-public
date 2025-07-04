@@ -131,11 +131,13 @@ class BlogPostTest(WagtailPublicSiteTestCase):
     
     def test_blog_post_content_field(self):
         """Test StreamField content on blog post."""
+        from wagtail.rich_text import RichText
+        
         post = self.create_test_blog_post(parent=self.blog_index)
         
-        # Add StreamField content
+        # Add StreamField content - RichTextBlock needs RichText object
         post.content = [
-            ('rich_text', '<p>Rich text content</p>'),
+            ('rich_text', RichText('<p>Rich text content</p>')),
             ('key_statistic', {
                 'value': '57%',
                 'label': 'S&P 500 Excluded',

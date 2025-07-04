@@ -11,21 +11,21 @@ from public_site.models import ConsultationPage, CriteriaPage, GuidePage
 
 
 class Command(BaseCommand):
-    help = 'Create the missing pages that the homepage links to'
+    help = "Create the missing pages that the homepage links to"
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--force',
-            action='store_true',
-            help='Force recreation of pages even if they exist',
+            "--force",
+            action="store_true",
+            help="Force recreation of pages even if they exist",
         )
 
     def handle(self, *args, **options):
-        force = options['force']
+        force = options["force"]
 
         try:
             # Get the site and home page - prefer production site
-            site = Site.objects.filter(hostname='www.ec1c.com').first()
+            site = Site.objects.filter(hostname="www.ec1c.com").first()
             if not site:
                 site = Site.objects.filter(is_default_site=True).first()
             home_page = site.root_page
@@ -44,18 +44,18 @@ class Command(BaseCommand):
                 self.create_criteria_page(home_page, force)
 
             self.stdout.write(
-                self.style.SUCCESS('Successfully created missing homepage pages!')
+                self.style.SUCCESS("Successfully created missing homepage pages!")
             )
 
         except Exception as e:
             self.stdout.write(
-                self.style.ERROR(f'Error creating pages: {e}')
+                self.style.ERROR(f"Error creating pages: {e}")
             )
             raise
 
     def create_consultation_page(self, parent, force=False):
         """Create or update the consultation page."""
-        slug = 'consultation'
+        slug = "consultation"
 
         # Check if page already exists
         existing = ConsultationPage.objects.filter(slug=slug).first()
@@ -100,7 +100,7 @@ class Command(BaseCommand):
 
     def create_guide_page(self, parent, force=False):
         """Create or update the guide page."""
-        slug = 'guide'
+        slug = "guide"
 
         # Check if page already exists
         existing = GuidePage.objects.filter(slug=slug).first()
@@ -145,7 +145,7 @@ class Command(BaseCommand):
 
     def create_criteria_page(self, parent, force=False):
         """Create or update the criteria page."""
-        slug = 'criteria'
+        slug = "criteria"
 
         # Check if page already exists
         existing = CriteriaPage.objects.filter(slug=slug).first()

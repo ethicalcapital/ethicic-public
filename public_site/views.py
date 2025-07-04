@@ -7,7 +7,6 @@ import logging
 
 from django.conf import settings
 
-
 # Import requests for mocking purposes in tests
 try:
     import requests
@@ -24,7 +23,6 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from wagtail.models import Page
-
 
 # Try to import Query, fallback if not available
 try:
@@ -43,27 +41,27 @@ from .forms import (
 )
 from .models import MediaItem, SupportTicket
 
-
 logger = logging.getLogger(__name__)
 
 
 # Error handlers
 def custom_404(request, exception):
     """Custom 404 error page"""
-    return render(request, '404.html', status=404)
+    return render(request, "404.html", status=404)
 
 
 def custom_500(request):
     """Custom 500 error page with fallback"""
     try:
-        return render(request, '500.html', status=500)
+        return render(request, "500.html", status=500)
     except Exception as e:
         # Fallback if template rendering fails
-        from django.http import HttpResponse
         import logging
+
+        from django.http import HttpResponse
         logger = logging.getLogger(__name__)
         logger.error(f"Error handler failed to render template: {e}")
-        
+
         html = """
         <!DOCTYPE html>
         <html>
@@ -74,7 +72,7 @@ def custom_500(request):
         </body>
         </html>
         """
-        return HttpResponse(html, status=500, content_type='text/html')
+        return HttpResponse(html, status=500, content_type="text/html")
 
 # Standalone constants already imported above
 
@@ -158,31 +156,31 @@ def contact_form_submit(request):
                 subject=f"{contact_data['subject']} - {contact_data.get('company', 'Individual')}",
                 message=contact_data["message"],
                 ticket_type="contact",
-                status='new'
+                status="new"
             )
 
             logger.info("Contact form submitted successfully, created ticket #%s", ticket.id)
 
             # Optional: Still try to submit to main platform API if available
             try:
-                api_url = getattr(settings, 'MAIN_PLATFORM_API_URL', None)
+                api_url = getattr(settings, "MAIN_PLATFORM_API_URL", None)
                 if api_url and requests:
                     submission_data = {
-                        'first_name': first_name,
-                        'last_name': last_name,
-                        'email': contact_data["email"],
-                        'subject': ticket.subject,
-                        'message': contact_data["message"],
-                        'category': contact_data["subject"],
-                        'company': contact_data.get("company", ""),
-                        'source': 'public_website'
+                        "first_name": first_name,
+                        "last_name": last_name,
+                        "email": contact_data["email"],
+                        "subject": ticket.subject,
+                        "message": contact_data["message"],
+                        "category": contact_data["subject"],
+                        "company": contact_data.get("company", ""),
+                        "source": "public_website"
                     }
 
                     response = requests.post(
                         f"{api_url}contact/submit/",
                         json=submission_data,
                         timeout=5,  # Shorter timeout since this is optional
-                        headers={'Content-Type': 'application/json'}
+                        headers={"Content-Type": "application/json"}
                     )
 
                     if response.status_code == 201:
@@ -229,9 +227,9 @@ def contact_form_submit(request):
 def newsletter_signup(request):
     """Handle newsletter signup submissions"""
     form = AccessibleNewsletterForm(request.POST)
-    
+
     # Check if this is an HTMX request
-    is_htmx = request.headers.get('HX-Request') == 'true'
+    is_htmx = request.headers.get("HX-Request") == "true"
 
     if form.is_valid():
         email = form.cleaned_data["email"]
@@ -243,43 +241,43 @@ def newsletter_signup(request):
             # Try to create/update CRM Contact for newsletter subscriber
             try:
                 from crm.models import Contact
-                from crm.models.choices import ContactType, ContactStatus
-                
+                from crm.models.choices import ContactStatus, ContactType
+
                 # Check if contact already exists
                 contact, created = Contact.objects.get_or_create(
                     email=email,
                     defaults={
-                        'full_name': 'Newsletter Subscriber',
-                        'first_name': 'Newsletter',
-                        'last_name': 'Subscriber',
-                        'contact_type': ContactType.INDIVIDUAL,
-                        'status': ContactStatus.COLD_LEAD,
-                        'opt_in_marketing': True,
-                        'source': 'Newsletter Page Signup',
-                        'notes': 'Subscribed via newsletter page',
-                        'preferences': {
-                            'newsletter_subscribed': True,
-                            'newsletter_subscribed_date': timezone.now().isoformat(),
-                            'newsletter_source': 'newsletter_page'
+                        "full_name": "Newsletter Subscriber",
+                        "first_name": "Newsletter",
+                        "last_name": "Subscriber",
+                        "contact_type": ContactType.INDIVIDUAL,
+                        "status": ContactStatus.COLD_LEAD,
+                        "opt_in_marketing": True,
+                        "source": "Newsletter Page Signup",
+                        "notes": "Subscribed via newsletter page",
+                        "preferences": {
+                            "newsletter_subscribed": True,
+                            "newsletter_subscribed_date": timezone.now().isoformat(),
+                            "newsletter_source": "newsletter_page"
                         }
                     }
                 )
-                
+
                 if not created:
                     # Update existing contact to subscribe to newsletter
                     contact.opt_in_marketing = True
-                    newsletter_prefs = contact.preferences.get('newsletter_subscribed', False)
+                    newsletter_prefs = contact.preferences.get("newsletter_subscribed", False)
                     if not newsletter_prefs:
                         contact.preferences.update({
-                            'newsletter_subscribed': True,
-                            'newsletter_subscribed_date': timezone.now().isoformat(),
-                            'newsletter_source': 'newsletter_page'
+                            "newsletter_subscribed": True,
+                            "newsletter_subscribed_date": timezone.now().isoformat(),
+                            "newsletter_source": "newsletter_page"
                         })
-                        contact.notes = (contact.notes or '') + f'\nRe-subscribed to newsletter on {timezone.now().date()}'
+                        contact.notes = (contact.notes or "") + f"\nRe-subscribed to newsletter on {timezone.now().date()}"
                         contact.save()
-                    
+
                 logger.info(f"{'Created' if created else 'Updated'} CRM contact for newsletter subscriber: {email}")
-                
+
             except ImportError:
                 # Fallback to SupportTicket if CRM models not available
                 logger.warning("CRM models not available, falling back to SupportTicket")
@@ -294,10 +292,10 @@ def newsletter_signup(request):
 
             # Handle HTMX response
             if is_htmx:
-                return render(request, 'public_site/partials/newsletter_success.html', {
-                    'email': email
+                return render(request, "public_site/partials/newsletter_success.html", {
+                    "email": email
                 })
-            
+
             messages.success(
                 request,
                 "Thank you for subscribing! You will receive our newsletter updates.",
@@ -305,23 +303,23 @@ def newsletter_signup(request):
 
         except Exception:
             logger.exception("Error processing newsletter signup")
-            
+
             if is_htmx:
-                return render(request, 'public_site/partials/newsletter_error.html', {
-                    'error': 'There was an error with your subscription. Please try again.'
+                return render(request, "public_site/partials/newsletter_error.html", {
+                    "error": "There was an error with your subscription. Please try again."
                 })
-            
+
             messages.error(
                 request, "There was an error with your subscription. Please try again.",
             )
 
     else:
         if is_htmx:
-            return render(request, 'public_site/newsletter_page.html', {
-                'form': form,
-                'errors': form.errors
+            return render(request, "public_site/newsletter_page.html", {
+                "form": form,
+                "errors": form.errors
             })
-        
+
         messages.error(request, "Please provide a valid email address.")
 
     # Redirect back to the page they came from
@@ -357,7 +355,11 @@ def create_or_update_contact(email, form_data, form_type, user=None):
     # Import here to avoid dependency issues
     try:
         from crm.models import Contact
-        from crm.models.choices import ContactStatus, ContactType, PriorityLevel  # noqa: F401
+        from crm.models.choices import (  # noqa: F401
+            ContactStatus,
+            ContactType,
+            PriorityLevel,
+        )
 
         # Get contact classification
         contact_status, priority_level, importance_score = classify_contact_priority(form_type, form_data)
@@ -368,30 +370,30 @@ def create_or_update_contact(email, form_data, form_type, user=None):
 
         if contact:
             # Update existing contact with new information
-            if form_data.get('name') and not contact.full_name:
-                contact.full_name = form_data['name']
+            if form_data.get("name") and not contact.full_name:
+                contact.full_name = form_data["name"]
             contact.last_interaction = timezone.now()
             contact.interaction_count += 1
             contact.save()
         else:
             # Create new contact
             created = True
-            full_name = form_data.get('name') or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
+            full_name = form_data.get("name") or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
 
             contact = Contact.objects.create(
                 email=email,
                 full_name=full_name,
-                first_name=form_data.get('first_name', ''),
-                last_name=form_data.get('last_name', ''),
-                company=form_data.get('company', ''),
-                job_title=form_data.get('role', ''),
-                phone_primary=form_data.get('phone', ''),
+                first_name=form_data.get("first_name", ""),
+                last_name=form_data.get("last_name", ""),
+                company=form_data.get("company", ""),
+                job_title=form_data.get("role", ""),
+                phone_primary=form_data.get("phone", ""),
                 status=contact_status,
                 priority_level=priority_level,
                 importance_score=importance_score,
                 last_interaction=timezone.now(),
                 interaction_count=1,
-                source=f'website_{form_type}',
+                source=f"website_{form_type}",
                 created_by=user,
             )
 
@@ -402,8 +404,8 @@ def create_or_update_contact(email, form_data, form_type, user=None):
             def __init__(self):
                 self.id = 1
                 self.email = email
-                self.full_name = form_data.get('name', '')
-                self.contact_status = 'COLD_LEAD'
+                self.full_name = form_data.get("name", "")
+                self.contact_status = "COLD_LEAD"
         return MockContact(), True
 
 
@@ -411,9 +413,9 @@ def create_or_update_contact(email, form_data, form_type, user=None):
 def onboarding_form_submit(request):
     """Handle comprehensive onboarding form submissions"""
     form = OnboardingForm(request.POST)
-    
+
     # Check if this is an HTMX request
-    is_htmx = request.headers.get('HX-Request') == 'true'
+    is_htmx = request.headers.get("HX-Request") == "true"
 
     if form.is_valid():
         form_data = form.cleaned_data
@@ -424,7 +426,7 @@ def onboarding_form_submit(request):
 
             ticket = SupportTicket.objects.create(
                 name=full_name,
-                email=form_data['email'],
+                email=form_data["email"],
                 subject=f"Onboarding Application - {full_name}",
                 message=f"Onboarding application submitted with ${float(form_data['initial_investment']):,.0f} initial investment",
                 ticket_type="onboarding",
@@ -433,12 +435,12 @@ def onboarding_form_submit(request):
 
             # Handle HTMX request
             if is_htmx:
-                return render(request, 'public_site/partials/onboarding_success.html', {
-                    'message': "Thank you for your application!",
-                    'details': "We have received your information and will review it shortly.",
-                    'ticket_id': ticket.id if ticket else None,
+                return render(request, "public_site/partials/onboarding_success.html", {
+                    "message": "Thank you for your application!",
+                    "details": "We have received your information and will review it shortly.",
+                    "ticket_id": ticket.id if ticket else None,
                 })
-            
+
             messages.success(
                 request,
                 "Thank you for your application! We have received your information and will review it shortly."
@@ -448,13 +450,13 @@ def onboarding_form_submit(request):
 
         except Exception:
             logger.exception("Error processing onboarding form")
-            
+
             if is_htmx:
-                return render(request, 'public_site/partials/onboarding_error.html', {
-                    'message': "There was an error processing your application.",
-                    'details': "Please try again or contact us directly."
+                return render(request, "public_site/partials/onboarding_error.html", {
+                    "message": "There was an error processing your application.",
+                    "details": "Please try again or contact us directly."
                 })
-            
+
             messages.error(
                 request,
                 "There was an error processing your application. Please try again or contact us directly."
@@ -464,11 +466,11 @@ def onboarding_form_submit(request):
     else:
         # Form has errors
         if is_htmx:
-            return render(request, 'public_site/partials/onboarding_error.html', {
-                'message': "Please correct the following errors:",
-                'errors': form.errors
+            return render(request, "public_site/partials/onboarding_error.html", {
+                "message": "Please correct the following errors:",
+                "errors": form.errors
             })
-        
+
         error_messages = []
         for field, errors in form.errors.items():
             for error in errors:
@@ -517,8 +519,8 @@ def contact_api(request):
     """API endpoint for contact form submissions - supports both JSON and HTMX"""
     try:
         # Check if this is an HTMX request
-        is_htmx = request.headers.get('HX-Request') == 'true'
-        
+        is_htmx = request.headers.get("HX-Request") == "true"
+
         # Use DRF request.data which handles both JSON and form data
         # This will also handle JSON parsing errors automatically
         try:
@@ -526,8 +528,8 @@ def contact_api(request):
         except Exception as parse_error:
             logger.warning("JSON parse error in contact API: %s", parse_error)
             if is_htmx:
-                return render(request, 'public_site/partials/form_error.html', {
-                    'message': 'Invalid form data. Please check your input and try again.'
+                return render(request, "public_site/partials/form_error.html", {
+                    "message": "Invalid form data. Please check your input and try again."
                 })
             return Response(
                 {
@@ -545,10 +547,10 @@ def contact_api(request):
         mock_request = MockRequest()
 
         # For API endpoints, add required spam protection fields if missing
-        if 'human_check' not in data:
+        if "human_check" not in data:
             # Add a simple default value for API usage
-            data = data.copy() if hasattr(data, 'copy') else dict(data)
-            data['human_check'] = '2'  # Simple default for API
+            data = data.copy() if hasattr(data, "copy") else dict(data)
+            data["human_check"] = "2"  # Simple default for API
 
         form = AccessibleContactForm(data, request=mock_request)
         # For API usage, set a simple math answer to bypass validation
@@ -597,11 +599,11 @@ Support Ticket ID: {ticket.id}
 
             # Return appropriate response based on request type
             if is_htmx:
-                return render(request, 'public_site/partials/form_success.html', {
-                    'message': "Thank you for your message! We will get back to you within 24 hours.",
-                    'ticket_id': ticket.id,
+                return render(request, "public_site/partials/form_success.html", {
+                    "message": "Thank you for your message! We will get back to you within 24 hours.",
+                    "ticket_id": ticket.id,
                 })
-            
+
             return Response(
                 {
                     "success": True,
@@ -613,11 +615,11 @@ Support Ticket ID: {ticket.id}
 
         # Form has errors
         if is_htmx:
-            return render(request, 'public_site/partials/form_error.html', {
-                'message': "Please correct the form errors.",
-                'errors': form.errors,
+            return render(request, "public_site/partials/form_error.html", {
+                "message": "Please correct the form errors.",
+                "errors": form.errors,
             })
-        
+
         return Response(
             {
                 "success": False,
@@ -630,10 +632,10 @@ Support Ticket ID: {ticket.id}
     except Exception:
         logger.exception("Error in contact API")
         if is_htmx:
-            return render(request, 'public_site/partials/form_error.html', {
-                'message': "There was an error processing your request. Please try again.",
+            return render(request, "public_site/partials/form_error.html", {
+                "message": "There was an error processing your request. Please try again.",
             })
-        
+
         return Response(
             {
                 "success": False,
@@ -649,8 +651,8 @@ def newsletter_api(request):
     """API endpoint for newsletter signup - supports both JSON and HTMX"""
     try:
         # Check if this is an HTMX request
-        is_htmx = request.headers.get('HX-Request') == 'true'
-        
+        is_htmx = request.headers.get("HX-Request") == "true"
+
         # Use DRF request.data which handles both JSON and form data
         data = request.data
 
@@ -672,10 +674,10 @@ def newsletter_api(request):
             logger.info("Newsletter signup via API: %s", email)
 
             if is_htmx:
-                return render(request, 'public_site/partials/newsletter_success.html', {
-                    'email': email,
+                return render(request, "public_site/partials/newsletter_success.html", {
+                    "email": email,
                 })
-            
+
             return Response(
                 {
                     "success": True,
@@ -685,10 +687,10 @@ def newsletter_api(request):
             )
 
         if is_htmx:
-            return render(request, 'public_site/partials/newsletter_error.html', {
-                'errors': form.errors,
+            return render(request, "public_site/partials/newsletter_error.html", {
+                "errors": form.errors,
             })
-        
+
         return Response(
             {
                 "success": False,
@@ -701,10 +703,10 @@ def newsletter_api(request):
     except Exception:
         logger.exception("Error in newsletter API")
         if is_htmx:
-            return render(request, 'public_site/partials/newsletter_error.html', {
-                'message': "There was an error with your subscription. Please try again.",
+            return render(request, "public_site/partials/newsletter_error.html", {
+                "message": "There was an error with your subscription. Please try again.",
             })
-        
+
         return Response(
             {
                 "success": False,
@@ -840,7 +842,7 @@ def get_footer_links(request):
 
 def site_search(request):
     """Simple site search using Wagtail's built-in search functionality."""
-    query_string = request.GET.get('q', '').strip()
+    query_string = request.GET.get("q", "").strip()
 
     if query_string:
         try:
@@ -853,13 +855,13 @@ def site_search(request):
 
             # Paginate results
             paginator = Paginator(search_results, 10)
-            page_number = request.GET.get('page')
+            page_number = request.GET.get("page")
             page_obj = paginator.get_page(page_number)
 
             context = {
-                'query_string': query_string,
-                'search_results': page_obj,
-                'total_results': paginator.count,
+                "query_string": query_string,
+                "search_results": page_obj,
+                "total_results": paginator.count,
             }
         except Exception as e:
             # If search fails (e.g., in testing with missing FTS tables), fall back to simple filtering
@@ -868,86 +870,85 @@ def site_search(request):
             # Simple fallback search on page titles
             pages = Page.objects.live().filter(title__icontains=query_string)
             paginator = Paginator(pages, 10)
-            page_number = request.GET.get('page')
+            page_number = request.GET.get("page")
             page_obj = paginator.get_page(page_number)
 
             context = {
-                'query_string': query_string,
-                'search_results': page_obj,
-                'total_results': paginator.count,
+                "query_string": query_string,
+                "search_results": page_obj,
+                "total_results": paginator.count,
             }
     else:
         context = {
-            'query_string': '',
-            'search_results': None,
-            'total_results': 0,
+            "query_string": "",
+            "search_results": None,
+            "total_results": 0,
         }
 
-    return render(request, 'public_site/search_results.html', context)
+    return render(request, "public_site/search_results.html", context)
 
 
 def site_search_live(request):
     """Live search endpoint for HTMX - returns partial HTML results."""
-    query_string = request.GET.get('q', '').strip()
-    
+    query_string = request.GET.get("q", "").strip()
+
     # Check if this is an HTMX request
-    is_htmx = request.headers.get('HX-Request') == 'true'
-    
+    is_htmx = request.headers.get("HX-Request") == "true"
+
     if not query_string or len(query_string) < 2:
         # Return empty results for short queries
-        return render(request, 'public_site/partials/search_results_live.html', {
-            'query_string': query_string,
-            'search_results': [],
-            'total_results': 0,
+        return render(request, "public_site/partials/search_results_live.html", {
+            "query_string": query_string,
+            "search_results": [],
+            "total_results": 0,
         })
 
     try:
         # Use Wagtail's search functionality - limit to 5 results for live search
         search_results = Page.objects.live().search(query_string)[:5]
-        
+
         # Convert to list to get count without extra query
         results_list = list(search_results)
-        
+
         context = {
-            'query_string': query_string,
-            'search_results': results_list,
-            'total_results': len(results_list),
-            'show_more': len(results_list) >= 5,  # Show "View all results" if we hit the limit
+            "query_string": query_string,
+            "search_results": results_list,
+            "total_results": len(results_list),
+            "show_more": len(results_list) >= 5,  # Show "View all results" if we hit the limit
         }
     except Exception as e:
         # Fallback to simple title search
         logger.warning("Live search failed, using fallback: %s", e)
-        
+
         pages = Page.objects.live().filter(title__icontains=query_string)[:5]
         results_list = list(pages)
-        
+
         context = {
-            'query_string': query_string,
-            'search_results': results_list,
-            'total_results': len(results_list),
-            'show_more': len(results_list) >= 5,
+            "query_string": query_string,
+            "search_results": results_list,
+            "total_results": len(results_list),
+            "show_more": len(results_list) >= 5,
         }
-    
+
     # Return partial template for HTMX
     if is_htmx:
-        return render(request, 'public_site/partials/search_results_live.html', context)
-    else:
-        # For non-HTMX requests, redirect to full search
-        return redirect(f'/search/?q={query_string}')
+        return render(request, "public_site/partials/search_results_live.html", context)
+    # For non-HTMX requests, redirect to full search
+    return redirect(f"/search/?q={query_string}")
 
 
 def current_holdings(request):
     """Current Holdings transparency page showing top holdings and portfolio statistics."""
     context = {
-        'page_title': 'Current Holdings',
-        'page_description': 'Transparent disclosure of our current portfolio holdings and statistics',
-        'current_theme': request.session.get('theme', 'light'),
+        "page_title": "Current Holdings",
+        "page_description": "Transparent disclosure of our current portfolio holdings and statistics",
+        "current_theme": request.session.get("theme", "light"),
         # Add any dynamic data here if needed in the future
-        'last_updated': '2024-12-31',  # This could be dynamic from a model
-        'quarter': 'Q4 2024',
+        "last_updated": "2024-12-31",  # This could be dynamic from a model
+        "quarter": "Q4 2024",
     }
 
-    return render(request, 'public_site/current_holdings.html', context)
+    return render(request, "public_site/current_holdings.html", context)
 
 
 # ============================================================================
@@ -960,89 +961,89 @@ def garden_overview(request):
     # Garden platform features
     garden_features = [
         {
-            'title': 'Portfolio Intelligence',
-            'icon': '📊',
-            'description': 'Thoughtful portfolio curation and performance understanding with integrated ethical framework.',
-            'highlights': [
-                'Deep portfolio understanding and performance analytics',
-                'Multi-strategy support (Growth, Income, Diversification)',
-                'Intelligent rebalancing recommendations and insights',
-                'Comprehensive risk assessment with downside protection analysis',
-                'Tax-loss harvesting optimization and detailed reporting'
+            "title": "Portfolio Intelligence",
+            "icon": "📊",
+            "description": "Thoughtful portfolio curation and performance understanding with integrated ethical framework.",
+            "highlights": [
+                "Deep portfolio understanding and performance analytics",
+                "Multi-strategy support (Growth, Income, Diversification)",
+                "Intelligent rebalancing recommendations and insights",
+                "Comprehensive risk assessment with downside protection analysis",
+                "Tax-loss harvesting optimization and detailed reporting"
             ]
         },
         {
-            'title': 'Research Platform',
-            'icon': '🔍',
-            'description': 'Deep research tools for thoughtful analysis and cultivating investment wisdom.',
-            'highlights': [
-                'Company screening with our full exclusion criteria',
-                'AI-enhanced fundamental analysis and valuation models',
-                'ESG integration with proprietary ethical scoring framework',
-                'Market sentiment analysis and pattern recognition',
-                'Curated research reports and analytical summaries'
+            "title": "Research Platform",
+            "icon": "🔍",
+            "description": "Deep research tools for thoughtful analysis and cultivating investment wisdom.",
+            "highlights": [
+                "Company screening with our full exclusion criteria",
+                "AI-enhanced fundamental analysis and valuation models",
+                "ESG integration with proprietary ethical scoring framework",
+                "Market sentiment analysis and pattern recognition",
+                "Curated research reports and analytical summaries"
             ]
         },
         {
-            'title': 'Client Communication Hub',
-            'icon': '💬',
-            'description': 'Thoughtful client relationship management with intelligent communication tools.',
-            'highlights': [
-                'Curated client reporting with personalized insights',
-                'Meeting scheduling and portfolio review management',
-                'Document sharing with secure client portal access',
-                'Communication history and relationship tracking',
-                'Compliance monitoring and regulatory documentation'
+            "title": "Client Communication Hub",
+            "icon": "💬",
+            "description": "Thoughtful client relationship management with intelligent communication tools.",
+            "highlights": [
+                "Curated client reporting with personalized insights",
+                "Meeting scheduling and portfolio review management",
+                "Document sharing with secure client portal access",
+                "Communication history and relationship tracking",
+                "Compliance monitoring and regulatory documentation"
             ]
         },
         {
-            'title': 'AI-Enhanced Wisdom',
-            'icon': '🤖',
-            'description': 'Intelligent assistance for deeper research, analysis, and learning from patterns.',
-            'highlights': [
-                'Human-in-the-loop (HITL) quality assurance and learning processes',
-                'Thoughtful data curation from multiple sources',
-                'Natural language query interface for complex analysis',
-                'Pattern recognition for market insights and opportunities',
-                'Workflow orchestration that learns from your practice'
+            "title": "AI-Enhanced Wisdom",
+            "icon": "🤖",
+            "description": "Intelligent assistance for deeper research, analysis, and learning from patterns.",
+            "highlights": [
+                "Human-in-the-loop (HITL) quality assurance and learning processes",
+                "Thoughtful data curation from multiple sources",
+                "Natural language query interface for complex analysis",
+                "Pattern recognition for market insights and opportunities",
+                "Workflow orchestration that learns from your practice"
             ]
         },
         {
-            'title': 'Compliance & Risk Stewardship',
-            'icon': '🛡️',
-            'description': 'Thoughtful regulatory compliance and risk understanding with intelligent guidance.',
-            'highlights': [
-                'Fiduciary standard compliance monitoring and reporting',
-                'Intelligent regulatory filing and deadline tracking',
-                'Risk assessment with stress testing and scenario analysis',
-                'Comprehensive audit trail and documentation management',
-                'Privacy protection with PII detection and encryption'
+            "title": "Compliance & Risk Stewardship",
+            "icon": "🛡️",
+            "description": "Thoughtful regulatory compliance and risk understanding with intelligent guidance.",
+            "highlights": [
+                "Fiduciary standard compliance monitoring and reporting",
+                "Intelligent regulatory filing and deadline tracking",
+                "Risk assessment with stress testing and scenario analysis",
+                "Comprehensive audit trail and documentation management",
+                "Privacy protection with PII detection and encryption"
             ]
         },
         {
-            'title': 'Knowledge Integration Canvas',
-            'icon': '🔗',
-            'description': 'Unified knowledge platform weaving together financial, operational, and market insights.',
-            'highlights': [
-                'Comprehensive market data feeds with price synchronization',
-                'Multi-custodian account aggregation and reconciliation',
-                'Document management with Paperless-ngx integration',
-                'Knowledge graph for understanding entity relationships and insights',
-                'Thoughtful API integrations with Sharadar, SEC EDGAR, and more'
+            "title": "Knowledge Integration Canvas",
+            "icon": "🔗",
+            "description": "Unified knowledge platform weaving together financial, operational, and market insights.",
+            "highlights": [
+                "Comprehensive market data feeds with price synchronization",
+                "Multi-custodian account aggregation and reconciliation",
+                "Document management with Paperless-ngx integration",
+                "Knowledge graph for understanding entity relationships and insights",
+                "Thoughtful API integrations with Sharadar, SEC EDGAR, and more"
             ]
         }
     ]
 
     context = {
-        'page_title': 'Garden Investment Platform',
-        'garden_features': garden_features,
-        'platform_login_url': '/garden/platform/auth/login/',
-        'total_features': len(garden_features),
-        'feature_count': len(garden_features),
-        'highlights_per_feature': 5,
+        "page_title": "Garden Investment Platform",
+        "garden_features": garden_features,
+        "platform_login_url": "/garden/platform/auth/login/",
+        "total_features": len(garden_features),
+        "feature_count": len(garden_features),
+        "highlights_per_feature": 5,
     }
 
-    return render(request, 'public_site/garden_overview.html', context)
+    return render(request, "public_site/garden_overview.html", context)
 
 
 @api_view(["POST"])
@@ -1055,27 +1056,27 @@ def garden_interest_registration(request):
         data = request.data
 
         # Extract form fields
-        name = data.get('name', '').strip()
-        email = data.get('email', '').strip()
-        company = data.get('company', '').strip()
-        role = data.get('role', '').strip()
-        interest_areas = data.get('interest_areas', [])
-        message = data.get('message', '').strip()
+        name = data.get("name", "").strip()
+        email = data.get("email", "").strip()
+        company = data.get("company", "").strip()
+        role = data.get("role", "").strip()
+        interest_areas = data.get("interest_areas", [])
+        message = data.get("message", "").strip()
 
         # Basic validation
         if not name or not email:
             return Response({
-                'success': False,
-                'error': 'Name and email are required fields.'
+                "success": False,
+                "error": "Name and email are required fields."
             }, status=status.HTTP_400_BAD_REQUEST)
 
         # Email format validation
         import re
-        email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        email_pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         if not re.match(email_pattern, email):
             return Response({
-                'success': False,
-                'error': 'Please enter a valid email address.'
+                "success": False,
+                "error": "Please enter a valid email address."
             }, status=status.HTTP_400_BAD_REQUEST)
 
         # Create a support ticket to track Garden interest
@@ -1102,19 +1103,19 @@ Message:
 
         # Log the registration
         logger.info("Garden interest registration: %s (%s) from %s", name, email, company)
-        logger.info("Role: %s, Interests: %s", role, ', '.join(interest_areas))
+        logger.info("Role: %s, Interests: %s", role, ", ".join(interest_areas))
         logger.info("Message: %s", message)
 
         # Return success response
         return Response({
-            'success': True,
-            'message': 'Thank you for your interest! We will contact you soon to discuss Garden platform access.'
+            "success": True,
+            "message": "Thank you for your interest! We will contact you soon to discuss Garden platform access."
         }, status=status.HTTP_201_CREATED)
 
     except json.JSONDecodeError:
         return Response({
-            'success': False,
-            'error': 'Invalid request format.'
+            "success": False,
+            "error": "Invalid request format."
         }, status=status.HTTP_400_BAD_REQUEST)
 
     except Exception:
@@ -1122,8 +1123,8 @@ Message:
         logger.exception("Error processing Garden interest registration")
 
         return Response({
-            'success': False,
-            'error': 'An error occurred processing your request. Please try again.'
+            "success": False,
+            "error": "An error occurred processing your request. Please try again."
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
@@ -1133,17 +1134,17 @@ def media_items_api(request):
     """API endpoint for paginated media items for infinite scroll"""
     try:
         # Get page and per_page parameters
-        page = int(request.GET.get('page', 1))
-        per_page = int(request.GET.get('per_page', 6))
+        page = int(request.GET.get("page", 1))
+        per_page = int(request.GET.get("per_page", 6))
 
         # Limit per_page to reasonable values
         per_page = min(max(per_page, 1), 50)
-        
+
         # Check if this is an HTMX request
-        is_htmx = request.headers.get('HX-Request') == 'true'
+        is_htmx = request.headers.get("HX-Request") == "true"
 
         # Get all media items ordered by featured first, then by date
-        media_items = MediaItem.objects.select_related('page').order_by('-featured', '-publication_date')
+        media_items = MediaItem.objects.select_related("page").order_by("-featured", "-publication_date")
 
         # Apply pagination
         paginator = Paginator(media_items, per_page)
@@ -1153,22 +1154,22 @@ def media_items_api(request):
         except Exception:
             # If page is out of range, return empty results
             if is_htmx:
-                return HttpResponse('')  # Empty response for HTMX
-            
+                return HttpResponse("")  # Empty response for HTMX
+
             return Response({
-                'items': [],
-                'has_next': False,
-                'total_pages': paginator.num_pages,
-                'current_page': page,
-                'total_items': paginator.count
+                "items": [],
+                "has_next": False,
+                "total_pages": paginator.num_pages,
+                "current_page": page,
+                "total_items": paginator.count
             }, status=status.HTTP_200_OK)
 
         # For HTMX request, return HTML partial
         if is_htmx:
             # Create the next page trigger if there are more pages
-            next_page_html = ''
+            next_page_html = ""
             if page_obj.has_next():
-                next_page_html = f'''
+                next_page_html = f"""
                 <div id="load-more-trigger"
                      hx-get="/api/media-items/?page={page + 1}&per_page={per_page}"
                      hx-trigger="revealed"
@@ -1178,13 +1179,13 @@ def media_items_api(request):
                      hx-swap-oob="true"
                      class="load-more-trigger">
                 </div>
-                '''
-            
-            return render(request, 'public_site/partials/media_items.html', {
-                'media_items': page_obj,
-                'next_page_trigger': next_page_html
+                """
+
+            return render(request, "public_site/partials/media_items.html", {
+                "media_items": page_obj,
+                "next_page_trigger": next_page_html
             })
-        
+
         # For regular API request, return JSON
         items = []
         for item in page_obj:
@@ -1193,66 +1194,66 @@ def media_items_api(request):
             if description:
                 import re
                 # Simple HTML tag removal for API
-                description = re.sub(r'<[^>]+>', '', description)
+                description = re.sub(r"<[^>]+>", "", description)
                 description = description.strip()
 
             items.append({
-                'id': item.id,
-                'title': item.title,
-                'description': description,
-                'publication': item.publication,
-                'publication_date': item.publication_date.isoformat() if item.publication_date else None,
-                'external_url': item.external_url,
-                'featured': item.featured,
+                "id": item.id,
+                "title": item.title,
+                "description": description,
+                "publication": item.publication,
+                "publication_date": item.publication_date.isoformat() if item.publication_date else None,
+                "external_url": item.external_url,
+                "featured": item.featured,
             })
 
         return Response({
-            'items': items,
-            'has_next': page_obj.has_next(),
-            'total_pages': paginator.num_pages,
-            'current_page': page,
-            'total_items': paginator.count
+            "items": items,
+            "has_next": page_obj.has_next(),
+            "total_pages": paginator.num_pages,
+            "current_page": page,
+            "total_items": paginator.count
         }, status=status.HTTP_200_OK)
 
     except ValueError:
         return Response({
-            'error': 'Invalid page or per_page parameter'
+            "error": "Invalid page or per_page parameter"
         }, status=status.HTTP_400_BAD_REQUEST)
 
     except Exception:
         logger.exception("Error in media items API")
         return Response({
-            'error': 'Internal server error'
+            "error": "Internal server error"
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 def live_stats_api(request):
     """API endpoint for live statistics with HTMX polling"""
     import random
+
     from django.utils import timezone
-    
+
     # In a real application, these would come from your database or analytics
     # For demo purposes, we'll show slightly varying numbers
     base_screened = 3000
     base_holdings = 18
-    
+
     stats = {
-        'companies_screened': f"{base_screened + random.randint(0, 50):,}+",
-        'excluded_percentage': "57%",
-        'active_holdings': str(base_holdings + random.randint(-2, 2)),
-        'years_research': "15+",
-        'last_updated': timezone.now()
+        "companies_screened": f"{base_screened + random.randint(0, 50):,}+",
+        "excluded_percentage": "57%",
+        "active_holdings": str(base_holdings + random.randint(-2, 2)),
+        "years_research": "15+",
+        "last_updated": timezone.now()
     }
-    
+
     # Check if this is an HTMX request
-    is_htmx = request.headers.get('HX-Request') == 'true'
-    
+    is_htmx = request.headers.get("HX-Request") == "true"
+
     if is_htmx:
         # Return just the partial template for HTMX
-        return render(request, 'public_site/partials/live_stats_data.html', stats)
-    else:
-        # Return JSON for regular API calls
-        return JsonResponse(stats)
+        return render(request, "public_site/partials/live_stats_data.html", stats)
+    # Return JSON for regular API calls
+    return JsonResponse(stats)
 
 
 def notifications_count_api(request):
@@ -1260,99 +1261,99 @@ def notifications_count_api(request):
     # In a real app, this would check the user's unread notifications
     # For demo, return a random count
     import random
-    
+
     count = random.choice([0, 0, 0, 1, 2, 3])  # Mostly 0, occasionally some notifications
-    
+
     # For HTMX requests, return just the count as HTML
-    if request.headers.get('HX-Request') == 'true':
+    if request.headers.get("HX-Request") == "true":
         if count > 0:
             return HttpResponse(str(count))
-        else:
-            return HttpResponse('')  # Empty for 0 count
-    
-    return JsonResponse({'count': count})
+        return HttpResponse("")  # Empty for 0 count
+
+    return JsonResponse({"count": count})
 
 
 def notifications_api(request):
     """API endpoint for notifications list"""
     # Demo notifications - in production, these would come from your database
     from datetime import timedelta
+
     from django.utils import timezone
-    
+
     notifications = [
         {
-            'id': 1,
-            'content': 'New research report available: Q1 2025 Market Analysis',
-            'time': timezone.now() - timedelta(hours=2),
-            'unread': True,
-            'url': '/research/q1-2025-analysis/'
+            "id": 1,
+            "content": "New research report available: Q1 2025 Market Analysis",
+            "time": timezone.now() - timedelta(hours=2),
+            "unread": True,
+            "url": "/research/q1-2025-analysis/"
         },
         {
-            'id': 2,
-            'content': 'Portfolio update: AAPL position adjusted',
-            'time': timezone.now() - timedelta(days=1),
-            'unread': True,
-            'url': '/portfolio/updates/'
+            "id": 2,
+            "content": "Portfolio update: AAPL position adjusted",
+            "time": timezone.now() - timedelta(days=1),
+            "unread": True,
+            "url": "/portfolio/updates/"
         },
         {
-            'id': 3,
-            'content': 'Monthly newsletter published',
-            'time': timezone.now() - timedelta(days=3),
-            'unread': False,
-            'url': '/blog/'
+            "id": 3,
+            "content": "Monthly newsletter published",
+            "time": timezone.now() - timedelta(days=3),
+            "unread": False,
+            "url": "/blog/"
         }
     ]
-    
+
     # For HTMX requests, return partial template
-    if request.headers.get('HX-Request') == 'true':
-        return render(request, 'public_site/partials/notification_list.html', {
-            'notifications': notifications
+    if request.headers.get("HX-Request") == "true":
+        return render(request, "public_site/partials/notification_list.html", {
+            "notifications": notifications
         })
-    
-    return JsonResponse({'notifications': notifications})
+
+    return JsonResponse({"notifications": notifications})
 
 
 def mark_notifications_read_api(request):
     """Mark all notifications as read"""
-    if request.method == 'POST':
+    if request.method == "POST":
         # In production, update the database to mark notifications as read
         # For demo, just return an empty notification list
-        
-        if request.headers.get('HX-Request') == 'true':
-            return render(request, 'public_site/partials/notification_list.html', {
-                'notifications': [],
-                'message': 'All notifications marked as read'
+
+        if request.headers.get("HX-Request") == "true":
+            return render(request, "public_site/partials/notification_list.html", {
+                "notifications": [],
+                "message": "All notifications marked as read"
             })
-        
-        return JsonResponse({'success': True})
-    
-    return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+        return JsonResponse({"success": True})
+
+    return JsonResponse({"error": "Method not allowed"}, status=405)
 
 
 def validate_email_api(request):
     """Validate email address for forms (HTMX endpoint)"""
-    if request.method == 'POST':
-        email = request.POST.get('email', '').strip()
-        
+    if request.method == "POST":
+        email = request.POST.get("email", "").strip()
+
         if not email:
             return HttpResponse('<span class="field-error">Email is required</span>')
-        
+
         # Basic email validation
         import re
-        email_regex = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
+        email_regex = r"^[^\s@]+@[^\s@]+\.[^\s@]+$"
         if not re.match(email_regex, email):
             return HttpResponse('<span class="field-error">Please enter a valid email address</span>')
-        
+
         # Check if email is already in use (for demo, check some common domains)
-        blocked_domains = ['tempmail.com', 'throwaway.email', '10minutemail.com']
-        domain = email.split('@')[1].lower()
+        blocked_domains = ["tempmail.com", "throwaway.email", "10minutemail.com"]
+        domain = email.split("@")[1].lower()
         if domain in blocked_domains:
             return HttpResponse('<span class="field-error">Please use a valid email domain</span>')
-        
+
         # Success
         return HttpResponse('<span class="field-success">✓ Email is valid</span>')
-    
-    return HttpResponse('')
+
+    return HttpResponse("")
 
 
 def disclosures_page(request):
@@ -1360,92 +1361,92 @@ def disclosures_page(request):
     try:
         # Try to get LegalPage content from database
         from .models import LegalPage
-        
+
         # Look for a disclosures-related legal page
         legal_page = LegalPage.objects.filter(
-            title__icontains='disclosure'
+            title__icontains="disclosure"
         ).first()
-        
+
         if not legal_page:
             # Try finding by slug
             legal_page = LegalPage.objects.filter(
-                slug__icontains='disclosure'
+                slug__icontains="disclosure"
             ).first()
-        
+
         if not legal_page:
             # Create content that matches https://ethicic.com/disclosures/
-            intro = '<p>Important legal disclosures, privacy policy, and regulatory information for Ethical Capital.</p>'
-            content = '''
+            intro = "<p>Important legal disclosures, privacy policy, and regulatory information for Ethical Capital.</p>"
+            content = """
             <h2>Privacy Policy</h2>
-            
+
             <h3>Who We Are</h3>
             <p>Ethical Capital is registered as Invest Vegan LLC, a Utah registered investment adviser. Our founder and Chief Investment Officer is Sloane Ortel. We are located at 90 N 400 E, Provo, UT 84606.</p>
-            
+
             <h3>Form Submissions</h3>
             <p>We collect information you provide through form submissions on our website, including your IP address and browser information. This information is used to provide our services and communicate with you about your account and our offerings.</p>
-            
+
             <h3>Cookies</h3>
             <p>Our website may use cookies to enhance your browsing experience and provide personalized content.</p>
-            
+
             <h3>Embedded Content from Other Websites</h3>
             <p>Our website may include embedded content (e.g., videos, images, articles, etc.) from other websites. Embedded content from other websites behaves in the exact same way as if you have visited the other website.</p>
-            
+
             <h3>How Long We Retain Your Data</h3>
             <p>We retain your records for a minimum of 5 years as required by the Investment Advisers Act. We do not sell your data to third parties for any reason. We do transmit data through third party services (Google Workspace mostly) as necessary to provide our services.</p>
-            
+
             <h2>Additional Disclosures</h2>
-            
+
             <h3>Website Content Disclaimer</h3>
             <p>The content on this website is for informational purposes only. Opinions expressed herein are solely those of the firm unless otherwise specifically cited. We recommend consulting with qualified advisers before implementing any ideas presented on this website.</p>
-            
+
             <h3>Registration Information</h3>
             <p>Advisory services are offered through Invest Vegan LLC, a Utah registered investment adviser. We comply with all applicable state jurisdiction requirements. We recommend checking with your state securities regulators for any disciplinary history.</p>
-            
+
             <h3>Social Media Disclosure</h3>
             <p>Our social media accounts do not represent the entire firm's opinion. Any discussions of securities on our social media platforms are not recommendations to buy, sell, or hold any particular security.</p>
-            
+
             <h2>Contact Information</h2>
             <p>For questions about this privacy policy or our services:</p>
-            
+
             <p><strong>Ethical Capital</strong><br>
             90 N 400 E<br>
             Provo, UT 84606<br>
             Phone: <a href="tel:+13476259000">+1 347 625 9000</a><br>
             Email: <a href="mailto:sloane@ethicic.com">sloane@ethicic.com</a></p>
-            '''
-            
+            """
+
             context = {
-                'page_title': 'Disclosures',
-                'page': {
-                    'title': 'Disclosures',
-                    'intro_text': intro,
-                    'content': content,
-                    'effective_date': timezone.now().date(),
-                    'updated_at': timezone.now().date(),
+                "page_title": "Disclosures",
+                "page": {
+                    "title": "Disclosures",
+                    "intro_text": intro,
+                    "content": content,
+                    "effective_date": timezone.now().date(),
+                    "updated_at": timezone.now().date(),
                 }
             }
         else:
             context = {
-                'page_title': legal_page.title,
-                'page': legal_page,
+                "page_title": legal_page.title,
+                "page": legal_page,
             }
-        
-        return render(request, 'public_site/legal_page.html', context)
-        
+
+        return render(request, "public_site/legal_page.html", context)
+
     except Exception:
         logger.exception("Error loading disclosures page")
         # Fallback with basic content
         context = {
-            'page_title': 'Disclosures',
-            'page': {
-                'title': 'Disclosures',
-                'intro_text': '<p>Important legal disclosures for Ethical Capital.</p>',
-                'content': '<p>Please contact us for our current disclosures and privacy policy.</p>',
-                'effective_date': None,
-                'updated_at': None,
+            "page_title": "Disclosures",
+            "page": {
+                "title": "Disclosures",
+                "intro_text": "<p>Important legal disclosures for Ethical Capital.</p>",
+                "content": "<p>Please contact us for our current disclosures and privacy policy.</p>",
+                "effective_date": None,
+                "updated_at": None,
             }
         }
-        return render(request, 'public_site/legal_page.html', context)
+        return render(request, "public_site/legal_page.html", context)
 
 
 

@@ -98,7 +98,7 @@ class Command(BaseCommand):
                 self.style.WARNING("\n📅 Reordering media items by publication date...")
             )
 
-            items = list(media_page.media_items.all().order_by('-publication_date'))
+            items = list(media_page.media_items.all().order_by("-publication_date"))
             for index, item in enumerate(items):
                 if item.sort_order != index:
                     item.sort_order = index
@@ -118,7 +118,7 @@ class Command(BaseCommand):
                 self.style.SUCCESS("\n✅ Final chronological order (most recent first):")
             )
 
-            for index, item in enumerate(media_page.media_items.all().order_by('-publication_date')):
+            for index, item in enumerate(media_page.media_items.all().order_by("-publication_date")):
                 self.stdout.write(
                     self.style.SUCCESS(
                         f"{index + 1}. {item.title} - {item.publication} ({item.publication_date})"

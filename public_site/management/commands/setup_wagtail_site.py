@@ -14,7 +14,6 @@ from public_site.models import (
     PricingPage,
 )
 
-
 User = get_user_model()
 
 

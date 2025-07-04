@@ -6,7 +6,7 @@ from public_site.models import AboutPage, ContactPage, HomePage, ResearchPage
 
 
 class Command(BaseCommand):
-    help = 'Check Wagtail page setup and permissions'
+    help = "Check Wagtail page setup and permissions"
 
     def handle(self, *args, **options):
         self.stdout.write("=== Wagtail Page Tree ===")
@@ -41,8 +41,8 @@ class Command(BaseCommand):
         # Check page permissions
         self.stdout.write("\n=== Page Permissions ===")
         page_permissions = Permission.objects.filter(
-            content_type__app_label='wagtailcore',
-            content_type__model='page'
+            content_type__app_label="wagtailcore",
+            content_type__model="page"
         )
         for perm in page_permissions:
             self.stdout.write(f"- {perm.codename}: {perm.name}")
@@ -61,7 +61,7 @@ class Command(BaseCommand):
         self.stdout.write("\n=== Common Issues Check ===")
 
         # Check if public_site pages are under the right parent
-        public_pages = Page.objects.filter(content_type__app_label='public_site')
+        public_pages = Page.objects.filter(content_type__app_label="public_site")
         if not public_pages.exists():
             self.stdout.write(self.style.WARNING("No public_site pages found in database!"))
 
@@ -74,7 +74,7 @@ class Command(BaseCommand):
         self.stdout.write("\n=== Page Editability Check ===")
         for page in public_pages[:5]:  # Check first 5 pages
             specific_page = page.specific
-            has_content_panels = hasattr(specific_page, 'content_panels')
+            has_content_panels = hasattr(specific_page, "content_panels")
             self.stdout.write(f"- {specific_page.title}: Has content_panels: {has_content_panels}")
             if has_content_panels:
                 panel_count = len(specific_page.content_panels)

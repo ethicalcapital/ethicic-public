@@ -49,15 +49,15 @@ class Command(BaseCommand):
             return
 
         # Check if slug is already correct
-        if homepage.slug in {'', 'home'}:
+        if homepage.slug in {"", "home"}:
 
-            if homepage.slug == '':
+            if homepage.slug == "":
                 self.stdout.write(
                     self.style.SUCCESS("✅ Homepage slug is already empty (correct for root URL)")
                 )
 
                 # But check if URL path is still wrong
-                if homepage.url_path != '/':
+                if homepage.url_path != "/":
                     self.stdout.write(
                         f"⚠️  But URL path is '{homepage.url_path}' instead of '/'"
                     )
@@ -89,7 +89,7 @@ class Command(BaseCommand):
         )
         confirm = input("Are you sure you want to proceed? (yes/no): ")
 
-        if confirm.lower() != 'yes':
+        if confirm.lower() != "yes":
             self.stdout.write("Operation cancelled.")
             return
 
@@ -100,7 +100,7 @@ class Command(BaseCommand):
                 old_url_path = homepage.url_path
 
                 # Set empty slug for root URL
-                homepage.slug = ''
+                homepage.slug = ""
                 homepage.save()
 
                 # Refresh to get updated URL path

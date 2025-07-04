@@ -38,7 +38,6 @@ module.exports = [
     rules: {
       // Error prevention
       "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-      "no-console": "off", // Allow console for debugging
       "no-debugger": "error",
       "no-dupe-args": "error",
       "no-dupe-keys": "error",
@@ -53,13 +52,19 @@ module.exports = [
       
       // Best practices
       "eqeqeq": ["error", "always", {"null": "ignore"}],
-      "no-alert": "warn",
+      "no-alert": "error", // No alerts in production code
+      "no-console": ["warn", { "allow": ["warn", "error"] }], // Allow warn/error only
       "no-eval": "error",
       "no-implied-eval": "error",
       "no-return-assign": "error",
       "no-self-assign": "error",
       "no-self-compare": "error",
       "no-unused-expressions": "error",
+      "no-var": "error", // Use let/const only
+      "prefer-const": "error",
+      "no-global-assign": "error",
+      "no-implicit-globals": "error",
+      "complexity": ["warn", 8], // Lower complexity for financial code
       
       // Stylistic
       "indent": ["error", 2],

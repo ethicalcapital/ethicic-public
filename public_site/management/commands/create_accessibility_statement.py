@@ -47,7 +47,7 @@ class Command(BaseCommand):
         try:
             home_page.add_child(instance=accessibility_page)
             accessibility_page.save_revision().publish()
-            
+
             self.stdout.write(
                 self.style.SUCCESS(
                     f"Successfully created Accessibility Statement page at: {accessibility_page.get_url()}"
@@ -111,7 +111,7 @@ class Command(BaseCommand):
 
         <h2>Feedback and Contact Information</h2>
         <p>We welcome your feedback on the accessibility of our website. If you encounter any accessibility barriers or have suggestions for improvement, please contact us:</p>
-        
+
         <p><strong>Email:</strong> <a href="mailto:hello@ethicic.com">hello@ethicic.com</a></p>
         <p><strong>Phone:</strong> <a href="tel:+1-801-123-4567">+1 (801) 123-4567</a></p>
 

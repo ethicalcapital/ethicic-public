@@ -49,7 +49,7 @@ class Command(BaseCommand):
             return
 
         # Check if slug is already empty
-        if homepage.slug == '':
+        if homepage.slug == "":
             self.stdout.write(
                 self.style.SUCCESS("✅ Homepage slug is already empty!")
             )
@@ -72,7 +72,7 @@ class Command(BaseCommand):
         )
         confirm = input("Are you sure you want to proceed? (yes/no): ")
 
-        if confirm.lower() != 'yes':
+        if confirm.lower() != "yes":
             self.stdout.write("Operation cancelled.")
             return
 

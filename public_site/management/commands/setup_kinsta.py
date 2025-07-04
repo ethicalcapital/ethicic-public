@@ -1,33 +1,34 @@
+from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from django.db import transaction
-from django.contrib.auth import get_user_model
-from wagtail.models import Site, Page
+from wagtail.models import Page, Site
+
 from public_site.models import HomePage
 
 User = get_user_model()
 
 class Command(BaseCommand):
-    help = 'Set up initial data for Kinsta deployment'
+    help = "Set up initial data for Kinsta deployment"
 
     def handle(self, *args, **options):
-        self.stdout.write('Setting up Kinsta deployment...')
-        
+        self.stdout.write("Setting up Kinsta deployment...")
+
         try:
             with transaction.atomic():
                 # Create superuser if none exists
                 if not User.objects.filter(is_superuser=True).exists():
-                    self.stdout.write('Creating superuser...')
+                    self.stdout.write("Creating superuser...")
                     User.objects.create_superuser(
-                        username='admin',
-                        email='admin@ethicic.com',
-                        password='ChangeThisPassword123!'
+                        username="admin",
+                        email="admin@ethicic.com",
+                        password="ChangeThisPassword123!"
                     )
-                    self.stdout.write(self.style.SUCCESS('✅ Superuser created (username: admin)'))
-                    self.stdout.write(self.style.WARNING('⚠️  CHANGE THE PASSWORD IMMEDIATELY!'))
-            
+                    self.stdout.write(self.style.SUCCESS("✅ Superuser created (username: admin)"))
+                    self.stdout.write(self.style.WARNING("⚠️  CHANGE THE PASSWORD IMMEDIATELY!"))
+
             # Ensure we have a root page
             if not Page.objects.filter(pk=1).exists():
-                self.stdout.write('Creating root page...')
+                self.stdout.write("Creating root page...")
                 root_page = Page.objects.create(
                     title="Root",
                     slug="root",
@@ -38,13 +39,13 @@ class Command(BaseCommand):
                     url_path="/",
                 )
                 root_page.save()
-                self.stdout.write(self.style.SUCCESS('✅ Root page created'))
+                self.stdout.write(self.style.SUCCESS("✅ Root page created"))
             else:
                 root_page = Page.objects.get(pk=1)
-            
+
             # Create HomePage if it doesn't exist
             if not HomePage.objects.exists():
-                self.stdout.write('Creating HomePage...')
+                self.stdout.write("Creating HomePage...")
                 home = HomePage(
                     title="Ethical Capital Investment Collaborative",
                     slug="home",
@@ -52,27 +53,27 @@ class Command(BaseCommand):
                 )
                 root_page.add_child(instance=home)
                 home.save_revision().publish()
-                self.stdout.write(self.style.SUCCESS('✅ HomePage created'))
+                self.stdout.write(self.style.SUCCESS("✅ HomePage created"))
             else:
                 home = HomePage.objects.first()
-            
+
             # Set up the site
             if not Site.objects.exists():
-                self.stdout.write('Creating Site...')
+                self.stdout.write("Creating Site...")
                 Site.objects.create(
-                    hostname='ethical-capital-public-frezv.kinsta.app',
+                    hostname="ethical-capital-public-frezv.kinsta.app",
                     port=443,
                     is_default_site=True,
                     root_page=home,
                 )
-                self.stdout.write(self.style.SUCCESS('✅ Site created'))
+                self.stdout.write(self.style.SUCCESS("✅ Site created"))
             else:
                 # Update existing site
                 site = Site.objects.first()
                 site.root_page = home
                 site.save()
-                self.stdout.write(self.style.SUCCESS('✅ Site updated'))
-        
-            self.stdout.write(self.style.SUCCESS('\n✅ Kinsta setup complete!'))
+                self.stdout.write(self.style.SUCCESS("✅ Site updated"))
+
+            self.stdout.write(self.style.SUCCESS("\n✅ Kinsta setup complete!"))
         except Exception as e:
-            self.stdout.write(self.style.WARNING(f'⚠️  Setup completed with warnings: {str(e)}'))
+            self.stdout.write(self.style.WARNING(f"⚠️  Setup completed with warnings: {str(e)}"))

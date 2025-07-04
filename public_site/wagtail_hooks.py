@@ -10,8 +10,8 @@ from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet
 
 from .models import (
-    SupportTicket,
     MediaItem,
+    SupportTicket,
 )
 
 
@@ -19,16 +19,16 @@ from .models import (
 @register_snippet
 class SupportTicketSnippetViewSet(SnippetViewSet):
     model = SupportTicket
-    list_display: ClassVar[list] = ['first_name', 'last_name', 'subject', 'status', 'created_at']
-    list_filter: ClassVar[list] = ['status', 'category', 'created_at']
-    search_fields: ClassVar[list] = ['first_name', 'last_name', 'email', 'subject', 'message']
-    ordering: ClassVar[list] = ['-created_at']
+    list_display: ClassVar[list] = ["first_name", "last_name", "subject", "status", "created_at"]
+    list_filter: ClassVar[list] = ["status", "category", "created_at"]
+    search_fields: ClassVar[list] = ["first_name", "last_name", "email", "subject", "message"]
+    ordering: ClassVar[list] = ["-created_at"]
 
 
 # Add clean admin CSS to improve page editing experience
-@hooks.register('insert_global_admin_css')
+@hooks.register("insert_global_admin_css")
 def global_admin_css():
-    return '''<style>
+    return """<style>
         /* Improve Wagtail admin styling for public site pages */
         .page-editor .object h2.c-panel__heading {
             background-color: #f3f3f3;
@@ -145,10 +145,10 @@ def global_admin_css():
             font-style: italic;
             margin-top: 0.5rem;
         }
-    </style>'''
+    </style>"""
 
 
-@hooks.register('construct_homepage_panels')
+@hooks.register("construct_homepage_panels")
 def add_public_site_instructions(request, panels):
     """Add helpful instructions panel to the homepage admin."""
     from wagtail.admin.panels import Panel
@@ -166,7 +166,7 @@ def add_public_site_instructions(request, panels):
 
         def render(self):
             return format_html(
-                '''
+                """
                 <div class="help-block">
                     <h3>📋 Content Management Tips</h3>
                     <ul>
@@ -180,7 +180,7 @@ def add_public_site_instructions(request, panels):
                         <a href="/admin/snippets/public_site/supportticket/" class="button">🎫 Support Tickets</a>
                     </p>
                 </div>
-                '''
+                """
             )
 
     panels.append(InstructionsPanel())
@@ -190,18 +190,18 @@ def add_public_site_instructions(request, panels):
 @register_snippet
 class MediaItemSnippetViewSet(SnippetViewSet):
     model = MediaItem
-    list_display: ClassVar[list] = ['title', 'publication', 'publication_date', 'featured', 'get_page_title']
-    list_filter: ClassVar[list] = ['featured', 'publication', 'publication_date']
-    search_fields: ClassVar[list] = ['title', 'description', 'publication']
-    ordering: ClassVar[list] = ['-featured', '-publication_date']
-    menu_label = 'Media Items'
-    menu_icon = 'doc-full'
+    list_display: ClassVar[list] = ["title", "publication", "publication_date", "featured", "get_page_title"]
+    list_filter: ClassVar[list] = ["featured", "publication", "publication_date"]
+    search_fields: ClassVar[list] = ["title", "description", "publication"]
+    ordering: ClassVar[list] = ["-featured", "-publication_date"]
+    menu_label = "Media Items"
+    menu_icon = "doc-full"
     menu_order = 200
-    
+
     def get_page_title(self, obj):
         """Display the parent page title."""
-        return obj.page.title if obj.page else 'No page'
-    
+        return obj.page.title if obj.page else "No page"
+
     # Add the method to the model for display
     MediaItem.get_page_title = get_page_title
-    MediaItem.get_page_title.short_description = 'Page'
+    MediaItem.get_page_title.short_description = "Page"

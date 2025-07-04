@@ -5,15 +5,16 @@ Diagnose Ubicloud connection issues
 import os
 import socket
 import ssl
+import sys
 from urllib.parse import urlparse
 
 print("=== Connection Diagnostics ===")
 
 # Get database URL
-db_url = os.getenv('UBI_DATABASE_URL')
+db_url = os.getenv("UBI_DATABASE_URL")
 if not db_url:
     print("❌ UBI_DATABASE_URL not set")
-    exit(1)
+    sys.exit(1)
 
 # Parse URL
 parsed = urlparse(db_url)
@@ -28,7 +29,7 @@ try:
     print(f"✅ DNS resolved to: {ip}")
 except Exception as e:
     print(f"❌ DNS resolution failed: {e}")
-    exit(1)
+    sys.exit(1)
 
 # Test TCP connection
 print("\n=== TCP Connection Test ===")
@@ -51,25 +52,25 @@ try:
     context = ssl.create_default_context()
     context.check_hostname = False
     context.verify_mode = ssl.CERT_NONE
-    
+
     # Try to connect with SSL
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(10)
-    
+
     ssl_sock = context.wrap_socket(sock, server_hostname=host)
     ssl_sock.connect((host, port))
-    
+
     print("✅ SSL connection established")
     print(f"   SSL Version: {ssl_sock.version()}")
     print(f"   Cipher: {ssl_sock.cipher()}")
-    
+
     # Try to send PostgreSQL startup message
     # This is a simplified version - just to see if we get a response
-    ssl_sock.send(b'\x00\x00\x00\x08\x04\xd2\x16\x2f')
+    ssl_sock.send(b"\x00\x00\x00\x08\x04\xd2\x16\x2f")
     response = ssl_sock.recv(1)
     if response:
         print(f"✅ PostgreSQL responded (got {len(response)} bytes)")
-    
+
     ssl_sock.close()
 except ssl.SSLError as e:
     print(f"❌ SSL error: {e}")
@@ -82,7 +83,7 @@ except Exception as e:
 print("\n=== Current Public IP ===")
 try:
     import urllib.request
-    public_ip = urllib.request.urlopen('https://api.ipify.org').read().decode('utf-8')
+    public_ip = urllib.request.urlopen("https://api.ipify.org").read().decode("utf-8")
     print(f"Current public IP: {public_ip}")
     print("\n📌 To whitelist this IP in Ubicloud, run:")
     print(f"   ubi pg dewey-db add-firewall-rule {public_ip}/32")
@@ -92,21 +93,21 @@ except Exception as e:
 
 # Test PostgreSQL-specific connection
 print("\n=== PostgreSQL SSL Handshake Test ===")
-if os.getenv('UBI_DATABASE_URL'):
+if os.getenv("UBI_DATABASE_URL"):
     try:
         import psycopg2
         print("Attempting psycopg2 connection with SSL...")
-        
+
         # Try with minimal SSL first
-        conn_string = os.getenv('UBI_DATABASE_URL').replace('postgresql://', 'postgresql://')
-        conn_string += '?sslmode=require&connect_timeout=5'
-        
+        conn_string = os.getenv("UBI_DATABASE_URL").replace("postgresql://", "postgresql://")
+        conn_string += "?sslmode=require&connect_timeout=5"
+
         print(f"Connection string: {conn_string.split('@')[1]}")  # Hide credentials
-        
+
         conn = psycopg2.connect(conn_string)
         print("✅ Connection successful!")
         conn.close()
-        
+
     except psycopg2.OperationalError as e:
         error_msg = str(e)
         if "server closed the connection unexpectedly" in error_msg:

@@ -5,6 +5,14 @@ Provides REST API views for contact forms, newsletter signup, and support functi
 import json
 import logging
 
+# Import CRM models and choices for contact classification
+from crm.models import Contact, ContactInteraction, SupportTicket
+from crm.models.choices import (
+    ContactStatus,
+    ContactType,
+    InteractionType,
+    PriorityLevel,
+)
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -19,16 +27,11 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from wagtail.models import Page
 
-# Import CRM models and choices for contact classification
-from crm.models import Contact, ContactInteraction, SupportTicket
-from crm.models.choices import ContactStatus, ContactType, InteractionType, PriorityLevel
-
 from .forms import (
     AccessibleContactForm,
     AccessibleNewsletterForm,
     OnboardingForm,
 )
-
 
 # Models are accessed via API calls to main platform
 
@@ -82,27 +85,27 @@ def contact_form_submit(request):
         try:
             # Submit to main platform API
             api_url = getattr(
-                settings, 'MAIN_PLATFORM_API_URL', 'http://web:8000/api/v1/'
+                settings, "MAIN_PLATFORM_API_URL", "http://web:8000/api/v1/"
             )
 
             # Prepare data for API submission
             submission_data = {
-                'first_name': (
+                "first_name": (
                     contact_data["name"].split()[0] if contact_data["name"] else ""
                 ),
-                'last_name': (
+                "last_name": (
                     " ".join(contact_data["name"].split()[1:])
                     if len(contact_data["name"].split()) > 1 else ""
                 ),
-                'email': contact_data["email"],
-                'subject': (
+                "email": contact_data["email"],
+                "subject": (
                     f"{contact_data['subject']} - "
                     f"{contact_data.get('company', 'Individual')}"
                 ),
-                'message': contact_data["message"],
-                'category': contact_data["subject"],
-                'company': contact_data.get("company", ""),
-                'source': 'public_website'
+                "message": contact_data["message"],
+                "category": contact_data["subject"],
+                "company": contact_data.get("company", ""),
+                "source": "public_website"
             }
 
             # Try to submit to main platform API
@@ -112,7 +115,7 @@ def contact_form_submit(request):
                     f"{api_url}contact/submit/",
                     json=submission_data,
                     timeout=10,
-                    headers={'Content-Type': 'application/json'}
+                    headers={"Content-Type": "application/json"}
                 )
 
                 if response.status_code == 201:
@@ -233,36 +236,36 @@ def classify_contact_priority(form_type, form_data):
     priority_level = PriorityLevel.MEDIUM
     contact_status = ContactStatus.COLD_LEAD  # Default to cold lead
 
-    email = form_data.get('email', '').lower()
-    company = form_data.get('company', '').lower()
+    email = form_data.get("email", "").lower()
+    company = form_data.get("company", "").lower()
     job_title = (
-        form_data.get('role', '').lower() or
-        form_data.get('job_title', '').lower()
+        form_data.get("role", "").lower() or
+        form_data.get("job_title", "").lower()
     )
-    subject = form_data.get('subject', '').lower()
-    message = form_data.get('message', '').lower()
+    subject = form_data.get("subject", "").lower()
+    message = form_data.get("message", "").lower()
 
     # Business email domains get higher priority
     business_domains = [
-        '.edu', '.org', '.gov',  # Institutional
-        'advisors.com', 'investment', 'capital', 'wealth', 'asset',  # Finance
+        ".edu", ".org", ".gov",  # Institutional
+        "advisors.com", "investment", "capital", "wealth", "asset",  # Finance
     ]
-    personal_domains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com']
+    personal_domains = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com"]
 
     is_business_email = any(domain in email for domain in business_domains)
     is_personal_email = any(domain in email for domain in personal_domains)
 
     # Investment adviser indicators
     adviser_keywords = [
-        'ria', 'investment advisor', 'investment adviser', 'financial advisor',
-        'portfolio manager', 'wealth manager', 'cio', 'chief investment officer',
-        'advisor', 'adviser', 'schwab', 'fidelity', 'td ameritrade', 'custody'
+        "ria", "investment advisor", "investment adviser", "financial advisor",
+        "portfolio manager", "wealth manager", "cio", "chief investment officer",
+        "advisor", "adviser", "schwab", "fidelity", "td ameritrade", "custody"
     ]
 
     # Institutional indicators
     institutional_keywords = [
-        'endowment', 'foundation', 'pension', 'university', 'college',
-        'fund', 'trust', 'institutional', 'fiduciary', 'committee'
+        "endowment", "foundation", "pension", "university", "college",
+        "fund", "trust", "institutional", "fiduciary", "committee"
     ]
 
     # Check for adviser indicators
@@ -278,13 +281,13 @@ def classify_contact_priority(form_type, form_data):
                       any(keyword in message for keyword in institutional_keywords)
 
     # Assets under management from form data
-    aum = form_data.get('assets_under_management', '')
-    initial_investment = form_data.get('initial_investment', 0)
+    aum = form_data.get("assets_under_management", "")
+    initial_investment = form_data.get("initial_investment", 0)
 
     # Contact status based on ENGAGEMENT first, then credentials
 
     # High engagement activities = immediate status upgrade
-    if form_type == 'onboarding':
+    if form_type == "onboarding":
         # Onboarding = strong interest = prospect status
         contact_status = ContactStatus.PROSPECT
         if initial_investment >= 500000:
@@ -297,7 +300,7 @@ def classify_contact_priority(form_type, form_data):
             importance_score = 0.75
             priority_level = PriorityLevel.HIGH
 
-    elif form_type == 'contact_form':
+    elif form_type == "contact_form":
         # ANY contact form = warm lead (took initiative to reach out)
         contact_status = ContactStatus.WARM_LEAD
 
@@ -305,17 +308,17 @@ def classify_contact_priority(form_type, form_data):
         if is_institutional:
             importance_score = 0.95
             priority_level = PriorityLevel.CRITICAL
-            if 'partnership' in form_data.get('subject', '').lower():
+            if "partnership" in form_data.get("subject", "").lower():
                 contact_status = ContactStatus.PROSPECT  # Partnership inquiry = prospect
         elif is_adviser:
             importance_score = 0.90
             priority_level = PriorityLevel.HIGH
-            if 'partnership' in form_data.get('subject', '').lower():
+            if "partnership" in form_data.get("subject", "").lower():
                 contact_status = ContactStatus.PROSPECT  # Partnership inquiry = prospect
-        elif aum and ('100m' in aum or '500m' in aum or '1b' in aum or 'over' in aum):
+        elif aum and ("100m" in aum or "500m" in aum or "1b" in aum or "over" in aum):
             importance_score = 0.85
             priority_level = PriorityLevel.HIGH
-        elif aum and ('50m' in aum or '10m' in aum):
+        elif aum and ("50m" in aum or "10m" in aum):
             importance_score = 0.75
             priority_level = PriorityLevel.HIGH
         elif is_business_email and not is_personal_email:
@@ -325,13 +328,13 @@ def classify_contact_priority(form_type, form_data):
             importance_score = 0.60
             priority_level = PriorityLevel.MEDIUM
 
-    elif form_type == 'newsletter':
+    elif form_type == "newsletter":
         # Newsletter = cold lead (minimal engagement)
         contact_status = ContactStatus.COLD_LEAD
         importance_score = 0.30
         priority_level = PriorityLevel.LOW
 
-    elif form_type in {'import', 'bulk_import'}:
+    elif form_type in {"import", "bulk_import"}:
         # Imported contacts = cold lead regardless of credentials
         # They haven't engaged with us yet, even if they're impressive
         contact_status = ContactStatus.COLD_LEAD
@@ -343,10 +346,10 @@ def classify_contact_priority(form_type, form_data):
         elif is_adviser:
             importance_score = 0.80  # High potential, but no engagement yet
             priority_level = PriorityLevel.HIGH
-        elif aum and ('100m' in aum or '500m' in aum or '1b' in aum or 'over' in aum):
+        elif aum and ("100m" in aum or "500m" in aum or "1b" in aum or "over" in aum):
             importance_score = 0.75  # Good potential
             priority_level = PriorityLevel.MEDIUM
-        elif aum and ('50m' in aum or '10m' in aum):
+        elif aum and ("50m" in aum or "10m" in aum):
             importance_score = 0.65  # Medium potential
             priority_level = PriorityLevel.MEDIUM
         elif is_business_email and not is_personal_email:
@@ -377,18 +380,18 @@ def create_or_update_contact(email, form_data, form_type, user=None):
 
     if contact:
         # Update existing contact with new information (don't overwrite better data)
-        if form_data.get('name') and not contact.full_name:
-            contact.full_name = form_data['name']
-        if form_data.get('first_name') and not contact.first_name:
-            contact.first_name = form_data['first_name']
-        if form_data.get('last_name') and not contact.last_name:
-            contact.last_name = form_data['last_name']
-        if form_data.get('company') and not contact.company:
-            contact.company = form_data['company']
-        if form_data.get('role') and not contact.job_title:
-            contact.job_title = form_data['role']
-        if form_data.get('phone') and not contact.phone_primary:
-            contact.phone_primary = form_data['phone']
+        if form_data.get("name") and not contact.full_name:
+            contact.full_name = form_data["name"]
+        if form_data.get("first_name") and not contact.first_name:
+            contact.first_name = form_data["first_name"]
+        if form_data.get("last_name") and not contact.last_name:
+            contact.last_name = form_data["last_name"]
+        if form_data.get("company") and not contact.company:
+            contact.company = form_data["company"]
+        if form_data.get("role") and not contact.job_title:
+            contact.job_title = form_data["role"]
+        if form_data.get("phone") and not contact.phone_primary:
+            contact.phone_primary = form_data["phone"]
 
         # Always update scores if they're higher (never downgrade)
         if importance_score > contact.importance_score:
@@ -417,16 +420,16 @@ def create_or_update_contact(email, form_data, form_type, user=None):
     else:
         # Create new contact
         created = True
-        full_name = form_data.get('name') or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
+        full_name = form_data.get("name") or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
 
         contact = Contact.objects.create(
             email=email,
             full_name=full_name,
-            first_name=form_data.get('first_name', ''),
-            last_name=form_data.get('last_name', ''),
-            company=form_data.get('company', ''),
-            job_title=form_data.get('role', ''),
-            phone_primary=form_data.get('phone', ''),
+            first_name=form_data.get("first_name", ""),
+            last_name=form_data.get("last_name", ""),
+            company=form_data.get("company", ""),
+            job_title=form_data.get("role", ""),
+            phone_primary=form_data.get("phone", ""),
             status=contact_status,
             priority_level=priority_level,
             importance_score=importance_score,
@@ -434,12 +437,12 @@ def create_or_update_contact(email, form_data, form_type, user=None):
             influence_score=0.5,  # Default
             last_interaction=timezone.now(),
             interaction_count=1,
-            source=f'website_{form_type}',
+            source=f"website_{form_type}",
             created_by=user,
         )
 
         # Determine contact type based on form data
-        if form_data.get('company'):
+        if form_data.get("company"):
             contact.contact_type = ContactType.COMPANY
         else:
             contact.contact_type = ContactType.INDIVIDUAL
@@ -448,9 +451,9 @@ def create_or_update_contact(email, form_data, form_type, user=None):
     if not contact.custom_fields:
         contact.custom_fields = {}
 
-    contact.custom_fields[f'{form_type}_submission'] = {
-        'date': timezone.now().isoformat(),
-        'data': {k: v for k, v in form_data.items() if k not in ['email', 'first_name', 'last_name', 'name', 'company', 'role', 'phone']}
+    contact.custom_fields[f"{form_type}_submission"] = {
+        "date": timezone.now().isoformat(),
+        "data": {k: v for k, v in form_data.items() if k not in ["email", "first_name", "last_name", "name", "company", "role", "phone"]}
     }
 
     contact.save()
@@ -471,22 +474,22 @@ def onboarding_form_submit(request):
             with transaction.atomic():
                 # Create or update CRM Contact with highest priority for onboarding
                 full_name = f"{form_data['first_name']} {form_data['last_name']}"
-                form_data['name'] = full_name  # Add for compatibility with create_or_update_contact
+                form_data["name"] = full_name  # Add for compatibility with create_or_update_contact
 
                 contact, created = create_or_update_contact(
                     email=form_data["email"],
                     form_data=form_data,
-                    form_type='onboarding'
+                    form_type="onboarding"
                 )
 
                 # Update contact with comprehensive onboarding data
-                contact.first_name = form_data['first_name']
-                contact.last_name = form_data['last_name']
+                contact.first_name = form_data["first_name"]
+                contact.last_name = form_data["last_name"]
                 contact.full_name = full_name
-                contact.phone_primary = form_data.get('phone', '')
+                contact.phone_primary = form_data.get("phone", "")
 
                 # Classification based on investment amount
-                initial_investment = form_data['initial_investment']
+                initial_investment = form_data["initial_investment"]
                 if initial_investment >= 500000:
                     contact.status = ContactStatus.CLIENT  # High-value onboarding = likely client
                     contact.priority_level = PriorityLevel.CRITICAL
@@ -501,21 +504,21 @@ def onboarding_form_submit(request):
                 if not contact.custom_fields:
                     contact.custom_fields = {}
 
-                contact.custom_fields['onboarding_application'] = {
-                    'location': form_data['location'],
-                    'investment_goals': {
-                        'primary_goal': form_data['primary_goal'],
-                        'time_horizon': form_data['time_horizon'],
-                        'initial_investment': str(initial_investment),
-                        'monthly_contribution': str(form_data.get('monthly_contribution', 0)),
+                contact.custom_fields["onboarding_application"] = {
+                    "location": form_data["location"],
+                    "investment_goals": {
+                        "primary_goal": form_data["primary_goal"],
+                        "time_horizon": form_data["time_horizon"],
+                        "initial_investment": str(initial_investment),
+                        "monthly_contribution": str(form_data.get("monthly_contribution", 0)),
                     },
-                    'ethical_preferences': {
-                        'exclusions': form_data.get('exclusions', []),
-                        'impact_areas': form_data.get('impact_areas', []),
+                    "ethical_preferences": {
+                        "exclusions": form_data.get("exclusions", []),
+                        "impact_areas": form_data.get("impact_areas", []),
                     },
-                    'experience_level': form_data['experience_level'],
-                    'submission_date': timezone.now().isoformat(),
-                    'application_status': 'submitted',
+                    "experience_level": form_data["experience_level"],
+                    "submission_date": timezone.now().isoformat(),
+                    "application_status": "submitted",
                 }
 
                 contact.save()
@@ -600,7 +603,7 @@ def contact_api(request):
                 contact, created = create_or_update_contact(
                     email=contact_data["email"],
                     form_data=contact_data,
-                    form_type='contact_form'
+                    form_type="contact_form"
                 )
 
                 # Create interaction record
@@ -696,13 +699,13 @@ def newsletter_api(request):
             with transaction.atomic():
                 # Create or update CRM Contact
                 contact_data = {
-                    'name': email.split('@')[0].replace('.', ' ').title(),  # Fallback name from email
-                    'opt_in_marketing': opt_in,
+                    "name": email.split("@")[0].replace(".", " ").title(),  # Fallback name from email
+                    "opt_in_marketing": opt_in,
                 }
                 contact, contact_created = create_or_update_contact(
                     email=email,
                     form_data=contact_data,
-                    form_type='newsletter'
+                    form_type="newsletter"
                 )
 
                 # Set newsletter preferences
@@ -916,8 +919,8 @@ def get_site_navigation(request):
 def site_search(request):
     """Site-wide search using Wagtail's search functionality
     """
-    search_query = request.GET.get('q', '').strip()
-    page = request.GET.get('page', 1)
+    search_query = request.GET.get("q", "").strip()
+    page = request.GET.get("page", 1)
 
     # Initialize empty results
     search_results = Page.objects.none()
@@ -939,13 +942,13 @@ def site_search(request):
         page_obj = paginator.page(1)
 
     context = {
-        'search_query': search_query,
-        'search_results': page_obj,
-        'paginator': paginator,
-        'total_results': paginator.count if search_query else 0,
+        "search_query": search_query,
+        "search_results": page_obj,
+        "paginator": paginator,
+        "total_results": paginator.count if search_query else 0,
     }
 
-    return render(request, 'public_site/search_results.html', context)
+    return render(request, "public_site/search_results.html", context)
 
 
 @api_view(["GET"])

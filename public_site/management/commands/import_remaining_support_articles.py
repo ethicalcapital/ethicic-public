@@ -33,12 +33,12 @@ class Command(BaseCommand):
 <h2>Shareholder Advocacy</h2>
 <p>We actively use our position as shareholders to advocate for positive change:</p>
 <ul>
-<li><strong>Proxy Voting:</strong> We vote on shareholder proposals that align 
-with our values, supporting measures that promote environmental responsibility, 
+<li><strong>Proxy Voting:</strong> We vote on shareholder proposals that align
+with our values, supporting measures that promote environmental responsibility,
 social justice, and good governance</li>
-<li><strong>Shareholder Resolutions:</strong> We support and sometimes co-file 
+<li><strong>Shareholder Resolutions:</strong> We support and sometimes co-file
 resolutions asking companies to improve their practices</li>
-<li><strong>Direct Engagement:</strong> We communicate directly with company 
+<li><strong>Direct Engagement:</strong> We communicate directly with company
 management about our concerns</li>
 </ul>
 
@@ -69,7 +69,7 @@ management about our concerns</li>
 <li>Building a community of conscious investors</li>
 </ul>
 
-<p>Our influence extends beyond just portfolio management - we're building a 
+<p>Our influence extends beyond just portfolio management - we're building a
 movement for more ethical capitalism.</p>""",
                 "keywords": (
                     "shareholder advocacy, proxy voting, corporate engagement, "

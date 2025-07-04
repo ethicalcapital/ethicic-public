@@ -15,9 +15,9 @@ def client():
 def authenticated_client(client, django_user_model):
     """Return an authenticated test client."""
     user = django_user_model.objects.create_user(
-        username='testuser',
-        password='testpass123',
-        email='test@example.com'
+        username="testuser",
+        password="testpass123",
+        email="test@example.com"
     )
     client.force_login(user)
     return client
@@ -28,21 +28,21 @@ def wagtail_site(db):
     """Create a Wagtail site for testing."""
     # Create default locale first
     locale, created = Locale.objects.get_or_create(
-        language_code='en',
-        defaults={'language_code': 'en'}
+        language_code="en",
+        defaults={"language_code": "en"}
     )
-    
+
     # Get or create root page
-    
+
     # Create root page if it doesn't exist
     root = Page.objects.filter(id=1).first()
     if not root:
-        root = Page.add_root(title='Root', locale=locale)
-    
+        root = Page.add_root(title="Root", locale=locale)
+
     # Create a home page if it doesn't exist
     from public_site.models import HomePage
-    
-    home = HomePage.objects.filter(slug='home').first()
+
+    home = HomePage.objects.filter(slug="home").first()
     if not home:
         home = HomePage(
             title="Test Home",
@@ -53,35 +53,36 @@ def wagtail_site(db):
         )
         root.add_child(instance=home)
         home.save_revision().publish()
-    
+
     # Create or update site
     site = Site.objects.filter(is_default_site=True).first()
     if not site:
         site = Site.objects.create(
-            hostname='testserver',
+            hostname="testserver",
             root_page=home,
             is_default_site=True
         )
     else:
         site.root_page = home
-        site.hostname = 'testserver'
+        site.hostname = "testserver"
         site.save()
-    
+
     return site
 
 
 @pytest.fixture
 def blog_index_page(wagtail_site):
     """Create a blog index page."""
-    from public_site.models import BlogIndexPage
     from wagtail.models.i18n import Locale
-    
+
+    from public_site.models import BlogIndexPage
+
     # Get default locale
-    locale = Locale.objects.get(language_code='en')
-    
+    locale = Locale.objects.get(language_code="en")
+
     home = wagtail_site.root_page
-    blog = BlogIndexPage.objects.filter(slug='blog').first()
-    
+    blog = BlogIndexPage.objects.filter(slug="blog").first()
+
     if not blog:
         blog = BlogIndexPage(
             title="Blog",
@@ -91,19 +92,20 @@ def blog_index_page(wagtail_site):
         )
         home.add_child(instance=blog)
         blog.save_revision().publish()
-    
+
     return blog
 
 
 @pytest.fixture
 def sample_blog_post(blog_index_page):
     """Create a sample blog post."""
-    from public_site.models import BlogPost
     from wagtail.models.i18n import Locale
-    
+
+    from public_site.models import BlogPost
+
     # Get default locale
-    locale = Locale.objects.get(language_code='en')
-    
+    locale = Locale.objects.get(language_code="en")
+
     post = BlogPost(
         title="Test Blog Post",
         slug="test-blog-post",
@@ -114,22 +116,23 @@ def sample_blog_post(blog_index_page):
     )
     blog_index_page.add_child(instance=post)
     post.save_revision().publish()
-    
+
     return post
 
 
 @pytest.fixture
 def faq_index_page(wagtail_site):
     """Create an FAQ index page."""
-    from public_site.models import FAQIndexPage
     from wagtail.models.i18n import Locale
-    
+
+    from public_site.models import FAQIndexPage
+
     # Get default locale
-    locale = Locale.objects.get(language_code='en')
-    
+    locale = Locale.objects.get(language_code="en")
+
     home = wagtail_site.root_page
-    faq = FAQIndexPage.objects.filter(slug='faq').first()
-    
+    faq = FAQIndexPage.objects.filter(slug="faq").first()
+
     if not faq:
         faq = FAQIndexPage(
             title="FAQ",
@@ -139,19 +142,20 @@ def faq_index_page(wagtail_site):
         )
         home.add_child(instance=faq)
         faq.save_revision().publish()
-    
+
     return faq
 
 
 @pytest.fixture
 def sample_faq_article(faq_index_page):
     """Create a sample FAQ article."""
-    from public_site.models import FAQArticle
     from wagtail.models.i18n import Locale
-    
+
+    from public_site.models import FAQArticle
+
     # Get default locale
-    locale = Locale.objects.get(language_code='en')
-    
+    locale = Locale.objects.get(language_code="en")
+
     article = FAQArticle(
         title="What is the minimum investment?",
         slug="minimum-investment",
@@ -162,7 +166,7 @@ def sample_faq_article(faq_index_page):
     )
     faq_index_page.add_child(instance=article)
     article.save_revision().publish()
-    
+
     return article
 
 
@@ -172,4 +176,3 @@ def enable_db_access_for_all_tests(db):
     Automatically enable database access for all tests.
     This is required for Wagtail tests.
     """
-    pass
