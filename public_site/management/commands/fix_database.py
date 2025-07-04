@@ -26,15 +26,21 @@ class Command(BaseCommand):
             if "sqlite" in settings.DATABASES["default"]["ENGINE"]:
                 cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
             else:
-                cursor.execute("SELECT tablename FROM pg_tables WHERE schemaname='public'")
+                cursor.execute(
+                    "SELECT tablename FROM pg_tables WHERE schemaname='public'"
+                )
 
             existing_tables = [row[0] for row in cursor.fetchall()]
 
         self.stdout.write(f"Found {len(existing_tables)} existing tables")
 
         # Check for critical Wagtail tables
-        wagtail_tables = [table for table in existing_tables if table.startswith("wagtail")]
-        public_site_tables = [table for table in existing_tables if table.startswith("public_site")]
+        wagtail_tables = [
+            table for table in existing_tables if table.startswith("wagtail")
+        ]
+        public_site_tables = [
+            table for table in existing_tables if table.startswith("public_site")
+        ]
 
         self.stdout.write(f"Wagtail tables: {len(wagtail_tables)}")
         self.stdout.write(f"Public site tables: {len(public_site_tables)}")
@@ -52,10 +58,18 @@ class Command(BaseCommand):
 
             # Try to fake apply migrations that might be causing conflicts
             if options["force"]:
-                self.stdout.write("🔄 Force mode: marking conflicting migrations as applied")
+                self.stdout.write(
+                    "🔄 Force mode: marking conflicting migrations as applied"
+                )
                 try:
                     # Mark public_site migrations as fake applied if they exist
-                    call_command("migrate", "public_site", "--fake", verbosity=1, interactive=False)
+                    call_command(
+                        "migrate",
+                        "public_site",
+                        "--fake",
+                        verbosity=1,
+                        interactive=False,
+                    )
                     self.stdout.write("✅ Public site migrations marked as applied")
                 except Exception as e:
                     self.stdout.write(f"⚠️  Could not fake apply public_site: {e}")

@@ -25,11 +25,15 @@ AI_API_BASE_URL = getattr(settings, "AI_API_BASE_URL", "http://garden-platform:8
 # Try to import AI services for direct integration
 try:
     from ai_services.providers import get_provider  # noqa: F401
+
     AI_SERVICES_DIRECT = True
     logger.info("AI services available for direct integration")
 except ImportError:
     AI_SERVICES_DIRECT = False
-    logger.info("AI services not available - will use API calls if main platform is running")
+    logger.info(
+        "AI services not available - will use API calls if main platform is running"
+    )
+
 
 def call_ai_analysis_api(content_data, analysis_type="comprehensive"):
     """Make API call to main garden web container for AI analysis."""
@@ -51,6 +55,7 @@ def call_ai_analysis_api(content_data, analysis_type="comprehensive"):
         logger.exception("AI API call failed")
         return None
 
+
 def call_quick_stat_api(text):
     """Make API call for quick statistic analysis."""
     try:
@@ -58,7 +63,7 @@ def call_quick_stat_api(text):
             f"{AI_API_BASE_URL}/admin/ai/quick-stat-analysis/",
             json={"text": text},
             headers={"Content-Type": "application/json"},
-            timeout=10
+            timeout=10,
         )
 
         if response.status_code == 200:
@@ -75,14 +80,19 @@ def call_quick_stat_api(text):
 # BASIC STREAMFIELD BLOCKS (for backwards compatibility)
 # ============================================================================
 
+
 class HeadingBlock(blocks.StructBlock):
     """Heading block with size options."""
+
     heading_text = blocks.CharBlock(classname="title")
-    size = blocks.ChoiceBlock(choices=[
-        ("h2", "H2"),
-        ("h3", "H3"),
-        ("h4", "H4"),
-    ], default="h2")
+    size = blocks.ChoiceBlock(
+        choices=[
+            ("h2", "H2"),
+            ("h3", "H3"),
+            ("h4", "H4"),
+        ],
+        default="h2",
+    )
 
     class Meta:
         template = "blocks/heading_block.html"
@@ -110,6 +120,7 @@ class RichTextBlock(blocks.RichTextBlock):
 
 class ImageBlock(blocks.StructBlock):
     """Image block with caption and alignment."""
+
     image = ImageChooserBlock()
     caption = blocks.CharBlock(required=False)
     alignment = blocks.ChoiceBlock(
@@ -119,7 +130,7 @@ class ImageBlock(blocks.StructBlock):
             ("center", "Center"),
             ("full", "Full Width"),
         ],
-        default="center"
+        default="center",
     )
 
     class Meta:
@@ -139,8 +150,11 @@ class EmbedVideoBlock(EmbedBlock):
 
 class DocumentBlock(blocks.StructBlock):
     """Document download block."""
+
     document = DocumentChooserBlock()
-    title = blocks.CharBlock(required=False, help_text="Optional title to override document filename")
+    title = blocks.CharBlock(
+        required=False, help_text="Optional title to override document filename"
+    )
     description = blocks.TextBlock(required=False)
 
     class Meta:
@@ -151,6 +165,7 @@ class DocumentBlock(blocks.StructBlock):
 
 class QuoteBlock(blocks.StructBlock):
     """Quote block with attribution."""
+
     quote = blocks.TextBlock()
     attribution = blocks.CharBlock(required=False)
     cite_url = blocks.URLBlock(required=False)
@@ -163,6 +178,7 @@ class QuoteBlock(blocks.StructBlock):
 
 class CalloutBlock(blocks.StructBlock):
     """Callout/alert block."""
+
     type = blocks.ChoiceBlock(
         choices=[
             ("info", "Info"),
@@ -170,7 +186,7 @@ class CalloutBlock(blocks.StructBlock):
             ("success", "Success"),
             ("error", "Error"),
         ],
-        default="info"
+        default="info",
     )
     title = blocks.CharBlock(required=False)
     content = blocks.RichTextBlock()
@@ -183,6 +199,7 @@ class CalloutBlock(blocks.StructBlock):
 
 class CodeBlock(blocks.StructBlock):
     """Code block with syntax highlighting."""
+
     language = blocks.ChoiceBlock(
         choices=[
             ("python", "Python"),
@@ -193,7 +210,7 @@ class CodeBlock(blocks.StructBlock):
             ("sql", "SQL"),
             ("json", "JSON"),
         ],
-        default="python"
+        default="python",
     )
     code = blocks.TextBlock()
 
@@ -205,6 +222,7 @@ class CodeBlock(blocks.StructBlock):
 
 class ButtonBlock(blocks.StructBlock):
     """Call-to-action button block."""
+
     text = blocks.CharBlock()
     url = blocks.URLBlock()
     style = blocks.ChoiceBlock(
@@ -214,7 +232,7 @@ class ButtonBlock(blocks.StructBlock):
             ("success", "Success"),
             ("warning", "Warning"),
         ],
-        default="primary"
+        default="primary",
     )
 
     class Meta:
@@ -225,6 +243,7 @@ class ButtonBlock(blocks.StructBlock):
 
 class SimpleTableBlock(blocks.StructBlock):
     """Simple table block."""
+
     caption = blocks.CharBlock(required=False)
     table = TableBlock()
 
@@ -236,8 +255,11 @@ class SimpleTableBlock(blocks.StructBlock):
 
 class DataTableBlock(blocks.StructBlock):
     """Data table block for financial data."""
+
     caption = blocks.CharBlock(required=False, help_text="Table title or caption")
-    description = blocks.RichTextBlock(required=False, help_text="Optional description or context")
+    description = blocks.RichTextBlock(
+        required=False, help_text="Optional description or context"
+    )
     table = TableBlock(help_text="Add table data - first row will be used as headers")
     source = blocks.CharBlock(required=False, help_text="Data source attribution")
 
@@ -249,12 +271,17 @@ class DataTableBlock(blocks.StructBlock):
 
 class StatsBlock(blocks.StructBlock):
     """Statistics display block."""
+
     title = blocks.CharBlock(required=False)
-    stats = blocks.ListBlock(blocks.StructBlock([
-        ("value", blocks.CharBlock()),
-        ("label", blocks.CharBlock()),
-        ("description", blocks.TextBlock(required=False)),
-    ]))
+    stats = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ("value", blocks.CharBlock()),
+                ("label", blocks.CharBlock()),
+                ("description", blocks.TextBlock(required=False)),
+            ]
+        )
+    )
 
     class Meta:
         template = "blocks/stats_block.html"
@@ -300,7 +327,7 @@ class AIEnhancedStatisticValue(StructValue):
         return {
             "type": viz_type,
             "title": self.get("chart_title", ""),
-            "config": chart_config
+            "config": chart_config,
         }
 
     @property
@@ -314,16 +341,14 @@ class KeyStatisticBlock(blocks.StructBlock):
 
     # Core statistic data
     value = blocks.CharBlock(
-        max_length=50,
-        help_text="The statistic value (e.g., '12.4%', '$1.2M', '3.8x')"
+        max_length=50, help_text="The statistic value (e.g., '12.4%', '$1.2M', '3.8x')"
     )
     label = blocks.CharBlock(
         max_length=100,
-        help_text="Statistic label (e.g., 'Annual Return', 'Market Cap')"
+        help_text="Statistic label (e.g., 'Annual Return', 'Market Cap')",
     )
     description = blocks.TextBlock(
-        required=False,
-        help_text="Optional description or context for this statistic"
+        required=False, help_text="Optional description or context for this statistic"
     )
 
     # AI enhancement fields (populated automatically)
@@ -331,11 +356,11 @@ class KeyStatisticBlock(blocks.StructBlock):
         default=Decimal("0.0"),
         max_digits=3,
         decimal_places=2,
-        help_text="AI confidence in significance (0.0-1.0) - auto-populated"
+        help_text="AI confidence in significance (0.0-1.0) - auto-populated",
     )
     ai_context = blocks.TextBlock(
         required=False,
-        help_text="AI-generated context for this statistic - auto-populated"
+        help_text="AI-generated context for this statistic - auto-populated",
     )
     significance_level = blocks.ChoiceBlock(
         choices=[
@@ -344,7 +369,7 @@ class KeyStatisticBlock(blocks.StructBlock):
             ("low", "Low Significance"),
         ],
         default="medium",
-        help_text="AI assessment of statistical significance"
+        help_text="AI assessment of statistical significance",
     )
 
     # Visualization configuration
@@ -358,16 +383,15 @@ class KeyStatisticBlock(blocks.StructBlock):
             ("callout", "Highlighted Callout"),
         ],
         default="bar",
-        help_text="AI-recommended visualization type"
+        help_text="AI-recommended visualization type",
     )
     chart_title = blocks.CharBlock(
         max_length=100,
         required=False,
-        help_text="Chart title - auto-generated based on context"
+        help_text="Chart title - auto-generated based on context",
     )
     chart_config = blocks.TextBlock(
-        required=False,
-        help_text="JSON configuration for chart - auto-generated"
+        required=False, help_text="JSON configuration for chart - auto-generated"
     )
 
     # Categorization
@@ -381,14 +405,14 @@ class KeyStatisticBlock(blocks.StructBlock):
             ("market", "Market Data"),
         ],
         default="performance",
-        help_text="Category of statistic - auto-identified by AI"
+        help_text="Category of statistic - auto-identified by AI",
     )
 
     # Related entities (auto-populated by AI)
     related_entities = blocks.ListBlock(
         blocks.CharBlock(max_length=100),
         required=False,
-        help_text="Related companies, funds, or securities - auto-identified"
+        help_text="Related companies, funds, or securities - auto-identified",
     )
 
     time_period = blocks.ChoiceBlock(
@@ -403,7 +427,7 @@ class KeyStatisticBlock(blocks.StructBlock):
             ("custom", "Custom Period"),
         ],
         required=False,
-        help_text="Time period for this statistic"
+        help_text="Time period for this statistic",
     )
 
     class Meta:
@@ -432,22 +456,28 @@ class KeyStatisticBlock(blocks.StructBlock):
                 "type": "bar",
                 "data": {
                     "labels": [value.get("label", "Statistic")],
-                    "datasets": [{
-                        "data": [self._parse_numeric_value(value.get("value", "0"))],
-                        "backgroundColor": ["#4f46e5"]
-                    }]
-                }
+                    "datasets": [
+                        {
+                            "data": [
+                                self._parse_numeric_value(value.get("value", "0"))
+                            ],
+                            "backgroundColor": ["#4f46e5"],
+                        }
+                    ],
+                },
             }
         if viz_config["type"] == "gauge":
             numeric_value = self._parse_numeric_value(value.get("value", "0"))
             return {
                 "type": "doughnut",
                 "data": {
-                    "datasets": [{
-                        "data": [numeric_value, 100 - numeric_value],
-                        "backgroundColor": ["#4f46e5", "#e5e7eb"]
-                    }]
-                }
+                    "datasets": [
+                        {
+                            "data": [numeric_value, 100 - numeric_value],
+                            "backgroundColor": ["#4f46e5", "#e5e7eb"],
+                        }
+                    ]
+                },
             }
 
         return {}
@@ -462,16 +492,28 @@ class KeyStatisticBlock(blocks.StructBlock):
         # Handle percentages
         if "%" in cleaned:
             cleaned = cleaned.replace("%", "")
-            return float(cleaned) if cleaned.replace(".", "").replace("-", "").isdigit() else 0.0
+            return (
+                float(cleaned)
+                if cleaned.replace(".", "").replace("-", "").isdigit()
+                else 0.0
+            )
 
         # Handle multipliers (K, M, B)
         multipliers = {"K": 1000, "M": 1000000, "B": 1000000000}
         for suffix, multiplier in multipliers.items():
             if suffix in cleaned.upper():
                 cleaned = cleaned.upper().replace(suffix, "")
-                return float(cleaned) * multiplier if cleaned.replace(".", "").replace("-", "").isdigit() else 0.0
+                return (
+                    float(cleaned) * multiplier
+                    if cleaned.replace(".", "").replace("-", "").isdigit()
+                    else 0.0
+                )
 
-        return float(cleaned) if cleaned.replace(".", "").replace("-", "").isdigit() else 0.0
+        return (
+            float(cleaned)
+            if cleaned.replace(".", "").replace("-", "").isdigit()
+            else 0.0
+        )
 
 
 class AIContentAnalysisBlock(blocks.StructBlock):
@@ -485,25 +527,22 @@ class AIContentAnalysisBlock(blocks.StructBlock):
     extracted_statistics = blocks.ListBlock(
         KeyStatisticBlock(),
         required=False,
-        help_text="Statistics automatically extracted by AI"
+        help_text="Statistics automatically extracted by AI",
     )
 
     ai_insights = blocks.ListBlock(
-        blocks.TextBlock(),
-        required=False,
-        help_text="Key insights identified by AI"
+        blocks.TextBlock(), required=False, help_text="Key insights identified by AI"
     )
 
     analysis_confidence = blocks.DecimalBlock(
         default=Decimal("0.0"),
         max_digits=3,
         decimal_places=2,
-        help_text="Overall AI confidence in analysis (0.0-1.0)"
+        help_text="Overall AI confidence in analysis (0.0-1.0)",
     )
 
     last_analyzed = blocks.DateTimeBlock(
-        required=False,
-        help_text="When this content was last analyzed by AI"
+        required=False, help_text="When this content was last analyzed by AI"
     )
 
     class Meta:
@@ -517,7 +556,8 @@ class AIContentAnalysisBlock(blocks.StructBlock):
         # Prepare summary statistics for display
         context["summary_stats"] = self._get_summary_statistics(value)
         context["high_confidence_stats"] = [
-            stat for stat in value.get("extracted_statistics", [])
+            stat
+            for stat in value.get("extracted_statistics", [])
             if stat.get("ai_confidence", 0) > 0.8
         ]
 
@@ -540,10 +580,7 @@ class AIContentAnalysisBlock(blocks.StructBlock):
 class DynamicChartBlock(blocks.StructBlock):
     """Dynamic chart block that generates visualizations from AI-identified statistics."""
 
-    title = blocks.CharBlock(
-        max_length=100,
-        help_text="Chart title"
-    )
+    title = blocks.CharBlock(max_length=100, help_text="Chart title")
 
     chart_type = blocks.ChoiceBlock(
         choices=[
@@ -553,7 +590,7 @@ class DynamicChartBlock(blocks.StructBlock):
             ("risk_metrics", "Risk Metrics Dashboard"),
             ("custom", "Custom Configuration"),
         ],
-        default="performance_comparison"
+        default="performance_comparison",
     )
 
     data_source = blocks.ChoiceBlock(
@@ -563,24 +600,24 @@ class DynamicChartBlock(blocks.StructBlock):
             ("portfolio_integration", "Portfolio Data Integration"),
         ],
         default="ai_extracted",
-        help_text="Source of data for this chart"
+        help_text="Source of data for this chart",
     )
 
     # For manual data entry
     manual_data = blocks.TextBlock(
         required=False,
-        help_text="JSON data for manual charts - only used if data_source is manual_entry"
+        help_text="JSON data for manual charts - only used if data_source is manual_entry",
     )
 
     # AI-powered configuration
     auto_generate = blocks.BooleanBlock(
         default=True,
-        help_text="Let AI automatically configure this chart based on content statistics"
+        help_text="Let AI automatically configure this chart based on content statistics",
     )
 
     chart_config = blocks.TextBlock(
         required=False,
-        help_text="Advanced chart configuration (JSON) - auto-generated if empty"
+        help_text="Advanced chart configuration (JSON) - auto-generated if empty",
     )
 
     # Styling options
@@ -591,7 +628,7 @@ class DynamicChartBlock(blocks.StructBlock):
             ("monochrome", "Monochrome"),
             ("categorical", "Categorical Colors"),
         ],
-        default="default"
+        default="default",
     )
 
     show_legend = blocks.BooleanBlock(default=True)
@@ -641,11 +678,13 @@ class DynamicChartBlock(blocks.StructBlock):
         # For now, return sample data structure
         return {
             "labels": ["Portfolio", "Benchmark"],
-            "datasets": [{
-                "label": "Annual Return",
-                "data": [12.4, 9.8],
-                "backgroundColor": ["#4f46e5", "#6b7280"]
-            }]
+            "datasets": [
+                {
+                    "label": "Annual Return",
+                    "data": [12.4, 9.8],
+                    "backgroundColor": ["#4f46e5", "#6b7280"],
+                }
+            ],
         }
 
     def _generate_performance_chart_config(self, data, value):
@@ -657,12 +696,17 @@ class DynamicChartBlock(blocks.StructBlock):
                 "responsive": value.get("responsive", True),
                 "plugins": {
                     "legend": {"display": value.get("show_legend", True)},
-                    "title": {"display": True, "text": value.get("title", "")}
+                    "title": {"display": True, "text": value.get("title", "")},
                 },
                 "scales": {
-                    "y": {"beginAtZero": True, "ticks": {"callback": 'function(value) { return value + "%"; }'}}
-                }
-            }
+                    "y": {
+                        "beginAtZero": True,
+                        "ticks": {
+                            "callback": 'function(value) { return value + "%"; }'
+                        },
+                    }
+                },
+            },
         }
 
     def _generate_allocation_chart_config(self, data, value):
@@ -674,9 +718,9 @@ class DynamicChartBlock(blocks.StructBlock):
                 "responsive": value.get("responsive", True),
                 "plugins": {
                     "legend": {"display": value.get("show_legend", True)},
-                    "title": {"display": True, "text": value.get("title", "")}
-                }
-            }
+                    "title": {"display": True, "text": value.get("title", "")},
+                },
+            },
         }
 
     def _generate_default_chart_config(self, data, value):
@@ -688,9 +732,9 @@ class DynamicChartBlock(blocks.StructBlock):
                 "responsive": value.get("responsive", True),
                 "plugins": {
                     "legend": {"display": value.get("show_legend", True)},
-                    "title": {"display": True, "text": value.get("title", "")}
-                }
-            }
+                    "title": {"display": True, "text": value.get("title", "")},
+                },
+            },
         }
 
 
@@ -700,10 +744,23 @@ class BlogStreamField(StreamField):
 
     def __init__(self, *args, **kwargs):
         block_types = [
-            ("rich_text", blocks.RichTextBlock(
-                features=["h2", "h3", "h4", "bold", "italic", "link", "ol", "ul", "document-link"],
-                help_text="Rich text content with basic formatting"
-            )),
+            (
+                "rich_text",
+                blocks.RichTextBlock(
+                    features=[
+                        "h2",
+                        "h3",
+                        "h4",
+                        "bold",
+                        "italic",
+                        "link",
+                        "ol",
+                        "ul",
+                        "document-link",
+                    ],
+                    help_text="Rich text content with basic formatting",
+                ),
+            ),
             ("ai_content_analysis", AIContentAnalysisBlock()),
             ("key_statistic", KeyStatisticBlock()),
             ("dynamic_chart", DynamicChartBlock()),
@@ -711,11 +768,17 @@ class BlogStreamField(StreamField):
             ("image", ImageChooserBlock()),
             ("embed", EmbedBlock()),
             ("callout", CalloutBlock()),
-            ("quote", blocks.StructBlock([
-                ("quote", blocks.TextBlock()),
-                ("author", blocks.CharBlock(required=False)),
-                ("source", blocks.CharBlock(required=False)),
-            ], icon="openquote")),
+            (
+                "quote",
+                blocks.StructBlock(
+                    [
+                        ("quote", blocks.TextBlock()),
+                        ("author", blocks.CharBlock(required=False)),
+                        ("source", blocks.CharBlock(required=False)),
+                    ],
+                    icon="openquote",
+                ),
+            ),
         ]
 
         super().__init__(block_types, *args, **kwargs)

@@ -1,4 +1,5 @@
 """Pytest configuration and fixtures."""
+
 import pytest
 from django.test import Client
 from wagtail.models import Page, Site
@@ -16,8 +17,8 @@ def authenticated_client(client, django_user_model):
     """Return an authenticated test client."""
     user = django_user_model.objects.create_user(
         username="testuser",
-        password="testpass123",
-        email="test@example.com"
+        password="testpass123",  # nosec S106 - Test fixture only
+        email="test@example.com",
     )
     client.force_login(user)
     return client
@@ -28,8 +29,7 @@ def wagtail_site(db):
     """Create a Wagtail site for testing."""
     # Create default locale first
     locale, created = Locale.objects.get_or_create(
-        language_code="en",
-        defaults={"language_code": "en"}
+        language_code="en", defaults={"language_code": "en"}
     )
 
     # Get or create root page
@@ -49,7 +49,7 @@ def wagtail_site(db):
             slug="home",
             hero_title="Test Hero Title",
             hero_subtitle="<p>Test subtitle</p>",
-            locale=locale
+            locale=locale,
         )
         root.add_child(instance=home)
         home.save_revision().publish()
@@ -58,9 +58,7 @@ def wagtail_site(db):
     site = Site.objects.filter(is_default_site=True).first()
     if not site:
         site = Site.objects.create(
-            hostname="testserver",
-            root_page=home,
-            is_default_site=True
+            hostname="testserver", root_page=home, is_default_site=True
         )
     else:
         site.root_page = home
@@ -88,7 +86,7 @@ def blog_index_page(wagtail_site):
             title="Blog",
             slug="blog",
             intro_text="<p>Test blog intro</p>",
-            locale=locale
+            locale=locale,
         )
         home.add_child(instance=blog)
         blog.save_revision().publish()
@@ -112,7 +110,7 @@ def sample_blog_post(blog_index_page):
         author="Test Author",
         excerpt="Test excerpt",
         body="<p>Test body content</p>",
-        locale=locale
+        locale=locale,
     )
     blog_index_page.add_child(instance=post)
     post.save_revision().publish()
@@ -138,7 +136,7 @@ def faq_index_page(wagtail_site):
             title="FAQ",
             slug="faq",
             intro_text="<p>Frequently asked questions</p>",
-            locale=locale
+            locale=locale,
         )
         home.add_child(instance=faq)
         faq.save_revision().publish()
@@ -162,7 +160,7 @@ def sample_faq_article(faq_index_page):
         summary="The minimum investment is $100,000",
         content="<p>Our minimum investment is $100,000.</p>",
         category="general",
-        locale=locale
+        locale=locale,
     )
     faq_index_page.add_child(instance=article)
     article.save_revision().publish()

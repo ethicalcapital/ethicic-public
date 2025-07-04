@@ -10,6 +10,7 @@ def generate_secret_key(length=50):
     characters = string.ascii_letters + string.digits + "!@#$%^&*(-_=+)"
     return "".join(secrets.choice(characters) for _ in range(length))
 
+
 if __name__ == "__main__":
     print("\n=== Django SECRET_KEY Generator ===\n")
     print("Generated SECRET_KEY (copy this for Kinsta):\n")

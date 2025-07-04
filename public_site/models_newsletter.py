@@ -1,4 +1,5 @@
 """Newsletter and Accessibility page models."""
+
 from typing import ClassVar
 
 from django.db import models
@@ -12,22 +13,13 @@ class NewsletterPage(Page):
 
     template = "public_site/newsletter_page.html"
 
-    intro_text = RichTextField(
-        blank=True
-    )
+    intro_text = RichTextField(blank=True)
 
-    benefits_title = models.CharField(
-        max_length=200,
-        blank=True
-    )
+    benefits_title = models.CharField(max_length=200, blank=True)
 
-    benefits_text = RichTextField(
-        blank=True
-    )
+    benefits_text = RichTextField(blank=True)
 
-    privacy_text = RichTextField(
-        blank=True
-    )
+    privacy_text = RichTextField(blank=True)
 
     content_panels: ClassVar[list] = Page.content_panels + [
         FieldPanel("intro_text"),
@@ -48,29 +40,17 @@ class AccessibilityPage(Page):
 
     template = "public_site/accessibility_page.html"
 
-    intro_text = RichTextField(
-        blank=True
-    )
+    intro_text = RichTextField(blank=True)
 
-    standards_text = RichTextField(
-        blank=True
-    )
+    standards_text = RichTextField(blank=True)
 
-    features_text = RichTextField(
-        blank=True
-    )
+    features_text = RichTextField(blank=True)
 
-    feedback_text = RichTextField(
-        blank=True
-    )
+    feedback_text = RichTextField(blank=True)
 
-    technical_text = RichTextField(
-        blank=True
-    )
+    technical_text = RichTextField(blank=True)
 
-    limitations_text = RichTextField(
-        blank=True
-    )
+    limitations_text = RichTextField(blank=True)
 
     content_panels: ClassVar[list] = Page.content_panels + [
         FieldPanel("intro_text"),

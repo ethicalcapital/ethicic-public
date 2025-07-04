@@ -1,6 +1,7 @@
 """
 Check database schema and migrations status
 """
+
 from django.core.management.base import BaseCommand
 from django.db import connection
 from django.db.migrations.recorder import MigrationRecorder
@@ -27,7 +28,7 @@ class Command(BaseCommand):
                 self.stdout.write(f"Server: {addr}:{port}")
             else:
                 self.stdout.write(f"Database type: {connection.vendor}")
-                self.stdout.write(f'Database name: {connection.settings_dict["NAME"]}')
+                self.stdout.write(f"Database name: {connection.settings_dict['NAME']}")
 
         # Check migrations
         self.stdout.write("\n=== Migration Status ===")
@@ -37,7 +38,7 @@ class Command(BaseCommand):
 
             # Group by app
             apps = {}
-            for (app, name) in applied:
+            for app, name in applied:
                 if app not in apps:
                     apps[app] = []
                 apps[app].append(name)
@@ -90,9 +91,13 @@ class Command(BaseCommand):
                     """)
                     found_columns = [col[0] for col in cursor.fetchall()]
                     if found_columns:
-                        self.stdout.write(f"\nHomePage has these fields: {found_columns}")
+                        self.stdout.write(
+                            f"\nHomePage has these fields: {found_columns}"
+                        )
                     else:
-                        self.stdout.write(self.style.WARNING("\nHomePage missing expected fields!"))
+                        self.stdout.write(
+                            self.style.WARNING("\nHomePage missing expected fields!")
+                        )
             else:
                 self.stdout.write("No public_site tables found")
 

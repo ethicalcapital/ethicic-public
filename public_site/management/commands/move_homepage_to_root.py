@@ -26,9 +26,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         dry_run = options["dry_run"]
 
-        self.stdout.write(
-            self.style.SUCCESS("🏠 Moving HomePage to Root Level")
-        )
+        self.stdout.write(self.style.SUCCESS("🏠 Moving HomePage to Root Level"))
         self.stdout.write("=" * 50)
 
         # Get the root page
@@ -36,9 +34,7 @@ class Command(BaseCommand):
             root_page = Page.objects.get(depth=1)
             self.stdout.write(f"📍 Root page: {root_page.title} (ID: {root_page.id})")
         except Page.DoesNotExist:
-            self.stdout.write(
-                self.style.ERROR("❌ No root page found")
-            )
+            self.stdout.write(self.style.ERROR("❌ No root page found"))
             return
 
         # Find the HomePage
@@ -46,19 +42,19 @@ class Command(BaseCommand):
 
         try:
             homepage = HomePage.objects.get()
-            self.stdout.write(f"🏠 Found HomePage: {homepage.title} (ID: {homepage.id})")
+            self.stdout.write(
+                f"🏠 Found HomePage: {homepage.title} (ID: {homepage.id})"
+            )
             self.stdout.write(f"    Current depth: {homepage.depth}")
             self.stdout.write(f"    Current URL path: {homepage.url_path}")
-            self.stdout.write(f"    Current parent: {homepage.get_parent().title if homepage.get_parent() else 'None'}")
-        except HomePage.DoesNotExist:
             self.stdout.write(
-                self.style.ERROR("❌ No HomePage found")
+                f"    Current parent: {homepage.get_parent().title if homepage.get_parent() else 'None'}"
             )
+        except HomePage.DoesNotExist:
+            self.stdout.write(self.style.ERROR("❌ No HomePage found"))
             return
         except HomePage.MultipleObjectsReturned:
-            self.stdout.write(
-                self.style.ERROR("❌ Multiple HomePage instances found")
-            )
+            self.stdout.write(self.style.ERROR("❌ Multiple HomePage instances found"))
             return
 
         # Check if HomePage is already at root level
@@ -77,17 +73,17 @@ class Command(BaseCommand):
             self.stdout.write(f"    ... and {current_children.count() - 10} more")
 
         self.stdout.write("\n🔄 Planned changes:")
-        self.stdout.write(f"    Move HomePage '{homepage.title}' to be child of '{root_page.title}'")
+        self.stdout.write(
+            f"    Move HomePage '{homepage.title}' to be child of '{root_page.title}'"
+        )
         self.stdout.write(f"    HomePage URL will change from {homepage.url_path} to /")
-        self.stdout.write("    All child pages will move up one level in the URL structure")
+        self.stdout.write(
+            "    All child pages will move up one level in the URL structure"
+        )
 
         if dry_run:
-            self.stdout.write(
-                self.style.WARNING("\n🔍 DRY RUN - No changes made")
-            )
-            self.stdout.write(
-                "Run without --dry-run to apply these changes."
-            )
+            self.stdout.write(self.style.WARNING("\n🔍 DRY RUN - No changes made"))
+            self.stdout.write("Run without --dry-run to apply these changes.")
             return
 
         # Ask for confirmation
@@ -129,7 +125,5 @@ class Command(BaseCommand):
                 self.stdout.write("4. Update any hardcoded URLs in templates")
 
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"❌ Error moving homepage: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"❌ Error moving homepage: {e}"))
             raise

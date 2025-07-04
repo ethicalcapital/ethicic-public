@@ -1,6 +1,5 @@
 """Update media item dates with actual publication dates from the articles."""
 
-
 from django.core.management.base import BaseCommand
 from django.utils.dateparse import parse_date
 
@@ -25,9 +24,7 @@ class Command(BaseCommand):
         try:
             media_page = MediaPage.objects.live().first()
             if not media_page:
-                self.stdout.write(
-                    self.style.ERROR("No MediaPage found in the CMS")
-                )
+                self.stdout.write(self.style.ERROR("No MediaPage found in the CMS"))
                 return
 
             updated_count = 0
@@ -68,13 +65,7 @@ class Command(BaseCommand):
                     )
                 )
             else:
-                self.stdout.write(
-                    self.style.WARNING(
-                        "\n⚠ No dates were updated."
-                    )
-                )
+                self.stdout.write(self.style.WARNING("\n⚠ No dates were updated."))
 
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"Error updating media dates: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"Error updating media dates: {e}"))

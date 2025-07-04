@@ -1,6 +1,7 @@
 """
 Middleware for cache management in hybrid database setup
 """
+
 import logging
 
 from django.core.cache import cache

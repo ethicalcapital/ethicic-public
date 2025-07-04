@@ -74,8 +74,7 @@ was unavailable.
 
 @require_http_methods(["POST"])
 def contact_form_submit(request):
-    """Handle contact form submissions from public site via API calls
-    """
+    """Handle contact form submissions from public site via API calls"""
     form = AccessibleContactForm(request.POST)
 
     if form.is_valid():
@@ -95,7 +94,8 @@ def contact_form_submit(request):
                 ),
                 "last_name": (
                     " ".join(contact_data["name"].split()[1:])
-                    if len(contact_data["name"].split()) > 1 else ""
+                    if len(contact_data["name"].split()) > 1
+                    else ""
                 ),
                 "email": contact_data["email"],
                 "subject": (
@@ -105,17 +105,18 @@ def contact_form_submit(request):
                 "message": contact_data["message"],
                 "category": contact_data["subject"],
                 "company": contact_data.get("company", ""),
-                "source": "public_website"
+                "source": "public_website",
             }
 
             # Try to submit to main platform API
             import requests
+
             try:
                 response = requests.post(
                     f"{api_url}contact/submit/",
                     json=submission_data,
                     timeout=10,
-                    headers={"Content-Type": "application/json"}
+                    headers={"Content-Type": "application/json"},
                 )
 
                 if response.status_code == 201:
@@ -170,8 +171,7 @@ def contact_form_submit(request):
 
 @require_http_methods(["POST"])
 def newsletter_signup(request):
-    """Handle newsletter signup submissions
-    """
+    """Handle newsletter signup submissions"""
     form = AccessibleNewsletterForm(request.POST)
 
     if form.is_valid():
@@ -203,7 +203,8 @@ def newsletter_signup(request):
         except Exception:
             logger.exception("Error processing newsletter signup")
             messages.error(
-                request, "There was an error with your subscription. Please try again.",
+                request,
+                "There was an error with your subscription. Please try again.",
             )
 
     else:
@@ -239,16 +240,21 @@ def classify_contact_priority(form_type, form_data):
     email = form_data.get("email", "").lower()
     company = form_data.get("company", "").lower()
     job_title = (
-        form_data.get("role", "").lower() or
-        form_data.get("job_title", "").lower()
+        form_data.get("role", "").lower() or form_data.get("job_title", "").lower()
     )
     subject = form_data.get("subject", "").lower()
     message = form_data.get("message", "").lower()
 
     # Business email domains get higher priority
     business_domains = [
-        ".edu", ".org", ".gov",  # Institutional
-        "advisors.com", "investment", "capital", "wealth", "asset",  # Finance
+        ".edu",
+        ".org",
+        ".gov",  # Institutional
+        "advisors.com",
+        "investment",
+        "capital",
+        "wealth",
+        "asset",  # Finance
     ]
     personal_domains = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com"]
 
@@ -257,28 +263,51 @@ def classify_contact_priority(form_type, form_data):
 
     # Investment adviser indicators
     adviser_keywords = [
-        "ria", "investment advisor", "investment adviser", "financial advisor",
-        "portfolio manager", "wealth manager", "cio", "chief investment officer",
-        "advisor", "adviser", "schwab", "fidelity", "td ameritrade", "custody"
+        "ria",
+        "investment advisor",
+        "investment adviser",
+        "financial advisor",
+        "portfolio manager",
+        "wealth manager",
+        "cio",
+        "chief investment officer",
+        "advisor",
+        "adviser",
+        "schwab",
+        "fidelity",
+        "td ameritrade",
+        "custody",
     ]
 
     # Institutional indicators
     institutional_keywords = [
-        "endowment", "foundation", "pension", "university", "college",
-        "fund", "trust", "institutional", "fiduciary", "committee"
+        "endowment",
+        "foundation",
+        "pension",
+        "university",
+        "college",
+        "fund",
+        "trust",
+        "institutional",
+        "fiduciary",
+        "committee",
     ]
 
     # Check for adviser indicators
-    is_adviser = any(keyword in job_title for keyword in adviser_keywords) or \
-                any(keyword in company for keyword in adviser_keywords) or \
-                any(keyword in subject for keyword in adviser_keywords) or \
-                any(keyword in message for keyword in adviser_keywords)
+    is_adviser = (
+        any(keyword in job_title for keyword in adviser_keywords)
+        or any(keyword in company for keyword in adviser_keywords)
+        or any(keyword in subject for keyword in adviser_keywords)
+        or any(keyword in message for keyword in adviser_keywords)
+    )
 
     # Check for institutional indicators
-    is_institutional = any(keyword in job_title for keyword in institutional_keywords) or \
-                      any(keyword in company for keyword in institutional_keywords) or \
-                      any(keyword in subject for keyword in institutional_keywords) or \
-                      any(keyword in message for keyword in institutional_keywords)
+    is_institutional = (
+        any(keyword in job_title for keyword in institutional_keywords)
+        or any(keyword in company for keyword in institutional_keywords)
+        or any(keyword in subject for keyword in institutional_keywords)
+        or any(keyword in message for keyword in institutional_keywords)
+    )
 
     # Assets under management from form data
     aum = form_data.get("assets_under_management", "")
@@ -309,12 +338,16 @@ def classify_contact_priority(form_type, form_data):
             importance_score = 0.95
             priority_level = PriorityLevel.CRITICAL
             if "partnership" in form_data.get("subject", "").lower():
-                contact_status = ContactStatus.PROSPECT  # Partnership inquiry = prospect
+                contact_status = (
+                    ContactStatus.PROSPECT
+                )  # Partnership inquiry = prospect
         elif is_adviser:
             importance_score = 0.90
             priority_level = PriorityLevel.HIGH
             if "partnership" in form_data.get("subject", "").lower():
-                contact_status = ContactStatus.PROSPECT  # Partnership inquiry = prospect
+                contact_status = (
+                    ContactStatus.PROSPECT
+                )  # Partnership inquiry = prospect
         elif aum and ("100m" in aum or "500m" in aum or "1b" in aum or "over" in aum):
             importance_score = 0.85
             priority_level = PriorityLevel.HIGH
@@ -372,7 +405,9 @@ def create_or_update_contact(email, form_data, form_type, user=None):
     """Create or update CRM contact with business-focused deduplication and classification."""
 
     # Get contact classification
-    contact_status, priority_level, importance_score = classify_contact_priority(form_type, form_data)
+    contact_status, priority_level, importance_score = classify_contact_priority(
+        form_type, form_data
+    )
 
     # Try to find existing contact
     contact = Contact.objects.filter(email=email).first()
@@ -420,7 +455,10 @@ def create_or_update_contact(email, form_data, form_type, user=None):
     else:
         # Create new contact
         created = True
-        full_name = form_data.get("name") or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
+        full_name = (
+            form_data.get("name")
+            or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
+        )
 
         contact = Contact.objects.create(
             email=email,
@@ -453,7 +491,20 @@ def create_or_update_contact(email, form_data, form_type, user=None):
 
     contact.custom_fields[f"{form_type}_submission"] = {
         "date": timezone.now().isoformat(),
-        "data": {k: v for k, v in form_data.items() if k not in ["email", "first_name", "last_name", "name", "company", "role", "phone"]}
+        "data": {
+            k: v
+            for k, v in form_data.items()
+            if k
+            not in [
+                "email",
+                "first_name",
+                "last_name",
+                "name",
+                "company",
+                "role",
+                "phone",
+            ]
+        },
     }
 
     contact.save()
@@ -463,8 +514,7 @@ def create_or_update_contact(email, form_data, form_type, user=None):
 
 @require_http_methods(["POST"])
 def onboarding_form_submit(request):
-    """Handle comprehensive onboarding form submissions with CRM integration
-    """
+    """Handle comprehensive onboarding form submissions with CRM integration"""
     form = OnboardingForm(request.POST)
 
     if form.is_valid():
@@ -474,12 +524,14 @@ def onboarding_form_submit(request):
             with transaction.atomic():
                 # Create or update CRM Contact with highest priority for onboarding
                 full_name = f"{form_data['first_name']} {form_data['last_name']}"
-                form_data["name"] = full_name  # Add for compatibility with create_or_update_contact
+                form_data["name"] = (
+                    full_name  # Add for compatibility with create_or_update_contact
+                )
 
                 contact, created = create_or_update_contact(
                     email=form_data["email"],
                     form_data=form_data,
-                    form_type="onboarding"
+                    form_type="onboarding",
                 )
 
                 # Update contact with comprehensive onboarding data
@@ -491,7 +543,9 @@ def onboarding_form_submit(request):
                 # Classification based on investment amount
                 initial_investment = form_data["initial_investment"]
                 if initial_investment >= 500000:
-                    contact.status = ContactStatus.CLIENT  # High-value onboarding = likely client
+                    contact.status = (
+                        ContactStatus.CLIENT
+                    )  # High-value onboarding = likely client
                     contact.priority_level = PriorityLevel.CRITICAL
                     contact.importance_score = 0.95
                 elif initial_investment >= 100000:
@@ -510,7 +564,9 @@ def onboarding_form_submit(request):
                         "primary_goal": form_data["primary_goal"],
                         "time_horizon": form_data["time_horizon"],
                         "initial_investment": str(initial_investment),
-                        "monthly_contribution": str(form_data.get("monthly_contribution", 0)),
+                        "monthly_contribution": str(
+                            form_data.get("monthly_contribution", 0)
+                        ),
                     },
                     "ethical_preferences": {
                         "exclusions": form_data.get("exclusions", []),
@@ -535,7 +591,7 @@ def onboarding_form_submit(request):
 
                 messages.success(
                     request,
-                    "Thank you for your application! We have received your information and will review it shortly."
+                    "Thank you for your application! We have received your information and will review it shortly.",
                 )
 
                 return redirect("/onboarding/thank-you/")
@@ -544,7 +600,7 @@ def onboarding_form_submit(request):
             logger.exception("Error processing onboarding form")
             messages.error(
                 request,
-                "There was an error processing your application. Please try again or contact us directly."
+                "There was an error processing your application. Please try again or contact us directly.",
             )
             return redirect("/onboarding/")
 
@@ -556,14 +612,14 @@ def onboarding_form_submit(request):
                 error_messages.append(f"{field}: {error}")
 
         messages.error(
-            request, f"Please correct the following errors: {', '.join(error_messages)}",
+            request,
+            f"Please correct the following errors: {', '.join(error_messages)}",
         )
         return redirect("/onboarding/")
 
 
 def onboarding_thank_you(request):
-    """Thank you page after onboarding application submission
-    """
+    """Thank you page after onboarding application submission"""
     context = {
         "page_title": "Application Received",
         "heading": "Thank You for Your Application!",
@@ -603,7 +659,7 @@ def contact_api(request):
                 contact, created = create_or_update_contact(
                     email=contact_data["email"],
                     form_data=contact_data,
-                    form_type="contact_form"
+                    form_type="contact_form",
                 )
 
                 # Create interaction record
@@ -699,13 +755,13 @@ def newsletter_api(request):
             with transaction.atomic():
                 # Create or update CRM Contact
                 contact_data = {
-                    "name": email.split("@")[0].replace(".", " ").title(),  # Fallback name from email
+                    "name": email.split("@")[0]
+                    .replace(".", " ")
+                    .title(),  # Fallback name from email
                     "opt_in_marketing": opt_in,
                 }
                 contact, contact_created = create_or_update_contact(
-                    email=email,
-                    form_data=contact_data,
-                    form_type="newsletter"
+                    email=email, form_data=contact_data, form_type="newsletter"
                 )
 
                 # Set newsletter preferences
@@ -723,7 +779,9 @@ def newsletter_api(request):
                 )
 
                 # Log the signup
-                logger.info(f"Newsletter signup via API: {email} (Contact {'created' if contact_created else 'updated'})")
+                logger.info(
+                    f"Newsletter signup via API: {email} (Contact {'created' if contact_created else 'updated'})"
+                )
 
                 # Create a simple support ticket to track newsletter signups (keep for legacy)
                 SupportTicket.objects.create(
@@ -821,7 +879,8 @@ def support_categories_api(request):
                         "value": value,
                         "label": label,
                         "article_count": FAQArticle.objects.filter(
-                            category=value, live=True,
+                            category=value,
+                            live=True,
                         ).count(),
                     },
                 )
@@ -851,8 +910,7 @@ def support_categories_api(request):
 
 
 def contact_success(request):
-    """Contact form success page
-    """
+    """Contact form success page"""
     context = {
         "page_title": "Message Sent",
         "heading": "Thank You for Contacting Us!",
@@ -894,7 +952,8 @@ def get_site_navigation(request):
                 )
 
             return Response(
-                {"navigation": navigation}, status=status.HTTP_200_OK,
+                {"navigation": navigation},
+                status=status.HTTP_200_OK,
             )
 
     except Exception:
@@ -912,13 +971,13 @@ def get_site_navigation(request):
     ]
 
     return Response(
-        {"navigation": fallback_navigation}, status=status.HTTP_200_OK,
+        {"navigation": fallback_navigation},
+        status=status.HTTP_200_OK,
     )
 
 
 def site_search(request):
-    """Site-wide search using Wagtail's search functionality
-    """
+    """Site-wide search using Wagtail's search functionality"""
     search_query = request.GET.get("q", "").strip()
     page = request.GET.get("page", 1)
 
@@ -954,8 +1013,7 @@ def site_search(request):
 @api_view(["GET"])
 @permission_classes([AllowAny])
 def get_footer_links(request):
-    """API endpoint to get footer link structure
-    """
+    """API endpoint to get footer link structure"""
     footer_links = {
         "company": [
             {"title": "About Us", "url": "/about/"},
@@ -973,7 +1031,10 @@ def get_footer_links(request):
             {"title": "Privacy Policy", "url": "/disclosures/privacy/"},
             {"title": "Terms of Service", "url": "/disclosures/terms/"},
             {"title": "Disclosures", "url": "/disclosures/disclosures/"},
-            {"title": "Form ADV", "url": "https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf"},
+            {
+                "title": "Form ADV",
+                "url": "https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf",
+            },
         ],
         "connect": [
             {"title": "Contact Us", "url": "/contact/"},

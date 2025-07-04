@@ -1,6 +1,7 @@
 """
 Minimal settings for build phase - avoids database connections
 """
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,7 +23,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # Wagtail
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -35,10 +35,8 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
-
     "modelcluster",
     "taggit",
-
     # Our apps
     "public_site",
 ]

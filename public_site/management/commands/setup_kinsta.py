@@ -7,6 +7,7 @@ from public_site.models import HomePage
 
 User = get_user_model()
 
+
 class Command(BaseCommand):
     help = "Set up initial data for Kinsta deployment"
 
@@ -21,10 +22,14 @@ class Command(BaseCommand):
                     User.objects.create_superuser(
                         username="admin",
                         email="admin@ethicic.com",
-                        password="ChangeThisPassword123!"
+                        password="ChangeThisPassword123!",  # nosec S106 - Setup command only
                     )
-                    self.stdout.write(self.style.SUCCESS("✅ Superuser created (username: admin)"))
-                    self.stdout.write(self.style.WARNING("⚠️  CHANGE THE PASSWORD IMMEDIATELY!"))
+                    self.stdout.write(
+                        self.style.SUCCESS("✅ Superuser created (username: admin)")
+                    )
+                    self.stdout.write(
+                        self.style.WARNING("⚠️  CHANGE THE PASSWORD IMMEDIATELY!")
+                    )
 
             # Ensure we have a root page
             if not Page.objects.filter(pk=1).exists():
@@ -76,4 +81,6 @@ class Command(BaseCommand):
 
             self.stdout.write(self.style.SUCCESS("\n✅ Kinsta setup complete!"))
         except Exception as e:
-            self.stdout.write(self.style.WARNING(f"⚠️  Setup completed with warnings: {str(e)}"))
+            self.stdout.write(
+                self.style.WARNING(f"⚠️  Setup completed with warnings: {str(e)}")
+            )

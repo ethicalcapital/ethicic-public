@@ -1,6 +1,7 @@
 """
 Setup standalone mode with SQLite database
 """
+
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from wagtail.models import Page, Site
@@ -19,7 +20,7 @@ class Command(BaseCommand):
             User.objects.create_superuser(
                 username="srvo",
                 email="sloane@ethicic.com",
-                password="dyzxuc-4muBzy-woqbam"
+                password="dyzxuc-4muBzy-woqbam",  # nosec S106 - Setup command only
             )
             self.stdout.write(self.style.SUCCESS("✓ Created admin user: srvo"))
         else:
@@ -67,7 +68,9 @@ class Command(BaseCommand):
                     home_page.path = root_page.get_next_child_path()
                     home_page.depth = root_page.depth + 1
                     home_page.save()
-                    self.stdout.write(self.style.SUCCESS("✓ Created home page (alternative method)"))
+                    self.stdout.write(
+                        self.style.SUCCESS("✓ Created home page (alternative method)")
+                    )
 
             else:
                 self.stdout.write("Home page already exists")
@@ -81,7 +84,9 @@ class Command(BaseCommand):
                     site.port = 80
                     site.site_name = "Ethical Capital"
                     site.save()
-                    self.stdout.write(self.style.SUCCESS("✓ Updated site configuration"))
+                    self.stdout.write(
+                        self.style.SUCCESS("✓ Updated site configuration")
+                    )
                 else:
                     self.stdout.write("Site already configured correctly")
             else:
@@ -90,13 +95,14 @@ class Command(BaseCommand):
                     port=80,
                     root_page=home_page,
                     is_default_site=True,
-                    site_name="Ethical Capital"
+                    site_name="Ethical Capital",
                 )
                 self.stdout.write(self.style.SUCCESS("✓ Created site"))
 
         except Exception as e:
             self.stdout.write(self.style.ERROR(f"Error setting up site: {e}"))
             import traceback
+
             traceback.print_exc()
 
         self.stdout.write(self.style.SUCCESS("\n✓ Standalone setup complete!"))

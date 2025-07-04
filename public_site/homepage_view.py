@@ -1,6 +1,7 @@
 """
 Temporary homepage view that renders the proper template with hardcoded content
 """
+
 from django.shortcuts import render
 
 

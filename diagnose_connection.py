@@ -2,6 +2,7 @@
 """
 Diagnose Ubicloud connection issues
 """
+
 import os
 import socket
 import ssl
@@ -83,11 +84,14 @@ except Exception as e:
 print("\n=== Current Public IP ===")
 try:
     import urllib.request
+
     public_ip = urllib.request.urlopen("https://api.ipify.org").read().decode("utf-8")
     print(f"Current public IP: {public_ip}")
     print("\n📌 To whitelist this IP in Ubicloud, run:")
     print(f"   ubi pg dewey-db add-firewall-rule {public_ip}/32")
-    print("\nNote: Kinsta may use multiple IPs. Contact their support for the full range.")
+    print(
+        "\nNote: Kinsta may use multiple IPs. Contact their support for the full range."
+    )
 except Exception as e:
     print(f"Could not determine public IP: {e}")
 
@@ -96,10 +100,13 @@ print("\n=== PostgreSQL SSL Handshake Test ===")
 if os.getenv("UBI_DATABASE_URL"):
     try:
         import psycopg2
+
         print("Attempting psycopg2 connection with SSL...")
 
         # Try with minimal SSL first
-        conn_string = os.getenv("UBI_DATABASE_URL").replace("postgresql://", "postgresql://")
+        conn_string = os.getenv("UBI_DATABASE_URL").replace(
+            "postgresql://", "postgresql://"
+        )
         conn_string += "?sslmode=require&connect_timeout=5"
 
         print(f"Connection string: {conn_string.split('@')[1]}")  # Hide credentials

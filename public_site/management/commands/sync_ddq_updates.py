@@ -1,6 +1,7 @@
 """
 Management command to re-sync PRI DDQ content when the main DDQ page is updated.
 """
+
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
@@ -18,9 +19,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """Re-sync PRI DDQ content."""
 
-        self.stdout.write(
-            self.style.SUCCESS("🔄 Re-syncing PRI DDQ content to FAQ...")
-        )
+        self.stdout.write(self.style.SUCCESS("🔄 Re-syncing PRI DDQ content to FAQ..."))
 
         # Call the sync command
         call_command("sync_pri_ddq_to_faq")
@@ -32,5 +31,7 @@ class Command(BaseCommand):
             self.style.SUCCESS("📖 Visit /faq/ to see the updated FAQ entries.")
         )
         self.stdout.write(
-            self.style.SUCCESS("🔗 PRI DDQ page at /pri-ddq/ now links to FAQ for easy access.")
+            self.style.SUCCESS(
+                "🔗 PRI DDQ page at /pri-ddq/ now links to FAQ for easy access."
+            )
         )

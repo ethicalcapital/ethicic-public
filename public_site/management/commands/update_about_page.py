@@ -70,6 +70,8 @@ class Command(BaseCommand):
         # Save the page
         try:
             about_page.save_revision().publish()
-            self.stdout.write(self.style.SUCCESS("Successfully updated AboutPage content"))
+            self.stdout.write(
+                self.style.SUCCESS("Successfully updated AboutPage content")
+            )
         except Exception as e:
             self.stdout.write(self.style.ERROR(f"Error saving AboutPage: {e}"))

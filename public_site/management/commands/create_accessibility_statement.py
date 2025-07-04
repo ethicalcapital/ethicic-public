@@ -14,23 +14,28 @@ class Command(BaseCommand):
         # Get the root page (usually the home page)
         try:
             from public_site.models import HomePage
+
             home_page = HomePage.objects.first()
             if not home_page:
                 self.stdout.write(
-                    self.style.ERROR("No HomePage found. Please create a HomePage first.")
+                    self.style.ERROR(
+                        "No HomePage found. Please create a HomePage first."
+                    )
                 )
                 return
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"Error finding HomePage: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"Error finding HomePage: {e}"))
             return
 
         # Check if accessibility statement already exists
-        existing_page = LegalPage.objects.filter(title="Accessibility Statement").first()
+        existing_page = LegalPage.objects.filter(
+            title="Accessibility Statement"
+        ).first()
         if existing_page:
             self.stdout.write(
-                self.style.WARNING(f"Accessibility Statement page already exists at: {existing_page.get_url()}")
+                self.style.WARNING(
+                    f"Accessibility Statement page already exists at: {existing_page.get_url()}"
+                )
             )
             return
 

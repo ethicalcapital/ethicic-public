@@ -1,6 +1,7 @@
 """
 Management command to export database schema for reference
 """
+
 from django.core.management.base import BaseCommand
 from django.db import connection
 
@@ -28,13 +29,16 @@ class Command(BaseCommand):
                 self.stdout.write("-" * (len(table_name) + 7))
 
                 # Get column information
-                cursor.execute("""
+                cursor.execute(
+                    """
                     SELECT column_name, data_type, is_nullable, column_default
                     FROM information_schema.columns
                     WHERE table_schema = 'public'
                     AND table_name = %s
                     ORDER BY ordinal_position
-                """, [table_name])
+                """,
+                    [table_name],
+                )
 
                 columns = cursor.fetchall()
 

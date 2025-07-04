@@ -1,6 +1,7 @@
 """
 Simplified command to create homepage after Wagtail is properly initialized
 """
+
 from django.core.management.base import BaseCommand
 from wagtail.models import Page, Site
 
@@ -42,16 +43,14 @@ class Command(BaseCommand):
                 numchild=root_page.numchild,
                 url_path=root_page.url_path,
                 locale_id=root_page.locale_id,
-                content_type=root_page.content_type
+                content_type=root_page.content_type,
             )
 
             # Delete old page and save new one
             root_page.delete(keep_parents=True)
             home.save()
 
-            self.stdout.write(
-                self.style.SUCCESS("Successfully created HomePage")
-            )
+            self.stdout.write(self.style.SUCCESS("Successfully created HomePage"))
 
             # Update the default site
             try:
@@ -63,6 +62,4 @@ class Command(BaseCommand):
                 pass
 
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"Failed to create homepage: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"Failed to create homepage: {e}"))

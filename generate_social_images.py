@@ -2,6 +2,7 @@
 """
 Generate social media PNG files from SVG for Ethical Capital
 """
+
 import subprocess
 from pathlib import Path
 
@@ -26,13 +27,19 @@ def generate_social_pngs():
 
         try:
             # Use rsvg-convert
-            subprocess.run([
-                "rsvg-convert",
-                "-w", str(width),
-                "-h", str(height),
-                str(svg_file),
-                "-o", str(png_file)
-            ], check=True)
+            subprocess.run(
+                [
+                    "rsvg-convert",
+                    "-w",
+                    str(width),
+                    "-h",
+                    str(height),
+                    str(svg_file),
+                    "-o",
+                    str(png_file),
+                ],
+                check=True,
+            )
 
             print(f"✅ Generated: {png_name} ({width}x{height})")
         except subprocess.CalledProcessError as e:
@@ -40,16 +47,22 @@ def generate_social_pngs():
 
             # Try ImageMagick as fallback
             try:
-                subprocess.run([
-                    "convert",
-                    "-background", "none",
-                    "-resize", f"{width}x{height}!",
-                    str(svg_file),
-                    str(png_file)
-                ], check=True)
+                subprocess.run(
+                    [
+                        "convert",
+                        "-background",
+                        "none",
+                        "-resize",
+                        f"{width}x{height}!",
+                        str(svg_file),
+                        str(png_file),
+                    ],
+                    check=True,
+                )
                 print(f"✅ Generated {png_name} using ImageMagick")
             except Exception as e:
                 print(f"⚠️  Could not generate {png_name}: {e}")
+
 
 if __name__ == "__main__":
     generate_social_pngs()

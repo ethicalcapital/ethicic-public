@@ -67,21 +67,15 @@ class Command(BaseCommand):
         try:
             media_page = MediaPage.objects.live().first()
             if not media_page:
-                self.stdout.write(
-                    self.style.ERROR("No MediaPage found in the CMS")
-                )
+                self.stdout.write(self.style.ERROR("No MediaPage found in the CMS"))
                 return
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"Error finding MediaPage: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"Error finding MediaPage: {e}"))
             return
 
         # Clear existing media items
         media_page.media_items.all().delete()
-        self.stdout.write(
-            self.style.WARNING("Cleared existing media items")
-        )
+        self.stdout.write(self.style.WARNING("Cleared existing media items"))
 
         # Add new media items
         for idx, item_data in enumerate(media_mentions):
@@ -111,9 +105,7 @@ class Command(BaseCommand):
 
             except Exception as e:
                 self.stdout.write(
-                    self.style.ERROR(
-                        f"✗ Failed to add {item_data['title']}: {e}"
-                    )
+                    self.style.ERROR(f"✗ Failed to add {item_data['title']}: {e}")
                 )
 
         # Save the page to update revision
@@ -124,8 +116,4 @@ class Command(BaseCommand):
                 f"\n✅ Successfully populated {len(media_mentions)} media items!"
             )
         )
-        self.stdout.write(
-            self.style.SUCCESS(
-                "Visit /media/ to see the updates"
-            )
-        )
+        self.stdout.write(self.style.SUCCESS("Visit /media/ to see the updates"))

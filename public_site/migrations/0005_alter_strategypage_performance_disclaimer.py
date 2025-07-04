@@ -5,7 +5,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("public_site", "0004_add_missing_strategy_fields"),
     ]

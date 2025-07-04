@@ -21,6 +21,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 if not SECRET_KEY:
     # During build phase, use a temporary key
     import uuid
+
     SECRET_KEY = f"build-phase-key-{uuid.uuid4().hex}"
     print("⚠️  Using temporary SECRET_KEY for build phase")
 
@@ -47,7 +48,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "django.contrib.humanize",
-
     # Wagtail dependencies
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -61,15 +61,12 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
-
     "modelcluster",
     "taggit",
     "rest_framework",
-
     # Third party apps
     "crispy_forms",
     "crispy_bootstrap4",
-
     # Local apps
     "public_site",
 ]
@@ -136,6 +133,7 @@ if os.getenv("USE_SQLITE", "False").lower() == "true":
     if UBI_DATABASE_URL:
         try:
             from .database_config import get_database_config
+
             ubicloud_config = get_database_config(UBI_DATABASE_URL)
             if ubicloud_config:
                 DATABASES["ubicloud"] = ubicloud_config
@@ -144,14 +142,14 @@ if os.getenv("USE_SQLITE", "False").lower() == "true":
 elif DB_URL:
     # Primary: Use new Ethicic Public PostgreSQL database
     import dj_database_url
-    DATABASES = {
-        "default": dj_database_url.parse(DB_URL, conn_max_age=600)
-    }
+
+    DATABASES = {"default": dj_database_url.parse(DB_URL, conn_max_age=600)}
 
     # Add Ubicloud as secondary database for importing content
     if UBI_DATABASE_URL:
         try:
             from .database_config import get_database_config
+
             ubicloud_config = get_database_config(UBI_DATABASE_URL)
             if ubicloud_config:
                 DATABASES["ubicloud"] = ubicloud_config
@@ -189,7 +187,7 @@ elif UBI_DATABASE_URL:
                 user=config["USER"],
                 password=config["PASSWORD"],
                 connect_timeout=10,
-                sslmode="require"
+                sslmode="require",
             )
             conn.close()
             return True
@@ -226,9 +224,8 @@ elif UBI_DATABASE_URL:
 elif DATABASE_URL and DATABASE_URL != "sqlite":
     # Kinsta database only (fallback)
     import dj_database_url
-    DATABASES = {
-        "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-    }
+
+    DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
 
 else:
     # Manual PostgreSQL configuration
@@ -245,12 +242,16 @@ else:
                 "sslcert": os.getenv("DB_SSLCERT", ""),
                 "sslkey": os.getenv("DB_SSLKEY", ""),
                 "sslrootcert": os.getenv("DB_SSLROOTCERT", ""),
-            } if any([
-                os.getenv("DB_SSLMODE"),
-                os.getenv("DB_SSLCERT"),
-                os.getenv("DB_SSLKEY"),
-                os.getenv("DB_SSLROOTCERT")
-            ]) else {}
+            }
+            if any(
+                [
+                    os.getenv("DB_SSLMODE"),
+                    os.getenv("DB_SSLCERT"),
+                    os.getenv("DB_SSLKEY"),
+                    os.getenv("DB_SSLROOTCERT"),
+                ]
+            )
+            else {},
         }
     }
 
@@ -322,7 +323,9 @@ WAGTAILADMIN_BASE_URL = os.getenv("WAGTAILADMIN_BASE_URL", "https://ethicic.com"
 WAGTAIL_USER_EDIT_FORM = "public_site.forms.CustomUserEditForm"
 
 # Email configuration
-EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
+EMAIL_BACKEND = os.getenv(
+    "EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend"
+)
 EMAIL_HOST = os.getenv("EMAIL_HOST", "")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True").lower() == "true"
@@ -421,7 +424,7 @@ if REDIS_URL:
             "LOCATION": REDIS_URL,
             "KEY_PREFIX": "session",
             "TIMEOUT": 86400,  # 24 hours
-        }
+        },
     }
 
     # Use Redis for sessions

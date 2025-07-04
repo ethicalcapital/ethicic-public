@@ -2,6 +2,7 @@
 Wagtail hooks for the public_site app.
 Clean, simplified admin interface without AI features.
 """
+
 from typing import ClassVar
 
 from django.utils.html import format_html
@@ -19,9 +20,21 @@ from .models import (
 @register_snippet
 class SupportTicketSnippetViewSet(SnippetViewSet):
     model = SupportTicket
-    list_display: ClassVar[list] = ["first_name", "last_name", "subject", "status", "created_at"]
+    list_display: ClassVar[list] = [
+        "first_name",
+        "last_name",
+        "subject",
+        "status",
+        "created_at",
+    ]
     list_filter: ClassVar[list] = ["status", "category", "created_at"]
-    search_fields: ClassVar[list] = ["first_name", "last_name", "email", "subject", "message"]
+    search_fields: ClassVar[list] = [
+        "first_name",
+        "last_name",
+        "email",
+        "subject",
+        "message",
+    ]
     ordering: ClassVar[list] = ["-created_at"]
 
 
@@ -162,6 +175,7 @@ def add_public_site_instructions(request, panels):
         def media(self):
             """Return empty Media object since this panel doesn't need additional CSS/JS."""
             from django.forms import Media
+
             return Media()
 
         def render(self):
@@ -190,7 +204,13 @@ def add_public_site_instructions(request, panels):
 @register_snippet
 class MediaItemSnippetViewSet(SnippetViewSet):
     model = MediaItem
-    list_display: ClassVar[list] = ["title", "publication", "publication_date", "featured", "get_page_title"]
+    list_display: ClassVar[list] = [
+        "title",
+        "publication",
+        "publication_date",
+        "featured",
+        "get_page_title",
+    ]
     list_filter: ClassVar[list] = ["featured", "publication", "publication_date"]
     search_fields: ClassVar[list] = ["title", "description", "publication"]
     ordering: ClassVar[list] = ["-featured", "-publication_date"]

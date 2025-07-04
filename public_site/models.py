@@ -38,21 +38,41 @@ class HomePage(Page):
     hero_subtitle = RichTextField(blank=True, help_text="Hero description text")
 
     # Hero Stats
-    excluded_percentage = models.CharField(max_length=10, blank=True, help_text="Percentage of S&P 500 excluded")
-    since_year = models.CharField(max_length=20, blank=True, help_text="Year established or founding info")
+    excluded_percentage = models.CharField(
+        max_length=10, blank=True, help_text="Percentage of S&P 500 excluded"
+    )
+    since_year = models.CharField(
+        max_length=20, blank=True, help_text="Year established or founding info"
+    )
 
     # Investment Philosophy Section
     philosophy_title = models.CharField(max_length=200, blank=True)
-    philosophy_content = RichTextField(blank=True, help_text="Investment philosophy description")
-    philosophy_highlight = models.CharField(max_length=300, blank=True, help_text="Key philosophy statement")
+    philosophy_content = RichTextField(
+        blank=True, help_text="Investment philosophy description"
+    )
+    philosophy_highlight = models.CharField(
+        max_length=300, blank=True, help_text="Key philosophy statement"
+    )
 
     # Section Headers - CMS Manageable
-    philosophy_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for investment philosophy")
-    principles_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for principles")
-    strategies_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for strategies")
-    process_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for process")
-    serve_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for who we serve")
-    cta_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for call to action")
+    philosophy_section_header = models.CharField(
+        max_length=100, blank=True, help_text="Section header for investment philosophy"
+    )
+    principles_section_header = models.CharField(
+        max_length=100, blank=True, help_text="Section header for principles"
+    )
+    strategies_section_header = models.CharField(
+        max_length=100, blank=True, help_text="Section header for strategies"
+    )
+    process_section_header = models.CharField(
+        max_length=100, blank=True, help_text="Section header for process"
+    )
+    serve_section_header = models.CharField(
+        max_length=100, blank=True, help_text="Section header for who we serve"
+    )
+    cta_section_header = models.CharField(
+        max_length=100, blank=True, help_text="Section header for call to action"
+    )
 
     # Principles Section
     principles_intro = RichTextField(blank=True)
@@ -114,78 +134,99 @@ class HomePage(Page):
     client_availability_text = models.CharField(max_length=100, blank=True)
 
     # Footer/Disclaimer Content
-    disclaimer_text = RichTextField(blank=True, help_text="Legal disclaimer and footnotes")
+    disclaimer_text = RichTextField(
+        blank=True, help_text="Legal disclaimer and footnotes"
+    )
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
-        MultiFieldPanel([
-            FieldPanel("hero_tagline"),
-            FieldPanel("hero_title"),
-            FieldPanel("hero_subtitle"),
-            FieldPanel("excluded_percentage"),
-            FieldPanel("since_year")
-        ], heading="Hero Section"),
-        MultiFieldPanel([
-            FieldPanel("philosophy_section_header"),
-            FieldPanel("philosophy_title"),
-            FieldPanel("philosophy_content"),
-            FieldPanel("philosophy_highlight")
-        ], heading="Investment Philosophy"),
-        MultiFieldPanel([
-            FieldPanel("principles_section_header"),
-            FieldPanel("principles_intro")
-        ], heading="Principles Introduction"),
-        MultiFieldPanel([
-            FieldPanel("process_principle_1_title"),
-            FieldPanel("process_principle_1_content"),
-            FieldPanel("process_principle_2_title"),
-            FieldPanel("process_principle_2_content"),
-            FieldPanel("process_principle_3_title"),
-            FieldPanel("process_principle_3_content")
-        ], heading="Process Principles"),
-        MultiFieldPanel([
-            FieldPanel("practice_principle_1_title"),
-            FieldPanel("practice_principle_1_content"),
-            FieldPanel("practice_principle_2_title"),
-            FieldPanel("practice_principle_2_content"),
-            FieldPanel("practice_principle_3_title"),
-            FieldPanel("practice_principle_3_content")
-        ], heading="Practice Principles"),
-        MultiFieldPanel([
-            FieldPanel("strategies_section_header"),
-            FieldPanel("strategies_intro")
-        ], heading="Strategies Introduction"),
-        MultiFieldPanel([
-            FieldPanel("process_section_header"),
-            FieldPanel("process_title"),
-            FieldPanel("process_step_1_title"),
-            FieldPanel("process_step_1_content"),
-            FieldPanel("process_step_2_title"),
-            FieldPanel("process_step_2_content"),
-            FieldPanel("process_step_3_title"),
-            FieldPanel("process_step_3_content"),
-            FieldPanel("process_step_4_title"),
-            FieldPanel("process_step_4_content")
-        ], heading="Process Steps"),
-        MultiFieldPanel([
-            FieldPanel("serve_section_header"),
-            FieldPanel("serve_individual_title"),
-            FieldPanel("serve_individual_content"),
-            FieldPanel("serve_advisor_title"),
-            FieldPanel("serve_advisor_content"),
-            FieldPanel("serve_institution_title"),
-            FieldPanel("serve_institution_content")
-        ], heading="Who We Serve"),
-        MultiFieldPanel([
-            FieldPanel("cta_section_header"),
-            FieldPanel("cta_title"),
-            FieldPanel("cta_description"),
-            FieldPanel("minimum_investment_text"),
-            FieldPanel("client_availability_text")
-        ], heading="Call to Action"),
-        MultiFieldPanel([
-            FieldPanel("disclaimer_text")
-        ], heading="Footer & Disclaimer")
+        MultiFieldPanel(
+            [
+                FieldPanel("hero_tagline"),
+                FieldPanel("hero_title"),
+                FieldPanel("hero_subtitle"),
+                FieldPanel("excluded_percentage"),
+                FieldPanel("since_year"),
+            ],
+            heading="Hero Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("philosophy_section_header"),
+                FieldPanel("philosophy_title"),
+                FieldPanel("philosophy_content"),
+                FieldPanel("philosophy_highlight"),
+            ],
+            heading="Investment Philosophy",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("principles_section_header"), FieldPanel("principles_intro")],
+            heading="Principles Introduction",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("process_principle_1_title"),
+                FieldPanel("process_principle_1_content"),
+                FieldPanel("process_principle_2_title"),
+                FieldPanel("process_principle_2_content"),
+                FieldPanel("process_principle_3_title"),
+                FieldPanel("process_principle_3_content"),
+            ],
+            heading="Process Principles",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("practice_principle_1_title"),
+                FieldPanel("practice_principle_1_content"),
+                FieldPanel("practice_principle_2_title"),
+                FieldPanel("practice_principle_2_content"),
+                FieldPanel("practice_principle_3_title"),
+                FieldPanel("practice_principle_3_content"),
+            ],
+            heading="Practice Principles",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("strategies_section_header"), FieldPanel("strategies_intro")],
+            heading="Strategies Introduction",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("process_section_header"),
+                FieldPanel("process_title"),
+                FieldPanel("process_step_1_title"),
+                FieldPanel("process_step_1_content"),
+                FieldPanel("process_step_2_title"),
+                FieldPanel("process_step_2_content"),
+                FieldPanel("process_step_3_title"),
+                FieldPanel("process_step_3_content"),
+                FieldPanel("process_step_4_title"),
+                FieldPanel("process_step_4_content"),
+            ],
+            heading="Process Steps",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("serve_section_header"),
+                FieldPanel("serve_individual_title"),
+                FieldPanel("serve_individual_content"),
+                FieldPanel("serve_advisor_title"),
+                FieldPanel("serve_advisor_content"),
+                FieldPanel("serve_institution_title"),
+                FieldPanel("serve_institution_content"),
+            ],
+            heading="Who We Serve",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("cta_section_header"),
+                FieldPanel("cta_title"),
+                FieldPanel("cta_description"),
+                FieldPanel("minimum_investment_text"),
+                FieldPanel("client_availability_text"),
+            ],
+            heading="Call to Action",
+        ),
+        MultiFieldPanel([FieldPanel("disclaimer_text")], heading="Footer & Disclaimer"),
     ]
 
     # Wagtail admin panel configurations
@@ -228,14 +269,26 @@ class AboutPage(Page):
 
     # Hero section
     headshot_image = models.URLField(blank=True, help_text="URL to headshot image")
-    headshot_alt_text = models.CharField(max_length=200, blank=True, help_text="Alt text for headshot image")
-    philosophy_quote = RichTextField(blank=True, help_text="Philosophy quote in the hero section")
-    philosophy_quote_link = models.CharField(max_length=500, blank=True, help_text="Link for the philosophy quote attribution (can be relative or absolute URL)")
-    philosophy_quote_link_text = models.CharField(max_length=200, blank=True, help_text="Text for the philosophy quote link")
+    headshot_alt_text = models.CharField(
+        max_length=200, blank=True, help_text="Alt text for headshot image"
+    )
+    philosophy_quote = RichTextField(
+        blank=True, help_text="Philosophy quote in the hero section"
+    )
+    philosophy_quote_link = models.CharField(
+        max_length=500,
+        blank=True,
+        help_text="Link for the philosophy quote attribution (can be relative or absolute URL)",
+    )
+    philosophy_quote_link_text = models.CharField(
+        max_length=200, blank=True, help_text="Text for the philosophy quote link"
+    )
 
     # Identity section
     name = models.CharField(max_length=200, blank=True, help_text="Name and pronouns")
-    professional_title = models.CharField(max_length=200, blank=True, help_text="Professional title")
+    professional_title = models.CharField(
+        max_length=200, blank=True, help_text="Professional title"
+    )
 
     # Social links
     linkedin_url = models.URLField(blank=True)
@@ -247,32 +300,64 @@ class AboutPage(Page):
     sec_info_url = models.URLField(blank=True)
 
     # Professional background section
-    professional_background_title = models.CharField(max_length=200, blank=True, help_text="Title for professional background section")
-    professional_background_content = RichTextField(blank=True, help_text="Professional background content")
+    professional_background_title = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Title for professional background section",
+    )
+    professional_background_content = RichTextField(
+        blank=True, help_text="Professional background content"
+    )
 
     # External roles section
-    external_roles_title = models.CharField(max_length=200, blank=True, help_text="Title for external roles section")
-    external_roles_content = RichTextField(blank=True, help_text="External roles and leadership content")
+    external_roles_title = models.CharField(
+        max_length=200, blank=True, help_text="Title for external roles section"
+    )
+    external_roles_content = RichTextField(
+        blank=True, help_text="External roles and leadership content"
+    )
 
     # Speaking & writing section
-    speaking_writing_title = models.CharField(max_length=200, blank=True, help_text="Title for speaking & writing section")
-    speaking_writing_content = RichTextField(blank=True, help_text="Speaking & writing content")
-    speaking_cta_text = RichTextField(blank=True, help_text="Call-to-action text for speaking section")
-    speaking_contact_note = RichTextField(blank=True, help_text="Contact note for speaking section")
+    speaking_writing_title = models.CharField(
+        max_length=200, blank=True, help_text="Title for speaking & writing section"
+    )
+    speaking_writing_content = RichTextField(
+        blank=True, help_text="Speaking & writing content"
+    )
+    speaking_cta_text = RichTextField(
+        blank=True, help_text="Call-to-action text for speaking section"
+    )
+    speaking_contact_note = RichTextField(
+        blank=True, help_text="Contact note for speaking section"
+    )
     calendar_link = models.URLField(blank=True, help_text="Calendar booking link")
-    calendar_link_text = models.CharField(max_length=200, blank=True, help_text="Text for calendar link")
+    calendar_link_text = models.CharField(
+        max_length=200, blank=True, help_text="Text for calendar link"
+    )
     email_link = models.EmailField(blank=True, help_text="Contact email address")
-    email_link_text = models.CharField(max_length=200, blank=True, help_text="Text for email link")
+    email_link_text = models.CharField(
+        max_length=200, blank=True, help_text="Text for email link"
+    )
 
     # Personal interests section
-    personal_interests_title = models.CharField(max_length=200, blank=True, help_text="Title for personal interests section")
-    personal_interests_content = RichTextField(blank=True, help_text="Personal interests content")
+    personal_interests_title = models.CharField(
+        max_length=200, blank=True, help_text="Title for personal interests section"
+    )
+    personal_interests_content = RichTextField(
+        blank=True, help_text="Personal interests content"
+    )
 
     # Three-panel content for new layout
     # What I Do Now panel
-    current_role_content = RichTextField(blank=True, help_text="Current role description for What I Do Now panel")
-    philosophy_content = RichTextField(blank=True, help_text="Philosophy description for What I Do Now panel")
-    client_focus_content = RichTextField(blank=True, help_text="Client focus description for What I Do Now panel")
+    current_role_content = RichTextField(
+        blank=True, help_text="Current role description for What I Do Now panel"
+    )
+    philosophy_content = RichTextField(
+        blank=True, help_text="Philosophy description for What I Do Now panel"
+    )
+    client_focus_content = RichTextField(
+        blank=True, help_text="Client focus description for What I Do Now panel"
+    )
 
     # Featured posts section
     featured_post_1_title = models.CharField(max_length=200, blank=True)
@@ -292,76 +377,105 @@ class AboutPage(Page):
     featured_post_4_url = models.CharField(max_length=500, blank=True)
 
     # Speaking topics
-    speaking_topics = RichTextField(blank=True, help_text="Topics covered in speaking engagements")
+    speaking_topics = RichTextField(
+        blank=True, help_text="Topics covered in speaking engagements"
+    )
 
     # Speaker bio download
     speaker_bio_url = models.URLField(blank=True, help_text="URL to speaker bio PDF")
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
-        MultiFieldPanel([
-            FieldPanel("headshot_image"),
-            FieldPanel("headshot_alt_text"),
-            FieldPanel("philosophy_quote"),
-            FieldPanel("philosophy_quote_link"),
-            FieldPanel("philosophy_quote_link_text"),
-        ], heading="Hero Section"),
-        MultiFieldPanel([
-            FieldPanel("name"),
-            FieldPanel("professional_title"),
-        ], heading="Identity"),
-        MultiFieldPanel([
-            FieldPanel("linkedin_url"),
-            FieldPanel("twitter_url"),
-            FieldPanel("bluesky_url"),
-            FieldPanel("instagram_url"),
-            FieldPanel("tiktok_url"),
-            FieldPanel("calendar_url"),
-            FieldPanel("sec_info_url"),
-        ], heading="Social Links"),
-        MultiFieldPanel([
-            FieldPanel("current_role_content"),
-            FieldPanel("philosophy_content"),
-            FieldPanel("client_focus_content"),
-        ], heading="What I Do Now Panel"),
-        MultiFieldPanel([
-            FieldPanel("professional_background_title"),
-            FieldPanel("professional_background_content"),
-        ], heading="Professional Background"),
-        MultiFieldPanel([
-            FieldPanel("external_roles_title"),
-            FieldPanel("external_roles_content"),
-        ], heading="External Roles"),
-        MultiFieldPanel([
-            FieldPanel("featured_post_1_title"),
-            FieldPanel("featured_post_1_description"),
-            FieldPanel("featured_post_1_url"),
-            FieldPanel("featured_post_2_title"),
-            FieldPanel("featured_post_2_description"),
-            FieldPanel("featured_post_2_url"),
-            FieldPanel("featured_post_3_title"),
-            FieldPanel("featured_post_3_description"),
-            FieldPanel("featured_post_3_url"),
-            FieldPanel("featured_post_4_title"),
-            FieldPanel("featured_post_4_description"),
-            FieldPanel("featured_post_4_url"),
-        ], heading="Featured Posts"),
-        MultiFieldPanel([
-            FieldPanel("speaking_writing_title"),
-            FieldPanel("speaking_writing_content"),
-            FieldPanel("speaking_topics"),
-            FieldPanel("speaker_bio_url"),
-            FieldPanel("speaking_cta_text"),
-            FieldPanel("speaking_contact_note"),
-            FieldPanel("calendar_link"),
-            FieldPanel("calendar_link_text"),
-            FieldPanel("email_link"),
-            FieldPanel("email_link_text"),
-        ], heading="Speaking & Writing"),
-        MultiFieldPanel([
-            FieldPanel("personal_interests_title"),
-            FieldPanel("personal_interests_content"),
-        ], heading="Personal Interests"),
+        MultiFieldPanel(
+            [
+                FieldPanel("headshot_image"),
+                FieldPanel("headshot_alt_text"),
+                FieldPanel("philosophy_quote"),
+                FieldPanel("philosophy_quote_link"),
+                FieldPanel("philosophy_quote_link_text"),
+            ],
+            heading="Hero Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("name"),
+                FieldPanel("professional_title"),
+            ],
+            heading="Identity",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("linkedin_url"),
+                FieldPanel("twitter_url"),
+                FieldPanel("bluesky_url"),
+                FieldPanel("instagram_url"),
+                FieldPanel("tiktok_url"),
+                FieldPanel("calendar_url"),
+                FieldPanel("sec_info_url"),
+            ],
+            heading="Social Links",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("current_role_content"),
+                FieldPanel("philosophy_content"),
+                FieldPanel("client_focus_content"),
+            ],
+            heading="What I Do Now Panel",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("professional_background_title"),
+                FieldPanel("professional_background_content"),
+            ],
+            heading="Professional Background",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("external_roles_title"),
+                FieldPanel("external_roles_content"),
+            ],
+            heading="External Roles",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("featured_post_1_title"),
+                FieldPanel("featured_post_1_description"),
+                FieldPanel("featured_post_1_url"),
+                FieldPanel("featured_post_2_title"),
+                FieldPanel("featured_post_2_description"),
+                FieldPanel("featured_post_2_url"),
+                FieldPanel("featured_post_3_title"),
+                FieldPanel("featured_post_3_description"),
+                FieldPanel("featured_post_3_url"),
+                FieldPanel("featured_post_4_title"),
+                FieldPanel("featured_post_4_description"),
+                FieldPanel("featured_post_4_url"),
+            ],
+            heading="Featured Posts",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("speaking_writing_title"),
+                FieldPanel("speaking_writing_content"),
+                FieldPanel("speaking_topics"),
+                FieldPanel("speaker_bio_url"),
+                FieldPanel("speaking_cta_text"),
+                FieldPanel("speaking_contact_note"),
+                FieldPanel("calendar_link"),
+                FieldPanel("calendar_link_text"),
+                FieldPanel("email_link"),
+                FieldPanel("email_link_text"),
+            ],
+            heading="Speaking & Writing",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("personal_interests_title"),
+                FieldPanel("personal_interests_content"),
+            ],
+            heading="Personal Interests",
+        ),
     ]
 
     # Wagtail admin panel configurations
@@ -395,7 +509,16 @@ class PricingPage(Page):
     # Contact CTA
     contact_cta = RichTextField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("pricing_description"), MultiFieldPanel([FieldPanel("enterprise_title"), FieldPanel("enterprise_description")], heading="Enterprise Section"), FieldPanel("contact_cta")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("pricing_description"),
+        MultiFieldPanel(
+            [FieldPanel("enterprise_title"), FieldPanel("enterprise_description")],
+            heading="Enterprise Section",
+        ),
+        FieldPanel("contact_cta"),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -454,10 +577,20 @@ class ContactPage(RoutablePageMixin, Page):
 
     # Form settings
     show_contact_form = models.BooleanField(
-        default=True, help_text="Show the contact form on this page",
+        default=True,
+        help_text="Show the contact form on this page",
     )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("contact_description"), MultiFieldPanel([FieldPanel("email"), FieldPanel("phone"), FieldPanel("address")], heading="Contact Information"), FieldPanel("show_contact_form")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("contact_description"),
+        MultiFieldPanel(
+            [FieldPanel("email"), FieldPanel("phone"), FieldPanel("address")],
+            heading="Contact Information",
+        ),
+        FieldPanel("show_contact_form"),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -500,6 +633,7 @@ class ContactPage(RoutablePageMixin, Page):
                         )
                         # Redirect to prevent re-submission
                         from django.shortcuts import redirect
+
                         return redirect(request.path)
                     messages.error(
                         request,
@@ -511,7 +645,6 @@ class ContactPage(RoutablePageMixin, Page):
             context["contact_form"] = form
 
         return context
-
 
     def _process_contact_form(self, form_data, request):
         """Process the submitted contact form data."""
@@ -534,7 +667,7 @@ class ContactPage(RoutablePageMixin, Page):
                     "subject": form_data["subject"],
                     "ip_address": self._get_client_ip(request),
                     "user_agent": request.META.get("HTTP_USER_AGENT", "")[:200],
-                }
+                },
             )
 
             # Prepare email content
@@ -547,7 +680,9 @@ class ContactPage(RoutablePageMixin, Page):
             }
 
             # Render email templates
-            html_message = render_to_string("public_site/emails/contact_form_notification.html", context)
+            html_message = render_to_string(
+                "public_site/emails/contact_form_notification.html", context
+            )
             plain_message = strip_tags(html_message)
 
             # Send notification email to your team
@@ -566,7 +701,9 @@ class ContactPage(RoutablePageMixin, Page):
                 "subject": form_data.get("subject", "General Inquiry"),
             }
 
-            auto_reply_html = render_to_string("public_site/emails/contact_form_auto_reply.html", auto_reply_context)
+            auto_reply_html = render_to_string(
+                "public_site/emails/contact_form_auto_reply.html", auto_reply_context
+            )
             auto_reply_plain = strip_tags(auto_reply_html)
 
             send_mail(
@@ -636,7 +773,9 @@ class BlogTag(TaggedItemBase):
     """Tag model for blog posts."""
 
     content_object = ParentalKey(
-        "BlogPost", related_name="tagged_items", on_delete=models.CASCADE,
+        "BlogPost",
+        related_name="tagged_items",
+        on_delete=models.CASCADE,
     )
 
 
@@ -653,14 +792,23 @@ class BlogIndexPage(RoutablePageMixin, Page):
     display_title = models.CharField(
         max_length=255,
         blank=True,
-        help_text="Optional custom title to display on the page (if blank, uses the page title)"
+        help_text="Optional custom title to display on the page (if blank, uses the page title)",
     )
 
     # Featured research section
     featured_title = models.CharField(max_length=200, blank=True)
     featured_description = RichTextField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("display_title"), FieldPanel("intro_text"), FieldPanel("description"), MultiFieldPanel([FieldPanel("featured_title"), FieldPanel("featured_description")], heading="Featured Research Section")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("display_title"),
+        FieldPanel("intro_text"),
+        FieldPanel("description"),
+        MultiFieldPanel(
+            [FieldPanel("featured_title"), FieldPanel("featured_description")],
+            heading="Featured Research Section",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -703,11 +851,13 @@ class BlogIndexPage(RoutablePageMixin, Page):
         for author_data in authors:
             author_name = author_data["author"]
             author_slug = author_name.lower().replace(" ", "-")
-            author_list.append({
-                "name": author_name,
-                "slug": author_slug,
-                "post_count": author_data["post_count"]
-            })
+            author_list.append(
+                {
+                    "name": author_name,
+                    "slug": author_slug,
+                    "post_count": author_data["post_count"],
+                }
+            )
 
         return author_list
 
@@ -738,8 +888,8 @@ class BlogIndexPage(RoutablePageMixin, Page):
         except Exception:
             # Return empty queryset if there's any issue
             from taggit.models import Tag
-            return Tag.objects.none()
 
+            return Tag.objects.none()
 
     @path("")
     def post_list(self, request):
@@ -768,16 +918,20 @@ class BlogIndexPage(RoutablePageMixin, Page):
         if is_htmx and page_number and int(page_number) > 1:
             # Return only the article list for infinite scroll
             from django.template.loader import render_to_string
+
             html = render_to_string(
                 "public_site/partials/blog_articles.html",
                 {
                     "posts": page_obj,
                     "has_next": page_obj.has_next(),
-                    "next_page_num": page_obj.next_page_number() if page_obj.has_next() else None,
+                    "next_page_num": page_obj.next_page_number()
+                    if page_obj.has_next()
+                    else None,
                 },
-                request=request
+                request=request,
             )
             from django.http import HttpResponse
+
             return HttpResponse(html)
 
         return self.render(
@@ -793,6 +947,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
                 "paginator": paginator,
             },
         )
+
     @path("tag/<str:tag>/")
     def post_by_tag(self, request, tag):
         """Filter posts by tag."""
@@ -855,95 +1010,213 @@ class BlogPost(Page):
     )
 
     # New StreamField for rich content with AI-powered blocks
-    content = StreamField([
-        ("rich_text", blocks.RichTextBlock(
-            features=["h2", "h3", "h4", "bold", "italic", "link", "ol", "ul", "document-link"],
-            help_text="Rich text content with basic formatting"
-        )),
-        ("key_statistic", blocks.StructBlock([
-            ("value", blocks.CharBlock(max_length=50, help_text="The statistic value")),
-            ("label", blocks.CharBlock(max_length=100, help_text="Statistic label")),
-            ("description", blocks.TextBlock(required=False, help_text="Optional description")),
-            ("ai_confidence", blocks.DecimalBlock(default=0.0, max_digits=3, decimal_places=2, required=False)),
-            ("ai_context", blocks.TextBlock(required=False)),
-            ("significance_level", blocks.ChoiceBlock(
-                choices=[
-                    ("high", "High Significance"),
-                    ("medium", "Medium Significance"),
-                    ("low", "Low Significance"),
-                ],
-                default="medium",
-                required=False
-            )),
-            ("statistic_category", blocks.ChoiceBlock(
-                choices=[
-                    ("performance", "Performance/Returns"),
-                    ("valuation", "Valuation Metrics"),
-                    ("risk", "Risk Metrics"),
-                    ("allocation", "Portfolio Allocation"),
-                    ("fundamental", "Fundamental Analysis"),
-                    ("market", "Market Data"),
-                ],
-                default="performance",
-                required=False
-            )),
-            ("visualization_type", blocks.ChoiceBlock(
-                choices=[
-                    ("bar", "Bar Chart"),
-                    ("performance_comparison", "Performance Comparison"),
-                    ("allocation_pie", "Allocation Pie Chart"),
-                    ("trend_line", "Trend Line"),
-                    ("gauge", "Gauge/Meter"),
-                    ("callout", "Highlighted Callout"),
-                ],
-                default="callout",
-                required=False
-            )),
-            ("time_period", blocks.ChoiceBlock(
-                choices=[
-                    ("daily", "Daily"),
-                    ("weekly", "Weekly"),
-                    ("monthly", "Monthly"),
-                    ("quarterly", "Quarterly"),
-                    ("annual", "Annual"),
-                    ("ytd", "Year-to-Date"),
-                    ("since_inception", "Since Inception"),
-                    ("custom", "Custom Period"),
-                ],
-                required=False
-            )),
-            ("chart_title", blocks.CharBlock(max_length=100, required=False)),
-            ("chart_config", blocks.TextBlock(required=False)),
-            ("related_entities", blocks.ListBlock(blocks.CharBlock(max_length=100), required=False)),
-        ], template="public_site/blocks/key_statistic.html", icon="success", label="Key Statistic")),
-        ("table", blocks.StructBlock([
-            ("caption", blocks.CharBlock(required=False, help_text="Table title or caption")),
-            ("description", blocks.RichTextBlock(required=False, help_text="Optional description or context")),
-            ("table", TableBlock(help_text="Add table data - first row will be used as headers")),
-            ("source", blocks.CharBlock(required=False, help_text="Data source attribution")),
-        ], template="public_site/blocks/table_block.html", icon="table", label="Data Table")),
-        ("image", ImageChooserBlock()),
-        ("callout", blocks.StructBlock([
-            ("type", blocks.ChoiceBlock(choices=[
-                ("info", "Info"),
-                ("warning", "Warning"),
-                ("success", "Success"),
-                ("error", "Error"),
-            ])),
-            ("title", blocks.CharBlock(required=False)),
-            ("content", blocks.RichTextBlock()),
-        ], icon="help")),
-        ("quote", blocks.StructBlock([
-            ("quote", blocks.TextBlock()),
-            ("author", blocks.CharBlock(required=False)),
-            ("source", blocks.CharBlock(required=False)),
-        ], icon="openquote")),
-    ], blank=True, use_json_field=True, help_text="Rich content with AI-enhanced statistics, charts, and analysis blocks")
+    content = StreamField(
+        [
+            (
+                "rich_text",
+                blocks.RichTextBlock(
+                    features=[
+                        "h2",
+                        "h3",
+                        "h4",
+                        "bold",
+                        "italic",
+                        "link",
+                        "ol",
+                        "ul",
+                        "document-link",
+                    ],
+                    help_text="Rich text content with basic formatting",
+                ),
+            ),
+            (
+                "key_statistic",
+                blocks.StructBlock(
+                    [
+                        (
+                            "value",
+                            blocks.CharBlock(
+                                max_length=50, help_text="The statistic value"
+                            ),
+                        ),
+                        (
+                            "label",
+                            blocks.CharBlock(
+                                max_length=100, help_text="Statistic label"
+                            ),
+                        ),
+                        (
+                            "description",
+                            blocks.TextBlock(
+                                required=False, help_text="Optional description"
+                            ),
+                        ),
+                        (
+                            "ai_confidence",
+                            blocks.DecimalBlock(
+                                default=0.0,
+                                max_digits=3,
+                                decimal_places=2,
+                                required=False,
+                            ),
+                        ),
+                        ("ai_context", blocks.TextBlock(required=False)),
+                        (
+                            "significance_level",
+                            blocks.ChoiceBlock(
+                                choices=[
+                                    ("high", "High Significance"),
+                                    ("medium", "Medium Significance"),
+                                    ("low", "Low Significance"),
+                                ],
+                                default="medium",
+                                required=False,
+                            ),
+                        ),
+                        (
+                            "statistic_category",
+                            blocks.ChoiceBlock(
+                                choices=[
+                                    ("performance", "Performance/Returns"),
+                                    ("valuation", "Valuation Metrics"),
+                                    ("risk", "Risk Metrics"),
+                                    ("allocation", "Portfolio Allocation"),
+                                    ("fundamental", "Fundamental Analysis"),
+                                    ("market", "Market Data"),
+                                ],
+                                default="performance",
+                                required=False,
+                            ),
+                        ),
+                        (
+                            "visualization_type",
+                            blocks.ChoiceBlock(
+                                choices=[
+                                    ("bar", "Bar Chart"),
+                                    (
+                                        "performance_comparison",
+                                        "Performance Comparison",
+                                    ),
+                                    ("allocation_pie", "Allocation Pie Chart"),
+                                    ("trend_line", "Trend Line"),
+                                    ("gauge", "Gauge/Meter"),
+                                    ("callout", "Highlighted Callout"),
+                                ],
+                                default="callout",
+                                required=False,
+                            ),
+                        ),
+                        (
+                            "time_period",
+                            blocks.ChoiceBlock(
+                                choices=[
+                                    ("daily", "Daily"),
+                                    ("weekly", "Weekly"),
+                                    ("monthly", "Monthly"),
+                                    ("quarterly", "Quarterly"),
+                                    ("annual", "Annual"),
+                                    ("ytd", "Year-to-Date"),
+                                    ("since_inception", "Since Inception"),
+                                    ("custom", "Custom Period"),
+                                ],
+                                required=False,
+                            ),
+                        ),
+                        (
+                            "chart_title",
+                            blocks.CharBlock(max_length=100, required=False),
+                        ),
+                        ("chart_config", blocks.TextBlock(required=False)),
+                        (
+                            "related_entities",
+                            blocks.ListBlock(
+                                blocks.CharBlock(max_length=100), required=False
+                            ),
+                        ),
+                    ],
+                    template="public_site/blocks/key_statistic.html",
+                    icon="success",
+                    label="Key Statistic",
+                ),
+            ),
+            (
+                "table",
+                blocks.StructBlock(
+                    [
+                        (
+                            "caption",
+                            blocks.CharBlock(
+                                required=False, help_text="Table title or caption"
+                            ),
+                        ),
+                        (
+                            "description",
+                            blocks.RichTextBlock(
+                                required=False,
+                                help_text="Optional description or context",
+                            ),
+                        ),
+                        (
+                            "table",
+                            TableBlock(
+                                help_text="Add table data - first row will be used as headers"
+                            ),
+                        ),
+                        (
+                            "source",
+                            blocks.CharBlock(
+                                required=False, help_text="Data source attribution"
+                            ),
+                        ),
+                    ],
+                    template="public_site/blocks/table_block.html",
+                    icon="table",
+                    label="Data Table",
+                ),
+            ),
+            ("image", ImageChooserBlock()),
+            (
+                "callout",
+                blocks.StructBlock(
+                    [
+                        (
+                            "type",
+                            blocks.ChoiceBlock(
+                                choices=[
+                                    ("info", "Info"),
+                                    ("warning", "Warning"),
+                                    ("success", "Success"),
+                                    ("error", "Error"),
+                                ]
+                            ),
+                        ),
+                        ("title", blocks.CharBlock(required=False)),
+                        ("content", blocks.RichTextBlock()),
+                    ],
+                    icon="help",
+                ),
+            ),
+            (
+                "quote",
+                blocks.StructBlock(
+                    [
+                        ("quote", blocks.TextBlock()),
+                        ("author", blocks.CharBlock(required=False)),
+                        ("source", blocks.CharBlock(required=False)),
+                    ],
+                    icon="openquote",
+                ),
+            ),
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Rich content with AI-enhanced statistics, charts, and analysis blocks",
+    )
 
     # Keep old body field for backwards compatibility during migration
     body = RichTextField(
         blank=True,
-        help_text="Legacy rich text field (use Content field above for new posts)"
+        help_text="Legacy rich text field (use Content field above for new posts)",
     )
 
     # Featured image for social sharing and blog listings (exists from WordPress migration)
@@ -953,7 +1226,7 @@ class BlogPost(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Featured image for social sharing and blog listings"
+        help_text="Featured image for social sharing and blog listings",
     )
 
     tags = ClusterTaggableManager(through=BlogTag, blank=True)
@@ -961,10 +1234,13 @@ class BlogPost(Page):
     # Meta information
     author = models.CharField(max_length=100, blank=True)
     publish_date = models.DateField(
-        blank=True, null=True, help_text="Leave blank for today's date",
+        blank=True,
+        null=True,
+        help_text="Leave blank for today's date",
     )
     featured = models.BooleanField(
-        default=False, help_text="Feature this post on the homepage",
+        default=False,
+        help_text="Feature this post on the homepage",
     )
     # Reading time estimation (restored to fix validation errors)
     reading_time = models.IntegerField(
@@ -973,11 +1249,39 @@ class BlogPost(Page):
 
     # Content update tracking
     updated_at = models.DateTimeField(
-        auto_now=True,
-        help_text="Automatically updated when the content is modified"
+        auto_now=True, help_text="Automatically updated when the content is modified"
     )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel("excerpt"), FieldPanel("featured_image")], heading="Post Overview", help_text="Basic post information and featured image for social sharing"), MultiFieldPanel([FieldPanel("content")], heading="Main Content", help_text="Use this StreamField for rich content with images, videos, quotes, and other blocks"), MultiFieldPanel([FieldPanel("body")], heading="Legacy Content (Deprecated)", help_text="Old rich text field - use Main Content above for new posts", classname="collapsed"), MultiFieldPanel([FieldPanel("tags"), FieldPanel("author"), FieldPanel("publish_date"), FieldPanel("featured"), FieldPanel("reading_time")], heading="Post Metadata", help_text="Author, publishing details, and categorization")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        MultiFieldPanel(
+            [FieldPanel("excerpt"), FieldPanel("featured_image")],
+            heading="Post Overview",
+            help_text="Basic post information and featured image for social sharing",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("content")],
+            heading="Main Content",
+            help_text="Use this StreamField for rich content with images, videos, quotes, and other blocks",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("body")],
+            heading="Legacy Content (Deprecated)",
+            help_text="Old rich text field - use Main Content above for new posts",
+            classname="collapsed",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("tags"),
+                FieldPanel("author"),
+                FieldPanel("publish_date"),
+                FieldPanel("featured"),
+                FieldPanel("reading_time"),
+            ],
+            heading="Post Metadata",
+            help_text="Author, publishing details, and categorization",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -1004,7 +1308,11 @@ class FAQPage(Page):
 
     intro_text = RichTextField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), InlinePanel("faq_items", label="FAQ Items")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        InlinePanel("faq_items", label="FAQ Items"),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -1043,11 +1351,21 @@ class LegalPage(Page):
 
     # Legal metadata
     effective_date = models.DateField(
-        blank=True, null=True, help_text="When this legal document takes effect",
+        blank=True,
+        null=True,
+        help_text="When this legal document takes effect",
     )
     updated_at = models.DateField(auto_now=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("content"), MultiFieldPanel([FieldPanel("effective_date"), FieldPanel("updated_at", read_only=True)], heading="Legal Information")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("content"),
+        MultiFieldPanel(
+            [FieldPanel("effective_date"), FieldPanel("updated_at", read_only=True)],
+            heading="Legal Information",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -1068,22 +1386,27 @@ class MediaPage(Page):
 
     template = "public_site/media_page.html"
 
-    intro_text = RichTextField(blank=True, help_text="Introduction text that appears at the top of the media page")
+    intro_text = RichTextField(
+        blank=True,
+        help_text="Introduction text that appears at the top of the media page",
+    )
 
     # Press kit information
-    press_kit_title = models.CharField(max_length=200, blank=True, help_text="Title for the press kit section")
+    press_kit_title = models.CharField(
+        max_length=200, blank=True, help_text="Title for the press kit section"
+    )
     press_kit_description = RichTextField(
         blank=True,
-        help_text="Description and information about available press materials"
+        help_text="Description and information about available press materials",
     )
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         FieldPanel("intro_text"),
-        MultiFieldPanel([
-            FieldPanel("press_kit_title"),
-            FieldPanel("press_kit_description")
-        ], heading="Press Kit"),
+        MultiFieldPanel(
+            [FieldPanel("press_kit_title"), FieldPanel("press_kit_description")],
+            heading="Press Kit",
+        ),
     ]
 
     # Wagtail admin panel configurations
@@ -1104,15 +1427,24 @@ class MediaPage(Page):
 class MediaItem(Orderable):
     """Individual media/press item."""
 
-    page = ParentalKey(MediaPage, on_delete=models.CASCADE, related_name="media_items", null=True, blank=True)
+    page = ParentalKey(
+        MediaPage,
+        on_delete=models.CASCADE,
+        related_name="media_items",
+        null=True,
+        blank=True,
+    )
     title = models.CharField(max_length=300)
     description = RichTextField(blank=True)
     publication = models.CharField(
-        max_length=200, blank=True, help_text="Publication name",
+        max_length=200,
+        blank=True,
+        help_text="Publication name",
     )
     publication_date = models.DateField(blank=True, null=True)
     external_url = models.URLField(
-        blank=True, help_text="Link to external article/coverage",
+        blank=True,
+        help_text="Link to external article/coverage",
     )
     featured = models.BooleanField(
         default=False, help_text="Feature this media item at the top"
@@ -1131,7 +1463,10 @@ class MediaItem(Orderable):
         return self.title
 
     class Meta:
-        ordering: ClassVar[list] = ["-featured", "-publication_date"]  # Featured first, then most recent
+        ordering: ClassVar[list] = [
+            "-featured",
+            "-publication_date",
+        ]  # Featured first, then most recent
 
 
 class ResearchPage(RoutablePageMixin, Page):
@@ -1147,7 +1482,15 @@ class ResearchPage(RoutablePageMixin, Page):
     featured_title = models.CharField(max_length=200, blank=True)
     featured_description = RichTextField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("description"), MultiFieldPanel([FieldPanel("featured_title"), FieldPanel("featured_description")], heading="Featured Research Section")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("description"),
+        MultiFieldPanel(
+            [FieldPanel("featured_title"), FieldPanel("featured_description")],
+            heading="Featured Research Section",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -1199,11 +1542,13 @@ class ResearchPage(RoutablePageMixin, Page):
         except Exception:
             # Return empty queryset if there's any issue
             from taggit.models import Tag
+
             return Tag.objects.none()
 
     def get_all_authors(self):
         """Get all unique authors with post counts."""
         from django.db.models import Count
+
         authors = (
             self.get_posts()
             .values("author")
@@ -1290,7 +1635,23 @@ class ProcessPage(Page):
     step4_title = models.CharField(max_length=200, blank=True)
     step4_content = RichTextField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("process_overview"), MultiFieldPanel([FieldPanel("step1_title"), FieldPanel("step1_content")], heading="Step 1"), MultiFieldPanel([FieldPanel("step2_title"), FieldPanel("step2_content")], heading="Step 2"), MultiFieldPanel([FieldPanel("step3_title"), FieldPanel("step3_content")], heading="Step 3"), MultiFieldPanel([FieldPanel("step4_title"), FieldPanel("step4_content")], heading="Step 4")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("process_overview"),
+        MultiFieldPanel(
+            [FieldPanel("step1_title"), FieldPanel("step1_content")], heading="Step 1"
+        ),
+        MultiFieldPanel(
+            [FieldPanel("step2_title"), FieldPanel("step2_content")], heading="Step 2"
+        ),
+        MultiFieldPanel(
+            [FieldPanel("step3_title"), FieldPanel("step3_content")], heading="Step 3"
+        ),
+        MultiFieldPanel(
+            [FieldPanel("step4_title"), FieldPanel("step4_content")], heading="Step 4"
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -1328,7 +1689,19 @@ class CompliancePage(Page):
     effective_date = models.DateField(blank=True, null=True)
     version = models.CharField(max_length=20, blank=True, help_text="Document version")
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("content"), MultiFieldPanel([FieldPanel("document_type"), FieldPanel("effective_date"), FieldPanel("version")], heading="Compliance Information")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("content"),
+        MultiFieldPanel(
+            [
+                FieldPanel("document_type"),
+                FieldPanel("effective_date"),
+                FieldPanel("version"),
+            ],
+            heading="Compliance Information",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -1352,14 +1725,24 @@ class OnboardingPage(Page):
 
     # Form configuration
     enable_form = models.BooleanField(
-        default=True, help_text="Enable the onboarding form on this page",
+        default=True,
+        help_text="Enable the onboarding form on this page",
     )
 
     # Thank you message
     thank_you_title = models.CharField(max_length=200, blank=True)
     thank_you_message = RichTextField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("form_description"), FieldPanel("enable_form"), MultiFieldPanel([FieldPanel("thank_you_title"), FieldPanel("thank_you_message")], heading="Thank You Message")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("form_description"),
+        FieldPanel("enable_form"),
+        MultiFieldPanel(
+            [FieldPanel("thank_you_title"), FieldPanel("thank_you_message")],
+            heading="Thank You Message",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -1379,11 +1762,17 @@ class OnboardingPage(Page):
 
 # Strategy Page Related Models
 
+
 class StrategyRiskMetric(models.Model):
     """Risk and quality metrics for a strategy"""
-    page = ParentalKey("StrategyPage", on_delete=models.CASCADE, related_name="risk_metrics")
 
-    standard_deviation = models.CharField(max_length=20, blank=True, help_text="e.g., 16.2%")
+    page = ParentalKey(
+        "StrategyPage", on_delete=models.CASCADE, related_name="risk_metrics"
+    )
+
+    standard_deviation = models.CharField(
+        max_length=20, blank=True, help_text="e.g., 16.2%"
+    )
     sharpe_ratio = models.CharField(max_length=20, blank=True, help_text="e.g., 0.78")
     max_drawdown = models.CharField(max_length=20, blank=True, help_text="e.g., -22.1%")
     beta = models.CharField(max_length=20, blank=True, help_text="e.g., 0.94")
@@ -1398,9 +1787,14 @@ class StrategyRiskMetric(models.Model):
 
 class StrategyGeographicAllocation(Orderable):
     """Geographic allocation for a strategy"""
-    page = ParentalKey("StrategyPage", on_delete=models.CASCADE, related_name="geographic_allocations")
 
-    region = models.CharField(max_length=100, help_text="e.g., United States, International")
+    page = ParentalKey(
+        "StrategyPage", on_delete=models.CASCADE, related_name="geographic_allocations"
+    )
+
+    region = models.CharField(
+        max_length=100, help_text="e.g., United States, International"
+    )
     allocation_percent = models.CharField(max_length=20, help_text="e.g., 78.0%")
     benchmark_percent = models.CharField(max_length=20, help_text="e.g., 62.0%")
     difference_percent = models.CharField(max_length=20, help_text="e.g., +16.0%")
@@ -1415,7 +1809,10 @@ class StrategyGeographicAllocation(Orderable):
 
 class StrategySectorPosition(Orderable):
     """Sector overweights/exclusions for a strategy"""
-    page = ParentalKey("StrategyPage", on_delete=models.CASCADE, related_name="sector_positions")
+
+    page = ParentalKey(
+        "StrategyPage", on_delete=models.CASCADE, related_name="sector_positions"
+    )
 
     POSITION_TYPE_CHOICES = [
         ("overweight", "Overweight"),
@@ -1435,14 +1832,21 @@ class StrategySectorPosition(Orderable):
 
 class StrategyHolding(Orderable):
     """Top holdings for a strategy"""
-    page = ParentalKey("StrategyPage", on_delete=models.CASCADE, related_name="holdings")
+
+    page = ParentalKey(
+        "StrategyPage", on_delete=models.CASCADE, related_name="holdings"
+    )
 
     company_name = models.CharField(max_length=200)
     ticker_symbol = models.CharField(max_length=20)
     weight_percent = models.CharField(max_length=20, help_text="e.g., ~8.4%")
-    vertical = models.CharField(max_length=100, help_text="e.g., Lending, Real Estate, Innovation")
+    vertical = models.CharField(
+        max_length=100, help_text="e.g., Lending, Real Estate, Innovation"
+    )
     investment_thesis = models.TextField()
-    key_metrics = models.TextField(help_text="e.g., 40%+ annual revenue growth, AI market leader")
+    key_metrics = models.TextField(
+        help_text="e.g., 40%+ annual revenue growth, AI market leader"
+    )
 
     panels = [
         FieldPanel("company_name"),
@@ -1456,7 +1860,10 @@ class StrategyHolding(Orderable):
 
 class StrategyVerticalAllocation(Orderable):
     """Vertical allocation breakdown for a strategy"""
-    page = ParentalKey("StrategyPage", on_delete=models.CASCADE, related_name="vertical_allocations")
+
+    page = ParentalKey(
+        "StrategyPage", on_delete=models.CASCADE, related_name="vertical_allocations"
+    )
 
     vertical_name = models.CharField(max_length=100)
     weight_percent = models.CharField(max_length=20)
@@ -1464,8 +1871,12 @@ class StrategyVerticalAllocation(Orderable):
     pe_ratio = models.CharField(max_length=20)
     revenue_cagr = models.CharField(max_length=20)
     fcf_market_cap = models.CharField(max_length=20)
-    is_total_row = models.BooleanField(default=False, help_text="Check for portfolio total row")
-    is_benchmark_row = models.BooleanField(default=False, help_text="Check for benchmark comparison row")
+    is_total_row = models.BooleanField(
+        default=False, help_text="Check for portfolio total row"
+    )
+    is_benchmark_row = models.BooleanField(
+        default=False, help_text="Check for benchmark comparison row"
+    )
 
     panels = [
         FieldPanel("vertical_name"),
@@ -1481,7 +1892,10 @@ class StrategyVerticalAllocation(Orderable):
 
 class StrategyDocument(Orderable):
     """Documents related to a strategy"""
-    page = ParentalKey("StrategyPage", on_delete=models.CASCADE, related_name="documents")
+
+    page = ParentalKey(
+        "StrategyPage", on_delete=models.CASCADE, related_name="documents"
+    )
 
     DOCUMENT_CATEGORY_CHOICES = [
         ("performance", "Performance Reports"),
@@ -1493,8 +1907,12 @@ class StrategyDocument(Orderable):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=300)
     icon = models.CharField(max_length=10, help_text="Emoji icon for document")
-    document_url = models.URLField(blank=True, help_text="Link to document if available")
-    requires_request = models.BooleanField(default=True, help_text="Document requires request")
+    document_url = models.URLField(
+        blank=True, help_text="Link to document if available"
+    )
+    requires_request = models.BooleanField(
+        default=True, help_text="Document requires request"
+    )
 
     panels = [
         FieldPanel("category"),
@@ -1513,10 +1931,13 @@ class StrategyPage(Page):
 
     # Strategy overview
     strategy_subtitle = models.CharField(
-        max_length=300, blank=True, help_text="Brief description shown in header",
+        max_length=300,
+        blank=True,
+        help_text="Brief description shown in header",
     )
     strategy_description = RichTextField(
-        blank=True, help_text="Main strategy description",
+        blank=True,
+        help_text="Main strategy description",
     )
 
     # Strategy characteristics
@@ -1532,7 +1953,9 @@ class StrategyPage(Page):
     cash_allocation = models.CharField(max_length=20, blank=True)
 
     # Benchmark information
-    benchmark_name = models.CharField(max_length=50, blank=True, help_text="e.g., ACWI, AGG/PFF, S&P 500")
+    benchmark_name = models.CharField(
+        max_length=50, blank=True, help_text="e.g., ACWI, AGG/PFF, S&P 500"
+    )
 
     # Performance data (enhanced with benchmark)
     ytd_return = models.CharField(max_length=20, blank=True)
@@ -1551,12 +1974,15 @@ class StrategyPage(Page):
     since_inception_benchmark = models.CharField(max_length=20, blank=True)
     since_inception_difference = models.CharField(max_length=20, blank=True)
     inception_date = models.DateField(
-        blank=True, null=True, help_text="Strategy inception date",
+        blank=True,
+        null=True,
+        help_text="Strategy inception date",
     )
 
     # Portfolio information
     portfolio_content = RichTextField(
-        blank=True, help_text="Portfolio composition and holdings information",
+        blank=True,
+        help_text="Portfolio composition and holdings information",
     )
 
     # Sector positioning notes
@@ -1567,19 +1993,22 @@ class StrategyPage(Page):
     # Commentary section
     commentary_title = models.CharField(max_length=200, blank=True)
     commentary_content = RichTextField(
-        blank=True, help_text="Current market commentary and strategy insights",
+        blank=True,
+        help_text="Current market commentary and strategy insights",
     )
 
     # Process section
     process_title = models.CharField(max_length=200, blank=True)
     process_content = RichTextField(
-        blank=True, help_text="Detailed process explanation for this strategy",
+        blank=True,
+        help_text="Detailed process explanation for this strategy",
     )
 
     # Documents section
     documents_title = models.CharField(max_length=200, blank=True)
     documents_content = RichTextField(
-        blank=True, help_text="Links to relevant documents and disclosures",
+        blank=True,
+        help_text="Links to relevant documents and disclosures",
     )
 
     # Performance disclaimer
@@ -1588,84 +2017,100 @@ class StrategyPage(Page):
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         # Strategy Overview
-        MultiFieldPanel([
-            FieldPanel("strategy_subtitle"),
-            FieldPanel("strategy_description"),
-            FieldPanel("strategy_label"),
-        ], heading="Strategy Overview"),
-
+        MultiFieldPanel(
+            [
+                FieldPanel("strategy_subtitle"),
+                FieldPanel("strategy_description"),
+                FieldPanel("strategy_label"),
+            ],
+            heading="Strategy Overview",
+        ),
         # Strategy Characteristics
-        MultiFieldPanel([
-            FieldPanel("risk_level"),
-            FieldPanel("ethical_implementation"),
-            FieldPanel("holdings_count"),
-            FieldPanel("best_for"),
-            FieldPanel("cash_allocation"),
-            FieldPanel("benchmark_name"),
-        ], heading="Strategy Characteristics"),
-
+        MultiFieldPanel(
+            [
+                FieldPanel("risk_level"),
+                FieldPanel("ethical_implementation"),
+                FieldPanel("holdings_count"),
+                FieldPanel("best_for"),
+                FieldPanel("cash_allocation"),
+                FieldPanel("benchmark_name"),
+            ],
+            heading="Strategy Characteristics",
+        ),
         # Performance Data
-        MultiFieldPanel([
-            FieldPanel("ytd_return"),
-            FieldPanel("ytd_benchmark"),
-            FieldPanel("ytd_difference"),
-            FieldPanel("one_year_return"),
-            FieldPanel("one_year_benchmark"),
-            FieldPanel("one_year_difference"),
-            FieldPanel("three_year_return"),
-            FieldPanel("three_year_benchmark"),
-            FieldPanel("three_year_difference"),
-            FieldPanel("since_inception_return"),
-            FieldPanel("since_inception_benchmark"),
-            FieldPanel("since_inception_difference"),
-            FieldPanel("inception_date"),
-        ], heading="Performance Data"),
-
+        MultiFieldPanel(
+            [
+                FieldPanel("ytd_return"),
+                FieldPanel("ytd_benchmark"),
+                FieldPanel("ytd_difference"),
+                FieldPanel("one_year_return"),
+                FieldPanel("one_year_benchmark"),
+                FieldPanel("one_year_difference"),
+                FieldPanel("three_year_return"),
+                FieldPanel("three_year_benchmark"),
+                FieldPanel("three_year_difference"),
+                FieldPanel("since_inception_return"),
+                FieldPanel("since_inception_benchmark"),
+                FieldPanel("since_inception_difference"),
+                FieldPanel("inception_date"),
+            ],
+            heading="Performance Data",
+        ),
         # Risk Metrics
         InlinePanel("risk_metrics", max_num=1, heading="Risk & Quality Metrics"),
-
         # Geographic Allocation
         InlinePanel("geographic_allocations", heading="Geographic Composition"),
-
         # Sector Positioning
-        MultiFieldPanel([
-            FieldPanel("overweights_note"),
-            FieldPanel("exclusions_note"),
-            FieldPanel("healthcare_exclusion_note"),
-        ], heading="Sector Positioning Notes"),
+        MultiFieldPanel(
+            [
+                FieldPanel("overweights_note"),
+                FieldPanel("exclusions_note"),
+                FieldPanel("healthcare_exclusion_note"),
+            ],
+            heading="Sector Positioning Notes",
+        ),
         InlinePanel("sector_positions", heading="Sector Positions"),
-
         # Holdings
-        MultiFieldPanel([
-            FieldPanel("portfolio_content"),
-        ], heading="Portfolio Information"),
+        MultiFieldPanel(
+            [
+                FieldPanel("portfolio_content"),
+            ],
+            heading="Portfolio Information",
+        ),
         InlinePanel("holdings", heading="Top Holdings"),
-
         # Vertical Allocation
         InlinePanel("vertical_allocations", heading="Vertical Allocation"),
-
         # Commentary & Process
-        MultiFieldPanel([
-            FieldPanel("commentary_title"),
-            FieldPanel("commentary_content"),
-        ], heading="Commentary"),
-
-        MultiFieldPanel([
-            FieldPanel("process_title"),
-            FieldPanel("process_content"),
-        ], heading="Process"),
-
+        MultiFieldPanel(
+            [
+                FieldPanel("commentary_title"),
+                FieldPanel("commentary_content"),
+            ],
+            heading="Commentary",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("process_title"),
+                FieldPanel("process_content"),
+            ],
+            heading="Process",
+        ),
         # Documents
-        MultiFieldPanel([
-            FieldPanel("documents_title"),
-            FieldPanel("documents_content"),
-        ], heading="Documents Section"),
+        MultiFieldPanel(
+            [
+                FieldPanel("documents_title"),
+                FieldPanel("documents_content"),
+            ],
+            heading="Documents Section",
+        ),
         InlinePanel("documents", heading="Strategy Documents"),
-
         # Disclaimers
-        MultiFieldPanel([
-            FieldPanel("performance_disclaimer"),
-        ], heading="Disclaimers"),
+        MultiFieldPanel(
+            [
+                FieldPanel("performance_disclaimer"),
+            ],
+            heading="Disclaimers",
+        ),
     ]
 
     # Wagtail admin panel configurations
@@ -1694,7 +2139,15 @@ class StrategyListPage(Page):
     comparison_title = models.CharField(max_length=200, blank=True)
     comparison_description = RichTextField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("description"), MultiFieldPanel([FieldPanel("comparison_title"), FieldPanel("comparison_description")], heading="Strategy Comparison Section")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("description"),
+        MultiFieldPanel(
+            [FieldPanel("comparison_title"), FieldPanel("comparison_description")],
+            heading="Strategy Comparison Section",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -1714,8 +2167,12 @@ class StrategyListPage(Page):
 
         # Order by flagship strategy first (based on strategy_label)
         # Then alphabetically by title
-        flagship_strategies = strategies.filter(strategy_label__icontains="flagship").order_by("title")
-        other_strategies = strategies.exclude(strategy_label__icontains="flagship").order_by("title")
+        flagship_strategies = strategies.filter(
+            strategy_label__icontains="flagship"
+        ).order_by("title")
+        other_strategies = strategies.exclude(
+            strategy_label__icontains="flagship"
+        ).order_by("title")
 
         # Combine the lists with flagship first
         return list(flagship_strategies) + list(other_strategies)
@@ -1747,7 +2204,20 @@ class FAQIndexPage(RoutablePageMixin, Page):
     contact_address = models.CharField(max_length=300, blank=True)
     meeting_link = models.URLField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("description"), MultiFieldPanel([FieldPanel("contact_email"), FieldPanel("contact_phone"), FieldPanel("contact_address"), FieldPanel("meeting_link")], heading="Contact Information")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("description"),
+        MultiFieldPanel(
+            [
+                FieldPanel("contact_email"),
+                FieldPanel("contact_phone"),
+                FieldPanel("contact_address"),
+                FieldPanel("meeting_link"),
+            ],
+            heading="Contact Information",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -1869,16 +2339,37 @@ class FAQArticle(Page):
 
     # SEO and search
     keywords = models.CharField(
-        max_length=300, blank=True, help_text="Keywords for search and SEO",
+        max_length=300,
+        blank=True,
+        help_text="Keywords for search and SEO",
     )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("summary"), FieldPanel("content"), MultiFieldPanel([FieldPanel("category"), FieldPanel("priority"), FieldPanel("featured")], heading="Classification"), MultiFieldPanel([FieldPanel("related_articles"), FieldPanel("keywords")], heading="SEO & Related Content")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("summary"),
+        FieldPanel("content"),
+        MultiFieldPanel(
+            [FieldPanel("category"), FieldPanel("priority"), FieldPanel("featured")],
+            heading="Classification",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("related_articles"), FieldPanel("keywords")],
+            heading="SEO & Related Content",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
     settings_panels = Page.settings_panels
 
-    search_fields: ClassVar[list] = [*Page.search_fields, index.SearchField("summary"), index.SearchField("content"), index.SearchField("keywords"), index.FilterField("category"), index.FilterField("featured")]
+    search_fields: ClassVar[list] = [
+        *Page.search_fields,
+        index.SearchField("summary"),
+        index.SearchField("content"),
+        index.SearchField("keywords"),
+        index.FilterField("category"),
+        index.FilterField("featured"),
+    ]
 
     def get_related_articles_list(self):
         """Get related articles based on related_articles field."""
@@ -1887,7 +2378,8 @@ class FAQArticle(Page):
 
         related_titles = [title.strip() for title in self.related_articles.split(",")]
         return FAQArticle.objects.filter(
-            live=True, title__in=related_titles,
+            live=True,
+            title__in=related_titles,
         ).exclude(id=self.id)
 
     class Meta:
@@ -1910,10 +2402,23 @@ class ContactFormPage(Page):
     # Form settings
     enable_form = models.BooleanField(default=True)
     require_phone = models.BooleanField(
-        default=False, help_text="Require phone number field",
+        default=False,
+        help_text="Require phone number field",
     )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("form_description"), MultiFieldPanel([FieldPanel("thank_you_title"), FieldPanel("thank_you_message")], heading="Thank You Message"), MultiFieldPanel([FieldPanel("enable_form"), FieldPanel("require_phone")], heading="Form Settings")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("form_description"),
+        MultiFieldPanel(
+            [FieldPanel("thank_you_title"), FieldPanel("thank_you_message")],
+            heading="Thank You Message",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("enable_form"), FieldPanel("require_phone")],
+            heading="Form Settings",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -1957,7 +2462,33 @@ class AdvisorPage(Page):
     cta_title = models.CharField(max_length=200, blank=True)
     cta_description = RichTextField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel("hero_title"), FieldPanel("hero_subtitle"), FieldPanel("hero_description")], heading="Hero Section"), MultiFieldPanel([FieldPanel("services_title"), FieldPanel("services_content")], heading="Services Section"), MultiFieldPanel([FieldPanel("benefits_title"), FieldPanel("benefits_content")], heading="Benefits Section"), MultiFieldPanel([FieldPanel("technology_title"), FieldPanel("technology_content")], heading="Technology Section"), MultiFieldPanel([FieldPanel("cta_title"), FieldPanel("cta_description")], heading="Call to Action")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        MultiFieldPanel(
+            [
+                FieldPanel("hero_title"),
+                FieldPanel("hero_subtitle"),
+                FieldPanel("hero_description"),
+            ],
+            heading="Hero Section",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("services_title"), FieldPanel("services_content")],
+            heading="Services Section",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("benefits_title"), FieldPanel("benefits_content")],
+            heading="Benefits Section",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("technology_title"), FieldPanel("technology_content")],
+            heading="Technology Section",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("cta_title"), FieldPanel("cta_description")],
+            heading="Call to Action",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -2000,7 +2531,33 @@ class InstitutionalPage(Page):
     cta_title = models.CharField(max_length=200, blank=True)
     cta_description = RichTextField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel("hero_title"), FieldPanel("hero_subtitle"), FieldPanel("hero_description")], heading="Hero Section"), MultiFieldPanel([FieldPanel("solutions_title"), FieldPanel("solutions_content")], heading="Solutions Section"), MultiFieldPanel([FieldPanel("capabilities_title"), FieldPanel("capabilities_content")], heading="Capabilities Section"), MultiFieldPanel([FieldPanel("scale_title"), FieldPanel("scale_content")], heading="Scale Section"), MultiFieldPanel([FieldPanel("cta_title"), FieldPanel("cta_description")], heading="Call to Action")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        MultiFieldPanel(
+            [
+                FieldPanel("hero_title"),
+                FieldPanel("hero_subtitle"),
+                FieldPanel("hero_description"),
+            ],
+            heading="Hero Section",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("solutions_title"), FieldPanel("solutions_content")],
+            heading="Solutions Section",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("capabilities_title"), FieldPanel("capabilities_content")],
+            heading="Capabilities Section",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("scale_title"), FieldPanel("scale_content")],
+            heading="Scale Section",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("cta_title"), FieldPanel("cta_description")],
+            heading="Call to Action",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -2026,18 +2583,39 @@ class SupportTicket(models.Model):
     company = models.CharField(max_length=255, blank=True, null=True)
 
     # Ticket type
-    ticket_type = models.CharField(max_length=20, choices=[
-            ("contact", "Contact Form"), ("newsletter", "Newsletter Signup"), ("onboarding", "Onboarding Request"), ("garden_interest", "Garden Platform Interest"), ])
+    ticket_type = models.CharField(
+        max_length=20,
+        choices=[
+            ("contact", "Contact Form"),
+            ("newsletter", "Newsletter Signup"),
+            ("onboarding", "Onboarding Request"),
+            ("garden_interest", "Garden Platform Interest"),
+        ],
+    )
 
     # Inquiry details
     subject = models.CharField(max_length=255, null=False, blank=False)
     message = models.TextField(null=False, blank=False)
 
     # Status and priority
-    status = models.CharField(max_length=20, choices=[
-            ("new", "New"), ("in_progress", "In Progress"), ("resolved", "Resolved"), ("closed", "Closed"), ])
-    priority = models.CharField(max_length=10, choices=[
-            ("low", "Low"), ("medium", "Medium"), ("high", "High"), ("urgent", "Urgent"), ])
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ("new", "New"),
+            ("in_progress", "In Progress"),
+            ("resolved", "Resolved"),
+            ("closed", "Closed"),
+        ],
+    )
+    priority = models.CharField(
+        max_length=10,
+        choices=[
+            ("low", "Low"),
+            ("medium", "Medium"),
+            ("high", "High"),
+            ("urgent", "Urgent"),
+        ],
+    )
 
     # Metadata
     created_at = models.DateTimeField(auto_now_add=True)
@@ -2046,7 +2624,8 @@ class SupportTicket(models.Model):
 
     # Internal notes
     notes = models.TextField(
-        blank=True, help_text="Internal notes about this ticket",
+        blank=True,
+        help_text="Internal notes about this ticket",
     )
 
     class Meta:
@@ -2055,9 +2634,7 @@ class SupportTicket(models.Model):
         ordering = ["-created_at"]
 
     def __str__(self):
-        return (
-            f"#{self.id} - {self.subject or 'General Inquiry'} - {self.email}"
-        )
+        return f"#{self.id} - {self.subject or 'General Inquiry'} - {self.email}"
 
 
 class EncyclopediaIndexPage(RoutablePageMixin, Page):
@@ -2068,7 +2645,11 @@ class EncyclopediaIndexPage(RoutablePageMixin, Page):
     intro_text = RichTextField(blank=True)
     description = RichTextField(blank=True)
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("description")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("intro_text"),
+        FieldPanel("description"),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -2082,7 +2663,9 @@ class EncyclopediaIndexPage(RoutablePageMixin, Page):
 
     def get_entries(self):
         """Get all published encyclopedia entries."""
-        return EncyclopediaEntry.objects.child_of(self).live().public().order_by("title")
+        return (
+            EncyclopediaEntry.objects.child_of(self).live().public().order_by("title")
+        )
 
     def get_entries_by_letter(self, letter):
         """Get entries that start with a specific letter."""
@@ -2103,11 +2686,14 @@ class EncyclopediaIndexPage(RoutablePageMixin, Page):
         entries = self.get_entries()
         letters = self.get_available_letters()
 
-        return self.render(request, context_overrides={
-            "entries": entries,
-            "available_letters": letters,
-            "selected_letter": None,
-        })
+        return self.render(
+            request,
+            context_overrides={
+                "entries": entries,
+                "available_letters": letters,
+                "selected_letter": None,
+            },
+        )
 
     @path("<str:letter>/")
     def entries_by_letter(self, request, letter):
@@ -2116,11 +2702,14 @@ class EncyclopediaIndexPage(RoutablePageMixin, Page):
         entries = self.get_entries_by_letter(letter)
         available_letters = self.get_available_letters()
 
-        return self.render(request, context_overrides={
-            "entries": entries,
-            "available_letters": available_letters,
-            "selected_letter": letter,
-        })
+        return self.render(
+            request,
+            context_overrides={
+                "entries": entries,
+                "available_letters": available_letters,
+                "selected_letter": letter,
+            },
+        )
 
     class Meta:
         verbose_name = "Encyclopedia Index Page"
@@ -2132,40 +2721,78 @@ class EncyclopediaEntry(Page):
     template = "public_site/encyclopedia_entry.html"
 
     # Entry content
-    summary = models.TextField(max_length=500,
-                              help_text="Brief summary shown on index page (max 500 characters)")
+    summary = models.TextField(
+        max_length=500,
+        help_text="Brief summary shown on index page (max 500 characters)",
+    )
     detailed_content = RichTextField(help_text="Detailed explanation of the term")
 
     # Classification
-    category = models.CharField(max_length=100, blank=True,
-                               choices=[
-                                   ("risk", "Risk Management"),
-                                   ("strategy", "Investment Strategy"),
-                                   ("instruments", "Financial Instruments"),
-                                   ("analysis", "Analysis & Research"),
-                                   ("ethics", "Ethical Investing"),
-                                   ("markets", "Markets & Trading"),
-                                   ("regulation", "Regulation & Compliance"),
-                                   ("general", "General Finance"),
-                               ])
+    category = models.CharField(
+        max_length=100,
+        blank=True,
+        choices=[
+            ("risk", "Risk Management"),
+            ("strategy", "Investment Strategy"),
+            ("instruments", "Financial Instruments"),
+            ("analysis", "Analysis & Research"),
+            ("ethics", "Ethical Investing"),
+            ("markets", "Markets & Trading"),
+            ("regulation", "Regulation & Compliance"),
+            ("general", "General Finance"),
+        ],
+    )
 
     # SEO and metadata
-    related_terms = models.CharField(max_length=500, blank=True,
-                                   help_text="Comma-separated list of related terms")
-    difficulty_level = models.CharField(max_length=20, blank=True, choices=[
-                                          ("beginner", "Beginner"), ("intermediate", "Intermediate"), ("advanced", "Advanced"), ])
+    related_terms = models.CharField(
+        max_length=500, blank=True, help_text="Comma-separated list of related terms"
+    )
+    difficulty_level = models.CharField(
+        max_length=20,
+        blank=True,
+        choices=[
+            ("beginner", "Beginner"),
+            ("intermediate", "Intermediate"),
+            ("advanced", "Advanced"),
+        ],
+    )
 
     # Content organization
     examples = RichTextField(blank=True, help_text="Examples and use cases")
-    further_reading = RichTextField(blank=True, help_text="Links to additional resources")
+    further_reading = RichTextField(
+        blank=True, help_text="Links to additional resources"
+    )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("summary"), FieldPanel("detailed_content"), MultiFieldPanel([FieldPanel("category"), FieldPanel("difficulty_level"), FieldPanel("related_terms")], heading="Classification"), MultiFieldPanel([FieldPanel("examples"), FieldPanel("further_reading")], heading="Additional Content")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        FieldPanel("summary"),
+        FieldPanel("detailed_content"),
+        MultiFieldPanel(
+            [
+                FieldPanel("category"),
+                FieldPanel("difficulty_level"),
+                FieldPanel("related_terms"),
+            ],
+            heading="Classification",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("examples"), FieldPanel("further_reading")],
+            heading="Additional Content",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
     settings_panels = Page.settings_panels
 
-    search_fields: ClassVar[list] = [*Page.search_fields, index.SearchField("summary"), index.SearchField("detailed_content"), index.SearchField("related_terms"), index.FilterField("category"), index.FilterField("difficulty_level")]
+    search_fields: ClassVar[list] = [
+        *Page.search_fields,
+        index.SearchField("summary"),
+        index.SearchField("detailed_content"),
+        index.SearchField("related_terms"),
+        index.FilterField("category"),
+        index.FilterField("difficulty_level"),
+    ]
 
     def get_related_entries(self):
         """Get entries related to this one based on related_terms."""
@@ -2174,8 +2801,7 @@ class EncyclopediaEntry(Page):
 
         related_terms = [term.strip().lower() for term in self.related_terms.split(",")]
         return EncyclopediaEntry.objects.filter(
-            live=True,
-            title__iregex=r"\b(?:" + "|".join(related_terms) + r")\b"
+            live=True, title__iregex=r"\b(?:" + "|".join(related_terms) + r")\b"
         ).exclude(id=self.id)[:5]
 
     class Meta:
@@ -2189,24 +2815,38 @@ class ConsultationPage(Page):
 
     # Hero content
     hero_title = models.CharField(max_length=200, help_text="Main headline")
-    hero_subtitle = models.TextField(max_length=500, help_text="Subtitle text below the main headline")
+    hero_subtitle = models.TextField(
+        max_length=500, help_text="Subtitle text below the main headline"
+    )
 
     # Main content
     introduction = RichTextField(
-        blank=True,
-        help_text="Introduction text explaining the consultation process"
+        blank=True, help_text="Introduction text explaining the consultation process"
     )
 
     # Contact information
-    contact_email = models.EmailField(blank=True, help_text="Contact email for consultations")
+    contact_email = models.EmailField(
+        blank=True, help_text="Contact email for consultations"
+    )
 
     # Scheduling widget (optional - can be embedded)
     scheduling_embed_code = models.TextField(
         blank=True,
-        help_text="Optional: Embed code for scheduling widget (Calendly, etc.)"
+        help_text="Optional: Embed code for scheduling widget (Calendly, etc.)",
     )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel("hero_title"), FieldPanel("hero_subtitle")], heading="Hero Section"), FieldPanel("introduction"), MultiFieldPanel([FieldPanel("contact_email"), FieldPanel("scheduling_embed_code")], heading="Contact & Scheduling")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        MultiFieldPanel(
+            [FieldPanel("hero_title"), FieldPanel("hero_subtitle")],
+            heading="Hero Section",
+        ),
+        FieldPanel("introduction"),
+        MultiFieldPanel(
+            [FieldPanel("contact_email"), FieldPanel("scheduling_embed_code")],
+            heading="Contact & Scheduling",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -2229,12 +2869,13 @@ class GuidePage(Page):
 
     # Hero content
     hero_title = models.CharField(max_length=200, help_text="Main headline")
-    hero_subtitle = models.TextField(max_length=500, help_text="Subtitle text below the main headline")
+    hero_subtitle = models.TextField(
+        max_length=500, help_text="Subtitle text below the main headline"
+    )
 
     # Guide content
     guide_description = RichTextField(
-        blank=True,
-        help_text="Description of what's included in the guide"
+        blank=True, help_text="Description of what's included in the guide"
     )
 
     # Download link
@@ -2244,16 +2885,27 @@ class GuidePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="PDF or other document to download"
+        help_text="PDF or other document to download",
     )
 
     # Alternative external link
     external_guide_url = models.URLField(
         blank=True,
-        help_text="Alternative: External URL for guide (if not using document upload)"
+        help_text="Alternative: External URL for guide (if not using document upload)",
     )
 
-    content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel("hero_title"), FieldPanel("hero_subtitle")], heading="Hero Section"), FieldPanel("guide_description"), MultiFieldPanel([FieldPanel("guide_document"), FieldPanel("external_guide_url")], heading="Guide Download")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        MultiFieldPanel(
+            [FieldPanel("hero_title"), FieldPanel("hero_subtitle")],
+            heading="Hero Section",
+        ),
+        FieldPanel("guide_description"),
+        MultiFieldPanel(
+            [FieldPanel("guide_document"), FieldPanel("external_guide_url")],
+            heading="Guide Download",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -2271,11 +2923,16 @@ class GuidePage(Page):
 
 class ExclusionCategory(Orderable):
     """Exclusion category for criteria page."""
-    page = ParentalKey("CriteriaPage", on_delete=models.CASCADE, related_name="exclusion_categories")
+
+    page = ParentalKey(
+        "CriteriaPage", on_delete=models.CASCADE, related_name="exclusion_categories"
+    )
 
     icon = models.CharField(max_length=10, help_text="Emoji icon for category")
     title = models.CharField(max_length=100, help_text="Category title")
-    description = models.TextField(help_text="Description of what is excluded in this category")
+    description = models.TextField(
+        help_text="Description of what is excluded in this category"
+    )
 
     panels = [
         FieldPanel("icon"),
@@ -2291,49 +2948,63 @@ class CriteriaPage(Page):
 
     # Hero content
     hero_title = models.CharField(max_length=200, help_text="Main headline")
-    hero_subtitle = models.TextField(max_length=500, help_text="Subtitle text below the main headline")
+    hero_subtitle = models.TextField(
+        max_length=500, help_text="Subtitle text below the main headline"
+    )
 
     # Content
     criteria_description = RichTextField(
-        blank=True,
-        help_text="Description of the criteria and screening process"
+        blank=True, help_text="Description of the criteria and screening process"
     )
 
     # GitHub link section
-    transparency_section_title = models.CharField(max_length=200, blank=True, help_text="Title for transparency section")
-    transparency_description = RichTextField(blank=True, help_text="Description of transparency approach")
-    transparency_benefits = models.TextField(blank=True, help_text="Benefits of transparency, one per line")
+    transparency_section_title = models.CharField(
+        max_length=200, blank=True, help_text="Title for transparency section"
+    )
+    transparency_description = RichTextField(
+        blank=True, help_text="Description of transparency approach"
+    )
+    transparency_benefits = models.TextField(
+        blank=True, help_text="Benefits of transparency, one per line"
+    )
     github_criteria_url = models.URLField(help_text="URL to GitHub screening policy")
 
     # Exclusions section
-    exclusions_section_title = models.CharField(max_length=200, blank=True, help_text="Title for exclusions section")
+    exclusions_section_title = models.CharField(
+        max_length=200, blank=True, help_text="Title for exclusions section"
+    )
     exclusions_note = RichTextField(blank=True, help_text="Note about exclusions")
 
     # Additional resources
     additional_resources = RichTextField(
-        blank=True,
-        help_text="Links to additional resources and documentation"
+        blank=True, help_text="Links to additional resources and documentation"
     )
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
-        MultiFieldPanel([
-            FieldPanel("hero_title"),
-            FieldPanel("hero_subtitle")
-        ], heading="Hero Section"),
+        MultiFieldPanel(
+            [FieldPanel("hero_title"), FieldPanel("hero_subtitle")],
+            heading="Hero Section",
+        ),
         FieldPanel("criteria_description"),
-        MultiFieldPanel([
-            FieldPanel("transparency_section_title"),
-            FieldPanel("transparency_description"),
-            FieldPanel("transparency_benefits"),
-            FieldPanel("github_criteria_url"),
-        ], heading="Transparency Section"),
-        MultiFieldPanel([
-            FieldPanel("exclusions_section_title"),
-            InlinePanel("exclusion_categories", label="Exclusion Categories"),
-            FieldPanel("exclusions_note"),
-        ], heading="Exclusions Section"),
-        FieldPanel("additional_resources")
+        MultiFieldPanel(
+            [
+                FieldPanel("transparency_section_title"),
+                FieldPanel("transparency_description"),
+                FieldPanel("transparency_benefits"),
+                FieldPanel("github_criteria_url"),
+            ],
+            heading="Transparency Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("exclusions_section_title"),
+                InlinePanel("exclusion_categories", label="Exclusion Categories"),
+                FieldPanel("exclusions_note"),
+            ],
+            heading="Exclusions Section",
+        ),
+        FieldPanel("additional_resources"),
     ]
 
     # Wagtail admin panel configurations
@@ -2352,7 +3023,10 @@ class CriteriaPage(Page):
 
 class StrategyCard(Orderable):
     """Strategy card for solutions page."""
-    page = ParentalKey("SolutionsPage", on_delete=models.CASCADE, related_name="strategy_cards")
+
+    page = ParentalKey(
+        "SolutionsPage", on_delete=models.CASCADE, related_name="strategy_cards"
+    )
 
     icon = models.CharField(max_length=10, help_text="Emoji icon for strategy")
     title = models.CharField(max_length=100, help_text="Strategy title")
@@ -2376,12 +3050,18 @@ class SolutionsPage(Page):
 
     # Hero content
     hero_title = models.CharField(max_length=200, help_text="Main headline")
-    hero_subtitle = models.TextField(max_length=500, help_text="Subtitle text below the main headline")
+    hero_subtitle = models.TextField(
+        max_length=500, help_text="Subtitle text below the main headline"
+    )
     hero_description = RichTextField(blank=True, help_text="Hero section description")
 
     # Strategies section
-    strategies_section_title = models.CharField(max_length=200, blank=True, help_text="Title for strategies section")
-    strategies_intro = models.TextField(blank=True, help_text="Introduction text for strategies section")
+    strategies_section_title = models.CharField(
+        max_length=200, blank=True, help_text="Title for strategies section"
+    )
+    strategies_intro = models.TextField(
+        blank=True, help_text="Introduction text for strategies section"
+    )
 
     # Individuals section
     individuals_title = models.CharField(max_length=200, blank=True)
@@ -2401,32 +3081,38 @@ class SolutionsPage(Page):
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
-        MultiFieldPanel([
-            FieldPanel("hero_title"),
-            FieldPanel("hero_subtitle"),
-            FieldPanel("hero_description")
-        ], heading="Hero Section"),
-        MultiFieldPanel([
-            FieldPanel("strategies_section_title"),
-            FieldPanel("strategies_intro"),
-            InlinePanel("strategy_cards", label="Strategy Cards"),
-        ], heading="Investment Strategies"),
-        MultiFieldPanel([
-            FieldPanel("individuals_title"),
-            FieldPanel("individuals_content")
-        ], heading="For Individuals"),
-        MultiFieldPanel([
-            FieldPanel("institutions_title"),
-            FieldPanel("institutions_content")
-        ], heading="For Institutions"),
-        MultiFieldPanel([
-            FieldPanel("advisors_title"),
-            FieldPanel("advisors_content")
-        ], heading="For Investment Advisers"),
-        MultiFieldPanel([
-            FieldPanel("cta_title"),
-            FieldPanel("cta_description")
-        ], heading="Call to Action")
+        MultiFieldPanel(
+            [
+                FieldPanel("hero_title"),
+                FieldPanel("hero_subtitle"),
+                FieldPanel("hero_description"),
+            ],
+            heading="Hero Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("strategies_section_title"),
+                FieldPanel("strategies_intro"),
+                InlinePanel("strategy_cards", label="Strategy Cards"),
+            ],
+            heading="Investment Strategies",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("individuals_title"), FieldPanel("individuals_content")],
+            heading="For Individuals",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("institutions_title"), FieldPanel("institutions_content")],
+            heading="For Institutions",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("advisors_title"), FieldPanel("advisors_content")],
+            heading="For Investment Advisers",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("cta_title"), FieldPanel("cta_description")],
+            heading="Call to Action",
+        ),
     ]
 
     # Wagtail admin panel configurations
@@ -2451,60 +3137,89 @@ class PRIDDQPage(Page):
 
     # Hero content
     hero_title = models.CharField(max_length=200, help_text="Main headline")
-    hero_subtitle = models.TextField(max_length=500, help_text="Subtitle text below the main headline")
+    hero_subtitle = models.TextField(
+        max_length=500, help_text="Subtitle text below the main headline"
+    )
     hero_description = RichTextField(blank=True, help_text="Hero section description")
-    updated_at = models.CharField(max_length=50, help_text="Month and year when this document was last updated")
+    updated_at = models.CharField(
+        max_length=50, help_text="Month and year when this document was last updated"
+    )
 
     # Executive Summary
-    executive_summary = RichTextField(blank=True, help_text="Executive summary of ESG approach")
+    executive_summary = RichTextField(
+        blank=True, help_text="Executive summary of ESG approach"
+    )
 
     # Strategy & Governance section
     strategy_governance_content = RichTextField(
-        blank=True,
-        help_text="Strategy and governance practices content"
+        blank=True, help_text="Strategy and governance practices content"
     )
 
     # ESG Integration section
     esg_integration_content = RichTextField(
-        blank=True,
-        help_text="ESG integration methodology and practices"
+        blank=True, help_text="ESG integration methodology and practices"
     )
 
     # Stewardship section
     stewardship_content = RichTextField(
-        blank=True,
-        help_text="Stewardship and engagement practices"
+        blank=True, help_text="Stewardship and engagement practices"
     )
 
     # Transparency section
     transparency_content = RichTextField(
-        blank=True,
-        help_text="Reporting and transparency practices"
+        blank=True, help_text="Reporting and transparency practices"
     )
 
     # Climate & Environment section
     climate_content = RichTextField(
-        blank=True,
-        help_text="Climate change and environmental practices"
+        blank=True, help_text="Climate change and environmental practices"
     )
 
     # Reporting & Verification section
     reporting_verification_content = RichTextField(
-        blank=True,
-        help_text="Reporting and verification practices content"
+        blank=True, help_text="Reporting and verification practices content"
     )
 
     # Additional Information section
     additional_content = RichTextField(
-        blank=True,
-        help_text="Additional information and internal ESG management"
+        blank=True, help_text="Additional information and internal ESG management"
     )
 
     # Document links
-    screening_policy_url = models.URLField(help_text="URL to open-source screening policy")
+    screening_policy_url = models.URLField(
+        help_text="URL to open-source screening policy"
+    )
     form_adv_url = models.URLField(blank=True, help_text="URL to Form ADV disclosure")
 
-    content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel("hero_title"), FieldPanel("hero_subtitle"), FieldPanel("hero_description"), FieldPanel("updated_at")], heading="Hero Section"), FieldPanel("executive_summary"), MultiFieldPanel([FieldPanel("strategy_governance_content"), FieldPanel("esg_integration_content"), FieldPanel("stewardship_content"), FieldPanel("transparency_content"), FieldPanel("reporting_verification_content"), FieldPanel("climate_content"), FieldPanel("additional_content")], heading="DDQ Response Sections"), MultiFieldPanel([FieldPanel("screening_policy_url"), FieldPanel("form_adv_url")], heading="Related Documents")]
+    content_panels: ClassVar[list] = [
+        *Page.content_panels,
+        MultiFieldPanel(
+            [
+                FieldPanel("hero_title"),
+                FieldPanel("hero_subtitle"),
+                FieldPanel("hero_description"),
+                FieldPanel("updated_at"),
+            ],
+            heading="Hero Section",
+        ),
+        FieldPanel("executive_summary"),
+        MultiFieldPanel(
+            [
+                FieldPanel("strategy_governance_content"),
+                FieldPanel("esg_integration_content"),
+                FieldPanel("stewardship_content"),
+                FieldPanel("transparency_content"),
+                FieldPanel("reporting_verification_content"),
+                FieldPanel("climate_content"),
+                FieldPanel("additional_content"),
+            ],
+            heading="DDQ Response Sections",
+        ),
+        MultiFieldPanel(
+            [FieldPanel("screening_policy_url"), FieldPanel("form_adv_url")],
+            heading="Related Documents",
+        ),
+    ]
 
     # Wagtail admin panel configurations
     promote_panels = Page.promote_panels
@@ -2526,18 +3241,18 @@ class PRIDDQPage(Page):
             {
                 "question": "What is your organisation's overall approach to responsible investment?",
                 "answer": "Ethical Capital exists to create industry-leading responsible investment strategies. Our mission is to align our clients' capital with companies that avoid preventable harm to living things and make meaningful contributions to a better future. We do this because we believe it leads to better client outcomes. The companies we exclude are generally lower-quality businesses, and our process benefits significantly from not having to engage with them in much depth.",
-                "category": "investment_approach"
+                "category": "investment_approach",
             },
             {
                 "question": "Does your organisation have a responsible investment policy?",
                 "answer": "We do not segregate responsible investing from regular investing. All of our policy documents can be found on the process page of our website.",
-                "category": "investment_approach"
+                "category": "investment_approach",
             },
             {
                 "question": "What international standards, industry guidelines, reporting frameworks, or initiatives has your organisation committed to?",
                 "answer": "We are signatories to the plant based treaty and work closely with the investor community whenever we can to advance our mission. As a matter of policy, we do not sign onto statements that require membership payments to the sponsoring body, only activist-led initiatives.",
-                "category": "investment_approach"
-            }
+                "category": "investment_approach",
+            },
         ]
 
         # ESG Integration questions
@@ -2545,13 +3260,13 @@ class PRIDDQPage(Page):
             {
                 "question": "How is ESG materiality analysed for this strategy?",
                 "answer": "We focus on the degree to which a firm's revenue is directly associated with positive real-world outcomes. We do not use third-party tools, standards, or data to complete this analysis.",
-                "category": "esg_integration"
+                "category": "esg_integration",
             },
             {
                 "question": "How are financially material ESG factors incorporated into this strategy?",
                 "answer": "In the last twelve months: We exited a position in Eiffage SA (OTC:EFGSY) after uncovering evidence that the firm has failed to properly supervise some of its projects in the middle east, resulting in significant human rights challenges. We continued adding to our position in Badger Meter (NYSE:BMI) as their value-added water meters continued to add value to many municipal water systems. We re-entered our position in ELF cosmetics (NYSE:ELF) after a significant selloff in their stock price coincided with a stronger impact case and continued sales momentum.",
-                "category": "esg_integration"
-            }
+                "category": "esg_integration",
+            },
         ]
 
         # Stewardship questions
@@ -2559,7 +3274,7 @@ class PRIDDQPage(Page):
             {
                 "question": "Does your organisation have a stewardship policy?",
                 "answer": "We do not have a stewardship policy at this time. Our firm has historically prioritised making its strategies accessible to all clients, regardless of how much money they have available to invest. This has required us to make certain trade-offs. One of the most material is that we are not currently able to vote our proxies.",
-                "category": "stewardship"
+                "category": "stewardship",
             }
         ]
 
@@ -2568,13 +3283,13 @@ class PRIDDQPage(Page):
             {
                 "question": "What information is disclosed in regular client reporting on the responsible investment activities and performance of this strategy?",
                 "answer": "We choose to emphasise firm-specific outcomes in our client reporting rather than ratings, carbon intensity, or other data. For instance, we devoted a section of our client letter to discussion of how one of our companies, a real estate investment trust, was able to preserve a historic mill as a center of commerce in a rural town.",
-                "category": "reporting"
+                "category": "reporting",
             },
             {
                 "question": "How does your organisation audit the quality of its responsible investment processes and/or data?",
                 "answer": "We routinely look for third-party groups that credibly assess companies for their alignment with various indicators of sound corporate practice, and will routinely spot check our exclusions to ensure that we are adequately incorporating the latest and deepest analysis of companies implicated in objectionable behavior.",
-                "category": "reporting"
-            }
+                "category": "reporting",
+            },
         ]
 
         questions.extend(strategy_questions)
@@ -2597,7 +3312,7 @@ class PRIDDQPage(Page):
                     "category": q["category"],
                     "keywords": "PRI DDQ responsible investment ESG",
                     "priority": 5,  # Medium priority
-                }
+                },
             )
             if not created:
                 # Update existing article
@@ -2607,22 +3322,24 @@ class PRIDDQPage(Page):
 
     def save(self, *args, **kwargs):
         """Override save to auto-update updated_at and sync to support articles when saved."""
-        from datetime import datetime
+        from datetime import datetime, timezone
 
         # Auto-update the updated_at field with current month/year
-        current_date = datetime.now()
+        current_date = datetime.now(timezone.utc)
         self.updated_at = current_date.strftime("%B %Y")
 
         super().save(*args, **kwargs)
 
         # Skip sync in test mode to avoid creating pages without proper parent
         import sys
+
         if "test" not in sys.argv:
             try:
                 self.sync_to_support_articles()
             except Exception as e:
                 # Log but don't fail if sync fails
                 import logging
+
                 logger = logging.getLogger(__name__)
                 logger.warning(f"Failed to sync DDQ questions to FAQ articles: {e}")
 
@@ -2636,16 +3353,27 @@ class SiteConfiguration(ClusterableModel, BaseSiteSetting):
     """Global site configuration and branding settings."""
 
     # Company Information
-    company_name = models.CharField(max_length=100, help_text="Company brand name displayed in navigation and footer")
-    company_tagline = models.CharField(max_length=200, help_text="Main tagline for SEO and social media")
-    company_description = models.TextField(help_text="Company description for meta tags and schema markup")
+    company_name = models.CharField(
+        max_length=100,
+        help_text="Company brand name displayed in navigation and footer",
+    )
+    company_tagline = models.CharField(
+        max_length=200, help_text="Main tagline for SEO and social media"
+    )
+    company_description = models.TextField(
+        help_text="Company description for meta tags and schema markup"
+    )
 
     # Contact Information
     primary_email = models.EmailField(help_text="Primary contact email address")
-    support_email = models.EmailField(help_text="Support and accessibility contact email")
+    support_email = models.EmailField(
+        help_text="Support and accessibility contact email"
+    )
     cio_email = models.EmailField(help_text="Chief Investment Officer email")
     primary_phone = models.CharField(max_length=20, help_text="Primary phone number")
-    accessibility_phone = models.CharField(max_length=20, help_text="Accessibility support phone number")
+    accessibility_phone = models.CharField(
+        max_length=20, help_text="Accessibility support phone number"
+    )
 
     # Address Information
     street_address = models.CharField(max_length=200, help_text="Street address")
@@ -2655,14 +3383,15 @@ class SiteConfiguration(ClusterableModel, BaseSiteSetting):
     country = models.CharField(max_length=100, help_text="Country")
 
     # Social Media
-    twitter_handle = models.CharField(max_length=50, help_text="Twitter handle (include @)")
-    linkedin_url = models.URLField(
-        blank=True,
-        help_text="LinkedIn company page URL"
+    twitter_handle = models.CharField(
+        max_length=50, help_text="Twitter handle (include @)"
     )
+    linkedin_url = models.URLField(blank=True, help_text="LinkedIn company page URL")
 
     # SEO and Meta
-    default_meta_description = models.TextField(help_text="Default meta description for pages without custom descriptions")
+    default_meta_description = models.TextField(
+        help_text="Default meta description for pages without custom descriptions"
+    )
     meta_keywords = models.CharField(max_length=300, help_text="Default meta keywords")
 
     # Legal and Compliance
@@ -2670,84 +3399,141 @@ class SiteConfiguration(ClusterableModel, BaseSiteSetting):
     copyright_text = models.CharField(max_length=200, help_text="Footer copyright text")
 
     # Business Information
-    business_hours = models.CharField(max_length=100, help_text="Business hours display text")
-    minimum_investment = models.CharField(max_length=20, help_text="Minimum investment amount")
+    business_hours = models.CharField(
+        max_length=100, help_text="Business hours display text"
+    )
+    minimum_investment = models.CharField(
+        max_length=20, help_text="Minimum investment amount"
+    )
 
     # Form Messages
-    contact_success_message = models.TextField(help_text="Success message for contact form submissions")
-    contact_error_message = models.TextField(help_text="Error message for contact form submissions")
-    newsletter_success_message = models.TextField(help_text="Success message for newsletter subscriptions")
+    contact_success_message = models.TextField(
+        help_text="Success message for contact form submissions"
+    )
+    contact_error_message = models.TextField(
+        help_text="Error message for contact form submissions"
+    )
+    newsletter_success_message = models.TextField(
+        help_text="Success message for newsletter subscriptions"
+    )
 
     # Newsletter Widget Content
-    newsletter_title = models.CharField(max_length=100, help_text="Newsletter signup widget title")
+    newsletter_title = models.CharField(
+        max_length=100, help_text="Newsletter signup widget title"
+    )
     newsletter_description = models.TextField(help_text="Newsletter signup description")
-    newsletter_privacy_text = models.CharField(max_length=200, help_text="Newsletter privacy notice")
+    newsletter_privacy_text = models.CharField(
+        max_length=200, help_text="Newsletter privacy notice"
+    )
 
     # Investment Form Content
-    investment_goal_growth_title = models.CharField(max_length=50, help_text="Growth investment goal title")
-    investment_goal_growth_desc = models.TextField(help_text="Growth investment goal description")
-    investment_goal_income_title = models.CharField(max_length=50, help_text="Income investment goal title")
-    investment_goal_income_desc = models.TextField(help_text="Income investment goal description")
-    investment_goal_balanced_title = models.CharField(max_length=50, help_text="Balanced investment goal title")
-    investment_goal_balanced_desc = models.TextField(help_text="Balanced investment goal description")
-    investment_goal_preservation_title = models.CharField(max_length=50, help_text="Preservation investment goal title")
-    investment_goal_preservation_desc = models.TextField(help_text="Preservation investment goal description")
+    investment_goal_growth_title = models.CharField(
+        max_length=50, help_text="Growth investment goal title"
+    )
+    investment_goal_growth_desc = models.TextField(
+        help_text="Growth investment goal description"
+    )
+    investment_goal_income_title = models.CharField(
+        max_length=50, help_text="Income investment goal title"
+    )
+    investment_goal_income_desc = models.TextField(
+        help_text="Income investment goal description"
+    )
+    investment_goal_balanced_title = models.CharField(
+        max_length=50, help_text="Balanced investment goal title"
+    )
+    investment_goal_balanced_desc = models.TextField(
+        help_text="Balanced investment goal description"
+    )
+    investment_goal_preservation_title = models.CharField(
+        max_length=50, help_text="Preservation investment goal title"
+    )
+    investment_goal_preservation_desc = models.TextField(
+        help_text="Preservation investment goal description"
+    )
 
     # Content Management Settings
     panels = [
-        MultiFieldPanel([
-            FieldPanel("company_name"),
-            FieldPanel("company_tagline"),
-            FieldPanel("company_description"),
-        ], heading="Company Information"),
-        MultiFieldPanel([
-            FieldPanel("primary_email"),
-            FieldPanel("support_email"),
-            FieldPanel("cio_email"),
-            FieldPanel("primary_phone"),
-            FieldPanel("accessibility_phone"),
-        ], heading="Contact Information"),
-        MultiFieldPanel([
-            FieldPanel("street_address"),
-            FieldPanel("city"),
-            FieldPanel("state"),
-            FieldPanel("postal_code"),
-            FieldPanel("country"),
-            FieldPanel("business_hours"),
-        ], heading="Address & Hours"),
-        MultiFieldPanel([
-            FieldPanel("twitter_handle"),
-            FieldPanel("linkedin_url"),
-        ], heading="Social Media"),
-        MultiFieldPanel([
-            FieldPanel("default_meta_description"),
-            FieldPanel("meta_keywords"),
-        ], heading="SEO & Meta Tags"),
-        MultiFieldPanel([
-            FieldPanel("founding_year"),
-            FieldPanel("copyright_text"),
-            FieldPanel("minimum_investment"),
-        ], heading="Business Information"),
-        MultiFieldPanel([
-            FieldPanel("contact_success_message"),
-            FieldPanel("contact_error_message"),
-            FieldPanel("newsletter_success_message"),
-        ], heading="Form Messages"),
-        MultiFieldPanel([
-            FieldPanel("newsletter_title"),
-            FieldPanel("newsletter_description"),
-            FieldPanel("newsletter_privacy_text"),
-        ], heading="Newsletter Widget Content"),
-        MultiFieldPanel([
-            FieldPanel("investment_goal_growth_title"),
-            FieldPanel("investment_goal_growth_desc"),
-            FieldPanel("investment_goal_income_title"),
-            FieldPanel("investment_goal_income_desc"),
-            FieldPanel("investment_goal_balanced_title"),
-            FieldPanel("investment_goal_balanced_desc"),
-            FieldPanel("investment_goal_preservation_title"),
-            FieldPanel("investment_goal_preservation_desc"),
-        ], heading="Investment Goal Options"),
+        MultiFieldPanel(
+            [
+                FieldPanel("company_name"),
+                FieldPanel("company_tagline"),
+                FieldPanel("company_description"),
+            ],
+            heading="Company Information",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("primary_email"),
+                FieldPanel("support_email"),
+                FieldPanel("cio_email"),
+                FieldPanel("primary_phone"),
+                FieldPanel("accessibility_phone"),
+            ],
+            heading="Contact Information",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("street_address"),
+                FieldPanel("city"),
+                FieldPanel("state"),
+                FieldPanel("postal_code"),
+                FieldPanel("country"),
+                FieldPanel("business_hours"),
+            ],
+            heading="Address & Hours",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("twitter_handle"),
+                FieldPanel("linkedin_url"),
+            ],
+            heading="Social Media",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("default_meta_description"),
+                FieldPanel("meta_keywords"),
+            ],
+            heading="SEO & Meta Tags",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("founding_year"),
+                FieldPanel("copyright_text"),
+                FieldPanel("minimum_investment"),
+            ],
+            heading="Business Information",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("contact_success_message"),
+                FieldPanel("contact_error_message"),
+                FieldPanel("newsletter_success_message"),
+            ],
+            heading="Form Messages",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("newsletter_title"),
+                FieldPanel("newsletter_description"),
+                FieldPanel("newsletter_privacy_text"),
+            ],
+            heading="Newsletter Widget Content",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("investment_goal_growth_title"),
+                FieldPanel("investment_goal_growth_desc"),
+                FieldPanel("investment_goal_income_title"),
+                FieldPanel("investment_goal_income_desc"),
+                FieldPanel("investment_goal_balanced_title"),
+                FieldPanel("investment_goal_balanced_desc"),
+                FieldPanel("investment_goal_preservation_title"),
+                FieldPanel("investment_goal_preservation_desc"),
+            ],
+            heading="Investment Goal Options",
+        ),
         InlinePanel("nav_items", label="Navigation Menu Items"),
     ]
 
@@ -2760,25 +3546,16 @@ class NavigationMenuItem(Orderable):
 
     parent = ParentalKey("SiteConfiguration", related_name="nav_items")
 
-    label = models.CharField(
-        max_length=50,
-        help_text="Text displayed in navigation"
-    )
+    label = models.CharField(max_length=50, help_text="Text displayed in navigation")
     url = models.CharField(
-        max_length=200,
-        help_text="URL or path (e.g., /about/, /process/)"
+        max_length=200, help_text="URL or path (e.g., /about/, /process/)"
     )
-    external = models.BooleanField(
-        default=False,
-        help_text="Open in new tab/window"
-    )
+    external = models.BooleanField(default=False, help_text="Open in new tab/window")
     show_in_nav = models.BooleanField(
-        default=True,
-        help_text="Display this item in the main navigation"
+        default=True, help_text="Display this item in the main navigation"
     )
     show_in_footer = models.BooleanField(
-        default=True,
-        help_text="Display this item in the footer"
+        default=True, help_text="Display this item in the footer"
     )
 
     panels = [

@@ -20,7 +20,9 @@ class Command(BaseCommand):
         media_page = MediaPage.objects.filter(slug="media").first()
 
         if media_page:
-            self.stdout.write(self.style.WARNING(f"Media page already exists at: {media_page.url}"))
+            self.stdout.write(
+                self.style.WARNING(f"Media page already exists at: {media_page.url}")
+            )
             return
 
         # Create media page
@@ -93,4 +95,6 @@ class Command(BaseCommand):
             MediaItem.objects.create(page=media_page, **item_data)
 
         self.stdout.write(self.style.SUCCESS(f"Added {len(sample_items)} media items"))
-        self.stdout.write(self.style.SUCCESS(f"Media page available at: {media_page.url}"))
+        self.stdout.write(
+            self.style.SUCCESS(f"Media page available at: {media_page.url}")
+        )

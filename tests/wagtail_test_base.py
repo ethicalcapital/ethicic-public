@@ -1,4 +1,5 @@
 """Base test class that properly sets up Wagtail for testing."""
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase, TransactionTestCase
 from wagtail.models import Locale, Page, Site
@@ -17,10 +18,7 @@ class WagtailTestCase(TestCase):
 
         # Ensure we have a root page
         if not Page.objects.filter(depth=1).exists():
-            cls.root_page = Page.add_root(
-                title="Root",
-                locale=cls.locale
-            )
+            cls.root_page = Page.add_root(title="Root", locale=cls.locale)
         else:
             cls.root_page = Page.objects.get(depth=1)
 
@@ -28,12 +26,13 @@ class WagtailTestCase(TestCase):
         home_pages = Page.objects.filter(slug="home", depth=2)
         if not home_pages.exists():
             from public_site.models import HomePage
+
             cls.home_page = HomePage(
                 title="Home",
                 slug="home",
                 hero_title="Test Home Page",
                 hero_tagline="Test tagline",
-                locale=cls.locale
+                locale=cls.locale,
             )
             cls.root_page.add_child(instance=cls.home_page)
         else:
@@ -46,18 +45,18 @@ class WagtailTestCase(TestCase):
                 "port": 80,
                 "root_page": cls.home_page,
                 "is_default_site": True,
-            }
+            },
         )[0]
 
         # Create a test user
-        User = get_user_model()
-        cls.user = User.objects.get_or_create(
+        user_model = get_user_model()
+        cls.user = user_model.objects.get_or_create(
             username="testuser",
             defaults={
                 "email": "test@example.com",
                 "is_staff": True,
                 "is_superuser": True,
-            }
+            },
         )[0]
 
 
@@ -73,10 +72,7 @@ class WagtailTransactionTestCase(TransactionTestCase):
 
         # Ensure we have a root page
         if not Page.objects.filter(depth=1).exists():
-            self.root_page = Page.add_root(
-                title="Root",
-                locale=self.locale
-            )
+            self.root_page = Page.add_root(title="Root", locale=self.locale)
         else:
             self.root_page = Page.objects.get(depth=1)
 
@@ -84,12 +80,13 @@ class WagtailTransactionTestCase(TransactionTestCase):
         home_pages = Page.objects.filter(slug="home", depth=2)
         if not home_pages.exists():
             from public_site.models import HomePage
+
             self.home_page = HomePage(
                 title="Home",
                 slug="home",
                 hero_title="Test Home Page",
                 hero_tagline="Test tagline",
-                locale=self.locale
+                locale=self.locale,
             )
             self.root_page.add_child(instance=self.home_page)
         else:
@@ -102,16 +99,16 @@ class WagtailTransactionTestCase(TransactionTestCase):
                 "port": 80,
                 "root_page": self.home_page,
                 "is_default_site": True,
-            }
+            },
         )[0]
 
         # Create a test user
-        User = get_user_model()
-        self.user = User.objects.get_or_create(
+        user_model = get_user_model()
+        self.user = user_model.objects.get_or_create(
             username="testuser",
             defaults={
                 "email": "test@example.com",
                 "is_staff": True,
                 "is_superuser": True,
-            }
+            },
         )[0]

@@ -1,6 +1,7 @@
 """
 Management command to set up initial site data
 """
+
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from wagtail.models import Locale, Page, Site
@@ -16,28 +17,24 @@ class Command(BaseCommand):
             "--admin-password",
             type=str,
             default="dyzxuc-4muBzy-woqbam",
-            help="Password for the admin user"
+            help="Password for the admin user",
         )
         parser.add_argument(
             "--hostname",
             type=str,
             default="ethicic-public-svoo7.kinsta.app",
-            help="Hostname for the site"
+            help="Hostname for the site",
         )
 
     def handle(self, *args, **options):
-        User = get_user_model()
+        user_model = get_user_model()
 
         # Create superuser if it doesn't exist
-        if not User.objects.filter(username="srvo").exists():
-            User.objects.create_superuser(
-                "srvo",
-                "sloane@ethicic.com",
-                options["admin_password"]
+        if not user_model.objects.filter(username="srvo").exists():
+            user_model.objects.create_superuser(
+                "srvo", "sloane@ethicic.com", options["admin_password"]
             )
-            self.stdout.write(
-                self.style.SUCCESS("Created superuser: srvo")
-            )
+            self.stdout.write(self.style.SUCCESS("Created superuser: srvo"))
         else:
             self.stdout.write("Superuser already exists")
 
@@ -71,7 +68,7 @@ class Command(BaseCommand):
                     slug="home",
                     hero_title="Welcome to Ethical Capital",
                     hero_subtitle="Sustainable investing for a better future",
-                    locale=locale
+                    locale=locale,
                 )
 
                 # Save without adding as child first to get an ID
@@ -83,17 +80,13 @@ class Command(BaseCommand):
                 # Set up the site
                 Site.objects.all().delete()  # Remove any existing sites
                 Site.objects.create(
-                    hostname=options["hostname"],
-                    root_page=home,
-                    is_default_site=True
+                    hostname=options["hostname"], root_page=home, is_default_site=True
                 )
                 self.stdout.write(
                     self.style.SUCCESS("Created homepage and site configuration")
                 )
             except Exception as e:
-                self.stdout.write(
-                    self.style.ERROR(f"Failed to create homepage: {e}")
-                )
+                self.stdout.write(self.style.ERROR(f"Failed to create homepage: {e}"))
                 self.stdout.write("Site setup will continue without homepage")
         else:
             self.stdout.write("Homepage already exists")
@@ -104,9 +97,9 @@ class Command(BaseCommand):
                 site.hostname = options["hostname"]
                 site.save()
                 self.stdout.write(
-                    self.style.SUCCESS(f'Updated site hostname to {options["hostname"]}')
+                    self.style.SUCCESS(
+                        f"Updated site hostname to {options['hostname']}"
+                    )
                 )
 
-        self.stdout.write(
-            self.style.SUCCESS("Site setup complete!")
-        )
+        self.stdout.write(self.style.SUCCESS("Site setup complete!"))

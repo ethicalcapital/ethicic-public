@@ -1,6 +1,7 @@
 """
 Views package for public_site app.
 """
+
 # Import all views from the main views.py file
 import os
 import sys

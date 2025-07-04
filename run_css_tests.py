@@ -63,6 +63,7 @@ def run_css_tests():
 
     return success
 
+
 if __name__ == "__main__":
     success = run_css_tests()
     sys.exit(0 if success else 1)

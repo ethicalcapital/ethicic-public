@@ -14,14 +14,19 @@ from wagtail.images.blocks import ImageChooserBlock
 # BASIC STREAMFIELD BLOCKS
 # ============================================================================
 
+
 class HeadingBlock(blocks.StructBlock):
     """Heading block with size options."""
+
     heading_text = blocks.CharBlock(classname="title")
-    size = blocks.ChoiceBlock(choices=[
-        ("h2", "H2"),
-        ("h3", "H3"),
-        ("h4", "H4"),
-    ], default="h2")
+    size = blocks.ChoiceBlock(
+        choices=[
+            ("h2", "H2"),
+            ("h3", "H3"),
+            ("h4", "H4"),
+        ],
+        default="h2",
+    )
 
     class Meta:
         template = "blocks/heading_block.html"
@@ -49,6 +54,7 @@ class RichTextBlock(blocks.RichTextBlock):
 
 class ImageBlock(blocks.StructBlock):
     """Image block with caption and alignment."""
+
     image = ImageChooserBlock()
     caption = blocks.CharBlock(required=False)
     alignment = blocks.ChoiceBlock(
@@ -58,7 +64,7 @@ class ImageBlock(blocks.StructBlock):
             ("center", "Center"),
             ("full", "Full Width"),
         ],
-        default="center"
+        default="center",
     )
 
     class Meta:
@@ -78,6 +84,7 @@ class EmbedVideoBlock(EmbedBlock):
 
 class DocumentBlock(blocks.StructBlock):
     """Document download block."""
+
     document = DocumentChooserBlock()
     title = blocks.CharBlock(required=False)
 
@@ -89,6 +96,7 @@ class DocumentBlock(blocks.StructBlock):
 
 class QuoteBlock(blocks.StructBlock):
     """Quote/testimonial block."""
+
     quote = blocks.TextBlock()
     author = blocks.CharBlock(required=False)
     source = blocks.CharBlock(required=False)
@@ -101,6 +109,7 @@ class QuoteBlock(blocks.StructBlock):
 
 class CalloutBlock(blocks.StructBlock):
     """Callout/highlight block."""
+
     title = blocks.CharBlock(required=False)
     content = blocks.RichTextBlock()
     style = blocks.ChoiceBlock(
@@ -110,7 +119,7 @@ class CalloutBlock(blocks.StructBlock):
             ("success", "Success"),
             ("error", "Error"),
         ],
-        default="info"
+        default="info",
     )
 
     class Meta:
@@ -123,16 +132,14 @@ class KeyStatisticBlock(blocks.StructBlock):
     """Simple statistic block for highlighting key data points."""
 
     value = blocks.CharBlock(
-        max_length=50,
-        help_text="The statistic value (e.g., '12.4%', '$1.2M', '3.8x')"
+        max_length=50, help_text="The statistic value (e.g., '12.4%', '$1.2M', '3.8x')"
     )
     label = blocks.CharBlock(
         max_length=100,
-        help_text="Statistic label (e.g., 'Annual Return', 'Market Cap')"
+        help_text="Statistic label (e.g., 'Annual Return', 'Market Cap')",
     )
     description = blocks.TextBlock(
-        required=False,
-        help_text="Optional description or context for this statistic"
+        required=False, help_text="Optional description or context for this statistic"
     )
 
     class Meta:
@@ -163,6 +170,7 @@ class DividerBlock(blocks.StaticBlock):
 # ============================================================================
 # STREAMFIELD DEFINITION
 # ============================================================================
+
 
 class BlogStreamField(StreamField):
     """Simplified StreamField for clean blog content creation."""

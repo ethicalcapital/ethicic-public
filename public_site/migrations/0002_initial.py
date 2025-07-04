@@ -12,7 +12,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -2299,52 +2298,127 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "content",
-                    wagtail.fields.StreamField([
-        ('rich_text', wagtail.blocks.RichTextBlock(
-            features=['h2', 'h3', 'h4', 'bold', 'italic', 'link', 'ol', 'ul', 'document-link'],
-            help_text="Rich text content with basic formatting"
-        )),
-        ('key_statistic', wagtail.blocks.StructBlock([
-            ('value', wagtail.blocks.CharBlock(max_length=50, help_text="The statistic value")),
-            ('label', wagtail.blocks.CharBlock(max_length=100, help_text="Statistic label")),
-            ('description', wagtail.blocks.TextBlock(required=False, help_text="Optional description")),
-            ('ai_confidence', wagtail.blocks.DecimalBlock(default=0.0, max_digits=3, decimal_places=2, required=False)),
-            ('ai_context', wagtail.blocks.TextBlock(required=False)),
-            ('significance_level', wagtail.blocks.ChoiceBlock(
-                choices=[
-                    ('high', 'High Significance'),
-                    ('medium', 'Medium Significance'),
-                    ('low', 'Low Significance'),
-                ],
-                default='medium',
-                required=False
-            )),
-            ('statistic_category', wagtail.blocks.ChoiceBlock(
-                choices=[
-                    ('financial', 'Financial'),
-                    ('environmental', 'Environmental'),
-                    ('social', 'Social Impact'),
-                    ('governance', 'Governance'),
-                ],
-                default='financial',
-                required=False
-            )),
-        ])),
-        ('table', wagtail.contrib.table_block.blocks.TableBlock()),
-        ('image', wagtail.images.blocks.ImageChooserBlock()),
-        ('callout', wagtail.blocks.StructBlock([
-            ('text', wagtail.blocks.RichTextBlock()),
-            ('type', wagtail.blocks.ChoiceBlock(choices=[
-                ('info', 'Info'),
-                ('warning', 'Warning'),
-                ('success', 'Success'),
-            ], default='info')),
-        ])),
-        ('quote', wagtail.blocks.StructBlock([
-            ('text', wagtail.blocks.TextBlock()),
-            ('attribution', wagtail.blocks.CharBlock(required=False)),
-        ])),
-    ], blank=True),
+                    wagtail.fields.StreamField(
+                        [
+                            (
+                                "rich_text",
+                                wagtail.blocks.RichTextBlock(
+                                    features=[
+                                        "h2",
+                                        "h3",
+                                        "h4",
+                                        "bold",
+                                        "italic",
+                                        "link",
+                                        "ol",
+                                        "ul",
+                                        "document-link",
+                                    ],
+                                    help_text="Rich text content with basic formatting",
+                                ),
+                            ),
+                            (
+                                "key_statistic",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        (
+                                            "value",
+                                            wagtail.blocks.CharBlock(
+                                                max_length=50,
+                                                help_text="The statistic value",
+                                            ),
+                                        ),
+                                        (
+                                            "label",
+                                            wagtail.blocks.CharBlock(
+                                                max_length=100,
+                                                help_text="Statistic label",
+                                            ),
+                                        ),
+                                        (
+                                            "description",
+                                            wagtail.blocks.TextBlock(
+                                                required=False,
+                                                help_text="Optional description",
+                                            ),
+                                        ),
+                                        (
+                                            "ai_confidence",
+                                            wagtail.blocks.DecimalBlock(
+                                                default=0.0,
+                                                max_digits=3,
+                                                decimal_places=2,
+                                                required=False,
+                                            ),
+                                        ),
+                                        (
+                                            "ai_context",
+                                            wagtail.blocks.TextBlock(required=False),
+                                        ),
+                                        (
+                                            "significance_level",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("high", "High Significance"),
+                                                    ("medium", "Medium Significance"),
+                                                    ("low", "Low Significance"),
+                                                ],
+                                                default="medium",
+                                                required=False,
+                                            ),
+                                        ),
+                                        (
+                                            "statistic_category",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("financial", "Financial"),
+                                                    ("environmental", "Environmental"),
+                                                    ("social", "Social Impact"),
+                                                    ("governance", "Governance"),
+                                                ],
+                                                default="financial",
+                                                required=False,
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            ("table", wagtail.contrib.table_block.blocks.TableBlock()),
+                            ("image", wagtail.images.blocks.ImageChooserBlock()),
+                            (
+                                "callout",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        ("text", wagtail.blocks.RichTextBlock()),
+                                        (
+                                            "type",
+                                            wagtail.blocks.ChoiceBlock(
+                                                choices=[
+                                                    ("info", "Info"),
+                                                    ("warning", "Warning"),
+                                                    ("success", "Success"),
+                                                ],
+                                                default="info",
+                                            ),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                            (
+                                "quote",
+                                wagtail.blocks.StructBlock(
+                                    [
+                                        ("text", wagtail.blocks.TextBlock()),
+                                        (
+                                            "attribution",
+                                            wagtail.blocks.CharBlock(required=False),
+                                        ),
+                                    ]
+                                ),
+                            ),
+                        ],
+                        blank=True,
+                    ),
                 ),
                 (
                     "body",

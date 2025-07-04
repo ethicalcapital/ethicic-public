@@ -15,12 +15,12 @@ def get_ssl_cert_path():
     """
     # SSL certificate paths for different environments
     ssl_cert_paths = [
-        "/app/config/ssl/ubicloud-root-ca.pem",           # Docker/production (Kinsta)
-        "./config/ssl/ubicloud-root-ca.pem",              # Relative path from app root
+        "/app/config/ssl/ubicloud-root-ca.pem",  # Docker/production (Kinsta)
+        "./config/ssl/ubicloud-root-ca.pem",  # Relative path from app root
         "/home/ec1c/garden/ethicic-public/config/ssl/ubicloud-root-ca.pem",  # Full path
-        os.environ.get("SSL_ROOT_CERT"),                  # Environment override
-        os.environ.get("DB_CA_CERT_PATH"),                # Alternative env var
-        os.environ.get("UBI_DB_CA_CERT_PATH"),            # Ubicloud specific env var
+        os.environ.get("SSL_ROOT_CERT"),  # Environment override
+        os.environ.get("DB_CA_CERT_PATH"),  # Alternative env var
+        os.environ.get("UBI_DB_CA_CERT_PATH"),  # Ubicloud specific env var
     ]
 
     # Find the first available SSL certificate
@@ -45,6 +45,7 @@ def get_database_config(database_url=None):
     # Parse database URL - use dj_database_url for better parsing
     try:
         import dj_database_url
+
         base_config = dj_database_url.parse(database_url)
 
         print(f"🔍 Configuring database connection to: {base_config['HOST']}")
@@ -84,11 +85,15 @@ def get_database_config(database_url=None):
         # Try full SSL verification with certificate first
         ssl_options["sslmode"] = "verify-full"
         ssl_options["sslrootcert"] = ssl_cert_path
-        print(f"✅ Found SSL certificate, attempting secure connection: {ssl_cert_path}")
+        print(
+            f"✅ Found SSL certificate, attempting secure connection: {ssl_cert_path}"
+        )
     else:
         # Fallback to SSL without certificate verification (still encrypted)
         ssl_options["sslmode"] = "require"
-        print("⚠️  No SSL certificate found - using encrypted connection without verification")
+        print(
+            "⚠️  No SSL certificate found - using encrypted connection without verification"
+        )
 
     return {
         "ENGINE": "django.db.backends.postgresql",
@@ -101,7 +106,6 @@ def get_database_config(database_url=None):
         "CONN_MAX_AGE": 600,  # 10 minutes connection pooling
         "CONN_HEALTH_CHECKS": True,  # Enable health checks
     }
-
 
 
 def validate_database_config():

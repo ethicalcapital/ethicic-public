@@ -2,6 +2,7 @@
 """
 Management command to create initial page structure with imported content
 """
+
 from django.core.management.base import BaseCommand
 from wagtail.models import Page, Site
 
@@ -19,7 +20,9 @@ class Command(BaseCommand):
             return
 
         # Delete the default homepage if it exists
-        default_home = Page.objects.filter(title="Welcome to your new Wagtail site!").first()
+        default_home = Page.objects.filter(
+            title="Welcome to your new Wagtail site!"
+        ).first()
         if default_home:
             default_home.delete()
             self.stdout.write("✓ Removed default homepage")
@@ -89,11 +92,12 @@ class Command(BaseCommand):
         else:
             self.stdout.write("✓ ContactPage already exists")
 
-
         # Show final page structure
         self.stdout.write("\n📄 Final Page Structure:")
         for page in Page.objects.all():
             indent = "  " * (page.depth - 1)
             self.stdout.write(f"{indent}- {page.title} ({page.slug})")
 
-        self.stdout.write(self.style.SUCCESS("\n✅ Page structure created successfully!"))
+        self.stdout.write(
+            self.style.SUCCESS("\n✅ Page structure created successfully!")
+        )

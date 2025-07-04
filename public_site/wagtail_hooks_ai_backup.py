@@ -3,6 +3,7 @@ Wagtail hooks for the public_site app.
 This ensures pages are properly editable in the Wagtail admin.
 Uses Wagtail's modern admin viewsets instead of deprecated wagtail-modeladmin.
 """
+
 from typing import ClassVar
 
 from django.urls import reverse
@@ -27,9 +28,21 @@ from .models import (
 @register_snippet
 class SupportTicketSnippetViewSet(SnippetViewSet):
     model = SupportTicket
-    list_display: ClassVar[list] = ["first_name", "last_name", "subject", "status", "created_at"]
+    list_display: ClassVar[list] = [
+        "first_name",
+        "last_name",
+        "subject",
+        "status",
+        "created_at",
+    ]
     list_filter: ClassVar[list] = ["status", "category", "created_at"]
-    search_fields: ClassVar[list] = ["first_name", "last_name", "email", "subject", "message"]
+    search_fields: ClassVar[list] = [
+        "first_name",
+        "last_name",
+        "email",
+        "subject",
+        "message",
+    ]
     ordering: ClassVar[list] = ["-created_at"]
 
 
@@ -443,19 +456,28 @@ class HomePageListingViewSet(PageListingViewSet):
     icon = "home"
     menu_order = 100
     add_to_admin_menu = True
-    list_display: ClassVar[list] = ["title", "hero_title", "live", "latest_revision_created_at", "has_features_content", "has_cta_content"]
+    list_display: ClassVar[list] = [
+        "title",
+        "hero_title",
+        "live",
+        "latest_revision_created_at",
+        "has_features_content",
+        "has_cta_content",
+    ]
     search_fields: ClassVar[list] = ["title", "hero_title", "hero_subtitle"]
     list_filter: ClassVar[list] = ["live", "latest_revision_created_at"]
 
     def has_features_content(self, obj):
         """Show whether the page has features content."""
         return bool(obj.features_content and obj.features_content.strip())
+
     has_features_content.boolean = True
     has_features_content.short_description = "Has Features"
 
     def has_cta_content(self, obj):
         """Show whether the page has CTA content."""
         return bool(obj.cta_description and obj.cta_description.strip())
+
     has_cta_content.boolean = True
     has_cta_content.short_description = "Has CTA"
 
@@ -480,13 +502,21 @@ class BlogPostListingViewSet(PageListingViewSet):
     icon = "edit"
     menu_order = 120
     add_to_admin_menu = True
-    list_display: ClassVar[list] = ["title", "author", "publish_date", "featured", "live", "has_streamfield_content"]
+    list_display: ClassVar[list] = [
+        "title",
+        "author",
+        "publish_date",
+        "featured",
+        "live",
+        "has_streamfield_content",
+    ]
     list_filter: ClassVar[list] = ["live", "featured", "publish_date", "author"]
     search_fields: ClassVar[list] = ["title", "excerpt"]
 
     def has_streamfield_content(self, obj):
         """Show whether the post uses the new StreamField."""
         return bool(obj.content)
+
     has_streamfield_content.boolean = True
     has_streamfield_content.short_description = "Uses StreamField"
 
@@ -497,7 +527,12 @@ class StrategyPageListingViewSet(PageListingViewSet):
     icon = "tasks"
     menu_order = 130
     add_to_admin_menu = True
-    list_display: ClassVar[list] = ["title", "risk_level", "live", "latest_revision_created_at"]
+    list_display: ClassVar[list] = [
+        "title",
+        "risk_level",
+        "live",
+        "latest_revision_created_at",
+    ]
     search_fields: ClassVar[list] = ["title", "strategy_description"]
     list_filter: ClassVar[list] = ["live", "latest_revision_created_at"]
 
@@ -519,8 +554,18 @@ class PRIDDQPageListingViewSet(PageListingViewSet):
     icon = "doc-full"
     menu_order = 150
     add_to_admin_menu = True
-    list_display: ClassVar[list] = ["title", "last_updated", "live", "latest_revision_created_at"]
-    search_fields: ClassVar[list] = ["title", "hero_title", "hero_subtitle", "executive_summary"]
+    list_display: ClassVar[list] = [
+        "title",
+        "last_updated",
+        "live",
+        "latest_revision_created_at",
+    ]
+    search_fields: ClassVar[list] = [
+        "title",
+        "hero_title",
+        "hero_subtitle",
+        "executive_summary",
+    ]
     list_filter: ClassVar[list] = ["live", "latest_revision_created_at"]
 
 
@@ -529,21 +574,26 @@ class PRIDDQPageListingViewSet(PageListingViewSet):
 def register_homepage_viewset():
     return HomePageListingViewSet("homepage_listing")
 
+
 @hooks.register("register_admin_viewset")
 def register_aboutpage_viewset():
     return AboutPageListingViewSet("aboutpage_listing")
+
 
 @hooks.register("register_admin_viewset")
 def register_blogpost_viewset():
     return BlogPostListingViewSet("blogpost_listing")
 
+
 @hooks.register("register_admin_viewset")
 def register_strategypage_viewset():
     return StrategyPageListingViewSet("strategypage_listing")
 
+
 @hooks.register("register_admin_viewset")
 def register_faqarticle_viewset():
     return FAQArticleListingViewSet("faqarticle_listing")
+
 
 @hooks.register("register_admin_viewset")
 def register_priddqpage_viewset():
@@ -560,7 +610,7 @@ def register_public_pages_menu_item():
         "Edit Homepage",
         reverse("wagtailadmin_pages:edit", args=[3]),  # ID 3 is the HomePage
         icon_name="home",
-        order=201
+        order=201,
     )
 
 
@@ -574,7 +624,7 @@ def register_page_explorer_menu_item():
         "Page Explorer",
         reverse("wagtailadmin_explore_root"),
         icon_name="folder-open",
-        order=202
+        order=202,
     )
 
 
@@ -595,9 +645,7 @@ def page_listing_buttons(page, user, next_url=None):
     # Add "View Live" button for all public pages
     if hasattr(page.specific, "url") and page.live:
         yield wagtailadmin_widgets.ListingButton(
-            "View Live",
-            page.specific.url,
-            priority=10
+            "View Live", page.specific.url, priority=10
         )
 
 
@@ -612,12 +660,12 @@ def after_create_blog_post(request, page):
         if not page.content and not page.body:
             messages.success(
                 request,
-                "✨ Blog post created! Use the 'Main Content' StreamField to add rich content blocks like images, quotes, and code snippets."
+                "✨ Blog post created! Use the 'Main Content' StreamField to add rich content blocks like images, quotes, and code snippets.",
             )
         elif page.body and not page.content:
             messages.info(
                 request,
-                "💡 Consider using the new StreamField for better content formatting options."
+                "💡 Consider using the new StreamField for better content formatting options.",
             )
 
 
@@ -631,12 +679,12 @@ def after_edit_blog_post(request, page):
         if page.body and not page.content:
             messages.warning(
                 request,
-                "📝 This post uses the legacy rich text field. The new StreamField offers better formatting options including images, quotes, callouts, and code blocks."
+                "📝 This post uses the legacy rich text field. The new StreamField offers better formatting options including images, quotes, callouts, and code blocks.",
             )
         elif page.content:
             messages.success(
                 request,
-                "✅ Great! This post uses the new StreamField with rich content blocks."
+                "✅ Great! This post uses the new StreamField with rich content blocks.",
             )
 
 
@@ -658,7 +706,7 @@ def after_edit_homepage(request, page):
         if len(sections_populated) == 3:
             messages.success(
                 request,
-                "🏠 ✅ Homepage fully configured! All sections (Hero, Features, CTA) have content."
+                "🏠 ✅ Homepage fully configured! All sections (Hero, Features, CTA) have content.",
             )
         elif len(sections_populated) >= 1:
             missing_sections = []
@@ -672,12 +720,12 @@ def after_edit_homepage(request, page):
             if missing_sections:
                 messages.info(
                     request,
-                    f"🏠 📝 Homepage partially configured. Consider adding content to: {', '.join(missing_sections)}"
+                    f"🏠 📝 Homepage partially configured. Consider adding content to: {', '.join(missing_sections)}",
                 )
         else:
             messages.warning(
                 request,
-                "🏠 ⚠️ Homepage needs content! Add descriptions to Hero, Features, and CTA sections for a complete homepage."
+                "🏠 ⚠️ Homepage needs content! Add descriptions to Hero, Features, and CTA sections for a complete homepage.",
             )
 
 
@@ -696,6 +744,7 @@ def add_public_site_instructions(request, panels):
         def media(self):
             """Return empty Media object since this panel doesn't need additional CSS/JS."""
             from django.forms import Media
+
             return Media()
 
         def render_html(self, parent_context=None):

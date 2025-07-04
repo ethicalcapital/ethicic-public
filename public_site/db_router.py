@@ -1,6 +1,7 @@
 """
 Database router for hybrid Ubicloud + local cache approach
 """
+
 import logging
 
 logger = logging.getLogger(__name__)

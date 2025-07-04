@@ -21,7 +21,9 @@ urlpatterns = [
     path("newsletter/signup/", views.newsletter_signup, name="newsletter_subscribe"),
     # Onboarding form
     path("onboarding/submit/", views.onboarding_form_submit, name="onboarding_submit"),
-    path("onboarding/thank-you/", views.onboarding_thank_you, name="onboarding_thank_you"),
+    path(
+        "onboarding/thank-you/", views.onboarding_thank_you, name="onboarding_thank_you"
+    ),
     # Onboarding page is handled by Wagtail routing
     # ============================================================================
     # JSON API ENDPOINTS (for AJAX forms and integrations)
@@ -41,7 +43,11 @@ urlpatterns = [
     # Garden platform redirect - removed for standalone deployment
     # Garden platform overview and access
     path("garden/", views.garden_overview, name="garden_overview"),
-    path("api/garden/interest/", views.garden_interest_registration, name="garden_interest_registration"),
+    path(
+        "api/garden/interest/",
+        views.garden_interest_registration,
+        name="garden_interest_registration",
+    ),
     # ============================================================================
     # SEARCH FUNCTIONALITY
     # ============================================================================
@@ -50,38 +56,89 @@ urlpatterns = [
     path("search/live/", views.site_search_live, name="search_live"),
     # HTMX polling endpoints
     path("api/live-stats/", views.live_stats_api, name="api_live_stats"),
-    path("api/notifications/count/", views.notifications_count_api, name="api_notifications_count"),
+    path(
+        "api/notifications/count/",
+        views.notifications_count_api,
+        name="api_notifications_count",
+    ),
     path("api/notifications/", views.notifications_api, name="api_notifications"),
-    path("api/notifications/mark-all-read/", views.mark_notifications_read_api, name="api_notifications_mark_read"),
+    path(
+        "api/notifications/mark-all-read/",
+        views.mark_notifications_read_api,
+        name="api_notifications_mark_read",
+    ),
     # Form validation endpoints
     path("api/validate-email/", views.validate_email_api, name="api_validate_email"),
     # Current Holdings transparency page - temporarily disabled for testing
     # path("holdings/", views.current_holdings, name="current_holdings"),
     # Note: Media files are served by Django/WhiteNoise and configured in main urls.py
-
     # ============================================================================
     # URL REDIRECTS - Ethicic.com to EC1C.com Migration
     # ============================================================================
     # People page redirects to about
-    path("people/", RedirectView.as_view(url="/about/", permanent=True), name="redirect_people"),
+    path(
+        "people/",
+        RedirectView.as_view(url="/about/", permanent=True),
+        name="redirect_people",
+    ),
     # Strategy redirects
-    path("how-we-invest/global-opportunities/", RedirectView.as_view(url="/strategies/growth/", permanent=True), name="redirect_growth"),
-    path("how-we-invest/impact-income/", RedirectView.as_view(url="/strategies/income/", permanent=True), name="redirect_income"),
-    path("how-we-invest/diversifying-allocation/", RedirectView.as_view(url="/strategies/diversification/", permanent=True), name="redirect_diversification"),
+    path(
+        "how-we-invest/global-opportunities/",
+        RedirectView.as_view(url="/strategies/growth/", permanent=True),
+        name="redirect_growth",
+    ),
+    path(
+        "how-we-invest/impact-income/",
+        RedirectView.as_view(url="/strategies/income/", permanent=True),
+        name="redirect_income",
+    ),
+    path(
+        "how-we-invest/diversifying-allocation/",
+        RedirectView.as_view(url="/strategies/diversification/", permanent=True),
+        name="redirect_diversification",
+    ),
     # Process page redirect
-    path("our-process/", RedirectView.as_view(url="/process/", permanent=True), name="redirect_process"),
+    path(
+        "our-process/",
+        RedirectView.as_view(url="/process/", permanent=True),
+        name="redirect_process",
+    ),
     # Holdings page redirect
-    path("what-we-own-and-why/", RedirectView.as_view(url="/strategies/", permanent=True), name="redirect_holdings"),
+    path(
+        "what-we-own-and-why/",
+        RedirectView.as_view(url="/strategies/", permanent=True),
+        name="redirect_holdings",
+    ),
     # Support redirect
-    path("helpandinsight/", RedirectView.as_view(url="/faq/", permanent=True), name="redirect_support"),
+    path(
+        "helpandinsight/",
+        RedirectView.as_view(url="/faq/", permanent=True),
+        name="redirect_support",
+    ),
     # Legacy support URL redirect
-    path("support/", RedirectView.as_view(url="/faq/", permanent=True), name="redirect_support_to_faq"),
+    path(
+        "support/",
+        RedirectView.as_view(url="/faq/", permanent=True),
+        name="redirect_support_to_faq",
+    ),
     # Legal redirects
     # Redirect old legal URL to new disclosures URL
-    path("legal/", RedirectView.as_view(url="/disclosures/", permanent=True), name="redirect_legal_to_disclosures"),
+    path(
+        "legal/",
+        RedirectView.as_view(url="/disclosures/", permanent=True),
+        name="redirect_legal_to_disclosures",
+    ),
     # Privacy and Terms redirects to disclosures page
-    path("privacy-policy/", RedirectView.as_view(url="/disclosures/", permanent=True), name="redirect_privacy_to_disclosures"),
-    path("terms-of-service/", RedirectView.as_view(url="/disclosures/", permanent=True), name="redirect_terms_to_disclosures"),
+    path(
+        "privacy-policy/",
+        RedirectView.as_view(url="/disclosures/", permanent=True),
+        name="redirect_privacy_to_disclosures",
+    ),
+    path(
+        "terms-of-service/",
+        RedirectView.as_view(url="/disclosures/", permanent=True),
+        name="redirect_terms_to_disclosures",
+    ),
     # ============================================================================
     # UTILITY AND HELPER ENDPOINTS
     # ============================================================================

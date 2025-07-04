@@ -1,6 +1,7 @@
 """
 Safe import command that checks column existence before importing
 """
+
 from django.core.management.base import BaseCommand
 from django.db import connections, transaction
 from wagtail.models import Page
@@ -15,7 +16,7 @@ class Command(BaseCommand):
         parser.add_argument(
             "--dry-run",
             action="store_true",
-            help="Check what tables and columns exist without importing"
+            help="Check what tables and columns exist without importing",
         )
 
     def handle(self, *args, **options):
@@ -26,9 +27,7 @@ class Command(BaseCommand):
         # Check if Ubicloud database is configured
         if "ubicloud" not in connections:
             self.stdout.write(
-                self.style.WARNING(
-                    "\n⚠️  UBI_DATABASE_URL not configured"
-                )
+                self.style.WARNING("\n⚠️  UBI_DATABASE_URL not configured")
             )
             return
 
@@ -41,9 +40,7 @@ class Command(BaseCommand):
                     self.style.SUCCESS("✅ Connected to Ubicloud database")
                 )
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"\n❌ Connection failed: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"\n❌ Connection failed: {e}"))
             return
 
         # Check what tables and columns exist
@@ -59,9 +56,7 @@ class Command(BaseCommand):
             self._safe_import_media(table_schemas)
             self._safe_import_tickets(table_schemas)
 
-        self.stdout.write(
-            self.style.SUCCESS("✅ Safe import completed!")
-        )
+        self.stdout.write(self.style.SUCCESS("✅ Safe import completed!"))
 
     def _check_table_schemas(self):
         """Check what tables and columns exist in Ubicloud"""
@@ -79,16 +74,17 @@ class Command(BaseCommand):
 
             # For each table, get its columns
             for table in tables:
-                cursor.execute("""
+                cursor.execute(
+                    """
                     SELECT column_name, data_type
                     FROM information_schema.columns
                     WHERE table_name = %s
                     ORDER BY ordinal_position
-                """, [table])
+                """,
+                    [table],
+                )
 
-                schemas[table] = {
-                    row[0]: row[1] for row in cursor.fetchall()
-                }
+                schemas[table] = {row[0]: row[1] for row in cursor.fetchall()}
 
         return schemas
 
@@ -142,7 +138,9 @@ class Command(BaseCommand):
 
                     if home_data and not HomePage.objects.exists():
                         # Create homepage with available data
-                        field_map = {field: home_data[i] for i, field in enumerate(select_fields)}
+                        field_map = {
+                            field: home_data[i] for i, field in enumerate(select_fields)
+                        }
 
                         root = Page.objects.get(id=1)
                         home = HomePage(
@@ -150,18 +148,18 @@ class Command(BaseCommand):
                             slug=field_map.get("slug", "home"),
                             hero_title=field_map.get("hero_title", ""),
                             hero_subtitle=field_map.get("hero_subtitle", ""),
-                            body=field_map.get("body", "")
+                            body=field_map.get("body", ""),
                         )
                         root.add_child(instance=home)
 
                         self.stdout.write(
-                            self.style.SUCCESS("✓ Imported HomePage with available fields")
+                            self.style.SUCCESS(
+                                "✓ Imported HomePage with available fields"
+                            )
                         )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.WARNING(f"Page import failed: {e}")
-            )
+            self.stdout.write(self.style.WARNING(f"Page import failed: {e}"))
 
     def _safe_import_media(self, schemas):
         """Safely import media items"""
@@ -201,7 +199,9 @@ class Command(BaseCommand):
 
                     imported = 0
                     for item_data in items:
-                        field_map = {col: item_data[i] for i, col in enumerate(select_cols)}
+                        field_map = {
+                            col: item_data[i] for i, col in enumerate(select_cols)
+                        }
 
                         # Only create if we have enough data
                         if field_map.get("title"):
@@ -211,8 +211,8 @@ class Command(BaseCommand):
                                     "publication": field_map.get("publication", ""),
                                     "date": field_map.get("date"),
                                     "excerpt": field_map.get("excerpt", ""),
-                                    "featured": field_map.get("featured", False)
-                                }
+                                    "featured": field_map.get("featured", False),
+                                },
                             )
                             imported += 1
 
@@ -221,9 +221,7 @@ class Command(BaseCommand):
                     )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.WARNING(f"Media import failed: {e}")
-            )
+            self.stdout.write(self.style.WARNING(f"Media import failed: {e}"))
 
     def _safe_import_tickets(self, schemas):
         """Safely import support tickets"""
@@ -239,7 +237,9 @@ class Command(BaseCommand):
 
         missing_cols = [col for col in required_cols if col not in available_cols]
         if missing_cols:
-            self.stdout.write(f"⚠️  Support ticket table missing columns: {missing_cols}, skipping")
+            self.stdout.write(
+                f"⚠️  Support ticket table missing columns: {missing_cols}, skipping"
+            )
             return
 
         self.stdout.write("Importing support tickets...")
@@ -248,7 +248,15 @@ class Command(BaseCommand):
             with connections["ubicloud"].cursor() as cursor:
                 # Use available columns
                 select_cols = []
-                for col in ["name", "email", "subject", "message", "status", "priority", "created_at"]:
+                for col in [
+                    "name",
+                    "email",
+                    "subject",
+                    "message",
+                    "status",
+                    "priority",
+                    "created_at",
+                ]:
                     if col in available_cols:
                         select_cols.append(col)
 
@@ -261,7 +269,9 @@ class Command(BaseCommand):
 
                 imported = 0
                 for ticket_data in tickets:
-                    field_map = {col: ticket_data[i] for i, col in enumerate(select_cols)}
+                    field_map = {
+                        col: ticket_data[i] for i, col in enumerate(select_cols)
+                    }
 
                     SupportTicket.objects.get_or_create(
                         email=field_map["email"],
@@ -271,8 +281,8 @@ class Command(BaseCommand):
                             "message": field_map["message"],
                             "status": field_map.get("status", "open"),
                             "priority": field_map.get("priority", "medium"),
-                            "created_at": field_map.get("created_at")
-                        }
+                            "created_at": field_map.get("created_at"),
+                        },
                     )
                     imported += 1
 
@@ -281,6 +291,4 @@ class Command(BaseCommand):
                 )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.WARNING(f"Support ticket import failed: {e}")
-            )
+            self.stdout.write(self.style.WARNING(f"Support ticket import failed: {e}"))

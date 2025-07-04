@@ -22,13 +22,17 @@ class Command(BaseCommand):
             """)
             deleted_count = cursor.rowcount
             if deleted_count > 0:
-                self.stdout.write(f"🗑️  Removed {deleted_count} stale migration record(s)")
+                self.stdout.write(
+                    f"🗑️  Removed {deleted_count} stale migration record(s)"
+                )
 
         # Now run normal migrations
         self.stdout.write("🔄 Running migrations...")
         try:
             call_command("migrate", verbosity=1, interactive=False)
-            self.stdout.write(self.style.SUCCESS("✅ Migrations completed successfully"))
+            self.stdout.write(
+                self.style.SUCCESS("✅ Migrations completed successfully")
+            )
         except Exception as e:
             self.stdout.write(self.style.WARNING(f"⚠️  Migration warnings: {e}"))
 

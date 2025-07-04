@@ -3,6 +3,7 @@
 Set up SSL certificates from environment variables
 This runs during build to prepare certificates for database connections
 """
+
 import os
 import sys
 from pathlib import Path
@@ -12,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 # Setup Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ethicic.settings")
+
 
 def setup_certificates():
     """Create certificate files from environment variables."""
@@ -96,6 +98,7 @@ DO NOT commit these files to version control!
     print("\n" + "=" * 50)
     print(f"Certificate setup complete: {cert_count} certificates processed")
     print("=" * 50)
+
 
 if __name__ == "__main__":
     setup_certificates()

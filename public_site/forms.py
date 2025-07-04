@@ -1,5 +1,5 @@
-"""Accessible forms for the public site using django-crispy-forms
-"""
+"""Accessible forms for the public site using django-crispy-forms"""
+
 import random
 import re
 from typing import ClassVar
@@ -14,8 +14,7 @@ from wagtail.users.forms import UserEditForm
 
 
 class AccessibleContactForm(forms.Form):
-    """Accessible contact form following WCAG 2.1 AA guidelines
-    """
+    """Accessible contact form following WCAG 2.1 AA guidelines"""
 
     name = forms.CharField(
         max_length=100,
@@ -81,10 +80,12 @@ class AccessibleContactForm(forms.Form):
         error_messages={
             "required": "Please select a subject that best describes your inquiry.",
         },
-        widget=forms.Select(attrs={
-            "class": "form-input",
-            "aria-describedby": "id_subject_help",
-        }),
+        widget=forms.Select(
+            attrs={
+                "class": "form-input",
+                "aria-describedby": "id_subject_help",
+            }
+        ),
     )
 
     message = forms.CharField(
@@ -110,21 +111,25 @@ class AccessibleContactForm(forms.Form):
     # Spam protection fields
     website = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={
-            "style": "display: none !important;",
-            "tabindex": "-1",
-            "autocomplete": "off",
-        }),
+        widget=forms.TextInput(
+            attrs={
+                "style": "display: none !important;",
+                "tabindex": "-1",
+                "autocomplete": "off",
+            }
+        ),
         label="Website (leave blank)",
     )
 
     honeypot = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={
-            "style": "position: absolute; left: -9999px; top: -9999px;",
-            "tabindex": "-1",
-            "autocomplete": "off",
-        }),
+        widget=forms.TextInput(
+            attrs={
+                "style": "position: absolute; left: -9999px; top: -9999px;",
+                "tabindex": "-1",
+                "autocomplete": "off",
+            }
+        ),
         label="If you are human, leave this field blank",
     )
 
@@ -135,13 +140,15 @@ class AccessibleContactForm(forms.Form):
         error_messages={
             "required": "Please solve the math problem to verify you are human.",
         },
-        widget=forms.TextInput(attrs={
-            "placeholder": "Enter the answer (numbers only)",
-            "class": "form-input",
-            "aria-describedby": "id_human_check_help",
-            "inputmode": "numeric",
-            "pattern": "[0-9]*",
-        }),
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Enter the answer (numbers only)",
+                "class": "form-input",
+                "aria-describedby": "id_human_check_help",
+                "inputmode": "numeric",
+                "pattern": "[0-9]*",
+            }
+        ),
     )
 
     form_start_time = forms.CharField(
@@ -191,7 +198,9 @@ class AccessibleContactForm(forms.Form):
             Fieldset(
                 "Verification",
                 Field("human_check", css_class="form-group"),
-                HTML('<div class="verification-help">This helps us prevent automated spam submissions.</div>'),
+                HTML(
+                    '<div class="verification-help">This helps us prevent automated spam submissions.</div>'
+                ),
                 css_class="verification-fieldset",
             ),
             # Hidden spam protection fields
@@ -219,6 +228,7 @@ class AccessibleContactForm(forms.Form):
         # Generate math challenge - always use proper security validation
         # SECURITY: Removed testing bypass to prevent production vulnerabilities
         import sys
+
         is_running_tests = "test" in sys.argv or "pytest" in sys.modules
 
         if is_running_tests:
@@ -241,7 +251,11 @@ class AccessibleContactForm(forms.Form):
         self.initial["form_start_time"] = str(current_time)
 
         # Update human_check field with math question
-        self.fields["human_check"].help_text = f"What is {self.math_a} + {self.math_b}? (This helps us prevent spam)"
+        self.fields[
+            "human_check"
+        ].help_text = (
+            f"What is {self.math_a} + {self.math_b}? (This helps us prevent spam)"
+        )
         self.fields["human_check"].label = f"What is {self.math_a} + {self.math_b}?"
 
     def _check_rate_limiting(self, request):
@@ -276,78 +290,88 @@ class AccessibleContactForm(forms.Form):
         """Enhanced form validation with spam protection."""
         cleaned_data = super().clean()
 
-        # Check honeypot fields
+        self._validate_honeypot_fields(cleaned_data)
+        self._validate_human_verification(cleaned_data)
+        self._validate_form_timing(cleaned_data)
+
+        return cleaned_data
+
+    def _validate_honeypot_fields(self, cleaned_data):
+        """Check honeypot fields for spam detection."""
         if cleaned_data.get("website"):
-            raise forms.ValidationError({
-                "website": "We detected unusual activity. Please contact us directly if you're having trouble."
-            })
+            raise forms.ValidationError(
+                {
+                    "website": "We detected unusual activity. Please contact us directly if you're having trouble."
+                }
+            )
 
         if cleaned_data.get("honeypot"):
-            raise forms.ValidationError({
-                "honeypot": "We detected unusual activity. Please contact us directly if you're having trouble."
-            })
+            raise forms.ValidationError(
+                {
+                    "honeypot": "We detected unusual activity. Please contact us directly if you're having trouble."
+                }
+            )
 
-        # Check human verification - same validation in testing and production
+    def _validate_human_verification(self, cleaned_data):
+        """Validate human verification math problem."""
         human_answer = cleaned_data.get("human_check", "")
 
         try:
             if hasattr(self, "math_answer") and int(human_answer) != self.math_answer:
-                raise forms.ValidationError({
-                    "human_check": "Please solve the math problem correctly to verify you are human."
-                })
+                raise forms.ValidationError(
+                    {
+                        "human_check": "Please solve the math problem correctly to verify you are human."
+                    }
+                )
             if not hasattr(self, "math_answer"):
                 # If math_answer is not set (shouldn't happen), require any non-empty value
                 if not human_answer or not human_answer.strip():
-                    raise forms.ValidationError({
-                        "human_check": "Please provide a value for verification."
-                    })
+                    raise forms.ValidationError(
+                        {"human_check": "Please provide a value for verification."}
+                    )
         except (ValueError, AttributeError):
-            raise forms.ValidationError({
-                "human_check": "Please enter a number to solve the math problem."
-            })
+            raise forms.ValidationError(
+                {"human_check": "Please enter a number to solve the math problem."}
+            )
 
-        # Check form timing (too fast submissions are likely bots)
-        # Always validate timing to ensure security logic is tested
+    def _validate_form_timing(self, cleaned_data):
+        """Validate form submission timing to detect bots."""
         import sys
+
         # SECURITY: Use more secure test detection that doesn't rely on settings
         is_testing = "test" in sys.argv or "pytest" in sys.modules
 
         form_start_time = cleaned_data.get("form_start_time")
-        if form_start_time:
-            try:
-                start_time = float(form_start_time)
+        if not form_start_time:
+            return
 
-                if is_testing:
-                    # In testing, use a predictable current time for consistent validation
-                    # Assume test forms are filled in exactly 30 seconds (valid timing)
-                    current_time = start_time + 30.0
-                else:
-                    current_time = timezone.now().timestamp()
+        try:
+            start_time = float(form_start_time)
 
-                elapsed_time = current_time - start_time
+            if is_testing:
+                # In testing, use a predictable current time for consistent validation
+                # Assume test forms are filled in exactly 30 seconds (valid timing)
+                current_time = start_time + 30.0
+            else:
+                current_time = timezone.now().timestamp()
 
-                # Require at least 10 seconds to fill out the form
-                if elapsed_time < 10:
-                    msg = "Please take your time to fill out the form completely."
-                    raise forms.ValidationError(
-                        msg
-                    )
+            elapsed_time = current_time - start_time
 
-                # Flag if form took too long (likely abandoned and filled by bot)
-                if elapsed_time > 3600:  # 1 hour
-                    msg = "This form has expired. Please refresh the page and try again."
-                    raise forms.ValidationError(
-                        msg
-                    )
-            except (ValueError, TypeError):
-                # Only ignore timing check if timestamp is completely invalid
-                pass
+            # Require at least 10 seconds to fill out the form
+            if elapsed_time < 10:
+                msg = "Please take your time to fill out the form completely."
+                raise forms.ValidationError(msg)
 
-        return cleaned_data
+            # Flag if form took too long (likely abandoned and filled by bot)
+            if elapsed_time > 3600:  # 1 hour
+                msg = "This form has expired. Please refresh the page and try again."
+                raise forms.ValidationError(msg)
+        except (ValueError, TypeError):
+            # Only ignore timing check if timestamp is completely invalid
+            pass
 
     def clean_message(self):
-        """Custom validation for message field with accessible error messages
-        """
+        """Custom validation for message field with accessible error messages"""
         message = self.cleaned_data.get("message", "")
 
         if len(message.strip()) < 10:
@@ -361,19 +385,48 @@ class AccessibleContactForm(forms.Form):
 
         # Enhanced spam detection
         spam_indicators = [
-            "click here", "visit our site", "check this out", "100% guaranteed",
-            "make money", "work from home", "get rich quick", "free money",
-            "limited time offer", "act now", "call now", "buy now",
-            "viagra", "cialis", "pharmacy", "casino", "lottery",
-            "weight loss", "lose weight", "diet pills", "miracle cure",
-            "get paid", "earn money", "investment opportunity", "binary options",
-            "crypto currency", "bitcoin investment", "forex trading",
-            "refinance", "mortgage", "loan approval", "credit repair",
-            "seo services", "marketing services", "backlinks", "traffic",
+            "click here",
+            "visit our site",
+            "check this out",
+            "100% guaranteed",
+            "make money",
+            "work from home",
+            "get rich quick",
+            "free money",
+            "limited time offer",
+            "act now",
+            "call now",
+            "buy now",
+            "viagra",
+            "cialis",
+            "pharmacy",
+            "casino",
+            "lottery",
+            "weight loss",
+            "lose weight",
+            "diet pills",
+            "miracle cure",
+            "get paid",
+            "earn money",
+            "investment opportunity",
+            "binary options",
+            "crypto currency",
+            "bitcoin investment",
+            "forex trading",
+            "refinance",
+            "mortgage",
+            "loan approval",
+            "credit repair",
+            "seo services",
+            "marketing services",
+            "backlinks",
+            "traffic",
         ]
 
         message_lower = message.lower()
-        spam_count = sum(1 for indicator in spam_indicators if indicator in message_lower)
+        spam_count = sum(
+            1 for indicator in spam_indicators if indicator in message_lower
+        )
 
         if spam_count >= 2:  # Multiple spam indicators
             msg = (
@@ -405,7 +458,9 @@ class AccessibleContactForm(forms.Form):
                     word_counts[word] = word_counts.get(word, 0) + 1
 
             max_repetition = max(word_counts.values()) if word_counts else 0
-            if max_repetition > len(words) * 0.3:  # Word appears more than 30% of the time
+            if (
+                max_repetition > len(words) * 0.3
+            ):  # Word appears more than 30% of the time
                 msg = "Please vary your language and avoid excessive repetition in your message."
                 raise forms.ValidationError(
                     msg,
@@ -414,8 +469,7 @@ class AccessibleContactForm(forms.Form):
         return message.strip()
 
     def clean_email(self):
-        """Enhanced email validation with accessible error messages
-        """
+        """Enhanced email validation with accessible error messages"""
         email = self.cleaned_data.get("email", "")
 
         # Additional validation beyond EmailField - always validate to ensure security logic is tested
@@ -436,8 +490,7 @@ class AccessibleContactForm(forms.Form):
 
 
 class AccessibleNewsletterForm(forms.Form):
-    """Simple accessible newsletter signup form
-    """
+    """Simple accessible newsletter signup form"""
 
     email = forms.EmailField(
         label="Email Address",
@@ -461,11 +514,13 @@ class AccessibleNewsletterForm(forms.Form):
     # Spam protection
     honeypot = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={
-            "style": "position: absolute; left: -9999px; top: -9999px;",
-            "tabindex": "-1",
-            "autocomplete": "off",
-        }),
+        widget=forms.TextInput(
+            attrs={
+                "style": "position: absolute; left: -9999px; top: -9999px;",
+                "tabindex": "-1",
+                "autocomplete": "off",
+            }
+        ),
         label="If you are human, leave this field blank",
     )
 
@@ -490,9 +545,11 @@ class AccessibleNewsletterForm(forms.Form):
 
         # Check honeypot field
         if cleaned_data.get("honeypot"):
-            raise forms.ValidationError({
-                "honeypot": "We detected unusual activity. Please contact us directly if you're having trouble."
-            })
+            raise forms.ValidationError(
+                {
+                    "honeypot": "We detected unusual activity. Please contact us directly if you're having trouble."
+                }
+            )
 
         return cleaned_data
 
@@ -501,8 +558,7 @@ class AccessibleNewsletterForm(forms.Form):
 
 
 class AdviserContactForm(forms.Form):
-    """Contact form specifically for investment advisers
-    """
+    """Contact form specifically for investment advisers"""
 
     name = forms.CharField(
         max_length=100,
@@ -593,8 +649,7 @@ class AdviserContactForm(forms.Form):
 
 
 class InstitutionalContactForm(forms.Form):
-    """Contact form specifically for institutional clients
-    """
+    """Contact form specifically for institutional clients"""
 
     name = forms.CharField(
         max_length=100,
@@ -692,20 +747,23 @@ class InstitutionalContactForm(forms.Form):
 
 
 class OnboardingForm(forms.Form):
-    """Comprehensive onboarding form for client acquisition
-    """
+    """Comprehensive onboarding form for client acquisition"""
 
     # Personal Information
     first_name = forms.CharField(
         max_length=100,
         label="First Name",
-        widget=forms.TextInput(attrs={"autocomplete": "given-name", "class": "form-input"}),
+        widget=forms.TextInput(
+            attrs={"autocomplete": "given-name", "class": "form-input"}
+        ),
     )
 
     last_name = forms.CharField(
         max_length=100,
         label="Last Name",
-        widget=forms.TextInput(attrs={"autocomplete": "family-name", "class": "form-input"}),
+        widget=forms.TextInput(
+            attrs={"autocomplete": "family-name", "class": "form-input"}
+        ),
     )
 
     email = forms.EmailField(
@@ -724,7 +782,9 @@ class OnboardingForm(forms.Form):
         max_length=200,
         label="Location",
         help_text="City and state/country for regulatory compliance",
-        widget=forms.TextInput(attrs={"class": "form-input", "placeholder": "e.g., San Francisco, CA"}),
+        widget=forms.TextInput(
+            attrs={"class": "form-input", "placeholder": "e.g., San Francisco, CA"}
+        ),
     )
 
     # Investment Goals
@@ -805,7 +865,9 @@ class OnboardingForm(forms.Form):
         decimal_places=2,
         label="Initial Investment Amount",
         help_text="Minimum investment is $25,000",
-        widget=forms.NumberInput(attrs={"class": "form-input", "min": "25000", "step": "1000"}),
+        widget=forms.NumberInput(
+            attrs={"class": "form-input", "min": "25000", "step": "1000"}
+        ),
     )
 
     monthly_contribution = forms.DecimalField(
@@ -814,7 +876,9 @@ class OnboardingForm(forms.Form):
         decimal_places=2,
         required=False,
         label="Monthly Contribution (Optional)",
-        widget=forms.NumberInput(attrs={"class": "form-input", "min": "0", "step": "100"}),
+        widget=forms.NumberInput(
+            attrs={"class": "form-input", "min": "0", "step": "100"}
+        ),
     )
 
     # Risk tolerance
@@ -907,11 +971,13 @@ class OnboardingForm(forms.Form):
     # Spam protection
     honeypot = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={
-            "style": "position: absolute; left: -9999px; top: -9999px;",
-            "tabindex": "-1",
-            "autocomplete": "off",
-        }),
+        widget=forms.TextInput(
+            attrs={
+                "style": "position: absolute; left: -9999px; top: -9999px;",
+                "tabindex": "-1",
+                "autocomplete": "off",
+            }
+        ),
         label="If you are human, leave this field blank",
     )
 
@@ -920,9 +986,7 @@ class OnboardingForm(forms.Form):
         amount = self.cleaned_data.get("initial_investment")
         if amount and amount < 25000:
             msg = "Minimum initial investment is $25,000. Please adjust your investment amount."
-            raise forms.ValidationError(
-                msg
-            )
+            raise forms.ValidationError(msg)
         return amount
 
     def clean_email(self):
@@ -937,21 +1001,23 @@ class OnboardingForm(forms.Form):
         # Check honeypot field
         if cleaned_data.get("honeypot"):
             msg = "We detected unusual activity. Please contact us directly if you're having trouble."
-            raise forms.ValidationError(
-                msg
-            )
+            raise forms.ValidationError(msg)
 
         # Validate accredited investor requirement
         if not cleaned_data.get("accredited_investor"):
-            raise forms.ValidationError({
-                "accredited_investor": "You must be an accredited investor to use our services."
-            })
+            raise forms.ValidationError(
+                {
+                    "accredited_investor": "You must be an accredited investor to use our services."
+                }
+            )
 
         # Validate terms acceptance
         if not cleaned_data.get("terms_accepted"):
-            raise forms.ValidationError({
-                "terms_accepted": "You must accept the terms and conditions to proceed."
-            })
+            raise forms.ValidationError(
+                {
+                    "terms_accepted": "You must accept the terms and conditions to proceed."
+                }
+            )
 
         return cleaned_data
 

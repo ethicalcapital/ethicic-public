@@ -31,13 +31,13 @@ def send_contact_notification(contact_data):
         message = f"""
 New contact form submission:
 
-Name: {contact_data.get('name', 'Not provided')}
-Email: {contact_data.get('email', 'Not provided')}
-Subject: {contact_data.get('subject', 'Not provided')}
-Message: {contact_data.get('message', 'Not provided')}
+Name: {contact_data.get("name", "Not provided")}
+Email: {contact_data.get("email", "Not provided")}
+Subject: {contact_data.get("subject", "Not provided")}
+Message: {contact_data.get("message", "Not provided")}
 
 Submitted: {timezone.now()}
-Source: {contact_data.get('source', 'Website')}
+Source: {contact_data.get("source", "Website")}
 """
 
         send_mail(
@@ -48,7 +48,9 @@ Source: {contact_data.get('source', 'Website')}
             fail_silently=False,
         )
 
-        logger.info(f"Contact notification sent for {contact_data.get('email', 'unknown')}")
+        logger.info(
+            f"Contact notification sent for {contact_data.get('email', 'unknown')}"
+        )
         return True
 
     except Exception as e:

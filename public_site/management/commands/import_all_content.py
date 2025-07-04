@@ -3,7 +3,8 @@
 Django management command to safely import ALL data from Ubicloud
 Handles schema differences between environments
 """
-from datetime import datetime
+
+from datetime import datetime, timezone
 
 from django.core.management.base import BaseCommand
 from django.db import connections
@@ -94,9 +95,19 @@ class Command(BaseCommand):
             id_mapping = {}
 
             for page_data in pages:
-                (old_id, path, depth, title, slug, url_path,
-                 seo_title, search_description, show_in_menus,
-                 first_published_at, model_name) = page_data
+                (
+                    old_id,
+                    path,
+                    depth,
+                    title,
+                    slug,
+                    url_path,
+                    seo_title,
+                    search_description,
+                    show_in_menus,
+                    first_published_at,
+                    model_name,
+                ) = page_data
 
                 # Skip if already exists
                 if Page.objects.filter(slug=slug).exists():
@@ -106,16 +117,19 @@ class Command(BaseCommand):
                     continue
 
                 # Get model class
-                ModelClass = model_map.get(model_name)
-                if not ModelClass:
+                model_class = model_map.get(model_name)
+                if not model_class:
                     self.stdout.write(f"  ⚠️  Unknown model: {model_name}")
                     continue
 
                 # Get model-specific data
-                cursor.execute(f"""
+                cursor.execute(
+                    f"""
                     SELECT * FROM public_site_{model_name}
                     WHERE page_ptr_id = %s
-                """, [old_id])
+                """,
+                    [old_id],
+                )
 
                 model_row = cursor.fetchone()
                 if not model_row:
@@ -143,20 +157,19 @@ class Command(BaseCommand):
                         continue
 
                     # Filter out fields that don't exist in the model
-                    valid_fields = {f.name for f in ModelClass._meta.fields}
+                    valid_fields = {f.name for f in model_class._meta.fields}
                     filtered_dict = {
-                        k: v for k, v in model_dict.items()
-                        if k in valid_fields
+                        k: v for k, v in model_dict.items() if k in valid_fields
                     }
 
                     # Create the page instance
-                    page = ModelClass(
+                    page = model_class(
                         title=title,
                         slug=slug,
                         seo_title=seo_title or "",
                         search_description=search_description or "",
                         show_in_menus=show_in_menus or False,
-                        **filtered_dict
+                        **filtered_dict,
                     )
 
                     # Add as child and publish
@@ -192,7 +205,7 @@ class Command(BaseCommand):
                         published_date=item.published_date,
                         description=item.description,
                         featured=item.featured,
-                        order=item.order
+                        order=item.order,
                     )
                     created += 1
 
@@ -228,14 +241,24 @@ class Command(BaseCommand):
                     # Create ticket with available fields
                     ticket_data = {
                         "title": ticket_dict.get("title", "Untitled"),
-                        "subject": ticket_dict.get("subject", ticket_dict.get("title", "No subject")),
-                        "message": ticket_dict.get("message", ticket_dict.get("description", "")),
+                        "subject": ticket_dict.get(
+                            "subject", ticket_dict.get("title", "No subject")
+                        ),
+                        "message": ticket_dict.get(
+                            "message", ticket_dict.get("description", "")
+                        ),
                         "status": ticket_dict.get("status", "open"),
                         "priority": ticket_dict.get("priority", "medium"),
-                        "name": ticket_dict.get("name", ticket_dict.get("created_by", "Unknown")),
+                        "name": ticket_dict.get(
+                            "name", ticket_dict.get("created_by", "Unknown")
+                        ),
                         "email": ticket_dict.get("email", "noemail@example.com"),
-                        "created_at": ticket_dict.get("created_at", datetime.now()),
-                        "updated_at": ticket_dict.get("updated_at", datetime.now()),
+                        "created_at": ticket_dict.get(
+                            "created_at", datetime.now(timezone.utc)
+                        ),
+                        "updated_at": ticket_dict.get(
+                            "updated_at", datetime.now(timezone.utc)
+                        ),
                     }
 
                     # Add optional fields if they exist
@@ -249,7 +272,9 @@ class Command(BaseCommand):
                         ticket_data["ticket_type"] = ticket_dict["category"]
 
                     # Check if already exists by title
-                    if not SupportTicket.objects.filter(title=ticket_data["title"]).exists():
+                    if not SupportTicket.objects.filter(
+                        title=ticket_data["title"]
+                    ).exists():
                         SupportTicket.objects.create(**ticket_data)
                         created += 1
 

@@ -2,6 +2,7 @@
 """
 Generate PNG favicon files from SVG for Ethical Capital
 """
+
 import subprocess
 from pathlib import Path
 
@@ -12,19 +13,25 @@ def check_dependencies():
     try:
         # Try cairosvg first (preferred)
         import cairosvg  # noqa: F401
+
         return "cairosvg"
     except ImportError:
         # Check for rsvg-convert command
-        result = subprocess.run(["which", "rsvg-convert"], capture_output=True, text=True, check=False)
+        result = subprocess.run(
+            ["which", "rsvg-convert"], capture_output=True, text=True, check=False
+        )
         if result.returncode == 0:
             return "rsvg"
 
         # Check for ImageMagick convert
-        result = subprocess.run(["which", "convert"], capture_output=True, text=True, check=False)
+        result = subprocess.run(
+            ["which", "convert"], capture_output=True, text=True, check=False
+        )
         if result.returncode == 0:
             return "imagemagick"
 
     return None
+
 
 def generate_pngs():
     """Generate PNG files from SVG"""
@@ -59,28 +66,40 @@ def generate_pngs():
         try:
             if converter == "cairosvg":
                 import cairosvg
+
                 cairosvg.svg2png(
                     url=str(svg_file),
                     write_to=str(output_file),
                     output_width=size,
-                    output_height=size
+                    output_height=size,
                 )
             elif converter == "rsvg":
-                subprocess.run([
-                    "rsvg-convert",
-                    "-w", str(size),
-                    "-h", str(size),
-                    str(svg_file),
-                    "-o", str(output_file)
-                ], check=True)
+                subprocess.run(
+                    [
+                        "rsvg-convert",
+                        "-w",
+                        str(size),
+                        "-h",
+                        str(size),
+                        str(svg_file),
+                        "-o",
+                        str(output_file),
+                    ],
+                    check=True,
+                )
             elif converter == "imagemagick":
-                subprocess.run([
-                    "convert",
-                    "-background", "none",
-                    "-resize", f"{size}x{size}",
-                    str(svg_file),
-                    str(output_file)
-                ], check=True)
+                subprocess.run(
+                    [
+                        "convert",
+                        "-background",
+                        "none",
+                        "-resize",
+                        f"{size}x{size}",
+                        str(svg_file),
+                        str(output_file),
+                    ],
+                    check=True,
+                )
 
             print(f"✅ Generated: {filename} ({size}x{size})")
         except Exception as e:
@@ -99,23 +118,41 @@ def generate_pngs():
                 line_width = size // 16
 
                 # Vertical line of E
-                draw.rectangle([margin, margin, margin + line_width, size - margin], fill="white")
+                draw.rectangle(
+                    [margin, margin, margin + line_width, size - margin], fill="white"
+                )
 
                 # Three horizontal lines of E
                 # Top
-                draw.rectangle([margin, margin, size - margin, margin + line_width], fill="white")
+                draw.rectangle(
+                    [margin, margin, size - margin, margin + line_width], fill="white"
+                )
                 # Middle
                 mid = size // 2
-                draw.rectangle([margin, mid - line_width//2, size - margin - margin, mid + line_width//2], fill="white")
+                draw.rectangle(
+                    [
+                        margin,
+                        mid - line_width // 2,
+                        size - margin - margin,
+                        mid + line_width // 2,
+                    ],
+                    fill="white",
+                )
                 # Bottom
-                draw.rectangle([margin, size - margin - line_width, size - margin, size - margin], fill="white")
+                draw.rectangle(
+                    [margin, size - margin - line_width, size - margin, size - margin],
+                    fill="white",
+                )
 
                 img.save(output_file, "PNG")
                 print(f"✅ Generated {filename} using fallback method")
             except ImportError:
-                print(f"⚠️  Could not generate {filename} - install Pillow: pip install Pillow")
+                print(
+                    f"⚠️  Could not generate {filename} - install Pillow: pip install Pillow"
+                )
 
     return True
+
 
 if __name__ == "__main__":
     generate_pngs()

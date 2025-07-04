@@ -58,13 +58,21 @@ def highlight_stats(content):
     # Patterns to highlight
     highlight_patterns = [
         (r"([+-]?\d+\.?\d*%)", r'<span class="stat-highlight">\1</span>'),
-        (r"(\$\d+(?:,\d{3})*(?:\.\d{2})?[BMK]?)", r'<span class="stat-highlight">\1</span>'),
-        (r"(\d+\.?\d*)\s*(basis points|bps)", r'<span class="stat-highlight">\1 \2</span>'),
+        (
+            r"(\$\d+(?:,\d{3})*(?:\.\d{2})?[BMK]?)",
+            r'<span class="stat-highlight">\1</span>',
+        ),
+        (
+            r"(\d+\.?\d*)\s*(basis points|bps)",
+            r'<span class="stat-highlight">\1 \2</span>',
+        ),
     ]
 
     highlighted_content = str(content)
     for pattern, replacement in highlight_patterns:
-        highlighted_content = re.sub(pattern, replacement, highlighted_content, flags=re.IGNORECASE)
+        highlighted_content = re.sub(
+            pattern, replacement, highlighted_content, flags=re.IGNORECASE
+        )
 
     return mark_safe(highlighted_content)
 
@@ -94,35 +102,23 @@ def generate_data_header(post):
     # Portfolio positions and weights
     if stats.get("positions"):
         for pos in stats["positions"][:2]:
-            data_points.append({
-                "value": pos,
-                "label": "PORTFOLIO WEIGHT"
-            })
+            data_points.append({"value": pos, "label": "PORTFOLIO WEIGHT"})
 
     # Performance returns
     if stats.get("returns"):
         for ret in stats["returns"][:2]:
-            data_points.append({
-                "value": ret,
-                "label": "PERFORMANCE"
-            })
+            data_points.append({"value": ret, "label": "PERFORMANCE"})
 
     # General percentages
     if stats.get("percentages") and len(data_points) < 4:
         for pct in stats["percentages"][:2]:
             if pct not in [dp["value"] for dp in data_points]:  # Avoid duplicates
-                data_points.append({
-                    "value": pct,
-                    "label": "KEY METRIC"
-                })
+                data_points.append({"value": pct, "label": "KEY METRIC"})
 
     # Dollar amounts
     if stats.get("dollar_amounts") and len(data_points) < 4:
         for amt in stats["dollar_amounts"][:1]:
-            data_points.append({
-                "value": f"${amt}",
-                "label": "VALUE"
-            })
+            data_points.append({"value": f"${amt}", "label": "VALUE"})
 
     return data_points[:4]  # Maximum 4 data points for header
 
@@ -155,7 +151,11 @@ def generate_performance_visual(content):
     if stats.get("returns"):
         returns = stats["returns"][:2]
         try:
-            values = [float(re.search(r"[\d.]+", ret).group()) for ret in returns if re.search(r"[\d.]+", ret)]
+            values = [
+                float(re.search(r"[\d.]+", ret).group())
+                for ret in returns
+                if re.search(r"[\d.]+", ret)
+            ]
             if len(values) >= 2:
                 portfolio_return = values[0]
                 benchmark_return = values[1] if len(values) > 1 else 0
@@ -163,7 +163,7 @@ def generate_performance_visual(content):
                 visual = f"""PERFORMANCE COMPARISON
 ┌─────────────────────────────────────┐
 │  Portfolio: {portfolio_return:+.2f}%   Benchmark: {benchmark_return:+.2f}%  │
-│  {'▲' * 25 if portfolio_return > benchmark_return else '▽' * 25}  │
+│  {"▲" * 25 if portfolio_return > benchmark_return else "▽" * 25}  │
 │  Outperformance vs Market Index     │
 └─────────────────────────────────────┘"""
                 return mark_safe(f'<pre class="ascii-visual">{visual}</pre>')
@@ -188,7 +188,9 @@ def generate_holdings_visual(content):
                 bar = "█" * bar_length
                 visual_lines.append(f"Position Weight  {bar:<15} {val:>6.1f}%")
 
-            return mark_safe('<pre class="ascii-visual">\n' + "\n".join(visual_lines) + "\n</pre>")
+            return mark_safe(
+                '<pre class="ascii-visual">\n' + "\n".join(visual_lines) + "\n</pre>"
+            )
         except (ValueError, AttributeError):
             pass
 
@@ -211,7 +213,9 @@ def generate_general_visual(content):
             visual_lines.append(f"• ${amt} Value Reference")
 
     if len(visual_lines) > 2:  # Only show if we have actual stats
-        return mark_safe('<pre class="ascii-visual">\n' + "\n".join(visual_lines) + "\n</pre>")
+        return mark_safe(
+            '<pre class="ascii-visual">\n' + "\n".join(visual_lines) + "\n</pre>"
+        )
 
     return ""
 
@@ -246,7 +250,11 @@ def generate_ascii_bar_chart(data):
             val = item.get("value", 0)
             label = item.get("label", "Item")
         else:
-            val = float(re.search(r"[\d.]+", str(item)).group()) if re.search(r"[\d.]+", str(item)) else 0
+            val = (
+                float(re.search(r"[\d.]+", str(item)).group())
+                if re.search(r"[\d.]+", str(item))
+                else 0
+            )
             label = str(item)
 
         values.append(val)
@@ -268,7 +276,9 @@ def generate_ascii_bar_chart(data):
         padding = " " * (chart_width - bar_length)
         chart_lines.append(f"{label:<15} {bar}{padding} {val:>6.1f}%")
 
-    return mark_safe('<pre class="ascii-chart">\n' + "\n".join(chart_lines) + "\n</pre>")
+    return mark_safe(
+        '<pre class="ascii-chart">\n' + "\n".join(chart_lines) + "\n</pre>"
+    )
 
 
 def generate_ascii_performance_chart(data):
@@ -278,10 +288,20 @@ def generate_ascii_performance_chart(data):
     chart_lines.append("┌─────────────────────────────────────┐")
 
     if data and len(data) >= 2:
-        portfolio_val = data[0] if isinstance(data[0], int | float) else float(re.search(r"[\d.]+", str(data[0])).group())
-        benchmark_val = data[1] if isinstance(data[1], int | float) else float(re.search(r"[\d.]+", str(data[1])).group())
+        portfolio_val = (
+            data[0]
+            if isinstance(data[0], int | float)
+            else float(re.search(r"[\d.]+", str(data[0])).group())
+        )
+        benchmark_val = (
+            data[1]
+            if isinstance(data[1], int | float)
+            else float(re.search(r"[\d.]+", str(data[1])).group())
+        )
 
-        chart_lines.append(f"│  Portfolio: {portfolio_val:+.2f}%   Benchmark: {benchmark_val:+.2f}%   │")
+        chart_lines.append(
+            f"│  Portfolio: {portfolio_val:+.2f}%   Benchmark: {benchmark_val:+.2f}%   │"
+        )
 
         # Visual comparison
         if portfolio_val > benchmark_val:
@@ -296,7 +316,9 @@ def generate_ascii_performance_chart(data):
 
     chart_lines.append("└─────────────────────────────────────┘")
 
-    return mark_safe('<pre class="ascii-chart">\n' + "\n".join(chart_lines) + "\n</pre>")
+    return mark_safe(
+        '<pre class="ascii-chart">\n' + "\n".join(chart_lines) + "\n</pre>"
+    )
 
 
 @register.filter
@@ -318,7 +340,14 @@ def extract_post_type(post):
         content = str(post.body).lower()
 
     # Check for performance-related content
-    performance_keywords = ["performance", "return", "quarterly", "annual", "benchmark", "outperform"]
+    performance_keywords = [
+        "performance",
+        "return",
+        "quarterly",
+        "annual",
+        "benchmark",
+        "outperform",
+    ]
     if any(keyword in title or keyword in content for keyword in performance_keywords):
         return "performance"
 
@@ -328,7 +357,14 @@ def extract_post_type(post):
         return "holdings"
 
     # Check for company/security analysis
-    analysis_keywords = ["analysis", "review", "deep dive", "company", "stock", "security"]
+    analysis_keywords = [
+        "analysis",
+        "review",
+        "deep dive",
+        "company",
+        "stock",
+        "security",
+    ]
     if any(keyword in title or keyword in content for keyword in analysis_keywords):
         return "analysis"
 
@@ -345,7 +381,7 @@ def format_inline_stat(value, context=""):
         f'<div class="inline-stat-callout">'
         f'<span class="stat-highlight">{value}</span>'
         f'<span class="stat-context">{context}</span>'
-        f'</div>'
+        f"</div>"
     )
 
 
@@ -379,7 +415,9 @@ def hash(value):
     """
     if not value:
         return "0"
-    return str(abs(hash(str(value))))[:8]  # Take first 8 digits for reasonable ID length
+    return str(abs(hash(str(value))))[
+        :8
+    ]  # Take first 8 digits for reasonable ID length
 
 
 @register.filter
@@ -393,10 +431,14 @@ def select_key_statistics(content):
 
     key_stats = []
     for block in content:
-        if hasattr(block, "block_type") and block.block_type in ["key_statistic", "ai_statistic"]:
+        if hasattr(block, "block_type") and block.block_type in [
+            "key_statistic",
+            "ai_statistic",
+        ]:
             key_stats.append(block)
 
     return key_stats
+
 
 # Keep old filter name for backward compatibility
 @register.filter

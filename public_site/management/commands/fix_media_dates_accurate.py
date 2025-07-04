@@ -7,7 +7,9 @@ from public_site.models import MediaPage
 
 
 class Command(BaseCommand):
-    help = "Fix media item dates with accurate publication dates and order chronologically"
+    help = (
+        "Fix media item dates with accurate publication dates and order chronologically"
+    )
 
     def handle(self, *args, **options):
         # TRIPLE-CHECKED actual publication dates from the articles themselves
@@ -15,52 +17,44 @@ class Command(BaseCommand):
             # Salon article - URL has the date 2024-10-09, verified correct
             "https://www.salon.com/2024/10/09/why-budgeting-is-terrible-advice-for-lower-income-people/": {
                 "date": "2024-10-09",
-                "verified": "URL contains date, confirmed accurate"
+                "verified": "URL contains date, confirmed accurate",
             },
-
             # Inc. article - Pride month feature, checked article metadata
             "https://www.inc.com/tim-crino/20-lgbtq-business-leaders-on-importance-of-visibility.html": {
                 "date": "2024-06-28",
-                "verified": "Pride month 2024 feature"
+                "verified": "Pride month 2024 feature",
             },
-
             # PETA article - International Women's Day feature
             "https://www.peta.org/features/women-entrepreneurs-animal-friendly-companies/": {
                 "date": "2024-03-08",
-                "verified": "International Women's Day 2024 feature"
+                "verified": "International Women's Day 2024 feature",
             },
-
             # Financial Planning - ESG ETF liquidation news
             "https://www.financial-planning.com/news/the-liquidation-of-the-lgbtq-esg100-etf": {
                 "date": "2024-01-24",
-                "verified": "ETF liquidation news from January 2024"
+                "verified": "ETF liquidation news from January 2024",
             },
-
             # Financial Planning - Rising Stars 2023 (annual feature)
             "https://www.financial-planning.com/list/financial-plannings-2023-rising-stars-award-winners": {
                 "date": "2023-09-12",
-                "verified": "Annual Rising Stars feature for 2023"
+                "verified": "Annual Rising Stars feature for 2023",
             },
-
             # Institutional Investor - Pride month feature 2023
             "https://www.institutionalinvestor.com/article/2bsvy0t4uzk4mhxh5rls0/culture/gay-on-wall-street": {
                 "date": "2023-06-30",
-                "verified": "Pride month 2023 feature"
+                "verified": "Pride month 2023 feature",
             },
-
             # Autostraddle - Trans financial planning feature
             "https://www.autostraddle.com/trans-financial-planning/": {
                 "date": "2023-06-15",
-                "verified": "Pride month 2023 trans financial planning feature"
+                "verified": "Pride month 2023 trans financial planning feature",
             },
         }
 
         try:
             media_page = MediaPage.objects.live().first()
             if not media_page:
-                self.stdout.write(
-                    self.style.ERROR("No MediaPage found in the CMS")
-                )
+                self.stdout.write(self.style.ERROR("No MediaPage found in the CMS"))
                 return
 
             # Update dates
@@ -80,7 +74,9 @@ class Command(BaseCommand):
                             )
                         )
                         self.stdout.write(
-                            self.style.WARNING(f"  Verification: {date_info['verified']}")
+                            self.style.WARNING(
+                                f"  Verification: {date_info['verified']}"
+                            )
                         )
                         updated_count += 1
                     else:
@@ -90,7 +86,9 @@ class Command(BaseCommand):
                             )
                         )
                         self.stdout.write(
-                            self.style.WARNING(f"  Verification: {date_info['verified']}")
+                            self.style.WARNING(
+                                f"  Verification: {date_info['verified']}"
+                            )
                         )
 
             # Now reorder items by publication date (most recent first)
@@ -115,10 +113,14 @@ class Command(BaseCommand):
 
             # Show final chronological order
             self.stdout.write(
-                self.style.SUCCESS("\n✅ Final chronological order (most recent first):")
+                self.style.SUCCESS(
+                    "\n✅ Final chronological order (most recent first):"
+                )
             )
 
-            for index, item in enumerate(media_page.media_items.all().order_by("-publication_date")):
+            for index, item in enumerate(
+                media_page.media_items.all().order_by("-publication_date")
+            ):
                 self.stdout.write(
                     self.style.SUCCESS(
                         f"{index + 1}. {item.title} - {item.publication} ({item.publication_date})"
@@ -126,10 +128,10 @@ class Command(BaseCommand):
                 )
 
             self.stdout.write(
-                self.style.SUCCESS(f"\n✅ Successfully updated {updated_count} dates and reordered chronologically!")
+                self.style.SUCCESS(
+                    f"\n✅ Successfully updated {updated_count} dates and reordered chronologically!"
+                )
             )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"Error updating media dates: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"Error updating media dates: {e}"))

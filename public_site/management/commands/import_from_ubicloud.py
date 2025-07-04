@@ -1,6 +1,7 @@
 """
 Management command to import public site data from Ubicloud database
 """
+
 from django.core.management.base import BaseCommand
 from django.db import connections, transaction
 from wagtail.models import Page, Site
@@ -13,19 +14,13 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--skip-pages",
-            action="store_true",
-            help="Skip importing Wagtail pages"
+            "--skip-pages", action="store_true", help="Skip importing Wagtail pages"
         )
         parser.add_argument(
-            "--skip-media",
-            action="store_true",
-            help="Skip importing media items"
+            "--skip-media", action="store_true", help="Skip importing media items"
         )
         parser.add_argument(
-            "--skip-tickets",
-            action="store_true",
-            help="Skip importing support tickets"
+            "--skip-tickets", action="store_true", help="Skip importing support tickets"
         )
 
     def handle(self, *args, **options):
@@ -36,9 +31,7 @@ class Command(BaseCommand):
         # Check if Ubicloud database is configured
         if "ubicloud" not in connections:
             self.stdout.write(
-                self.style.WARNING(
-                    "\n⚠️  UBI_DATABASE_URL not configured"
-                )
+                self.style.WARNING("\n⚠️  UBI_DATABASE_URL not configured")
             )
             self.stdout.write("   Skipping data import - no source database")
             self.stdout.write("=" * 60 + "\n")
@@ -50,7 +43,9 @@ class Command(BaseCommand):
         self.stdout.write(f"  Host: {conn_settings.get('HOST', 'N/A')}")
         self.stdout.write(f"  Port: {conn_settings.get('PORT', 'N/A')}")
         self.stdout.write(f"  Database: {conn_settings.get('NAME', 'N/A')}")
-        self.stdout.write(f"  SSL Mode: {conn_settings.get('OPTIONS', {}).get('sslmode', 'N/A')}")
+        self.stdout.write(
+            f"  SSL Mode: {conn_settings.get('OPTIONS', {}).get('sslmode', 'N/A')}"
+        )
 
         # Test Ubicloud connection
         self.stdout.write("\nTesting connection...")
@@ -61,11 +56,9 @@ class Command(BaseCommand):
                 self.stdout.write(
                     self.style.SUCCESS("✅ Connected to Ubicloud database")
                 )
-                self.stdout.write(f'   PostgreSQL {version.split(",")[0]}')
+                self.stdout.write(f"   PostgreSQL {version.split(',')[0]}")
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"\n❌ Connection failed: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"\n❌ Connection failed: {e}"))
             self.stdout.write("   Check your UBI_DATABASE_URL and network connectivity")
             self.stdout.write("   Continuing without data import")
             self.stdout.write("=" * 60 + "\n")
@@ -83,9 +76,7 @@ class Command(BaseCommand):
                 self._import_support_tickets()
 
         self.stdout.write("\n" + "=" * 60)
-        self.stdout.write(
-            self.style.SUCCESS("✅ Data import completed successfully!")
-        )
+        self.stdout.write(self.style.SUCCESS("✅ Data import completed successfully!"))
         self.stdout.write("=" * 60 + "\n")
 
     def _import_pages(self):
@@ -113,7 +104,7 @@ class Command(BaseCommand):
                             slug=home_data[2],
                             hero_title=home_data[3] or "",
                             hero_subtitle=home_data[4] or "",
-                            body=home_data[5] or ""
+                            body=home_data[5] or "",
                         )
                         root.add_child(instance=home)
 
@@ -122,11 +113,9 @@ class Command(BaseCommand):
                         Site.objects.create(
                             hostname="ethicic-public-svoo7.kinsta.app",
                             root_page=home,
-                            is_default_site=True
+                            is_default_site=True,
                         )
-                        self.stdout.write(
-                            self.style.SUCCESS("✓ Imported HomePage")
-                        )
+                        self.stdout.write(self.style.SUCCESS("✓ Imported HomePage"))
                     else:
                         # Update existing homepage
                         home = HomePage.objects.first()
@@ -170,7 +159,7 @@ class Command(BaseCommand):
                                     date=post_data[4],
                                     summary=post_data[5] or "",
                                     author=post_data[6] or "Ethical Capital",
-                                    body=post_data[7] or ""
+                                    body=post_data[7] or "",
                                 )
                                 parent.add_child(instance=blog)
                                 imported += 1
@@ -180,9 +169,7 @@ class Command(BaseCommand):
                     )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.WARNING(f"Page import partially failed: {e}")
-            )
+            self.stdout.write(self.style.WARNING(f"Page import partially failed: {e}"))
 
     def _import_media_items(self):
         """Import media items from Ubicloud"""
@@ -203,8 +190,7 @@ class Command(BaseCommand):
                 for item in media_items:
                     # Check if already exists
                     if not MediaItem.objects.filter(
-                        title=item[0],
-                        publication=item[1]
+                        title=item[0], publication=item[1]
                     ).exists():
                         MediaItem.objects.create(
                             title=item[0],
@@ -214,7 +200,7 @@ class Command(BaseCommand):
                             excerpt=item[4] or "",
                             featured=item[5],
                             created_at=item[6],
-                            updated_at=item[7]
+                            updated_at=item[7],
                         )
                         imported += 1
 
@@ -223,9 +209,7 @@ class Command(BaseCommand):
                 )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.WARNING(f"Media import failed: {e}")
-            )
+            self.stdout.write(self.style.WARNING(f"Media import failed: {e}"))
 
     def _import_support_tickets(self):
         """Import support tickets from Ubicloud"""
@@ -248,9 +232,7 @@ class Command(BaseCommand):
                 for ticket in tickets:
                     # Check if already exists
                     if not SupportTicket.objects.filter(
-                        email=ticket[2],
-                        subject=ticket[4],
-                        created_at=ticket[8]
+                        email=ticket[2], subject=ticket[4], created_at=ticket[8]
                     ).exists():
                         SupportTicket.objects.create(
                             ticket_type=ticket[0],
@@ -264,7 +246,7 @@ class Command(BaseCommand):
                             created_at=ticket[8],
                             updated_at=ticket[9],
                             resolved_at=ticket[10],
-                            notes=ticket[11] or ""
+                            notes=ticket[11] or "",
                         )
                         imported += 1
 
@@ -273,6 +255,4 @@ class Command(BaseCommand):
                 )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.WARNING(f"Support ticket import failed: {e}")
-            )
+            self.stdout.write(self.style.WARNING(f"Support ticket import failed: {e}"))

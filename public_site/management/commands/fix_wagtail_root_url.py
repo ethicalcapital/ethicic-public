@@ -26,36 +26,24 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         dry_run = options["dry_run"]
 
-        self.stdout.write(
-            self.style.SUCCESS("🔧 Wagtail Root URL Structure Fix")
-        )
+        self.stdout.write(self.style.SUCCESS("🔧 Wagtail Root URL Structure Fix"))
         self.stdout.write("=" * 50)
 
         # Get current site configuration
         sites = Site.objects.all()
 
         if not sites.exists():
-            self.stdout.write(
-                self.style.ERROR("❌ No sites found in database")
-            )
+            self.stdout.write(self.style.ERROR("❌ No sites found in database"))
             return
 
         # Check current root pages
         self.stdout.write("📊 Current Site Configuration:")
         for site in sites:
             root_page = site.root_page
-            self.stdout.write(
-                f"  Site: {site.hostname} (ID: {site.id})"
-            )
-            self.stdout.write(
-                f"    Root Page: {root_page.title} (ID: {root_page.id})"
-            )
-            self.stdout.write(
-                f"    Root URL Path: {root_page.url_path}"
-            )
-            self.stdout.write(
-                f"    Root Slug: {root_page.slug}"
-            )
+            self.stdout.write(f"  Site: {site.hostname} (ID: {site.id})")
+            self.stdout.write(f"    Root Page: {root_page.title} (ID: {root_page.id})")
+            self.stdout.write(f"    Root URL Path: {root_page.url_path}")
+            self.stdout.write(f"    Root Slug: {root_page.slug}")
 
         # Find the actual root page (depth=1)
         try:
@@ -66,9 +54,7 @@ class Command(BaseCommand):
             self.stdout.write(f"    URL Path: {true_root.url_path}")
             self.stdout.write(f"    Slug: {true_root.slug}")
         except Page.DoesNotExist:
-            self.stdout.write(
-                self.style.ERROR("❌ No root page found at depth=1")
-            )
+            self.stdout.write(self.style.ERROR("❌ No root page found at depth=1"))
             return
         except Page.MultipleObjectsReturned:
             self.stdout.write(
@@ -81,7 +67,9 @@ class Command(BaseCommand):
 
         if not sites_to_fix.exists():
             self.stdout.write(
-                self.style.SUCCESS("✅ All sites already point to the correct root page!")
+                self.style.SUCCESS(
+                    "✅ All sites already point to the correct root page!"
+                )
             )
             return
 
@@ -99,7 +87,9 @@ class Command(BaseCommand):
         for home_page in current_home_pages:
             child_pages = home_page.get_children().live()
             if child_pages.exists():
-                self.stdout.write(f"\n📄 Child pages under '{home_page.title}' that will move to root level:")
+                self.stdout.write(
+                    f"\n📄 Child pages under '{home_page.title}' that will move to root level:"
+                )
                 for child in child_pages:
                     old_url = child.url_path
                     # Calculate what the new URL would be
@@ -109,12 +99,8 @@ class Command(BaseCommand):
                     self.stdout.write(f"    {child.title}: {old_url} → {new_url}")
 
         if dry_run:
-            self.stdout.write(
-                self.style.WARNING("\n🔍 DRY RUN - No changes made")
-            )
-            self.stdout.write(
-                "Run without --dry-run to apply these changes."
-            )
+            self.stdout.write(self.style.WARNING("\n🔍 DRY RUN - No changes made"))
+            self.stdout.write("Run without --dry-run to apply these changes.")
             return
 
         # Ask for confirmation
@@ -148,13 +134,19 @@ class Command(BaseCommand):
                 )
 
                 self.stdout.write("\n📋 Next Steps:")
-                self.stdout.write("1. Test your site URLs to ensure they work correctly")
-                self.stdout.write("2. Remove any custom URL redirects that are no longer needed")
-                self.stdout.write("3. Update any hardcoded URLs in your templates or code")
-                self.stdout.write("4. Consider setting up redirects for any bookmarked /home/ URLs")
+                self.stdout.write(
+                    "1. Test your site URLs to ensure they work correctly"
+                )
+                self.stdout.write(
+                    "2. Remove any custom URL redirects that are no longer needed"
+                )
+                self.stdout.write(
+                    "3. Update any hardcoded URLs in your templates or code"
+                )
+                self.stdout.write(
+                    "4. Consider setting up redirects for any bookmarked /home/ URLs"
+                )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"❌ Error updating sites: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"❌ Error updating sites: {e}"))
             raise

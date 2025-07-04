@@ -24,9 +24,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         dry_run = options["dry_run"]
 
-        self.stdout.write(
-            self.style.SUCCESS("🔧 Fixing HomePage Slug")
-        )
+        self.stdout.write(self.style.SUCCESS("🔧 Fixing HomePage Slug"))
         self.stdout.write("=" * 40)
 
         # Find the HomePage
@@ -34,26 +32,25 @@ class Command(BaseCommand):
 
         try:
             homepage = HomePage.objects.get()
-            self.stdout.write(f"🏠 Found HomePage: {homepage.title} (ID: {homepage.id})")
+            self.stdout.write(
+                f"🏠 Found HomePage: {homepage.title} (ID: {homepage.id})"
+            )
             self.stdout.write(f"    Current slug: '{homepage.slug}'")
             self.stdout.write(f"    Current URL path: {homepage.url_path}")
         except HomePage.DoesNotExist:
-            self.stdout.write(
-                self.style.ERROR("❌ No HomePage found")
-            )
+            self.stdout.write(self.style.ERROR("❌ No HomePage found"))
             return
         except HomePage.MultipleObjectsReturned:
-            self.stdout.write(
-                self.style.ERROR("❌ Multiple HomePage instances found")
-            )
+            self.stdout.write(self.style.ERROR("❌ Multiple HomePage instances found"))
             return
 
         # Check if slug is already correct
         if homepage.slug in {"", "home"}:
-
             if homepage.slug == "":
                 self.stdout.write(
-                    self.style.SUCCESS("✅ Homepage slug is already empty (correct for root URL)")
+                    self.style.SUCCESS(
+                        "✅ Homepage slug is already empty (correct for root URL)"
+                    )
                 )
 
                 # But check if URL path is still wrong
@@ -66,7 +63,9 @@ class Command(BaseCommand):
                     self.stdout.write("✅ Homepage is already configured correctly!")
                     return
             else:
-                self.stdout.write(f"🔄 Will change slug from '{homepage.slug}' to '' (empty)")
+                self.stdout.write(
+                    f"🔄 Will change slug from '{homepage.slug}' to '' (empty)"
+                )
                 self.stdout.write(f"    URL will change from {homepage.url_path} to /")
         else:
             self.stdout.write(
@@ -75,12 +74,8 @@ class Command(BaseCommand):
             self.stdout.write("    Will change to '' (empty) for root URL")
 
         if dry_run:
-            self.stdout.write(
-                self.style.WARNING("\n🔍 DRY RUN - No changes made")
-            )
-            self.stdout.write(
-                "Run without --dry-run to apply these changes."
-            )
+            self.stdout.write(self.style.WARNING("\n🔍 DRY RUN - No changes made"))
+            self.stdout.write("Run without --dry-run to apply these changes.")
             return
 
         # Ask for confirmation
@@ -107,21 +102,23 @@ class Command(BaseCommand):
                 homepage.refresh_from_db()
 
                 self.stdout.write(
-                    self.style.SUCCESS(
-                        "✅ Successfully updated HomePage slug!"
-                    )
+                    self.style.SUCCESS("✅ Successfully updated HomePage slug!")
                 )
-                self.stdout.write(f"    Changed slug from '{old_slug}' to '{homepage.slug}'")
-                self.stdout.write(f"    URL path changed from {old_url_path} to {homepage.url_path}")
+                self.stdout.write(
+                    f"    Changed slug from '{old_slug}' to '{homepage.slug}'"
+                )
+                self.stdout.write(
+                    f"    URL path changed from {old_url_path} to {homepage.url_path}"
+                )
 
                 self.stdout.write("\n📋 Next Steps:")
                 self.stdout.write("1. Test your homepage at the root URL (/)")
                 self.stdout.write("2. Remove custom URL redirects in your main urls.py")
                 self.stdout.write("3. Verify all child page URLs work correctly")
-                self.stdout.write("4. Set up redirects from /home/ to / if needed for bookmarks")
+                self.stdout.write(
+                    "4. Set up redirects from /home/ to / if needed for bookmarks"
+                )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"❌ Error updating homepage slug: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"❌ Error updating homepage slug: {e}"))
             raise

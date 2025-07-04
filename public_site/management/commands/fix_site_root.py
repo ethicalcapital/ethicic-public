@@ -14,9 +14,7 @@ class Command(BaseCommand):
     help = "Fix Wagtail site configuration to point to correct homepage"
 
     def handle(self, *args, **options):
-        self.stdout.write(
-            self.style.SUCCESS("🔧 Fixing Wagtail Site Configuration")
-        )
+        self.stdout.write(self.style.SUCCESS("🔧 Fixing Wagtail Site Configuration"))
         self.stdout.write("=" * 50)
 
         # Find the HomePage
@@ -24,11 +22,11 @@ class Command(BaseCommand):
 
         try:
             homepage = HomePage.objects.get()
-            self.stdout.write(f"🏠 Found HomePage: {homepage.title} (ID: {homepage.id})")
-        except HomePage.DoesNotExist:
             self.stdout.write(
-                self.style.ERROR("❌ No HomePage found")
+                f"🏠 Found HomePage: {homepage.title} (ID: {homepage.id})"
             )
+        except HomePage.DoesNotExist:
+            self.stdout.write(self.style.ERROR("❌ No HomePage found"))
             return
 
         # Update all sites to point to the homepage
@@ -36,12 +34,16 @@ class Command(BaseCommand):
 
         for site in sites:
             self.stdout.write(f"\n🌐 Updating site: {site.hostname}:{site.port}")
-            self.stdout.write(f"    Current root page: {site.root_page.title} (ID: {site.root_page.id})")
+            self.stdout.write(
+                f"    Current root page: {site.root_page.title} (ID: {site.root_page.id})"
+            )
 
             if site.root_page.id != homepage.id:
                 site.root_page = homepage
                 site.save()
-                self.stdout.write(f"    ✅ Updated to point to: {homepage.title} (ID: {homepage.id})")
+                self.stdout.write(
+                    f"    ✅ Updated to point to: {homepage.title} (ID: {homepage.id})"
+                )
             else:
                 self.stdout.write("    ✅ Already pointing to correct homepage")
 
@@ -52,6 +54,8 @@ class Command(BaseCommand):
         )
 
         self.stdout.write("\n📋 Next Steps:")
-        self.stdout.write("1. Test your homepage - it should now show the proper content")
+        self.stdout.write(
+            "1. Test your homepage - it should now show the proper content"
+        )
         self.stdout.write("2. Verify all navigation links work correctly")
         self.stdout.write("3. Check that child pages are accessible")

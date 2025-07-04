@@ -12,9 +12,7 @@ class Command(BaseCommand):
         try:
             media_page = MediaPage.objects.live().first()
             if not media_page:
-                self.stdout.write(
-                    self.style.ERROR("No MediaPage found in the CMS")
-                )
+                self.stdout.write(self.style.ERROR("No MediaPage found in the CMS"))
                 return
 
             # Update intro text
@@ -49,12 +47,8 @@ class Command(BaseCommand):
             media_page.save_revision().publish()
 
             self.stdout.write(
-                self.style.SUCCESS(
-                    "✅ Successfully updated media page content!"
-                )
+                self.style.SUCCESS("✅ Successfully updated media page content!")
             )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"Error updating media page: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"Error updating media page: {e}"))

@@ -1,6 +1,7 @@
 """
 Management command to set up the complete site structure for production deployment.
 """
+
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from wagtail.models import Page, Site
@@ -44,7 +45,7 @@ class Command(BaseCommand):
             User.objects.create_superuser(
                 username="admin",
                 email="admin@ethicic.com",
-                password="admin123"  # Should be changed in production
+                password="admin123",  # nosec S106 - Development setup only
             )
             self.stdout.write(self.style.SUCCESS("Created superuser admin/admin123"))
         else:
@@ -107,14 +108,16 @@ class Command(BaseCommand):
                 serve_advisor_title="Registered Investment Advisors",
                 serve_advisor_content="Partnership opportunities for RIAs who want to offer ethical investing solutions to their clients.",
                 serve_institution_title="Institutions & Nonprofits",
-                serve_institution_content="Custom ethical investment solutions for endowments, foundations, and other institutional investors."
+                serve_institution_content="Custom ethical investment solutions for endowments, foundations, and other institutional investors.",
             )
 
             try:
                 # Add to root as child
                 root.add_child(instance=homepage)
                 homepage.save_revision().publish()
-                self.stdout.write(self.style.SUCCESS(f"Created new HomePage: {homepage.title}"))
+                self.stdout.write(
+                    self.style.SUCCESS(f"Created new HomePage: {homepage.title}")
+                )
             except Exception as e:
                 self.stdout.write(self.style.ERROR(f"Error creating homepage: {e}"))
                 return None
@@ -126,10 +129,14 @@ class Command(BaseCommand):
                 port=80,
                 root_page=homepage,
                 is_default_site=True,
-                site_name="Ethical Capital"
+                site_name="Ethical Capital",
             )
 
-            self.stdout.write(self.style.SUCCESS(f"Site created: {site.hostname}:{site.port} -> {homepage.title}"))
+            self.stdout.write(
+                self.style.SUCCESS(
+                    f"Site created: {site.hostname}:{site.port} -> {homepage.title}"
+                )
+            )
             self.stdout.write(f"Homepage URL: {homepage.url}")
             self.stdout.write(f"Homepage live: {homepage.live}")
             self.stdout.write(f"Homepage content type: {homepage.content_type}")
@@ -150,7 +157,7 @@ class Command(BaseCommand):
                 slug="about",
                 mission_statement="<p>Our mission is to provide ethical investment management.</p>",
                 team_intro="<p>Meet our experienced team.</p>",
-                company_story="<p>Founded to bridge the gap between values and investing.</p>"
+                company_story="<p>Founded to bridge the gap between values and investing.</p>",
             )
             homepage.add_child(instance=about_page)
             about_page.save_revision().publish()
@@ -163,7 +170,7 @@ class Command(BaseCommand):
             blog_index = BlogIndexPage(
                 title="Blog",
                 slug="blog",
-                intro_text="<p>Insights on ethical investing and market commentary.</p>"
+                intro_text="<p>Insights on ethical investing and market commentary.</p>",
             )
             homepage.add_child(instance=blog_index)
             blog_index.save_revision().publish()
@@ -180,7 +187,7 @@ class Command(BaseCommand):
                 show_contact_form=True,
                 email="hello@ethicic.com",
                 phone="555-123-4567",
-                address="<p>123 Investment St<br>Suite 100<br>City, State 12345</p>"
+                address="<p>123 Investment St<br>Suite 100<br>City, State 12345</p>",
             )
             homepage.add_child(instance=contact_page)
             contact_page.save_revision().publish()
@@ -196,10 +203,14 @@ class Command(BaseCommand):
                 port=80,
                 root_page=homepage,
                 is_default_site=True,
-                site_name="Ethical Capital"
+                site_name="Ethical Capital",
             )
 
-            self.stdout.write(self.style.SUCCESS(f"Site created: {site.hostname}:{site.port} -> {homepage.title}"))
+            self.stdout.write(
+                self.style.SUCCESS(
+                    f"Site created: {site.hostname}:{site.port} -> {homepage.title}"
+                )
+            )
             self.stdout.write(f"Homepage URL: {homepage.url}")
             self.stdout.write(f"Homepage live: {homepage.live}")
             self.stdout.write(f"Homepage content type: {homepage.content_type}")

@@ -48,9 +48,7 @@ class Command(BaseCommand):
             )
 
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"Error creating pages: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"Error creating pages: {e}"))
             raise
 
     def create_consultation_page(self, parent, force=False):
@@ -93,9 +91,7 @@ class Command(BaseCommand):
         parent.add_child(instance=page)
         page.save_revision().publish()
 
-        self.stdout.write(
-            self.style.SUCCESS(f"Created consultation page at: /{slug}/")
-        )
+        self.stdout.write(self.style.SUCCESS(f"Created consultation page at: /{slug}/"))
         return page
 
     def create_guide_page(self, parent, force=False):
@@ -138,9 +134,7 @@ class Command(BaseCommand):
         parent.add_child(instance=page)
         page.save_revision().publish()
 
-        self.stdout.write(
-            self.style.SUCCESS(f"Created guide page at: /{slug}/")
-        )
+        self.stdout.write(self.style.SUCCESS(f"Created guide page at: /{slug}/"))
         return page
 
     def create_criteria_page(self, parent, force=False):
@@ -195,7 +189,5 @@ class Command(BaseCommand):
         parent.add_child(instance=page)
         page.save_revision().publish()
 
-        self.stdout.write(
-            self.style.SUCCESS(f"Created criteria page at: /{slug}/")
-        )
+        self.stdout.write(self.style.SUCCESS(f"Created criteria page at: /{slug}/"))
         return page

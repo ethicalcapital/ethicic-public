@@ -1,6 +1,7 @@
 """
 Sync data from Ubicloud to local cache database
 """
+
 import logging
 
 from django.apps import apps
@@ -19,12 +20,10 @@ class Command(BaseCommand):
         parser.add_argument(
             "--model",
             type=str,
-            help="Sync only a specific model (e.g., public_site.HomePage)"
+            help="Sync only a specific model (e.g., public_site.HomePage)",
         )
         parser.add_argument(
-            "--clear-cache",
-            action="store_true",
-            help="Clear cache before syncing"
+            "--clear-cache", action="store_true", help="Clear cache before syncing"
         )
 
     def handle(self, *args, **options):
@@ -67,10 +66,14 @@ class Command(BaseCommand):
                         synced += 1
 
                         if synced % batch_size == 0:
-                            self.stdout.write(f"Synced {synced}/{count} {model_label} objects...")
+                            self.stdout.write(
+                                f"Synced {synced}/{count} {model_label} objects..."
+                            )
 
                 self.stdout.write(
-                    self.style.SUCCESS(f"✓ Synced {synced} {model_label} objects to cache")
+                    self.style.SUCCESS(
+                        f"✓ Synced {synced} {model_label} objects to cache"
+                    )
                 )
 
             except Exception as e:
@@ -78,6 +81,4 @@ class Command(BaseCommand):
                     self.style.ERROR(f"Failed to sync {model_label}: {e}")
                 )
 
-        self.stdout.write(
-            self.style.SUCCESS("Cache sync completed!")
-        )
+        self.stdout.write(self.style.SUCCESS("Cache sync completed!"))

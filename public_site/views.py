@@ -59,6 +59,7 @@ def custom_500(request):
         import logging
 
         from django.http import HttpResponse
+
         logger = logging.getLogger(__name__)
         logger.error(f"Error handler failed to render template: {e}")
 
@@ -74,6 +75,7 @@ def custom_500(request):
         """
         return HttpResponse(html, status=500, content_type="text/html")
 
+
 # Standalone constants already imported above
 
 
@@ -81,6 +83,7 @@ def custom_500(request):
 try:
     from crm.models import Contact
     from crm.models.interactions import ContactInteraction
+
     CRM_AVAILABLE = True
     logger.info("CRM integration available - using direct database access")
 except ImportError:
@@ -93,6 +96,7 @@ except ImportError:
 # Try to import AI services
 try:
     from ai_services.providers import get_provider  # noqa: F401
+
     AI_SERVICES_AVAILABLE = True
     logger.info("AI services available")
 except ImportError:
@@ -156,10 +160,12 @@ def contact_form_submit(request):
                 subject=f"{contact_data['subject']} - {contact_data.get('company', 'Individual')}",
                 message=contact_data["message"],
                 ticket_type="contact",
-                status="new"
+                status="new",
             )
 
-            logger.info("Contact form submitted successfully, created ticket #%s", ticket.id)
+            logger.info(
+                "Contact form submitted successfully, created ticket #%s", ticket.id
+            )
 
             # Optional: Still try to submit to main platform API if available
             try:
@@ -173,20 +179,23 @@ def contact_form_submit(request):
                         "message": contact_data["message"],
                         "category": contact_data["subject"],
                         "company": contact_data.get("company", ""),
-                        "source": "public_website"
+                        "source": "public_website",
                     }
 
                     response = requests.post(
                         f"{api_url}contact/submit/",
                         json=submission_data,
                         timeout=5,  # Shorter timeout since this is optional
-                        headers={"Content-Type": "application/json"}
+                        headers={"Content-Type": "application/json"},
                     )
 
                     if response.status_code == 201:
                         logger.info("Also submitted to main platform API successfully")
                     else:
-                        logger.info("Main platform API submission failed (non-critical): %s", response.status_code)
+                        logger.info(
+                            "Main platform API submission failed (non-critical): %s",
+                            response.status_code,
+                        )
 
             except Exception as e:
                 logger.info("Main platform API submission failed (non-critical): %s", e)
@@ -218,7 +227,8 @@ def contact_form_submit(request):
 
         logger.error("Contact form validation errors: %s", form.errors)
         messages.error(
-            request, f"Please correct the following errors: {', '.join(error_messages)}",
+            request,
+            f"Please correct the following errors: {', '.join(error_messages)}",
         )
         return redirect("/contact/")
 
@@ -258,29 +268,39 @@ def newsletter_signup(request):
                         "preferences": {
                             "newsletter_subscribed": True,
                             "newsletter_subscribed_date": timezone.now().isoformat(),
-                            "newsletter_source": "newsletter_page"
-                        }
-                    }
+                            "newsletter_source": "newsletter_page",
+                        },
+                    },
                 )
 
                 if not created:
                     # Update existing contact to subscribe to newsletter
                     contact.opt_in_marketing = True
-                    newsletter_prefs = contact.preferences.get("newsletter_subscribed", False)
+                    newsletter_prefs = contact.preferences.get(
+                        "newsletter_subscribed", False
+                    )
                     if not newsletter_prefs:
-                        contact.preferences.update({
-                            "newsletter_subscribed": True,
-                            "newsletter_subscribed_date": timezone.now().isoformat(),
-                            "newsletter_source": "newsletter_page"
-                        })
-                        contact.notes = (contact.notes or "") + f"\nRe-subscribed to newsletter on {timezone.now().date()}"
+                        contact.preferences.update(
+                            {
+                                "newsletter_subscribed": True,
+                                "newsletter_subscribed_date": timezone.now().isoformat(),
+                                "newsletter_source": "newsletter_page",
+                            }
+                        )
+                        contact.notes = (
+                            contact.notes or ""
+                        ) + f"\nRe-subscribed to newsletter on {timezone.now().date()}"
                         contact.save()
 
-                logger.info(f"{'Created' if created else 'Updated'} CRM contact for newsletter subscriber: {email}")
+                logger.info(
+                    f"{'Created' if created else 'Updated'} CRM contact for newsletter subscriber: {email}"
+                )
 
             except ImportError:
                 # Fallback to SupportTicket if CRM models not available
-                logger.warning("CRM models not available, falling back to SupportTicket")
+                logger.warning(
+                    "CRM models not available, falling back to SupportTicket"
+                )
                 SupportTicket.objects.create(
                     name="Newsletter Subscriber",
                     email=email,
@@ -292,9 +312,11 @@ def newsletter_signup(request):
 
             # Handle HTMX response
             if is_htmx:
-                return render(request, "public_site/partials/newsletter_success.html", {
-                    "email": email
-                })
+                return render(
+                    request,
+                    "public_site/partials/newsletter_success.html",
+                    {"email": email},
+                )
 
             messages.success(
                 request,
@@ -305,20 +327,26 @@ def newsletter_signup(request):
             logger.exception("Error processing newsletter signup")
 
             if is_htmx:
-                return render(request, "public_site/partials/newsletter_error.html", {
-                    "error": "There was an error with your subscription. Please try again."
-                })
+                return render(
+                    request,
+                    "public_site/partials/newsletter_error.html",
+                    {
+                        "error": "There was an error with your subscription. Please try again."
+                    },
+                )
 
             messages.error(
-                request, "There was an error with your subscription. Please try again.",
+                request,
+                "There was an error with your subscription. Please try again.",
             )
 
     else:
         if is_htmx:
-            return render(request, "public_site/newsletter_page.html", {
-                "form": form,
-                "errors": form.errors
-            })
+            return render(
+                request,
+                "public_site/newsletter_page.html",
+                {"form": form, "errors": form.errors},
+            )
 
         messages.error(request, "Please provide a valid email address.")
 
@@ -337,6 +365,7 @@ def classify_contact_priority(form_type, form_data):
             COLD_LEAD = "COLD_LEAD"
             WARM_LEAD = "WARM_LEAD"
             PROSPECT = "PROSPECT"
+
         class PriorityLevel:
             LOW = 1
             MEDIUM = 2
@@ -362,7 +391,9 @@ def create_or_update_contact(email, form_data, form_type, user=None):
         )
 
         # Get contact classification
-        contact_status, priority_level, importance_score = classify_contact_priority(form_type, form_data)
+        contact_status, priority_level, importance_score = classify_contact_priority(
+            form_type, form_data
+        )
 
         # Try to find existing contact
         contact = Contact.objects.filter(email=email).first()
@@ -378,7 +409,10 @@ def create_or_update_contact(email, form_data, form_type, user=None):
         else:
             # Create new contact
             created = True
-            full_name = form_data.get("name") or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
+            full_name = (
+                form_data.get("name")
+                or f"{form_data.get('first_name', '')} {form_data.get('last_name', '')}".strip()
+            )
 
             contact = Contact.objects.create(
                 email=email,
@@ -406,6 +440,7 @@ def create_or_update_contact(email, form_data, form_type, user=None):
                 self.email = email
                 self.full_name = form_data.get("name", "")
                 self.contact_status = "COLD_LEAD"
+
         return MockContact(), True
 
 
@@ -435,15 +470,19 @@ def onboarding_form_submit(request):
 
             # Handle HTMX request
             if is_htmx:
-                return render(request, "public_site/partials/onboarding_success.html", {
-                    "message": "Thank you for your application!",
-                    "details": "We have received your information and will review it shortly.",
-                    "ticket_id": ticket.id if ticket else None,
-                })
+                return render(
+                    request,
+                    "public_site/partials/onboarding_success.html",
+                    {
+                        "message": "Thank you for your application!",
+                        "details": "We have received your information and will review it shortly.",
+                        "ticket_id": ticket.id if ticket else None,
+                    },
+                )
 
             messages.success(
                 request,
-                "Thank you for your application! We have received your information and will review it shortly."
+                "Thank you for your application! We have received your information and will review it shortly.",
             )
 
             return redirect("/onboarding/thank-you/")
@@ -452,24 +491,32 @@ def onboarding_form_submit(request):
             logger.exception("Error processing onboarding form")
 
             if is_htmx:
-                return render(request, "public_site/partials/onboarding_error.html", {
-                    "message": "There was an error processing your application.",
-                    "details": "Please try again or contact us directly."
-                })
+                return render(
+                    request,
+                    "public_site/partials/onboarding_error.html",
+                    {
+                        "message": "There was an error processing your application.",
+                        "details": "Please try again or contact us directly.",
+                    },
+                )
 
             messages.error(
                 request,
-                "There was an error processing your application. Please try again or contact us directly."
+                "There was an error processing your application. Please try again or contact us directly.",
             )
             return redirect("/onboarding/")
 
     else:
         # Form has errors
         if is_htmx:
-            return render(request, "public_site/partials/onboarding_error.html", {
-                "message": "Please correct the following errors:",
-                "errors": form.errors
-            })
+            return render(
+                request,
+                "public_site/partials/onboarding_error.html",
+                {
+                    "message": "Please correct the following errors:",
+                    "errors": form.errors,
+                },
+            )
 
         error_messages = []
         for field, errors in form.errors.items():
@@ -477,7 +524,8 @@ def onboarding_form_submit(request):
                 error_messages.append(f"{field}: {error}")
 
         messages.error(
-            request, f"Please correct the following errors: {', '.join(error_messages)}",
+            request,
+            f"Please correct the following errors: {', '.join(error_messages)}",
         )
         return redirect("/onboarding/")
 
@@ -499,8 +547,6 @@ def onboarding_thank_you(request):
     return render(request, "public_site/onboarding_thank_you.html", context)
 
 
-
-
 def contact_success(request):
     """Contact form success page"""
     context = {
@@ -509,8 +555,6 @@ def contact_success(request):
         "message": "We have received your message and will respond within 24 hours.",
     }
     return render(request, "public_site/contact_success.html", context)
-
-
 
 
 @api_view(["POST"])
@@ -528,9 +572,13 @@ def contact_api(request):
         except Exception as parse_error:
             logger.warning("JSON parse error in contact API: %s", parse_error)
             if is_htmx:
-                return render(request, "public_site/partials/form_error.html", {
-                    "message": "Invalid form data. Please check your input and try again."
-                })
+                return render(
+                    request,
+                    "public_site/partials/form_error.html",
+                    {
+                        "message": "Invalid form data. Please check your input and try again."
+                    },
+                )
             return Response(
                 {
                     "success": False,
@@ -599,10 +647,14 @@ Support Ticket ID: {ticket.id}
 
             # Return appropriate response based on request type
             if is_htmx:
-                return render(request, "public_site/partials/form_success.html", {
-                    "message": "Thank you for your message! We will get back to you within 24 hours.",
-                    "ticket_id": ticket.id,
-                })
+                return render(
+                    request,
+                    "public_site/partials/form_success.html",
+                    {
+                        "message": "Thank you for your message! We will get back to you within 24 hours.",
+                        "ticket_id": ticket.id,
+                    },
+                )
 
             return Response(
                 {
@@ -615,10 +667,14 @@ Support Ticket ID: {ticket.id}
 
         # Form has errors
         if is_htmx:
-            return render(request, "public_site/partials/form_error.html", {
-                "message": "Please correct the form errors.",
-                "errors": form.errors,
-            })
+            return render(
+                request,
+                "public_site/partials/form_error.html",
+                {
+                    "message": "Please correct the form errors.",
+                    "errors": form.errors,
+                },
+            )
 
         return Response(
             {
@@ -632,9 +688,13 @@ Support Ticket ID: {ticket.id}
     except Exception:
         logger.exception("Error in contact API")
         if is_htmx:
-            return render(request, "public_site/partials/form_error.html", {
-                "message": "There was an error processing your request. Please try again.",
-            })
+            return render(
+                request,
+                "public_site/partials/form_error.html",
+                {
+                    "message": "There was an error processing your request. Please try again.",
+                },
+            )
 
         return Response(
             {
@@ -674,9 +734,13 @@ def newsletter_api(request):
             logger.info("Newsletter signup via API: %s", email)
 
             if is_htmx:
-                return render(request, "public_site/partials/newsletter_success.html", {
-                    "email": email,
-                })
+                return render(
+                    request,
+                    "public_site/partials/newsletter_success.html",
+                    {
+                        "email": email,
+                    },
+                )
 
             return Response(
                 {
@@ -687,9 +751,13 @@ def newsletter_api(request):
             )
 
         if is_htmx:
-            return render(request, "public_site/partials/newsletter_error.html", {
-                "errors": form.errors,
-            })
+            return render(
+                request,
+                "public_site/partials/newsletter_error.html",
+                {
+                    "errors": form.errors,
+                },
+            )
 
         return Response(
             {
@@ -703,9 +771,13 @@ def newsletter_api(request):
     except Exception:
         logger.exception("Error in newsletter API")
         if is_htmx:
-            return render(request, "public_site/partials/newsletter_error.html", {
-                "message": "There was an error with your subscription. Please try again.",
-            })
+            return render(
+                request,
+                "public_site/partials/newsletter_error.html",
+                {
+                    "message": "There was an error with your subscription. Please try again.",
+                },
+            )
 
         return Response(
             {
@@ -780,7 +852,8 @@ def get_site_navigation(request):
             # Only return the navigation if we have items, otherwise fall back
             if navigation:
                 return Response(
-                    {"navigation": navigation}, status=status.HTTP_200_OK,
+                    {"navigation": navigation},
+                    status=status.HTTP_200_OK,
                 )
 
     except Exception:
@@ -798,7 +871,8 @@ def get_site_navigation(request):
     ]
 
     return Response(
-        {"navigation": fallback_navigation}, status=status.HTTP_200_OK,
+        {"navigation": fallback_navigation},
+        status=status.HTTP_200_OK,
     )
 
 
@@ -823,7 +897,10 @@ def get_footer_links(request):
             {"title": "Privacy Policy", "url": "/disclosures/privacy/"},
             {"title": "Terms of Service", "url": "/disclosures/terms/"},
             {"title": "Disclosures", "url": "/disclosures/disclosures/"},
-            {"title": "Form ADV", "url": "https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf"},
+            {
+                "title": "Form ADV",
+                "url": "https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf",
+            },
         ],
         "connect": [
             {"title": "Contact Us", "url": "/contact/"},
@@ -834,10 +911,6 @@ def get_footer_links(request):
     }
 
     return Response(footer_links, status=status.HTTP_200_OK)
-
-
-
-
 
 
 def site_search(request):
@@ -897,11 +970,15 @@ def site_search_live(request):
 
     if not query_string or len(query_string) < 2:
         # Return empty results for short queries
-        return render(request, "public_site/partials/search_results_live.html", {
-            "query_string": query_string,
-            "search_results": [],
-            "total_results": 0,
-        })
+        return render(
+            request,
+            "public_site/partials/search_results_live.html",
+            {
+                "query_string": query_string,
+                "search_results": [],
+                "total_results": 0,
+            },
+        )
 
     try:
         # Use Wagtail's search functionality - limit to 5 results for live search
@@ -914,7 +991,8 @@ def site_search_live(request):
             "query_string": query_string,
             "search_results": results_list,
             "total_results": len(results_list),
-            "show_more": len(results_list) >= 5,  # Show "View all results" if we hit the limit
+            "show_more": len(results_list)
+            >= 5,  # Show "View all results" if we hit the limit
         }
     except Exception as e:
         # Fallback to simple title search
@@ -955,6 +1033,7 @@ def current_holdings(request):
 # GARDEN PLATFORM VIEWS
 # ============================================================================
 
+
 def garden_overview(request):
     """Garden platform overview with features, login access, and interest registration."""
 
@@ -969,8 +1048,8 @@ def garden_overview(request):
                 "Multi-strategy support (Growth, Income, Diversification)",
                 "Intelligent rebalancing recommendations and insights",
                 "Comprehensive risk assessment with downside protection analysis",
-                "Tax-loss harvesting optimization and detailed reporting"
-            ]
+                "Tax-loss harvesting optimization and detailed reporting",
+            ],
         },
         {
             "title": "Research Platform",
@@ -981,8 +1060,8 @@ def garden_overview(request):
                 "AI-enhanced fundamental analysis and valuation models",
                 "ESG integration with proprietary ethical scoring framework",
                 "Market sentiment analysis and pattern recognition",
-                "Curated research reports and analytical summaries"
-            ]
+                "Curated research reports and analytical summaries",
+            ],
         },
         {
             "title": "Client Communication Hub",
@@ -993,8 +1072,8 @@ def garden_overview(request):
                 "Meeting scheduling and portfolio review management",
                 "Document sharing with secure client portal access",
                 "Communication history and relationship tracking",
-                "Compliance monitoring and regulatory documentation"
-            ]
+                "Compliance monitoring and regulatory documentation",
+            ],
         },
         {
             "title": "AI-Enhanced Wisdom",
@@ -1005,8 +1084,8 @@ def garden_overview(request):
                 "Thoughtful data curation from multiple sources",
                 "Natural language query interface for complex analysis",
                 "Pattern recognition for market insights and opportunities",
-                "Workflow orchestration that learns from your practice"
-            ]
+                "Workflow orchestration that learns from your practice",
+            ],
         },
         {
             "title": "Compliance & Risk Stewardship",
@@ -1017,8 +1096,8 @@ def garden_overview(request):
                 "Intelligent regulatory filing and deadline tracking",
                 "Risk assessment with stress testing and scenario analysis",
                 "Comprehensive audit trail and documentation management",
-                "Privacy protection with PII detection and encryption"
-            ]
+                "Privacy protection with PII detection and encryption",
+            ],
         },
         {
             "title": "Knowledge Integration Canvas",
@@ -1029,9 +1108,9 @@ def garden_overview(request):
                 "Multi-custodian account aggregation and reconciliation",
                 "Document management with Paperless-ngx integration",
                 "Knowledge graph for understanding entity relationships and insights",
-                "Thoughtful API integrations with Sharadar, SEC EDGAR, and more"
-            ]
-        }
+                "Thoughtful API integrations with Sharadar, SEC EDGAR, and more",
+            ],
+        },
     ]
 
     context = {
@@ -1065,19 +1144,20 @@ def garden_interest_registration(request):
 
         # Basic validation
         if not name or not email:
-            return Response({
-                "success": False,
-                "error": "Name and email are required fields."
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"success": False, "error": "Name and email are required fields."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         # Email format validation
         import re
+
         email_pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
         if not re.match(email_pattern, email):
-            return Response({
-                "success": False,
-                "error": "Please enter a valid email address."
-            }, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"success": False, "error": "Please enter a valid email address."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         # Create a support ticket to track Garden interest
         try:
@@ -1090,7 +1170,7 @@ def garden_interest_registration(request):
 
 Company: {company}
 Role: {role}
-Interest Areas: {', '.join(interest_areas)}
+Interest Areas: {", ".join(interest_areas)}
 
 Message:
 {message}""",
@@ -1102,30 +1182,38 @@ Message:
             logger.warning("Could not create support ticket for Garden interest: %s", e)
 
         # Log the registration
-        logger.info("Garden interest registration: %s (%s) from %s", name, email, company)
+        logger.info(
+            "Garden interest registration: %s (%s) from %s", name, email, company
+        )
         logger.info("Role: %s, Interests: %s", role, ", ".join(interest_areas))
         logger.info("Message: %s", message)
 
         # Return success response
-        return Response({
-            "success": True,
-            "message": "Thank you for your interest! We will contact you soon to discuss Garden platform access."
-        }, status=status.HTTP_201_CREATED)
+        return Response(
+            {
+                "success": True,
+                "message": "Thank you for your interest! We will contact you soon to discuss Garden platform access.",
+            },
+            status=status.HTTP_201_CREATED,
+        )
 
     except json.JSONDecodeError:
-        return Response({
-            "success": False,
-            "error": "Invalid request format."
-        }, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {"success": False, "error": "Invalid request format."},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
 
     except Exception:
         # Log error
         logger.exception("Error processing Garden interest registration")
 
-        return Response({
-            "success": False,
-            "error": "An error occurred processing your request. Please try again."
-        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(
+            {
+                "success": False,
+                "error": "An error occurred processing your request. Please try again.",
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
 
 
 @api_view(["GET"])
@@ -1144,7 +1232,9 @@ def media_items_api(request):
         is_htmx = request.headers.get("HX-Request") == "true"
 
         # Get all media items ordered by featured first, then by date
-        media_items = MediaItem.objects.select_related("page").order_by("-featured", "-publication_date")
+        media_items = MediaItem.objects.select_related("page").order_by(
+            "-featured", "-publication_date"
+        )
 
         # Apply pagination
         paginator = Paginator(media_items, per_page)
@@ -1156,13 +1246,16 @@ def media_items_api(request):
             if is_htmx:
                 return HttpResponse("")  # Empty response for HTMX
 
-            return Response({
-                "items": [],
-                "has_next": False,
-                "total_pages": paginator.num_pages,
-                "current_page": page,
-                "total_items": paginator.count
-            }, status=status.HTTP_200_OK)
+            return Response(
+                {
+                    "items": [],
+                    "has_next": False,
+                    "total_pages": paginator.num_pages,
+                    "current_page": page,
+                    "total_items": paginator.count,
+                },
+                status=status.HTTP_200_OK,
+            )
 
         # For HTMX request, return HTML partial
         if is_htmx:
@@ -1181,10 +1274,11 @@ def media_items_api(request):
                 </div>
                 """
 
-            return render(request, "public_site/partials/media_items.html", {
-                "media_items": page_obj,
-                "next_page_trigger": next_page_html
-            })
+            return render(
+                request,
+                "public_site/partials/media_items.html",
+                {"media_items": page_obj, "next_page_trigger": next_page_html},
+            )
 
         # For regular API request, return JSON
         items = []
@@ -1193,38 +1287,48 @@ def media_items_api(request):
             description = item.description
             if description:
                 import re
+
                 # Simple HTML tag removal for API
                 description = re.sub(r"<[^>]+>", "", description)
                 description = description.strip()
 
-            items.append({
-                "id": item.id,
-                "title": item.title,
-                "description": description,
-                "publication": item.publication,
-                "publication_date": item.publication_date.isoformat() if item.publication_date else None,
-                "external_url": item.external_url,
-                "featured": item.featured,
-            })
+            items.append(
+                {
+                    "id": item.id,
+                    "title": item.title,
+                    "description": description,
+                    "publication": item.publication,
+                    "publication_date": item.publication_date.isoformat()
+                    if item.publication_date
+                    else None,
+                    "external_url": item.external_url,
+                    "featured": item.featured,
+                }
+            )
 
-        return Response({
-            "items": items,
-            "has_next": page_obj.has_next(),
-            "total_pages": paginator.num_pages,
-            "current_page": page,
-            "total_items": paginator.count
-        }, status=status.HTTP_200_OK)
+        return Response(
+            {
+                "items": items,
+                "has_next": page_obj.has_next(),
+                "total_pages": paginator.num_pages,
+                "current_page": page,
+                "total_items": paginator.count,
+            },
+            status=status.HTTP_200_OK,
+        )
 
     except ValueError:
-        return Response({
-            "error": "Invalid page or per_page parameter"
-        }, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {"error": "Invalid page or per_page parameter"},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
 
     except Exception:
         logger.exception("Error in media items API")
-        return Response({
-            "error": "Internal server error"
-        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(
+            {"error": "Internal server error"},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
 
 
 def live_stats_api(request):
@@ -1243,7 +1347,7 @@ def live_stats_api(request):
         "excluded_percentage": "57%",
         "active_holdings": str(base_holdings + random.randint(-2, 2)),
         "years_research": "15+",
-        "last_updated": timezone.now()
+        "last_updated": timezone.now(),
     }
 
     # Check if this is an HTMX request
@@ -1262,7 +1366,9 @@ def notifications_count_api(request):
     # For demo, return a random count
     import random
 
-    count = random.choice([0, 0, 0, 1, 2, 3])  # Mostly 0, occasionally some notifications
+    count = random.choice(
+        [0, 0, 0, 1, 2, 3]
+    )  # Mostly 0, occasionally some notifications
 
     # For HTMX requests, return just the count as HTML
     if request.headers.get("HX-Request") == "true":
@@ -1286,29 +1392,31 @@ def notifications_api(request):
             "content": "New research report available: Q1 2025 Market Analysis",
             "time": timezone.now() - timedelta(hours=2),
             "unread": True,
-            "url": "/research/q1-2025-analysis/"
+            "url": "/research/q1-2025-analysis/",
         },
         {
             "id": 2,
             "content": "Portfolio update: AAPL position adjusted",
             "time": timezone.now() - timedelta(days=1),
             "unread": True,
-            "url": "/portfolio/updates/"
+            "url": "/portfolio/updates/",
         },
         {
             "id": 3,
             "content": "Monthly newsletter published",
             "time": timezone.now() - timedelta(days=3),
             "unread": False,
-            "url": "/blog/"
-        }
+            "url": "/blog/",
+        },
     ]
 
     # For HTMX requests, return partial template
     if request.headers.get("HX-Request") == "true":
-        return render(request, "public_site/partials/notification_list.html", {
-            "notifications": notifications
-        })
+        return render(
+            request,
+            "public_site/partials/notification_list.html",
+            {"notifications": notifications},
+        )
 
     return JsonResponse({"notifications": notifications})
 
@@ -1320,10 +1428,11 @@ def mark_notifications_read_api(request):
         # For demo, just return an empty notification list
 
         if request.headers.get("HX-Request") == "true":
-            return render(request, "public_site/partials/notification_list.html", {
-                "notifications": [],
-                "message": "All notifications marked as read"
-            })
+            return render(
+                request,
+                "public_site/partials/notification_list.html",
+                {"notifications": [], "message": "All notifications marked as read"},
+            )
 
         return JsonResponse({"success": True})
 
@@ -1340,15 +1449,20 @@ def validate_email_api(request):
 
         # Basic email validation
         import re
+
         email_regex = r"^[^\s@]+@[^\s@]+\.[^\s@]+$"
         if not re.match(email_regex, email):
-            return HttpResponse('<span class="field-error">Please enter a valid email address</span>')
+            return HttpResponse(
+                '<span class="field-error">Please enter a valid email address</span>'
+            )
 
         # Check if email is already in use (for demo, check some common domains)
         blocked_domains = ["tempmail.com", "throwaway.email", "10minutemail.com"]
         domain = email.split("@")[1].lower()
         if domain in blocked_domains:
-            return HttpResponse('<span class="field-error">Please use a valid email domain</span>')
+            return HttpResponse(
+                '<span class="field-error">Please use a valid email domain</span>'
+            )
 
         # Success
         return HttpResponse('<span class="field-success">✓ Email is valid</span>')
@@ -1363,15 +1477,11 @@ def disclosures_page(request):
         from .models import LegalPage
 
         # Look for a disclosures-related legal page
-        legal_page = LegalPage.objects.filter(
-            title__icontains="disclosure"
-        ).first()
+        legal_page = LegalPage.objects.filter(title__icontains="disclosure").first()
 
         if not legal_page:
             # Try finding by slug
-            legal_page = LegalPage.objects.filter(
-                slug__icontains="disclosure"
-            ).first()
+            legal_page = LegalPage.objects.filter(slug__icontains="disclosure").first()
 
         if not legal_page:
             # Create content that matches https://ethicic.com/disclosures/
@@ -1423,7 +1533,7 @@ def disclosures_page(request):
                     "content": content,
                     "effective_date": timezone.now().date(),
                     "updated_at": timezone.now().date(),
-                }
+                },
             }
         else:
             context = {
@@ -1444,10 +1554,6 @@ def disclosures_page(request):
                 "content": "<p>Please contact us for our current disclosures and privacy policy.</p>",
                 "effective_date": None,
                 "updated_at": None,
-            }
+            },
         }
         return render(request, "public_site/legal_page.html", context)
-
-
-
-

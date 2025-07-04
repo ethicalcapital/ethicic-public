@@ -7,7 +7,7 @@ Continuous monitoring for CSS conflicts and regressions
 import json
 import re
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -37,14 +37,14 @@ class CSSMonitor:
         css_files = list(self.css_dir.glob("**/*.css"))
 
         results = {
-            "timestamp": datetime.now().isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "total_files": len(css_files),
             "total_defined_vars": len(defined_vars),
             "files_with_issues": [],
             "undefined_variables": {},
             "hardcoded_colors": {},
             "file_sizes": {},
-            "total_undefined_vars": 0
+            "total_undefined_vars": 0,
         }
 
         for css_file in css_files:
@@ -57,11 +57,15 @@ class CSSMonitor:
                 results["files_with_issues"].append(css_file.name)
 
             if file_analysis["undefined_vars"]:
-                results["undefined_variables"][css_file.name] = file_analysis["undefined_vars"]
+                results["undefined_variables"][css_file.name] = file_analysis[
+                    "undefined_vars"
+                ]
                 results["total_undefined_vars"] += len(file_analysis["undefined_vars"])
 
             if file_analysis["hardcoded_colors"]:
-                results["hardcoded_colors"][css_file.name] = file_analysis["hardcoded_colors"]
+                results["hardcoded_colors"][css_file.name] = file_analysis[
+                    "hardcoded_colors"
+                ]
 
             results["file_sizes"][css_file.name] = file_analysis["size_kb"]
 
@@ -78,7 +82,7 @@ class CSSMonitor:
                 "error": str(e),
                 "undefined_vars": [],
                 "hardcoded_colors": [],
-                "size_kb": 0
+                "size_kb": 0,
             }
 
         # Find undefined variables
@@ -90,10 +94,16 @@ class CSSMonitor:
         hardcoded_colors = []
 
         for i, line in enumerate(lines, 1):
-            if "/*" in line or line.strip().startswith("*") or "--garden-accent:" in line:
+            if (
+                "/*" in line
+                or line.strip().startswith("*")
+                or "--garden-accent:" in line
+            ):
                 continue
 
-            hex_colors = re.findall(r"(?<!-)#[0-9a-fA-F]{3,6}(?!\s*;?\s*\/\*)", line)
+            hex_colors = re.findall(
+                r"(?<!-)#[0-9a-fA-F]{3,6}(?!\s*;?\s*\/\*)", line
+            )
             if hex_colors:
                 hardcoded_colors.extend([(i, color) for color in hex_colors])
 
@@ -109,19 +119,21 @@ class CSSMonitor:
             "undefined_vars": list(set(undefined_vars)),  # Remove duplicates
             "hardcoded_colors": hardcoded_colors[:5],  # Limit for report
             "size_kb": size_kb,
-            "is_theme_file": is_theme_file
+            "is_theme_file": is_theme_file,
         }
 
     def create_baseline(self) -> None:
         """Create a baseline snapshot of current CSS state."""
         baseline = self.scan_css_files()
         baseline["is_baseline"] = True
-        baseline["baseline_created"] = datetime.now().isoformat()
+        baseline["baseline_created"] = datetime.now(timezone.utc).isoformat()
 
         with open(self.baseline_file, "w") as f:
             json.dump(baseline, f, indent=2)
 
-        print(f"✅ Baseline created: {baseline['total_undefined_vars']} undefined vars in {len(baseline['files_with_issues'])} files")
+        print(
+            f"✅ Baseline created: {baseline['total_undefined_vars']} undefined vars in {len(baseline['files_with_issues'])} files"
+        )
 
     def check_against_baseline(self) -> bool:
         """Check current state against baseline."""
@@ -138,15 +150,23 @@ class CSSMonitor:
         regression_found = False
 
         if current["total_undefined_vars"] > baseline["total_undefined_vars"]:
-            print(f"❌ REGRESSION: Undefined variables increased from {baseline['total_undefined_vars']} to {current['total_undefined_vars']}")
+            print(
+                f"❌ REGRESSION: Undefined variables increased from "
+                f"{baseline['total_undefined_vars']} to {current['total_undefined_vars']}"
+            )
             regression_found = True
 
         if len(current["files_with_issues"]) > len(baseline["files_with_issues"]):
-            print(f"❌ REGRESSION: Files with issues increased from {len(baseline['files_with_issues'])} to {len(current['files_with_issues'])}")
+            print(
+                f"❌ REGRESSION: Files with issues increased from "
+                f"{len(baseline['files_with_issues'])} to {len(current['files_with_issues'])}"
+            )
             regression_found = True
 
         # Check for new problematic files
-        new_problem_files = set(current["files_with_issues"]) - set(baseline["files_with_issues"])
+        new_problem_files = set(current["files_with_issues"]) - set(
+            baseline["files_with_issues"]
+        )
         if new_problem_files:
             print(f"❌ NEW PROBLEM FILES: {new_problem_files}")
             regression_found = True
@@ -167,48 +187,72 @@ class CSSMonitor:
         """Generate a human-readable report."""
         current = self.scan_css_files()
 
-        report = f"""
+        report = self._create_report_header(current)
+        report += self._add_undefined_variables_section(current)
+        report += self._add_hardcoded_colors_section(current)
+        report += self._add_large_files_section(current)
+        report += self._add_status_summary(current)
+
+        return report
+
+    def _create_report_header(self, current: dict) -> str:
+        """Create the report header section."""
+        return f"""
 CSS MONITORING REPORT
-Generated: {current['timestamp']}
-{'='*50}
+Generated: {current["timestamp"]}
+{"=" * 50}
 
 SUMMARY:
-- Total CSS files: {current['total_files']}
-- Defined CSS variables: {current['total_defined_vars']}
-- Undefined variables: {current['total_undefined_vars']}
-- Files with issues: {len(current['files_with_issues'])}
+- Total CSS files: {current["total_files"]}
+- Defined CSS variables: {current["total_defined_vars"]}
+- Undefined variables: {current["total_undefined_vars"]}
+- Files with issues: {len(current["files_with_issues"])}
 
 """
 
-        if current["undefined_variables"]:
-            report += "UNDEFINED VARIABLES:\n"
-            for file_name, vars_list in current["undefined_variables"].items():
-                report += f"  {file_name}: {vars_list[:3]}{'...' if len(vars_list) > 3 else ''}\n"
-            report += "\n"
+    def _add_undefined_variables_section(self, current: dict) -> str:
+        """Add undefined variables section to report."""
+        if not current["undefined_variables"]:
+            return ""
 
-        if current["hardcoded_colors"]:
-            report += "HARDCODED COLORS:\n"
-            for file_name, colors in current["hardcoded_colors"].items():
-                if len(colors) > 5:  # Only report excessive hardcoding
-                    report += f"  {file_name}: {len(colors)} hardcoded colors\n"
-            report += "\n"
+        report = "UNDEFINED VARIABLES:\n"
+        for file_name, vars_list in current["undefined_variables"].items():
+            suffix = "..." if len(vars_list) > 3 else ""
+            report += f"  {file_name}: {vars_list[:3]}{suffix}\n"
+        return report + "\n"
 
-        # Large files
-        large_files = {f: size for f, size in current["file_sizes"].items() if size > 100}
-        if large_files:
-            report += "LARGE CSS FILES (>100KB):\n"
-            for file_name, size in sorted(large_files.items(), key=lambda x: x[1], reverse=True):
-                report += f"  {file_name}: {size}KB\n"
-            report += "\n"
+    def _add_hardcoded_colors_section(self, current: dict) -> str:
+        """Add hardcoded colors section to report."""
+        if not current["hardcoded_colors"]:
+            return ""
 
+        report = "HARDCODED COLORS:\n"
+        for file_name, colors in current["hardcoded_colors"].items():
+            if len(colors) > 5:  # Only report excessive hardcoding
+                report += f"  {file_name}: {len(colors)} hardcoded colors\n"
+        return report + "\n"
+
+    def _add_large_files_section(self, current: dict) -> str:
+        """Add large files section to report."""
+        large_files = {f: s for f, s in current["file_sizes"].items() if s > 100}
+        if not large_files:
+            return ""
+
+        report = "LARGE CSS FILES (>100KB):\n"
+        sorted_files = sorted(
+            large_files.items(), key=lambda x: x[1], reverse=True
+        )
+        for file_name, size in sorted_files:
+            report += f"  {file_name}: {size}KB\n"
+        return report + "\n"
+
+    def _add_status_summary(self, current: dict) -> str:
+        """Add status summary to report."""
         if current["total_undefined_vars"] == 0:
-            report += "🎉 EXCELLENT: No undefined variables found!\n"
-        elif current["total_undefined_vars"] < 10:
-            report += "✅ GOOD: Very few undefined variables\n"
-        else:
-            report += "⚠️  NEEDS ATTENTION: Many undefined variables\n"
-
-        return report
+            return "🎉 EXCELLENT: No undefined variables found!\n"
+        if current["total_undefined_vars"] < 10:
+            return "✅ GOOD: Very few undefined variables\n"
+        return "⚠️  NEEDS ATTENTION: Many undefined variables\n"
 
     def auto_fix_common_issues(self) -> list[str]:
         """Attempt to auto-fix common CSS issues."""
@@ -219,7 +263,10 @@ SUMMARY:
         current = self.scan_css_files()
 
         if current["total_undefined_vars"] > 0:
-            fixes_applied.append(f"Found {current['total_undefined_vars']} undefined variables that need manual review")
+            fixes_applied.append(
+                f"Found {current['total_undefined_vars']} undefined variables "
+                "that need manual review"
+            )
 
         return fixes_applied
 
@@ -229,10 +276,16 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="CSS Monitoring and Maintenance")
-    parser.add_argument("--create-baseline", action="store_true", help="Create baseline snapshot")
+    parser.add_argument(
+        "--create-baseline", action="store_true", help="Create baseline snapshot"
+    )
     parser.add_argument("--check", action="store_true", help="Check against baseline")
-    parser.add_argument("--report", action="store_true", help="Generate detailed report")
-    parser.add_argument("--auto-fix", action="store_true", help="Attempt to auto-fix issues")
+    parser.add_argument(
+        "--report", action="store_true", help="Generate detailed report"
+    )
+    parser.add_argument(
+        "--auto-fix", action="store_true", help="Attempt to auto-fix issues"
+    )
     parser.add_argument("--css-dir", default="static/css", help="CSS directory path")
 
     args = parser.parse_args()
@@ -253,7 +306,9 @@ def main():
     else:
         # Default: quick check
         current = monitor.scan_css_files()
-        print(f"CSS Status: {current['total_undefined_vars']} undefined vars, {len(current['files_with_issues'])} problematic files")
+        print(
+            f"CSS Status: {current['total_undefined_vars']} undefined vars, {len(current['files_with_issues'])} problematic files"
+        )
 
         if current["total_undefined_vars"] == 0:
             print("🎉 All CSS files are conflict-free!")

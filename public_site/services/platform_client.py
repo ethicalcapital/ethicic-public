@@ -18,12 +18,19 @@ class PlatformAPIClient:
     """Client for optional integration with main garden platform."""
 
     def __init__(self):
-        self.base_url = getattr(settings, "MAIN_PLATFORM_API_URL", "http://garden-platform:8000")
+        self.base_url = getattr(
+            settings, "MAIN_PLATFORM_API_URL", "http://garden-platform:8000"
+        )
         self.timeout = getattr(settings, "AI_API_TIMEOUT", 30)
         self.quick_timeout = getattr(settings, "AI_QUICK_ANALYSIS_TIMEOUT", 10)
 
-    def _make_request(self, endpoint: str, data: dict[str, Any] | None = None,
-                     timeout: int | None = None, method: str = "POST") -> dict[str, Any] | None:
+    def _make_request(
+        self,
+        endpoint: str,
+        data: dict[str, Any] | None = None,
+        timeout: int | None = None,
+        method: str = "POST",
+    ) -> dict[str, Any] | None:
         """Make API request with graceful error handling."""
         try:
             url = f"{self.base_url.rstrip('/')}/{endpoint.lstrip('/')}"
@@ -34,14 +41,16 @@ class PlatformAPIClient:
                     url,
                     json=data,
                     headers={"Content-Type": "application/json"},
-                    timeout=timeout
+                    timeout=timeout,
                 )
             else:
                 response = requests.get(url, params=data, timeout=timeout)
 
             if response.status_code == 200:
                 return response.json()
-            logger.warning(f"Platform API returned {response.status_code} for {endpoint}")
+            logger.warning(
+                f"Platform API returned {response.status_code} for {endpoint}"
+            )
             return None
 
         except requests.exceptions.Timeout:
@@ -54,7 +63,9 @@ class PlatformAPIClient:
             logger.exception("Platform API error for {endpoint}")
             return None
 
-    def analyze_content(self, content: str, analysis_type: str = "comprehensive") -> dict[str, Any] | None:
+    def analyze_content(
+        self, content: str, analysis_type: str = "comprehensive"
+    ) -> dict[str, Any] | None:
         """
         Optional AI content analysis.
 
@@ -67,8 +78,8 @@ class PlatformAPIClient:
             "options": {
                 "include_charts": True,
                 "include_suggestions": True,
-                "min_confidence": getattr(settings, "AI_MIN_CONFIDENCE", 0.7)
-            }
+                "min_confidence": getattr(settings, "AI_MIN_CONFIDENCE", 0.7),
+            },
         }
 
         result = self._make_request("/api/v1/ai/analyze-content/", data, self.timeout)
@@ -85,11 +96,13 @@ class PlatformAPIClient:
             "options": {
                 "include_charts": False,
                 "include_suggestions": True,
-                "min_confidence": 0.6
-            }
+                "min_confidence": 0.6,
+            },
         }
 
-        return self._make_request("/api/v1/ai/analyze-content/", data, self.quick_timeout)
+        return self._make_request(
+            "/api/v1/ai/analyze-content/", data, self.quick_timeout
+        )
 
     def notify_contact_submission(self, contact_data: dict[str, Any]) -> bool:
         """
@@ -98,15 +111,21 @@ class PlatformAPIClient:
         Returns:
             True if notification sent successfully, False otherwise
         """
-        result = self._make_request("/api/v1/contact-notifications/", contact_data, self.quick_timeout)
+        result = self._make_request(
+            "/api/v1/contact-notifications/", contact_data, self.quick_timeout
+        )
 
         if result:
-            logger.info(f"Contact notification sent for {contact_data.get('email', 'unknown')}")
+            logger.info(
+                f"Contact notification sent for {contact_data.get('email', 'unknown')}"
+            )
             return True
 
         return False
 
-    def create_enhanced_contact(self, form_data: dict[str, Any]) -> dict[str, Any] | None:
+    def create_enhanced_contact(
+        self, form_data: dict[str, Any]
+    ) -> dict[str, Any] | None:
         """
         Create contact with full CRM integration via API.
 
@@ -116,11 +135,15 @@ class PlatformAPIClient:
         result = self._make_request("/api/v1/contacts/", form_data, self.timeout)
 
         if result:
-            logger.info(f"Enhanced contact created via API for {form_data.get('email', 'unknown')}")
+            logger.info(
+                f"Enhanced contact created via API for {form_data.get('email', 'unknown')}"
+            )
 
         return result
 
-    def get_portfolio_summary(self, strategy: str | None = None) -> dict[str, Any] | None:
+    def get_portfolio_summary(
+        self, strategy: str | None = None
+    ) -> dict[str, Any] | None:
         """
         Get portfolio summary data for public display.
 
@@ -131,14 +154,20 @@ class PlatformAPIClient:
             Portfolio summary if available, None otherwise
         """
         params = {"strategy": strategy} if strategy else {}
-        result = self._make_request("/api/v1/portfolio/public-summary/", params, self.quick_timeout, "GET")
+        result = self._make_request(
+            "/api/v1/portfolio/public-summary/", params, self.quick_timeout, "GET"
+        )
 
         if result:
-            logger.info(f"Portfolio summary retrieved for strategy: {strategy or 'all'}")
+            logger.info(
+                f"Portfolio summary retrieved for strategy: {strategy or 'all'}"
+            )
 
         return result
 
-    def get_research_insights(self, topic: str | None = None, limit: int = 5) -> dict[str, Any] | None:
+    def get_research_insights(
+        self, topic: str | None = None, limit: int = 5
+    ) -> dict[str, Any] | None:
         """
         Get recent research insights for public display.
 
@@ -150,7 +179,9 @@ class PlatformAPIClient:
             Research insights if available, None otherwise
         """
         params = {"topic": topic, "limit": limit}
-        result = self._make_request("/api/v1/research/public-insights/", params, self.quick_timeout, "GET")
+        result = self._make_request(
+            "/api/v1/research/public-insights/", params, self.quick_timeout, "GET"
+        )
 
         if result:
             logger.info(f"Research insights retrieved for topic: {topic or 'all'}")

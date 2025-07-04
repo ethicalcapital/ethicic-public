@@ -2,6 +2,7 @@
 Django admin configuration for public site models.
 CRITICAL: All models must be registered for proper content management.
 """
+
 from typing import ClassVar
 
 from django.contrib import admin
@@ -25,7 +26,13 @@ class SupportTicketAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     ]
-    list_filter: ClassVar[list] = ["status", "ticket_type", "priority", "created_at", "updated_at"]
+    list_filter: ClassVar[list] = [
+        "status",
+        "ticket_type",
+        "priority",
+        "created_at",
+        "updated_at",
+    ]
     search_fields: ClassVar[list] = ["name", "email", "company", "subject", "message"]
     readonly_fields: ClassVar[list] = ["created_at", "updated_at"]
     list_per_page = 25
@@ -47,10 +54,7 @@ class SupportTicketAdmin(admin.ModelAdmin):
         ),
         (
             "Metadata",
-            {
-                "fields": ("created_at", "updated_at"),
-                "classes": ("collapse",)
-            },
+            {"fields": ("created_at", "updated_at"), "classes": ("collapse",)},
         ),
     )
 
@@ -60,17 +64,19 @@ class SupportTicketAdmin(admin.ModelAdmin):
         """Bulk action to mark tickets as resolved."""
         updated = queryset.update(status="resolved")
         self.message_user(request, f"{updated} tickets marked as resolved.")
+
     mark_resolved.short_description = "Mark selected tickets as resolved"
 
     def mark_in_progress(self, request, queryset):
         """Bulk action to mark tickets as in progress."""
         updated = queryset.update(status="in_progress")
         self.message_user(request, f"{updated} tickets marked as in progress.")
+
     mark_in_progress.short_description = "Mark selected tickets as in progress"
 
     def mark_closed(self, request, queryset):
         """Bulk action to mark tickets as closed."""
         updated = queryset.update(status="closed")
         self.message_user(request, f"{updated} tickets marked as closed.")
-    mark_closed.short_description = "Mark selected tickets as closed"
 
+    mark_closed.short_description = "Mark selected tickets as closed"

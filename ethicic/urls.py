@@ -21,21 +21,27 @@ from public_site.homepage_view import homepage_view
 def health_check(request):
     """Simple health check endpoint for Kinsta"""
     # Don't test database on health check to avoid 503s
-    return JsonResponse({
-        "status": "healthy",
-        "service": "ethicic-public",
-        "version": "1.0",
-        "timestamp": datetime.datetime.now().isoformat()
-    })
+    return JsonResponse(
+        {
+            "status": "healthy",
+            "service": "ethicic-public",
+            "version": "1.0",
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        }
+    )
+
 
 def simple_test(request):
     """Simple test endpoint that doesn't require database"""
     return JsonResponse({"message": "Hello from ethicic-public!", "status": "ok"})
 
+
 def favicon_view(request):
     """Simple favicon handler to prevent 500 errors"""
     from django.http import HttpResponse
+
     return HttpResponse(status=204)  # No content
+
 
 def carbon_txt_view(request):
     """Serve carbon.txt file for sustainability transparency"""
@@ -59,6 +65,7 @@ def carbon_txt_view(request):
     else:
         raise Http404("carbon.txt file not found")
 
+
 def llms_txt_view(request):
     """Serve llms.txt file for AI/LLM consumption"""
     import os
@@ -80,6 +87,7 @@ def llms_txt_view(request):
             raise Http404(f"Error reading llms.txt: {e}")
     else:
         raise Http404("llms.txt file not found")
+
 
 def robots_txt_view(request):
     """Serve robots.txt file for search engine crawlers"""
@@ -103,6 +111,7 @@ def robots_txt_view(request):
     else:
         raise Http404("robots.txt file not found")
 
+
 def debug_homepage(request):
     """Debug homepage bypass for testing"""
     try:
@@ -117,13 +126,22 @@ def debug_homepage(request):
             "message": "Debug homepage endpoint",
             "sites_count": len(sites),
             "homepages_count": len(homepages),
-            "sites": [{"hostname": s.hostname, "root_page_title": s.root_page.title if s.root_page else "None"} for s in sites],
-            "homepages": [{"title": h.title, "live": h.live, "url": h.url} for h in homepages]
+            "sites": [
+                {
+                    "hostname": s.hostname,
+                    "root_page_title": s.root_page.title if s.root_page else "None",
+                }
+                for s in sites
+            ],
+            "homepages": [
+                {"title": h.title, "live": h.live, "url": h.url} for h in homepages
+            ],
         }
 
         return JsonResponse(debug_info)
     except Exception as e:
         return JsonResponse({"error": str(e), "type": type(e).__name__})
+
 
 def debug_static(request):
     """Debug static files configuration"""
@@ -139,9 +157,13 @@ def debug_static(request):
         "WHITENOISE_USE_FINDERS": getattr(settings, "WHITENOISE_USE_FINDERS", None),
         "WHITENOISE_AUTOREFRESH": getattr(settings, "WHITENOISE_AUTOREFRESH", None),
         "static_root_exists": os.path.exists(settings.STATIC_ROOT),
-        "static_dirs_exist": [{"dir": str(d), "exists": os.path.exists(d)} for d in settings.STATICFILES_DIRS],
-        "middleware_installed": "whitenoise.middleware.WhiteNoiseMiddleware" in settings.MIDDLEWARE,
-        "static_files": []
+        "static_dirs_exist": [
+            {"dir": str(d), "exists": os.path.exists(d)}
+            for d in settings.STATICFILES_DIRS
+        ],
+        "middleware_installed": "whitenoise.middleware.WhiteNoiseMiddleware"
+        in settings.MIDDLEWARE,
+        "static_files": [],
     }
 
     # Check if static files exist
@@ -152,14 +174,22 @@ def debug_static(request):
             static_info["css_files"] = css_files[:10]  # First 10 files
 
         # Check specific critical files
-        critical_files = ["css/garden-ui-theme.css", "css/core-styles.css", "css/public-site-simple.css"]
+        critical_files = [
+            "css/garden-ui-theme.css",
+            "css/core-styles.css",
+            "css/public-site-simple.css",
+        ]
         for file_path in critical_files:
             full_path = os.path.join(settings.STATIC_ROOT, file_path)
-            static_info["static_files"].append({
-                "path": file_path,
-                "exists": os.path.exists(full_path),
-                "size": os.path.getsize(full_path) if os.path.exists(full_path) else 0
-            })
+            static_info["static_files"].append(
+                {
+                    "path": file_path,
+                    "exists": os.path.exists(full_path),
+                    "size": os.path.getsize(full_path)
+                    if os.path.exists(full_path)
+                    else 0,
+                }
+            )
 
     # Also check source static directory
     static_info["source_static_files"] = []
@@ -168,15 +198,24 @@ def debug_static(request):
         if os.path.exists(source_dir):
             css_dir = os.path.join(source_dir, "css")
             if os.path.exists(css_dir):
-                for file_name in ["garden-ui-theme.css", "core-styles.css", "public-site-simple.css"]:
+                for file_name in [
+                    "garden-ui-theme.css",
+                    "core-styles.css",
+                    "public-site-simple.css",
+                ]:
                     full_path = os.path.join(css_dir, file_name)
-                    static_info["source_static_files"].append({
-                        "path": f"css/{file_name}",
-                        "exists": os.path.exists(full_path),
-                        "size": os.path.getsize(full_path) if os.path.exists(full_path) else 0
-                    })
+                    static_info["source_static_files"].append(
+                        {
+                            "path": f"css/{file_name}",
+                            "exists": os.path.exists(full_path),
+                            "size": os.path.getsize(full_path)
+                            if os.path.exists(full_path)
+                            else 0,
+                        }
+                    )
 
     return JsonResponse(static_info)
+
 
 def serve_css(request, filename):
     """Emergency CSS serving function"""
@@ -204,6 +243,7 @@ def serve_css(request, filename):
     except Exception as e:
         raise Http404(f"Error reading CSS file: {e}")
 
+
 def serve_manifest(request):
     """Serve manifest.json with correct content type"""
     import json
@@ -229,6 +269,7 @@ def serve_manifest(request):
     else:
         raise Http404("Manifest file not found")
 
+
 def debug_static_file(request, filepath):
     """Serve static files with proper MIME types"""
     import mimetypes
@@ -243,17 +284,25 @@ def debug_static_file(request, filepath):
     # Special handling for missing static files - return appropriate empty content instead of 404
     if not os.path.exists(full_path):
         if filepath.endswith(".css"):
-            response = HttpResponse("/* CSS file not found - serving empty CSS to prevent MIME type errors */", content_type="text/css")
+            response = HttpResponse(
+                "/* CSS file not found - serving empty CSS to prevent MIME type errors */",
+                content_type="text/css",
+            )
             response["Cache-Control"] = "max-age=60"  # Short cache for missing files
             return response
         if filepath.endswith(".js"):
-            response = HttpResponse("// JS file not found", content_type="application/javascript")
+            response = HttpResponse(
+                "// JS file not found", content_type="application/javascript"
+            )
             response["Cache-Control"] = "max-age=60"
             return response
         if filepath.endswith((".png", ".jpg", ".jpeg", ".gif", ".ico")):
             # Return a 1x1 transparent pixel for missing images
             from base64 import b64decode
-            pixel = b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==")
+
+            pixel = b64decode(
+                "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+            )
             response = HttpResponse(pixel, content_type="image/png")
             response["Cache-Control"] = "max-age=60"
             return response
@@ -284,7 +333,10 @@ def debug_static_file(request, filepath):
 
     try:
         # For text files, read as text
-        if content_type.startswith("text/") or content_type in ["application/javascript", "image/svg+xml"]:
+        if content_type.startswith("text/") or content_type in [
+            "application/javascript",
+            "image/svg+xml",
+        ]:
             with open(full_path, encoding="utf-8") as f:
                 content = f.read()
         else:
@@ -299,9 +351,11 @@ def debug_static_file(request, filepath):
     except Exception as e:
         raise Http404(f"Error reading static file: {e}")
 
+
 def emergency_homepage(request):
     """Emergency bypass homepage for debugging"""
     from django.http import HttpResponse
+
     html = """
     <!DOCTYPE html>
     <html>
@@ -330,17 +384,15 @@ def emergency_homepage(request):
     """
     return HttpResponse(html)
 
+
 urlpatterns = [
     # Let WhiteNoise handle static files - don't intercept them
     # path('static/<path:filepath>', debug_static_file, name='debug_static_serve'),
-
     # Manifest.json disabled due to serving issues
     # path('manifest.json', serve_manifest, name='serve_manifest'),
     # path('static/manifest.json', serve_manifest, name='serve_manifest_static'),
-
     # Homepage - MUST be first
     path("", homepage_view, name="homepage"),
-
     # Health check
     path("health/", health_check, name="health_check"),
     path("test/", simple_test, name="simple_test"),
@@ -349,29 +401,21 @@ urlpatterns = [
     path("debug-file/<path:filepath>", debug_static_file, name="debug_static_file"),
     path("emergency-css/<str:filename>", serve_css, name="serve_css"),
     path("favicon.ico", favicon_view, name="favicon"),
-
     # Sustainability transparency
     path("carbon.txt", carbon_txt_view, name="carbon_txt"),
-
     # AI/LLM information file
     path("llms.txt", llms_txt_view, name="llms_txt"),
-
     # Search engine crawler instructions
     path("robots.txt", robots_txt_view, name="robots_txt"),
-
     # Admin
     path("admin/", admin.site.urls),
     path("cms/", include(wagtailadmin_urls)),
-
     # Documents
     path("documents/", include(wagtaildocs_urls)),
-
     # Emergency homepage for debugging
     path("emergency/", emergency_homepage, name="emergency_homepage"),
-
     # Include all public_site URLs
     path("", include("public_site.urls")),
-
     # Wagtail CMS URLs - this will handle other Wagtail pages
     path("", include(wagtail_urls)),
 ]

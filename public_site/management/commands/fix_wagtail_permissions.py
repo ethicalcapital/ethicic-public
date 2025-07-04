@@ -29,16 +29,27 @@ class Command(BaseCommand):
 
         # Add Wagtail permissions to groups
         wagtail_perms = Permission.objects.filter(
-            content_type__app_label__in=["wagtailcore", "wagtailadmin", "wagtailimages", "wagtaildocs", "taggit"]
+            content_type__app_label__in=[
+                "wagtailcore",
+                "wagtailadmin",
+                "wagtailimages",
+                "wagtaildocs",
+                "taggit",
+            ]
         )
 
         # Give editors basic permissions
         editor_perms = wagtail_perms.filter(
             codename__in=[
-                "add_page", "change_page", "publish_page",
-                "add_image", "change_image",
-                "add_document", "change_document",
-                "add_tag", "change_tag",
+                "add_page",
+                "change_page",
+                "publish_page",
+                "add_image",
+                "change_image",
+                "add_document",
+                "change_document",
+                "add_tag",
+                "change_tag",
             ]
         )
         editors_group.permissions.set(editor_perms)
@@ -46,7 +57,9 @@ class Command(BaseCommand):
 
         # Give moderators more permissions
         moderators_group.permissions.set(wagtail_perms)
-        self.stdout.write(f"Added {wagtail_perms.count()} permissions to Moderators group")
+        self.stdout.write(
+            f"Added {wagtail_perms.count()} permissions to Moderators group"
+        )
 
         # Setup page permissions
         Page.objects.get(id=1)
@@ -55,9 +68,15 @@ class Command(BaseCommand):
         if homepage:
             # Give editors permission to edit under homepage
             # Get the permission objects
-            add_perm = Permission.objects.get(content_type__app_label="wagtailcore", codename="add_page")
-            edit_perm = Permission.objects.get(content_type__app_label="wagtailcore", codename="change_page")
-            publish_perm = Permission.objects.get(content_type__app_label="wagtailcore", codename="publish_page")
+            add_perm = Permission.objects.get(
+                content_type__app_label="wagtailcore", codename="add_page"
+            )
+            edit_perm = Permission.objects.get(
+                content_type__app_label="wagtailcore", codename="change_page"
+            )
+            publish_perm = Permission.objects.get(
+                content_type__app_label="wagtailcore", codename="publish_page"
+            )
 
             GroupPagePermission.objects.get_or_create(
                 group=editors_group,
@@ -85,9 +104,7 @@ class Command(BaseCommand):
 
         for perm in image_perms:
             GroupCollectionPermission.objects.get_or_create(
-                group=editors_group,
-                collection=root_collection,
-                permission=perm
+                group=editors_group, collection=root_collection, permission=perm
             )
 
         # Document permissions
@@ -96,12 +113,12 @@ class Command(BaseCommand):
 
         for perm in doc_perms:
             GroupCollectionPermission.objects.get_or_create(
-                group=editors_group,
-                collection=root_collection,
-                permission=perm
+                group=editors_group, collection=root_collection, permission=perm
             )
 
-        self.stdout.write(self.style.SUCCESS("Added collection permissions for Editors"))
+        self.stdout.write(
+            self.style.SUCCESS("Added collection permissions for Editors")
+        )
 
         # Update all staff users
         staff_users = User.objects.filter(is_staff=True, is_superuser=False)
@@ -111,23 +128,28 @@ class Command(BaseCommand):
 
         # Grant access to Wagtail admin
         access_admin_perm = Permission.objects.filter(
-            content_type__app_label="wagtailadmin",
-            codename="access_admin"
+            content_type__app_label="wagtailadmin", codename="access_admin"
         ).first()
 
         if access_admin_perm:
             editors_group.permissions.add(access_admin_perm)
             moderators_group.permissions.add(access_admin_perm)
-            self.stdout.write(self.style.SUCCESS("Added Wagtail admin access permission"))
+            self.stdout.write(
+                self.style.SUCCESS("Added Wagtail admin access permission")
+            )
 
         # Add public_site permissions
         public_site_perms = Permission.objects.filter(
             content_type__app_label="public_site"
         )
         editors_group.permissions.add(*public_site_perms)
-        self.stdout.write(f"Added {public_site_perms.count()} public_site permissions to Editors")
+        self.stdout.write(
+            f"Added {public_site_perms.count()} public_site permissions to Editors"
+        )
 
-        self.stdout.write(self.style.SUCCESS("\n✅ Wagtail permissions fixed successfully!"))
+        self.stdout.write(
+            self.style.SUCCESS("\n✅ Wagtail permissions fixed successfully!")
+        )
         self.stdout.write("\nStaff users can now:")
         self.stdout.write("- Access Wagtail admin at /cms-admin/")
         self.stdout.write("- Edit pages under 'Ethical Capital | Investment Advisory'")

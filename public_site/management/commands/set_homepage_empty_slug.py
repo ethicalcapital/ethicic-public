@@ -24,9 +24,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         dry_run = options["dry_run"]
 
-        self.stdout.write(
-            self.style.SUCCESS("🏠 Setting HomePage to Root URL")
-        )
+        self.stdout.write(self.style.SUCCESS("🏠 Setting HomePage to Root URL"))
         self.stdout.write("=" * 40)
 
         # Find the HomePage
@@ -34,36 +32,28 @@ class Command(BaseCommand):
 
         try:
             homepage = HomePage.objects.get()
-            self.stdout.write(f"🏠 Found HomePage: {homepage.title} (ID: {homepage.id})")
+            self.stdout.write(
+                f"🏠 Found HomePage: {homepage.title} (ID: {homepage.id})"
+            )
             self.stdout.write(f"    Current slug: '{homepage.slug}'")
             self.stdout.write(f"    Current URL path: {homepage.url_path}")
         except HomePage.DoesNotExist:
-            self.stdout.write(
-                self.style.ERROR("❌ No HomePage found")
-            )
+            self.stdout.write(self.style.ERROR("❌ No HomePage found"))
             return
         except HomePage.MultipleObjectsReturned:
-            self.stdout.write(
-                self.style.ERROR("❌ Multiple HomePage instances found")
-            )
+            self.stdout.write(self.style.ERROR("❌ Multiple HomePage instances found"))
             return
 
         # Check if slug is already empty
         if homepage.slug == "":
-            self.stdout.write(
-                self.style.SUCCESS("✅ Homepage slug is already empty!")
-            )
+            self.stdout.write(self.style.SUCCESS("✅ Homepage slug is already empty!"))
             return
 
         self.stdout.write(f"🔄 Will set slug from '{homepage.slug}' to '' (empty)")
 
         if dry_run:
-            self.stdout.write(
-                self.style.WARNING("\n🔍 DRY RUN - No changes made")
-            )
-            self.stdout.write(
-                "Run without --dry-run to apply these changes."
-            )
+            self.stdout.write(self.style.WARNING("\n🔍 DRY RUN - No changes made"))
+            self.stdout.write("Run without --dry-run to apply these changes.")
             return
 
         # Ask for confirmation
@@ -85,26 +75,27 @@ class Command(BaseCommand):
                     # Update slug to empty string
                     cursor.execute(
                         "UPDATE wagtailcore_page SET slug = '' WHERE id = %s",
-                        [homepage.id]
+                        [homepage.id],
                     )
 
                     # Update URL path to root
                     cursor.execute(
                         "UPDATE wagtailcore_page SET url_path = '/' WHERE id = %s",
-                        [homepage.id]
+                        [homepage.id],
                     )
 
                     # Update child page URL paths to remove the old homepage prefix
-                    cursor.execute("""
+                    cursor.execute(
+                        """
                         UPDATE wagtailcore_page
                         SET url_path = REPLACE(url_path, %s, '/')
                         WHERE path LIKE %s AND id != %s
-                    """, [homepage.url_path, f"{homepage.path}%", homepage.id])
+                    """,
+                        [homepage.url_path, f"{homepage.path}%", homepage.id],
+                    )
 
                 self.stdout.write(
-                    self.style.SUCCESS(
-                        "✅ Successfully set HomePage to root URL!"
-                    )
+                    self.style.SUCCESS("✅ Successfully set HomePage to root URL!")
                 )
 
                 # Refresh and verify
@@ -118,7 +109,5 @@ class Command(BaseCommand):
                 self.stdout.write("3. Verify all child page URLs work correctly")
 
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(f"❌ Error updating homepage: {e}")
-            )
+            self.stdout.write(self.style.ERROR(f"❌ Error updating homepage: {e}"))
             raise

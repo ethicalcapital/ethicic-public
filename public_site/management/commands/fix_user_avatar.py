@@ -26,13 +26,21 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         profiles_updated = 0
 
-        self.stdout.write(self.style.SUCCESS("🔍 Checking user profiles for broken avatar references..."))
+        self.stdout.write(
+            self.style.SUCCESS(
+                "🔍 Checking user profiles for broken avatar references..."
+            )
+        )
 
         # Check all user profiles
         for profile in UserProfile.objects.all():
             if profile.avatar:
                 # Get the avatar name/path as string
-                avatar_name = str(profile.avatar.name) if hasattr(profile.avatar, "name") else str(profile.avatar)
+                avatar_name = (
+                    str(profile.avatar.name)
+                    if hasattr(profile.avatar, "name")
+                    else str(profile.avatar)
+                )
 
                 # Check if avatar points to local media (problematic)
                 if avatar_name.startswith("avatar_images/"):
@@ -48,7 +56,9 @@ class Command(BaseCommand):
                             profile.avatar = None
                             profile.save()
                             self.stdout.write(
-                                self.style.SUCCESS(f"✅ Cleared avatar for user {profile.user.username}")
+                                self.style.SUCCESS(
+                                    f"✅ Cleared avatar for user {profile.user.username}"
+                                )
                             )
                         else:
                             # Since avatar is an ImageField pointing to local media,
@@ -68,29 +78,39 @@ class Command(BaseCommand):
                         profiles_updated += 1
                     else:
                         self.stdout.write(
-                            self.style.WARNING(f"Would clear broken avatar for user {profile.user.username}")
+                            self.style.WARNING(
+                                f"Would clear broken avatar for user {profile.user.username}"
+                            )
                         )
                         profiles_updated += 1
 
                 elif avatar_name.startswith("http"):
                     self.stdout.write(
-                        self.style.SUCCESS(f"✅ User {profile.user.username} has valid avatar URL: {avatar_name}")
+                        self.style.SUCCESS(
+                            f"✅ User {profile.user.username} has valid avatar URL: {avatar_name}"
+                        )
                     )
                 else:
                     self.stdout.write(
-                        self.style.WARNING(f"⚠️  User {profile.user.username} has avatar: {avatar_name}")
+                        self.style.WARNING(
+                            f"⚠️  User {profile.user.username} has avatar: {avatar_name}"
+                        )
                     )
 
         if options["dry_run"]:
             self.stdout.write(
-                self.style.WARNING(f"🔍 DRY RUN: Would update {profiles_updated} profile(s)")
+                self.style.WARNING(
+                    f"🔍 DRY RUN: Would update {profiles_updated} profile(s)"
+                )
             )
             self.stdout.write(
                 self.style.WARNING("Run without --dry-run to apply changes")
             )
         else:
             self.stdout.write(
-                self.style.SUCCESS(f"🎉 Successfully updated {profiles_updated} profile(s)")
+                self.style.SUCCESS(
+                    f"🎉 Successfully updated {profiles_updated} profile(s)"
+                )
             )
 
         if profiles_updated == 0:
