@@ -1,0 +1,169 @@
+/* 
+ * NUCLEAR BUTTON FIX - OVERRIDES EVERYTHING
+ * This file MUST be loaded LAST to override all conflicting rules
+ * Using maximum specificity and !important on everything
+ */
+
+/* KILL ALL WHITE TEXT ON SECONDARY BUTTONS */
+html body .blog-index-page .article-list-actions a.garden-action.secondary.small,
+html body .blog-index-page .article-list-actions a.garden-action.secondary.small:link,
+html body .blog-index-page .article-list-actions a.garden-action.secondary.small:visited,
+html body .blog-index-page .article-list-actions a.garden-action.secondary.small:active,
+html body .blog-index-page a.garden-action.secondary,
+html body .blog-index-page a.garden-action.secondary:link,
+html body .blog-index-page a.garden-action.secondary:visited,
+html body .blog-index-page a.garden-action.secondary:active,
+html body .blog-index-page .garden-action.secondary,
+html body .blog-index-page button.garden-action.secondary,
+html body a.garden-action.secondary.small,
+html body a.garden-action.secondary,
+html body .garden-action.secondary,
+html body button.garden-action.secondary,
+html body div.blog-index-page a[class="garden-action secondary small"],
+html body div.blog-index-page a[class="garden-action secondary"],
+html body div[class*="blog"] a[class*="garden-action"][class*="secondary"],
+html body a[href][class*="garden-action"][class*="secondary"],
+.blog-index-page .articles-main .article-list-item .article-list-actions a,
+.blog-index-page .articles-main .article-list-item .article-list-actions a.garden-action,
+.blog-index-page .articles-main .article-list-item .article-list-actions a.garden-action.secondary,
+.blog-index-page .articles-main .article-list-item .article-list-actions a.garden-action.secondary.small {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #553C9A !important;
+    border: 2px solid #553C9A !important;
+    border-color: #553C9A !important;
+    text-decoration: none !important;
+    padding: 8px 16px !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    cursor: pointer !important;
+    text-transform: uppercase !important;
+    font-size: 0.875rem !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.2 !important;
+    min-height: auto !important;
+}
+
+/* FORCE OVERRIDE ANY COLOR INHERITANCE */
+html body .blog-index-page .article-list-actions a.garden-action.secondary.small *,
+html body .blog-index-page a.garden-action.secondary *,
+html body a.garden-action.secondary * {
+    color: #553C9A !important;
+}
+
+/* DARK MODE SECONDARY BUTTONS */
+html body[data-theme="dark"] .blog-index-page .article-list-actions a.garden-action.secondary.small,
+html body[data-theme="dark"] .blog-index-page a.garden-action.secondary,
+html body[data-theme="dark"] a.garden-action.secondary,
+html[data-theme="dark"] body .blog-index-page .article-list-actions a.garden-action.secondary.small,
+html[data-theme="dark"] body .blog-index-page a.garden-action.secondary,
+html[data-theme="dark"] body a.garden-action.secondary {
+    background: #333333 !important;
+    background-color: #333333 !important;
+    color: #553C9A !important;
+    border: 2px solid #553C9A !important;
+}
+
+/* HOVER STATES - PURPLE BACKGROUND, WHITE TEXT */
+html body .blog-index-page .article-list-actions a.garden-action.secondary.small:hover,
+html body .blog-index-page a.garden-action.secondary:hover,
+html body a.garden-action.secondary:hover {
+    background: #553C9A !important;
+    background-color: #553C9A !important;
+    color: #FFFFFF !important;
+    border-color: #553C9A !important;
+    transform: translateY(-1px) !important;
+}
+
+/* PRIMARY BUTTONS - PURPLE BACKGROUND, WHITE TEXT */
+html body .blog-index-page .garden-action.primary,
+html body .blog-index-page button.garden-action.primary,
+html body .blog-index-page a.garden-action.primary,
+html body .blog-index-page .sidebar-section button.garden-action.primary,
+html body button.garden-action.primary,
+html body a.garden-action.primary {
+    background: #553C9A !important;
+    background-color: #553C9A !important;
+    color: #FFFFFF !important;
+    border: 2px solid #553C9A !important;
+}
+
+/* SIDEBAR PANEL HEADERS - NEUTRAL COLORS */
+html body .blog-index-page .sidebar-section .garden-panel-header,
+html body .blog-index-page .newsletter-section .garden-panel-header,
+html body .blog-index-page .connect-section .garden-panel-header,
+html body .blog-index-page .garden-panel__header,
+html body .newsletter-section .garden-panel__header,
+html body .connect-section .garden-panel__header,
+html body .blog-sticky-sidebar .garden-panel-header,
+html body .blog-sticky-sidebar .garden-panel__header {
+    background: #F9FAFB !important;
+    background-color: #F9FAFB !important;
+    color: #1A1A1A !important;
+    border-bottom: 1px solid #E5E7EB !important;
+}
+
+html body .blog-index-page .sidebar-section .panel-title,
+html body .blog-index-page .newsletter-section .panel-title,
+html body .blog-index-page .connect-section .panel-title {
+    color: #1A1A1A !important;
+}
+
+/* DARK MODE SIDEBAR HEADERS */
+html body[data-theme="dark"] .blog-index-page .sidebar-section .garden-panel-header,
+html body[data-theme="dark"] .blog-index-page .newsletter-section .garden-panel-header,
+html body[data-theme="dark"] .blog-index-page .connect-section .garden-panel-header,
+html[data-theme="dark"] body .blog-sticky-sidebar .garden-panel-header {
+    background: #333333 !important;
+    background-color: #333333 !important;
+    color: #E0E0E0 !important;
+    border-bottom: 1px solid #444444 !important;
+}
+
+/* ULTRA NUCLEAR - OVERRIDE ABSOLUTELY EVERYTHING */
+@media all {
+    html body .blog-index-page .article-list-item .article-list-actions a[href][class*="garden-action"][class*="secondary"] {
+        background: #FFFFFF !important;
+        color: #553C9A !important;
+        border: 2px solid #553C9A !important;
+    }
+    
+    html body .blog-index-page .hero-utilities a[href][class*="garden-action"][class*="secondary"] {
+        background: #FFFFFF !important;
+        color: #553C9A !important;
+        border: 2px solid #553C9A !important;
+    }
+}
+
+/* LAST RESORT - ATTRIBUTE SELECTOR OVERRIDE */
+html body [class="article-list-actions"] a[class="garden-action secondary small"] {
+    background: #FFFFFF !important;
+    color: #553C9A !important;
+    border: 2px solid #553C9A !important;
+}
+
+/* TAGS - MAKE THEM ROUNDED RECTANGLES NOT CIRCLES */
+html body .blog-index-page .article-list-tag,
+html body .blog-index-page .featured-tag {
+    border-radius: 4px !important;
+    padding: 4px 12px !important;
+}
+
+/* FIX SIDEBAR SCROLLING */
+html body .blog-sticky-sidebar {
+    position: sticky !important;
+    top: 100px !important;
+    z-index: 10 !important;
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto !important;
+}
+
+/* HEADER Z-INDEX */
+html body .garden-header {
+    z-index: 1100 !important;
+    position: sticky !important;
+    top: 0 !important;
+}

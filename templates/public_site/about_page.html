@@ -48,9 +48,8 @@
                     <!-- Primary CTA Calendar Link -->
                     {% if page.calendar_url %}
                     <div class="social-cta">
-                        <a href="{{ page.calendar_url }}" target="_blank" rel="noopener noreferrer" class="social-cta-link garden-action primary">
-                            <span class="social-icon">📅</span>
-                            <span class="social-text">Schedule Meeting</span>
+                        <a href="{{ page.calendar_url }}" target="_blank" rel="noopener noreferrer" class="garden-action primary">
+                            📅 SCHEDULE MEETING
                         </a>
                     </div>
                     {% endif %}
@@ -118,7 +117,7 @@
                     <div class="contact-note">
                         {{ page.speaking_contact_note|safe }}
                         {% if page.calendar_link %}
-                        <a href="{{ page.calendar_link }}" class="garden-action" target="_blank" rel="noopener noreferrer">{{ page.calendar_link_text }}</a>
+                        <a href="{{ page.calendar_link }}" class="garden-action primary" target="_blank" rel="noopener noreferrer">{{ page.calendar_link_text }}</a>
                         {% endif %}
                         {% if page.email_link %}
                         <a href="mailto:{{ page.email_link }}" class="garden-action secondary">{{ page.email_link_text }}</a>
