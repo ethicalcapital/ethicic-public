@@ -102,8 +102,8 @@
     <!-- Button contrast fixes for light/dark mode -->
     <link rel="stylesheet" href="{% static 'css/button-contrast-fixes.css' %}?v=1">
     
-    <!-- Formatting fixes for FAQ and Blog pages -->
-    <link rel="stylesheet" href="{% static 'css/fix-formatting-issues.css' %}?v=20250703001">
+    <!-- Breadcrumb spacing fix -->
+    <link rel="stylesheet" href="{% static 'css/layers/99-breadcrumb-fix.css' %}?v=1">
     
     <!-- About page specific styles -->
     {% if page and page.slug == 'about' %}
@@ -115,9 +115,6 @@
     {% if request.resolver_match.url_name == 'home' or request.path == '/' %}
     <link rel="stylesheet" href="{% static 'css/16-homepage.css' %}?v=2025070313">
     {% endif %}
-    
-    <!-- NUCLEAR BUTTON FIX - MUST LOAD ABSOLUTE LAST -->
-    <link rel="stylesheet" href="{% static 'css/blog-nuclear-button-fix.css' %}?v=2025-nuclear-no-layers">
     
     <!-- Phase 4: Page-specific styling - deferred for performance -->
     <!-- Commented out to reduce CSS complexity - styles moved to public-site-simple.css -->

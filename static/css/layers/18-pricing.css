@@ -1,0 +1,402 @@
+/* Pricing Page Specific Styles */
+
+/* Hero Section */
+.pricing-page .hero-panel {
+    background: var(--color-surface);
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.pricing-page .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+}
+
+.pricing-page .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.pricing-page .hero-description {
+    font-size: 1.1rem;
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Section Intro */
+.section-intro {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Pricing Grid */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.pricing-card {
+    background: var(--color-surface-secondary);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+}
+
+.direct-card {
+    border-color: var(--color-primary);
+    background: linear-gradient(135deg, var(--color-surface-secondary) 0%, var(--color-surface) 100%);
+}
+
+.card-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.price-display {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.period {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin-left: 0.5rem;
+    font-weight: 500;
+}
+
+/* Features List */
+.features-list {
+    margin-bottom: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.feature-icon {
+    color: var(--color-success, #22c55e);
+    font-weight: 600;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+.feature-text {
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    flex: 1;
+}
+
+/* Card Action */
+.card-action {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.dual-cta {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dual-cta .garden-action {
+    flex: 1;
+    min-width: 140px;
+    font-size: 0.875rem;
+    padding: 12px 16px;
+}
+
+/* Fee Details Grid */
+.fee-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.detail-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.detail-item h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+}
+
+.detail-item p {
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.service-card {
+    background: var(--color-surface-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.service-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.service-card p {
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.service-fee {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+    text-align: center;
+}
+
+.service-action {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* CTA Section */
+.pricing-page .cta-panel {
+    background: var(--color-surface-secondary, #f8f9fa) !important;
+    color: var(--color-text-primary) !important;
+    margin-top: 3rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+.pricing-page .cta-panel .garden-panel__header {
+    background: var(--color-surface-variant, #e9ecef) !important;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.pricing-page .cta-panel .garden-panel__content {
+    background: var(--color-surface-secondary, #f8f9fa) !important;
+    text-align: center;
+    color: var(--color-text-primary) !important;
+}
+
+.pricing-page .cta-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text-primary) !important;
+    margin-bottom: 1rem;
+}
+
+.pricing-page .cta-description {
+    font-size: 1.1rem;
+    color: var(--color-text-primary) !important;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.pricing-page .cta-description p {
+    color: var(--color-text-primary) !important;
+    margin: 0;
+}
+
+.pricing-page .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.pricing-page .cta-disclaimer {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary) !important;
+    line-height: 1.5;
+    padding: 1rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.pricing-page .cta-disclaimer p {
+    margin: 0;
+    color: var(--color-text-secondary) !important;
+}
+
+/* Text Links */
+.text-link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.text-link:hover {
+    color: var(--color-primary-hover);
+    text-decoration-thickness: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pricing-page .hero-title {
+        font-size: 2rem;
+    }
+    
+    .pricing-page .hero-subtitle {
+        font-size: 1.125rem;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .fee-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pricing-page .cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .pricing-page .cta-title {
+        font-size: 1.5rem;
+    }
+    
+    .amount {
+        font-size: 2.5rem;
+    }
+    
+    .dual-cta {
+        flex-direction: column;
+    }
+    
+    .dual-cta .garden-action {
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .pricing-page {
+    .pricing-card {
+        background: var(--color-surface-variant);
+        border-color: var(--color-border);
+    }
+    
+    .detail-item {
+        background: var(--color-surface-variant);
+        border-color: var(--color-border);
+    }
+    
+    .service-card {
+        background: var(--color-surface-variant);
+        border-color: var(--color-border);
+    }
+    
+    .service-fee {
+        background: var(--color-surface);
+    }
+}
+
+/* Button Hover Effects */
+.pricing-page .garden-action {
+    transition: all 0.3s ease;
+}
+
+.pricing-page .garden-action:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}

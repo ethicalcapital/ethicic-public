@@ -1,0 +1,566 @@
+/**
+ * UNIFIED BLOG STYLES
+ * Consolidated from multiple blog CSS files
+ * Clean, maintainable, no overlapping rules
+ */
+
+/* ========================================
+   BLOG LAYOUT & STRUCTURE
+   ======================================== */
+
+.blog-index-page {
+  background: var(--color-background);
+  min-height: 100vh;
+}
+
+/* Blog Container */
+.blog-index-page .garden-container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* Articles Section Layout */
+.articles-section {
+  padding: var(--space-8) 0;
+}
+
+.articles-container {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.articles-main {
+  width: 100%;
+}
+
+.blog-posts {
+  width: 100%;
+}
+
+.blog-posts .articles-list {
+  width: 100%;
+}
+
+/* Ensure sections take full width */
+.blog-posts .section-title-wrapper {
+  width: 100%;
+}
+
+/* Force article content to expand */
+.blog-index-page .articles-list {
+  width: 100% !important;
+}
+
+.blog-index-page .article-list-item {
+  width: 100% !important;
+}
+
+/* Article content layout - merged styles */
+.blog-index-page .article-list-content {
+  width: 100% !important;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) !important;
+  gap: var(--space-6);
+}
+
+/* Article text container - merged styles */
+.blog-index-page .article-list-text {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  flex: 1 1 100% !important;
+}
+
+.blog-index-page .article-list-title,
+.blog-index-page .article-list-excerpt {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* ========================================
+   BLOG HERO SECTION
+   ======================================== */
+
+.blog-index-page .hero-panel {
+  background: var(--color-surface);
+  padding: var(--space-12) 0;
+  margin-bottom: var(--space-8);
+}
+
+.hero-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.hero-title {
+  font-size: var(--font-3xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.hero-subtitle {
+  font-size: var(--font-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-relaxed);
+}
+
+/* Featured Article */
+.integrated-featured-section {
+  background: var(--color-surface-variant);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-top: var(--space-6);
+  position: relative;
+}
+
+.featured-badge {
+  background: var(--color-primary);
+  color: white;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-xs);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.featured-title {
+  font-size: var(--font-2xl);
+  margin: var(--space-4) 0;
+}
+
+.featured-excerpt {
+  color: var(--color-text-secondary);
+  line-height: var(--line-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+/* Hero Utilities */
+.hero-utilities {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.utility-title {
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+/* ========================================
+   ARTICLE LIST
+   ======================================== */
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+.article-list-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  transition: all var(--duration-fast);
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.article-list-item:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.article-list-content {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-6);
+  align-items: start;
+  width: 100%;
+}
+
+/* Force grid items to use full available space */
+.article-list-content > * {
+  min-width: 0;
+}
+
+/* Ensure the text column takes all available space */
+.article-list-content > .article-list-text {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.article-list-image {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.article-list-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-list-text {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Allow content to shrink */
+}
+
+.article-list-title {
+  font-size: var(--font-xl);
+  font-weight: var(--font-semibold);
+  margin: var(--space-3) 0;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.article-list-title a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.article-list-title a:hover {
+  color: var(--color-primary);
+}
+
+.article-list-excerpt {
+  color: var(--color-text-secondary);
+  line-height: var(--line-relaxed);
+  margin-bottom: var(--space-4);
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Article Tags */
+.article-list-tags,
+.featured-tags {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2);
+  width: 100%;
+}
+
+.article-list-meta {
+  width: 100%;
+}
+
+.article-list-tag,
+.featured-tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-surface-variant);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Article Actions */
+.article-list-actions,
+.featured-actions {
+  margin-top: var(--space-4);
+  width: 100%;
+}
+
+/* ========================================
+   BLOG BUTTONS - CLEAN & SIMPLE
+   ======================================== */
+
+/* Secondary buttons in blog context */
+.blog-index-page .garden-action.secondary,
+.blog-index-page a.garden-action.secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.blog-index-page .garden-action.secondary:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Primary buttons in blog context */
+.blog-index-page .garden-action.primary {
+  background: var(--color-primary);
+  color: white;
+  border: 2px solid var(--color-primary);
+}
+
+.blog-index-page .garden-action.primary:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+/* Size variants */
+.blog-index-page .garden-action.small {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-xs);
+}
+
+.blog-index-page .garden-action.large {
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--font-md);
+}
+
+/* ========================================
+   BLOG SIDEBAR
+   ======================================== */
+
+.blog-sticky-sidebar {
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+
+.sidebar-section {
+  margin-bottom: var(--space-6);
+}
+
+.sidebar-section .garden-panel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.sidebar-section .garden-panel__header {
+  background: var(--color-surface-variant);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-section .panel-title {
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.sidebar-section .garden-panel__content {
+  padding: var(--space-4);
+  background: var(--color-surface);
+}
+
+/* Newsletter Form */
+.sidebar-newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sidebar-input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-sm);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.sidebar-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-alpha);
+}
+
+.sidebar-privacy {
+  text-align: center;
+  margin-top: var(--space-2);
+}
+
+/* Social Links */
+.social-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-size: var(--font-sm);
+  transition: all var(--duration-fast);
+}
+
+.social-link:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-surface-variant);
+}
+
+/* ========================================
+   PAGINATION
+   ======================================== */
+
+.pagination-container {
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.pagination-info {
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+}
+
+/* ========================================
+   AGGRESSIVE WIDTH FIXES
+   ======================================== */
+
+/* Additional article layout refinements moved to main selectors above */
+
+/* Ensure all text elements fill their containers */
+.blog-index-page .article-list-title,
+.blog-index-page .article-list-title a,
+.blog-index-page .article-list-excerpt,
+.blog-index-page .article-list-meta,
+.blog-index-page .article-list-tags,
+.blog-index-page .article-list-actions {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
+}
+
+/* Remove any potential max-width constraints from parent elements */
+.blog-index-page .articles-main,
+.blog-index-page .blog-posts,
+.blog-index-page .articles-list,
+.blog-index-page .article-list-item {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* ========================================
+   DARK MODE
+   ======================================== */
+
+[data-theme="dark"] {
+  /* Buttons */
+  .blog-index-page .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  
+  .blog-index-page .garden-action.secondary:hover {
+    background: var(--color-primary);
+    color: white;
+  }
+  
+  /* Sidebar panels */
+  .sidebar-section .garden-panel__header {
+    background: var(--color-surface-variant);
+    border-color: var(--color-border);
+  }
+  
+  .sidebar-section .garden-panel__content {
+    background: var(--color-surface);
+  }
+  
+  /* Article items */
+  .article-list-item {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+  }
+  
+  .article-list-item:hover {
+    border-color: var(--color-primary);
+  }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .articles-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .blog-sticky-sidebar {
+    position: static;
+    max-height: none;
+    margin-top: var(--space-8);
+  }
+  
+  .hero-content-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-utilities {
+    flex-direction: row;
+    margin-top: var(--space-6);
+  }
+}
+
+@media (max-width: 768px) {
+  .article-list-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .article-list-image {
+    height: 200px;
+  }
+  
+  .social-links {
+    grid-template-columns: 1fr;
+  }
+}

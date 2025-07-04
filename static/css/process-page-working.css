@@ -404,35 +404,41 @@
 
 /* CTA Section */
 .cta-panel {
-    background: #553C9A;
-    color: white;
+    background: #553C9A !important;
+    color: white !important;
     margin-top: 3rem;
     border-radius: 8px;
 }
 
+.cta-panel .garden-panel__header,
+.cta-panel .garden-panel-header {
+    background: #442a8a !important;
+    border-radius: 8px 8px 0 0;
+}
+
 .cta-panel .garden-panel__content,
 .cta-panel .garden-panel-content {
-    background: transparent;
-    color: white;
+    background: #553C9A !important;
+    color: white !important;
 }
 
 .cta-panel .panel-title {
     background: transparent;
     padding: 0;
-    color: white;
+    color: white !important;
 }
 
 .cta-title {
     font-size: 1.75rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: white;
+    color: white !important;
 }
 
 .cta-description {
     font-size: 1.125rem;
     margin-bottom: 2rem;
-    color: white;
+    color: white !important;
 }
 
 .cta-panel .garden-action {

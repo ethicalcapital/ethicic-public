@@ -395,6 +395,55 @@ class AboutPage(Page):
         default="<p>When not managing portfolios, Sloane skis in Utah and replaces lawn with wildlife-friendly perennials, reflecting her appreciation for both adventure and the natural world that ethical investing seeks to protect.</p>",
         help_text="Personal interests content"
     )
+    
+    # Three-panel content for new layout
+    # What I Do Now panel
+    current_role_content = RichTextField(
+        blank=True,
+        default="<p>Chief Investment Officer at Ethical Capital, translating insights from clients, colleagues, and research into investment strategies that align with values.</p>",
+        help_text="Current role description for What I Do Now panel"
+    )
+    philosophy_content = RichTextField(
+        blank=True,
+        default="<p>Our process is oriented towards cumulative learning—understanding companies, the communities they serve, and the consequences of their activities.</p>",
+        help_text="Philosophy description for What I Do Now panel"
+    )
+    client_focus_content = RichTextField(
+        blank=True,
+        default="<p>Spending time getting to know our clients, which I find profoundly grounding. Building portfolios that reflect their values while delivering strong financial outcomes.</p>",
+        help_text="Client focus description for What I Do Now panel"
+    )
+    
+    # Featured posts section
+    featured_post_1_title = models.CharField(max_length=200, blank=True, default="How I Became an Active Manager")
+    featured_post_1_description = models.CharField(max_length=300, blank=True, default="The best place to start understanding my personal journey")
+    featured_post_1_url = models.CharField(max_length=500, blank=True, default="/blog/how-i-became-an-active-manager/")
+    
+    featured_post_2_title = models.CharField(max_length=200, blank=True, default="What Would a Recession Mean?")
+    featured_post_2_description = models.CharField(max_length=300, blank=True, default="Perspective for long-term investors")
+    featured_post_2_url = models.CharField(max_length=500, blank=True, default="/blog/what-would-a-recession-actually-mean-for-long-term-investors/")
+    
+    featured_post_3_title = models.CharField(max_length=200, blank=True, default="What Does Inflation Mean to You?")
+    featured_post_3_description = models.CharField(max_length=300, blank=True, default="Personal impact of economic changes")
+    featured_post_3_url = models.CharField(max_length=500, blank=True, default="/blog/what-does-inflation-mean-to-you/")
+    
+    featured_post_4_title = models.CharField(max_length=200, blank=True, default="What Should You Expect When You're Investing?")
+    featured_post_4_description = models.CharField(max_length=300, blank=True, default="Setting realistic expectations")
+    featured_post_4_url = models.CharField(max_length=500, blank=True, default="/blog/what-should-you-expect-when-youre-investing/")
+    
+    # Speaking topics
+    speaking_topics = RichTextField(
+        blank=True,
+        default="<ul><li>Aligning money with values for novice investors</li><li>Modern sustainable investing strategies</li><li>Ethical screening and portfolio construction</li><li>Investment management best practices</li></ul>",
+        help_text="Topics covered in speaking engagements"
+    )
+    
+    # Speaker bio download
+    speaker_bio_url = models.URLField(
+        blank=True,
+        default="https://pub-324a685032214395a8bcad478c265d4b.r2.dev/Sloane-Ortel-Speaker-Bio.pdf",
+        help_text="URL to speaker bio PDF"
+    )
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
@@ -419,6 +468,11 @@ class AboutPage(Page):
             FieldPanel("sec_info_url"),
         ], heading="Social Links"),
         MultiFieldPanel([
+            FieldPanel("current_role_content"),
+            FieldPanel("philosophy_content"),
+            FieldPanel("client_focus_content"),
+        ], heading="What I Do Now Panel"),
+        MultiFieldPanel([
             FieldPanel("professional_background_title"),
             FieldPanel("professional_background_content"),
         ], heading="Professional Background"),
@@ -427,8 +481,24 @@ class AboutPage(Page):
             FieldPanel("external_roles_content"),
         ], heading="External Roles"),
         MultiFieldPanel([
+            FieldPanel("featured_post_1_title"),
+            FieldPanel("featured_post_1_description"),
+            FieldPanel("featured_post_1_url"),
+            FieldPanel("featured_post_2_title"),
+            FieldPanel("featured_post_2_description"),
+            FieldPanel("featured_post_2_url"),
+            FieldPanel("featured_post_3_title"),
+            FieldPanel("featured_post_3_description"),
+            FieldPanel("featured_post_3_url"),
+            FieldPanel("featured_post_4_title"),
+            FieldPanel("featured_post_4_description"),
+            FieldPanel("featured_post_4_url"),
+        ], heading="Featured Posts"),
+        MultiFieldPanel([
             FieldPanel("speaking_writing_title"),
             FieldPanel("speaking_writing_content"),
+            FieldPanel("speaking_topics"),
+            FieldPanel("speaker_bio_url"),
             FieldPanel("speaking_cta_text"),
             FieldPanel("speaking_contact_note"),
             FieldPanel("calendar_link"),

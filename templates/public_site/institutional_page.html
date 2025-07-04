@@ -4,142 +4,153 @@
 
 {% block meta_description %}Scalable ethical investment solutions and research capabilities for institutions, endowments, and pension funds with institutional-grade compliance and reporting.{% endblock %}
 
+{% block body_class %}institutional-page{% endblock %}
+
 {% block content %}
 <div class="garden-container">
-<div class="institutional-page">
     <!-- Hero Section -->
-    <section class="hero-section garden-panel" role="banner" aria-labelledby="hero-heading">
-        <div class="hero-inner">
+    <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
+        <div class="garden-panel__content">
             <h1 id="hero-heading" class="hero-title">
-                > {{ page.hero_title|default:"Institutional-Grade Ethical Investment Solutions" }}
+                {{ page.hero_title|default:"Institutional-Grade Ethical Investment Solutions" }}
             </h1>
             <p class="hero-subtitle">
                 {{ page.hero_subtitle|default:"Scalable research capabilities and proven methodologies to help institutions implement ethical investing strategies at scale" }}
             </p>
             
             <div class="hero-description">
-                {{ page.hero_description|default:"<p>As institutional investors increasingly prioritize ESG and ethical considerations, we provide the specialized research, proven strategies, and operational infrastructure you need to implement ethical investing at institutional scale.</p>"|safe }}
+                {{ page.hero_description|default:"As institutional investors increasingly prioritize ESG and ethical considerations, we provide the specialized research, proven strategies, and operational infrastructure you need to implement ethical investing at institutional scale."|safe }}
             </div>
         </div>
     </section>
 
     <!-- What We Offer Section -->
-    <section class="services-section garden-panel" role="main" aria-labelledby="services-heading">
-        <h2 class="section-header">What We Offer Institutions</h2>
-        <div class="panel-content">
-            <div class="services-intro">
-                <p>We provide institutions with proven ethical investment strategies that can be implemented at scale using liquid securities. Our approach focuses on delivering strategies that meet fiduciary standards while achieving alignment with institutional values and stakeholder expectations.</p>
-            </div>
+    <section class="garden-panel" role="main" aria-labelledby="services-heading">
+        <div class="garden-panel__header">
+            <div class="panel-title">WHAT WE OFFER INSTITUTIONS</div>
+        </div>
+        <div class="garden-panel__content">
+            <p class="section-intro">We provide institutions with proven ethical investment strategies that can be implemented at scale using liquid securities. Our approach focuses on delivering strategies that meet fiduciary standards while achieving alignment with institutional values and stakeholder expectations.</p>
             
             <div class="services-grid">
-                <div class="service-item garden-panel">
-                    <div class="garden-panel__header panel-header">PROVEN STRATEGIES</div>
-                    <div class="garden-panel__content panel-content">
-                        <p>Three distinct <a href="/strategies/">investment strategies</a> with proprietary <a href="/process/">screening methodologies</a> that exclude 57% of the S&P 500 based on rigorous ethical criteria.</p>
-                    </div>
+                <div class="service-card">
+                    <h3 class="service-title">PROVEN STRATEGIES</h3>
+                    <p>Three distinct <a href="/strategies/" class="text-link">investment strategies</a> with proprietary <a href="/process/" class="text-link">screening methodologies</a> that exclude 57% of the S&P 500 based on rigorous ethical criteria.</p>
                 </div>
                 
-                <div class="service-item garden-panel">
-                    <div class="garden-panel__header panel-header">LIQUID IMPLEMENTATION</div>
-                    <div class="garden-panel__content panel-content">
-                        <p>Strategies implemented using liquid securities with institutional-grade diversification, risk management, and performance attribution capabilities.</p>
-                    </div>
+                <div class="service-card">
+                    <h3 class="service-title">LIQUID IMPLEMENTATION</h3>
+                    <p>Strategies implemented using liquid securities with institutional-grade diversification, risk management, and performance attribution capabilities.</p>
                 </div>
                 
-                <div class="service-item garden-panel">
-                    <div class="garden-panel__header panel-header">DIRECT CIO ACCESS</div>
-                    <div class="garden-panel__content panel-content">
-                        <p>Direct access to our Chief Investment Officer for strategy discussions, implementation support, and ongoing institutional partnership.</p>
-                    </div>
+                <div class="service-card">
+                    <h3 class="service-title">DIRECT CIO ACCESS</h3>
+                    <p>Direct access to our Chief Investment Officer for strategy discussions, implementation support, and ongoing institutional partnership.</p>
                 </div>
                 
-                <div class="service-item garden-panel">
-                    <div class="garden-panel__header panel-header">COMMUNITY ENGAGEMENT</div>
-                    <div class="garden-panel__content panel-content">
-                        <p>We're committed to meeting with communities, stakeholder groups, and institutional committees to discuss ethical investing approaches and implementation strategies.</p>
-                    </div>
+                <div class="service-card">
+                    <h3 class="service-title">COMMUNITY ENGAGEMENT</h3>
+                    <p>We're committed to meeting with communities, stakeholder groups, and institutional committees to discuss ethical investing approaches and implementation strategies.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Institutional Benefits Section -->
-    <section class="benefits-section garden-panel" role="complementary" aria-labelledby="benefits-heading">
-        <h2 class="section-header">Why Institutions Choose Us</h2>
-        <div class="panel-content">
-            <div class="benefits-intro">
-                <p>Leading institutions partner with us because we deliver proven strategies, transparent methodology, and direct access to decision-makers that institutional fiduciary standards demand.</p>
-            </div>
+    <!-- Partnership Benefits Section -->
+    <section class="garden-panel" role="complementary" aria-labelledby="benefits-heading">
+        <div class="garden-panel__header">
+            <div class="panel-title">WHY INSTITUTIONS CHOOSE US</div>
+        </div>
+        <div class="garden-panel__content">
+            <p class="section-intro">Leading institutions partner with us because we deliver proven strategies, transparent methodology, and direct access to decision-makers that institutional fiduciary standards demand.</p>
             
             <div class="benefits-list">
-                <ul class="benefit-bullets">
-                    <li><strong>Transparent Methodology</strong> — Our <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener">screening criteria is open source</a>, providing complete transparency and documentation for institutional oversight committees.</li>
-                    
-                    <li><strong>Investment Capacity</strong> — We have excess capacity of $250+ million, implementing strategies using liquid securities that provide institutional-scale access and flexibility.</li>
-                    
-                    <li><strong>Direct CIO Access</strong> — Institutions work directly with our Chief Investment Officer for strategy discussions, implementation decisions, and ongoing partnership.</li>
-                    
-                    <li><strong>Community Engagement</strong> — We're committed to meeting with communities, stakeholder groups, and institutional committees to ensure alignment with institutional values and missions.</li>
-                    
-                    <li><strong>Fiduciary Standards</strong> — Our systematic approach meets institutional fiduciary requirements with documented processes, audit trails, and performance attribution.</li>
-                    
-                    <li><strong>Proven Track Record</strong> — Since 2021, we've helped institutions implement ethical investing strategies that meet both performance and values-alignment objectives.</li>
-                </ul>
+                <div class="benefit-item">
+                    <h4>Transparent Methodology</h4>
+                    <p>Our <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener" class="text-link">screening criteria is open source</a>, providing complete transparency and documentation for institutional oversight committees.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Investment Capacity</h4>
+                    <p>We have excess capacity of $250+ million, implementing strategies using liquid securities that provide institutional-scale access and flexibility.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Direct CIO Access</h4>
+                    <p>Institutions work directly with our Chief Investment Officer for strategy discussions, implementation decisions, and ongoing partnership.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Community Engagement</h4>
+                    <p>We're committed to meeting with communities, stakeholder groups, and institutional committees to ensure alignment with institutional values and missions.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Fiduciary Standards</h4>
+                    <p>Our systematic approach meets institutional fiduciary requirements with documented processes, audit trails, and performance attribution.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Proven Track Record</h4>
+                    <p>Since 2021, we've helped institutions implement ethical investing strategies that meet both performance and values-alignment objectives.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Implementation Approach Section -->
-    <section class="implementation-section garden-panel" role="region" aria-labelledby="implementation-heading">
-        <h2 class="section-header">Our Institutional Approach</h2>
-        <div class="panel-content">
-            <div class="implementation-overview">
-                <div class="implementation-step">
+    <!-- Process Overview Section -->
+    <section class="garden-panel" role="region" aria-labelledby="process-heading">
+        <div class="garden-panel__header">
+            <div class="panel-title">OUR INSTITUTIONAL APPROACH</div>
+        </div>
+        <div class="garden-panel__content">
+            <div class="process-steps">
+                <div class="process-step">
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <h3 class="step-title">INSTITUTIONAL ASSESSMENT</h3>
-                        <p class="step-description">Comprehensive evaluation of institutional requirements, existing infrastructure, stakeholder expectations, and fiduciary constraints.</p>
+                        <p>Comprehensive evaluation of institutional requirements, existing infrastructure, stakeholder expectations, and fiduciary constraints.</p>
                     </div>
                 </div>
 
-                <div class="implementation-step">
+                <div class="process-step">
                     <div class="step-number">2</div>
                     <div class="step-content">
                         <h3 class="step-title">CUSTOM STRATEGY DESIGN</h3>
-                        <p class="step-description">Development of tailored ethical investing approaches that accommodate institutional scale, risk parameters, and compliance requirements.</p>
+                        <p>Development of tailored ethical investing approaches that accommodate institutional scale, risk parameters, and compliance requirements.</p>
                     </div>
                 </div>
 
-                <div class="implementation-step">
+                <div class="process-step">
                     <div class="step-number">3</div>
                     <div class="step-content">
                         <h3 class="step-title">INFRASTRUCTURE INTEGRATION</h3>
-                        <p class="step-description">Seamless integration with existing institutional systems, including custodians, reporting platforms, and oversight frameworks.</p>
+                        <p>Seamless integration with existing institutional systems, including custodians, reporting platforms, and oversight frameworks.</p>
                     </div>
                 </div>
 
-                <div class="implementation-step">
+                <div class="process-step">
                     <div class="step-number">4</div>
                     <div class="step-content">
                         <h3 class="step-title">ONGOING INSTITUTIONAL SUPPORT</h3>
-                        <p class="step-description">Continuous research updates, performance monitoring, and stakeholder reporting to ensure ongoing alignment and oversight.</p>
+                        <p>Continuous research updates, performance monitoring, and stakeholder reporting to ensure ongoing alignment and oversight.</p>
                     </div>
                 </div>
             </div>
             
-            <div class="implementation-cta">
-                <a href="/process/" class="garden-action">LEARN ABOUT OUR FULL PROCESS</a>
+            <div class="process-action">
+                <a href="/process/" class="garden-action secondary">LEARN ABOUT OUR FULL PROCESS</a>
             </div>
         </div>
     </section>
 
     <!-- Scale & Capabilities Section -->
-    <section class="scale-section garden-panel" role="region" aria-labelledby="scale-heading">
-        <h2 class="section-header">Institutional Scale & Capabilities</h2>
-        <div class="panel-content">
-            <div class="scale-intro">
-                <p>Our investment strategies and operational infrastructure are designed to support institutional-scale implementations with the rigor and transparency institutional oversight requires.</p>
-            </div>
+    <section class="garden-panel" role="region" aria-labelledby="scale-heading">
+        <div class="garden-panel__header">
+            <div class="panel-title">INSTITUTIONAL SCALE & CAPABILITIES</div>
+        </div>
+        <div class="garden-panel__content">
+            <p class="section-intro">Our investment strategies and operational infrastructure are designed to support institutional-scale implementations with the rigor and transparency institutional oversight requires.</p>
             
             <div class="scale-metrics">
                 <div class="metric-item">
@@ -213,7 +224,7 @@
                                 <div class="resource-desc">SEC-required investment adviser disclosure and regulatory filing</div>
                             </div>
                         </a>
-                        <a href="/disclosures/disclosures/" class="resource-link">
+                        <a href="/disclosures/" class="resource-link">
                             <span class="resource-icon">⚠️</span>
                             <div class="resource-info">
                                 <div class="resource-title">Risk Disclosures</div>
@@ -234,36 +245,116 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section class="cta-section garden-panel" role="complementary" aria-labelledby="cta-heading">
-        <h2 class="section-header">Ready to Partner?</h2>
-        <div class="panel-content cta-content">
+    <section class="garden-panel cta-panel" role="complementary" aria-labelledby="cta-heading">
+        <div class="garden-panel__header">
+            <div class="panel-title">READY TO PARTNER?</div>
+        </div>
+        <div class="garden-panel__content">
             <h2 id="cta-heading" class="cta-title">
                 {{ page.cta_title|default:"Let's discuss how we can support your institutional objectives" }}
             </h2>
             
             <div class="cta-description">
-                {{ page.cta_description|default:"<p>Join leading institutions who trust our systematic approach to help them implement ethical investing strategies that meet both fiduciary standards and stakeholder expectations. Schedule a consultation to explore how we can support your institution.</p>"|safe }}
+                {{ page.cta_description|default:"Join leading institutions who trust our systematic approach to help them implement ethical investing strategies that meet both fiduciary standards and stakeholder expectations."|safe }}
             </div>
             
             <div class="cta-actions">
-                <a href="https://tidycal.com/ecic/institutional" 
-                   class="garden-action primary"
-                   target="_blank"
-                   rel="noopener">
+                <!-- Primary CTA - Schedule Consultation -->
+                <button onclick="window.open('https://tidycal.com/ecic/institutional', '_blank')" 
+                        style="display: inline-block !important; padding: 20px 40px !important; background: #553C9A !important; color: #ffffff !important; border: 3px solid #553C9A !important; border-radius: 8px !important; font-family: Inter, sans-serif !important; font-size: 16px !important; font-weight: 800 !important; text-transform: uppercase !important; letter-spacing: 1.2px !important; cursor: pointer !important; margin: 10px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important; transition: all 0.3s ease !important;">
                     SCHEDULE INSTITUTIONAL CONSULTATION
-                </a>
+                </button>
                 
-                <a href="/contact/" 
-                   class="garden-action secondary">
+                <!-- Secondary CTA - Send Message -->
+                <button onclick="window.location.href='/contact/'" 
+                        style="display: inline-block !important; padding: 20px 40px !important; background: transparent !important; color: #553C9A !important; border: 3px solid #553C9A !important; border-radius: 8px !important; font-family: Inter, sans-serif !important; font-size: 16px !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 1.2px !important; cursor: pointer !important; margin: 10px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important; transition: all 0.3s ease !important;">
                     SEND A MESSAGE
-                </a>
-            </div>
-            
-            <div class="cta-help">
-                We'll discuss your institutional requirements, stakeholder expectations, and how our systematic approach can help you implement ethical investing at scale.
+                </button>
             </div>
         </div>
     </section>
 </div>
-</div>
+{% endblock %}
+
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/layers/27-institutional-page.css' %}?v=1">
+<style>
+/* Force button text colors */
+.cta-actions button {
+    color: inherit !important;
+}
+
+.cta-actions button:nth-child(1) {
+    color: #ffffff !important;
+    background: #553C9A !important;
+}
+
+.cta-actions button:nth-child(2) {
+    color: #553C9A !important;
+    background: transparent !important;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Add hover effects and force text colors
+document.addEventListener('DOMContentLoaded', function() {
+    const ctaButtons = document.querySelectorAll('.cta-actions button');
+    
+    ctaButtons.forEach(function(button, index) {
+        // Force initial colors
+        if (index === 0) { // Schedule button
+            button.style.color = '#ffffff';
+            button.style.background = '#553C9A';
+        } else { // Send message button
+            button.style.color = '#553C9A';
+            button.style.background = 'transparent';
+        }
+        
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 8px 20px rgba(0,0,0,0.4)';
+            
+            if (this.textContent.includes('SCHEDULE')) {
+                this.style.background = '#442a8a';
+                this.style.color = '#ffffff';
+            } else {
+                this.style.background = '#553C9A';
+                this.style.color = '#ffffff';
+            }
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+            
+            // Reset to original styles with forced colors
+            if (this.textContent.includes('SCHEDULE')) {
+                this.style.background = '#553C9A';
+                this.style.color = '#ffffff';
+            } else {
+                this.style.background = 'transparent';
+                this.style.color = '#553C9A';
+            }
+        });
+    });
+    
+    // Additional color enforcement every 100ms for 3 seconds
+    let colorEnforcementCount = 0;
+    const colorInterval = setInterval(function() {
+        const scheduleButton = document.querySelector('.cta-actions button:nth-child(1)');
+        if (scheduleButton) {
+            scheduleButton.style.color = '#ffffff';
+        }
+        colorEnforcementCount++;
+        if (colorEnforcementCount > 30) {
+            clearInterval(colorInterval);
+        }
+    }, 100);
+    
+    console.log('CTA button hover effects and color enforcement applied');
+});
+</script>
 {% endblock %}

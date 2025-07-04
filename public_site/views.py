@@ -1499,5 +1499,98 @@ def validate_email_api(request):
     return HttpResponse('')
 
 
+def disclosures_page(request):
+    """Disclosures page that loads content from database, external source, or fallback"""
+    try:
+        # Try to get LegalPage content from database
+        from .models import LegalPage
+        
+        # Look for a disclosures-related legal page
+        legal_page = LegalPage.objects.filter(
+            title__icontains='disclosure'
+        ).first()
+        
+        if not legal_page:
+            # Try finding by slug
+            legal_page = LegalPage.objects.filter(
+                slug__icontains='disclosure'
+            ).first()
+        
+        if not legal_page:
+            # Create content that matches https://ethicic.com/disclosures/
+            intro = '<p>Important legal disclosures, privacy policy, and regulatory information for Ethical Capital.</p>'
+            content = '''
+            <h2>Privacy Policy</h2>
+            
+            <h3>Who We Are</h3>
+            <p>Ethical Capital is registered as Invest Vegan LLC, a Utah registered investment adviser. Our founder and Chief Investment Officer is Sloane Ortel. We are located at 90 N 400 E, Provo, UT 84606.</p>
+            
+            <h3>Form Submissions</h3>
+            <p>We collect information you provide through form submissions on our website, including your IP address and browser information. This information is used to provide our services and communicate with you about your account and our offerings.</p>
+            
+            <h3>Cookies</h3>
+            <p>Our website may use cookies to enhance your browsing experience and provide personalized content.</p>
+            
+            <h3>Embedded Content from Other Websites</h3>
+            <p>Our website may include embedded content (e.g., videos, images, articles, etc.) from other websites. Embedded content from other websites behaves in the exact same way as if you have visited the other website.</p>
+            
+            <h3>How Long We Retain Your Data</h3>
+            <p>We retain your records for a minimum of 5 years as required by the Investment Advisers Act. We do not sell your data to third parties for any reason. We do transmit data through third party services (Google Workspace mostly) as necessary to provide our services.</p>
+            
+            <h2>Additional Disclosures</h2>
+            
+            <h3>Website Content Disclaimer</h3>
+            <p>The content on this website is for informational purposes only. Opinions expressed herein are solely those of the firm unless otherwise specifically cited. We recommend consulting with qualified advisers before implementing any ideas presented on this website.</p>
+            
+            <h3>Registration Information</h3>
+            <p>Advisory services are offered through Invest Vegan LLC, a Utah registered investment adviser. We comply with all applicable state jurisdiction requirements. We recommend checking with your state securities regulators for any disciplinary history.</p>
+            
+            <h3>Social Media Disclosure</h3>
+            <p>Our social media accounts do not represent the entire firm's opinion. Any discussions of securities on our social media platforms are not recommendations to buy, sell, or hold any particular security.</p>
+            
+            <h2>Contact Information</h2>
+            <p>For questions about this privacy policy or our services:</p>
+            
+            <p><strong>Ethical Capital</strong><br>
+            90 N 400 E<br>
+            Provo, UT 84606<br>
+            Phone: <a href="tel:+13476259000">+1 347 625 9000</a><br>
+            Email: <a href="mailto:sloane@ethicic.com">sloane@ethicic.com</a></p>
+            '''
+            
+            context = {
+                'page_title': 'Disclosures',
+                'page': {
+                    'title': 'Disclosures',
+                    'intro_text': intro,
+                    'content': content,
+                    'effective_date': timezone.now().date(),
+                    'updated_at': timezone.now().date(),
+                }
+            }
+        else:
+            context = {
+                'page_title': legal_page.title,
+                'page': legal_page,
+            }
+        
+        return render(request, 'public_site/legal_page.html', context)
+        
+    except Exception as e:
+        logger.exception("Error loading disclosures page")
+        # Fallback with basic content
+        context = {
+            'page_title': 'Disclosures',
+            'page': {
+                'title': 'Disclosures',
+                'intro_text': '<p>Important legal disclosures for Ethical Capital.</p>',
+                'content': '<p>Please contact us for our current disclosures and privacy policy.</p>',
+                'effective_date': None,
+                'updated_at': None,
+            }
+        }
+        return render(request, 'public_site/legal_page.html', context)
+
+
 
 

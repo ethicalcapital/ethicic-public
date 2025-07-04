@@ -378,7 +378,6 @@ html body.public-site-context section.garden-panel:not(.hero-panel),
 html body.public-site-context .garden-panel:not(.hero-panel),
 html body.public-site-context .garden-panel-content:not(.hero-panel .garden-panel-content, .hero-panel .garden-panel__content),
 html body.public-site-context .panel-content:not(.hero-panel .panel-content),
-html body.public-site-context main.main-content,
 html body.public-site-context .garden-panel:not(.hero-panel) .garden-panel-content,
 html body.public-site-context div.garden-panel-content:not(.hero-panel div.garden-panel-content, .hero-panel div.garden-panel__content),
 html body.public-site-context div.panel-content:not(.hero-panel div.panel-content) {

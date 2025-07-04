@@ -248,9 +248,7 @@
     color: var(--color-on-surface) !important;
 }
 
-.article-list-excerpt {
-    color: var(--color-on-surface-variant) !important;
-}
+/* Article excerpt styles defined earlier in file */
 
 /* Hero title and subtitle fixes */
 .hero-title {

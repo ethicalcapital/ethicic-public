@@ -31,6 +31,7 @@
                 </div>
                 <span class="stat-value">{{ page.excluded_percentage }}</span>
                 <span class="stat-label">S&P 500 EXCLUDED</span>
+                <span class="stat-date">as of July 1, 2025</span>
             </div>
             <div class="stat-item">
                 <div class="stat-indicator"></div>
@@ -144,7 +145,7 @@
                             <td>Active & Continuous</td>
                         </tr>
                         <tr>
-                            <td class="label">Ownership:</td>
+                            <td class="label">What you own:</td>
                             <td>Direct Securities</td>
                         </tr>
                     </tbody>
@@ -179,7 +180,7 @@
                             <td>Active & Continuous</td>
                         </tr>
                         <tr>
-                            <td class="label">Ownership:</td>
+                            <td class="label">What you own:</td>
                             <td>Direct Securities</td>
                         </tr>
                     </tbody>
@@ -214,7 +215,7 @@
                             <td>Active & Continuous</td>
                         </tr>
                         <tr>
-                            <td class="label">Ownership:</td>
+                            <td class="label">What you own:</td>
                             <td>External Funds</td>
                         </tr>
                     </tbody>
@@ -316,16 +317,17 @@
         <h2>{{ page.cta_title }}</h2>
         {{ page.cta_description|richtext }}
         
-        <div class="cta-actions">
-            <a href="/consultation/" class="garden-action primary">Schedule a Consultation</a>
-            <a href="/guide/" class="garden-action secondary">Download Investment Guide</a>
+        <div class="accepting-clients-banner">
+            <div class="banner-icon">🟢</div>
+            <div class="banner-text">
+                <strong>{{ page.client_availability_text|upper }}</strong>
+                <span>Limited spots available for Q1 2025</span>
+            </div>
         </div>
         
-        <div class="cta-info">
-            <div class="cta-info-item">
-                <strong>NEW CLIENT AVAILABILITY</strong>
-                {{ page.client_availability_text }}
-            </div>
+        <div class="cta-actions">
+            <a href="/process/" class="garden-action primary large">View Our Process →</a>
+            <a href="/consultation/" class="garden-action secondary">Schedule Consultation</a>
         </div>
     </section>
 </div>

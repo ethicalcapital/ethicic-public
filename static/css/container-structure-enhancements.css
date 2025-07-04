@@ -19,12 +19,15 @@
     box-sizing: border-box;
 }
 
-/* ===== FOOTER WIDTH ENFORCEMENT DELEGATED TO CRITICAL-FIXES.CSS ===== */
+/* ===== FOOTER STYLES - MERGED ===== */
 /* Footer width constraints are now handled in critical-fixes.css with maximum specificity */
 /* This avoids conflicts and ensures the bulletproof fixes take precedence */
 .public-site-context .garden-footer {
     width: 100%;
     background: var(--color-surface);
+    border-top: 2px solid var(--color-border);
+    box-shadow: 0 -2px 8px rgb(0,0,0,0.05);
+    margin-top: var(--space-8);
 }
 
 /* ===== SUBTLE CONTAINER BORDERS FOR STRUCTURE CLARITY ===== */
@@ -50,12 +53,7 @@
     box-shadow: 0 2px 8px rgb(0,0,0,0.1);
 }
 
-/* Footer visual separation - extending previous footer styles */
-.public-site-context .garden-footer {
-    border-top: 2px solid var(--color-border);
-    box-shadow: 0 -2px 8px rgb(0,0,0,0.05);
-    margin-top: var(--space-8);
-}
+/* Footer styles merged with main definition above */
 
 /* ===== CONTENT AREA STRUCTURE ===== */
 /* Make main content area more visually defined */
@@ -64,7 +62,7 @@
     min-height: calc(100vh - 200px); /* Account for header and footer */
     padding: var(--space-6);
     border-radius: var(--radius-lg);
-    margin: var(--space-4) auto;
+    margin: 0 auto;
     box-shadow: var(--shadow-sm, 0 1px 3px rgb(0,0,0,0.1));
 }
 

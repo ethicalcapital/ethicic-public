@@ -51,42 +51,87 @@
     <div class="articles-content">
         <div class="articles-container">
         <!-- FAQ Articles Content -->
-        <div class="articles-main">
+        <div class="articles-main" style="width: 100% !important; max-width: none !important;">
         
-        <!-- FAQ Articles -->
-        <section class="faq-articles">
-            <div class="section-title-wrapper">
-                <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
-            </div>
-            {% with articles=page.get_articles %}
-                {% if articles %}
-                    <div class="articles-list" id="faq-container">
-                        {% for article in articles %}
-                        <article class="article-list-item" data-article-id="{{ article.id }}">
-                            <div class="article-list-content">
-                                <div class="article-list-text">
-                                    {% if article.category %}
-                                        <div class="article-list-meta">
-                                            <div class="article-list-tags">
-                                                <span class="article-list-tag">{{ article.get_category_display }}</span>
-                                            </div>
+        <!-- Featured FAQ Section -->
+        {% with articles=page.get_articles %}
+            {% if articles %}
+                {% with featured_article=articles.0 %}
+                <section class="featured-faq-section">
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">FEATURED QUESTION</h2>
+                    </div>
+                    <div class="featured-faq-container">
+                        <article class="featured-faq-item">
+                            <div class="featured-faq-content">
+                                <div class="featured-badge-container">
+                                    <span class="featured-badge">FEATURED</span>
+                                </div>
+                                
+                                {% if featured_article.category %}
+                                    <div class="featured-faq-meta">
+                                        <div class="featured-tags">
+                                            <span class="featured-tag">{{ featured_article.get_category_display }}</span>
                                         </div>
-                                    {% endif %}
-                                    
-                                    <h2 class="article-list-title">
-                                        <a href="{{ article.url }}">{{ article.title }}</a>
-                                    </h2>
-                                    
-                                    {% if article.summary %}
-                                        <p class="article-list-excerpt">{{ article.summary|truncatewords:25 }}</p>
-                                    {% endif %}
-                                    
-                                    <div class="article-list-actions">
-                                        <a href="{{ article.url }}" class="garden-action secondary small">READ ANSWER</a>
                                     </div>
+                                {% endif %}
+                                
+                                <h2 class="featured-faq-title">
+                                    <a href="{{ featured_article.url_path }}">{{ featured_article.title }}</a>
+                                </h2>
+                                
+                                {% if featured_article.summary %}
+                                    <p class="featured-faq-excerpt">{{ featured_article.summary|truncatewords:40 }}</p>
+                                {% endif %}
+                                
+                                <div class="featured-faq-actions">
+                                    <a href="{{ featured_article.url_path }}" class="garden-action primary large">READ FULL ANSWER</a>
                                 </div>
                             </div>
                         </article>
+                    </div>
+                </section>
+                {% endwith %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- All FAQ Articles Section -->
+        <section class="faq-section faq-all-articles" style="width: 100% !important; max-width: none !important;">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">ALL QUESTIONS</h2>
+                <p class="section-subtitle">Browse all frequently asked questions organized by topic.</p>
+            </div>
+            {% with articles=page.get_articles %}
+                {% if articles %}
+                    <div class="articles-list faq-all-list" style="width: 100% !important; max-width: none !important;">
+                        {% for article in articles %}
+                            {% if not forloop.first %}
+                            <article class="article-list-item faq-item" data-article-id="{{ article.id }}" style="width: 100% !important; max-width: none !important;">
+                                <div class="article-list-content" style="width: 100% !important; display: flex !important; gap: var(--space-6) !important;">
+                                    <div class="article-list-text" style="flex: 1 !important; width: 100% !important; max-width: none !important; min-width: 0 !important;">
+                                        {% if article.category %}
+                                            <div class="article-list-meta" style="width: 100% !important;">
+                                                <div class="article-list-tags" style="width: 100% !important;">
+                                                    <span class="article-list-tag">{{ article.get_category_display|default:"General" }}</span>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        
+                                        <h2 class="article-list-title" style="width: 100% !important; max-width: none !important;">
+                                            <a href="{{ article.url_path }}" style="width: 100% !important; max-width: none !important; display: block !important;">{{ article.title }}</a>
+                                        </h2>
+                                        
+                                        {% if article.summary %}
+                                            <p class="article-list-excerpt" style="width: 100% !important; max-width: none !important;">{{ article.summary|truncatewords:25 }}</p>
+                                        {% endif %}
+                                        
+                                        <div class="article-list-actions" style="width: 100% !important;">
+                                            <a href="{{ article.url_path }}" class="garden-action secondary small">READ ANSWER</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 {% else %}
@@ -167,11 +212,289 @@
 {% endblock %}
 
 {% block extra_css %}
-<!-- Garden UI Compliant FAQ Stylesheets - Matching Blog Structure -->
-<link rel="stylesheet" href="{% static 'css/garden-blog.css' %}?v=20250621-dark-mode-badge-fix">
-<link rel="stylesheet" href="{% static 'css/garden-blog-hero.css' %}?v=20250621-bottom-align-utilities">
-<link rel="stylesheet" href="{% static 'css/garden-blog-articles.css' %}?v=20250621-dark-mode-badge-fix">
-<link rel="stylesheet" href="{% static 'css/garden-blog-panels.css' %}?v=20250621-dark-mode-badge-fix">
-<link rel="stylesheet" href="{% static 'css/garden-blog-sidebar.css' %}?v=20250621-dark-mode-badge-fix">
-<link rel="stylesheet" href="{% static 'css/faq-page-fixes.css' %}?v=2025-01-fix-visibility">
+<!-- Unified blog styles - works for FAQ too -->
+<link rel="stylesheet" href="{% static 'css/blog-unified.css' %}?v=2025-width-fix-3">
+<style>
+/* FAQ-specific styling additions */
+.faq-section {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.faq-section:last-child {
+    border-bottom: none;
+}
+
+.section-subtitle {
+    color: var(--color-text-secondary);
+    font-size: var(--font-md);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-6);
+}
+
+/* Featured FAQ styling */
+.featured-faq-section {
+    background: var(--color-surface-variant);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    margin-bottom: var(--space-12);
+}
+
+.featured-faq-content {
+    width: 100%;
+}
+
+.featured-faq-title {
+    font-size: var(--font-2xl);
+    margin: var(--space-4) 0;
+}
+
+.featured-faq-excerpt {
+    color: var(--color-text-secondary);
+    line-height: var(--line-relaxed);
+    margin-bottom: var(--space-6);
+}
+
+/* FAQ items without images */
+.faq-item .article-list-content {
+    padding: var(--space-4) 0;
+}
+
+.faq-item .article-list-text {
+    width: 100% !important;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// FAQ Layout Management - Same comprehensive system as blog
+document.addEventListener('DOMContentLoaded', function() {
+    // Comprehensive layout refresh that matches template inline styles
+    function refreshLayout() {
+        console.log('🔧 Refreshing FAQ layout...');
+        
+        // Apply the EXACT same styles as in the template
+        
+        // 1. Article list items - match template: style="width: 100% !important; max-width: none !important;"
+        const articles = document.querySelectorAll('.article-list-item');
+        articles.forEach(el => {
+            el.style.setProperty('width', '100%', 'important');
+            el.style.setProperty('max-width', 'none', 'important');
+        });
+        
+        // 2. Article content - match template: style="width: 100% !important; display: flex !important; gap: var(--space-6) !important;"
+        const articleContents = document.querySelectorAll('.article-list-content');
+        articleContents.forEach(el => {
+            el.style.setProperty('width', '100%', 'important');
+            el.style.setProperty('display', 'flex', 'important');
+            el.style.setProperty('gap', 'var(--space-6)', 'important');
+        });
+        
+        // 3. Article text containers - match template: style="flex: 1 !important; width: 100% !important; max-width: none !important; min-width: 0 !important;"
+        const articleTexts = document.querySelectorAll('.article-list-text');
+        articleTexts.forEach(el => {
+            el.style.setProperty('flex', '1', 'important');
+            el.style.setProperty('width', '100%', 'important');
+            el.style.setProperty('max-width', 'none', 'important');
+            el.style.setProperty('min-width', '0', 'important');
+        });
+        
+        // 4. Article titles - match template: style="width: 100% !important; max-width: none !important;"
+        const articleTitles = document.querySelectorAll('.article-list-title');
+        articleTitles.forEach(el => {
+            el.style.setProperty('width', '100%', 'important');
+            el.style.setProperty('max-width', 'none', 'important');
+        });
+        
+        // 5. Article title links - match template: style="width: 100% !important; max-width: none !important; display: block !important;"
+        const titleLinks = document.querySelectorAll('.article-list-title a');
+        titleLinks.forEach(el => {
+            el.style.setProperty('width', '100%', 'important');
+            el.style.setProperty('max-width', 'none', 'important');
+            el.style.setProperty('display', 'block', 'important');
+        });
+        
+        // 6. Article excerpts - match template: style="width: 100% !important; max-width: none !important;"
+        const excerpts = document.querySelectorAll('.article-list-excerpt');
+        excerpts.forEach(el => {
+            el.style.setProperty('width', '100%', 'important');
+            el.style.setProperty('max-width', 'none', 'important');
+        });
+        
+        // 7. Container elements
+        const containers = document.querySelectorAll('.articles-list, .faq-all-list, .faq-section, .articles-main');
+        containers.forEach(el => {
+            el.style.setProperty('width', '100%', 'important');
+            el.style.setProperty('max-width', 'none', 'important');
+        });
+        
+        // 8. FAQ-specific meta elements
+        const metas = document.querySelectorAll('.article-list-meta, .article-list-tags, .article-list-actions');
+        metas.forEach(el => {
+            el.style.setProperty('width', '100%', 'important');
+        });
+        
+        console.log('✅ FAQ layout refreshed with inline styles applied');
+    }
+    
+    // Apply initial refresh
+    refreshLayout();
+    
+    // Periodic layout check for FAQ content
+    // This ensures layout stays correct even if CSS changes after loading
+    setInterval(() => {
+        const allArticles = document.querySelectorAll('.article-list-item');
+        const needsRefresh = Array.from(allArticles).some(article => {
+            const content = article.querySelector('.article-list-content');
+            const text = article.querySelector('.article-list-text');
+            
+            // Check if any article doesn't have the proper flex layout
+            if (content && content.style.display !== 'flex') {
+                return true;
+            }
+            if (text && text.style.flex !== '1') {
+                return true;
+            }
+            return false;
+        });
+        
+        if (needsRefresh) {
+            console.log('🔄 Periodic FAQ layout check - refreshing layout');
+            refreshLayout();
+        }
+    }, 2000); // Check every 2 seconds
+    
+    // Make entire article containers clickable
+    function makeArticlesClickable() {
+        const articles = document.querySelectorAll('.article-list-item:not([data-clickable])');
+        articles.forEach(article => {
+            article.setAttribute('data-clickable', 'true');
+            article.addEventListener('click', function(e) {
+                // Don't trigger if clicking on the actual link or button
+                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+                    return;
+                }
+                
+                const link = this.querySelector('.article-list-title a');
+                if (link) {
+                    window.location.href = link.href;
+                }
+            });
+            
+            // Add hover effects
+            article.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            article.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    }
+    
+    // Initialize clickable articles
+    makeArticlesClickable();
+    
+    // Set up MutationObserver to watch for new FAQ articles being added
+    const faqContainer = document.querySelector('.faq-all-list');
+    if (faqContainer) {
+        const mutationObserver = new MutationObserver((mutations) => {
+            let newArticlesAdded = false;
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === 1 && node.classList && node.classList.contains('article-list-item')) {
+                            newArticlesAdded = true;
+                        }
+                    });
+                }
+            });
+            
+            if (newArticlesAdded) {
+                console.log('🔍 New FAQ articles detected by MutationObserver');
+                // Apply fixes immediately
+                refreshLayout();
+                makeArticlesClickable();
+                
+                // And again after a delay to ensure they stick
+                setTimeout(() => {
+                    refreshLayout();
+                    console.log('🔄 MutationObserver triggered FAQ layout refresh');
+                }, 50);
+            }
+        });
+        
+        // Start observing the FAQ container
+        mutationObserver.observe(faqContainer, {
+            childList: true,
+            subtree: true
+        });
+    }
+    
+    // Function to apply comprehensive inline styles to newly added FAQ articles
+    function applyInlineStylesToNewArticles(articles, pageNumber) {
+        articles.forEach((article, index) => {
+            // Apply inline styles directly to each new article
+            const articleId = `new-faq-article-${pageNumber}-${index}`;
+            article.setAttribute('data-new-article', articleId);
+            
+            // Force the exact same inline styles as the template
+            article.style.setProperty('width', '100%', 'important');
+            article.style.setProperty('max-width', 'none', 'important');
+            
+            const content = article.querySelector('.article-list-content');
+            if (content) {
+                content.style.setProperty('width', '100%', 'important');
+                content.style.setProperty('display', 'flex', 'important');
+                content.style.setProperty('gap', 'var(--space-6)', 'important');
+            }
+            
+            const text = article.querySelector('.article-list-text');
+            if (text) {
+                text.style.setProperty('flex', '1', 'important');
+                text.style.setProperty('width', '100%', 'important');
+                text.style.setProperty('max-width', 'none', 'important');
+                text.style.setProperty('min-width', '0', 'important');
+            }
+            
+            const title = article.querySelector('.article-list-title');
+            if (title) {
+                title.style.setProperty('width', '100%', 'important');
+                title.style.setProperty('max-width', 'none', 'important');
+                
+                const titleLink = title.querySelector('a');
+                if (titleLink) {
+                    titleLink.style.setProperty('width', '100%', 'important');
+                    titleLink.style.setProperty('max-width', 'none', 'important');
+                    titleLink.style.setProperty('display', 'block', 'important');
+                }
+            }
+            
+            const excerpt = article.querySelector('.article-list-excerpt');
+            if (excerpt) {
+                excerpt.style.setProperty('width', '100%', 'important');
+                excerpt.style.setProperty('max-width', 'none', 'important');
+            }
+            
+            const meta = article.querySelector('.article-list-meta');
+            if (meta) {
+                meta.style.setProperty('width', '100%', 'important');
+            }
+            
+            const actions = article.querySelector('.article-list-actions');
+            if (actions) {
+                actions.style.setProperty('width', '100%', 'important');
+            }
+        });
+    }
+    
+    // If there's any dynamic content loading in FAQ (for future use)
+    window.refreshFAQLayout = refreshLayout;
+    window.applyFAQInlineStyles = applyInlineStylesToNewArticles;
+    
+    console.log('✅ FAQ layout management system initialized');
+});
+</script>
 {% endblock %}

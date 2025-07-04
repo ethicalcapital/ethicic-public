@@ -25,6 +25,10 @@ redis==5.0.8
 hiredis==3.0.0
 django-redis==5.4.0
 
+# Web scraping (for content import)
+beautifulsoup4==4.12.3
+requests==2.31.0
+
 # Security and monitoring
 django-cors-headers==4.4.0
 sentry-sdk==2.14.0

@@ -1,0 +1,39 @@
+/* Breadcrumb spacing fix */
+.article-breadcrumb {
+    padding: 1rem 0;
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.breadcrumb-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+    color: var(--theme-primary);
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    color: var(--color-text-tertiary);
+    margin: 0 0.5rem;
+}
+
+.breadcrumb-current {
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+/* Ensure no extra spacing when breadcrumbs are hidden */
+.main-content > .article-breadcrumb:first-child {
+    margin-bottom: 1rem;
+}
+
+/* Remove any default margins that might cause spacing */
+.main-content {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}

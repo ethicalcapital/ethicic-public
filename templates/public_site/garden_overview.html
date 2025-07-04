@@ -2,155 +2,207 @@
 
 {% block title %}Garden Investment Platform - Overview{% endblock %}
 
+{% block body_class %}garden-page{% endblock %}
+
 {% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/layers/43-garden-overview.css' %}?v=1">
 {% endblock %}
 
 {% block content %}
 <div class="garden-container">
-<!-- Hero Section with Login CTA -->
-<section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
-    <div class="panel-header">GARDEN INVESTMENT PLATFORM</div>
-    <div class="panel-content">
-        <!-- Platform Login CTA in upper right -->
-        <div class="platform-login-cta">
-            <a href="{{ platform_login_url }}" class="platform-login-btn garden-action">
-                🔐 Platform Login
-            </a>
-        </div>
-        
-        <div class="hero-tagline">Garden, compound, wisdom, organically</div>
-        <h1 id="hero-heading" class="hero-title">Garden: Built to help us build cumulative knowledge over the course of our firm's history</h1>
-        <div class="hero-subtitle">
-            <p>Our comprehensive platform combining research, communication, compliance, charts, graphs and other stuff I never quite thought I'd see in a financial platform into one thoughtful, elegant and reliable source.</p>
+    <!-- Hero Section -->
+    <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
+        <div class="garden-panel__content">
+            <!-- Alpha Badge -->
+            <div class="alpha-badge">
+                <span class="alpha-text">ALPHA</span>
+                <span class="alpha-description">Limited Access Platform</span>
+            </div>
             
-            <p>We intend to open source the code in Q3 of 2025, and we'll be making limited access available and hope to have access available for clients in our community by the end of the year.</p>
+            <!-- Platform Login CTA -->
+            <div class="platform-login-cta">
+                <a href="{{ platform_login_url }}" class="garden-action primary">
+                    🔐 Platform Login
+                </a>
+            </div>
             
-            <p class="author-signature">
-                —<a href="/about/" class="author-link">Sloane Ortel</a>, June 18th, 2025
+            <div class="hero-tagline">Garden, compound, wisdom, organically</div>
+            <h1 id="hero-heading" class="hero-title">
+                Garden Investment Platform
+            </h1>
+            <p class="hero-subtitle">
+                Built to help us build cumulative knowledge over the course of our firm's history
             </p>
+            
+            <div class="hero-description">
+                <p>Our comprehensive platform combining research, communication, compliance, charts, graphs and other capabilities into one thoughtful, elegant and reliable source for investment management.</p>
+                
+                <p><strong>Current Status:</strong> Garden is in alpha development with limited access available to select investment professionals and institutions.</p>
+                
+                <div class="timeline-info">
+                    <div class="timeline-item">
+                        <span class="timeline-label">Open Source Release:</span>
+                        <span class="timeline-value">Q3 2025</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-label">Client Community Access:</span>
+                        <span class="timeline-value">End of 2025</span>
+                    </div>
+                </div>
+                
+                <p class="author-signature">
+                    —<a href="/about/" class="author-link">Sloane Ortel</a>, Chief Investment Officer
+                </p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Platform Features -->
-<section class="garden-panel" role="main" aria-labelledby="features-heading">
-    <div class="panel-header">YOUR CANVAS</div>
-    <div class="panel-content">
-        <h2 id="features-heading" class="features-section-heading">Everything You Need for the Liberal Art of Investing</h2>
-        
-        <div class="features-grid">
-            {% for feature in garden_features %}
-            <div class="feature-card">
-                <div class="feature-header">
-                    <div class="feature-icon">{{ feature.icon }}</div>
-                    <div>
-                        <div class="feature-title">{{ feature.title }}</div>
-                        <div class="feature-description">{{ feature.description }}</div>
-                    </div>
-                </div>
-                <div class="feature-content">
-                    <ul class="feature-highlights">
-                        {% for highlight in feature.highlights %}
-                        <li>{{ highlight }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            {% endfor %}
+    <!-- Platform Features -->
+    <section class="garden-panel" role="main" aria-labelledby="features-heading">
+        <div class="garden-panel__header">
+            <div class="panel-title">PLATFORM CAPABILITIES</div>
         </div>
-    </div>
-</section>
+        <div class="garden-panel__content">
+            <h2 id="features-heading" class="section-title">Everything You Need for the Liberal Art of Investing</h2>
+            <p class="section-intro">Garden integrates research, communication, compliance, and portfolio management into one comprehensive platform designed for modern investment professionals.</p>
+            
+            <div class="features-grid">
+                {% for feature in garden_features %}
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">{{ feature.icon }}</div>
+                        <div class="feature-info">
+                            <h3 class="feature-title">{{ feature.title }}</h3>
+                            <p class="feature-description">{{ feature.description }}</p>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <ul class="feature-highlights">
+                            {% for highlight in feature.highlights %}
+                            <li>{{ highlight }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="feature-status">
+                        <span class="status-badge alpha">Alpha Feature</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 
-<!-- Interest Registration -->
-<section class="garden-panel interest-panel">
-    <div class="panel-header">REQUEST PLATFORM ACCESS</div>
-    <div class="panel-content">
-        <h2 class="text-center margin-bottom-6">Interested in Garden Platform Access?</h2>
-        <p class="text-center margin-bottom-8 max-width-md margin-auto">
-            Garden is currently in limited release to select investment professionals and institutions. Submit your information to learn more about platform access and capabilities.
-        </p>
-        
-        <form class="interest-form" id="garden-interest-form"
-              hx-post="/api/garden/interest/"
-              hx-target="#form-messages"
-              hx-indicator="#submit-btn"
-              hx-swap="innerHTML"
-              x-data="{ submitting: false }"
-              @htmx:before-request="submitting = true"
-              @htmx:after-request="submitting = false">
-            {% csrf_token %}
-            <div id="form-messages"></div>
-            
-            <div class="form-group">
-                <label for="name">Full Name *</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email Address *</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="company">Company/Organization</label>
-                <input type="text" id="company" name="company">
-            </div>
-            
-            <div class="form-group">
-                <label for="role">Professional Role</label>
-                <select id="role" name="role">
-                    <option value="">Select your role</option>
-                    <option value="investment_advisor">Investment Advisor</option>
-                    <option value="portfolio_manager">Portfolio Manager</option>
-                    <option value="wealth_manager">Wealth Manager</option>
-                    <option value="family_office">Family Office Professional</option>
-                    <option value="institutional_investor">Institutional Investor</option>
-                    <option value="research_analyst">Research Analyst</option>
-                    <option value="compliance_officer">Compliance Officer</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label>Areas of Interest</label>
-                <div class="checkbox-group">
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="interest_portfolio" name="interest_areas" value="portfolio_management">
-                        <label for="interest_portfolio">Portfolio Management</label>
+    <!-- Interest Registration -->
+    <section class="garden-panel cta-panel">
+        <div class="garden-panel__header">
+            <div class="panel-title">REQUEST ALPHA ACCESS</div>
+        </div>
+        <div class="garden-panel__content">
+            <h2 class="cta-title">Interested in Garden Platform Access?</h2>
+            <div class="cta-description">
+                <p>Garden is currently in <strong>alpha development</strong> with limited access available to select investment professionals and institutions. Submit your information to learn more about platform capabilities and early access opportunities.</p>
+                
+                <div class="access-status">
+                    <div class="status-item">
+                        <span class="status-label">Current Phase:</span>
+                        <span class="status-value alpha">Alpha Testing</span>
                     </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="interest_research" name="interest_areas" value="research_tools">
-                        <label for="interest_research">Research Tools</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="interest_compliance" name="interest_areas" value="compliance">
-                        <label for="interest_compliance">Compliance & Risk</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="interest_client" name="interest_areas" value="client_management">
-                        <label for="interest_client">Client Management</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="interest_ai" name="interest_areas" value="ai_workflows">
-                        <label for="interest_ai">AI Workflows</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="interest_integration" name="interest_areas" value="data_integration">
-                        <label for="interest_integration">Data Integration</label>
+                    <div class="status-item">
+                        <span class="status-label">Access Type:</span>
+                        <span class="status-value">Limited Invitation Only</span>
                     </div>
                 </div>
             </div>
             
-            <div class="form-group">
-                <label for="message">How do you think this could help you?</label>
-                <textarea id="message" name="message" placeholder="Tell us about your investment management needs, AUM, client base, or specific Garden features of interest..."></textarea>
-            </div>
-            
-            <button type="submit" class="submit-btn garden-action" id="submit-btn" :disabled="submitting">
-                <span x-show="!submitting">Submit Interest Request</span>
-                <span x-show="submitting" x-cloak>Submitting...</span>
-            </button>
-        </form>
+            <form class="garden-form" id="garden-interest-form"
+                  hx-post="/api/garden/interest/"
+                  hx-target="#form-messages"
+                  hx-indicator="#submit-btn"
+                  hx-swap="innerHTML"
+                  x-data="{ submitting: false }"
+                  @htmx:before-request="submitting = true"
+                  @htmx:after-request="submitting = false">
+                {% csrf_token %}
+                <div id="form-messages" class="form-messages"></div>
+                
+                <div class="form-row">
+                    <div class="garden-input-group">
+                        <label for="name" class="garden-label">Full Name *</label>
+                        <input type="text" id="name" name="name" class="garden-input" required>
+                    </div>
+                    
+                    <div class="garden-input-group">
+                        <label for="email" class="garden-label">Email Address *</label>
+                        <input type="email" id="email" name="email" class="garden-input" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="garden-input-group">
+                        <label for="company" class="garden-label">Company/Organization</label>
+                        <input type="text" id="company" name="company" class="garden-input">
+                    </div>
+                    
+                    <div class="garden-input-group">
+                        <label for="role" class="garden-label">Professional Role</label>
+                        <select id="role" name="role" class="garden-select">
+                            <option value="">Select your role</option>
+                            <option value="investment_advisor">Investment Advisor</option>
+                            <option value="portfolio_manager">Portfolio Manager</option>
+                            <option value="wealth_manager">Wealth Manager</option>
+                            <option value="family_office">Family Office Professional</option>
+                            <option value="institutional_investor">Institutional Investor</option>
+                            <option value="research_analyst">Research Analyst</option>
+                            <option value="compliance_officer">Compliance Officer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="garden-input-group">
+                    <label class="garden-label">Areas of Interest</label>
+                    <div class="checkbox-grid">
+                        <div class="garden-checkbox-item">
+                            <input type="checkbox" id="interest_portfolio" name="interest_areas" value="portfolio_management" class="garden-checkbox">
+                            <label for="interest_portfolio" class="garden-checkbox-label">Portfolio Management</label>
+                        </div>
+                        <div class="garden-checkbox-item">
+                            <input type="checkbox" id="interest_research" name="interest_areas" value="research_tools" class="garden-checkbox">
+                            <label for="interest_research" class="garden-checkbox-label">Research Tools</label>
+                        </div>
+                        <div class="garden-checkbox-item">
+                            <input type="checkbox" id="interest_compliance" name="interest_areas" value="compliance" class="garden-checkbox">
+                            <label for="interest_compliance" class="garden-checkbox-label">Compliance & Risk</label>
+                        </div>
+                        <div class="garden-checkbox-item">
+                            <input type="checkbox" id="interest_client" name="interest_areas" value="client_management" class="garden-checkbox">
+                            <label for="interest_client" class="garden-checkbox-label">Client Management</label>
+                        </div>
+                        <div class="garden-checkbox-item">
+                            <input type="checkbox" id="interest_ai" name="interest_areas" value="ai_workflows" class="garden-checkbox">
+                            <label for="interest_ai" class="garden-checkbox-label">AI Workflows</label>
+                        </div>
+                        <div class="garden-checkbox-item">
+                            <input type="checkbox" id="interest_integration" name="interest_areas" value="data_integration" class="garden-checkbox">
+                            <label for="interest_integration" class="garden-checkbox-label">Data Integration</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="garden-input-group">
+                    <label for="message" class="garden-label">How could Garden help your practice?</label>
+                    <textarea id="message" name="message" class="garden-textarea" 
+                              placeholder="Tell us about your investment management needs, AUM, client base, or specific Garden features of interest..."></textarea>
+                </div>
+                
+                <div class="form-submit">
+                    <button type="submit" class="garden-action primary" id="submit-btn" :disabled="submitting">
+                        <span x-show="!submitting">Request Alpha Access</span>
+                        <span x-show="submitting" x-cloak>Submitting Request...</span>
+                    </button>
+                </div>
+            </form>
     </div>
 </section>
 </div>

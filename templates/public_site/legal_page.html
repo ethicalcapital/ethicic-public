@@ -12,60 +12,68 @@
             {% if page.intro_text %}
                 <div class="hero-subtitle">{{ page.intro_text|richtext }}</div>
             {% endif %}
-            
-            <!-- Hero Action Buttons -->
-            <div class="hero-actions">
-                <a href="/contact/" class="garden-action secondary">QUESTIONS?</a>
-                <a href="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf" class="garden-action secondary" target="_blank" rel="noopener">VIEW FORM ADV</a>
-            </div>
-            
-            <!-- Legal Document Metadata -->
-            <div class="legal-metadata">
-                {% if page.effective_date %}
-                    <div class="metadata-item">
-                        <span class="metadata-label">Effective Date:</span>
-                        <time datetime="{{ page.effective_date|date:'Y-m-d' }}">{{ page.effective_date|date:"F j, Y" }}</time>
-                    </div>
-                {% endif %}
-                {% if page.updated_at|default:None %}
-                    <div class="metadata-item">
-                        <span class="metadata-label">Last Updated:</span>
-                        <time datetime="{{ page.updated_at|date:'Y-m-d' }}">{{ page.updated_at|date:"F j, Y" }}</time>
-                    </div>
-                {% elif page.last_published_at %}
-                    <div class="metadata-item">
-                        <span class="metadata-label">Last Updated:</span>
-                        <time datetime="{{ page.last_published_at|date:'Y-m-d' }}">{{ page.last_published_at|date:"F j, Y" }}</time>
-                    </div>
-                {% endif %}
-            </div>
         </div>
     </section>
 
-    <!-- Legal Content Section -->
-    <section class="garden-panel" role="main" aria-labelledby="legal-heading">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">LEGAL DOCUMENTATION</div>
-        </div>
-        <div class="garden-panel__content garden-panel-content">
-            <div class="legal-document">
-                <!-- Table of Contents -->
-                <div class="legal-toc">
-                    <h3 class="toc-title">Table of Contents</h3>
+    <!-- Legal Content with Sidebar Layout -->
+    <div class="legal-page-layout">
+        <!-- Main Content Area -->
+        <main class="legal-content-area">
+            <section class="garden-panel" role="main" aria-labelledby="legal-heading">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">LEGAL DOCUMENTATION</div>
+                </div>
+                <div class="garden-panel__content garden-panel-content">
+                    <!-- Legal Content -->
+                    <div class="legal-main">
+                        <div class="legal-body" id="legal-content">
+                            {{ page.content|richtext }}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Sticky Right Sidebar -->
+        <aside class="legal-sidebar">
+            <div class="legal-sidebar-content">
+                <!-- Hero Action Buttons moved to sidebar -->
+                <div class="sidebar-actions">
+                    <a href="/contact/" class="garden-action secondary small">QUESTIONS?</a>
+                    <a href="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf" class="garden-action secondary small" target="_blank" rel="noopener">VIEW FORM ADV</a>
+                </div>
+                
+                <!-- Legal Document Metadata -->
+                <div class="legal-metadata-sidebar">
+                    {% if page.effective_date %}
+                        <div class="metadata-item">
+                            <span class="metadata-label">Effective Date:</span>
+                            <time datetime="{{ page.effective_date|date:'Y-m-d' }}">{{ page.effective_date|date:"F j, Y" }}</time>
+                        </div>
+                    {% endif %}
+                    {% if page.updated_at|default:None %}
+                        <div class="metadata-item">
+                            <span class="metadata-label">Last Updated:</span>
+                            <time datetime="{{ page.updated_at|date:'Y-m-d' }}">{{ page.updated_at|date:"F j, Y" }}</time>
+                        </div>
+                    {% elif page.last_published_at %}
+                        <div class="metadata-item">
+                            <span class="metadata-label">Last Updated:</span>
+                            <time datetime="{{ page.last_published_at|date:'Y-m-d' }}">{{ page.last_published_at|date:"F j, Y" }}</time>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Table of Contents moved to sidebar -->
+                <div class="legal-toc-sidebar">
+                    <h3 class="toc-title-sidebar">Table of Contents</h3>
                     <div class="toc-content" id="table-of-contents">
                         <!-- Table of contents will be generated by JavaScript -->
                     </div>
                 </div>
-                
-                <!-- Legal Content -->
-                <div class="legal-main">
-                    <div class="legal-body" id="legal-content">
-                        {{ page.content|richtext }}
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
+        </aside>
+    </div>
 </div>
 {% endblock %}
 
@@ -75,6 +83,292 @@
 <link rel="stylesheet" href="{% static 'css/garden-blog-hero.css' %}?v=20250621-bottom-align-utilities">
 <link rel="stylesheet" href="{% static 'css/garden-blog-articles.css' %}?v=20250621-dark-mode-badge-fix">
 <link rel="stylesheet" href="{% static 'css/garden-blog-panels.css' %}?v=20250621-dark-mode-badge-fix">
+
+<!-- Custom CSS to override problematic external styles -->
+<style>
+/* Remove any problematic borders and styling from external content */
+.legal-document * {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Remove any X symbols or "Remove this" text */
+.legal-body *[style*="background: black"],
+.legal-body *[style*="background-color: black"],
+.legal-body .remove-this,
+.legal-body .x-symbol,
+*:before:contains("Remove this"),
+*:after:contains("Remove this") {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Clean up any problematic content */
+.legal-body svg,
+.legal-body canvas,
+.legal-body object,
+.legal-body embed {
+    display: none !important;
+}
+
+/* Ensure clean text styling */
+.legal-body h2,
+.legal-body h3,
+.legal-body h4,
+.legal-body p,
+.legal-body ul,
+.legal-body ol,
+.legal-body li {
+    color: var(--theme-on-surface) !important;
+    background: transparent !important;
+    border: none !important;
+    font-family: inherit !important;
+    line-height: inherit !important;
+}
+
+/* Remove any pink/magenta borders or backgrounds */
+.legal-body *[style*="pink"],
+.legal-body *[style*="magenta"],
+.legal-body *[style*="#ff00ff"],
+.legal-body *[style*="#f0f"],
+.legal-body *[class*="pink"],
+.legal-body *[class*="magenta"] {
+    border: none !important;
+    background: transparent !important;
+}
+
+/* Clean paragraph and list styling */
+.legal-body p {
+    margin: 0 0 1rem 0 !important;
+}
+
+.legal-body ul, .legal-body ol {
+    margin: 0 0 1rem 0 !important;
+    padding-left: 1.5rem !important;
+}
+
+.legal-body li {
+    margin: 0 0 0.5rem 0 !important;
+}
+
+/* Clean heading styling */
+.legal-body h2 {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    margin: 2rem 0 1rem 0 !important;
+    border-bottom: 1px solid var(--theme-border) !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.legal-body h3 {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    margin: 1.5rem 0 0.75rem 0 !important;
+}
+
+.legal-body h4 {
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    margin: 1rem 0 0.5rem 0 !important;
+}
+
+/* Clean link styling */
+.legal-body a {
+    color: var(--theme-primary) !important;
+    text-decoration: underline !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.legal-body a:hover {
+    color: var(--theme-primary-hover) !important;
+}
+
+/* Hide any unwanted elements */
+.legal-body .redacted,
+.legal-body .hidden,
+.legal-body .remove,
+.legal-body .delete {
+    display: none !important;
+}
+
+/* Legal Page Sidebar Layout */
+.legal-page-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-8, 32px);
+    align-items: start;
+    max-width: var(--content-width-normal, 1200px);
+    margin: 0 auto;
+    padding: 0 var(--space-6, 24px);
+}
+
+/* Ensure main panel and sidebar align at the top */
+.legal-content-area .garden-panel {
+    margin-top: 0;
+}
+
+.legal-content-area {
+    min-width: 0; /* Prevent grid overflow */
+}
+
+.legal-sidebar {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    height: fit-content;
+    margin-top: 0; /* Ensure alignment with main content */
+}
+
+.legal-sidebar-content {
+    background: var(--theme-surface);
+    border: 1px solid var(--theme-border);
+    border-radius: var(--radius-md, 6px);
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--theme-shadow-variant);
+}
+
+/* Create a header-like section for the sidebar */
+.sidebar-actions {
+    background: var(--theme-surface-variant);
+    padding: var(--space-4, 16px) var(--space-6, 24px);
+    border-bottom: 1px solid var(--theme-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3, 12px);
+    margin-bottom: 0;
+}
+
+/* Reset any problematic overflow settings */
+.garden-container {
+    overflow: visible;
+}
+
+.sidebar-actions .garden-action {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.legal-metadata-sidebar {
+    padding: var(--space-4, 16px) var(--space-6, 24px);
+}
+
+.legal-metadata-sidebar .metadata-item {
+    margin-bottom: var(--space-3, 12px);
+    font-size: var(--font-sm, 14px);
+}
+
+.legal-metadata-sidebar .metadata-item:last-child {
+    margin-bottom: 0;
+}
+
+.legal-metadata-sidebar .metadata-label {
+    display: block;
+    font-weight: var(--font-semibold, 600);
+    color: var(--theme-on-surface);
+    margin-bottom: var(--space-1, 4px);
+    text-transform: uppercase;
+    font-size: var(--font-xs, 12px);
+    letter-spacing: 0.5px;
+}
+
+.legal-metadata-sidebar time {
+    color: var(--theme-on-surface-variant);
+}
+
+/* Table of Contents in Sidebar */
+.legal-toc-sidebar {
+    border-top: 1px solid var(--theme-border);
+    padding: var(--space-4, 16px) var(--space-6, 24px);
+}
+
+.toc-title-sidebar {
+    font-size: var(--font-sm, 14px);
+    font-weight: var(--font-semibold, 600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 var(--space-3, 12px) 0;
+    color: var(--theme-on-surface);
+}
+
+.legal-toc-sidebar .toc-content {
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: var(--font-sm, 14px);
+}
+
+.legal-toc-sidebar .toc-item {
+    margin-bottom: var(--space-2, 8px);
+}
+
+.legal-toc-sidebar .toc-item a {
+    color: var(--theme-on-surface-variant);
+    text-decoration: none;
+    display: block;
+    padding: var(--space-1, 4px) 0;
+    transition: color 0.2s ease;
+}
+
+.legal-toc-sidebar .toc-item a:hover {
+    color: var(--theme-primary);
+}
+
+.legal-toc-sidebar .toc-item.level-2 {
+    padding-left: 0;
+}
+
+.legal-toc-sidebar .toc-item.level-3 {
+    padding-left: var(--space-3, 12px);
+    font-size: var(--font-xs, 12px);
+}
+
+.legal-toc-sidebar .toc-item.level-4 {
+    padding-left: var(--space-4, 16px);
+    font-size: var(--font-xs, 12px);
+}
+
+/* Mobile responsive */
+@media (max-width: 968px) {
+    .legal-page-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-6, 24px);
+    }
+    
+    .legal-sidebar {
+        position: static;
+        order: -1; /* Show sidebar above content on mobile */
+    }
+    
+    .legal-sidebar-content {
+        padding: var(--space-4, 16px);
+    }
+    
+    .sidebar-actions {
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: var(--space-4, 16px);
+    }
+    
+    .sidebar-actions .garden-action {
+        flex: 1;
+        max-width: 140px;
+    }
+}
+
+@media (max-width: 640px) {
+    .sidebar-actions {
+        flex-direction: column;
+    }
+    
+    .sidebar-actions .garden-action {
+        max-width: none;
+    }
+}
+</style>
 {% endblock %}
 
 {% block extra_js %}
@@ -97,7 +391,7 @@ function generateTableOfContents() {
     
     if (headings.length === 0) {
         // Hide the TOC section if no headings found
-        const tocSection = document.querySelector('.legal-toc');
+        const tocSection = document.querySelector('.legal-toc-sidebar');
         if (tocSection) {
             tocSection.style.display = 'none';
         }

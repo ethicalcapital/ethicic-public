@@ -39,7 +39,7 @@ def homepage_view(request):
             'process_step_4_title': 'Continuous Monitoring and Evolution',
             'process_step_4_content': "Investing isn't static. We monitor holdings daily, reassess theses quarterly, and evolve our process continuously. When facts change, we act. When clients raise concerns, we investigate. When new risks emerge, we adapt. This isn't passive indexing—it's active stewardship of capital aligned with values that matter.",
             'serve_individual_title': 'Individual Investors',
-            'serve_individual_content': 'High-net-worth individuals who want their investments to reflect their values.',
+            'serve_individual_content': 'People who want their investments to reflect their values.',
             'serve_advisor_title': 'Financial Advisors',
             'serve_advisor_content': 'Fee-only advisors seeking ethical investment solutions for their clients.',
             'serve_institution_title': 'Institutions',

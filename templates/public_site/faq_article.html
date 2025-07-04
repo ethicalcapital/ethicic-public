@@ -37,7 +37,7 @@
                             
                             {% if page.summary %}
                                 <div class="article-excerpt">
-                                    {{ page.summary|richtext }}
+                                    {{ page.summary }}
                                 </div>
                             {% endif %}
                         </div>
@@ -68,7 +68,7 @@
                                         {% if article != page %}
                                             <div class="related-article-item">
                                                 <h4 class="related-article-title">
-                                                    <a href="{{ article.url }}" class="related-article-link">
+                                                    <a href="{{ article.url_path }}" class="related-article-link">
                                                         {{ article.title }}
                                                     </a>
                                                 </h4>
@@ -145,10 +145,137 @@
 {% endblock %}
 
 {% block extra_css %}
-<!-- Garden UI Compliant Blog Stylesheets - Same as Blog Page -->
-<link rel="stylesheet" href="{% static 'css/garden-blog.css' %}?v=20250621-dark-mode-badge-fix">
-<link rel="stylesheet" href="{% static 'css/garden-blog-articles.css' %}?v=2025-sidebar-width-fix">
-<link rel="stylesheet" href="{% static 'css/garden-blog-sidebar.css' %}?v=2025-faq-sidebar-styling">
-<link rel="stylesheet" href="{% static 'css/garden-blog-panels.css' %}?v=20250621-dark-mode-badge-fix">
-<link rel="stylesheet" href="{% static 'css/faq-page-fixes.css' %}?v=2025-01-fix-visibility">
+<!-- Unified blog styles - same as FAQ index and blog pages -->
+<link rel="stylesheet" href="{% static 'css/blog-unified.css' %}?v=2025-width-fix-3">
+<style>
+/* FAQ article page specific styling */
+.faq-article {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.articles-main {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.article-header-content {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.article-content {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.article-body {
+    width: 100% !important;
+    max-width: none !important;
+    line-height: var(--line-relaxed);
+}
+
+.article-excerpt {
+    color: var(--color-text-secondary);
+    font-size: var(--font-lg);
+    line-height: var(--line-relaxed);
+    margin-bottom: var(--space-6);
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* Related articles styling */
+.related-articles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+}
+
+.related-article-item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    background: var(--color-surface);
+}
+
+.related-article-title {
+    margin: 0 0 var(--space-2) 0;
+    font-size: var(--font-md);
+}
+
+.related-article-link {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.related-article-link:hover {
+    text-decoration: underline;
+}
+
+.related-article-summary {
+    color: var(--color-text-secondary);
+    font-size: var(--font-sm);
+    margin: var(--space-2) 0;
+}
+
+.related-article-category {
+    display: inline-block;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Navigation actions */
+.navigation-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-6);
+}
+
+.back-to-faq,
+.contact-action {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-secondary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+}
+
+.back-to-faq:hover,
+.contact-action:hover {
+    background: var(--color-primary);
+}
+
+/* FAQ navigation links */
+.faq-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.faq-nav-link,
+.support-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text);
+    text-decoration: none;
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s;
+}
+
+.faq-nav-link:hover,
+.support-link:hover {
+    background: var(--color-surface-variant);
+}
+</style>
 {% endblock %}

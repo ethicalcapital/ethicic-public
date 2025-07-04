@@ -86,6 +86,11 @@ urlpatterns = [
     # Footer links helper (for dynamic footers)
     path("api/footer-links/", views.get_footer_links, name="api_footer"),
     # ============================================================================
+    # DISCLOSURES PAGE
+    # ============================================================================
+    # Disclosures page (loads from database or fallback content)
+    path("disclosures/", views.disclosures_page, name="disclosures"),
+    # ============================================================================
     # AI-POWERED CONTENT ANALYSIS ENDPOINTS
     # ============================================================================
     # AI analysis API for blog content creation (admin only)

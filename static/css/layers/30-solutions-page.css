@@ -3,11 +3,22 @@
     background: var(--color-background);
 }
 
+/* Remove excess top padding from main content on solutions page */
+.solutions-page .main-content {
+    padding-top: 0 !important;
+}
+
 /* Hero Section */
 .solutions-page .hero-panel {
     background: var(--color-surface);
     text-align: center;
-    padding: 4rem 2rem;
+    padding: 0.75rem 1rem 2rem; /* Cut padding in half */
+}
+
+/* Override container-structure-enhancements padding for hero panel content */
+.solutions-page .hero-panel .garden-panel-content,
+.solutions-page .hero-panel .panel-content {
+    padding: 0 !important; /* Remove all padding */
 }
 
 .solutions-page .hero-title {
