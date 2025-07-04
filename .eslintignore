@@ -1,0 +1,18 @@
+# Dependencies and generated files
+node_modules/
+.venv/
+staticfiles/
+**/coverage/**
+
+# Minified files
+**/*min.js
+**/*.min.js
+
+# Third-party libraries
+**/lib/**
+**/vendor/**
+**/libs/**
+
+# Build outputs
+dist/
+build/
