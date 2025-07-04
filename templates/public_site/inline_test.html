@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inline Test</title>
+    <link rel="stylesheet" href="/static/css/garden-ui-theme.css?v=2025070110">
+    <link rel="stylesheet" href="/static/css/core-styles.css?v=2025070110">
+    <style>
+        .test1 { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background: #f0f0f0; 
+            padding: 20px;
+            border: 2px solid red;
+        }
+        .test2 { 
+            max-width: var(--content-width-normal); 
+            margin: 0 auto; 
+            background: #e0ffe0; 
+            padding: 20px;
+            border: 2px solid green;
+        }
+        body { margin: 20px; }
+    </style>
+</head>
+<body>
+    <h1>CSS Variable Test</h1>
+    
+    <div class="test1">
+        <h2>Direct 1200px</h2>
+        <p>max-width: 1200px</p>
+    </div>
+    
+    <div class="test2">
+        <h2>Using CSS Variable</h2>
+        <p>max-width: var(--content-width-normal)</p>
+    </div>
+    
+    <div class="garden-container" style="background: #fff0e0; padding: 20px; border: 2px solid blue;">
+        <h2>Garden Container</h2>
+        <p>Using class="garden-container"</p>
+    </div>
+    
+    <script>
+        window.onload = function() {
+            const root = getComputedStyle(document.documentElement);
+            const test2 = document.querySelector('.test2');
+            const container = document.querySelector('.garden-container');
+            
+            console.log('CSS Variables:');
+            console.log('--space-24:', root.getPropertyValue('--space-24'));
+            console.log('--content-width-normal:', root.getPropertyValue('--content-width-normal'));
+            
+            console.log('\nComputed Styles:');
+            console.log('test2 max-width:', getComputedStyle(test2).maxWidth);
+            console.log('garden-container max-width:', getComputedStyle(container).maxWidth);
+            
+            // Add info to page
+            const info = document.createElement('div');
+            info.style.cssText = 'background: yellow; padding: 20px; margin: 20px 0;';
+            info.innerHTML = `
+                <h3>Debug Info:</h3>
+                <p>--space-24: ${root.getPropertyValue('--space-24') || 'NOT DEFINED'}</p>
+                <p>--content-width-normal: ${root.getPropertyValue('--content-width-normal') || 'NOT DEFINED'}</p>
+                <p>test2 computed max-width: ${getComputedStyle(test2).maxWidth}</p>
+                <p>garden-container computed max-width: ${getComputedStyle(container).maxWidth}</p>
+            `;
+            document.body.appendChild(info);
+        };
+    </script>
+</body>
+</html>

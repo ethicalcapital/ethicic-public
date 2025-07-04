@@ -1,0 +1,461 @@
+/* Process Page Styles - Working Version */
+
+/* Step Numbers with White Text on Purple Background */
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #553C9A !important;
+    color: white !important;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+/* Basic Process Page Styles */
+.process-page {
+    color: #1a1a1a;
+}
+
+/* Extended process step for step 1 */
+.process-step-expanded {
+    background: #fafafa;
+    border: 2px solid #553C9A;
+}
+
+.process-steps {
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+}
+
+.process-step {
+    margin-bottom: 3rem;
+    position: relative;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.step-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+}
+
+.step-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+}
+
+/* Garden Panel Styles */
+.garden-panel {
+    margin-bottom: 3rem;
+}
+
+.garden-panel__header,
+.garden-panel-header {
+    background: #553C9A;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px 8px 0 0;
+}
+
+.panel-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+}
+
+.garden-panel__content,
+.garden-panel-content {
+    padding: 2rem;
+    background: white;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Exclusions Sections */
+.exclusions-section {
+    margin-bottom: 3rem;
+}
+
+.exclusions-section-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #553C9A;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.exclusions-underline {
+    width: 100%;
+    height: 1px;
+    background: #553C9A;
+    margin-bottom: 1rem;
+}
+
+.exclusions-subtitle {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+/* Exclusions Grid */
+.exclusions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.exclusion-card {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.exclusion-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #553C9A;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.exclusion-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exclusion-list li {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin-bottom: 0.25rem;
+}
+
+/* Criteria Grid */
+.criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.criteria-card {
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+.criteria-card h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #553C9A;
+    margin-bottom: 1rem;
+}
+
+.criteria-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.criteria-list li {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+/* Links */
+.process-link,
+.policy-link {
+    color: #553C9A;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.process-link:hover,
+.policy-link:hover {
+    color: #442a8a;
+    text-decoration-thickness: 2px;
+}
+
+/* Step Content Headings */
+.step-content h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #553C9A;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #553C9A;
+}
+
+/* Emphasis paragraph for key stats */
+.step-content h4 + p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Screening Stats Section */
+.screening-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: #f5f0ff !important;
+    border: 2px solid #553C9A !important;
+    border-radius: 8px !important;
+    padding: 2rem !important;
+    text-align: center !important;
+    box-shadow: 0 2px 4px rgb(85, 60, 154, 0.1);
+    transition: box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 8px rgb(85, 60, 154, 0.2);
+}
+
+/* Override step-number styles when used inside stat-card */
+.stat-card .stat-number {
+    display: block !important;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: #553C9A !important;
+    margin-bottom: 0.5rem !important;
+    background: transparent !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.stat-label small {
+    display: block;
+    font-size: 0.875rem;
+    color: #888;
+    margin-top: 0.25rem;
+}
+
+/* Policy Transparency Box */
+.policy-transparency {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.policy-transparency h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.policy-transparency p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Strategy Overview */
+.strategy-overview {
+    margin-top: 2rem;
+}
+
+.strategy-comparison h4 {
+    margin-bottom: 1.5rem;
+}
+
+/* Methodology Card */
+.methodology-card {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.methodology-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.methodology-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.methodology-list li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.methodology-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #553C9A;
+    font-weight: bold;
+}
+
+.methodology-list strong {
+    color: #553C9A;
+}
+
+/* Insight Callout */
+.insight-callout {
+    background: #f5f0ff;
+    border-left: 4px solid #553C9A;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.insight-callout strong {
+    color: #553C9A;
+}
+
+/* Principles Section */
+.principles-section {
+    margin-top: 3rem;
+}
+
+.principles-tagline {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.tagline-text {
+    font-size: 1.125rem;
+    font-style: italic;
+    color: #666;
+}
+
+.principles-intro {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.principles-section-divider {
+    margin: 2rem 0 1.5rem;
+}
+
+.principles-section-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #553C9A;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.principle-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.principle-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #553C9A;
+    margin-bottom: 0.75rem;
+}
+
+.principle-card p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* CTA Section */
+.cta-panel {
+    background: #553C9A;
+    color: white;
+    margin-top: 3rem;
+    border-radius: 8px;
+}
+
+.cta-panel .garden-panel__content,
+.cta-panel .garden-panel-content {
+    background: transparent;
+    color: white;
+}
+
+.cta-panel .panel-title {
+    background: transparent;
+    padding: 0;
+    color: white;
+}
+
+.cta-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.cta-description {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.cta-panel .garden-action {
+    background: white;
+    color: #553C9A;
+    border: 2px solid white;
+}
+
+.cta-panel .garden-action:hover {
+    background: transparent;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .exclusions-grid,
+    .criteria-grid,
+    .screening-stats,
+    .principles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+}

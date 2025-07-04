@@ -1,0 +1,66 @@
+{% extends "public_site/base.html" %}
+{% load static %}
+
+{% block title %}Width Test{% endblock %}
+
+{% block content %}
+<div class="garden-container" style="background: #f0f0f0; padding: 20px; margin-top: 20px;">
+    <h2>Test Container 1</h2>
+    <p>This is a garden-container div. It should have max-width of 1200px.</p>
+    <p id="test1-result"></p>
+</div>
+
+<div class="garden-container">
+    <div class="garden-panel">
+        <div class="garden-panel__content">
+            <h2>Test Container 2 - With Panel</h2>
+            <p>This is inside a garden-panel. Should also be constrained to 1200px.</p>
+            <p id="test2-result"></p>
+        </div>
+    </div>
+</div>
+
+<div style="max-width: 1200px; margin: 20px auto; background: #e0e0e0; padding: 20px;">
+    <h2>Manual max-width test</h2>
+    <p>This div has inline style max-width: 1200px</p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Test container 1
+    const container1 = document.querySelector('.garden-container');
+    const style1 = window.getComputedStyle(container1);
+    document.getElementById('test1-result').innerHTML = 
+        `Computed styles: max-width = ${style1.maxWidth}, width = ${style1.width}`;
+    
+    // Test container 2
+    const containers = document.querySelectorAll('.garden-container');
+    if (containers.length > 1) {
+        const style2 = window.getComputedStyle(containers[1]);
+        document.getElementById('test2-result').innerHTML = 
+            `Computed styles: max-width = ${style2.maxWidth}, width = ${style2.width}`;
+    }
+    
+    // Check CSS variables
+    const root = document.documentElement;
+    const rootStyle = window.getComputedStyle(root);
+    const contentWidthNormal = rootStyle.getPropertyValue('--content-width-normal');
+    const space24 = rootStyle.getPropertyValue('--space-24');
+    
+    console.log('CSS Variables:');
+    console.log('--content-width-normal:', contentWidthNormal);
+    console.log('--space-24:', space24);
+    
+    // Add debug info
+    const debug = document.createElement('div');
+    debug.style.cssText = 'background: yellow; padding: 20px; margin: 20px auto; max-width: 1200px;';
+    debug.innerHTML = `
+        <h3>Debug Info:</h3>
+        <p>--content-width-normal: ${contentWidthNormal}</p>
+        <p>--space-24: ${space24}</p>
+        <p>Body classes: ${document.body.className}</p>
+    `;
+    document.querySelector('main').appendChild(debug);
+});
+</script>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "public_site/base.html" %}
+{% load static %}
+
+{% block title %}Debug Width{% endblock %}
+
+{% block content %}
+<style>
+    .debug-box {
+        background: #f0f0f0;
+        border: 2px solid red;
+        padding: 20px;
+        margin: 20px 0;
+    }
+    .manual-width {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: #e0ffe0;
+        border: 2px solid green;
+        padding: 20px;
+    }
+</style>
+
+<div class="garden-container debug-box">
+    <h2>Garden Container Test</h2>
+    <p>This div has class="garden-container"</p>
+    <div id="container-info"></div>
+</div>
+
+<div class="manual-width">
+    <h2>Manual 1200px Test</h2>
+    <p>This div has inline max-width: 1200px</p>
+</div>
+
+<div style="background: yellow; padding: 20px; margin: 20px;">
+    <h2>Debug Information</h2>
+    <div id="debug-info"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the garden-container
+    const container = document.querySelector('.garden-container');
+    const computedStyle = window.getComputedStyle(container);
+    
+    // Get root styles
+    const rootStyle = window.getComputedStyle(document.documentElement);
+    
+    // Display container info
+    document.getElementById('container-info').innerHTML = `
+        <strong>Computed Styles:</strong><br>
+        max-width: ${computedStyle.maxWidth}<br>
+        width: ${computedStyle.width}<br>
+        margin: ${computedStyle.margin}<br>
+        padding: ${computedStyle.padding}
+    `;
+    
+    // Display debug info
+    document.getElementById('debug-info').innerHTML = `
+        <strong>CSS Variables:</strong><br>
+        --space-24: ${rootStyle.getPropertyValue('--space-24')}<br>
+        --content-width-normal: ${rootStyle.getPropertyValue('--content-width-normal')}<br>
+        <br>
+        <strong>Applied CSS Rules (from DevTools):</strong><br>
+        Check DevTools > Elements > Computed > max-width to see which rule is winning<br>
+        <br>
+        <strong>Body Classes:</strong> ${document.body.className}<br>
+        <strong>Window Width:</strong> ${window.innerWidth}px
+    `;
+    
+    // Log all stylesheets
+    console.log('Loaded stylesheets:');
+    Array.from(document.styleSheets).forEach((sheet, index) => {
+        try {
+            console.log(`${index}: ${sheet.href}`);
+            // Try to find garden-container rules
+            if (sheet.cssRules) {
+                Array.from(sheet.cssRules).forEach(rule => {
+                    if (rule.selectorText && rule.selectorText.includes('garden-container')) {
+                        console.log(`Found rule: ${rule.selectorText}`, rule.style.cssText);
+                    }
+                });
+            }
+        } catch (e) {
+            console.log(`${index}: Could not access rules (CORS)`);
+        }
+    });
+});
+</script>
+{% endblock %}

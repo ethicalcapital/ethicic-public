@@ -6,21 +6,11 @@ from django.urls import path, re_path
 from django.views.generic import RedirectView
 
 from . import views
-from .test_width import test_width_view
-from .test_simple_view import test_simple_view
-from .debug_view import debug_width_view
-from .inline_test_view import inline_test_view
 
 
 app_name = "public_site"
 
 urlpatterns = [
-    # Test routes
-    path("test-width/", test_width_view, name="test-width"),
-    path("test-simple/", test_simple_view, name="test-simple"),
-    path("debug-width/", debug_width_view, name="debug-width"),
-    path("inline-test/", inline_test_view, name="inline-test"),
-    
     # ============================================================================
     # FORM SUBMISSION ENDPOINTS
     # ============================================================================

@@ -1,0 +1,285 @@
+/* ===============================================
+   COMPREHENSIVE FORMATTING FIXES FOR FAQ AND BLOG PAGES
+   Fixes white text on white background, tag styling, sidebar positioning, and purple sections
+   Loaded with !important rules to override other CSS files
+   =============================================== */
+
+/* ===== FIX WHITE TEXT ON WHITE BACKGROUND ===== */
+/* FAQ Question/Answer text color fixes */
+.faq-question,
+.question-title {
+    color: var(--color-on-surface) !important;
+    background: transparent;
+}
+
+.faq-answer {
+    color: var(--color-on-surface) !important;
+}
+
+/* FAQ empty state text */
+.no-faqs {
+    color: var(--color-on-surface) !important;
+}
+
+.no-faqs h3 {
+    color: var(--color-on-surface) !important;
+}
+
+.no-faqs p {
+    color: var(--color-on-surface-variant) !important;
+}
+
+/* Blog article titles and text */
+.article-list-title a {
+    color: var(--color-on-surface) !important;
+}
+
+.article-list-excerpt {
+    color: var(--color-on-surface-variant) !important;
+}
+
+/* ===== FIX CIRCULAR TAG/CATEGORY ICONS ===== */
+/* Remove circular styling from tags */
+.article-list-tag,
+.article-tag,
+.category-btn {
+    border-radius: var(--radius-sm) !important; /* Small rounded corners instead of circular */
+    padding: var(--space-1) var(--space-3) !important; /* Better proportions */
+    min-width: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* FAQ category buttons - remove circular styling */
+.faq-categories .category-btn {
+    border-radius: var(--radius-sm) !important;
+    padding: var(--space-2) var(--space-4) !important;
+}
+
+/* Blog tag styling improvements */
+.article-list-tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.article-list-tag {
+    background: var(--color-surface-variant);
+    color: var(--color-on-surface-variant) !important;
+    border: 1px solid var(--color-border);
+    font-size: var(--font-xs);
+    font-family: var(--font-mono);
+    font-weight: var(--font-medium);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.article-list-tag:hover {
+    background: var(--color-primary-alpha-light);
+    color: var(--color-on-surface) !important;
+    border-color: var(--color-primary);
+}
+
+/* ===== FIX SIDEBAR "GET HELP" TEXT POSITIONING ===== */
+/* Ensure sidebar stays properly positioned */
+.blog-sticky-sidebar {
+    position: sticky;
+    top: var(--space-8);
+    z-index: 10; /* Ensure it stays above content but below header */
+    background: var(--color-background); /* Solid background to prevent text showing through */
+}
+
+/* Add background to sidebar sections to prevent transparency issues */
+.sidebar-section .garden-panel {
+    background: var(--color-surface) !important;
+    position: relative;
+    z-index: 11;
+}
+
+/* Ensure utility text in sidebar has proper background */
+.sidebar-utility-text,
+.utility-help-text {
+    background: var(--color-surface);
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    position: relative;
+    z-index: 12;
+}
+
+/* Fix header z-index to ensure proper layering */
+.site-header,
+.garden-header {
+    z-index: var(--z-header, 1100) !important;
+}
+
+/* Ensure main content doesn't overflow into sidebar */
+.blog-main-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== ADDITIONAL CONTRAST IMPROVEMENTS ===== */
+/* Ensure all text has proper contrast in light mode */
+[data-theme="light"] {
+    .faq-question,
+    .question-title,
+    .article-list-title a,
+    .article-title a {
+        color: var(--theme-text-primary) !important;
+    }
+    
+    .faq-answer,
+    .article-list-excerpt,
+    .article-excerpt {
+        color: var(--theme-text-secondary) !important;
+    }
+    
+    .article-list-tag,
+    .article-tag {
+        background: var(--theme-surface-variant);
+        color: var(--theme-text-primary) !important;
+        border-color: var(--theme-border);
+    }
+}
+
+/* Ensure all text has proper contrast in dark mode */
+[data-theme="dark"],
+[data-theme="purple-dark"] {
+    .faq-question,
+    .question-title,
+    .article-list-title a,
+    .article-title a {
+        color: var(--theme-text-primary) !important;
+    }
+    
+    .faq-answer,
+    .article-list-excerpt,
+    .article-excerpt {
+        color: var(--theme-text-secondary) !important;
+    }
+    
+    .article-list-tag,
+    .article-tag {
+        background: var(--theme-surface-variant);
+        color: var(--theme-text-primary) !important;
+        border-color: var(--theme-border);
+    }
+}
+
+/* ===== BLOG SIDEBAR PURPLE SECTION FIXES ===== */
+/* Fix purple newsletter and connect headers with maximum specificity */
+.blog-sticky-sidebar .newsletter-section .garden-panel-header,
+.blog-sticky-sidebar .connect-section .garden-panel-header,
+.sidebar-section .newsletter-section .garden-panel-header,
+.sidebar-section .connect-section .garden-panel-header,
+.newsletter-section .garden-panel-header,
+.connect-section .garden-panel-header {
+    background: var(--color-surface-variant) !important;
+    color: var(--color-on-surface) !important;
+    border-bottom: 1px solid var(--color-border) !important;
+}
+
+.blog-sticky-sidebar .newsletter-section .panel-title,
+.blog-sticky-sidebar .connect-section .panel-title,
+.sidebar-section .newsletter-section .panel-title,
+.sidebar-section .connect-section .panel-title,
+.newsletter-section .panel-title,
+.connect-section .panel-title {
+    color: var(--color-on-surface) !important;
+}
+
+/* Remove purple border from newsletter content */
+.newsletter-section .garden-panel-content,
+.blog-sticky-sidebar .newsletter-section .garden-panel-content,
+.sidebar-section .newsletter-section .garden-panel-content {
+    border-top: none !important;
+    background: var(--color-surface) !important;
+}
+
+/* Universal override for any purple panel headers in blog context */
+.blog-container .garden-panel-header,
+.blog-main-content .garden-panel-header,
+.blog-sticky-sidebar .garden-panel-header {
+    background: var(--color-surface-variant) !important;
+    color: var(--color-on-surface) !important;
+}
+
+/* Override any panel headers with primary background */
+[class*="garden-panel-header"] {
+    background: var(--color-surface-variant) !important;
+    color: var(--color-on-surface) !important;
+}
+
+/* Fix sidebar input styling */
+.sidebar-input {
+    background: var(--color-surface) !important;
+    color: var(--color-on-surface) !important;
+    border: 1px solid var(--color-border) !important;
+}
+
+.sidebar-input::placeholder {
+    color: var(--color-on-surface-variant) !important;
+}
+
+.sidebar-input:focus {
+    border-color: var(--color-primary) !important;
+    background: var(--color-surface) !important;
+}
+
+/* Fix sidebar description text */
+.sidebar-description {
+    color: var(--color-on-surface) !important;
+}
+
+/* Fix social link colors */
+.social-link {
+    color: var(--color-on-surface) !important;
+}
+
+.social-text {
+    color: var(--color-on-surface) !important;
+}
+
+/* ===== BLOG ARTICLE TEXT FIXES ===== */
+/* Ensure all blog text has proper contrast */
+.article-list-title,
+.article-list-title a {
+    color: var(--color-on-surface) !important;
+}
+
+.article-list-excerpt {
+    color: var(--color-on-surface-variant) !important;
+}
+
+/* Hero title and subtitle fixes */
+.hero-title {
+    color: var(--color-on-surface) !important;
+}
+
+.hero-subtitle {
+    color: var(--color-on-surface-variant) !important;
+}
+
+/* ===== MOBILE RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+    /* Ensure sidebar doesn't overlap on mobile */
+    .blog-sticky-sidebar {
+        position: static !important;
+        z-index: auto;
+    }
+    
+    /* Ensure tags remain readable on mobile */
+    .article-list-tag,
+    .article-tag,
+    .category-btn {
+        font-size: var(--font-xs);
+        padding: var(--space-1) var(--space-2) !important;
+    }
+    
+    /* Mobile sidebar section fixes */
+    .newsletter-section .garden-panel-header,
+    .connect-section .garden-panel-header {
+        padding: var(--space-3) var(--space-4) !important;
+    }
+}
