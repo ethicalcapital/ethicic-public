@@ -253,6 +253,24 @@ class HomePage(Page):
         ], heading="Footer & Disclaimer")
     ]
 
+    # Define allowed subpage types - exclude BlogPost to enforce proper hierarchy
+    subpage_types = [
+        'public_site.AboutPage',
+        'public_site.PricingPage', 
+        'public_site.ContactPage',
+        'public_site.BlogIndexPage',  # Blog posts must go under BlogIndexPage
+        'public_site.FAQPage',
+        'public_site.FAQIndexPage',  # FAQ articles index
+        'public_site.StrategyPage',
+        'public_site.StrategyListPage',
+        'public_site.MediaPage',
+        'public_site.PRIDDQPage',
+        'public_site.EncyclopediaIndexPage',
+        'public_site.LegalPage',
+        'public_site.AccessibilityPage',
+        'public_site.NewsletterPage'
+    ]
+
     class Meta:
         verbose_name = "Homepage"
         verbose_name_plural = "Homepages"
@@ -798,6 +816,9 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
     content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("display_title"), FieldPanel("intro_text"), FieldPanel("description"), MultiFieldPanel([FieldPanel("featured_title"), FieldPanel("featured_description")], heading="Featured Research Section")]
 
+    # Restrict to only allow BlogPost children
+    subpage_types = ['public_site.BlogPost']
+
     def get_posts(self):
         """Get all published blog posts."""
         return (
@@ -1120,6 +1141,9 @@ class BlogPost(Page):
         index.FilterField("publish_date"),
         index.FilterField("featured"),
     ]
+
+    # Restrict to only allow BlogIndexPage as parent
+    parent_page_types = ['public_site.BlogIndexPage']
 
     class Meta:
         verbose_name = "BlogPost"
@@ -2176,8 +2200,8 @@ class SupportTicket(models.Model):
     """Support ticket/contact form submission."""
 
     # Contact information
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
+    name = models.CharField(max_length=255, null=False, blank=False)
+    email = models.EmailField(null=False, blank=False)
     company = models.CharField(max_length=255, blank=True, null=True)
 
     # Ticket type
@@ -2193,8 +2217,8 @@ class SupportTicket(models.Model):
     )
 
     # Inquiry details
-    subject = models.CharField(max_length=255)
-    message = models.TextField()
+    subject = models.CharField(max_length=255, null=False, blank=False)
+    message = models.TextField(null=False, blank=False)
 
     # Status and priority
     status = models.CharField(

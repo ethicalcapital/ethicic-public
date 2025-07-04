@@ -8,34 +8,34 @@
 /* FAQ Question/Answer text color fixes */
 .faq-question,
 .question-title {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
     background: transparent;
 }
 
 .faq-answer {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 /* FAQ empty state text */
 .no-faqs {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 .no-faqs h3 {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 .no-faqs p {
-    color: var(--color-on-surface-variant) !important;
+    color: var(--theme-text-secondary) !important;
 }
 
 /* Blog article titles and text */
 .article-list-title a {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 .article-list-excerpt {
-    color: var(--color-on-surface-variant) !important;
+    color: var(--theme-text-secondary) !important;
 }
 
 /* ===== FIX CIRCULAR TAG/CATEGORY ICONS ===== */
@@ -65,9 +65,9 @@
 }
 
 .article-list-tag {
-    background: var(--color-surface-variant);
-    color: var(--color-on-surface-variant) !important;
-    border: 1px solid var(--color-border);
+    background: var(--theme-surface-variant);
+    color: var(--theme-text-secondary) !important;
+    border: 1px solid var(--theme-border);
     font-size: var(--font-xs);
     font-family: var(--font-mono);
     font-weight: var(--font-medium);
@@ -77,8 +77,8 @@
 
 .article-list-tag:hover {
     background: var(--color-primary-alpha-light);
-    color: var(--color-on-surface) !important;
-    border-color: var(--color-primary);
+    color: var(--theme-text-primary) !important;
+    border-color: var(--theme-primary);
 }
 
 /* ===== FIX SIDEBAR "GET HELP" TEXT POSITIONING ===== */
@@ -87,12 +87,12 @@
     position: sticky;
     top: var(--space-8);
     z-index: 10; /* Ensure it stays above content but below header */
-    background: var(--color-background); /* Solid background to prevent text showing through */
+    background: var(--theme-background); /* Solid background to prevent text showing through */
 }
 
 /* Add background to sidebar sections to prevent transparency issues */
 .sidebar-section .garden-panel {
-    background: var(--color-surface) !important;
+    background: var(--theme-surface) !important;
     position: relative;
     z-index: 11;
 }
@@ -100,7 +100,7 @@
 /* Ensure utility text in sidebar has proper background */
 .sidebar-utility-text,
 .utility-help-text {
-    background: var(--color-surface);
+    background: var(--theme-surface);
     padding: var(--space-2);
     border-radius: var(--radius-sm);
     position: relative;
@@ -175,9 +175,9 @@
 .sidebar-section .connect-section .garden-panel-header,
 .newsletter-section .garden-panel-header,
 .connect-section .garden-panel-header {
-    background: var(--color-surface-variant) !important;
-    color: var(--color-on-surface) !important;
-    border-bottom: 1px solid var(--color-border) !important;
+    background: var(--theme-surface-variant) !important;
+    color: var(--theme-text-primary) !important;
+    border-bottom: 1px solid var(--theme-border) !important;
 }
 
 .blog-sticky-sidebar .newsletter-section .panel-title,
@@ -186,7 +186,7 @@
 .sidebar-section .connect-section .panel-title,
 .newsletter-section .panel-title,
 .connect-section .panel-title {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 /* Remove purple border from newsletter content */
@@ -194,69 +194,69 @@
 .blog-sticky-sidebar .newsletter-section .garden-panel-content,
 .sidebar-section .newsletter-section .garden-panel-content {
     border-top: none !important;
-    background: var(--color-surface) !important;
+    background: var(--theme-surface) !important;
 }
 
 /* Universal override for any purple panel headers in blog context */
 .blog-container .garden-panel-header,
 .blog-main-content .garden-panel-header,
 .blog-sticky-sidebar .garden-panel-header {
-    background: var(--color-surface-variant) !important;
-    color: var(--color-on-surface) !important;
+    background: var(--theme-surface-variant) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 /* Override any panel headers with primary background */
 [class*="garden-panel-header"] {
-    background: var(--color-surface-variant) !important;
-    color: var(--color-on-surface) !important;
+    background: var(--theme-surface-variant) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 /* Fix sidebar input styling */
 .sidebar-input {
-    background: var(--color-surface) !important;
-    color: var(--color-on-surface) !important;
-    border: 1px solid var(--color-border) !important;
+    background: var(--theme-surface) !important;
+    color: var(--theme-text-primary) !important;
+    border: 1px solid var(--theme-border) !important;
 }
 
 .sidebar-input::placeholder {
-    color: var(--color-on-surface-variant) !important;
+    color: var(--theme-text-secondary) !important;
 }
 
 .sidebar-input:focus {
-    border-color: var(--color-primary) !important;
-    background: var(--color-surface) !important;
+    border-color: var(--theme-primary) !important;
+    background: var(--theme-surface) !important;
 }
 
 /* Fix sidebar description text */
 .sidebar-description {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 /* Fix social link colors */
 .social-link {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 .social-text {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 /* ===== BLOG ARTICLE TEXT FIXES ===== */
 /* Ensure all blog text has proper contrast */
 .article-list-title,
 .article-list-title a {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 /* Article excerpt styles defined earlier in file */
 
 /* Hero title and subtitle fixes */
 .hero-title {
-    color: var(--color-on-surface) !important;
+    color: var(--theme-text-primary) !important;
 }
 
 .hero-subtitle {
-    color: var(--color-on-surface-variant) !important;
+    color: var(--theme-text-secondary) !important;
 }
 
 /* ===== MOBILE RESPONSIVE FIXES ===== */

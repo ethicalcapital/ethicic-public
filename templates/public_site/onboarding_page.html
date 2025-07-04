@@ -86,32 +86,32 @@
                 <div class="panel-content">
                     <div class="section-description">Let's start with the basics so we can personalize your experience.</div>
                     <div class="name-fields">
-                        <div class="form-group">
+                        <div class="garden-form-group">
                             <label class="form-label required" for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="first_name" class="form-input" required>
+                            <input type="text" id="firstName" name="first_name" class="garden-input" required>
                         </div>
-                        <div class="form-group">
+                        <div class="garden-form-group">
                             <label class="form-label required" for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="last_name" class="form-input" required>
+                            <input type="text" id="lastName" name="last_name" class="garden-input" required>
                         </div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <label class="form-label required" for="email">Email Address</label>
                         <div class="form-subtext">We'll use this to send you updates and portfolio information.</div>
-                        <input type="email" id="email" name="email" class="form-input" required>
+                        <input type="email" id="email" name="email" class="garden-input" required>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <label class="form-label" for="phone">Phone Number</label>
                         <div class="form-subtext">Optional - for important account notifications only.</div>
-                        <input type="tel" id="phone" name="phone" class="form-input">
+                        <input type="tel" id="phone" name="phone" class="garden-input">
                     </div>
                     
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <label class="form-label required" for="location">Location</label>
                         <div class="form-subtext">City and state/country for regulatory compliance.</div>
-                        <input type="text" id="location" name="location" class="form-input" placeholder="e.g., San Francisco, CA" required>
+                        <input type="text" id="location" name="location" class="garden-input" placeholder="e.g., San Francisco, CA" required>
                     </div>
                     <div class="form-navigation">
                         <div></div>
@@ -125,7 +125,7 @@
                 <div class="panel-header">STEP 2: INVESTMENT GOALS</div>
                 <div class="panel-content">
                     <div class="section-description">Help us understand what you're trying to achieve with your investments.</div>
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <label class="form-label required">Primary Investment Goal</label>
                         <div class="radio-group">
                             <div class="radio-option" @click="$event.target.checked = true">
@@ -159,10 +159,10 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <label class="form-label required" for="timeHorizon">Investment Time Horizon</label>
                         <div class="form-subtext">When might you need to access these funds?</div>
-                        <select id="timeHorizon" name="time_horizon" class="form-input" required>
+                        <select id="timeHorizon" name="time_horizon" class="garden-input" required>
                             <option value="">Select a timeframe</option>
                             <option value="1-3">1-3 years</option>
                             <option value="3-5">3-5 years</option>
@@ -182,7 +182,7 @@
                 <div class="panel-header">STEP 3: ETHICAL PREFERENCES</div>
                 <div class="panel-content">
                     <div class="section-description">Select the ethical criteria that are most important to you.</div>
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <label class="form-label required">Areas of Concern</label>
                         <div class="form-subtext">Select all that apply to customize your portfolio exclusions.</div>
                         <div class="checkbox-group">
@@ -231,7 +231,7 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <label class="form-label required">Positive Impact Areas</label>
                         <div class="form-subtext">Select areas where you'd like to see positive impact.</div>
                         <div class="checkbox-group">
@@ -277,7 +277,7 @@
                 <div class="panel-header">STEP 4: INVESTMENT EXPERIENCE</div>
                 <div class="panel-content">
                     <div class="section-description">This helps us recommend appropriate investment strategies.</div>
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <label class="form-label required">Investment Experience Level</label>
                         <div class="radio-group">
                             <div class="radio-option" @click="$event.target.closest('.radio-option').querySelector('input').checked = true">
@@ -304,21 +304,21 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <label class="form-label required" for="initialInvestment">Initial Investment Amount</label>
                         <div class="form-subtext">Minimum investment is $25,000.</div>
                         <div class="input-prefix">
                             <span class="prefix">$</span>
-                            <input type="number" id="initialInvestment" name="initial_investment" class="form-input" min="25000" step="1000" required>
+                            <input type="number" id="initialInvestment" name="initial_investment" class="garden-input" min="25000" step="1000" required>
                         </div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <label class="form-label">Monthly Contribution (Optional)</label>
                         <div class="form-subtext">Regular contributions can help build wealth over time.</div>
                         <div class="input-prefix">
                             <span class="prefix">$</span>
-                            <input type="number" id="monthlyContribution" name="monthly_contribution" class="form-input" min="0" step="100">
+                            <input type="number" id="monthlyContribution" name="monthly_contribution" class="garden-input" min="0" step="100">
                         </div>
                     </div>
                     <div class="form-navigation">
@@ -337,7 +337,7 @@
                         <!-- Summary will be populated by JavaScript -->
                     </div>
                     
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                             <input type="checkbox" id="agreeTerms" name="agree_terms" class="checkbox-input" required>
                             <label for="agreeTerms" class="checkbox-label">
@@ -347,7 +347,7 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="garden-form-group">
                         <div class="checkbox-option" @click="$event.target.closest('.checkbox-option').querySelector('input').checked = !$event.target.closest('.checkbox-option').querySelector('input').checked">
                             <input type="checkbox" id="confirmAccuracy" name="confirm_accuracy" class="checkbox-input" required>
                             <label for="confirmAccuracy" class="checkbox-label">
@@ -396,6 +396,6 @@
 {% block extra_js %}
 <!-- 💀 LEGACY JAVASCRIPT ANNIHILATED - 168 lines eliminated and replaced with Alpine.js -->
 <style>
-    .form-input.error { border-color: var(--color-error); }
+    .garden-input.error { border-color: var(--color-error); }
 </style>
 {% endblock %}

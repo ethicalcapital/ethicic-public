@@ -7,8 +7,8 @@
     /* ===== FOOTER STYLES ===== */
     
     .garden-footer {
-        background: var(--color-surface-variant);
-        border-top: 1px solid var(--color-border-strong);
+        background: var(--theme-surface-variant);
+        border-top: 1px solid var(--theme-border);
         padding: var(--space-8) 0 var(--space-6);
         margin-top: auto;
     }
@@ -32,7 +32,7 @@
         font-family: var(--font-sans);
         font-size: var(--font-base);
         font-weight: var(--font-semibold);
-        color: var(--color-text-primary);
+        color: var(--theme-text-primary);
         margin-bottom: var(--space-4);
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -48,19 +48,19 @@
     }
     
     .garden-footer-link {
-        color: var(--color-text-secondary);
+        color: var(--theme-text-secondary);
         text-decoration: none;
         font-size: var(--font-sm);
         transition: color var(--transition-fast);
     }
 
     .garden-footer-link:hover {
-        color: var(--color-primary);
+        color: var(--theme-primary);
     }
     
     .garden-footer-bottom {
         padding-top: var(--space-6);
-        border-top: 1px solid var(--color-border-strong);
+        border-top: 1px solid var(--theme-border);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -70,7 +70,12 @@
 
     .garden-footer-legal {
         font-size: var(--font-xs);
-        color: var(--color-text-secondary);
+        color: var(--theme-text-secondary);
+        line-height: 1.6;
+    }
+
+    .garden-footer-legal p {
+        margin-bottom: var(--space-3);
     }
 
     .garden-footer-social {
@@ -79,13 +84,13 @@
     }
 
     .garden-footer-social a {
-        color: var(--color-text-secondary);
+        color: var(--theme-text-secondary);
         font-size: var(--font-lg);
         transition: color var(--transition-fast);
     }
 
     .garden-footer-social a:hover {
-        color: var(--color-primary);
+        color: var(--theme-primary);
     }
     
     /* Responsive adjustments */
@@ -108,9 +113,9 @@
         }
     }
     
-    /* Dark mode adjustments */
-    [data-theme="dark"] .garden-footer {
-        background: var(--color-surface-dark);
-        border-top-color: var(--color-border-strong);
+    /* Additional theme support - theme variables handle light/dark automatically */
+    .garden-footer {
+        /* Background and text colors automatically adjust via theme variables */
+        color: var(--theme-text-primary);
     }
 }

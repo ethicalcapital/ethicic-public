@@ -105,7 +105,8 @@
     <!-- Button contrast fixes for light/dark mode -->
     <link rel="stylesheet" href="{% static 'css/button-contrast-fixes.css' %}?v=1">
     
-    <!-- Note: Accessibility features now integrated into high-contrast-mode.css and theme system -->
+    <!-- WCAG AA Color Contrast Fixes -->
+    <link rel="stylesheet" href="{% static 'css/accessibility-color-contrast.css' %}?v=1">
     
     <!-- Breadcrumb spacing fix -->
     <link rel="stylesheet" href="{% static 'css/layers/99-breadcrumb-fix.css' %}?v=1">
@@ -118,7 +119,7 @@
     
     <!-- Homepage specific styles -->
     {% if request.resolver_match.url_name == 'home' or request.path == '/' %}
-    <link rel="stylesheet" href="{% static 'css/16-homepage.css' %}?v=2025070313">
+    <link rel="stylesheet" href="{% static 'css/16-homepage.css' %}?v=2025070402">
     {% endif %}
     
     <!-- Phase 4: Page-specific styling - deferred for performance -->

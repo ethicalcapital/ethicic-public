@@ -8,6 +8,7 @@ from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import HTML, Field, Fieldset, Layout, Submit
 from django import forms
+from django.conf import settings
 from django.core.cache import cache
 from django.utils import timezone
 
@@ -283,31 +284,20 @@ class AccessibleContactForm(forms.Form):
                 'honeypot': 'We detected unusual activity. Please contact us directly if you\'re having trouble.'
             })
 
-        # Check human verification
+        # Check human verification - same validation in testing and production
         human_answer = cleaned_data.get('human_check', '')
-        # In testing, use simpler validation
-        import sys
-
-        from django.conf import settings
-        is_testing = 'test' in sys.argv or getattr(settings, 'TESTING', False)
-
-        if is_testing:
-            # In testing mode, just check that a value was provided - skip math validation
-            if not human_answer or not human_answer.strip():
-                raise forms.ValidationError({
-                    'human_check': 'Please provide a value for verification.'
-                })
-            # In testing, accept any non-empty value (skip all further validation)
-            return cleaned_data
-        # Production math validation
+        
         try:
             if hasattr(self, 'math_answer') and int(human_answer) != self.math_answer:
                 raise forms.ValidationError({
                     'human_check': 'Please solve the math problem correctly to verify you are human.'
                 })
             if not hasattr(self, 'math_answer'):
-                # If math_answer is not set (shouldn't happen in production), skip validation
-                pass
+                # If math_answer is not set (shouldn't happen), require any non-empty value
+                if not human_answer or not human_answer.strip():
+                    raise forms.ValidationError({
+                        'human_check': 'Please provide a value for verification.'
+                    })
         except (ValueError, AttributeError):
             raise forms.ValidationError({
                 'human_check': 'Please enter a number to solve the math problem.'

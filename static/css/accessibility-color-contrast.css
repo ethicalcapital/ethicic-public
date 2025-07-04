@@ -43,9 +43,14 @@ button.secondary,
 body,
 p,
 div,
-span,
 li {
     color: var(--color-on-surface, #1a1a1a) !important;
+}
+
+/* EXCEPTION: Allow stat-value spans to keep their purple color */
+.stat-value,
+.stat-value span {
+    color: var(--color-primary, #8b5cf6) !important;
 }
 
 /* Link contrast */
@@ -98,238 +103,137 @@ label {
 .error,
 .field-error,
 .invalid-feedback,
-input[aria-invalid="true"] {
+.form-error {
     color: var(--color-error, #dc2626) !important;
+    background: var(--color-error-light, #fef2f2) !important;
     border-color: var(--color-error, #dc2626) !important;
 }
 
 /* Success states */
 .success,
 .field-success,
-.valid-feedback {
-    color: var(--color-success, #16a34a) !important;
-}
-
-/* ===== NAVIGATION CONTRAST ===== */
-
-/* Header navigation */
-.garden-nav-main a {
-    color: var(--color-on-surface, #1a1a1a) !important;
-}
-
-.garden-nav-main a:hover,
-.garden-nav-main a:focus {
-    color: var(--color-primary, #8b5cf6) !important;
-    background: var(--color-surface-variant, #f8f9fa) !important;
-}
-
-/* Footer navigation */
-.garden-footer-link {
-    color: var(--color-on-surface, #1a1a1a) !important;
-}
-
-.garden-footer-link:hover,
-.garden-footer-link:focus {
-    color: var(--color-primary, #8b5cf6) !important;
-}
-
-/* ===== SPECIFIC COMPONENT FIXES ===== */
-
-/* Blog article tags */
-.article-tag {
-    background: var(--color-surface-variant, #f3f4f6) !important;
-    color: var(--color-on-surface, #1a1a1a) !important;
-    border: 1px solid var(--color-border, #d1d5db) !important;
-}
-
-.article-tag:hover {
-    background: var(--color-primary, #8b5cf6) !important;
-    color: var(--color-on-primary, #ffffff) !important;
-}
-
-/* Newsletter form */
-.newsletter-input-field {
-    background: var(--color-surface, #ffffff) !important;
-    color: var(--color-on-surface, #1a1a1a) !important;
-    border: 2px solid var(--color-border, #d1d5db) !important;
-}
-
-.newsletter-button {
-    background: var(--color-primary, #8b5cf6) !important;
-    color: var(--color-on-primary, #ffffff) !important;
-}
-
-/* Notification bell */
-.notification-badge {
-    background: var(--color-error, #dc2626) !important;
-    color: var(--color-on-error, #ffffff) !important;
-}
-
-/* ===== DARK MODE CONTRAST OVERRIDES ===== */
-[data-theme="dark"] {
-    /* Ensure dark mode maintains proper contrast */
-    body,
-    p,
-    div,
-    span,
-    li {
-        color: var(--color-on-surface-dark, #e5e7eb) !important;
-    }
-    
-    .garden-action.primary {
-        background: var(--color-primary-light, #a78bfa) !important;
-        color: var(--color-surface-dark, #1a1a1a) !important;
-    }
-    
-    .garden-action.secondary {
-        background: var(--color-surface-dark, #1f2937) !important;
-        color: var(--color-primary-light, #a78bfa) !important;
-        border-color: var(--color-primary-light, #a78bfa) !important;
-    }
-    
-    input,
-    textarea,
-    select {
-        background: var(--color-surface-dark, #1f2937) !important;
-        color: var(--color-on-surface-dark, #e5e7eb) !important;
-        border-color: var(--color-border-dark, #374151) !important;
-    }
-}
-
-/* ===== HIGH CONTRAST MODE ===== */
-@media (prefers-contrast: more) {
-    /* Maximum contrast for high contrast mode */
-    body,
-    p,
-    div,
-    span,
-    li {
-        color: #000000 !important;
-    }
-    
-    a {
-        color: #0000ff !important;
-        text-decoration: underline !important;
-    }
-    
-    button,
-    .garden-action {
-        background: #ffffff !important;
-        color: #000000 !important;
-        border: 3px solid #000000 !important;
-    }
-    
-    .garden-action.primary {
-        background: #000000 !important;
-        color: #ffffff !important;
-    }
-    
-    input,
-    textarea,
-    select {
-        background: #ffffff !important;
-        color: #000000 !important;
-        border: 3px solid #000000 !important;
-    }
-    
-    /* Focus indicators in high contrast */
-    *:focus-visible {
-        outline: 4px solid #ff0000 !important;
-        outline-offset: 2px !important;
-    }
+.valid-feedback,
+.form-success {
+    color: var(--color-success, #059669) !important;
+    background: var(--color-success-light, #f0fdf4) !important;
+    border-color: var(--color-success, #059669) !important;
 }
 
 /* ===== TABLE CONTRAST ===== */
+
 table,
-.wagtail-data-table {
-    border-collapse: collapse !important;
+.table {
+    color: var(--color-on-surface, #1a1a1a) !important;
 }
 
 th {
-    background: var(--color-surface-variant, #f3f4f6) !important;
+    background: var(--color-surface-elevated, #f8fafc) !important;
     color: var(--color-on-surface, #1a1a1a) !important;
     border: 1px solid var(--color-border, #d1d5db) !important;
 }
 
 td {
     color: var(--color-on-surface, #1a1a1a) !important;
+    border: 1px solid var(--color-border-light, #e5e7eb) !important;
+}
+
+/* ===== PANEL CONTRAST ===== */
+
+.garden-panel {
+    background: var(--color-surface, #ffffff) !important;
     border: 1px solid var(--color-border, #d1d5db) !important;
 }
 
-/* Table hover states */
-tr:hover {
-    background: var(--color-surface-hover, #f8f9fa) !important;
+.garden-panel__header,
+.garden-panel-header {
+    background: var(--color-surface-elevated, #f8fafc) !important;
+    color: var(--color-on-surface, #1a1a1a) !important;
+    border-bottom: 1px solid var(--color-border, #d1d5db) !important;
 }
 
-/* ===== LOADING AND STATUS INDICATORS ===== */
-.htmx-indicator,
-.spinner,
-.loading {
+.panel-title {
     color: var(--color-primary, #8b5cf6) !important;
 }
 
-/* Status messages */
-.alert-success,
-.success-message {
-    background: var(--color-success-light, #dcfce7) !important;
-    color: var(--color-success-dark, #166534) !important;
-    border: 1px solid var(--color-success, #16a34a) !important;
+/* ===== NAVIGATION CONTRAST ===== */
+
+.garden-nav a,
+.garden-nav-item {
+    color: var(--color-on-primary, #ffffff) !important;
 }
 
-.alert-error,
-.error-message {
-    background: var(--color-error-light, #fee2e2) !important;
-    color: var(--color-error-dark, #991b1b) !important;
-    border: 1px solid var(--color-error, #dc2626) !important;
+.garden-nav a:hover,
+.garden-nav-item:hover {
+    color: var(--color-on-primary, #ffffff) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
 }
 
-.alert-warning,
-.warning-message {
-    background: var(--color-warning-light, #fef3c7) !important;
-    color: var(--color-warning-dark, #92400e) !important;
-    border: 1px solid var(--color-warning, #f59e0b) !important;
+/* Footer */
+.garden-footer {
+    background: var(--color-surface-elevated, #f8fafc) !important;
+    color: var(--color-on-surface, #1a1a1a) !important;
 }
 
-/* ===== PLACEHOLDER TEXT CONTRAST ===== */
-input::placeholder,
-textarea::placeholder {
-    color: var(--color-on-surface-variant, #6b7280) !important;
-    opacity: 1 !important;
+.garden-footer-link {
+    color: var(--color-primary, #8b5cf6) !important;
 }
 
-/* ===== REDUCED MOTION RESPECT ===== */
-@media (prefers-reduced-motion: reduce) {
-    /* Ensure color changes are immediate, not animated */
-    *,
-    *::before,
-    *::after {
-        transition: none !important;
-        animation: none !important;
-    }
+.garden-footer-link:hover {
+    color: var(--color-primary-dark, #7c3aed) !important;
 }
 
-/* ===== PRINT CONTRAST ===== */
-@media print {
-    /* Ensure good contrast in print */
+/* ===== HIGH CONTRAST MODE SUPPORT ===== */
+
+@media (prefers-contrast: high) {
+    /* Enhance contrast even further for users who prefer it */
     body,
     p,
     div,
-    span,
-    li,
-    h1, h2, h3, h4, h5, h6 {
+    li {
         color: #000000 !important;
-        background: #ffffff !important;
+    }
+    
+    /* Stat values maintain visibility in high contrast */
+    .stat-value,
+    .stat-value span {
+        color: #4c1d95 !important; /* Darker purple for higher contrast */
+        font-weight: 700 !important;
     }
     
     a {
-        color: #000000 !important;
+        color: #4c1d95 !important;
         text-decoration: underline !important;
     }
     
-    button,
-    .garden-action {
-        border: 2px solid #000000 !important;
-        background: #ffffff !important;
-        color: #000000 !important;
+    .garden-action.primary {
+        background: #4c1d95 !important;
+        border-color: #4c1d95 !important;
+    }
+}
+
+/* ===== DARK THEME ADJUSTMENTS ===== */
+
+[data-theme="dark"] {
+    /* Dark theme text contrast */
+    body,
+    p,
+    div,
+    li {
+        color: var(--color-on-background, #e5e7eb) !important;
+    }
+    
+    /* Stat values in dark theme */
+    .stat-value,
+    .stat-value span {
+        color: var(--color-primary-light, #a78bfa) !important;
+    }
+    
+    a {
+        color: var(--color-primary-light, #a78bfa) !important;
+    }
+    
+    .garden-panel {
+        background: var(--color-surface-dark, #1f2937) !important;
+        border-color: var(--color-border-dark, #374151) !important;
     }
 }

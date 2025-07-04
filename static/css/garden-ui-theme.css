@@ -64,6 +64,12 @@
   --font-xl: 24px;
   --font-2xl: 30px;
   --font-3xl: 36px;
+  /* Additional text sizes */
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-4xl: 36px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
   --font-light: 300;
   --font-normal: 400;
   --font-medium: 500;
@@ -394,6 +400,85 @@
   --theme-shadow: color-mix(in srgb, var(--garden-text) 15%, transparent);
   --garden-accent: #3d2970;
   --accent-text: var(--theme-on-primary);
+  
+  /* Additional missing variables for compatibility */
+  --color-surface-secondary: var(--theme-surface-variant);
+  --color-surface-hover: var(--theme-hover);
+  --color-primary-light: var(--theme-primary-hover);
+  --color-primary-dark: var(--theme-primary);
+  --color-primary-600: var(--theme-primary);
+  --color-border-subtle: var(--theme-border-variant);
+  --color-border-hover: var(--theme-border-variant);
+  --color-muted: var(--theme-text-secondary);
+  --color-on-error: var(--theme-text-inverse);
+  --streamfield-spacing: var(--space-4);
+  --callout-border-width: 1px;
+  --garden-accent-rgb: 61, 41, 112;
+  --garden-accent-hover: #4c3b8a;
+  --color-surface-stripe: var(--theme-surface-variant);
+  --line-height-normal: 1.5;
+  --header-height: 64px;
+  --space-0-25: 1px;
+  --space-15: 60px;
+  --doc-surface-0: var(--theme-surface);
+  --doc-surface-1: var(--theme-surface-variant);
+  --doc-surface-2: var(--theme-background);
+  --garden-spacing-md: var(--space-4);
+  --garden-spacing-lg: var(--space-6);
+  --garden-spacing-xl: var(--space-8);
+  --garden-primary: var(--theme-primary);
+  --garden-bg-subtle: var(--theme-surface-variant);
+  --garden-bg-hover: var(--theme-hover);
+  
+  /* Additional variables for remaining compatibility issues */
+  --color-success-bg: var(--theme-success-alpha);
+  --color-warning-bg: var(--theme-warning-alpha);
+  --surface-variant: var(--theme-surface-variant);
+  --border-color: var(--theme-border);
+  --text-secondary: var(--theme-text-secondary);
+  --color-border-primary: var(--theme-primary);
+  --font-family-mono: var(--font-sans);
+  --border-radius-lg: var(--radius-lg);
+  --doc-surface-3: var(--theme-background);
+  --garden-border-radius: var(--radius-md);
+  --garden-surface-elevated: var(--theme-surface-variant);
+  --header-hover: var(--theme-hover);
+  --space-0-5: 2px;
+  --garden-border-subtle: var(--theme-border-variant);
+  --garden-accent-alpha: var(--theme-primary-alpha);
+  --garden-shadow-lg: var(--shadow-lg);
+  --color-accent: var(--theme-primary);
+  --text-3xl: 36px;
+  
+  /* Final missing variables */
+  --color-error-bg: var(--theme-error-alpha);
+  --code-bg: var(--theme-surface-variant);
+  --block-border: var(--theme-border);
+  --surface: var(--theme-surface);
+  --text-primary: var(--theme-text-primary);
+  --color-border-secondary: var(--theme-border-variant);
+  --font-size-base: var(--font-base);
+  --garden-spacing-sm: var(--space-2);
+  --garden-text-primary: var(--theme-text-primary);
+  --text-sm: 14px;
+  --color-surface-elevated: var(--theme-surface-variant);
+  
+  /* Final cleanup variables */
+  --terminal-border-rgb: 229, 231, 235;
+  --garden-link: var(--theme-primary);
+  --garden-spacing-xs: var(--space-1);
+  --garden-text-secondary: var(--theme-text-secondary);
+  
+  /* Accessibility & hover variables */
+  --color-primary-visited: var(--theme-primary);
+  --color-error-light: var(--theme-error-alpha);
+  --color-success-light: var(--theme-success-alpha);
+  --color-border-light: var(--theme-border);
+  --color-surface-dark: var(--theme-surface-variant);
+  --color-border-dark: var(--theme-border-variant);
+  --garden-link-hover: var(--theme-primary-hover);
+  --garden-primary-hover: var(--theme-primary-hover);
+  --garden-surface-hover: var(--theme-hover);
 }
 }
 
@@ -2501,13 +2586,13 @@ to {
 .garden-action.secondary,
 .garden-action.secondary:link,
 .garden-action.secondary:visited {
-  color: var(--theme-primary, #553C9A) !important;
+  color: var(--theme-primary, var(--garden-accent)) !important;
   background: transparent !important;
-  border: 2px solid var(--theme-primary, #553C9A) !important;
+  border: 2px solid var(--theme-primary, var(--garden-accent)) !important;
 }
 
 .garden-action.secondary:hover {
-  background: var(--theme-primary, #553C9A) !important;
+  background: var(--theme-primary, var(--garden-accent)) !important;
   color: white !important;
 }
 
@@ -2515,7 +2600,7 @@ to {
 [data-theme="light"] .garden-header,
 [data-theme="purple-light"] .garden-header,
 [data-theme="auto"] .garden-header {
-  background: #553C9A !important; /* Solid purple background - no gradients or images */
+  background: var(--garden-accent) !important; /* Solid purple background - no gradients or images */
   background-image: none !important; /* Remove any background images */
   background-attachment: unset !important;
   background-size: unset !important;
@@ -2586,7 +2671,7 @@ to {
 /* Auto theme light mode */
 @media (prefers-color-scheme: light) {
   [data-theme="auto"] .garden-header {
-    background: #553C9A !important; /* Solid purple background */
+    background: var(--garden-accent) !important; /* Solid purple background */
     background-image: none !important; /* Remove any background images */
     background-attachment: unset !important;
     background-size: unset !important;
@@ -3133,7 +3218,7 @@ to {
   
   .markdown-content .highlight .k { color: #ff79c6; } /* Keyword */
   .markdown-content .highlight .s { color: #f1fa8c; } /* String */
-  .markdown-content .highlight .c { color: #6272a4; } /* Comment */
+  .markdown-content .highlight .c { color: #8aa2d3; } /* Comment - lighter for better contrast */
   .markdown-content .highlight .n { color: #f8f8f2; } /* Name */
   .markdown-content .highlight .o { color: #ff79c6; } /* Operator */
   

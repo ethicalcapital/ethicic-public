@@ -7,7 +7,7 @@
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    background: #553C9A !important;
+    background: var(--theme-primary) !important;
     color: white !important;
     font-size: 1.25rem;
     font-weight: 700;
@@ -23,7 +23,7 @@
 /* Extended process step for step 1 */
 .process-step-expanded {
     background: #fafafa;
-    border: 2px solid #553C9A;
+    border: 2px solid var(--theme-primary);
 }
 
 .process-steps {
@@ -61,7 +61,7 @@
 
 .garden-panel__header,
 .garden-panel-header {
-    background: #553C9A;
+    background: var(--theme-primary);
     color: white;
     padding: 1rem 1.5rem;
     border-radius: 8px 8px 0 0;
@@ -88,7 +88,7 @@
 .exclusions-section-title {
     font-size: 1.125rem;
     font-weight: 700;
-    color: #553C9A;
+    color: var(--theme-primary);
     margin-bottom: 0.25rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -97,7 +97,7 @@
 .exclusions-underline {
     width: 100%;
     height: 1px;
-    background: #553C9A;
+    background: var(--theme-primary);
     margin-bottom: 1rem;
 }
 
@@ -126,7 +126,7 @@
 .exclusion-title {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #553C9A;
+    color: var(--theme-primary);
     margin-bottom: 0.75rem;
     display: block;
 }
@@ -162,7 +162,7 @@
 .criteria-card h4 {
     font-size: 1.125rem;
     font-weight: 600;
-    color: #553C9A;
+    color: var(--theme-primary);
     margin-bottom: 1rem;
 }
 
@@ -182,7 +182,7 @@
 /* Links */
 .process-link,
 .policy-link {
-    color: #553C9A;
+    color: var(--theme-primary);
     text-decoration: underline;
     font-weight: 600;
 }
@@ -197,10 +197,10 @@
 .step-content h4 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #553C9A;
+    color: var(--theme-primary);
     margin: 2rem 0 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #553C9A;
+    border-bottom: 2px solid var(--theme-primary);
 }
 
 /* Emphasis paragraph for key stats */
@@ -221,7 +221,7 @@
 
 .stat-card {
     background: #f5f0ff !important;
-    border: 2px solid #553C9A !important;
+    border: 2px solid var(--theme-primary) !important;
     border-radius: 8px !important;
     padding: 2rem !important;
     text-align: center !important;
@@ -238,7 +238,7 @@
     display: block !important;
     font-size: 2.5rem !important;
     font-weight: 700 !important;
-    color: #553C9A !important;
+    color: var(--theme-primary) !important;
     margin-bottom: 0.5rem !important;
     background: transparent !important;
     width: auto !important;
@@ -321,25 +321,25 @@
     content: "•";
     position: absolute;
     left: 0;
-    color: #553C9A;
+    color: var(--theme-primary);
     font-weight: bold;
 }
 
 .methodology-list strong {
-    color: #553C9A;
+    color: var(--theme-primary);
 }
 
 /* Insight Callout */
 .insight-callout {
     background: #f5f0ff;
-    border-left: 4px solid #553C9A;
+    border-left: 4px solid var(--theme-primary);
     padding: 1.5rem;
     margin: 2rem 0;
     border-radius: 0 8px 8px 0;
 }
 
 .insight-callout strong {
-    color: #553C9A;
+    color: var(--theme-primary);
 }
 
 /* Principles Section */
@@ -371,7 +371,7 @@
 .principles-section-title {
     font-size: 0.875rem;
     font-weight: 700;
-    color: #553C9A;
+    color: var(--theme-primary);
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
@@ -393,7 +393,7 @@
 .principle-card h4 {
     font-size: 1rem;
     font-weight: 600;
-    color: #553C9A;
+    color: var(--theme-primary);
     margin-bottom: 0.75rem;
 }
 
@@ -404,7 +404,7 @@
 
 /* CTA Section */
 .cta-panel {
-    background: #553C9A !important;
+    background: var(--theme-primary) !important;
     color: white !important;
     margin-top: 3rem;
     border-radius: 8px;
@@ -418,7 +418,7 @@
 
 .cta-panel .garden-panel__content,
 .cta-panel .garden-panel-content {
-    background: #553C9A !important;
+    background: var(--theme-primary) !important;
     color: white !important;
 }
 
@@ -443,7 +443,7 @@
 
 .cta-panel .garden-action {
     background: white;
-    color: #553C9A;
+    color: var(--theme-primary);
     border: 2px solid white;
 }
 

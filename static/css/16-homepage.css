@@ -217,10 +217,15 @@
     .stat-value {
         font-size: var(--font-xl);
         font-weight: var(--font-bold);
-        color: var(--color-primary);
+        color: var(--color-primary) !important;
         display: block;
         font-family: var(--font-sans);
         white-space: nowrap;
+    }
+    
+    /* Ensure nested spans also get purple color */
+    .stat-value span {
+        color: var(--color-primary) !important;
     }
 
     .stat-label {

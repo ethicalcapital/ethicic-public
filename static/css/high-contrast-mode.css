@@ -171,11 +171,44 @@ a:hover, .link:hover {
     color: var(--theme-text-tertiary) !important;
 }
 
+/* Fix specific hardcoded grays that don't meet contrast */
+[style*="color: #888"],
+[style*="color:#888"],
+.color-888 {
+    color: var(--theme-text-secondary) !important;
+}
+
+[style*="color: #666"],
+[style*="color:#666"],
+.color-666 {
+    color: #4a4a4a !important; /* Darker gray for 7:1 contrast */
+}
+
 /* ===== STRATEGY PAGE SPECIFIC FIXES ===== */
 .strategy-badge {
     background: var(--garden-accent) !important;
     color: #ffffff !important;
     font-weight: 700 !important;
+}
+
+/* ===== COLORBLIND-FRIENDLY ENHANCEMENTS ===== */
+/* Add symbols and patterns for color-dependent information */
+.error::before,
+.status-error::before {
+    content: "⚠ ";
+    font-weight: bold;
+}
+
+.success::before,
+.status-success::before {
+    content: "✓ ";
+    font-weight: bold;
+}
+
+.warning::before,
+.status-warning::before {
+    content: "! ";
+    font-weight: bold;
 }
 
 /* ===== ACCESSIBILITY STATEMENT COMPLIANCE ===== */
