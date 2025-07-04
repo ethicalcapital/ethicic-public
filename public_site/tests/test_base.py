@@ -6,12 +6,41 @@ import json
 from datetime import datetime
 from typing import Optional
 
-from django.test import TestCase, TransactionTestCase
+from django.test import TestCase, TransactionTestCase, RequestFactory
 from django.urls import reverse
 from django.utils import timezone
 
 from public_site.models import SupportTicket
 from wagtail.models import Page
+
+# Import our Wagtail test base
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from tests.wagtail_test_base import WagtailTestCase
+
+
+class MockRequestFactory:
+    """Factory for creating mock request objects."""
+    
+    @staticmethod
+    def create_request(user=None, session=None, **kwargs):
+        """Create a mock request object."""
+        factory = RequestFactory()
+        request = factory.get('/', **kwargs)
+        
+        # Add user
+        if user:
+            request.user = user
+        
+        # Add session
+        if session:
+            request.session = session
+        else:
+            # Create minimal session
+            request.session = {}
+        
+        return request
 
 
 class BasePublicSiteTestCase(TestCase):
@@ -34,7 +63,7 @@ class BasePublicSiteTestCase(TestCase):
             'company': 'Test Company',
             'subject': 'general',
             'message': 'This is a test message for contact form submission.',
-            'human_check': '4',  # 2+2=4
+            'human_check': '2',  # 1+1=2 (test math problem)
             'consent': True,
         }
         data.update(overrides)
@@ -100,7 +129,22 @@ class FormTestMixin:
     def assert_form_valid(self, form):
         """Assert that a form is valid."""
         if hasattr(form, 'errors'):
-            self.assertFalse(form.errors, f"Unexpected form errors: {form.errors}")
+            self.assertTrue(form.is_valid(), f"Form should be valid but got errors: {form.errors}")
+    
+    def assert_form_invalid(self, form, expected_errors=None):
+        """Assert that a form is invalid with optional expected errors."""
+        self.assertFalse(form.is_valid(), "Form should be invalid but was valid")
+        
+        if expected_errors:
+            # Check for expected error messages
+            for field, expected_message in expected_errors.items():
+                self.assertIn(field, form.errors, f"Expected error for field '{field}' not found")
+                
+                # Check if the expected message is in the error messages
+                field_errors = form.errors[field]
+                error_found = any(expected_message in str(error) for error in field_errors)
+                self.assertTrue(error_found, 
+                    f"Expected error message '{expected_message}' not found in field '{field}' errors: {field_errors}")
 
 
 class APITestMixin:
@@ -129,21 +173,22 @@ class APITestMixin:
         return data
 
 
-class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
-    """Base test case for Wagtail page tests - simplified to avoid complex page creation."""
+class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
+    """Base test case for Wagtail page tests with proper Wagtail setup."""
     
     @classmethod
     def setUpTestData(cls):
         """Set up test data once for the entire test class."""
+        # Call WagtailTestCase setup first to ensure Wagtail is ready
         super().setUpTestData()
         
-        # For now, we don't create any Wagtail pages to avoid complexity
-        # Tests that need specific pages should be skipped or handle page creation gracefully
-        cls.home_page = None
+        # Now we have these available from WagtailTestCase:
+        # cls.locale, cls.root_page, cls.home_page, cls.site, cls.user
+        
+        # Set up additional pages as needed
         cls.contact_page = None
         cls.onboarding_page = None
         cls.blog_index = None
-        cls.site = None
     
     def setUp(self):
         """Set up each test."""
@@ -184,9 +229,11 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
             raise SkipTest("No parent page available for blog post creation")
         
         from public_site.models import BlogPost
+        import re
+        slug = re.sub(r'[^a-z0-9-_]', '', title.lower().replace(' ', '-'))
         blog_post = BlogPost(
             title=title,
-            slug=title.lower().replace(' ', '-'),
+            slug=slug,
             excerpt="Test excerpt for the blog post.",
             body="<p>Test blog post content with sufficient length.</p>",
             author="Test Author",
@@ -216,9 +263,11 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
             raise SkipTest("No parent page available for strategy page creation")
         
         from public_site.models import StrategyPage
+        import re
+        slug = re.sub(r'[^a-z0-9-_]', '', title.lower().replace(' ', '-'))
         strategy = StrategyPage(
             title=title,
-            slug=title.lower().replace(' ', '-'),
+            slug=slug,
             strategy_subtitle="Test strategy subtitle",
             strategy_description="<p>Test strategy description</p>",
             strategy_label=strategy_label,
@@ -249,6 +298,7 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
             faq_index = FAQIndexPage(
                 title="Support",
                 slug="support",
+                locale=getattr(self, 'locale', None) or home_page.locale,
             )
             home_page.add_child(instance=faq_index)
             parent = faq_index
@@ -258,14 +308,18 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
             raise SkipTest("No parent page available for FAQ article creation")
         
         from public_site.models import FAQArticle
+        import re
+        # Generate a valid slug by removing special characters
+        slug = re.sub(r'[^a-z0-9-_]', '', title.lower().replace(' ', '-'))
         article = FAQArticle(
             title=title,
-            slug=title.lower().replace(' ', '-'),
+            slug=slug,
             summary="Test FAQ summary",
             content="<p>Test FAQ content with detailed answer.</p>",
             category=category,
             featured=featured,
             priority=1,
+            locale=parent.locale,
         )
         parent.add_child(instance=article)
         return article
@@ -289,11 +343,10 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
             MediaItem.objects.create(
                 title=f"Media Item {i+1}",
                 description=f"Description for media item {i+1}",
-                media_type="article",
+                publication="Test Publication",
                 publication_date=timezone.now().date(),
                 featured=(i == 0),  # First item is featured
-                source="Test Source",
-                url=f"https://example.com/item-{i+1}",
+                external_url=f"https://example.com/item-{i+1}",
                 page=media_page,
             )
         

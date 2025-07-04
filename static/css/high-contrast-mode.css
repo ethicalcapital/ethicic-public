@@ -6,9 +6,9 @@
 /* ===== ENHANCED TEXT CONTRAST ===== */
 /* Primary text should be darker on light backgrounds */
 [data-theme="light"] {
-    --theme-text-primary: #000000 !important;
-    --theme-text-secondary: #444444 !important;
-    --theme-text-tertiary: #666666 !important;
+    --theme-text-primary: #000 !important;
+    --theme-text-secondary: #444 !important;
+    --theme-text-tertiary: #666 !important;
 }
 
 /* ===== LINK CONTRAST ENHANCEMENTS ===== */
@@ -56,7 +56,7 @@ a:hover, .link:hover {
 .garden-action.primary,
 .btn-primary {
     background: var(--garden-accent) !important;
-    color: #ffffff !important;
+    color: #fff !important;
     border: 2px solid var(--garden-accent) !important;
     font-weight: 600 !important;
 }
@@ -72,14 +72,14 @@ a:hover, .link:hover {
 .garden-action.secondary:hover,
 .btn-secondary:hover {
     background: var(--garden-accent) !important;
-    color: #ffffff !important;
+    color: #fff !important;
 }
 
 /* ===== TABLE CONTRAST ===== */
 /* Enhance table readability */
 .garden-table th {
     background: var(--garden-accent) !important;
-    color: #ffffff !important;
+    color: #fff !important;
     border: 2px solid var(--theme-border) !important;
 }
 
@@ -110,7 +110,7 @@ a:hover, .link:hover {
 .garden-badge,
 .status-badge {
     background: var(--garden-accent) !important;
-    color: #ffffff !important;
+    color: #fff !important;
     border: 1px solid var(--garden-accent) !important;
     font-weight: 700 !important;
 }
@@ -118,13 +118,13 @@ a:hover, .link:hover {
 /* ===== NAVIGATION CONTRAST ===== */
 /* Enhanced navigation visibility */
 .garden-nav a {
-    color: #ffffff !important;
+    color: #fff !important;
     font-weight: 600 !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    text-shadow: 0 1px 2px rgb(0, 0, 0, 0.3) !important;
 }
 
 .garden-nav a:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: rgb(255, 255, 255, 0.1) !important;
     text-decoration: underline !important;
 }
 
@@ -137,10 +137,11 @@ a:hover, .link:hover {
 
 /* ===== HIGH CONTRAST MEDIA QUERY ===== */
 /* Enhanced styles for users who prefer high contrast */
+/* stylelint-disable-next-line media-feature-name-value-no-unknown */
 @media (prefers-contrast: high) {
     /* Make everything even higher contrast */
     * {
-        --theme-text-primary: #000000 !important;
+        --theme-text-primary: #000 !important;
         --garden-accent: #2a1d4f !important;
     }
     
@@ -187,7 +188,7 @@ a:hover, .link:hover {
 /* ===== STRATEGY PAGE SPECIFIC FIXES ===== */
 .strategy-badge {
     background: var(--garden-accent) !important;
-    color: #ffffff !important;
+    color: #fff !important;
     font-weight: 700 !important;
 }
 

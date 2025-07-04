@@ -16,13 +16,6 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Orderable, Page
 from wagtail.search import index
 
-# Import models from other files to make them available
-try:
-    from .models_newsletter import NewsletterPage, AccessibilityPage
-except ImportError:
-    # Models might not exist yet
-    NewsletterPage = None
-    AccessibilityPage = None
 
 # Import StreamField blocks
 
@@ -33,88 +26,160 @@ class HomePage(Page):
     template = "public_site/homepage_accessible.html"
 
     # Hero Section - Main banner content
-    hero_tagline = models.CharField(max_length=100, blank=True)
-    hero_title = models.CharField(max_length=300, help_text="Main homepage headline")
-    hero_subtitle = RichTextField(blank=True, help_text="Hero description text")
+    hero_tagline = models.CharField(
+        max_length=100, default="We're not like other firms. Good.", blank=True,
+    )
+    hero_title = models.CharField(
+        max_length=300,
+        default="Concentrated ethical portfolios for investors who refuse to compromise",
+        help_text="Main homepage headline"
+    )
+    hero_subtitle = RichTextField(
+        blank=True,
+        default="<p>We hand-screen thousands of companies, exclude 57% of the S&P 500*, and build high-conviction portfolios where ethics and excellence converge. Fully transparent. Radically different. Fiduciary always.</p>",
+        help_text="Hero description text"
+    )
 
     # Hero Stats
-    excluded_percentage = models.CharField(max_length=10, blank=True, help_text="Percentage of S&P 500 excluded")
-    since_year = models.CharField(max_length=20, blank=True, help_text="Year established or founding info")
+    excluded_percentage = models.CharField(
+        max_length=10, default="57%", blank=True,
+        help_text="Percentage of S&P 500 excluded"
+    )
+    since_year = models.CharField(
+        max_length=20, default="SINCE 2021", blank=True,
+        help_text="Year established or founding info"
+    )
 
     # Investment Philosophy Section
-    philosophy_title = models.CharField(max_length=200, blank=True)
-    philosophy_content = RichTextField(blank=True, help_text="Investment philosophy description")
-    philosophy_highlight = models.CharField(max_length=300, blank=True, help_text="Key philosophy statement")
+    philosophy_title = models.CharField(
+        max_length=200, default="Ethics Reveal Quality", blank=True,
+    )
+    philosophy_content = RichTextField(
+        blank=True,
+        default="<p>We view ethical screening not as a limitation, but a luxury. Eliminating low-quality companies upfront reveals something profound: the businesses that survive our scrutiny are those woven into the fabric of healthy social systems. They grow because communities need them to grow. They succeed through reciprocal value exchange, not extraction. This insight that ethics reveal quality creates portfolios radically different from the market at large.</p>",
+        help_text="Investment philosophy description"
+    )
+    philosophy_highlight = models.CharField(
+        max_length=300,
+        default="When ethics and excellence converge, sustainable investing outcomes follow.",
+        blank=True,
+        help_text="Key philosophy statement"
+    )
 
     # Section Headers - CMS Manageable
-    philosophy_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for investment philosophy")
-    principles_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for principles")
-    strategies_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for strategies")
-    process_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for process")
-    serve_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for who we serve")
-    cta_section_header = models.CharField(max_length=100, blank=True, help_text="Section header for call to action")
+    philosophy_section_header = models.CharField(
+        max_length=100,
+        default="OUR INVESTMENT PHILOSOPHY",
+        blank=True,
+        help_text="Section header for investment philosophy"
+    )
+    principles_section_header = models.CharField(
+        max_length=100,
+        default="PRINCIPLES THAT GUIDE OUR WORK",
+        blank=True,
+        help_text="Section header for principles"
+    )
+    strategies_section_header = models.CharField(
+        max_length=100,
+        default="THREE CORE STRATEGIES—MULTIPLE PATHS FORWARD",
+        blank=True,
+        help_text="Section header for strategies"
+    )
+    process_section_header = models.CharField(
+        max_length=100,
+        default="OUR SIGNATURE PROCESS",
+        blank=True,
+        help_text="Section header for process"
+    )
+    serve_section_header = models.CharField(
+        max_length=100,
+        default="WHO WE SERVE",
+        blank=True,
+        help_text="Section header for who we serve"
+    )
+    cta_section_header = models.CharField(
+        max_length=100,
+        default="BEGIN YOUR ETHICAL INVESTMENT JOURNEY",
+        blank=True,
+        help_text="Section header for call to action"
+    )
 
     # Principles Section
-    principles_intro = RichTextField(blank=True)
+    principles_intro = RichTextField(
+        blank=True,
+        default="<p>Sophisticated ethical investing requires both conviction and nuance. These principles shape how we serve investors who refuse to compromise.</p>",
+    )
 
     # Process Principles
-    process_principle_1_title = models.CharField(max_length=100, blank=True)
-    process_principle_1_content = models.TextField(blank=True)
+    process_principle_1_title = models.CharField(max_length=100, default="Institutional Rigor, Boutique Attention", blank=True)
+    process_principle_1_content = models.TextField(default="We combine analytical depth with personalized service. Every holding is hand-researched, every client relationship carefully tended.", blank=True)
 
-    process_principle_2_title = models.CharField(max_length=100, blank=True)
-    process_principle_2_content = models.TextField(blank=True)
+    process_principle_2_title = models.CharField(max_length=100, default="Radical Transparency", blank=True)
+    process_principle_2_content = models.TextField(default="Our exclusion criteria are open source. Our process is documented. Our reasoning is clear. You deserve to understand exactly what you own and why.", blank=True)
 
-    process_principle_3_title = models.CharField(max_length=100, blank=True)
-    process_principle_3_content = models.TextField(blank=True)
+    process_principle_3_title = models.CharField(max_length=100, default="High-Conviction Concentration", blank=True)
+    process_principle_3_content = models.TextField(default="We maintain focused portfolios of 15-25 companies. Depth of research over breadth of holdings.", blank=True)
 
     # Practice Principles
-    practice_principle_1_title = models.CharField(max_length=100, blank=True)
-    practice_principle_1_content = models.TextField(blank=True)
+    practice_principle_1_title = models.CharField(max_length=100, default="Continuous Evolution", blank=True)
+    practice_principle_1_content = models.TextField(default="Ethics is not static. As companies evolve and disappoint we adapt. Our screening is a living framework, refined through ongoing research and client dialogue.", blank=True)
 
-    practice_principle_2_title = models.CharField(max_length=100, blank=True)
-    practice_principle_2_content = models.TextField(blank=True)
+    practice_principle_2_title = models.CharField(max_length=100, default="Intellectual Honesty", blank=True)
+    practice_principle_2_content = models.TextField(default="We acknowledge uncertainty, learn from mistakes, and evolve our approach. Humility serves our clients better than false certainty.", blank=True)
 
-    practice_principle_3_title = models.CharField(max_length=100, blank=True)
-    practice_principle_3_content = models.TextField(blank=True)
+    practice_principle_3_title = models.CharField(max_length=100, default="Business-Focused Investing", blank=True)
+    practice_principle_3_content = models.TextField(default="We invest in companies, not stories. Real businesses with proven models, sustainable advantages, and ethical operations.", blank=True)
 
     # Strategies Section
-    strategies_intro = RichTextField(blank=True)
+    strategies_intro = RichTextField(
+        blank=True,
+        default="<p>Each strategy offers a different approach to ethical investing, with varying levels of diversification and implementation.</p>",
+    )
 
     # Process Section
-    process_title = models.CharField(max_length=200, blank=True)
+    process_title = models.CharField(max_length=200, default="How We Build Ethical Portfolios", blank=True)
 
-    process_step_1_title = models.CharField(max_length=100, blank=True)
-    process_step_1_content = models.TextField(blank=True)
+    process_step_1_title = models.CharField(max_length=100, default="Comprehensive Ethical Screening", blank=True)
+    process_step_1_content = models.TextField(default="We begin where others end. Our multi-factor screening excludes companies involved in fossil fuels, weapons, tobacco, human rights violations, and those failing our governance standards. This is not performative it is foundational.", blank=True)
 
-    process_step_2_title = models.CharField(max_length=100, blank=True)
-    process_step_2_content = models.TextField(blank=True)
+    process_step_2_title = models.CharField(max_length=100, default="Fundamental Analysis", blank=True)
+    process_step_2_content = models.TextField(default="Beyond exclusions, we seek quality. Every company is evaluated through six lenses: People, Product, Execution, Valuation, Moat, and Risk. We combine traditional analysis with proprietary research tools to identify companies worthy of inclusion.", blank=True)
 
-    process_step_3_title = models.CharField(max_length=100, blank=True)
-    process_step_3_content = models.TextField(blank=True)
+    process_step_3_title = models.CharField(max_length=100, default="Portfolio Construction", blank=True)
+    process_step_3_content = models.TextField(default="From thousands screened to dozens analyzed to 15-25 owned. Each position is sized based on conviction, quality, and risk contribution. The result: high-conviction portfolios you can understand completely.", blank=True)
 
-    process_step_4_title = models.CharField(max_length=100, blank=True)
-    process_step_4_content = models.TextField(blank=True)
+    process_step_4_title = models.CharField(max_length=100, default="Continuous Monitoring and Evolution", blank=True)
+    process_step_4_content = models.TextField(default="Markets change. Companies evolve. Values clarify. We monitor holdings continuously, engage with clients regularly, and adapt portfolios thoughtfully. Your investments should always align with both your values and your circumstances.", blank=True)
 
     # Who We Serve Section
-    serve_individual_title = models.CharField(max_length=100, blank=True)
-    serve_individual_content = models.TextField(blank=True)
+    serve_individual_title = models.CharField(max_length=100, default="Individuals and Families", blank=True)
+    serve_individual_content = models.TextField(default="Investors seeking genuine ethical alignment with professional portfolio management and sustainable investing outcomes.", blank=True)
 
-    serve_advisor_title = models.CharField(max_length=100, blank=True)
-    serve_advisor_content = models.TextField(blank=True)
+    serve_advisor_title = models.CharField(max_length=100, default="Financial Advisers", blank=True)
+    serve_advisor_content = models.TextField(default="RIAs and wealth managers looking for high-conviction ethical investment strategies for their clients.", blank=True)
 
-    serve_institution_title = models.CharField(max_length=100, blank=True)
-    serve_institution_content = models.TextField(blank=True)
+    serve_institution_title = models.CharField(max_length=100, default="Institutions and Foundations", blank=True)
+    serve_institution_content = models.TextField(default="Endowments, foundations, and family offices requiring documented ethical frameworks and fiduciary implementation.", blank=True)
 
     # CTA Section
-    cta_title = models.CharField(max_length=200, blank=True)
-    cta_description = RichTextField(blank=True)
+    cta_title = models.CharField(
+        max_length=200, default="Ready to align your wealth with your values?", blank=True,
+    )
+    cta_description = RichTextField(
+        blank=True,
+        default="<p>We work with a select number of clients who share our commitment to ethical excellence.</p>",
+    )
 
     # CTA Info Items
-    minimum_investment_text = models.CharField(max_length=100, blank=True)
-    client_availability_text = models.CharField(max_length=100, blank=True)
+    minimum_investment_text = models.CharField(max_length=100, default="Available upon request", blank=True)
+    client_availability_text = models.CharField(max_length=100, default="Limited quarterly openings", blank=True)
 
     # Footer/Disclaimer Content
-    disclaimer_text = RichTextField(blank=True, help_text="Legal disclaimer and footnotes")
+    disclaimer_text = RichTextField(
+        blank=True,
+        default="<p>Investment advisory services offered through Ethical Capital Investment Management LLC, a Registered Investment Adviser. Past performance does not guarantee future results. All investments involve risk. Please see our ADV Part 2 for important disclosures.</p><p>*Based on our analysis of S&P 500 constituents, approximately 57% failed one or more of our exclusion criteria. This percentage varies as companies and our criteria evolve.</p>",
+        help_text="Legal disclaimer and footnotes"
+    )
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
@@ -214,8 +279,8 @@ class HomePage(Page):
         'public_site.PRIDDQPage',
         'public_site.EncyclopediaIndexPage',
         'public_site.LegalPage',
-        # 'public_site.AccessibilityPage',  # Model doesn't exist yet
-        # 'public_site.NewsletterPage'  # Model exists in models_newsletter.py but not imported
+        'public_site.AccessibilityPage',
+        'public_site.NewsletterPage'
     ]
 
     class Meta:
@@ -227,75 +292,190 @@ class AboutPage(Page):
     """About/Our Story page."""
 
     # Hero section
-    headshot_image = models.URLField(blank=True, help_text="URL to headshot image")
-    headshot_alt_text = models.CharField(max_length=200, blank=True, help_text="Alt text for headshot image")
-    philosophy_quote = RichTextField(blank=True, help_text="Philosophy quote in the hero section")
-    philosophy_quote_link = models.CharField(max_length=500, blank=True, help_text="Link for the philosophy quote attribution (can be relative or absolute URL)")
-    philosophy_quote_link_text = models.CharField(max_length=200, blank=True, help_text="Text for the philosophy quote link")
+    headshot_image = models.URLField(
+        blank=True,
+        default="https://pub-324a685032214395a8bcad478c265d4b.r2.dev/headshot%20sketch_slim.png",
+        help_text="URL to headshot image"
+    )
+    headshot_alt_text = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Sloane Ortel, Chief Investment Officer & Founder",
+        help_text="Alt text for headshot image"
+    )
+    philosophy_quote = RichTextField(
+        blank=True,
+        default="<p>\"There is no checklist comprehensive enough to rely upon. You have to pay attention.\"</p>",
+        help_text="Philosophy quote in the hero section"
+    )
+    philosophy_quote_link = models.CharField(
+        max_length=500,
+        blank=True,
+        default="/blog/how-i-became-an-active-manager/",
+        help_text="Link for the philosophy quote attribution (can be relative or absolute URL)"
+    )
+    philosophy_quote_link_text = models.CharField(
+        max_length=200,
+        blank=True,
+        default="How I Became an Active Manager →",
+        help_text="Text for the philosophy quote link"
+    )
     
     # Identity section
-    name = models.CharField(max_length=200, blank=True, help_text="Name and pronouns")
-    professional_title = models.CharField(max_length=200, blank=True, help_text="Professional title")
+    name = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Sloane Ortel (she/her)",
+        help_text="Name and pronouns"
+    )
+    professional_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Chief Investment Officer & Founder",
+        help_text="Professional title"
+    )
     
     # Social links
-    linkedin_url = models.URLField(blank=True)
-    twitter_url = models.URLField(blank=True)
-    bluesky_url = models.URLField(blank=True)
-    instagram_url = models.URLField(blank=True)
-    tiktok_url = models.URLField(blank=True)
-    calendar_url = models.URLField(blank=True)
-    sec_info_url = models.URLField(blank=True)
+    linkedin_url = models.URLField(blank=True, default="https://www.linkedin.com/in/srvo0/")
+    twitter_url = models.URLField(blank=True, default="https://twitter.com/sloaneortel")
+    bluesky_url = models.URLField(blank=True, default="https://bsky.app/profile/sloaneortel.bsky.social")
+    instagram_url = models.URLField(blank=True, default="https://instagram.com/sloaneortel")
+    tiktok_url = models.URLField(blank=True, default="https://tiktok.com/@ethicalcapital")
+    calendar_url = models.URLField(blank=True, default="https://tidycal.com/ecic")
+    sec_info_url = models.URLField(blank=True, default="https://adviserinfo.sec.gov/individual/summary/5388169")
     
     # Professional background section
-    professional_background_title = models.CharField(max_length=200, blank=True, help_text="Title for professional background section")
-    professional_background_content = RichTextField(blank=True, help_text="Professional background content")
+    professional_background_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Professional Background",
+        help_text="Title for professional background section"
+    )
+    professional_background_content = RichTextField(
+        blank=True,
+        default="<p>Sloane started working in investment management right after high school, gaining experience at a regional brokerage firm and a Bangalore-based family office. She joined CFA Institute staff while still in college and spent nearly a decade creating educational materials for investment professionals, developing deep expertise in investment analysis and ethical investing practices.</p><p>Now at the center of the Ethical Capital Investment Collaborative, she translates insights from clients, colleagues, and research into investment strategies, focusing on understanding companies, the communities they serve, and the consequences of their activities.</p>",
+        help_text="Professional background content"
+    )
     
     # External roles section
-    external_roles_title = models.CharField(max_length=200, blank=True, help_text="Title for external roles section")
-    external_roles_content = RichTextField(blank=True, help_text="External roles and leadership content")
+    external_roles_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="External Roles & Leadership",
+        help_text="Title for external roles section"
+    )
+    external_roles_content = RichTextField(
+        blank=True,
+        default="<ul class=\"external-roles\"><li><strong>Co-founder</strong> - Woodcache Public Benefit Corporation</li><li><strong>Board Member</strong> - Responsible Alpha</li><li><strong>Co-host</strong> - \"Free Money with Sloane and Ashby\" podcast</li></ul>",
+        help_text="External roles and leadership content"
+    )
     
     # Speaking & writing section
-    speaking_writing_title = models.CharField(max_length=200, blank=True, help_text="Title for speaking & writing section")
-    speaking_writing_content = RichTextField(blank=True, help_text="Speaking & writing content")
-    speaking_cta_text = RichTextField(blank=True, help_text="Call-to-action text for speaking section")
-    speaking_contact_note = RichTextField(blank=True, help_text="Contact note for speaking section")
-    calendar_link = models.URLField(blank=True, help_text="Calendar booking link")
-    calendar_link_text = models.CharField(max_length=200, blank=True, help_text="Text for calendar link")
-    email_link = models.EmailField(blank=True, help_text="Contact email address")
-    email_link_text = models.CharField(max_length=200, blank=True, help_text="Text for email link")
+    speaking_writing_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Speaking & Writing",
+        help_text="Title for speaking & writing section"
+    )
+    speaking_writing_content = RichTextField(
+        blank=True,
+        default="<p>Sloane offers keynote addresses and panel discussions on topics including ethical investing, portfolio management, and sustainable finance. She has written a textbook on investment idea generation and writes extensively about sustainable investing and financial values. Her insights have been featured in <a href=\"/media/\" class=\"garden-action secondary\">numerous media outlets</a>.</p>",
+        help_text="Speaking & writing content"
+    )
+    speaking_cta_text = RichTextField(
+        blank=True,
+        default="<p>For speaking engagements and media inquiries:</p>",
+        help_text="Call-to-action text for speaking section"
+    )
+    speaking_contact_note = RichTextField(
+        blank=True,
+        default="<p><em>Fair warning: my Achilles heel is email. If you need me, your best bet is to get on my calendar.</em></p>",
+        help_text="Contact note for speaking section"
+    )
+    calendar_link = models.URLField(
+        blank=True,
+        default="https://tidycal.com/ecic",
+        help_text="Calendar booking link"
+    )
+    calendar_link_text = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Schedule with Sloane",
+        help_text="Text for calendar link"
+    )
+    email_link = models.EmailField(
+        blank=True,
+        default="hello@ethicic.com",
+        help_text="Contact email address"
+    )
+    email_link_text = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Or try email",
+        help_text="Text for email link"
+    )
     
     # Personal interests section
-    personal_interests_title = models.CharField(max_length=200, blank=True, help_text="Title for personal interests section")
-    personal_interests_content = RichTextField(blank=True, help_text="Personal interests content")
+    personal_interests_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Personal Interests",
+        help_text="Title for personal interests section"
+    )
+    personal_interests_content = RichTextField(
+        blank=True,
+        default="<p>When not managing portfolios, Sloane skis in Utah and replaces lawn with wildlife-friendly perennials, reflecting her appreciation for both adventure and the natural world that ethical investing seeks to protect.</p>",
+        help_text="Personal interests content"
+    )
     
     # Three-panel content for new layout
     # What I Do Now panel
-    current_role_content = RichTextField(blank=True, help_text="Current role description for What I Do Now panel")
-    philosophy_content = RichTextField(blank=True, help_text="Philosophy description for What I Do Now panel")
-    client_focus_content = RichTextField(blank=True, help_text="Client focus description for What I Do Now panel")
+    current_role_content = RichTextField(
+        blank=True,
+        default="<p>Chief Investment Officer at Ethical Capital, translating insights from clients, colleagues, and research into investment strategies that align with values.</p>",
+        help_text="Current role description for What I Do Now panel"
+    )
+    philosophy_content = RichTextField(
+        blank=True,
+        default="<p>Our process is oriented towards cumulative learning—understanding companies, the communities they serve, and the consequences of their activities.</p>",
+        help_text="Philosophy description for What I Do Now panel"
+    )
+    client_focus_content = RichTextField(
+        blank=True,
+        default="<p>Spending time getting to know our clients, which I find profoundly grounding. Building portfolios that reflect their values while delivering strong financial outcomes.</p>",
+        help_text="Client focus description for What I Do Now panel"
+    )
     
     # Featured posts section
-    featured_post_1_title = models.CharField(max_length=200, blank=True)
-    featured_post_1_description = models.CharField(max_length=300, blank=True)
-    featured_post_1_url = models.CharField(max_length=500, blank=True)
+    featured_post_1_title = models.CharField(max_length=200, blank=True, default="How I Became an Active Manager")
+    featured_post_1_description = models.CharField(max_length=300, blank=True, default="The best place to start understanding my personal journey")
+    featured_post_1_url = models.CharField(max_length=500, blank=True, default="/blog/how-i-became-an-active-manager/")
     
-    featured_post_2_title = models.CharField(max_length=200, blank=True)
-    featured_post_2_description = models.CharField(max_length=300, blank=True)
-    featured_post_2_url = models.CharField(max_length=500, blank=True)
+    featured_post_2_title = models.CharField(max_length=200, blank=True, default="What Would a Recession Mean?")
+    featured_post_2_description = models.CharField(max_length=300, blank=True, default="Perspective for long-term investors")
+    featured_post_2_url = models.CharField(max_length=500, blank=True, default="/blog/what-would-a-recession-actually-mean-for-long-term-investors/")
     
-    featured_post_3_title = models.CharField(max_length=200, blank=True)
-    featured_post_3_description = models.CharField(max_length=300, blank=True)
-    featured_post_3_url = models.CharField(max_length=500, blank=True)
+    featured_post_3_title = models.CharField(max_length=200, blank=True, default="What Does Inflation Mean to You?")
+    featured_post_3_description = models.CharField(max_length=300, blank=True, default="Personal impact of economic changes")
+    featured_post_3_url = models.CharField(max_length=500, blank=True, default="/blog/what-does-inflation-mean-to-you/")
     
-    featured_post_4_title = models.CharField(max_length=200, blank=True)
-    featured_post_4_description = models.CharField(max_length=300, blank=True)
-    featured_post_4_url = models.CharField(max_length=500, blank=True)
+    featured_post_4_title = models.CharField(max_length=200, blank=True, default="What Should You Expect When You're Investing?")
+    featured_post_4_description = models.CharField(max_length=300, blank=True, default="Setting realistic expectations")
+    featured_post_4_url = models.CharField(max_length=500, blank=True, default="/blog/what-should-you-expect-when-youre-investing/")
     
     # Speaking topics
-    speaking_topics = RichTextField(blank=True, help_text="Topics covered in speaking engagements")
+    speaking_topics = RichTextField(
+        blank=True,
+        default="<ul><li>Aligning money with values for novice investors</li><li>Modern sustainable investing strategies</li><li>Ethical screening and portfolio construction</li><li>Investment management best practices</li></ul>",
+        help_text="Topics covered in speaking engagements"
+    )
     
     # Speaker bio download
-    speaker_bio_url = models.URLField(blank=True, help_text="URL to speaker bio PDF")
+    speaker_bio_url = models.URLField(
+        blank=True,
+        default="https://pub-324a685032214395a8bcad478c265d4b.r2.dev/Sloane-Ortel-Speaker-Bio.pdf",
+        help_text="URL to speaker bio PDF"
+    )
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
@@ -385,15 +565,23 @@ class AboutPage(Page):
 class PricingPage(Page):
     """Pricing/Fees page."""
 
-    intro_text = RichTextField(blank=True)
+    intro_text = RichTextField(
+        blank=True,
+        default="<p>Transparent pricing designed to scale with your practice.</p>",
+    )
     pricing_description = RichTextField(blank=True)
 
     # Enterprise section
-    enterprise_title = models.CharField(max_length=200, blank=True)
+    enterprise_title = models.CharField(
+        max_length=200, default="Enterprise Solutions", blank=True,
+    )
     enterprise_description = RichTextField(blank=True)
 
     # Contact CTA
-    contact_cta = RichTextField(blank=True)
+    contact_cta = RichTextField(
+        blank=True,
+        default="<p>Ready to discuss pricing for your practice? <a href='/contact/'>Contact our team</a> for a personalized quote.</p>",
+    )
 
     content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("pricing_description"), MultiFieldPanel([FieldPanel("enterprise_title"), FieldPanel("enterprise_description")], heading="Enterprise Section"), FieldPanel("contact_cta")]
 
@@ -444,11 +632,14 @@ class ContactPage(RoutablePageMixin, Page):
 
         return self.render(request)
 
-    intro_text = RichTextField(blank=True)
+    intro_text = RichTextField(
+        blank=True,
+        default="<p>Ready to transform your investment research and compliance workflow?</p>",
+    )
     contact_description = RichTextField(blank=True)
 
     # Contact information
-    email = models.EmailField(blank=True)
+    email = models.EmailField(blank=True, default="hello@ethicic.com")
     phone = models.CharField(max_length=20, blank=True)
     address = RichTextField(blank=True)
 
@@ -645,9 +836,15 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
     template = "public_site/blog_index_page.html"
 
-    intro_text = RichTextField(blank=True)
+    intro_text = RichTextField(
+        blank=True,
+        default="<p>In-depth research and analysis on ethical investing, portfolio construction, and sustainable finance strategies.</p>",
+    )
 
-    description = RichTextField(blank=True)
+    description = RichTextField(
+        blank=True,
+        default="<p>I provide actionable research insights to help you make informed investment decisions that align with your values and financial goals.</p>",
+    )
 
     # Custom page display title
     display_title = models.CharField(
@@ -657,8 +854,13 @@ class BlogIndexPage(RoutablePageMixin, Page):
     )
 
     # Featured research section
-    featured_title = models.CharField(max_length=200, blank=True)
-    featured_description = RichTextField(blank=True)
+    featured_title = models.CharField(
+        max_length=200, default="Featured Research", blank=True,
+    )
+    featured_description = RichTextField(
+        blank=True,
+        default="<p>Essential research findings and market insights for ethical investing.</p>"
+    )
 
     content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("display_title"), FieldPanel("intro_text"), FieldPanel("description"), MultiFieldPanel([FieldPanel("featured_title"), FieldPanel("featured_description")], heading="Featured Research Section")]
 
@@ -740,6 +942,17 @@ class BlogIndexPage(RoutablePageMixin, Page):
             from taggit.models import Tag
             return Tag.objects.none()
     
+    def get_all_authors(self):
+        """Get all unique authors with post counts."""
+        from django.db.models import Count
+        authors = (
+            self.get_posts()
+            .values('author')
+            .annotate(post_count=Count('id'))
+            .filter(author__isnull=False, author__gt='')
+            .order_by('-post_count', 'author')
+        )
+        return list(authors)
 
     @path("")
     def post_list(self, request):
@@ -959,7 +1172,7 @@ class BlogPost(Page):
     tags = ClusterTaggableManager(through=BlogTag, blank=True)
 
     # Meta information
-    author = models.CharField(max_length=100, blank=True)
+    author = models.CharField(max_length=100, blank=True, default="Sloane Ortel")
     publish_date = models.DateField(
         blank=True, null=True, help_text="Leave blank for today's date",
     )
@@ -1002,7 +1215,10 @@ class BlogPost(Page):
 class FAQPage(Page):
     """FAQ/Support page."""
 
-    intro_text = RichTextField(blank=True)
+    intro_text = RichTextField(
+        blank=True,
+        default="<p>Frequently asked questions about the Garden Platform.</p>",
+    )
 
     content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), InlinePanel("faq_items", label="FAQ Items")]
 
@@ -1068,10 +1284,19 @@ class MediaPage(Page):
 
     template = "public_site/media_page.html"
 
-    intro_text = RichTextField(blank=True, help_text="Introduction text that appears at the top of the media page")
+    intro_text = RichTextField(
+        blank=True, 
+        default="<p>Media coverage, press releases, and company news.</p>",
+        help_text="Introduction text that appears at the top of the media page"
+    )
 
     # Press kit information
-    press_kit_title = models.CharField(max_length=200, blank=True, help_text="Title for the press kit section")
+    press_kit_title = models.CharField(
+        max_length=200, 
+        default="Press Kit", 
+        blank=True,
+        help_text="Title for the press kit section"
+    )
     press_kit_description = RichTextField(
         blank=True,
         help_text="Description and information about available press materials"
@@ -1139,13 +1364,24 @@ class ResearchPage(RoutablePageMixin, Page):
 
     template = "public_site/research_page.html"
 
-    intro_text = RichTextField(blank=True)
+    intro_text = RichTextField(
+        blank=True,
+        default="<p>In-depth research and analysis on ethical investing, portfolio construction, and sustainable finance strategies.</p>",
+    )
 
-    description = RichTextField(blank=True)
+    description = RichTextField(
+        blank=True,
+        default="<p>I provide actionable research insights to help you make informed investment decisions that align with your values and financial goals.</p>",
+    )
 
     # Featured research section
-    featured_title = models.CharField(max_length=200, blank=True)
-    featured_description = RichTextField(blank=True)
+    featured_title = models.CharField(
+        max_length=200, default="Featured Research", blank=True,
+    )
+    featured_description = RichTextField(
+        blank=True,
+        default="<p>Essential research findings and market insights for ethical investing.</p>"
+    )
 
     content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("description"), MultiFieldPanel([FieldPanel("featured_title"), FieldPanel("featured_description")], heading="Featured Research Section")]
 
@@ -1274,21 +1510,47 @@ class ResearchPage(RoutablePageMixin, Page):
 class ProcessPage(Page):
     """Investment process and workflow page."""
 
-    intro_text = RichTextField(blank=True)
-    process_overview = RichTextField(blank=True)
+    intro_text = RichTextField(
+        blank=True,
+        default="<p>Learn about our mission to democratize investment intelligence and compliance technology.</p>",
+    )
+    process_overview = RichTextField(
+        blank=True,
+        default="<p>Our investment process combines ethical screening with disciplined portfolio construction.</p>",
+    )
 
     # Process steps
-    step1_title = models.CharField(max_length=200, blank=True)
-    step1_content = RichTextField(blank=True)
+    step1_title = models.CharField(
+        max_length=200, default="A Living Framework", blank=True,
+    )
+    step1_content = RichTextField(
+        blank=True,
+        default="<p>We built the best ethical framework we could—then kept building. Our criteria evolve in response to whatever harmful patterns emerge in the world, adapting as we learn more about both harm and healing. We seek companies making unmistakable positive contributions to all inhabitants—human and non-human animals alike.</p>",
+    )
 
-    step2_title = models.CharField(max_length=200, blank=True)
-    step2_content = RichTextField(blank=True)
+    step2_title = models.CharField(
+        max_length=200, default="Quality & Value Analysis", blank=True,
+    )
+    step2_content = RichTextField(
+        blank=True,
+        default="<p>From the remaining ethical universe, we identify companies with strong fundamentals, competitive advantages, and reasonable valuations. We look for businesses we understand, with management teams we trust, trading at prices that make sense.</p>",
+    )
 
-    step3_title = models.CharField(max_length=200, blank=True)
-    step3_content = RichTextField(blank=True)
+    step3_title = models.CharField(
+        max_length=200, default="Portfolio Construction", blank=True,
+    )
+    step3_content = RichTextField(
+        blank=True,
+        default="<p>We build diversified portfolios that balance risk, return, and ethical impact. Our three core strategies can be mixed and matched to create the perfect allocation for your values, risk tolerance, and income needs.</p>",
+    )
 
-    step4_title = models.CharField(max_length=200, blank=True)
-    step4_content = RichTextField(blank=True)
+    step4_title = models.CharField(
+        max_length=200, default="Ongoing Monitoring", blank=True,
+    )
+    step4_content = RichTextField(
+        blank=True,
+        default="<p>We continuously monitor holdings for changes in business practices, financial health, and market conditions. If a company no longer meets our criteria, we remove it from the portfolio.</p>",
+    )
 
     content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("process_overview"), MultiFieldPanel([FieldPanel("step1_title"), FieldPanel("step1_content")], heading="Step 1"), MultiFieldPanel([FieldPanel("step2_title"), FieldPanel("step2_content")], heading="Step 2"), MultiFieldPanel([FieldPanel("step3_title"), FieldPanel("step3_content")], heading="Step 3"), MultiFieldPanel([FieldPanel("step4_title"), FieldPanel("step4_content")], heading="Step 4")]
 
@@ -1347,8 +1609,14 @@ class CompliancePage(Page):
 class OnboardingPage(Page):
     """Client onboarding form page."""
 
-    intro_text = RichTextField(blank=True)
-    form_description = RichTextField(blank=True)
+    intro_text = RichTextField(
+        blank=True,
+        default="<p>Take your first step toward ethical investing or jump in with both feet. Let's find the perfect mix of strategies for your values and needs.</p>",
+    )
+    form_description = RichTextField(
+        blank=True,
+        default="<p>This comprehensive form helps us understand your investment goals, risk tolerance, and ethical priorities to create your personalized portfolio strategy.</p>",
+    )
 
     # Form configuration
     enable_form = models.BooleanField(
@@ -1356,8 +1624,11 @@ class OnboardingPage(Page):
     )
 
     # Thank you message
-    thank_you_title = models.CharField(max_length=200, blank=True)
-    thank_you_message = RichTextField(blank=True)
+    thank_you_title = models.CharField(max_length=200, default="Thank You!", blank=True)
+    thank_you_message = RichTextField(
+        blank=True,
+        default="<p>We've received your information and will be in touch within 1-2 business days to discuss your personalized investment strategy.</p>",
+    )
 
     content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("form_description"), FieldPanel("enable_form"), MultiFieldPanel([FieldPanel("thank_you_title"), FieldPanel("thank_you_message")], heading="Thank You Message")]
 
@@ -1492,7 +1763,7 @@ class StrategyDocument(Orderable):
     category = models.CharField(max_length=20, choices=DOCUMENT_CATEGORY_CHOICES)
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=300)
-    icon = models.CharField(max_length=10, help_text="Emoji icon for document")
+    icon = models.CharField(max_length=10, default="📄", help_text="Emoji icon for document")
     document_url = models.URLField(blank=True, help_text="Link to document if available")
     requires_request = models.BooleanField(default=True, help_text="Document requires request")
     
@@ -1525,31 +1796,42 @@ class StrategyPage(Page):
         blank=True,
         help_text="Label shown on strategy card (e.g., 'Our Flagship')",
     )
-    risk_level = models.CharField(max_length=100, blank=True)
-    ethical_implementation = models.CharField(max_length=100, blank=True)
-    holdings_count = models.CharField(max_length=50, blank=True)
-    best_for = models.CharField(max_length=100, blank=True)
-    cash_allocation = models.CharField(max_length=20, blank=True)
+    risk_level = models.CharField(
+        max_length=100, blank=True, default="Full market exposure",
+    )
+    ethical_implementation = models.CharField(
+        max_length=100, blank=True, default="100% Full Criteria",
+    )
+    holdings_count = models.CharField(
+        max_length=50, blank=True, default="15-25",
+    )
+    best_for = models.CharField(max_length=100, blank=True, default="Long-term growth")
+    cash_allocation = models.CharField(max_length=20, blank=True, default="0.93%")
     
     # Benchmark information
-    benchmark_name = models.CharField(max_length=50, blank=True, help_text="e.g., ACWI, AGG/PFF, S&P 500")
+    benchmark_name = models.CharField(
+        max_length=50, blank=True, default="ACWI",
+        help_text="e.g., ACWI, AGG/PFF, S&P 500"
+    )
 
     # Performance data (enhanced with benchmark)
-    ytd_return = models.CharField(max_length=20, blank=True)
-    ytd_benchmark = models.CharField(max_length=20, blank=True)
-    ytd_difference = models.CharField(max_length=20, blank=True)
+    ytd_return = models.CharField(max_length=20, blank=True, default="8.2%")
+    ytd_benchmark = models.CharField(max_length=20, blank=True, default="5.1%")
+    ytd_difference = models.CharField(max_length=20, blank=True, default="+3.1%")
     
-    one_year_return = models.CharField(max_length=20, blank=True)
-    one_year_benchmark = models.CharField(max_length=20, blank=True)
-    one_year_difference = models.CharField(max_length=20, blank=True)
+    one_year_return = models.CharField(max_length=20, blank=True, default="15.7%")
+    one_year_benchmark = models.CharField(max_length=20, blank=True, default="12.3%")
+    one_year_difference = models.CharField(max_length=20, blank=True, default="+3.4%")
     
-    three_year_return = models.CharField(max_length=20, blank=True)
-    three_year_benchmark = models.CharField(max_length=20, blank=True)
-    three_year_difference = models.CharField(max_length=20, blank=True)
+    three_year_return = models.CharField(max_length=20, blank=True, default="9.8%")
+    three_year_benchmark = models.CharField(max_length=20, blank=True, default="7.2%")
+    three_year_difference = models.CharField(max_length=20, blank=True, default="+2.6%")
     
-    since_inception_return = models.CharField(max_length=20, blank=True)
-    since_inception_benchmark = models.CharField(max_length=20, blank=True)
-    since_inception_difference = models.CharField(max_length=20, blank=True)
+    since_inception_return = models.CharField(
+        max_length=20, blank=True, default="12.1%",
+    )
+    since_inception_benchmark = models.CharField(max_length=20, blank=True, default="9.5%")
+    since_inception_difference = models.CharField(max_length=20, blank=True, default="+2.6%")
     inception_date = models.DateField(
         blank=True, null=True, help_text="Strategy inception date",
     )
@@ -1560,30 +1842,44 @@ class StrategyPage(Page):
     )
     
     # Sector positioning notes
-    overweights_note = models.CharField(max_length=300, blank=True)
-    exclusions_note = models.CharField(max_length=300, blank=True)
-    healthcare_exclusion_note = models.TextField(blank=True)
+    overweights_note = models.CharField(
+        max_length=300, blank=True, default="Higher conviction in these sectors"
+    )
+    exclusions_note = models.CharField(
+        max_length=300, blank=True, default="22% of benchmark index excluded"
+    )
+    healthcare_exclusion_note = models.TextField(
+        blank=True, 
+        default="* Healthcare exclusions are selective, focused on companies that directly support abortion procedures or controversial research practices"
+    )
 
     # Commentary section
-    commentary_title = models.CharField(max_length=200, blank=True)
+    commentary_title = models.CharField(
+        max_length=200, default="Strategy Commentary", blank=True,
+    )
     commentary_content = RichTextField(
         blank=True, help_text="Current market commentary and strategy insights",
     )
 
     # Process section
-    process_title = models.CharField(max_length=200, blank=True)
+    process_title = models.CharField(max_length=200, default="Our Process", blank=True)
     process_content = RichTextField(
         blank=True, help_text="Detailed process explanation for this strategy",
     )
 
     # Documents section
-    documents_title = models.CharField(max_length=200, blank=True)
+    documents_title = models.CharField(
+        max_length=200, default="Strategy Documents", blank=True,
+    )
     documents_content = RichTextField(
         blank=True, help_text="Links to relevant documents and disclosures",
     )
     
     # Performance disclaimer
-    performance_disclaimer = RichTextField(blank=True)
+    performance_disclaimer = RichTextField(
+        blank=True,
+        default="<p>Past performance is not indicative of future results. Investment returns and principal value will fluctuate.</p>"
+    )
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
@@ -1687,12 +1983,23 @@ class StrategyListPage(Page):
 
     template = "public_site/strategy_list.html"
 
-    intro_text = RichTextField(blank=True)
-    description = RichTextField(blank=True)
+    intro_text = RichTextField(
+        blank=True,
+        default="<p>Our investment strategies are designed to align your portfolio with your values while delivering strong financial performance.</p>",
+    )
+    description = RichTextField(
+        blank=True,
+        default="<p>Each strategy follows our rigorous ethical screening process and disciplined investment approach to help you achieve your financial goals.</p>",
+    )
 
     # Strategy comparison section
-    comparison_title = models.CharField(max_length=200, blank=True)
-    comparison_description = RichTextField(blank=True)
+    comparison_title = models.CharField(
+        max_length=200, default="Strategy Comparison", blank=True,
+    )
+    comparison_description = RichTextField(
+        blank=True,
+        default="<p>Compare our investment strategies to find the approach that best matches your goals and risk tolerance.</p>",
+    )
 
     content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("description"), MultiFieldPanel([FieldPanel("comparison_title"), FieldPanel("comparison_description")], heading="Strategy Comparison Section")]
 
@@ -1738,14 +2045,24 @@ class FAQIndexPage(RoutablePageMixin, Page):
 
     template = "public_site/faq_index.html"
 
-    intro_text = RichTextField(blank=True)
-    description = RichTextField(blank=True)
+    intro_text = RichTextField(
+        blank=True,
+        default="<p>Find answers to frequently asked questions about Ethical Capital Investment Collaborative.</p>",
+    )
+    description = RichTextField(
+        blank=True,
+        default="<p>Our comprehensive FAQ section provides detailed answers to help you understand our investment approach, account management, and ethical screening process.</p>",
+    )
 
     # Contact information
-    contact_email = models.EmailField(blank=True)
-    contact_phone = models.CharField(max_length=20, blank=True)
-    contact_address = models.CharField(max_length=300, blank=True)
-    meeting_link = models.URLField(blank=True)
+    contact_email = models.EmailField(blank=True, default="hello@ethicic.com")
+    contact_phone = models.CharField(
+        max_length=20, blank=True, default="+1 347 625 9000",
+    )
+    contact_address = models.CharField(
+        max_length=300, blank=True, default="90 N 400 E, Provo, UT, 84606",
+    )
+    meeting_link = models.URLField(blank=True, default="https://tidycal.com/ecic")
 
     content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel("intro_text"), FieldPanel("description"), MultiFieldPanel([FieldPanel("contact_email"), FieldPanel("contact_phone"), FieldPanel("contact_address"), FieldPanel("meeting_link")], heading="Contact Information")]
 
@@ -1900,12 +2217,21 @@ class ContactFormPage(Page):
 
     template = "public_site/contact_form.html"
 
-    intro_text = RichTextField(blank=True)
-    form_description = RichTextField(blank=True)
+    intro_text = RichTextField(
+        blank=True,
+        default="<p>Have a question? We're here to help. Send us a message and we'll get back to you soon.</p>",
+    )
+    form_description = RichTextField(
+        blank=True,
+        default="<p>Please provide as much detail as possible so we can assist you effectively.</p>",
+    )
 
     # Thank you message
-    thank_you_title = models.CharField(max_length=200, blank=True)
-    thank_you_message = RichTextField(blank=True)
+    thank_you_title = models.CharField(max_length=200, default="Thank You!", blank=True)
+    thank_you_message = RichTextField(
+        blank=True,
+        default="<p>We've received your message and will respond within 1-2 business days.</p>",
+    )
 
     # Form settings
     enable_form = models.BooleanField(default=True)
@@ -1937,25 +2263,56 @@ class AdvisorPage(Page):
     template = "public_site/adviser_page.html"
 
     # Hero section
-    hero_title = models.CharField(max_length=200, blank=True)
-    hero_subtitle = models.CharField(max_length=300, blank=True)
-    hero_description = RichTextField(blank=True)
+    hero_title = models.CharField(
+        max_length=200,
+        default="Partner with Ethical Capital",
+        blank=True,
+    )
+    hero_subtitle = models.CharField(
+        max_length=300,
+        blank=True,
+        default="Deep research expertise and proven strategies to help you serve clients with complex values and sophisticated needs",
+    )
+    hero_description = RichTextField(
+        blank=True,
+        default="<p>As investment advisers ourselves, we understand the challenges of serving clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and easy access you need to deliver exceptional outcomes.</p>",
+    )
 
     # Services section
-    services_title = models.CharField(max_length=200, blank=True)
-    services_content = RichTextField(blank=True)
+    services_title = models.CharField(
+        max_length=200, default="Advisory Services", blank=True,
+    )
+    services_content = RichTextField(
+        blank=True,
+        default="<p>We provide investment advisers with specialized expertise in niche and ethical investing, rigorous analytical processes, effective client communication support, operational assistance, and educational resources to help you serve clients with complex needs and values.</p>",
+    )
 
     # Benefits section
-    benefits_title = models.CharField(max_length=200, blank=True)
-    benefits_content = RichTextField(blank=True)
+    benefits_title = models.CharField(
+        max_length=200, default="Why Partner With Us", blank=True,
+    )
+    benefits_content = RichTextField(
+        blank=True,
+        default="<h4>Expertise in Niche and Ethical Investing</h4><p>Deep knowledge and specialized focus on sustainable and ethical investing. Our in-house ethical screening goes beyond standard third-party data, offering rigorous transparency that distinguishes us from conventional options.</p><h4>Rigorous Analytical Process</h4><p>Systematic approach to investment analysis with proprietary screening of thousands of companies using our 'Tick' rating system, ensuring strategies are both ethically aligned and financially sound.</p><h4>Effective Client Communication</h4><p>High closing rates with prospective clients through clear communication of complex financial concepts and personal engagement, helping manage the emotional aspects of investing.</p><h4>Operational Support</h4><p>Experience with platforms like Altruist and Schwab, streamlining account opening, transfers, and SMA implementation for busy advisers.</p><h4>Educational Partnership</h4><p>Trusted thought partner providing consulting, ad-hoc analysis, and insights to help you navigate challenging client scenarios and develop expertise in ethical investing.</p>",
+    )
 
     # Technology section
-    technology_title = models.CharField(max_length=200, blank=True)
-    technology_content = RichTextField(blank=True)
+    technology_title = models.CharField(
+        max_length=200, default="Technology Platform", blank=True,
+    )
+    technology_content = RichTextField(
+        blank=True,
+        default="<p>Access our comprehensive platform for portfolio construction, compliance monitoring, and client reporting.</p>",
+    )
 
     # CTA section
-    cta_title = models.CharField(max_length=200, blank=True)
-    cta_description = RichTextField(blank=True)
+    cta_title = models.CharField(
+        max_length=200, default="Ready to Partner?", blank=True,
+    )
+    cta_description = RichTextField(
+        blank=True,
+        default="<p>Join leading investment advisers who trust our multi-faceted approach to help them serve a broader range of clients with complex needs and values more effectively.</p>",
+    )
 
     content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel("hero_title"), FieldPanel("hero_subtitle"), FieldPanel("hero_description")], heading="Hero Section"), MultiFieldPanel([FieldPanel("services_title"), FieldPanel("services_content")], heading="Services Section"), MultiFieldPanel([FieldPanel("benefits_title"), FieldPanel("benefits_content")], heading="Benefits Section"), MultiFieldPanel([FieldPanel("technology_title"), FieldPanel("technology_content")], heading="Technology Section"), MultiFieldPanel([FieldPanel("cta_title"), FieldPanel("cta_description")], heading="Call to Action")]
 
@@ -1980,25 +2337,53 @@ class InstitutionalPage(Page):
     template = "public_site/institutional_page.html"
 
     # Hero section
-    hero_title = models.CharField(max_length=200, blank=True)
-    hero_subtitle = models.CharField(max_length=300, blank=True)
-    hero_description = RichTextField(blank=True)
+    hero_title = models.CharField(
+        max_length=200,
+        default="Institutional Investment Solutions",
+        blank=True,
+    )
+    hero_subtitle = models.CharField(
+        max_length=300,
+        blank=True,
+        default="Scalable ethical investment solutions for institutions, endowments, and pension funds",
+    )
+    hero_description = RichTextField(
+        blank=True,
+        default="<p>Custom investment strategies and compliance solutions designed for institutional scale and requirements.</p>",
+    )
 
     # Solutions section
-    solutions_title = models.CharField(max_length=200, blank=True)
-    solutions_content = RichTextField(blank=True)
+    solutions_title = models.CharField(
+        max_length=200, default="Institutional Solutions", blank=True,
+    )
+    solutions_content = RichTextField(
+        blank=True,
+        default="<p>We work with institutions to implement ethical investment strategies at scale.</p>",
+    )
 
     # Capabilities section
-    capabilities_title = models.CharField(max_length=200, blank=True)
+    capabilities_title = models.CharField(
+        max_length=200, default="Our Capabilities", blank=True,
+    )
     capabilities_content = RichTextField(blank=True)
 
     # Scale section
-    scale_title = models.CharField(max_length=200, blank=True)
-    scale_content = RichTextField(blank=True)
+    scale_title = models.CharField(
+        max_length=200, default="Institutional Scale", blank=True,
+    )
+    scale_content = RichTextField(
+        blank=True,
+        default="<p>Our technology platform scales to handle institutional portfolio sizes and complexity.</p>",
+    )
 
     # CTA section
-    cta_title = models.CharField(max_length=200, blank=True)
-    cta_description = RichTextField(blank=True)
+    cta_title = models.CharField(
+        max_length=200, default="Discuss Your Needs", blank=True,
+    )
+    cta_description = RichTextField(
+        blank=True,
+        default="<p>Contact us to explore how we can support your institutional investment objectives.</p>",
+    )
 
     content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel("hero_title"), FieldPanel("hero_subtitle"), FieldPanel("hero_description")], heading="Hero Section"), MultiFieldPanel([FieldPanel("solutions_title"), FieldPanel("solutions_content")], heading="Solutions Section"), MultiFieldPanel([FieldPanel("capabilities_title"), FieldPanel("capabilities_content")], heading="Capabilities Section"), MultiFieldPanel([FieldPanel("scale_title"), FieldPanel("scale_content")], heading="Scale Section"), MultiFieldPanel([FieldPanel("cta_title"), FieldPanel("cta_description")], heading="Call to Action")]
 
@@ -2026,18 +2411,42 @@ class SupportTicket(models.Model):
     company = models.CharField(max_length=255, blank=True, null=True)
 
     # Ticket type
-    ticket_type = models.CharField(max_length=20, choices=[
-            ("contact", "Contact Form"), ("newsletter", "Newsletter Signup"), ("onboarding", "Onboarding Request"), ("garden_interest", "Garden Platform Interest"), ])
+    ticket_type = models.CharField(
+        max_length=20,
+        default="contact",
+        choices=[
+            ("contact", "Contact Form"),
+            ("newsletter", "Newsletter Signup"),
+            ("onboarding", "Onboarding Request"),
+            ("garden_interest", "Garden Platform Interest"),
+        ],
+    )
 
     # Inquiry details
     subject = models.CharField(max_length=255, null=False, blank=False)
     message = models.TextField(null=False, blank=False)
 
     # Status and priority
-    status = models.CharField(max_length=20, choices=[
-            ("new", "New"), ("in_progress", "In Progress"), ("resolved", "Resolved"), ("closed", "Closed"), ])
-    priority = models.CharField(max_length=10, choices=[
-            ("low", "Low"), ("medium", "Medium"), ("high", "High"), ("urgent", "Urgent"), ])
+    status = models.CharField(
+        max_length=20,
+        default="new",
+        choices=[
+            ("new", "New"),
+            ("in_progress", "In Progress"),
+            ("resolved", "Resolved"),
+            ("closed", "Closed"),
+        ],
+    )
+    priority = models.CharField(
+        max_length=10,
+        default="medium",
+        choices=[
+            ("low", "Low"),
+            ("medium", "Medium"),
+            ("high", "High"),
+            ("urgent", "Urgent"),
+        ],
+    )
 
     # Metadata
     created_at = models.DateTimeField(auto_now_add=True)
@@ -2065,8 +2474,10 @@ class EncyclopediaIndexPage(RoutablePageMixin, Page):
 
     template = "public_site/encyclopedia_index.html"
 
-    intro_text = RichTextField(blank=True)
-    description = RichTextField(blank=True)
+    intro_text = RichTextField(blank=True,
+                              default="<p>Comprehensive investment terminology and concepts explained in plain language.</p>")
+    description = RichTextField(blank=True,
+                               default="<p>Our Investment Encyclopedia provides clear, accessible explanations of key investment terms and concepts. Whether you're new to investing or looking to expand your knowledge, this resource helps you understand the language of finance and ethical investing.</p>")
 
     content_panels: ClassVar[list] = [*Page.content_panels, FieldPanel('intro_text'), FieldPanel('description')]
 
@@ -2152,8 +2563,12 @@ class EncyclopediaEntry(Page):
     # SEO and metadata
     related_terms = models.CharField(max_length=500, blank=True,
                                    help_text="Comma-separated list of related terms")
-    difficulty_level = models.CharField(max_length=20, blank=True, choices=[
-                                          ('beginner', 'Beginner'), ('intermediate', 'Intermediate'), ('advanced', 'Advanced'), ])
+    difficulty_level = models.CharField(max_length=20, blank=True,
+                                      choices=[
+                                          ('beginner', 'Beginner'),
+                                          ('intermediate', 'Intermediate'),
+                                          ('advanced', 'Advanced'),
+                                      ], default='beginner')
 
     # Content organization
     examples = RichTextField(blank=True, help_text="Examples and use cases")
@@ -2188,8 +2603,16 @@ class ConsultationPage(Page):
     template = "public_site/consultation_page.html"
 
     # Hero content
-    hero_title = models.CharField(max_length=200, help_text="Main headline")
-    hero_subtitle = models.TextField(max_length=500, help_text="Subtitle text below the main headline")
+    hero_title = models.CharField(
+        max_length=200,
+        default="Schedule a Consultation",
+        help_text="Main headline"
+    )
+    hero_subtitle = models.TextField(
+        max_length=500,
+        default="Let's discuss how we can help align your investments with your values.",
+        help_text="Subtitle text below the main headline"
+    )
 
     # Main content
     introduction = RichTextField(
@@ -2198,7 +2621,11 @@ class ConsultationPage(Page):
     )
 
     # Contact information
-    contact_email = models.EmailField(blank=True, help_text="Contact email for consultations")
+    contact_email = models.EmailField(
+        blank=True,
+        default="hello@ec1c.com",
+        help_text="Contact email for consultations"
+    )
 
     # Scheduling widget (optional - can be embedded)
     scheduling_embed_code = models.TextField(
@@ -2228,8 +2655,16 @@ class GuidePage(Page):
     template = "public_site/guide_page.html"
 
     # Hero content
-    hero_title = models.CharField(max_length=200, help_text="Main headline")
-    hero_subtitle = models.TextField(max_length=500, help_text="Subtitle text below the main headline")
+    hero_title = models.CharField(
+        max_length=200,
+        default="Investment Guide",
+        help_text="Main headline"
+    )
+    hero_subtitle = models.TextField(
+        max_length=500,
+        default="Comprehensive guide to ethical investing principles and strategies.",
+        help_text="Subtitle text below the main headline"
+    )
 
     # Guide content
     guide_description = RichTextField(
@@ -2273,7 +2708,7 @@ class ExclusionCategory(Orderable):
     """Exclusion category for criteria page."""
     page = ParentalKey('CriteriaPage', on_delete=models.CASCADE, related_name='exclusion_categories')
     
-    icon = models.CharField(max_length=10, help_text="Emoji icon for category")
+    icon = models.CharField(max_length=10, default='🚫', help_text="Emoji icon for category")
     title = models.CharField(max_length=100, help_text="Category title")
     description = models.TextField(help_text="Description of what is excluded in this category")
     
@@ -2290,8 +2725,16 @@ class CriteriaPage(Page):
     template = "public_site/criteria_page_editable.html"
 
     # Hero content
-    hero_title = models.CharField(max_length=200, help_text="Main headline")
-    hero_subtitle = models.TextField(max_length=500, help_text="Subtitle text below the main headline")
+    hero_title = models.CharField(
+        max_length=200,
+        default="Our Ethical Criteria",
+        help_text="Main headline"
+    )
+    hero_subtitle = models.TextField(
+        max_length=500,
+        default="Transparent, rigorous screening criteria that guide our investment decisions.",
+        help_text="Subtitle text below the main headline"
+    )
 
     # Content
     criteria_description = RichTextField(
@@ -2300,14 +2743,39 @@ class CriteriaPage(Page):
     )
 
     # GitHub link section
-    transparency_section_title = models.CharField(max_length=200, blank=True, help_text="Title for transparency section")
-    transparency_description = RichTextField(blank=True, help_text="Description of transparency approach")
-    transparency_benefits = models.TextField(blank=True, help_text="Benefits of transparency, one per line")
-    github_criteria_url = models.URLField(help_text="URL to GitHub screening policy")
+    transparency_section_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Open Source Transparency",
+        help_text="Title for transparency section"
+    )
+    transparency_description = RichTextField(
+        blank=True,
+        default="<p>Our ethical screening criteria are publicly available on GitHub. This ensures complete transparency about what we exclude and why.</p>",
+        help_text="Description of transparency approach"
+    )
+    transparency_benefits = models.TextField(
+        blank=True,
+        default="Full documentation of exclusion criteria\nRegular updates as our research evolves\nCommunity feedback and discussion\nVersion history and change tracking",
+        help_text="Benefits of transparency, one per line"
+    )
+    github_criteria_url = models.URLField(
+        default="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md",
+        help_text="URL to GitHub screening policy"
+    )
 
     # Exclusions section
-    exclusions_section_title = models.CharField(max_length=200, blank=True, help_text="Title for exclusions section")
-    exclusions_note = RichTextField(blank=True, help_text="Note about exclusions")
+    exclusions_section_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Key Exclusion Categories",
+        help_text="Title for exclusions section"
+    )
+    exclusions_note = RichTextField(
+        blank=True,
+        default="<p><strong>Important:</strong> This is a high-level overview. The complete criteria, methodology, and specific examples are detailed in our GitHub repository.</p>",
+        help_text="Note about exclusions"
+    )
 
     # Additional resources
     additional_resources = RichTextField(
@@ -2354,7 +2822,7 @@ class StrategyCard(Orderable):
     """Strategy card for solutions page."""
     page = ParentalKey('SolutionsPage', on_delete=models.CASCADE, related_name='strategy_cards')
     
-    icon = models.CharField(max_length=10, help_text="Emoji icon for strategy")
+    icon = models.CharField(max_length=10, default='🚀', help_text="Emoji icon for strategy")
     title = models.CharField(max_length=100, help_text="Strategy title")
     description = models.TextField(help_text="Brief description of the strategy")
     features = models.TextField(help_text="Strategy features, one per line")
@@ -2375,29 +2843,70 @@ class SolutionsPage(Page):
     template = "public_site/solutions_page_editable.html"
 
     # Hero content
-    hero_title = models.CharField(max_length=200, help_text="Main headline")
-    hero_subtitle = models.TextField(max_length=500, help_text="Subtitle text below the main headline")
-    hero_description = RichTextField(blank=True, help_text="Hero section description")
+    hero_title = models.CharField(
+        max_length=200,
+        default="Investment Solutions",
+        help_text="Main headline"
+    )
+    hero_subtitle = models.TextField(
+        max_length=500,
+        default="Ethical investment strategies tailored for individuals, institutions, and investment advisers.",
+        help_text="Subtitle text below the main headline"
+    )
+    hero_description = RichTextField(
+        blank=True,
+        default="<p>Whether you're an individual investor, institutional client, or investment adviser, we provide sophisticated ethical investment solutions that align your portfolio with your principles.</p>",
+        help_text="Hero section description"
+    )
 
     # Strategies section
-    strategies_section_title = models.CharField(max_length=200, blank=True, help_text="Title for strategies section")
-    strategies_intro = models.TextField(blank=True, help_text="Introduction text for strategies section")
+    strategies_section_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="Three Strategies, Infinite Possibilities",
+        help_text="Title for strategies section"
+    )
+    strategies_intro = models.TextField(
+        blank=True,
+        default="Our investment solutions are built around three core strategies, tailored to three distinct audiences, and delivered through multiple channels to meet you where you are.",
+        help_text="Introduction text for strategies section"
+    )
 
     # Individuals section
-    individuals_title = models.CharField(max_length=200, blank=True)
-    individuals_content = RichTextField(blank=True)
+    individuals_title = models.CharField(
+        max_length=200, default="For Individuals", blank=True
+    )
+    individuals_content = RichTextField(
+        blank=True,
+        default="<p>Take your first step toward ethical investing or jump in with both feet. Our personalized approach helps you align your investments with your values while achieving your financial goals.</p>"
+    )
 
     # Institutions section
-    institutions_title = models.CharField(max_length=200, blank=True)
-    institutions_content = RichTextField(blank=True)
+    institutions_title = models.CharField(
+        max_length=200, default="For Institutions", blank=True
+    )
+    institutions_content = RichTextField(
+        blank=True,
+        default="<p>Scalable ethical investment solutions for endowments, pension funds, and institutional clients who require sophisticated strategies at institutional scale.</p>"
+    )
 
     # Advisors section
-    advisors_title = models.CharField(max_length=200, blank=True)
-    advisors_content = RichTextField(blank=True)
+    advisors_title = models.CharField(
+        max_length=200, default="For Investment Advisers", blank=True
+    )
+    advisors_content = RichTextField(
+        blank=True,
+        default="<p>Partner with us to serve clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and operational support you need.</p>"
+    )
 
     # Call to action
-    cta_title = models.CharField(max_length=200, blank=True)
-    cta_description = RichTextField(blank=True)
+    cta_title = models.CharField(
+        max_length=200, default="Ready to Get Started?", blank=True
+    )
+    cta_description = RichTextField(
+        blank=True,
+        default="<p>Let's find the perfect solution for your needs. Contact us to discuss how we can help you achieve your investment goals while staying true to your values.</p>"
+    )
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
@@ -2450,13 +2959,33 @@ class PRIDDQPage(Page):
     template = "public_site/pri_ddq_page.html"
 
     # Hero content
-    hero_title = models.CharField(max_length=200, help_text="Main headline")
-    hero_subtitle = models.TextField(max_length=500, help_text="Subtitle text below the main headline")
-    hero_description = RichTextField(blank=True, help_text="Hero section description")
-    updated_at = models.CharField(max_length=50, help_text="Month and year when this document was last updated")
+    hero_title = models.CharField(
+        max_length=200,
+        default="PRI Due Diligence Questionnaire",
+        help_text="Main headline"
+    )
+    hero_subtitle = models.TextField(
+        max_length=500,
+        default="Comprehensive responses to Principles for Responsible Investment due diligence questions.",
+        help_text="Subtitle text below the main headline"
+    )
+    hero_description = RichTextField(
+        blank=True,
+        default="<p>As a signatory-aligned investment manager, we provide detailed responses to standard PRI due diligence questions covering our ESG integration, stewardship practices, and responsible investment approach.</p>",
+        help_text="Hero section description"
+    )
+    updated_at = models.CharField(
+        max_length=50,
+        default="January 2025",
+        help_text="Month and year when this document was last updated"
+    )
 
     # Executive Summary
-    executive_summary = RichTextField(blank=True, help_text="Executive summary of ESG approach")
+    executive_summary = RichTextField(
+        blank=True,
+        default="<p>Ethical Capital Investment Management is a registered investment adviser specializing in values-based equity investing. We integrate comprehensive ESG criteria throughout our investment process, excluding 57% of the S&P 500 through our proprietary screening methodology.</p>",
+        help_text="Executive summary of ESG approach"
+    )
 
     # Strategy & Governance section
     strategy_governance_content = RichTextField(
@@ -2501,8 +3030,15 @@ class PRIDDQPage(Page):
     )
 
     # Document links
-    screening_policy_url = models.URLField(help_text="URL to open-source screening policy")
-    form_adv_url = models.URLField(blank=True, help_text="URL to Form ADV disclosure")
+    screening_policy_url = models.URLField(
+        default="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md",
+        help_text="URL to open-source screening policy"
+    )
+    form_adv_url = models.URLField(
+        blank=True,
+        default="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf",
+        help_text="URL to Form ADV disclosure"
+    )
 
     content_panels: ClassVar[list] = [*Page.content_panels, MultiFieldPanel([FieldPanel('hero_title'), FieldPanel('hero_subtitle'), FieldPanel('hero_description'), FieldPanel('updated_at')], heading="Hero Section"), FieldPanel('executive_summary'), MultiFieldPanel([FieldPanel('strategy_governance_content'), FieldPanel('esg_integration_content'), FieldPanel('stewardship_content'), FieldPanel('transparency_content'), FieldPanel('reporting_verification_content'), FieldPanel('climate_content'), FieldPanel('additional_content')], heading="DDQ Response Sections"), MultiFieldPanel([FieldPanel('screening_policy_url'), FieldPanel('form_adv_url')], heading="Related Documents")]
 
@@ -2614,17 +3150,7 @@ class PRIDDQPage(Page):
         self.updated_at = current_date.strftime("%B %Y")
 
         super().save(*args, **kwargs)
-        
-        # Skip sync in test mode to avoid creating pages without proper parent
-        import sys
-        if 'test' not in sys.argv:
-            try:
-                self.sync_to_support_articles()
-            except Exception as e:
-                # Log but don't fail if sync fails
-                import logging
-                logger = logging.getLogger(__name__)
-                logger.warning(f"Failed to sync DDQ questions to FAQ articles: {e}")
+        self.sync_to_support_articles()
 
     class Meta:
         verbose_name = "PRI DDQ Page"
@@ -2636,62 +3162,185 @@ class SiteConfiguration(ClusterableModel, BaseSiteSetting):
     """Global site configuration and branding settings."""
     
     # Company Information
-    company_name = models.CharField(max_length=100, help_text="Company brand name displayed in navigation and footer")
-    company_tagline = models.CharField(max_length=200, help_text="Main tagline for SEO and social media")
-    company_description = models.TextField(help_text="Company description for meta tags and schema markup")
+    company_name = models.CharField(
+        max_length=100, 
+        default="Ethical Capital",
+        help_text="Company brand name displayed in navigation and footer"
+    )
+    company_tagline = models.CharField(
+        max_length=200,
+        default="Institutional-Grade Ethical Investing",
+        help_text="Main tagline for SEO and social media"
+    )
+    company_description = models.TextField(
+        default="SEC-registered investment advisor specializing in ethical portfolio management and concentrated sustainable investing strategies.",
+        help_text="Company description for meta tags and schema markup"
+    )
     
     # Contact Information
-    primary_email = models.EmailField(help_text="Primary contact email address")
-    support_email = models.EmailField(help_text="Support and accessibility contact email")
-    cio_email = models.EmailField(help_text="Chief Investment Officer email")
-    primary_phone = models.CharField(max_length=20, help_text="Primary phone number")
-    accessibility_phone = models.CharField(max_length=20, help_text="Accessibility support phone number")
+    primary_email = models.EmailField(
+        default="hello@ethicic.com",
+        help_text="Primary contact email address"
+    )
+    support_email = models.EmailField(
+        default="hello@ethicic.com",
+        help_text="Support and accessibility contact email"
+    )
+    cio_email = models.EmailField(
+        default="sloane@ethicic.com",
+        help_text="Chief Investment Officer email"
+    )
+    primary_phone = models.CharField(
+        max_length=20,
+        default="+1 347 625 9000",
+        help_text="Primary phone number"
+    )
+    accessibility_phone = models.CharField(
+        max_length=20,
+        default="+1 (801) 123-4567",
+        help_text="Accessibility support phone number"
+    )
     
     # Address Information
-    street_address = models.CharField(max_length=200, help_text="Street address")
-    city = models.CharField(max_length=100, help_text="City")
-    state = models.CharField(max_length=50, help_text="State or region")
-    postal_code = models.CharField(max_length=20, help_text="Postal/ZIP code")
-    country = models.CharField(max_length=100, help_text="Country")
+    street_address = models.CharField(
+        max_length=200,
+        default="90 N 400 E",
+        help_text="Street address"
+    )
+    city = models.CharField(
+        max_length=100,
+        default="Provo",
+        help_text="City"
+    )
+    state = models.CharField(
+        max_length=50,
+        default="UT",
+        help_text="State or region"
+    )
+    postal_code = models.CharField(
+        max_length=20,
+        default="84606",
+        help_text="Postal/ZIP code"
+    )
+    country = models.CharField(
+        max_length=100,
+        default="United States",
+        help_text="Country"
+    )
     
     # Social Media
-    twitter_handle = models.CharField(max_length=50, help_text="Twitter handle (include @)")
+    twitter_handle = models.CharField(
+        max_length=50,
+        default="@ethicalcapital",
+        help_text="Twitter handle (include @)"
+    )
     linkedin_url = models.URLField(
         blank=True,
         help_text="LinkedIn company page URL"
     )
     
     # SEO and Meta
-    default_meta_description = models.TextField(help_text="Default meta description for pages without custom descriptions")
-    meta_keywords = models.CharField(max_length=300, help_text="Default meta keywords")
+    default_meta_description = models.TextField(
+        default="Ethical Capital - Institutional-Grade Ethical Investing",
+        help_text="Default meta description for pages without custom descriptions"
+    )
+    meta_keywords = models.CharField(
+        max_length=300,
+        default="investment intelligence, compliance, portfolio management, financial advisory",
+        help_text="Default meta keywords"
+    )
     
     # Legal and Compliance
-    founding_year = models.CharField(max_length=4, help_text="Company founding year")
-    copyright_text = models.CharField(max_length=200, help_text="Footer copyright text")
+    founding_year = models.CharField(
+        max_length=4,
+        default="2021",
+        help_text="Company founding year"
+    )
+    copyright_text = models.CharField(
+        max_length=200,
+        default="Ethical Capital Investment Collaborative. All rights reserved.",
+        help_text="Footer copyright text"
+    )
     
     # Business Information
-    business_hours = models.CharField(max_length=100, help_text="Business hours display text")
-    minimum_investment = models.CharField(max_length=20, help_text="Minimum investment amount")
+    business_hours = models.CharField(
+        max_length=100,
+        default="Monday - Friday, 9:00 AM - 5:00 PM MT",
+        help_text="Business hours display text"
+    )
+    minimum_investment = models.CharField(
+        max_length=20,
+        default="$25,000",
+        help_text="Minimum investment amount"
+    )
     
     # Form Messages
-    contact_success_message = models.TextField(help_text="Success message for contact form submissions")
-    contact_error_message = models.TextField(help_text="Error message for contact form submissions")
-    newsletter_success_message = models.TextField(help_text="Success message for newsletter subscriptions")
+    contact_success_message = models.TextField(
+        default="Thank you for your message! We will get back to you within 24 hours.",
+        help_text="Success message for contact form submissions"
+    )
+    contact_error_message = models.TextField(
+        default="Please correct the errors below and try again.",
+        help_text="Error message for contact form submissions"
+    )
+    newsletter_success_message = models.TextField(
+        default="Thank you for subscribing to our newsletter!",
+        help_text="Success message for newsletter subscriptions"
+    )
     
     # Newsletter Widget Content
-    newsletter_title = models.CharField(max_length=100, help_text="Newsletter signup widget title")
-    newsletter_description = models.TextField(help_text="Newsletter signup description")
-    newsletter_privacy_text = models.CharField(max_length=200, help_text="Newsletter privacy notice")
+    newsletter_title = models.CharField(
+        max_length=100,
+        default="Stay Updated",
+        help_text="Newsletter signup widget title"
+    )
+    newsletter_description = models.TextField(
+        default="Get our latest insights on ethical investing delivered to your inbox.",
+        help_text="Newsletter signup description"
+    )
+    newsletter_privacy_text = models.CharField(
+        max_length=200,
+        default="We respect your privacy. Unsubscribe at any time.",
+        help_text="Newsletter privacy notice"
+    )
     
     # Investment Form Content
-    investment_goal_growth_title = models.CharField(max_length=50, help_text="Growth investment goal title")
-    investment_goal_growth_desc = models.TextField(help_text="Growth investment goal description")
-    investment_goal_income_title = models.CharField(max_length=50, help_text="Income investment goal title")
-    investment_goal_income_desc = models.TextField(help_text="Income investment goal description")
-    investment_goal_balanced_title = models.CharField(max_length=50, help_text="Balanced investment goal title")
-    investment_goal_balanced_desc = models.TextField(help_text="Balanced investment goal description")
-    investment_goal_preservation_title = models.CharField(max_length=50, help_text="Preservation investment goal title")
-    investment_goal_preservation_desc = models.TextField(help_text="Preservation investment goal description")
+    investment_goal_growth_title = models.CharField(
+        max_length=50,
+        default="Long-term Growth",
+        help_text="Growth investment goal title"
+    )
+    investment_goal_growth_desc = models.TextField(
+        default="Building wealth over time, comfortable with market volatility",
+        help_text="Growth investment goal description"
+    )
+    investment_goal_income_title = models.CharField(
+        max_length=50,
+        default="Current Income",
+        help_text="Income investment goal title"
+    )
+    investment_goal_income_desc = models.TextField(
+        default="Regular income from investments, with some growth potential",
+        help_text="Income investment goal description"
+    )
+    investment_goal_balanced_title = models.CharField(
+        max_length=50,
+        default="Balanced Approach",
+        help_text="Balanced investment goal title"
+    )
+    investment_goal_balanced_desc = models.TextField(
+        default="Mix of growth and income, moderate risk tolerance",
+        help_text="Balanced investment goal description"
+    )
+    investment_goal_preservation_title = models.CharField(
+        max_length=50,
+        default="Capital Preservation",
+        help_text="Preservation investment goal title"
+    )
+    investment_goal_preservation_desc = models.TextField(
+        default="Protecting principal, minimal risk, steady returns",
+        help_text="Preservation investment goal description"
+    )
     
     # Content Management Settings
     panels = [
@@ -2797,3 +3446,4 @@ class NavigationMenuItem(Orderable):
 
 
 # Import new page models
+from .models_newsletter import NewsletterPage, AccessibilityPage

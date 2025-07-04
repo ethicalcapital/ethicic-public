@@ -4,14 +4,12 @@ CSS Monitoring and Maintenance Script
 Continuous monitoring for CSS conflicts and regressions
 """
 
-import os
 import sys
 import re
 import json
-import time
 from pathlib import Path
 from datetime import datetime
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Set
 
 
 class CSSMonitor:
@@ -159,7 +157,7 @@ class CSSMonitor:
             json.dump(current, f, indent=2)
         
         if not regression_found:
-            print(f"✅ No regressions detected!")
+            print("✅ No regressions detected!")
             print(f"   - Undefined variables: {current['total_undefined_vars']}")
             print(f"   - Files with issues: {len(current['files_with_issues'])}")
             print(f"   - Total CSS files: {current['total_files']}")

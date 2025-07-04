@@ -296,11 +296,16 @@
 }
 
 .pricing-page .cta-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: nowrap;
+    display: flex !important;
+    gap: 1rem !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    flex-wrap: nowrap !important;
     margin-bottom: 2rem;
+    min-height: 50px !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
 }
 
 .pricing-page .cta-disclaimer {
@@ -331,15 +336,7 @@
 }
 
 /* Force CTA buttons to consistent size and proper centering - NUCLEAR OPTION */
-.pricing-page .cta-actions {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: stretch !important;
-    gap: 1rem !important;
-    flex-wrap: nowrap !important;
-    margin: 0 auto 2rem auto !important;
-    width: 100% !important;
-}
+/* Styles merged with earlier .pricing-page .cta-actions selector */
 
 /* Reset ALL button styles and rebuild from scratch */
 .pricing-page .cta-actions a.garden-action,
@@ -568,7 +565,7 @@
 .nonprofit-note {
     font-size: 0.875rem;
     color: var(--color-primary);
-    background: rgba(85, 60, 154, 0.1);
+    background: rgb(85, 60, 154, 0.1);
     padding: 0.75rem 1rem;
     border-radius: var(--radius-sm);
     margin: 1rem 0;

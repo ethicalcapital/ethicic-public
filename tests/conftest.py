@@ -3,7 +3,6 @@ import pytest
 from django.test import Client
 from wagtail.models import Page, Site
 from wagtail.models.i18n import Locale
-from wagtail.test.utils import WagtailPageTestCase
 
 
 @pytest.fixture
@@ -34,7 +33,6 @@ def wagtail_site(db):
     )
     
     # Get or create root page
-    from wagtail.models import Page
     
     # Create root page if it doesn't exist
     root = Page.objects.filter(id=1).first()

@@ -102,10 +102,17 @@ class AccessibleContactFormTest(BasePublicSiteTestCase, FormTestMixin):
         """Test human verification field."""
         data = self.create_test_contact_data()
         
-        # In testing mode, any non-empty value is accepted
-        data['human_check'] = 'any value'
+        # Correct answer should pass (in testing mode: 1+1=2)
+        data['human_check'] = '2'
         form = AccessibleContactForm(data=data, request=self.mock_request)
         self.assert_form_valid(form)
+        
+        # Wrong answer should fail
+        data['human_check'] = '5'
+        form = AccessibleContactForm(data=data, request=self.mock_request)
+        self.assert_form_invalid(form, {
+            'human_check': 'solve the math problem correctly'
+        })
         
         # Empty value should fail
         data['human_check'] = ''

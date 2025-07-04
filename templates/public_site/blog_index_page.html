@@ -116,7 +116,7 @@
     <div class="articles-content">
         <div class="articles-container">
         <!-- Articles Content -->
-        <div class="articles-main" style="width: 100% !important; max-width: none !important;">
+        <div class="articles-main" class="full-width-important">
         {% if tag %}
         <section class="tag-filter">
             <div class="section-title-wrapper">
@@ -128,19 +128,19 @@
         {% endif %}
 
         <!-- Blog Posts -->
-        <section class="blog-posts" style="width: 100% !important; max-width: none !important;">
+        <section class="blog-posts" class="full-width-important">
             <div class="section-title-wrapper">
                 <h2 class="section-title">LATEST ARTICLES</h2>
             </div>
             {% if posts %}
-                <div class="articles-list" id="articles-container" style="width: 100% !important; max-width: none !important;">
+                <div class="articles-list" id="articles-container" class="full-width-important">
                     {% for post in posts %}
                     {% if not forloop.first %}
-                    <article class="article-list-item" data-article-id="{{ post.id }}" style="width: 100% !important; max-width: none !important;">
-                        <div class="article-list-content" style="width: 100% !important; display: flex !important; gap: var(--space-6) !important;">
+                    <article class="article-list-item" data-article-id="{{ post.id }}" class="full-width-important">
+                        <div class="article-list-content" class="article-content-flex">
                             <!-- Featured Image Only (no KPIs here) -->
                             {% if post.featured_image %}
-                                <div class="article-list-image" style="width: 200px !important; flex-shrink: 0 !important;">
+                                <div class="article-list-image" class="article-image-fixed">
                                     {% image post.featured_image width-200 as list_img %}
                                     <img src="{{ list_img.url }}" 
                                          alt="{{ post.featured_image.title|default:post.title }}"
@@ -148,7 +148,7 @@
                                 </div>
                             {% endif %}
                             
-                            <div class="article-list-text" style="flex: 1 !important; width: 100% !important; max-width: none !important; min-width: 0 !important;">
+                            <div class="article-list-text" class="article-text-full">
                                 <!-- KPI Stats ABOVE title -->
                                 {% if post.content %}
                                     {% with key_stats=post.content|select_key_statistics %}
@@ -175,12 +175,12 @@
                                     {% endif %}
                                 </div>
                                 
-                                <h2 class="article-list-title" style="width: 100% !important; max-width: none !important;">
-                                    <a href="{{ post.url_path }}" style="width: 100% !important; max-width: none !important; display: block !important;">{{ post.title }}</a>
+                                <h2 class="article-list-title" class="full-width-important">
+                                    <a href="{{ post.url_path }}" class="block-full-important">{{ post.title }}</a>
                                 </h2>
                                 
                                 {% if post.excerpt %}
-                                    <p class="article-list-excerpt" style="width: 100% !important; max-width: none !important;">{{ post.excerpt|truncatewords:25 }}</p>
+                                    <p class="article-list-excerpt" class="full-width-important">{{ post.excerpt|truncatewords:25 }}</p>
                                 {% endif %}
                                 
                                 <div class="article-list-actions">
@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Apply the EXACT same styles as in the template
         
-        // 1. Article list items - match template: style="width: 100% !important; max-width: none !important;"
+        // 1. Article list items - match template: class="full-width-important"
         const articles = document.querySelectorAll('.article-list-item');
         articles.forEach(el => {
             el.style.width = '100%';
@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.setProperty('max-width', 'none', 'important');
         });
         
-        // 2. Article content - match template: style="width: 100% !important; display: flex !important; gap: var(--space-6) !important;"
+        // 2. Article content - match template: class="article-content-flex"
         const articleContents = document.querySelectorAll('.article-list-content');
         articleContents.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
@@ -339,14 +339,14 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.setProperty('gap', 'var(--space-6)', 'important');
         });
         
-        // 3. Article images - match template: style="width: 200px !important; flex-shrink: 0 !important;"
+        // 3. Article images - match template: class="article-image-fixed"
         const articleImages = document.querySelectorAll('.article-list-image');
         articleImages.forEach(el => {
             el.style.setProperty('width', '200px', 'important');
             el.style.setProperty('flex-shrink', '0', 'important');
         });
         
-        // 4. Article text containers - match template: style="flex: 1 !important; width: 100% !important; max-width: none !important; min-width: 0 !important;"
+        // 4. Article text containers - match template: class="article-text-full"
         const articleTexts = document.querySelectorAll('.article-list-text');
         articleTexts.forEach(el => {
             el.style.setProperty('flex', '1', 'important');
@@ -355,14 +355,14 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.setProperty('min-width', '0', 'important');
         });
         
-        // 5. Article titles - match template: style="width: 100% !important; max-width: none !important;"
+        // 5. Article titles - match template: class="full-width-important"
         const articleTitles = document.querySelectorAll('.article-list-title');
         articleTitles.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
             el.style.setProperty('max-width', 'none', 'important');
         });
         
-        // 6. Article title links - match template: style="width: 100% !important; max-width: none !important; display: block !important;"
+        // 6. Article title links - match template: class="block-full-important"
         const titleLinks = document.querySelectorAll('.article-list-title a');
         titleLinks.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.setProperty('display', 'block', 'important');
         });
         
-        // 7. Article excerpts - match template: style="width: 100% !important; max-width: none !important;"
+        // 7. Article excerpts - match template: class="full-width-important"
         const excerpts = document.querySelectorAll('.article-list-excerpt');
         excerpts.forEach(el => {
             el.style.setProperty('width', '100%', 'important');

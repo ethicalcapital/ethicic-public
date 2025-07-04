@@ -114,8 +114,5 @@
     }
     
     /* Additional theme support - theme variables handle light/dark automatically */
-    .garden-footer {
-        /* Background and text colors automatically adjust via theme variables */
-        color: var(--theme-text-primary);
-    }
+    /* Background and text colors automatically adjust via theme variables in .garden-footer */
 }

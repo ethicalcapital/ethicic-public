@@ -8,7 +8,6 @@ from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import HTML, Field, Fieldset, Layout, Submit
 from django import forms
-from django.conf import settings
 from django.core.cache import cache
 from django.utils import timezone
 from wagtail.users.forms import UserEditForm
@@ -216,7 +215,6 @@ class AccessibleContactForm(forms.Form):
 
     def _setup_spam_protection(self, request):
         """Set up spam protection features."""
-        from django.conf import settings
 
         # Generate math challenge - always use proper security validation
         # SECURITY: Removed testing bypass to prevent production vulnerabilities
@@ -421,7 +419,6 @@ class AccessibleContactForm(forms.Form):
         email = self.cleaned_data.get("email", "")
 
         # Additional validation beyond EmailField - always validate to ensure security logic is tested
-        from django.conf import settings
         if email and "@" in email:
             domain = email.split("@")[1].lower()
             # Block obviously fake domains (always check, even in testing, to ensure security works)

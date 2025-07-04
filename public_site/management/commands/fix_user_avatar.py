@@ -5,7 +5,6 @@ This resolves 404 errors in Wagtail admin when avatar images don't exist locally
 """
 
 from django.core.management.base import BaseCommand
-from django.contrib.auth import get_user_model
 from wagtail.users.models import UserProfile
 
 class Command(BaseCommand):
@@ -24,11 +23,6 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        User = get_user_model()
-        
-        # The correct headshot image URL on R2 CDN
-        correct_avatar_url = "https://pub-324a685032214395a8bcad478c265d4b.r2.dev/headshot%20sketch_slim.png"
-        
         profiles_updated = 0
         
         self.stdout.write(self.style.SUCCESS('🔍 Checking user profiles for broken avatar references...'))
@@ -67,7 +61,7 @@ class Command(BaseCommand):
                             )
                             self.stdout.write(
                                 self.style.WARNING(
-                                    f'Note: ImageField cannot point to external URLs. User will need to re-upload avatar if desired.'
+                                    'Note: ImageField cannot point to external URLs. User will need to re-upload avatar if desired.'
                                 )
                             )
                         profiles_updated += 1

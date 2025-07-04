@@ -252,11 +252,11 @@
   --theme-primary-rgb: 85, 60, 154;
   --theme-on-primary: #fff;
   --theme-surface: #fff;
-  --theme-on-surface: #111111;
+  --theme-on-surface: #111;
   --theme-surface-variant: #f9fafb;
   --theme-on-surface-variant: var(--theme-text-secondary);
   --theme-background: #fff;
-  --theme-on-background: #111111;
+  --theme-on-background: #111;
   --theme-hover: #f9fafb;
   --theme-focus: #f3f4f6;
   --theme-active: #e5e7eb;
@@ -272,7 +272,7 @@
   --theme-error-alpha: color-mix(in srgb, #8b2222 10%, transparent);
   --theme-info: #1d4ed8;
   --theme-info-alpha: color-mix(in srgb, #1d4ed8 10%, transparent);
-  --theme-text-primary: #111111;
+  --theme-text-primary: #111;
   --theme-text-secondary: color-mix(in srgb, var(--theme-text-primary) 60%, var(--theme-background));
   --theme-text-tertiary: color-mix(in srgb, var(--theme-text-primary) 40%, var(--theme-background));
   --theme-text-inverse: #fff;
@@ -325,12 +325,12 @@
   --theme-primary-alpha: color-mix(in srgb, var(--garden-accent) 10%, transparent);
   --theme-on-primary: #fff;
   --theme-surface: #fff;
-  --theme-on-surface: #111111;
+  --theme-on-surface: #111;
   --theme-background: #fff;
-  --theme-on-background: #111111;
+  --theme-on-background: #111;
   --theme-hover: #f9fafb;
   --theme-border: #e5e7eb;
-  --theme-text-primary: #111111;
+  --theme-text-primary: #111;
   --theme-text-secondary: var(--garden-text-muted);
   --theme-shadow: color-mix(in srgb, var(--garden-text) 15%, transparent);
   --garden-bg: var(--theme-background);

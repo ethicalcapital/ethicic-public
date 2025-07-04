@@ -77,6 +77,27 @@ def llms_txt_view(request):
     else:
         raise Http404("llms.txt file not found")
 
+def robots_txt_view(request):
+    """Serve robots.txt file for search engine crawlers"""
+    import os
+    from django.conf import settings
+    from django.http import HttpResponse, Http404
+    
+    robots_txt_path = os.path.join(settings.BASE_DIR, 'static', 'robots.txt')
+    
+    if os.path.exists(robots_txt_path):
+        try:
+            with open(robots_txt_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            response = HttpResponse(content, content_type='text/plain')
+            response['Cache-Control'] = 'max-age=86400'  # 24 hour cache
+            return response
+        except Exception as e:
+            raise Http404(f"Error reading robots.txt: {e}")
+    else:
+        raise Http404("robots.txt file not found")
+
 def debug_homepage(request):
     """Debug homepage bypass for testing"""
     try:
@@ -324,6 +345,9 @@ urlpatterns = [
     
     # AI/LLM information file
     path('llms.txt', llms_txt_view, name='llms_txt'),
+    
+    # Search engine crawler instructions
+    path('robots.txt', robots_txt_view, name='robots_txt'),
     
     # Admin
     path('admin/', admin.site.urls),

@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-07-04T04:02:57.293241",
-  "total_files": 44,
+  "timestamp": "2025-07-04T06:30:06.379528",
+  "total_files": 45,
   "total_defined_vars": 302,
   "files_with_issues": [
     "process-page-working.css",
@@ -228,15 +228,15 @@
     "high-contrast-mode.css": [
       [
         9,
-        "#000000"
+        "#000"
       ],
       [
         10,
-        "#444444"
+        "#444"
       ],
       [
         11,
-        "#666666"
+        "#666"
       ],
       [
         34,
@@ -244,7 +244,7 @@
       ],
       [
         59,
-        "#ffffff"
+        "#fff"
       ]
     ],
     "27-institutional-page.css": [
@@ -286,11 +286,11 @@
     "30-strategy-page.css": [
       [
         36,
-        "#ffffff"
+        "#fff"
       ],
       [
         42,
-        "#ffffff"
+        "#fff"
       ]
     ],
     "40-adviser-page.css": [
@@ -333,7 +333,7 @@
         "#f8f9fa"
       ],
       [
-        559,
+        556,
         "#22c55e"
       ]
     ]
@@ -341,10 +341,10 @@
   "file_sizes": {
     "fix-formatting-issues.css": 7.81,
     "public-site-simple.css": 17.55,
-    "blog-unified.css": 11.81,
+    "blog-unified.css": 11.76,
     "process-page-working.css": 8.43,
     "garden-blog-streamfield.css": 12.49,
-    "garden-ui-theme.css": 156.43,
+    "garden-ui-theme.css": 156.42,
     "button-contrast-fixes.css": 5.94,
     "garden-blog-articles.css": 19.04,
     "process-page.css": 12.12,
@@ -368,12 +368,13 @@
     "about-page-v2.css": 8.98,
     "garden-blog-sidebar.css": 9.58,
     "garden-widgets.css": 6.42,
+    "utility-layout.css": 3.42,
     "garden-blog-hero.css": 6.73,
     "page-specific-overrides.css": 3.18,
     "process-page-minimal.css": 0.33,
     "blog-button-fixes.css": 4.6,
-    "07-footer.css": 3.04,
-    "high-contrast-mode.css": 5.68,
+    "07-footer.css": 2.99,
+    "high-contrast-mode.css": 5.72,
     "workbench-layout.css": 5.86,
     "27-institutional-page.css": 8.61,
     "22-about-page.css": 4.32,

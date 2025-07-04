@@ -49,34 +49,34 @@
   width: 100%;
 }
 
-/* Force article content to expand */
+/* Article content expansion - no longer needs !important since we use utility classes */
 .blog-index-page .articles-list {
-  width: 100% !important;
+  width: 100%;
 }
 
 .blog-index-page .article-list-item {
-  width: 100% !important;
+  width: 100%;
 }
 
 /* Article content layout - merged styles */
 .blog-index-page .article-list-content {
-  width: 100% !important;
+  width: 100%;
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr) !important;
+  grid-template-columns: 200px minmax(0, 1fr);
   gap: var(--space-6);
 }
 
 /* Article text container - merged styles */
 .blog-index-page .article-list-text {
-  width: 100% !important;
-  max-width: none !important;
-  min-width: 0 !important;
-  flex: 1 1 100% !important;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  flex: 1 1 100%;
 }
 
 .blog-index-page .article-list-title,
 .blog-index-page .article-list-excerpt {
-  width: 100% !important;
+  width: 100%;
   max-width: none !important;
 }
 

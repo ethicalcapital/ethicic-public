@@ -51,7 +51,7 @@
     <div class="articles-content">
         <div class="articles-container">
         <!-- FAQ Articles Content -->
-        <div class="articles-main" style="width: 100% !important; max-width: none !important;">
+        <div class="articles-main" class="full-width-important">
         
         <!-- Featured FAQ Section -->
         {% with articles=page.get_articles %}
@@ -96,36 +96,36 @@
         {% endwith %}
 
         <!-- All FAQ Articles Section -->
-        <section class="faq-section faq-all-articles" style="width: 100% !important; max-width: none !important;">
+        <section class="faq-section faq-all-articles" class="full-width-important">
             <div class="section-title-wrapper">
                 <h2 class="section-title">ALL QUESTIONS</h2>
                 <p class="section-subtitle">Browse all frequently asked questions organized by topic.</p>
             </div>
             {% with articles=page.get_articles %}
                 {% if articles %}
-                    <div class="articles-list faq-all-list" style="width: 100% !important; max-width: none !important;">
+                    <div class="articles-list faq-all-list" class="full-width-important">
                         {% for article in articles %}
                             {% if not forloop.first %}
-                            <article class="article-list-item faq-item" data-article-id="{{ article.id }}" style="width: 100% !important; max-width: none !important;">
-                                <div class="article-list-content" style="width: 100% !important; display: flex !important; gap: var(--space-6) !important;">
-                                    <div class="article-list-text" style="flex: 1 !important; width: 100% !important; max-width: none !important; min-width: 0 !important;">
+                            <article class="article-list-item faq-item" data-article-id="{{ article.id }}" class="full-width-important">
+                                <div class="article-list-content" class="article-content-flex">
+                                    <div class="article-list-text" class="article-text-full">
                                         {% if article.category %}
-                                            <div class="article-list-meta" style="width: 100% !important;">
-                                                <div class="article-list-tags" style="width: 100% !important;">
+                                            <div class="article-list-meta" class="full-width-important">
+                                                <div class="article-list-tags" class="full-width-important">
                                                     <span class="article-list-tag">{{ article.get_category_display|default:"General" }}</span>
                                                 </div>
                                             </div>
                                         {% endif %}
                                         
-                                        <h2 class="article-list-title" style="width: 100% !important; max-width: none !important;">
-                                            <a href="{{ article.url_path }}" style="width: 100% !important; max-width: none !important; display: block !important;">{{ article.title }}</a>
+                                        <h2 class="article-list-title" class="full-width-important">
+                                            <a href="{{ article.url_path }}" class="block-full-important">{{ article.title }}</a>
                                         </h2>
                                         
                                         {% if article.summary %}
-                                            <p class="article-list-excerpt" style="width: 100% !important; max-width: none !important;">{{ article.summary|truncatewords:25 }}</p>
+                                            <p class="article-list-excerpt" class="full-width-important">{{ article.summary|truncatewords:25 }}</p>
                                         {% endif %}
                                         
-                                        <div class="article-list-actions" style="width: 100% !important;">
+                                        <div class="article-list-actions" class="full-width-important">
                                             <a href="{{ article.url_path }}" class="garden-action secondary small">READ ANSWER</a>
                                         </div>
                                     </div>
@@ -391,14 +391,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Apply the EXACT same styles as in the template
         
-        // 1. Article list items - match template: style="width: 100% !important; max-width: none !important;"
+        // 1. Article list items - match template: class="full-width-important"
         const articles = document.querySelectorAll('.article-list-item');
         articles.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
             el.style.setProperty('max-width', 'none', 'important');
         });
         
-        // 2. Article content - match template: style="width: 100% !important; display: flex !important; gap: var(--space-6) !important;"
+        // 2. Article content - match template: class="article-content-flex"
         const articleContents = document.querySelectorAll('.article-list-content');
         articleContents.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.setProperty('gap', 'var(--space-6)', 'important');
         });
         
-        // 3. Article text containers - match template: style="flex: 1 !important; width: 100% !important; max-width: none !important; min-width: 0 !important;"
+        // 3. Article text containers - match template: class="article-text-full"
         const articleTexts = document.querySelectorAll('.article-list-text');
         articleTexts.forEach(el => {
             el.style.setProperty('flex', '1', 'important');
@@ -415,14 +415,14 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.setProperty('min-width', '0', 'important');
         });
         
-        // 4. Article titles - match template: style="width: 100% !important; max-width: none !important;"
+        // 4. Article titles - match template: class="full-width-important"
         const articleTitles = document.querySelectorAll('.article-list-title');
         articleTitles.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
             el.style.setProperty('max-width', 'none', 'important');
         });
         
-        // 5. Article title links - match template: style="width: 100% !important; max-width: none !important; display: block !important;"
+        // 5. Article title links - match template: class="block-full-important"
         const titleLinks = document.querySelectorAll('.article-list-title a');
         titleLinks.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.setProperty('display', 'block', 'important');
         });
         
-        // 6. Article excerpts - match template: style="width: 100% !important; max-width: none !important;"
+        // 6. Article excerpts - match template: class="full-width-important"
         const excerpts = document.querySelectorAll('.article-list-excerpt');
         excerpts.forEach(el => {
             el.style.setProperty('width', '100%', 'important');

@@ -6,16 +6,15 @@ Can run without Django test framework conflicts
 
 import os
 import sys
+import unittest
 import django
-from pathlib import Path
 
 # Setup Django environment
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ethicic.settings')
 django.setup()
 
 # Now import and run our CSS tests
-from tests.test_css_conflicts import CSSConflictTests, CSSPerformanceTests
-import unittest
+from tests.test_css_conflicts import CSSConflictTests, CSSPerformanceTests  # noqa: E402
 
 def run_css_tests():
     """Run CSS conflict prevention tests."""

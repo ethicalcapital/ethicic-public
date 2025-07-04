@@ -1,0 +1,200 @@
+/**
+ * Utility Layout Classes
+ * 
+ * Common layout patterns to replace inline !important styles
+ * These utilities work WITH the Garden UI system, not against it
+ */
+
+@layer utilities {
+  /* ===== FULL WIDTH UTILITIES ===== */
+  /* Standard full width - use this first */
+  .full-width {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* Only use when absolutely necessary */
+  .full-width-important {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* Full viewport width (breaks out of containers) */
+  .full-viewport {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  /* ===== CONTAINER OVERRIDES ===== */
+  /* Override Garden UI container constraints */
+  .garden-container.no-max-width {
+    max-width: none;
+  }
+
+  .garden-panel.full-width {
+    max-width: none;
+    width: 100%;
+  }
+
+  /* ===== FLEX UTILITIES ===== */
+  .flex-full {
+    display: flex;
+    width: 100%;
+  }
+
+  .flex-full-important {
+    display: flex !important;
+    width: 100% !important;
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ===== GRID UTILITIES ===== */
+  .grid-full {
+    display: grid;
+    width: 100%;
+  }
+
+  .grid-full-important {
+    display: grid !important;
+    width: 100% !important;
+  }
+
+  /* ===== DISPLAY UTILITIES ===== */
+  .block-full {
+    display: block;
+    width: 100%;
+  }
+
+  .block-full-important {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* ===== MIN WIDTH UTILITIES ===== */
+  .min-w-0 {
+    min-width: 0;
+  }
+
+  .min-w-full {
+    min-width: 100%;
+  }
+
+  /* ===== FLEX CHILD UTILITIES ===== */
+  .flex-1 {
+    flex: 1;
+  }
+
+  .flex-1-important {
+    flex: 1 !important;
+  }
+
+  .flex-grow {
+    flex-grow: 1;
+  }
+
+  .flex-shrink-0 {
+    flex-shrink: 0;
+  }
+
+  /* ===== GAP UTILITIES ===== */
+  .gap-4 {
+    gap: var(--space-4);
+  }
+
+  .gap-6 {
+    gap: var(--space-6);
+  }
+
+  .gap-6-important {
+    gap: var(--space-6) !important;
+  }
+
+  /* ===== SPECIFIC PAGE PATTERNS ===== */
+  /* Article list patterns */
+  .article-list-full {
+    width: 100%;
+    max-width: none;
+  }
+
+  .article-content-flex {
+    display: flex;
+    gap: var(--space-6);
+    width: 100%;
+  }
+
+  .article-text-full {
+    flex: 1;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  /* Media page patterns */
+  .media-item-full {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* Article image patterns */
+  .article-image-fixed {
+    width: 200px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* FAQ patterns */
+  .faq-section-full {
+    width: 100%;
+    max-width: none;
+  }
+
+  .faq-item-full {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* ===== RESPONSIVE UTILITIES ===== */
+  @media (max-width: 768px) {
+    .mobile-full-width {
+      width: 100%;
+      max-width: none;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .desktop-constrained {
+      max-width: var(--container-xl);
+      margin: 0 auto;
+    }
+  }
+}
+
+/* ===== MIGRATION HELPERS ===== */
+/* Temporary classes for gradual migration */
+.todo-remove-inline {
+  /* This class indicates elements that still need inline styles removed */
+  outline: 2px dashed orange;
+  outline-offset: 2px;
+}
+
+/* Debug mode - uncomment to see all elements with inline styles */
+/*
+[style*="!important"] {
+  outline: 3px solid red !important;
+  outline-offset: 3px !important;
+}
+*/

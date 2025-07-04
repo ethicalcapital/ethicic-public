@@ -135,29 +135,35 @@ class NewsletterSubscriptionFlowTest(BasePublicSiteTestCase, FormTestMixin):
         self.assertEqual(ticket.subject, 'Newsletter Signup')
         self.assertEqual(ticket.status, 'resolved')  # Auto-resolved
     
-    @patch('public_site.views.Contact')
-    def test_newsletter_with_existing_contact(self, mock_contact_model):
-        """Test newsletter signup updates existing CRM contact."""
-        # Mock existing contact
-        existing_contact = Mock()
-        existing_contact.opt_in_marketing = False
-        existing_contact.notes = 'Existing notes'
+    def test_newsletter_with_existing_contact(self):
+        """Test newsletter signup falls back to SupportTicket in standalone deployment."""
+        # Since CRM models aren't available in standalone deployment,
+        # the view should fall back to creating a SupportTicket
         
-        # Mock preferences as a Mock object instead of a regular dict
-        existing_contact.preferences = Mock()
-        existing_contact.preferences.get = Mock(return_value=False)
+        newsletter_data = self.create_test_newsletter_data(
+            email='existing@example.com'
+        )
         
-        mock_contact_model.objects.get_or_create.return_value = (existing_contact, False)
+        # Create an existing ticket to simulate "existing contact"
+        existing_ticket = SupportTicket.objects.create(
+            name="Previous Subscriber",
+            email='existing@example.com',
+            subject="Previous Signup",
+            message="Previous newsletter signup",
+            ticket_type="newsletter",
+            status="resolved"
+        )
         
-        newsletter_data = self.create_test_newsletter_data()
+        response = self.submit_form('/newsletter/signup/', newsletter_data)
         
-        with patch('public_site.views.CRM_AVAILABLE', True):
-            response = self.submit_form('/newsletter/subscribe/', newsletter_data)
+        # Should create a new ticket (since we can't update in SupportTicket model)
+        tickets = SupportTicket.objects.filter(email='existing@example.com')
+        self.assertEqual(tickets.count(), 2)  # Original + new
         
-        # Verify contact was updated (the view sets this to True)
-        self.assertTrue(existing_contact.opt_in_marketing)
-        # Verify save was called
-        existing_contact.save.assert_called_once()
+        # Check the new ticket
+        new_ticket = tickets.exclude(id=existing_ticket.id).first()
+        self.assertEqual(new_ticket.subject, 'Newsletter Signup')
+        self.assertEqual(new_ticket.status, 'resolved')
 
 
 @override_settings(TESTING=True)
@@ -397,7 +403,7 @@ class MediaBrowsingFlowTest(WagtailPublicSiteTestCase, APITestMixin):
     def test_media_infinite_scroll_flow(self):
         """Test media page infinite scroll flow."""
         # Step 1: Initial page load
-        page1_response = self.client.get('/api/media/items/', {
+        page1_response = self.client.get('/api/media-items/', {
             'page': '1',
             'per_page': '3'
         })
@@ -410,7 +416,7 @@ class MediaBrowsingFlowTest(WagtailPublicSiteTestCase, APITestMixin):
         self.assertTrue(page1_data['items'][0]['featured'])
         
         # Step 2: Load more items
-        page2_response = self.client.get('/api/media/items/', {
+        page2_response = self.client.get('/api/media-items/', {
             'page': '2',
             'per_page': '3'
         })

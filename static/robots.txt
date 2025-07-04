@@ -1,0 +1,67 @@
+# Robots.txt for Ethical Capital
+# https://ethicic.com
+# Last Updated: 2025-07-04
+
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin and CMS areas
+Disallow: /admin/
+Disallow: /cms/
+Disallow: /documents/
+
+# Disallow API endpoints
+Disallow: /api/
+Disallow: /contact/submit/
+Disallow: /newsletter/signup/
+Disallow: /onboarding/submit/
+
+# Disallow search results pages
+Disallow: /search/
+
+# Allow important meta files
+Allow: /robots.txt
+Allow: /sitemap.xml
+Allow: /carbon.txt
+Allow: /llms.txt
+
+# Sitemap location
+Sitemap: https://ethicic.com/sitemap.xml
+
+# Crawl delay (in seconds) - be respectful to server resources
+Crawl-delay: 1
+
+# Specific bot instructions
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# OpenAI GPT Crawler
+User-agent: GPTBot
+Allow: /
+
+# Claude/Anthropic
+User-agent: Claude-Web
+Allow: /
+
+# Block bad bots
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Notes:
+# - We welcome responsible crawlers that respect robots.txt
+# - Our carbon.txt and llms.txt files provide additional transparency
+# - Contact hello@ethicic.com for any questions about crawling policies

@@ -261,13 +261,13 @@
             <div class="cta-actions">
                 <!-- Primary CTA - Schedule Consultation -->
                 <button onclick="window.open('https://tidycal.com/ecic/institutional', '_blank')" 
-                        style="display: inline-block !important; padding: 20px 40px !important; background: #553C9A !important; color: #ffffff !important; border: 3px solid #553C9A !important; border-radius: 8px !important; font-family: Inter, sans-serif !important; font-size: 16px !important; font-weight: 800 !important; text-transform: uppercase !important; letter-spacing: 1.2px !important; cursor: pointer !important; margin: 10px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important; transition: all 0.3s ease !important;">
+                        class="garden-action institutional-cta-primary">
                     SCHEDULE INSTITUTIONAL CONSULTATION
                 </button>
                 
                 <!-- Secondary CTA - Send Message -->
                 <button onclick="window.location.href='/contact/'" 
-                        style="display: inline-block !important; padding: 20px 40px !important; background: transparent !important; color: #553C9A !important; border: 3px solid #553C9A !important; border-radius: 8px !important; font-family: Inter, sans-serif !important; font-size: 16px !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 1.2px !important; cursor: pointer !important; margin: 10px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important; transition: all 0.3s ease !important;">
+                        class="garden-action institutional-cta-secondary">
                     SEND A MESSAGE
                 </button>
             </div>
@@ -280,19 +280,54 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/layers/27-institutional-page.css' %}?v=1">
 <style>
-/* Force button text colors */
-.cta-actions button {
-    color: inherit !important;
-}
-
-.cta-actions button:nth-child(1) {
-    color: #ffffff !important;
+/* Institutional page button styles */
+.institutional-page .institutional-cta-primary {
+    display: inline-block !important;
+    padding: 20px 40px !important;
     background: #553C9A !important;
+    color: #ffffff !important;
+    border: 3px solid #553C9A !important;
+    border-radius: 8px !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    cursor: pointer !important;
+    margin: 10px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+    transition: all 0.3s ease !important;
 }
 
-.cta-actions button:nth-child(2) {
-    color: #553C9A !important;
+.institutional-page .institutional-cta-secondary {
+    display: inline-block !important;
+    padding: 20px 40px !important;
     background: transparent !important;
+    color: #553C9A !important;
+    border: 3px solid #553C9A !important;
+    border-radius: 8px !important;
+    font-family: Inter, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    cursor: pointer !important;
+    margin: 10px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+.institutional-page .institutional-cta-primary:hover {
+    background-color: #6b4ba0 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
+}
+
+.institutional-page .institutional-cta-secondary:hover {
+    background-color: #553C9A !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
 }
 </style>
 {% endblock %}

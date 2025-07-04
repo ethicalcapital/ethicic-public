@@ -49,7 +49,7 @@ class HomePageTest(WagtailPublicSiteTestCase):
         """Test creating a home page."""
         if not self.home_page:
             self.skipTest("No home page available - Wagtail pages not set up")
-        self.assertEqual(self.home_page.title, "Ethical Capital")
+        self.assertEqual(self.home_page.title, "Home")  # From WagtailTestCase setup
         self.assertEqual(self.home_page.slug, "home")
         self.assertEqual(self.home_page.hero_title, "Test Home Page")
     
@@ -350,7 +350,7 @@ class MediaPageTest(WagtailPublicSiteTestCase):
         media_page = self.create_test_media_page()
         
         self.assertEqual(media_page.title, "Media")
-        self.assertEqual(media_page.media_items.count(), 3)
+        self.assertEqual(media_page.media_items.count(), 5)
     
     def test_media_item_ordering(self):
         """Test media items are ordered correctly."""
@@ -463,6 +463,9 @@ class PRIDDQPageTest(WagtailPublicSiteTestCase):
         ddq_page = PRIDDQPage(
             title="PRI DDQ",
             slug="pri-ddq",
+            hero_title="PRI Due Diligence Questionnaire",
+            hero_subtitle="Our comprehensive ESG approach",
+            screening_policy_url="https://example.com/screening-policy",
             executive_summary="<p>Test summary</p>"
         )
         if not self.home_page:
@@ -476,7 +479,10 @@ class PRIDDQPageTest(WagtailPublicSiteTestCase):
         """Test PRIDDQPage auto-updates updated_at field."""
         ddq_page = PRIDDQPage(
             title="PRI DDQ",
-            slug="pri-ddq"
+            slug="pri-ddq",
+            hero_title="PRI Due Diligence Questionnaire",
+            hero_subtitle="Our comprehensive ESG approach",
+            screening_policy_url="https://example.com/screening-policy"
         )
         if not self.home_page:
             self.skipTest("No home page available - Wagtail pages not set up")
@@ -494,7 +500,10 @@ class PRIDDQPageTest(WagtailPublicSiteTestCase):
         """Test extracting DDQ questions for FAQ."""
         ddq_page = PRIDDQPage(
             title="PRI DDQ",
-            slug="pri-ddq"
+            slug="pri-ddq",
+            hero_title="PRI Due Diligence Questionnaire",
+            hero_subtitle="Our comprehensive ESG approach",
+            screening_policy_url="https://example.com/screening-policy"
         )
         if not self.home_page:
             self.skipTest("No home page available - Wagtail pages not set up")
