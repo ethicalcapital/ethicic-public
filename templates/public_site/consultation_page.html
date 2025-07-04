@@ -1,133 +1,105 @@
 {% extends "public_site/base.html" %}
-{% load static %}
 
 {% block title %}{{ page.hero_title }} | Ethical Capital{% endblock %}
-
-{% block meta_description %}{{ page.search_description }}{% endblock %}
 
 {% block body_class %}consultation-page{% endblock %}
 
 {% block content %}
 <div class="garden-container">
+<main class="consultation-page">
     <!-- Hero Section -->
-    <section class="garden-panel garden-panel--hero hero-panel" role="banner" aria-labelledby="hero-heading">
-        <div class="garden-panel__content garden-panel-content">
-            <h1 id="hero-heading" class="hero-title">{{ page.hero_title }}</h1>
-            {% if page.hero_subtitle %}
-                <div class="hero-subtitle">{{ page.hero_subtitle }}</div>
-            {% endif %}
+    <section class="hero garden-panel" role="banner">
+        <div class="panel-content hero-content">
+            <h1 class="hero-title">{{ page.hero_title }}</h1>
+            <p class="hero-subtitle">{{ page.hero_subtitle }}</p>
         </div>
     </section>
 
-    {% if page.introduction %}
-    <!-- Introduction Section -->
-    <section class="garden-panel" role="main">
-        <div class="garden-panel__content garden-panel-content">
-            {{ page.introduction|safe }}
-        </div>
-    </section>
-    {% endif %}
+    <!-- Main Content -->
+    <div class="main-content">
+        {% if page.introduction %}
+        <section class="introduction garden-panel">
+            <div class="panel-content">
+                {{ page.introduction|safe }}
+            </div>
+        </section>
+        {% endif %}
 
-    <!-- Consultation Options -->
-    <section class="garden-panel" role="complementary" aria-labelledby="consultation-heading">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">SCHEDULE YOUR CONSULTATION</div>
-        </div>
-        <div class="garden-panel__content garden-panel-content">
-            <p class="intro-text">Choose the conversation type that best fits your situation. All consultations are complimentary and without obligation. Note: We can't promise prompt email responses, but we're great at keeping scheduled appointments!</p>
-            
-            <div class="consultation-grid">
-                <div class="consultation-card" role="article" aria-labelledby="retail-heading">
-                    <div class="card-header">
-                        <span class="card-icon" aria-hidden="true">🏠</span>
-                        <h3 id="retail-heading" class="card-title">Retail Investors</h3>
-                    </div>
-                    <div class="card-content">
+        <!-- Contact Information -->
+        <section class="contact-section garden-panel">
+            <div class="panel-header">Schedule Your Consultation</div>
+            <div class="panel-content">
+                <div class="intro-text">
+                    <p>Choose the conversation type that best fits your situation. All consultations are complimentary and without obligation. Note: We can't promise prompt email responses, but we're great at keeping scheduled appointments!</p>
+                </div>
+                
+                <div class="consultation-options">
+                    <div class="consultation-type">
+                        <h3>🏠 Retail Investors</h3>
                         <p>Individual investors looking to align their personal portfolios with their values</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://tidycal.com/ecic/discovery" target="_blank" rel="noopener noreferrer" class="garden-action primary" aria-label="Schedule Discovery Call for Retail Investors">
-                            SCHEDULE DISCOVERY CALL
+                        <a href="https://tidycal.com/ecic/discovery" target="_blank" rel="noopener noreferrer" class="garden-action primary">
+                            Schedule Discovery Call
                         </a>
                     </div>
-                </div>
-                
-                <div class="consultation-card" role="article" aria-labelledby="adviser-heading">
-                    <div class="card-header">
-                        <span class="card-icon" aria-hidden="true">💼</span>
-                        <h3 id="adviser-heading" class="card-title">RIA & Advisers</h3>
-                    </div>
-                    <div class="card-content">
+                    
+                    <div class="consultation-type">
+                        <h3>💼 RIA & Advisers</h3>
                         <p>Financial advisers interested in our investment strategies for their clients</p>
+                        <a href="https://tidycal.com/ecic/adviser" target="_blank" rel="noopener noreferrer" class="garden-action primary">
+                            Schedule Adviser Meeting
+                        </a>
                     </div>
-                    <div class="card-footer">
-                        <a href="https://tidycal.com/ecic/adviser" target="_blank" rel="noopener noreferrer" class="garden-action primary" aria-label="Schedule Adviser Meeting">
-                            SCHEDULE ADVISER MEETING
+                    
+                    <div class="consultation-type">
+                        <h3>🏢 Institutional</h3>
+                        <p>Institutional investors, foundations, and large-scale investment opportunities</p>
+                        <a href="https://tidycal.com/ecic/institutional" target="_blank" rel="noopener noreferrer" class="garden-action primary">
+                            Schedule Institutional Call
                         </a>
                     </div>
                 </div>
                 
-                <div class="consultation-card" role="article" aria-labelledby="institutional-heading">
-                    <div class="card-header">
-                        <span class="card-icon" aria-hidden="true">🏢</span>
-                        <h3 id="institutional-heading" class="card-title">Institutional</h3>
-                    </div>
-                    <div class="card-content">
-                        <p>Institutional investors, foundations, and large-scale investment opportunities</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://tidycal.com/ecic/institutional" target="_blank" rel="noopener noreferrer" class="garden-action primary" aria-label="Schedule Institutional Call">
-                            SCHEDULE INSTITUTIONAL CALL
-                        </a>
-                    </div>
+                <div class="alternative-contact">
+                    <p>Prefer to start with an email? <a href="/contact/" class="garden-link">Use our contact form</a> and we'll get back to you when we can.</p>
                 </div>
             </div>
-            
-            <div class="alternative-contact">
-                <p>Prefer to start with an email? <a href="/contact/" class="garden-link">Use our contact form</a> and we'll get back to you when we can.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- What to Expect -->
-    <section class="garden-panel" aria-labelledby="expectations-heading">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">WHAT TO EXPECT</div>
-        </div>
-        <div class="garden-panel__content garden-panel-content">
-            <div class="expectations-grid">
-                <div class="expectation-item">
-                    <h4>Initial Conversation</h4>
-                    <p>We'll discuss your values, investment goals, and current portfolio situation.</p>
-                </div>
-                <div class="expectation-item">
-                    <h4>Ethical Alignment Review</h4>
-                    <p>We'll review how our screening criteria align with your personal values.</p>
-                </div>
-                <div class="expectation-item">
-                    <h4>Strategy Discussion</h4>
-                    <p>We'll explore which of our strategies might be the best fit for your needs.</p>
-                </div>
-                <div class="expectation-item">
-                    <h4>Next Steps</h4>
-                    <p>If we're a good fit, we'll outline the onboarding process and timeline.</p>
+        <!-- What to Expect -->
+        <section class="expectations garden-panel">
+            <div class="panel-header">What to Expect</div>
+            <div class="panel-content">
+                <div class="expectation-grid">
+                    <div class="expectation-item">
+                        <h4>Initial Conversation</h4>
+                        <p>We'll discuss your values, investment goals, and current portfolio situation.</p>
+                    </div>
+                    <div class="expectation-item">
+                        <h4>Ethical Alignment Review</h4>
+                        <p>We'll review how our screening criteria align with your personal values.</p>
+                    </div>
+                    <div class="expectation-item">
+                        <h4>Strategy Discussion</h4>
+                        <p>We'll explore which of our strategies might be the best fit for your needs.</p>
+                    </div>
+                    <div class="expectation-item">
+                        <h4>Next Steps</h4>
+                        <p>If we're a good fit, we'll outline the onboarding process and timeline.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- No Obligation Note -->
-    <section class="garden-panel disclaimer-panel">
-        <div class="garden-panel__content garden-panel-content">
-            <p class="disclaimer">
-                <strong>No obligation consultation.</strong> We believe in finding the right fit for both parties. 
-                There's no pressure to move forward, and we're happy to answer questions even if we're not the right match.
-            </p>
-        </div>
-    </section>
+        <!-- No Obligation Note -->
+        <section class="no-obligation garden-panel">
+            <div class="panel-content">
+                <p class="disclaimer">
+                    <strong>No obligation consultation.</strong> We believe in finding the right fit for both parties. 
+                    There's no pressure to move forward, and we're happy to answer questions even if we're not the right match.
+                </p>
+            </div>
+        </section>
+    </div>
+</main>
 </div>
-{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/layers/30-consultation-page.css' %}">
 {% endblock %}
