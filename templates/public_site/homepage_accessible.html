@@ -351,10 +351,14 @@
             years--;
         }
         
+        // Check if we're in October (month 9 in JavaScript)
+        const isOctober = currentDate.getMonth() === 9;
+        
         // Update the counter
         const counter = document.getElementById('years-counter');
         if (counter) {
-            counter.textContent = years + '+';
+            // Show exact years in October, otherwise show with +
+            counter.textContent = isOctober ? years.toString() : years + '+';
             
             // Add a subtle animation
             counter.style.opacity = '0';
