@@ -9,7 +9,7 @@ css-check:
 
 css-test:
 	@echo "🧪 Running CSS conflict tests..."
-	@python -m pytest tests/test_css_conflicts.py -v
+	@python run_css_tests.py
 
 css-baseline:
 	@echo "📸 Creating CSS baseline..."

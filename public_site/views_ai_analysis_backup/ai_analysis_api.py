@@ -31,7 +31,8 @@ class AIContentAnalysisView(View):
         self.blog_analysis_service = BlogAnalysisService()
     
     @method_decorator(staff_member_required)
-    @method_decorator(csrf_exempt)
+    # SECURITY FIX: Removed csrf_exempt to prevent CSRF attacks
+    # Staff-only endpoints should still have CSRF protection
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
@@ -285,7 +286,7 @@ class AIContentAnalysisView(View):
 
 @staff_member_required
 @require_http_methods(["POST"])
-@csrf_exempt
+# SECURITY FIX: Removed csrf_exempt - staff endpoints need CSRF protection
 def quick_statistic_analysis(request):
     """Quick endpoint for analyzing individual statistics."""
     try:
@@ -332,7 +333,7 @@ def quick_statistic_analysis(request):
 
 @staff_member_required
 @require_http_methods(["POST"])
-@csrf_exempt
+# SECURITY FIX: Removed csrf_exempt - staff endpoints need CSRF protection
 def generate_chart_preview(request):
     """Generate a chart preview based on statistics."""
     try:

@@ -479,6 +479,12 @@
   --garden-link-hover: var(--theme-primary-hover);
   --garden-primary-hover: var(--theme-primary-hover);
   --garden-surface-hover: var(--theme-hover);
+  
+  /* Additional missing variables found by tests */
+  --garden-border-light: var(--theme-border);
+  --text-base: var(--font-base);
+  --text-2xl: var(--font-2xl);
+  --text-xs: var(--font-xs);
 }
 }
 

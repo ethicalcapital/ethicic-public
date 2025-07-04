@@ -1,10 +1,9 @@
 {
-  "timestamp": "2025-07-04T03:25:48.164580",
+  "timestamp": "2025-07-04T04:02:57.293241",
   "total_files": 44,
   "total_defined_vars": 302,
   "files_with_issues": [
     "process-page-working.css",
-    "garden-ui-theme.css",
     "process-page.css",
     "garden-data-table.css",
     "core-styles.css",
