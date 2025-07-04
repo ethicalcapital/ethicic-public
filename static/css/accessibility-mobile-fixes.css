@@ -237,12 +237,9 @@ label[for] {
 
 /* ===== ZOOM SUPPORT ===== */
 
-/* Ensure 200% zoom support without horizontal scrolling */
-@media (min-width: 1280px) {
-    /* At 200% zoom, 1280px becomes effectively 640px */
-    .garden-container {
-        max-width: 600px !important;
-    }
+/* Ensure content doesn't overflow viewport at any zoom level */
+.garden-container {
+    max-width: min(var(--content-width-normal, 1200px), calc(100vw - 2rem)) !important;
 }
 
 /* ===== HIGH CONTRAST MODE TOUCH TARGETS ===== */
