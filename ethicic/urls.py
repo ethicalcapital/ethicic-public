@@ -35,6 +35,27 @@ def favicon_view(request):
     from django.http import HttpResponse
     return HttpResponse(status=204)  # No content
 
+def carbon_txt_view(request):
+    """Serve carbon.txt file for sustainability transparency"""
+    import os
+    from django.conf import settings
+    from django.http import HttpResponse, Http404
+    
+    carbon_txt_path = os.path.join(settings.BASE_DIR, 'static', 'carbon.txt')
+    
+    if os.path.exists(carbon_txt_path):
+        try:
+            with open(carbon_txt_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            response = HttpResponse(content, content_type='text/plain')
+            response['Cache-Control'] = 'max-age=86400'  # 24 hour cache
+            return response
+        except Exception as e:
+            raise Http404(f"Error reading carbon.txt: {e}")
+    else:
+        raise Http404("carbon.txt file not found")
+
 def debug_homepage(request):
     """Debug homepage bypass for testing"""
     try:
@@ -276,6 +297,9 @@ urlpatterns = [
     path('debug-file/<path:filepath>', debug_static_file, name='debug_static_file'),
     path('emergency-css/<str:filename>', serve_css, name='serve_css'),
     path('favicon.ico', favicon_view, name='favicon'),
+    
+    # Sustainability transparency
+    path('carbon.txt', carbon_txt_view, name='carbon_txt'),
     
     # Admin
     path('admin/', admin.site.urls),

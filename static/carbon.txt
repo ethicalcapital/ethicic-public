@@ -1,0 +1,47 @@
+# Carbon.txt file for Ethical Capital
+# https://www.thegreenwebfoundation.org/tools/carbon-txt/
+
+[upstream]
+# Hetzner Cloud - renewably powered hosting
+provider = "Hetzner Online GmbH"
+domain = "hetzner.com" 
+service = "Hetzner Cloud"
+
+# Kinsta - managed WordPress hosting with renewable energy commitment
+provider = "Kinsta"
+domain = "kinsta.com"
+service = "Application Hosting"
+
+# Cloudflare - carbon neutral network services
+provider = "Cloudflare, Inc."
+domain = "cloudflare.com"
+service = "CDN and Security Services"
+
+[org]
+credentials = ["ethical-capital", "ethicic"]
+website = "https://ethicic.com"
+
+[green]
+hosted_by = "hetzner"
+hosted_by_website = "https://www.hetzner.com/environment/"
+partners = ["cloudflare"]
+
+# Sustainability commitments
+# Hetzner uses 100% renewable energy for their data centers
+# Cloudflare has committed to carbon neutrality
+# We prioritize sustainable hosting providers aligned with our values
+
+[disclosure]
+# Full sustainability disclosures and ESG commitments
+url = "https://ethicic.com/disclosures/"
+
+# PRI DDQ responses and detailed sustainability questionnaire
+pri_ddq = "https://ethicic.com/faq/"
+
+# Additional sustainability reporting
+reporting = "https://ethicic.com/blog/"
+
+[update]
+# This file was last updated: 2025-07-04
+last_modified = "2025-07-04"
+version = "1.0"
