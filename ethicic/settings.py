@@ -315,6 +315,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 WAGTAIL_SITE_NAME = 'Ethical Capital'
 WAGTAILADMIN_BASE_URL = os.getenv('WAGTAILADMIN_BASE_URL', 'https://ethicic.com')
 
+# Disable avatar uploads to prevent 404 errors with missing media files
+# Users can still have avatars but uploads are disabled since media isn't persistent on Kinsta
+WAGTAIL_USER_EDIT_FORM = 'public_site.forms.CustomUserEditForm'
+
 # Email configuration
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
 EMAIL_HOST = os.getenv('EMAIL_HOST', '')

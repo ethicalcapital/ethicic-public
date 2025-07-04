@@ -11,6 +11,7 @@ from django import forms
 from django.conf import settings
 from django.core.cache import cache
 from django.utils import timezone
+from wagtail.users.forms import UserEditForm
 
 
 class AccessibleContactForm(forms.Form):
@@ -957,3 +958,26 @@ class OnboardingForm(forms.Form):
 
         return cleaned_data
 
+
+class CustomUserEditForm(UserEditForm):
+    """
+    Custom user edit form that excludes avatar uploads.
+    
+    This prevents 404 errors caused by uploaded avatars that don't persist
+    in the media storage on Kinsta hosting. Users can still have avatars
+    by using external URLs if needed, but uploads are disabled.
+    """
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Remove avatar field if it exists in the form
+        if 'avatar' in self.fields:
+            del self.fields['avatar']
+            
+        # Add a helpful note about avatars
+        if hasattr(self, 'helper'):
+            self.helper.form_text = (
+                "Avatar uploads are disabled to prevent issues with media storage. "
+                "Contact an administrator if you need to set a profile image."
+            )
