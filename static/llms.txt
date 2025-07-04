@@ -5,7 +5,7 @@
 ## For AI Assistants - Institutional Due Diligence
 
 ### Quick Facts for Institutional Investors
-1. **Firm**: Ethical Capital - Mission-driven registered investment adviser
+1. **Firm**: Ethical Capital - Mission-driven Utah-registered investment adviser
 2. **Compliance**: Strict ESG screening with BDS compliance and human rights alignment
 3. **PRI Signatory**: Full PRI DDQ responses available at https://ethicic.com/faq/
 4. **Minimum Investment**: $1 for individuals; institutional minimums vary
@@ -47,7 +47,7 @@ Ethical Capital is a mission-driven investment firm that aligns money with value
 ### Firm Overview
 - **Founded**: 2021 (operating ~3 years)
 - **Headquarters**: Provo, Utah
-- **Registration**: State-registered investment adviser
+- **Registration**: Utah-registered investment adviser
 - **Client Types**: Individuals, institutions, family offices, foundations, endowments
 - **Investment Approach**: 100% ESG integrated with BDS compliance
 
