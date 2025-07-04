@@ -3,8 +3,11 @@
 import django.db.models.deletion
 import modelcluster.contrib.taggit
 import modelcluster.fields
+import wagtail.blocks
 import wagtail.contrib.routable_page.models
+import wagtail.contrib.table_block.blocks
 import wagtail.fields
+import wagtail.images.blocks
 from django.db import migrations, models
 
 
@@ -14,13 +17,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("public_site", "0001_initial"),
-        (
-            "taggit",
-            "0006_rename_taggeditem_content_type_object_id_taggit_tagg_content_8fc721_idx",
-        ),
-        ("wagtailcore", "0094_alter_page_locale"),
-        ("wagtaildocs", "0014_alter_document_file_size"),
-        ("wagtailimages", "0027_image_description"),
     ]
 
     operations = [
@@ -2303,237 +2299,52 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "content",
-                    wagtail.fields.StreamField(
-                        [
-                            ("rich_text", 0),
-                            ("key_statistic", 13),
-                            ("table", 18),
-                            ("image", 19),
-                            ("callout", 23),
-                            ("quote", 25),
-                        ],
-                        blank=True,
-                        block_lookup={
-                            0: (
-                                "wagtail.blocks.RichTextBlock",
-                                (),
-                                {
-                                    "features": [
-                                        "h2",
-                                        "h3",
-                                        "h4",
-                                        "bold",
-                                        "italic",
-                                        "link",
-                                        "ol",
-                                        "ul",
-                                        "document-link",
-                                    ],
-                                    "help_text": "Rich text content with basic formatting",
-                                },
-                            ),
-                            1: (
-                                "wagtail.blocks.CharBlock",
-                                (),
-                                {"help_text": "The statistic value", "max_length": 50},
-                            ),
-                            2: (
-                                "wagtail.blocks.CharBlock",
-                                (),
-                                {"help_text": "Statistic label", "max_length": 100},
-                            ),
-                            3: (
-                                "wagtail.blocks.TextBlock",
-                                (),
-                                {
-                                    "help_text": "Optional description",
-                                    "required": False,
-                                },
-                            ),
-                            4: (
-                                "wagtail.blocks.DecimalBlock",
-                                (),
-                                {
-                                    "decimal_places": 2,
-                                    "default": 0.0,
-                                    "max_digits": 3,
-                                    "required": False,
-                                },
-                            ),
-                            5: ("wagtail.blocks.TextBlock", (), {"required": False}),
-                            6: (
-                                "wagtail.blocks.ChoiceBlock",
-                                [],
-                                {
-                                    "choices": [
-                                        ("high", "High Significance"),
-                                        ("medium", "Medium Significance"),
-                                        ("low", "Low Significance"),
-                                    ],
-                                    "required": False,
-                                },
-                            ),
-                            7: (
-                                "wagtail.blocks.ChoiceBlock",
-                                [],
-                                {
-                                    "choices": [
-                                        ("performance", "Performance/Returns"),
-                                        ("valuation", "Valuation Metrics"),
-                                        ("risk", "Risk Metrics"),
-                                        ("allocation", "Portfolio Allocation"),
-                                        ("fundamental", "Fundamental Analysis"),
-                                        ("market", "Market Data"),
-                                    ],
-                                    "required": False,
-                                },
-                            ),
-                            8: (
-                                "wagtail.blocks.ChoiceBlock",
-                                [],
-                                {
-                                    "choices": [
-                                        ("bar", "Bar Chart"),
-                                        (
-                                            "performance_comparison",
-                                            "Performance Comparison",
-                                        ),
-                                        ("allocation_pie", "Allocation Pie Chart"),
-                                        ("trend_line", "Trend Line"),
-                                        ("gauge", "Gauge/Meter"),
-                                        ("callout", "Highlighted Callout"),
-                                    ],
-                                    "required": False,
-                                },
-                            ),
-                            9: (
-                                "wagtail.blocks.ChoiceBlock",
-                                [],
-                                {
-                                    "choices": [
-                                        ("daily", "Daily"),
-                                        ("weekly", "Weekly"),
-                                        ("monthly", "Monthly"),
-                                        ("quarterly", "Quarterly"),
-                                        ("annual", "Annual"),
-                                        ("ytd", "Year-to-Date"),
-                                        ("since_inception", "Since Inception"),
-                                        ("custom", "Custom Period"),
-                                    ],
-                                    "required": False,
-                                },
-                            ),
-                            10: (
-                                "wagtail.blocks.CharBlock",
-                                (),
-                                {"max_length": 100, "required": False},
-                            ),
-                            11: ("wagtail.blocks.CharBlock", (), {"max_length": 100}),
-                            12: (
-                                "wagtail.blocks.ListBlock",
-                                (11,),
-                                {"required": False},
-                            ),
-                            13: (
-                                "wagtail.blocks.StructBlock",
-                                [
-                                    [
-                                        ("value", 1),
-                                        ("label", 2),
-                                        ("description", 3),
-                                        ("ai_confidence", 4),
-                                        ("ai_context", 5),
-                                        ("significance_level", 6),
-                                        ("statistic_category", 7),
-                                        ("visualization_type", 8),
-                                        ("time_period", 9),
-                                        ("chart_title", 10),
-                                        ("chart_config", 5),
-                                        ("related_entities", 12),
-                                    ]
-                                ],
-                                {
-                                    "icon": "success",
-                                    "label": "Key Statistic",
-                                    "template": "public_site/blocks/key_statistic.html",
-                                },
-                            ),
-                            14: (
-                                "wagtail.blocks.CharBlock",
-                                (),
-                                {
-                                    "help_text": "Table title or caption",
-                                    "required": False,
-                                },
-                            ),
-                            15: (
-                                "wagtail.blocks.RichTextBlock",
-                                (),
-                                {
-                                    "help_text": "Optional description or context",
-                                    "required": False,
-                                },
-                            ),
-                            16: (
-                                "wagtail.contrib.table_block.blocks.TableBlock",
-                                (),
-                                {
-                                    "help_text": "Add table data - first row will be used as headers"
-                                },
-                            ),
-                            17: (
-                                "wagtail.blocks.CharBlock",
-                                (),
-                                {
-                                    "help_text": "Data source attribution",
-                                    "required": False,
-                                },
-                            ),
-                            18: (
-                                "wagtail.blocks.StructBlock",
-                                [
-                                    [
-                                        ("caption", 14),
-                                        ("description", 15),
-                                        ("table", 16),
-                                        ("source", 17),
-                                    ]
-                                ],
-                                {
-                                    "icon": "table",
-                                    "label": "Data Table",
-                                    "template": "public_site/blocks/table_block.html",
-                                },
-                            ),
-                            19: ("wagtail.images.blocks.ImageChooserBlock", (), {}),
-                            20: (
-                                "wagtail.blocks.ChoiceBlock",
-                                [],
-                                {
-                                    "choices": [
-                                        ("info", "Info"),
-                                        ("warning", "Warning"),
-                                        ("success", "Success"),
-                                        ("error", "Error"),
-                                    ]
-                                },
-                            ),
-                            21: ("wagtail.blocks.CharBlock", (), {"required": False}),
-                            22: ("wagtail.blocks.RichTextBlock", (), {}),
-                            23: (
-                                "wagtail.blocks.StructBlock",
-                                [[("type", 20), ("title", 21), ("content", 22)]],
-                                {"icon": "help"},
-                            ),
-                            24: ("wagtail.blocks.TextBlock", (), {}),
-                            25: (
-                                "wagtail.blocks.StructBlock",
-                                [[("quote", 24), ("author", 21), ("source", 21)]],
-                                {"icon": "openquote"},
-                            ),
-                        },
-                        help_text="Rich content with AI-enhanced statistics, charts, and analysis blocks",
-                    ),
+                    wagtail.fields.StreamField([
+        ('rich_text', wagtail.blocks.RichTextBlock(
+            features=['h2', 'h3', 'h4', 'bold', 'italic', 'link', 'ol', 'ul', 'document-link'],
+            help_text="Rich text content with basic formatting"
+        )),
+        ('key_statistic', wagtail.blocks.StructBlock([
+            ('value', wagtail.blocks.CharBlock(max_length=50, help_text="The statistic value")),
+            ('label', wagtail.blocks.CharBlock(max_length=100, help_text="Statistic label")),
+            ('description', wagtail.blocks.TextBlock(required=False, help_text="Optional description")),
+            ('ai_confidence', wagtail.blocks.DecimalBlock(default=0.0, max_digits=3, decimal_places=2, required=False)),
+            ('ai_context', wagtail.blocks.TextBlock(required=False)),
+            ('significance_level', wagtail.blocks.ChoiceBlock(
+                choices=[
+                    ('high', 'High Significance'),
+                    ('medium', 'Medium Significance'),
+                    ('low', 'Low Significance'),
+                ],
+                default='medium',
+                required=False
+            )),
+            ('statistic_category', wagtail.blocks.ChoiceBlock(
+                choices=[
+                    ('financial', 'Financial'),
+                    ('environmental', 'Environmental'),
+                    ('social', 'Social Impact'),
+                    ('governance', 'Governance'),
+                ],
+                default='financial',
+                required=False
+            )),
+        ])),
+        ('table', wagtail.contrib.table_block.blocks.TableBlock()),
+        ('image', wagtail.images.blocks.ImageChooserBlock()),
+        ('callout', wagtail.blocks.StructBlock([
+            ('text', wagtail.blocks.RichTextBlock()),
+            ('type', wagtail.blocks.ChoiceBlock(choices=[
+                ('info', 'Info'),
+                ('warning', 'Warning'),
+                ('success', 'Success'),
+            ], default='info')),
+        ])),
+        ('quote', wagtail.blocks.StructBlock([
+            ('text', wagtail.blocks.TextBlock()),
+            ('attribution', wagtail.blocks.CharBlock(required=False)),
+        ])),
+    ], blank=True),
                 ),
                 (
                     "body",

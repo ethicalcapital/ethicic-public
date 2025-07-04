@@ -90,11 +90,11 @@
     
     <!-- SIMPLIFIED CSS LOADING STRATEGY -->
     
+    <!-- Garden UI Theme - design system variables MUST LOAD FIRST for CSS variables -->
+    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025070111">
+    
     <!-- Core styles - consolidated essential CSS -->
     <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v=2025070110">
-    
-    <!-- Garden UI Theme - design system variables (keeping for now as it has extensive theming) -->
-    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025070110">
     
     <!-- Public site specific styles -->
     <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070123">
@@ -102,9 +102,17 @@
     <!-- Button contrast fixes for light/dark mode -->
     <link rel="stylesheet" href="{% static 'css/button-contrast-fixes.css' %}?v=1">
     
+    <!-- Formatting fixes for FAQ and Blog pages -->
+    <link rel="stylesheet" href="{% static 'css/fix-formatting-issues.css' %}?v=20250703001">
+    
     <!-- About page specific styles -->
     {% if page and page.slug == 'about' %}
     <link rel="stylesheet" href="{% static 'css/layers/22-about-page.css' %}?v=1">
+    {% endif %}
+    
+    <!-- Homepage specific styles -->
+    {% if request.resolver_match.url_name == 'home' or request.path == '/' %}
+    <link rel="stylesheet" href="{% static 'css/16-homepage.css' %}?v=2025070313">
     {% endif %}
     
     
@@ -128,11 +136,14 @@
     <link rel="icon" href="{% static 'favicon-16x16.png' %}" sizes="16x16" type="image/png">
     <link rel="icon" href="{% static 'favicon-32x32.png' %}" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}" sizes="180x180">
+    <!-- Android Chrome icons commented out until files are available
     <link rel="icon" href="{% static 'android-chrome-192x192.png' %}" sizes="192x192" type="image/png">
     <link rel="icon" href="{% static 'android-chrome-512x512.png' %}" sizes="512x512" type="image/png">
+    -->
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
-    <!-- Manifest disabled temporarily due to serving issues -->
-    <!-- <link rel="manifest" href="{% static 'manifest.json' %}?v=1.0"> -->
+    <!-- Manifest temporarily disabled due to browser parsing issues
+    <link rel="manifest" href="{% static 'manifest.json' %}?v=1.1">
+    -->
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="{% block meta_description %}{{ site_config.default_meta_description|default:'Ethical Capital - Institutional-Grade Ethical Investing' }}{% endblock %}">
@@ -234,7 +245,6 @@
                      aria-label="Main navigation" 
                      id="main-navigation"
                      :class="{ 'mobile-menu-open': mobileMenuOpen }"
-                     :aria-hidden="(!mobileMenuOpen).toString()"
                      @click.outside="mobileMenuOpen = false"
                      @keydown.escape="mobileMenuOpen = false">
                     {% for nav_item in site_config.nav_items %}

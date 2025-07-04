@@ -9,79 +9,143 @@
 
 {% block content %}
 <div class="garden-container">
-<!-- Clean Article Layout -->
-<div class="blog-article">
-    <!-- Key Statistics Hero Section - Above Title -->
-    {% if page.content %}
-        {% with key_stats=page.content|select_key_statistics %}
-            {% if key_stats %}
-                <section class="article-kpis-hero">
-                    <div class="kpis-hero-container">
-                        {% for block in key_stats %}
-                            {% include_block block %}
+<!-- Modern Article Layout -->
+<div class="blog-article-wrapper">
+    <div class="blog-article">
+        <!-- Key Statistics Hero Section - Above Title -->
+        {% if page.content %}
+            {% with key_stats=page.content|select_key_statistics %}
+                {% if key_stats %}
+                    <section class="article-kpis-hero">
+                        <div class="kpis-hero-container">
+                            {% for block in key_stats %}
+                                {% include_block block %}
+                            {% endfor %}
+                        </div>
+                    </section>
+                {% endif %}
+            {% endwith %}
+        {% endif %}
+
+        <!-- Article Header -->
+        <header class="article-header">
+            <div class="article-header-content">
+                <div class="article-meta">
+                    {% if page.author %}
+                        <span class="meta-item">By {{ page.author }}</span>
+                    {% endif %}
+                    {% if page.publish_date %}
+                        <time class="meta-item" datetime="{{ page.publish_date|date:'Y-m-d' }}">{{ page.publish_date|date:"F j, Y" }}</time>
+                    {% else %}
+                        <time class="meta-item" datetime="{{ page.first_published_at|date:'Y-m-d' }}">{{ page.first_published_at|date:"F j, Y" }}</time>
+                    {% endif %}
+                    {% if page.updated_at %}
+                        <span class="meta-item meta-updated">Updated {{ page.updated_at|date:"F j, Y" }}</span>
+                    {% endif %}
+                </div>
+                
+                <h1 class="article-title">{{ page.title }}</h1>
+                
+                {% if page.excerpt %}
+                    <div class="article-excerpt">
+                        {{ page.excerpt|richtext }}
+                    </div>
+                {% endif %}
+                
+                {% if page.tags.all %}
+                    <div class="article-tags">
+                        {% for tag in page.tags.all %}
+                            <a href="{{ page.get_parent.url_path }}tag/{{ tag.slug }}/" class="article-tag">{{ tag }}</a>
                         {% endfor %}
                     </div>
-                </section>
-            {% endif %}
-        {% endwith %}
-    {% endif %}
-
-    <!-- Article Header -->
-    <header class="article-header">
-        <div class="article-header-content">
-            <div class="article-meta">
-                {% if page.author %}
-                    <span class="meta-item">By {{ page.author }}</span>
-                {% endif %}
-                {% if page.publish_date %}
-                    <time class="meta-item" datetime="{{ page.publish_date|date:'Y-m-d' }}">{{ page.publish_date|date:"F j, Y" }}</time>
-                {% else %}
-                    <time class="meta-item" datetime="{{ page.first_published_at|date:'Y-m-d' }}">{{ page.first_published_at|date:"F j, Y" }}</time>
-                {% endif %}
-                {% if page.updated_at %}
-                    <span class="meta-item meta-updated">Updated {{ page.updated_at|date:"F j, Y" }}</span>
                 {% endif %}
             </div>
-            
-            <h1 class="article-title">{{ page.title }}</h1>
-            
-            {% if page.excerpt %}
-                <div class="article-excerpt">
-                    {{ page.excerpt|richtext }}
-                </div>
-            {% endif %}
-            
-            {% if page.tags.all %}
-                <div class="article-tags">
-                    {% for tag in page.tags.all %}
-                        <a href="{{ page.get_parent.url_path }}tag/{{ tag.slug }}/" class="article-tag">{{ tag }}</a>
+        </header>
+
+        <!-- Article Content with Responsive Images -->
+        <main class="article-content">
+            <div class="article-body">
+                {% if page.content %}
+                    {% for block in page.content %}
+                        {% if block.block_type != 'key_statistic' and block.block_type != 'ai_statistic' %}
+                            <div class="content-block content-block-{{ block.block_type }}">
+                                {% include_block block %}
+                            </div>
+                        {% endif %}
                     {% endfor %}
+                {% elif page.body %}
+                    <div class="content-block content-block-richtext">
+                        {{ page.body|richtext }}
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+
+        <!-- Newsletter CTA Section -->
+        <section class="article-newsletter-cta">
+            <div class="garden-panel">
+                <div class="garden-panel__content">
+                    <div class="newsletter-cta-content">
+                        <h3 class="newsletter-cta-title">Stay Informed on Ethical Investing</h3>
+                        <p class="newsletter-cta-description">Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.</p>
+                        <form method="post" action="/newsletter/signup/" class="article-newsletter-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="source" value="blog-article">
+                            <div class="newsletter-form-row">
+                                <input type="email" 
+                                       name="email" 
+                                       placeholder="Your email address"
+                                       class="garden-input newsletter-email"
+                                       required
+                                       aria-label="Email address for newsletter subscription">
+                                <button type="submit" class="garden-action primary">SUBSCRIBE</button>
+                            </div>
+                        </form>
+                        <p class="newsletter-privacy">
+                            <small>We respect your privacy. Unsubscribe anytime.</small>
+                        </p>
+                    </div>
                 </div>
-            {% endif %}
-        </div>
-    </header>
+            </div>
+        </section>
 
-    <!-- Article Content -->
-    <main class="article-content">
-        <div class="article-body">
-            {% if page.content %}
-                {% for block in page.content %}
-                    {% if block.block_type != 'key_statistic' and block.block_type != 'ai_statistic' %}
-                        {% include_block block %}
-                    {% endif %}
-                {% endfor %}
-            {% elif page.body %}
-                {{ page.body|richtext }}
-            {% endif %}
-        </div>
-    </main>
+        <!-- Solutions CTA Section -->
+        <section class="article-solutions-cta">
+            <div class="garden-panel">
+                <div class="garden-panel__header">
+                    <div class="panel-title">READY TO GET STARTED?</div>
+                </div>
+                <div class="garden-panel__content">
+                    <div class="solutions-cta-content">
+                        <h3 class="solutions-cta-title">Align Your Investments with Your Values</h3>
+                        <p class="solutions-cta-description">Discover how our ethical investment strategies can help you achieve your financial goals while making a positive impact.</p>
+                        <div class="solutions-cta-actions">
+                            <a href="/solutions/" class="garden-action primary">EXPLORE SOLUTIONS</a>
+                            <a href="/consultation/" class="garden-action secondary">SCHEDULE CONSULTATION</a>
+                            <a href="/process/" class="garden-action secondary">LEARN OUR PROCESS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Article Footer -->
-    <footer class="article-footer">
-        <div class="article-navigation">
-            <a href="/blog/" class="back-to-blog">← Back to Blog</a>
-        </div>
-    </footer>
+        <!-- Article Footer -->
+        <footer class="article-footer">
+            <div class="article-navigation">
+                <a href="/blog/" class="garden-action secondary">← BACK TO BLOG</a>
+            </div>
+            
+            <!-- Related Content -->
+            <div class="related-content">
+                <h4>Explore More</h4>
+                <div class="related-links">
+                    <a href="/research/" class="related-link">Investment Research</a>
+                    <a href="/performance/" class="related-link">Performance Data</a>
+                    <a href="/disclosures/" class="related-link">Important Disclosures</a>
+                </div>
+            </div>
+        </footer>
+    </div>
 </div>
 </div>
 {% endblock %}
@@ -90,4 +154,361 @@
 <!-- garden-blog.css and garden-blog-streamfield.css load in base template -->
 <link rel="stylesheet" href="{% static 'css/blog-button-fixes.css' %}?v=2025-01-fix-visibility">
 <link rel="stylesheet" href="{% static 'css/blog-formatting-fixes.css' %}?v=2025-01-fix-purple-sections">
+
+<style>
+/* Modern Responsive Blog Post Styles */
+.blog-article-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+.blog-article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+/* Article Header Improvements */
+.article-header {
+    text-align: center;
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.article-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    line-height: 1.2;
+    margin: var(--space-4) 0;
+    color: var(--color-on-surface);
+}
+
+.article-excerpt {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-on-surface-variant);
+    margin: var(--space-4) 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    font-size: 0.9rem;
+    color: var(--color-on-surface-variant);
+}
+
+.article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.article-tag {
+    background: var(--color-surface-variant);
+    color: var(--color-on-surface-variant);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.article-tag:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+/* Content Block Improvements with Image Constraints */
+.article-content {
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.content-block {
+    margin-bottom: var(--space-6);
+}
+
+/* Image Constraints and Responsive Behavior */
+.content-block img,
+.article-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    margin: var(--space-4) 0;
+    display: block;
+}
+
+/* Large images get centered with max width */
+.content-block img[width],
+.article-body img[width] {
+    max-width: min(100%, 600px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Charts and data visualizations keep aspect ratio */
+.content-block img[alt*="chart"],
+.content-block img[alt*="graph"],
+.content-block img[alt*="data"],
+.article-body img[alt*="chart"],
+.article-body img[alt*="graph"],
+.article-body img[alt*="data"] {
+    max-width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: contain;
+    background: var(--color-surface-variant);
+}
+
+/* Newsletter CTA Styling */
+.article-newsletter-cta {
+    background: var(--color-surface-variant);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    text-align: center;
+}
+
+.newsletter-cta-title {
+    font-size: 1.4rem;
+    margin-bottom: var(--space-2);
+    color: var(--color-on-surface);
+}
+
+.newsletter-cta-description {
+    color: var(--color-on-surface-variant);
+    margin-bottom: var(--space-4);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newsletter-form-row {
+    display: flex;
+    gap: var(--space-2);
+    max-width: 400px;
+    margin: 0 auto var(--space-2);
+}
+
+.newsletter-email {
+    flex: 1;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+}
+
+.newsletter-privacy {
+    color: var(--color-on-surface-variant);
+    font-size: 0.85rem;
+}
+
+/* Solutions CTA Styling */
+.article-solutions-cta .garden-panel {
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+}
+
+.solutions-cta-content {
+    text-align: center;
+    padding: var(--space-4);
+}
+
+.solutions-cta-title {
+    font-size: 1.4rem;
+    margin-bottom: var(--space-2);
+    color: var(--color-on-surface);
+}
+
+.solutions-cta-description {
+    color: var(--color-on-surface-variant);
+    margin-bottom: var(--space-4);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.solutions-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+}
+
+/* Article Footer */
+.article-footer {
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.related-content h4 {
+    margin-bottom: var(--space-3);
+    color: var(--color-on-surface);
+}
+
+.related-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+.related-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.related-link:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .blog-article-wrapper {
+        padding: 0 var(--space-3);
+    }
+    
+    .article-header {
+        padding: var(--space-6) 0;
+    }
+    
+    .article-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-1);
+    }
+    
+    .newsletter-form-row {
+        flex-direction: column;
+    }
+    
+    .solutions-cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .solutions-cta-actions .garden-action {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .related-links {
+        flex-direction: column;
+    }
+    
+    .content-block img,
+    .article-body img {
+        margin-left: calc(-1 * var(--space-3));
+        margin-right: calc(-1 * var(--space-3));
+        width: calc(100% + 2 * var(--space-3));
+        max-width: calc(100% + 2 * var(--space-3));
+        border-radius: 0;
+    }
+}
+
+/* Typography Improvements */
+.article-body h2 {
+    font-size: 1.5rem;
+    margin: var(--space-8) 0 var(--space-4);
+    color: var(--color-on-surface);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: var(--space-2);
+}
+
+.article-body h3 {
+    font-size: 1.3rem;
+    margin: var(--space-6) 0 var(--space-3);
+    color: var(--color-on-surface);
+}
+
+.article-body p {
+    margin-bottom: var(--space-4);
+    color: var(--color-on-surface);
+}
+
+.article-body blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--space-4);
+    margin: var(--space-6) 0;
+    font-style: italic;
+    background: var(--color-surface-variant);
+    padding: var(--space-4);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.article-body ul,
+.article-body ol {
+    margin-bottom: var(--space-4);
+    padding-left: var(--space-5);
+}
+
+.article-body li {
+    margin-bottom: var(--space-1);
+}
+
+/* Table Responsiveness */
+.article-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-6) 0;
+    font-size: 0.9rem;
+}
+
+.article-body th,
+.article-body td {
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    text-align: left;
+}
+
+.article-body th {
+    background: var(--color-surface-variant);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .article-body table {
+        font-size: 0.8rem;
+    }
+    
+    .article-body th,
+    .article-body td {
+        padding: var(--space-1) var(--space-2);
+    }
+}
+
+/* Fix button visibility issues */
+.garden-action.primary {
+    background: var(--color-primary) !important;
+    color: white !important;
+    border: 2px solid var(--color-primary) !important;
+}
+
+.garden-action.secondary {
+    background: white !important;
+    color: var(--color-primary) !important;
+    border: 2px solid var(--color-primary) !important;
+}
+
+[data-theme="dark"] .garden-action.secondary {
+    background: var(--color-surface) !important;
+    color: var(--color-primary) !important;
+}
+</style>
 {% endblock %}

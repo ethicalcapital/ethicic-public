@@ -100,8 +100,6 @@
   --z-dropdown: 1000;
   --z-modal: 2000;
   --z-tooltip: 3000;
-}
-
   --z-sticky: 1020;
   --z-fixed: 1030;
   --z-modal-backdrop: 1040;
@@ -161,9 +159,9 @@
   --transition-fast: 0.15s ease;
   --transition-normal: 0.2s ease;
   --z-header: 1100;
-  --garden-border: currentcolor;
-  --panel-border: currentcolor;
-  --input-border: currentcolor;
+  --garden-border: #e5e7eb;
+  --panel-border: #e5e7eb;
+  --input-border: #e5e7eb;
   --syntax-keyword: var(--color-error);
   --syntax-string: var(--color-success);
   --syntax-comment: var(--color-on-surface-variant);
@@ -251,13 +249,13 @@
   --theme-on-primary: #fff;
   --theme-surface: #fff;
   --theme-on-surface: #1a1a1a;
-  --theme-surface-variant: var(--garden-border);
-  --theme-on-surface-variant: var(--garden-text);
+  --theme-surface-variant: #f9fafb;
+  --theme-on-surface-variant: var(--theme-text-secondary);
   --theme-background: #fff;
   --theme-on-background: #1a1a1a;
   --theme-hover: #f9fafb;
   --theme-focus: #f3f4f6;
-  --theme-active: var(--garden-border);
+  --theme-active: #e5e7eb;
   --theme-selection: color-mix(in srgb, var(--garden-accent) 15%, transparent);
   --theme-border: #e5e7eb;
   --theme-border-variant: #d1d5db;
@@ -271,8 +269,8 @@
   --theme-info: #326ed1;
   --theme-info-alpha: color-mix(in srgb, #326ed1 10%, transparent);
   --theme-text-primary: #1a1a1a;
-  --theme-text-secondary: var(--garden-text-muted);
-  --theme-text-tertiary: var(--garden-text-muted);
+  --theme-text-secondary: color-mix(in srgb, var(--theme-text-primary) 60%, var(--theme-background));
+  --theme-text-tertiary: color-mix(in srgb, var(--theme-text-primary) 40%, var(--theme-background));
   --theme-text-inverse: #fff;
   --theme-shadow: color-mix(in srgb, var(--garden-text) 15%, transparent);
   --theme-shadow-variant: color-mix(in srgb, var(--garden-text) 8%, transparent);
@@ -958,7 +956,7 @@ button, input, optgroup, select, textarea {
   .status-actions .garden-action,
   .crm-status-bar .garden-action,
   .garden-panel .garden-action,
-.panel-content .garden-action {
+.panel-content .garden-action:not(.secondary) {
   background: var(--color-primary) !important;
   color: var(--color-on-primary) !important;
   border: 2px solid var(--color-primary) !important;
@@ -6832,4 +6830,4 @@ html body .garden-panel .strategy-card {
     border: 1px solid var(--garden-border) !important;
 }
 
-}
+}}

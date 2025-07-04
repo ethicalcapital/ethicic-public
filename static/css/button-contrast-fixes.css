@@ -88,8 +88,8 @@
 }
 
 /* ===== REMOVE HARDCODED WHITE COLORS ===== */
-/* Override any hardcoded white text that might cause issues */
-.garden-action {
+/* Override any hardcoded white text that might cause issues - but exclude secondary buttons */
+.garden-action:not(.secondary) {
     /* Never use hardcoded white - use theme variables */
     color: var(--color-on-primary);
 }

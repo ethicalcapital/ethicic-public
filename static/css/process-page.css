@@ -172,7 +172,7 @@
     width: 2.5rem;
     height: 2.5rem;
     background: var(--theme-primary, #553C9A) !important;
-    color: var(--color-surface, #fff) !important;
+    color: white !important;
     font-size: 1.25rem;
     font-weight: 700;
     border-radius: 50%;
@@ -493,40 +493,7 @@
     color: var(--theme-primary-hover, #442a8a) !important;
 }
 
-/* Ensure methodology and insight callouts are visible */
-.methodology-card {
-    background: var(--color-surface, #fff) !important;
-    border: 1px solid var(--color-border, #e5e7eb) !important;
-    padding: 1.5rem;
-    border-radius: 8px;
-}
-
-.methodology-card h4 {
-    color: var(--color-text-primary, #1a1a1a) !important;
-    margin-bottom: 1rem;
-}
-
-.methodology-list li {
-    color: var(--color-text-primary, #1a1a1a) !important;
-    margin-bottom: 0.75rem;
-}
-
-.methodology-list li strong {
-    color: var(--theme-primary, #553C9A) !important;
-}
-
-.insight-callout {
-    background: var(--color-surface, #fff) !important;
-    border-left: 4px solid var(--theme-primary, #553C9A) !important;
-    border: 1px solid var(--color-border, #e5e7eb) !important;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    border-radius: 8px;
-}
-
-.insight-callout strong {
-    color: var(--theme-primary, #553C9A) !important;
-}
+/* Duplicate selectors removed - styles already defined above */
 
 /* Responsive Design */
 @media (max-width: 1200px) {
