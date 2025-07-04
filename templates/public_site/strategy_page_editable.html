@@ -427,13 +427,30 @@
 /* Quick actions - ensure buttons stay on one line */
 .quick-actions {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     margin-top: 2rem;
     flex-wrap: nowrap;
+    align-items: center;
 }
 
 .quick-actions .garden-action {
     white-space: nowrap;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8125rem;
+    min-width: 0;
+    flex: 0 1 auto;
+    line-height: 1.2;
+}
+
+/* Ensure primary and secondary buttons have consistent sizing */
+.quick-actions .garden-action.primary,
+.quick-actions .garden-action.secondary {
+    min-height: auto;
+}
+
+/* Ensure header panel has enough width */
+.strategy-page .garden-panel:first-child .garden-panel__content {
+    max-width: 100%;
 }
 
 /* Additional styles for two-column layout */
