@@ -1,31 +1,47 @@
-<div class="newsletter-response error" x-data="{ show: true }" x-show="show" x-transition>
-    <div class="response-icon">⚠</div>
-    <div class="response-content">
-        <h4>Subscription Error</h4>
-        {% if message %}
-            <p>{{ message }}</p>
-        {% elif errors %}
-            {% for field, field_errors in errors.items %}
-                {% for error in field_errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
-            {% endfor %}
-        {% else %}
-            <p>Please provide a valid email address.</p>
-        {% endif %}
+<form id="newsletter-form" 
+      action="{% url 'public_site:newsletter_subscribe' %}" 
+      method="post"
+      hx-post="{% url 'public_site:newsletter_subscribe' %}"
+      hx-target="#newsletter-form"
+      hx-swap="outerHTML"
+      x-data="{ submitting: false }"
+      @submit="submitting = true">
+    {% csrf_token %}
+    
+    <div class="error-message">
+        {{ error }}
     </div>
-    <button type="button" @click="show = false" class="close-btn" aria-label="Close">×</button>
-</div>
+    
+    <div class="garden-input-group">
+        <label for="email" class="garden-label">Email Address</label>
+        <input type="email" 
+               id="email" 
+               name="email" 
+               class="garden-input error" 
+               placeholder="your@email.com"
+               required
+               :disabled="submitting">
+    </div>
+
+    <button type="submit" 
+            class="garden-action primary"
+            :disabled="submitting"
+            x-text="submitting ? 'Subscribing...' : 'Try Again'">
+        Try Again
+    </button>
+</form>
 
 <style>
-    .newsletter-response.error {
-        background-color: var(--color-error-alpha);
-        border: 1px solid var(--color-error);
-        color: var(--color-error);
-    }
-    
-    /* Dark mode */
-    [data-theme="dark"] .newsletter-response.error {
-        background-color: rgba(239, 68, 68, 0.1);
-    }
+.error-message {
+    background: var(--color-error-light);
+    color: var(--color-error);
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-4);
+}
+
+.garden-input.error {
+    border-color: var(--color-error);
+}
 </style>
+EOF < /dev/null

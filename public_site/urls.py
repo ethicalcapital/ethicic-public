@@ -58,6 +58,8 @@ urlpatterns = [
     path("api/validate-email/", views.validate_email_api, name="api_validate_email"),
     # Current Holdings transparency page - temporarily disabled for testing
     # path("holdings/", views.current_holdings, name="current_holdings"),
+    # Note: Media files are served by Django/WhiteNoise and configured in main urls.py
+    
     # ============================================================================
     # URL REDIRECTS - Ethicic.com to EC1C.com Migration
     # ============================================================================
@@ -78,6 +80,9 @@ urlpatterns = [
     # Legal redirects
     # Redirect old legal URL to new disclosures URL
     path("legal/", RedirectView.as_view(url="/disclosures/", permanent=True), name="redirect_legal_to_disclosures"),
+    # Privacy and Terms redirects to disclosures page
+    path("privacy-policy/", RedirectView.as_view(url="/disclosures/", permanent=True), name="redirect_privacy_to_disclosures"),
+    path("terms-of-service/", RedirectView.as_view(url="/disclosures/", permanent=True), name="redirect_terms_to_disclosures"),
     # ============================================================================
     # UTILITY AND HELPER ENDPOINTS
     # ============================================================================

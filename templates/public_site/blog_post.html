@@ -273,43 +273,80 @@
 .article-newsletter-cta {
     background: var(--color-surface-variant);
     border-radius: var(--radius-lg);
-    padding: var(--space-6);
+    padding: var(--space-8) var(--space-6);
+    margin: var(--space-8) 0;
     text-align: center;
 }
 
+.article-newsletter-cta .garden-panel {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.article-newsletter-cta .garden-panel__content {
+    padding: 0;
+}
+
+.newsletter-cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+}
+
 .newsletter-cta-title {
-    font-size: 1.4rem;
-    margin-bottom: var(--space-2);
+    font-size: 1.6rem;
+    margin-bottom: 0;
     color: var(--color-on-surface);
+    font-weight: 600;
 }
 
 .newsletter-cta-description {
     color: var(--color-on-surface-variant);
-    margin-bottom: var(--space-4);
+    margin-bottom: 0;
     max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    line-height: 1.5;
+}
+
+.article-newsletter-form {
+    width: 100%;
+    max-width: 500px;
 }
 
 .newsletter-form-row {
     display: flex;
-    gap: var(--space-2);
-    max-width: 400px;
-    margin: 0 auto var(--space-2);
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
 }
 
 .newsletter-email {
     flex: 1;
-    padding: var(--space-3);
-    border: 1px solid var(--color-border);
+    min-height: 48px;
+    padding: var(--space-3) var(--space-4);
+    border: 2px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: var(--color-surface);
     color: var(--color-on-surface);
+    font-size: 1rem;
+}
+
+.newsletter-email:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+.article-newsletter-form .garden-action.primary {
+    min-height: 48px;
+    padding: var(--space-3) var(--space-5);
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 .newsletter-privacy {
     color: var(--color-on-surface-variant);
     font-size: 0.85rem;
+    margin: 0;
 }
 
 /* Solutions CTA Styling */
@@ -396,6 +433,15 @@
     
     .newsletter-form-row {
         flex-direction: column;
+        gap: var(--space-2);
+    }
+    
+    .newsletter-email {
+        width: 100%;
+    }
+    
+    .article-newsletter-form .garden-action.primary {
+        width: 100%;
     }
     
     .solutions-cta-actions {

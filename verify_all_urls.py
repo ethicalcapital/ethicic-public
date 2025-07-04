@@ -38,7 +38,7 @@ def test_all_urls():
         
         # Form endpoints
         ('/contact/submit/', 405, 'Contact form endpoint (GET not allowed)'),
-        ('/newsletter/submit/', 405, 'Newsletter endpoint (GET not allowed)'),
+        ('/newsletter/signup/', 405, 'Newsletter endpoint (GET not allowed)'),
         
         # HTMX endpoints
         ('/search/live/', 200, 'Live search endpoint'),
@@ -51,8 +51,8 @@ def test_all_urls():
         ('/static/js/garden-panel.js', 200, 'Garden Panel JS'),
         ('/static/js/garden-theme-toggle.js', 200, 'Theme Toggle JS'),
         
-        # Media files (should redirect to login or 404)
-        ('/media/', 301, 'Media root (redirect)'),
+        # Media files served directly by Django/WhiteNoise
+        ('/media/', 404, 'Media root (no files)'),
         
         # API endpoints
         ('/api/contact/', 405, 'Contact API (GET not allowed)'),
@@ -88,7 +88,7 @@ def test_all_urls():
     
     post_tests = [
         ('/contact/submit/', {'name': 'Test', 'email': 'test@example.com', 'message': 'Test'}, 'Contact form POST'),
-        ('/newsletter/submit/', {'email': 'test@example.com'}, 'Newsletter POST'),
+        ('/newsletter/signup/', {'email': 'test@example.com'}, 'Newsletter POST'),
     ]
     
     for url, data, name in post_tests:
