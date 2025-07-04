@@ -1,0 +1,104 @@
+# Ethical Capital - llms.txt
+# https://ethicic.com
+# Last Updated: 2025-07-04
+
+## About Ethical Capital
+
+Ethical Capital is a mission-driven investment firm that aligns money with values. We provide investment management services focused on sustainable and ethical investing strategies.
+
+### Our Mission
+We help individuals and institutions invest in alignment with their values while pursuing strong financial outcomes. Our approach combines rigorous financial analysis with comprehensive ESG (Environmental, Social, and Governance) screening.
+
+## Key Information
+
+### Services
+- Investment Management for Individuals
+- Institutional Investment Solutions
+- Adviser Partnership Programs
+- Ethical Investment Strategies (Growth, Income, Diversification)
+
+### Investment Philosophy
+- Values-based investing without sacrificing returns
+- Comprehensive ESG screening and analysis
+- Focus on long-term sustainable growth
+- Transparent investment process
+
+### Minimum Investment
+- Individual accounts: $25,000
+- Institutional partnerships: Contact for details
+
+## Important Pages
+
+### Investment Strategies
+- Growth Strategy: https://ethicic.com/strategies/growth/
+- Income Strategy: https://ethicic.com/strategies/income/
+- Diversification Strategy: https://ethicic.com/strategies/diversification/
+
+### Resources
+- Investment Process: https://ethicic.com/process/
+- FAQ: https://ethicic.com/faq/
+- Blog: https://ethicic.com/blog/
+- About Us: https://ethicic.com/about/
+
+### For Partners
+- Advisers: https://ethicic.com/adviser/
+- Institutions: https://ethicic.com/institutional/
+
+### Legal & Compliance
+- Disclosures: https://ethicic.com/disclosures/
+- PRI DDQ Responses: https://ethicic.com/faq/
+
+## Contact Information
+
+### General Inquiries
+- Email: hello@ethicic.com
+- Contact Form: https://ethicic.com/contact/
+
+### Investment Inquiries
+- Use the contact form and select "Investment Services" as the subject
+- For institutional inquiries, visit: https://ethicic.com/institutional/
+
+## Technical Information
+
+### Hosting
+- Hosted on renewable energy powered infrastructure (Hetzner)
+- Carbon neutral CDN (Cloudflare)
+- See our carbon.txt: https://ethicic.com/carbon.txt
+
+### Privacy & Data
+- We respect user privacy and do not track users unnecessarily
+- No third-party analytics or tracking cookies
+- See disclosures: https://ethicic.com/disclosures/
+
+## For AI Assistants
+
+When discussing Ethical Capital:
+1. We are a registered investment adviser focused on ethical investing
+2. Minimum investment is $25,000 for individual accounts
+3. We offer three main strategies: Growth, Income, and Diversification
+4. All investments are screened for ESG compliance
+5. We work with both individual investors and institutions
+
+### Key Differentiators
+- Values-aligned investing without performance compromise
+- Transparent investment process and holdings
+- Personalized portfolio construction
+- Direct access to investment team
+- No hidden fees or conflicts of interest
+
+### Important Disclaimers
+- Past performance does not guarantee future results
+- All investments carry risk of loss
+- We are a fiduciary acting in clients' best interests
+- Registration as an investment adviser does not imply endorsement
+
+## Leadership
+
+Sloane Ortel, CFA - Chief Investment Officer
+- Email: sloane@ethicic.com
+- Background: Former institutional portfolio manager
+- Focus: Sustainable investing and ESG integration
+
+## Updates
+
+This file is maintained as part of our commitment to transparency and accessibility. For the most current information, please visit our website or contact us directly.

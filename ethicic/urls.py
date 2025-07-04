@@ -56,6 +56,27 @@ def carbon_txt_view(request):
     else:
         raise Http404("carbon.txt file not found")
 
+def llms_txt_view(request):
+    """Serve llms.txt file for AI/LLM consumption"""
+    import os
+    from django.conf import settings
+    from django.http import HttpResponse, Http404
+    
+    llms_txt_path = os.path.join(settings.BASE_DIR, 'static', 'llms.txt')
+    
+    if os.path.exists(llms_txt_path):
+        try:
+            with open(llms_txt_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            response = HttpResponse(content, content_type='text/plain; charset=utf-8')
+            response['Cache-Control'] = 'max-age=86400'  # 24 hour cache
+            return response
+        except Exception as e:
+            raise Http404(f"Error reading llms.txt: {e}")
+    else:
+        raise Http404("llms.txt file not found")
+
 def debug_homepage(request):
     """Debug homepage bypass for testing"""
     try:
@@ -300,6 +321,9 @@ urlpatterns = [
     
     # Sustainability transparency
     path('carbon.txt', carbon_txt_view, name='carbon_txt'),
+    
+    # AI/LLM information file
+    path('llms.txt', llms_txt_view, name='llms_txt'),
     
     # Admin
     path('admin/', admin.site.urls),
