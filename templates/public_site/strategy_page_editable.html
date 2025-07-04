@@ -34,368 +34,464 @@
         </div>
     </section>
 
-    <!-- Performance Summary -->
-    <section class="garden-panel" role="complementary" aria-labelledby="performance-heading">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">PERFORMANCE SUMMARY</div>
-        </div>
-        <div class="garden-panel__content garden-panel-content">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">{{ page.ytd_return }}</div>
-                    <div class="stat-label">YTD Return</div>
+    <!-- Two Column Layout -->
+    <div class="strategy-content-grid">
+        <!-- Main Content Column -->
+        <div class="main-content-column">
+            <!-- Performance Summary -->
+            <section class="garden-panel" role="complementary" aria-labelledby="performance-heading">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">PERFORMANCE SUMMARY</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">{{ page.one_year_return }}</div>
-                    <div class="stat-label">1 Year</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">{{ page.three_year_return }}</div>
-                    <div class="stat-label">3 Year</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">{{ page.since_inception_return }}</div>
-                    <div class="stat-label">Since Inception</div>
-                </div>
-            </div>
+                <div class="garden-panel__content garden-panel-content">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">{{ page.ytd_return }}</div>
+                            <div class="stat-label">YTD Return</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">{{ page.one_year_return }}</div>
+                            <div class="stat-label">1 Year</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">{{ page.three_year_return }}</div>
+                            <div class="stat-label">3 Year</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">{{ page.since_inception_return }}</div>
+                            <div class="stat-label">Since Inception</div>
+                        </div>
+                    </div>
 
-            <!-- Performance Table with Benchmark -->
-            <div id="performance" class="performance-section">
-                <h3 class="section-subheading">PERFORMANCE VS {{ page.benchmark_name|default:"BENCHMARK" }}</h3>
-                
-                <div class="performance-table">
-                    <div class="table-header">
-                        <div class="header-cell">PERIOD</div>
-                        <div class="header-cell">{{ page.title|upper }}</div>
-                        <div class="header-cell">{{ page.benchmark_name }}</div>
-                        <div class="header-cell">DIFFERENCE</div>
-                    </div>
-                    
-                    <div class="table-body">
-                        <div class="table-row">
-                            <div class="cell">YTD</div>
-                            <div class="cell positive">{{ page.ytd_return }}</div>
-                            <div class="cell">{{ page.ytd_benchmark }}</div>
-                            <div class="cell positive">{{ page.ytd_difference }}</div>
+                    <!-- Performance Table with Benchmark -->
+                    <div id="performance" class="performance-section">
+                        <h3 class="section-subheading">PERFORMANCE VS {{ page.benchmark_name|default:"BENCHMARK" }}</h3>
+                        
+                        <div class="performance-table">
+                            <div class="table-header">
+                                <div class="header-cell">PERIOD</div>
+                                <div class="header-cell">{{ page.title|upper }}</div>
+                                <div class="header-cell">{{ page.benchmark_name }}</div>
+                                <div class="header-cell">DIFFERENCE</div>
+                            </div>
+                            
+                            <div class="table-body">
+                                <div class="table-row">
+                                    <div class="cell">YTD</div>
+                                    <div class="cell positive">{{ page.ytd_return }}</div>
+                                    <div class="cell">{{ page.ytd_benchmark }}</div>
+                                    <div class="cell positive">{{ page.ytd_difference }}</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="cell">1 Year</div>
+                                    <div class="cell positive">{{ page.one_year_return }}</div>
+                                    <div class="cell">{{ page.one_year_benchmark }}</div>
+                                    <div class="cell positive">{{ page.one_year_difference }}</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="cell">3 Year</div>
+                                    <div class="cell positive">{{ page.three_year_return }}</div>
+                                    <div class="cell">{{ page.three_year_benchmark }}</div>
+                                    <div class="cell positive">{{ page.three_year_difference }}</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="cell">Since Inception</div>
+                                    <div class="cell positive">{{ page.since_inception_return }}</div>
+                                    <div class="cell">{{ page.since_inception_benchmark }}</div>
+                                    <div class="cell positive">{{ page.since_inception_difference }}</div>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="table-row">
-                            <div class="cell">1 Year</div>
-                            <div class="cell positive">{{ page.one_year_return }}</div>
-                            <div class="cell">{{ page.one_year_benchmark }}</div>
-                            <div class="cell positive">{{ page.one_year_difference }}</div>
-                        </div>
-                        
-                        <div class="table-row">
-                            <div class="cell">3 Year</div>
-                            <div class="cell positive">{{ page.three_year_return }}</div>
-                            <div class="cell">{{ page.three_year_benchmark }}</div>
-                            <div class="cell positive">{{ page.three_year_difference }}</div>
-                        </div>
-                        
-                        <div class="table-row">
-                            <div class="cell">Since Inception</div>
-                            <div class="cell positive">{{ page.since_inception_return }}</div>
-                            <div class="cell">{{ page.since_inception_benchmark }}</div>
-                            <div class="cell positive">{{ page.since_inception_difference }}</div>
-                        </div>
+                        {% if page.performance_disclaimer %}
+                            <div class="performance-disclaimer">
+                                {{ page.performance_disclaimer|richtext }}
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
-                
-                {% if page.performance_disclaimer %}
-                    <div class="performance-disclaimer">
-                        {{ page.performance_disclaimer|richtext }}
-                    </div>
-                {% endif %}
-            </div>
 
-            <!-- Risk Metrics -->
-            {% if page.risk_metrics.exists %}
-                {% with risk_metric=page.risk_metrics.first %}
-                <div class="metrics-section">
-                    <h3 class="section-subheading">RISK & QUALITY METRICS</h3>
-                    
-                    <div class="metrics-grid">
-                        {% if risk_metric.standard_deviation %}
-                        <div class="metric-card">
-                            <div class="metric-value">{{ risk_metric.standard_deviation }}</div>
-                            <div class="metric-label">Standard Deviation</div>
+                    <!-- Risk Metrics -->
+                    {% if page.risk_metrics.exists %}
+                        {% with risk_metric=page.risk_metrics.first %}
+                        <div class="metrics-section">
+                            <h3 class="section-subheading">RISK & QUALITY METRICS</h3>
+                            
+                            <div class="metrics-grid">
+                                {% if risk_metric.standard_deviation %}
+                                <div class="metric-card">
+                                    <div class="metric-value">{{ risk_metric.standard_deviation }}</div>
+                                    <div class="metric-label">Standard Deviation</div>
+                                </div>
+                                {% endif %}
+                                
+                                {% if risk_metric.sharpe_ratio %}
+                                <div class="metric-card">
+                                    <div class="metric-value">{{ risk_metric.sharpe_ratio }}</div>
+                                    <div class="metric-label">Sharpe Ratio</div>
+                                </div>
+                                {% endif %}
+                                
+                                {% if risk_metric.max_drawdown %}
+                                <div class="metric-card">
+                                    <div class="metric-value">{{ risk_metric.max_drawdown }}</div>
+                                    <div class="metric-label">Max Drawdown</div>
+                                </div>
+                                {% endif %}
+                                
+                                {% if risk_metric.beta %}
+                                <div class="metric-card">
+                                    <div class="metric-value">{{ risk_metric.beta }}</div>
+                                    <div class="metric-label">Beta vs {{ page.benchmark_name }}</div>
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
-                        {% endif %}
+                        {% endwith %}
+                    {% endif %}
+                </div>
+            </section>
+
+            <!-- Portfolio Details -->
+            <section id="portfolio" class="garden-panel">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">PORTFOLIO DETAILS</div>
+                </div>
+                <div class="garden-panel__content garden-panel-content">
+                    <!-- Geographic Allocation -->
+                    {% if page.geographic_allocations.exists %}
+                    <div class="geographic-section">
+                        <h3 class="subsection-header">GEOGRAPHIC COMPOSITION</h3>
                         
-                        {% if risk_metric.sharpe_ratio %}
-                        <div class="metric-card">
-                            <div class="metric-value">{{ risk_metric.sharpe_ratio }}</div>
-                            <div class="metric-label">Sharpe Ratio</div>
+                        <div class="geographic-table">
+                            <div class="geographic-header">
+                                <div class="col-region">REGION</div>
+                                <div class="col-allocation">ALLOCATION</div>
+                                <div class="col-benchmark">{{ page.benchmark_name }}</div>
+                                <div class="col-difference">DIFFERENCE</div>
+                            </div>
+                            
+                            {% for geo in page.geographic_allocations.all %}
+                            <div class="geographic-row">
+                                <div class="region-name">{{ geo.region }}</div>
+                                <div class="allocation-value">{{ geo.allocation_percent }}</div>
+                                <div class="benchmark-value">{{ geo.benchmark_percent }}</div>
+                                <div class="difference-value {% if geo.difference_percent and geo.difference_percent.0 == '+' %}positive{% else %}negative{% endif %}">
+                                    {{ geo.difference_percent }}
+                                </div>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Sector Positioning -->
+                    {% if page.sector_positions.exists %}
+                    <div class="positioning-section">
+                        <h3 class="subsection-header">SECTOR POSITIONING</h3>
                         
-                        {% if risk_metric.max_drawdown %}
-                        <div class="metric-card">
-                            <div class="metric-value">{{ risk_metric.max_drawdown }}</div>
-                            <div class="metric-label">Max Drawdown</div>
+                        <div class="positioning-grid">
+                            {% comment %}Group sectors by position type{% endcomment %}
+                            {% regroup page.sector_positions.all by position_type as position_groups %}
+                            
+                            {% for group in position_groups %}
+                                {% if group.grouper == 'overweight' %}
+                                <div class="positioning-card overweight">
+                                    <h4>OVERWEIGHTS</h4>
+                                    <ul>
+                                        {% for sector in group.list %}
+                                        <li>{{ sector.sector_name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% if page.overweights_note %}
+                                    <p class="positioning-note">{{ page.overweights_note }}</p>
+                                    {% endif %}
+                                </div>
+                                {% elif group.grouper == 'exclusion' %}
+                                <div class="positioning-card exclusions">
+                                    <h4>EXCLUSIONS</h4>
+                                    <ul>
+                                        {% for sector in group.list %}
+                                        <li>{{ sector.sector_name }}{% if sector.note %}*{% endif %}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% if page.exclusions_note %}
+                                    <p class="positioning-note">{{ page.exclusions_note }}</p>
+                                    {% endif %}
+                                    {% if page.healthcare_exclusion_note %}
+                                    <div class="exclusion-note">
+                                        <p>{{ page.healthcare_exclusion_note }}</p>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
-                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Portfolio Content -->
+                    {% if page.portfolio_content %}
+                    <div class="portfolio-description">
+                        {{ page.portfolio_content|richtext }}
+                    </div>
+                    {% endif %}
+
+                    <!-- Holdings -->
+                    {% if page.holdings.exists %}
+                    <div class="holdings-section">
+                        <h3 class="subsection-header">TOP HOLDINGS</h3>
                         
-                        {% if risk_metric.beta %}
-                        <div class="metric-card">
-                            <div class="metric-value">{{ risk_metric.beta }}</div>
-                            <div class="metric-label">Beta vs {{ page.benchmark_name }}</div>
+                        <div class="holdings-grid">
+                            {% for holding in page.holdings.all %}
+                            <div class="holding-card">
+                                <div class="holding-header">
+                                    <div class="company-name">{{ holding.company_name }}</div>
+                                    <div class="company-ticker">({{ holding.ticker_symbol }})</div>
+                                    <div class="holding-weight">{{ holding.weight_percent }}</div>
+                                </div>
+                                <div class="vertical-tag {{ holding.vertical|lower|slugify }}">{{ holding.vertical }}</div>
+                                <div class="holding-thesis">
+                                    <strong>Investment Thesis:</strong> {{ holding.investment_thesis }}
+                                </div>
+                                <div class="holding-financials">
+                                    <strong>Key Metrics:</strong> {{ holding.key_metrics }}
+                                </div>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Vertical Allocation -->
+                    {% if page.vertical_allocations.exists %}
+                    <div class="vertical-allocation-section">
+                        <h3 class="subsection-header">PORTFOLIO ALLOCATION BY VERTICAL</h3>
+                        
+                        <div class="allocation-table">
+                            <div class="allocation-header">
+                                <div class="col-vertical">VERTICAL</div>
+                                <div class="col-weight">WEIGHT</div>
+                                <div class="col-div-yield">DIV YIELD</div>
+                                <div class="col-pe">P/E RATIO</div>
+                                <div class="col-revenue">REV CAGR</div>
+                                <div class="col-fcf">FCF/MCap</div>
+                            </div>
+                            
+                            {% for vertical in page.vertical_allocations.all %}
+                            <div class="allocation-row{% if vertical.is_total_row %} total-row{% elif vertical.is_benchmark_row %} benchmark-row{% endif %}">
+                                <div class="vertical-name">{% if vertical.is_total_row %}<strong>{% endif %}{{ vertical.vertical_name }}{% if vertical.is_total_row %}</strong>{% endif %}</div>
+                                <div class="metric-value">{% if vertical.is_total_row %}<strong>{% endif %}{{ vertical.weight_percent }}{% if vertical.is_total_row %}</strong>{% endif %}</div>
+                                <div class="metric-value">{{ vertical.dividend_yield }}</div>
+                                <div class="metric-value">{{ vertical.pe_ratio }}</div>
+                                <div class="metric-value">{{ vertical.revenue_cagr }}</div>
+                                <div class="metric-value">{{ vertical.fcf_market_cap }}</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </section>
+
+            <!-- Commentary -->
+            {% if page.commentary_content %}
+            <section class="garden-panel">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">{{ page.commentary_title|upper }}</div>
+                </div>
+                <div class="garden-panel__content garden-panel-content">
+                    <div class="commentary-content">
+                        {{ page.commentary_content|richtext }}
                     </div>
                 </div>
-                {% endwith %}
+            </section>
             {% endif %}
-        </div>
-    </section>
 
-    <!-- Portfolio Details -->
-    <section id="portfolio" class="garden-panel">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">PORTFOLIO DETAILS</div>
-        </div>
-        <div class="garden-panel__content garden-panel-content">
-            <!-- Portfolio Stats -->
-            <div class="portfolio-stats">
-                <h3 class="section-subheading">PORTFOLIO CHARACTERISTICS</h3>
-                
-                <div class="stat-grid">
-                    <div class="stat-box">
-                        <div class="stat-title">Holdings</div>
-                        <div class="stat-number">{{ page.holdings_count }}</div>
+            <!-- Process -->
+            {% if page.process_content %}
+            <section class="garden-panel">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">{{ page.process_title|upper }}</div>
+                </div>
+                <div class="garden-panel__content garden-panel-content">
+                    <div class="process-content">
+                        {{ page.process_content|richtext }}
                     </div>
-                    
-                    {% if page.inception_date %}
-                    <div class="stat-box">
-                        <div class="stat-title">Inception Date</div>
-                        <div class="stat-number">{{ page.inception_date|date:"M Y" }}</div>
+                </div>
+            </section>
+            {% endif %}
+
+            <!-- Documents -->
+            <section id="documents" class="garden-panel">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">{{ page.documents_title|upper }}</div>
+                </div>
+                <div class="garden-panel__content garden-panel-content">
+                    {% if page.documents_content %}
+                    <div class="documents-intro">
+                        {{ page.documents_content|richtext }}
                     </div>
                     {% endif %}
                     
-                    <div class="stat-box">
-                        <div class="stat-title">Benchmark</div>
-                        <div class="stat-number">{{ page.benchmark_name }}</div>
-                    </div>
-                    
-                    <div class="stat-box">
-                        <div class="stat-title">Cash Allocation</div>
-                        <div class="stat-number">{{ page.cash_allocation }}</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Geographic Allocation -->
-            {% if page.geographic_allocations.exists %}
-            <div class="geographic-section">
-                <h3 class="subsection-header">GEOGRAPHIC COMPOSITION</h3>
-                
-                <div class="geographic-table">
-                    <div class="geographic-header">
-                        <div class="col-region">REGION</div>
-                        <div class="col-allocation">ALLOCATION</div>
-                        <div class="col-benchmark">{{ page.benchmark_name }}</div>
-                        <div class="col-difference">DIFFERENCE</div>
-                    </div>
-                    
-                    {% for geo in page.geographic_allocations.all %}
-                    <div class="geographic-row">
-                        <div class="region-name">{{ geo.region }}</div>
-                        <div class="allocation-value">{{ geo.allocation_percent }}</div>
-                        <div class="benchmark-value">{{ geo.benchmark_percent }}</div>
-                        <div class="difference-value {% if geo.difference_percent and geo.difference_percent.0 == '+' %}positive{% else %}negative{% endif %}">
-                            {{ geo.difference_percent }}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-
-            <!-- Sector Positioning -->
-            {% if page.sector_positions.exists %}
-            <div class="positioning-section">
-                <h3 class="subsection-header">SECTOR POSITIONING</h3>
-                
-                <div class="positioning-grid">
-                    {% comment %}Group sectors by position type{% endcomment %}
-                    {% regroup page.sector_positions.all by position_type as position_groups %}
-                    
-                    {% for group in position_groups %}
-                        {% if group.grouper == 'overweight' %}
-                        <div class="positioning-card overweight">
-                            <h4>OVERWEIGHTS</h4>
-                            <ul>
-                                {% for sector in group.list %}
-                                <li>{{ sector.sector_name }}</li>
+                    {% if page.documents.exists %}
+                    <div class="documents-grid">
+                        {% regroup page.documents.all by get_category_display as document_categories %}
+                        
+                        {% for category in document_categories %}
+                        <div class="document-category">
+                            <h3>{{ category.grouper }}</h3>
+                            
+                            <div class="document-list">
+                                {% for doc in category.list %}
+                                <a href="{% if doc.document_url %}{{ doc.document_url }}{% else %}javascript:requestDocument('{{ doc.title|slugify }}'){% endif %}" 
+                                   class="document-link" 
+                                   {% if doc.document_url %}target="_blank" rel="noopener"{% endif %}>
+                                    <div class="document-icon">{{ doc.icon }}</div>
+                                    <div class="document-info">
+                                        <div class="document-title">{{ doc.title }}</div>
+                                        <div class="document-desc">{{ doc.description }}</div>
+                                    </div>
+                                </a>
                                 {% endfor %}
-                            </ul>
-                            {% if page.overweights_note %}
-                            <p class="positioning-note">{{ page.overweights_note }}</p>
-                            {% endif %}
-                        </div>
-                        {% elif group.grouper == 'exclusion' %}
-                        <div class="positioning-card exclusions">
-                            <h4>EXCLUSIONS</h4>
-                            <ul>
-                                {% for sector in group.list %}
-                                <li>{{ sector.sector_name }}{% if sector.note %}*{% endif %}</li>
-                                {% endfor %}
-                            </ul>
-                            {% if page.exclusions_note %}
-                            <p class="positioning-note">{{ page.exclusions_note }}</p>
-                            {% endif %}
-                            {% if page.healthcare_exclusion_note %}
-                            <div class="exclusion-note">
-                                <p>{{ page.healthcare_exclusion_note }}</p>
                             </div>
-                            {% endif %}
                         </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-
-            <!-- Portfolio Content -->
-            {% if page.portfolio_content %}
-            <div class="portfolio-description">
-                {{ page.portfolio_content|richtext }}
-            </div>
-            {% endif %}
-
-            <!-- Holdings -->
-            {% if page.holdings.exists %}
-            <div class="holdings-section">
-                <h3 class="subsection-header">TOP HOLDINGS</h3>
-                
-                <div class="holdings-grid">
-                    {% for holding in page.holdings.all %}
-                    <div class="holding-card">
-                        <div class="holding-header">
-                            <div class="company-name">{{ holding.company_name }}</div>
-                            <div class="company-ticker">({{ holding.ticker_symbol }})</div>
-                            <div class="holding-weight">{{ holding.weight_percent }}</div>
-                        </div>
-                        <div class="vertical-tag {{ holding.vertical|lower|slugify }}">{{ holding.vertical }}</div>
-                        <div class="holding-thesis">
-                            <strong>Investment Thesis:</strong> {{ holding.investment_thesis }}
-                        </div>
-                        <div class="holding-financials">
-                            <strong>Key Metrics:</strong> {{ holding.key_metrics }}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-
-            <!-- Vertical Allocation -->
-            {% if page.vertical_allocations.exists %}
-            <div class="vertical-allocation-section">
-                <h3 class="subsection-header">PORTFOLIO ALLOCATION BY VERTICAL</h3>
-                
-                <div class="allocation-table">
-                    <div class="allocation-header">
-                        <div class="col-vertical">VERTICAL</div>
-                        <div class="col-weight">WEIGHT</div>
-                        <div class="col-div-yield">DIV YIELD</div>
-                        <div class="col-pe">P/E RATIO</div>
-                        <div class="col-revenue">REV CAGR</div>
-                        <div class="col-fcf">FCF/MCap</div>
-                    </div>
-                    
-                    {% for vertical in page.vertical_allocations.all %}
-                    <div class="allocation-row{% if vertical.is_total_row %} total-row{% elif vertical.is_benchmark_row %} benchmark-row{% endif %}">
-                        <div class="vertical-name">{% if vertical.is_total_row %}<strong>{% endif %}{{ vertical.vertical_name }}{% if vertical.is_total_row %}</strong>{% endif %}</div>
-                        <div class="metric-value">{% if vertical.is_total_row %}<strong>{% endif %}{{ vertical.weight_percent }}{% if vertical.is_total_row %}</strong>{% endif %}</div>
-                        <div class="metric-value">{{ vertical.dividend_yield }}</div>
-                        <div class="metric-value">{{ vertical.pe_ratio }}</div>
-                        <div class="metric-value">{{ vertical.revenue_cagr }}</div>
-                        <div class="metric-value">{{ vertical.fcf_market_cap }}</div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-        </div>
-    </section>
-
-    <!-- Commentary -->
-    {% if page.commentary_content %}
-    <section class="garden-panel">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">{{ page.commentary_title|upper }}</div>
-        </div>
-        <div class="garden-panel__content garden-panel-content">
-            <div class="commentary-content">
-                {{ page.commentary_content|richtext }}
-            </div>
-        </div>
-    </section>
-    {% endif %}
-
-    <!-- Process -->
-    {% if page.process_content %}
-    <section class="garden-panel">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">{{ page.process_title|upper }}</div>
-        </div>
-        <div class="garden-panel__content garden-panel-content">
-            <div class="process-content">
-                {{ page.process_content|richtext }}
-            </div>
-        </div>
-    </section>
-    {% endif %}
-
-    <!-- Documents -->
-    <section id="documents" class="garden-panel">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">{{ page.documents_title|upper }}</div>
-        </div>
-        <div class="garden-panel__content garden-panel-content">
-            {% if page.documents_content %}
-            <div class="documents-intro">
-                {{ page.documents_content|richtext }}
-            </div>
-            {% endif %}
-            
-            {% if page.documents.exists %}
-            <div class="documents-grid">
-                {% regroup page.documents.all by get_category_display as document_categories %}
-                
-                {% for category in document_categories %}
-                <div class="document-category">
-                    <h3>{{ category.grouper }}</h3>
-                    
-                    <div class="document-list">
-                        {% for doc in category.list %}
-                        <a href="{% if doc.document_url %}{{ doc.document_url }}{% else %}javascript:requestDocument('{{ doc.title|slugify }}'){% endif %}" 
-                           class="document-link" 
-                           {% if doc.document_url %}target="_blank" rel="noopener"{% endif %}>
-                            <div class="document-icon">{{ doc.icon }}</div>
-                            <div class="document-info">
-                                <div class="document-title">{{ doc.title }}</div>
-                                <div class="document-desc">{{ doc.description }}</div>
-                            </div>
-                        </a>
                         {% endfor %}
                     </div>
+                    {% endif %}
                 </div>
-                {% endfor %}
-            </div>
-            {% endif %}
+            </section>
         </div>
-    </section>
+        
+        <!-- Right Sidebar Column -->
+        <aside class="sidebar-column">
+            <!-- Portfolio Characteristics -->
+            <section class="garden-panel portfolio-characteristics-panel">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">PORTFOLIO CHARACTERISTICS</div>
+                </div>
+                <div class="garden-panel__content garden-panel-content">
+                    <div class="characteristics-list">
+                        <div class="characteristic-item">
+                            <div class="characteristic-label">Holdings</div>
+                            <div class="characteristic-value">{{ page.holdings_count }}</div>
+                        </div>
+                        
+                        {% if page.inception_date %}
+                        <div class="characteristic-item">
+                            <div class="characteristic-label">Inception Date</div>
+                            <div class="characteristic-value">{{ page.inception_date|date:"M Y" }}</div>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="characteristic-item">
+                            <div class="characteristic-label">Benchmark</div>
+                            <div class="characteristic-value">{{ page.benchmark_name }}</div>
+                        </div>
+                        
+                        <div class="characteristic-item">
+                            <div class="characteristic-label">Cash Allocation</div>
+                            <div class="characteristic-value">{{ page.cash_allocation }}</div>
+                        </div>
+                        
+                        <div class="characteristic-item">
+                            <div class="characteristic-label">Risk Level</div>
+                            <div class="characteristic-value">{{ page.risk_level }}</div>
+                        </div>
+                        
+                        <div class="characteristic-item">
+                            <div class="characteristic-label">Ethical Implementation</div>
+                            <div class="characteristic-value">{{ page.ethical_implementation }}</div>
+                        </div>
+                        
+                        <div class="characteristic-item">
+                            <div class="characteristic-label">Best For</div>
+                            <div class="characteristic-value">{{ page.best_for }}</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </div>
 </div>
 {% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=7-table-width-fix">
+<link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=8-right-rail">
 <style>
 /* Use the same styles from the original template */
 {% include "public_site/strategy_page_styles.html" %}
+
+/* Additional styles for two-column layout */
+.strategy-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.main-content-column {
+    min-width: 0; /* Prevent overflow */
+}
+
+.sidebar-column {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+}
+
+.portfolio-characteristics-panel {
+    background: var(--color-surface);
+}
+
+.characteristics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.characteristic-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.characteristic-item:last-child {
+    border-bottom: none;
+}
+
+.characteristic-label {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.characteristic-value {
+    font-weight: 600;
+    color: var(--theme-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .strategy-content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar-column {
+        position: static;
+        order: -1; /* Move to top on mobile */
+    }
+}
+
+/* Ensure stats grid stays responsive */
+.strategy-page .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
 </style>
 {% endblock %}
 

@@ -5,7 +5,7 @@
 
 {% block extra_css %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/16-homepage.css' %}?v=2025070313">
+<link rel="stylesheet" href="{% static 'css/16-homepage.css' %}?v=2025070314">
 {% endblock %}
 
 {% block body_class %}home-page{% endblock %}
@@ -39,6 +39,7 @@
                 <span class="stat-label">OF FIDUCIARY COUNSEL</span>
             </div>
         </div>
+        </div>
     </section>
 </div>
 
@@ -56,6 +57,7 @@
                 {{ page.philosophy_highlight }}
             </p>
         </div>
+        </div>
     </section>
 </div>
 
@@ -66,24 +68,20 @@
             <div class="panel-title">{{ page.principles_section_header|default:"PRINCIPLES THAT GUIDE OUR WORK" }}</div>
         </div>
         <div class="garden-panel__content garden-panel-content">
-            <div class="principles-intro">
-                {{ page.principles_intro|richtext }}
-            </div>
-            
             <!-- Process Section -->
             <div class="principles-section">
-                <h3 class="principles-section-header">// PROCESS</h3>
+                <h3 class="principles-section-header">PROCESS</h3>
                 <div class="principles-grid">
                     <div class="principle-card">
-                        <h4 class="principle-title">▸{{ page.process_principle_1_title }}</h4>
+                        <h4 class="principle-title">{{ page.process_principle_1_title }}</h4>
                         <p class="principle-content">{{ page.process_principle_1_content }}</p>
                     </div>
                     <div class="principle-card">
-                        <h4 class="principle-title">▸{{ page.process_principle_2_title }}</h4>
+                        <h4 class="principle-title">{{ page.process_principle_2_title }}</h4>
                         <p class="principle-content">{{ page.process_principle_2_content }}</p>
                     </div>
                     <div class="principle-card">
-                        <h4 class="principle-title">▸{{ page.process_principle_3_title }}</h4>
+                        <h4 class="principle-title">{{ page.process_principle_3_title }}</h4>
                         <p class="principle-content">{{ page.process_principle_3_content }}</p>
                     </div>
                 </div>
@@ -91,18 +89,18 @@
             
             <!-- Practice Section -->
             <div class="principles-section">
-                <h3 class="principles-section-header">// PRACTICE</h3>
+                <h3 class="principles-section-header">PRACTICE</h3>
                 <div class="principles-grid">
                     <div class="principle-card">
-                        <h4 class="principle-title">▸{{ page.practice_principle_1_title }}</h4>
+                        <h4 class="principle-title">{{ page.practice_principle_1_title }}</h4>
                         <p class="principle-content">{{ page.practice_principle_1_content }}</p>
                     </div>
                     <div class="principle-card">
-                        <h4 class="principle-title">▸{{ page.practice_principle_2_title }}</h4>
+                        <h4 class="principle-title">{{ page.practice_principle_2_title }}</h4>
                         <p class="principle-content">{{ page.practice_principle_2_content }}</p>
                     </div>
                     <div class="principle-card">
-                        <h4 class="principle-title">▸{{ page.practice_principle_3_title }}</h4>
+                        <h4 class="principle-title">{{ page.practice_principle_3_title }}</h4>
                         <p class="principle-content">{{ page.practice_principle_3_content }}</p>
                     </div>
                 </div>
@@ -226,6 +224,7 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 </div>
 
@@ -275,6 +274,7 @@
         <div class="text-center margin-top-8">
             <a href="/process/" class="garden-action primary">Review Our Investment Process →</a>
         </div>
+        </div>
     </section>
 </div>
 
@@ -304,30 +304,29 @@
                 <a href="/institutions/" class="garden-action secondary">Learn More →</a>
             </div>
         </div>
+        </div>
     </section>
 </div>
 
 <!-- CTA Section -->
 <div class="garden-container">
     <section class="garden-panel cta-panel">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">{{ page.cta_section_header|default:"BEGIN YOUR ETHICAL INVESTMENT JOURNEY" }}</div>
+        <div class="garden-panel__header garden-panel-header accepting-clients-header">
+            <div class="accepting-clients-banner header-banner">
+                <div class="banner-icon">🟢</div>
+                <div class="banner-text">
+                    <strong>{{ page.client_availability_text|upper }}</strong>
+                </div>
+            </div>
         </div>
         <div class="garden-panel__content garden-panel-content">
         <h2>{{ page.cta_title }}</h2>
         {{ page.cta_description|richtext }}
         
-        <div class="accepting-clients-banner">
-            <div class="banner-icon">🟢</div>
-            <div class="banner-text">
-                <strong>{{ page.client_availability_text|upper }}</strong>
-                <span>Limited spots available for Q1 2025</span>
-            </div>
-        </div>
-        
         <div class="cta-actions">
-            <a href="/process/" class="garden-action primary">View Our Process →</a>
-            <a href="/consultation/" class="garden-action secondary">Schedule Consultation</a>
+            <a href="/consultation/" class="garden-action primary">Schedule Consultation</a>
+            <a href="/process/" class="garden-action secondary">View Our Process →</a>
+        </div>
         </div>
     </section>
 </div>

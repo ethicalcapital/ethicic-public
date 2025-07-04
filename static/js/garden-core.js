@@ -7,11 +7,11 @@
 /* global MutationObserver */
 
 (function (window, document) {
-  'use strict'
+  'use strict';
 
   // Global Garden namespace with backward compatibility
-  window.Garden = window.Garden || {}
-  window.DEWEY = window.DEWEY || {} // Backward compatibility
+  window.Garden = window.Garden || {};
+  window.DEWEY = window.DEWEY || {}; // Backward compatibility
 
   // Configuration
   const CONFIG = {
@@ -34,82 +34,82 @@
       navigableItems: '.nav-item, .data-table tr, .list-item',
       focusable: 'input, button, select, textarea, a[href], [tabindex]:not([tabindex="-1"])'
     }
-  }
+  };
 
   // Utility functions
   const Utils = {
     log: function (message, data) {
       if (CONFIG.debug) {
-        console.log('[Garden]', message, data || '')
+        console.log('[Garden]', message, data || '');
       }
     },
 
     debounce: function (func, wait) {
-      let timeout
+      let timeout;
       return function executedFunction (...args) {
         const later = () => {
-          clearTimeout(timeout)
-          func(...args)
-        }
-        clearTimeout(timeout)
-        timeout = setTimeout(later, wait)
-      }
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
     },
 
     throttle: function (func, limit) {
-      let inThrottle
+      let inThrottle;
       return function () {
-        const args = arguments
-        const context = this
+        const args = arguments;
+        const context = this;
         if (!inThrottle) {
-          func.apply(context, args)
-          inThrottle = true
+          func.apply(context, args);
+          inThrottle = true;
           setTimeout(() => {
-            inThrottle = false
-          }, limit)
+            inThrottle = false;
+          }, limit);
         }
-      }
+      };
     },
 
     addClass: function (element, className) {
       if (element && element.classList) {
-        element.classList.add(className)
+        element.classList.add(className);
       }
     },
 
     removeClass: function (element, className) {
       if (element && element.classList) {
-        element.classList.remove(className)
+        element.classList.remove(className);
       }
     },
 
     hasClass: function (element, className) {
-      return element && element.classList && element.classList.contains(className)
+      return element && element.classList && element.classList.contains(className);
     },
 
     toggleClass: function (element, className) {
       if (element && element.classList) {
-        element.classList.toggle(className)
+        element.classList.toggle(className);
       }
     },
 
     getParent: function (element, selector) {
       while (element && element !== document) {
         if (element.matches && element.matches(selector)) {
-          return element
+          return element;
         }
-        element = element.parentNode
+        element = element.parentNode;
       }
-      return null
+      return null;
     },
 
     preventDefault: function (event) {
       if (event.preventDefault) {
-        event.preventDefault()
+        event.preventDefault();
       }
-      event.returnValue = false
+      event.returnValue = false;
     }
-  }
+  };
 
   // Keyboard Navigation Manager
   const KeyboardNav = {
@@ -118,179 +118,179 @@
     active: false,
 
     init: function () {
-      this.bindEvents()
-      this.updateItems()
-      Utils.log('Keyboard navigation initialized')
+      this.bindEvents();
+      this.updateItems();
+      Utils.log('Keyboard navigation initialized');
     },
 
     bindEvents: function () {
-      document.addEventListener('keydown', this.handleKeyDown.bind(this))
-      document.addEventListener('click', this.handleClick.bind(this))
+      document.addEventListener('keydown', this.handleKeyDown.bind(this));
+      document.addEventListener('click', this.handleClick.bind(this));
 
       // Update items when DOM changes
       if (typeof MutationObserver !== 'undefined') {
         const observer = new MutationObserver(Utils.debounce(() => {
-          this.updateItems()
-        }, 100))
+          this.updateItems();
+        }, 100));
 
         observer.observe(document.body, {
           childList: true,
           subtree: true
-        })
+        });
       }
     },
 
     updateItems: function () {
-      this.items = Array.from(document.querySelectorAll(CONFIG.selectors.navigableItems))
+      this.items = Array.from(document.querySelectorAll(CONFIG.selectors.navigableItems));
       this.items = this.items.filter(item => {
-        return item.offsetParent !== null // Visible items only
-      })
-      Utils.log('Navigation items updated', this.items.length)
+        return item.offsetParent !== null; // Visible items only
+      });
+      Utils.log('Navigation items updated', this.items.length);
     },
 
     handleKeyDown: function (event) {
       // Don't interfere when user is typing
       if (this.isTyping(event.target)) {
-        return
+        return;
       }
 
-      const key = event.key.toLowerCase()
+      const key = event.key.toLowerCase();
 
       switch (key) {
-        case CONFIG.hotkeys.up:
-          this.navigate(-1)
-          Utils.preventDefault(event)
-          break
+      case CONFIG.hotkeys.up:
+        this.navigate(-1);
+        Utils.preventDefault(event);
+        break;
 
-        case CONFIG.hotkeys.down:
-          this.navigate(1)
-          Utils.preventDefault(event)
-          break
+      case CONFIG.hotkeys.down:
+        this.navigate(1);
+        Utils.preventDefault(event);
+        break;
 
-        case CONFIG.hotkeys.enter:
-          this.activate()
-          Utils.preventDefault(event)
-          break
+      case CONFIG.hotkeys.enter:
+        this.activate();
+        Utils.preventDefault(event);
+        break;
 
-        case CONFIG.hotkeys.search:
-          this.focusSearch()
-          Utils.preventDefault(event)
-          break
+      case CONFIG.hotkeys.search:
+        this.focusSearch();
+        Utils.preventDefault(event);
+        break;
 
-        case CONFIG.hotkeys.help:
-          this.showHelp()
-          Utils.preventDefault(event)
-          break
+      case CONFIG.hotkeys.help:
+        this.showHelp();
+        Utils.preventDefault(event);
+        break;
 
-        case CONFIG.hotkeys.escape:
-          this.escape()
-          Utils.preventDefault(event)
-          break
+      case CONFIG.hotkeys.escape:
+        this.escape();
+        Utils.preventDefault(event);
+        break;
 
-        case CONFIG.hotkeys.plus:
-          this.adjustValue(1)
-          Utils.preventDefault(event)
-          break
+      case CONFIG.hotkeys.plus:
+        this.adjustValue(1);
+        Utils.preventDefault(event);
+        break;
 
-        case CONFIG.hotkeys.minus:
-          this.adjustValue(-1)
-          Utils.preventDefault(event)
-          break
+      case CONFIG.hotkeys.minus:
+        this.adjustValue(-1);
+        Utils.preventDefault(event);
+        break;
       }
     },
 
     handleClick: function (event) {
-      const item = Utils.getParent(event.target, CONFIG.selectors.navigableItems)
+      const item = Utils.getParent(event.target, CONFIG.selectors.navigableItems);
       if (item) {
-        const index = this.items.indexOf(item)
+        const index = this.items.indexOf(item);
         if (index !== -1) {
-          this.setActive(index)
+          this.setActive(index);
         }
       }
     },
 
     handleKeyboard: function (event) {
-      this.handleKeyDown(event)
+      this.handleKeyDown(event);
     },
 
     getActive: function () {
-      return this.currentIndex
+      return this.currentIndex;
     },
 
     next: function () {
-      this.navigate(1)
+      this.navigate(1);
     },
 
     prev: function () {
-      this.navigate(-1)
+      this.navigate(-1);
     },
 
     isTyping: function (element) {
       if (!element || !element.tagName) {
-        return false
+        return false;
       }
 
-      const tagName = element.tagName.toLowerCase()
-      const type = element.type ? element.type.toLowerCase() : ''
+      const tagName = element.tagName.toLowerCase();
+      const type = element.type ? element.type.toLowerCase() : '';
 
       return (
         tagName === 'input' &&
                 ['text', 'email', 'password', 'search', 'url', 'number'].includes(type)
       ) ||
             tagName === 'textarea' ||
-            element.contentEditable === 'true'
+            element.contentEditable === 'true';
     },
 
     navigate: function (direction) {
       if (this.items.length === 0) {
-        this.updateItems()
-        return
+        this.updateItems();
+        return;
       }
 
-      const newIndex = this.currentIndex + direction
+      const newIndex = this.currentIndex + direction;
 
       if (newIndex >= 0 && newIndex < this.items.length) {
-        this.setActive(newIndex)
+        this.setActive(newIndex);
       } else if (direction > 0) {
-        this.setActive(0) // Wrap to beginning
+        this.setActive(0); // Wrap to beginning
       } else {
-        this.setActive(this.items.length - 1) // Wrap to end
+        this.setActive(this.items.length - 1); // Wrap to end
       }
     },
 
     setActive: function (index) {
       // Remove previous active state
       this.items.forEach(item => {
-        Utils.removeClass(item, 'keyboard-active')
-        item.setAttribute('tabindex', '-1')
-      })
+        Utils.removeClass(item, 'keyboard-active');
+        item.setAttribute('tabindex', '-1');
+      });
 
-      this.currentIndex = Math.max(0, Math.min(index, this.items.length - 1))
-      const activeItem = this.items[this.currentIndex]
+      this.currentIndex = Math.max(0, Math.min(index, this.items.length - 1));
+      const activeItem = this.items[this.currentIndex];
 
       if (activeItem) {
-        Utils.addClass(activeItem, 'keyboard-active')
-        activeItem.setAttribute('tabindex', '0')
-        activeItem.focus()
-        this.scrollIntoView(activeItem)
-        this.active = true
+        Utils.addClass(activeItem, 'keyboard-active');
+        activeItem.setAttribute('tabindex', '0');
+        activeItem.focus();
+        this.scrollIntoView(activeItem);
+        this.active = true;
       }
 
-      Utils.log('Active item set', this.currentIndex)
+      Utils.log('Active item set', this.currentIndex);
     },
 
     activate: function () {
-      const activeItem = this.items[this.currentIndex]
+      const activeItem = this.items[this.currentIndex];
       if (activeItem) {
-        const link = activeItem.querySelector('a')
-        const button = activeItem.querySelector('button')
+        const link = activeItem.querySelector('a');
+        const button = activeItem.querySelector('button');
 
         if (link) {
-          link.click()
+          link.click();
         } else if (button) {
-          button.click()
+          button.click();
         } else if (activeItem.click) {
-          activeItem.click()
+          activeItem.click();
         }
       }
     },
@@ -300,27 +300,27 @@
         element.scrollIntoView({
           behavior: 'smooth',
           block: 'nearest'
-        })
+        });
       }
     },
 
     focusSearch: function () {
       const searchInput = document.querySelector(CONFIG.selectors.searchInput) ||
                               document.querySelector('input[type="search"]') ||
-                              document.querySelector('input[placeholder*="search"]')
+                              document.querySelector('input[placeholder*="search"]');
 
       if (searchInput) {
-        searchInput.focus()
-        Utils.log('Search focused')
+        searchInput.focus();
+        Utils.log('Search focused');
       } else {
         // Create temporary search overlay
-        this.createSearchOverlay()
+        this.createSearchOverlay();
       }
     },
 
     createSearchOverlay: function () {
-      const overlay = document.createElement('div')
-      overlay.id = 'search-overlay'
+      const overlay = document.createElement('div');
+      overlay.id = 'search-overlay';
       overlay.style.cssText = `
                 position: fixed;
                 top: 0;
@@ -332,20 +332,20 @@
                 align-items: center;
                 justify-content: center;
                 z-index: 9999;
-            `
+            `;
 
-      const searchBox = document.createElement('div')
+      const searchBox = document.createElement('div');
       searchBox.style.cssText = `
                 background: var(--color-surface);
                 padding: var(--space-6);
                 border-radius: var(--radius);
                 border: 2px solid var(--color-primary);
                 min-width: 400px;
-            `
+            `;
 
-      const input = document.createElement('input')
-      input.type = 'search'
-      input.placeholder = 'Search...'
+      const input = document.createElement('input');
+      input.type = 'search';
+      input.placeholder = 'Search...';
       input.style.cssText = `
                 width: 100%;
                 font-size: var(--font-lg);
@@ -353,36 +353,36 @@
                 border: 2px solid var(--color-border);
                 border-radius: var(--radius);
                 font-family: var(--font-mono);
-            `
+            `;
 
-      searchBox.appendChild(input)
-      overlay.appendChild(searchBox)
-      document.body.appendChild(overlay)
+      searchBox.appendChild(input);
+      overlay.appendChild(searchBox);
+      document.body.appendChild(overlay);
 
-      input.focus()
+      input.focus();
 
       const closeOverlay = () => {
-        document.body.removeChild(overlay)
-      }
+        document.body.removeChild(overlay);
+      };
 
       overlay.addEventListener('click', function (e) {
         if (e.target === overlay) {
-          closeOverlay()
+          closeOverlay();
         }
-      })
+      });
 
       input.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
-          closeOverlay()
+          closeOverlay();
         }
-      })
+      });
 
-      Utils.log('Search overlay created')
+      Utils.log('Search overlay created');
     },
 
     showHelp: function () {
-      const helpOverlay = document.createElement('div')
-      helpOverlay.id = 'help-overlay'
+      const helpOverlay = document.createElement('div');
+      helpOverlay.id = 'help-overlay';
       helpOverlay.style.cssText = `
                 position: fixed;
                 top: 0;
@@ -394,9 +394,9 @@
                 align-items: center;
                 justify-content: center;
                 z-index: 9999;
-            `
+            `;
 
-      const helpBox = document.createElement('div')
+      const helpBox = document.createElement('div');
       helpBox.style.cssText = `
                 background: var(--color-surface);
                 padding: var(--space-6);
@@ -404,7 +404,7 @@
                 border: 2px solid var(--color-primary);
                 max-width: 500px;
                 font-family: var(--font-mono);
-            `
+            `;
 
       helpBox.innerHTML = `
                 <h3 style="color: var(--color-primary); margin-bottom: var(--space-4);">Keyboard Shortcuts</h3>
@@ -425,181 +425,181 @@
                 <div style="margin-top: var(--space-4); text-align: center;">
                     <button style="background: var(--ec-purple); color: white; padding: var(--space-2) var(--space-4); border: none; border-radius: var(--radius); cursor: pointer;">Close</button>
                 </div>
-            `
+            `;
 
-      helpOverlay.appendChild(helpBox)
-      document.body.appendChild(helpOverlay)
+      helpOverlay.appendChild(helpBox);
+      document.body.appendChild(helpOverlay);
 
       const closeHelp = () => {
-        document.body.removeChild(helpOverlay)
-      }
+        document.body.removeChild(helpOverlay);
+      };
 
-      helpBox.querySelector('button').addEventListener('click', closeHelp)
+      helpBox.querySelector('button').addEventListener('click', closeHelp);
       helpOverlay.addEventListener('click', function (e) {
         if (e.target === helpOverlay) {
-          closeHelp()
+          closeHelp();
         }
-      })
+      });
 
-      Utils.log('Help overlay shown')
+      Utils.log('Help overlay shown');
     },
 
     escape: function () {
       // Close any overlays
-      const overlays = document.querySelectorAll('#search-overlay, #help-overlay')
+      const overlays = document.querySelectorAll('#search-overlay, #help-overlay');
       overlays.forEach(overlay => {
         if (overlay.parentNode) {
-          overlay.parentNode.removeChild(overlay)
+          overlay.parentNode.removeChild(overlay);
         }
-      })
+      });
 
       // Blur any focused input
       if (document.activeElement && this.isTyping(document.activeElement)) {
-        document.activeElement.blur()
+        document.activeElement.blur();
       }
 
       // Clear any selections
       if (window.getSelection) {
-        window.getSelection().removeAllRanges()
+        window.getSelection().removeAllRanges();
       }
 
-      Utils.log('Escape action performed')
+      Utils.log('Escape action performed');
     },
 
     adjustValue: function (direction) {
-      const activeElement = document.activeElement
+      const activeElement = document.activeElement;
 
       if (activeElement && activeElement.type === 'number') {
-        const currentValue = parseFloat(activeElement.value) || 0
-        const step = parseFloat(activeElement.step) || 1
-        const newValue = currentValue + (direction * step)
+        const currentValue = parseFloat(activeElement.value) || 0;
+        const step = parseFloat(activeElement.step) || 1;
+        const newValue = currentValue + (direction * step);
 
         // Respect min/max constraints
-        const min = activeElement.min ? parseFloat(activeElement.min) : -Infinity
-        const max = activeElement.max ? parseFloat(activeElement.max) : Infinity
+        const min = activeElement.min ? parseFloat(activeElement.min) : -Infinity;
+        const max = activeElement.max ? parseFloat(activeElement.max) : Infinity;
 
-        activeElement.value = Math.max(min, Math.min(max, newValue))
+        activeElement.value = Math.max(min, Math.min(max, newValue));
 
         // Trigger change event
-        const event = new Event('change', { bubbles: true })
-        activeElement.dispatchEvent(event)
+        const event = new Event('change', { bubbles: true });
+        activeElement.dispatchEvent(event);
 
-        Utils.log('Value adjusted', activeElement.value)
+        Utils.log('Value adjusted', activeElement.value);
       }
     }
-  }
+  };
 
   // Performance Monitor
   const Performance = {
     init: function () {
-      this.measurePageLoad()
-      this.monitorInteractions()
+      this.measurePageLoad();
+      this.monitorInteractions();
     },
 
     mark: function (name) {
       if (window.performance && window.performance.mark) {
-        window.performance.mark(name)
+        window.performance.mark(name);
       }
-      Utils.log('Performance mark', name)
+      Utils.log('Performance mark', name);
     },
 
     measure: function (name, startMark, endMark) {
       if (window.performance && window.performance.measure) {
-        window.performance.measure(name, startMark, endMark)
+        window.performance.measure(name, startMark, endMark);
       }
-      Utils.log('Performance measure', name)
+      Utils.log('Performance measure', name);
     },
 
     measurePageLoad: function () {
       window.addEventListener('load', function () {
         if (window.performance && window.performance.timing) {
-          const timing = window.performance.timing
-          const loadTime = timing.loadEventEnd - timing.navigationStart
+          const timing = window.performance.timing;
+          const loadTime = timing.loadEventEnd - timing.navigationStart;
 
-          Utils.log('Page load time', loadTime + 'ms')
+          Utils.log('Page load time', loadTime + 'ms');
 
           // Update status in footer
           setTimeout(() => {
-            const statusElement = document.getElementById('connection-status')
+            const statusElement = document.getElementById('connection-status');
             if (statusElement) {
-              statusElement.textContent = `Loaded in ${loadTime}ms`
+              statusElement.textContent = `Loaded in ${loadTime}ms`;
             }
-          }, 100)
+          }, 100);
         }
-      })
+      });
     },
 
     monitorInteractions: function () {
       // Track keyboard response times
-      let keydownTime = 0
+      let keydownTime = 0;
 
       document.addEventListener('keydown', function () {
-        keydownTime = performance.now()
-      })
+        keydownTime = performance.now();
+      });
 
       document.addEventListener('keyup', function () {
         if (keydownTime) {
-          const responseTime = performance.now() - keydownTime
+          const responseTime = performance.now() - keydownTime;
           if (responseTime > 100) { // Log slow responses
-            Utils.log('Slow keyboard response', responseTime + 'ms')
+            Utils.log('Slow keyboard response', responseTime + 'ms');
           }
         }
-      })
+      });
     }
-  }
+  };
 
   // Form Enhancements
   const Forms = {
     init: function () {
-      this.enhanceNumberInputs()
-      this.enhanceFormValidation()
+      this.enhanceNumberInputs();
+      this.enhanceFormValidation();
     },
 
     enhance: function (form) {
-      if (!form) return
+      if (!form) return;
 
       // Enhance number inputs in this form
-      const numberInputs = form.querySelectorAll('input[type="number"]')
+      const numberInputs = form.querySelectorAll('input[type="number"]');
       numberInputs.forEach(input => {
-        this.enhanceNumberInput(input)
-      })
+        this.enhanceNumberInput(input);
+      });
 
-      Utils.log('Form enhanced', form)
+      Utils.log('Form enhanced', form);
     },
 
     validate: function (form) {
-      if (!form) return true
+      if (!form) return true;
 
-      const isValid = form.checkValidity ? form.checkValidity() : true
+      const isValid = form.checkValidity ? form.checkValidity() : true;
 
       if (!isValid) {
         // Focus first invalid field
-        const firstInvalid = form.querySelector(':invalid')
+        const firstInvalid = form.querySelector(':invalid');
         if (firstInvalid && firstInvalid.focus) {
-          firstInvalid.focus()
+          firstInvalid.focus();
         }
       }
 
-      Utils.log('Form validation', { form, isValid })
-      return isValid
+      Utils.log('Form validation', { form, isValid });
+      return isValid;
     },
 
     enhanceNumberInput: function (input) {
-      if (!input || input.getAttribute('data-enhanced')) return
+      if (!input || input.getAttribute('data-enhanced')) return;
 
-      input.setAttribute('data-enhanced', 'true')
+      input.setAttribute('data-enhanced', 'true');
 
       // Add visual indicator for keyboard shortcuts
-      const wrapper = document.createElement('div')
-      wrapper.style.position = 'relative'
-      wrapper.style.display = 'inline-block'
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'relative';
+      wrapper.style.display = 'inline-block';
 
       if (input.parentNode) {
-        input.parentNode.insertBefore(wrapper, input)
-        wrapper.appendChild(input)
+        input.parentNode.insertBefore(wrapper, input);
+        wrapper.appendChild(input);
 
-        const hint = document.createElement('span')
-        hint.textContent = '+/-'
+        const hint = document.createElement('span');
+        hint.textContent = '+/-';
         hint.style.cssText = `
           position: absolute;
           right: 8px;
@@ -608,78 +608,78 @@
           font-size: 10px;
           color: var(--ec-text-muted);
           pointer-events: none;
-        `
+        `;
 
-        wrapper.appendChild(hint)
+        wrapper.appendChild(hint);
       }
     },
 
     enhanceNumberInputs: function () {
-      const numberInputs = document.querySelectorAll('input[type="number"]')
+      const numberInputs = document.querySelectorAll('input[type="number"]');
       numberInputs.forEach(input => {
-        this.enhanceNumberInput(input)
-      })
+        this.enhanceNumberInput(input);
+      });
     },
 
     enhanceFormValidation: function () {
-      const forms = document.querySelectorAll('form')
+      const forms = document.querySelectorAll('form');
 
       forms.forEach(form => {
         form.addEventListener('submit', function (e) {
-          const isValid = form.checkValidity()
+          const isValid = form.checkValidity();
 
           if (!isValid) {
-            e.preventDefault()
+            e.preventDefault();
 
             // Focus first invalid field
-            const firstInvalid = form.querySelector(':invalid')
+            const firstInvalid = form.querySelector(':invalid');
             if (firstInvalid) {
-              firstInvalid.focus()
+              firstInvalid.focus();
             }
           }
-        })
-      })
+        });
+      });
     }
-  }
+  };
 
   // Initialize everything when DOM is ready
   function init () {
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init)
-      return
+      document.addEventListener('DOMContentLoaded', init);
+      return;
     }
 
-    Utils.log('Garden Core initializing...')
+    Utils.log('Garden Core initializing...');
 
-    KeyboardNav.init()
-    Performance.init()
-    Forms.init()
+    KeyboardNav.init();
+    Performance.init();
+    Forms.init();
 
     // Set initial focus
     setTimeout(() => {
-      const firstNavigable = document.querySelector(CONFIG.selectors.navigableItems)
+      const firstNavigable = document.querySelector(CONFIG.selectors.navigableItems);
       if (firstNavigable) {
-        KeyboardNav.setActive(0)
+        KeyboardNav.setActive(0);
       }
-    }, 100)
+    }, 100);
 
-    Utils.log('Garden Core initialized')
+    Utils.log('Garden Core initialized');
 
     // Expose public API - both Garden and DEWEY namespaces
-    window.Garden.keyboard = KeyboardNav
-    window.Garden.utils = Utils
-    window.Garden.performance = Performance
-    window.Garden.forms = Forms
+    window.Garden.keyboard = KeyboardNav;
+    window.Garden.utils = Utils;
+    window.Garden.performance = Performance;
+    window.Garden.forms = Forms;
 
     // Backward compatibility
-    window.DEWEY.keyboard = KeyboardNav
-    window.DEWEY.utils = Utils
-    window.DEWEY.performance = Performance
-    window.DEWEY.forms = Forms
+    window.DEWEY.keyboard = KeyboardNav;
+    window.DEWEY.utils = Utils;
+    window.DEWEY.performance = Performance;
+    window.DEWEY.forms = Forms;
   }
 
   // Auto-initialize
-  init()
+  init();
 
   // Export for CommonJS (testing)
   if (typeof module !== 'undefined' && module.exports) {
@@ -688,6 +688,6 @@
       DEWEY: window.DEWEY,
       init,
       CONFIG
-    }
+    };
   }
-})(window, document)
+})(window, document);

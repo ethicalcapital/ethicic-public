@@ -7,39 +7,20 @@
 
 {% block content %}
 <div class="garden-container">
-    <!-- Hero Section -->
-    <section class="garden-panel hero-panel" role="banner" aria-labelledby="pricing-heading">
-        <div class="garden-panel__content">
-            <h1 id="pricing-heading" class="hero-title">
-                {{ page.title|default:"Investment Management Pricing" }}
-            </h1>
-            <p class="hero-subtitle">
-                Transparent, competitive fees aligned with your success
-            </p>
-            
-            <div class="hero-description">
-                {% if page.intro_text %}
-                    {{ page.intro_text|richtext }}
-                {% else %}
-                    Our investment advisory fees are transparent, competitive, and aligned with your success. We offer two primary access points for our ethical investment strategies.
-                {% endif %}
-            </div>
-        </div>
-    </section>
-
     <!-- Fee Structure -->
     <section class="garden-panel" role="main" aria-labelledby="fees-heading">
         <div class="garden-panel__header">
-            <div class="panel-title">INVESTMENT MANAGEMENT OPTIONS</div>
+            <div class="panel-title">TRANSPARENT PRICING FOR EVERY CLIENT TYPE</div>
         </div>
         <div class="garden-panel__content">
-            <p class="section-intro">Choose the approach that best fits your needs. Both options provide access to our ethical investment strategies with institutional-grade performance and transparency.</p>
+            <p class="section-intro">Simple, transparent pricing based on how you access our services. Individual investors work directly with us at 1.00% annually. Institutional clients accessing through advisers or platforms pay 0.50% annually.</p>
             
             <div class="pricing-grid">
                 <div class="pricing-card direct-card">
-                    <div class="card-badge">DIRECT CLIENT</div>
+                    <div class="card-badge">INDIVIDUAL INVESTORS</div>
                     <div class="card-header">
-                        <h3>Direct Management</h3>
+                        <h3>Direct Client Relationships</h3>
+                        <p class="card-subtitle">For individuals and families</p>
                     </div>
                     <div class="price-display">
                         <span class="amount">1.00%</span>
@@ -48,7 +29,7 @@
                     <div class="features-list">
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span class="feature-text">Direct client relationship</span>
+                            <span class="feature-text">Work directly with Ethical Capital</span>
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
@@ -56,23 +37,11 @@
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span class="feature-text">Quarterly client meetings</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Custom ethical screening</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Direct access to CIO</span>
+                            <span class="feature-text">Real-time reporting through client portal</span>
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
                             <span class="feature-text">Comprehensive reporting</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Educational workshops included</span>
                         </div>
                     </div>
                     <div class="card-action">
@@ -81,8 +50,10 @@
                 </div>
 
                 <div class="pricing-card platform-card">
+                    <div class="card-badge">INSTITUTIONAL PRICING</div>
                     <div class="card-header">
-                        <h3>Advisers & Institutions</h3>
+                        <h3>Adviser & Platform Access</h3>
+                        <p class="card-subtitle">For RIAs, institutions, and platform clients</p>
                     </div>
                     <div class="price-display">
                         <span class="amount">0.50%</span>
@@ -91,11 +62,11 @@
                     <div class="features-list">
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span class="feature-text">Schwab Advisor platform access</span>
+                            <span class="feature-text">Access through Schwab, Altruist, or your preferred custodian</span>
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span class="feature-text">Professional adviser relationship</span>
+                            <span class="feature-text">Direct access to CIO</span>
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
@@ -103,19 +74,7 @@
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span class="feature-text">Standard ethical screening</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
                             <span class="feature-text">Quarterly performance reporting</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Strategy documentation</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Ongoing monitoring</span>
                         </div>
                     </div>
                     <div class="card-action">
@@ -137,8 +96,53 @@
                     <p>Direct management minimums vary by strategy. Schwab platform accounts follow standard SMA minimums. Contact us for current requirements.</p>
                 </div>
                 <div class="detail-item">
-                    <h4>Fee Comparison</h4>
-                    <p>Our 1.00% direct fee is competitive with boutique investment managers. The 0.50% platform fee reflects shared service delivery through adviser partners.</p>
+                    <h4>Why Different Pricing?</h4>
+                    <p>Individual clients (1.00%) receive comprehensive personal service directly from us. Institutional clients (0.50%) access our strategies through their existing adviser relationships or platforms, reflecting economies of scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Workshops Section -->
+    <section class="garden-panel workshop-section" role="complementary">
+        <div class="garden-panel__header">
+            <div class="panel-title">EDUCATIONAL WORKSHOPS & SPEAKING ENGAGEMENTS</div>
+        </div>
+        <div class="garden-panel__content">
+            <div class="workshop-content">
+                <p class="workshop-intro">Professional presentations on ethical investing, sustainable finance, and values-aligned wealth management. Topics range from foundational concepts to advanced portfolio construction strategies.</p>
+                <p class="nonprofit-note"><strong>Note:</strong> We provide complimentary presentations to mission-aligned nonprofit organizations and advocacy groups.</p>
+                
+                <div class="workshop-request-form">
+                    <h3>Request a Workshop or Presentation</h3>
+                    <form method="post" action="/workshop-request/" class="workshop-form" x-data="{ submitted: false, isNonprofit: false }">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="organization_name" placeholder="Organization name" class="garden-input" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Contact email" class="garden-input" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="event_date" placeholder="Proposed date/timeframe" class="garden-input">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description" placeholder="Please describe your audience, desired topics, and educational objectives" class="garden-input" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="is_nonprofit" x-model="isNonprofit">
+                                <span>We are a nonprofit organization or advocacy group</span>
+                            </label>
+                        </div>
+                        <div x-show="isNonprofit" class="nonprofit-message">
+                            <p>✓ Eligible for complimentary presentation</p>
+                        </div>
+                        <button type="submit" class="garden-action primary" x-show="!submitted">Submit Workshop Request</button>
+                        <div x-show="submitted" class="success-message">
+                            <p>Thank you for your interest. We'll respond within 2 business days.</p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -150,14 +154,9 @@
             <div class="panel-title">ADDITIONAL SERVICES</div>
         </div>
         <div class="garden-panel__content">
-            <p class="section-intro">Complementary services to support your ethical investing journey and professional development needs.</p>
+            <p class="section-intro">Specialized services for institutional clients and platform partners.</p>
             
             <div class="services-grid">
-                <div class="service-card">
-                    <h4 class="service-title">Educational Workshops</h4>
-                    <p>Customized ethical investing education sessions for clients, ranging from introductory concepts to advanced strategy discussions.</p>
-                    <div class="service-fee">$100 - $3,000 per session</div>
-                </div>
                 <div class="service-card">
                     <h4 class="service-title">Institutional Consulting</h4>
                     <p>Sub-advisory services for RIAs, family offices, and institutions seeking ethical investment expertise.</p>
@@ -181,21 +180,21 @@
     <!-- Call to Action Section -->
     <section class="garden-panel cta-panel" role="complementary" aria-labelledby="cta-heading">
         <div class="garden-panel__header">
-            <div class="panel-title">BEGIN YOUR ETHICAL INVESTMENT JOURNEY</div>
+            <div class="panel-title">LEARN MORE ABOUT US</div>
         </div>
         <div class="garden-panel__content">
             <h2 id="cta-heading" class="cta-title">
-                Ready to align your wealth with your values?
+                Explore our approach to ethical investing
             </h2>
             
             <div class="cta-description">
-                <p>We work with a select number of clients who share our commitment to ethical excellence. Schedule a consultation to discuss how our investment approach can serve your financial goals.</p>
+                <p>Discover how we combine rigorous analysis with ethical principles to build portfolios that reflect your values.</p>
             </div>
             
             <div class="cta-actions">
-                <a href="/consultation/" class="garden-action primary">SCHEDULE CONSULTATION</a>
-                <a href="/process/" class="garden-action secondary">LEARN OUR PROCESS</a>
-                <a href="/contact/" class="garden-action secondary">ASK QUESTIONS</a>
+                <a href="/blog/" class="garden-action primary">EXPLORE THE BLOG</a>
+                <a href="/faq/" class="garden-action secondary">FAQ</a>
+                <a href="/about/" class="garden-action secondary">OUR STORY</a>
             </div>
             
             <div class="cta-disclaimer">

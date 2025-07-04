@@ -18,10 +18,10 @@ const GardenPanel = {
    * @param {Object} options - Configuration options
    */
   init (panelId, options = {}) {
-    const panel = document.getElementById(panelId)
+    const panel = document.getElementById(panelId);
     if (!panel) {
-      console.warn('GardenPanel: Panel not found:', panelId)
-      return
+      console.warn('GardenPanel: Panel not found:', panelId);
+      return;
     }
 
     const config = {
@@ -32,51 +32,51 @@ const GardenPanel = {
       onExpand: options.onExpand,
       onCollapse: options.onCollapse,
       ...options
-    }
+    };
 
-    this.panels.set(panelId, config)
+    this.panels.set(panelId, config);
 
     if (config.collapsible) {
-      this.setupCollapsible(panelId)
+      this.setupCollapsible(panelId);
     }
 
     // Set initial state
     if (config.startCollapsed) {
-      this.collapse(panelId, false) // No animation on init
+      this.collapse(panelId, false); // No animation on init
     }
 
-    console.log('GardenPanel initialized:', panelId)
+    console.log('GardenPanel initialized:', panelId);
   },
 
   /**
    * Setup collapsible functionality
    */
   setupCollapsible (panelId) {
-    const panel = document.getElementById(panelId)
-    const collapseBtn = panel.querySelector('.panel-collapse-btn')
+    const panel = document.getElementById(panelId);
+    const collapseBtn = panel.querySelector('.panel-collapse-btn');
 
     if (!collapseBtn) {
-      console.warn('GardenPanel: No collapse button found for', panelId)
-      return
+      console.warn('GardenPanel: No collapse button found for', panelId);
+      return;
     }
 
     collapseBtn.addEventListener('click', (e) => {
-      e.preventDefault()
-      this.toggle(panelId)
-    })
+      e.preventDefault();
+      this.toggle(panelId);
+    });
 
     // Make header clickable if specified
-    const config = this.panels.get(panelId)
+    const config = this.panels.get(panelId);
     if (config.headerClickable) {
-      const header = panel.querySelector('.garden-panel-header')
+      const header = panel.querySelector('.garden-panel-header');
       if (header) {
-        header.style.cursor = 'pointer'
+        header.style.cursor = 'pointer';
         header.addEventListener('click', (e) => {
           // Don't trigger if clicking on buttons
           if (!e.target.closest('button')) {
-            this.toggle(panelId)
+            this.toggle(panelId);
           }
-        })
+        });
       }
     }
   },
@@ -85,18 +85,18 @@ const GardenPanel = {
    * Toggle panel collapsed state
    */
   toggle (panelId, animate = true) {
-    const panel = document.getElementById(panelId)
-    const content = panel.querySelector('.garden-panel-content')
+    const panel = document.getElementById(panelId);
+    const content = panel.querySelector('.garden-panel-content');
 
-    if (!content) return
+    if (!content) return;
 
     const isCollapsed = content.style.display === 'none' ||
-                       content.classList.contains('collapsed')
+                       content.classList.contains('collapsed');
 
     if (isCollapsed) {
-      this.expand(panelId, animate)
+      this.expand(panelId, animate);
     } else {
-      this.collapse(panelId, animate)
+      this.collapse(panelId, animate);
     }
   },
 
@@ -104,48 +104,48 @@ const GardenPanel = {
    * Expand panel
    */
   expand (panelId, animate = true) {
-    const panel = document.getElementById(panelId)
-    const content = panel.querySelector('.garden-panel-content')
-    const icon = panel.querySelector('.collapse-icon')
-    const config = this.panels.get(panelId)
+    const panel = document.getElementById(panelId);
+    const content = panel.querySelector('.garden-panel-content');
+    const icon = panel.querySelector('.collapse-icon');
+    const config = this.panels.get(panelId);
 
-    if (!content) return
+    if (!content) return;
 
     if (animate && config.animationDuration > 0) {
       // Smooth animation
-      content.style.height = '0px'
-      content.style.overflow = 'hidden'
-      content.style.display = 'block'
+      content.style.height = '0px';
+      content.style.overflow = 'hidden';
+      content.style.display = 'block';
 
       // Force reflow
-      content.offsetHeight
+      void content.offsetHeight;
 
-      content.style.transition = `height ${config.animationDuration}ms ease`
-      content.style.height = content.scrollHeight + 'px'
+      content.style.transition = `height ${config.animationDuration}ms ease`;
+      content.style.height = content.scrollHeight + 'px';
 
       setTimeout(() => {
-        content.style.height = ''
-        content.style.overflow = ''
-        content.style.transition = ''
-      }, config.animationDuration)
+        content.style.height = '';
+        content.style.overflow = '';
+        content.style.transition = '';
+      }, config.animationDuration);
     } else {
-      content.style.display = 'block'
+      content.style.display = 'block';
     }
 
-    content.classList.remove('collapsed')
-    panel.classList.remove('panel-collapsed')
+    content.classList.remove('collapsed');
+    panel.classList.remove('panel-collapsed');
 
     // Update icon
     if (icon) {
-      icon.textContent = '▼'
+      icon.textContent = '▼';
     }
 
     // Call callbacks
     if (config.onExpand) {
-      config.onExpand(panelId, panel)
+      config.onExpand(panelId, panel);
     }
     if (config.onToggle) {
-      config.onToggle(panelId, panel, false)
+      config.onToggle(panelId, panel, false);
     }
   },
 
@@ -153,48 +153,48 @@ const GardenPanel = {
    * Collapse panel
    */
   collapse (panelId, animate = true) {
-    const panel = document.getElementById(panelId)
-    const content = panel.querySelector('.garden-panel-content')
-    const icon = panel.querySelector('.collapse-icon')
-    const config = this.panels.get(panelId)
+    const panel = document.getElementById(panelId);
+    const content = panel.querySelector('.garden-panel-content');
+    const icon = panel.querySelector('.collapse-icon');
+    const config = this.panels.get(panelId);
 
-    if (!content) return
+    if (!content) return;
 
     if (animate && config.animationDuration > 0) {
       // Smooth animation
-      content.style.height = content.scrollHeight + 'px'
-      content.style.overflow = 'hidden'
-      content.style.transition = `height ${config.animationDuration}ms ease`
+      content.style.height = content.scrollHeight + 'px';
+      content.style.overflow = 'hidden';
+      content.style.transition = `height ${config.animationDuration}ms ease`;
 
       // Force reflow
-      content.offsetHeight
+      void content.offsetHeight;
 
-      content.style.height = '0px'
+      content.style.height = '0px';
 
       setTimeout(() => {
-        content.style.display = 'none'
-        content.style.height = ''
-        content.style.overflow = ''
-        content.style.transition = ''
-      }, config.animationDuration)
+        content.style.display = 'none';
+        content.style.height = '';
+        content.style.overflow = '';
+        content.style.transition = '';
+      }, config.animationDuration);
     } else {
-      content.style.display = 'none'
+      content.style.display = 'none';
     }
 
-    content.classList.add('collapsed')
-    panel.classList.add('panel-collapsed')
+    content.classList.add('collapsed');
+    panel.classList.add('panel-collapsed');
 
     // Update icon
     if (icon) {
-      icon.textContent = '▶'
+      icon.textContent = '▶';
     }
 
     // Call callbacks
     if (config.onCollapse) {
-      config.onCollapse(panelId, panel)
+      config.onCollapse(panelId, panel);
     }
     if (config.onToggle) {
-      config.onToggle(panelId, panel, true)
+      config.onToggle(panelId, panel, true);
     }
   },
 
@@ -202,38 +202,38 @@ const GardenPanel = {
    * Check if panel is collapsed
    */
   isCollapsed (panelId) {
-    const panel = document.getElementById(panelId)
-    const content = panel.querySelector('.garden-panel-content')
+    const panel = document.getElementById(panelId);
+    const content = panel.querySelector('.garden-panel-content');
 
     return content && (content.style.display === 'none' ||
-                      content.classList.contains('collapsed'))
+                      content.classList.contains('collapsed'));
   },
 
   /**
    * Set panel loading state
    */
   setLoading (panelId, loading = true) {
-    const panel = document.getElementById(panelId)
-    const content = panel.querySelector('.garden-panel-content')
-    const loadingDiv = panel.querySelector('.panel-loading')
+    const panel = document.getElementById(panelId);
+    const content = panel.querySelector('.garden-panel-content');
+    const loadingDiv = panel.querySelector('.panel-loading');
 
     if (loading) {
-      if (content) content.style.display = 'none'
+      if (content) content.style.display = 'none';
 
       if (!loadingDiv) {
-        const loading = document.createElement('div')
-        loading.className = 'panel-loading'
+        const loading = document.createElement('div');
+        loading.className = 'panel-loading';
         loading.innerHTML = `
           <div class="loading-spinner"></div>
           <div class="loading-text">Loading...</div>
-        `
-        panel.appendChild(loading)
+        `;
+        panel.appendChild(loading);
       } else {
-        loadingDiv.style.display = 'block'
+        loadingDiv.style.display = 'block';
       }
     } else {
-      if (content) content.style.display = 'block'
-      if (loadingDiv) loadingDiv.style.display = 'none'
+      if (content) content.style.display = 'block';
+      if (loadingDiv) loadingDiv.style.display = 'none';
     }
   },
 
@@ -241,15 +241,15 @@ const GardenPanel = {
    * Update panel status
    */
   setStatus (panelId, status) {
-    const panel = document.getElementById(panelId)
+    const panel = document.getElementById(panelId);
 
     // Remove existing status classes
-    panel.classList.remove('status-success', 'status-warning', 'status-error', 'status-info')
+    panel.classList.remove('status-success', 'status-warning', 'status-error', 'status-info');
 
     // Add new status
     if (status) {
-      panel.classList.add(`status-${status}`)
-      panel.dataset.status = status
+      panel.classList.add(`status-${status}`);
+      panel.dataset.status = status;
     }
   },
 
@@ -257,11 +257,11 @@ const GardenPanel = {
    * Update panel title
    */
   setTitle (panelId, title) {
-    const panel = document.getElementById(panelId)
-    const titleElement = panel.querySelector('.panel-title')
+    const panel = document.getElementById(panelId);
+    const titleElement = panel.querySelector('.panel-title');
 
     if (titleElement) {
-      titleElement.textContent = title.toUpperCase()
+      titleElement.textContent = title.toUpperCase();
     }
   },
 
@@ -269,23 +269,23 @@ const GardenPanel = {
    * Update panel count badge
    */
   setCount (panelId, count) {
-    const panel = document.getElementById(panelId)
-    let countBadge = panel.querySelector('.panel-count')
+    const panel = document.getElementById(panelId);
+    let countBadge = panel.querySelector('.panel-count');
 
     if (count !== null && count !== undefined) {
       if (!countBadge) {
-        countBadge = document.createElement('span')
-        countBadge.className = 'garden-badge panel-count'
+        countBadge = document.createElement('span');
+        countBadge.className = 'garden-badge panel-count';
 
-        const headerLeft = panel.querySelector('.panel-header-left')
+        const headerLeft = panel.querySelector('.panel-header-left');
         if (headerLeft) {
-          headerLeft.appendChild(countBadge)
+          headerLeft.appendChild(countBadge);
         }
       }
-      countBadge.textContent = count
-      countBadge.style.display = ''
+      countBadge.textContent = count;
+      countBadge.style.display = '';
     } else if (countBadge) {
-      countBadge.style.display = 'none'
+      countBadge.style.display = 'none';
     }
   },
 
@@ -293,44 +293,44 @@ const GardenPanel = {
    * Refresh panel content (if refresh function provided)
    */
   refresh (panelId) {
-    const config = this.panels.get(panelId)
+    const config = this.panels.get(panelId);
 
     if (config && config.refreshCallback) {
-      this.setLoading(panelId, true)
+      this.setLoading(panelId, true);
 
       Promise.resolve(config.refreshCallback(panelId))
         .then(() => {
-          this.setLoading(panelId, false)
+          this.setLoading(panelId, false);
         })
         .catch((error) => {
-          console.error('Panel refresh error:', error)
-          this.setLoading(panelId, false)
-          this.setStatus(panelId, 'error')
-        })
+          console.error('Panel refresh error:', error);
+          this.setLoading(panelId, false);
+          this.setStatus(panelId, 'error');
+        });
     }
   }
-}
+};
 
 // Global function for backwards compatibility
 window.togglePanel = function (panelId) {
-  GardenPanel.toggle(panelId)
-}
+  GardenPanel.toggle(panelId);
+};
 
 // Auto-initialize panels with data-auto-init attribute
 document.addEventListener('DOMContentLoaded', () => {
-  const autoPanels = document.querySelectorAll('[data-auto-init="garden-panel"]')
+  const autoPanels = document.querySelectorAll('[data-auto-init="garden-panel"]');
   autoPanels.forEach(panel => {
-    const panelId = panel.id
+    const panelId = panel.id;
     const options = {
       collapsible: panel.dataset.collapsible === 'true',
       startCollapsed: panel.dataset.startCollapsed === 'true',
       headerClickable: panel.dataset.headerClickable === 'true'
-    }
-    GardenPanel.init(panelId, options)
-  })
-})
+    };
+    GardenPanel.init(panelId, options);
+  });
+});
 
 // Export for module use
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = GardenPanel
+  module.exports = GardenPanel;
 }

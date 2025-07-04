@@ -861,6 +861,18 @@ class BlogIndexPage(RoutablePageMixin, Page):
             # Return empty queryset if there's any issue
             from taggit.models import Tag
             return Tag.objects.none()
+    
+    def get_all_authors(self):
+        """Get all unique authors with post counts."""
+        from django.db.models import Count
+        authors = (
+            self.get_posts()
+            .values('author')
+            .annotate(post_count=Count('id'))
+            .filter(author__isnull=False, author__gt='')
+            .order_by('-post_count', 'author')
+        )
+        return list(authors)
 
     @path("")
     def post_list(self, request):
@@ -1259,12 +1271,16 @@ class ResearchPage(RoutablePageMixin, Page):
 
     def get_posts(self):
         """Get all published blog posts for research."""
-        return (
-            BlogPost.objects.descendant_of(self.get_site().root_page)
-            .live()
-            .public()
-            .order_by("-first_published_at")
-        )
+        site = self.get_site()
+        if site and site.root_page:
+            return (
+                BlogPost.objects.descendant_of(site.root_page)
+                .live()
+                .public()
+                .order_by("-first_published_at")
+            )
+        # Fallback for test environments or when site is not set
+        return BlogPost.objects.live().public().order_by("-first_published_at")
 
     def get_featured_posts(self):
         """Get featured blog posts."""
@@ -1294,6 +1310,18 @@ class ResearchPage(RoutablePageMixin, Page):
             # Return empty queryset if there's any issue
             from taggit.models import Tag
             return Tag.objects.none()
+    
+    def get_all_authors(self):
+        """Get all unique authors with post counts."""
+        from django.db.models import Count
+        authors = (
+            self.get_posts()
+            .values('author')
+            .annotate(post_count=Count('id'))
+            .filter(author__isnull=False, author__gt='')
+            .order_by('-post_count', 'author')
+        )
+        return list(authors)
 
     @path("")
     def post_list(self, request):
