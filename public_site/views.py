@@ -220,10 +220,11 @@ def contact_form_submit(request):
 
     else:
         # Form has errors - redirect back with error message
-        error_messages = []
-        for field, errors in form.errors.items():
-            for error in errors:
-                error_messages.append(f"{field}: {error}")
+        error_messages = [
+            f"{field}: {error}"
+            for field, errors in form.errors.items()
+            for error in errors
+        ]
 
         logger.error("Contact form validation errors: %s", form.errors)
         messages.error(
@@ -518,10 +519,11 @@ def onboarding_form_submit(request):
                 },
             )
 
-        error_messages = []
-        for field, errors in form.errors.items():
-            for error in errors:
-                error_messages.append(f"{field}: {error}")
+        error_messages = [
+            f"{field}: {error}"
+            for field, errors in form.errors.items()
+            for error in errors
+        ]
 
         messages.error(
             request,
@@ -839,15 +841,14 @@ def get_site_navigation(request):
             # Get main navigation pages (depth 3)
             nav_pages = Page.objects.child_of(root_page).live().public().in_menu()
 
-            navigation = []
-            for page in nav_pages:
-                navigation.append(
-                    {
-                        "title": page.title,
-                        "url": page.url,
-                        "slug": page.slug,
-                    },
-                )
+            navigation = [
+                {
+                    "title": page.title,
+                    "url": page.url,
+                    "slug": page.slug,
+                }
+                for page in nav_pages
+            ]
 
             # Only return the navigation if we have items, otherwise fall back
             if navigation:

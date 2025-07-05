@@ -323,16 +323,15 @@ class AccessibleContactForm(forms.Form):
                         "human_check": "Please solve the math problem correctly to verify you are human."
                     }
                 )
-            if not hasattr(self, "math_answer"):
+            if not hasattr(self, "math_answer") and (not human_answer or not human_answer.strip()):
                 # If math_answer is not set (shouldn't happen), require any non-empty value
-                if not human_answer or not human_answer.strip():
-                    raise forms.ValidationError(
-                        {"human_check": "Please provide a value for verification."}
-                    )
-        except (ValueError, AttributeError):
+                raise forms.ValidationError(
+                    {"human_check": "Please provide a value for verification."}
+                )
+        except (ValueError, AttributeError) as e:
             raise forms.ValidationError(
                 {"human_check": "Please enter a number to solve the math problem."}
-            )
+            ) from e
 
     def _validate_form_timing(self, cleaned_data):
         """Validate form submission timing to detect bots."""
