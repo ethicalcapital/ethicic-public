@@ -1,244 +1,87 @@
-/* ========================================
-   BLOG FORMATTING FIXES
-   Fixes for purple sections, text contrast, and tag styling
-   ======================================== */
-
 /* ===== FIX PURPLE SUBSCRIBE SECTION ===== */
+
 /* Override the purple header for newsletter section */
-.newsletter-section .garden-panel-header {
-    background: var(--color-surface-variant) !important;
-    color: var(--color-on-surface) !important;
-}
 
-.newsletter-section .garden-panel-header .panel-title {
-    color: var(--color-on-surface) !important;
-}
 
-/* Remove the purple border top from newsletter content */
-.newsletter-section .garden-panel-content {
-    border-top: none !important;
-}
-
-/* ===== FIX CONNECT SECTION STYLING ===== */
-/* Ensure consistent styling for connect section */
-.connect-section .garden-panel-header {
-    background: var(--color-surface-variant) !important;
-    color: var(--color-on-surface) !important;
-}
-
-.connect-section .panel-title {
-    color: var(--color-on-surface) !important;
-}
-
-/* ===== FIX TEXT CONTRAST ISSUES ===== */
-/* Ensure proper text colors for blog content */
-.blog-index-page .sidebar-description,
-.blog-index-page .sidebar-privacy {
-    color: var(--color-on-surface) !important;
-}
-
-.blog-index-page .sidebar-privacy small {
-    color: var(--color-on-surface-variant) !important;
-}
-
-/* Fix input field styling */
-.blog-index-page .sidebar-input {
-    background: var(--color-surface) !important;
-    border: 1px solid var(--color-border) !important;
-    color: var(--color-on-surface) !important;
-}
-
-.blog-index-page .sidebar-input::placeholder {
-    color: var(--color-on-surface-variant) !important;
-    opacity: 0.7 !important;
-}
-
-.blog-index-page .sidebar-input:focus {
-    background: var(--color-surface) !important;
-    border-color: var(--color-primary) !important;
-}
-
-/* ===== FIX TAG STYLING ===== */
-/* Article list tags */
-.article-list-tag {
-    background: var(--color-surface-variant) !important;
-    color: var(--color-on-surface) !important;
-    border: 1px solid var(--color-border) !important;
-    padding: var(--space-1) var(--space-2) !important;
-    border-radius: var(--radius-sm) !important;
-    font-size: var(--font-xs) !important;
-    font-weight: var(--font-medium) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    transition: all 0.2s ease !important;
-}
-
-.article-list-tag:hover {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    border-color: var(--color-primary) !important;
-}
-
-/* Featured article tags */
 .featured-tag {
-    background: var(--color-surface-variant) !important;
-    color: var(--color-on-surface) !important;
-    border: 1px solid var(--color-border) !important;
-    padding: var(--space-1) var(--space-2) !important;
-    border-radius: var(--radius-sm) !important;
-    font-size: var(--font-xs) !important;
-    font-weight: var(--font-medium) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    display: inline-block !important;
-    transition: all 0.2s ease !important;
+    padding: 2px 6px;
+        font-size: 10px;
 }
 
 .featured-tag:hover {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    border-color: var(--color-primary) !important;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
 }
 
-/* Tag filter styling */
-.tag-filter strong {
-    color: var(--color-primary) !important;
-    font-weight: var(--font-semibold) !important;
-}
 
-/* Article page tags */
 .article-tag {
-    background: var(--color-surface-variant) !important;
-    color: var(--color-on-surface) !important;
-    border: 1px solid var(--color-border) !important;
-    padding: var(--space-1) var(--space-2) !important;
-    border-radius: var(--radius-sm) !important;
-    font-size: var(--font-xs) !important;
-    font-weight: var(--font-medium) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    text-decoration: none !important;
-    display: inline-block !important;
-    transition: all 0.2s ease !important;
-    margin-right: var(--space-2) !important;
-    margin-bottom: var(--space-1) !important;
+    padding: 2px 6px;
+        font-size: 10px;
 }
 
 .article-tag:hover {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    border-color: var(--color-primary) !important;
-    text-decoration: none !important;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+    text-decoration: none;
 }
 
-/* ===== FIX SOCIAL LINKS STYLING ===== */
-/* Ensure social links have proper contrast */
-.social-link {
-    color: var(--color-on-surface) !important;
-    background: transparent !important;
-}
 
 .social-link:hover {
-    background: var(--color-surface-hover) !important;
-    border-color: var(--color-border) !important;
-    color: var(--color-primary) !important;
-}
-
-/* ===== DARK MODE SPECIFIC FIXES ===== */
-[data-theme="dark"] {
-    /* Newsletter section in dark mode */
-    .newsletter-section .garden-panel-header {
-        background: var(--color-surface-variant) !important;
-        color: var(--color-on-surface) !important;
-    }
-    
-    .newsletter-section .garden-panel-header .panel-title {
-        color: var(--color-on-surface) !important;
-    }
-    
-    /* Connect section in dark mode */
-    .connect-section .garden-panel-header {
-        background: var(--color-surface-variant) !important;
-        color: var(--color-on-surface) !important;
-    }
-    
-    .connect-section .panel-title {
-        color: var(--color-on-surface) !important;
-    }
-    
-    /* Tags in dark mode */
-    .article-list-tag,
-    .featured-tag,
-    .article-tag {
-        background: var(--color-surface) !important;
-        border-color: var(--color-border) !important;
-        color: var(--color-on-surface) !important;
-    }
-    
-    .article-list-tag:hover,
-    .featured-tag:hover,
-    .article-tag:hover {
-        background: var(--color-primary) !important;
-        color: var(--color-on-primary) !important;
-        border-color: var(--color-primary) !important;
-    }
-}
-
-/* ===== ENSURE PANEL HEADERS ARE CONSISTENT ===== */
-.blog-index-page .garden-panel-header {
-    background: var(--color-surface-variant) !important;
-    color: var(--color-on-surface) !important;
-    border-bottom: 1px solid var(--color-border) !important;
+    background: var(--color-surface-hover);
+    border-color: var(--color-border);
+    color: var(--color-primary);
 }
 
 .blog-index-page .panel-title {
-    color: var(--color-on-surface) !important;
-    font-family: var(--font-mono) !important;
-    font-size: var(--font-sm) !important;
-    font-weight: var(--font-bold) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1.5px !important;
-    margin: 0 !important;
+    color: var(--color-on-surface);
+    font-family: var(--font-mono);
+    font-size: var(--font-sm);
+    font-weight: var(--font-bold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
 }
 
-/* ===== FIX BUTTON VISIBILITY IN SIDEBAR ===== */
-.blog-index-page .sidebar-section .garden-action {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    border: 2px solid var(--color-primary) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+.blog-index-page .garden-panel-header {
+    background: var(--color-surface-variant);
+    color: var(--color-on-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.newsletter-section .garden-panel-header .panel-title {
+    color: var(--color-on-surface);
+}
+
+/* ===== BLOG STYLES (ORDERED BY SPECIFICITY) ===== */
+.article-list-tag {
+    padding: 2px 6px;
+        font-size: 10px;
+}
+
+.article-list-tag:hover {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+}
+
+.blog-index-page .sidebar-privacy small {
+    color: var(--color-on-surface-variant);
+}
+
+.blog-index-page .sidebar-input:focus {
+    background: var(--color-surface);
+    border-color: var(--color-primary);
+}
+
+.blog-index-page .sidebar-input::placeholder {
+    color: var(--color-on-surface-variant);
+    opacity: 0.7;
 }
 
 .blog-index-page .sidebar-section .garden-action:hover {
-    background: var(--color-primary-hover) !important;
-    border-color: var(--color-primary-hover) !important;
-    transform: translateY(-1px) !important;
-}
-
-/* ===== MOBILE RESPONSIVE FIXES ===== */
-@media (max-width: 768px) {
-    .newsletter-section .garden-panel-header,
-    .connect-section .garden-panel-header {
-        padding: var(--space-3) var(--space-4) !important;
-    }
-    
-    .article-list-tag,
-    .featured-tag,
-    .article-tag {
-        padding: 2px 6px !important;
-        font-size: 10px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .newsletter-section .garden-panel-header,
-    .connect-section .garden-panel-header {
-        padding: var(--space-2) var(--space-3) !important;
-    }
-    
-    .panel-title {
-        font-size: var(--font-xs) !important;
-        letter-spacing: 1px !important;
-    }
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    transform: translateY(-1px);
 }

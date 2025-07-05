@@ -1,35 +1,120 @@
 /* Pricing Page Specific Styles */
 
-/* Hero Section */
-.pricing-page .hero-panel {
+/* ===== SPECIFICITY ORGANIZED: LOW TO HIGH ===== */
+
+/* SPECIFICITY 0,0,2,0 - Two class selectors */
+.workshop-form .garden-action {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.pricing-page .garden-action {
+    transition: all 0.3s ease;
+}
+
+.dual-cta .garden-action {
+    flex: 1;
+    min-width: 140px;
+    font-size: 0.875rem;
+    padding: 12px 16px;
+}
+
+/* SPECIFICITY 0,0,3,0 - Three class selectors (these come after) */
+
+.pricing-page .cta-actions a.garden-action,
+
+.pricing-page .cta-actions .garden-action,
+
+.pricing-page .cta-actions .garden-action.primary,
+
+/* Primary button colors */
+
+/* Secondary button colors */
+
+/* Hover states */
+
+/* Responsive Design */
+
+/* Dark Theme Support */
+
+/* Button Hover Effects */
+
+/* Workshop Section */
+
+/* Workshop Request Form */
+
+/* Nonprofit Note */
+
+/* Checkbox Group */
+
+.workshop-request-form {
+    margin-top: 2rem;
     background: var(--color-surface);
-    text-align: center;
-    margin-bottom: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
 }
 
-.pricing-page .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 1rem;
+.nonprofit-message {
+    color: var(--color-success, var(--garden-color-success));
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
 }
 
-.pricing-page .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
+.fee-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
 }
 
-.pricing-page .hero-description {
-    font-size: 1.1rem;
-    color: var(--color-text-primary);
-    line-height: 1.6;
+.workshop-section {
+    margin-top: 3rem;
+}
+
+.workshop-content {
     max-width: 800px;
     margin: 0 auto;
 }
 
-/* Section Intro */
+.service-action {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.workshop-intro {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.nonprofit-note {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    background: var(--color-primary-alpha-10);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    margin: 1rem 0;
+}
+
+.checkbox-group {
+    margin: 1rem 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+}
+
 .section-intro {
     font-size: 1.1rem;
     color: var(--color-text-secondary);
@@ -38,7 +123,38 @@
     text-align: center;
 }
 
-/* Pricing Grid */
+.card-subtitle {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.25rem;
+    font-weight: normal;
+}
+
+.price-display {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.features-list {
+    margin-bottom: 2rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.service-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -61,71 +177,6 @@
     border-color: var(--color-primary);
 }
 
-.direct-card {
-    border-color: var(--color-primary);
-    background: linear-gradient(135deg, var(--color-surface-secondary) 0%, var(--color-surface) 100%);
-}
-
-.card-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-primary);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-md);
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.card-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.card-header h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin: 0;
-}
-
-.card-subtitle {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    margin-top: 0.25rem;
-    font-weight: normal;
-}
-
-.price-display {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.amount {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    line-height: 1;
-}
-
-.period {
-    font-size: 1rem;
-    color: var(--color-text-secondary);
-    margin-left: 0.5rem;
-    font-weight: 500;
-}
-
-/* Features List */
-.features-list {
-    margin-bottom: 2rem;
-}
-
 .feature-item {
     display: flex;
     align-items: center;
@@ -135,7 +186,7 @@
 }
 
 .feature-icon {
-    color: var(--color-success, #22c55e);
+    color: var(--color-success, var(--garden-color-success));
     font-weight: 600;
     font-size: 1.125rem;
     flex-shrink: 0;
@@ -145,70 +196,6 @@
     color: var(--color-text-primary);
     line-height: 1.5;
     flex: 1;
-}
-
-/* Card Action */
-.card-action {
-    text-align: center;
-    margin-top: 1.5rem;
-}
-
-.dual-cta {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.dual-cta .garden-action {
-    flex: 1;
-    min-width: 140px;
-    font-size: 0.875rem;
-    padding: 12px 16px;
-}
-
-/* Fee Details Grid */
-.fee-details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-    padding: 2rem 0;
-    border-top: 1px solid var(--color-border);
-}
-
-.detail-item {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.detail-item:hover {
-    border-color: var(--color-primary);
-    transform: translateY(-2px);
-}
-
-.detail-item h4 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 0.75rem;
-}
-
-.detail-item p {
-    color: var(--color-text-primary);
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* Services Grid */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
 }
 
 .service-card {
@@ -226,17 +213,32 @@
     border-color: var(--color-primary);
 }
 
-.service-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
+.direct-card {
+    border-color: var(--color-primary);
+    background: linear-gradient(135deg, var(--color-surface-secondary) 0%, var(--color-surface) 100%);
 }
 
-.service-card p {
-    color: var(--color-text-primary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
+.card-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.card-action {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.detail-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
 }
 
 .service-fee {
@@ -250,80 +252,21 @@
     text-align: center;
 }
 
-.service-action {
-    margin-top: 1rem;
-    text-align: center;
-}
-
-/* CTA Section */
-.pricing-page .cta-panel {
-    background: var(--color-surface-secondary, #f8f9fa) !important;
-    color: var(--color-text-primary) !important;
-    margin-top: 3rem;
-    border-radius: 8px;
-    border: 1px solid var(--color-border);
-}
-
-.pricing-page .cta-panel .garden-panel__header {
-    background: var(--color-surface-variant, #e9ecef) !important;
-    border-radius: 8px 8px 0 0;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.pricing-page .cta-panel .garden-panel__content {
-    background: var(--color-surface-secondary, #f8f9fa) !important;
-    text-align: center;
-    color: var(--color-text-primary) !important;
-}
-
-.pricing-page .cta-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--color-text-primary) !important;
-    margin-bottom: 1rem;
-}
-
-.pricing-page .cta-description {
-    font-size: 1.1rem;
-    color: var(--color-text-primary) !important;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.pricing-page .cta-description p {
-    color: var(--color-text-primary) !important;
-    margin: 0;
-}
-
-.pricing-page .cta-actions {
-    display: flex !important;
-    gap: 1rem !important;
-    justify-content: center !important;
-    align-items: stretch !important;
-    flex-wrap: nowrap !important;
-    margin-bottom: 2rem;
-    min-height: 50px !important;
-    width: 100% !important;
-    max-width: none !important;
-    padding: 0 !important;
-}
-
-.pricing-page .cta-disclaimer {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary) !important;
-    line-height: 1.5;
-    padding: 1rem;
-    background: var(--color-surface);
+.card-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: var(--garden-color-white);
+    padding: 0.5rem 1rem;
     border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.pricing-page .cta-disclaimer p {
-    margin: 0;
-    color: var(--color-text-secondary) !important;
-}
-
-/* Text Links */
 .text-link {
     color: var(--color-primary);
     text-decoration: underline;
@@ -335,186 +278,25 @@
     text-decoration-thickness: 2px;
 }
 
-/* Force CTA buttons to consistent size and proper centering - NUCLEAR OPTION */
-/* Styles merged with earlier .pricing-page .cta-actions selector */
-
-/* Reset ALL button styles and rebuild from scratch */
-.pricing-page .cta-actions a.garden-action,
-.pricing-page .cta-actions .garden-action,
-.pricing-page .cta-actions .garden-action.primary,
-.pricing-page .cta-actions .garden-action.secondary {
-    /* Reset everything */
-    all: unset !important;
-    
-    /* Rebuild button styles */
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex: 0 0 240px !important;
-    width: 240px !important;
-    min-width: 240px !important;
-    max-width: 240px !important;
-    height: 44px !important;
-    padding: 0 var(--space-4) !important;
-    margin: 0 !important;
-    
-    /* Text styles */
-    font-family: var(--font-mono) !important;
-    font-size: var(--font-sm) !important;
-    font-weight: var(--font-semibold) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    text-align: center !important;
-    text-decoration: none !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    
-    /* Button styles */
-    border-radius: var(--radius-sm) !important;
-    border: 2px solid var(--color-primary) !important;
-    cursor: pointer !important;
-    transition: all var(--duration-fast) !important;
-    box-sizing: border-box !important;
+.dual-cta {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-/* Primary button colors */
-.pricing-page .cta-actions .garden-action.primary {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    border-color: var(--color-primary) !important;
+.amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
 }
 
-/* Secondary button colors */
-.pricing-page .cta-actions .garden-action.secondary {
-    background: transparent !important;
-    color: var(--color-primary) !important;
-    border-color: var(--color-primary) !important;
-}
-
-/* Hover states */
-.pricing-page .cta-actions .garden-action.primary:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: var(--shadow-md) !important;
-}
-
-.pricing-page .cta-actions .garden-action.secondary:hover {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .pricing-page .hero-title {
-        font-size: 2rem;
-    }
-    
-    .pricing-page .hero-subtitle {
-        font-size: 1.125rem;
-    }
-    
-    .pricing-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .fee-details-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .pricing-page .cta-actions {
-        flex-wrap: wrap !important;
-        gap: 0.75rem !important;
-    }
-    
-    /* Maintain button sizing on mobile */
-    .pricing-page .cta-actions a.garden-action,
-    .pricing-page .cta-actions .garden-action {
-        flex: 0 0 200px !important;
-        width: 200px !important;
-        min-width: 200px !important;
-        max-width: 200px !important;
-        font-size: 0.875rem !important;
-    }
-    
-    .pricing-page .cta-title {
-        font-size: 1.5rem;
-    }
-    
-    .amount {
-        font-size: 2.5rem;
-    }
-    
-    .dual-cta {
-        flex-direction: column;
-    }
-    
-    .dual-cta .garden-action {
-        flex: none;
-        width: 100%;
-    }
-}
-
-/* Dark Theme Support */
-[data-theme="dark"] .pricing-page {
-    .pricing-card {
-        background: var(--color-surface-variant);
-        border-color: var(--color-border);
-    }
-    
-    .detail-item {
-        background: var(--color-surface-variant);
-        border-color: var(--color-border);
-    }
-    
-    .service-card {
-        background: var(--color-surface-variant);
-        border-color: var(--color-border);
-    }
-    
-    .service-fee {
-        background: var(--color-surface);
-    }
-}
-
-/* Button Hover Effects */
-.pricing-page .garden-action {
-    transition: all 0.3s ease;
-}
-
-.pricing-page .garden-action:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-/* Workshop Section */
-.workshop-section {
-    margin-top: 3rem;
-}
-
-.workshop-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.workshop-intro {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-/* Workshop Request Form */
-.workshop-request-form {
-    margin-top: 2rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 2rem;
+.period {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    margin-left: 0.5rem;
+    font-weight: 500;
 }
 
 .workshop-request-form h3 {
@@ -525,8 +307,102 @@
     color: var(--color-text-primary);
 }
 
-.workshop-form .form-group {
+.card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.detail-item h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-primary);
     margin-bottom: 0.75rem;
+}
+
+.service-card p {
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.detail-item p {
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+[data-theme="dark"] .pricing-page {
+    .pricing-card {
+        background: var(--color-surface-variant);
+        border-color: var(--color-border);
+    }
+
+    .detail-item {
+        background: var(--color-surface-variant);
+        border-color: var(--color-border);
+    }
+
+    .service-card {
+        background: var(--color-surface-variant);
+        border-color: var(--color-border);
+    }
+
+    .service-fee {
+        background: var(--color-surface);
+    }
+}
+
+.pricing-page .hero-description {
+    font-size: 1.1rem;
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.workshop-form .success-message {
+    text-align: center;
+    color: var(--color-success, var(--garden-color-success));
+    font-weight: 500;
+    padding: 1rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+    margin-top: 0.5rem;
+}
+
+.pricing-page .cta-description {
+    font-size: 1.1rem;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.pricing-page .cta-disclaimer {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    padding: 1rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+/* Moved to top for proper specificity ordering */
+
+.pricing-page .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+/* Moved to top for proper specificity ordering */
+
+.pricing-page .garden-action:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .workshop-form .garden-input {
@@ -546,43 +422,51 @@
     border-color: var(--color-primary);
 }
 
-.workshop-form .garden-action {
-    width: 100%;
-    margin-top: 0.5rem;
-}
-
-.workshop-form .success-message {
-    text-align: center;
-    color: var(--color-success, #22c55e);
-    font-weight: 500;
-    padding: 1rem;
-    background: var(--color-surface);
-    border-radius: var(--radius-sm);
-    margin-top: 0.5rem;
-}
-
-/* Nonprofit Note */
-.nonprofit-note {
-    font-size: 0.875rem;
-    color: var(--color-primary);
-    background: rgb(85, 60, 154, 0.1);
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius-sm);
-    margin: 1rem 0;
-}
-
-/* Checkbox Group */
-.checkbox-group {
-    margin: 1rem 0;
-}
-
-.checkbox-label {
+.pricing-page .cta-actions {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-size: 0.875rem;
+    gap: 1rem;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    margin-bottom: 2rem;
+    min-height: 50px;
+    width: 100%;
+    max-width: none;
+    padding: 0;
+}
+
+.workshop-form .form-group {
+    margin-bottom: 0.75rem;
+}
+
+.pricing-page .hero-panel {
+    background: var(--color-surface);
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.pricing-page .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
     color: var(--color-text-primary);
+    margin-bottom: 1rem;
+}
+
+/* Moved to top for proper specificity ordering */
+
+.pricing-page .cta-panel {
+    background: var(--color-surface-secondary, var(--garden-color-gray-50));
+    color: var(--color-text-primary);
+    margin-top: 3rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+.pricing-page .cta-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -592,10 +476,79 @@
     accent-color: var(--color-primary);
 }
 
-.nonprofit-message {
-    color: var(--color-success, #22c55e);
-    font-size: 0.875rem;
-    font-weight: 500;
-    padding: 0.5rem 0;
-    margin-bottom: 0.5rem;
+.pricing-page .cta-description p {
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.pricing-page .cta-disclaimer p {
+    margin: 0;
+    color: var(--color-text-secondary);
+}
+
+.pricing-page .cta-actions .garden-action.secondary {
+    /* Reset everything */
+    all: unset;
+
+    /* Rebuild button styles */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 240px;
+    width: 240px;
+    min-width: 240px;
+    max-width: 240px;
+    height: 44px;
+    padding: 0 var(--space-4);
+    margin: 0;
+
+    /* Text styles */
+    font-family: var(--font-mono);
+    font-size: var(--font-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* Button styles */
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--color-primary);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    box-sizing: border-box;
+    background: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.pricing-page .cta-actions .garden-action.secondary:hover {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+.pricing-page .cta-actions .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+}
+
+.pricing-page .cta-actions .garden-action.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.pricing-page .cta-panel .garden-panel__content {
+    background: var(--color-surface-secondary, var(--garden-color-gray-50));
+    text-align: center;
+    color: var(--color-text-primary);
+}
+
+.pricing-page .cta-panel .garden-panel__header {
+    background: var(--color-surface-variant, var(--garden-color-gray-100));
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid var(--color-border);
 }

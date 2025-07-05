@@ -8,7 +8,7 @@
 - **no hardcoded secrets**
 - **SECURITY SECURITY SECURITY**
 - stop reminding me how many assets i have and that im a fiduciary
-- Don't hardcode css into html files. use the appropriate consolidated css files. 
+- Don't hardcode css into html files. use the appropriate consolidated css files.
 
 
 ### Development Rules
@@ -40,11 +40,33 @@
 ---
 
 ## 🚨 Package Management: ALWAYS USE UV - NEVER USE PIP! 🚨
-- Add packages: `uv add package-name`
-- Add dev packages: `uv add --dev package-name`
-- Install requirements: `uv sync`
-- Run commands: `uv run command`
-- Make sure dependencies are added to **pyproject.toml**
+
+### ⛔ FORBIDDEN COMMANDS - NEVER USE THESE:
+- ❌ `pip install` - **DO NOT USE**
+- ❌ `pip install -r requirements.txt` - **DO NOT USE**
+- ❌ `python -m pip` - **DO NOT USE**
+- ❌ Any command starting with `pip` - **DO NOT USE**
+
+### ✅ ALWAYS USE UV INSTEAD:
+- ✅ Add packages: `uv add package-name`
+- ✅ Add dev packages: `uv add --dev package-name`
+- ✅ Install all dependencies: `uv sync`
+- ✅ Install with dev dependencies: `uv sync --dev`
+- ✅ Run commands: `uv run command`
+- ✅ Run Python: `uv run python`
+- ✅ Run Django: `uv run python manage.py`
+
+### WHY UV ONLY:
+- **10-100x faster** than pip
+- **Deterministic** dependency resolution
+- **Automatic venv management**
+- **Works with pyproject.toml**
+- **No more dependency conflicts**
+
+### IMPORTANT:
+- Dependencies MUST be added to **pyproject.toml**, not requirements.txt
+- If you see `requirements.txt`, it's for backwards compatibility only
+- **UV is the ONLY package manager we use** - no exceptions!
 
 ---
 
@@ -99,7 +121,7 @@
 - **Logfire** (`@logfire`) - Telemetry and monitoring analysis - Access platform observability data
 - **CONTEXT7** (`@context7`) - Retreive documentation for libraries, apis, etc.
 - **Postgresql** (`@postgresl`) - Read our database for any reason
-- **Playwright** (@playwright') - browse the web, debug stuff. 
+- **Playwright** (@playwright') - browse the web, debug stuff.
 - **Docker** (@docker) - get info on running containers -- make sure you add params to limit whats returned or it will exceed the 25k token allowable window
 - **Github** (@github) - interact with github repos
 - **firecrawl** (@firecrawl) - browse, search, retreive info from the web
@@ -134,7 +156,7 @@
 - **NEVER use hardcoded colors in CSS** - ALL colors must use Garden UI theme variables for centralized theme management
 - **Prefer @core/widgets/ components** wherever possible for consistent UI patterns and behavior
 - dont make up things on our public website. DO NOT
-- when i ask you to help me edit content, make ONLY the edits i explicitly suggest. Do not take initiative. 
+- when i ask you to help me edit content, make ONLY the edits i explicitly suggest. Do not take initiative.
 - **dont fix things with bandaids. Create clean codes**
 - dont work around issues. solve them
 - always use garden ui componoents and widgets to impplement new pages

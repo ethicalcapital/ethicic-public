@@ -1,88 +1,57 @@
 /* Process Page Styles - Working Version */
 
 /* Step Numbers with White Text on Purple Background */
-.step-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--theme-primary) !important;
-    color: white !important;
-    font-size: 1.25rem;
-    font-weight: 700;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-}
 
 /* Basic Process Page Styles */
-.process-page {
-    color: #1a1a1a;
-}
 
 /* Extended process step for step 1 */
-.process-step-expanded {
-    background: #fafafa;
-    border: 2px solid var(--theme-primary);
-}
-
-.process-steps {
-    margin-bottom: 2rem;
-    margin-top: 3rem;
-}
-
-.process-step {
-    margin-bottom: 3rem;
-    position: relative;
-    padding: 1.5rem;
-    background: #fff;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-}
-
-.step-content h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 1rem;
-}
-
-.step-content p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
-}
 
 /* Garden Panel Styles */
-.garden-panel {
-    margin-bottom: 3rem;
-}
 
 .garden-panel__header,
-.garden-panel-header {
-    background: var(--theme-primary);
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 8px 8px 0 0;
-}
-
-.panel-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: white;
-}
 
 .garden-panel__content,
-.garden-panel-content {
-    padding: 2rem;
-    background: white;
-    border-radius: 0 0 8px 8px;
-}
 
 /* Exclusions Sections */
-.exclusions-section {
-    margin-bottom: 3rem;
+
+/* Exclusions Grid */
+
+/* Criteria Grid */
+
+/* Links */
+
+.process-link,
+
+.process-link:hover,
+
+/* Step Content Headings */
+
+/* Emphasis paragraph for key stats */
+
+/* Screening Stats Section */
+
+/* Override step-number styles when used inside stat-card */
+
+/* Policy Transparency Box */
+
+/* Strategy Overview */
+
+/* Methodology Card */
+
+/* Insight Callout */
+
+/* Principles Section */
+
+/* CTA Section */
+
+.cta-panel .garden-panel__header,
+
+.cta-panel .garden-panel__content,
+
+/* Responsive */
+
+.principles-section-divider {
+    margin: 2rem 0 1.5rem;
 }
 
 .exclusions-section-title {
@@ -94,6 +63,25 @@
     text-transform: uppercase;
 }
 
+.principles-section-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--theme-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.process-step-expanded {
+    background: var(--garden-color-gray-50);
+    border: 2px solid var(--theme-primary);
+}
+
+.garden-panel-content {
+    padding: 2rem;
+    background: var(--garden-color-white);
+    border-radius: 0 0 8px 8px;
+}
+
 .exclusions-underline {
     width: 100%;
     height: 1px;
@@ -101,26 +89,71 @@
     margin-bottom: 1rem;
 }
 
+.garden-panel-header {
+    background: var(--theme-primary);
+    color: var(--garden-color-white);
+    padding: 1rem 1.5rem;
+    border-radius: 8px 8px 0 0;
+}
+
 .exclusions-subtitle {
     font-size: 1rem;
     line-height: 1.5;
-    color: #1a1a1a;
+    color: var(--garden-color-gray-900);
     margin-bottom: 2rem;
     font-style: italic;
 }
 
-/* Exclusions Grid */
+.policy-transparency {
+    background: var(--garden-color-gray-50);
+    border: 1px solid var(--garden-color-gray-200);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.exclusions-section {
+    margin-bottom: 3rem;
+}
+
+.principles-section {
+    margin-top: 3rem;
+}
+
+.principles-tagline {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.strategy-overview {
+    margin-top: 2rem;
+}
+
+.methodology-card {
+    background: var(--garden-color-gray-50);
+    border: 1px solid var(--garden-color-gray-200);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.methodology-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.principles-intro {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
 .exclusions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
-}
-
-.exclusion-card {
-    background: transparent;
-    border: none;
-    padding: 0;
 }
 
 .exclusion-title {
@@ -131,20 +164,58 @@
     display: block;
 }
 
+.screening-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.insight-callout {
+    background: var(--color-surface-variant);
+    border-left: 4px solid var(--theme-primary);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cta-description {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    color: var(--garden-color-white);
+}
+
+.exclusion-card {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
 .exclusion-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.exclusion-list li {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: #1a1a1a;
-    margin-bottom: 0.25rem;
+.principle-card {
+    background: var(--garden-color-white);
+    border: 1px solid var(--garden-color-gray-200);
+    border-radius: 8px;
+    padding: 1.5rem;
 }
 
-/* Criteria Grid */
+.process-steps {
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+}
+
 .criteria-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -154,16 +225,9 @@
 
 .criteria-card {
     padding: 1.5rem;
-    background: #fff;
-    border: 1px solid #e5e7eb;
+    background: var(--garden-color-white);
+    border: 1px solid var(--garden-color-gray-150);
     border-radius: 8px;
-}
-
-.criteria-card h4 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--theme-primary);
-    margin-bottom: 1rem;
 }
 
 .criteria-list {
@@ -172,148 +236,115 @@
     margin: 0;
 }
 
-.criteria-list li {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
+.process-page {
+    color: var(--garden-color-gray-900);
 }
 
-/* Links */
-.process-link,
+.process-step {
+    margin-bottom: 3rem;
+    position: relative;
+    padding: 1.5rem;
+    background: var(--garden-color-white);
+    border-radius: 8px;
+    border: 1px solid var(--garden-color-gray-150);
+}
+
+.garden-panel {
+    margin-bottom: 3rem;
+}
+
+.tagline-text {
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--garden-color-gray-600);
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--theme-primary);
+    color: var(--garden-color-white);
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.panel-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--garden-color-white);
+}
+
 .policy-link {
     color: var(--theme-primary);
     text-decoration: underline;
     font-weight: 600;
 }
 
-.process-link:hover,
 .policy-link:hover {
-    color: #442a8a;
+    color: var(--garden-accent-dark);
     text-decoration-thickness: 2px;
-}
-
-/* Step Content Headings */
-.step-content h4 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--theme-primary);
-    margin: 2rem 0 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--theme-primary);
-}
-
-/* Emphasis paragraph for key stats */
-.step-content h4 + p {
-    font-size: 1.125rem;
-    line-height: 1.8;
-    font-weight: 500;
-    color: #333;
-}
-
-/* Screening Stats Section */
-.screening-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.stat-card {
-    background: #f5f0ff !important;
-    border: 2px solid var(--theme-primary) !important;
-    border-radius: 8px !important;
-    padding: 2rem !important;
-    text-align: center !important;
-    box-shadow: 0 2px 4px rgb(85, 60, 154, 0.1);
-    transition: box-shadow 0.2s ease;
-}
-
-.stat-card:hover {
-    box-shadow: 0 4px 8px rgb(85, 60, 154, 0.2);
-}
-
-/* Override step-number styles when used inside stat-card */
-.stat-card .stat-number {
-    display: block !important;
-    font-size: 2.5rem !important;
-    font-weight: 700 !important;
-    color: var(--theme-primary) !important;
-    margin-bottom: 0.5rem !important;
-    background: transparent !important;
-    width: auto !important;
-    height: auto !important;
-    border-radius: 0 !important;
 }
 
 .stat-label {
     font-size: 1rem;
-    color: #666;
+    color: var(--garden-color-gray-600);
     line-height: 1.4;
     font-weight: 500;
 }
 
-.stat-label small {
-    display: block;
-    font-size: 0.875rem;
-    color: var(--theme-text-secondary);
-    margin-top: 0.25rem;
-}
-
-/* Policy Transparency Box */
-.policy-transparency {
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
+.stat-card {
+    background: var(--color-surface-variant);
+    border: 2px solid var(--theme-primary);
     border-radius: 8px;
     padding: 2rem;
-    margin: 2rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px var(--color-primary-alpha-10);
+    transition: box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 8px var(--color-primary-alpha-20);
+}
+
+.cta-panel {
+    background: var(--theme-primary);
+    color: var(--garden-color-white);
+    margin-top: 3rem;
+    border-radius: 8px;
+}
+
+.cta-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--garden-color-white);
+}
+
+.methodology-list strong {
+    color: var(--theme-primary);
 }
 
 .policy-transparency h4 {
     font-size: 1.25rem;
     margin-bottom: 1rem;
-    color: #1a1a1a;
-}
-
-.policy-transparency p {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-/* Strategy Overview */
-.strategy-overview {
-    margin-top: 2rem;
+    color: var(--garden-color-gray-900);
 }
 
 .strategy-comparison h4 {
     margin-bottom: 1.5rem;
 }
 
-/* Methodology Card */
-.methodology-card {
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 2rem;
-    margin: 2rem 0;
+.insight-callout strong {
+    color: var(--theme-primary);
 }
 
-.methodology-card h4 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: #1a1a1a;
-}
-
-.methodology-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.methodology-list li {
-    padding-left: 1.5rem;
-    position: relative;
-    margin-bottom: 0.75rem;
+.policy-transparency p {
+    margin-bottom: 1.5rem;
     line-height: 1.6;
 }
 
@@ -325,69 +356,24 @@
     font-weight: bold;
 }
 
-.methodology-list strong {
-    color: var(--theme-primary);
+.methodology-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--garden-color-gray-900);
 }
 
-/* Insight Callout */
-.insight-callout {
-    background: #f5f0ff;
-    border-left: 4px solid var(--theme-primary);
-    padding: 1.5rem;
-    margin: 2rem 0;
-    border-radius: 0 8px 8px 0;
-}
-
-.insight-callout strong {
-    color: var(--theme-primary);
-}
-
-/* Principles Section */
-.principles-section {
-    margin-top: 3rem;
-}
-
-.principles-tagline {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.tagline-text {
-    font-size: 1.125rem;
-    font-style: italic;
-    color: #666;
-}
-
-.principles-intro {
-    font-size: 1rem;
+.methodology-list li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.75rem;
     line-height: 1.6;
-    margin-bottom: 2rem;
 }
 
-.principles-section-divider {
-    margin: 2rem 0 1.5rem;
-}
-
-.principles-section-title {
+.exclusion-list li {
     font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--theme-primary);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-.principles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.principle-card {
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 1.5rem;
+    line-height: 1.5;
+    color: var(--garden-color-gray-900);
+    margin-bottom: 0.25rem;
 }
 
 .principle-card h4 {
@@ -397,71 +383,97 @@
     margin-bottom: 0.75rem;
 }
 
+.criteria-card h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--theme-primary);
+    margin-bottom: 1rem;
+}
+
+.criteria-list li {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--garden-color-gray-900);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label small {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--theme-text-secondary);
+    margin-top: 0.25rem;
+}
+
 .principle-card p {
     font-size: 0.875rem;
     line-height: 1.5;
 }
 
-/* CTA Section */
-.cta-panel {
-    background: var(--theme-primary) !important;
-    color: white !important;
-    margin-top: 3rem;
-    border-radius: 8px;
+.step-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--garden-color-gray-900);
+    margin-bottom: 1rem;
 }
 
-.cta-panel .garden-panel__header,
+.step-content h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--theme-primary);
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--theme-primary);
+}
+
+.step-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--garden-color-gray-900);
+    margin-bottom: 1.5rem;
+}
+
+.step-content h4 + p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    font-weight: 500;
+    color: var(--garden-color-gray-800);
+}
+
+.cta-panel .garden-panel-content {
+    background: var(--theme-primary);
+    color: var(--garden-color-white);
+}
+
 .cta-panel .garden-panel-header {
-    background: #442a8a !important;
+    background: var(--garden-accent-dark);
     border-radius: 8px 8px 0 0;
 }
 
-.cta-panel .garden-panel__content,
-.cta-panel .garden-panel-content {
-    background: var(--theme-primary) !important;
-    color: white !important;
+.cta-panel .garden-action {
+    background: var(--garden-color-white);
+    color: var(--theme-primary);
+    border: 2px solid var(--garden-color-white);
+}
+
+.cta-panel .garden-action:hover {
+    background: transparent;
+    color: var(--garden-color-white);
+}
+
+.stat-card .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--theme-primary);
+    margin-bottom: 0.5rem;
+    background: transparent;
+    width: auto;
+    height: auto;
+    border-radius: 0;
 }
 
 .cta-panel .panel-title {
     background: transparent;
     padding: 0;
-    color: white !important;
-}
-
-.cta-title {
-    font-size: 1.75rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: white !important;
-}
-
-.cta-description {
-    font-size: 1.125rem;
-    margin-bottom: 2rem;
-    color: white !important;
-}
-
-.cta-panel .garden-action {
-    background: white;
-    color: var(--theme-primary);
-    border: 2px solid white;
-}
-
-.cta-panel .garden-action:hover {
-    background: transparent;
-    color: white;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .exclusions-grid,
-    .criteria-grid,
-    .screening-stats,
-    .principles-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .stat-number {
-        font-size: 2rem;
-    }
+    color: var(--garden-color-white);
 }

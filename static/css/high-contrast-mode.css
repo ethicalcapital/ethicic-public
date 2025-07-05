@@ -1,232 +1,244 @@
-/* ==============================================
-   HIGH CONTRAST MODE ENHANCEMENTS
-   Ensures 7:1 contrast ratios throughout the site
-   ============================================== */
-
 /* ===== ENHANCED TEXT CONTRAST ===== */
+
 /* Primary text should be darker on light backgrounds */
+
 [data-theme="light"] {
-    --theme-text-primary: #000 !important;
-    --theme-text-secondary: #444 !important;
-    --theme-text-tertiary: #666 !important;
+    --theme-text-primary: var(--garden-color-black);
+    --theme-text-secondary: var(--garden-color-gray-700);
+    --theme-text-tertiary: var(--garden-color-gray-600);
 }
 
 /* ===== LINK CONTRAST ENHANCEMENTS ===== */
+
 /* Ensure all links meet 7:1 contrast ratio */
+
+/* ===== LINK STYLES - ORGANIZED BY SPECIFICITY ===== */
+
+/* SPECIFICITY 0,0,0,1 - Element selectors */
 a, .link {
-    color: var(--garden-accent) !important;
+    color: var(--garden-accent);
     text-decoration: underline;
+    /* Minimum 7:1 contrast ratio enforced */
+    min-height: 44px; /* Touch target size */
 }
 
 a:hover, .link:hover {
-    color: #2a1d4f !important; /* Even darker on hover */
+    color: var(--garden-accent-dark); /* Even darker on hover */
     text-decoration: underline;
 }
 
-/* Links on dark backgrounds */
+/* SPECIFICITY 0,0,1,1 - Attribute selector + element */
 [data-theme="dark"] a,
 [data-theme="purple-dark"] a {
-    color: #b8aee6 !important; /* Much lighter purple for 7:1 contrast */
+    color: var(--garden-accent-lighter); /* Much lighter purple for 7:1 contrast */
 }
 
+/* SPECIFICITY 0,0,2,0 - Two class selectors */
+.garden-nav a {
+    color: var(--garden-color-white);
+    font-weight: 600;
+    text-shadow: 0 1px 2px var(--color-shadow-30);
+}
+
+/* SPECIFICITY 0,0,1,2 - Attribute selector + element + pseudo-class */
 [data-theme="dark"] a:hover,
 [data-theme="purple-dark"] a:hover {
-    color: #c9c1ed !important;
+    color: var(--garden-accent-lightest);
 }
 
 /* ===== FORM ELEMENT CONTRAST ===== */
+
 /* Ensure form inputs have sufficient contrast */
+
 .garden-input,
+
 .garden-textarea,
-.garden-select {
-    border: 2px solid var(--theme-border) !important;
-    color: var(--theme-text-primary) !important;
-}
 
 .garden-input:focus,
+
 .garden-textarea:focus,
+
+.garden-select {
+    border: 2px solid var(--theme-border);
+    color: var(--theme-text-primary);
+}
+
 .garden-select:focus {
-    border-color: var(--garden-accent) !important;
-    outline: 2px solid var(--garden-accent) !important;
+    border-color: var(--garden-accent);
+    outline: 2px solid var(--garden-accent);
     outline-offset: 1px;
 }
 
 /* ===== BUTTON HIGH CONTRAST ===== */
+
 /* Enhanced button contrast */
+
 .garden-action.primary,
-.btn-primary {
-    background: var(--garden-accent) !important;
-    color: #fff !important;
-    border: 2px solid var(--garden-accent) !important;
-    font-weight: 600 !important;
-}
 
 .garden-action.secondary,
-.btn-secondary {
-    background: transparent !important;
-    color: var(--garden-accent) !important;
-    border: 2px solid var(--garden-accent) !important;
-    font-weight: 600 !important;
-}
 
 .garden-action.secondary:hover,
-.btn-secondary:hover {
-    background: var(--garden-accent) !important;
-    color: #fff !important;
-}
+
+/* Use Garden UI classes instead of deprecated btn- classes */
 
 /* ===== TABLE CONTRAST ===== */
+
 /* Enhance table readability */
+
 .garden-table th {
-    background: var(--garden-accent) !important;
-    color: #fff !important;
-    border: 2px solid var(--theme-border) !important;
+    background: var(--garden-accent);
+    color: var(--garden-color-white);
+    border: 2px solid var(--theme-border);
 }
 
 .garden-table td {
-    border: 1px solid var(--theme-border) !important;
-    color: var(--theme-text-primary) !important;
+    border: 1px solid var(--theme-border);
+    color: var(--theme-text-primary);
 }
 
 .garden-table tr:nth-child(even) {
-    background: var(--theme-surface-variant) !important;
+    background: var(--theme-surface-variant);
 }
 
 /* ===== PANEL CONTRAST ===== */
+
 /* Enhanced panel visibility */
-.garden-panel {
-    border: 2px solid var(--theme-border) !important;
-}
 
 .garden-panel-header {
-    background: var(--theme-surface-variant) !important;
-    color: var(--garden-accent) !important;
-    border-bottom: 2px solid var(--theme-border) !important;
-    font-weight: 700 !important;
+    background: var(--theme-surface-variant);
+    color: var(--garden-accent);
+    border-bottom: 2px solid var(--theme-border);
+    font-weight: 700;
+}
+
+.garden-panel {
+    border: 2px solid var(--theme-border);
 }
 
 /* ===== STATUS INDICATOR CONTRAST ===== */
+
 /* Enhanced status badges */
+
 .garden-badge,
+
 .status-badge {
-    background: var(--garden-accent) !important;
-    color: #fff !important;
-    border: 1px solid var(--garden-accent) !important;
-    font-weight: 700 !important;
+    background: var(--garden-accent);
+    color: var(--garden-color-white);
+    border: 1px solid var(--garden-accent);
+    font-weight: 700;
 }
 
 /* ===== NAVIGATION CONTRAST ===== */
-/* Enhanced navigation visibility */
-.garden-nav a {
-    color: #fff !important;
-    font-weight: 600 !important;
-    text-shadow: 0 1px 2px rgb(0, 0, 0, 0.3) !important;
-}
+
+/* Enhanced navigation visibility - moved above */
 
 .garden-nav a:hover {
-    background: rgb(255, 255, 255, 0.1) !important;
-    text-decoration: underline !important;
+    background: var(--color-white-10);
+    text-decoration: underline;
 }
 
 /* ===== FOCUS INDICATORS ===== */
+
 /* Enhanced focus visibility for keyboard navigation */
+
 *:focus-visible {
-    outline: 3px solid var(--garden-accent) !important;
-    outline-offset: 2px !important;
+    outline: 3px solid var(--garden-accent);
+    outline-offset: 2px;
 }
 
 /* ===== HIGH CONTRAST MEDIA QUERY ===== */
+
 /* Enhanced styles for users who prefer high contrast */
+
 /* stylelint-disable-next-line media-feature-name-value-no-unknown */
-@media (prefers-contrast: high) {
-    /* Make everything even higher contrast */
-    * {
-        --theme-text-primary: #000 !important;
-        --garden-accent: #2a1d4f !important;
-    }
-    
-    .garden-action {
-        border-width: 3px !important;
-        font-weight: 700 !important;
-    }
-    
-    .garden-panel {
-        border-width: 3px !important;
-    }
-    
-    a {
-        font-weight: 600 !important;
-        text-decoration: underline !important;
-    }
-}
 
 /* ===== ENSURE MINIMUM CONTRAST FOR ALL TEXT ===== */
+
 /* Override any remaining low-contrast text */
+
 .text-muted,
+
 .garden-muted,
+
+/* Fix specific hardcoded grays that don't meet contrast */
+
+[style*="color: var(--garden-color-gray-500)"],
+
+[style*="color:var(--garden-color-gray-500)"],
+
+[style*="color: var(--garden-color-gray-600)"],
+
+[style*="color:var(--garden-color-gray-600)"],
+
 .secondary-text {
-    color: var(--theme-text-secondary) !important;
+    color: var(--theme-text-secondary);
 }
 
 .text-tertiary {
-    color: var(--theme-text-tertiary) !important;
+    color: var(--theme-text-tertiary);
 }
 
-/* Fix specific hardcoded grays that don't meet contrast */
-[style*="color: #888"],
-[style*="color:#888"],
 .color-888 {
-    color: var(--theme-text-secondary) !important;
+    color: var(--theme-text-secondary);
 }
 
-[style*="color: #666"],
-[style*="color:#666"],
 .color-666 {
-    color: #4a4a4a !important; /* Darker gray for 7:1 contrast */
+    color: var(--garden-color-gray-600); /* Darker gray for 7:1 contrast */
 }
 
 /* ===== STRATEGY PAGE SPECIFIC FIXES ===== */
+
 .strategy-badge {
-    background: var(--garden-accent) !important;
-    color: #fff !important;
-    font-weight: 700 !important;
+    background: var(--garden-accent);
+    color: var(--garden-color-white);
+    font-weight: 700;
 }
 
 /* ===== COLORBLIND-FRIENDLY ENHANCEMENTS ===== */
+
 /* Add symbols and patterns for color-dependent information */
+
 .error::before,
-.status-error::before {
-    content: "⚠ ";
-    font-weight: bold;
-}
 
 .success::before,
+
+.warning::before,
+
 .status-success::before {
     content: "✓ ";
     font-weight: bold;
 }
 
-.warning::before,
 .status-warning::before {
     content: "! ";
     font-weight: bold;
 }
 
-/* ===== ACCESSIBILITY STATEMENT COMPLIANCE ===== */
-/* Ensure all interactive elements meet WCAG AAA (7:1) */
-.interactive,
-.clickable,
-.garden-action,
-button,
-input,
-select,
-textarea,
-a {
-    /* Minimum 7:1 contrast ratio enforced */
-    min-height: 44px; /* Touch target size */
+.status-error::before {
+    content: "⚠ ";
+    font-weight: bold;
 }
 
-/* Text size enforcement */
+/* ===== ACCESSIBILITY STATEMENT COMPLIANCE ===== */
+
+/* Ensure all interactive elements meet WCAG AAA (7:1) */
+
+.interactive,
+
+.clickable,
+
+.garden-action,
+
+button,
+
+input,
+
+select,
+
+textarea {
+    /* Styles from previous rules apply */
+}
+
 .small-text {
-    font-size: 14px !important; /* Minimum readable size */
+    font-size: 14px; /* Minimum readable size */
 }

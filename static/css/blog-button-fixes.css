@@ -9,24 +9,30 @@
 .blog-post .garden-action,
 .blog-index-page .garden-action {
     /* Ensure buttons are always visible */
-    opacity: 1 !important;
-    visibility: visible !important;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Primary buttons - purple bg, white text */
 .blog-page .garden-action.primary,
 .blog-post .garden-action.primary,
 .blog-index-page .garden-action.primary {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    border: 2px solid var(--color-primary) !important;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.newsletter-signup .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-weight: 600;
 }
 
 .blog-page .garden-action.primary:hover,
 .blog-post .garden-action.primary:hover,
 .blog-index-page .garden-action.primary:hover {
-    background: var(--color-primary-dark) !important;
-    border-color: var(--color-primary-dark) !important;
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
     transform: translateY(-1px);
 }
 
@@ -34,17 +40,17 @@
 .blog-page .garden-action.secondary,
 .blog-post .garden-action.secondary,
 .blog-index-page .garden-action.secondary {
-    background: transparent !important;
-    color: var(--color-primary) !important;
-    border: 2px solid var(--color-border) !important;
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-border);
 }
 
 .blog-page .garden-action.secondary:hover,
 .blog-post .garden-action.secondary:hover,
 .blog-index-page .garden-action.secondary:hover {
-    background: var(--color-surface-secondary) !important;
-    color: var(--color-primary) !important;
-    border-color: var(--color-primary) !important;
+    background: var(--color-surface-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 /* ===== SIDEBAR BUTTON FIXES ===== */
@@ -55,12 +61,6 @@
     margin-top: 1rem;
 }
 
-.newsletter-signup .garden-action.primary {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    font-weight: 600;
-}
-
 /* ===== PAGINATION BUTTON FIXES ===== */
 .pagination .garden-action {
     min-width: 40px;
@@ -68,8 +68,8 @@
 }
 
 .pagination .garden-action.current {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
     cursor: default;
 }
 
@@ -107,17 +107,17 @@
     .blog-index-page .garden-action {
         /* Primary buttons stay purple with white text */
         &.primary {
-            background: var(--color-primary) !important;
-            color: var(--color-on-primary) !important;
+            background: var(--color-primary);
+            color: var(--color-on-primary);
         }
-        
+
         /* Secondary buttons need visible borders */
         &.secondary {
-            border-color: var(--color-border) !important;
-            color: var(--color-primary) !important;
+            border-color: var(--color-border);
+            color: var(--color-primary);
         }
     }
-    
+
     /* Tag and category links in dark mode */
     .tag-link,
     .category-link {
@@ -136,7 +136,7 @@
         min-height: 44px;
         padding: 0.75rem 1.5rem;
     }
-    
+
     /* Full width buttons on mobile */
     .blog-sticky-sidebar .garden-action,
     .newsletter-signup .garden-action {
@@ -157,7 +157,7 @@
     .blog-page .garden-action,
     .blog-post .garden-action,
     .blog-index-page .garden-action {
-        border-width: 3px !important;
-        font-weight: bold !important;
+        border-width: 3px;
+        font-weight: bold;
     }
 }

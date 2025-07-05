@@ -1,63 +1,54 @@
-/* ===============================================
-   COMPREHENSIVE FORMATTING FIXES FOR FAQ AND BLOG PAGES
-   Fixes white text on white background, tag styling, sidebar positioning, and purple sections
-   Loaded with !important rules to override other CSS files
-   =============================================== */
-
 /* ===== FIX WHITE TEXT ON WHITE BACKGROUND ===== */
+
 /* FAQ Question/Answer text color fixes */
+
 .faq-question,
+
+/* FAQ empty state text */
+
+/* Blog article titles and text */
+
+.article-list-excerpt {
+    color: var(--theme-text-secondary);
+}
+
 .question-title {
-    color: var(--theme-text-primary) !important;
+    color: var(--theme-text-primary);
     background: transparent;
 }
 
 .faq-answer {
-    color: var(--theme-text-primary) !important;
+    color: var(--theme-text-primary);
 }
 
-/* FAQ empty state text */
 .no-faqs {
-    color: var(--theme-text-primary) !important;
+    color: var(--theme-text-primary);
+}
+
+.article-list-title a {
+    color: var(--theme-text-primary);
 }
 
 .no-faqs h3 {
-    color: var(--theme-text-primary) !important;
+    color: var(--theme-text-primary);
 }
 
 .no-faqs p {
-    color: var(--theme-text-secondary) !important;
-}
-
-/* Blog article titles and text */
-.article-list-title a {
-    color: var(--theme-text-primary) !important;
-}
-
-.article-list-excerpt {
-    color: var(--theme-text-secondary) !important;
+    color: var(--theme-text-secondary);
 }
 
 /* ===== FIX CIRCULAR TAG/CATEGORY ICONS ===== */
+
 /* Remove circular styling from tags */
+
 .article-list-tag,
+
 .article-tag,
-.category-btn {
-    border-radius: var(--radius-sm) !important; /* Small rounded corners instead of circular */
-    padding: var(--space-1) var(--space-3) !important; /* Better proportions */
-    min-width: auto !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
 
 /* FAQ category buttons - remove circular styling */
-.faq-categories .category-btn {
-    border-radius: var(--radius-sm) !important;
-    padding: var(--space-2) var(--space-4) !important;
-}
 
 /* Blog tag styling improvements */
+
 .article-list-tags {
     display: flex;
     gap: var(--space-2);
@@ -66,7 +57,7 @@
 
 .article-list-tag {
     background: var(--theme-surface-variant);
-    color: var(--theme-text-secondary) !important;
+    color: var(--theme-text-secondary);
     border: 1px solid var(--theme-border);
     font-size: var(--font-xs);
     font-family: var(--font-mono);
@@ -77,12 +68,40 @@
 
 .article-list-tag:hover {
     background: var(--color-primary-alpha-light);
-    color: var(--theme-text-primary) !important;
+    color: var(--theme-text-primary);
     border-color: var(--theme-primary);
 }
 
+.category-btn {
+    border-radius: var(--radius-sm); /* Small rounded corners instead of circular */
+    padding: var(--space-1) var(--space-3); /* Better proportions */
+    min-width: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.faq-categories .category-btn {
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-4);
+}
+
 /* ===== FIX SIDEBAR "GET HELP" TEXT POSITIONING ===== */
+
 /* Ensure sidebar stays properly positioned */
+
+/* Add background to sidebar sections to prevent transparency issues */
+
+/* Ensure utility text in sidebar has proper background */
+
+.sidebar-utility-text,
+
+/* Fix header z-index to ensure proper layering */
+
+.site-header,
+
+/* Ensure main content doesn't overflow into sidebar */
+
 .blog-sticky-sidebar {
     position: sticky;
     top: var(--space-8);
@@ -90,15 +109,6 @@
     background: var(--theme-background); /* Solid background to prevent text showing through */
 }
 
-/* Add background to sidebar sections to prevent transparency issues */
-.sidebar-section .garden-panel {
-    background: var(--theme-surface) !important;
-    position: relative;
-    z-index: 11;
-}
-
-/* Ensure utility text in sidebar has proper background */
-.sidebar-utility-text,
 .utility-help-text {
     background: var(--theme-surface);
     padding: var(--space-2);
@@ -107,177 +117,163 @@
     z-index: 12;
 }
 
-/* Fix header z-index to ensure proper layering */
-.site-header,
-.garden-header {
-    z-index: var(--z-header, 1100) !important;
-}
-
-/* Ensure main content doesn't overflow into sidebar */
 .blog-main-content {
     position: relative;
     z-index: 1;
 }
 
-/* ===== ADDITIONAL CONTRAST IMPROVEMENTS ===== */
-/* Ensure all text has proper contrast in light mode */
-[data-theme="light"] {
-    .faq-question,
-    .question-title,
-    .article-list-title a,
-    .article-title a {
-        color: var(--theme-text-primary) !important;
-    }
-    
-    .faq-answer,
-    .article-list-excerpt,
-    .article-excerpt {
-        color: var(--theme-text-secondary) !important;
-    }
-    
-    .article-list-tag,
-    .article-tag {
-        background: var(--theme-surface-variant);
-        color: var(--theme-text-primary) !important;
-        border-color: var(--theme-border);
-    }
+.garden-header {
+    z-index: var(--z-header, 1100);
 }
 
+.sidebar-section .garden-panel {
+    background: var(--theme-surface);
+    position: relative;
+    z-index: 11;
+}
+
+/* ===== ADDITIONAL CONTRAST IMPROVEMENTS ===== */
+
+/* Ensure all text has proper contrast in light mode */
+
 /* Ensure all text has proper contrast in dark mode */
+
 [data-theme="dark"],
+
 [data-theme="purple-dark"] {
     .faq-question,
     .question-title,
     .article-list-title a,
     .article-title a {
-        color: var(--theme-text-primary) !important;
+        color: var(--theme-text-primary);
     }
-    
+
     .faq-answer,
     .article-list-excerpt,
     .article-excerpt {
-        color: var(--theme-text-secondary) !important;
+        color: var(--theme-text-secondary);
     }
-    
+
     .article-list-tag,
     .article-tag {
         background: var(--theme-surface-variant);
-        color: var(--theme-text-primary) !important;
+        color: var(--theme-text-primary);
+        border-color: var(--theme-border);
+    }
+}
+
+[data-theme="light"] {
+    .faq-question,
+    .question-title,
+    .article-list-title a,
+    .article-title a {
+        color: var(--theme-text-primary);
+    }
+
+    .faq-answer,
+    .article-list-excerpt,
+    .article-excerpt {
+        color: var(--theme-text-secondary);
+    }
+
+    .article-list-tag,
+    .article-tag {
+        background: var(--theme-surface-variant);
+        color: var(--theme-text-primary);
         border-color: var(--theme-border);
     }
 }
 
 /* ===== BLOG SIDEBAR PURPLE SECTION FIXES ===== */
+
 /* Fix purple newsletter and connect headers with maximum specificity */
-.blog-sticky-sidebar .newsletter-section .garden-panel-header,
-.blog-sticky-sidebar .connect-section .garden-panel-header,
-.sidebar-section .newsletter-section .garden-panel-header,
-.sidebar-section .connect-section .garden-panel-header,
+
+/* ===== ORGANIZED BY SPECIFICITY: LOW TO HIGH ===== */
+
+/* SPECIFICITY 0,0,1,1 - Attribute selector */
+[class*="garden-panel-header"] {
+    background: var(--theme-surface-variant);
+    color: var(--theme-text-primary);
+}
+
+/* SPECIFICITY 0,0,2,0 - Two class selectors */
 .newsletter-section .garden-panel-header,
-.connect-section .garden-panel-header {
-    background: var(--theme-surface-variant) !important;
-    color: var(--theme-text-primary) !important;
-    border-bottom: 1px solid var(--theme-border) !important;
-}
-
-.blog-sticky-sidebar .newsletter-section .panel-title,
-.blog-sticky-sidebar .connect-section .panel-title,
-.sidebar-section .newsletter-section .panel-title,
-.sidebar-section .connect-section .panel-title,
 .newsletter-section .panel-title,
-.connect-section .panel-title {
-    color: var(--theme-text-primary) !important;
-}
-
-/* Remove purple border from newsletter content */
 .newsletter-section .garden-panel-content,
-.blog-sticky-sidebar .newsletter-section .garden-panel-content,
-.sidebar-section .newsletter-section .garden-panel-content {
-    border-top: none !important;
-    background: var(--theme-surface) !important;
-}
-
-/* Universal override for any purple panel headers in blog context */
 .blog-container .garden-panel-header,
 .blog-main-content .garden-panel-header,
-.blog-sticky-sidebar .garden-panel-header {
-    background: var(--theme-surface-variant) !important;
-    color: var(--theme-text-primary) !important;
+.connect-section .garden-panel-header,
+.connect-section .panel-title {
+    background: var(--theme-surface-variant);
+    color: var(--theme-text-primary);
 }
 
-/* Override any panel headers with primary background */
-[class*="garden-panel-header"] {
-    background: var(--theme-surface-variant) !important;
-    color: var(--theme-text-primary) !important;
+.connect-section .garden-panel-header {
+    border-bottom: 1px solid var(--theme-border);
 }
 
-/* Fix sidebar input styling */
+/* SPECIFICITY 0,0,3,0 - Three class selectors */
+.blog-sticky-sidebar .newsletter-section .garden-panel-header,
+.blog-sticky-sidebar .connect-section .garden-panel-header,
+.blog-sticky-sidebar .newsletter-section .panel-title,
+.blog-sticky-sidebar .connect-section .panel-title,
+.blog-sticky-sidebar .newsletter-section .garden-panel-content,
+.sidebar-section .newsletter-section .garden-panel-header,
+.sidebar-section .connect-section .garden-panel-header,
+.sidebar-section .newsletter-section .panel-title,
+.sidebar-section .connect-section .panel-title {
+    background: var(--theme-surface-variant);
+    color: var(--theme-text-primary);
+}
+
+.sidebar-description {
+    color: var(--theme-text-primary);
+}
+
 .sidebar-input {
-    background: var(--theme-surface) !important;
-    color: var(--theme-text-primary) !important;
-    border: 1px solid var(--theme-border) !important;
-}
-
-.sidebar-input::placeholder {
-    color: var(--theme-text-secondary) !important;
+    background: var(--theme-surface);
+    color: var(--theme-text-primary);
+    border: 1px solid var(--theme-border);
 }
 
 .sidebar-input:focus {
-    border-color: var(--theme-primary) !important;
-    background: var(--theme-surface) !important;
+    border-color: var(--theme-primary);
+    background: var(--theme-surface);
 }
 
-/* Fix sidebar description text */
-.sidebar-description {
-    color: var(--theme-text-primary) !important;
-}
-
-/* Fix social link colors */
 .social-link {
-    color: var(--theme-text-primary) !important;
+    color: var(--theme-text-primary);
 }
 
 .social-text {
-    color: var(--theme-text-primary) !important;
+    color: var(--theme-text-primary);
+}
+
+/* Additional specific styles not covered above */
+
+.sidebar-input::placeholder {
+    color: var(--theme-text-secondary);
+}
+
+.sidebar-section .newsletter-section .garden-panel-content {
+    border-top: none;
+    background: var(--theme-surface);
 }
 
 /* ===== BLOG ARTICLE TEXT FIXES ===== */
+
 /* Ensure all blog text has proper contrast */
+
 .article-list-title,
-.article-list-title a {
-    color: var(--theme-text-primary) !important;
-}
 
 /* Article excerpt styles defined earlier in file */
 
 /* Hero title and subtitle fixes */
-.hero-title {
-    color: var(--theme-text-primary) !important;
-}
 
 .hero-subtitle {
-    color: var(--theme-text-secondary) !important;
+    color: var(--theme-text-secondary);
 }
 
-/* ===== MOBILE RESPONSIVE FIXES ===== */
-@media (max-width: 768px) {
-    /* Ensure sidebar doesn't overlap on mobile */
-    .blog-sticky-sidebar {
-        position: static !important;
-        z-index: auto;
-    }
-    
-    /* Ensure tags remain readable on mobile */
-    .article-list-tag,
-    .article-tag,
-    .category-btn {
-        font-size: var(--font-xs);
-        padding: var(--space-1) var(--space-2) !important;
-    }
-    
-    /* Mobile sidebar section fixes */
-    .newsletter-section .garden-panel-header,
-    .connect-section .garden-panel-header {
-        padding: var(--space-3) var(--space-4) !important;
-    }
+.hero-title {
+    color: var(--theme-text-primary);
 }

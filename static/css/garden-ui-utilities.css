@@ -166,21 +166,60 @@
     position: static;
 }
 
+/* ===== PAGE LAYOUT UTILITIES ===== */
+/* Panel content container - combines standard container with content padding */
+.garden-panel-container {
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+}
+
+/* Main content container for pages */
+.garden-main-container {
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Hero panel specific container */
+.garden-hero-container {
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* Grid section container */
+.garden-grid-container {
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+}
+
 /* ===== HIGH SPECIFICITY UTILITIES ===== */
 /* For use when normal utilities don't have enough specificity */
 .garden-force-container {
-    max-width: var(--content-width-normal) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    box-sizing: border-box !important;
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 
 .garden-force-width {
-    width: 100% !important;
+    width: 100%;
 }
 
 .garden-force-center {
-    text-align: center !important;
+    text-align: center;
 }
 
 /* ===== ACCESSIBILITY UTILITIES ===== */

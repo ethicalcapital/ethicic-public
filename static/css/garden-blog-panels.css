@@ -180,20 +180,20 @@
         font-size: var(--font-xs);
         min-height: 40px;
     }
-    
+
     .hero-panel .garden-panel-content {
         padding: var(--space-6) var(--space-4);
     }
-    
+
     .blog-content .blog-container {
         padding: 0 var(--space-4);
     }
-    
+
     .pagination {
         gap: var(--space-2);
         padding: var(--space-3);
     }
-    
+
     .pagination-btn {
         padding: var(--space-1) var(--space-3);
         font-size: var(--font-xs);
@@ -206,25 +206,25 @@
         font-size: var(--font-xs);
         min-height: 36px;
     }
-    
+
     /* REMOVED: .hero-panel .garden-panel-content - see critical.css */
-    
+
     .blog-content .blog-container {
         padding: 0 var(--space-2);
     }
-    
+
     .tag-filter .garden-panel-content {
         padding: var(--space-3);
     }
-    
+
     .no-articles {
         padding: var(--space-8);
     }
-    
+
     .no-articles h3 {
         font-size: var(--font-base);
     }
-    
+
     .no-articles p {
         font-size: var(--font-sm);
     }
@@ -244,10 +244,10 @@
 .public-site-context .article-list-item,
 body.public-site-context main.main-content,
 body.public-site-context .garden-panel:not(.hero-panel) .garden-panel-content {
-    max-width: var(--content-width-normal) !important; /* Use CSS variable instead of hardcoded 1200px */
-    margin-left: auto !important;
-    margin-right: auto !important;
-    box-sizing: border-box !important;
+    max-width: var(--content-width-normal); /* Use CSS variable instead of hardcoded 1200px */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 
 /* REMOVED: Hero section rules moved to hero-panel-fixes.css to prevent alignment conflicts */

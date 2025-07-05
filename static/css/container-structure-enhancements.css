@@ -26,7 +26,7 @@
     width: 100%;
     background: var(--color-surface);
     border-top: 2px solid var(--color-border);
-    box-shadow: 0 -2px 8px rgb(0,0,0,0.05);
+    box-shadow: 0 -2px 8px var(--color-shadow-5);
     margin-top: var(--space-8);
 }
 
@@ -35,10 +35,10 @@
 
 /* Main content sections */
 .public-site-context .garden-panel {
-    border: 1px solid var(--color-border-subtle, rgb(0,0,0,0.05));
+    border: 1px solid var(--color-border-subtle, var(--color-shadow-5));
     border-radius: var(--radius-md);
     margin-bottom: var(--space-4);
-    box-shadow: var(--shadow-xs, 0 1px 2px rgb(0,0,0,0.05));
+    box-shadow: var(--shadow-xs, 0 1px 2px var(--color-shadow-5));
     background: var(--color-surface);
 }
 
@@ -49,8 +49,8 @@
 
 /* Header visual separation */
 .public-site-context .garden-header {
-    border-bottom: 1px solid var(--color-border-subtle, rgb(255,255,255,0.1));
-    box-shadow: 0 2px 8px rgb(0,0,0,0.1);
+    border-bottom: 1px solid var(--color-border-subtle, var(--color-white-10));
+    box-shadow: 0 2px 8px var(--color-shadow-10);
 }
 
 /* Footer styles merged with main definition above */
@@ -63,7 +63,7 @@
     padding: var(--space-6);
     border-radius: var(--radius-lg);
     margin: 0 auto;
-    box-shadow: var(--shadow-sm, 0 1px 3px rgb(0,0,0,0.1));
+    box-shadow: var(--shadow-sm, 0 1px 3px var(--color-shadow-10));
 }
 
 /* ===== HERO PANEL SPECIAL TREATMENT ===== */
@@ -74,7 +74,7 @@
     margin-right: 0;
     border: none; /* Remove border for hero sections */
     border-radius: 0;
-    background: var(--color-primary-alpha, rgb(85, 60, 154, 0.05));
+    background: var(--color-primary-alpha, var(--color-primary-alpha-5));
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -94,13 +94,13 @@
         border-radius: 0;
         margin-bottom: var(--space-3);
     }
-    
+
     .public-site-context .main-content {
         margin: 0;
         border-radius: 0;
         box-shadow: none;
     }
-    
+
     /* Footer responsive padding delegated to critical-fixes.css */
 }
 
@@ -108,18 +108,18 @@
 
 /* ===== DARK THEME ADJUSTMENTS ===== */
 [data-theme="dark"] .public-site-context .garden-panel {
-    border-color: var(--color-border, rgb(255,255,255,0.1));
+    border-color: var(--color-border, var(--color-white-10));
     background: var(--color-surface-variant);
-    box-shadow: 0 1px 3px rgb(0,0,0,0.3);
+    box-shadow: 0 1px 3px var(--color-shadow-30);
 }
 
 [data-theme="dark"] .public-site-context .main-content {
     background: var(--color-surface);
-    box-shadow: 0 1px 3px rgb(0,0,0,0.4);
+    box-shadow: 0 1px 3px var(--color-shadow-40);
 }
 
 [data-theme="dark"] .public-site-context .hero-panel {
-    background: var(--color-primary-alpha, rgb(85, 60, 154, 0.1));
+    background: var(--color-primary-alpha, var(--color-primary-alpha-10));
     border-bottom-color: var(--color-border);
 }
 
@@ -136,7 +136,7 @@
         border-width: 2px;
         border-color: var(--color-text-primary);
     }
-    
+
     .public-site-context .garden-footer {
         border-top-width: 3px;
     }

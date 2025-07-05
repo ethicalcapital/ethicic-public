@@ -228,12 +228,12 @@
 
 .percentage-change.positive {
   color: var(--positive);
-  background: var(--color-success-alpha, rgb(5, 150, 105, 0.1));
+  background: var(--color-success-alpha);
 }
 
 .percentage-change.negative {
   color: var(--negative);
-  background: var(--color-error-alpha, rgb(220, 38, 38, 0.1));
+  background: var(--color-error-alpha);
 }
 
 /* Widget Grid Layout */
@@ -276,15 +276,15 @@
   .garden-widget.metric-card {
     min-width: 100%;
   }
-  
+
   .widget-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .widget-row {
     flex-direction: column;
   }
-  
+
   .widget-row.tickers {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -356,7 +356,7 @@
     break-inside: avoid;
     page-break-inside: avoid;
   }
-  
+
   .widget-grid {
     grid-template-columns: repeat(3, 1fr);
   }

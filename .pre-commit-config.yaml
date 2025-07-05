@@ -1,0 +1,92 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: detect-private-key
+
+  # Python linting with ruff
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.11
+    hooks:
+      # Run the linter
+      - id: ruff
+        args: [--fix]
+      # Run the formatter
+      - id: ruff-format
+
+  # CSS linting with stylelint
+  - repo: local
+    hooks:
+      - id: stylelint
+        name: Stylelint
+        entry: npx stylelint
+        language: system
+        files: \.css$
+        args: [--fix]
+        pass_filenames: true
+        require_serial: true
+
+  # JavaScript linting with ESLint
+  - repo: local
+    hooks:
+      - id: eslint
+        name: ESLint
+        entry: npx eslint
+        language: system
+        files: \.js$
+        args: [--fix]
+        pass_filenames: true
+        require_serial: true
+
+  # Security checks - disabled due to version compatibility issues
+  # - repo: https://github.com/Yelp/detect-secrets
+  #   rev: v1.4.0
+  #   hooks:
+  #     - id: detect-secrets
+  #       args: ['--baseline', '.secrets.baseline']
+
+  # Django checks
+  - repo: local
+    hooks:
+      - id: django-check
+        name: Django Check
+        entry: python manage.py check
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: django-migrations-check
+        name: Django Migrations Check
+        entry: python manage.py makemigrations --check --dry-run
+        language: system
+        pass_filenames: false
+        always_run: true
+
+# Global excludes
+exclude: |
+  (?x)^(
+    static/js/vendor/.*|
+    node_modules/.*|
+    \.git/.*|
+    \.env.*|
+    venv/.*|
+    __pycache__/.*|
+    \.pyc$|
+    \.pyo$|
+    \.coverage.*|
+    htmlcov/.*|
+    dist/.*|
+    build/.*|
+    \.egg-info/.*
+  )$

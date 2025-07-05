@@ -127,7 +127,7 @@
     width: 3rem;
     height: 3rem;
     background: var(--color-primary);
-    color: white;
+    color: var(--garden-color-white);
     font-size: 1.25rem;
     font-weight: 700;
     border-radius: 50%;
@@ -301,41 +301,41 @@
 
 /* CTA Section */
 .institutional-page .cta-panel {
-    background: var(--color-surface-secondary, #f8f9fa) !important;
-    color: var(--color-text-primary) !important;
+    background: var(--color-surface-secondary, var(--garden-color-gray-50));
+    color: var(--color-text-primary);
     margin-top: 3rem;
     border-radius: 8px;
     border: 1px solid var(--color-border);
 }
 
 .institutional-page .cta-panel .garden-panel__header {
-    background: var(--color-surface-variant, #e9ecef) !important;
+    background: var(--color-surface-variant, var(--garden-color-gray-100));
     border-radius: 8px 8px 0 0;
     border-bottom: 1px solid var(--color-border);
 }
 
 .institutional-page .cta-panel .garden-panel__content {
-    background: var(--color-surface-secondary, #f8f9fa) !important;
+    background: var(--color-surface-secondary, var(--garden-color-gray-50));
     text-align: center;
-    color: var(--color-text-primary) !important;
+    color: var(--color-text-primary);
 }
 
 .institutional-page .cta-title {
     font-size: 2rem;
     font-weight: 600;
-    color: var(--color-text-primary) !important;
+    color: var(--color-text-primary);
     margin-bottom: 1rem;
 }
 
 .institutional-page .cta-description {
     font-size: 1.1rem;
-    color: var(--color-text-primary) !important;
+    color: var(--color-text-primary);
     margin-bottom: 2rem;
     line-height: 1.6;
 }
 
 .institutional-page .cta-description p {
-    color: var(--color-text-primary) !important;
+    color: var(--color-text-primary);
     margin: 0;
 }
 
@@ -364,46 +364,46 @@
     .institutional-page .hero-title {
         font-size: 2rem;
     }
-    
+
     .institutional-page .hero-subtitle {
         font-size: 1.125rem;
     }
-    
+
     .services-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .benefits-list {
         grid-template-columns: 1fr;
     }
-    
+
     .process-step {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .step-number {
         margin: 0 auto 1rem;
     }
-    
+
     .scale-metrics {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
-    
+
     .resources-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .resource-category h3 {
         text-align: center;
     }
-    
+
     .institutional-page .cta-actions {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .institutional-page .cta-title {
         font-size: 1.5rem;
     }
@@ -415,21 +415,21 @@
         background: var(--color-surface-variant);
         border-color: var(--color-border);
     }
-    
+
     .process-step {
         background: var(--color-surface-variant);
         border-color: var(--color-border);
     }
-    
+
     .benefit-item {
         border-color: var(--color-border);
     }
-    
+
     .metric-item {
         background: var(--color-surface-variant);
         border-color: var(--color-border);
     }
-    
+
     .resource-link {
         background: var(--color-surface-variant);
         border-color: var(--color-border);

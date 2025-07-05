@@ -101,9 +101,7 @@ class CSSMonitor:
             ):
                 continue
 
-            hex_colors = re.findall(
-                r"(?<!-)#[0-9a-fA-F]{3,6}(?!\s*;?\s*\/\*)", line
-            )
+            hex_colors = re.findall(r"(?<!-)#[0-9a-fA-F]{3,6}(?!\s*;?\s*\/\*)", line)
             if hex_colors:
                 hardcoded_colors.extend([(i, color) for color in hex_colors])
 
@@ -239,9 +237,7 @@ SUMMARY:
             return ""
 
         report = "LARGE CSS FILES (>100KB):\n"
-        sorted_files = sorted(
-            large_files.items(), key=lambda x: x[1], reverse=True
-        )
+        sorted_files = sorted(large_files.items(), key=lambda x: x[1], reverse=True)
         for file_name, size in sorted_files:
             report += f"  {file_name}: {size}KB\n"
         return report + "\n"

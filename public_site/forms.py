@@ -323,7 +323,9 @@ class AccessibleContactForm(forms.Form):
                         "human_check": "Please solve the math problem correctly to verify you are human."
                     }
                 )
-            if not hasattr(self, "math_answer") and (not human_answer or not human_answer.strip()):
+            if not hasattr(self, "math_answer") and (
+                not human_answer or not human_answer.strip()
+            ):
                 # If math_answer is not set (shouldn't happen), require any non-empty value
                 raise forms.ValidationError(
                     {"human_check": "Please provide a value for verification."}

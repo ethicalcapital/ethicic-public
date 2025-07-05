@@ -1,35 +1,90 @@
 /* Adviser Page Specific Styles */
 
 /* Hero Section */
-.adviser-page .hero-panel {
-    background: var(--color-surface);
-    text-align: center;
-    margin-bottom: var(--space-6);
-}
-
-.adviser-page .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 1rem;
-}
-
-.adviser-page .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
-}
-
-.adviser-page .hero-description {
-    font-size: 1.1rem;
-    color: var(--color-text-primary);
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto;
-}
 
 /* Section Intro */
+
+/* Services Grid */
+
+/* Benefits List */
+
+/* Process Steps */
+
+/* Process Action */
+
+/* Due Diligence Resources */
+
+/* CTA Section */
+
+/* Ultra-specific button styling - target every possible selector */
+
+html body.adviser-page .cta-panel .garden-action,
+
+html body.adviser-page .cta-panel a.garden-action,
+
+html body.adviser-page .cta-panel .cta-actions .garden-action,
+
+html body.adviser-page .cta-panel .cta-actions a.garden-action,
+
+html body.adviser-page .cta-panel .garden-panel__content .garden-action,
+
+html body.adviser-page .cta-panel .garden-panel__content a.garden-action,
+
+html body.adviser-page section.garden-panel.cta-panel .garden-action,
+
+html body.adviser-page section.garden-panel.cta-panel a.garden-action,
+
+/* Primary button - solid white */
+
+html body.adviser-page .cta-panel .garden-action.primary,
+
+html body.adviser-page .cta-panel a.garden-action.primary,
+
+html body.adviser-page .cta-panel .cta-actions .garden-action.primary,
+
+html body.adviser-page .cta-panel .garden-action.primary:hover,
+
+/* Secondary button - visible with darker background */
+
+html body.adviser-page .cta-panel .garden-action.secondary,
+
+html body.adviser-page .cta-panel a.garden-action.secondary,
+
+html body.adviser-page .cta-panel .cta-actions .garden-action.secondary,
+
+html body.adviser-page .cta-panel .garden-action.secondary:hover,
+
+/* Text Links */
+
+/* Responsive Design */
+
+/* Dark Theme Support */
+
+.resource-category {
+    display: flex;
+    flex-direction: column;
+}
+
+.process-action {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.resource-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
 .section-intro {
     font-size: 1.1rem;
     color: var(--color-text-secondary);
@@ -37,26 +92,11 @@
     line-height: 1.6;
 }
 
-/* Services Grid */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
-}
-
-.service-card {
-    background: var(--color-surface-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-primary);
 }
 
 .service-title {
@@ -68,13 +108,6 @@
     letter-spacing: 0.5px;
 }
 
-.service-card p {
-    color: var(--color-text-primary);
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* Benefits List */
 .benefits-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -82,122 +115,12 @@
     margin-top: 2rem;
 }
 
-.benefit-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.benefit-item:last-child {
-    border-bottom: none;
-}
-
-.benefit-item h4 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 0.5rem;
-}
-
-.benefit-item p {
-    color: var(--color-text-primary);
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* Process Steps */
 .process-steps {
     margin-bottom: 2rem;
 }
 
-.process-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: var(--color-surface-secondary);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-}
-
-.step-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    background: var(--color-primary);
-    color: white;
-    font-size: 1.25rem;
-    font-weight: 700;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-
-.step-content {
-    flex: 1;
-}
-
-.step-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.step-content p {
-    color: var(--color-text-primary);
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* Process Action */
-.process-action {
-    text-align: center;
-    margin-top: 2rem;
-}
-
-/* Due Diligence Resources */
 .ddq-resources {
     margin: 3rem 0;
-}
-
-.ddq-resources .section-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.ddq-resources .section-description {
-    font-size: 1.1rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-    text-align: center;
-}
-
-.resources-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 2rem;
-}
-
-.resource-category {
-    display: flex;
-    flex-direction: column;
-}
-
-.resource-category h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 1.5rem;
-    text-align: left;
 }
 
 .resource-list {
@@ -238,14 +161,6 @@
     min-width: 0;
 }
 
-.resource-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-}
-
 .resource-desc {
     font-size: 0.9rem;
     color: var(--color-text-secondary);
@@ -253,145 +168,67 @@
     margin: 0;
 }
 
-/* CTA Section */
-.adviser-page .cta-panel {
-    background: var(--color-surface-secondary, #f8f9fa) !important;
-    color: var(--color-text-primary) !important;
-    margin-top: 3rem;
-    border-radius: 8px;
+.service-card {
+    background: var(--color-surface-secondary);
     border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
 }
 
-.adviser-page .cta-panel .garden-panel__header {
-    background: var(--color-surface-variant, #e9ecef) !important;
-    border-radius: 8px 8px 0 0;
+.service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.benefit-item {
+    padding: 1rem 0;
     border-bottom: 1px solid var(--color-border);
 }
 
-.adviser-page .cta-panel .garden-panel__content {
-    background: var(--color-surface-secondary, #f8f9fa) !important;
-    text-align: center;
-    color: var(--color-text-primary) !important;
+.benefit-item:last-child {
+    border-bottom: none;
 }
 
-.adviser-page .cta-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--color-text-primary) !important;
-    margin-bottom: 1rem;
-}
-
-.adviser-page .cta-description {
-    font-size: 1.1rem;
-    color: var(--color-text-primary) !important;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.adviser-page .cta-description p {
-    color: var(--color-text-primary) !important;
-    margin: 0;
-}
-
-.adviser-page .cta-actions {
+.process-step {
     display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1.5rem;
     margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--color-surface-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
 }
 
-.adviser-page .cta-help {
-    font-size: 0.9rem;
-    color: rgb(255, 255, 255, 0.9) !important;
-    font-style: italic;
+.step-content {
+    flex: 1;
 }
 
-/* Ultra-specific button styling - target every possible selector */
-html body.adviser-page .cta-panel .garden-action,
-html body.adviser-page .cta-panel a.garden-action,
-html body.adviser-page .cta-panel .cta-actions .garden-action,
-html body.adviser-page .cta-panel .cta-actions a.garden-action,
-html body.adviser-page section.garden-panel.cta-panel .garden-action,
-html body.adviser-page section.garden-panel.cta-panel a.garden-action,
-html body.adviser-page .cta-panel .garden-panel__content .garden-action,
-html body.adviser-page .cta-panel .garden-panel__content a.garden-action {
-    /* Force button appearance */
-    appearance: none !important;
-    
-    /* Layout */
-    display: inline-block !important;
-    width: auto !important;
-    min-width: 200px !important;
-    padding: 14px 28px !important;
-    margin: 6px !important;
-    
-    /* Typography */
-    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-    font-size: 15px !important;
-    font-weight: 600 !important;
-    text-decoration: none !important;
-    text-align: center !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.8px !important;
-    line-height: 1.3 !important;
-    white-space: nowrap !important;
-    
-    /* Visual */
-    border-radius: 6px !important;
-    transition: all 0.25s ease !important;
-    cursor: pointer !important;
-    box-sizing: border-box !important;
-    vertical-align: middle !important;
-    
-    /* Default button style - make visible */
-    background-color: #fff !important;
-    color: var(--theme-primary) !important;
-    border: 2px solid #fff !important;
-    box-shadow: 0 2px 4px rgb(0, 0, 0, 0.1) !important;
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: var(--color-primary);
+    color: var(--garden-color-white);
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
-/* Primary button - solid white */
-html body.adviser-page .cta-panel .garden-action.primary,
-html body.adviser-page .cta-panel a.garden-action.primary,
-html body.adviser-page .cta-panel .cta-actions .garden-action.primary,
-html body.adviser-page .cta-panel .cta-actions a.garden-action.primary {
-    background-color: #fff !important;
-    color: var(--theme-primary) !important;
-    border: 2px solid #fff !important;
-    font-weight: 700 !important;
+.step-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-html body.adviser-page .cta-panel .garden-action.primary:hover,
-html body.adviser-page .cta-panel a.garden-action.primary:hover {
-    background-color: #f5f5f5 !important;
-    color: var(--theme-primary) !important;
-    border-color: #f5f5f5 !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 12px rgb(0, 0, 0, 0.2) !important;
-}
-
-/* Secondary button - visible with darker background */
-html body.adviser-page .cta-panel .garden-action.secondary,
-html body.adviser-page .cta-panel a.garden-action.secondary,
-html body.adviser-page .cta-panel .cta-actions .garden-action.secondary,
-html body.adviser-page .cta-panel .cta-actions a.garden-action.secondary {
-    background-color: rgb(255, 255, 255, 0.15) !important;
-    color: #fff !important;
-    border: 2px solid #fff !important;
-    font-weight: 600 !important;
-}
-
-html body.adviser-page .cta-panel .garden-action.secondary:hover,
-html body.adviser-page .cta-panel a.garden-action.secondary:hover {
-    background-color: #fff !important;
-    color: var(--theme-primary) !important;
-    border-color: #fff !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 12px rgb(0, 0, 0, 0.2) !important;
-}
-
-/* Text Links */
 .text-link {
     color: var(--color-primary);
     text-decoration: underline;
@@ -403,70 +240,184 @@ html body.adviser-page .cta-panel a.garden-action.secondary:hover {
     text-decoration-thickness: 2px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .adviser-page .hero-title {
-        font-size: 2rem;
-    }
-    
-    .adviser-page .hero-subtitle {
-        font-size: 1.125rem;
-    }
-    
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .benefits-list {
-        grid-template-columns: 1fr;
-    }
-    
-    .process-step {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .step-number {
-        margin: 0 auto 1rem;
-    }
-    
-    .resources-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .resource-category h3 {
-        text-align: center;
-    }
-    
-    .adviser-page .cta-actions {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .adviser-page .cta-title {
-        font-size: 1.5rem;
-    }
+.resource-category h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-align: left;
 }
 
-/* Dark Theme Support */
+.benefit-item h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.service-card p {
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.benefit-item p {
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.step-content p {
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.ddq-resources .section-description {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
 [data-theme="dark"] .adviser-page {
     .service-card {
         background: var(--color-surface-variant);
         border-color: var(--color-border);
     }
-    
+
     .process-step {
         background: var(--color-surface-variant);
         border-color: var(--color-border);
     }
-    
+
     .benefit-item {
         border-color: var(--color-border);
     }
-    
+
     .resource-link {
         background: var(--color-surface-variant);
         border-color: var(--color-border);
     }
+}
+
+.adviser-page .hero-description {
+    font-size: 1.1rem;
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.adviser-page .cta-description {
+    font-size: 1.1rem;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.ddq-resources .section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.adviser-page .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.adviser-page .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.adviser-page .hero-panel {
+    background: var(--color-surface);
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.adviser-page .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+}
+
+.adviser-page .cta-panel {
+    background: var(--color-surface-secondary, var(--garden-color-gray-50));
+    color: var(--color-text-primary);
+    margin-top: 3rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+.adviser-page .cta-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+}
+
+.adviser-page .cta-help {
+    font-size: 0.9rem;
+    color: var(--color-white-90);
+    font-style: italic;
+}
+
+.adviser-page .cta-description p {
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.adviser-page .cta-panel .garden-panel__content {
+    background: var(--color-surface-secondary, var(--garden-color-gray-50));
+    text-align: center;
+    color: var(--color-text-primary);
+}
+
+.adviser-page .cta-panel .garden-panel__header {
+    background: var(--color-surface-variant, var(--garden-color-gray-100));
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+html body.adviser-page .cta-panel a.garden-action.secondary:hover {
+    background-color: var(--garden-color-white);
+    color: var(--theme-primary);
+    border-color: var(--garden-color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px var(--color-shadow-20);
+}
+
+html body.adviser-page .cta-panel a.garden-action.primary:hover {
+    background-color: var(--garden-color-gray-50);
+    color: var(--theme-primary);
+    border-color: var(--garden-color-gray-50);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px var(--color-shadow-20);
+}
+
+
+html body.adviser-page .cta-panel .cta-actions a.garden-action.secondary {
+    background-color: var(--color-white-15);
+    color: var(--garden-color-white);
+    border: 2px solid var(--garden-color-white);
+    font-weight: 600;
+}
+
+html body.adviser-page .cta-panel .cta-actions a.garden-action.primary {
+    background-color: var(--garden-color-white);
+    color: var(--theme-primary);
+    border: 2px solid var(--garden-color-white);
+    font-weight: 700;
 }

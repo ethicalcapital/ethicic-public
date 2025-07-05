@@ -5,7 +5,7 @@
 
 /* Remove excess top padding from main content on solutions page */
 .solutions-page .main-content {
-    padding-top: 0 !important;
+    padding-top: 0;
 }
 
 /* Hero Section */
@@ -18,7 +18,7 @@
 /* Override container-structure-enhancements padding for hero panel content */
 .solutions-page .hero-panel .garden-panel-content,
 .solutions-page .hero-panel .panel-content {
-    padding: 0 !important; /* Remove all padding */
+    padding: 0; /* Remove all padding */
 }
 
 .solutions-page .hero-title {
@@ -77,7 +77,7 @@
 
 .solutions-page .solution-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgb(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px var(--color-shadow-10);
     border-color: var(--theme-primary);
 }
 
@@ -269,36 +269,36 @@
     .solutions-page .hero-title {
         font-size: 2rem;
     }
-    
+
     .solutions-page .hero-subtitle {
         font-size: 1.25rem;
     }
-    
+
     .solutions-page .solutions-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .solutions-page .audience-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .solutions-page .why-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .solutions-page .cta-actions {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .solutions-page .audience-actions {
         justify-content: center;
     }
-    
+
     .solutions-page .audience-actions .garden-action {
         width: auto;
     }
-    
+
     .solutions-page .audience-title {
         white-space: normal;
         font-size: 1.25rem;

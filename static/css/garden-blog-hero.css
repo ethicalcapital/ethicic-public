@@ -207,7 +207,7 @@
 }
 
 .featured-tag {
-    background: rgb(255, 255, 255, 0.2);
+    background: var(--color-white-20);
     color: var(--color-on-primary);
     padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-sm);
@@ -253,23 +253,23 @@
         grid-template-columns: 1fr;
         gap: var(--space-4);
     }
-    
+
     .hero-utilities {
         margin-top: var(--space-4);
     }
-    
+
     .featured-article-content {
         padding: var(--space-6);
     }
-    
+
     .featured-title {
         font-size: var(--font-lg);
     }
-    
+
     .featured-hero-image {
         height: 150px;
     }
-    
+
     .hero-panel .garden-panel-content {
         padding: var(--space-6) var(--space-4);
     }
@@ -279,7 +279,7 @@
     .hero-panel .garden-panel-content {
         padding: var(--space-4) var(--space-3);
     }
-    
+
     .featured-article-content {
         padding: var(--space-4);
     }

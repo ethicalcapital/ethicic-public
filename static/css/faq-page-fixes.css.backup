@@ -1,0 +1,183 @@
+/* FAQ Page Fixes - Ordered by Specificity */
+
+/* Secondary buttons need visible borders */
+        &.secondary {
+    border-color: var(--color-border);
+            color: var(--color-primary);
+}
+
+/* ===== DARK MODE SPECIFIC FIXES ===== */
+
+[data-theme="dark"] {
+    /* Ensure buttons remain visible in dark mode */
+
+    .accordion-toggle:hover {
+        transform: scale(1.1);
+    }
+
+    .contact-method .full-width {
+    width: 100%;
+}
+
+.faq-categories .category-btn {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    margin: 0.25rem;
+}
+
+.faq-pagination
+
+.faq-search-form
+
+.accordion-toggle[aria-expanded="true"] {
+    transform: rotate(180deg);
+}
+
+}
+
+    /* Category buttons in dark mode */
+    .faq-categories .category-btn {
+    background: var(--color-surface);
+        border-color: var(--color-border);
+        color: var(--color-text-primary);
+}
+
+/* ===== FAQ SPECIFIC ELEMENTS ===== */
+
+/* Category filter buttons */
+.faq-categories .category-btn:hover,
+.faq-categories .category-btn.active {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+}
+
+/* ===== FAQ ACCORDION BUTTONS ===== */
+
+/* Expand/collapse buttons for FAQ items */
+
+.faq-toggle,
+
+.faq-toggle:hover,
+
+.faq-toggle[aria-expanded="true"],
+
+.accordion-toggle {
+    background: transparent;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+/* ===== FAQ BUTTON VISIBILITY FIXES ===== */
+
+/* Garden action rules ordered by specificity */
+.garden-action {
+    /* Ensure buttons are always visible */
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    min-width: 40px;
+    padding: 0.75rem 1.5rem;
+    height: 100%;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.garden-action:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.garden-action.current {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    cursor: default;
+}
+
+.garden-action.primary:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+}
+
+.garden-action.secondary:hover {
+    background: var(--color-surface-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.contact-method .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-weight: 600;
+}
+
+.garden-action.primary,
+.faq-index-page .garden-action.primary,
+.faq-article .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+.garden-action:focus-visible,
+
+.faq-index-page .garden-action:focus-visible,
+
+.faq-article .garden-action:focus-visible,
+
+/* High contrast mode support */
+
+.faq-categories .category-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.garden-action,
+
+.faq-index-page .garden-action,
+
+/* Primary buttons - purple bg, white text */
+
+.faq-page .garden-action.primary,
+
+.faq-index-page .garden-action.primary,
+
+.faq-page .garden-action.primary:hover,
+
+.faq-index-page .garden-action.primary:hover,
+
+/* Secondary buttons - transparent bg, purple text */
+
+.faq-page .garden-action.secondary,
+
+.faq-index-page .garden-action.secondary,
+
+.faq-page .garden-action.secondary:hover,
+
+.faq-index-page .garden-action.secondary:hover,
+
+.faq-article .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-border);
+}

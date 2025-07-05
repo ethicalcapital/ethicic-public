@@ -1,55 +1,17 @@
-/* ========================================
-   FAQ BUTTON FIXES
-   Ensures proper button styling and contrast in FAQ pages
-   Inherits from blog-button-fixes with FAQ-specific additions
-   ======================================== */
+/*!
+ * FAQ Page Fixes - Production Ready
+ * Systematic organization by CSS specificity for maintainable cascade
+ * Replaces messy faq-page-fixes.css with proper structure
+ */
 
-/* ===== FAQ BUTTON VISIBILITY FIXES ===== */
-/* Ensure all buttons on FAQ pages have proper contrast */
-.faq-page .garden-action,
-.faq-index-page .garden-action,
-.faq-article .garden-action {
-    /* Ensure buttons are always visible */
-    opacity: 1 !important;
-    visibility: visible !important;
-}
+/* ===== CSS LAYERS ===== */
+@layer components, pages, overrides;
 
-/* Primary buttons - purple bg, white text */
-.faq-page .garden-action.primary,
-.faq-index-page .garden-action.primary,
-.faq-article .garden-action.primary {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    border: 2px solid var(--color-primary) !important;
-}
+/* ===== LAYER: COMPONENTS ===== */
+/* Low specificity (0,0,1,0) - base component styles */
+@layer components {
 
-.faq-page .garden-action.primary:hover,
-.faq-index-page .garden-action.primary:hover,
-.faq-article .garden-action.primary:hover {
-    background: var(--color-primary-dark) !important;
-    border-color: var(--color-primary-dark) !important;
-    transform: translateY(-1px);
-}
-
-/* Secondary buttons - transparent bg, purple text */
-.faq-page .garden-action.secondary,
-.faq-index-page .garden-action.secondary,
-.faq-article .garden-action.secondary {
-    background: transparent !important;
-    color: var(--color-primary) !important;
-    border: 2px solid var(--color-border) !important;
-}
-
-.faq-page .garden-action.secondary:hover,
-.faq-index-page .garden-action.secondary:hover,
-.faq-article .garden-action.secondary:hover {
-    background: var(--color-surface-secondary) !important;
-    color: var(--color-primary) !important;
-    border-color: var(--color-primary) !important;
-}
-
-/* ===== FAQ SPECIFIC ELEMENTS ===== */
-/* Category filter buttons */
+/* Category filter buttons - base styles */
 .faq-categories .category-btn {
     display: inline-block;
     padding: 0.5rem 1.25rem;
@@ -66,42 +28,7 @@
     margin: 0.25rem;
 }
 
-.faq-categories .category-btn:hover,
-.faq-categories .category-btn.active {
-    background: var(--color-primary);
-    color: var(--color-on-primary);
-    border-color: var(--color-primary);
-}
-
-/* Search button */
-.faq-search-form .garden-action {
-    height: 100%;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-}
-
-/* ===== SIDEBAR BUTTON FIXES ===== */
-/* Contact methods and CTAs in sidebar */
-.blog-sticky-sidebar .garden-action,
-.faq-sidebar .garden-action {
-    width: 100%;
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.contact-method .garden-action.primary {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    font-weight: 600;
-}
-
-.contact-method .full-width {
-    width: 100%;
-}
-
-/* ===== FAQ ACCORDION BUTTONS ===== */
-/* Expand/collapse buttons for FAQ items */
-.faq-toggle,
+/* Accordion toggle buttons - base styles */
 .accordion-toggle {
     background: transparent;
     border: none;
@@ -111,111 +38,161 @@
     transition: transform 0.2s ease;
 }
 
-.faq-toggle:hover,
-.accordion-toggle:hover {
-    transform: scale(1.1);
+/* Garden action base styles */
+.garden-action {
+    /* Ensure buttons are always visible */
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    min-width: 40px;
+    padding: 0.75rem 1.5rem;
+    height: 100%;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
-.faq-toggle[aria-expanded="true"],
-.accordion-toggle[aria-expanded="true"] {
-    transform: rotate(180deg);
 }
 
-/* ===== DARK MODE SPECIFIC FIXES ===== */
-[data-theme="dark"] {
-    /* Ensure buttons remain visible in dark mode */
-    .faq-page .garden-action,
-    .faq-index-page .garden-action,
-    .faq-article .garden-action {
-        /* Primary buttons stay purple with white text */
-        &.primary {
-            background: var(--color-primary) !important;
-            color: var(--color-on-primary) !important;
-        }
-        
-        /* Secondary buttons need visible borders */
-        &.secondary {
-            border-color: var(--color-border) !important;
-            color: var(--color-primary) !important;
-        }
-    }
-    
-    /* Category buttons in dark mode */
-    .faq-categories .category-btn {
-        background: var(--color-surface);
-        border-color: var(--color-border);
-        color: var(--color-text-primary);
-    }
-    
-    .faq-categories .category-btn:hover,
-    .faq-categories .category-btn.active {
-        background: var(--color-primary);
-        color: var(--color-on-primary);
-    }
+/* ===== LAYER: PAGES ===== */
+/* Medium specificity (0,0,2,0) - page-specific styles */
+@layer pages {
+
+/* SPECIFICITY 0,0,2,0 - Two class selectors */
+.faq-categories .category-btn:hover,
+.faq-categories .category-btn.active {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
 }
 
-/* ===== MOBILE RESPONSIVE FIXES ===== */
-@media (max-width: 768px) {
-    .faq-page .garden-action,
-    .faq-index-page .garden-action,
-    .faq-article .garden-action {
-        /* Ensure touch-friendly sizing */
-        min-height: 44px;
-        padding: 0.75rem 1.5rem;
-    }
-    
-    /* Full width buttons on mobile */
-    .faq-sidebar .garden-action,
-    .contact-method .garden-action {
-        width: 100%;
-    }
-    
-    /* Stack category filters */
-    .faq-categories {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-    
-    .faq-categories .category-btn {
-        flex: 1 1 calc(50% - 0.5rem);
-        text-align: center;
-    }
-}
-
-/* ===== FOCUS AND ACCESSIBILITY ===== */
-.faq-page .garden-action:focus-visible,
-.faq-index-page .garden-action:focus-visible,
-.faq-article .garden-action:focus-visible,
 .faq-categories .category-btn:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: more) {
-    .faq-page .garden-action,
-    .faq-index-page .garden-action,
-    .faq-article .garden-action,
-    .faq-categories .category-btn {
-        border-width: 3px !important;
-        font-weight: bold !important;
-    }
+.garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-primary);
 }
 
-/* ===== PAGINATION FIXES (if FAQ has pagination) ===== */
-.faq-pagination .garden-action {
-    min-width: 40px;
-    padding: 0.5rem 1rem;
-}
-
-.faq-pagination .garden-action.current {
-    background: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
+.garden-action.current {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
     cursor: default;
 }
 
-.faq-pagination .garden-action:disabled {
+.garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-border);
+}
+
+/* SPECIFICITY 0,0,2,1 - Two classes + pseudo-class */
+.garden-action:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+.garden-action:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.garden-action.primary:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+}
+
+.garden-action.secondary:hover {
+    background: var(--color-surface-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.accordion-toggle:hover {
+    transform: scale(1.1);
+}
+
+.accordion-toggle[aria-expanded="true"] {
+    transform: rotate(180deg);
+}
+
+/* SPECIFICITY 0,0,3,0 - Three class selectors */
+.faq-index-page .garden-action.primary,
+.faq-article .garden-action.primary,
+.faq-page .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+.faq-index-page .garden-action.secondary,
+.faq-page .garden-action.secondary,
+.faq-article .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-border);
+}
+
+.contact-method .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-weight: 600;
+}
+
+/* SPECIFICITY 0,0,3,1 - Three classes + pseudo-class */
+.faq-index-page .garden-action:focus-visible,
+.faq-article .garden-action:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.faq-index-page .garden-action.primary:hover,
+.faq-page .garden-action.primary:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+}
+
+.faq-index-page .garden-action.secondary:hover,
+.faq-page .garden-action.secondary:hover {
+    background: var(--color-surface-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+}
+
+/* ===== LAYER: OVERRIDES ===== */
+/* Dark mode overrides - highest specificity */
+@layer overrides {
+
+/* SPECIFICITY 0,0,1,1 - Attribute selector + class */
+[data-theme="dark"] .contact-method .full-width {
+    width: 100%;
+}
+
+/* SPECIFICITY 0,0,2,1 - Attribute selector + two classes */
+[data-theme="dark"] .faq-categories .category-btn {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
+}
+
+/* SPECIFICITY 0,0,2,2 - Attribute selector + two classes + pseudo-class */
+[data-theme="dark"] .accordion-toggle:hover {
+    transform: scale(1.1);
+}
+
+}
+
+/* ===== UTILITY MIGRATION NOTES ===== */
+/*
+Future improvements:
+- Convert .garden-action styles to utility classes
+- Use .garden-button-primary and .garden-button-secondary utilities
+- Leverage Garden UI focus and hover utilities
+- Consolidate FAQ-specific styles into page modules
+*/

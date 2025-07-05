@@ -5,29 +5,29 @@
 
 @layer components {
     /* ===== FOOTER STYLES ===== */
-    
+
     .garden-footer {
         background: var(--theme-surface-variant);
         border-top: 1px solid var(--theme-border);
         padding: var(--space-8) 0 var(--space-6);
         margin-top: auto;
     }
-    
+
     .garden-footer-content {
         max-width: var(--content-width-normal);
         margin: 0 auto;
         padding: 0 var(--space-6);
         box-sizing: border-box;
     }
-    
+
     .garden-footer-grid {
-        display: grid !important;
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: var(--space-8) !important;
-        margin-bottom: var(--space-8) !important;
-        width: 100% !important;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-8);
+        margin-bottom: var(--space-8);
+        width: 100%;
     }
-    
+
     .garden-footer-section h3 {
         font-family: var(--font-sans);
         font-size: var(--font-base);
@@ -37,7 +37,7 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
-    
+
     .garden-footer-links {
         list-style: none;
         padding: 0;
@@ -46,7 +46,7 @@
         flex-direction: column;
         gap: var(--space-3);
     }
-    
+
     .garden-footer-link {
         color: var(--theme-text-secondary);
         text-decoration: none;
@@ -57,7 +57,7 @@
     .garden-footer-link:hover {
         color: var(--theme-primary);
     }
-    
+
     .garden-footer-bottom {
         padding-top: var(--space-6);
         border-top: 1px solid var(--theme-border);
@@ -92,27 +92,27 @@
     .garden-footer-social a:hover {
         color: var(--theme-primary);
     }
-    
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .garden-footer-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: var(--space-6) !important;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-6);
         }
-        
+
         .garden-footer-bottom {
             flex-direction: column;
             align-items: flex-start;
         }
     }
-    
+
     @media (max-width: 480px) {
         .garden-footer-grid {
-            grid-template-columns: 1fr !important;
-            gap: var(--space-4) !important;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
         }
     }
-    
+
     /* Additional theme support - theme variables handle light/dark automatically */
     /* Background and text colors automatically adjust via theme variables in .garden-footer */
 }

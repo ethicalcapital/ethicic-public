@@ -1,4 +1,4 @@
-/*! 
+/*!
  * Garden UI Design System - Modern Professional Interface
  * Accessible dark/light mode UI with WCAG 2.1 AA compliance
  * Purple accent (var(--garden-accent)) with sophisticated theming
@@ -48,6 +48,71 @@
   --ec-purple-pale: var(--theme-primary-alpha);
   --ec-purple-dark: var(--theme-primary);
   --ec-purple-rgb: var(--theme-primary-rgb);
+
+  /* Additional color variables for RGB replacements */
+  /* Success colors - green */
+  --color-success-10: #dcfce7;
+  --color-success-20: #bbf7d0;
+  --color-success-30: #86efac;
+  --color-success-alpha-10: #22c55e1a;
+  --color-success-alpha-15: #34d39926;
+
+  /* Warning colors - amber */
+  --color-warning-10: #fef3c7;
+  --color-warning-20: #fde68a;
+  --color-warning-30: #fcd34d;
+  --color-warning-alpha-10: #f59e0b1a;
+  --color-warning-alpha-20: #fbbf2433;
+
+  /* Error colors - red */
+  --color-error-10: #fee2e2;
+  --color-error-20: #fecaca;
+  --color-error-30: #fca5a5;
+  --color-error-alpha-10: #ef44441a;
+  --color-error-alpha-15: #f8717126;
+
+  /* Info colors - blue */
+  --color-info-10: #dbeafe;
+  --color-info-20: #bfdbfe;
+  --color-info-30: #93c5fd;
+  --color-info-alpha-10: #3b82f61a;
+
+  /* Primary/Accent colors with alpha */
+  --color-primary-alpha-0: transparent;
+  --color-primary-alpha-5: #553c9a0d;
+  --color-primary-alpha-10: #553c9a1a;
+  --color-primary-alpha-15: #553c9a26;
+  --color-primary-alpha-20: #553c9a33;
+  --color-primary-alpha-30: #553c9a4d;
+  --color-primary-alpha-40: #553c9a66;
+  --color-primary-alpha-50: #553c9a80;
+
+  /* Violet-based colors for theme */
+  --color-violet-alpha-20: #7c3aed33;
+  --color-violet-alpha-30: #7c3aed4d;
+  --color-violet-alpha-40: #7c3aed66;
+
+  /* White/Black with alpha */
+  --color-white-2: #ffffff05;
+  --color-white-5: #ffffff0d;
+  --color-white-10: #ffffff1a;
+  --color-white-15: #ffffff26;
+  --color-white-20: #ffffff33;
+  --color-white-25: #ffffff40;
+  --color-white-30: #ffffff4d;
+  --color-white-50: #ffffff80;
+  --color-white-60: #ffffff99;
+  --color-white-70: #ffffffb3;
+  --color-white-90: #ffffffe6;
+
+  --color-shadow-5: #0000000d;
+  --color-shadow-10: #0000001a;
+  --color-shadow-15: #00000026;
+  --color-shadow-20: #00000033;
+  --color-shadow-30: #0000004d;
+  --color-shadow-40: #00000066;
+  --color-shadow-50: #00000080;
+  --color-shadow-80: #000000cc;
   --font-mono: var(--font-sans);
   --font-sans: 'Inter', 'Source Sans Pro', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Roboto', 'Helvetica Neue', arial, sans-serif;
   --font-body: 'Inter', 'Source Sans Pro', system-ui, -apple-system, sans-serif;
@@ -110,7 +175,7 @@
   --z-modal: 1050;
   --z-popover: 1060;
   --z-tooltip: 1070;
-  
+
   /* ===== RESPONSIVE BREAKPOINTS ===== */
   /* Standardized breakpoint system for consistent responsive design */
   --breakpoint-xs: 480px;      /* Mobile phones (portrait) */
@@ -119,7 +184,7 @@
   --breakpoint-lg: 1024px;     /* Tablets (landscape) / Small desktop */
   --breakpoint-xl: 1200px;     /* Desktop / Large screens */
   --breakpoint-2xl: 1400px;    /* Large desktop / Extra wide screens */
-  
+
   /* Container Max Widths - Responsive containers with gutters */
   --container-xs: calc(var(--breakpoint-xs) - var(--space-8));  /* 464px */
   --container-sm: calc(var(--breakpoint-sm) - var(--space-8));  /* 624px */
@@ -127,12 +192,12 @@
   --container-lg: calc(var(--breakpoint-lg) - var(--space-8)); /* 1008px */
   --container-xl: calc(var(--breakpoint-xl) - var(--space-8)); /* 1184px */
   --container-2xl: calc(var(--breakpoint-2xl) - var(--space-8)); /* 1384px */
-  
+
   /* Content Width Constraints - Following Garden UI patterns */
   --content-width-narrow: calc(var(--space-24) * 8);    /* 768px - Articles, forms */
   --content-width-normal: calc(var(--space-24) * 12.5); /* 1200px - Main content */
   --content-width-wide: calc(var(--space-24) * 16.67);  /* 1600px - Dashboard layouts */
-  
+
   /* Semantic Component Width Variables - Design System Consistent */
   --width-button-small: calc(var(--space-24) * 1.875);   /* 180px - Small buttons */
   --width-button-medium: calc(var(--space-24) * 2.29);   /* 220px - Medium buttons */
@@ -140,7 +205,7 @@
   --width-image-small: calc(var(--space-24) * 1.875);    /* 180px - Small images */
   --width-image-medium: calc(var(--space-24) * 2.71);    /* 260px - Medium images */
   --width-form-input: calc(var(--space-24) * 5.21);      /* 500px - Form inputs */
-  
+
   /* Character-based Width Standards - Typography Optimized */
   --width-text-short: 40ch;     /* Short text blocks, buttons */
   --width-text-medium: 50ch;    /* Medium text blocks */
@@ -195,10 +260,12 @@
   --theme-border-variant: #444;
   --theme-divider: #2a2a2a;
   --theme-success: #065d42;
+  --theme-success-rgb: 6, 93, 66;
   --theme-success-alpha: color-mix(in srgb, #065d42 15%, transparent);
   --theme-warning: #7a4f05;
   --theme-warning-alpha: color-mix(in srgb, #7a4f05 15%, transparent);
   --theme-error: #8b2222;
+  --theme-error-rgb: 139, 34, 34;
   --theme-error-alpha: color-mix(in srgb, #8b2222 15%, transparent);
   --theme-info: #1d4ed8;
   --theme-info-alpha: color-mix(in srgb, #1d4ed8 15%, transparent);
@@ -217,13 +284,44 @@
   --garden-selection: var(--theme-selection);
   --garden-text: var(--theme-on-background);
   --garden-text-muted: var(--theme-text-secondary);
+
+  /* Garden color system */
+  --garden-color-white: #ffffff;
+  --garden-color-gray-50: #f9fafb;
+  --garden-color-gray-100: #f3f4f6;
+  --garden-color-gray-150: #e5e7eb;
+  --garden-color-gray-200: #e5e7eb;
+  --garden-color-gray-300: #d1d5db;
+  --garden-color-gray-400: #9ca3af;
+  --garden-color-gray-500: #6b7280;
+  --garden-color-gray-600: #4b5563;
+  --garden-color-gray-700: #374151;
+  --garden-color-gray-800: #1f2937;
+  --garden-color-gray-900: #111827;
+  --garden-color-gray-950: #030712;
+  --garden-color-black: #000000;
+  --garden-accent-light: color-mix(in srgb, var(--garden-accent) 60%, white);
+  --garden-accent-lighter: color-mix(in srgb, var(--garden-accent) 40%, white);
+  --garden-accent-lightest: color-mix(in srgb, var(--garden-accent) 20%, white);
+  --garden-accent-dark: color-mix(in srgb, var(--garden-accent) 80%, black);
+  --garden-color-info: var(--theme-info);
+  --garden-color-info-dark: color-mix(in srgb, var(--theme-info) 80%, black);
+  --garden-color-success: var(--theme-success);
+  --garden-color-success-light: color-mix(in srgb, var(--theme-success) 30%, white);
+  --garden-color-warning: var(--theme-warning);
+  --garden-color-warning-light: color-mix(in srgb, var(--theme-warning) 30%, white);
+  --garden-color-error: var(--theme-error);
+  --garden-color-error-light: color-mix(in srgb, var(--theme-error) 30%, white);
+  --color-success-alpha-20: rgb(var(--theme-success-rgb), 0.2);
+  --color-error-alpha-20: rgb(var(--theme-error-rgb), 0.2);
+
   --accent-text: var(--theme-on-primary);
   --accent-text-shadow: 0 1px 3px var(--theme-shadow);
   --panel-bg: var(--theme-surface);
   --panel-border: var(--theme-border);
   --panel-header-bg: var(--theme-surface-variant);
   --input-bg: var(--theme-surface);
-  
+
   /* Header variables for dark theme navigation visibility */
   --header-bg: var(--theme-primary);
   --header-text: var(--theme-on-primary);
@@ -243,7 +341,7 @@
   --terminal-border: var(--theme-border);
   --terminal-hover: var(--theme-hover);
 }
-  
+
   /* ===== PURPLE LIGHT THEME ===== */
 [data-theme="light"], [data-theme="purple-light"] {
   --theme-primary: var(--garden-accent);
@@ -265,6 +363,7 @@
   --theme-border-variant: #d1d5db;
   --theme-divider: #f3f4f6;
   --theme-success: #065d42;
+  --theme-success-rgb: 6, 93, 66;
   --theme-success-alpha: color-mix(in srgb, #065d42 10%, transparent);
   --theme-warning: #7a4f05;
   --theme-warning-alpha: color-mix(in srgb, #7a4f05 10%, transparent);
@@ -287,6 +386,37 @@
   --garden-selection: var(--theme-selection);
   --garden-text: var(--theme-on-background);
   --garden-text-muted: var(--theme-text-secondary);
+
+  /* Garden color system */
+  --garden-color-white: #ffffff;
+  --garden-color-gray-50: #f9fafb;
+  --garden-color-gray-100: #f3f4f6;
+  --garden-color-gray-150: #e5e7eb;
+  --garden-color-gray-200: #e5e7eb;
+  --garden-color-gray-300: #d1d5db;
+  --garden-color-gray-400: #9ca3af;
+  --garden-color-gray-500: #6b7280;
+  --garden-color-gray-600: #4b5563;
+  --garden-color-gray-700: #374151;
+  --garden-color-gray-800: #1f2937;
+  --garden-color-gray-900: #111827;
+  --garden-color-gray-950: #030712;
+  --garden-color-black: #000000;
+  --garden-accent-light: color-mix(in srgb, var(--garden-accent) 60%, white);
+  --garden-accent-lighter: color-mix(in srgb, var(--garden-accent) 40%, white);
+  --garden-accent-lightest: color-mix(in srgb, var(--garden-accent) 20%, white);
+  --garden-accent-dark: color-mix(in srgb, var(--garden-accent) 80%, black);
+  --garden-color-info: var(--theme-info);
+  --garden-color-info-dark: color-mix(in srgb, var(--theme-info) 80%, black);
+  --garden-color-success: var(--theme-success);
+  --garden-color-success-light: color-mix(in srgb, var(--theme-success) 30%, white);
+  --garden-color-warning: var(--theme-warning);
+  --garden-color-warning-light: color-mix(in srgb, var(--theme-warning) 30%, white);
+  --garden-color-error: var(--theme-error);
+  --garden-color-error-light: color-mix(in srgb, var(--theme-error) 30%, white);
+  --color-success-alpha-20: rgb(var(--theme-success-rgb), 0.2);
+  --color-error-alpha-20: rgb(var(--theme-error-rgb), 0.2);
+
   --accent-text: var(--theme-on-primary);
   --accent-text-shadow: 0 1px 2px var(--theme-shadow);
   --button-text-contrast: var(--theme-text-primary);
@@ -310,13 +440,13 @@
   --terminal-muted: var(--theme-text-secondary);
   --terminal-border: var(--theme-border);
   --terminal-hover: var(--theme-hover);
-  
+
   /* Header variables for light theme navigation visibility */
   --header-bg: var(--theme-primary);
   --header-text: var(--theme-on-primary);
   --header-border: var(--theme-border);
 }
-  
+
   /* ===== AUTO THEME (Follows system preference) ===== */
   @media (prefers-color-scheme: light) {
 [data-theme="auto"] {
@@ -343,9 +473,9 @@
   --accent-text-shadow: 0 1px 2px var(--theme-shadow);
 }
   }
-  
+
   /* ===== EXAMPLE EXTENSIBLE THEMES (Demonstrates future flexibility) ===== */
-  
+
   /* Blue Theme - Shows how easy it is to add new brand colors */
 [data-theme="blue-light"] {
   --theme-primary: #2563EB;
@@ -364,7 +494,7 @@
   --garden-accent: #3d2970;
   --accent-text: var(--theme-on-primary);
 }
-  
+
 [data-theme="blue-dark"] {
   --theme-primary: var(--color-info);
   --theme-primary-hover: #60a5fa;
@@ -382,7 +512,7 @@
   --garden-accent: #3d2970;
   --accent-text: var(--theme-on-primary);
 }
-  
+
   /* Green Theme - Another example */
 [data-theme="green-light"] {
   --theme-primary: var(--color-success);
@@ -400,7 +530,7 @@
   --theme-shadow: color-mix(in srgb, var(--garden-text) 15%, transparent);
   --garden-accent: #3d2970;
   --accent-text: var(--theme-on-primary);
-  
+
   /* Additional missing variables for compatibility */
   --color-surface-secondary: var(--theme-surface-variant);
   --color-surface-hover: var(--theme-hover);
@@ -429,7 +559,7 @@
   --garden-primary: var(--theme-primary);
   --garden-bg-subtle: var(--theme-surface-variant);
   --garden-bg-hover: var(--theme-hover);
-  
+
   /* Additional variables for remaining compatibility issues */
   --color-success-bg: var(--theme-success-alpha);
   --color-warning-bg: var(--theme-warning-alpha);
@@ -449,7 +579,7 @@
   --garden-shadow-lg: var(--shadow-lg);
   --color-accent: var(--theme-primary);
   --text-3xl: 36px;
-  
+
   /* Final missing variables */
   --color-error-bg: var(--theme-error-alpha);
   --code-bg: var(--theme-surface-variant);
@@ -462,13 +592,13 @@
   --garden-text-primary: var(--theme-text-primary);
   --text-sm: 14px;
   --color-surface-elevated: var(--theme-surface-variant);
-  
+
   /* Final cleanup variables */
   --terminal-border-rgb: 229, 231, 235;
   --garden-link: var(--theme-primary);
   --garden-spacing-xs: var(--space-1);
   --garden-text-secondary: var(--theme-text-secondary);
-  
+
   /* Accessibility & hover variables */
   --color-primary-visited: var(--theme-primary);
   --color-error-light: var(--theme-error-alpha);
@@ -479,7 +609,7 @@
   --garden-link-hover: var(--theme-primary-hover);
   --garden-primary-hover: var(--theme-primary-hover);
   --garden-surface-hover: var(--theme-hover);
-  
+
   /* Additional missing variables found by tests */
   --garden-border-light: var(--theme-border);
   --text-base: var(--font-base);
@@ -493,13 +623,13 @@
 *, *::before, *::after {
   box-sizing: border-box;
 }
-  
+
 html {
   line-height: var(--line-normal);
   text-size-adjust: 100%;
   tab-size: 4;
 }
-  
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -509,7 +639,7 @@ body {
   background: var(--garden-bg);
   transition: background-color var(--duration-normal), color var(--duration-normal);
 }
-  
+
 button, input, optgroup, select, textarea {
   font-family: inherit;
   font-size: 100%;
@@ -522,7 +652,7 @@ button, input, optgroup, select, textarea {
 @layer components {
   /* ===== COMPREHENSIVE PANEL SYSTEM ===== */
   /* Consolidated from garden-platform.css for single source of truth */
-  
+
   /* Base Panel Styles */
 .garden-panel {
   background: var(--panel-bg);
@@ -533,7 +663,7 @@ button, input, optgroup, select, textarea {
   transition: background-color var(--duration-normal), border-color var(--duration-normal);
   break-inside: avoid;
 }
-  
+
 .garden-panel-header {
   background: var(--panel-header-bg);
   color: var(--garden-accent);
@@ -547,7 +677,7 @@ button, input, optgroup, select, textarea {
   justify-content: space-between;
   align-items: center;
 }
-  
+
   /* Panel Title Styling */
 .panel-title {
   font-size: var(--font-sm);
@@ -557,68 +687,68 @@ button, input, optgroup, select, textarea {
   color: var(--garden-fg);
   margin: 0;
 }
-  
+
 .panel-actions {
   display: flex;
   gap: var(--space-2);
 }
-  
+
   /* Special case: Panel headers with purple background */
 .garden-panel-header.accent-bg {
   background: var(--garden-accent);
   color: var(--accent-text);
   text-shadow: var(--accent-text-shadow);
 }
-  
+
 .garden-panel-content {
   padding: var(--space-3);
 }
-  
+
   /* Panel Variants */
 .garden-panel-content.no-padding {
   padding: 0;
 }
-  
+
 .garden-panel-scrollable .garden-panel-content {
   overflow-y: auto;
   max-height: 400px;
 }
-  
+
 .garden-panel-compact .garden-panel-content {
   padding: var(--space-2);
 }
-  
+
   /* Collapsible Panels */
   .garden-panel-collapsible .garden-panel-header,
 .garden-panel.collapsible .garden-panel-header {
   cursor: pointer;
   user-select: none;
 }
-  
+
 .garden-panel.collapsible .panel-title::before {
   content: '▼';
   display: inline-block;
   margin-right: var(--space-2);
   transition: transform var(--duration-fast);
 }
-  
+
 .garden-panel.collapsible.collapsed .panel-title::before {
   transform: rotate(-90deg);
 }
-  
+
 .garden-panel.collapsible.collapsed .garden-panel-content {
   display: none;
 }
-  
+
   /* Nested Panels */
 .garden-panel .garden-panel {
   margin-bottom: var(--space-3);
 }
-  
+
 .garden-panel .garden-panel:last-child {
   margin-bottom: 0;
 }
-  
+
   /* Panel Grid Layout */
 .garden-panel-grid {
   display: grid;
@@ -626,44 +756,44 @@ button, input, optgroup, select, textarea {
   gap: var(--space-4);
   margin-bottom: var(--space-4);
 }
-  
+
   /* Panel States */
 .garden-panel.loading {
   opacity: 0.5;
   pointer-events: none;
 }
-  
+
 .garden-panel.error {
   border-color: var(--color-error);
 }
-  
+
 .garden-panel.error .garden-panel-header {
   background: var(--color-error-alpha);
   border-bottom-color: var(--color-error);
 }
-  
+
 .garden-panel.success {
   border-color: var(--color-success);
 }
-  
+
 .garden-panel.success .garden-panel-header {
   background: var(--color-success-alpha);
   border-bottom-color: var(--color-success);
 }
-  
+
   /* Status Indicators */
 .garden-panel[data-status="success"] {
   border-left: 3px solid var(--color-success);
 }
-  
+
 .garden-panel[data-status="warning"] {
   border-left: 3px solid var(--color-warning);
 }
-  
+
 .garden-panel[data-status="error"] {
   border-left: 3px solid var(--color-error);
 }
-  
+
   /* Panel Footer */
 .garden-panel-footer {
   background: var(--panel-bg);
@@ -673,20 +803,20 @@ button, input, optgroup, select, textarea {
   align-items: center;
   justify-content: space-between;
 }
-  
+
   /* Panel Header Components */
 .panel-header-left {
   display: flex;
   align-items: center;
   gap: var(--space-3);
 }
-  
+
 .panel-header-actions {
   display: flex;
   align-items: center;
   gap: var(--space-2);
 }
-  
+
   /* Panel Loading State */
 .panel-loading {
   display: flex;
@@ -696,7 +826,7 @@ button, input, optgroup, select, textarea {
   padding: var(--space-8);
   color: var(--garden-muted);
 }
-  
+
 .loading-spinner {
   width: 24px;
   height: 24px;
@@ -706,13 +836,13 @@ button, input, optgroup, select, textarea {
   animation: spin 1s linear infinite;
   margin-bottom: var(--space-2);
 }
-  
+
 .loading-text {
   font-size: var(--font-sm);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-  
+
 .panel-count {
   font-size: var(--font-xs);
   background: var(--garden-muted);
@@ -720,7 +850,7 @@ button, input, optgroup, select, textarea {
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-sm);
 }
-  
+
 .collapse-icon {
   font-family: var(--font-mono);
   font-size: var(--font-sm);
@@ -735,7 +865,7 @@ button, input, optgroup, select, textarea {
   display: flex;
   gap: var(--space-3);
 }
-  
+
   /* Composite utility classes for common patterns */
 .action-section-label {
   font-size: var(--font-xs);
@@ -743,23 +873,23 @@ button, input, optgroup, select, textarea {
   color: var(--garden-text-muted);
   margin-bottom: var(--space-1);
 }
-  
+
 .action-panel-content-flex {
   display: flex;
   flex-direction: column;
 }
-  
+
 .action-controls-section {
   padding: var(--space-3);
   border-bottom: 1px solid var(--garden-border);
 }
-  
+
 .action-console-header {
   padding: var(--space-2) var(--space-3);
-  background: rgb(255, 255, 255, 0.02);
+  background: var(--color-white-2);
   border-bottom: 1px solid var(--garden-border);
 }
-  
+
 .action-console-output {
   flex: 1;
   padding: var(--space-2);
@@ -767,46 +897,46 @@ button, input, optgroup, select, textarea {
   font-size: var(--font-xs);
   overflow-y: auto;
   max-height: 200px;
-  background: rgb(0, 0, 0, 0.3);
+  background: var(--color-shadow-30);
 }
-  
+
 .action-detail-section {
   margin-bottom: var(--space-4);
 }
-  
+
 .action-detail-header {
   font-size: var(--font-lg);
   margin-bottom: var(--space-2);
 }
-  
+
 .action-detail-meta {
   display: flex;
   gap: var(--space-3);
   font-size: var(--font-sm);
   color: var(--garden-text-muted);
 }
-  
+
 .action-empty-state {
   padding: var(--space-4);
   text-align: center;
   color: var(--garden-text-muted);
 }
-  
+
 .action-panel-header-count {
   font-size: var(--font-xs);
   color: var(--garden-text-muted);
 }
-  
+
 .action-quick-button-full {
   width: 100%;
   margin-bottom: var(--space-2);
 }
-  
+
 .action-shortcuts-text {
   font-size: var(--font-xs);
   line-height: 1.6;
 }
-  
+
 .action-console-flex-container {
   flex: 1;
   display: flex;
@@ -840,16 +970,16 @@ button, input, optgroup, select, textarea {
   border: 2px solid var(--color-primary);
   text-shadow: 0 1px 2px var(--color-shadow);
 }
-  
+
   /* Clean button design - no brackets for professional appearance */
 .garden-action::before {
   content: none;
 }
-  
+
 .garden-action::after {
   content: none;
 }
-  
+
 .garden-action.primary:hover {
   background: var(--color-primary-hover);
   border-color: var(--color-primary-hover);
@@ -857,7 +987,7 @@ button, input, optgroup, select, textarea {
   transform: translateY(-1px);
   text-shadow: 0 1px 2px var(--color-shadow);
 }
-  
+
 .garden-action:focus, .garden-action:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
@@ -868,11 +998,11 @@ button, input, optgroup, select, textarea {
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
-  
+
 .garden-action:active {
   transform: translateY(0);
 }
-  
+
   /* Secondary Button - Outline style */
 .garden-action.secondary {
   background: transparent;
@@ -881,7 +1011,7 @@ button, input, optgroup, select, textarea {
   font-weight: var(--font-semibold);
   text-shadow: none;
 }
-  
+
 .garden-action.secondary:hover {
   background: var(--color-primary);
   color: var(--color-on-primary);
@@ -889,14 +1019,14 @@ button, input, optgroup, select, textarea {
   text-shadow: 0 1px 2px var(--color-shadow);
   transform: translateY(-1px);
 }
-  
+
   .garden-action.secondary:focus,
 .garden-action.secondary:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
-  
+
   /* Surface Button - Adapts to surface color */
 .garden-action.surface {
   background: var(--color-surface);
@@ -904,21 +1034,21 @@ button, input, optgroup, select, textarea {
   border: 2px solid var(--color-border);
   text-shadow: none;
 }
-  
+
 .garden-action.surface:hover {
   background: var(--color-hover);
   color: var(--color-on-surface);
   border-color: var(--color-primary);
   transform: translateY(-1px);
 }
-  
+
   .garden-action.surface:focus,
 .garden-action.surface:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
-  
+
   /* Ghost/Outline buttons - No background */
   .garden-action.outline,
 .garden-action.ghost {
@@ -928,7 +1058,7 @@ button, input, optgroup, select, textarea {
   font-weight: var(--font-semibold);
   text-shadow: none;
 }
-  
+
   .garden-action.outline:hover,
 .garden-action.ghost:hover {
   background: var(--color-primary);
@@ -936,7 +1066,7 @@ button, input, optgroup, select, textarea {
   text-shadow: 0 1px 2px var(--color-shadow);
   transform: translateY(-1px);
 }
-  
+
   .garden-action.outline:focus,
   .garden-action.outline:focus-visible,
   .garden-action.ghost:focus,
@@ -945,7 +1075,7 @@ button, input, optgroup, select, textarea {
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
-  
+
   /* Accent Button - Uses primary color with proper contrast */
 .garden-action.accent {
   background: var(--color-primary);
@@ -976,14 +1106,14 @@ button, input, optgroup, select, textarea {
   border: 2px solid var(--color-success);
   text-shadow: 0 1px 2px var(--color-shadow);
 }
-  
+
 .garden-action.warning {
   background: var(--color-warning);
   color: var(--color-on-primary);
   border: 2px solid var(--color-warning);
   text-shadow: 0 1px 2px var(--color-shadow);
 }
-  
+
   .garden-action.error,
 .garden-action.danger {
   background: var(--color-error);
@@ -991,14 +1121,14 @@ button, input, optgroup, select, textarea {
   border: 2px solid var(--color-error);
   text-shadow: 0 1px 2px var(--color-shadow);
 }
-  
+
 .garden-action.info {
   background: var(--color-info);
   color: var(--color-on-primary);
   border: 2px solid var(--color-info);
   text-shadow: 0 1px 2px var(--color-shadow);
 }
-  
+
   /* Status Button Focus States for accessibility */
   .garden-action.success:focus,
 .garden-action.success:focus-visible {
@@ -1006,14 +1136,14 @@ button, input, optgroup, select, textarea {
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-success-alpha);
 }
-  
+
   .garden-action.warning:focus,
 .garden-action.warning:focus-visible {
   outline: 2px solid var(--color-warning);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-warning-alpha);
 }
-  
+
   .garden-action.error:focus,
   .garden-action.error:focus-visible,
   .garden-action.danger:focus,
@@ -1022,14 +1152,14 @@ button, input, optgroup, select, textarea {
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-error-alpha);
 }
-  
+
   .garden-action.info:focus,
 .garden-action.info:focus-visible {
   outline: 2px solid var(--color-info);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-info-alpha);
 }
-  
+
   /* Button Sizes */
 .garden-action.small,
 .garden-action.compact {
@@ -1038,7 +1168,7 @@ button, input, optgroup, select, textarea {
   min-height: 32px;
   font-weight: var(--font-medium);
 }
-  
+
 .garden-action.large {
   padding: var(--space-3) var(--space-6);
   font-size: var(--font-md);
@@ -1153,7 +1283,7 @@ button, input, optgroup, select, textarea {
   min-height: 32px !important;
   font-weight: var(--font-medium) !important;
 }
-  
+
   .garden-action:disabled:hover,
   .garden-action[disabled]:hover,
   .garden-action.disabled:hover,
@@ -1170,7 +1300,7 @@ button, input, optgroup, select, textarea {
 
 /* === WORKBENCH BUTTONS - Garden UI Compliant === */
 /* Custom workbench styles removed - using standardized garden-action system */
-  
+
   /* Universal Button Base - Apply to all button-like elements */
   button,
   input[type="button"],
@@ -1204,7 +1334,7 @@ button, input, optgroup, select, textarea {
   min-height: 44px; /* WCAG touch target */;
   outline: none;
 }
-  
+
   /* Base button hover states - only for elements without specific overrides */
   .terminal-action:hover,
   .search-btn:hover,
@@ -1216,7 +1346,7 @@ button, input, optgroup, select, textarea {
   transform: translateY(-1px);
   box-shadow: 0 4px 8px var(--color-shadow);
 }
-  
+
   /* Secondary button variants - define before specific overrides */
   /* stylelint-disable no-descending-specificity */
   .btn.secondary,
@@ -1230,7 +1360,7 @@ button, input, optgroup, select, textarea {
   border: 2px solid var(--color-primary);
   text-shadow: none;
 }
-  
+
   .btn.secondary:hover,
   .garden-action.outline:hover,
   .btn.outline:hover,
@@ -1241,9 +1371,9 @@ button, input, optgroup, select, textarea {
   color: var(--color-on-primary);
   text-shadow: 0 1px 2px var(--color-shadow);
 }
-  
+
   /* Context-Specific Button Overrides */
-  
+
   /* Header buttons - smaller, transparent */
   header button,
   header .garden-action,
@@ -1256,28 +1386,28 @@ button, input, optgroup, select, textarea {
   padding: var(--space-2) var(--space-3);
   font-size: var(--font-xs);
   background: transparent;
-  border: 1px solid rgb(255, 255, 255, 0.3);
+  border: 1px solid var(--color-white-30);
   color: var(--header-text);
   text-transform: none;
   letter-spacing: normal;
 }
-  
+
   header button:hover,
   header .garden-action:hover,
   header .btn:hover,
   .garden-header button:hover,
   .garden-header .garden-action:hover,
 .garden-header .btn:hover {
-  background: rgb(255, 255, 255, 0.1);
+  background: var(--color-white-10);
   transform: none;
   box-shadow: none;
 }
-  
+
   /* Button size variants */
   .btn.small,
-  
+
   .btn.large,
-  
+
   /* Generic button focus states - Enhanced accessibility */
   button:focus,
   input[type="button"]:focus,
@@ -1288,7 +1418,7 @@ button, input, optgroup, select, textarea {
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
-  
+
   button:focus-visible,
   input[type="button"]:focus-visible,
   input[type="submit"]:focus-visible,
@@ -1310,38 +1440,38 @@ button, input, optgroup, select, textarea {
   transform: translateY(-1px);
   box-shadow: 0 4px 8px var(--color-shadow);
 }
-  
+
   /* Enhanced specificity for CRM and other contexts where buttons might not display */
   .status-actions .garden-action,
   .crm-status-bar .garden-action,
   .garden-panel .garden-action,
-  
+
   .status-actions .garden-action:hover,
   .crm-status-bar .garden-action:hover,
   .garden-panel .garden-action:hover,
-  
+
   .status-actions .garden-action.secondary,
   .crm-status-bar .garden-action.secondary,
   .garden-panel .garden-action.secondary,
-  
+
   .status-actions .garden-action.secondary:hover,
   .crm-status-bar .garden-action.secondary:hover,
   .garden-panel .garden-action.secondary:hover,
-  
+
   .status-actions .garden-action.success,
   .crm-status-bar .garden-action.success,
   .garden-panel .garden-action.success,
-  
+
   .status-actions .garden-action.info,
   .crm-status-bar .garden-action.info,
   .garden-panel .garden-action.info,
-  
+
   .status-actions .garden-action.small,
   .crm-status-bar .garden-action.small,
   .garden-panel .garden-action.small,
-  
+
   /* stylelint-enable no-descending-specificity */
-  
+
   /* Form Elements */
 .garden-input {
   background: var(--input-bg);
@@ -1354,18 +1484,18 @@ button, input, optgroup, select, textarea {
   width: 100%;
   transition: border-color var(--duration-fast);
 }
-  
+
 .garden-input:focus {
   border-color: var(--input-focus-border);
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
-  
+
 .garden-input:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
-  
+
 .garden-label {
   font-weight: var(--font-medium);
   color: var(--color-text-secondary);
@@ -1375,7 +1505,7 @@ button, input, optgroup, select, textarea {
   display: block;
   letter-spacing: 0.5px;
 }
-  
+
   /* Status & Priority Indicators */
 .garden-badge {
   background: var(--garden-accent);
@@ -1387,7 +1517,7 @@ button, input, optgroup, select, textarea {
   text-transform: uppercase;
   text-shadow: var(--accent-text-shadow);
 }
-  
+
   /* Data Tables */
 .garden-table {
   width: 100%;
@@ -1395,7 +1525,7 @@ button, input, optgroup, select, textarea {
   font-family: var(--font-mono);
   font-size: var(--font-xs);
 }
-  
+
 .garden-table th {
   background: var(--panel-header-bg);
   color: var(--garden-accent);
@@ -1407,17 +1537,17 @@ button, input, optgroup, select, textarea {
   letter-spacing: 0.5px;
   border-bottom: 1px solid var(--panel-border);
 }
-  
+
 .garden-table td {
   padding: var(--space-3);
   border-bottom: 1px solid var(--garden-border);
   font-size: var(--font-sm);
 }
-  
+
 .garden-table tr:hover {
   background: var(--garden-hover);
 }
-  
+
   /* Modals */
 .garden-modal {
   position: fixed;
@@ -1425,7 +1555,7 @@ button, input, optgroup, select, textarea {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgb(0, 0, 0, 0.8);
+  background: var(--color-shadow-80);
   display: none;
   align-items: center;
   justify-content: center;
@@ -1435,7 +1565,7 @@ button, input, optgroup, select, textarea {
 .garden-modal.show {
   display: flex;
 }
-  
+
 .garden-modal-content {
   background: var(--garden-bg);
   border: 1px solid var(--garden-border);
@@ -1445,7 +1575,7 @@ button, input, optgroup, select, textarea {
   max-height: 80vh;
   overflow-y: auto;
 }
-  
+
 .garden-modal-header {
   display: flex;
   justify-content: space-between;
@@ -1453,11 +1583,11 @@ button, input, optgroup, select, textarea {
   padding: var(--space-4);
   border-bottom: 1px solid var(--garden-border);
 }
-  
+
 .garden-modal-body {
   padding: var(--space-4);
 }
-  
+
 .garden-modal-footer {
   display: flex;
   justify-content: flex-end;
@@ -2613,7 +2743,7 @@ to {
   background-position: unset !important;
   background-repeat: unset !important;
   color: #fff !important;
-  border-bottom: 1px solid var(--theme-primary-alpha, rgb(255, 255, 255, 0.2)) !important; /* Subtle light border */
+  border-bottom: 1px solid var(--theme-primary-alpha, var(--color-white-20)) !important; /* Subtle light border */
 }
 
 /* Specific component anchor styles - must come before theme overrides */
@@ -2621,7 +2751,7 @@ to {
 .btn-primary a {
   color: #fff !important;
   text-decoration: underline;
-  text-decoration-color: rgb(255, 255, 255, 0.6);
+  text-decoration-color: var(--color-white-60);
   text-shadow: var(--accent-text-shadow) !important;
 }
 
@@ -2635,7 +2765,7 @@ to {
 .filter-item.active a {
   color: #fff !important;
   text-decoration: underline;
-  text-decoration-color: rgb(255, 255, 255, 0.6);
+  text-decoration-color: var(--color-white-60);
   text-shadow: var(--accent-text-shadow) !important;
 }
 
@@ -2650,7 +2780,7 @@ to {
 [data-theme="purple-light"] .garden-user a,
 [data-theme="purple-light"] .garden-user span {
   color: #fff !important;
-  text-shadow: 0 1px 2px var(--theme-shadow, rgb(0, 0, 0, 0.5)) !important; /* Enhanced text shadow for better contrast */
+  text-shadow: 0 1px 2px var(--theme-shadow, var(--color-shadow-50)) !important; /* Enhanced text shadow for better contrast */
   opacity: 1 !important;
   background: transparent !important; /* Ensure no conflicting backgrounds */
 }
@@ -2660,18 +2790,18 @@ to {
 [data-theme="light"] .garden-header .garden-action,
 [data-theme="purple-light"] .garden-header button,
 [data-theme="purple-light"] .garden-header .garden-action {
-  background: rgb(255, 255, 255, 0.15) !important;
-  border: 1px solid var(--theme-primary-alpha, rgb(255, 255, 255, 0.3)) !important;
+  background: var(--color-white-15) !important;
+  border: 1px solid var(--theme-primary-alpha, var(--color-white-30)) !important;
   color: #fff !important;
-  text-shadow: 0 1px 2px var(--theme-shadow, rgb(0, 0, 0, 0.5)) !important;
+  text-shadow: 0 1px 2px var(--theme-shadow, var(--color-shadow-50)) !important;
 }
 
 [data-theme="light"] .garden-header button:hover,
 [data-theme="light"] .garden-header .garden-action:hover,
 [data-theme="purple-light"] .garden-header button:hover,
 [data-theme="purple-light"] .garden-header .garden-action:hover {
-  background: rgb(255, 255, 255, 0.25) !important;
-  border-color: rgb(255, 255, 255, 0.5) !important;
+  background: var(--color-white-25) !important;
+  border-color: var(--color-white-50) !important;
 }
 
 /* Auto theme light mode */
@@ -2684,33 +2814,33 @@ to {
     background-position: unset !important;
     background-repeat: unset !important;
     color: #fff !important;
-    border-bottom: 1px solid var(--theme-primary-alpha, rgb(255, 255, 255, 0.2)) !important;
+    border-bottom: 1px solid var(--theme-primary-alpha, var(--color-white-20)) !important;
   }
-  
+
   [data-theme="auto"] .garden-nav a,
   [data-theme="auto"] .garden-logo a,
   [data-theme="auto"] .garden-user,
   [data-theme="auto"] .garden-user a,
   [data-theme="auto"] .garden-user span {
     color: #fff !important;
-    text-shadow: 0 1px 2px var(--theme-shadow, rgb(0, 0, 0, 0.5)) !important; /* Enhanced text shadow */
+    text-shadow: 0 1px 2px var(--theme-shadow, var(--color-shadow-50)) !important; /* Enhanced text shadow */
     opacity: 1 !important;
     background: transparent !important; /* Ensure no conflicting backgrounds */
   }
-  
+
   /* Auto theme header button styles */
   [data-theme="auto"] .garden-header button,
   [data-theme="auto"] .garden-header .garden-action {
-    background: rgb(255, 255, 255, 0.15) !important;
-    border: 1px solid var(--theme-primary-alpha, rgb(255, 255, 255, 0.3)) !important;
+    background: var(--color-white-15) !important;
+    border: 1px solid var(--theme-primary-alpha, var(--color-white-30)) !important;
     color: #fff !important;
-    text-shadow: 0 1px 2px var(--theme-shadow, rgb(0, 0, 0, 0.5)) !important;
+    text-shadow: 0 1px 2px var(--theme-shadow, var(--color-shadow-50)) !important;
   }
-  
+
   [data-theme="auto"] .garden-header button:hover,
   [data-theme="auto"] .garden-header .garden-action:hover {
-    background: rgb(255, 255, 255, 0.25) !important;
-    border-color: rgb(255, 255, 255, 0.5) !important;
+    background: var(--color-white-25) !important;
+    border-color: var(--color-white-50) !important;
   }
 }
 
@@ -2731,7 +2861,7 @@ to {
 .theme-toggle {
   display: none;
 }
-  
+
 }
 
 /* ===== COMPONENT-SPECIFIC STYLES ===== */
@@ -2907,13 +3037,13 @@ to {
 }
 
 .form-message-success {
-  background: rgb(34, 197, 94, 0.1);
+  background: rgb(34 197 94 / 0.1);
   color: var(--success);
   border: 1px solid var(--success);
 }
 
 .form-message-error {
-  background: rgb(239, 68, 68, 0.1);
+  background: rgb(239 68 68 / 0.1);
   color: var(--error);
   border: 1px solid var(--error);
 }
@@ -2928,7 +3058,7 @@ to {
 }
 
 .form-errors {
-  background: rgb(239, 68, 68, 0.1);
+  background: rgb(239 68 68 / 0.1);
   border: 1px solid var(--error);
   border-radius: var(--radius-sm);
   padding: var(--space-4);
@@ -3073,7 +3203,7 @@ to {
   line-height: var(--line-height-relaxed);
   color: var(--garden-text);
 }
-  
+
   .markdown-content h1,
   .markdown-content h2,
   .markdown-content h3,
@@ -3086,22 +3216,22 @@ to {
   margin-bottom: var(--space-2);
   line-height: 1.25;
 }
-  
+
 .markdown-content p {
   margin-bottom: var(--space-3);
   line-height: var(--line-height-relaxed);
 }
-  
+
 .markdown-content strong {
   font-weight: var(--font-semibold);
   color: var(--garden-text);
 }
-  
+
 .markdown-content em {
   font-style: italic;
   color: var(--garden-text-muted);
 }
-  
+
 .markdown-content blockquote {
   border-left: 3px solid var(--garden-accent);
   margin: var(--space-4) 0;
@@ -3111,50 +3241,50 @@ to {
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-md);
 }
-  
+
 .markdown-content code {
-  background: rgb(255, 255, 255, 0.05);
+  background: var(--color-white-5);
   padding: 2px var(--space-1);
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
   font-size: 0.9em;
   color: var(--garden-accent);
 }
-  
+
 .markdown-content pre {
-  background: rgb(0, 0, 0, 0.3);
+  background: var(--color-shadow-30);
   padding: var(--space-4);
   border-radius: var(--radius-md);
   border: 1px solid var(--garden-border);
   overflow-x: auto;
   margin: var(--space-4) 0;
 }
-  
+
 .markdown-content pre code {
   background: none;
   padding: 0;
   color: var(--garden-text);
 }
-  
+
   .markdown-content ul,
 .markdown-content ol {
   margin: var(--space-3) 0;
   padding-left: var(--space-5);
 }
-  
+
 .markdown-content li {
   margin-bottom: var(--space-1);
   line-height: var(--line-height-relaxed);
 }
-  
+
 .markdown-content ul li {
   list-style-type: disc;
 }
-  
+
 .markdown-content ol li {
   list-style-type: decimal;
 }
-  
+
   /* Task list support (GitHub style) */
 .markdown-content ul li[data-task] {
   list-style-type: none;
@@ -3162,85 +3292,85 @@ to {
   margin-left: calc(-1 * var(--space-5));
   padding-left: var(--space-5);
 }
-  
+
 .markdown-content ul li[data-task]::before {
   content: '☐';
   position: absolute;
   left: 0;
   color: var(--garden-text-muted);
 }
-  
+
 .markdown-content ul li[data-task-completed]::before {
   content: '☑';
   color: var(--garden-accent);
 }
-  
+
 .markdown-content table {
   width: 100%;
   border-collapse: collapse;
   margin: var(--space-4) 0;
   border: 1px solid var(--garden-border);
 }
-  
+
   .markdown-content th,
 .markdown-content td {
   padding: var(--space-2) var(--space-3);
   text-align: left;
   border: 1px solid var(--garden-border);
 }
-  
+
 .markdown-content th {
   background: var(--color-primary-alpha);
   font-weight: var(--font-semibold);
   color: var(--garden-accent);
 }
-  
+
 .markdown-content hr {
   border: none;
   border-top: 1px solid var(--garden-border);
   margin: var(--space-6) 0;
 }
-  
+
 .markdown-content a {
   color: var(--garden-accent);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color var(--duration-fast);
 }
-  
+
 .markdown-content a:hover {
   border-bottom-color: var(--garden-accent);
 }
-  
+
   /* Syntax highlighting for code blocks */
 .markdown-content .highlight {
-  background: rgb(0, 0, 0, 0.3);
+  background: var(--color-shadow-30);
   padding: var(--space-4);
   border-radius: var(--radius-md);
   border: 1px solid var(--garden-border);
   overflow-x: auto;
   margin: var(--space-4) 0;
 }
-  
+
   .markdown-content .highlight .k { color: #ff79c6; } /* Keyword */
   .markdown-content .highlight .s { color: #f1fa8c; } /* String */
   .markdown-content .highlight .c { color: #8aa2d3; } /* Comment - lighter for better contrast */
   .markdown-content .highlight .n { color: #f8f8f2; } /* Name */
   .markdown-content .highlight .o { color: #ff79c6; } /* Operator */
-  
+
   /* Email-specific markdown styling */
 .email-content.markdown-content {
   font-family: var(--font-body);
   line-height: 1.6;
   max-width: none;
 }
-  
+
 .template-content.markdown-content {
   font-family: var(--font-body);
   font-size: var(--font-sm);
   line-height: 1.5;
 }
-  
+
 .original-email-content.markdown-content {
   color: var(--garden-text-muted);
   font-size: var(--font-xs);
@@ -3264,7 +3394,7 @@ to {
 .terminal-detail {
   display: none; /* Hide sidebars on mobile */;
 }
-    
+
 .terminal-main {
   grid-column: 1;
   grid-area: main;
@@ -3370,7 +3500,7 @@ to {
 }
 
 .garden-filter-item.active .garden-filter-count {
-  background: rgb(255, 255, 255, 0.2);
+  background: var(--color-white-20);
   color: var(--accent-text);
   text-shadow: var(--accent-text-shadow);
 }
@@ -3381,40 +3511,40 @@ to {
   color: var(--accent-text);
   text-shadow: var(--accent-text-shadow);
 }
-  
+
 .garden-status-high {
   background: var(--warning);
   color: var(--garden-bg);
 }
-  
+
 .garden-status-medium {
   background: var(--info);
   color: var(--accent-text);
   text-shadow: var(--accent-text-shadow);
 }
-  
+
 .garden-status-low {
   background: var(--positive);
   color: var(--accent-text);
   text-shadow: var(--accent-text-shadow);
 }
-  
+
 .garden-status-online {
   background: var(--positive);
   color: var(--accent-text);
   text-shadow: var(--accent-text-shadow);
 }
-  
+
 .garden-status-processing {
   background: var(--warning);
   color: var(--garden-bg);
 }
-  
+
 .garden-status-offline {
   background: var(--garden-border);
   color: var(--garden-fg);
 }
-  
+
 .garden-status-error {
   background: var(--error);
   color: var(--accent-text);
@@ -3438,7 +3568,7 @@ to {
   border-width: 2px;
   border-color: var(--info);
   box-shadow: 0 0 0 1px var(--info);
-  background: rgb(37, 99, 235, 0.05);
+  background: rgb(37 99 235 / 0.05);
 }
 
   /* Monospace Layout Override System */
@@ -3599,7 +3729,7 @@ to {
   align-items: flex-start;
   margin-bottom: var(--space-3);
 }
-  
+
   .evidence-type,
 .insight-category {
   font-size: var(--font-xs);
@@ -3607,45 +3737,45 @@ to {
   font-weight: var(--font-bold);
   text-transform: uppercase;
 }
-  
+
   .evidence-date,
 .insight-date {
   font-size: var(--font-xs);
   color: var(--garden-muted);
 }
-  
+
 .evidence-title {
   font-weight: var(--font-bold);
   margin-bottom: var(--space-2);
   color: var(--garden-fg);
 }
-  
+
 .evidence-content {
   font-size: var(--font-sm);
   line-height: var(--line-normal);
   color: var(--garden-fg);
 }
-  
+
 .evidence-source {
   margin-top: var(--space-3);
 }
-  
+
   /* Research Section Pattern */
 .research-section {
   margin-bottom: var(--space-6);
 }
-  
+
   /* Media Item Patterns */
 .media-grid {
   display: grid;
   gap: var(--space-3);
 }
-  
+
 .media-item {
   display: flex;
   gap: var(--space-3);
 }
-  
+
   .media-source,
 .entity-type {
   font-size: var(--font-xs);
@@ -3653,96 +3783,96 @@ to {
   font-weight: var(--font-bold);
   margin-bottom: var(--space-1);
 }
-  
+
   .media-title,
 .entity-name {
   font-weight: var(--font-medium);
   margin-bottom: var(--space-2);
   color: var(--garden-fg);
 }
-  
+
   .media-summary,
   .media-meta,
 .entity-description {
   font-size: var(--font-xs);
   color: var(--garden-muted);
 }
-  
+
 .media-summary {
   margin-bottom: var(--space-2);
 }
-  
+
   .media-meta,
-  
+
   /* Entity Grid Pattern */
 .entities-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: var(--space-3);
 }
-  
+
   /* Insight content pattern */
 .insight-content {
   font-size: var(--font-sm);
   line-height: var(--line-normal);
   color: var(--garden-fg);
 }
-  
+
 .insight-evidence {
   margin-top: var(--space-3);
   font-size: var(--font-xs);
   color: var(--garden-muted);
 }
-  
+
   /* Relationship Patterns */
 .entity-analysis-grid {
   display: grid;
   gap: var(--space-4);
   margin-bottom: var(--space-4);
 }
-  
+
 .relationship-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: var(--space-2);
 }
-  
+
 .relationship-type {
   font-size: var(--font-xs);
   color: var(--garden-accent);
   font-weight: var(--font-bold);
   text-transform: uppercase;
 }
-  
+
 .relationship-strength {
   font-size: var(--font-xs);
   color: var(--garden-muted);
 }
-  
+
 .relationship-content {
   display: flex;
   align-items: center;
   gap: var(--space-3);
 }
-  
+
   .entity-source,
 .entity-target {
   flex: 1;
   font-weight: var(--font-medium);
   color: var(--garden-fg);
 }
-  
+
 .relationship-arrow {
   color: var(--garden-accent);
 }
-  
+
 .relationship-confidence {
   margin-top: var(--space-2);
   font-size: var(--font-xs);
   color: var(--garden-muted);
 }
-  
+
   /* Portfolio and Metrics Patterns */
 .portfolio-summary {
   background: var(--panel-bg);
@@ -3751,7 +3881,7 @@ to {
   border-radius: var(--radius);
   margin-bottom: 1rem;
 }
-  
+
 .portfolio-metrics {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -3770,37 +3900,37 @@ to {
   color: var(--garden-muted);
   font-style: italic;
 }
-  
+
 .timeline-content-empty {
   grid-column: 1 / -1;
 }
-  
+
   /* Email metadata pattern */
 .email-meta {
   font-size: var(--font-xs);
   color: var(--garden-muted);
 }
-  
+
   /* Public Site Patterns */
 .section-heading {
   font-size: var(--font-xl);
   margin-bottom: var(--space-4);
   font-family: var(--font-mono);
 }
-  
+
 .section-heading-center {
   font-size: var(--font-xl);
   margin-bottom: var(--space-6);
   text-align: center;
   font-family: var(--font-mono);
 }
-  
+
 .body-text {
   font-size: var(--font-base);
   line-height: var(--line-relaxed);
   margin-bottom: var(--space-4);
 }
-  
+
 .centered-text {
   font-size: var(--font-base);
   margin-bottom: var(--space-6);
@@ -3809,21 +3939,21 @@ to {
   margin-left: auto;
   margin-right: auto;
 }
-  
+
 .service-description {
   margin-bottom: var(--space-3);
 }
-  
+
 .center-section {
   text-align: center;
   margin-top: var(--space-8);
 }
-  
+
   /* Stat Fill Pattern */
 .stat-fill {
   width: 57%;
 }
-  
+
   /* Queue items */
 .queue-item {
   border: 1px solid var(--color-border);
@@ -3833,7 +3963,7 @@ to {
   cursor: pointer;
   transition: all 0.2s ease;
 }
-  
+
   /* Empty state */
 .workbench-empty-state {
   padding: 20px;
@@ -3841,7 +3971,7 @@ to {
   color: var(--color-error);
   background: var(--color-surface-variant);
 }
-  
+
   /* CRM Contact Detail Utilities */
 .account-detail {
   background: var(--input-bg);
@@ -3850,46 +3980,46 @@ to {
   border-radius: var(--radius-sm);
   margin-bottom: 1rem;
 }
-  
+
 .account-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1rem;
 }
-  
+
 .account-name {
   margin: 0;
   font-size: var(--font-sm);
   font-weight: var(--font-semibold);
 }
-  
+
 .account-meta {
   font-size: var(--font-xs);
   color: var(--garden-muted);
   margin-top: 0.25rem;
 }
-  
+
 .account-value {
   text-align: right;
 }
-  
+
 .account-balance {
   font-size: var(--font-lg);
   font-weight: var(--font-bold);
   color: var(--positive);
 }
-  
+
 .account-updated {
   font-size: var(--font-xs);
   color: var(--garden-muted);
 }
-  
+
 .holdings-list {
   max-height: 200px;
   overflow-y: auto;
 }
-  
+
 .holding-item {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 1fr;
@@ -3898,72 +4028,72 @@ to {
   border-bottom: 1px dotted var(--panel-border);
   font-size: var(--font-xs);
 }
-  
+
 .holding-symbol {
   font-weight: var(--font-semibold);
 }
-  
+
 .holding-cash {
   color: var(--info);
 }
-  
+
 .holding-name {
   color: var(--garden-muted);
 }
-  
+
 .holding-value {
   text-align: right;
 }
-  
+
 .holding-gain-positive {
   text-align: right;
   color: var(--positive);
 }
-  
+
 .holding-gain-negative {
   text-align: right;
   color: var(--negative);
 }
-  
+
 .holding-gain-neutral {
   text-align: right;
   color: var(--garden-muted);
 }
-  
+
 .portfolio-header {
   margin-bottom: var(--space-4);
 }
-  
+
 .portfolio-actions-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }
-  
+
 .action-card {
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
   padding: 1rem;
   border-radius: var(--radius);
 }
-  
+
 .card-icon {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
-  
+
 .accounts-grid {
   gap: 1rem;
   margin-top: 1rem;
 }
-  
+
 .accounts-grid-simple {
   display: grid;
   gap: 0.5rem;
   margin-top: 1rem;
 }
-  
+
 .account-item {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -3972,7 +4102,7 @@ to {
   background: var(--input-bg);
   border-radius: var(--radius-sm);
 }
-  
+
 .document-header {
   display: flex;
   justify-content: space-between;
@@ -3981,7 +4111,7 @@ to {
   padding-bottom: var(--space-2);
   border-bottom: 1px solid var(--panel-border);
 }
-  
+
 .document-title {
   margin: 0;
   font-size: var(--font-sm);
@@ -3989,16 +4119,16 @@ to {
   text-transform: uppercase;
   color: var(--garden-fg);
 }
-  
+
 .document-count {
   font-size: var(--font-xs);
   color: var(--garden-muted);
 }
-  
+
 .document-filters {
   margin-bottom: var(--space-3);
 }
-  
+
 .document-search {
   width: 100%;
   padding: var(--space-2);
@@ -4009,20 +4139,20 @@ to {
   font-family: var(--font-mono);
   font-size: var(--font-sm);
 }
-  
+
 .documents-loading {
   text-align: center;
   padding: var(--space-4);
   color: var(--garden-muted);
   font-style: italic;
 }
-  
+
 .document-actions {
   margin-top: var(--space-3);
   padding-top: var(--space-2);
   border-top: 1px solid var(--panel-border);
 }
-  
+
 .action-btn-link {
   background: var(--garden-accent);
   color: var(--garden-bg);
@@ -4035,7 +4165,7 @@ to {
   text-decoration: none;
   display: inline-block;
 }
-  
+
 .action-btn-upload {
   background: var(--positive);
   color: var(--garden-bg);
@@ -4049,28 +4179,28 @@ to {
   text-decoration: none;
   display: inline-block;
 }
-  
+
 .floating-portfolio-btn {
   background: var(--positive);
   color: var(--garden-bg);
 }
-  
+
 .validation-summary {
   background: var(--input-bg);
   padding: 1rem;
   border-radius: var(--radius);
   margin-top: 0.5rem;
 }
-  
+
 .recent-validations {
   margin-top: var(--space-4);
 }
-  
+
   /* Document Management Utilities */
 .document-source-section {
   margin-bottom: var(--space-4);
 }
-  
+
 .document-section-title {
   font-size: var(--font-xs);
   text-transform: uppercase;
@@ -4078,7 +4208,7 @@ to {
   margin-bottom: var(--space-2);
   font-weight: var(--font-bold);
 }
-  
+
 .document-item {
   display: grid;
   grid-template-columns: 40px 1fr auto;
@@ -4090,34 +4220,34 @@ to {
   transition: background-color var(--duration-normal);
   cursor: pointer;
 }
-  
+
 .document-item:hover {
   background: var(--garden-hover);
 }
-  
+
 .doc-icon {
   font-size: var(--font-lg);
   display: flex;
   align-items: center;
 }
-  
+
 .doc-name {
   font-weight: var(--font-semibold);
   color: var(--garden-fg);
   margin-bottom: var(--space-1);
 }
-  
+
 .doc-meta {
   font-size: var(--font-xs);
   color: var(--garden-muted);
 }
-  
+
 .doc-actions {
   display: flex;
   gap: var(--space-1);
   align-items: center;
 }
-  
+
 .action-btn-mini {
   padding: var(--space-1) var(--space-2);
   font-size: var(--font-xs);
@@ -4127,22 +4257,22 @@ to {
   font-weight: var(--font-bold);
   text-transform: uppercase;
 }
-  
+
 .action-btn-view {
   background: var(--garden-accent);
   color: var(--garden-bg);
 }
-  
+
 .action-btn-garden {
   background: var(--positive);
   color: var(--garden-bg);
 }
-  
+
 .action-btn-interaction {
   background: var(--info);
   color: var(--garden-bg);
 }
-  
+
   .no-documents,
 .error-message {
   text-align: center;
@@ -4152,16 +4282,16 @@ to {
 }
 
   .doc-empty-icon,
-  
+
 .doc-empty-subtitle {
   font-size: var(--font-xs);
   margin-top: var(--space-1);
 }
-  
+
 .min-h-200 {
   min-height: 200px;
 }
-  
+
   /* Pagination */
 .workbench-pagination {
   margin-top: var(--space-4);
@@ -4172,7 +4302,7 @@ to {
   display: flex;
   justify-content: space-between;
 }
-  
+
   /* Help and keyboard shortcuts */
 .workbench-help-content {
   font-family: var(--font-mono);
@@ -4426,7 +4556,7 @@ to {
   white-space: pre-wrap;
   line-height: 1.6;
   color: var(--garden-text);
-  background: rgb(255, 255, 255, 0.02);
+  background: var(--color-white-2);
   padding: var(--space-4);
   border-radius: var(--radius-sm);
   max-height: 400px;
@@ -4460,7 +4590,7 @@ to {
   font-size: var(--font-xs);
   color: var(--garden-text);
   line-height: 1.4;
-  background: rgb(255, 255, 255, 0.02);
+  background: var(--color-white-2);
   padding: var(--space-2);
   border-radius: var(--radius-sm);
 }
@@ -4499,7 +4629,7 @@ to {
 
 .email-action-item {
   padding: var(--space-3) var(--space-4);
-  background: rgb(255, 255, 255, 0.02);
+  background: var(--color-white-2);
   border-left: 3px solid var(--garden-accent);
   margin-bottom: var(--space-2);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
@@ -4556,7 +4686,7 @@ to {
 }
 
 .email-connection-item {
-  background: rgb(255, 255, 255, 0.02);
+  background: var(--color-white-2);
   padding: var(--space-3);
   border-radius: var(--radius-sm);
   border-left: 2px solid var(--garden-accent);
@@ -4600,7 +4730,7 @@ to {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgb(0, 0, 0, 0.8);
+  background: var(--color-shadow-80);
   display: none;
   align-items: center;
   justify-content: center;
@@ -4724,7 +4854,7 @@ to {
 }
 
 .contact-stat-item {
-  background: rgb(255, 255, 255, 0.02);
+  background: var(--color-white-2);
   padding: var(--space-3);
   text-align: center;
   border-radius: var(--radius-sm);
@@ -4838,7 +4968,7 @@ to {
 }
 
 .contact-connection-item {
-  background: rgb(255, 255, 255, 0.02);
+  background: var(--color-white-2);
   padding: var(--space-4);
   border-radius: var(--radius-sm);
   border-left: 3px solid var(--garden-accent);
@@ -4887,7 +5017,7 @@ to {
 
 .contact-action-item {
   padding: var(--space-3) var(--space-4);
-  background: rgb(255, 255, 255, 0.02);
+  background: var(--color-white-2);
   border-left: 3px solid var(--garden-accent);
   margin-bottom: var(--space-2);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
@@ -5146,16 +5276,16 @@ to {
     gap: var(--space-4);
     margin-top: var(--space-6);
   }
-  
+
   .homepage-stat-item {
     min-width: 140px;
     padding: var(--space-3) var(--space-4);
   }
-  
+
   .homepage-stat-value {
     font-size: var(--font-lg);
   }
-  
+
   .homepage-stat-label {
     font-size: var(--font-2xs);
   }
@@ -5265,16 +5395,16 @@ to {
     padding: var(--space-4);
     min-width: 160px;
   }
-  
+
   .kpi-value {
     font-size: clamp(var(--font-xl), 4vw, var(--font-2xl));
     margin-bottom: var(--space-2);
   }
-  
+
   .kpi-label {
     font-size: var(--font-xs);
   }
-  
+
   .kpi-description {
     font-size: var(--font-2xs);
     max-width: 180px;
@@ -5286,11 +5416,11 @@ to {
     min-width: 140px;
     padding: var(--space-3);
   }
-  
+
   .kpi-value {
     font-size: var(--font-xl);
   }
-  
+
   .kpi-label {
     font-size: var(--font-2xs);
     letter-spacing: 0.3px;
@@ -5933,12 +6063,12 @@ to {
     flex-direction: column !important;
     gap: var(--space-2) !important;
   }
-  
+
   .mobile-full-width {
     width: 100% !important;
     max-width: none !important;
   }
-  
+
   .mobile-center {
     text-align: center !important;
     justify-content: center !important;
@@ -6742,7 +6872,7 @@ to {
   .hitl-queue-container {
     padding: var(--space-4);
   }
-  
+
   .hitl-th-description { width: 20%; }
   .hitl-th-title { width: 18%; }
 }
@@ -6753,17 +6883,17 @@ to {
     gap: var(--space-4);
     align-items: flex-start;
   }
-  
+
   .hitl-filters-section {
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-3);
   }
-  
+
   .hitl-search-bar {
     max-width: none;
   }
-  
+
   .hitl-help-bar .hitl-shortcuts {
     flex-wrap: wrap;
     gap: var(--space-3);
@@ -6774,11 +6904,11 @@ to {
   .hitl-table-container {
     overflow-x: auto;
   }
-  
+
   .hitl-table {
     min-width: 800px;
   }
-  
+
   .hitl-queue-title {
     font-size: var(--font-2xl);
   }
@@ -6899,7 +7029,7 @@ to {
 
 /* Strategy note styling */
 .strategy-note {
-    background: rgb(85, 60, 154, 0.1) !important;
+    background: var(--color-primary-alpha-10) !important;
     padding: var(--space-3) !important;
     font-size: var(--font-sm) !important;
     font-family: var(--font-sans) !important;

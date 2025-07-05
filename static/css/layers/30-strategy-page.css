@@ -33,14 +33,14 @@
     display: inline-block;
     padding: 0.5rem 1.5rem;
     background: var(--theme-primary);
-    color: #fff !important;
+    color: var(--garden-color-white);
     border-radius: 8px;
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    border: 2px solid #fff;
-    box-shadow: 0 2px 4px rgb(0, 0, 0, 0.1);
+    border: 2px solid var(--garden-color-white);
+    box-shadow: 0 2px 4px var(--color-shadow-10);
 }
 
 .strategy-page .strategy-title {
@@ -401,17 +401,17 @@
 }
 
 .strategy-page .vertical-tag.lending {
-    background: rgb(59, 130, 246, 0.1); /* Light blue background */
-    color: #1545b3; /* Even darker blue for 7:1 contrast */
+    background: var(--color-info-alpha-10); /* Light blue background */
+    color: var(--garden-color-info-dark); /* Even darker blue for 7:1 contrast */
 }
 
 .strategy-page .vertical-tag.real-estate {
-    background: rgb(34, 197, 94, 0.1); /* Light green background */
+    background: var(--color-success-alpha-10); /* Light green background */
     color: var(--color-success);
 }
 
 .strategy-page .vertical-tag.innovation {
-    background: rgb(139, 92, 246, 0.1); /* Light purple background */
+    background: var(--color-primary); /* Light purple background */
     color: var(--color-accent);
 }
 
@@ -556,7 +556,7 @@
     width: 48px;
     height: 48px;
     background: var(--color-accent);
-    color: white;
+    color: var(--garden-color-white);
     border-radius: var(--radius-full);
     display: flex;
     align-items: center;
@@ -583,26 +583,26 @@
     .strategy-page .garden-container {
         padding: var(--space-4);
     }
-    
+
     .strategy-page .stats-grid,
     .strategy-page .metrics-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .strategy-page .table-header,
     .strategy-page .table-row {
         font-size: var(--text-sm);
     }
-    
+
     .strategy-page .positioning-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .strategy-page .holding-header {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .strategy-page .holding-weight {
         margin-left: 0;
     }
@@ -613,15 +613,15 @@
     .strategy-page .metrics-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .strategy-page .quick-actions {
         flex-direction: column;
     }
-    
+
     .strategy-page .quick-actions .garden-action {
         width: 100%;
     }
-    
+
     .strategy-page .table-header,
     .strategy-page .table-row,
     .strategy-page .geographic-header,
@@ -630,13 +630,13 @@
     .strategy-page .allocation-row {
         display: block;
     }
-    
+
     .strategy-page .header-cell,
     .strategy-page .cell {
         display: block;
         padding: var(--space-2);
     }
-    
+
     .strategy-page .header-cell::before,
     .strategy-page .cell::before {
         content: attr(data-label);
@@ -672,7 +672,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgb(0, 0, 0, 0.5);
+    background: var(--color-shadow-50);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -730,11 +730,11 @@
 
 .modal-button-primary {
     background: var(--color-accent);
-    color: white;
+    color: var(--garden-color-white);
 }
 
 .modal-button-primary:hover {
-    background: #7C3AED; /* Darker purple */
+    background: var(--garden-accent-lighter); /* Darker purple */
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
 }

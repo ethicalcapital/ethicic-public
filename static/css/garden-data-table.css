@@ -71,7 +71,7 @@
 }
 
 .garden-table tbody tr:hover {
-  background: var(--color-surface-hover, rgb(255, 255, 255, 0.02));
+  background: var(--color-surface-hover, var(--color-white-2));
 }
 
 .garden-table td {
@@ -134,17 +134,17 @@
 }
 
 .garden-badge.success {
-  background: var(--color-success-alpha, rgb(5, 150, 105, 0.2));
+  background: var(--color-success-alpha, var(--color-success-alpha-20));
   color: var(--positive);
 }
 
 .garden-badge.warning {
-  background: var(--color-warning-alpha, rgb(245, 158, 11, 0.2));
+  background: var(--color-warning-alpha, var(--color-warning-alpha-20));
   color: var(--warning);
 }
 
 .garden-badge.error {
-  background: var(--color-error-alpha, rgb(220, 38, 38, 0.2));
+  background: var(--color-error-alpha, var(--color-error-alpha-20));
   color: var(--error);
 }
 
@@ -161,7 +161,7 @@
 
 /* Striped Tables */
 .garden-table.striped tbody tr:nth-child(odd) {
-  background: var(--color-surface-stripe, rgb(255, 255, 255, 0.02));
+  background: var(--color-surface-stripe, var(--color-white-2));
 }
 
 /* Compact Tables */
@@ -239,35 +239,35 @@
   .garden-table {
     font-size: var(--font-xs);
   }
-  
+
   .garden-table th,
   .garden-table td {
     padding: var(--space-2);
   }
-  
+
   /* Stack table on mobile */
   .garden-table.responsive thead {
     display: none;
   }
-  
+
   .garden-table.responsive tbody tr {
     display: block;
     margin-bottom: var(--space-3);
     border: 1px solid var(--garden-border);
     border-radius: var(--radius-sm);
   }
-  
+
   .garden-table.responsive td {
     display: flex;
     justify-content: space-between;
     padding: var(--space-2) var(--space-3);
     border-bottom: 1px solid var(--garden-border);
   }
-  
+
   .garden-table.responsive td:last-child {
     border-bottom: none;
   }
-  
+
   .garden-table.responsive td::before {
     content: attr(data-label);
     font-weight: var(--font-semibold);
@@ -309,11 +309,11 @@
 /* Pagination Styles */
 .pagination-row {
   background: var(--surface-variant, var(--garden-bg-subtle));
-  border-top: 2px solid var(--border-color, #e0e0e0);
+  border-top: 2px solid var(--border-color, var(--garden-color-gray-200));
 }
 
 .pagination-cell {
-  padding: 1rem !important;
+  padding: 1rem;
 }
 
 .pagination-controls {
@@ -329,7 +329,7 @@
   align-items: center;
   gap: 1rem;
   font-size: 0.875rem;
-  color: var(--text-secondary, #666);
+  color: var(--text-secondary, var(--garden-color-gray-600));
 }
 
 .rows-info {
@@ -338,7 +338,7 @@
 
 .page-size-selector {
   padding: 0.375rem 0.5rem;
-  border: 1px solid var(--border-color, #e0e0e0);
+  border: 1px solid var(--border-color, var(--garden-color-gray-200));
   border-radius: 0.375rem;
   background: var(--surface, var(--garden-bg));
   font-size: 0.875rem;
@@ -353,10 +353,10 @@
 
 .pagination-btn {
   padding: 0.5rem 0.75rem;
-  border: 1px solid var(--border-color, #e0e0e0);
+  border: 1px solid var(--border-color, var(--garden-color-gray-200));
   border-radius: 0.375rem;
   background: var(--surface, var(--garden-bg));
-  color: var(--text-primary, #333);
+  color: var(--text-primary, var(--garden-color-gray-800));
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 0.875rem;
@@ -385,10 +385,10 @@
 
 .page-btn {
   padding: 0.5rem 0.75rem;
-  border: 1px solid var(--border-color, #e0e0e0);
+  border: 1px solid var(--border-color, var(--garden-color-gray-200));
   border-radius: 0.375rem;
   background: var(--surface, var(--garden-bg));
-  color: var(--text-primary, #333);
+  color: var(--text-primary, var(--garden-color-gray-800));
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 0.875rem;
@@ -413,7 +413,7 @@
 
 .page-ellipsis {
   padding: 0.5rem;
-  color: var(--text-secondary, #666);
+  color: var(--text-secondary, var(--garden-color-gray-600));
   font-size: 0.875rem;
 }
 
@@ -422,13 +422,13 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: var(--text-secondary, #666);
+  color: var(--text-secondary, var(--garden-color-gray-600));
 }
 
 .page-input {
   width: 4rem;
   padding: 0.375rem 0.5rem;
-  border: 1px solid var(--border-color, #e0e0e0);
+  border: 1px solid var(--border-color, var(--garden-color-gray-200));
   border-radius: 0.375rem;
   background: var(--surface, var(--garden-bg));
   text-align: center;
@@ -438,7 +438,7 @@
 .page-input:focus {
   outline: none;
   border-color: var(--color-primary, var(--garden-accent));
-  box-shadow: 0 0 0 3px var(--color-primary-alpha, rgb(85, 60, 154, 0.1));
+  box-shadow: 0 0 0 3px var(--color-primary-alpha, var(--color-primary-alpha-10));
 }
 
 /* Responsive pagination */
@@ -447,26 +447,26 @@
     flex-direction: column;
     gap: 0.75rem;
   }
-  
+
   .pagination-info {
     order: 3;
     justify-content: center;
   }
-  
+
   .pagination-buttons {
     order: 1;
     justify-content: center;
   }
-  
+
   .page-jump {
     order: 2;
     justify-content: center;
   }
-  
+
   .page-numbers {
     gap: 0.125rem;
   }
-  
+
   .page-btn, .pagination-btn {
     min-width: 2rem;
     height: 2rem;
@@ -486,7 +486,7 @@
   .pagination-btn, .page-btn {
     border-width: 2px;
   }
-  
+
   .page-btn.active {
     border-width: 3px;
   }

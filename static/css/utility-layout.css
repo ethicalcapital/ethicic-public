@@ -1,6 +1,6 @@
 /**
  * Utility Layout Classes
- * 
+ *
  * Common layout patterns to replace inline !important styles
  * These utilities work WITH the Garden UI system, not against it
  */
@@ -15,8 +15,8 @@
 
   /* Only use when absolutely necessary */
   .full-width-important {
-    width: 100% !important;
-    max-width: none !important;
+    width: 100%;
+    max-width: none;
   }
 
   /* Full viewport width (breaks out of containers) */
@@ -47,8 +47,8 @@
   }
 
   .flex-full-important {
-    display: flex !important;
-    width: 100% !important;
+    display: flex;
+    width: 100%;
   }
 
   .flex-center {
@@ -70,8 +70,8 @@
   }
 
   .grid-full-important {
-    display: grid !important;
-    width: 100% !important;
+    display: grid;
+    width: 100%;
   }
 
   /* ===== DISPLAY UTILITIES ===== */
@@ -81,8 +81,8 @@
   }
 
   .block-full-important {
-    display: block !important;
-    width: 100% !important;
+    display: block;
+    width: 100%;
   }
 
   /* ===== MIN WIDTH UTILITIES ===== */
@@ -100,7 +100,7 @@
   }
 
   .flex-1-important {
-    flex: 1 !important;
+    flex: 1;
   }
 
   .flex-grow {
@@ -121,7 +121,7 @@
   }
 
   .gap-6-important {
-    gap: var(--space-6) !important;
+    gap: var(--space-6);
   }
 
   /* ===== SPECIFIC PAGE PATTERNS ===== */
@@ -152,8 +152,8 @@
 
   /* Article image patterns */
   .article-image-fixed {
-    width: 200px !important;
-    flex-shrink: 0 !important;
+    width: 200px;
+    flex-shrink: 0;
   }
 
   /* FAQ patterns */
@@ -187,14 +187,14 @@
 /* Temporary classes for gradual migration */
 .todo-remove-inline {
   /* This class indicates elements that still need inline styles removed */
-  outline: 2px dashed orange;
+  outline: 2px dashed var(--color-warning);
   outline-offset: 2px;
 }
 
 /* Debug mode - uncomment to see all elements with inline styles */
 /*
 [style*="!important"] {
-  outline: 3px solid red !important;
-  outline-offset: 3px !important;
+  outline: 3px solid red;
+  outline-offset: 3px;
 }
 */
