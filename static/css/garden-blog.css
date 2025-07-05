@@ -778,7 +778,7 @@
     .main-content {
         padding: 0 var(--space-3);
     }
-    
+
     .stats-grid,
     .data-stats-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -791,63 +791,63 @@
         grid-template-columns: 1fr;
         gap: var(--space-4);
     }
-    
+
     .blog-search-form {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .search-input {
         min-width: auto;
     }
-    
+
     .articles-grid {
         grid-template-columns: 1fr;
         gap: var(--space-4);
     }
-    
+
     .article-card {
         margin: 0;
     }
-    
+
     .article-content {
         padding: var(--space-4);
     }
-    
+
     .hero-title {
         font-size: var(--font-2xl);
     }
-    
+
     .hero-subtitle {
         font-size: var(--font-base);
     }
-    
+
     .article-meta {
         flex-direction: column;
         align-items: center;
         gap: var(--space-2);
     }
-    
+
     .article-tags {
         margin-top: var(--space-3);
         justify-content: center;
     }
-    
+
     .pagination {
         flex-direction: column;
         gap: var(--space-4);
     }
-    
+
     .stats-grid,
     .data-stats-grid {
         grid-template-columns: 1fr;
         gap: var(--space-3);
     }
-    
+
     .stat-primary .stat-value {
         font-size: var(--font-2xl);
     }
-    
+
     .stat-secondary .stat-value {
         font-size: var(--font-lg);
     }
@@ -857,24 +857,24 @@
     .garden-panel .panel-content {
         padding: var(--space-4);
     }
-    
+
     .hero-panel .panel-content {
         padding: var(--space-6) var(--space-4);
     }
-    
+
     .article-excerpt.rich-text {
         font-size: var(--font-base);
         padding: var(--space-3);
     }
-    
+
     .article-body {
         font-size: var(--font-sm);
     }
-    
+
     .article-body h2 {
         font-size: var(--font-xl);
     }
-    
+
     .article-body h3 {
         font-size: var(--font-lg);
     }
@@ -965,7 +965,7 @@
 .pagination .current {
     background: var(--color-primary);
     border-color: var(--color-primary);
-    color: var(--garden-bg);
+    color: var(--color-on-primary);
     cursor: default;
 }
 

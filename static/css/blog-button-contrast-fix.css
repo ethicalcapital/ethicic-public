@@ -1,0 +1,104 @@
+/* ========================================
+   BLOG BUTTON CONTRAST FIX
+   Fixes white text on white background issue for blog buttons
+   Uses proper CSS specificity instead of !important
+   ======================================== */
+
+/* Increase specificity for primary buttons on blog pages */
+html body .blog-index-page .garden-action.primary,
+html body .blog-post .garden-action.primary {
+    /* Force purple background with white text */
+    background: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+}
+
+/* Hover state with increased specificity */
+html body .blog-index-page .garden-action.primary:hover,
+html body .blog-post .garden-action.primary:hover {
+    background: var(--color-primary-hover);
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    color: var(--color-on-primary);
+}
+
+/* Fix for large buttons specifically */
+html body .blog-index-page .garden-action.primary.large,
+html body .blog-post .garden-action.primary.large {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+/* Ensure featured section buttons are visible */
+html body .blog-index-page .featured-actions .garden-action.primary,
+html body .blog-post .featured-actions .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-primary);
+}
+
+/* Fix for any secondary buttons that might have issues */
+html body .blog-index-page .garden-action.secondary,
+html body .blog-post .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-border);
+}
+
+/* Secondary button hover state */
+html body .blog-index-page .garden-action.secondary:hover,
+html body .blog-post .garden-action.secondary:hover {
+    background: var(--color-surface-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* Fix pagination current button contrast issue */
+html body .blog-index-page .pagination .garden-action.current,
+html body .blog-post .pagination .garden-action.current {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+/* Override any inline styles with white backgrounds on buttons */
+html body .blog-index-page .garden-action[style*="background: white"],
+html body .blog-index-page .garden-action[style*="background:white"],
+html body .blog-index-page .garden-action[style*="background-color: white"],
+html body .blog-index-page .garden-action[style*="background-color:white"],
+html body .blog-post .garden-action[style*="background: white"],
+html body .blog-post .garden-action[style*="background:white"],
+html body .blog-post .garden-action[style*="background-color: white"],
+html body .blog-post .garden-action[style*="background-color:white"] {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+/* Ensure buttons in article cards are visible */
+html body .blog-index-page .article-card .garden-action.primary,
+html body .blog-post .article-card .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+/* Newsletter signup button fix */
+html body .blog-index-page .newsletter-signup .garden-action.primary,
+html body .blog-post .newsletter-signup .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+/* Sidebar button fixes */
+html body .blog-index-page .blog-sticky-sidebar .garden-action.primary,
+html body .blog-post .blog-sticky-sidebar .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+/* Dark mode specific fixes to ensure contrast */
+html[data-theme="dark"] body .blog-index-page .garden-action.primary,
+html[data-theme="dark"] body .blog-post .garden-action.primary {
+    /* In dark mode, primary buttons should remain purple with white text */
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
