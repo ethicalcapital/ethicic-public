@@ -2167,8 +2167,111 @@ class ProcessPage(Page):
         default="<p>We continuously monitor holdings for changes in business practices, financial health, and market conditions. If a company no longer meets our criteria, we remove it from the portfolio.</p>",
     )
 
+    # Main sections
+    section_header = models.CharField(
+        max_length=200,
+        default="OUR SIGNATURE PROCESS",
+        blank=True,
+    )
+    
+    # Screening step title (used in step 1)
+    screening_title = models.CharField(
+        max_length=200,
+        default="Ethical Screening & Exclusions",
+        blank=True,
+    )
+    screening_description = RichTextField(
+        blank=True,
+        default="<p>We begin with rigorous screening that excludes companies involved in preventable harms. Our criteria cover both product-based exclusions (animal products, weapons, fossil fuels, addiction, surveillance) and conduct-based exclusions (human rights violations, environmental damage, corporate misconduct). This comprehensive approach ensures your investments align with your values.</p>",
+    )
+
+    # Product-based exclusions section
+    product_exclusions_title = models.CharField(
+        max_length=200,
+        default="PRODUCT-BASED EXCLUSIONS",
+        blank=True,
+    )
+    product_exclusions_subtitle = RichTextField(
+        blank=True,
+        default="<p>We exclude companies whose business models depend on creating products that harm living beings.</p>",
+    )
+
+    # Conduct-based exclusions section
+    conduct_exclusions_title = models.CharField(
+        max_length=200,
+        default="CONDUCT-BASED EXCLUSIONS",
+        blank=True,
+    )
+    conduct_exclusions_subtitle = RichTextField(
+        blank=True,
+        default="<p>Even companies making beneficial products can cause harm through their conduct. We track patterns of behavior that damage communities, workers, and ecosystems.</p>",
+    )
+
+    # Methodology section
+    methodology_title = models.CharField(
+        max_length=200,
+        default="Do Our Best, Then Do Better",
+        blank=True,
+    )
+    methodology_content = RichTextField(
+        blank=True,
+        default='<p>Our criteria are meant to avoid involvement with all preventable harms we are aware of. This excludes 57% of the S&P 500 (as of June 14, 2025). Our complete methodology is <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener noreferrer" class="policy-link">open source on GitHub</a> under an MIT license.</p>',
+    )
+
+    # Statistics
+    exclusion_percentage = models.CharField(
+        max_length=10,
+        default="57%",
+        blank=True,
+        help_text="Percentage of S&P 500 excluded",
+    )
+    exclusion_date = models.CharField(
+        max_length=50,
+        default="as of June 14, 2025",
+        blank=True,
+        help_text="Date of exclusion percentage calculation",
+    )
+
+    # Exclusion categories (as StreamField for flexibility)
+    product_exclusions = StreamField([
+        ('exclusion_category', blocks.StructBlock([
+            ('title', blocks.CharBlock(max_length=200)),
+            ('items', blocks.ListBlock(blocks.CharBlock())),
+        ]))
+    ], blank=True, use_json_field=True)
+
+    conduct_exclusions = StreamField([
+        ('exclusion_category', blocks.StructBlock([
+            ('title', blocks.CharBlock(max_length=200)),
+            ('items', blocks.ListBlock(blocks.CharBlock())),
+        ]))
+    ], blank=True, use_json_field=True)
+
+    # Guiding principles section
+    principles_title = models.CharField(
+        max_length=200,
+        default="GUIDING PRINCIPLES",
+        blank=True,
+    )
+    principles_content = RichTextField(
+        blank=True,
+        default="<p>Throughout our process, we're guided by simple principles: ethics reveal quality, transparency builds trust, and sustainable investing means considering all stakeholders.</p>",
+    )
+
+    # CTA section
+    cta_title = models.CharField(
+        max_length=200,
+        default="Ready to invest with intention?",
+        blank=True,
+    )
+    cta_description = RichTextField(
+        blank=True,
+        default="<p>Schedule a consultation to discuss how our process can work for your unique situation.</p>",
+    )
+
     content_panels: ClassVar[list] = [
         *Page.content_panels,
+        FieldPanel("section_header"),
         FieldPanel("intro_text"),
         FieldPanel("process_overview"),
         MultiFieldPanel(
@@ -2182,6 +2285,46 @@ class ProcessPage(Page):
         ),
         MultiFieldPanel(
             [FieldPanel("step4_title"), FieldPanel("step4_content")], heading="Step 4"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("screening_title"),
+                FieldPanel("screening_description"),
+            ], heading="Screening Section (Step 1 Expanded)"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("product_exclusions_title"),
+                FieldPanel("product_exclusions_subtitle"),
+                FieldPanel("product_exclusions"),
+            ], heading="Product-Based Exclusions"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("conduct_exclusions_title"),
+                FieldPanel("conduct_exclusions_subtitle"),
+                FieldPanel("conduct_exclusions"),
+            ], heading="Conduct-Based Exclusions"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("methodology_title"),
+                FieldPanel("methodology_content"),
+                FieldPanel("exclusion_percentage"),
+                FieldPanel("exclusion_date"),
+            ], heading="Methodology Section"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("principles_title"),
+                FieldPanel("principles_content"),
+            ], heading="Guiding Principles"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("cta_title"),
+                FieldPanel("cta_description"),
+            ], heading="Call to Action"
         ),
     ]
 

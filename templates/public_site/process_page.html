@@ -1,4 +1,5 @@
 {% extends "public_site/base.html" %}
+{% load wagtailcore_tags %}
 
 {% block title %}{{ page.title }} | Ethical Capital{% endblock %}
 
@@ -14,140 +15,63 @@
     <!-- Keep all the existing process steps and content -->
     <section class="garden-panel" role="main" aria-labelledby="process-heading">
         <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">OUR SIGNATURE PROCESS</div>
+            <div class="panel-title">{{ page.section_header }}</div>
         </div>
         <div class="garden-panel__content garden-panel-content">
             <div class="process-steps">
                 <div class="process-step process-step-expanded">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h3>Ethical Screening & Exclusions</h3>
-                        <p>We begin with rigorous screening that excludes companies involved in preventable harms. Our criteria cover both product-based exclusions (animal products, weapons, fossil fuels, addiction, surveillance) and conduct-based exclusions (human rights violations, environmental damage, corporate misconduct). This comprehensive approach ensures your investments align with your values.</p>
+                        <h3>{{ page.screening_title }}</h3>
+                        {{ page.screening_description|richtext }}
                         
                         <!-- Product-Based Exclusions Section -->
                         <div class="exclusions-section">
-                            <h2 class="exclusions-section-title">PRODUCT-BASED EXCLUSIONS</h2>
+                            <h2 class="exclusions-section-title">{{ page.product_exclusions_title }}</h2>
                             <div class="exclusions-underline"></div>
-                            <p class="exclusions-subtitle">We exclude companies whose business models depend on creating products that harm living beings.</p>
+                            <div class="exclusions-subtitle">{{ page.product_exclusions_subtitle|richtext }}</div>
                             
                             <div class="exclusions-grid">
+                                {% for exclusion in page.product_exclusions %}
                                 <div class="exclusion-card">
-                                    <h3 class="exclusion-title">Animal Products</h3>
+                                    <h3 class="exclusion-title">{{ exclusion.value.title }}</h3>
                                     <ul class="exclusion-list">
-                                        <li>→ Meat, dairy, eggs production</li>
-                                        <li>→ Leather, hide, fur, silk production</li>
-                                        <li>→ Fishing & hunting equipment</li>
-                                        <li>→ Factory farming operations</li>
-                                        <li>→ Animal testing for non-medical purposes</li>
-                                        <li>→ Entertainment using live animals</li>
+                                        {% for item in exclusion.value.items %}
+                                        <li>{{ item }}</li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
-                                
-                                <div class="exclusion-card">
-                                    <h3 class="exclusion-title">Weapons & Military</h3>
-                                    <ul class="exclusion-list">
-                                        <li>→ Weapons manufacturing</li>
-                                        <li>→ Military materiel & consulting</li>
-                                        <li>→ Defense contracting</li>
-                                        <li>→ Private military contractors</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="exclusion-card">
-                                    <h3 class="exclusion-title">Fossil Fuels & Extraction</h3>
-                                    <ul class="exclusion-list">
-                                        <li>→ Fossil fuel extraction & refining</li>
-                                        <li>→ Thermal coal (≥30% revenue/operations)</li>
-                                        <li>→ Coal power (>10,000 MW capacity)</li>
-                                        <li>→ Extractive industries (>20M tonnes annually)</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="exclusion-card">
-                                    <h3 class="exclusion-title">Addiction & Public Health</h3>
-                                    <ul class="exclusion-list">
-                                        <li>→ Tobacco products</li>
-                                        <li>→ Harmful chemicals & toxins</li>
-                                        <li>→ Addiction-enabling businesses</li>
-                                        <li>→ For-profit prison operations</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="exclusion-card">
-                                    <h3 class="exclusion-title">Surveillance Technology</h3>
-                                    <ul class="exclusion-list">
-                                        <li>→ Privacy invasion for profit</li>
-                                        <li>→ Data exploitation without consent</li>
-                                        <li>→ Surveillance technology for oppression</li>
-                                        <li>→ Social manipulation technologies</li>
-                                        <li>→ Authoritarian surveillance enablement</li>
-                                    </ul>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
 
                         <!-- Conduct-Based Exclusions Section -->
                         <div class="exclusions-section">
-                            <h2 class="exclusions-section-title">CONDUCT-BASED EXCLUSIONS</h2>
+                            <h2 class="exclusions-section-title">{{ page.conduct_exclusions_title }}</h2>
                             <div class="exclusions-underline"></div>
-                            <p class="exclusions-subtitle">Even companies making beneficial products can cause harm through their conduct. We track patterns of behavior that damage communities, workers, and ecosystems.</p>
+                            <div class="exclusions-subtitle">{{ page.conduct_exclusions_subtitle|richtext }}</div>
                             
                             <div class="exclusions-grid">
+                                {% for exclusion in page.conduct_exclusions %}
                                 <div class="exclusion-card">
-                                    <h3 class="exclusion-title">Human Rights Violations</h3>
+                                    <h3 class="exclusion-title">{{ exclusion.value.title }}</h3>
                                     <ul class="exclusion-list">
-                                        <li>→ Labor rights violations</li>
-                                        <li>→ Child labor exploitation</li>
-                                        <li>→ Anti-union activities</li>
-                                        <li>→ Human trafficking involvement</li>
-                                        <li>→ Workplace safety negligence</li>
-                                        <li>→ Discrimination & harassment</li>
+                                        {% for item in exclusion.value.items %}
+                                        <li>{{ item }}</li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
-                                
-                                <div class="exclusion-card">
-                                    <h3 class="exclusion-title">Environmental Damage</h3>
-                                    <ul class="exclusion-list">
-                                        <li>→ Deforestation & habitat destruction</li>
-                                        <li>→ Climate change acceleration</li>
-                                        <li>→ Pollution & toxic waste</li>
-                                        <li>→ Environmental cover-ups</li>
-                                        <li>→ Ecosystem destruction</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="exclusion-card">
-                                    <h3 class="exclusion-title">Corporate Misconduct</h3>
-                                    <ul class="exclusion-list">
-                                        <li>→ Corruption & bribery</li>
-                                        <li>→ Tax avoidance schemes</li>
-                                        <li>→ Consumer fraud</li>
-                                        <li>→ Regulatory capture attempts</li>
-                                        <li>→ Greenwashing & deception</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="exclusion-card">
-                                    <h3 class="exclusion-title">Global Impact</h3>
-                                    <ul class="exclusion-list">
-                                        <li>→ Supply chain responsibility failures</li>
-                                        <li>→ International law violations</li>
-                                        <li>→ Community displacement</li>
-                                        <li>→ Indigenous rights violations</li>
-                                        <li>→ Developing nation exploitation</li>
-                                        <li>→ Predatory lending practices</li>
-                                    </ul>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         
-                        <h4>Do Our Best, Then Do Better</h4>
-                        <p>Our criteria are meant to avoid involvement with all preventable harms we are aware of. This excludes 57% of the S&P 500 (as of June 14, 2025). Our complete methodology is <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener noreferrer" class="policy-link">open source on GitHub</a> under an MIT license.</p>
+                        <h4>{{ page.methodology_title }}</h4>
+                        {{ page.methodology_content|richtext }}
                         
                         <div class="screening-stats">
                             <div class="stat-card">
-                                <div class="stat-number">57%</div>
-                                <div class="stat-label">of S&P 500 excluded<br><small>(as of June 14, 2025)</small></div>
+                                <div class="stat-number">{{ page.exclusion_percentage }}</div>
+                                <div class="stat-label">of S&P 500 excluded<br><small>({{ page.exclusion_date }})</small></div>
                             </div>
                             <div class="stat-card">
                                 <div class="stat-number">Open Source</div>
@@ -324,12 +248,12 @@
         </div>
         
         <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">PRINCIPLES THAT GUIDE OUR WORK</div>
+            <div class="panel-title">{{ page.principles_title }}</div>
         </div>
         <div class="garden-panel__content garden-panel-content">
-            <p class="principles-intro">
-                Sophisticated ethical investing requires both conviction and nuance. These principles shape how we serve investors who refuse to compromise.
-            </p>
+            <div class="principles-intro">
+                {{ page.principles_content|richtext }}
+            </div>
             
             <!-- Process Section -->
             <div class="principles-section-divider">
@@ -376,13 +300,13 @@
     <!-- CTA Section -->
     <section class="garden-panel cta-panel">
         <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">BEGIN YOUR ETHICAL INVESTMENT JOURNEY</div>
+            <div class="panel-title">{{ page.cta_section_header|default:"BEGIN YOUR ETHICAL INVESTMENT JOURNEY" }}</div>
         </div>
         <div class="garden-panel__content garden-panel-content">
-            <h2 class="cta-title">Ready to take your first step or jump in with both feet?</h2>
-            <p class="cta-description">
-                Let's find the perfect mix of strategies for your values and needs.
-            </p>
+            <h2 class="cta-title">{{ page.cta_title }}</h2>
+            <div class="cta-description">
+                {{ page.cta_description|richtext }}
+            </div>
             <a href="/onboarding/" class="garden-action primary" aria-label="Start the onboarding process">
                 GET STARTED
             </a>
