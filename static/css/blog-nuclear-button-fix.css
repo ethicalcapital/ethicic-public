@@ -20,10 +20,19 @@ html body .blog-sticky-sidebar {
 }
 
 /* Base secondary button styling override - higher specificity than existing rules */
-html body a.garden-action.secondary {
+html body a.garden-action.secondary,
+html body a.garden-action.secondary.small {
     background: var(--garden-color-white);
     color: var(--garden-accent);
     border: 2px solid var(--garden-accent);
+}
+
+html body a.garden-action.secondary:hover,
+html body a.garden-action.secondary.small:hover {
+    background: var(--garden-accent);
+    color: var(--garden-color-white);
+    border-color: var(--garden-accent);
+    transform: translateY(-1px);
 }
 
 html body button.garden-action.primary {
