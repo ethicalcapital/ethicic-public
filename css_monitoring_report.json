@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-07-06T06:04:50.522698+00:00",
-  "total_files": 46,
+  "timestamp": "2025-07-06T06:07:15.519860+00:00",
+  "total_files": 47,
   "total_defined_vars": 381,
   "files_with_issues": [],
   "undefined_variables": {},
@@ -36,6 +36,7 @@
     "garden-blog-streamfield.css": 12.48,
     "garden-ui-theme.css": 161.66,
     "button-contrast-fixes.css": 4.7,
+    "dropdown-fix.css": 1.94,
     "garden-blog-articles.css": 18.94,
     "process-page.css": 10.82,
     "garden-data-table.css": 9.95,
