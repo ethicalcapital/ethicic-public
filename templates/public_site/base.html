@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ page_title|default:"Ethical Capital" }}{% endblock %}</title>
-    
+
     {% load static wagtailsettings_tags %}
     {% get_settings "public_site.SiteConfiguration" as site_config %}
     <!-- Optimized font loading strategy -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- DNS prefetch for performance -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    
+
     <!-- IMMEDIATE THEME INITIALIZATION: Apply theme before any CSS loading -->
     <script>
         // Apply theme immediately to prevent FOUC
@@ -28,14 +28,14 @@
             }
         })();
     </script>
-    
+
     <!-- Critical fonts - load synchronously to prevent font FOUC -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
-    
+
     <!-- Secondary fonts - still deferred for performance -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
-    
+
     <!-- CRITICAL FOUC PREVENTION: Minimal inline CSS for immediate rendering -->
     <style>
         /* Absolute minimum to prevent FOUC - everything else moved to external files */
@@ -43,20 +43,20 @@
             background: #fff;
             color: #111111;
         }
-        
+
         [data-theme="dark"] html {
             background: #0a0a0a;
             color: #f0f0f0;
         }
-        
+
         body {
             margin: 0;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
-        
+
         /* Alpine.js cloak directive to prevent flashing */
         [x-cloak] { display: none !important; }
-        
+
         /* HTMX loading indicator */
         .htmx-indicator {
             display: none;
@@ -67,7 +67,7 @@
         .htmx-request.htmx-indicator {
             display: inline;
         }
-        
+
         /* Search results dropdown styling */
         .garden-search-container {
             position: relative;
@@ -87,55 +87,55 @@
             z-index: 1000;
         }
     </style>
-    
+
     <!-- SIMPLIFIED CSS LOADING STRATEGY -->
-    
+
     <!-- Garden UI Theme - design system variables MUST LOAD FIRST for CSS variables -->
     <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v=2025070111">
-    
+
     <!-- High contrast mode for accessibility compliance -->
     <link rel="stylesheet" href="{% static 'css/high-contrast-mode.css' %}?v=2025070401">
-    
+
     <!-- Core styles - consolidated essential CSS -->
     <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v=2025070401">
-    
+
     <!-- Public site specific styles -->
     <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070123">
-    
+
     <!-- Button contrast fixes for light/dark mode -->
-    <link rel="stylesheet" href="{% static 'css/button-contrast-fixes.css' %}?v=1">
-    
+    <link rel="stylesheet" href="{% static 'css/button-contrast-fixes.css' %}?v=2">
+
     <!-- Utility layout classes for common patterns -->
     <link rel="stylesheet" href="{% static 'css/utility-layout.css' %}?v=1">
-    
+
     <!-- Breadcrumb spacing fix -->
     <link rel="stylesheet" href="{% static 'css/layers/99-breadcrumb-fix.css' %}?v=1">
-    
+
     <!-- About page specific styles -->
     {% if page and page.slug == 'about' %}
     <link rel="stylesheet" href="{% static 'css/layers/22-about-page.css' %}?v=1">
     <link rel="stylesheet" href="{% static 'css/about-page-fix.css' %}?v=1">
     {% endif %}
-    
+
     <!-- Homepage specific styles -->
     {% if request.resolver_match.url_name == 'home' or request.path == '/' %}
     <link rel="stylesheet" href="{% static 'css/16-homepage.css' %}?v=2025070402">
     {% endif %}
-    
+
     <!-- Phase 4: Page-specific styling - deferred for performance -->
     <!-- Commented out to reduce CSS complexity - styles moved to public-site-simple.css -->
     <!-- <link rel="preload" href="{% static 'css/page-specific-overrides.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
     <!-- <link rel="preload" href="{% static 'css/critical-page-overrides.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'"> -->
-    
+
     <!-- Blog-specific CSS moved to blog_base.html template -->
     <!-- Only loaded on blog pages to reduce CSS complexity -->
-    
+
     <!-- Fallback for JavaScript-disabled browsers -->
     <noscript>
         <!-- Core styles already loaded above, blog styles only on blog pages -->
     </noscript>
-    
-    
+
+
     <!-- Favicon -->
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="icon" href="{% static 'favicon-16x16.png' %}" sizes="16x16" type="image/png">
@@ -149,14 +149,14 @@
     <!-- Manifest temporarily disabled due to browser parsing issues
     <link rel="manifest" href="{% static 'manifest.json' %}?v=1.1">
     -->
-    
+
     <!-- SEO Meta Tags -->
     <meta name="description" content="{% block meta_description %}{{ site_config.default_meta_description|default:'Ethical Capital - Institutional-Grade Ethical Investing' }}{% endblock %}">
     <meta name="keywords" content="{% block meta_keywords %}{{ site_config.meta_keywords|default:'investment intelligence, compliance, portfolio management, financial advisory' }}{% endblock %}">
     <meta name="author" content="{{ site_config.company_name|default:'Ethical Capital' }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{% block canonical_url %}{{ request.build_absolute_uri }}{% endblock %}">
-    
+
     <!-- Open Graph Meta Tags for Social Media -->
     <meta property="og:title" content="{% block og_title %}{{ page_title|default:'Ethical Capital - Institutional-Grade Ethical Investing' }}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{{ site_config.company_description|default:'SEC-registered investment advisor specializing in ethical investing, sustainable investing, and ESG investment strategies. Hand-screened companies for responsible investing where ethics and excellence converge.' }}{% endblock %}">
@@ -168,7 +168,7 @@
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
     <meta property="og:site_name" content="Ethical Capital">
     <meta property="og:locale" content="en_US">
-    
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="{{ site_config.twitter_handle|default:'@ethicalcapital' }}">
@@ -177,23 +177,23 @@
     <meta name="twitter:description" content="{% block twitter_description %}SEC-registered investment advisor specializing in ethical investing, sustainable investing, and ESG investment strategies.{% endblock %}">
     <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% load static %}{% static 'images/twitter-card.png' %}{% endblock %}">
     <meta name="twitter:image:alt" content="{% block twitter_image_alt %}Ethical Capital - Where ethics and excellence converge in responsible investing{% endblock %}">
-    
+
     <!-- LinkedIn Meta Tags -->
     <meta property="linkedin:owner" content="ethical-capital">
-    
+
     <!-- Additional SEO Meta Tags -->
     <meta name="application-name" content="Ethical Capital">
     <meta name="msapplication-TileColor" content="#8b5cf6">
     <meta name="msapplication-config" content="{% static 'browserconfig.xml' %}">
-    
+
     <!-- CSRF Token for JavaScript -->
     {% csrf_token %}
     <meta name="csrf-token" content="{{ csrf_token }}">
-    
+
     <!-- Performance Optimization -->
     <meta name="theme-color" content="#8b5cf6">
     <meta name="color-scheme" content="light dark">
-    
+
     <!-- Schema.org Structured Data for SEO -->
     {% include "public_site/schema/financial_service_schema.html" %}
     {% include "public_site/schema/local_business_schema.html" %}
@@ -201,35 +201,35 @@
     {% include "public_site/schema/financial_products_schema.html" %}
     {% include "public_site/schema/breadcrumb_schema.html" %}
     {% block extra_schema %}{% endblock %}
-    
+
     {% block extra_css %}{% endblock %}
-    
+
     <!-- HTMX for server-driven interactivity -->
     <script src="https://unpkg.com/htmx.org@1.9.11"></script>
-    
+
     <!-- Alpine.js for lightweight client-side reactivity -->
     <script defer src="https://unpkg.com/alpinejs@3.13.7/dist/cdn.min.js"></script>
-    
+
     <!-- WCAG AA Accessibility Enhancements for HTMX -->
     <script src="{% static 'js/accessibility-htmx.js' %}?v=1"></script>
-    
+
     <!-- WCAG AA Focus Trapping for Modals and Overlays -->
     <script src="{% static 'js/accessibility-focus-trap.js' %}?v=1"></script>
-    
+
     <!-- HTMX configuration -->
     <meta name="htmx-config" content="{&quot;defaultSwapStyle&quot;:&quot;innerHTML&quot;,&quot;defaultSwapDelay&quot;:0,&quot;defaultSettleDelay&quot;:20}">
-    
+
 </head>
 <body class="public-site-context {% block body_class %}{% endblock %}">
     <!-- Skip navigation links for screen readers - WCAG 2.1 AA -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <a href="#main-navigation" class="skip-link">Skip to navigation</a>
     <a href="#search" class="skip-link">Skip to search</a>
-    
+
     <!-- ARIA live regions for announcements and status updates -->
     <div aria-live="polite" aria-atomic="true" class="sr-announcements" id="announcements"></div>
     <div aria-live="assertive" aria-atomic="true" class="sr-only" id="urgent-announcements"></div>
-    
+
     <!-- Garden UI Compliant Navigation Header -->
     <header class="garden-header" role="banner" x-data="{ mobileMenuOpen: false }">
         <div class="garden-header-content">
@@ -238,9 +238,9 @@
                 <a href="/" class="garden-brand" aria-label="Ethical Capital Home">
                     {{ site_config.company_name|default:"ETHICAL CAPITAL" }}
                 </a>
-                
+
                 <!-- Mobile hamburger menu button (Alpine.js powered) -->
-                <button class="garden-mobile-menu-toggle" 
+                <button class="garden-mobile-menu-toggle"
                         aria-label="Toggle navigation menu"
                         :aria-expanded="mobileMenuOpen.toString()"
                         aria-controls="main-navigation"
@@ -250,17 +250,17 @@
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
                 </button>
-                
-                <nav class="garden-nav-main" 
-                     role="navigation" 
-                     aria-label="Main navigation" 
+
+                <nav class="garden-nav-main"
+                     role="navigation"
+                     aria-label="Main navigation"
                      id="main-navigation"
                      :class="{ 'mobile-menu-open': mobileMenuOpen }"
                      @click.outside="mobileMenuOpen = false"
                      @keydown.escape="mobileMenuOpen = false">
                     {% for nav_item in site_config.nav_items %}
                         {% if nav_item.show_in_nav %}
-                            <a href="{{ nav_item.url }}" 
+                            <a href="{{ nav_item.url }}"
                                class="garden-nav-item"
                                {% if nav_item.external %}target="_blank" rel="noopener"{% endif %}>
                                 {{ nav_item.label }}
@@ -276,7 +276,7 @@
                     {% endfor %}
                 </nav>
             </div>
-            
+
             <!-- Right: Search + User Actions + Theme Toggle -->
             <div class="garden-nav-right">
                 <!-- Search - WCAG AA Compliant (HTMX powered) -->
@@ -285,10 +285,10 @@
                      @htmx:after-request="searching = false">
                     <form method="get" action="/search/" class="garden-search" role="search" id="search">
                         <label for="search-input" class="sr-only">Search</label>
-                        <input type="text" 
+                        <input type="text"
                                id="search-input"
-                               name="q" 
-                               placeholder="Search... (⌘K)" 
+                               name="q"
+                               placeholder="Search... (⌘K)"
                                class="garden-search-input"
                                aria-label="Search"
                                autocomplete="off"
@@ -297,8 +297,8 @@
                                hx-get="/search/live/"
                                hx-trigger="keyup changed delay:300ms"
                                hx-target="#search-results">
-                        <button type="submit" 
-                                class="garden-search-btn" 
+                        <button type="submit"
+                                class="garden-search-btn"
                                 aria-label="Search"
                                 title="Search">
                             <span class="sr-only">Search</span>
@@ -306,9 +306,9 @@
                             <span aria-hidden="true" x-show="!searching">🔍</span>
                         </button>
                     </form>
-                    
+
                     <!-- Live search results dropdown -->
-                    <div id="search-results" 
+                    <div id="search-results"
                          class="garden-search-results"
                          x-show="searchOpen && query.length > 0"
                          @click.outside="searchOpen = false"
@@ -316,22 +316,22 @@
                         <!-- Results will be populated by HTMX -->
                     </div>
                 </div>
-                
+
                 <!-- User Actions Group: Login + CTA -->
                 <div class="nav-user-actions">
                     <!-- Login Dropdown (Alpine.js powered) -->
-                    <div class="garden-dropdown" 
+                    <div class="garden-dropdown"
                          x-data="{ open: false }"
                          @click.outside="open = false"
                          @keydown.escape="open = false">
-                        <button class="garden-dropdown-trigger" 
-                                @click="open = !open" 
-                                :aria-expanded="open.toString()" 
+                        <button class="garden-dropdown-trigger"
+                                @click="open = !open"
+                                :aria-expanded="open.toString()"
                                 aria-haspopup="true">
                             Login
                             <span class="garden-dropdown-arrow" x-text="open ? '▲' : '▼'"></span>
                         </button>
-                        <div class="garden-dropdown-menu" 
+                        <div class="garden-dropdown-menu"
                              role="menu"
                              x-show="open"
                              x-transition:enter="transition ease-out duration-200"
@@ -349,14 +349,14 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <!-- Primary CTA -->
                     {% include 'components/garden_action.html' with text="Get Started" url="/onboarding/" variant="primary" aria_label="Start the onboarding process" %}
                 </div>
-                
+
                 <!-- Theme Toggle - Site Utility (Alpine.js powered) -->
-                <button class="garden-theme-toggle" 
-                        x-data="{ 
+                <button class="garden-theme-toggle"
+                        x-data="{
                             isDark: localStorage.getItem('theme') === 'dark',
                             toggle() {
                                 this.isDark = !this.isDark;
@@ -373,7 +373,7 @@
             </div>
         </div>
     </header>
-    
+
     <!-- Main content area -->
     <main class="main-content" id="main-content" role="main">
         <!-- Breadcrumb Navigation -->
@@ -392,7 +392,7 @@
                 </nav>
             {% endif %}
         {% endblock %}
-        
+
         {% if messages %}
             {% for message in messages %}
                 <div class="message-banner {{ message.tags }}" role="alert">
@@ -400,10 +400,10 @@
                 </div>
             {% endfor %}
         {% endif %}
-        
+
         {% block content %}{% endblock %}
     </main>
-    
+
     <!-- Footer -->
     <footer class="garden-footer" role="contentinfo">
         <div class="garden-footer-content">
@@ -414,7 +414,7 @@
                         {% for nav_item in site_config.nav_items %}
                             {% if nav_item.show_in_footer %}
                                 <li>
-                                    <a href="{{ nav_item.url }}" 
+                                    <a href="{{ nav_item.url }}"
                                        class="garden-footer-link"
                                        {% if nav_item.external %}target="_blank" rel="noopener"{% endif %}>
                                         {{ nav_item.label }}
@@ -430,7 +430,7 @@
                         {% endfor %}
                     </ul>
                 </div>
-                
+
                 <div class="garden-footer-section">
                     <h3>Resources</h3>
                     <ul class="garden-footer-links">
@@ -439,7 +439,7 @@
                         <li><a href="/faq/" class="garden-footer-link">FAQ</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="garden-footer-section">
                     <h3>Investing</h3>
                     <ul class="garden-footer-links">
@@ -448,7 +448,7 @@
                         <li><a href="/process/" class="garden-footer-link">Process</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="garden-footer-section">
                     <h3>Connect</h3>
                     <ul class="garden-footer-links">
@@ -459,19 +459,19 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="garden-footer-bottom">
                 <div class="garden-footer-legal">
                     <p>&copy; {% now "Y" %} {{ site_config.copyright_text|default:"Ethical Capital Investment Collaborative. All rights reserved." }}</p>
-                    
+
                     <p>Investment advisory services offered through Ethical Capital Investment Management LLC, a Registered Investment Advisor. Past performance does not guarantee future results. All investments involve risk. Please see our ADV Part 2 for important disclosures.</p>
-                    
+
                     <p>*Based on our analysis of S&P 500 constituents, approximately 57% failed one or more of our exclusion criteria. This percentage varies as companies and our criteria evolve.</p>
                 </div>
             </div>
         </div>
     </footer>
-    
+
     <!-- Essential JavaScript -->
     <script>
         // Command+K search hotkey handler (Alpine.js handles the rest)
@@ -486,7 +486,7 @@
                 }
             }
         });
-        
+
         // ARIA announcements for screen readers (used by Alpine.js components)
         function announce(message) {
             const announcements = document.getElementById('announcements');
@@ -499,7 +499,7 @@
         }
 
     </script>
-    
+
     {% block extra_js %}{% endblock %}
 </body>
 </html>
