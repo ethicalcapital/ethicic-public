@@ -734,21 +734,174 @@ class AboutPage(Page):
 class PricingPage(Page):
     """Pricing/Fees page."""
 
+    # Header section
+    section_header = models.CharField(
+        max_length=200,
+        default="TRANSPARENT PRICING FOR EVERY CLIENT TYPE",
+        blank=True,
+        help_text="Main pricing section header",
+    )
+    section_intro = RichTextField(
+        default="<p>Simple, transparent pricing based on how you access our services. Individual investors work directly with us at 1.00% annually. Institutional clients accessing through advisers or platforms pay 0.50% annually.</p>",
+        blank=True,
+        help_text="Introduction text for pricing section",
+    )
+
+    # Individual Pricing Card
+    individual_badge = models.CharField(
+        max_length=100, default="INDIVIDUAL INVESTORS", blank=True
+    )
+    individual_title = models.CharField(
+        max_length=200, default="Direct Client Relationships", blank=True
+    )
+    individual_subtitle = models.CharField(
+        max_length=200, default="For individuals and families", blank=True
+    )
+    individual_price = models.CharField(max_length=20, default="1.00%", blank=True)
+    individual_price_period = models.CharField(
+        max_length=50, default="annually", blank=True
+    )
+    individual_features = RichTextField(
+        default="""<ul>
+<li>Work directly with Ethical Capital</li>
+<li>Personalized portfolio management</li>
+<li>Real-time reporting through client portal</li>
+<li>Comprehensive reporting</li>
+</ul>""",
+        blank=True,
+        help_text="Features for individual pricing tier",
+    )
+    individual_cta_text = models.CharField(
+        max_length=100, default="SCHEDULE CONSULTATION", blank=True
+    )
+    individual_cta_link = models.CharField(
+        max_length=200, default="/consultation/", blank=True
+    )
+
+    # Institutional Pricing Card
+    institutional_badge = models.CharField(
+        max_length=100, default="INSTITUTIONAL PRICING", blank=True
+    )
+    institutional_title = models.CharField(
+        max_length=200, default="Adviser & Platform Access", blank=True
+    )
+    institutional_subtitle = models.CharField(
+        max_length=200,
+        default="For RIAs, institutions, and platform clients",
+        blank=True,
+    )
+    institutional_price = models.CharField(max_length=20, default="0.50%", blank=True)
+    institutional_price_period = models.CharField(
+        max_length=50, default="annually", blank=True
+    )
+    institutional_features = RichTextField(
+        default="""<ul>
+<li>Access through Schwab, Altruist, or your preferred custodian</li>
+<li>Direct access to CIO</li>
+<li>SMA implementation</li>
+<li>Quarterly performance reporting</li>
+</ul>""",
+        blank=True,
+        help_text="Features for institutional pricing tier",
+    )
+
+    # Fee Details
+    fee_calculation_title = models.CharField(
+        max_length=100, default="Fee Calculation", blank=True
+    )
+    fee_calculation_text = RichTextField(
+        default="<p>Fees are calculated quarterly based on average daily balance and debited directly from your account. No hidden costs or transaction fees.</p>",
+        blank=True,
+    )
+    minimum_investment_title = models.CharField(
+        max_length=100, default="Minimum Investment", blank=True
+    )
+    minimum_investment_text = RichTextField(
+        default="<p>Direct management minimums vary by strategy. Schwab platform accounts follow standard SMA minimums. Contact us for current requirements.</p>",
+        blank=True,
+    )
+    pricing_rationale_title = models.CharField(
+        max_length=100, default="Why Different Pricing?", blank=True
+    )
+    pricing_rationale_text = RichTextField(
+        default="<p>Individual clients (1.00%) receive comprehensive personal service directly from us. Institutional clients (0.50%) access our strategies through their existing adviser relationships or platforms, reflecting economies of scale.</p>",
+        blank=True,
+    )
+
+    # Workshop Section
+    workshop_section_header = models.CharField(
+        max_length=200,
+        default="EDUCATIONAL WORKSHOPS & SPEAKING ENGAGEMENTS",
+        blank=True,
+    )
+    workshop_intro = RichTextField(
+        default="<p>Professional presentations on ethical investing, sustainable finance, and values-aligned wealth management. Topics range from foundational concepts to advanced portfolio construction strategies.</p>",
+        blank=True,
+    )
+    workshop_nonprofit_note = RichTextField(
+        default="<p><strong>Note:</strong> We provide complimentary presentations to mission-aligned nonprofit organizations and advocacy groups.</p>",
+        blank=True,
+    )
+    workshop_form_title = models.CharField(
+        max_length=200, default="Request a Workshop or Presentation", blank=True
+    )
+    show_workshop_form = models.BooleanField(
+        default=True, help_text="Show the workshop request form"
+    )
+
+    # Additional Services Section
+    services_section_header = models.CharField(
+        max_length=200, default="ADDITIONAL SERVICES", blank=True
+    )
+    services_intro = RichTextField(
+        default="<p>Specialized services for institutional clients and platform partners.</p>",
+        blank=True,
+    )
+
+    # Service Cards (as StreamField for flexibility)
+    additional_services = StreamField(
+        [
+            (
+                "service",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=200)),
+                        ("description", blocks.TextBlock()),
+                        ("fee_text", blocks.CharBlock(max_length=100, required=False)),
+                        ("cta_text", blocks.CharBlock(max_length=50)),
+                        ("cta_link", blocks.CharBlock(max_length=200)),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+    )
+
+    # CTA Section
+    cta_section_header = models.CharField(
+        max_length=200, default="LEARN MORE ABOUT US", blank=True
+    )
+    cta_title = models.CharField(
+        max_length=200, default="Explore our approach to ethical investing", blank=True
+    )
+    cta_description = RichTextField(
+        default="<p>Discover how we combine rigorous analysis with ethical principles to build portfolios that reflect your values.</p>",
+        blank=True,
+    )
+
+    # Legacy fields (keeping for backward compatibility)
     intro_text = RichTextField(
         blank=True,
         default="<p>Transparent pricing designed to scale with your practice.</p>",
     )
     pricing_description = RichTextField(blank=True)
-
-    # Enterprise section
     enterprise_title = models.CharField(
         max_length=200,
         default="Enterprise Solutions",
         blank=True,
     )
     enterprise_description = RichTextField(blank=True)
-
-    # Contact CTA
     contact_cta = RichTextField(
         blank=True,
         default="<p>Ready to discuss pricing for your practice? <a href='/contact/'>Contact our team</a> for a personalized quote.</p>",
@@ -756,13 +909,74 @@ class PricingPage(Page):
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
-        FieldPanel("intro_text"),
-        FieldPanel("pricing_description"),
         MultiFieldPanel(
-            [FieldPanel("enterprise_title"), FieldPanel("enterprise_description")],
-            heading="Enterprise Section",
+            [
+                FieldPanel("section_header"),
+                FieldPanel("section_intro"),
+            ],
+            heading="Main Pricing Section",
         ),
-        FieldPanel("contact_cta"),
+        MultiFieldPanel(
+            [
+                FieldPanel("individual_badge"),
+                FieldPanel("individual_title"),
+                FieldPanel("individual_subtitle"),
+                FieldPanel("individual_price"),
+                FieldPanel("individual_price_period"),
+                FieldPanel("individual_features"),
+                FieldPanel("individual_cta_text"),
+                FieldPanel("individual_cta_link"),
+            ],
+            heading="Individual Pricing",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("institutional_badge"),
+                FieldPanel("institutional_title"),
+                FieldPanel("institutional_subtitle"),
+                FieldPanel("institutional_price"),
+                FieldPanel("institutional_price_period"),
+                FieldPanel("institutional_features"),
+            ],
+            heading="Institutional Pricing",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("fee_calculation_title"),
+                FieldPanel("fee_calculation_text"),
+                FieldPanel("minimum_investment_title"),
+                FieldPanel("minimum_investment_text"),
+                FieldPanel("pricing_rationale_title"),
+                FieldPanel("pricing_rationale_text"),
+            ],
+            heading="Fee Details",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("workshop_section_header"),
+                FieldPanel("workshop_intro"),
+                FieldPanel("workshop_nonprofit_note"),
+                FieldPanel("workshop_form_title"),
+                FieldPanel("show_workshop_form"),
+            ],
+            heading="Workshop Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("services_section_header"),
+                FieldPanel("services_intro"),
+                FieldPanel("additional_services"),
+            ],
+            heading="Additional Services",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("cta_section_header"),
+                FieldPanel("cta_title"),
+                FieldPanel("cta_description"),
+            ],
+            heading="Call to Action",
+        ),
     ]
 
     # Wagtail admin panel configurations

@@ -1,0 +1,37 @@
+/*!
+ * Pricing Features Fix
+ * Styles for RichText features lists in pricing cards
+ */
+
+/* Style ul/li elements within features-list to match the original design */
+.features-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.features-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.features-list li::before {
+    content: "✓";
+    color: var(--color-success);
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* Ensure richtext p tags don't add extra spacing */
+.features-list p {
+    margin: 0;
+}
+
+/* Match the original feature-text styling */
+.features-list {
+    font-size: var(--font-sm);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+}

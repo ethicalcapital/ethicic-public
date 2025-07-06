@@ -5,77 +5,53 @@
 
 {% block body_class %}pricing-page{% endblock %}
 
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/pricing-features-fix.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/layers/18-pricing.css' %}?v=1">
+{% endblock %}
+
 {% block content %}
 <div class="garden-container">
     <!-- Fee Structure -->
     <section class="garden-panel" role="main" aria-labelledby="fees-heading">
         <div class="garden-panel__header">
-            <div class="panel-title">TRANSPARENT PRICING FOR EVERY CLIENT TYPE</div>
+            <div class="panel-title">{{ page.section_header }}</div>
         </div>
         <div class="garden-panel__content">
-            <p class="section-intro">Simple, transparent pricing based on how you access our services. Individual investors work directly with us at 1.00% annually. Institutional clients accessing through advisers or platforms pay 0.50% annually.</p>
-            
+            <div class="section-intro">{{ page.section_intro|richtext }}</div>
+
             <div class="pricing-grid">
                 <div class="pricing-card direct-card">
-                    <div class="card-badge">INDIVIDUAL INVESTORS</div>
+                    <div class="card-badge">{{ page.individual_badge }}</div>
                     <div class="card-header">
-                        <h3>Direct Client Relationships</h3>
-                        <p class="card-subtitle">For individuals and families</p>
+                        <h3>{{ page.individual_title }}</h3>
+                        <p class="card-subtitle">{{ page.individual_subtitle }}</p>
                     </div>
                     <div class="price-display">
-                        <span class="amount">1.00%</span>
-                        <span class="period">annually</span>
+                        <span class="amount">{{ page.individual_price }}</span>
+                        <span class="period">{{ page.individual_price_period }}</span>
                     </div>
                     <div class="features-list">
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Work directly with Ethical Capital</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Personalized portfolio management</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Real-time reporting through client portal</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Comprehensive reporting</span>
-                        </div>
+                        {{ page.individual_features|richtext }}
                     </div>
                     <div class="card-action">
-                        <a href="/consultation/" class="garden-action primary">SCHEDULE CONSULTATION</a>
+                        <a href="{{ page.individual_cta_link }}" class="garden-action primary">{{ page.individual_cta_text }}</a>
                     </div>
                 </div>
 
                 <div class="pricing-card platform-card">
-                    <div class="card-badge">INSTITUTIONAL PRICING</div>
+                    <div class="card-badge">{{ page.institutional_badge }}</div>
                     <div class="card-header">
-                        <h3>Adviser & Platform Access</h3>
-                        <p class="card-subtitle">For RIAs, institutions, and platform clients</p>
+                        <h3>{{ page.institutional_title }}</h3>
+                        <p class="card-subtitle">{{ page.institutional_subtitle }}</p>
                     </div>
                     <div class="price-display">
-                        <span class="amount">0.50%</span>
-                        <span class="period">annually</span>
+                        <span class="amount">{{ page.institutional_price }}</span>
+                        <span class="period">{{ page.institutional_price_period }}</span>
                     </div>
                     <div class="features-list">
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Access through Schwab, Altruist, or your preferred custodian</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Direct access to CIO</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">SMA implementation</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✓</span>
-                            <span class="feature-text">Quarterly performance reporting</span>
-                        </div>
+                        {{ page.institutional_features|richtext }}
                     </div>
                     <div class="card-action">
                         <div class="dual-cta">
@@ -85,19 +61,19 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="fee-details-grid">
                 <div class="detail-item">
-                    <h4>Fee Calculation</h4>
-                    <p>Fees are calculated quarterly based on average daily balance and debited directly from your account. No hidden costs or transaction fees.</p>
+                    <h4>{{ page.fee_calculation_title }}</h4>
+                    {{ page.fee_calculation_text|richtext }}
                 </div>
                 <div class="detail-item">
-                    <h4>Minimum Investment</h4>
-                    <p>Direct management minimums vary by strategy. Schwab platform accounts follow standard SMA minimums. Contact us for current requirements.</p>
+                    <h4>{{ page.minimum_investment_title }}</h4>
+                    {{ page.minimum_investment_text|richtext }}
                 </div>
                 <div class="detail-item">
-                    <h4>Why Different Pricing?</h4>
-                    <p>Individual clients (1.00%) receive comprehensive personal service directly from us. Institutional clients (0.50%) access our strategies through their existing adviser relationships or platforms, reflecting economies of scale.</p>
+                    <h4>{{ page.pricing_rationale_title }}</h4>
+                    {{ page.pricing_rationale_text|richtext }}
                 </div>
             </div>
         </div>
@@ -106,15 +82,16 @@
     <!-- Educational Workshops Section -->
     <section class="garden-panel workshop-section" role="complementary">
         <div class="garden-panel__header">
-            <div class="panel-title">EDUCATIONAL WORKSHOPS & SPEAKING ENGAGEMENTS</div>
+            <div class="panel-title">{{ page.workshop_section_header }}</div>
         </div>
         <div class="garden-panel__content">
             <div class="workshop-content">
-                <p class="workshop-intro">Professional presentations on ethical investing, sustainable finance, and values-aligned wealth management. Topics range from foundational concepts to advanced portfolio construction strategies.</p>
-                <p class="nonprofit-note"><strong>Note:</strong> We provide complimentary presentations to mission-aligned nonprofit organizations and advocacy groups.</p>
-                
+                <div class="workshop-intro">{{ page.workshop_intro|richtext }}</div>
+                <div class="nonprofit-note">{{ page.workshop_nonprofit_note|richtext }}</div>
+
+                {% if page.show_workshop_form %}
                 <div class="workshop-request-form">
-                    <h3>Request a Workshop or Presentation</h3>
+                    <h3>{{ page.workshop_form_title }}</h3>
                     <form method="post" action="/workshop-request/" class="workshop-form" x-data="{ submitted: false, isNonprofit: false }">
                         {% csrf_token %}
                         <div class="form-group">
@@ -144,6 +121,7 @@
                         </div>
                     </form>
                 </div>
+                {% endif %}
             </div>
         </div>
     </section>
@@ -151,28 +129,24 @@
     <!-- Additional Services -->
     <section class="garden-panel" role="complementary">
         <div class="garden-panel__header">
-            <div class="panel-title">ADDITIONAL SERVICES</div>
+            <div class="panel-title">{{ page.services_section_header }}</div>
         </div>
         <div class="garden-panel__content">
-            <p class="section-intro">Specialized services for institutional clients and platform partners.</p>
-            
+            <div class="section-intro">{{ page.services_intro|richtext }}</div>
+
             <div class="services-grid">
+                {% for service in page.additional_services %}
                 <div class="service-card">
-                    <h4 class="service-title">Institutional Consulting</h4>
-                    <p>Sub-advisory services for RIAs, family offices, and institutions seeking ethical investment expertise.</p>
-                    <div class="service-fee">Custom fee arrangements</div>
+                    <h4 class="service-title">{{ service.value.title }}</h4>
+                    <p>{{ service.value.description }}</p>
+                    {% if service.value.fee_text %}
+                    <div class="service-fee">{{ service.value.fee_text }}</div>
+                    {% endif %}
                     <div class="service-action">
-                        <a href="/institutions/" class="garden-action secondary">LEARN MORE</a>
+                        <a href="{{ service.value.cta_link }}" class="garden-action secondary">{{ service.value.cta_text }}</a>
                     </div>
                 </div>
-                <div class="service-card">
-                    <h4 class="service-title">Garden Platform Access</h4>
-                    <p>Our proprietary research and portfolio management platform for qualified financial professionals.</p>
-                    <div class="service-fee">Alpha access - contact for details</div>
-                    <div class="service-action">
-                        <a href="/garden/" class="garden-action secondary">EXPLORE GARDEN</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -180,32 +154,27 @@
     <!-- Call to Action Section -->
     <section class="garden-panel cta-panel" role="complementary" aria-labelledby="cta-heading">
         <div class="garden-panel__header">
-            <div class="panel-title">LEARN MORE ABOUT US</div>
+            <div class="panel-title">{{ page.cta_section_header }}</div>
         </div>
         <div class="garden-panel__content">
             <h2 id="cta-heading" class="cta-title">
-                Explore our approach to ethical investing
+                {{ page.cta_title }}
             </h2>
-            
+
             <div class="cta-description">
-                <p>Discover how we combine rigorous analysis with ethical principles to build portfolios that reflect your values.</p>
+                {{ page.cta_description|richtext }}
             </div>
-            
+
             <div class="cta-actions">
                 <a href="/blog/" class="garden-action primary">EXPLORE THE BLOG</a>
                 <a href="/faq/" class="garden-action secondary">FAQ</a>
                 <a href="/about/" class="garden-action secondary">OUR STORY</a>
             </div>
-            
+
             <div class="cta-disclaimer">
                 <p><strong>Important:</strong> Investment advisory services are offered through Ethical Capital Investment Management LLC, a Registered Investment Adviser. Please see our <a href="/disclosures/form-adv/" class="text-link">ADV Part 2</a> for complete fee disclosure and important information.</p>
             </div>
         </div>
     </section>
 </div>
-{% endblock %}
-
-{% block extra_css %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/layers/18-pricing.css' %}?v=1">
 {% endblock %}
