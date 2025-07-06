@@ -19,20 +19,11 @@ html body .blog-sticky-sidebar {
     overflow-y: auto;
 }
 
-/* Base secondary button styling - must come before hover states */
+/* Base secondary button styling override - higher specificity than existing rules */
 html body a.garden-action.secondary {
     background: var(--garden-color-white);
-    background-color: var(--garden-color-white);
     color: var(--garden-accent);
     border: 2px solid var(--garden-accent);
-}
-
-html body a.garden-action.secondary:hover {
-    background: var(--garden-accent);
-    background-color: var(--garden-accent);
-    color: var(--garden-color-white);
-    border-color: var(--garden-accent);
-    transform: translateY(-1px);
 }
 
 html body button.garden-action.primary {
@@ -103,20 +94,6 @@ html body .blog-index-page .article-list-tag {
 html body .blog-index-page .featured-tag {
     border-radius: 4px;
     padding: 4px 12px;
-}
-
-html body[data-theme="dark"] a.garden-action.secondary {
-    background: var(--garden-color-gray-800);
-    background-color: var(--garden-color-gray-800);
-    color: var(--garden-accent);
-    border: 2px solid var(--garden-accent);
-}
-
-html[data-theme="dark"] body a.garden-action.secondary {
-    background: var(--garden-color-gray-800);
-    background-color: var(--garden-color-gray-800);
-    color: var(--garden-accent);
-    border: 2px solid var(--garden-accent);
 }
 
 html body .blog-index-page a.garden-action.secondary:hover {
