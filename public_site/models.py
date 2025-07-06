@@ -18,6 +18,11 @@ from wagtail.search import index
 
 # Import StreamField blocks
 
+# ============================================================================
+# PAGE MODELS
+# ============================================================================
+# These are Wagtail Page models that represent different page types on the site
+
 
 class HomePage(Page):
     """Homepage model for Ethical Capital Investment Collaborative."""
@@ -1010,6 +1015,12 @@ class ContactPage(RoutablePageMixin, Page):
 
     class Meta:
         verbose_name = "Contact Page"
+
+
+# ============================================================================
+# ORDERABLE & RELATED MODELS
+# ============================================================================
+# These are supporting models for pages - tags, items, components, etc.
 
 
 class BlogTag(TaggedItemBase):
@@ -3902,7 +3913,12 @@ class PRIDDQPage(Page):
         verbose_name = "PRI DDQ Page"
 
 
-# Site Configuration Model for Global Settings
+# ============================================================================
+# SITE SETTINGS
+# ============================================================================
+# Global site configuration and settings models
+
+
 @register_setting
 class SiteConfiguration(ClusterableModel, BaseSiteSetting):
     """Global site configuration and branding settings."""
