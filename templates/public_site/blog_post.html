@@ -1,4 +1,4 @@
-{% extends "public_site/base.html" %}
+{% extends "public_site/blog_base.html" %}
 {% load wagtailcore_tags wagtailimages_tags static blog_filters %}
 
 {% block title %}{{ page.title }} - Ethical Capital Blog{% endblock %}
@@ -43,15 +43,15 @@
                         <span class="meta-item meta-updated">Updated {{ page.updated_at|date:"F j, Y" }}</span>
                     {% endif %}
                 </div>
-                
+
                 <h1 class="article-title">{{ page.title }}</h1>
-                
+
                 {% if page.excerpt %}
                     <div class="article-excerpt">
                         {{ page.excerpt|richtext }}
                     </div>
                 {% endif %}
-                
+
                 {% if page.tags.all %}
                     <div class="article-tags">
                         {% for tag in page.tags.all %}
@@ -90,8 +90,8 @@
                     {% csrf_token %}
                     <input type="hidden" name="source" value="blog-article">
                     <div class="newsletter-form-container">
-                        <input type="email" 
-                               name="email" 
+                        <input type="email"
+                               name="email"
                                placeholder="Your email address"
                                class="newsletter-input-field"
                                required
@@ -128,7 +128,7 @@
             <div class="article-navigation">
                 <a href="/blog/" class="garden-action secondary">← BACK TO BLOG</a>
             </div>
-            
+
             <!-- Related Content -->
             <div class="related-content">
                 <h4>Explore More</h4>
@@ -422,59 +422,59 @@
     .blog-article-wrapper {
         padding: 0 var(--space-3);
     }
-    
+
     .article-header {
         padding: var(--space-6) 0;
     }
-    
+
     .article-meta {
         flex-direction: column;
         align-items: center;
         gap: var(--space-1);
     }
-    
+
     .article-newsletter-cta {
         padding: 32px 20px;
         margin: 32px 0;
     }
-    
+
     .newsletter-cta-title {
         font-size: 1.5rem;
     }
-    
+
     .newsletter-cta-description {
         font-size: 1rem;
         margin-bottom: 24px;
     }
-    
+
     .newsletter-form-row {
         flex-direction: column;
         gap: 12px;
     }
-    
+
     .newsletter-email-input {
         width: 100%;
         font-size: 16px; /* Prevents zoom on iOS */
     }
-    
+
     .newsletter-submit-btn {
         width: 100%;
     }
-    
+
     .solutions-cta-actions {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .solutions-cta-actions .garden-action {
         width: 100%;
         max-width: 300px;
     }
-    
+
     .related-links {
         flex-direction: column;
     }
-    
+
     .content-block img,
     .article-body img {
         margin-left: calc(-1 * var(--space-3));
@@ -549,7 +549,7 @@
     .article-body table {
         font-size: 0.8rem;
     }
-    
+
     .article-body th,
     .article-body td {
         padding: var(--space-1) var(--space-2);
@@ -638,7 +638,7 @@
         flex-direction: column;
         gap: 12px;
     }
-    
+
     .newsletter-input-field,
     .newsletter-button {
         width: 100%;
