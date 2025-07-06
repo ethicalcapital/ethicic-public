@@ -4,24 +4,26 @@
  * Fixes white-on-transparent secondary buttons on blog pages
  */
 
-/* High-specificity fix for blog page secondary buttons */
-body.blog-index-page.public-site-context .hero-panel a.garden-action.secondary,
-body.blog-index-page.public-site-context .hero-utilities a.garden-action.secondary,
-body.blog-index-page.public-site-context a.garden-action.secondary.small,
-body.blog-index-page.public-site-context .hero-panel a.garden-action.secondary.small,
-body.blog-index-page.public-site-context .hero-utilities a.garden-action.secondary.small {
+/* Maximum specificity fix for blog page secondary buttons - overrides garden-ui-theme.css */
+html body.blog-index-page.public-site-context .hero-panel a.garden-action.secondary,
+html body.blog-index-page.public-site-context .hero-utilities a.garden-action.secondary,
+html body.blog-index-page.public-site-context a.garden-action.secondary.small,
+html body.blog-index-page.public-site-context .hero-panel a.garden-action.secondary.small,
+html body.blog-index-page.public-site-context .hero-utilities a.garden-action.secondary.small,
+html body.blog-index-page.public-site-context .article-list-actions a.garden-action.secondary.small {
     background-color: var(--garden-color-white);
     color: var(--garden-accent);
     border: 2px solid var(--garden-accent);
 }
 
-body.blog-index-page.public-site-context .hero-panel a.garden-action.secondary:hover,
-body.blog-index-page.public-site-context .hero-utilities a.garden-action.secondary:hover,
-body.blog-index-page.public-site-context a.garden-action.secondary.small:hover,
-body.blog-index-page.public-site-context .hero-panel a.garden-action.secondary.small:hover,
-body.blog-index-page.public-site-context .hero-utilities a.garden-action.secondary.small:hover {
+/* Hover state fix */
+html body.blog-index-page.public-site-context .hero-panel a.garden-action.secondary:hover,
+html body.blog-index-page.public-site-context .hero-utilities a.garden-action.secondary:hover,
+html body.blog-index-page.public-site-context a.garden-action.secondary.small:hover,
+html body.blog-index-page.public-site-context .hero-panel a.garden-action.secondary.small:hover,
+html body.blog-index-page.public-site-context .hero-utilities a.garden-action.secondary.small:hover,
+html body.blog-index-page.public-site-context .article-list-actions a.garden-action.secondary.small:hover {
     background-color: var(--garden-accent);
     color: var(--garden-color-white);
-    border-color: var(--garden-accent);
-    transform: translateY(-1px);
+    border: 2px solid var(--garden-accent);
 }

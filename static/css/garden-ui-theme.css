@@ -2753,13 +2753,13 @@ to {
 .garden-action.secondary,
 .garden-action.secondary:link,
 .garden-action.secondary:visited {
-  color: var(--theme-primary, var(--garden-accent)) !important;
+  color: #553C9A !important;
   background: transparent !important;
-  border: 2px solid var(--theme-primary, var(--garden-accent)) !important;
+  border: 2px solid #553C9A !important;
 }
 
 .garden-action.secondary:hover {
-  background: var(--theme-primary, var(--garden-accent)) !important;
+  background: #553C9A !important;
   color: white !important;
 }
 

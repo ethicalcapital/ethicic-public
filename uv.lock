@@ -638,6 +638,13 @@ dev = [
     { name = "sphinx-rtd-theme" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "pytest-django" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "beautifulsoup4", specifier = "==4.12.3" },
@@ -681,6 +688,13 @@ requires-dist = [
     { name = "whitenoise", specifier = "==6.7.0" },
 ]
 provides-extras = ["dev"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pytest", specifier = ">=7.4.3" },
+    { name = "pytest-cov", specifier = ">=4.1.0" },
+    { name = "pytest-django", specifier = ">=4.7.0" },
+]
 
 [[package]]
 name = "execnet"

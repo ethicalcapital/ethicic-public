@@ -254,3 +254,10 @@ plugins = ["mypy_django_plugin.main"]
 
 [tool.django-stubs]
 django_settings_module = "ethicic.settings"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.4.3",
+    "pytest-cov>=4.1.0",
+    "pytest-django>=4.7.0",
+]
