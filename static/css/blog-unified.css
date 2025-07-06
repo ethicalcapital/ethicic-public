@@ -276,14 +276,14 @@
 
 .blog-index-page .garden-action.secondary:hover {
   background: var(--color-primary);
-  color: var(--garden-color-white);
+  color: var(--color-on-primary);
   transform: translateY(-1px);
 }
 
 /* Primary buttons in blog context */
 .blog-index-page .garden-action.primary {
   background: var(--color-primary);
-  color: var(--garden-color-white);
+  color: var(--color-on-primary);
   border: 2px solid var(--color-primary);
 }
 
@@ -461,7 +461,7 @@
 
   .blog-index-page .garden-action.secondary:hover {
     background: var(--color-primary);
-    color: var(--garden-color-white);
+    color: var(--color-on-primary);
   }
 
   /* Sidebar panels */

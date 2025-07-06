@@ -969,6 +969,9 @@ button, input, optgroup, select, textarea {
   color: var(--color-on-primary);
   border: 2px solid var(--color-primary);
   text-shadow: 0 1px 2px var(--color-shadow);
+  /* Ensure contrast is maintained */
+  min-height: 40px;
+  font-weight: var(--font-semibold);
 }
 
   /* Clean button design - no brackets for professional appearance */
@@ -1010,6 +1013,8 @@ button, input, optgroup, select, textarea {
   border: 2px solid var(--color-primary);
   font-weight: var(--font-semibold);
   text-shadow: none;
+  /* Ensure secondary buttons never have white text */
+  min-height: 40px;
 }
 
 .garden-action.secondary:hover {
@@ -1047,6 +1052,32 @@ button, input, optgroup, select, textarea {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
+}
+
+/* Button Contrast Safeguards - Prevent white-on-white issues */
+/* Ensure primary buttons always have proper contrast */
+.garden-action.primary,
+.blog-page .garden-action.primary,
+.blog-post .garden-action.primary,
+.newsletter-form .garden-action.primary {
+  background: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+/* Ensure secondary buttons never have white text on transparent */
+.garden-action.secondary,
+.blog-page .garden-action.secondary,
+.blog-post .garden-action.secondary {
+  color: var(--color-primary) !important;
+  background: transparent !important;
+}
+
+.garden-action.secondary:hover,
+.blog-page .garden-action.secondary:hover,
+.blog-post .garden-action.secondary:hover {
+  background: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
 }
 
   /* Ghost/Outline buttons - No background */

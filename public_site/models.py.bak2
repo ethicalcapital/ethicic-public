@@ -1149,6 +1149,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
             return Tag.objects.none()
 
+
     @path("")
     def post_list(self, request):
         """Default research listing."""
@@ -1830,6 +1831,19 @@ class ResearchPage(RoutablePageMixin, Page):
             from taggit.models import Tag
 
             return Tag.objects.none()
+
+    def get_all_authors(self):
+        """Get all unique authors with post counts."""
+        from django.db.models import Count
+
+        authors = (
+            self.get_posts()
+            .values("author")
+            .annotate(post_count=Count("id"))
+            .filter(author__isnull=False, author__gt="")
+            .order_by("-post_count", "author")
+        )
+        return list(authors)
 
     @path("")
     def post_list(self, request):
@@ -3889,10 +3903,10 @@ class PRIDDQPage(Page):
 
     def save(self, *args, **kwargs):
         """Override save to auto-update updated_at and sync to support articles when saved."""
-        from django.utils import timezone
+        from datetime import datetime
 
         # Auto-update the updated_at field with current month/year
-        current_date = timezone.now()
+        current_date = datetime.now()
         self.updated_at = current_date.strftime("%B %Y")
 
         super().save(*args, **kwargs)

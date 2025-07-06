@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-05T22:46:09.658261+00:00",
+  "timestamp": "2025-07-06T00:28:45.523839+00:00",
   "total_files": 45,
   "total_defined_vars": 381,
   "files_with_issues": [],
@@ -31,10 +31,10 @@
   "file_sizes": {
     "fix-formatting-issues.css": 6.27,
     "public-site-simple.css": 12.58,
-    "blog-unified.css": 11.09,
+    "blog-unified.css": 11.08,
     "process-page-working.css": 8.77,
     "garden-blog-streamfield.css": 12.48,
-    "garden-ui-theme.css": 160.74,
+    "garden-ui-theme.css": 161.76,
     "button-contrast-fixes.css": 4.59,
     "garden-blog-articles.css": 18.94,
     "process-page.css": 10.82,
@@ -46,7 +46,7 @@
     "blog-formatting-fixes.css": 1.92,
     "garden-blog-panels.css": 6.89,
     "garden-ui-utilities.css": 5.16,
-    "garden-blog.css": 23.15,
+    "garden-blog.css": 23.08,
     "container-structure-enhancements.css": 4.51,
     "critical-fixes.css": 0.34,
     "critical-fouc-prevention.css": 16.3,
