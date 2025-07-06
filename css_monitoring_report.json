@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-06T23:49:46.065597+00:00",
+  "timestamp": "2025-07-06T23:55:44.296855+00:00",
   "total_files": 48,
   "total_defined_vars": 381,
   "files_with_issues": [],
@@ -37,7 +37,7 @@
     "garden-ui-theme.css": 161.66,
     "button-contrast-fixes.css": 4.7,
     "pricing-features-fix.css": 0.73,
-    "dropdown-fix.css": 1.92,
+    "dropdown-fix.css": 2.37,
     "garden-blog-articles.css": 18.94,
     "process-page.css": 10.82,
     "garden-data-table.css": 9.95,

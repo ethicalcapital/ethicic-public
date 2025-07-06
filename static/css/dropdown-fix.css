@@ -30,7 +30,23 @@
     z-index: 1000;
 }
 
-/* Dark mode support for dropdown */
+/* CRITICAL: Override ALL dropdown visibility rules from core-styles.css */
+/* Ensure dropdown is hidden by default */
+.garden-dropdown-menu {
+    display: none !important;
+}
+
+/* Only show when Alpine.js adds inline style="display: block;" */
+.garden-dropdown-menu[style*="display: block"] {
+    display: block !important;
+}
+
+/* Override the core-styles.css rule for .open class */
+.garden-dropdown.open .garden-dropdown-menu {
+    display: none !important;
+}
+
+/* Dark mode support for dropdown - AFTER base selectors */
 [data-theme="dark"] .garden-dropdown-menu {
     background: var(--color-surface);
     border-color: var(--color-border);
@@ -74,16 +90,4 @@
 /* Alpine.js cloak - hide elements until Alpine loads */
 [x-cloak] {
     display: none !important;
-}
-
-/* Override core-styles.css - ensure dropdown is hidden by default */
-/* Alpine.js will control visibility with inline styles */
-.garden-dropdown .garden-dropdown-menu {
-    /* Remove any display properties to let Alpine.js control it */
-}
-
-/* Override the core-styles.css rule that shows dropdown with .open class */
-.garden-dropdown.open .garden-dropdown-menu {
-    /* Remove the display: block from core-styles.css */
-    display: revert;
 }
