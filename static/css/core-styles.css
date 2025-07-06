@@ -262,7 +262,7 @@ td {
     box-shadow: 0 4px 6px var(--color-shadow-10);
     min-width: 150px;
     z-index: 1001;
-    display: none;
+    /* Removed display: none to work with Alpine.js x-show */
 }
 
 .garden-panel__header {

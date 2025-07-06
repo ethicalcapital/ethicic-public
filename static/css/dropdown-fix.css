@@ -6,10 +6,9 @@
 /* stylelint-disable declaration-no-important */
 /* stylelint-disable no-duplicate-selectors */
 
-/* Remove the display: none that conflicts with Alpine.js */
-.garden-dropdown-menu {
-    /* Remove display: none to let Alpine.js control visibility */
-    display: block !important;
+/* Override core-styles.css to work properly with Alpine.js x-show */
+.garden-dropdown-menu[x-show] {
+    /* When Alpine.js is controlling visibility, don't interfere */
 }
 
 /* Ensure dropdown is positioned correctly */
