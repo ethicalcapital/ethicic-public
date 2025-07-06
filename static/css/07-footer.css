@@ -7,8 +7,8 @@
     /* ===== FOOTER STYLES ===== */
 
     .garden-footer {
-        background: var(--theme-surface-variant);
-        border-top: 1px solid var(--theme-border);
+        background: var(--color-surface-variant);
+        border-top: 1px solid var(--color-border);
         padding: var(--space-8) 0 var(--space-6);
         margin-top: auto;
     }
@@ -32,7 +32,7 @@
         font-family: var(--font-sans);
         font-size: var(--font-base);
         font-weight: var(--font-semibold);
-        color: var(--theme-text-primary);
+        color: var(--color-text-primary);
         margin-bottom: var(--space-4);
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -48,19 +48,19 @@
     }
 
     .garden-footer-link {
-        color: var(--theme-text-secondary);
+        color: var(--color-text-secondary);
         text-decoration: none;
         font-size: var(--font-sm);
         transition: color var(--transition-fast);
     }
 
     .garden-footer-link:hover {
-        color: var(--theme-primary);
+        color: var(--color-primary);
     }
 
     .garden-footer-bottom {
         padding-top: var(--space-6);
-        border-top: 1px solid var(--theme-border);
+        border-top: 1px solid var(--color-border);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -70,7 +70,7 @@
 
     .garden-footer-legal {
         font-size: var(--font-xs);
-        color: var(--theme-text-secondary);
+        color: var(--color-text-secondary);
         line-height: 1.6;
     }
 
@@ -84,13 +84,13 @@
     }
 
     .garden-footer-social a {
-        color: var(--theme-text-secondary);
+        color: var(--color-text-secondary);
         font-size: var(--font-lg);
         transition: color var(--transition-fast);
     }
 
     .garden-footer-social a:hover {
-        color: var(--theme-primary);
+        color: var(--color-primary);
     }
 
     /* Responsive adjustments */
