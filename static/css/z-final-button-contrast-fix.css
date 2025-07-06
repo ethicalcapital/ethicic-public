@@ -1,12 +1,30 @@
 /*!
  * Final Button Contrast Fix
  * This file loads last to override all other button styling issues
- * Fixes white-on-transparent secondary buttons on blog pages
+ * Fixes white-on-transparent secondary buttons site-wide
  */
 
 /* stylelint-disable declaration-no-important */
 
-/* Maximum specificity fix for blog page secondary buttons - overrides all other CSS with !important */
+/* Global fix for ALL secondary buttons site-wide - ensures proper contrast everywhere */
+html body.public-site-context a.garden-action.secondary,
+html body.public-site-context button.garden-action.secondary {
+    background-color: var(--garden-color-white, var(--color-background)) !important;
+    color: var(--garden-accent) !important;
+    -webkit-text-fill-color: var(--garden-accent) !important;
+    border: 2px solid var(--garden-accent) !important;
+}
+
+/* Global hover state fix */
+html body.public-site-context a.garden-action.secondary:hover,
+html body.public-site-context button.garden-action.secondary:hover {
+    background-color: var(--garden-accent) !important;
+    color: var(--garden-color-white, var(--color-background)) !important;
+    -webkit-text-fill-color: var(--garden-color-white, var(--color-background)) !important;
+    border: 2px solid var(--garden-accent) !important;
+}
+
+/* Specific fix for blog page secondary buttons - extra specificity for blog-specific overrides */
 html body.blog-index-page.public-site-context .hero-panel a.garden-action.secondary,
 html body.blog-index-page.public-site-context .hero-utilities a.garden-action.secondary,
 html body.blog-index-page.public-site-context a.garden-action.secondary.small,
