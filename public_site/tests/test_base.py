@@ -3,43 +3,41 @@ Base test classes for the public site app.
 """
 
 import json
-from datetime import datetime
-from typing import Optional
-
-from django.test import TestCase, TransactionTestCase, RequestFactory
-from django.urls import reverse
-from django.utils import timezone
-
-from public_site.models import SupportTicket
-from wagtail.models import Page
+import os
 
 # Import our Wagtail test base
 import sys
-import os
+from datetime import datetime
+from typing import Optional
+
+from django.test import RequestFactory, TestCase
+from django.utils import timezone
+from wagtail.models import Page
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 from tests.wagtail_test_base import WagtailTestCase
 
 
 class MockRequestFactory:
     """Factory for creating mock request objects."""
-    
+
     @staticmethod
     def create_request(user=None, session=None, **kwargs):
         """Create a mock request object."""
         factory = RequestFactory()
-        request = factory.get('/', **kwargs)
-        
+        request = factory.get("/", **kwargs)
+
         # Add user
         if user:
             request.user = user
-        
+
         # Add session
         if session:
             request.session = session
         else:
             # Create minimal session
             request.session = {}
-        
+
         return request
 
 
@@ -49,22 +47,20 @@ class BasePublicSiteTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         """Set up test data once for the entire test class."""
-        pass
 
     def setUp(self):
         """Set up each test."""
-        pass
 
     def create_test_contact_data(self, **overrides):
         """Create test data for contact forms."""
         data = {
-            'name': 'Test User',
-            'email': 'test@example.com',
-            'company': 'Test Company',
-            'subject': 'general',
-            'message': 'This is a test message for contact form submission.',
-            'human_check': '2',  # 1+1=2 (test math problem)
-            'consent': True,
+            "name": "Test User",
+            "email": "test@example.com",
+            "company": "Test Company",
+            "subject": "general",
+            "message": "This is a test message for contact form submission.",
+            "human_check": "2",  # 1+1=2 (test math problem)
+            "consent": True,
         }
         data.update(overrides)
         return data
@@ -72,8 +68,8 @@ class BasePublicSiteTestCase(TestCase):
     def create_test_newsletter_data(self, **overrides):
         """Create test data for newsletter forms."""
         data = {
-            'email': 'newsletter@example.com',
-            'consent': True,
+            "email": "newsletter@example.com",
+            "consent": True,
         }
         data.update(overrides)
         return data
@@ -81,27 +77,27 @@ class BasePublicSiteTestCase(TestCase):
     def create_test_onboarding_data(self, **overrides):
         """Create test data for onboarding forms."""
         data = {
-            'first_name': 'Test',
-            'last_name': 'User',
-            'email': 'onboarding@example.com',
-            'phone': '555-123-4567',
-            'location': 'New York, NY',
-            'initial_investment': '50000',
-            'monthly_contribution': '1000',
-            'time_horizon': '5-10',
-            'accredited_investor': True,
-            'primary_goal': 'growth',
-            'risk_tolerance': 'moderate',
-            'investment_experience': 'intermediate',
-            'experience_level': 'intermediate',
-            'exclusions': ['fossil_fuels', 'weapons'],
-            'impact_areas': ['renewable_energy'],
-            'referral_source': 'web_search',
-            'additional_notes': 'Test notes',
-            'consent': True,
-            'agree_terms': True,
-            'terms_accepted': True,
-            'confirm_accuracy': True,
+            "first_name": "Test",
+            "last_name": "User",
+            "email": "onboarding@example.com",
+            "phone": "555-123-4567",
+            "location": "New York, NY",
+            "initial_investment": "50000",
+            "monthly_contribution": "1000",
+            "time_horizon": "5-10",
+            "accredited_investor": True,
+            "primary_goal": "growth",
+            "risk_tolerance": "moderate",
+            "investment_experience": "intermediate",
+            "experience_level": "intermediate",
+            "exclusions": ["fossil_fuels", "weapons"],
+            "impact_areas": ["renewable_energy"],
+            "referral_source": "web_search",
+            "additional_notes": "Test notes",
+            "consent": True,
+            "agree_terms": True,
+            "terms_accepted": True,
+            "confirm_accuracy": True,
         }
         data.update(overrides)
         return data
@@ -128,23 +124,31 @@ class FormTestMixin:
 
     def assert_form_valid(self, form):
         """Assert that a form is valid."""
-        if hasattr(form, 'errors'):
-            self.assertTrue(form.is_valid(), f"Form should be valid but got errors: {form.errors}")
-    
+        if hasattr(form, "errors"):
+            self.assertTrue(
+                form.is_valid(), f"Form should be valid but got errors: {form.errors}"
+            )
+
     def assert_form_invalid(self, form, expected_errors=None):
         """Assert that a form is invalid with optional expected errors."""
         self.assertFalse(form.is_valid(), "Form should be invalid but was valid")
-        
+
         if expected_errors:
             # Check for expected error messages
             for field, expected_message in expected_errors.items():
-                self.assertIn(field, form.errors, f"Expected error for field '{field}' not found")
-                
+                self.assertIn(
+                    field, form.errors, f"Expected error for field '{field}' not found"
+                )
+
                 # Check if the expected message is in the error messages
                 field_errors = form.errors[field]
-                error_found = any(expected_message in str(error) for error in field_errors)
-                self.assertTrue(error_found, 
-                    f"Expected error message '{expected_message}' not found in field '{field}' errors: {field_errors}")
+                error_found = any(
+                    expected_message in str(error) for error in field_errors
+                )
+                self.assertTrue(
+                    error_found,
+                    f"Expected error message '{expected_message}' not found in field '{field}' errors: {field_errors}",
+                )
 
 
 class APITestMixin:
@@ -153,54 +157,54 @@ class APITestMixin:
     def post_json(self, url, data):
         """Post JSON data to an API endpoint."""
         return self.client.post(
-            url,
-            data=json.dumps(data),
-            content_type='application/json'
+            url, data=json.dumps(data), content_type="application/json"
         )
 
     def assert_api_success(self, response, expected_status=200):
         """Assert that an API response is successful."""
         self.assertEqual(response.status_code, expected_status)
         data = json.loads(response.content)
-        self.assertTrue(data.get('success', True))
+        self.assertTrue(data.get("success", True))
         return data
 
     def assert_api_error(self, response, expected_status=400):
         """Assert that an API response is an error."""
         self.assertEqual(response.status_code, expected_status)
         data = json.loads(response.content)
-        self.assertFalse(data.get('success', True))
+        self.assertFalse(data.get("success", True))
         return data
 
 
 class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
     """Base test case for Wagtail page tests with proper Wagtail setup."""
-    
+
     @classmethod
     def setUpTestData(cls):
         """Set up test data once for the entire test class."""
         # Call WagtailTestCase setup first to ensure Wagtail is ready
         super().setUpTestData()
-        
+
         # Now we have these available from WagtailTestCase:
         # cls.locale, cls.root_page, cls.home_page, cls.site, cls.user
-        
+
         # Set up additional pages as needed
         cls.contact_page = None
         cls.onboarding_page = None
         cls.blog_index = None
-    
+
     def setUp(self):
         """Set up each test."""
         super().setUp()
-    
+
     def create_test_blog_index(self):
         """Create a test blog index page - will skip if no home page."""
-        if not hasattr(self, 'home_page') or not self.home_page:
+        if not hasattr(self, "home_page") or not self.home_page:
             from unittest import SkipTest
+
             raise SkipTest("No home page available for blog index creation")
-        
+
         from public_site.models import BlogIndexPage
+
         blog_index = BlogIndexPage(
             title="Blog",
             slug="blog",
@@ -210,7 +214,7 @@ class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
         return blog_index
 
     def create_test_blog_post(
-        self, 
+        self,
         parent: Optional[Page] = None,
         title: str = "Test Blog Post",
         featured: bool = False,
@@ -222,15 +226,19 @@ class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
                 parent = self.create_test_blog_index()
             except:
                 from unittest import SkipTest
+
                 raise SkipTest("Cannot create blog index for blog post creation")
-        
+
         if not parent:
             from unittest import SkipTest
+
             raise SkipTest("No parent page available for blog post creation")
-        
-        from public_site.models import BlogPost
+
         import re
-        slug = re.sub(r'[^a-z0-9-_]', '', title.lower().replace(' ', '-'))
+
+        from public_site.models import BlogPost
+
+        slug = re.sub(r"[^a-z0-9-_]", "", title.lower().replace(" ", "-"))
         blog_post = BlogPost(
             title=title,
             slug=slug,
@@ -241,10 +249,10 @@ class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
             publish_date=publish_date or timezone.now().date(),
         )
         parent.add_child(instance=blog_post)
-        
+
         # Publish the post
         blog_post.save_revision().publish()
-        
+
         return blog_post
 
     def create_test_strategy_page(
@@ -255,16 +263,19 @@ class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
     ):
         """Create a test strategy page."""
         if not parent:
-            parent = getattr(self, 'home_page', None)
-        
+            parent = getattr(self, "home_page", None)
+
         if not parent:
             # Skip page creation if no parent available
             from unittest import SkipTest
+
             raise SkipTest("No parent page available for strategy page creation")
-        
-        from public_site.models import StrategyPage
+
         import re
-        slug = re.sub(r'[^a-z0-9-_]', '', title.lower().replace(' ', '-'))
+
+        from public_site.models import StrategyPage
+
+        slug = re.sub(r"[^a-z0-9-_]", "", title.lower().replace(" ", "-"))
         strategy = StrategyPage(
             title=title,
             slug=slug,
@@ -288,29 +299,34 @@ class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
     ):
         """Create a test FAQ article."""
         if not parent:
-            home_page = getattr(self, 'home_page', None)
+            home_page = getattr(self, "home_page", None)
             if not home_page:
                 from unittest import SkipTest
+
                 raise SkipTest("No home page available for FAQ creation")
-            
+
             # Create FAQ index if not provided
             from public_site.models import FAQIndexPage
+
             faq_index = FAQIndexPage(
                 title="Support",
                 slug="support",
-                locale=getattr(self, 'locale', None) or home_page.locale,
+                locale=getattr(self, "locale", None) or home_page.locale,
             )
             home_page.add_child(instance=faq_index)
             parent = faq_index
-        
+
         if not parent:
             from unittest import SkipTest
+
             raise SkipTest("No parent page available for FAQ article creation")
-        
-        from public_site.models import FAQArticle
+
         import re
+
+        from public_site.models import FAQArticle
+
         # Generate a valid slug by removing special characters
-        slug = re.sub(r'[^a-z0-9-_]', '', title.lower().replace(' ', '-'))
+        slug = re.sub(r"[^a-z0-9-_]", "", title.lower().replace(" ", "-"))
         article = FAQArticle(
             title=title,
             slug=slug,
@@ -326,18 +342,20 @@ class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
 
     def create_test_media_page(self):
         """Create a test media page with items - will skip if no home page."""
-        home_page = getattr(self, 'home_page', None)
+        home_page = getattr(self, "home_page", None)
         if not home_page:
             from unittest import SkipTest
+
             raise SkipTest("No home page available for media page creation")
-        
-        from public_site.models import MediaPage, MediaItem
+
+        from public_site.models import MediaItem, MediaPage
+
         media_page = MediaPage(
             title="Media",
             slug="media",
         )
         home_page.add_child(instance=media_page)
-        
+
         # Create test media items
         for i in range(5):
             MediaItem.objects.create(
@@ -349,5 +367,5 @@ class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
                 external_url=f"https://example.com/item-{i+1}",
                 page=media_page,
             )
-        
+
         return media_page

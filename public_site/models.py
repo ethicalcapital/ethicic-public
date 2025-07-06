@@ -3879,24 +3879,47 @@ class PRIDDQPage(Page):
 
     def sync_to_support_articles(self):
         """Create or update FAQArticle entries for DDQ questions."""
-        questions = self.get_ddq_questions_for_faq()
+        try:
+            questions = self.get_ddq_questions_for_faq()
 
-        for q in questions:
-            # Create or update FAQ article
-            article, created = FAQArticle.objects.get_or_create(
-                title=q["question"],
-                defaults={
-                    "content": f"<p>{q['answer']}</p>",
-                    "category": q["category"],
-                    "keywords": "PRI DDQ responsible investment ESG",
-                    "priority": 5,  # Medium priority
-                },
-            )
-            if not created:
-                # Update existing article
-                article.content = f"<p>{q['answer']}</p>"
-                article.category = q["category"]
-                article.save()
+            # Find or create FAQ index page
+            faq_index = None
+            try:
+                faq_index = FAQIndexPage.objects.first()
+            except:
+                pass
+
+            if not faq_index:
+                # Skip sync if no FAQ index exists
+                return
+
+            for q in questions:
+                # Create or update FAQ article
+                try:
+                    article = FAQArticle.objects.filter(title=q["question"]).first()
+                    if not article:
+                        # Create new article
+                        article = FAQArticle(
+                            title=q["question"],
+                            slug=q["question"].lower().replace(" ", "-")[:50],
+                            content=f"<p>{q['answer']}</p>",
+                            category=q["category"],
+                            keywords="PRI DDQ responsible investment ESG",
+                            priority=5,
+                            locale=self.locale,
+                        )
+                        faq_index.add_child(instance=article)
+                    else:
+                        # Update existing article
+                        article.content = f"<p>{q['answer']}</p>"
+                        article.category = q["category"]
+                        article.save()
+                except Exception:
+                    # Skip individual article if it fails
+                    continue
+        except Exception:
+            # Skip entire sync if it fails - don't break page saving
+            pass
 
     def save(self, *args, **kwargs):
         """Override save to auto-update updated_at and sync to support articles when saved."""
