@@ -4,7 +4,7 @@
  * Fixes white-on-transparent secondary buttons on blog pages
  */
 
-/* Maximum specificity fix for blog page secondary buttons - overrides garden-ui-theme.css */
+/* Maximum specificity fix for blog page secondary buttons - overrides all other CSS with !important */
 html body.blog-index-page.public-site-context .hero-panel a.garden-action.secondary,
 html body.blog-index-page.public-site-context .hero-utilities a.garden-action.secondary,
 html body.blog-index-page.public-site-context a.garden-action.secondary.small,

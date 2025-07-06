@@ -96,6 +96,7 @@
     justify-content: center;
     z-index: 1;
     position: relative;
+    /* Remove any color declaration here to avoid conflicts */
 }
 
 .garden-action:focus-visible {
@@ -127,7 +128,8 @@
     border-color: var(--color-border);
 }
 
-.garden-action:not(.secondary) {
+.garden-action.primary,
+.garden-action:not(.secondary, .surface, .outline, .ghost) {
     color: var(--color-on-primary);
 }
 
