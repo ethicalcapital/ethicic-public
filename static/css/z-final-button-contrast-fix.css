@@ -15,6 +15,7 @@ html body.blog-index-page.public-site-context .hero-utilities a.garden-action.se
 html body.blog-index-page.public-site-context .article-list-actions a.garden-action.secondary.small {
     background-color: var(--garden-color-white, var(--color-background)) !important;
     color: var(--garden-accent) !important;
+    -webkit-text-fill-color: var(--garden-accent) !important;
     border: 2px solid var(--garden-accent) !important;
 }
 
@@ -27,5 +28,6 @@ html body.blog-index-page.public-site-context .hero-utilities a.garden-action.se
 html body.blog-index-page.public-site-context .article-list-actions a.garden-action.secondary.small:hover {
     background-color: var(--garden-accent) !important;
     color: var(--garden-color-white, var(--color-background)) !important;
+    -webkit-text-fill-color: var(--garden-color-white, var(--color-background)) !important;
     border: 2px solid var(--garden-accent) !important;
 }
