@@ -19,6 +19,14 @@ html body .blog-sticky-sidebar {
     overflow-y: auto;
 }
 
+/* Base secondary button styling - must come before hover states */
+html body a.garden-action.secondary {
+    background: var(--garden-color-white);
+    background-color: var(--garden-color-white);
+    color: var(--garden-accent);
+    border: 2px solid var(--garden-accent);
+}
+
 html body a.garden-action.secondary:hover {
     background: var(--garden-accent);
     background-color: var(--garden-accent);
