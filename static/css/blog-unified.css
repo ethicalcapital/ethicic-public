@@ -254,12 +254,42 @@
    BLOG BUTTONS - CLEAN & SIMPLE
    ======================================== */
 
-/* Secondary buttons in blog context */
+/* Secondary buttons in blog context - ENSURE VISIBILITY */
 .blog-index-page .garden-action.secondary,
 .blog-index-page a.garden-action.secondary {
   background: transparent;
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  color: var(--garden-accent);
+  border: 2px solid var(--garden-accent);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+.blog-index-page .garden-action.secondary:hover {
+  background: var(--garden-accent);
+  color: var(--accent-text);
+  border-color: var(--garden-accent);
+  transform: translateY(-1px);
+}
+
+/* Primary buttons in blog context - ENSURE VISIBILITY */
+.blog-index-page .garden-action.primary {
+  background: var(--garden-accent);
+  color: var(--accent-text);
+  border: 2px solid var(--garden-accent);
+  min-height: 40px;
+  box-sizing: border-box;
   padding: var(--space-2) var(--space-4);
   font-size: var(--font-sm);
   font-weight: var(--font-semibold);
@@ -274,22 +304,11 @@
   gap: var(--space-2);
 }
 
-.blog-index-page .garden-action.secondary:hover {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  transform: translateY(-1px);
-}
-
-/* Primary buttons in blog context */
-.blog-index-page .garden-action.primary {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  border: 2px solid var(--color-primary);
-}
-
 .blog-index-page .garden-action.primary:hover {
-  background: var(--color-primary-hover);
-  border-color: var(--color-primary-hover);
+  background: var(--garden-accent-hover);
+  border-color: var(--garden-accent-hover);
+  color: var(--accent-text);
+  transform: translateY(-1px);
 }
 
 /* Size variants */
