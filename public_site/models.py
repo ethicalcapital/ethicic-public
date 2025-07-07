@@ -758,6 +758,8 @@ class AboutPage(Page):
             ],
             heading="External Roles",
         ),
+        FieldPanel("experience_timeline"),
+        FieldPanel("hobbies"),
         MultiFieldPanel(
             [
                 FieldPanel("featured_post_1_title"),
@@ -773,8 +775,9 @@ class AboutPage(Page):
                 FieldPanel("featured_post_4_description"),
                 FieldPanel("featured_post_4_url"),
             ],
-            heading="Featured Posts",
+            heading="Featured Posts (Legacy)",
         ),
+        FieldPanel("featured_posts"),
         MultiFieldPanel(
             [
                 FieldPanel("speaking_writing_title"),
@@ -3339,6 +3342,127 @@ class AdvisorPage(Page):
     services_content = RichTextField(
         blank=True,
         default="<p>We provide investment advisers with specialized expertise in niche and ethical investing, rigorous analytical processes, effective client communication support, operational assistance, and educational resources to help you serve clients with complex needs and values.</p>",
+    )
+
+    # What We Offer section
+    offer_section_title = models.CharField(
+        max_length=200,
+        default="WHAT WE OFFER ADVISERS",
+        blank=True,
+    )
+    offer_section_intro = RichTextField(
+        blank=True,
+        default="<p>We provide investment advisers with institutional-grade research capabilities and proven strategies to confidently serve clients who prioritize ethical investing, without compromising on performance or professionalism.</p>",
+    )
+    services_offered = StreamField(
+        [
+            ('service', blocks.StructBlock([
+                ('title', blocks.CharBlock(max_length=100)),
+                ('description', blocks.RichTextBlock()),
+            ]))
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Services offered to advisers"
+    )
+
+    # Partnership Benefits section
+    benefits_section_title = models.CharField(
+        max_length=200,
+        default="WHY ADVISERS CHOOSE US",
+        blank=True,
+    )
+    benefits_section_intro = RichTextField(
+        blank=True,
+        default="<p>Leading investment advisers partner with us because we deliver the institutional-grade expertise and transparency their sophisticated clients demand.</p>",
+    )
+    partnership_benefits = StreamField(
+        [
+            ('benefit', blocks.StructBlock([
+                ('title', blocks.CharBlock(max_length=100)),
+                ('description', blocks.RichTextBlock()),
+            ]))
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Partnership benefits for advisers"
+    )
+
+    # Process Overview section
+    process_section_title = models.CharField(
+        max_length=200,
+        default="OUR COLLABORATIVE APPROACH",
+        blank=True,
+    )
+    process_steps = StreamField(
+        [
+            ('process_step', blocks.StructBlock([
+                ('step_number', blocks.IntegerBlock(min_value=1)),
+                ('title', blocks.CharBlock(max_length=100)),
+                ('description', blocks.TextBlock()),
+            ]))
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Process steps for adviser collaboration"
+    )
+
+    # Due Diligence Resources section
+    ddq_section_title = models.CharField(
+        max_length=200,
+        default="DUE DILIGENCE RESOURCES",
+        blank=True,
+    )
+    ddq_section_subtitle = models.CharField(
+        max_length=200,
+        default="Documentation for Investment Advisers",
+        blank=True,
+    )
+    ddq_section_description = RichTextField(
+        blank=True,
+        default="<p>Comprehensive documentation to support your due diligence process and adviser requirements.</p>",
+    )
+    resource_categories = StreamField(
+        [
+            ('resource_category', blocks.StructBlock([
+                ('title', blocks.CharBlock(max_length=100)),
+                ('resources', blocks.ListBlock(blocks.StructBlock([
+                    ('icon', blocks.CharBlock(max_length=10, help_text="Emoji icon")),
+                    ('title', blocks.CharBlock(max_length=100)),
+                    ('description', blocks.CharBlock(max_length=200)),
+                    ('url', blocks.CharBlock(max_length=200)),
+                ]))),
+            ]))
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Resource categories with links"
+    )
+
+    # CTA section
+    cta_section_title = models.CharField(
+        max_length=200,
+        default="READY TO PARTNER?",
+        blank=True,
+    )
+    cta_primary_text = models.CharField(
+        max_length=100,
+        default="SCHEDULE A CONSULTATION",
+        blank=True,
+    )
+    cta_primary_url = models.URLField(
+        blank=True,
+        default="https://tidycal.com/ecic/adviser",
+    )
+    cta_secondary_text = models.CharField(
+        max_length=100,
+        default="SEND A MESSAGE",
+        blank=True,
+    )
+    cta_secondary_url = models.CharField(
+        max_length=200,
+        default="/contact/",
+        blank=True,
     )
 
     # Benefits section

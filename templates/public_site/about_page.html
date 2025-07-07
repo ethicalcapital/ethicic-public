@@ -130,21 +130,15 @@
             <div class="garden-panel-content">
                 {{ page.external_roles_content|safe }}
                 
+                {% for hobby in page.hobbies %}
                 <div class="beyond-item">
-                    <span class="beyond-icon">⛷️</span>
+                    <span class="beyond-icon">{{ hobby.value.icon }}</span>
                     <div class="beyond-content">
-                        <h4>Skiing</h4>
-                        <p>Utah's many awesome resorts</p>
+                        <h4>{{ hobby.value.title }}</h4>
+                        <p>{{ hobby.value.description }}</p>
                     </div>
                 </div>
-                
-                <div class="beyond-item">
-                    <span class="beyond-icon">🌻</span>
-                    <div class="beyond-content">
-                        <h4>Gardening</h4>
-                        <p>Replacing lawn with wildlife-friendly perennials</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -156,45 +150,18 @@
         </div>
         <div class="garden-panel-content">
             <div class="horizontal-timeline">
+                {% for item in page.experience_timeline %}
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h4>2007-8</h4>
-                        <p>Oppenheimer & Co</p>
+                        <h4>{{ item.value.year }}</h4>
+                        <p>{{ item.value.company }}</p>
+                        {% if item.value.description %}
+                        <p class="timeline-description">{{ item.value.description }}</p>
+                        {% endif %}
                     </div>
                 </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>2009</h4>
-                        <p>Family Office</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>2010-18</h4>
-                        <p>CFA Institute</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>2018-21</h4>
-                        <p>Independent Consultant</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>2021</h4>
-                        <p>Founded Ethical Capital</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -210,6 +177,12 @@
                 <div class="featured-posts">
                     <h3>Featured Writing</h3>
                     <div class="post-cards">
+                        {% for post in page.featured_posts %}
+                        <a href="{{ post.value.url }}" class="post-card">
+                            <h4>{{ post.value.title }}</h4>
+                            <p>{{ post.value.description }}</p>
+                        </a>
+                        {% empty %}
                         {% if page.featured_post_1_title %}
                         <a href="{{ page.featured_post_1_url }}" class="post-card">
                             <h4>{{ page.featured_post_1_title }}</h4>
@@ -237,6 +210,7 @@
                             <p>{{ page.featured_post_4_description }}</p>
                         </a>
                         {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
                 
