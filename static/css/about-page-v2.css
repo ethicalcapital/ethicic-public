@@ -181,7 +181,7 @@
 
 .external-roles li {
     font-family: var(--font-sans);
-    font-size: var(--font-base);
+    font-size: var(--font-sm);
     margin-bottom: var(--space-3);
     padding-left: var(--space-4);
     position: relative;
@@ -197,7 +197,7 @@
 
 .beyond-content p {
     font-family: var(--font-sans);
-    font-size: var(--font-base);
+    font-size: var(--font-sm);
     margin: 0;
 }
 
@@ -304,4 +304,13 @@
 
 .about-page-v2 .garden-panel:last-child {
     margin-bottom: 0;
+}
+
+/* Higher specificity overrides for font sizes */
+.about-page-v2 .beyond-content p {
+    font-size: var(--font-base);
+}
+
+.about-page-v2 .external-roles li {
+    font-size: var(--font-base);
 }
