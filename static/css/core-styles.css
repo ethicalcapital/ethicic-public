@@ -705,6 +705,14 @@ td {
 
     .garden-header .garden-mobile-menu-toggle {
         display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 0.5rem;
+        margin-left: auto;
+        flex-shrink: 0;
+        z-index: 1002;
+        visibility: visible;
+        opacity: 1;
     }
 
     .garden-header .hamburger-line {
@@ -712,6 +720,28 @@ td {
         height: 2px;
         background-color: var(--garden-color-white);
         display: block;
+        margin: 0;
+    }
+
+    /* Ensure proper header layout */
+    .garden-header-content {
+        padding: 0.75rem 1rem;
+    }
+
+    .garden-nav-left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .garden-brand {
+        font-size: 1rem;
+        flex-shrink: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     /* Hide search input on mobile, show only search button */
@@ -731,6 +761,12 @@ td {
     .garden-nav-right {
         gap: 0.5rem;
         flex-shrink: 0;
+    }
+
+    /* Hide non-essential items on mobile to save space */
+    .nav-user-actions,
+    .garden-theme-toggle {
+        display: none;
     }
 
     .garden-nav-main {
