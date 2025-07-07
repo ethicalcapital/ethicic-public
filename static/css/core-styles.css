@@ -714,6 +714,25 @@ td {
         display: block;
     }
 
+    /* Hide search input on mobile, show only search button */
+    .garden-search-input {
+        display: none;
+    }
+
+    .garden-search-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        margin: 0;
+    }
+
+    /* Adjust nav-right spacing for mobile */
+    .garden-nav-right {
+        gap: 0.5rem;
+        flex-shrink: 0;
+    }
+
     .garden-nav-main {
         position: fixed;
         top: 0;
