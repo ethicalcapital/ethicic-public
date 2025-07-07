@@ -26,7 +26,7 @@
         <div class="garden-panel__content garden-panel-content">
             <div class="faq-content">
                 {% for faq in page.faq_items.all %}
-                    <details class="faq-item" data-faq-id="{{ forloop.counter }}" 
+                    <details class="faq-item" data-faq-id="{{ forloop.counter }}"
                              x-data="{ open: false }"
                              x-ref="faqItem{{ forloop.counter }}"
                              @toggle="open = $event.target.open">
@@ -40,9 +40,9 @@
                     </details>
                 {% empty %}
                     <div class="no-faqs empty-state">
-                        <h3>No FAQs Available</h3>
-                        <p>We're building our FAQ section. In the meantime, please don't hesitate to contact us directly with any questions.</p>
-                        <a href="/contact/" class="garden-action primary">Contact Us</a>
+                        <h3>{{ page.empty_state_title }}</h3>
+                        {{ page.empty_state_message|richtext }}
+                        <a href="{{ page.empty_state_button_url }}" class="garden-action primary">{{ page.empty_state_button_text }}</a>
                     </div>
                 {% endfor %}
             </div>

@@ -9,7 +9,7 @@
 <!-- Hero Section -->
 <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">PRI DUE DILIGENCE</div>
+        <div class="panel-title">{{ page.section_title_overview }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
         <h1 id="hero-heading" class="hero-title">{{ page.hero_title }}</h1>
@@ -32,10 +32,10 @@
 <!-- Executive Summary -->
 <section class="garden-panel" role="main" aria-labelledby="summary-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">EXECUTIVE SUMMARY</div>
+        <div class="panel-title">{{ page.section_title_executive }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
-        <h2 id="summary-heading" class="section-title">Responsible Investment Overview</h2>
+        <h2 id="summary-heading" class="section-title">{{ page.section_subtitle_executive }}</h2>
         {% if page.executive_summary %}
             <div class="executive-summary">{{ page.executive_summary|safe }}</div>
         {% else %}
@@ -49,11 +49,11 @@
 <!-- Strategy & Governance -->
 <section class="garden-panel" role="section" aria-labelledby="strategy-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">STRATEGY & GOVERNANCE</div>
+        <div class="panel-title">{{ page.section_title_strategy }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
-        <h2 id="strategy-heading" class="section-title">Responsible Investment Strategy & Governance</h2>
-        
+        <h2 id="strategy-heading" class="section-title">{{ page.section_subtitle_strategy }}</h2>
+
         {% if page.strategy_governance_content %}
             {{ page.strategy_governance_content|safe }}
         {% else %}
@@ -67,11 +67,11 @@
 <!-- ESG Integration -->
 <section class="garden-panel" role="section" aria-labelledby="esg-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">ESG INTEGRATION</div>
+        <div class="panel-title">{{ page.section_title_esg }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
-        <h2 id="esg-heading" class="section-title">ESG Integration Methodology</h2>
-        
+        <h2 id="esg-heading" class="section-title">{{ page.section_subtitle_esg }}</h2>
+
         {% if page.esg_integration_content %}
             {{ page.esg_integration_content|safe }}
         {% else %}
@@ -85,11 +85,11 @@
 <!-- Stewardship -->
 <section class="garden-panel" role="section" aria-labelledby="stewardship-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">STEWARDSHIP & ENGAGEMENT</div>
+        <div class="panel-title">{{ page.section_title_stewardship }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
-        <h2 id="stewardship-heading" class="section-title">Active Stewardship Practices</h2>
-        
+        <h2 id="stewardship-heading" class="section-title">{{ page.section_subtitle_stewardship }}</h2>
+
         {% if page.stewardship_content %}
             {{ page.stewardship_content|safe }}
         {% else %}
@@ -104,11 +104,11 @@
 <!-- Transparency -->
 <section class="garden-panel" role="section" aria-labelledby="transparency-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">TRANSPARENCY</div>
+        <div class="panel-title">{{ page.section_title_transparency }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
-        <h2 id="transparency-heading" class="section-title">Transparency & Disclosure</h2>
-        
+        <h2 id="transparency-heading" class="section-title">{{ page.section_subtitle_transparency }}</h2>
+
         {% if page.transparency_content %}
             {{ page.transparency_content|safe }}
         {% else %}
@@ -122,11 +122,11 @@
 <!-- Climate & Environment -->
 <section class="garden-panel" role="section" aria-labelledby="climate-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">CLIMATE & ENVIRONMENT</div>
+        <div class="panel-title">{{ page.section_title_climate }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
-        <h2 id="climate-heading" class="section-title">Climate & Environmental Considerations</h2>
-        
+        <h2 id="climate-heading" class="section-title">{{ page.section_subtitle_climate }}</h2>
+
         {% if page.climate_content %}
             {{ page.climate_content|safe }}
         {% else %}
@@ -140,11 +140,11 @@
 <!-- Reporting & Verification -->
 <section class="garden-panel" role="section" aria-labelledby="reporting-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">REPORTING AND VERIFICATION</div>
+        <div class="panel-title">{{ page.section_title_reporting }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
-        <h2 id="reporting-heading" class="section-title">Reporting and Verification</h2>
-        
+        <h2 id="reporting-heading" class="section-title">{{ page.section_subtitle_reporting }}</h2>
+
         {% if page.reporting_verification_content %}
             {{ page.reporting_verification_content|safe }}
         {% else %}
@@ -159,11 +159,11 @@
 <!-- Additional Information -->
 <section class="garden-panel" role="section" aria-labelledby="additional-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">ADDITIONAL INFORMATION</div>
+        <div class="panel-title">{{ page.section_title_additional }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
-        <h2 id="additional-heading" class="section-title">Additional Information</h2>
-        
+        <h2 id="additional-heading" class="section-title">{{ page.section_subtitle_additional }}</h2>
+
         {% if page.additional_content %}
             {{ page.additional_content|safe }}
         {% else %}
@@ -190,26 +190,26 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
-            
+
             if (targetElement) {
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
-                
+
                 // Set focus for accessibility
                 targetElement.setAttribute('tabindex', '-1');
                 targetElement.focus();
             }
         });
     });
-    
+
     // Add keyboard navigation for DDQ questions
     const ddqQuestions = document.querySelectorAll('.ddq-question');
     ddqQuestions.forEach(question => {
         // Make questions focusable
         question.setAttribute('tabindex', '0');
-        
+
         // Add expand/collapse functionality
         const header = question.querySelector('h3');
         if (header) {
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-    
+
     // Track external link clicks for analytics
     const externalLinks = document.querySelectorAll('a[href^="http"]');
     externalLinks.forEach(link => {
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add analytics tracking here if needed
         });
     });
-    
+
     // Add print-friendly behavior
     window.addEventListener('beforeprint', function() {
         // Expand all DDQ answers for printing

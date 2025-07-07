@@ -5,70 +5,125 @@
 
 {% block content %}
 <div class="garden-container">
-    <!-- Hero Section -->
-    <section class="garden-panel" role="banner" aria-labelledby="contact-heading">
-        <div class="panel-header">CONTACT US</div>
-        <div class="panel-content">
-            <h1 id="contact-heading" class="hero-title">{{ page.title }}</h1>
-            {% if page.intro_text %}
-                <div class="hero-description">
-                    {{ page.intro_text|richtext }}
+    <div class="contact-page-layout">
+        <!-- Main Content -->
+        <div class="contact-main-content">
+            <!-- Hero Section -->
+            <section class="garden-panel" role="banner" aria-labelledby="contact-heading">
+                <div class="panel-header">CONTACT US</div>
+                <div class="panel-content">
+                    <h1 id="contact-heading" class="hero-title">{{ page.title }}</h1>
+                    {% if page.intro_text %}
+                        <div class="hero-description">
+                            {{ page.intro_text|richtext }}
+                        </div>
+                    {% endif %}
                 </div>
-            {% endif %}
-        </div>
-    </section>
+            </section>
 
-    <!-- Contact Form Section -->
-    <section class="garden-panel">
-        <div class="panel-header">SEND MESSAGE</div>
-        <div class="panel-content">
-            {% if page.form_description %}
-                <div class="form-description">
-                    {{ page.form_description|richtext }}
-                </div>
-            {% endif %}
-            
-            <!-- Include the HTMX contact form -->
-            {% include 'public_site/forms/contact_form_htmx.html' %}
-        </div>
-    </section>
+            <!-- Contact Form Section -->
+            <section class="garden-panel">
+                <div class="panel-header">SEND MESSAGE</div>
+                <div class="panel-content">
+                    {% if page.form_description %}
+                        <div class="form-description">
+                            {{ page.form_description|richtext }}
+                        </div>
+                    {% endif %}
 
-    <!-- Contact Information -->
-    <section class="garden-panel">
-        <div class="panel-header">CONTACT INFORMATION</div>
-        <div class="panel-content">
-            <div class="contact-info-grid">
-                <div class="contact-item">
-                    <div class="contact-label">EMAIL:</div>
-                    <a href="mailto:hello@ethicic.com" class="contact-link">
-                        hello@ethicic.com
-                    </a>
+                    <!-- Include the HTMX contact form -->
+                    {% include 'public_site/forms/contact_form_htmx.html' %}
                 </div>
-                
-                <div class="contact-item">
-                    <div class="contact-label">PHONE:</div>
-                    <a href="tel:+13476259000" class="contact-link">
-                        +1 347 625 9000
-                    </a>
+            </section>
+
+            <!-- Contact Information -->
+            <section class="garden-panel">
+                <div class="panel-header">{{ page.contact_section_title }}</div>
+                <div class="panel-content">
+                    <div class="contact-info-grid">
+                        <div class="contact-item">
+                            <div class="contact-label">EMAIL:</div>
+                            <a href="mailto:{{ page.contact_email }}" class="contact-link">
+                                {{ page.contact_email }}
+                            </a>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-label">PHONE:</div>
+                            <a href="tel:{{ page.contact_phone|cut:' '|cut:'-' }}" class="contact-link">
+                                {{ page.contact_phone }}
+                            </a>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-label">ADDRESS:</div>
+                            <div class="contact-value">{{ page.contact_address }}</div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-label">BUSINESS HOURS:</div>
+                            <div class="contact-value">{{ page.business_hours }}</div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="contact-item">
-                    <div class="contact-label">ADDRESS:</div>
-                    <div class="contact-value">90 N 400 E, Provo, UT 84606</div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-label">BUSINESS HOURS:</div>
-                    <div class="contact-value">Monday - Friday, 9:00 AM - 5:00 PM MT</div>
+            </section>
+        </div>
+
+        <!-- Consultation Sidebar -->
+        {% if page.show_consultation_sidebar %}
+        <aside class="consultation-sidebar">
+            <div class="garden-panel">
+                <div class="panel-header">{{ page.consultation_sidebar_title }}</div>
+                <div class="panel-content">
+                    {{ page.consultation_sidebar_description|richtext }}
+
+                    <div class="sidebar-action">
+                        <a href="{{ page.consultation_sidebar_button_url }}" class="garden-action primary">
+                            {{ page.consultation_sidebar_button_text }}
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </aside>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
 
 {% block extra_css %}
 <style>
+    .contact-page-layout {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1fr;
+    }
+
+    .contact-main-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .consultation-sidebar {
+        position: sticky;
+        top: 2rem;
+        height: fit-content;
+    }
+
+    .consultation-sidebar .garden-panel {
+        background: var(--color-surface-variant);
+        border: 2px solid var(--color-primary);
+    }
+
+    .sidebar-action {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .sidebar-action .garden-action {
+        width: 100%;
+    }
+
     .contact-info-grid {
         display: grid;
         gap: 2rem;
@@ -112,6 +167,12 @@
     @media (min-width: 768px) {
         .contact-info-grid {
             grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .contact-page-layout {
+            grid-template-columns: 2fr 1fr;
         }
     }
 </style>

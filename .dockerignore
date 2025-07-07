@@ -61,3 +61,42 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+/tmp/
+temp/
+
+# Development/Test files
+check-favicons.sh
+check_deleted_content.py
+clean_wordpress_formatting.py
+cleanup_*.py
+cleanup_*.sql
+delete_orphaned_content.sql
+generate_*.py
+import_wordpress_content.py
+quick_*.py
+wordpress-*.xml
+public_site/debug_view.py
+public_site/inline_test_view.py
+templates/public_site/debug_*.html
+templates/public_site/inline_test.html
+templates/public_site/test_*.html
+
+# Documentation
+*.md
+docs/
+tests/
+
+# Build artifacts
+build/
+dist/
+*.tar.gz
+
+# CI/CD
+.gitlab-ci.yml
+.travis.yml
+Makefile
+
+# Docker files (don't need these in the image)
+Dockerfile*
+docker-compose*.yml
+.dockerignore

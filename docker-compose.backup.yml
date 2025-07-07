@@ -1,16 +1,13 @@
 version: '3.8'
 
 services:
-  # Main web application with build cache optimization
+  # Main web application
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      cache_from:
-        - ethicic-public:latest
-        - ethicic-public:builder
+    build: .
     image: ethicic-public:latest
     container_name: ethicic-public-app
+    # ports:
+    #   - "8080:8080"
     environment:
       - DJANGO_SETTINGS_MODULE=ethicic.settings
       - SECRET_KEY=${SECRET_KEY}
@@ -19,6 +16,7 @@ services:
       - UBI_DATABASE_URL=${UBI_DATABASE_URL}
       - USE_SQLITE=false
       - DATABASE_URL=${DATABASE_URL}
+      # - REDIS_URL=${REDIS_URL}  # Temporarily disabled for homepage creation
       - EMAIL_HOST=${EMAIL_HOST}
       - EMAIL_PORT=${EMAIL_PORT}
       - EMAIL_HOST_USER=${EMAIL_HOST_USER}
@@ -40,12 +38,6 @@ services:
       start_period: 40s
     networks:
       - ethicic-network
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-        reservations:
-          memory: 256M
 
   # Cloudflare Tunnel
   cloudflared:
@@ -59,16 +51,17 @@ services:
       - ethicic-network
     depends_on:
       - app
-    deploy:
-      resources:
-        limits:
-          memory: 128M
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:20241/metrics", "||", "exit", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 
-  # Redis cache with persistence
+  # Redis cache (optional but recommended)
   redis:
     image: redis:7-alpine
     container_name: ethicic-redis
-    command: redis-server --save 60 1 --loglevel warning
     ports:
       - "6379:6379"
     volumes:
@@ -81,18 +74,11 @@ services:
       interval: 30s
       timeout: 3s
       retries: 3
-    deploy:
-      resources:
-        limits:
-          memory: 128M
 
 volumes:
   static_files:
-    driver: local
   media_files:
-    driver: local
   redis_data:
-    driver: local
 
 networks:
   ethicic-network:

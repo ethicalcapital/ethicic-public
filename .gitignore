@@ -93,3 +93,4 @@ wordpress-exportxml.xml
 
 # Temporary scripts
 test_*.py
+.backup

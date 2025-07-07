@@ -27,65 +27,41 @@
 
         <!-- Contact Information -->
         <section class="contact-section garden-panel">
-            <div class="panel-header">Schedule Your Consultation</div>
+            <div class="panel-header">{{ page.schedule_section_title }}</div>
             <div class="panel-content">
                 <div class="intro-text">
-                    <p>Choose the conversation type that best fits your situation. All consultations are complimentary and without obligation. Note: We can't promise prompt email responses, but we're great at keeping scheduled appointments!</p>
+                    {{ page.schedule_intro_text|safe }}
                 </div>
-                
+
                 <div class="consultation-options">
+                    {% for consultation_type in page.consultation_types %}
                     <div class="consultation-type">
-                        <h3>🏠 Retail Investors</h3>
-                        <p>Individual investors looking to align their personal portfolios with their values</p>
-                        <a href="https://tidycal.com/ecic/discovery" target="_blank" rel="noopener noreferrer" class="garden-action primary">
-                            Schedule Discovery Call
+                        <h3>{{ consultation_type.value.icon }} {{ consultation_type.value.title }}</h3>
+                        <p>{{ consultation_type.value.description }}</p>
+                        <a href="{{ consultation_type.value.button_url }}" target="_blank" rel="noopener noreferrer" class="garden-action primary">
+                            {{ consultation_type.value.button_text }}
                         </a>
                     </div>
-                    
-                    <div class="consultation-type">
-                        <h3>💼 RIA & Advisers</h3>
-                        <p>Financial advisers interested in our investment strategies for their clients</p>
-                        <a href="https://tidycal.com/ecic/adviser" target="_blank" rel="noopener noreferrer" class="garden-action primary">
-                            Schedule Adviser Meeting
-                        </a>
-                    </div>
-                    
-                    <div class="consultation-type">
-                        <h3>🏢 Institutional</h3>
-                        <p>Institutional investors, foundations, and large-scale investment opportunities</p>
-                        <a href="https://tidycal.com/ecic/institutional" target="_blank" rel="noopener noreferrer" class="garden-action primary">
-                            Schedule Institutional Call
-                        </a>
-                    </div>
+                    {% endfor %}
                 </div>
-                
+
                 <div class="alternative-contact">
-                    <p>Prefer to start with an email? <a href="/contact/" class="garden-link">Use our contact form</a> and we'll get back to you when we can.</p>
+                    {{ page.alternative_contact_text|safe }}
                 </div>
             </div>
         </section>
 
         <!-- What to Expect -->
         <section class="expectations garden-panel">
-            <div class="panel-header">What to Expect</div>
+            <div class="panel-header">{{ page.expectations_section_title }}</div>
             <div class="panel-content">
                 <div class="expectation-grid">
+                    {% for expectation in page.expectations %}
                     <div class="expectation-item">
-                        <h4>Initial Conversation</h4>
-                        <p>We'll discuss your values, investment goals, and current portfolio situation.</p>
+                        <h4>{{ expectation.value.title }}</h4>
+                        <p>{{ expectation.value.description }}</p>
                     </div>
-                    <div class="expectation-item">
-                        <h4>Ethical Alignment Review</h4>
-                        <p>We'll review how our screening criteria align with your personal values.</p>
-                    </div>
-                    <div class="expectation-item">
-                        <h4>Strategy Discussion</h4>
-                        <p>We'll explore which of our strategies might be the best fit for your needs.</p>
-                    </div>
-                    <div class="expectation-item">
-                        <h4>Next Steps</h4>
-                        <p>If we're a good fit, we'll outline the onboarding process and timeline.</p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
@@ -94,8 +70,7 @@
         <section class="no-obligation garden-panel">
             <div class="panel-content">
                 <p class="disclaimer">
-                    <strong>No obligation consultation.</strong> We believe in finding the right fit for both parties. 
-                    There's no pressure to move forward, and we're happy to answer questions even if we're not the right match.
+                    <strong>{{ page.disclaimer_title }}</strong> {{ page.disclaimer_text|safe }}
                 </p>
             </div>
         </section>

@@ -17,7 +17,7 @@
             <p class="hero-subtitle">
                 {{ page.hero_subtitle|default:"Scalable research capabilities and proven methodologies to help institutions implement ethical investing strategies at scale" }}
             </p>
-            
+
             <div class="hero-description">
                 {{ page.hero_description|default:"As institutional investors increasingly prioritize ESG and ethical considerations, we provide the specialized research, proven strategies, and operational infrastructure you need to implement ethical investing at institutional scale."|safe }}
             </div>
@@ -27,31 +27,18 @@
     <!-- What We Offer Section -->
     <section class="garden-panel" role="main" aria-labelledby="services-heading">
         <div class="garden-panel__header">
-            <div class="panel-title">WHAT WE OFFER INSTITUTIONS</div>
+            <div class="panel-title">{{ page.offer_section_title }}</div>
         </div>
         <div class="garden-panel__content">
-            <p class="section-intro">We provide institutions with proven ethical investment strategies that can be implemented at scale using liquid securities. Our approach focuses on delivering strategies that meet fiduciary standards while achieving alignment with institutional values and stakeholder expectations.</p>
-            
+            <p class="section-intro">{{ page.offer_section_intro|safe }}</p>
+
             <div class="services-grid">
+                {% for service in page.services %}
                 <div class="service-card">
-                    <h3 class="service-title">PROVEN STRATEGIES</h3>
-                    <p>Three distinct <a href="/strategies/" class="text-link">investment strategies</a> with proprietary <a href="/process/" class="text-link">screening methodologies</a> that exclude 57% of the S&P 500 based on rigorous ethical criteria.</p>
+                    <h3 class="service-title">{{ service.value.title }}</h3>
+                    {{ service.value.description|safe }}
                 </div>
-                
-                <div class="service-card">
-                    <h3 class="service-title">LIQUID IMPLEMENTATION</h3>
-                    <p>Strategies implemented using liquid securities with institutional-grade diversification, risk management, and performance attribution capabilities.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3 class="service-title">DIRECT CIO ACCESS</h3>
-                    <p>Direct access to our Chief Investment Officer for strategy discussions, implementation support, and ongoing institutional partnership.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3 class="service-title">COMMUNITY ENGAGEMENT</h3>
-                    <p>We're committed to meeting with communities, stakeholder groups, and institutional committees to discuss ethical investing approaches and implementation strategies.</p>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -59,41 +46,18 @@
     <!-- Partnership Benefits Section -->
     <section class="garden-panel" role="complementary" aria-labelledby="benefits-heading">
         <div class="garden-panel__header">
-            <div class="panel-title">WHY INSTITUTIONS CHOOSE US</div>
+            <div class="panel-title">{{ page.benefits_section_title }}</div>
         </div>
         <div class="garden-panel__content">
-            <p class="section-intro">Leading institutions partner with us because we deliver proven strategies, transparent methodology, and direct access to decision-makers that institutional fiduciary standards demand.</p>
-            
+            <p class="section-intro">{{ page.benefits_section_intro|safe }}</p>
+
             <div class="benefits-list">
+                {% for benefit in page.benefits %}
                 <div class="benefit-item">
-                    <h4>Transparent Methodology</h4>
-                    <p>Our <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener" class="text-link">screening criteria is open source</a>, providing complete transparency and documentation for institutional oversight committees.</p>
+                    <h4>{{ benefit.value.title }}</h4>
+                    {{ benefit.value.description|safe }}
                 </div>
-                
-                <div class="benefit-item">
-                    <h4>Investment Capacity</h4>
-                    <p>We have excess capacity of $250+ million, implementing strategies using liquid securities that provide institutional-scale access and flexibility.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>Direct CIO Access</h4>
-                    <p>Institutions work directly with our Chief Investment Officer for strategy discussions, implementation decisions, and ongoing partnership.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>Community Engagement</h4>
-                    <p>We're committed to meeting with communities, stakeholder groups, and institutional committees to ensure alignment with institutional values and missions.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>Fiduciary Standards</h4>
-                    <p>Our systematic approach meets institutional fiduciary requirements with documented processes, audit trails, and performance attribution.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <h4>Proven Track Record</h4>
-                    <p>Since 2021, we've helped institutions implement ethical investing strategies that meet both performance and values-alignment objectives.</p>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -101,43 +65,21 @@
     <!-- Process Overview Section -->
     <section class="garden-panel" role="region" aria-labelledby="process-heading">
         <div class="garden-panel__header">
-            <div class="panel-title">OUR INSTITUTIONAL APPROACH</div>
+            <div class="panel-title">{{ page.process_section_title }}</div>
         </div>
         <div class="garden-panel__content">
             <div class="process-steps">
+                {% for step in page.process_steps %}
                 <div class="process-step">
-                    <div class="step-number">1</div>
+                    <div class="step-number">{{ step.value.step_number }}</div>
                     <div class="step-content">
-                        <h3 class="step-title">INSTITUTIONAL ASSESSMENT</h3>
-                        <p>Comprehensive evaluation of institutional requirements, existing infrastructure, stakeholder expectations, and fiduciary constraints.</p>
+                        <h3 class="step-title">{{ step.value.title }}</h3>
+                        <p>{{ step.value.description }}</p>
                     </div>
                 </div>
-
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3 class="step-title">CUSTOM STRATEGY DESIGN</h3>
-                        <p>Development of tailored ethical investing approaches that accommodate institutional scale, risk parameters, and compliance requirements.</p>
-                    </div>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3 class="step-title">INFRASTRUCTURE INTEGRATION</h3>
-                        <p>Seamless integration with existing institutional systems, including custodians, reporting platforms, and oversight frameworks.</p>
-                    </div>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3 class="step-title">ONGOING INSTITUTIONAL SUPPORT</h3>
-                        <p>Continuous research updates, performance monitoring, and stakeholder reporting to ensure ongoing alignment and oversight.</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-            
+
             <div class="process-action">
                 <a href="/process/" class="garden-action secondary">LEARN ABOUT OUR FULL PROCESS</a>
             </div>
@@ -147,32 +89,19 @@
     <!-- Scale & Capabilities Section -->
     <section class="garden-panel" role="region" aria-labelledby="scale-heading">
         <div class="garden-panel__header">
-            <div class="panel-title">INSTITUTIONAL SCALE & CAPABILITIES</div>
+            <div class="panel-title">{{ page.scale_section_title }}</div>
         </div>
         <div class="garden-panel__content">
-            <p class="section-intro">Our investment strategies and operational infrastructure are designed to support institutional-scale implementations with the rigor and transparency institutional oversight requires.</p>
-            
+            <p class="section-intro">{{ page.scale_section_intro|safe }}</p>
+
             <div class="scale-metrics">
+                {% for metric in page.scale_metrics %}
                 <div class="metric-item">
-                    <div class="metric-value">$250M+</div>
-                    <div class="metric-label">INVESTMENT CAPACITY</div>
-                    <div class="metric-description">Excess capacity available for institutional partnerships</div>
+                    <div class="metric-value">{{ metric.value.value }}</div>
+                    <div class="metric-label">{{ metric.value.label }}</div>
+                    <div class="metric-description">{{ metric.value.description }}</div>
                 </div>
-                <div class="metric-item">
-                    <div class="metric-value">57%</div>
-                    <div class="metric-label">S&P 500 EXCLUDED</div>
-                    <div class="metric-description">Comprehensive ethical screening applied systematically</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">DIRECT</div>
-                    <div class="metric-label">CIO ACCESS</div>
-                    <div class="metric-description">Work directly with our Chief Investment Officer</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">LIQUID</div>
-                    <div class="metric-label">SECURITIES</div>
-                    <div class="metric-description">Implementation using liquid securities for flexibility</div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -180,66 +109,29 @@
     <!-- Due Diligence Resources -->
     <section class="garden-panel ddq-resources" role="complementary" aria-labelledby="ddq-heading">
         <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">DUE DILIGENCE RESOURCES</div>
+            <div class="panel-title">{{ page.ddq_section_title }}</div>
         </div>
         <div class="garden-panel__content garden-panel-content">
-            <h2 id="ddq-heading" class="section-title">Documentation for Institutional Partners</h2>
-            <p class="section-description">Comprehensive documentation to support your due diligence process and institutional requirements.</p>
-            
+            <h2 id="ddq-heading" class="section-title">{{ page.ddq_section_subtitle }}</h2>
+            <p class="section-description">{{ page.ddq_section_description|safe }}</p>
+
             <div class="resources-grid">
+                {% for category in page.resource_categories %}
                 <div class="resource-category">
-                    <h3>ESG & Responsible Investment</h3>
+                    <h3>{{ category.value.title }}</h3>
                     <div class="resource-list">
-                        <a href="/pri-ddq/" class="resource-link">
-                            <span class="resource-icon">🤝</span>
+                        {% for resource in category.value.resources %}
+                        <a href="{{ resource.url }}" class="resource-link"{% if resource.url|slice:":4" == "http" %} target="_blank" rel="noopener"{% endif %}>
+                            <span class="resource-icon">{{ resource.icon }}</span>
                             <div class="resource-info">
-                                <div class="resource-title">PRI Due Diligence Questionnaire</div>
-                                <div class="resource-desc">Comprehensive responses to Principles for Responsible Investment standard questions</div>
+                                <div class="resource-title">{{ resource.title }}</div>
+                                <div class="resource-desc">{{ resource.description }}</div>
                             </div>
                         </a>
-                        <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" class="resource-link" target="_blank" rel="noopener">
-                            <span class="resource-icon">🔍</span>
-                            <div class="resource-info">
-                                <div class="resource-title">Open-Source Screening Policy</div>
-                                <div class="resource-desc">Complete ethical screening methodology with version control</div>
-                            </div>
-                        </a>
-                        <a href="/process/" class="resource-link">
-                            <span class="resource-icon">⚙️</span>
-                            <div class="resource-info">
-                                <div class="resource-title">Investment Process Documentation</div>
-                                <div class="resource-desc">Detailed four-step investment methodology and governance</div>
-                            </div>
-                        </a>
+                        {% endfor %}
                     </div>
                 </div>
-                
-                <div class="resource-category">
-                    <h3>Regulatory & Compliance</h3>
-                    <div class="resource-list">
-                        <a href="/disclosures/form-adv/" class="resource-link">
-                            <span class="resource-icon">📑</span>
-                            <div class="resource-info">
-                                <div class="resource-title">Form ADV</div>
-                                <div class="resource-desc">SEC-required investment adviser disclosure and regulatory filing</div>
-                            </div>
-                        </a>
-                        <a href="/disclosures/" class="resource-link">
-                            <span class="resource-icon">⚠️</span>
-                            <div class="resource-info">
-                                <div class="resource-title">Risk Disclosures</div>
-                                <div class="resource-desc">Important risk disclosures and legal notices</div>
-                            </div>
-                        </a>
-                        <a href="/strategies/" class="resource-link">
-                            <span class="resource-icon">📊</span>
-                            <div class="resource-info">
-                                <div class="resource-title">Strategy Performance Data</div>
-                                <div class="resource-desc">Detailed performance reporting and strategy documentation</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -247,28 +139,28 @@
     <!-- Call to Action Section -->
     <section class="garden-panel cta-panel" role="complementary" aria-labelledby="cta-heading">
         <div class="garden-panel__header">
-            <div class="panel-title">READY TO PARTNER?</div>
+            <div class="panel-title">{{ page.cta_section_title }}</div>
         </div>
         <div class="garden-panel__content">
             <h2 id="cta-heading" class="cta-title">
-                {{ page.cta_title|default:"Let's discuss how we can support your institutional objectives" }}
+                {{ page.cta_title }}
             </h2>
-            
+
             <div class="cta-description">
-                {{ page.cta_description|default:"Join leading institutions who trust our systematic approach to help them implement ethical investing strategies that meet both fiduciary standards and stakeholder expectations."|safe }}
+                {{ page.cta_description|safe }}
             </div>
-            
+
             <div class="cta-actions">
                 <!-- Primary CTA - Schedule Consultation -->
-                <button onclick="window.open('https://tidycal.com/ecic/institutional', '_blank')" 
+                <button onclick="window.open('{{ page.cta_primary_url }}', '_blank')"
                         class="garden-action institutional-cta-primary">
-                    SCHEDULE INSTITUTIONAL CONSULTATION
+                    {{ page.cta_primary_text }}
                 </button>
-                
+
                 <!-- Secondary CTA - Send Message -->
-                <button onclick="window.location.href='/contact/'" 
+                <button onclick="window.location.href='{{ page.cta_secondary_url }}'"
                         class="garden-action institutional-cta-secondary">
-                    SEND A MESSAGE
+                    {{ page.cta_secondary_text }}
                 </button>
             </div>
         </div>
@@ -337,7 +229,7 @@
 // Add hover effects and force text colors
 document.addEventListener('DOMContentLoaded', function() {
     const ctaButtons = document.querySelectorAll('.cta-actions button');
-    
+
     ctaButtons.forEach(function(button, index) {
         // Force initial colors
         if (index === 0) { // Schedule button
@@ -347,11 +239,11 @@ document.addEventListener('DOMContentLoaded', function() {
             button.style.color = '#553C9A';
             button.style.background = 'transparent';
         }
-        
+
         button.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-3px)';
             this.style.boxShadow = '0 8px 20px rgba(0,0,0,0.4)';
-            
+
             if (this.textContent.includes('SCHEDULE')) {
                 this.style.background = '#442a8a';
                 this.style.color = '#ffffff';
@@ -360,11 +252,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.color = '#ffffff';
             }
         });
-        
+
         button.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
             this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-            
+
             // Reset to original styles with forced colors
             if (this.textContent.includes('SCHEDULE')) {
                 this.style.background = '#553C9A';
@@ -375,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Additional color enforcement every 100ms for 3 seconds
     let colorEnforcementCount = 0;
     const colorInterval = setInterval(function() {
@@ -388,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(colorInterval);
         }
     }, 100);
-    
+
     console.log('CTA button hover effects and color enforcement applied');
 });
 </script>

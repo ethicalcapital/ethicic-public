@@ -29,7 +29,7 @@
             <div class="articles-container">
                 <!-- Media Articles Content -->
                 <div class="articles-main">
-                
+
                 {% if page.media_items.all %}
                     <div class="articles-list" id="articles-container">
                         {% for item in page.media_items.all|slice:":6" %}
@@ -41,7 +41,7 @@
                                             <span class="featured-badge">FEATURED</span>
                                         </div>
                                     {% endif %}
-                                    
+
                                     <div class="article-list-meta" class="full-width-important">
                                         <div class="article-list-tags" class="full-width-important">
                                             {% if item.publication %}
@@ -52,7 +52,7 @@
                                             {% endif %}
                                         </div>
                                     </div>
-                                    
+
                                     <h2 class="article-list-title" class="full-width-important">
                                         {% if item.external_url %}
                                             <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer" class="block-full-important">{{ item.title }}</a>
@@ -60,13 +60,13 @@
                                             <span class="block-full-important">{{ item.title }}</span>
                                         {% endif %}
                                     </h2>
-                                    
+
                                     {% if item.description %}
                                         <div class="article-list-excerpt" class="full-width-important">
                                             {{ item.description|striptags|truncatewords:25 }}
                                         </div>
                                     {% endif %}
-                                    
+
                                     {% if item.external_url %}
                                         <div class="article-list-actions" class="full-width-important">
                                             <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer" class="garden-action secondary small">READ ARTICLE</a>
@@ -77,7 +77,7 @@
                         </article>
                         {% endfor %}
                     </div>
-                    
+
                     <!-- HTMX Infinite Scroll Trigger -->
                     {% if page.media_items.all.count > 6 %}
                     <div id="load-more-trigger"
@@ -90,7 +90,7 @@
                         <!-- This div triggers loading when it comes into view -->
                     </div>
                     {% endif %}
-                    
+
                     <!-- Loading indicator -->
                     <div id="loading-indicator" class="loading-indicator htmx-indicator">
                         <div class="loading-spinner">⟳</div>
@@ -98,41 +98,45 @@
                     </div>
                 {% else %}
                     <div class="no-articles">
-                        <h3>NO MEDIA COVERAGE YET</h3>
-                        <p>For press inquiries, please <a href="/contact-form/">contact us directly</a>.</p>
+                        <h3>{{ page.empty_state_title }}</h3>
+                        {{ page.empty_state_message|safe }}
                     </div>
                 {% endif %}
             </div>
-            
+
             <!-- Sidebar -->
             <aside class="blog-sticky-sidebar">
+                {% if page.sidebar_interview_show %}
                 <div class="sidebar-section">
                     <div class="garden-panel">
                         <div class="garden-panel__header garden-panel-header">
-                            <div class="panel-title">SCHEDULE INTERVIEW</div>
+                            <div class="panel-title">{{ page.sidebar_interview_title }}</div>
                         </div>
                         <div class="garden-panel__content garden-panel-content">
-                            <p class="sidebar-description">Book a time to speak with our Chief Investment Officer about sustainable investing and our mission.</p>
+                            <div class="sidebar-description">{{ page.sidebar_interview_description|safe }}</div>
                             <div class="contact-method">
-                                <a href="https://tidycal.com/ecic/interview" target="_blank" rel="noopener noreferrer" class="garden-action primary full-width">BOOK INTERVIEW</a>
+                                <a href="{{ page.sidebar_interview_button_url }}" target="_blank" rel="noopener noreferrer" class="garden-action primary full-width">{{ page.sidebar_interview_button_text }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+                {% endif %}
+
+                {% if page.sidebar_contact_show %}
                 <div class="sidebar-section">
                     <div class="garden-panel">
                         <div class="garden-panel__header garden-panel-header">
-                            <div class="panel-title">MEDIA CONTACT</div>
+                            <div class="panel-title">{{ page.sidebar_contact_title }}</div>
                         </div>
                         <div class="garden-panel__content garden-panel-content">
-                            <p class="sidebar-description">For press inquiries and additional information.</p>
+                            <div class="sidebar-description">{{ page.sidebar_contact_description|safe }}</div>
                             <div class="contact-method">
-                                <a href="/contact/" class="garden-action secondary full-width">CONTACT US</a>
+                                <a href="{{ page.sidebar_contact_button_url }}" class="garden-action secondary full-width">{{ page.sidebar_contact_button_text }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endif %}
             </aside>
         </div>
     </div>
@@ -342,16 +346,16 @@
     .media-page .articles-container {
         grid-template-columns: 1fr;
     }
-    
+
     .media-page .blog-sticky-sidebar {
         position: static;
         margin-top: 3rem;
     }
-    
+
     .media-page .press-kit-actions {
         flex-direction: column;
     }
-    
+
     .media-page .press-kit-actions .garden-action {
         width: 100%;
         text-align: center;
@@ -367,16 +371,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Comprehensive layout refresh that matches template inline styles
     function refreshLayout() {
         console.log('🔧 Refreshing Media layout...');
-        
+
         // Apply the EXACT same styles as in the template
-        
+
         // 1. Article list items - match template: class="full-width-important"
         const articles = document.querySelectorAll('.article-list-item');
         articles.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
             el.style.setProperty('max-width', 'none', 'important');
         });
-        
+
         // 2. Article content - match template: class="article-content-flex"
         const articleContents = document.querySelectorAll('.article-list-content');
         articleContents.forEach(el => {
@@ -384,7 +388,7 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.setProperty('display', 'flex', 'important');
             el.style.setProperty('gap', 'var(--space-6)', 'important');
         });
-        
+
         // 3. Article text containers - match template: class="article-text-full"
         const articleTexts = document.querySelectorAll('.article-list-text');
         articleTexts.forEach(el => {
@@ -393,14 +397,14 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.setProperty('max-width', 'none', 'important');
             el.style.setProperty('min-width', '0', 'important');
         });
-        
+
         // 4. Article titles - match template: class="full-width-important"
         const articleTitles = document.querySelectorAll('.article-list-title');
         articleTitles.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
             el.style.setProperty('max-width', 'none', 'important');
         });
-        
+
         // 5. Article title links - match template: class="block-full-important"
         const titleLinks = document.querySelectorAll('.article-list-title a, .article-list-title span');
         titleLinks.forEach(el => {
@@ -408,40 +412,40 @@ document.addEventListener('DOMContentLoaded', function() {
             el.style.setProperty('max-width', 'none', 'important');
             el.style.setProperty('display', 'block', 'important');
         });
-        
+
         // 6. Article excerpts - match template: class="full-width-important"
         const excerpts = document.querySelectorAll('.article-list-excerpt');
         excerpts.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
             el.style.setProperty('max-width', 'none', 'important');
         });
-        
+
         // 7. Container elements
         const containers = document.querySelectorAll('.articles-list, .articles-main');
         containers.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
             el.style.setProperty('max-width', 'none', 'important');
         });
-        
+
         // 8. Media-specific elements
         const metas = document.querySelectorAll('.article-list-meta, .article-list-tags, .article-list-actions');
         metas.forEach(el => {
             el.style.setProperty('width', '100%', 'important');
         });
-        
+
         console.log('✅ Media layout refreshed with inline styles applied');
     }
-    
+
     // Apply initial refresh
     refreshLayout();
-    
+
     // Periodic layout check for media content
     setInterval(() => {
         const allArticles = document.querySelectorAll('.article-list-item');
         const needsRefresh = Array.from(allArticles).some(article => {
             const content = article.querySelector('.article-list-content');
             const text = article.querySelector('.article-list-text');
-            
+
             // Check if any article doesn't have the proper flex layout
             if (content && content.style.display !== 'flex') {
                 return true;
@@ -451,13 +455,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             return false;
         });
-        
+
         if (needsRefresh) {
             console.log('🔄 Periodic Media layout check - refreshing layout');
             refreshLayout();
         }
     }, 2000); // Check every 2 seconds
-    
+
     // Make entire article containers clickable
     function makeArticlesClickable() {
         const articles = document.querySelectorAll('.article-list-item:not([data-clickable])');
@@ -468,27 +472,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
                     return;
                 }
-                
+
                 const link = this.querySelector('.article-list-title a');
                 if (link) {
                     window.open(link.href, '_blank', 'noopener noreferrer');
                 }
             });
-            
+
             // Add hover effects
             article.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-2px)';
             });
-            
+
             article.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0)';
             });
         });
     }
-    
+
     // Initialize clickable articles
     makeArticlesClickable();
-    
+
     // Set up MutationObserver to watch for new media articles being added
     const mediaContainer = document.querySelector('#articles-container');
     if (mediaContainer) {
@@ -503,13 +507,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             });
-            
+
             if (newArticlesAdded) {
                 console.log('🔍 New media articles detected by MutationObserver');
                 // Apply fixes immediately
                 refreshLayout();
                 makeArticlesClickable();
-                
+
                 // And again after a delay to ensure they stick
                 setTimeout(() => {
                     refreshLayout();
@@ -517,32 +521,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 50);
             }
         });
-        
+
         // Start observing the media container
         mutationObserver.observe(mediaContainer, {
             childList: true,
             subtree: true
         });
     }
-    
+
     // Function to apply comprehensive inline styles to newly added media articles
     function applyInlineStylesToNewArticles(articles, pageNumber) {
         articles.forEach((article, index) => {
             // Apply inline styles directly to each new article
             const articleId = `new-media-article-${pageNumber}-${index}`;
             article.setAttribute('data-new-article', articleId);
-            
+
             // Force the exact same inline styles as the template
             article.style.setProperty('width', '100%', 'important');
             article.style.setProperty('max-width', 'none', 'important');
-            
+
             const content = article.querySelector('.article-list-content');
             if (content) {
                 content.style.setProperty('width', '100%', 'important');
                 content.style.setProperty('display', 'flex', 'important');
                 content.style.setProperty('gap', 'var(--space-6)', 'important');
             }
-            
+
             const text = article.querySelector('.article-list-text');
             if (text) {
                 text.style.setProperty('flex', '1', 'important');
@@ -550,12 +554,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 text.style.setProperty('max-width', 'none', 'important');
                 text.style.setProperty('min-width', '0', 'important');
             }
-            
+
             const title = article.querySelector('.article-list-title');
             if (title) {
                 title.style.setProperty('width', '100%', 'important');
                 title.style.setProperty('max-width', 'none', 'important');
-                
+
                 const titleLink = title.querySelector('a, span');
                 if (titleLink) {
                     titleLink.style.setProperty('width', '100%', 'important');
@@ -563,42 +567,42 @@ document.addEventListener('DOMContentLoaded', function() {
                     titleLink.style.setProperty('display', 'block', 'important');
                 }
             }
-            
+
             const excerpt = article.querySelector('.article-list-excerpt');
             if (excerpt) {
                 excerpt.style.setProperty('width', '100%', 'important');
                 excerpt.style.setProperty('max-width', 'none', 'important');
             }
-            
+
             const meta = article.querySelector('.article-list-meta');
             if (meta) {
                 meta.style.setProperty('width', '100%', 'important');
             }
-            
+
             const actions = article.querySelector('.article-list-actions');
             if (actions) {
                 actions.style.setProperty('width', '100%', 'important');
             }
         });
     }
-    
+
     // Enhanced HTMX support - automatically apply layout fixes when HTMX loads content
     document.body.addEventListener('htmx:afterSwap', function(evt) {
         console.log('🔄 HTMX content loaded - applying media layout fixes');
         refreshLayout();
         makeArticlesClickable();
-        
+
         // Apply again after a delay to ensure styles stick
         setTimeout(() => {
             refreshLayout();
             console.log('🔄 HTMX delayed layout refresh complete');
         }, 100);
     });
-    
+
     // Global functions for external use
     window.refreshMediaLayout = refreshLayout;
     window.applyMediaInlineStyles = applyInlineStylesToNewArticles;
-    
+
     console.log('✅ Media page layout management system initialized');
 });
 </script>

@@ -29,7 +29,7 @@
     <div class="garden-panel__content garden-panel-content">
         <h2 id="strategies-heading" class="section-title">Available Investment Strategies</h2>
         <p class="strategies-intro">Our comprehensive suite of ethical investment strategies, each designed to meet specific investor objectives while maintaining our commitment to values-based investing.</p>
-        
+
         <div class="solutions-grid">
             {% for strategy in strategies %}
             <div class="solution-card strategy-card" role="article" aria-labelledby="strategy-{{ strategy.id }}-heading" data-strategy="{{ strategy.slug }}">
@@ -45,12 +45,12 @@
                         <span class="strategy-label">{{ strategy.strategy_label }}</span>
                     {% endif %}
                 </div>
-                
+
                 <div class="card-content">
                     {% if strategy.strategy_subtitle %}
                         <p class="card-description"><strong>{{ strategy.strategy_subtitle }}</strong></p>
                     {% endif %}
-                    
+
                     <!-- Performance Stats -->
                     <div class="strategy-stats">
                         <div class="stat-row">
@@ -70,7 +70,7 @@
                             <span class="stat-value stat-positive">{{ strategy.since_inception_return|default:"--" }}</span>
                         </div>
                     </div>
-                    
+
                     <!-- Strategy Details -->
                     <ul class="feature-list">
                         {% if strategy.risk_level %}
@@ -90,7 +90,7 @@
                         {% endif %}
                     </ul>
                 </div>
-                
+
                 <div class="card-footer">
                     <a href="{{ strategy.url_path }}" class="garden-action primary" aria-label="Learn more about {{ strategy.title }}">VIEW DETAILS →</a>
                 </div>
@@ -121,7 +121,7 @@
         {% if page.comparison_description %}
             <div class="comparison-intro">{{ page.comparison_description|safe }}</div>
         {% endif %}
-        
+
         <div class="comparison-table">
             <div class="comparison-header">
                 <div class="comparison-label">STRATEGY</div>
@@ -131,7 +131,7 @@
                 <div class="comparison-label">RISK LEVEL</div>
                 <div class="comparison-label">HOLDINGS</div>
             </div>
-            
+
             {% for strategy in strategies %}
             <div class="comparison-row">
                 <div class="comparison-strategy">
@@ -153,39 +153,24 @@
 <!-- Strategy Resources -->
 <section class="garden-panel" role="region" aria-labelledby="resources-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">STRATEGY RESOURCES</div>
+        <div class="panel-title">{{ page.resources_section_title }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
-        <h2 id="resources-heading" class="section-title">Documentation & Research</h2>
-        <p>Learn more about our investment approach, methodology, and compliance practices.</p>
-        
+        <h2 id="resources-heading" class="section-title">{{ page.resources_section_subtitle }}</h2>
+        {{ page.resources_section_description|safe }}
+
         <div class="delivery-grid">
+            {% for resource in page.resources %}
             <div class="delivery-item">
-                <h3 class="delivery-title">Investment Process</h3>
-                <p>Systematic four-step approach combining quantitative analysis with ethical screening</p>
+                <h3 class="delivery-title">{{ resource.value.title }}</h3>
+                <p>{{ resource.value.description }}</p>
                 <ul class="delivery-features">
-                    <li><a href="/process/" class="resource-link">Our Investment Process</a></li>
-                    <li><a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener" class="resource-link">Ethical Screening Criteria</a></li>
+                    {% for link in resource.value.links %}
+                    <li><a href="{{ link.url }}" class="resource-link"{% if link.url|slice:":4" == "http" %} target="_blank" rel="noopener"{% endif %}>{{ link.text }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
-            
-            <div class="delivery-item">
-                <h3 class="delivery-title">Due Diligence</h3>
-                <p>Comprehensive documentation for institutional due diligence processes</p>
-                <ul class="delivery-features">
-                    <li><a href="/pri-ddq/" class="resource-link">PRI Due Diligence Questionnaire</a></li>
-                    <li><a href="/disclosures/form-adv/" class="resource-link">Form ADV</a></li>
-                </ul>
-            </div>
-            
-            <div class="delivery-item">
-                <h3 class="delivery-title">Performance & Reporting</h3>
-                <p>Transparent performance tracking and comprehensive client reporting</p>
-                <ul class="delivery-features">
-                    <li><a href="/performance/" class="resource-link">Historical Performance</a></li>
-                    <li><a href="/disclosures/" class="resource-link">All Disclosures</a></li>
-                </ul>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -193,17 +178,17 @@
 <!-- Call to Action -->
 <section class="garden-panel cta-panel" role="region" aria-labelledby="cta-heading">
     <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">GET STARTED</div>
+        <div class="panel-title">{{ page.cta_section_title }}</div>
     </div>
     <div class="garden-panel__content garden-panel-content">
         <div class="cta-content">
-            <h2 id="cta-heading" class="cta-title">Ready to Align Your Investments with Your Values?</h2>
-            <p class="cta-description">Our team is here to help you choose the strategy that best fits your financial goals and ethical principles.</p>
-            
+            <h2 id="cta-heading" class="cta-title">{{ page.cta_title }}</h2>
+            <div class="cta-description">{{ page.cta_description|safe }}</div>
+
             <div class="cta-actions">
-                <a href="/consultation/" class="garden-action primary" aria-label="Schedule a consultation to get started">SCHEDULE CONSULTATION</a>
-                <a href="/onboarding/" class="garden-action secondary" aria-label="Start the onboarding process">START ONBOARDING</a>
-                <a href="/process/" class="garden-action secondary" aria-label="Learn more about our investment process">LEARN OUR PROCESS</a>
+                {% for button in page.cta_buttons %}
+                <a href="{{ button.value.url }}" class="garden-action {{ button.value.style }}" aria-label="{{ button.value.text }}">{{ button.value.text }}</a>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -220,14 +205,14 @@
 <script>
 // Enhanced accessibility and dynamic highlighting for strategies page
 document.addEventListener('DOMContentLoaded', function() {
-    
+
     // Add keyboard navigation for strategy cards
     const strategyCards = document.querySelectorAll('.solution-card');
-    
+
     strategyCards.forEach(card => {
         // Make cards focusable
         card.setAttribute('tabindex', '0');
-        
+
         // Add keyboard event listeners
         card.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
@@ -238,39 +223,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-        
+
         // Add focus visual feedback
         card.addEventListener('focus', function() {
             this.style.borderColor = 'var(--color-primary)';
         });
-        
+
         card.addEventListener('blur', function() {
             this.style.borderColor = '';
         });
-        
+
         // Add hover effects
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-2px)';
         });
-        
+
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
         });
     });
-    
+
     // Performance comparison highlighting
     const comparisonRows = document.querySelectorAll('.comparison-row');
-    
+
     comparisonRows.forEach(row => {
         row.addEventListener('mouseenter', function() {
             this.style.background = 'var(--color-surface-hover)';
         });
-        
+
         row.addEventListener('mouseleave', function() {
             this.style.background = 'transparent';
         });
     });
-    
+
     // Smooth scroll for internal links
     const internalLinks = document.querySelectorAll('a[href^="/"]');
     internalLinks.forEach(link => {

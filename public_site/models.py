@@ -1882,10 +1882,40 @@ class FAQPage(Page):
         default="<p>Frequently asked questions about the Garden Platform.</p>",
     )
 
+    # Empty State
+    empty_state_title = models.CharField(
+        max_length=200,
+        default="No FAQs Available",
+        blank=True,
+    )
+    empty_state_message = RichTextField(
+        blank=True,
+        default="<p>We're building our FAQ section. In the meantime, please don't hesitate to contact us directly with any questions.</p>",
+    )
+    empty_state_button_text = models.CharField(
+        max_length=100,
+        default="Contact Us",
+        blank=True,
+    )
+    empty_state_button_url = models.CharField(
+        max_length=200,
+        default="/contact/",
+        blank=True,
+    )
+
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         FieldPanel("intro_text"),
         InlinePanel("faq_items", label="FAQ Items"),
+        MultiFieldPanel(
+            [
+                FieldPanel("empty_state_title"),
+                FieldPanel("empty_state_message"),
+                FieldPanel("empty_state_button_text"),
+                FieldPanel("empty_state_button_url"),
+            ],
+            heading="Empty State",
+        ),
     ]
 
     # Wagtail admin panel configurations
@@ -1978,12 +2008,99 @@ class MediaPage(Page):
         help_text="Description and information about available press materials",
     )
 
+    # Empty State
+    empty_state_title = models.CharField(
+        max_length=200,
+        default="NO MEDIA COVERAGE YET",
+        blank=True,
+    )
+    empty_state_message = RichTextField(
+        blank=True,
+        default='<p>For press inquiries, please <a href="/contact-form/">contact us directly</a>.</p>',
+    )
+
+    # Sidebar - Schedule Interview
+    sidebar_interview_show = models.BooleanField(
+        default=True,
+        help_text="Show schedule interview sidebar section",
+    )
+    sidebar_interview_title = models.CharField(
+        max_length=200,
+        default="SCHEDULE INTERVIEW",
+        blank=True,
+    )
+    sidebar_interview_description = RichTextField(
+        blank=True,
+        default="<p>Book a time to speak with our Chief Investment Officer about sustainable investing and our mission.</p>",
+    )
+    sidebar_interview_button_text = models.CharField(
+        max_length=100,
+        default="BOOK INTERVIEW",
+        blank=True,
+    )
+    sidebar_interview_button_url = models.URLField(
+        blank=True,
+        default="https://tidycal.com/ecic/interview",
+    )
+
+    # Sidebar - Media Contact
+    sidebar_contact_show = models.BooleanField(
+        default=True,
+        help_text="Show media contact sidebar section",
+    )
+    sidebar_contact_title = models.CharField(
+        max_length=200,
+        default="MEDIA CONTACT",
+        blank=True,
+    )
+    sidebar_contact_description = RichTextField(
+        blank=True,
+        default="<p>For press inquiries and additional information.</p>",
+    )
+    sidebar_contact_button_text = models.CharField(
+        max_length=100,
+        default="CONTACT US",
+        blank=True,
+    )
+    sidebar_contact_button_url = models.CharField(
+        max_length=200,
+        default="/contact/",
+        blank=True,
+    )
+
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         FieldPanel("intro_text"),
         MultiFieldPanel(
             [FieldPanel("press_kit_title"), FieldPanel("press_kit_description")],
             heading="Press Kit",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("empty_state_title"),
+                FieldPanel("empty_state_message"),
+            ],
+            heading="Empty State",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("sidebar_interview_show"),
+                FieldPanel("sidebar_interview_title"),
+                FieldPanel("sidebar_interview_description"),
+                FieldPanel("sidebar_interview_button_text"),
+                FieldPanel("sidebar_interview_button_url"),
+            ],
+            heading="Sidebar - Schedule Interview",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("sidebar_contact_show"),
+                FieldPanel("sidebar_contact_title"),
+                FieldPanel("sidebar_contact_description"),
+                FieldPanel("sidebar_contact_button_text"),
+                FieldPanel("sidebar_contact_button_url"),
+            ],
+            heading="Sidebar - Media Contact",
         ),
     ]
 
@@ -2991,6 +3108,91 @@ class StrategyListPage(Page):
         default="<p>Compare our investment strategies to find the approach that best matches your goals and risk tolerance.</p>",
     )
 
+    # Resources Section
+    resources_section_title = models.CharField(
+        max_length=200,
+        default="STRATEGY RESOURCES",
+        blank=True,
+    )
+    resources_section_subtitle = models.CharField(
+        max_length=200,
+        default="Documentation & Research",
+        blank=True,
+    )
+    resources_section_description = RichTextField(
+        blank=True,
+        default="<p>Learn more about our investment approach, methodology, and compliance practices.</p>",
+    )
+    resources = StreamField(
+        [
+            (
+                "resource_category",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.TextBlock()),
+                        (
+                            "links",
+                            blocks.ListBlock(
+                                blocks.StructBlock(
+                                    [
+                                        ("text", blocks.CharBlock(max_length=100)),
+                                        ("url", blocks.CharBlock(max_length=200)),
+                                    ]
+                                )
+                            ),
+                        ),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Resource categories with links",
+    )
+
+    # CTA Section
+    cta_section_title = models.CharField(
+        max_length=200,
+        default="GET STARTED",
+        blank=True,
+    )
+    cta_title = models.CharField(
+        max_length=200,
+        default="Ready to Align Your Investments with Your Values?",
+        blank=True,
+    )
+    cta_description = RichTextField(
+        blank=True,
+        default="<p>Our team is here to help you choose the strategy that best fits your financial goals and ethical principles.</p>",
+    )
+    cta_buttons = StreamField(
+        [
+            (
+                "cta_button",
+                blocks.StructBlock(
+                    [
+                        ("text", blocks.CharBlock(max_length=100)),
+                        ("url", blocks.CharBlock(max_length=200)),
+                        (
+                            "style",
+                            blocks.ChoiceBlock(
+                                choices=[
+                                    ("primary", "Primary"),
+                                    ("secondary", "Secondary"),
+                                ],
+                                default="primary",
+                            ),
+                        ),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Call to action buttons",
+    )
+
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         FieldPanel("intro_text"),
@@ -2998,6 +3200,24 @@ class StrategyListPage(Page):
         MultiFieldPanel(
             [FieldPanel("comparison_title"), FieldPanel("comparison_description")],
             heading="Strategy Comparison Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("resources_section_title"),
+                FieldPanel("resources_section_subtitle"),
+                FieldPanel("resources_section_description"),
+                FieldPanel("resources"),
+            ],
+            heading="Resources Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("cta_section_title"),
+                FieldPanel("cta_title"),
+                FieldPanel("cta_description"),
+                FieldPanel("cta_buttons"),
+            ],
+            heading="Call to Action Section",
         ),
     ]
 
@@ -3281,6 +3501,61 @@ class ContactFormPage(Page):
         help_text="Require phone number field",
     )
 
+    # Contact Information
+    contact_section_title = models.CharField(
+        max_length=200,
+        default="CONTACT INFORMATION",
+        blank=True,
+    )
+    contact_email = models.EmailField(
+        default="hello@ethicic.com",
+        blank=True,
+        help_text="Primary contact email address",
+    )
+    contact_phone = models.CharField(
+        max_length=20,
+        default="+1 347 625 9000",
+        blank=True,
+        help_text="Primary contact phone number",
+    )
+    contact_address = models.CharField(
+        max_length=200,
+        default="90 N 400 E, Provo, UT 84606",
+        blank=True,
+        help_text="Business address",
+    )
+    business_hours = models.CharField(
+        max_length=200,
+        default="Monday - Friday, 9:00 AM - 5:00 PM MT",
+        blank=True,
+        help_text="Business hours",
+    )
+
+    # Consultation Sidebar
+    show_consultation_sidebar = models.BooleanField(
+        default=True,
+        help_text="Show consultation scheduling sidebar",
+    )
+    consultation_sidebar_title = models.CharField(
+        max_length=200,
+        default="SCHEDULE A CONSULTATION",
+        blank=True,
+    )
+    consultation_sidebar_description = RichTextField(
+        blank=True,
+        default="<p>Get personalized guidance on ethical investing. Schedule a free consultation to discuss your investment goals and values.</p>",
+    )
+    consultation_sidebar_button_text = models.CharField(
+        max_length=100,
+        default="SCHEDULE NOW",
+        blank=True,
+    )
+    consultation_sidebar_button_url = models.CharField(
+        max_length=200,
+        default="/consultation/",
+        blank=True,
+    )
+
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         FieldPanel("intro_text"),
@@ -3292,6 +3567,26 @@ class ContactFormPage(Page):
         MultiFieldPanel(
             [FieldPanel("enable_form"), FieldPanel("require_phone")],
             heading="Form Settings",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("contact_section_title"),
+                FieldPanel("contact_email"),
+                FieldPanel("contact_phone"),
+                FieldPanel("contact_address"),
+                FieldPanel("business_hours"),
+            ],
+            heading="Contact Information",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("show_consultation_sidebar"),
+                FieldPanel("consultation_sidebar_title"),
+                FieldPanel("consultation_sidebar_description"),
+                FieldPanel("consultation_sidebar_button_text"),
+                FieldPanel("consultation_sidebar_button_url"),
+            ],
+            heading="Consultation Sidebar",
         ),
     ]
 
@@ -3619,14 +3914,19 @@ class InstitutionalPage(Page):
     )
     services = StreamField(
         [
-            ('service', blocks.StructBlock([
-                ('title', blocks.CharBlock(max_length=100)),
-                ('description', blocks.RichTextBlock()),
-            ]))
+            (
+                "service",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.RichTextBlock()),
+                    ]
+                ),
+            )
         ],
         blank=True,
         use_json_field=True,
-        help_text="Services offered to institutions"
+        help_text="Services offered to institutions",
     )
 
     # Partnership Benefits section
@@ -3641,14 +3941,19 @@ class InstitutionalPage(Page):
     )
     benefits = StreamField(
         [
-            ('benefit', blocks.StructBlock([
-                ('title', blocks.CharBlock(max_length=100)),
-                ('description', blocks.RichTextBlock()),
-            ]))
+            (
+                "benefit",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.RichTextBlock()),
+                    ]
+                ),
+            )
         ],
         blank=True,
         use_json_field=True,
-        help_text="Partnership benefits for institutions"
+        help_text="Partnership benefits for institutions",
     )
 
     # Process Overview section
@@ -3659,15 +3964,20 @@ class InstitutionalPage(Page):
     )
     process_steps = StreamField(
         [
-            ('process_step', blocks.StructBlock([
-                ('step_number', blocks.IntegerBlock(min_value=1)),
-                ('title', blocks.CharBlock(max_length=100)),
-                ('description', blocks.TextBlock()),
-            ]))
+            (
+                "process_step",
+                blocks.StructBlock(
+                    [
+                        ("step_number", blocks.IntegerBlock(min_value=1)),
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.TextBlock()),
+                    ]
+                ),
+            )
         ],
         blank=True,
         use_json_field=True,
-        help_text="Process steps for institutional collaboration"
+        help_text="Process steps for institutional collaboration",
     )
 
     # Scale & Capabilities section
@@ -3682,15 +3992,20 @@ class InstitutionalPage(Page):
     )
     scale_metrics = StreamField(
         [
-            ('metric', blocks.StructBlock([
-                ('value', blocks.CharBlock(max_length=20)),
-                ('label', blocks.CharBlock(max_length=20)),
-                ('description', blocks.TextBlock()),
-            ]))
+            (
+                "metric",
+                blocks.StructBlock(
+                    [
+                        ("value", blocks.CharBlock(max_length=20)),
+                        ("label", blocks.CharBlock(max_length=20)),
+                        ("description", blocks.TextBlock()),
+                    ]
+                ),
+            )
         ],
         blank=True,
         use_json_field=True,
-        help_text="Scale and capability metrics"
+        help_text="Scale and capability metrics",
     )
 
     # Due Diligence Resources section
@@ -3710,19 +4025,39 @@ class InstitutionalPage(Page):
     )
     resource_categories = StreamField(
         [
-            ('resource_category', blocks.StructBlock([
-                ('title', blocks.CharBlock(max_length=100)),
-                ('resources', blocks.ListBlock(blocks.StructBlock([
-                    ('icon', blocks.CharBlock(max_length=10, help_text="Emoji icon")),
-                    ('title', blocks.CharBlock(max_length=100)),
-                    ('description', blocks.CharBlock(max_length=200)),
-                    ('url', blocks.CharBlock(max_length=200)),
-                ]))),
-            ]))
+            (
+                "resource_category",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=100)),
+                        (
+                            "resources",
+                            blocks.ListBlock(
+                                blocks.StructBlock(
+                                    [
+                                        (
+                                            "icon",
+                                            blocks.CharBlock(
+                                                max_length=10, help_text="Emoji icon"
+                                            ),
+                                        ),
+                                        ("title", blocks.CharBlock(max_length=100)),
+                                        (
+                                            "description",
+                                            blocks.CharBlock(max_length=200),
+                                        ),
+                                        ("url", blocks.CharBlock(max_length=200)),
+                                    ]
+                                )
+                            ),
+                        ),
+                    ]
+                ),
+            )
         ],
         blank=True,
         use_json_field=True,
-        help_text="Resource categories with links"
+        help_text="Resource categories with links",
     )
 
     # CTA section updates
@@ -3792,20 +4127,68 @@ class InstitutionalPage(Page):
             heading="Hero Section",
         ),
         MultiFieldPanel(
+            [
+                FieldPanel("offer_section_title"),
+                FieldPanel("offer_section_intro"),
+                FieldPanel("services"),
+            ],
+            heading="What We Offer Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("benefits_section_title"),
+                FieldPanel("benefits_section_intro"),
+                FieldPanel("benefits"),
+            ],
+            heading="Partnership Benefits Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("process_section_title"),
+                FieldPanel("process_steps"),
+            ],
+            heading="Process Overview Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("scale_section_title"),
+                FieldPanel("scale_section_intro"),
+                FieldPanel("scale_metrics"),
+            ],
+            heading="Scale & Capabilities Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("ddq_section_title"),
+                FieldPanel("ddq_section_subtitle"),
+                FieldPanel("ddq_section_description"),
+                FieldPanel("resource_categories"),
+            ],
+            heading="Due Diligence Resources Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("cta_section_title"),
+                FieldPanel("cta_title"),
+                FieldPanel("cta_description"),
+                FieldPanel("cta_primary_text"),
+                FieldPanel("cta_primary_url"),
+                FieldPanel("cta_secondary_text"),
+                FieldPanel("cta_secondary_url"),
+            ],
+            heading="Call to Action Section",
+        ),
+        MultiFieldPanel(
             [FieldPanel("solutions_title"), FieldPanel("solutions_content")],
-            heading="Solutions Section",
+            heading="Solutions Section (Legacy)",
         ),
         MultiFieldPanel(
             [FieldPanel("capabilities_title"), FieldPanel("capabilities_content")],
-            heading="Capabilities Section",
+            heading="Capabilities Section (Legacy)",
         ),
         MultiFieldPanel(
             [FieldPanel("scale_title"), FieldPanel("scale_content")],
-            heading="Scale Section",
-        ),
-        MultiFieldPanel(
-            [FieldPanel("cta_title"), FieldPanel("cta_description")],
-            heading="Call to Action",
+            heading="Scale Section (Legacy)",
         ),
     ]
 
@@ -4101,6 +4484,84 @@ class ConsultationPage(Page):
         help_text="Optional: Embed code for scheduling widget (Calendly, etc.)",
     )
 
+    # Schedule Section
+    schedule_section_title = models.CharField(
+        max_length=200,
+        default="Schedule Your Consultation",
+        blank=True,
+    )
+    schedule_intro_text = RichTextField(
+        blank=True,
+        default="<p>Choose the conversation type that best fits your situation. All consultations are complimentary and without obligation. Note: We can't promise prompt email responses, but we're great at keeping scheduled appointments!</p>",
+    )
+
+    # Consultation Types
+    consultation_types = StreamField(
+        [
+            (
+                "consultation_type",
+                blocks.StructBlock(
+                    [
+                        (
+                            "icon",
+                            blocks.CharBlock(max_length=10, help_text="Emoji icon"),
+                        ),
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.TextBlock()),
+                        (
+                            "button_text",
+                            blocks.CharBlock(max_length=50, default="Schedule Call"),
+                        ),
+                        ("button_url", blocks.URLBlock()),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Different consultation types available",
+    )
+
+    # Alternative Contact
+    alternative_contact_text = RichTextField(
+        blank=True,
+        default='<p>Prefer to start with an email? <a href="/contact/" class="garden-link">Use our contact form</a> and we\'ll get back to you when we can.</p>',
+    )
+
+    # Expectations Section
+    expectations_section_title = models.CharField(
+        max_length=200,
+        default="What to Expect",
+        blank=True,
+    )
+    expectations = StreamField(
+        [
+            (
+                "expectation",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.TextBlock()),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="What to expect during consultation",
+    )
+
+    # Disclaimer
+    disclaimer_title = models.CharField(
+        max_length=200,
+        default="No obligation consultation.",
+        blank=True,
+    )
+    disclaimer_text = RichTextField(
+        blank=True,
+        default="<p>We believe in finding the right fit for both parties. There's no pressure to move forward, and we're happy to answer questions even if we're not the right match.</p>",
+    )
+
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         MultiFieldPanel(
@@ -4109,8 +4570,31 @@ class ConsultationPage(Page):
         ),
         FieldPanel("introduction"),
         MultiFieldPanel(
+            [
+                FieldPanel("schedule_section_title"),
+                FieldPanel("schedule_intro_text"),
+                FieldPanel("consultation_types"),
+                FieldPanel("alternative_contact_text"),
+            ],
+            heading="Schedule Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("expectations_section_title"),
+                FieldPanel("expectations"),
+            ],
+            heading="Expectations Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("disclaimer_title"),
+                FieldPanel("disclaimer_text"),
+            ],
+            heading="Disclaimer Section",
+        ),
+        MultiFieldPanel(
             [FieldPanel("contact_email"), FieldPanel("scheduling_embed_code")],
-            heading="Contact & Scheduling",
+            heading="Contact & Scheduling (Legacy)",
         ),
     ]
 
@@ -4164,16 +4648,91 @@ class GuidePage(Page):
         help_text="Alternative: External URL for guide (if not using document upload)",
     )
 
+    # Section Headers
+    description_section_header = models.CharField(
+        max_length=200,
+        default="What's Included",
+        blank=True,
+    )
+    download_section_header = models.CharField(
+        max_length=200,
+        default="Download Guide",
+        blank=True,
+    )
+    resources_section_header = models.CharField(
+        max_length=200,
+        default="Additional Resources",
+        blank=True,
+    )
+    newsletter_section_header = models.CharField(
+        max_length=200,
+        default="Stay Updated",
+        blank=True,
+    )
+
+    # Additional Resources
+    resources = StreamField(
+        [
+            (
+                "resource",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.TextBlock()),
+                        (
+                            "button_text",
+                            blocks.CharBlock(max_length=50, default="Learn More"),
+                        ),
+                        ("button_url", blocks.CharBlock(max_length=200)),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Additional resource links",
+    )
+
+    # Newsletter Settings
+    newsletter_description = RichTextField(
+        blank=True,
+        default="<p>Get updates on new resources, market insights, and ethical investing research.</p>",
+    )
+
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         MultiFieldPanel(
             [FieldPanel("hero_title"), FieldPanel("hero_subtitle")],
             heading="Hero Section",
         ),
-        FieldPanel("guide_description"),
         MultiFieldPanel(
-            [FieldPanel("guide_document"), FieldPanel("external_guide_url")],
+            [
+                FieldPanel("description_section_header"),
+                FieldPanel("guide_description"),
+            ],
+            heading="Guide Description",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("download_section_header"),
+                FieldPanel("guide_document"),
+                FieldPanel("external_guide_url"),
+            ],
             heading="Guide Download",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("resources_section_header"),
+                FieldPanel("resources"),
+            ],
+            heading="Additional Resources",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("newsletter_section_header"),
+                FieldPanel("newsletter_description"),
+            ],
+            heading="Newsletter Section",
         ),
     ]
 
@@ -4527,6 +5086,112 @@ class PRIDDQPage(Page):
         blank=True, help_text="Additional information and internal ESG management"
     )
 
+    # Section Headers - Panel Titles
+    section_title_overview = models.CharField(
+        max_length=100,
+        default="PRI DUE DILIGENCE",
+        blank=True,
+        help_text="Panel title for overview section",
+    )
+    section_title_executive = models.CharField(
+        max_length=100,
+        default="EXECUTIVE SUMMARY",
+        blank=True,
+        help_text="Panel title for executive summary section",
+    )
+    section_title_strategy = models.CharField(
+        max_length=100,
+        default="STRATEGY & GOVERNANCE",
+        blank=True,
+        help_text="Panel title for strategy section",
+    )
+    section_title_esg = models.CharField(
+        max_length=100,
+        default="ESG INTEGRATION",
+        blank=True,
+        help_text="Panel title for ESG integration section",
+    )
+    section_title_stewardship = models.CharField(
+        max_length=100,
+        default="STEWARDSHIP & ENGAGEMENT",
+        blank=True,
+        help_text="Panel title for stewardship section",
+    )
+    section_title_transparency = models.CharField(
+        max_length=100,
+        default="TRANSPARENCY",
+        blank=True,
+        help_text="Panel title for transparency section",
+    )
+    section_title_climate = models.CharField(
+        max_length=100,
+        default="CLIMATE & ENVIRONMENT",
+        blank=True,
+        help_text="Panel title for climate section",
+    )
+    section_title_reporting = models.CharField(
+        max_length=100,
+        default="REPORTING AND VERIFICATION",
+        blank=True,
+        help_text="Panel title for reporting section",
+    )
+    section_title_additional = models.CharField(
+        max_length=100,
+        default="ADDITIONAL INFORMATION",
+        blank=True,
+        help_text="Panel title for additional information section",
+    )
+
+    # Section Headers - Section Subtitles (h2 elements)
+    section_subtitle_executive = models.CharField(
+        max_length=200,
+        default="Responsible Investment Overview",
+        blank=True,
+        help_text="Section subtitle for executive summary",
+    )
+    section_subtitle_strategy = models.CharField(
+        max_length=200,
+        default="Responsible Investment Strategy & Governance",
+        blank=True,
+        help_text="Section subtitle for strategy section",
+    )
+    section_subtitle_esg = models.CharField(
+        max_length=200,
+        default="ESG Integration Methodology",
+        blank=True,
+        help_text="Section subtitle for ESG integration",
+    )
+    section_subtitle_stewardship = models.CharField(
+        max_length=200,
+        default="Active Stewardship Practices",
+        blank=True,
+        help_text="Section subtitle for stewardship",
+    )
+    section_subtitle_transparency = models.CharField(
+        max_length=200,
+        default="Transparency & Disclosure",
+        blank=True,
+        help_text="Section subtitle for transparency",
+    )
+    section_subtitle_climate = models.CharField(
+        max_length=200,
+        default="Climate & Environmental Considerations",
+        blank=True,
+        help_text="Section subtitle for climate",
+    )
+    section_subtitle_reporting = models.CharField(
+        max_length=200,
+        default="Reporting and Verification",
+        blank=True,
+        help_text="Section subtitle for reporting",
+    )
+    section_subtitle_additional = models.CharField(
+        max_length=200,
+        default="Additional Information",
+        blank=True,
+        help_text="Section subtitle for additional information",
+    )
+
     # Document links
     screening_policy_url = models.URLField(
         default="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md",
@@ -4548,6 +5213,33 @@ class PRIDDQPage(Page):
                 FieldPanel("updated_at"),
             ],
             heading="Hero Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("section_title_overview"),
+                FieldPanel("section_title_executive"),
+                FieldPanel("section_title_strategy"),
+                FieldPanel("section_title_esg"),
+                FieldPanel("section_title_stewardship"),
+                FieldPanel("section_title_transparency"),
+                FieldPanel("section_title_climate"),
+                FieldPanel("section_title_reporting"),
+                FieldPanel("section_title_additional"),
+            ],
+            heading="Section Panel Titles",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("section_subtitle_executive"),
+                FieldPanel("section_subtitle_strategy"),
+                FieldPanel("section_subtitle_esg"),
+                FieldPanel("section_subtitle_stewardship"),
+                FieldPanel("section_subtitle_transparency"),
+                FieldPanel("section_subtitle_climate"),
+                FieldPanel("section_subtitle_reporting"),
+                FieldPanel("section_subtitle_additional"),
+            ],
+            heading="Section Subtitles",
         ),
         FieldPanel("executive_summary"),
         MultiFieldPanel(
@@ -4646,24 +5338,30 @@ class PRIDDQPage(Page):
 
         return questions
 
-    def sync_to_support_articles(self):
+    def sync_to_support_articles(self):  # noqa: PLR0912
         """Create or update FAQArticle entries for DDQ questions."""
+        import logging
+
+        logger = logging.getLogger(__name__)
+
         try:
             questions = self.get_ddq_questions_for_faq()
 
-            # Find or create FAQ index page
-            faq_index = None
+            # Find FAQ index page
             try:
                 faq_index = FAQIndexPage.objects.first()
-            except:
-                pass
-
-            if not faq_index:
-                # Skip sync if no FAQ index exists
+            except Exception as e:
+                logger.warning(f"Failed to get FAQ index page: {e}")
                 return
 
+            if not faq_index:
+                logger.info("No FAQ index page found, skipping DDQ sync")
+                return
+
+            # Process questions - collect failures for logging
+            failed_articles = []
+
             for q in questions:
-                # Create or update FAQ article
                 try:
                     article = FAQArticle.objects.filter(title=q["question"]).first()
                     if not article:
@@ -4683,12 +5381,18 @@ class PRIDDQPage(Page):
                         article.content = f"<p>{q['answer']}</p>"
                         article.category = q["category"]
                         article.save()
-                except Exception:
-                    # Skip individual article if it fails
-                    continue
-        except Exception:
-            # Skip entire sync if it fails - don't break page saving
-            pass
+                except Exception as e:  # noqa: PERF203
+                    logger.warning(
+                        f"Failed to sync FAQ article '{q.get('question', 'unknown')}': {e}"
+                    )
+                    failed_articles.append(q.get("question", "unknown"))
+
+            if failed_articles:
+                logger.info(f"Failed to sync {len(failed_articles)} FAQ articles")
+
+        except Exception as e:
+            logger.error(f"DDQ to FAQ sync failed completely: {e}")
+            # Don't re-raise - this is a non-critical operation that shouldn't break page saving
 
     def save(self, *args, **kwargs):
         """Override save to auto-update updated_at and sync to support articles when saved."""
