@@ -1,0 +1,209 @@
+/* Contact Page Fixes */
+
+/* Override any crispy forms or bootstrap styling with higher specificity */
+.garden-container .garden-form .textinput,
+.garden-container .garden-form .emailinput,
+.garden-container .garden-form .textInput,
+.garden-container .garden-form input.textinput,
+.garden-container .garden-form input.emailinput,
+.garden-container .garden-form input[type="text"],
+.garden-container .garden-form input[type="email"],
+.garden-container .garden-form input[type="tel"],
+.garden-container .garden-form textarea,
+.garden-container .garden-form select,
+.garden-container .garden-input,
+.garden-container .form-control {
+    background-color: var(--garden-color-white);
+    color: var(--garden-color-gray-900);
+    border: 1px solid var(--garden-color-gray-200);
+}
+
+/* Ensure proper colors in light mode with higher specificity */
+[data-theme="light"] .garden-container .garden-form .textinput,
+[data-theme="light"] .garden-container .garden-form .emailinput,
+[data-theme="light"] .garden-container .garden-form .textInput,
+[data-theme="light"] .garden-container .garden-form input.textinput,
+[data-theme="light"] .garden-container .garden-form input.emailinput,
+[data-theme="light"] .garden-container .garden-form input[type="text"],
+[data-theme="light"] .garden-container .garden-form input[type="email"],
+[data-theme="light"] .garden-container .garden-form input[type="tel"],
+[data-theme="light"] .garden-container .garden-form textarea,
+[data-theme="light"] .garden-container .garden-form select,
+[data-theme="light"] .garden-container .garden-input,
+[data-theme="light"] .garden-container .form-control {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    border: 1px solid var(--color-border);
+}
+
+/* Extra specificity for crispy forms generated inputs */
+.garden-container .panel-content .form-wrapper .garden-form-group input,
+.garden-container .panel-content .form-wrapper .garden-form-group textarea,
+.garden-container .panel-content .form-wrapper .garden-form-group select {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    border: 1px solid var(--color-border);
+}
+
+[data-theme="light"] .garden-container .panel-content .form-wrapper .garden-form-group input,
+[data-theme="light"] .garden-container .panel-content .form-wrapper .garden-form-group textarea,
+[data-theme="light"] .garden-container .panel-content .form-wrapper .garden-form-group select {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    border: 1px solid var(--color-border);
+}
+
+/* Fix focus states - moved after more specific selectors */
+/* stylelint-disable no-descending-specificity */
+.garden-container .panel-content .form-wrapper .garden-form-group input:focus,
+.garden-container .panel-content .form-wrapper .garden-form-group textarea:focus,
+.garden-container .panel-content .form-wrapper .garden-form-group select:focus,
+.garden-container .garden-form input:focus,
+.garden-container .garden-form textarea:focus,
+.garden-container .garden-form select:focus,
+.garden-container .garden-input:focus {
+    border-color: var(--color-primary);
+    outline: 2px solid var(--color-primary-alpha-20);
+    outline-offset: 2px;
+}
+/* stylelint-enable no-descending-specificity */
+
+/* Fix placeholder text color */
+.garden-container .garden-form input::placeholder,
+.garden-container .garden-form textarea::placeholder,
+.garden-container .garden-input::placeholder {
+    color: var(--color-muted);
+    opacity: 0.7;
+}
+
+/* Fix contact page layout - ensure sidebar shows on desktop */
+@media (min-width: 768px) {
+    .contact-page-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: var(--space-6);
+        align-items: start;
+    }
+
+    .contact-main-content {
+        min-width: 0; /* Prevent grid blowout */
+    }
+
+    .contact-sidebar {
+        position: sticky;
+        top: var(--space-6);
+        height: fit-content;
+    }
+}
+
+/* Ensure proper spacing on mobile */
+@media (max-width: 767px) {
+    .contact-page-layout {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+    }
+
+    .contact-sidebar {
+        position: static;
+    }
+}
+
+/* Fix sidebar panel styling */
+.contact-sidebar .garden-panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-sidebar .panel-header {
+    background: var(--color-surface-variant);
+    color: var(--color-primary);
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--font-sm);
+    font-weight: var(--font-semibold);
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.contact-sidebar .panel-content {
+    padding: var(--space-4);
+}
+
+/* Fix contact item styling */
+.contact-info-sidebar .contact-item {
+    margin-bottom: var(--space-4);
+}
+
+.contact-info-sidebar .contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-label {
+    font-family: var(--font-mono);
+    font-size: var(--font-xs);
+    font-weight: var(--font-semibold);
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-1);
+}
+
+.contact-link,
+.contact-value {
+    font-family: var(--font-sans);
+    font-size: var(--font-base);
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+.contact-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: all var(--duration-fast);
+}
+
+.contact-link:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+/* Fix form styling */
+.garden-form-group {
+    margin-bottom: var(--space-4);
+}
+
+.garden-form-group label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--font-sm);
+    font-weight: var(--font-medium);
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+}
+
+.garden-form-group .required-indicator {
+    color: var(--color-error);
+    margin-left: var(--space-1);
+}
+
+/* Fix button alignment in sidebar */
+.sidebar-action {
+    margin-top: var(--space-4);
+}
+
+.sidebar-action .garden-action {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+/* Panel description text */
+.panel-description {
+    font-family: var(--font-sans);
+    font-size: var(--font-base);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0;
+}

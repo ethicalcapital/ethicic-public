@@ -1,9 +1,15 @@
 {
-  "timestamp": "2025-07-07T04:11:41.770847+00:00",
-  "total_files": 48,
+  "timestamp": "2025-07-07T04:53:25.482245+00:00",
+  "total_files": 49,
   "total_defined_vars": 381,
-  "files_with_issues": [],
-  "undefined_variables": {},
+  "files_with_issues": [
+    "contact-page-fixes.css"
+  ],
+  "undefined_variables": {
+    "contact-page-fixes.css": [
+      "--color-text"
+    ]
+  },
   "hardcoded_colors": {
     "garden-ui-theme.css": [
       [
@@ -37,11 +43,12 @@
     "garden-ui-theme.css": 161.66,
     "button-contrast-fixes.css": 4.7,
     "pricing-features-fix.css": 0.73,
+    "contact-page-fixes.css": 6.22,
     "dropdown-fix.css": 2.48,
     "garden-blog-articles.css": 18.94,
     "process-page.css": 10.82,
     "garden-data-table.css": 9.95,
-    "core-styles.css": 17.42,
+    "core-styles.css": 17.8,
     "critical-page-overrides.css": 8.17,
     "public-site-modular.css": 7.0,
     "16-homepage.css": 19.67,
@@ -78,5 +85,5 @@
     "40-adviser-page.css": 8.85,
     "18-pricing.css": 11.39
   },
-  "total_undefined_vars": 0
+  "total_undefined_vars": 1
 }

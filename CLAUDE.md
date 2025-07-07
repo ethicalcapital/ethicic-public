@@ -11,3 +11,5 @@
 - use garden ui, not bootstrap
 - always use garden ui
 - i turned off the cdn for now
+- NEVER just remove a file thats causing issues. THat's lazy bullshit and we dont do it around here#
+- we are often making multiple edits in parallel -- if you come across an issue that might be due to that, consider this before you make any actions

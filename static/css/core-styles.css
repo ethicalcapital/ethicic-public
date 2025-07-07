@@ -672,7 +672,7 @@ td {
 
 /* ===== MOBILE NAVIGATION STYLES ===== */
 .garden-mobile-menu-toggle {
-    display: none;
+    /* Base styles without display property */
     flex-direction: column;
     background: none;
     border: none;
@@ -680,6 +680,22 @@ td {
     padding: 0.5rem;
     gap: 0.25rem;
     z-index: 1001;
+}
+
+/* Hide on desktop */
+@media (min-width: 769px) {
+    .garden-mobile-menu-toggle {
+        display: none;
+    }
+}
+
+/* Show on mobile with high specificity */
+@media (max-width: 768px) {
+    html body .garden-header .garden-header-content .garden-nav-left .garden-mobile-menu-toggle {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
 .hamburger-line {
