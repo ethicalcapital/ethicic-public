@@ -1,9 +1,12 @@
-/* Mobile Menu Override - Forces hamburger menu visibility on mobile */
+/* stylelint-disable declaration-no-important */
+/* Mobile Menu Override - Forces hamburger menu visibility and functionality */
 
 /* Force flex display with ultra-high specificity to override core-styles.css */
 html body header.garden-header .garden-header-content .garden-nav-left button.garden-mobile-menu-toggle.garden-mobile-menu-toggle {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: none;
     border: none;
     cursor: pointer;
@@ -12,32 +15,140 @@ html body header.garden-header .garden-header-content .garden-nav-left button.ga
     z-index: 1001;
     visibility: visible;
     opacity: 1;
+    width: 44px;
+    height: 44px;
+}
+
+/* Force hamburger lines to be visible with maximum specificity */
+html body header.garden-header .garden-header-content .garden-nav-left button.garden-mobile-menu-toggle .hamburger-line {
+    display: block !important;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text-inverse) !important;
+    margin: 2px 0 !important;
+    transition: all 0.3s ease;
+    border-radius: 1px;
 }
 
 /* Hide on desktop using media query */
 @media (min-width: 769px) {
     .garden-mobile-menu-toggle {
-        display: none;
+        display: none !important;
     }
 }
 
-/* Ensure visibility on mobile with maximum specificity */
+/* Mobile-specific styling */
 @media (max-width: 768px) {
+    /* Hamburger button */
     html body header.garden-header .garden-header-content .garden-nav-left .garden-mobile-menu-toggle {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         visibility: visible;
         opacity: 1;
         position: relative;
         z-index: 1002;
     }
 
-    /* Ensure hamburger lines are visible */
-    html body header.garden-header .garden-header-content .garden-nav-left .garden-mobile-menu-toggle .hamburger-line {
+    /* Hide desktop navigation on mobile */
+    .garden-nav-main {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--color-surface);
+        z-index: 1000;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 80px 2rem 2rem;
+        overflow-y: auto;
+    }
+
+    /* Show mobile menu when open */
+    .garden-nav-main.mobile-menu-open {
+        display: flex !important;
+    }
+
+    /* Style mobile navigation items */
+    .garden-nav-main.mobile-menu-open .garden-nav-item {
         display: block;
-        width: 24px;
-        height: 2px;
-        background-color: var(--color-text-inverse);
-        margin: 0;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--color-border);
+        font-size: var(--font-lg);
+        color: var(--color-text-primary);
+        text-decoration: none;
+    }
+
+    .garden-nav-main.mobile-menu-open .garden-nav-item:hover {
+        background: var(--color-hover);
+        padding-left: 1rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+
+    /* Hide desktop search on mobile */
+    .garden-nav-right .garden-search-container:not(.mobile-search-container) {
+        display: none;
+    }
+
+    /* Mobile search styling in menu */
+    .mobile-search-container {
+        display: block !important;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .mobile-search {
+        display: flex;
+        width: 100%;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        background: var(--color-surface);
+    }
+
+    .mobile-search-input {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: none;
+        background: transparent;
+        color: var(--color-text-primary);
+        font-size: var(--font-base);
+    }
+
+    .mobile-search-input::placeholder {
+        color: var(--color-muted);
+    }
+
+    .mobile-search-input:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--color-primary-alpha-20);
+    }
+
+    .mobile-search-btn {
+        padding: 0.75rem 1rem;
+        background: var(--color-primary);
+        color: var(--color-text-inverse);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+    }
+
+    .mobile-search-results {
+        margin-top: 0.5rem;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-md);
+        max-height: 300px;
+        overflow-y: auto;
     }
 }

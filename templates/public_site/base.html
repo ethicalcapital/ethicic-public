@@ -100,7 +100,7 @@
     <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v=2025070401">
 
     <!-- Mobile menu override - fixes hamburger visibility -->
-    <link rel="stylesheet" href="{% static 'css/mobile-menu-override.css' %}?v=4">
+    <link rel="stylesheet" href="{% static 'css/mobile-menu-override.css' %}?v=5">
 
     <!-- Public site specific styles -->
     <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070123">
@@ -273,21 +273,64 @@
                      :class="{ 'mobile-menu-open': mobileMenuOpen }"
                      @click.outside="mobileMenuOpen = false"
                      @keydown.escape="mobileMenuOpen = false">
+
+                    <!-- Mobile-only search in menu -->
+                    <div class="mobile-search-container" x-show="mobileMenuOpen" style="display: none;">
+                        <div class="garden-search-container" x-data="{ searchOpen: false, query: '', searching: false }"
+                             @htmx:before-request="searching = true"
+                             @htmx:after-request="searching = false">
+                            <form method="get" action="/search/" class="garden-search mobile-search" role="search">
+                                <label for="mobile-search-input" class="sr-only">Search</label>
+                                <input type="text"
+                                       id="mobile-search-input"
+                                       name="q"
+                                       placeholder="Search..."
+                                       class="garden-search-input mobile-search-input"
+                                       aria-label="Search"
+                                       autocomplete="off"
+                                       x-model="query"
+                                       @focus="searchOpen = true"
+                                       hx-get="/search/live/"
+                                       hx-trigger="keyup changed delay:300ms"
+                                       hx-target="#mobile-search-results">
+                                <button type="submit"
+                                        class="garden-search-btn mobile-search-btn"
+                                        aria-label="Search"
+                                        title="Search">
+                                    <span class="sr-only">Search</span>
+                                    <span aria-hidden="true" x-show="searching" x-cloak>⟳</span>
+                                    <span aria-hidden="true" x-show="!searching">🔍</span>
+                                </button>
+                            </form>
+
+                            <!-- Mobile search results -->
+                            <div id="mobile-search-results"
+                                 class="garden-search-results mobile-search-results"
+                                 x-show="searchOpen && query.length > 0"
+                                 @click.outside="searchOpen = false"
+                                 x-cloak>
+                                <!-- Results populated by HTMX -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation items -->
                     {% for nav_item in site_config.nav_items %}
                         {% if nav_item.show_in_nav %}
                             <a href="{{ nav_item.url }}"
                                class="garden-nav-item"
-                               {% if nav_item.external %}target="_blank" rel="noopener"{% endif %}>
+                               {% if nav_item.external %}target="_blank" rel="noopener"{% endif %}
+                               @click="mobileMenuOpen = false">
                                 {{ nav_item.label }}
                             </a>
                         {% endif %}
                     {% empty %}
-                        <a href="/about/" class="garden-nav-item">About</a>
-                        <a href="/process/" class="garden-nav-item">Process</a>
-                        <a href="/solutions/" class="garden-nav-item">Solutions</a>
-                        <a href="/blog/" class="garden-nav-item">Blog</a>
-                        <a href="/faq/" class="garden-nav-item">FAQ</a>
-                        <a href="/contact/" class="garden-nav-item">Contact</a>
+                        <a href="/about/" class="garden-nav-item" @click="mobileMenuOpen = false">About</a>
+                        <a href="/process/" class="garden-nav-item" @click="mobileMenuOpen = false">Process</a>
+                        <a href="/solutions/" class="garden-nav-item" @click="mobileMenuOpen = false">Solutions</a>
+                        <a href="/blog/" class="garden-nav-item" @click="mobileMenuOpen = false">Blog</a>
+                        <a href="/faq/" class="garden-nav-item" @click="mobileMenuOpen = false">FAQ</a>
+                        <a href="/contact/" class="garden-nav-item" @click="mobileMenuOpen = false">Contact</a>
                     {% endfor %}
                 </nav>
             </div>
