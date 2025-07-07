@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-07-07T04:53:25.482245+00:00",
-  "total_files": 49,
+  "timestamp": "2025-07-07T04:58:33.413170+00:00",
+  "total_files": 50,
   "total_defined_vars": 381,
   "files_with_issues": [
     "contact-page-fixes.css"
@@ -36,6 +36,7 @@
   },
   "file_sizes": {
     "fix-formatting-issues.css": 6.27,
+    "mobile-menu-override.css": 1.16,
     "public-site-simple.css": 12.58,
     "blog-unified.css": 11.64,
     "process-page-working.css": 8.77,
@@ -43,7 +44,7 @@
     "garden-ui-theme.css": 161.66,
     "button-contrast-fixes.css": 4.7,
     "pricing-features-fix.css": 0.73,
-    "contact-page-fixes.css": 6.22,
+    "contact-page-fixes.css": 6.24,
     "dropdown-fix.css": 2.48,
     "garden-blog-articles.css": 18.94,
     "process-page.css": 10.82,

@@ -1,0 +1,42 @@
+/* Mobile Menu Override - Forces hamburger menu visibility on mobile */
+
+/* Remove any base display:none that might be added during build */
+.garden-mobile-menu-toggle {
+    /* Reset display property without using none */
+    display: flex;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    gap: 0.25rem;
+    z-index: 1001;
+}
+
+/* Hide on desktop using media query */
+@media (min-width: 769px) {
+    .garden-mobile-menu-toggle {
+        display: none;
+    }
+}
+
+/* Ensure visibility on mobile with maximum specificity */
+@media (max-width: 768px) {
+    html body header.garden-header .garden-header-content .garden-nav-left .garden-mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        visibility: visible;
+        opacity: 1;
+        position: relative;
+        z-index: 1002;
+    }
+
+    /* Ensure hamburger lines are visible */
+    html body header.garden-header .garden-header-content .garden-nav-left .garden-mobile-menu-toggle .hamburger-line {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: var(--garden-color-white);
+        margin: 0;
+    }
+}
