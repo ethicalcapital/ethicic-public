@@ -15,7 +15,7 @@ from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-from public_site.homepage_view import homepage_view
+from public_site.homepage_view_cms import homepage_view_cms
 
 
 def health_check(request):
@@ -392,7 +392,7 @@ urlpatterns = [
     # path('manifest.json', serve_manifest, name='serve_manifest'),
     # path('static/manifest.json', serve_manifest, name='serve_manifest_static'),
     # Homepage - MUST be first
-    path("", homepage_view, name="homepage"),
+    path("", homepage_view_cms, name="homepage"),
     # Health check
     path("health/", health_check, name="health_check"),
     path("test/", simple_test, name="simple_test"),

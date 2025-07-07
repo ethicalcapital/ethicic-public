@@ -10,4 +10,4 @@
 - always use garden ui componoents and widgets to impplement new pages
 - use garden ui, not bootstrap
 - always use garden ui
-- i turned off the cdn for now 
+- i turned off the cdn for now

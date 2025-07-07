@@ -266,6 +266,326 @@ class HomePage(Page):
         help_text="Legal disclaimer and footnotes",
     )
 
+    # Strategy Cards - Growth Strategy
+    strategy_1_name = models.CharField(
+        max_length=100,
+        default="Growth Strategy",
+        blank=True,
+        help_text="Name of the first strategy",
+    )
+    strategy_1_subtitle = models.CharField(
+        max_length=100,
+        default="Our Flagship Approach",
+        blank=True,
+        help_text="Subtitle for first strategy",
+    )
+    strategy_1_focus = models.CharField(
+        max_length=100,
+        default="15-25 Companies",
+        blank=True,
+        help_text="Focus value for growth strategy",
+    )
+    strategy_1_screening = models.CharField(
+        max_length=100,
+        default="Full Implementation",
+        blank=True,
+        help_text="Screening value for growth strategy",
+    )
+    strategy_1_management = models.CharField(
+        max_length=100,
+        default="Active & Continuous",
+        blank=True,
+        help_text="Management value for growth strategy",
+    )
+    strategy_1_ownership = models.CharField(
+        max_length=100,
+        default="Direct Securities",
+        blank=True,
+        help_text="Ownership value for growth strategy",
+    )
+    strategy_1_description = models.TextField(
+        default="Concentrated ethical portfolios built from individual securities. Our most comprehensive approach with full transparency and direct ownership.",
+        blank=True,
+        help_text="Description for growth strategy",
+    )
+    strategy_1_link = models.CharField(
+        max_length=200,
+        default="/strategies/growth/",
+        blank=True,
+        help_text="Link URL for growth strategy",
+    )
+    strategy_1_link_text = models.CharField(
+        max_length=100,
+        default="Explore Growth Strategy →",
+        blank=True,
+        help_text="Link text for growth strategy",
+    )
+
+    # Strategy Cards - Income Strategy
+    strategy_2_name = models.CharField(
+        max_length=100,
+        default="Income Strategy",
+        blank=True,
+        help_text="Name of the second strategy",
+    )
+    strategy_2_subtitle = models.CharField(
+        max_length=100,
+        default="Ethics Meets Yield",
+        blank=True,
+        help_text="Subtitle for second strategy",
+    )
+    strategy_2_focus = models.CharField(
+        max_length=100,
+        default="Income Generation",
+        blank=True,
+        help_text="Focus value for income strategy",
+    )
+    strategy_2_screening = models.CharField(
+        max_length=100,
+        default="Full Implementation",
+        blank=True,
+        help_text="Screening value for income strategy",
+    )
+    strategy_2_management = models.CharField(
+        max_length=100,
+        default="Active & Continuous",
+        blank=True,
+        help_text="Management value for income strategy",
+    )
+    strategy_2_ownership = models.CharField(
+        max_length=100,
+        default="Direct Securities",
+        blank=True,
+        help_text="Ownership value for income strategy",
+    )
+    strategy_2_description = models.TextField(
+        default="Fixed income portfolios screened for ethics and optimized for yield. Bonds, preferreds, and other income securities meeting our standards.",
+        blank=True,
+        help_text="Description for income strategy",
+    )
+    strategy_2_link = models.CharField(
+        max_length=200,
+        default="/strategies/income/",
+        blank=True,
+        help_text="Link URL for income strategy",
+    )
+    strategy_2_link_text = models.CharField(
+        max_length=100,
+        default="Explore Income Strategy →",
+        blank=True,
+        help_text="Link text for income strategy",
+    )
+
+    # Strategy Cards - Diversification Strategy
+    strategy_3_name = models.CharField(
+        max_length=100,
+        default="Diversification Strategy",
+        blank=True,
+        help_text="Name of the third strategy",
+    )
+    strategy_3_subtitle = models.CharField(
+        max_length=100,
+        default="Discretionary Management",
+        blank=True,
+        help_text="Subtitle for third strategy",
+    )
+    strategy_3_focus = models.CharField(
+        max_length=100,
+        default="Broader Markets",
+        blank=True,
+        help_text="Focus value for diversification strategy",
+    )
+    strategy_3_screening = models.CharField(
+        max_length=100,
+        default="Ethical Alignment",
+        blank=True,
+        help_text="Screening value for diversification strategy",
+    )
+    strategy_3_management = models.CharField(
+        max_length=100,
+        default="Active & Continuous",
+        blank=True,
+        help_text="Management value for diversification strategy",
+    )
+    strategy_3_ownership = models.CharField(
+        max_length=100,
+        default="External Funds",
+        blank=True,
+        help_text="Ownership value for diversification strategy",
+    )
+    strategy_3_description = models.TextField(
+        default="Access broader market exposure through carefully selected ethical funds. For clients needing wider diversification while maintaining values alignment.",
+        blank=True,
+        help_text="Description for diversification strategy",
+    )
+    strategy_3_link = models.CharField(
+        max_length=200,
+        default="/strategies/diversification/",
+        blank=True,
+        help_text="Link URL for diversification strategy",
+    )
+    strategy_3_link_text = models.CharField(
+        max_length=100,
+        default="Explore Diversification Strategy →",
+        blank=True,
+        help_text="Link text for diversification strategy",
+    )
+
+    # Strategy Table Labels
+    strategy_label_focus = models.CharField(
+        max_length=50,
+        default="Focus:",
+        blank=True,
+        help_text="Label for strategy focus row",
+    )
+    strategy_label_screening = models.CharField(
+        max_length=50,
+        default="Screening:",
+        blank=True,
+        help_text="Label for strategy screening row",
+    )
+    strategy_label_management = models.CharField(
+        max_length=50,
+        default="Management:",
+        blank=True,
+        help_text="Label for strategy management row",
+    )
+    strategy_label_ownership = models.CharField(
+        max_length=50,
+        default="What you own:",
+        blank=True,
+        help_text="Label for strategy ownership row",
+    )
+
+    # Hero CTA Links
+    hero_cta_1_link = models.CharField(
+        max_length=200,
+        default="/consultation/",
+        blank=True,
+        help_text="First hero CTA link URL",
+    )
+    hero_cta_1_text = models.CharField(
+        max_length=100,
+        default="Schedule Consultation",
+        blank=True,
+        help_text="First hero CTA link text",
+    )
+    hero_cta_2_link = models.CharField(
+        max_length=200,
+        default="/process/",
+        blank=True,
+        help_text="Second hero CTA link URL",
+    )
+    hero_cta_2_text = models.CharField(
+        max_length=100,
+        default="View Our Process",
+        blank=True,
+        help_text="Second hero CTA link text",
+    )
+
+    # Who We Serve Links
+    serve_individual_link = models.CharField(
+        max_length=200,
+        default="/onboarding/",
+        blank=True,
+        help_text="Individual investors link URL",
+    )
+    serve_individual_link_text = models.CharField(
+        max_length=100,
+        default="Start Your Journey →",
+        blank=True,
+        help_text="Individual investors link text",
+    )
+    serve_advisor_link = models.CharField(
+        max_length=200,
+        default="/advisers/",
+        blank=True,
+        help_text="Financial advisors link URL",
+    )
+    serve_advisor_link_text = models.CharField(
+        max_length=100,
+        default="Partner With Us →",
+        blank=True,
+        help_text="Financial advisors link text",
+    )
+    serve_institution_link = models.CharField(
+        max_length=200,
+        default="/institutions/",
+        blank=True,
+        help_text="Institutions link URL",
+    )
+    serve_institution_link_text = models.CharField(
+        max_length=100,
+        default="Institutional Solutions →",
+        blank=True,
+        help_text="Institutions link text",
+    )
+
+    # Process Section Link
+    process_section_link = models.CharField(
+        max_length=200,
+        default="/process/",
+        blank=True,
+        help_text="Process section link URL",
+    )
+    process_section_link_text = models.CharField(
+        max_length=100,
+        default="View Complete Methodology →",
+        blank=True,
+        help_text="Process section link text",
+    )
+
+    # Bottom CTA Links
+    cta_button_1_link = models.CharField(
+        max_length=200,
+        default="/consultation/",
+        blank=True,
+        help_text="Bottom CTA first button link URL",
+    )
+    cta_button_1_text = models.CharField(
+        max_length=100,
+        default="SCHEDULE CONSULTATION",
+        blank=True,
+        help_text="Bottom CTA first button text",
+    )
+    cta_button_2_link = models.CharField(
+        max_length=200,
+        default="/process/",
+        blank=True,
+        help_text="Bottom CTA second button link URL",
+    )
+    cta_button_2_text = models.CharField(
+        max_length=100,
+        default="VIEW OUR PROCESS",
+        blank=True,
+        help_text="Bottom CTA second button text",
+    )
+
+    # Miscellaneous Fields
+    hero_stats_date = models.CharField(
+        max_length=50,
+        default="as of July 1, 2025",
+        blank=True,
+        help_text="Date text for hero statistics",
+    )
+    process_subsection_header = models.CharField(
+        max_length=50,
+        default="PROCESS",
+        blank=True,
+        help_text="Process subsection header in principles",
+    )
+    practice_subsection_header = models.CharField(
+        max_length=50,
+        default="PRACTICE",
+        blank=True,
+        help_text="Practice subsection header in principles",
+    )
+    accepting_clients_icon = models.CharField(
+        max_length=10,
+        default="🟢",
+        blank=True,
+        help_text="Icon for accepting clients indicator",
+    )
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         MultiFieldPanel(
@@ -355,6 +675,102 @@ class HomePage(Page):
             heading="Call to Action",
         ),
         MultiFieldPanel([FieldPanel("disclaimer_text")], heading="Footer & Disclaimer"),
+        MultiFieldPanel(
+            [
+                FieldPanel("hero_cta_1_link"),
+                FieldPanel("hero_cta_1_text"),
+                FieldPanel("hero_cta_2_link"),
+                FieldPanel("hero_cta_2_text"),
+                FieldPanel("hero_stats_date"),
+            ],
+            heading="Hero Section Links & Settings",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("process_subsection_header"),
+                FieldPanel("practice_subsection_header"),
+            ],
+            heading="Principles Subsection Headers",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("strategy_label_focus"),
+                FieldPanel("strategy_label_screening"),
+                FieldPanel("strategy_label_management"),
+                FieldPanel("strategy_label_ownership"),
+            ],
+            heading="Strategy Table Labels",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("strategy_1_name"),
+                FieldPanel("strategy_1_subtitle"),
+                FieldPanel("strategy_1_focus"),
+                FieldPanel("strategy_1_screening"),
+                FieldPanel("strategy_1_management"),
+                FieldPanel("strategy_1_ownership"),
+                FieldPanel("strategy_1_description"),
+                FieldPanel("strategy_1_link"),
+                FieldPanel("strategy_1_link_text"),
+            ],
+            heading="Strategy 1 - Growth",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("strategy_2_name"),
+                FieldPanel("strategy_2_subtitle"),
+                FieldPanel("strategy_2_focus"),
+                FieldPanel("strategy_2_screening"),
+                FieldPanel("strategy_2_management"),
+                FieldPanel("strategy_2_ownership"),
+                FieldPanel("strategy_2_description"),
+                FieldPanel("strategy_2_link"),
+                FieldPanel("strategy_2_link_text"),
+            ],
+            heading="Strategy 2 - Income",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("strategy_3_name"),
+                FieldPanel("strategy_3_subtitle"),
+                FieldPanel("strategy_3_focus"),
+                FieldPanel("strategy_3_screening"),
+                FieldPanel("strategy_3_management"),
+                FieldPanel("strategy_3_ownership"),
+                FieldPanel("strategy_3_description"),
+                FieldPanel("strategy_3_link"),
+                FieldPanel("strategy_3_link_text"),
+            ],
+            heading="Strategy 3 - Diversification",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("serve_individual_link"),
+                FieldPanel("serve_individual_link_text"),
+                FieldPanel("serve_advisor_link"),
+                FieldPanel("serve_advisor_link_text"),
+                FieldPanel("serve_institution_link"),
+                FieldPanel("serve_institution_link_text"),
+            ],
+            heading="Who We Serve Links",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("process_section_link"),
+                FieldPanel("process_section_link_text"),
+            ],
+            heading="Process Section Link",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("cta_button_1_link"),
+                FieldPanel("cta_button_1_text"),
+                FieldPanel("cta_button_2_link"),
+                FieldPanel("cta_button_2_text"),
+                FieldPanel("accepting_clients_icon"),
+            ],
+            heading="Bottom CTA Settings",
+        ),
     ]
 
     # Wagtail admin panel configurations
