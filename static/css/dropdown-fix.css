@@ -31,19 +31,19 @@
 }
 
 /* CRITICAL: Override ALL dropdown visibility rules from core-styles.css */
-/* Ensure dropdown is hidden by default */
-.garden-dropdown-menu {
+/* Hide dropdown ONLY when Alpine.js explicitly sets display: none */
+.garden-dropdown-menu[style*="display: none"] {
     display: none !important;
 }
 
-/* Only show when Alpine.js adds inline style="display: block;" */
-.garden-dropdown-menu[style*="display: block"] {
+/* When Alpine.js removes the style attribute (meaning it should show), display it */
+.garden-dropdown-menu:not([style*="display: none"]) {
     display: block !important;
 }
 
 /* Override the core-styles.css rule for .open class */
 .garden-dropdown.open .garden-dropdown-menu {
-    display: none !important;
+    /* Let Alpine.js control visibility */
 }
 
 /* Dark mode support for dropdown - AFTER base selectors */

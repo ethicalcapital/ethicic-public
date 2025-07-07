@@ -3607,6 +3607,150 @@ class InstitutionalPage(Page):
         default="<p>We work with institutions to implement ethical investment strategies at scale.</p>",
     )
 
+    # What We Offer section
+    offer_section_title = models.CharField(
+        max_length=200,
+        default="WHAT WE OFFER INSTITUTIONS",
+        blank=True,
+    )
+    offer_section_intro = RichTextField(
+        blank=True,
+        default="<p>We provide institutions with proven ethical investment strategies that can be implemented at scale using liquid securities. Our approach focuses on delivering strategies that meet fiduciary standards while achieving alignment with institutional values and stakeholder expectations.</p>",
+    )
+    services = StreamField(
+        [
+            ('service', blocks.StructBlock([
+                ('title', blocks.CharBlock(max_length=100)),
+                ('description', blocks.RichTextBlock()),
+            ]))
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Services offered to institutions"
+    )
+
+    # Partnership Benefits section
+    benefits_section_title = models.CharField(
+        max_length=200,
+        default="WHY INSTITUTIONS CHOOSE US",
+        blank=True,
+    )
+    benefits_section_intro = RichTextField(
+        blank=True,
+        default="<p>Leading institutions partner with us because we deliver proven strategies, transparent methodology, and direct access to decision-makers that institutional fiduciary standards demand.</p>",
+    )
+    benefits = StreamField(
+        [
+            ('benefit', blocks.StructBlock([
+                ('title', blocks.CharBlock(max_length=100)),
+                ('description', blocks.RichTextBlock()),
+            ]))
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Partnership benefits for institutions"
+    )
+
+    # Process Overview section
+    process_section_title = models.CharField(
+        max_length=200,
+        default="OUR INSTITUTIONAL APPROACH",
+        blank=True,
+    )
+    process_steps = StreamField(
+        [
+            ('process_step', blocks.StructBlock([
+                ('step_number', blocks.IntegerBlock(min_value=1)),
+                ('title', blocks.CharBlock(max_length=100)),
+                ('description', blocks.TextBlock()),
+            ]))
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Process steps for institutional collaboration"
+    )
+
+    # Scale & Capabilities section
+    scale_section_title = models.CharField(
+        max_length=200,
+        default="INSTITUTIONAL SCALE & CAPABILITIES",
+        blank=True,
+    )
+    scale_section_intro = RichTextField(
+        blank=True,
+        default="<p>Our investment strategies and operational infrastructure are designed to support institutional-scale implementations with the rigor and transparency institutional oversight requires.</p>",
+    )
+    scale_metrics = StreamField(
+        [
+            ('metric', blocks.StructBlock([
+                ('value', blocks.CharBlock(max_length=20)),
+                ('label', blocks.CharBlock(max_length=20)),
+                ('description', blocks.TextBlock()),
+            ]))
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Scale and capability metrics"
+    )
+
+    # Due Diligence Resources section
+    ddq_section_title = models.CharField(
+        max_length=200,
+        default="DUE DILIGENCE RESOURCES",
+        blank=True,
+    )
+    ddq_section_subtitle = models.CharField(
+        max_length=200,
+        default="Documentation for Institutional Partners",
+        blank=True,
+    )
+    ddq_section_description = RichTextField(
+        blank=True,
+        default="<p>Comprehensive documentation to support your due diligence process and institutional requirements.</p>",
+    )
+    resource_categories = StreamField(
+        [
+            ('resource_category', blocks.StructBlock([
+                ('title', blocks.CharBlock(max_length=100)),
+                ('resources', blocks.ListBlock(blocks.StructBlock([
+                    ('icon', blocks.CharBlock(max_length=10, help_text="Emoji icon")),
+                    ('title', blocks.CharBlock(max_length=100)),
+                    ('description', blocks.CharBlock(max_length=200)),
+                    ('url', blocks.CharBlock(max_length=200)),
+                ]))),
+            ]))
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Resource categories with links"
+    )
+
+    # CTA section updates
+    cta_section_title = models.CharField(
+        max_length=200,
+        default="READY TO PARTNER?",
+        blank=True,
+    )
+    cta_primary_text = models.CharField(
+        max_length=100,
+        default="SCHEDULE INSTITUTIONAL CONSULTATION",
+        blank=True,
+    )
+    cta_primary_url = models.URLField(
+        blank=True,
+        default="https://tidycal.com/ecic/institutional",
+    )
+    cta_secondary_text = models.CharField(
+        max_length=100,
+        default="SEND A MESSAGE",
+        blank=True,
+    )
+    cta_secondary_url = models.CharField(
+        max_length=200,
+        default="/contact/",
+        blank=True,
+    )
+
     # Capabilities section
     capabilities_title = models.CharField(
         max_length=200,
