@@ -27,6 +27,7 @@ services:
       - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL}
       - CONTACT_EMAIL=${CONTACT_EMAIL}
       - DB_SSLMODE=${DB_SSLMODE}
+      - FORCE_STATIC_REBUILD=${FORCE_STATIC_REBUILD:-false}
     volumes:
       - ./config/ssl:/app/config/ssl:ro
       - static_files:/app/staticfiles

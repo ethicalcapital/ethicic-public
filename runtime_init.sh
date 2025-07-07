@@ -11,14 +11,31 @@ export DJANGO_SETTINGS_MODULE=ethicic.settings
 # Quick environment check
 echo "Environment: PORT=${PORT:-8080}, DB_URL=${DB_URL:-NOT_SET}"
 
-# Parallel static file collection and database setup
+# Force clear static files cache and regenerate
 (
+    echo "📁 Force clearing static files cache..."
+
+    # Check if this is a new build or force rebuild is requested
+    if [ -f /app/.build_marker ] || [ "$FORCE_STATIC_REBUILD" = "true" ]; then
+        echo "🔄 New build detected or force rebuild requested - clearing all static files..."
+        rm -rf staticfiles/* 2>/dev/null || true
+        find staticfiles -type f -delete 2>/dev/null || true
+    fi
+
     echo "📁 Collecting static files..."
     python manage.py collectstatic --noinput --clear 2>&1 || {
         echo "⚠️  Static collection failed, manual copy..."
         rm -rf staticfiles 2>/dev/null
         cp -r static staticfiles 2>/dev/null
     }
+
+    # Verify critical CSS files are present
+    if [ ! -f "staticfiles/css/about-page-v2.css" ]; then
+        echo "⚠️  Critical CSS missing, forcing manual copy..."
+        cp -r static/* staticfiles/ 2>/dev/null || true
+    fi
+
+    echo "✅ Static files ready"
 ) &
 STATIC_PID=$!
 

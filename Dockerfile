@@ -44,8 +44,9 @@ COPY . /app/
 # Make scripts executable
 RUN chmod +x runtime_init.sh build.sh 2>/dev/null || true
 
-# Create static directories
-RUN mkdir -p staticfiles/css staticfiles/js staticfiles/images
+# Create static directories and add cache-busting marker
+RUN mkdir -p staticfiles/css staticfiles/js staticfiles/images && \
+    echo "BUILD_TIME=$(date +%s)" > /app/.build_marker
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash app && chown -R app:app /app
