@@ -36,56 +36,60 @@
                 </div>
             </section>
 
-            <!-- Contact Information -->
-            <section class="garden-panel">
-                <div class="panel-header">{{ page.contact_section_title }}</div>
+        </div>
+
+        <!-- Contact Information Sidebar -->
+        <aside class="contact-sidebar">
+            <!-- Contact Information Panel -->
+            <div class="garden-panel">
+                <div class="panel-header">CONTACT INFORMATION</div>
                 <div class="panel-content">
-                    <div class="contact-info-grid">
+                    <div class="contact-info-sidebar">
                         <div class="contact-item">
                             <div class="contact-label">EMAIL:</div>
-                            <a href="mailto:{{ page.contact_email }}" class="contact-link">
-                                {{ page.contact_email }}
+                            <a href="mailto:hello@ethicic.com" class="contact-link">
+                                hello@ethicic.com
                             </a>
                         </div>
 
                         <div class="contact-item">
                             <div class="contact-label">PHONE:</div>
-                            <a href="tel:{{ page.contact_phone|cut:' '|cut:'-' }}" class="contact-link">
-                                {{ page.contact_phone }}
+                            <a href="tel:+13476259000" class="contact-link">
+                                +1 347 625 9000
                             </a>
                         </div>
 
                         <div class="contact-item">
                             <div class="contact-label">ADDRESS:</div>
-                            <div class="contact-value">{{ page.contact_address }}</div>
+                            <div class="contact-value">90 N 400 E, Provo, UT 84606</div>
                         </div>
 
                         <div class="contact-item">
-                            <div class="contact-label">BUSINESS HOURS:</div>
-                            <div class="contact-value">{{ page.business_hours }}</div>
+                            <div class="contact-label">SCHEDULING:</div>
+                            <div class="sidebar-action">
+                                <a href="https://tidycal.com/ecic" class="garden-action secondary" target="_blank" rel="noopener noreferrer">
+                                    SCHEDULE CONSULTATION
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
 
-        <!-- Consultation Sidebar -->
-        {% if page.show_consultation_sidebar %}
-        <aside class="consultation-sidebar">
+            <!-- Get Started Panel -->
             <div class="garden-panel">
-                <div class="panel-header">{{ page.consultation_sidebar_title }}</div>
+                <div class="panel-header">GET STARTED</div>
                 <div class="panel-content">
-                    {{ page.consultation_sidebar_description|richtext }}
+                    <p class="panel-description">Ready to align your investments with your values? Start your journey with ethical investing today.</p>
 
                     <div class="sidebar-action">
-                        <a href="{{ page.consultation_sidebar_button_url }}" class="garden-action primary">
-                            {{ page.consultation_sidebar_button_text }}
+                        <a href="/onboarding/" class="garden-action primary">
+                            START ONBOARDING
                         </a>
                     </div>
                 </div>
             </div>
         </aside>
-        {% endif %}
     </div>
 </div>
 {% endblock %}
@@ -104,13 +108,16 @@
         gap: 2rem;
     }
 
-    .consultation-sidebar {
+    .contact-sidebar {
         position: sticky;
         top: 2rem;
         height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
     }
 
-    .consultation-sidebar .garden-panel {
+    .contact-sidebar .garden-panel {
         background: var(--color-surface-variant);
         border: 2px solid var(--color-primary);
     }
@@ -128,6 +135,12 @@
         display: grid;
         gap: 2rem;
         margin-top: 1rem;
+    }
+
+    .contact-info-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
     }
 
     .contact-item {
@@ -162,6 +175,12 @@
     .form-description {
         margin-bottom: 2rem;
         color: var(--color-text-secondary);
+    }
+
+    .panel-description {
+        margin-bottom: 1.5rem;
+        color: var(--color-text-secondary);
+        line-height: 1.5;
     }
 
     @media (min-width: 768px) {
