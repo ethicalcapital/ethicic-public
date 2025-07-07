@@ -4,8 +4,8 @@ from django.db import migrations
 
 
 def populate_about_page_fields(apps, schema_editor):
-    AboutPage = apps.get_model('public_site', 'AboutPage')
-    
+    AboutPage = apps.get_model("public_site", "AboutPage")
+
     # Define timeline data
     timeline_data = [
         {
@@ -13,43 +13,35 @@ def populate_about_page_fields(apps, schema_editor):
             "value": {
                 "year": "2007-8",
                 "company": "Oppenheimer & Co",
-                "description": ""
-            }
+                "description": "",
+            },
         },
         {
             "type": "timeline_item",
-            "value": {
-                "year": "2009",
-                "company": "Family Office",
-                "description": ""
-            }
+            "value": {"year": "2009", "company": "Family Office", "description": ""},
         },
         {
             "type": "timeline_item",
-            "value": {
-                "year": "2010-18",
-                "company": "CFA Institute",
-                "description": ""
-            }
+            "value": {"year": "2010-18", "company": "CFA Institute", "description": ""},
         },
         {
             "type": "timeline_item",
             "value": {
                 "year": "2018-21",
                 "company": "Independent Consultant",
-                "description": ""
-            }
+                "description": "",
+            },
         },
         {
             "type": "timeline_item",
             "value": {
                 "year": "2021",
                 "company": "Founded Ethical Capital",
-                "description": ""
-            }
-        }
+                "description": "",
+            },
+        },
     ]
-    
+
     # Define hobbies data
     hobbies_data = [
         {
@@ -57,19 +49,19 @@ def populate_about_page_fields(apps, schema_editor):
             "value": {
                 "icon": "⛷️",
                 "title": "Skiing",
-                "description": "Utah's many awesome resorts"
-            }
+                "description": "Utah's many awesome resorts",
+            },
         },
         {
             "type": "hobby",
             "value": {
                 "icon": "🌻",
                 "title": "Gardening",
-                "description": "Replacing lawn with wildlife-friendly perennials"
-            }
-        }
+                "description": "Replacing lawn with wildlife-friendly perennials",
+            },
+        },
     ]
-    
+
     # Update all AboutPage instances
     for page in AboutPage.objects.all():
         page.experience_timeline = timeline_data
@@ -78,8 +70,8 @@ def populate_about_page_fields(apps, schema_editor):
 
 
 def reverse_populate_about_page_fields(apps, schema_editor):
-    AboutPage = apps.get_model('public_site', 'AboutPage')
-    
+    AboutPage = apps.get_model("public_site", "AboutPage")
+
     for page in AboutPage.objects.all():
         page.experience_timeline = []
         page.hobbies = []
@@ -87,14 +79,12 @@ def reverse_populate_about_page_fields(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("public_site", "0009_add_about_page_timeline_hobbies"),
     ]
 
     operations = [
         migrations.RunPython(
-            populate_about_page_fields,
-            reverse_populate_about_page_fields
+            populate_about_page_fields, reverse_populate_about_page_fields
         ),
     ]

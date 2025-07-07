@@ -18,24 +18,24 @@
         <div class="hero-grid">
             <!-- Left: Larger Headshot -->
             <div class="hero-image">
-                <img src="{{ page.headshot_image|default:'https://pub-324a685032214395a8bcad478c265d4b.r2.dev/headshot%20sketch_slim.png' }}" 
-                     alt="{{ page.headshot_alt_text|default:'Sloane Ortel headshot' }}" 
+                <img src="{{ page.headshot_image|default:'https://pub-324a685032214395a8bcad478c265d4b.r2.dev/headshot%20sketch_slim.png' }}"
+                     alt="{{ page.headshot_alt_text|default:'Sloane Ortel headshot' }}"
                      class="headshot-large"
                      loading="eager"
-                     width="400" 
+                     width="400"
                      height="500">
             </div>
-            
+
             <!-- Right: Identity & Quote -->
             <div class="hero-content">
                 <h1 class="hero-name">{{ page.name|upper }}</h1>
                 <div class="hero-title">{{ page.professional_title }}</div>
                 <div class="divider"></div>
-                
+
                 <blockquote class="hero-quote">
                     {{ page.philosophy_quote|safe }}
                 </blockquote>
-                
+
                 <div class="hero-actions">
                     {% if page.calendar_url %}
                     <a href="{{ page.calendar_url }}" target="_blank" rel="noopener noreferrer" class="garden-action primary">
@@ -48,7 +48,7 @@
                     </a>
                     {% endif %}
                 </div>
-                
+
                 <!-- Social Links -->
                 <div class="hero-social-links">
                     {% if page.linkedin_url %}
@@ -57,35 +57,35 @@
                         <span class="social-name">LinkedIn</span>
                     </a>
                     {% endif %}
-                    
+
                     {% if page.twitter_url %}
                     <a href="{{ page.twitter_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
                         <span class="social-icon">🐦</span>
                         <span class="social-name">Twitter</span>
                     </a>
                     {% endif %}
-                    
+
                     {% if page.bluesky_url %}
                     <a href="{{ page.bluesky_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
                         <span class="social-icon">🦋</span>
                         <span class="social-name">Bluesky</span>
                     </a>
                     {% endif %}
-                    
+
                     {% if page.instagram_url %}
                     <a href="{{ page.instagram_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
                         <span class="social-icon">📷</span>
                         <span class="social-name">Instagram</span>
                     </a>
                     {% endif %}
-                    
+
                     {% if page.tiktok_url %}
                     <a href="{{ page.tiktok_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
                         <span class="social-icon">🎵</span>
                         <span class="social-name">TikTok</span>
                     </a>
                     {% endif %}
-                    
+
                     {% if page.sec_info_url %}
                     <a href="{{ page.sec_info_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
                         <span class="social-icon">📋</span>
@@ -109,12 +109,12 @@
                     <h3>Current Role</h3>
                     {{ page.current_role_content|safe }}
                 </div>
-                
+
                 <div class="panel-section">
                     <h3>Philosophy</h3>
                     {{ page.philosophy_content|safe }}
                 </div>
-                
+
                 <div class="panel-section">
                     <h3>Client Focus</h3>
                     {{ page.client_focus_content|safe }}
@@ -129,7 +129,7 @@
             </div>
             <div class="garden-panel-content">
                 {{ page.external_roles_content|safe }}
-                
+
                 {% for hobby in page.hobbies %}
                 <div class="beyond-item">
                     <span class="beyond-icon">{{ hobby.value.icon }}</span>
@@ -189,21 +189,21 @@
                             <p>{{ page.featured_post_1_description }}</p>
                         </a>
                         {% endif %}
-                        
+
                         {% if page.featured_post_2_title %}
                         <a href="{{ page.featured_post_2_url }}" class="post-card">
                             <h4>{{ page.featured_post_2_title }}</h4>
                             <p>{{ page.featured_post_2_description }}</p>
                         </a>
                         {% endif %}
-                        
+
                         {% if page.featured_post_3_title %}
                         <a href="{{ page.featured_post_3_url }}" class="post-card">
                             <h4>{{ page.featured_post_3_title }}</h4>
                             <p>{{ page.featured_post_3_description }}</p>
                         </a>
                         {% endif %}
-                        
+
                         {% if page.featured_post_4_title %}
                         <a href="{{ page.featured_post_4_url }}" class="post-card">
                             <h4>{{ page.featured_post_4_title }}</h4>
@@ -213,36 +213,36 @@
                         {% endfor %}
                     </div>
                 </div>
-                
+
                 <!-- Speaking Engagements -->
                 <div class="speaking-section">
                     <h3>Speaking Engagements</h3>
-                    
+
                     <div class="speaking-topics">
                         <h4>Topics I Cover:</h4>
                         {{ page.speaking_topics|safe }}
                     </div>
-                    
+
                     <div class="speaker-cta">
                         {% if page.speaker_bio_url %}
-                        <a href="{{ page.speaker_bio_url }}" 
-                           target="_blank" 
+                        <a href="{{ page.speaker_bio_url }}"
+                           target="_blank"
                            rel="noopener noreferrer"
                            class="garden-action secondary">
                             📄 DOWNLOAD SPEAKER BIO
                         </a>
                         {% endif %}
-                        
+
                         {% if page.calendar_url %}
-                        <a href="{{ page.calendar_url }}" 
-                           target="_blank" 
+                        <a href="{{ page.calendar_url }}"
+                           target="_blank"
                            rel="noopener noreferrer"
                            class="garden-action primary">
                             📅 BOOK ME TO SPEAK
                         </a>
                         {% endif %}
                     </div>
-                    
+
                     {% if page.speaking_contact_note %}
                     <div class="contact-note">
                         {{ page.speaking_contact_note|safe }}

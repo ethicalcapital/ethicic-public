@@ -623,7 +623,6 @@ class AboutPage(Page):
         help_text="Featured writing posts",
     )
 
-
     # Three-panel content for new layout
     # What I Do Now panel
     current_role_content = RichTextField(
@@ -3356,14 +3355,19 @@ class AdvisorPage(Page):
     )
     services_offered = StreamField(
         [
-            ('service', blocks.StructBlock([
-                ('title', blocks.CharBlock(max_length=100)),
-                ('description', blocks.RichTextBlock()),
-            ]))
+            (
+                "service",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.RichTextBlock()),
+                    ]
+                ),
+            )
         ],
         blank=True,
         use_json_field=True,
-        help_text="Services offered to advisers"
+        help_text="Services offered to advisers",
     )
 
     # Partnership Benefits section
@@ -3378,14 +3382,19 @@ class AdvisorPage(Page):
     )
     partnership_benefits = StreamField(
         [
-            ('benefit', blocks.StructBlock([
-                ('title', blocks.CharBlock(max_length=100)),
-                ('description', blocks.RichTextBlock()),
-            ]))
+            (
+                "benefit",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.RichTextBlock()),
+                    ]
+                ),
+            )
         ],
         blank=True,
         use_json_field=True,
-        help_text="Partnership benefits for advisers"
+        help_text="Partnership benefits for advisers",
     )
 
     # Process Overview section
@@ -3396,15 +3405,20 @@ class AdvisorPage(Page):
     )
     process_steps = StreamField(
         [
-            ('process_step', blocks.StructBlock([
-                ('step_number', blocks.IntegerBlock(min_value=1)),
-                ('title', blocks.CharBlock(max_length=100)),
-                ('description', blocks.TextBlock()),
-            ]))
+            (
+                "process_step",
+                blocks.StructBlock(
+                    [
+                        ("step_number", blocks.IntegerBlock(min_value=1)),
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.TextBlock()),
+                    ]
+                ),
+            )
         ],
         blank=True,
         use_json_field=True,
-        help_text="Process steps for adviser collaboration"
+        help_text="Process steps for adviser collaboration",
     )
 
     # Due Diligence Resources section
@@ -3424,19 +3438,39 @@ class AdvisorPage(Page):
     )
     resource_categories = StreamField(
         [
-            ('resource_category', blocks.StructBlock([
-                ('title', blocks.CharBlock(max_length=100)),
-                ('resources', blocks.ListBlock(blocks.StructBlock([
-                    ('icon', blocks.CharBlock(max_length=10, help_text="Emoji icon")),
-                    ('title', blocks.CharBlock(max_length=100)),
-                    ('description', blocks.CharBlock(max_length=200)),
-                    ('url', blocks.CharBlock(max_length=200)),
-                ]))),
-            ]))
+            (
+                "resource_category",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=100)),
+                        (
+                            "resources",
+                            blocks.ListBlock(
+                                blocks.StructBlock(
+                                    [
+                                        (
+                                            "icon",
+                                            blocks.CharBlock(
+                                                max_length=10, help_text="Emoji icon"
+                                            ),
+                                        ),
+                                        ("title", blocks.CharBlock(max_length=100)),
+                                        (
+                                            "description",
+                                            blocks.CharBlock(max_length=200),
+                                        ),
+                                        ("url", blocks.CharBlock(max_length=200)),
+                                    ]
+                                )
+                            ),
+                        ),
+                    ]
+                ),
+            )
         ],
         blank=True,
         use_json_field=True,
-        help_text="Resource categories with links"
+        help_text="Resource categories with links",
     )
 
     # CTA section
