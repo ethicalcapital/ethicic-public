@@ -538,6 +538,92 @@ class AboutPage(Page):
         help_text="Personal interests content",
     )
 
+    # Timeline experience data
+    experience_timeline = StreamField(
+        [
+            (
+                "timeline_item",
+                blocks.StructBlock(
+                    [
+                        (
+                            "year",
+                            blocks.CharBlock(
+                                max_length=20,
+                                help_text="Year or year range (e.g., 2007-8)",
+                            ),
+                        ),
+                        (
+                            "company",
+                            blocks.CharBlock(
+                                max_length=200, help_text="Company or organization name"
+                            ),
+                        ),
+                        (
+                            "description",
+                            blocks.CharBlock(
+                                max_length=500,
+                                required=False,
+                                help_text="Optional description",
+                            ),
+                        ),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Experience timeline items",
+    )
+
+    # Hobbies/interests with icons
+    hobbies = StreamField(
+        [
+            (
+                "hobby",
+                blocks.StructBlock(
+                    [
+                        (
+                            "icon",
+                            blocks.CharBlock(
+                                max_length=10, help_text="Emoji icon for the hobby"
+                            ),
+                        ),
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.TextBlock()),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Personal hobbies and interests",
+    )
+
+    # Featured writing posts
+    featured_posts = StreamField(
+        [
+            (
+                "featured_post",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=100)),
+                        ("description", blocks.TextBlock()),
+                        (
+                            "url",
+                            blocks.CharBlock(
+                                max_length=200, help_text="Link to the post"
+                            ),
+                        ),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+        help_text="Featured writing posts",
+    )
+
+
     # Three-panel content for new layout
     # What I Do Now panel
     current_role_content = RichTextField(
@@ -2173,7 +2259,7 @@ class ProcessPage(Page):
         default="OUR SIGNATURE PROCESS",
         blank=True,
     )
-    
+
     # Screening step title (used in step 1)
     screening_title = models.CharField(
         max_length=200,
@@ -2233,19 +2319,37 @@ class ProcessPage(Page):
     )
 
     # Exclusion categories (as StreamField for flexibility)
-    product_exclusions = StreamField([
-        ('exclusion_category', blocks.StructBlock([
-            ('title', blocks.CharBlock(max_length=200)),
-            ('items', blocks.ListBlock(blocks.CharBlock())),
-        ]))
-    ], blank=True, use_json_field=True)
+    product_exclusions = StreamField(
+        [
+            (
+                "exclusion_category",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=200)),
+                        ("items", blocks.ListBlock(blocks.CharBlock())),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+    )
 
-    conduct_exclusions = StreamField([
-        ('exclusion_category', blocks.StructBlock([
-            ('title', blocks.CharBlock(max_length=200)),
-            ('items', blocks.ListBlock(blocks.CharBlock())),
-        ]))
-    ], blank=True, use_json_field=True)
+    conduct_exclusions = StreamField(
+        [
+            (
+                "exclusion_category",
+                blocks.StructBlock(
+                    [
+                        ("title", blocks.CharBlock(max_length=200)),
+                        ("items", blocks.ListBlock(blocks.CharBlock())),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+        use_json_field=True,
+    )
 
     # Guiding principles section
     principles_title = models.CharField(
@@ -2290,21 +2394,24 @@ class ProcessPage(Page):
             [
                 FieldPanel("screening_title"),
                 FieldPanel("screening_description"),
-            ], heading="Screening Section (Step 1 Expanded)"
+            ],
+            heading="Screening Section (Step 1 Expanded)",
         ),
         MultiFieldPanel(
             [
                 FieldPanel("product_exclusions_title"),
                 FieldPanel("product_exclusions_subtitle"),
                 FieldPanel("product_exclusions"),
-            ], heading="Product-Based Exclusions"
+            ],
+            heading="Product-Based Exclusions",
         ),
         MultiFieldPanel(
             [
                 FieldPanel("conduct_exclusions_title"),
                 FieldPanel("conduct_exclusions_subtitle"),
                 FieldPanel("conduct_exclusions"),
-            ], heading="Conduct-Based Exclusions"
+            ],
+            heading="Conduct-Based Exclusions",
         ),
         MultiFieldPanel(
             [
@@ -2312,19 +2419,22 @@ class ProcessPage(Page):
                 FieldPanel("methodology_content"),
                 FieldPanel("exclusion_percentage"),
                 FieldPanel("exclusion_date"),
-            ], heading="Methodology Section"
+            ],
+            heading="Methodology Section",
         ),
         MultiFieldPanel(
             [
                 FieldPanel("principles_title"),
                 FieldPanel("principles_content"),
-            ], heading="Guiding Principles"
+            ],
+            heading="Guiding Principles",
         ),
         MultiFieldPanel(
             [
                 FieldPanel("cta_title"),
                 FieldPanel("cta_description"),
-            ], heading="Call to Action"
+            ],
+            heading="Call to Action",
         ),
     ]
 
