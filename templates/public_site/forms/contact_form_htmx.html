@@ -6,7 +6,7 @@
       hx-indicator="#form-loading"
       hx-swap="innerHTML"
       class="garden-form"
-      x-data="{ 
+      x-data="{
           submitting: false,
           handleSubmit() {
               this.submitting = true;
@@ -17,22 +17,22 @@
       }"
       @htmx:before-request="handleSubmit()"
       @htmx:after-request="handleResponse()">
-    
+
     {% csrf_token %}
-    
+
     <div class="form-wrapper">
         <!-- Name Field -->
         <div class="garden-form-group">
             {{ contact_form.name|as_crispy_field }}
         </div>
-        
+
         <!-- Email Field with inline validation -->
         <div class="garden-form-group">
             <label for="{{ contact_form.email.id_for_label }}">
                 {{ contact_form.email.label }}
                 {% if contact_form.email.field.required %}<span class="required-indicator" aria-label="required">*</span>{% endif %}
             </label>
-            <input type="email" 
+            <input type="email"
                    name="{{ contact_form.email.name }}"
                    id="{{ contact_form.email.id_for_label }}"
                    class="garden-input"
@@ -46,45 +46,45 @@
                    :disabled="submitting"
                    aria-describedby="email-feedback{% if contact_form.email.help_text %} email-help{% endif %}"
                    aria-invalid="false">
-            <span id="email-spinner" 
-                  class="htmx-indicator field-spinner" 
-                  role="status" 
+            <span id="email-spinner"
+                  class="htmx-indicator field-spinner"
+                  role="status"
                   aria-label="Validating email">⟳</span>
-            <div id="email-feedback" 
-                 class="field-feedback" 
-                 role="status" 
-                 aria-live="polite" 
+            <div id="email-feedback"
+                 class="field-feedback"
+                 role="status"
+                 aria-live="polite"
                  aria-atomic="true"></div>
             {% if contact_form.email.help_text %}
                 <small id="email-help" class="form-text text-muted">{{ contact_form.email.help_text }}</small>
             {% endif %}
         </div>
-        
+
         <!-- Company Field -->
         <div class="garden-form-group">
             {{ contact_form.company|as_crispy_field }}
         </div>
-        
+
         <!-- Subject Field -->
         <div class="garden-form-group">
             {{ contact_form.subject|as_crispy_field }}
         </div>
-        
+
         <!-- Message Field -->
         <div class="garden-form-group">
             {{ contact_form.message|as_crispy_field }}
         </div>
-        
+
         <!-- Spam Protection (if present) -->
         {% if contact_form.human_check %}
             <div class="garden-form-group">
                 {{ contact_form.human_check|as_crispy_field }}
             </div>
         {% endif %}
-        
+
         <!-- Submit Button -->
         <div class="form-actions">
-            <button type="submit" 
+            <button type="submit"
                     class="garden-action primary"
                     :disabled="submitting"
                     aria-describedby="form-response">
@@ -93,8 +93,8 @@
                     <span class="spinner" role="status" aria-label="Loading">⟳</span> Sending...
                 </span>
             </button>
-            
-            <button type="reset" 
+
+            <button type="reset"
                     class="garden-action secondary"
                     :disabled="submitting"
                     @click="$refs.formResponse.innerHTML = ''"
@@ -103,9 +103,9 @@
             </button>
         </div>
     </div>
-    
+
     <!-- Loading indicator -->
-    <div id="form-loading" 
+    <div id="form-loading"
          class="htmx-indicator form-loading-overlay"
          role="status"
          aria-label="Form submission in progress">
@@ -117,8 +117,8 @@
 </form>
 
 <!-- Response container -->
-<div id="form-response" 
-     x-ref="formResponse" 
+<div id="form-response"
+     x-ref="formResponse"
      class="form-response-container"
      role="status"
      aria-live="polite"
@@ -132,69 +132,71 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(255, 255, 255, 0.9);
+        background: var(--color-surface);
+        opacity: 0.95;
         display: none;
         align-items: center;
         justify-content: center;
         z-index: 100;
         border-radius: var(--radius-md);
     }
-    
+
     .htmx-request .form-loading-overlay {
         display: flex;
     }
-    
+
     .loading-content {
         text-align: center;
     }
-    
+
     .spinner-large {
         font-size: 2rem;
         animation: spin 1s linear infinite;
         display: inline-block;
         margin-bottom: 1rem;
     }
-    
+
     .field-spinner {
         margin-left: 0.5rem;
         display: none;
     }
-    
+
     .htmx-request .field-spinner {
         display: inline-block;
         animation: spin 1s linear infinite;
     }
-    
+
     @keyframes spin {
         to { transform: rotate(360deg); }
     }
-    
+
     /* Field Feedback */
     .field-feedback {
         margin-top: 0.25rem;
         font-size: 0.875rem;
     }
-    
+
     .field-feedback.valid {
         color: var(--color-success);
     }
-    
+
     .field-feedback.invalid {
         color: var(--color-error);
     }
-    
+
     /* Dark mode adjustments */
     [data-theme="dark"] .form-loading-overlay {
-        background: rgba(0, 0, 0, 0.9);
+        background: var(--color-surface);
+        opacity: 0.95;
         color: var(--color-text-primary);
     }
-    
+
     /* Disabled state */
     .form-input:disabled {
         opacity: 0.6;
         cursor: not-allowed;
     }
-    
+
     /* Form response container */
     .form-response-container {
         margin-top: 1rem;

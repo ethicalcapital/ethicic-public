@@ -100,7 +100,7 @@
     <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v=2025070401">
 
     <!-- Mobile menu override - fixes hamburger visibility -->
-    <link rel="stylesheet" href="{% static 'css/mobile-menu-override.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/mobile-menu-override.css' %}?v=2">
 
     <!-- Public site specific styles -->
     <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070123">
@@ -212,6 +212,9 @@
     {% block extra_schema %}{% endblock %}
 
     {% block extra_css %}{% endblock %}
+
+    <!-- Emergency contact form fix - loads LAST -->
+    <link rel="stylesheet" href="{% static 'css/z-contact-emergency-fix.css' %}?v=1">
 
     <!-- HTMX for server-driven interactivity -->
     <script src="https://unpkg.com/htmx.org@1.9.11"></script>

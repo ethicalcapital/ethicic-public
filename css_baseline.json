@@ -1,9 +1,10 @@
 {
-  "timestamp": "2025-07-07T04:53:13.477951+00:00",
-  "total_files": 49,
+  "timestamp": "2025-07-07T05:07:31.655331+00:00",
+  "total_files": 51,
   "total_defined_vars": 381,
   "files_with_issues": [
-    "contact-page-fixes.css"
+    "contact-page-fixes.css",
+    "z-contact-emergency-fix.css"
   ],
   "undefined_variables": {
     "contact-page-fixes.css": [
@@ -32,10 +33,55 @@
         58,
         "#34d399"
       ]
+    ],
+    "contact-page-fixes.css": [
+      [
+        22,
+        "#111"
+      ],
+      [
+        23,
+        "#e5e7eb"
+      ],
+      [
+        34,
+        "#111"
+      ],
+      [
+        35,
+        "#e5e7eb"
+      ],
+      [
+        46,
+        "#111"
+      ]
+    ],
+    "z-contact-emergency-fix.css": [
+      [
+        17,
+        "#fff"
+      ],
+      [
+        18,
+        "#111"
+      ],
+      [
+        19,
+        "#e5e7eb"
+      ],
+      [
+        35,
+        "#fff"
+      ],
+      [
+        36,
+        "#111"
+      ]
     ]
   },
   "file_sizes": {
     "fix-formatting-issues.css": 6.27,
+    "mobile-menu-override.css": 1.16,
     "public-site-simple.css": 12.58,
     "blog-unified.css": 11.64,
     "process-page-working.css": 8.77,
@@ -43,7 +89,7 @@
     "garden-ui-theme.css": 161.66,
     "button-contrast-fixes.css": 4.7,
     "pricing-features-fix.css": 0.73,
-    "contact-page-fixes.css": 6.22,
+    "contact-page-fixes.css": 5.92,
     "dropdown-fix.css": 2.48,
     "garden-blog-articles.css": 18.94,
     "process-page.css": 10.82,
@@ -73,6 +119,7 @@
     "page-specific-overrides.css": 3.18,
     "process-page-minimal.css": 0.34,
     "blog-button-fixes.css": 4.34,
+    "z-contact-emergency-fix.css": 1.86,
     "07-footer.css": 2.84,
     "high-contrast-mode.css": 4.87,
     "workbench-layout.css": 5.47,
@@ -87,5 +134,5 @@
   },
   "total_undefined_vars": 1,
   "is_baseline": true,
-  "baseline_created": "2025-07-07T04:53:13.500662+00:00"
+  "baseline_created": "2025-07-07T05:07:31.678485+00:00"
 }
