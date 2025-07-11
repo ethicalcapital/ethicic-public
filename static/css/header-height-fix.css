@@ -3,28 +3,48 @@
 .garden-header {
     padding: 0.5rem 1rem !important;
     min-height: auto !important;
+    overflow: visible !important;
 }
 
 .garden-header-content {
     padding: 0 !important;
     min-height: auto !important;
     flex-wrap: nowrap !important;
-    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
 }
 
 /* Ensure nav items are properly sized */
 .garden-nav-left {
-    align-items: center;
-    gap: 1rem;
-    flex: 1;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    flex: 0 1 auto !important;
     min-width: 0;
 }
 
 .garden-nav-right {
-    align-items: center;
-    gap: 0.75rem;
-    flex-shrink: 0;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    flex: 0 0 auto !important;
     flex-wrap: nowrap !important;
+}
+
+/* Desktop navigation container */
+.desktop-nav {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+}
+
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none !important;
+    }
 }
 
 /* Fix brand/logo sizing */
@@ -43,44 +63,58 @@
     white-space: nowrap !important;
 }
 
+/* Right side navigation actions - compact layout */
+.garden-nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    flex-shrink: 0 !important;
+}
+
 /* Fix search container to prevent wrapping */
 .garden-search-container {
-    flex-shrink: 1;
-    min-width: 0;
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
+    position: relative !important;
 }
 
 .garden-search-input {
-    padding: 0.4rem 0.75rem !important;
-    font-size: 0.9rem !important;
-    min-width: 120px !important;
-    width: 120px !important;
+    padding: 0.35rem 0.5rem !important;
+    font-size: 0.85rem !important;
+    min-width: 100px !important;
+    width: 100px !important;
+    border-radius: 4px !important;
 }
 
 /* Fix login container */
 .garden-login-container {
-    flex-shrink: 0;
+    flex-shrink: 0 !important;
+    position: relative !important;
 }
 
 .garden-login-btn {
-    padding: 0.4rem 0.75rem !important;
-    font-size: 0.85rem !important;
+    padding: 0.35rem 0.5rem !important;
+    font-size: 0.8rem !important;
     white-space: nowrap !important;
+    min-width: auto !important;
 }
 
 /* Fix action button sizing */
 .garden-header .garden-action {
-    padding: 0.4rem 0.75rem !important;
-    font-size: 0.85rem !important;
+    padding: 0.35rem 0.75rem !important;
+    font-size: 0.8rem !important;
     white-space: nowrap !important;
-    flex-shrink: 0;
+    flex-shrink: 0 !important;
+    min-width: auto !important;
 }
 
 /* Fix theme toggle */
 .garden-theme-toggle {
-    padding: 0.4rem !important;
-    flex-shrink: 0;
-    width: 32px !important;
-    height: 32px !important;
+    padding: 0.35rem !important;
+    flex-shrink: 0 !important;
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
 }
 
 /* Fix mobile menu toggle */
