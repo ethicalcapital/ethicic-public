@@ -1,0 +1,134 @@
+/* Footer Fix - Add missing base footer class and ensure proper display */
+
+.garden-footer {
+    background: var(--color-surface, var(--garden-color-white));
+    border-top: 1px solid var(--color-border, var(--garden-color-gray-150));
+    padding: 3rem 0 2rem;
+    margin-top: 4rem;
+    width: 100%;
+    display: block;
+    clear: both;
+}
+
+/* Ensure footer content is properly contained */
+.garden-footer-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: block;
+}
+
+/* Fix footer grid display */
+.garden-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    align-items: start;
+}
+
+/* Responsive footer grid */
+@media (max-width: 768px) {
+    .garden-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .garden-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .garden-footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 3rem;
+    }
+}
+
+/* Dark mode footer */
+[data-theme="dark"] .garden-footer {
+    background: var(--color-surface, var(--garden-color-gray-900));
+    border-top-color: var(--color-border, var(--garden-color-gray-700));
+}
+
+/* Fix footer section headings */
+.garden-footer-section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary, var(--garden-color-gray-800));
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+}
+
+[data-theme="dark"] .garden-footer-section h3 {
+    color: var(--color-text-primary, var(--garden-color-gray-200));
+}
+
+/* Fix footer links */
+.garden-footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.garden-footer-links li {
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.garden-footer-link {
+    color: var(--color-text-secondary, var(--garden-color-gray-600));
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+    display: block;
+    padding: 0.25rem 0;
+}
+
+.garden-footer-link:hover {
+    color: var(--color-primary, var(--garden-accent));
+    text-decoration: underline;
+}
+
+[data-theme="dark"] .garden-footer-link {
+    color: var(--color-text-secondary, var(--garden-color-gray-300));
+}
+
+[data-theme="dark"] .garden-footer-link:hover {
+    color: var(--color-primary, var(--garden-accent));
+}
+
+/* Footer bottom section */
+.garden-footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border, var(--garden-color-gray-150));
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+[data-theme="dark"] .garden-footer-bottom {
+    border-top-color: var(--color-border, var(--garden-color-gray-700));
+}
+
+.garden-footer-legal {
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary, var(--garden-color-gray-600));
+    line-height: 1.4;
+    display: block;
+}
+
+.garden-footer-legal p {
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+[data-theme="dark"] .garden-footer-legal {
+    color: var(--color-text-tertiary, var(--garden-color-gray-500));
+}
