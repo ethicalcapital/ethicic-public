@@ -8,7 +8,6 @@ from datetime import date, timedelta
 from django.db import IntegrityError
 from django.test import TestCase, TransactionTestCase
 from django.utils import timezone
-from wagtail.test.utils import WagtailPageTestCase
 
 from public_site.models import (
     BlogIndexPage,

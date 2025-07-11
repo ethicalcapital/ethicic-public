@@ -7,7 +7,7 @@ from unittest.mock import Mock, patch
 
 from django.test import override_settings
 
-from public_site.models import SupportTicket
+from public_site.models import SupportTicket, OnboardingPage
 from public_site.tests.test_base import (
     APITestMixin,
     BasePublicSiteTestCase,
@@ -167,8 +167,19 @@ class NewsletterSubscriptionFlowTest(BasePublicSiteTestCase, FormTestMixin):
 
 
 @override_settings(TESTING=True)
-class OnboardingFlowTest(BasePublicSiteTestCase, FormTestMixin):
+class OnboardingFlowTest(WagtailPublicSiteTestCase, FormTestMixin):
     """Test client onboarding flow."""
+    
+    def setUp(self):
+        super().setUp()
+        
+        # Create onboarding page for redirect tests
+        self.onboarding_page = OnboardingPage(
+            title="Onboarding",
+            slug="onboarding",
+            locale=self.locale
+        )
+        self.home_page.add_child(instance=self.onboarding_page)
 
     def test_complete_onboarding_flow(self):
         """Test complete onboarding flow from form to confirmation."""

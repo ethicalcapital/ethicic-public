@@ -209,11 +209,9 @@ class OnboardingFormViewTest(BasePublicSiteTestCase, FormTestMixin):
             "job_title": "Software Engineer",
             "marital_status": "single",
             "add_co_client": "no",
-            
             # Section 3: Contact Preferences
             "communication_preference": ["email"],
             "newsletter_subscribe": "yes",
-            
             # Section 4: Risk Questions
             "risk_question_1": "neutral",
             "risk_question_2": "agree",
@@ -222,13 +220,11 @@ class OnboardingFormViewTest(BasePublicSiteTestCase, FormTestMixin):
             "risk_question_5": "strongly_agree",
             "risk_question_6": "agree",
             "risk_question_7": "strongly_agree",
-            
             # Section 5: Values and Viewpoint
             "ethical_considerations": ["environmental_impact"],
             "divestment_movements": ["fossil_fuels"],
             "understanding_importance": "very",
             "ethical_evolution": "strongly_support",
-            
             # Section 6: Financial Context
             "investment_experience": "average",
             "emergency_access": "yes",
@@ -238,7 +234,6 @@ class OnboardingFormViewTest(BasePublicSiteTestCase, FormTestMixin):
             "investment_familiarity": "get_gist",
             "worked_with_adviser": "yes",
             "account_types": ["individual_taxable"],
-            
             # Anti-spam
             "honeypot": "",
         }
@@ -275,18 +270,20 @@ class OnboardingFormViewTest(BasePublicSiteTestCase, FormTestMixin):
     def test_onboarding_form_with_co_client(self):
         """Test onboarding form submission with co-client."""
         data = self.create_test_onboarding_data()
-        data.update({
-            "add_co_client": "yes",
-            "co_client_legal_name": "Jane Doe",
-            "co_client_call_them": "that",
-            "co_client_email": "jane@example.com",
-            "co_client_pronouns": "she/her",
-            "co_client_phone": "+1 555-0456",
-            "co_client_birthday": "1992-05-15",
-            "co_client_employment_status": "part_time",
-            "co_client_employer_name": "Freelance Design",
-            "co_client_share_address": "yes",
-        })
+        data.update(
+            {
+                "add_co_client": "yes",
+                "co_client_legal_name": "Jane Doe",
+                "co_client_call_them": "that",
+                "co_client_email": "jane@example.com",
+                "co_client_pronouns": "she/her",
+                "co_client_phone": "+1 555-0456",
+                "co_client_birthday": "1992-05-15",
+                "co_client_employment_status": "part_time",
+                "co_client_employer_name": "Freelance Design",
+                "co_client_share_address": "yes",
+            }
+        )
 
         response = self.submit_form("/onboarding/submit/", data, follow=False)
 
@@ -314,11 +311,7 @@ class OnboardingFormViewTest(BasePublicSiteTestCase, FormTestMixin):
         """Test onboarding form HTMX request handling."""
         data = self.create_test_onboarding_data()
 
-        response = self.client.post(
-            "/onboarding/submit/",
-            data,
-            HTTP_HX_REQUEST="true"
-        )
+        response = self.client.post("/onboarding/submit/", data, HTTP_HX_REQUEST="true")
 
         # Should return template response instead of redirect
         self.assertEqual(response.status_code, 200)

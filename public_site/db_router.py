@@ -18,22 +18,23 @@ class HybridDatabaseRouter:
 
     # Models that should be cached locally for performance
     # TEMPORARILY DISABLED - All models should use Ubicloud until cache sync is implemented
-    CACHED_MODELS = {
-        # 'public_site.homepage',
-        # 'public_site.blogpost',
-        # 'public_site.mediaitem',
-        # 'public_site.encyclopediaentry',
-        # 'wagtailcore.page',
-        # 'wagtailcore.site',
-        # 'taggit.tag',
-    }
+    CACHED_MODELS = frozenset()
+    # CACHED_MODELS = frozenset({
+    #     'public_site.homepage',
+    #     'public_site.blogpost',
+    #     'public_site.mediaitem',
+    #     'public_site.encyclopediaentry',
+    #     'wagtailcore.page',
+    #     'wagtailcore.site',
+    #     'taggit.tag',
+    # })
 
     # Models that should always use remote database
-    REMOTE_ONLY_MODELS = {
+    REMOTE_ONLY_MODELS = frozenset({
         "public_site.supportticket",  # Always fresh from Ubicloud
         "auth.user",  # User data should be centralized
         "sessions.session",  # Sessions in Redis anyway
-    }
+    })
 
     def db_for_read(self, model, **hints):
         """Suggest database for read operations."""

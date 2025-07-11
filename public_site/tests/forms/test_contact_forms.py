@@ -256,11 +256,9 @@ class OnboardingFormTest(TestCase, FormTestMixin):
             "job_title": "Software Engineer",
             "marital_status": "single",
             "add_co_client": "no",
-            
             # Section 3: Contact Preferences
             "communication_preference": ["email"],
             "newsletter_subscribe": "yes",
-            
             # Section 4: Risk Questions
             "risk_question_1": "neutral",
             "risk_question_2": "agree",
@@ -269,13 +267,11 @@ class OnboardingFormTest(TestCase, FormTestMixin):
             "risk_question_5": "strongly_agree",
             "risk_question_6": "agree",
             "risk_question_7": "strongly_agree",
-            
             # Section 5: Values and Viewpoint
             "ethical_considerations": ["environmental_impact"],
             "divestment_movements": ["fossil_fuels"],
             "understanding_importance": "very",
             "ethical_evolution": "strongly_support",
-            
             # Section 6: Financial Context
             "investment_experience": "average",
             "emergency_access": "yes",
@@ -285,7 +281,6 @@ class OnboardingFormTest(TestCase, FormTestMixin):
             "investment_familiarity": "get_gist",
             "worked_with_adviser": "yes",
             "account_types": ["individual_taxable"],
-            
             # Anti-spam
             "honeypot": "",
         }
@@ -312,7 +307,7 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         """Test honeypot spam protection."""
         data = self.create_basic_onboarding_data()
         data["honeypot"] = "spam content"
-        
+
         form = OnboardingForm(data=data)
         self.assert_form_invalid(form)
         self.assertIn("unusual activity", str(form.errors))
@@ -321,7 +316,7 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         """Test email normalization."""
         data = self.create_basic_onboarding_data()
         data["email"] = "TEST@EXAMPLE.COM"
-        
+
         form = OnboardingForm(data=data)
         self.assert_form_valid(form)
         self.assertEqual(form.cleaned_data["email"], "test@example.com")
@@ -331,7 +326,7 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         data = self.create_basic_onboarding_data()
         data["add_co_client"] = "yes"
         # Don't provide co-client fields
-        
+
         form = OnboardingForm(data=data)
         self.assert_form_invalid(form)
         self.assertIn("co_client_legal_name", form.errors)
@@ -349,14 +344,18 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         self.assertIn("other", pronoun_choices)
 
         # Check employment status choices
-        employment_choices = [choice[0] for choice in form.fields["employment_status"].choices]
+        employment_choices = [
+            choice[0] for choice in form.fields["employment_status"].choices
+        ]
         self.assertIn("full_time", employment_choices)
         self.assertIn("part_time", employment_choices)
         self.assertIn("self_employed", employment_choices)
         self.assertIn("retired", employment_choices)
 
         # Check ethical considerations choices
-        ethical_choices = [choice[0] for choice in form.fields["ethical_considerations"].choices]
+        ethical_choices = [
+            choice[0] for choice in form.fields["ethical_considerations"].choices
+        ]
         self.assertIn("environmental_impact", ethical_choices)
         self.assertIn("human_rights", ethical_choices)
         self.assertIn("animal_welfare", ethical_choices)

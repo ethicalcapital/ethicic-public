@@ -501,7 +501,7 @@ def onboarding_form_submit(request):
                 if value and value.isdigit():
                     return f"${int(value):,}"
                 return value
-            
+
             message_parts.extend(
                 [
                     "\n## Financial Context",
@@ -518,9 +518,13 @@ def onboarding_form_submit(request):
                 initial_investment = form_data.get("initial_investment", "")
                 if initial_investment and initial_investment.isdigit():
                     formatted_investment = f"${int(initial_investment):,}"
-                    message_parts.append(f"**Initial Investment:** {formatted_investment}")
+                    message_parts.append(
+                        f"**Initial Investment:** {formatted_investment}"
+                    )
                 else:
-                    message_parts.append(f"**Initial Investment:** {initial_investment}")
+                    message_parts.append(
+                        f"**Initial Investment:** {initial_investment}"
+                    )
 
             # Add values and ethical considerations
             if form_data.get("ethical_considerations"):
@@ -632,7 +636,7 @@ def onboarding_form_submit(request):
         if request.POST.get("honeypot"):
             # Even for HTMX requests, redirect for spam detection
             return redirect("/onboarding/")
-        
+
         if is_htmx:
             return render(
                 request,
