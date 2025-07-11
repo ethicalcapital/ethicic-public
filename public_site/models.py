@@ -736,16 +736,10 @@ class AboutPage(Page):
     linkedin_url = models.URLField(blank=True)
     twitter_url = models.URLField(blank=True)
     bluesky_url = models.URLField(blank=True)
-    instagram_url = models.URLField(
-        blank=True
-    )
-    tiktok_url = models.URLField(
-        blank=True
-    )
+    instagram_url = models.URLField(blank=True)
+    tiktok_url = models.URLField(blank=True)
     calendar_url = models.URLField(blank=True)
-    sec_info_url = models.URLField(
-        blank=True
-    )
+    sec_info_url = models.URLField(blank=True)
 
     # Professional background section
     professional_background_title = models.CharField(
@@ -762,12 +756,10 @@ class AboutPage(Page):
     external_roles_title = models.CharField(
         max_length=200,
         blank=True,
-        default="External Roles & Leadership",
         help_text="Title for external roles section",
     )
     external_roles_content = RichTextField(
         blank=True,
-        default='<ul class="external-roles"><li><strong>Co-founder</strong> - Woodcache Public Benefit Corporation</li><li><strong>Board Member</strong> - Responsible Alpha</li><li><strong>Co-host</strong> - "Free Money with Sloane and Ashby" podcast</li></ul>',
         help_text="External roles and leadership content",
     )
 
@@ -775,42 +767,35 @@ class AboutPage(Page):
     speaking_writing_title = models.CharField(
         max_length=200,
         blank=True,
-        default="Speaking & Writing",
         help_text="Title for speaking & writing section",
     )
     speaking_writing_content = RichTextField(
         blank=True,
-        default='<p>Sloane offers keynote addresses and panel discussions on topics including ethical investing, portfolio management, and sustainable finance. She has written a textbook on investment idea generation and writes extensively about sustainable investing and financial values. Her insights have been featured in <a href="/media/" class="garden-action secondary">numerous media outlets</a>.</p>',
         help_text="Speaking & writing content",
     )
     speaking_cta_text = RichTextField(
         blank=True,
-        default="<p>For speaking engagements and media inquiries:</p>",
         help_text="Call-to-action text for speaking section",
     )
     speaking_contact_note = RichTextField(
         blank=True,
-        default="<p><em>Fair warning: my Achilles heel is email. If you need me, your best bet is to get on my calendar.</em></p>",
         help_text="Contact note for speaking section",
     )
     calendar_link = models.URLField(
         blank=True,
-        default="https://tidycal.com/ecic",
         help_text="Calendar booking link",
     )
     calendar_link_text = models.CharField(
         max_length=200,
         blank=True,
-        default="Schedule with Sloane",
         help_text="Text for calendar link",
     )
     email_link = models.EmailField(
-        blank=True, default="hello@ethicic.com", help_text="Contact email address"
+        blank=True, help_text="Contact email address"
     )
     email_link_text = models.CharField(
         max_length=200,
         blank=True,
-        default="Or try email",
         help_text="Text for email link",
     )
 
@@ -818,12 +803,10 @@ class AboutPage(Page):
     personal_interests_title = models.CharField(
         max_length=200,
         blank=True,
-        default="Personal Interests",
         help_text="Title for personal interests section",
     )
     personal_interests_content = RichTextField(
         blank=True,
-        default="<p>When not managing portfolios, Sloane skis in Utah and replaces lawn with wildlife-friendly perennials, reflecting her appreciation for both adventure and the natural world that ethical investing seeks to protect.</p>",
         help_text="Personal interests content",
     )
 
@@ -916,80 +899,71 @@ class AboutPage(Page):
     # What I Do Now panel
     current_role_content = RichTextField(
         blank=True,
-        default="<p>Chief Investment Officer at Ethical Capital, translating insights from clients, colleagues, and research into investment strategies that align with values.</p>",
         help_text="Current role description for What I Do Now panel",
     )
     philosophy_content = RichTextField(
         blank=True,
-        default="<p>Our process is oriented towards cumulative learning—understanding companies, the communities they serve, and the consequences of their activities.</p>",
         help_text="Philosophy description for What I Do Now panel",
     )
     client_focus_content = RichTextField(
         blank=True,
-        default="<p>Spending time getting to know our clients, which I find profoundly grounding. Building portfolios that reflect their values while delivering strong financial outcomes.</p>",
         help_text="Client focus description for What I Do Now panel",
     )
 
     # Featured posts section
     featured_post_1_title = models.CharField(
-        max_length=200, blank=True, default="How I Became an Active Manager"
+        max_length=200, blank=True
     )
     featured_post_1_description = models.CharField(
         max_length=300,
         blank=True,
-        default="The best place to start understanding my personal journey",
     )
     featured_post_1_url = models.CharField(
-        max_length=500, blank=True, default="/blog/how-i-became-an-active-manager/"
+        max_length=500, blank=True
     )
 
     featured_post_2_title = models.CharField(
-        max_length=200, blank=True, default="What Would a Recession Mean?"
+        max_length=200, blank=True
     )
     featured_post_2_description = models.CharField(
-        max_length=300, blank=True, default="Perspective for long-term investors"
+        max_length=300, blank=True
     )
     featured_post_2_url = models.CharField(
         max_length=500,
         blank=True,
-        default="/blog/what-would-a-recession-actually-mean-for-long-term-investors/",
     )
 
     featured_post_3_title = models.CharField(
-        max_length=200, blank=True, default="What Does Inflation Mean to You?"
+        max_length=200, blank=True
     )
     featured_post_3_description = models.CharField(
-        max_length=300, blank=True, default="Personal impact of economic changes"
+        max_length=300, blank=True
     )
     featured_post_3_url = models.CharField(
-        max_length=500, blank=True, default="/blog/what-does-inflation-mean-to-you/"
+        max_length=500, blank=True
     )
 
     featured_post_4_title = models.CharField(
         max_length=200,
         blank=True,
-        default="What Should You Expect When You're Investing?",
     )
     featured_post_4_description = models.CharField(
-        max_length=300, blank=True, default="Setting realistic expectations"
+        max_length=300, blank=True
     )
     featured_post_4_url = models.CharField(
         max_length=500,
         blank=True,
-        default="/blog/what-should-you-expect-when-youre-investing/",
     )
 
     # Speaking topics
     speaking_topics = RichTextField(
         blank=True,
-        default="<ul><li>Aligning money with values for novice investors</li><li>Modern sustainable investing strategies</li><li>Ethical screening and portfolio construction</li><li>Investment management best practices</li></ul>",
         help_text="Topics covered in speaking engagements",
     )
 
     # Speaker bio download
     speaker_bio_url = models.URLField(
         blank=True,
-        default="https://pub-324a685032214395a8bcad478c265d4b.r2.dev/Sloane-Ortel-Speaker-Bio.pdf",
         help_text="URL to speaker bio PDF",
     )
 
@@ -1114,124 +1088,102 @@ class PricingPage(Page):
     # Header section
     section_header = models.CharField(
         max_length=200,
-        default="TRANSPARENT PRICING FOR EVERY CLIENT TYPE",
         blank=True,
         help_text="Main pricing section header",
     )
     section_intro = RichTextField(
-        default="<p>Simple, transparent pricing based on how you access our services. Individual investors work directly with us at 1.00% annually. Institutional clients accessing through advisers or platforms pay 0.50% annually.</p>",
         blank=True,
         help_text="Introduction text for pricing section",
     )
 
     # Individual Pricing Card
     individual_badge = models.CharField(
-        max_length=100, default="INDIVIDUAL INVESTORS", blank=True
+        max_length=100, blank=True
     )
     individual_title = models.CharField(
-        max_length=200, default="Direct Client Relationships", blank=True
+        max_length=200, blank=True
     )
     individual_subtitle = models.CharField(
-        max_length=200, default="For individuals and families", blank=True
+        max_length=200, blank=True
     )
-    individual_price = models.CharField(max_length=20, default="1.00%", blank=True)
+    individual_price = models.CharField(max_length=20, blank=True)
     individual_price_period = models.CharField(
-        max_length=50, default="annually", blank=True
+        max_length=50, blank=True
     )
     individual_features = RichTextField(
-        default="""<ul>
-<li>Work directly with Ethical Capital</li>
-<li>Personalized portfolio management</li>
-<li>Real-time reporting through client portal</li>
-<li>Comprehensive reporting</li>
-</ul>""",
         blank=True,
         help_text="Features for individual pricing tier",
     )
     individual_cta_text = models.CharField(
-        max_length=100, default="SCHEDULE CONSULTATION", blank=True
+        max_length=100, blank=True
     )
     individual_cta_link = models.CharField(
-        max_length=200, default="/consultation/", blank=True
+        max_length=200, blank=True
     )
 
     # Institutional Pricing Card
     institutional_badge = models.CharField(
-        max_length=100, default="INSTITUTIONAL PRICING", blank=True
+        max_length=100, blank=True
     )
     institutional_title = models.CharField(
-        max_length=200, default="Adviser & Platform Access", blank=True
+        max_length=200, blank=True
     )
     institutional_subtitle = models.CharField(
         max_length=200,
-        default="For RIAs, institutions, and platform clients",
         blank=True,
     )
-    institutional_price = models.CharField(max_length=20, default="0.50%", blank=True)
+    institutional_price = models.CharField(max_length=20, blank=True)
     institutional_price_period = models.CharField(
-        max_length=50, default="annually", blank=True
+        max_length=50, blank=True
     )
     institutional_features = RichTextField(
-        default="""<ul>
-<li>Access through Schwab, Altruist, or your preferred custodian</li>
-<li>Direct access to CIO</li>
-<li>SMA implementation</li>
-<li>Quarterly performance reporting</li>
-</ul>""",
         blank=True,
         help_text="Features for institutional pricing tier",
     )
 
     # Fee Details
     fee_calculation_title = models.CharField(
-        max_length=100, default="Fee Calculation", blank=True
+        max_length=100, blank=True
     )
     fee_calculation_text = RichTextField(
-        default="<p>Fees are calculated quarterly based on average daily balance and debited directly from your account. No hidden costs or transaction fees.</p>",
         blank=True,
     )
     minimum_investment_title = models.CharField(
-        max_length=100, default="Minimum Investment", blank=True
+        max_length=100, blank=True
     )
     minimum_investment_text = RichTextField(
-        default="<p>Direct management minimums vary by strategy. Schwab platform accounts follow standard SMA minimums. Contact us for current requirements.</p>",
         blank=True,
     )
     pricing_rationale_title = models.CharField(
-        max_length=100, default="Why Different Pricing?", blank=True
+        max_length=100, blank=True
     )
     pricing_rationale_text = RichTextField(
-        default="<p>Individual clients (1.00%) receive comprehensive personal service directly from us. Institutional clients (0.50%) access our strategies through their existing adviser relationships or platforms, reflecting economies of scale.</p>",
         blank=True,
     )
 
     # Workshop Section
     workshop_section_header = models.CharField(
         max_length=200,
-        default="EDUCATIONAL WORKSHOPS & SPEAKING ENGAGEMENTS",
         blank=True,
     )
     workshop_intro = RichTextField(
-        default="<p>Professional presentations on ethical investing, sustainable finance, and values-aligned wealth management. Topics range from foundational concepts to advanced portfolio construction strategies.</p>",
         blank=True,
     )
     workshop_nonprofit_note = RichTextField(
-        default="<p><strong>Note:</strong> We provide complimentary presentations to mission-aligned nonprofit organizations and advocacy groups.</p>",
         blank=True,
     )
     workshop_form_title = models.CharField(
-        max_length=200, default="Request a Workshop or Presentation", blank=True
+        max_length=200, blank=True
     )
     show_workshop_form = models.BooleanField(
-        default=True, help_text="Show the workshop request form"
+        default=False, blank=True, help_text="Show the workshop request form"
     )
 
     # Additional Services Section
     services_section_header = models.CharField(
-        max_length=200, default="ADDITIONAL SERVICES", blank=True
+        max_length=200, blank=True
     )
     services_intro = RichTextField(
-        default="<p>Specialized services for institutional clients and platform partners.</p>",
         blank=True,
     )
 
@@ -1257,31 +1209,27 @@ class PricingPage(Page):
 
     # CTA Section
     cta_section_header = models.CharField(
-        max_length=200, default="LEARN MORE ABOUT US", blank=True
+        max_length=200, blank=True
     )
     cta_title = models.CharField(
-        max_length=200, default="Explore our approach to ethical investing", blank=True
+        max_length=200, blank=True
     )
     cta_description = RichTextField(
-        default="<p>Discover how we combine rigorous analysis with ethical principles to build portfolios that reflect your values.</p>",
         blank=True,
     )
 
     # Legacy fields (keeping for backward compatibility)
     intro_text = RichTextField(
         blank=True,
-        default="<p>Transparent pricing designed to scale with your practice.</p>",
     )
     pricing_description = RichTextField(blank=True)
     enterprise_title = models.CharField(
         max_length=200,
-        default="Enterprise Solutions",
         blank=True,
     )
     enterprise_description = RichTextField(blank=True)
     contact_cta = RichTextField(
         blank=True,
-        default="<p>Ready to discuss pricing for your practice? <a href='/contact/'>Contact our team</a> for a personalized quote.</p>",
     )
 
     content_panels: ClassVar[list] = [
