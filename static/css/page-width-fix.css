@@ -1,0 +1,55 @@
+/* Page Width Constraint Fix - Ensure all pages are properly contained */
+
+/* Main content area should be constrained */
+.main-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+/* Ensure garden-container has proper constraints even if nested */
+.garden-container {
+    max-width: var(--content-width-normal) !important;
+    margin: 0 auto !important;
+    padding: 0 1rem !important;
+    width: 100% !important;
+}
+
+/* Override any conflicting styles that might make content full-width */
+.public-site-context .main-content,
+.public-site-context .garden-container {
+    max-width: var(--content-width-normal) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Specific fixes for pages that might have full-width issues */
+.homepage-page .main-content,
+.about-page .main-content,
+.contact-page .main-content,
+.pricing-page .main-content,
+.blog-index-page .main-content,
+.blog-post .main-content,
+.institutional-page .main-content,
+.solutions-page .main-content,
+.process-page .main-content {
+    max-width: var(--content-width-normal) !important;
+    margin: 0 auto !important;
+    padding: 0 1rem !important;
+}
+
+/* Ensure nested containers don't override parent constraints */
+.main-content > *:not(.garden-container) {
+    max-width: 100%;
+}
+
+/* Override any body or html width settings that might cause issues */
+body, html {
+    overflow-x: hidden;
+}
+
+/* Fix for any full-width divs that should be contained */
+.public-site-context div:not(.garden-header):not(.garden-footer):not(.mobile-nav) {
+    max-width: 100%;
+}
