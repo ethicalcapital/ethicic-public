@@ -790,9 +790,7 @@ class AboutPage(Page):
         blank=True,
         help_text="Text for calendar link",
     )
-    email_link = models.EmailField(
-        blank=True, help_text="Contact email address"
-    )
+    email_link = models.EmailField(blank=True, help_text="Contact email address")
     email_link_text = models.CharField(
         max_length=200,
         blank=True,
@@ -911,45 +909,29 @@ class AboutPage(Page):
     )
 
     # Featured posts section
-    featured_post_1_title = models.CharField(
-        max_length=200, blank=True
-    )
+    featured_post_1_title = models.CharField(max_length=200, blank=True)
     featured_post_1_description = models.CharField(
         max_length=300,
         blank=True,
     )
-    featured_post_1_url = models.CharField(
-        max_length=500, blank=True
-    )
+    featured_post_1_url = models.CharField(max_length=500, blank=True)
 
-    featured_post_2_title = models.CharField(
-        max_length=200, blank=True
-    )
-    featured_post_2_description = models.CharField(
-        max_length=300, blank=True
-    )
+    featured_post_2_title = models.CharField(max_length=200, blank=True)
+    featured_post_2_description = models.CharField(max_length=300, blank=True)
     featured_post_2_url = models.CharField(
         max_length=500,
         blank=True,
     )
 
-    featured_post_3_title = models.CharField(
-        max_length=200, blank=True
-    )
-    featured_post_3_description = models.CharField(
-        max_length=300, blank=True
-    )
-    featured_post_3_url = models.CharField(
-        max_length=500, blank=True
-    )
+    featured_post_3_title = models.CharField(max_length=200, blank=True)
+    featured_post_3_description = models.CharField(max_length=300, blank=True)
+    featured_post_3_url = models.CharField(max_length=500, blank=True)
 
     featured_post_4_title = models.CharField(
         max_length=200,
         blank=True,
     )
-    featured_post_4_description = models.CharField(
-        max_length=300, blank=True
-    )
+    featured_post_4_description = models.CharField(max_length=300, blank=True)
     featured_post_4_url = models.CharField(
         max_length=500,
         blank=True,
@@ -1097,66 +1079,42 @@ class PricingPage(Page):
     )
 
     # Individual Pricing Card
-    individual_badge = models.CharField(
-        max_length=100, blank=True
-    )
-    individual_title = models.CharField(
-        max_length=200, blank=True
-    )
-    individual_subtitle = models.CharField(
-        max_length=200, blank=True
-    )
+    individual_badge = models.CharField(max_length=100, blank=True)
+    individual_title = models.CharField(max_length=200, blank=True)
+    individual_subtitle = models.CharField(max_length=200, blank=True)
     individual_price = models.CharField(max_length=20, blank=True)
-    individual_price_period = models.CharField(
-        max_length=50, blank=True
-    )
+    individual_price_period = models.CharField(max_length=50, blank=True)
     individual_features = RichTextField(
         blank=True,
         help_text="Features for individual pricing tier",
     )
-    individual_cta_text = models.CharField(
-        max_length=100, blank=True
-    )
-    individual_cta_link = models.CharField(
-        max_length=200, blank=True
-    )
+    individual_cta_text = models.CharField(max_length=100, blank=True)
+    individual_cta_link = models.CharField(max_length=200, blank=True)
 
     # Institutional Pricing Card
-    institutional_badge = models.CharField(
-        max_length=100, blank=True
-    )
-    institutional_title = models.CharField(
-        max_length=200, blank=True
-    )
+    institutional_badge = models.CharField(max_length=100, blank=True)
+    institutional_title = models.CharField(max_length=200, blank=True)
     institutional_subtitle = models.CharField(
         max_length=200,
         blank=True,
     )
     institutional_price = models.CharField(max_length=20, blank=True)
-    institutional_price_period = models.CharField(
-        max_length=50, blank=True
-    )
+    institutional_price_period = models.CharField(max_length=50, blank=True)
     institutional_features = RichTextField(
         blank=True,
         help_text="Features for institutional pricing tier",
     )
 
     # Fee Details
-    fee_calculation_title = models.CharField(
-        max_length=100, blank=True
-    )
+    fee_calculation_title = models.CharField(max_length=100, blank=True)
     fee_calculation_text = RichTextField(
         blank=True,
     )
-    minimum_investment_title = models.CharField(
-        max_length=100, blank=True
-    )
+    minimum_investment_title = models.CharField(max_length=100, blank=True)
     minimum_investment_text = RichTextField(
         blank=True,
     )
-    pricing_rationale_title = models.CharField(
-        max_length=100, blank=True
-    )
+    pricing_rationale_title = models.CharField(max_length=100, blank=True)
     pricing_rationale_text = RichTextField(
         blank=True,
     )
@@ -1172,17 +1130,13 @@ class PricingPage(Page):
     workshop_nonprofit_note = RichTextField(
         blank=True,
     )
-    workshop_form_title = models.CharField(
-        max_length=200, blank=True
-    )
+    workshop_form_title = models.CharField(max_length=200, blank=True)
     show_workshop_form = models.BooleanField(
         default=False, blank=True, help_text="Show the workshop request form"
     )
 
     # Additional Services Section
-    services_section_header = models.CharField(
-        max_length=200, blank=True
-    )
+    services_section_header = models.CharField(max_length=200, blank=True)
     services_intro = RichTextField(
         blank=True,
     )
@@ -1208,12 +1162,8 @@ class PricingPage(Page):
     )
 
     # CTA Section
-    cta_section_header = models.CharField(
-        max_length=200, blank=True
-    )
-    cta_title = models.CharField(
-        max_length=200, blank=True
-    )
+    cta_section_header = models.CharField(max_length=200, blank=True)
+    cta_title = models.CharField(max_length=200, blank=True)
     cta_description = RichTextField(
         blank=True,
     )
@@ -2572,115 +2522,94 @@ class ProcessPage(Page):
 
     intro_text = RichTextField(
         blank=True,
-        default="<p>Learn about our mission to democratize investment intelligence and compliance technology.</p>",
     )
     process_overview = RichTextField(
         blank=True,
-        default="<p>Our investment process combines ethical screening with disciplined portfolio construction.</p>",
     )
 
     # Process steps
     step1_title = models.CharField(
         max_length=200,
-        default="A Living Framework",
         blank=True,
     )
     step1_content = RichTextField(
         blank=True,
-        default="<p>We built the best ethical framework we could—then kept building. Our criteria evolve in response to whatever harmful patterns emerge in the world, adapting as we learn more about both harm and healing. We seek companies making unmistakable positive contributions to all inhabitants—human and non-human animals alike.</p>",
     )
 
     step2_title = models.CharField(
         max_length=200,
-        default="Quality & Value Analysis",
         blank=True,
     )
     step2_content = RichTextField(
         blank=True,
-        default="<p>From the remaining ethical universe, we identify companies with strong fundamentals, competitive advantages, and reasonable valuations. We look for businesses we understand, with management teams we trust, trading at prices that make sense.</p>",
     )
 
     step3_title = models.CharField(
         max_length=200,
-        default="Portfolio Construction",
         blank=True,
     )
     step3_content = RichTextField(
         blank=True,
-        default="<p>We build diversified portfolios that balance risk, return, and ethical impact. Our three core strategies can be mixed and matched to create the perfect allocation for your values, risk tolerance, and income needs.</p>",
     )
 
     step4_title = models.CharField(
         max_length=200,
-        default="Ongoing Monitoring",
         blank=True,
     )
     step4_content = RichTextField(
         blank=True,
-        default="<p>We continuously monitor holdings for changes in business practices, financial health, and market conditions. If a company no longer meets our criteria, we remove it from the portfolio.</p>",
     )
 
     # Main sections
     section_header = models.CharField(
         max_length=200,
-        default="OUR SIGNATURE PROCESS",
         blank=True,
     )
 
     # Screening step title (used in step 1)
     screening_title = models.CharField(
         max_length=200,
-        default="Ethical Screening & Exclusions",
         blank=True,
     )
     screening_description = RichTextField(
         blank=True,
-        default="<p>We begin with rigorous screening that excludes companies involved in preventable harms. Our criteria cover both product-based exclusions (animal products, weapons, fossil fuels, addiction, surveillance) and conduct-based exclusions (human rights violations, environmental damage, corporate misconduct). This comprehensive approach ensures your investments align with your values.</p>",
     )
 
     # Product-based exclusions section
     product_exclusions_title = models.CharField(
         max_length=200,
-        default="PRODUCT-BASED EXCLUSIONS",
         blank=True,
     )
     product_exclusions_subtitle = RichTextField(
         blank=True,
-        default="<p>We exclude companies whose business models depend on creating products that harm living beings.</p>",
     )
 
     # Conduct-based exclusions section
     conduct_exclusions_title = models.CharField(
         max_length=200,
-        default="CONDUCT-BASED EXCLUSIONS",
         blank=True,
     )
     conduct_exclusions_subtitle = RichTextField(
         blank=True,
-        default="<p>Even companies making beneficial products can cause harm through their conduct. We track patterns of behavior that damage communities, workers, and ecosystems.</p>",
     )
 
     # Methodology section
     methodology_title = models.CharField(
         max_length=200,
-        default="Do Our Best, Then Do Better",
         blank=True,
     )
     methodology_content = RichTextField(
         blank=True,
-        default='<p>Our criteria are meant to avoid involvement with all preventable harms we are aware of. This excludes 57% of the S&P 500 (as of June 14, 2025). Our complete methodology is <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener noreferrer" class="policy-link">open source on GitHub</a> under an MIT license.</p>',
     )
 
     # Statistics
     exclusion_percentage = models.CharField(
         max_length=10,
-        default="57%",
         blank=True,
         help_text="Percentage of S&P 500 excluded",
     )
     exclusion_date = models.CharField(
         max_length=50,
-        default="as of June 14, 2025",
         blank=True,
         help_text="Date of exclusion percentage calculation",
     )
@@ -2721,23 +2650,19 @@ class ProcessPage(Page):
     # Guiding principles section
     principles_title = models.CharField(
         max_length=200,
-        default="GUIDING PRINCIPLES",
         blank=True,
     )
     principles_content = RichTextField(
         blank=True,
-        default="<p>Throughout our process, we're guided by simple principles: ethics reveal quality, transparency builds trust, and sustainable investing means considering all stakeholders.</p>",
     )
 
     # CTA section
     cta_title = models.CharField(
         max_length=200,
-        default="Ready to invest with intention?",
         blank=True,
     )
     cta_description = RichTextField(
         blank=True,
-        default="<p>Schedule a consultation to discuss how our process can work for your unique situation.</p>",
     )
 
     content_panels: ClassVar[list] = [
