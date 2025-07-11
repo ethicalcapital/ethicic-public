@@ -277,10 +277,11 @@
                         :aria-expanded="mobileMenuOpen.toString()"
                         aria-controls="main-navigation"
                         type="button"
+                        style="display: flex !important; visibility: visible !important; opacity: 1 !important; position: relative !important; z-index: 9999 !important; border: 5px solid red !important; background: yellow !important; width: 60px !important; height: 60px !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; padding: 10px !important; cursor: pointer !important; margin: 10px !important;"
                         @click="mobileMenuOpen = !mobileMenuOpen; console.log('Hamburger clicked, mobileMenuOpen:', mobileMenuOpen)">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line" style="display: block !important; width: 30px !important; height: 4px !important; background: black !important; margin: 3px 0 !important; visibility: visible !important; opacity: 1 !important;"></span>
+                    <span class="hamburger-line" style="display: block !important; width: 30px !important; height: 4px !important; background: black !important; margin: 3px 0 !important; visibility: visible !important; opacity: 1 !important;"></span>
+                    <span class="hamburger-line" style="display: block !important; width: 30px !important; height: 4px !important; background: black !important; margin: 3px 0 !important; visibility: visible !important; opacity: 1 !important;"></span>
                 </button>
 
                 <nav class="garden-nav-main"
@@ -288,6 +289,7 @@
                      aria-label="Main navigation"
                      id="main-navigation"
                      :class="{ 'mobile-menu-open': mobileMenuOpen }"
+                     :style="mobileMenuOpen ? 'display: flex !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: 100vw !important; height: 100vh !important; background: white !important; z-index: 9998 !important; flex-direction: column !important; padding: 100px 2rem 2rem !important; border: 10px solid green !important; visibility: visible !important; opacity: 1 !important;' : ''"
                      @click.outside="mobileMenuOpen = false"
                      @keydown.escape="mobileMenuOpen = false">
 
