@@ -4,7 +4,6 @@
  * Fixes white-on-transparent secondary buttons site-wide
  */
 
-/* stylelint-disable declaration-no-important */
 
 /* Global fix for ALL secondary buttons site-wide - ensures proper contrast everywhere */
 html body.public-site-context a.garden-action.secondary,

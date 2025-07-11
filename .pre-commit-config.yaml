@@ -1,5 +1,9 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
+
+# Configuration
+default_install_hook_types: [pre-commit]
+fail_fast: false
 repos:
   # General file checks
   - repo: https://github.com/pre-commit/pre-commit-hooks

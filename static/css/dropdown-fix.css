@@ -3,7 +3,6 @@
  * Fixes dropdown menu visibility with Alpine.js x-show directive
  */
 
-/* stylelint-disable declaration-no-important */
 /* stylelint-disable no-duplicate-selectors */
 
 /* Override core-styles.css to work properly with Alpine.js x-show */

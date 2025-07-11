@@ -1,36 +1,23 @@
 /* Contact Page Fixes - v2 with !important for debugging */
-/* stylelint-disable declaration-no-important, color-named, color-no-hex */
+/* stylelint-disable color-named, color-no-hex */
 
 /* Force white background on ALL form inputs with maximum specificity */
-body .garden-container form input[type="text"],
-body .garden-container form input[type="email"],
-body .garden-container form input[type="tel"],
-body .garden-container form textarea,
-body .garden-container form select,
 body .garden-container .garden-form input[type="text"],
 body .garden-container .garden-form input[type="email"],
 body .garden-container .garden-form input[type="tel"],
 body .garden-container .garden-form textarea,
 body .garden-container .garden-form select,
-body .garden-container input.garden-input,
-body .garden-container input.form-control,
-body .garden-container .textinput,
-body .garden-container .emailinput,
-body .garden-container .textInput,
-body .garden-container input.textinput,
-body .garden-container input.emailinput {
+body .garden-container .garden-input {
     background-color: var(--color-surface) !important;
     color: var(--color-text-primary) !important;
     border: 1px solid var(--color-border) !important;
 }
 
 /* Force light mode colors */
-[data-theme="light"] body .garden-container form input,
-[data-theme="light"] body .garden-container form textarea,
-[data-theme="light"] body .garden-container form select,
 [data-theme="light"] body .garden-container .garden-form input,
 [data-theme="light"] body .garden-container .garden-form textarea,
-[data-theme="light"] body .garden-container .garden-form select {
+[data-theme="light"] body .garden-container .garden-form select,
+[data-theme="light"] body .garden-container .garden-input {
     background-color: var(--color-surface) !important;
     color: var(--color-text-primary) !important;
     border: 1px solid var(--color-border) !important;
@@ -71,24 +58,31 @@ html[data-theme="light"] body .garden-container .panel-content .form-wrapper .ga
     opacity: 0.7;
 }
 
+/* Override container max-width for contact page to allow full grid layout */
+.garden-container.contact-page-container {
+    max-width: var(--content-width-wide, 1600px);
+}
+
 /* Fix contact page layout - ensure sidebar shows on desktop */
-.garden-layout-grid {
+.garden-container .contact-page-layout {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-6);
+    gap: var(--space-6, 24px);
 }
 
 @media (min-width: 768px) {
-    .garden-layout-grid {
+    .garden-container .contact-page-layout {
+        display: grid;
         grid-template-columns: 2fr 1fr;
+        gap: var(--space-6, 24px);
         align-items: start;
     }
 
-    .main-content {
+    .contact-main-content {
         min-width: 0; /* Prevent grid blowout */
     }
 
-    .sidebar {
+    .contact-sidebar {
         position: sticky;
         top: var(--space-6);
         height: fit-content;

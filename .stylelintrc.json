@@ -12,7 +12,12 @@
     "media-feature-range-notation": null,
     "color-function-notation": null,
     "alpha-value-notation": null,
-    "declaration-no-important": true,
+    "declaration-no-important": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
     "color-named": "never",
     "color-no-hex": true,
     "function-disallowed-list": ["rgb", "rgba", "hsl", "hsla"],

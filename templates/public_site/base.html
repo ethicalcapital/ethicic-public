@@ -100,7 +100,7 @@
     <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v=2025070401">
 
     <!-- Mobile menu override - fixes hamburger visibility -->
-    <link rel="stylesheet" href="{% static 'css/mobile-menu-override.css' %}?v=5">
+    <link rel="stylesheet" href="{% static 'css/mobile-menu-override.css' %}?v=6">
 
     <!-- Public site specific styles -->
     <link rel="stylesheet" href="{% static 'css/public-site-simple.css' %}?v=2025070123">
@@ -275,7 +275,7 @@
                      @keydown.escape="mobileMenuOpen = false">
 
                     <!-- Mobile-only search in menu -->
-                    <div class="mobile-search-container" x-show="mobileMenuOpen" style="display: none;">
+                    <div class="mobile-search-container" x-show="mobileMenuOpen" x-transition>
                         <div class="garden-search-container" x-data="{ searchOpen: false, query: '', searching: false }"
                              @htmx:before-request="searching = true"
                              @htmx:after-request="searching = false">
@@ -332,6 +332,40 @@
                         <a href="/faq/" class="garden-nav-item" @click="mobileMenuOpen = false">FAQ</a>
                         <a href="/contact/" class="garden-nav-item" @click="mobileMenuOpen = false">Contact</a>
                     {% endfor %}
+
+                    <!-- Mobile-only user actions in menu -->
+                    <div class="mobile-user-actions" x-show="mobileMenuOpen" x-transition>
+                        <!-- Login section -->
+                        <div class="mobile-login-section">
+                            <h3 class="mobile-section-title">Login</h3>
+                            <a href="/garden/" class="mobile-action-item" @click="mobileMenuOpen = false">Garden Login</a>
+                            <a href="https://app.altruist.com/login" class="mobile-action-item" @click="mobileMenuOpen = false">Client Login</a>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <div class="mobile-cta-section">
+                            <a href="/onboarding/" class="mobile-cta-button" @click="mobileMenuOpen = false">Get Started</a>
+                        </div>
+
+                        <!-- Theme Toggle -->
+                        <div class="mobile-theme-section">
+                            <button class="mobile-theme-toggle"
+                                    x-data="{
+                                        isDark: localStorage.getItem('theme') === 'dark',
+                                        toggle() {
+                                            this.isDark = !this.isDark;
+                                            const theme = this.isDark ? 'dark' : 'light';
+                                            document.documentElement.setAttribute('data-theme', theme);
+                                            localStorage.setItem('theme', theme);
+                                            $dispatch('theme-changed', { theme });
+                                        }
+                                    }"
+                                    @click="toggle()"
+                                    aria-label="Toggle light/dark theme">
+                                <span x-text="isDark ? '🌙 Dark Mode' : '☀️ Light Mode'"></span>
+                            </button>
+                        </div>
+                    </div>
                 </nav>
             </div>
 

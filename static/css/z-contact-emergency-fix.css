@@ -1,6 +1,6 @@
 /* EMERGENCY FIX - Contact form inputs showing black in light mode */
 /* This file loads LAST to ensure overrides work */
-/* stylelint-disable color-no-hex, declaration-no-important, no-descending-specificity */
+/* stylelint-disable color-no-hex, no-descending-specificity */
 
 /* Force all contact form inputs to have white background */
 html body #contact-form input,
@@ -50,4 +50,4 @@ html[data-theme="dark"] body .contact-main-content select {
     border: 1px solid var(--color-border) !important;
 }
 
-/* stylelint-enable color-no-hex, declaration-no-important, no-descending-specificity */
+/* stylelint-enable color-no-hex, no-descending-specificity */
