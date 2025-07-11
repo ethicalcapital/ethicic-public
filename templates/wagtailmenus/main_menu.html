@@ -1,0 +1,16 @@
+{% if menu_items %}
+    {% for item in menu_items %}
+        <a href="{{ item.href }}" class="garden-nav-item"
+           {% if item.active_class %}class="{{ item.active_class }}"{% endif %}>
+            {{ item.text }}
+        </a>
+    {% endfor %}
+{% else %}
+    <!-- Fallback navigation -->
+    <a href="/about/" class="garden-nav-item">About</a>
+    <a href="/process/" class="garden-nav-item">Process</a>
+    <a href="/solutions/" class="garden-nav-item">Solutions</a>
+    <a href="/blog/" class="garden-nav-item">Blog</a>
+    <a href="/faq/" class="garden-nav-item">FAQ</a>
+    <a href="/contact/" class="garden-nav-item">Contact</a>
+{% endif %}

@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     # Third party apps
     "crispy_forms",
     "crispy_bootstrap4",
+    "wagtailmenus",
     # Local apps
     "public_site",
 ]

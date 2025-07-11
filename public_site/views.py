@@ -1686,3 +1686,8 @@ def disclosures_page(request):
             },
         }
         return render(request, "public_site/legal_page.html", context)
+
+
+def test_clean_nav(request):
+    """Test page for clean navigation system"""
+    return render(request, "public_site/test_clean_nav.html")

@@ -1481,6 +1481,17 @@ class PricingPage(Page):
             ],
             heading="Call to Action",
         ),
+        MultiFieldPanel(
+            [
+                FieldPanel("intro_text"),
+                FieldPanel("pricing_description"),
+                FieldPanel("enterprise_title"),
+                FieldPanel("enterprise_description"),
+                FieldPanel("contact_cta"),
+            ],
+            heading="Legacy Fields (Deprecated)",
+            classname="collapsed",  # Start collapsed since these are legacy
+        ),
     ]
 
     # Wagtail admin panel configurations
@@ -4261,16 +4272,59 @@ class AdvisorPage(Page):
             heading="Services Section",
         ),
         MultiFieldPanel(
+            [
+                FieldPanel("offer_section_title"),
+                FieldPanel("offer_section_intro"),
+                FieldPanel("services_offered"),
+            ],
+            heading="What We Offer Section",
+        ),
+        MultiFieldPanel(
             [FieldPanel("benefits_title"), FieldPanel("benefits_content")],
-            heading="Benefits Section",
+            heading="Benefits Section (Legacy)",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("benefits_section_title"),
+                FieldPanel("benefits_section_intro"),
+                FieldPanel("partnership_benefits"),
+            ],
+            heading="Partnership Benefits Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("process_section_title"),
+                FieldPanel("process_steps"),
+            ],
+            heading="Process Overview Section",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("ddq_section_title"),
+                FieldPanel("ddq_section_subtitle"),
+                FieldPanel("ddq_section_description"),
+                FieldPanel("resource_categories"),
+            ],
+            heading="Due Diligence Resources Section",
         ),
         MultiFieldPanel(
             [FieldPanel("technology_title"), FieldPanel("technology_content")],
             heading="Technology Section",
         ),
         MultiFieldPanel(
+            [
+                FieldPanel("cta_section_title"),
+                FieldPanel("cta_primary_text"),
+                FieldPanel("cta_primary_url"),
+                FieldPanel("cta_secondary_text"),
+                FieldPanel("cta_secondary_url"),
+            ],
+            heading="Call to Action Section",
+        ),
+        MultiFieldPanel(
             [FieldPanel("cta_title"), FieldPanel("cta_description")],
-            heading="Call to Action",
+            heading="Legacy CTA (Deprecated)",
+            classname="collapsed",
         ),
     ]
 

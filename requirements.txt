@@ -10,6 +10,7 @@ django-modelcluster==6.3
 django-taggit==6.1.0
 djangorestframework==3.16.0
 Pillow==10.4.0
+wagtailmenus==4.0.1
 
 # Forms
 django-crispy-forms==2.3

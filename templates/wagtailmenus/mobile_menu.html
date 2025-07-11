@@ -1,0 +1,16 @@
+{% if menu_items %}
+    {% for item in menu_items %}
+        <a href="{{ item.href }}" class="mobile-nav-item"
+           {% if item.active_class %}class="mobile-nav-item {{ item.active_class }}"{% endif %}>
+            {{ item.text }}
+        </a>
+    {% endfor %}
+{% else %}
+    <!-- Fallback navigation -->
+    <a href="/about/" class="mobile-nav-item">About</a>
+    <a href="/process/" class="mobile-nav-item">Process</a>
+    <a href="/solutions/" class="mobile-nav-item">Solutions</a>
+    <a href="/blog/" class="mobile-nav-item">Blog</a>
+    <a href="/faq/" class="mobile-nav-item">FAQ</a>
+    <a href="/contact/" class="mobile-nav-item">Contact</a>
+{% endif %}

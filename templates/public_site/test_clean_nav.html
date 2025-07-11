@@ -1,0 +1,38 @@
+{% extends "public_site/base_clean_navigation.html" %}
+
+{% block title %}Test Clean Navigation - Ethical Capital{% endblock %}
+
+{% block content %}
+<div style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+    <h1>Testing Clean Navigation</h1>
+    
+    <p>This page tests the new clean navigation system using wagtailmenus.</p>
+    
+    <h2>Features:</h2>
+    <ul>
+        <li>✅ Simple, working hamburger menu</li>
+        <li>✅ No complex CSS conflicts</li>
+        <li>✅ Alpine.js with vanilla JS fallback</li>
+        <li>✅ Wagtailmenus integration</li>
+        <li>✅ Mobile-first responsive design</li>
+    </ul>
+    
+    <h2>Mobile Menu Test</h2>
+    <p>On mobile (< 768px), you should see a hamburger menu with three lines. Click it to see the navigation overlay.</p>
+    
+    <h2>Desktop Menu Test</h2>
+    <p>On desktop (> 768px), you should see the navigation items in a horizontal row.</p>
+    
+    <div style="margin-top: 3rem; padding: 2rem; background: var(--color-surface-variant); border-radius: 0.5rem;">
+        <h3>Instructions for Testing:</h3>
+        <ol>
+            <li>View this page on mobile or resize browser to < 768px width</li>
+            <li>Look for hamburger menu (three horizontal lines)</li>
+            <li>Click hamburger menu</li>
+            <li>Should see full-screen navigation overlay</li>
+            <li>Click X to close</li>
+            <li>Test navigation links work</li>
+        </ol>
+    </div>
+</div>
+{% endblock %}
