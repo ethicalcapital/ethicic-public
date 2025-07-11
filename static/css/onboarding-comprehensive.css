@@ -1,0 +1,281 @@
+/* Comprehensive Onboarding Form Styles */
+
+/* Form Section Styling */
+.onboarding-page.comprehensive .form-section {
+    min-height: 500px;
+}
+
+/* Radio and Checkbox Groups */
+.onboarding-page .radio-group,
+.onboarding-page .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+}
+
+.onboarding-page .radio-option,
+.onboarding-page .checkbox-option {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.onboarding-page .radio-option:hover,
+.onboarding-page .checkbox-option:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-primary);
+}
+
+.onboarding-page .radio-option:has(input:checked),
+.onboarding-page .checkbox-option:has(input:checked) {
+    background: var(--color-surface-variant);
+    border-color: var(--color-primary);
+}
+
+.onboarding-page .radio-input,
+.onboarding-page .checkbox-input {
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.onboarding-page .radio-label,
+.onboarding-page .checkbox-label {
+    flex: 1;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+/* Garden Input Styling */
+.onboarding-page .garden-input {
+    width: 100%;
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-on-surface);
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    transition: all var(--duration-fast);
+}
+
+.onboarding-page .garden-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-alpha);
+}
+
+.onboarding-page .garden-input.error {
+    border-color: var(--color-error);
+}
+
+.onboarding-page textarea.garden-input {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Form Labels */
+.onboarding-page .form-label {
+    display: block;
+    margin-bottom: var(--space-3);
+    font-weight: 500;
+    color: var(--color-on-surface);
+}
+
+.onboarding-page .form-label.required::after {
+    content: " *";
+    color: var(--color-error);
+}
+
+/* Form Navigation */
+.onboarding-page .form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+}
+
+/* Section Descriptions */
+.onboarding-page .section-description {
+    margin-bottom: var(--space-5);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.onboarding-page .section-description p {
+    margin-bottom: var(--space-4);
+}
+
+.onboarding-page .section-description p:last-child {
+    margin-bottom: 0;
+}
+
+.onboarding-page .section-description ul {
+    margin-left: var(--space-5);
+    margin-top: var(--space-3);
+}
+
+.onboarding-page .section-description ul li {
+    margin-bottom: var(--space-2);
+}
+
+/* Garden Actions */
+.onboarding-page .garden-action {
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.onboarding-page .garden-action:hover {
+    background: var(--color-surface-hover);
+    transform: translateY(-1px);
+}
+
+.onboarding-page .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-background);
+    border-color: var(--color-primary);
+}
+
+.onboarding-page .garden-action.primary:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+}
+
+.onboarding-page .garden-action.secondary {
+    background: transparent;
+    color: var(--color-on-surface);
+}
+
+/* Conditional Field Display */
+.onboarding-page .mt-3 {
+    margin-top: var(--space-4);
+}
+
+/* Progress Bar Enhancement */
+.onboarding-page .progress-container {
+    margin-bottom: var(--space-4);
+}
+
+.onboarding-page .progress-bar {
+    height: 8px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.onboarding-page .progress-fill {
+    height: 100%;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.onboarding-page .progress-text {
+    margin-top: var(--space-3);
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+}
+
+/* Thank You Panel */
+.onboarding-page .thank-you-panel {
+    text-align: center;
+    padding: var(--space-6);
+}
+
+.onboarding-page .success-icon {
+    font-size: 3rem;
+    color: var(--color-success);
+    margin-bottom: var(--space-5);
+}
+
+.onboarding-page .thank-you-message h2 {
+    margin-bottom: var(--space-5);
+    color: var(--color-on-surface);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.onboarding-page .thank-you-message p {
+    margin-bottom: var(--space-4);
+    color: var(--color-text-secondary);
+}
+
+.onboarding-page .next-steps {
+    margin: var(--space-6) 0;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.onboarding-page .next-steps h3 {
+    margin-bottom: var(--space-4);
+    color: var(--color-on-surface);
+}
+
+.onboarding-page .next-steps ul {
+    list-style: none;
+    padding: 0;
+}
+
+.onboarding-page .next-steps ul li {
+    padding: var(--space-3) 0;
+    padding-left: var(--space-5);
+    position: relative;
+}
+
+.onboarding-page .next-steps ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .onboarding-page .form-navigation {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .onboarding-page .garden-action {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Hide inactive sections */
+/* stylelint-disable-next-line declaration-no-important */
+.onboarding-page .form-section[x-show]:not(.active) {
+    display: none !important;
+}
+
+/* Form Group Spacing */
+.onboarding-page .garden-form-group {
+    margin-bottom: var(--space-5);
+}
+
+.onboarding-page .garden-form-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Nested form groups */
+.onboarding-page .garden-form-group .garden-form-group {
+    margin-bottom: var(--space-4);
+}
