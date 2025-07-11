@@ -187,9 +187,35 @@ html[data-theme="light"] body .garden-container .panel-content .form-wrapper .ga
 }
 
 .sidebar-action .garden-action {
+    display: inline-flex;
     width: 100%;
     text-align: center;
     justify-content: center;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-base);
+    font-weight: var(--font-semibold);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all var(--duration-fast);
+    box-sizing: border-box;
+}
+
+/* Ensure consistent button styling */
+.sidebar-action .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    border: 2px solid var(--color-primary);
+}
+
+.sidebar-action .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.sidebar-action .garden-action:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 /* Panel description text */
