@@ -1,5 +1,31 @@
 /* Footer Fix - Add missing base footer class and ensure proper display */
 
+/* Skip Link Accessibility Fix - Ensure skip links are hidden by default */
+.skip-link {
+    position: absolute !important;
+    top: -40px !important;
+    left: 6px !important;
+    background: var(--color-primary, #553c9a) !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    text-decoration: none !important;
+    z-index: 9999 !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    opacity: 0 !important;
+    transform: translateY(-8px) !important;
+    transition: all 0.3s ease !important;
+}
+
+.skip-link:focus {
+    top: 8px !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    outline: 2px solid var(--color-primary, #553c9a) !important;
+    outline-offset: 2px !important;
+}
+
 .garden-footer {
     background: var(--color-surface, var(--garden-color-white));
     border-top: 1px solid var(--color-border, var(--garden-color-gray-150));
