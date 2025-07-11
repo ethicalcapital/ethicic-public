@@ -8,15 +8,15 @@
         {% if post.featured_image %}
             <div class="article-list-image">
                 {% image post.featured_image width-200 as list_img %}
-                <img src="{{ list_img.url }}" 
+                <img src="{{ list_img.url }}"
                      alt="{{ post.featured_image.title|default:post.title }}"
                      loading="lazy">
             </div>
         {% endif %}
-        
+
         <div class="article-list-text">
             <!-- Simplified for testing without KPI filters -->
-            
+
             <div class="article-list-meta">
                 {% if post.tags.all %}
                     <div class="article-list-tags">
@@ -26,15 +26,15 @@
                     </div>
                 {% endif %}
             </div>
-            
+
             <h2 class="article-list-title">
                 <a href="{{ post.url_path }}">{{ post.title }}</a>
             </h2>
-            
+
             {% if post.excerpt %}
                 <p class="article-list-excerpt">{{ post.excerpt|truncatewords:25 }}</p>
             {% endif %}
-            
+
             <div class="article-list-actions">
                 <a href="{{ post.url_path }}" class="garden-action secondary small">READ MORE</a>
             </div>

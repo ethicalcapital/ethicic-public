@@ -15,11 +15,11 @@
   - FAQArticle: category assignment, ordering
   - StrategyPage: performance calculations, holdings management
   - NewsletterPage & AccessibilityPage: basic CRUD
-  
+
 - **Support Models** (10 tests)
   - SupportTicket: status transitions, priority logic
   - ContactSubmission: form data validation
-  
+
 - **Settings Models** (5 tests)
   - SiteSettings: configuration management
   - NavigationMenuItem: ordering, visibility
@@ -196,7 +196,7 @@ from public_site.models import HomePage, BlogPost
 class TestHomePage(WagtailPageTests):
     def test_can_create_homepage(self):
         self.assertCanCreateAt(Page, HomePage)
-    
+
     def test_homepage_fields(self):
         home = HomePage(
             title="Test Home",
@@ -210,7 +210,7 @@ class TestBlogPost(TestCase):
             title="Blog",
             slug="blog"
         )
-    
+
     def test_blog_post_creation(self):
         post = BlogPost.objects.create(
             title="Test Post",

@@ -748,225 +748,490 @@ class InstitutionalContactForm(forms.Form):
 
 
 class OnboardingForm(forms.Form):
-    """Comprehensive onboarding form for client acquisition"""
+    """Comprehensive onboarding form for client acquisition matching the detailed questionnaire"""
 
-    # Personal Information
-    first_name = forms.CharField(
-        max_length=100,
-        label="First Name",
-        widget=forms.TextInput(
-            attrs={"autocomplete": "given-name", "class": "form-input"}
-        ),
-    )
-
-    last_name = forms.CharField(
-        max_length=100,
-        label="Last Name",
-        widget=forms.TextInput(
-            attrs={"autocomplete": "family-name", "class": "form-input"}
-        ),
-    )
-
+    # Section 1: About You
     email = forms.EmailField(
-        label="Email Address",
-        widget=forms.EmailInput(attrs={"autocomplete": "email", "class": "form-input"}),
+        label="What's the best email to reach you at?",
+        widget=forms.EmailInput(
+            attrs={"autocomplete": "email", "class": "garden-input"}
+        ),
+    )
+
+    legal_name = forms.CharField(
+        max_length=200,
+        label="What's your legal name?",
+        widget=forms.TextInput(attrs={"autocomplete": "name", "class": "garden-input"}),
+    )
+
+    PREFERRED_NAME_CHOICES: ClassVar[list] = [
+        ("nope", "Nope"),
+        ("other", "Other"),
+    ]
+
+    preferred_name_choice = forms.ChoiceField(
+        choices=PREFERRED_NAME_CHOICES,
+        label="Would you prefer we call you by any other name?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    preferred_name = forms.CharField(
+        max_length=100,
+        required=False,
+        label="Preferred Name",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    PRONOUN_CHOICES: ClassVar[list] = [
+        ("he/him", "he/him"),
+        ("she/her", "she/her"),
+        ("they/them", "they/them"),
+        ("other", "Other"),
+    ]
+
+    pronouns = forms.ChoiceField(
+        choices=PRONOUN_CHOICES,
+        label="What are your pronouns?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    pronouns_other = forms.CharField(
+        max_length=50,
+        required=False,
+        label="Other pronouns",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    mailing_address = forms.CharField(
+        max_length=500,
+        label="What's your mailing address?",
+        widget=forms.Textarea(attrs={"class": "garden-input", "rows": 3}),
     )
 
     phone = forms.CharField(
         max_length=20,
-        required=False,
-        label="Phone Number",
-        widget=forms.TextInput(attrs={"autocomplete": "tel", "class": "form-input"}),
+        label="What's your phone number?",
+        widget=forms.TextInput(attrs={"autocomplete": "tel", "class": "garden-input"}),
     )
 
-    location = forms.CharField(
+    birthday = forms.DateField(
+        label="What's your birthday?",
+        widget=forms.DateInput(attrs={"type": "date", "class": "garden-input"}),
+    )
+
+    EMPLOYMENT_STATUS_CHOICES: ClassVar[list] = [
+        ("full_time", "Full-time employed"),
+        ("part_time", "Part-time employed"),
+        ("self_employed", "Self-employed"),
+        ("retired", "Retired"),
+        ("unemployed", "Unemployed"),
+    ]
+
+    employment_status = forms.ChoiceField(
+        choices=EMPLOYMENT_STATUS_CHOICES,
+        label="How would you describe your employment status?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    employer_name = forms.CharField(
         max_length=200,
-        label="Location",
-        help_text="City and state/country for regulatory compliance",
-        widget=forms.TextInput(
-            attrs={"class": "form-input", "placeholder": "e.g., San Francisco, CA"}
-        ),
+        required=False,
+        label="What's the name of your employer?",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
     )
 
-    # Investment Goals
-    PRIMARY_GOAL_CHOICES: ClassVar[list] = [
-        ("growth", "Long-term Growth"),
-        ("income", "Current Income"),
-        ("balanced", "Balanced Approach"),
-        ("preservation", "Capital Preservation"),
+    job_title = forms.CharField(
+        max_length=200,
+        required=False,
+        label="What's your job title?",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    MARITAL_STATUS_CHOICES: ClassVar[list] = [
+        ("single", "Single"),
+        ("married", "Married"),
+        ("partnered", "Partnered"),
+        ("complicated", "It's complicated"),
     ]
 
-    primary_goal = forms.ChoiceField(
-        choices=PRIMARY_GOAL_CHOICES,
-        label="Primary Investment Goal",
-        widget=forms.RadioSelect(attrs={"class": "form-radio"}),
+    marital_status = forms.ChoiceField(
+        choices=MARITAL_STATUS_CHOICES,
+        label="How would you describe your marital status?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
     )
 
-    TIME_HORIZON_CHOICES: ClassVar[list] = [
-        ("", "Select a timeframe"),
-        ("1-3", "1-3 years"),
-        ("3-5", "3-5 years"),
-        ("5-10", "5-10 years"),
-        ("10+", "10+ years"),
+    add_co_client = forms.ChoiceField(
+        choices=[("yes", "Yes!"), ("no", "No, thank you.")],
+        label="Would you like to add anyone else to your household?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    # Section 2: Your Co-Client (conditional fields)
+    co_client_legal_name = forms.CharField(
+        max_length=200,
+        required=False,
+        label="What's your co-client's legal name?",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    co_client_call_them = forms.ChoiceField(
+        choices=[("that", "Call them that!"), ("other", "Other")],
+        required=False,
+        label="Should we call them that, or something other than that?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    co_client_preferred_name = forms.CharField(
+        max_length=100,
+        required=False,
+        label="Preferred name for co-client",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    co_client_email = forms.EmailField(
+        required=False,
+        label="What's the best email to reach you at?",
+        widget=forms.EmailInput(attrs={"class": "garden-input"}),
+    )
+
+    co_client_pronouns = forms.ChoiceField(
+        choices=PRONOUN_CHOICES,
+        required=False,
+        label="What are your pronouns?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    co_client_pronouns_other = forms.CharField(
+        max_length=50,
+        required=False,
+        label="Other pronouns",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    co_client_phone = forms.CharField(
+        max_length=20,
+        required=False,
+        label="What's your phone number?",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    co_client_birthday = forms.DateField(
+        required=False,
+        label="What's your birthday?",
+        widget=forms.DateInput(attrs={"type": "date", "class": "garden-input"}),
+    )
+
+    co_client_employment_status = forms.ChoiceField(
+        choices=EMPLOYMENT_STATUS_CHOICES,
+        required=False,
+        label="What best describes your employment status?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    co_client_employer_name = forms.CharField(
+        max_length=200,
+        required=False,
+        label="What's the name of your employer?",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    co_client_share_address = forms.ChoiceField(
+        choices=[("yes", "Yes"), ("no", "No")],
+        required=False,
+        label="Do you share a mailing address with your co-client?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    co_client_mailing_address = forms.CharField(
+        max_length=500,
+        required=False,
+        label="Co-client's mailing address",
+        widget=forms.Textarea(attrs={"class": "garden-input", "rows": 3}),
+    )
+
+    # Section 3: Your Contact Preferences
+    COMMUNICATION_PREFERENCES: ClassVar[list] = [
+        ("email", "Email"),
+        ("phone", "Phone"),
+        ("virtual_meetings", "I'd like to schedule virtual meetings"),
+        ("client_contact", "I'll contact you"),
     ]
 
-    time_horizon = forms.ChoiceField(
-        choices=TIME_HORIZON_CHOICES,
-        label="Investment Time Horizon",
-        widget=forms.Select(attrs={"class": "form-input"}),
+    communication_preference = forms.MultipleChoiceField(
+        choices=COMMUNICATION_PREFERENCES,
+        label="How do you prefer to communicate with us?",
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "garden-checkbox-group"}),
     )
 
-    # Ethical Preferences
-    EXCLUSION_CHOICES: ClassVar[list] = [
+    newsletter_subscribe = forms.ChoiceField(
+        choices=[("yes", "Yes, please!"), ("no", "No, thank you.")],
+        label="Would you like to subscribe to our email newsletter?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    # Section 4: Your Willingness and Ability to Take Investment Risk
+    AGREEMENT_SCALE: ClassVar[list] = [
+        ("strongly_agree", "Strongly agree."),
+        ("agree", "Agree."),
+        ("neutral", "Neutral."),
+        ("disagree", "Disagree."),
+        ("strongly_disagree", "Strongly disagree."),
+    ]
+
+    risk_question_1 = forms.ChoiceField(
+        choices=AGREEMENT_SCALE,
+        label="It would bother me if my account gained 10% over a 3-6 month period, but it could have gained 25%",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    risk_question_2 = forms.ChoiceField(
+        choices=AGREEMENT_SCALE,
+        label="Avoiding the worst case scenario matters more to me than maximizing my investment returns.",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    risk_question_3 = forms.ChoiceField(
+        choices=AGREEMENT_SCALE,
+        label="I try to avoid risk in most areas of my life.",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    risk_question_4 = forms.ChoiceField(
+        choices=AGREEMENT_SCALE,
+        label="I rarely, if ever, lose sleep because of stress and anxiety.",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    risk_question_5 = forms.ChoiceField(
+        choices=AGREEMENT_SCALE,
+        label="I plan to stay invested for a long enough period to recover from a temporary decline in stock prices.",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    risk_question_6 = forms.ChoiceField(
+        choices=AGREEMENT_SCALE,
+        label="I'd worry less about my finances if my investments fully aligned with my values",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    risk_question_7 = forms.ChoiceField(
+        choices=AGREEMENT_SCALE,
+        label="I would rather experience financial volatility than compromise my ethical beliefs.",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    # Section 5: Your Values and Viewpoint
+    ETHICAL_CONSIDERATIONS: ClassVar[list] = [
+        ("animal_welfare", "Animal welfare"),
+        ("corporate_governance", "Corporate governance"),
+        ("corruption", "Corruption"),
+        ("environmental_impact", "Environmental impact & sustainability"),
+        ("human_rights", "Human rights"),
+        ("labor_practices", "Labor practices"),
+        ("social_justice", "Social justice"),
+    ]
+
+    ethical_considerations = forms.MultipleChoiceField(
+        choices=ETHICAL_CONSIDERATIONS,
+        label="What ethical considerations are critically important to you when thinking about your investments?",
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "garden-checkbox-group"}),
+    )
+
+    ethical_considerations_other = forms.CharField(
+        max_length=500,
+        required=False,
+        label="Other ethical considerations",
+        widget=forms.Textarea(attrs={"class": "garden-input", "rows": 2}),
+    )
+
+    DIVESTMENT_MOVEMENTS: ClassVar[list] = [
+        ("bds", "BDS"),
         ("fossil_fuels", "Fossil Fuels"),
-        ("weapons", "Weapons & Defense"),
+        ("modern_slavery", "Modern Slavery"),
+        ("private_prisons", "Private Prisons"),
         ("tobacco", "Tobacco"),
-        ("gambling", "Gambling"),
-        ("animal_testing", "Animal Testing"),
-        ("human_rights", "Human Rights Violations"),
+        ("weapons", "Weapons"),
     ]
 
-    exclusions = forms.MultipleChoiceField(
-        choices=EXCLUSION_CHOICES,
+    divestment_movements = forms.MultipleChoiceField(
+        choices=DIVESTMENT_MOVEMENTS,
+        label="Our investment strategies align with several activist-led divestment movements. Are any of them critically important to you?",
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "garden-checkbox-group"}),
+    )
+
+    divestment_movements_other = forms.CharField(
+        max_length=500,
         required=False,
-        label="Areas of Concern",
-        widget=forms.CheckboxSelectMultiple(attrs={"class": "form-checkbox-group"}),
+        label="Other divestment movements",
+        widget=forms.Textarea(attrs={"class": "garden-input", "rows": 2}),
     )
 
-    IMPACT_AREA_CHOICES: ClassVar[list] = [
-        ("renewable_energy", "Renewable Energy"),
-        ("sustainable_agriculture", "Sustainable Agriculture"),
-        ("healthcare", "Healthcare Innovation"),
-        ("education", "Education"),
+    UNDERSTANDING_IMPORTANCE: ClassVar[list] = [
+        ("extremely", "Extremely"),
+        ("very", "Very"),
+        ("somewhat", "Somewhat"),
+        ("not_very", "Not very"),
     ]
 
-    impact_areas = forms.MultipleChoiceField(
-        choices=IMPACT_AREA_CHOICES,
+    understanding_importance = forms.ChoiceField(
+        choices=UNDERSTANDING_IMPORTANCE,
+        label="How important is it for you to understand why each company is included in your portfolio?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    understanding_importance_other = forms.CharField(
+        max_length=200,
         required=False,
-        label="Positive Impact Areas",
-        widget=forms.CheckboxSelectMultiple(attrs={"class": "form-checkbox-group"}),
+        label="Other",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
     )
 
-    # Investment Experience
-    EXPERIENCE_CHOICES: ClassVar[list] = [
-        ("beginner", "Beginner"),
-        ("intermediate", "Intermediate"),
-        ("experienced", "Experienced"),
+    ETHICAL_EVOLUTION: ClassVar[list] = [
+        ("strongly_support", "I strongly support this"),
+        ("support", "I support this"),
+        ("neutral", "I'm neutral"),
+        ("concerned", "I'm concerned"),
     ]
 
-    experience_level = forms.ChoiceField(
-        choices=EXPERIENCE_CHOICES,
-        label="Investment Experience Level",
-        widget=forms.RadioSelect(attrs={"class": "form-radio"}),
+    ethical_evolution = forms.ChoiceField(
+        choices=ETHICAL_EVOLUTION,
+        label="We evolve our ethical framework whenever we discover new information. How does that make you feel?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
     )
 
-    initial_investment = forms.DecimalField(
-        min_value=25000,
-        max_digits=12,
-        decimal_places=2,
-        label="Initial Investment Amount",
-        help_text="Minimum investment is $25,000",
-        widget=forms.NumberInput(
-            attrs={"class": "form-input", "min": "25000", "step": "1000"}
-        ),
-    )
-
-    monthly_contribution = forms.DecimalField(
-        min_value=0,
-        max_digits=10,
-        decimal_places=2,
+    ethical_evolution_other = forms.CharField(
+        max_length=200,
         required=False,
-        label="Monthly Contribution (Optional)",
-        widget=forms.NumberInput(
-            attrs={"class": "form-input", "min": "0", "step": "100"}
-        ),
+        label="Other",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
     )
 
-    # Risk tolerance
-    RISK_TOLERANCE_CHOICES: ClassVar[list] = [
-        ("conservative", "Conservative"),
-        ("moderate", "Moderate"),
-        ("aggressive", "Aggressive"),
-    ]
-
-    risk_tolerance = forms.ChoiceField(
-        choices=RISK_TOLERANCE_CHOICES,
-        label="Risk Tolerance",
-        help_text="Select your comfort level with investment risk and potential volatility",
-        widget=forms.RadioSelect(attrs={"class": "form-radio"}),
-    )
-
-    # Investment goals
-    INVESTMENT_GOAL_CHOICES: ClassVar[list] = [
-        ("growth", "Growth"),
-        ("income", "Income"),
-        ("preservation", "Capital Preservation"),
-        ("balanced", "Balanced"),
-    ]
-
-    investment_goals = forms.MultipleChoiceField(
-        choices=INVESTMENT_GOAL_CHOICES,
+    ethical_concerns_unrecognized = forms.CharField(
+        max_length=1000,
         required=False,
-        label="Investment Goals",
-        help_text="Select one or more investment objectives that align with your financial goals",
-        widget=forms.CheckboxSelectMultiple(attrs={"class": "form-checkbox-group"}),
+        label="Are you motivated by ethical concerns that might not be widely recognized?",
+        widget=forms.Textarea(attrs={"class": "garden-input", "rows": 3}),
     )
 
-    # ESG priorities
-    ESG_PRIORITY_CHOICES: ClassVar[list] = [
-        ("environmental", "Environmental"),
-        ("social", "Social"),
-        ("governance", "Governance"),
+    # Section 6: Your Financial Context
+    EXPERIENCE_LEVEL: ClassVar[list] = [
+        ("nonexistent", "Nonexistent"),
+        ("limited", "Limited"),
+        ("average", "Average"),
+        ("advanced", "Advanced"),
+        ("professional", "Professional"),
     ]
 
-    esg_priorities = forms.MultipleChoiceField(
-        choices=ESG_PRIORITY_CHOICES,
-        required=False,
-        label="ESG Priorities",
-        widget=forms.CheckboxSelectMultiple(attrs={"class": "form-checkbox-group"}),
+    investment_experience = forms.ChoiceField(
+        choices=EXPERIENCE_LEVEL,
+        label="How would you describe your level of investment experience?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
     )
 
-    # Investment timeline
-    INVESTMENT_TIMELINE_CHOICES: ClassVar[list] = [
-        ("3_months", "3 months"),
-        ("6_months", "6 months"),
-        ("1_year", "1 year"),
-        ("immediate", "Immediate"),
+    emergency_access = forms.ChoiceField(
+        choices=[("yes", "Yes"), ("no", "No"), ("not_sure", "I'm not sure")],
+        label="If you suddenly needed $1,000, would you be able to access it without selling investments or taking on debt?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    net_worth = forms.CharField(
+        max_length=50,
+        label="What's your approximate net worth?",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    liquid_net_worth = forms.CharField(
+        max_length=50,
+        label="What's your liquid net worth?",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    investable_net_worth = forms.CharField(
+        max_length=50,
+        label="What's your investable net worth?",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    FAMILIARITY_LEVEL: ClassVar[list] = [
+        ("not_very", "Not very"),
+        ("get_gist", "I get the gist"),
+        ("understand", "I understand it"),
+        ("deep_understanding", "I have a deep understanding"),
     ]
 
-    investment_timeline = forms.ChoiceField(
-        choices=INVESTMENT_TIMELINE_CHOICES,
+    investment_familiarity = forms.ChoiceField(
+        choices=FAMILIARITY_LEVEL,
+        label="How familiar are you with the way we invest?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    worked_with_adviser = forms.ChoiceField(
+        choices=[("yes", "Yes"), ("no", "No"), ("not_sure", "I'm not sure")],
+        label="Have you worked with an investment adviser before?",
+        widget=forms.RadioSelect(attrs={"class": "garden-radio"}),
+    )
+
+    ACCOUNT_TYPES: ClassVar[list] = [
+        ("not_sure", "I'm not sure"),
+        ("transfer_existing", "I'd like to transfer my existing accounts."),
+        ("individual_taxable", "Individual taxable account"),
+        ("roth_ira", "Roth IRA"),
+        ("trust_account", "Trust Account"),
+        ("corporate_account", "Corporate Account"),
+        ("joint_account", "Joint Account"),
+        ("high_yield_savings", "High yield savings account"),
+    ]
+
+    account_types = forms.MultipleChoiceField(
+        choices=ACCOUNT_TYPES,
+        label="What kinds of accounts would you like us to open for you?",
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "garden-checkbox-group"}),
+    )
+
+    account_types_other = forms.CharField(
+        max_length=500,
         required=False,
-        label="Investment Timeline",
-        widget=forms.Select(attrs={"class": "form-input"}),
+        label="Other account types",
+        widget=forms.Textarea(attrs={"class": "garden-input", "rows": 2}),
     )
 
-    # Accredited investor status
-    accredited_investor = forms.BooleanField(
-        required=True,
-        label="I confirm that I am an accredited investor",
-        help_text="Required for investment advisory services",
-        widget=forms.CheckboxInput(attrs={"class": "form-checkbox"}),
+    # Section 7: Your Financial Team
+    financial_team_coordinate = forms.CharField(
+        max_length=1000,
+        required=False,
+        label="Is there someone (accountant, attorney, etc) you'd like us to coordinate with?",
+        widget=forms.Textarea(attrs={"class": "garden-input", "rows": 3}),
     )
 
-    # Agreements
-    agree_terms = forms.BooleanField(
-        required=True,
-        label="I agree to the investment advisory agreement and privacy policy",
-        widget=forms.CheckboxInput(attrs={"class": "form-checkbox"}),
+    PROFESSIONAL_REFERRALS: ClassVar[list] = [
+        ("accountant", "Accountant"),
+        ("attorney", "Attorney"),
+        ("bookkeeper", "Bookkeeper"),
+        ("financial_planner", "Financial planner"),
+        ("insurance_agent", "Insurance agent"),
+        ("money_coach", "Money Coach"),
+        ("therapist", "Therapist"),
+    ]
+
+    professional_referrals = forms.MultipleChoiceField(
+        choices=PROFESSIONAL_REFERRALS,
+        required=False,
+        label="Would you like us to refer you to a values-aligned professional with one or more of these characteristics?",
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "garden-checkbox-group"}),
     )
 
-    # Alias for terms_accepted (used by tests)
-    terms_accepted = forms.BooleanField(
-        required=True,
-        label="I accept the terms and conditions",
-        widget=forms.CheckboxInput(attrs={"class": "form-checkbox"}),
+    professional_referrals_other = forms.CharField(
+        max_length=500,
+        required=False,
+        label="Other professional referrals",
+        widget=forms.Textarea(attrs={"class": "garden-input", "rows": 2}),
     )
 
-    confirm_accuracy = forms.BooleanField(
-        required=True,
-        label="I confirm that all information provided is accurate to the best of my knowledge",
-        widget=forms.CheckboxInput(attrs={"class": "form-checkbox"}),
+    anything_else = forms.CharField(
+        max_length=2000,
+        required=False,
+        label="Is there anything else going on in your life you'd like to tell us about?",
+        widget=forms.Textarea(attrs={"class": "garden-input", "rows": 4}),
     )
 
     # Spam protection
@@ -982,21 +1247,13 @@ class OnboardingForm(forms.Form):
         label="If you are human, leave this field blank",
     )
 
-    def clean_initial_investment(self):
-        """Validate minimum investment amount"""
-        amount = self.cleaned_data.get("initial_investment")
-        if amount and amount < 25000:
-            msg = "Minimum initial investment is $25,000. Please adjust your investment amount."
-            raise forms.ValidationError(msg)
-        return amount
-
     def clean_email(self):
         """Enhanced email validation"""
         email = self.cleaned_data.get("email", "")
         return email.lower().strip()
 
     def clean(self):
-        """Form validation with spam protection."""
+        """Form validation with spam protection and conditional field handling."""
         cleaned_data = super().clean()
 
         # Check honeypot field
@@ -1004,20 +1261,83 @@ class OnboardingForm(forms.Form):
             msg = "We detected unusual activity. Please contact us directly if you're having trouble."
             raise forms.ValidationError(msg)
 
-        # Validate accredited investor requirement
-        if not cleaned_data.get("accredited_investor"):
-            raise forms.ValidationError(
-                {
-                    "accredited_investor": "You must be an accredited investor to use our services."
-                }
-            )
+        # Handle conditional co-client fields
+        if cleaned_data.get("add_co_client") == "yes":
+            # Make co-client fields required when adding a co-client
+            co_client_required_fields = [
+                ("co_client_legal_name", "Please provide your co-client's legal name."),
+                ("co_client_email", "Please provide your co-client's email."),
+                ("co_client_phone", "Please provide your co-client's phone number."),
+                ("co_client_birthday", "Please provide your co-client's birthday."),
+                (
+                    "co_client_employment_status",
+                    "Please select your co-client's employment status.",
+                ),
+            ]
 
-        # Validate terms acceptance
-        if not cleaned_data.get("terms_accepted"):
-            raise forms.ValidationError(
-                {
-                    "terms_accepted": "You must accept the terms and conditions to proceed."
-                }
+            for field_name, error_msg in co_client_required_fields:
+                if not cleaned_data.get(field_name):
+                    self.add_error(field_name, error_msg)
+
+        # Handle "other" options that require additional input
+        other_field_mappings = [
+            (
+                "preferred_name_choice",
+                "other",
+                "preferred_name",
+                "Please specify your preferred name.",
+            ),
+            ("pronouns", "other", "pronouns_other", "Please specify your pronouns."),
+            (
+                "co_client_pronouns",
+                "other",
+                "co_client_pronouns_other",
+                "Please specify your co-client's pronouns.",
+            ),
+            (
+                "co_client_call_them",
+                "other",
+                "co_client_preferred_name",
+                "Please specify what to call your co-client.",
+            ),
+        ]
+
+        for main_field, other_value, other_field, error_msg in other_field_mappings:
+            if cleaned_data.get(main_field) == other_value and not cleaned_data.get(
+                other_field
+            ):
+                self.add_error(other_field, error_msg)
+
+        # Validate required fields based on employment status
+        if cleaned_data.get("employment_status") in [
+            "full_time",
+            "part_time",
+            "self_employed",
+        ]:
+            if not cleaned_data.get("employer_name"):
+                self.add_error("employer_name", "Please provide your employer's name.")
+            if not cleaned_data.get("job_title"):
+                self.add_error("job_title", "Please provide your job title.")
+
+        # Same for co-client employment
+        if cleaned_data.get("co_client_employment_status") in [
+            "full_time",
+            "part_time",
+            "self_employed",
+        ]:
+            if not cleaned_data.get("co_client_employer_name"):
+                self.add_error(
+                    "co_client_employer_name",
+                    "Please provide your co-client's employer name.",
+                )
+
+        # Validate co-client address if they don't share address
+        if cleaned_data.get("co_client_share_address") == "no" and not cleaned_data.get(
+            "co_client_mailing_address"
+        ):
+            self.add_error(
+                "co_client_mailing_address",
+                "Please provide your co-client's mailing address.",
             )
 
         return cleaned_data

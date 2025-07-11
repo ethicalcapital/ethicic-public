@@ -39,17 +39,17 @@ This is the **single source of truth** for all design tokens. Contains 300+ CSS 
   --theme-primary: var(--garden-accent);
   --theme-background: #ffffff;
   --theme-surface: #fafafa;
-  
+
   /* 📝 Typography */
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-base: 16px;                  /* Minimum accessible size */
   --font-lg: 20px;
-  
+
   /* 📏 Spacing */
   --space-1: 4px;
   --space-4: 16px;
   --space-8: 32px;
-  
+
   /* 🔵 Border Radius */
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -153,7 +153,7 @@ All UI components use the `garden-*` class naming convention:
 
 /* Semantic Colors */
 --theme-success: #10b981;
---theme-warning: #f59e0b; 
+--theme-warning: #f59e0b;
 --theme-error: #ef4444;
 --theme-info: #3b82f6;
 
@@ -366,7 +366,7 @@ All colors meet **WCAG AAA** standards (7:1 contrast ratio):
 
 ### Automated Checks
 - **Undefined variables**: Prevented by tests
-- **File sizes**: Monitored automatically  
+- **File sizes**: Monitored automatically
 - **Color contrast**: Validated in CI
 - **Garden UI adoption**: Tracked over time
 

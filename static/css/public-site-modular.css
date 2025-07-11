@@ -1,14 +1,14 @@
 /*!
  * Public Site Modular CSS - Garden UI Design System
  * Modular architecture with CSS layers for maintainability and performance
- * 
+ *
  * LAYER HIERARCHY:
  * 1. Reset        - CSS Reset and normalize (lowest specificity)
  * 2. Base         - Theme variables and layout foundation
  * 3. Components   - UI components (headers, panels, buttons, forms, tables, etc.)
  * 4. Utilities    - State management and helper classes
  * 5. Overrides    - High specificity overrides (header CTA, layout constraints, etc.)
- * 
+ *
  * ARCHITECTURE BENEFITS:
  * - Clear cascade hierarchy prevents specificity wars
  * - Modular files enable better maintainability
@@ -78,21 +78,21 @@
 @import url('./layers/53-wagtail-blocks.css'); /* Cloudflare image blocks and table blocks with Garden UI integration */
 @import url('./layers/54-panel-headers-final.css'); /* Panel headers and critical layout overrides */
 
-/* 
+/*
  * USAGE INSTRUCTIONS:
- * 
+ *
  * To use this modular system:
  * 1. Replace public-site-consolidated.css with public-site-modular.css
  * 2. Individual components can be loaded separately for performance
  * 3. Add new components as separate layer files
  * 4. Maintain layer hierarchy for proper cascade control
- * 
+ *
  * DEVELOPMENT WORKFLOW:
  * 1. Edit individual component files in ./layers/
  * 2. Changes are automatically reflected via @import
  * 3. No need to rebuild consolidated file
  * 4. Better version control with smaller files
- * 
+ *
  * PRODUCTION OPTIMIZATION:
  * - CSS bundler can inline all @imports
  * - Individual layers can be lazy-loaded

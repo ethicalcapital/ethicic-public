@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("public_site", "0011_add_advisor_page_comprehensive_fields"),
     ]

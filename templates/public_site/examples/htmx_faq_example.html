@@ -5,11 +5,11 @@
 {% block content %}
 <div class="garden-container">
     <h1>Frequently Asked Questions (HTMX Demo)</h1>
-    
+
     <div class="faq-accordion" x-data="{ openItem: null }">
         <!-- FAQ Item 1 -->
         <div class="faq-item">
-            <button class="faq-question" 
+            <button class="faq-question"
                     @click="openItem = openItem === 'item1' ? null : 'item1'"
                     :aria-expanded="openItem === 'item1'"
                     hx-get="/api/faq/what-is-ethical-investing/"
@@ -20,7 +20,7 @@
                 <span class="faq-arrow" :class="{ 'rotated': openItem === 'item1' }">▼</span>
                 <span id="spinner-1" class="htmx-indicator">⟳</span>
             </button>
-            <div class="faq-answer" 
+            <div class="faq-answer"
                  x-show="openItem === 'item1'"
                  x-transition
                  id="faq-content-1">
@@ -30,7 +30,7 @@
 
         <!-- FAQ Item 2 -->
         <div class="faq-item">
-            <button class="faq-question" 
+            <button class="faq-question"
                     @click="openItem = openItem === 'item2' ? null : 'item2'"
                     :aria-expanded="openItem === 'item2'"
                     hx-get="/api/faq/minimum-investment/"
@@ -41,7 +41,7 @@
                 <span class="faq-arrow" :class="{ 'rotated': openItem === 'item2' }">▼</span>
                 <span id="spinner-2" class="htmx-indicator">⟳</span>
             </button>
-            <div class="faq-answer" 
+            <div class="faq-answer"
                  x-show="openItem === 'item2'"
                  x-transition
                  id="faq-content-2">
@@ -51,7 +51,7 @@
 
         <!-- FAQ Item 3 -->
         <div class="faq-item">
-            <button class="faq-question" 
+            <button class="faq-question"
                     @click="openItem = openItem === 'item3' ? null : 'item3'"
                     :aria-expanded="openItem === 'item3'"
                     hx-get="/api/faq/how-are-companies-screened/"
@@ -62,7 +62,7 @@
                 <span class="faq-arrow" :class="{ 'rotated': openItem === 'item3' }">▼</span>
                 <span id="spinner-3" class="htmx-indicator">⟳</span>
             </button>
-            <div class="faq-answer" 
+            <div class="faq-answer"
                  x-show="openItem === 'item3'"
                  x-transition
                  id="faq-content-3">
@@ -80,9 +80,9 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="newsletter-email">Email Address</label>
-            <input type="email" 
-                   id="newsletter-email" 
-                   name="email" 
+            <input type="email"
+                   id="newsletter-email"
+                   name="email"
                    required
                    hx-post="/api/validate-email/"
                    hx-trigger="blur"
@@ -104,7 +104,7 @@
             <h3>First Blog Post</h3>
             <p>This is the first blog post content...</p>
         </article>
-        
+
         <div hx-get="/api/blog/posts/?page=2"
              hx-trigger="revealed"
              hx-swap="outerHTML"
@@ -119,14 +119,14 @@
     .faq-accordion {
         margin: 2rem 0;
     }
-    
+
     .faq-item {
         border: 1px solid var(--color-border);
         border-radius: var(--radius-md);
         margin-bottom: 1rem;
         overflow: hidden;
     }
-    
+
     .faq-question {
         width: 100%;
         padding: 1rem 1.5rem;
@@ -140,35 +140,35 @@
         align-items: center;
         transition: background-color var(--transition-fast);
     }
-    
+
     .faq-question:hover {
         background-color: var(--color-hover);
     }
-    
+
     .faq-arrow {
         transition: transform var(--transition-fast);
     }
-    
+
     .faq-arrow.rotated {
         transform: rotate(180deg);
     }
-    
+
     .faq-answer {
         padding: 1rem 1.5rem;
         background: var(--color-surface-variant);
         border-top: 1px solid var(--color-border);
     }
-    
+
     /* Newsletter Form */
     .newsletter-form {
         max-width: 400px;
         margin: 2rem 0;
     }
-    
+
     .form-group {
         margin-bottom: 1rem;
     }
-    
+
     .garden-input {
         width: 100%;
         padding: 0.5rem 1rem;
@@ -176,7 +176,7 @@
         border-radius: var(--radius-md);
         font-size: var(--font-base);
     }
-    
+
     /* Blog Posts */
     .blog-post {
         padding: 1.5rem;
@@ -184,19 +184,19 @@
         border-radius: var(--radius-md);
         margin-bottom: 1rem;
     }
-    
+
     /* Loading States */
     .htmx-indicator {
         display: none;
         margin-left: 0.5rem;
     }
-    
+
     .htmx-request .htmx-indicator,
     .htmx-request.htmx-indicator {
         display: inline-block;
         animation: spin 1s linear infinite;
     }
-    
+
     @keyframes spin {
         to { transform: rotate(360deg); }
     }

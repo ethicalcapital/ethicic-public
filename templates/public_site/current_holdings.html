@@ -102,7 +102,7 @@
         <div class="panel-header">PORTFOLIO STATISTICS</div>
         <div class="panel-content">
             <h2 id="stats-heading" class="sr-only">Portfolio Statistical Breakdown</h2>
-            
+
             <!-- Statistics Table -->
             <div class="statistics-table">
                 <div class="stats-header">
@@ -202,7 +202,7 @@
         <div class="panel-header">METHODOLOGY & DISCLOSURES</div>
         <div class="panel-content">
             <h2 id="methodology-heading" class="sr-only">Update Methodology and Important Disclosures</h2>
-            
+
             <div class="methodology-content">
                 <div class="methodology-section">
                     <h3>Update Schedule</h3>
@@ -247,7 +247,7 @@
         holdingCards.forEach(card => {
             card.setAttribute('tabindex', '0');
             card.setAttribute('role', 'article');
-            
+
             card.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     // Could expand card or navigate to detailed view
@@ -281,13 +281,13 @@
             const insights = Array.from(document.querySelectorAll('.insight-card'));
             const currentIndex = insights.indexOf(event.target);
             let nextIndex;
-            
+
             if (event.key === 'ArrowDown') {
                 nextIndex = (currentIndex + 1) % insights.length;
             } else {
                 nextIndex = currentIndex > 0 ? currentIndex - 1 : insights.length - 1;
             }
-            
+
             insights[nextIndex].focus();
             event.preventDefault();
         }

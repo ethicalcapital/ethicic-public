@@ -34,16 +34,16 @@ Search | Ethical Capital
                 {% endif %}
             </div>
         </div>
-        
+
         <!-- Search Form -->
         <div class="search-form-container">
             <form method="get" action="{% url 'public_site:search' %}" class="site-search-form" role="search"
                   x-data="{ query: '{{ query_string }}' }">
                 <div class="search-input-wrapper">
-                    <input type="text" 
-                           id="search-input" 
-                           name="q" 
-                           placeholder="Search our site..." 
+                    <input type="text"
+                           id="search-input"
+                           name="q"
+                           placeholder="Search our site..."
                            class="garden-input search-input"
                            x-model="query"
                            aria-label="Search the site"
@@ -81,13 +81,13 @@ Search | Ethical Capital
                         </h2>
                         <span class="result-type">{{ result.content_type.model|title }}</span>
                     </div>
-                    
+
                     {% if result.search_description %}
                     <p class="result-description">{{ result.search_description|striptags|truncatewords:30 }}</p>
                     {% elif result.excerpt %}
                     <p class="result-description">{{ result.excerpt|striptags|truncatewords:30 }}</p>
                     {% endif %}
-                    
+
                     <div class="result-footer">
                         <span class="result-url">{{ result.url }}</span>
                         <a href="{{ result.url_path }}" class="result-link">VIEW PAGE →</a>
@@ -97,24 +97,24 @@ Search | Ethical Capital
             </div>
         </div>
     </section>
-    
+
     <!-- Pagination -->
     {% if search_results.has_other_pages %}
     <div class="search-pagination">
         {% if search_results.has_previous %}
-            <a href="?q={{ query_string }}&page={{ search_results.previous_page_number }}" 
+            <a href="?q={{ query_string }}&page={{ search_results.previous_page_number }}"
                class="pagination-link prev">← PREVIOUS</a>
         {% endif %}
-        
+
         <span class="page-info">Page {{ search_results.number }} of {{ search_results.paginator.num_pages }}</span>
-        
+
         {% if search_results.has_next %}
-            <a href="?q={{ query_string }}&page={{ search_results.next_page_number }}" 
+            <a href="?q={{ query_string }}&page={{ search_results.next_page_number }}"
                class="pagination-link next">NEXT →</a>
         {% endif %}
     </div>
     {% endif %}
-    
+
     {% else %}
     <!-- No Results -->
     <section class="garden-panel no-results-panel">
@@ -132,7 +132,7 @@ Search | Ethical Capital
                         <li>Try searching for partial words</li>
                     </ul>
                 </div>
-                
+
                 <div class="helpful-links">
                     <h4>Popular Pages:</h4>
                     <div class="link-grid">

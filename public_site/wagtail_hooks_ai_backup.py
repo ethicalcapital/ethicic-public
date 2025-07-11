@@ -748,7 +748,8 @@ def add_public_site_instructions(request, panels):
             return Media()
 
         def render_html(self, parent_context=None):
-            return format_html("""
+            return format_html(
+                """
                 <div class="help-block help-info" style="padding: 20px; margin: 20px 0;">
                     <h2>Editing Public Site Pages</h2>
                     <p>To edit pages on the public-facing website:</p>
@@ -766,7 +767,8 @@ def add_public_site_instructions(request, panels):
                         <li><a href="/cms-admin/pages/add/public_site/homepage/3/">Add New Page</a></li>
                     </ul>
                 </div>
-            """)
+            """
+            )
 
         def render_as_object(self):
             return self.render_html()

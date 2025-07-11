@@ -6,7 +6,7 @@ Comprehensive testing system for CSS conflict prevention and quality assurance.
 
 ### Core Test Files
 - **`tests/test_css_conflicts.py`** - Django-based CSS conflict tests
-- **`run_css_tests.py`** - Standalone test runner  
+- **`run_css_tests.py`** - Standalone test runner
 - **`css_monitoring.py`** - Monitoring and baseline system
 
 ### Test Categories
@@ -36,7 +36,7 @@ test_theme_loading_performance()    # Ensures fast theme loading (<0.1s)
 # Run all CSS tests
 make css-test
 
-# Check for conflicts only  
+# Check for conflicts only
 make css-check
 
 # Generate detailed report
@@ -78,11 +78,11 @@ make ci-css-check
 4. Report files and specific undefined variables
 ```
 
-### Garden UI Consistency Check  
+### Garden UI Consistency Check
 ```python
 # Checks for deprecated classes:
 - form-control → garden-input
-- btn-primary → garden-action primary  
+- btn-primary → garden-action primary
 - form-input → garden-input
 ```
 
@@ -127,10 +127,10 @@ def test_new_css_feature(self):
     """Test description."""
     # 1. Setup test data
     css_files = self._get_css_files()
-    
+
     # 2. Run checks
     issues = self._check_feature(css_files)
-    
+
     # 3. Assert expectations
     self.assertEqual(len(issues), 0, f"Found issues: {issues}")
 ```
@@ -155,7 +155,7 @@ self.theme_file              # Theme file path
 ```
 **Fix**: Add missing variables to `garden-ui-theme.css`
 
-#### Deprecated Classes  
+#### Deprecated Classes
 ```
 ❌ Found deprecated CSS classes in templates:
   - contact_form.html: ['form-control']
@@ -173,7 +173,7 @@ self.theme_file              # Theme file path
 # Django settings not configured
 export DJANGO_SETTINGS_MODULE=ethicic.settings
 
-# Database connection issues  
+# Database connection issues
 python manage.py check
 
 # Missing test dependencies
@@ -199,7 +199,7 @@ The test suite tracks these metrics over time:
 
 ### For Developers
 1. **Run tests before committing**: `make css-test`
-2. **Check status regularly**: `make css-check`  
+2. **Check status regularly**: `make css-check`
 3. **Add tests for new features**: Follow existing patterns
 4. **Monitor performance**: Keep files under 200KB
 

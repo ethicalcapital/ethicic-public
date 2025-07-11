@@ -9,7 +9,7 @@ line-length = 88
 # Enable comprehensive rule sets for financial software
 select = [
     "E",    # pycodestyle errors
-    "W",    # pycodestyle warnings  
+    "W",    # pycodestyle warnings
     "F",    # Pyflakes
     "S",    # flake8-bandit (security)
     "B",    # flake8-bugbear (common bugs)

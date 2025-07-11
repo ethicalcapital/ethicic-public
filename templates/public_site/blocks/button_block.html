@@ -6,16 +6,16 @@
     {% else %}
         {% with value.url as button_url %}
     {% endif %}
-    
-    <a href="{{ button_url }}" 
+
+    <a href="{{ button_url }}"
        class="garden-action {{ value.style }} {{ value.size }}"
        {% if value.url and not value.page %}
-           target="_blank" 
+           target="_blank"
            rel="noopener noreferrer"
        {% endif %}>
         {{ value.text }}
     </a>
-    
+
     {% if not value.page %}
         {% endwith %}
     {% endif %}

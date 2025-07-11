@@ -70,7 +70,7 @@ The hook will show helpful commands to fix issues:
 # Python issues
 ruff check --fix [files]
 
-# CSS issues  
+# CSS issues
 stylelint --fix [files]
 
 # JavaScript issues

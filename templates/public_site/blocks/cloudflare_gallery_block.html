@@ -12,31 +12,31 @@ with multiple layout options.
         {% if value.title %}
             <h3 class="cloudflare-gallery-title">{{ value.title }}</h3>
         {% endif %}
-        
-        <div class="cloudflare-gallery-container" 
+
+        <div class="cloudflare-gallery-container"
              {% if value.layout == 'carousel' %}data-gallery-type="carousel"{% endif %}
              {% if value.layout == 'lightbox' %}data-gallery-type="lightbox"{% endif %}>
-            
+
             {% for image in processed_images %}
-                <div class="cloudflare-gallery-item" 
+                <div class="cloudflare-gallery-item"
                      {% if value.layout == 'lightbox' %}
-                         data-bs-toggle="modal" 
+                         data-bs-toggle="modal"
                          data-bs-target="#galleryModal"
                          data-image-src="{{ image.full_url }}"
                          data-image-alt="{{ image.alt_text|default:'Gallery image' }}"
                          data-image-caption="{{ image.caption }}"
                      {% endif %}>
-                    
+
                     <picture>
-                        <img 
-                            src="{{ image.thumbnail_url }}" 
+                        <img
+                            src="{{ image.thumbnail_url }}"
                             alt="{{ image.alt_text|default:'Gallery image' }}"
                             class="cloudflare-gallery-image"
                             loading="lazy"
                             {% if value.layout == 'lightbox' %}class="gallery-lightbox-cursor"{% endif %}
                         >
                     </picture>
-                    
+
                     {% if image.caption and value.layout != 'lightbox' %}
                         <div class="cloudflare-gallery-caption">
                             {{ image.caption }}
@@ -45,7 +45,7 @@ with multiple layout options.
                 </div>
             {% endfor %}
         </div>
-        
+
         {% comment %}Carousel controls{% endcomment %}
         {% if value.layout == 'carousel' %}
             <div class="cloudflare-gallery-controls">
@@ -62,7 +62,7 @@ with multiple layout options.
             </div>
         {% endif %}
     </div>
-    
+
     {% comment %}Lightbox modal{% endcomment %}
     {% if value.layout == 'lightbox' %}
         <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
@@ -102,32 +102,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('galleryModal');
     const modalImage = document.getElementById('galleryModalImage');
     const modalCaption = document.getElementById('galleryModalCaption');
-    
+
     lightboxItems.forEach(item => {
         item.addEventListener('click', function() {
             const imageSrc = this.dataset.imageSrc;
             const imageAlt = this.dataset.imageAlt;
             const imageCaption = this.dataset.imageCaption;
-            
+
             modalImage.src = imageSrc;
             modalImage.alt = imageAlt;
             modalCaption.textContent = imageCaption || '';
         });
     });
-    
+
     // Carousel functionality
     const carousels = document.querySelectorAll('[data-gallery-type="carousel"]');
-    
+
     carousels.forEach(carousel => {
         const container = carousel;
         const prevBtn = carousel.parentNode.querySelector('.cloudflare-gallery-prev');
         const nextBtn = carousel.parentNode.querySelector('.cloudflare-gallery-next');
-        
+
         if (prevBtn && nextBtn) {
             prevBtn.addEventListener('click', () => {
                 container.scrollBy({ left: -300, behavior: 'smooth' });
             });
-            
+
             nextBtn.addEventListener('click', () => {
                 container.scrollBy({ left: 300, behavior: 'smooth' });
             });

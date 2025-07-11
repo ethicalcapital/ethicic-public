@@ -18,9 +18,9 @@ NC='\033[0m' # No Color
 run_test_module() {
     local module=$1
     local description=$2
-    
+
     echo -e "\n${YELLOW}Testing ${description}...${NC}"
-    
+
     if docker exec garden-platform python manage.py test ${module} --verbosity=2; then
         echo -e "${GREEN}✓ ${description} tests passed${NC}"
         return 0
@@ -47,11 +47,11 @@ echo -e "\n${YELLOW}Running full test suite with coverage...${NC}"
 
 if docker exec garden-platform coverage run --source='public_site' manage.py test public_site.tests --verbosity=2; then
     echo -e "${GREEN}✓ All tests passed${NC}"
-    
+
     # Generate coverage report
     echo -e "\n${YELLOW}Coverage Report:${NC}"
     docker exec garden-platform coverage report -m
-    
+
     # Generate HTML coverage report
     docker exec garden-platform coverage html
     echo -e "${GREEN}HTML coverage report generated in htmlcov/${NC}"

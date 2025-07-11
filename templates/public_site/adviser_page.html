@@ -17,7 +17,7 @@
             <p class="hero-subtitle">
                 {{ page.hero_subtitle|default:"Deep research expertise and proven strategies to help you serve clients with complex values and sophisticated needs" }}
             </p>
-            
+
             <div class="hero-description">
                 {{ page.hero_description|default:"As investment advisers ourselves, we understand the challenges of serving clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and easy access you need to deliver exceptional outcomes."|safe }}
             </div>
@@ -31,18 +31,18 @@
         </div>
         <div class="garden-panel__content">
             <p class="section-intro">We provide investment advisers with institutional-grade research capabilities and proven strategies to confidently serve clients who prioritize ethical investing, without compromising on performance or professionalism.</p>
-            
+
             <div class="services-grid">
                 <div class="service-card">
                     <h3 class="service-title">RESEARCH EXPERTISE</h3>
                     <p>Institutional-grade research capabilities in ethical investing that go beyond standard ESG ratings. Our proprietary <a href="/process/" class="text-link">screening process</a> excludes 57% of the S&P 500 based on rigorous ethical criteria.</p>
                 </div>
-                
+
                 <div class="service-card">
                     <h3 class="service-title">PROVEN STRATEGIES</h3>
                     <p>Three distinct <a href="/strategies/" class="text-link">investment strategies</a> designed to match any client's risk tolerance, income requirements, and ethical priorities while maintaining institutional-grade performance standards.</p>
                 </div>
-                
+
                 <div class="service-card">
                     <h3 class="service-title">EASY ACCESS</h3>
                     <p>Available on the <a href="https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps" target="_blank" rel="noopener" class="text-link">Schwab Marketplace platform</a> for streamlined implementation. We handle operational complexity so you can focus on client relationships and practice growth.</p>
@@ -58,28 +58,28 @@
         </div>
         <div class="garden-panel__content">
             <p class="section-intro">Leading investment advisers partner with us because we deliver the institutional-grade expertise and transparency their sophisticated clients demand.</p>
-            
+
             <div class="benefits-list">
                 <div class="benefit-item">
                     <h4>Rigorous Transparency</h4>
                     <p>Our <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener" class="text-link">screening criteria is open source</a>, giving you complete confidence in what you're recommending.</p>
                 </div>
-                
+
                 <div class="benefit-item">
                     <h4>Proprietary Research</h4>
                     <p>Hand-screening of thousands of companies using our systematic approach that goes beyond third-party ESG ratings.</p>
                 </div>
-                
+
                 <div class="benefit-item">
                     <h4>Proven Track Record</h4>
                     <p>We've navigated complex ethical requirements without sacrificing performance since our founding in 2021.</p>
                 </div>
-                
+
                 <div class="benefit-item">
                     <h4>Educational Partnership</h4>
                     <p>Ongoing consultation, ad hoc consultations, and insights to help you develop expertise and handle challenging client scenarios.</p>
                 </div>
-                
+
                 <div class="benefit-item">
                     <h4>Schwab Platform Integration</h4>
                     <p>Available on the <a href="https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps" target="_blank" rel="noopener" class="text-link">Schwab Marketplace platform</a> with streamlined implementation and SMA management support.</p>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="process-action">
                 <a href="/process/" class="garden-action secondary">LEARN ABOUT OUR FULL PROCESS</a>
             </div>
@@ -134,7 +134,7 @@
         <div class="garden-panel__content">
             <h2 id="ddq-heading" class="section-title">Documentation for Investment Advisers</h2>
             <p class="section-description">Comprehensive documentation to support your due diligence process and adviser requirements.</p>
-            
+
             <div class="resources-grid">
                 <div class="resource-category">
                     <h3>ESG & Responsible Investment</h3>
@@ -162,7 +162,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="resource-category">
                     <h3>Regulatory & Compliance</h3>
                     <div class="resource-list">
@@ -202,20 +202,20 @@
             <h2 id="cta-heading" class="cta-title">
                 Let's discuss how we can support your practice
             </h2>
-            
+
             <div class="cta-description">
                 <p>Join leading investment advisers who trust our multi-faceted approach to help them serve a broader range of clients with complex needs and values more effectively.</p>
             </div>
-            
+
             <div class="cta-actions">
                 <!-- Primary CTA - Schedule Consultation -->
-                <button onclick="window.open('https://tidycal.com/ecic/adviser', '_blank')" 
+                <button onclick="window.open('https://tidycal.com/ecic/adviser', '_blank')"
                         class="garden-action adviser-cta-primary">
                     SCHEDULE A CONSULTATION
                 </button>
-                
+
                 <!-- Secondary CTA - Send Message -->
-                <button onclick="window.location.href='/contact/'" 
+                <button onclick="window.location.href='/contact/'"
                         class="garden-action adviser-cta-secondary">
                     SEND A MESSAGE
                 </button>
@@ -330,7 +330,7 @@
 // Add hover effects and force text colors
 document.addEventListener('DOMContentLoaded', function() {
     const ctaButtons = document.querySelectorAll('.cta-actions button');
-    
+
     ctaButtons.forEach(function(button, index) {
         // Force initial colors
         if (index === 0) { // Schedule button
@@ -340,11 +340,11 @@ document.addEventListener('DOMContentLoaded', function() {
             button.style.color = '#553C9A';
             button.style.background = 'transparent';
         }
-        
+
         button.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-3px)';
             this.style.boxShadow = '0 8px 20px rgba(0,0,0,0.4)';
-            
+
             if (this.textContent.includes('SCHEDULE')) {
                 this.style.background = '#442a8a';
                 this.style.color = '#ffffff';
@@ -353,11 +353,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.color = '#ffffff';
             }
         });
-        
+
         button.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
             this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
-            
+
             // Reset to original styles with forced colors
             if (this.textContent.includes('SCHEDULE')) {
                 this.style.background = '#553C9A';
@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Additional color enforcement every 100ms for 3 seconds
     let colorEnforcementCount = 0;
     const colorInterval = setInterval(function() {
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(colorInterval);
         }
     }, 100);
-    
+
     console.log('CTA button hover effects and color enforcement applied');
 });
 </script>

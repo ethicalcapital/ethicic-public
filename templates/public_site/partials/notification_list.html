@@ -6,7 +6,7 @@
 </div>
 {% elif notifications %}
     {% for notification in notifications %}
-    <a href="{{ notification.url|default:'#' }}" 
+    <a href="{{ notification.url|default:'#' }}"
        class="notification-item {% if notification.unread %}unread{% endif %}"
        hx-post="/api/notifications/{{ notification.id }}/read/"
        hx-trigger="click"
@@ -32,13 +32,13 @@
         color: var(--color-text-secondary);
         font-style: italic;
     }
-    
+
     .notification-empty {
         padding: 3rem 2rem;
         text-align: center;
         color: var(--color-text-tertiary);
     }
-    
+
     .notification-empty p {
         margin: 0;
     }

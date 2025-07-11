@@ -5,16 +5,16 @@
         {% if value.title %}
             <h3 class="chart-title">{{ value.title }}</h3>
         {% endif %}
-        
+
         <div class="chart-wrapper" data-responsive="{{ value.responsive|yesno:'true,false' }}">
-            <canvas id="{{ chart_id }}" 
+            <canvas id="{{ chart_id }}"
                     aria-label="{% if value.title %}{{ value.title }}{% else %}Data visualization chart{% endif %}"
                     role="img">
                 <!-- Fallback content for accessibility -->
                 <p>This chart displays data visualization. Please enable JavaScript to view the interactive chart.</p>
             </canvas>
         </div>
-        
+
         {% if value.data_source == "ai_extracted" %}
             <div class="chart-ai-indicator">
                 <span class="ai-badge" aria-label="AI-generated chart">
@@ -26,7 +26,7 @@
                 {% endif %}
             </div>
         {% endif %}
-        
+
         {% if value.chart_type == "performance_comparison" %}
             <div class="chart-description" aria-label="Chart description">
                 <p>Performance comparison showing relative returns or metrics across different investments or time periods.</p>
@@ -45,13 +45,13 @@
             </div>
         {% endif %}
     </div>
-    
+
     {% if value.show_legend and chart_config.data.datasets %}
         <div class="chart-legend" aria-label="Chart legend">
             <ul class="legend-list">
                 {% for dataset in chart_config.data.datasets %}
                     <li class="legend-item">
-                        <span class="legend-color" 
+                        <span class="legend-color"
                               data-color="{{ dataset.backgroundColor.0|default:'var(--color-primary)' }}"
                               aria-hidden="true"></span>
                         <span class="legend-label">{{ dataset.label|default:'Data Series' }}</span>
@@ -60,14 +60,14 @@
             </ul>
         </div>
     {% endif %}
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const ctx = document.getElementById('{{ chart_id }}');
             if (!ctx) return;
-            
+
             const chartConfig = {{ chart_config|safe }};
-            
+
             // Enhanced configuration with accessibility
             const config = {
                 ...chartConfig,
@@ -106,13 +106,13 @@
                     }
                 }
             };
-            
+
             {% if value.color_scheme == "performance" %}
                 // Apply performance color scheme (green/red)
                 if (config.data && config.data.datasets) {
                     config.data.datasets.forEach((dataset, index) => {
                         if (!dataset.backgroundColor) {
-                            dataset.backgroundColor = dataset.data.map(value => 
+                            dataset.backgroundColor = dataset.data.map(value =>
                                 value >= 0 ? 'var(--color-success)' : 'var(--color-error)'
                             );
                         }
@@ -135,10 +135,10 @@
                     });
                 }
             {% endif %}
-            
+
             try {
                 new Chart(ctx, config);
-                
+
                 // Set legend colors from data attributes
                 const legendColors = document.querySelectorAll('#{{ chart_id }}').closest('.dynamic-chart-block').querySelectorAll('.legend-color[data-color]');
                 legendColors.forEach(colorSpan => {
@@ -149,12 +149,12 @@
                 });
             } catch (error) {
                 console.error('Error creating chart:', error);
-                ctx.closest('.chart-wrapper').innerHTML = 
+                ctx.closest('.chart-wrapper').innerHTML =
                     '<div class="chart-error">Unable to display chart. Please check the configuration.</div>';
             }
         });
     </script>
-    
+
     {% if value.data_source == "manual_entry" and value.manual_data %}
         <details class="chart-data-source">
             <summary>Chart Data Source</summary>

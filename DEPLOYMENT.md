@@ -13,10 +13,10 @@
    ```bash
    # If using SSH (recommended):
    git remote add origin git@github.com:YOUR_USERNAME/ethicic-public.git
-   
+
    # Or if using HTTPS:
    git remote add origin https://github.com/YOUR_USERNAME/ethicic-public.git
-   
+
    # Push the code
    git push -u origin main
    ```
@@ -36,15 +36,15 @@
    - Build path: `/` (root)
 
 3. **Environment Variables**
-   
+
    Required variables in Kinsta dashboard:
-   
+
    ```
    SECRET_KEY=<generated-secret-key>
    DATABASE_URL=<provided-by-kinsta>
    ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
    ```
-   
+
    Optional email configuration:
    ```
    EMAIL_HOST=smtp.gmail.com
@@ -61,9 +61,9 @@
    - SSL is configured automatically
 
 5. **Post-Deployment**
-   
+
    After first deployment, run these commands in Kinsta's console:
-   
+
    ```bash
    python manage.py migrate
    python manage.py createsuperuser

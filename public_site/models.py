@@ -1816,7 +1816,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
             .live()
             .public()
             .select_related("owner")
-            .prefetch_related("tags__tag")
+            .prefetch_related("tags")
             .order_by("-first_published_at")
         )
 
@@ -2643,7 +2643,7 @@ class ResearchPage(RoutablePageMixin, Page):
             BlogPost.objects.live()
             .public()
             .select_related("owner")
-            .prefetch_related("tags__tag")
+            .prefetch_related("tags")
             .order_by("-first_published_at")
         )
 
@@ -3084,6 +3084,9 @@ class OnboardingPage(Page):
         index.SearchField("thank_you_title"),
         index.SearchField("thank_you_message"),
     ]
+
+    # Override the template to use the comprehensive version
+    template = "public_site/onboarding_page_comprehensive.html"
 
     class Meta:
         verbose_name = "Onboarding Page"

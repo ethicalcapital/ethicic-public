@@ -1,11 +1,11 @@
 <!-- Notification Bell Component with HTMX Polling -->
 <div class="notification-bell"
-     x-data="{ 
+     x-data="{
          open: false,
          unreadCount: 0,
          notifications: []
      }">
-    
+
     <!-- Bell Icon with Badge -->
     <button @click="open = !open"
             @keydown.escape="open = false"
@@ -23,14 +23,14 @@
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
             <path d="M13.73 21a2 2 0 0 1-3.46 0" />
         </svg>
-        <span id="notification-count" 
+        <span id="notification-count"
               class="notification-badge"
               x-show="unreadCount > 0"
               x-text="unreadCount"
               x-transition
               :aria-label="`${unreadCount} unread notifications`">0</span>
     </button>
-    
+
     <!-- Notification Dropdown -->
     <div x-show="open"
          @click.outside="open = false"
@@ -48,7 +48,7 @@
          role="menu"
          aria-labelledby="bell-button"
          x-cloak>
-        
+
         <div class="dropdown-header">
             <h3 id="notifications-heading">Notifications</h3>
             <button hx-post="/api/notifications/mark-all-read/"
@@ -61,7 +61,7 @@
                 Mark all as read
             </button>
         </div>
-        
+
         <div id="notification-list"
              hx-get="/api/notifications/"
              hx-trigger="load, every 30s"
@@ -70,17 +70,17 @@
              role="group"
              aria-labelledby="notifications-heading">
             <!-- Notifications will be loaded here -->
-            <div class="notification-item skeleton" 
-                 role="menuitem" 
+            <div class="notification-item skeleton"
+                 role="menuitem"
                  tabindex="0"
                  aria-label="Loading notifications">
                 <div class="notification-content">Loading notifications...</div>
             </div>
         </div>
-        
+
         <div class="dropdown-footer">
-            <a href="/notifications/" 
-               class="view-all-link" 
+            <a href="/notifications/"
+               class="view-all-link"
                role="menuitem"
                x-ref="lastFocusable"
                aria-label="View all notifications page">View all notifications</a>
@@ -92,7 +92,7 @@
     .notification-bell {
         position: relative;
     }
-    
+
     .bell-button {
         position: relative;
         background: none;
@@ -102,16 +102,16 @@
         color: var(--color-text-primary);
         transition: color 0.2s;
     }
-    
+
     .bell-button:hover {
         color: var(--color-primary);
     }
-    
+
     .bell-icon {
         width: 24px;
         height: 24px;
     }
-    
+
     .notification-badge {
         position: absolute;
         top: 0;
@@ -125,7 +125,7 @@
         min-width: 1.25rem;
         text-align: center;
     }
-    
+
     .notification-dropdown {
         position: absolute;
         top: 100%;
@@ -138,7 +138,7 @@
         box-shadow: 0 10px 40px var(--color-shadow-lg);
         z-index: 1000;
     }
-    
+
     .dropdown-header {
         display: flex;
         justify-content: space-between;
@@ -146,13 +146,13 @@
         padding: 1rem;
         border-bottom: 1px solid var(--color-border);
     }
-    
+
     .dropdown-header h3 {
         margin: 0;
         font-size: 1rem;
         font-weight: var(--font-semibold);
     }
-    
+
     .mark-read-btn {
         background: none;
         border: none;
@@ -163,66 +163,66 @@
         border-radius: var(--radius-sm);
         transition: background-color 0.2s;
     }
-    
+
     .mark-read-btn:hover {
         background: var(--color-primary-alpha);
     }
-    
+
     .notification-list {
         max-height: 400px;
         overflow-y: auto;
     }
-    
+
     .notification-item {
         padding: 1rem;
         border-bottom: 1px solid var(--color-border);
         transition: background-color 0.2s;
         cursor: pointer;
     }
-    
+
     .notification-item:hover {
         background: var(--color-surface-hover);
     }
-    
+
     .notification-item.unread {
         background: var(--color-primary-alpha);
     }
-    
+
     .notification-content {
         font-size: 0.875rem;
         line-height: 1.5;
         color: var(--color-text-primary);
     }
-    
+
     .notification-time {
         font-size: 0.75rem;
         color: var(--color-text-tertiary);
         margin-top: 0.25rem;
     }
-    
+
     .dropdown-footer {
         padding: 1rem;
         text-align: center;
         border-top: 1px solid var(--color-border);
     }
-    
+
     .view-all-link {
         color: var(--color-primary);
         text-decoration: none;
         font-size: 0.875rem;
         font-weight: var(--font-medium);
     }
-    
+
     .view-all-link:hover {
         text-decoration: underline;
     }
-    
+
     /* Dark mode */
     [data-theme="dark"] .notification-dropdown {
         background: var(--color-background-dark);
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
-    
+
     /* Mobile responsive */
     @media (max-width: 480px) {
         .notification-dropdown {

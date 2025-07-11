@@ -28,7 +28,7 @@
         {% if page.summary %}
             <div class="article-summary">{{ page.summary }}</div>
         {% endif %}
-        
+
         <!-- Article Metadata -->
         <div class="article-meta">
             <span class="category-badge">{{ page.get_category_display|upper }}</span>
@@ -129,18 +129,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const feedbackButtons = document.querySelectorAll('.feedback-btn');
     const feedbackMessage = document.querySelector('.feedback-message');
-    
+
     feedbackButtons.forEach(button => {
         button.addEventListener('click', function() {
             const helpful = this.dataset.helpful;
-            
+
             // Hide buttons and show message
             document.querySelector('.feedback-buttons').style.display = 'none';
             feedbackMessage.style.display = 'block';
-            
+
             // Track feedback (you can send this to your analytics)
             console.log('Article feedback:', helpful);
-            
+
             // Optional: Send feedback to server
             // fetch('/api/article-feedback/', {
             //     method: 'POST',

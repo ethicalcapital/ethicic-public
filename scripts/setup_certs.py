@@ -86,13 +86,15 @@ def setup_certificates():
 
     # Create a README in ssl directory
     readme_path = ssl_dir / "README.md"
-    readme_path.write_text("""# SSL Certificates Directory
+    readme_path.write_text(
+        """# SSL Certificates Directory
 
 This directory contains SSL certificates for secure database connections.
 These files are generated from environment variables during deployment.
 
 DO NOT commit these files to version control!
-""")
+"""
+    )
     print(f"\n✓ Created README: {readme_path}")
 
     print("\n" + "=" * 50)

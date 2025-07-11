@@ -55,7 +55,8 @@ class Command(BaseCommand):
         self.stdout.write("\n=== Public Site Tables ===")
         with connection.cursor() as cursor:
             if connection.vendor == "postgresql":
-                cursor.execute("""
+                cursor.execute(
+                    """
                     SELECT table_name,
                            (SELECT COUNT(*) FROM information_schema.columns
                             WHERE table_schema = 'public' AND table_name = t.table_name) as column_count
@@ -63,16 +64,19 @@ class Command(BaseCommand):
                     WHERE table_schema = 'public'
                     AND table_name LIKE 'public_site_%'
                     ORDER BY table_name
-                """)
+                """
+                )
             else:
                 # SQLite
-                cursor.execute("""
+                cursor.execute(
+                    """
                     SELECT name,
                            (SELECT COUNT(*) FROM pragma_table_info(m.name)) as column_count
                     FROM sqlite_master m
                     WHERE type='table' AND name LIKE 'public_site_%'
                     ORDER BY name
-                """)
+                """
+                )
 
             tables = cursor.fetchall()
             if tables:
@@ -81,14 +85,16 @@ class Command(BaseCommand):
 
                 # Check specific table for required fields
                 if connection.vendor == "postgresql":
-                    cursor.execute("""
+                    cursor.execute(
+                        """
                         SELECT column_name
                         FROM information_schema.columns
                         WHERE table_schema = 'public'
                         AND table_name = 'public_site_homepage'
                         AND column_name IN ('hero_tagline', 'excluded_percentage', 'since_year')
                         ORDER BY ordinal_position
-                    """)
+                    """
+                    )
                     found_columns = [col[0] for col in cursor.fetchall()]
                     if found_columns:
                         self.stdout.write(

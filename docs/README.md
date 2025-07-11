@@ -36,7 +36,7 @@ make css-report     # Generate detailed report
 
 ### Current Metrics
 - ✅ **0 undefined CSS variables** across all files
-- ✅ **300+ theme variables** properly defined  
+- ✅ **300+ theme variables** properly defined
 - ✅ **44 CSS files** monitored and conflict-free
 - ✅ **10/10 CSS tests** passing
 - ✅ **Git hooks** preventing conflicts
@@ -44,7 +44,7 @@ make css-report     # Generate detailed report
 
 ### Protection Against
 - CSS variable conflicts (auto-detected and blocked)
-- Template inconsistencies (Garden UI validation)  
+- Template inconsistencies (Garden UI validation)
 - Performance regressions (file size monitoring)
 - Accidental breakage (pre-commit validation)
 - Future conflicts (baseline tracking)
@@ -60,7 +60,7 @@ make css-report     # Generate detailed report
 
 If CSS tests start failing:
 1. Check recent commits: `git log --oneline -10`
-2. Run diagnostic: `make css-report`  
+2. Run diagnostic: `make css-report`
 3. Fix undefined variables: Add to `garden-ui-theme.css`
 4. Nuclear option: `make css-baseline` (creates new baseline)
 

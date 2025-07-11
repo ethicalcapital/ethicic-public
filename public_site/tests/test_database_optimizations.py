@@ -18,9 +18,10 @@ from public_site.models import (
     StrategyPage,
     SupportTicket,
 )
+from public_site.tests.test_base import WagtailTestCase
 
 
-class DatabaseIndexTestCase(WagtailPageTestCase):
+class DatabaseIndexTestCase(WagtailTestCase):
     """Test that database indexes are working effectively."""
 
     def setUp(self):
@@ -29,7 +30,7 @@ class DatabaseIndexTestCase(WagtailPageTestCase):
 
         # Create blog structure
         self.blog_index = BlogIndexPage(title="Blog", slug="blog", locale=self.locale)
-        self.root_page.add_child(instance=self.blog_index)
+        self.home_page.add_child(instance=self.blog_index)
 
         # Create test data that will benefit from indexes
         self.create_test_blog_posts()
@@ -557,14 +558,14 @@ class IndexPerformanceTestCase(TestCase):
             )
 
 
-class QueryOptimizationValidationTestCase(WagtailPageTestCase):
+class QueryOptimizationValidationTestCase(WagtailTestCase):
     """Validate that our query optimizations are working."""
 
     def test_blog_index_get_posts_optimization(self):
         """Test that get_posts() query optimization works."""
         # Create blog index
         blog_index = BlogIndexPage(title="Blog", slug="blog", locale=self.locale)
-        self.root_page.add_child(instance=blog_index)
+        self.home_page.add_child(instance=blog_index)
 
         # Create some posts
         for i in range(5):

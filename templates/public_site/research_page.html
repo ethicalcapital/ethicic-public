@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            
+
             {% if page.description %}
                 <div class="research-description">{{ page.description|richtext }}</div>
             {% endif %}
@@ -55,8 +55,8 @@
                         <div class="search-section">
                             <form method="get" action="" class="search-form">
                                 <div class="search-wrapper">
-                                    <input type="text" id="research-search" name="search" 
-                                           placeholder="Search research articles..." 
+                                    <input type="text" id="research-search" name="search"
+                                           placeholder="Search research articles..."
                                            class="garden-input search-input"
                                            value="{{ search_query }}">
                                     <button type="submit" class="search- garden-action garden-action primary">
@@ -80,7 +80,7 @@
                                         <input type="hidden" name="search" value="{{ search_query }}">
                                     {% endif %}
                                     {% for tag in all_tags %}
-                                    <button type="submit" name="tag" value="{{ tag.name }}" 
+                                    <button type="submit" name="tag" value="{{ tag.name }}"
                                             class="topic-filter {% if tag.name == tag_filter %}active{% endif %}">
                                         {{ tag.name }}
                                     </button>
@@ -156,9 +156,9 @@
                                     <span class="featured-indicator">★</span>
                                     {% endif %}
                                 </div>
-                                
+
                                 <p class="compact-summary">{{ post.excerpt|default:post.body|striptags|truncatewords:25 }}</p>
-                                
+
                                 <div class="article-footer">
                                     {% if post.tags.all %}
                                     <div class="compact-tags">
@@ -194,14 +194,14 @@
             {% if posts.has_other_pages %}
             <div class="compact-pagination">
                 {% if posts.has_previous %}
-                    <a href="?page={{ posts.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if tag_filter %}&tag={{ tag_filter }}{% endif %}" 
+                    <a href="?page={{ posts.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if tag_filter %}&tag={{ tag_filter }}{% endif %}"
                        class="pagination-link prev">← PREV</a>
                 {% endif %}
-                
+
                 <span class="page-info">{{ posts.number }} of {{ posts.paginator.num_pages }}</span>
-                
+
                 {% if posts.has_next %}
-                    <a href="?page={{ posts.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if tag_filter %}&tag={{ tag_filter }}{% endif %}" 
+                    <a href="?page={{ posts.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if tag_filter %}&tag={{ tag_filter }}{% endif %}"
                        class="pagination-link next">NEXT →</a>
                 {% endif %}
             </div>
@@ -220,7 +220,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('research-search');
     const articleCards = document.querySelectorAll('.compact-article-card');
-    
+
     if (searchInput) {
         // Focus search with "/" key
         document.addEventListener('keydown', function(e) {
@@ -230,16 +230,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 searchInput.select();
             }
         });
-        
+
         // Live search functionality
         searchInput.addEventListener('input', function() {
             const query = this.value.toLowerCase();
             let visibleCount = 0;
-            
+
             articleCards.forEach(card => {
                 const title = card.dataset.title;
                 const summary = card.dataset.summary;
-                
+
                 if (query.length === 0 || title.includes(query) || summary.includes(query)) {
                     card.style.display = 'block';
                     visibleCount++;
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     card.style.display = 'none';
                 }
             });
-            
+
             // Update header with search results
             const headerElement = document.querySelector('.research-articles .panel-header');
             if (headerElement && query.length > 0) {
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     // Enhanced topic filter buttons
     const topicFilters = document.querySelectorAll('.topic-filter');
     topicFilters.forEach(filter => {

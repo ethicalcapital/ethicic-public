@@ -76,7 +76,7 @@
                     <div class="quick-info-card">
                         <h3>Quick Info</h3>
                         <div class="info-item">
-                            <strong>Category:</strong> 
+                            <strong>Category:</strong>
                             {% if page.category %}
                                 {{ page.get_category_display }}
                             {% else %}
@@ -84,7 +84,7 @@
                             {% endif %}
                         </div>
                         <div class="info-item">
-                            <strong>Difficulty:</strong> 
+                            <strong>Difficulty:</strong>
                             {% if page.difficulty_level %}
                                 {{ page.get_difficulty_level_display }}
                             {% else %}
@@ -185,7 +185,7 @@ function shareEntry() {
 // Smooth scroll for anchor links
 document.addEventListener('DOMContentLoaded', function() {
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    
+
     anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();

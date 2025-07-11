@@ -23,7 +23,7 @@
                                 <span class="breadcrumb-separator">▶</span>
                                 <span class="breadcrumb-current">{{ page.title }}</span>
                             </nav>
-                            
+
                             <div class="article-meta">
                                 {% if page.category %}
                                     <span class="meta-item category-badge">{{ page.get_category_display }}</span>
@@ -32,9 +32,9 @@
                                     <time class="meta-item" datetime="{{ page.last_published_at|date:'Y-m-d' }}">Last Updated {{ page.last_published_at|date:"F j, Y" }}</time>
                                 {% endif %}
                             </div>
-                            
+
                             <h1 class="article-title">{{ page.title }}</h1>
-                            
+
                             {% if page.summary %}
                                 <div class="article-excerpt">
                                     {{ page.summary }}
@@ -58,7 +58,7 @@
                                 <a href="/contact/" class="contact-action">Still Have Questions?</a>
                             </div>
                         </div>
-                        
+
                         <!-- Show related articles if available -->
                         {% if page.get_parent.get_articles %}
                             <div class="related-articles">
@@ -87,7 +87,7 @@
                     </footer>
                 </div>
             </div>
-            
+
             <!-- Sidebar (1/3 width) -->
             <aside class="blog-sticky-sidebar" aria-label="FAQ sidebar">
                 <!-- FAQ Navigation Section -->

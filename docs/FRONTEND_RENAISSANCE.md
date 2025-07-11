@@ -23,7 +23,7 @@ HTMX is loaded in the base template and provides server-driven interactivity:
 
 #### Live Search Example
 ```html
-<input type="text" 
+<input type="text"
        hx-get="/search/live/"
        hx-trigger="keyup changed delay:300ms"
        hx-target="#search-results"
@@ -46,7 +46,7 @@ Alpine.js provides reactive client-side behavior with minimal JavaScript:
 
 #### Theme Toggle
 ```html
-<button x-data="{ 
+<button x-data="{
     isDark: localStorage.getItem('theme') === 'dark',
     toggle() {
         this.isDark = !this.isDark;
@@ -82,7 +82,7 @@ Create reusable partial templates for HTMX responses:
 def site_search_live(request):
     query = request.GET.get('q', '')
     results = Page.objects.live().search(query)[:5]
-    
+
     if request.headers.get('HX-Request'):
         # Return partial for HTMX
         return render(request, 'partials/search_results.html', {
@@ -100,7 +100,7 @@ The site works without JavaScript and progressively enhances with HTMX/Alpine:
 ```html
 <!-- Search form works with or without HTMX -->
 <form method="get" action="/search/">
-    <input type="text" 
+    <input type="text"
            name="q"
            hx-get="/search/live/"
            hx-trigger="keyup changed delay:300ms">

@@ -15,7 +15,7 @@ Helps search engines understand site structure and hierarchy
       "item": "{{ request.scheme }}://{{ request.get_host }}/"
     }{% if breadcrumb_items %}{% for item in breadcrumb_items %},
     {
-      "@type": "ListItem", 
+      "@type": "ListItem",
       "position": {{ forloop.counter|add:1 }},
       "name": "{{ item.name }}",
       "item": "{{ request.scheme }}://{{ request.get_host }}{{ item.url }}"

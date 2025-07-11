@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get the garden-container
     const container = document.querySelector('.garden-container');
     const computedStyle = window.getComputedStyle(container);
-    
+
     // Get root styles
     const rootStyle = window.getComputedStyle(document.documentElement);
-    
+
     // Display container info
     document.getElementById('container-info').innerHTML = `
         <strong>Computed Styles:</strong><br>
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         margin: ${computedStyle.margin}<br>
         padding: ${computedStyle.padding}
     `;
-    
+
     // Display debug info
     document.getElementById('debug-info').innerHTML = `
         <strong>CSS Variables:</strong><br>
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <strong>Body Classes:</strong> ${document.body.className}<br>
         <strong>Window Width:</strong> ${window.innerWidth}px
     `;
-    
+
     // Log all stylesheets
     console.log('Loaded stylesheets:');
     Array.from(document.styleSheets).forEach((sheet, index) => {

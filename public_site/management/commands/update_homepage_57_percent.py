@@ -33,7 +33,8 @@ class Command(BaseCommand):
                 self.stdout.write(f"Updated {criteria_rows} criteria page rows")
 
                 # Verify no more 68% references exist
-                cursor.execute("""
+                cursor.execute(
+                    """
                     SELECT COUNT(*) FROM (
                         SELECT 1 FROM public_site_homepage WHERE
                             sp500_excluded_pct LIKE '%68%' OR
@@ -51,7 +52,8 @@ class Command(BaseCommand):
                         UNION ALL
                         SELECT 1 FROM public_site_strategypage WHERE portfolio_content LIKE '%68%'
                     ) subquery
-                """)
+                """
+                )
                 remaining_count = cursor.fetchone()[0]
 
                 if remaining_count == 0:

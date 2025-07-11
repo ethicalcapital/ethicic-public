@@ -76,7 +76,8 @@ class Command(BaseCommand):
         # First pass: Create all pages
         with conn.cursor() as cursor:
             # Get pages ordered by path to maintain hierarchy
-            cursor.execute("""
+            cursor.execute(
+                """
                 SELECT
                     p.id, p.path, p.depth, p.title, p.slug,
                     p.url_path, p.seo_title, p.search_description,
@@ -86,7 +87,8 @@ class Command(BaseCommand):
                 JOIN django_content_type ct ON p.content_type_id = ct.id
                 WHERE ct.app_label = 'public_site'
                 ORDER BY p.path
-            """)
+            """
+            )
 
             pages = cursor.fetchall()
             self.stdout.write(f"Found {len(pages)} pages to import")

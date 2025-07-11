@@ -16,7 +16,7 @@
                 {% endif %}
             </div>
         </div>
-        
+
         <h2 class="article-list-title">
             {% if item.external_url %}
                 <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
@@ -24,13 +24,13 @@
                 {{ item.title }}
             {% endif %}
         </h2>
-        
+
         {% if item.description %}
             <div class="article-list-description">
                 {{ item.description|richtext }}
             </div>
         {% endif %}
-        
+
         {% if item.external_url %}
             <div class="article-list-actions">
                 <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer" class="garden-action secondary small">READ ON {{ item.publication|upper|default:"EXTERNAL SITE" }}</a>

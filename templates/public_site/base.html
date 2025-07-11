@@ -225,6 +225,9 @@
     <!-- Emergency contact form fix - loads LAST -->
     <link rel="stylesheet" href="{% static 'css/z-contact-emergency-fix.css' %}?v=1">
 
+    <!-- Debug mobile menu CSS -->
+    <link rel="stylesheet" href="{% static 'css/mobile-menu-debug.css' %}?v=1">
+
     <!-- HTMX for server-driven interactivity -->
     <script src="https://unpkg.com/htmx.org@1.9.11"></script>
 
@@ -252,7 +255,12 @@
     <div aria-live="assertive" aria-atomic="true" class="sr-only" id="urgent-announcements"></div>
 
     <!-- Garden UI Compliant Navigation Header -->
-    <header class="garden-header" role="banner" x-data="{ mobileMenuOpen: false }">
+    <header class="garden-header" role="banner" x-data="{
+        mobileMenuOpen: false,
+        init() {
+            console.log('Alpine.js initialized, mobileMenuOpen:', this.mobileMenuOpen);
+        }
+    }" x-init="init()">
         <div class="garden-header-content">
             <!-- Left: Brand + Navigation -->
             <div class="garden-nav-left">
@@ -266,7 +274,7 @@
                         :aria-expanded="mobileMenuOpen.toString()"
                         aria-controls="main-navigation"
                         type="button"
-                        @click="mobileMenuOpen = !mobileMenuOpen">
+                        @click="mobileMenuOpen = !mobileMenuOpen; console.log('Hamburger clicked, mobileMenuOpen:', mobileMenuOpen)">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>

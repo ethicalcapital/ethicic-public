@@ -28,13 +28,13 @@ Implements FinancialProduct schema for each investment strategy
           "value": "15-25 Companies"
         },
         {
-          "@type": "PropertyValue", 
+          "@type": "PropertyValue",
           "name": "Screening",
           "value": "Full Divestment Criteria Implementation"
         },
         {
           "@type": "PropertyValue",
-          "name": "Management Style", 
+          "name": "Management Style",
           "value": "Active & Continuous"
         },
         {
@@ -52,7 +52,7 @@ Implements FinancialProduct schema for each investment strategy
     },
     {
       "@type": "FinancialProduct",
-      "@id": "{{ request.scheme }}://{{ request.get_host }}/strategies/income/#product", 
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/strategies/income/#product",
       "name": "Income Strategy",
       "description": "Ethical investing meets yield generation. The same rigorous divestment screening including fossil fuel divestment, tobacco divestment, and human rights screening applied to income-generating securities including ESG-compliant fixed income and dividend-focused equities.",
       "provider": {
@@ -61,7 +61,7 @@ Implements FinancialProduct schema for each investment strategy
       "feesAndCommissionsSpecification": "1% annual management fee on assets under management",
       "amount": {
         "@type": "MonetaryAmount",
-        "minAmount": "250000", 
+        "minAmount": "250000",
         "currency": "USD"
       },
       "additionalProperty": [
@@ -82,7 +82,7 @@ Implements FinancialProduct schema for each investment strategy
         },
         {
           "@type": "PropertyValue",
-          "name": "Ownership", 
+          "name": "Ownership",
           "value": "Direct Securities"
         },
         {
@@ -96,7 +96,7 @@ Implements FinancialProduct schema for each investment strategy
     {
       "@type": "FinancialProduct",
       "@id": "{{ request.scheme }}://{{ request.get_host }}/strategies/diversification/#product",
-      "name": "Diversification Strategy", 
+      "name": "Diversification Strategy",
       "description": "We curate the best available external options for ethical investing diversification. Broader sustainable investing exposure through ESG-screened external funds with fossil fuel divestment and comprehensive exclusion criteria with client discretion on implementation.",
       "provider": {
         "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
@@ -119,7 +119,7 @@ Implements FinancialProduct schema for each investment strategy
           "value": "Ethically Screened"
         },
         {
-          "@type": "PropertyValue", 
+          "@type": "PropertyValue",
           "name": "Exposure",
           "value": "Wider Exposure"
         },

@@ -6,7 +6,7 @@
             <span class="ai-icon" aria-hidden="true">🤖</span>
             AI Content Analysis
         </h3>
-        
+
         {% if value.analysis_confidence > 0.8 %}
             <span class="ai-confidence-indicator high" aria-label="High confidence analysis">High Confidence</span>
         {% elif value.analysis_confidence > 0.6 %}
@@ -15,7 +15,7 @@
             <span class="ai-confidence-indicator low" aria-label="Low confidence analysis">Low Confidence</span>
         {% endif %}
     </div>
-    
+
     <div class="ai-analysis-content">
         {% if value.content %}
             <div class="ai-original-content">
@@ -25,7 +25,7 @@
                 </div>
             </div>
         {% endif %}
-        
+
         {% if value.ai_insights %}
             <div class="ai-insights-section">
                 <h4>
@@ -39,14 +39,14 @@
                 </ul>
             </div>
         {% endif %}
-        
+
         {% if value.extracted_statistics %}
             <div class="ai-extracted-stats-section">
                 <h4>
                     <span aria-hidden="true">📊</span>
                     Extracted Statistics
                 </h4>
-                
+
                 {% if high_confidence_stats %}
                     <div class="ai-high-confidence-stats">
                         <h5>High Confidence Statistics</h5>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                 {% endif %}
-                
+
                 {% if summary_stats %}
                     <div class="ai-summary-stats">
                         <h5>Statistics by Category</h5>
@@ -90,7 +90,7 @@
                 {% endif %}
             </div>
         {% endif %}
-        
+
         {% if value.last_analyzed %}
             <div class="ai-analysis-metadata">
                 <span class="ai-analysis-timestamp">
@@ -105,7 +105,7 @@
             </div>
         {% endif %}
     </div>
-    
+
     {% if not value.extracted_statistics and not value.ai_insights %}
         <div class="ai-no-analysis">
             <span class="ai-placeholder-icon" aria-hidden="true">🔍</span>

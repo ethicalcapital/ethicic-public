@@ -17,9 +17,9 @@ and responsive features.
             {% if image_url_webp %}
                 <source srcset="{{ image_url_webp }}" type="image/webp">
             {% endif %}
-            
+
             {% comment %}Responsive srcset for different screen densities{% endcomment %}
-            <img 
+            <img
                 src="{{ image_url }}"
                 {% if responsive_urls %}
                     srcset="{{ responsive_urls.1x }} 1x, {{ responsive_urls.2x }} 2x"
@@ -36,14 +36,14 @@ and responsive features.
                 {% endif %}
             >
         </picture>
-        
+
         {% if value.caption %}
             <figcaption class="cloudflare-image-caption">
                 {{ value.caption|linebreaks }}
             </figcaption>
         {% endif %}
     </figure>
-    
+
     {% comment %}Zoom modal (if enabled){% endcomment %}
     {% if value.enable_zoom %}
         <div class="modal fade" id="imageZoomModal" tabindex="-1" aria-labelledby="imageZoomModalLabel" aria-hidden="true">
@@ -69,7 +69,7 @@ and responsive features.
 {% else %}
     {% comment %}Fallback for when Cloudflare Images is not configured{% endcomment %}
     <div class="alert alert-warning" role="alert">
-        <strong>Image not available:</strong> 
+        <strong>Image not available:</strong>
         {% if not configured %}
             Cloudflare Images is not configured.
         {% else %}

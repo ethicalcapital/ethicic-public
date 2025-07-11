@@ -1,4 +1,4 @@
-/*! 
+/*!
  * Public Site Layout Fixes
  * Container width management and layout fixes for public site pages
  * Production-ready components integrated with Garden UI system
@@ -69,7 +69,7 @@
         padding-left: var(--space-4);
         padding-right: var(--space-4);
     }
-    
+
     .public-site-context .garden-nav-content {
         padding: 0 var(--space-4);
     }
@@ -82,7 +82,7 @@
         padding-left: var(--space-3);
         padding-right: var(--space-3);
     }
-    
+
     .public-site-context .garden-nav-content {
         padding: 0 var(--space-3);
     }

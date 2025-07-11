@@ -17,8 +17,8 @@
             </div>
 
             <!-- Newsletter signup form -->
-            <form id="newsletter-form" 
-                  action="{% url 'public_site:newsletter_subscribe' %}" 
+            <form id="newsletter-form"
+                  action="{% url 'public_site:newsletter_subscribe' %}"
                   method="post"
                   hx-post="{% url 'public_site:newsletter_subscribe' %}"
                   hx-target="#newsletter-form"
@@ -26,19 +26,19 @@
                   x-data="{ submitting: false }"
                   @submit="submitting = true">
                 {% csrf_token %}
-                
+
                 <div class="garden-input-group">
                     <label for="email" class="garden-label">Email Address</label>
-                    <input type="email" 
-                           id="email" 
-                           name="email" 
-                           class="garden-input" 
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           class="garden-input"
                            placeholder="your@email.com"
                            required
                            :disabled="submitting">
                 </div>
 
-                <button type="submit" 
+                <button type="submit"
                         class="garden-action primary"
                         :disabled="submitting"
                         x-text="submitting ? 'Subscribing...' : 'Subscribe'">

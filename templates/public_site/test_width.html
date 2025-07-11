@@ -30,27 +30,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Test container 1
     const container1 = document.querySelector('.garden-container');
     const style1 = window.getComputedStyle(container1);
-    document.getElementById('test1-result').innerHTML = 
+    document.getElementById('test1-result').innerHTML =
         `Computed styles: max-width = ${style1.maxWidth}, width = ${style1.width}`;
-    
+
     // Test container 2
     const containers = document.querySelectorAll('.garden-container');
     if (containers.length > 1) {
         const style2 = window.getComputedStyle(containers[1]);
-        document.getElementById('test2-result').innerHTML = 
+        document.getElementById('test2-result').innerHTML =
             `Computed styles: max-width = ${style2.maxWidth}, width = ${style2.width}`;
     }
-    
+
     // Check CSS variables
     const root = document.documentElement;
     const rootStyle = window.getComputedStyle(root);
     const contentWidthNormal = rootStyle.getPropertyValue('--content-width-normal');
     const space24 = rootStyle.getPropertyValue('--space-24');
-    
+
     console.log('CSS Variables:');
     console.log('--content-width-normal:', contentWidthNormal);
     console.log('--space-24:', space24);
-    
+
     // Add debug info
     const debug = document.createElement('div');
     debug.style.cssText = 'background: yellow; padding: 20px; margin: 20px auto; max-width: 1200px;';

@@ -11,14 +11,14 @@
         {% else %}
             {% image value.image original as img %}
         {% endif %}
-        
+
         <figure class="image-figure">
-            <img src="{{ img.url }}" 
-                 alt="{{ value.alt_text|default:value.image.title|default:'Image' }}" 
-                 width="{{ img.width }}" 
+            <img src="{{ img.url }}"
+                 alt="{{ value.alt_text|default:value.image.title|default:'Image' }}"
+                 width="{{ img.width }}"
                  height="{{ img.height }}"
                  loading="lazy">
-            
+
             {% if value.caption %}
                 <figcaption class="image-caption">{{ value.caption }}</figcaption>
             {% endif %}

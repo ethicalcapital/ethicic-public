@@ -13,7 +13,7 @@ public_site/tests/
 ├── models/                  # Model tests
 │   ├── __init__.py
 │   └── test_page_models.py  # Tests for all Wagtail page models
-├── views/                   # View tests  
+├── views/                   # View tests
 │   ├── __init__.py
 │   └── test_form_views.py   # Tests for form submission views and APIs
 ├── forms/                   # Form tests
@@ -47,7 +47,7 @@ public_site/tests/
 - **LegalPage**: Effective dates, auto-updating
 
 ### 2. Form Tests (test_contact_forms.py)
-- **AccessibleContactForm**: 
+- **AccessibleContactForm**:
   - Required field validation
   - Email validation
   - Message length validation
@@ -58,7 +58,7 @@ public_site/tests/
   - Word repetition detection
   - Form layout and accessibility attributes
 - **AccessibleNewsletterForm**: Email validation, consent, honeypot
-- **OnboardingForm**: 
+- **OnboardingForm**:
   - Required fields
   - Minimum investment validation ($25k)
   - Accredited investor requirement

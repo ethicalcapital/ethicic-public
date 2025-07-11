@@ -4,7 +4,7 @@
 [upstream]
 # Hetzner Cloud - renewably powered hosting
 provider = "Hetzner Online GmbH"
-domain = "hetzner.com" 
+domain = "hetzner.com"
 service = "Hetzner Cloud"
 
 # Kinsta - managed WordPress hosting with renewable energy commitment

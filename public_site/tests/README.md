@@ -172,11 +172,11 @@ class MyFlowTest(BasePublicSiteTestCase):
     def test_user_flow(self):
         # Step 1: User action
         response = self.client.get('/start/')
-        
+
         # Step 2: Submit form
         data = {'field': 'value'}
         response = self.submit_form('/submit/', data)
-        
+
         # Step 3: Verify outcome
         self.assert_redirect(response, '/success/')
 ```
@@ -225,7 +225,7 @@ docker exec garden-platform python manage.py test public_site.tests.models.test_
 ## Coverage Goals
 
 - **Target**: 90%+ code coverage
-- **Critical Areas**: 
+- **Critical Areas**:
   - Form validation
   - View logic
   - API endpoints

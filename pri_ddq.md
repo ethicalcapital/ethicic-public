@@ -2,165 +2,165 @@
 
 # DDQ QUESTIONS
 
-## **1\. POLICY AND GOVERNANCE** 
+## **1\. POLICY AND GOVERNANCE**
 
-1. **What is your organisation’s overall approach to responsible investment?** 
+1. **What is your organisation’s overall approach to responsible investment?**
 
 *Your overview (no longer than 400 words) should address the following questions: i) Why does your organisation engage in responsible investment? ii) Does your organisation apply responsible investment principles across all asset classes and strategies, or across a selection? iii) Has your organisation’s approach to responsible investment changed significantly in the past 12 months?*
 
-i) Ethical Capital exists to create industry-leading responsible investment strategies. Our mission is to align our clients’ capital with companies that avoid preventable harm to living things and make meaningful contributions to a better future. 
+i) Ethical Capital exists to create industry-leading responsible investment strategies. Our mission is to align our clients’ capital with companies that avoid preventable harm to living things and make meaningful contributions to a better future.
 
-We do this because we believe it leads to better client outcomes. The companies we exclude are generally lower-quality businesses, and our process benefits significantly from not having to engage with them in much depth. 
+We do this because we believe it leads to better client outcomes. The companies we exclude are generally lower-quality businesses, and our process benefits significantly from not having to engage with them in much depth.
 
-Overall, the reason we’ve done this comes from our founder’s conviction that traditional sustainable investment strategies fail clients because they are not sufficiently stringent on their ethical criteria. We hope to prove that a more stringent approach delivers substantial value through our operating results. 
+Overall, the reason we’ve done this comes from our founder’s conviction that traditional sustainable investment strategies fail clients because they are not sufficiently stringent on their ethical criteria. We hope to prove that a more stringent approach delivers substantial value through our operating results.
 
-ii) We are primarily an equity-oriented firm, but we do manage some strategies in fixed income for retail investors. We apply our ethical criteria in those cases as best we can, but are subject to material constraints based on product availability. 
+ii) We are primarily an equity-oriented firm, but we do manage some strategies in fixed income for retail investors. We apply our ethical criteria in those cases as best we can, but are subject to material constraints based on product availability.
 
-iii) No. 
+iii) No.
 
-**1.2 Does your organisation have a responsible investment policy?**   
-*If it does, provide a copy. State whether the policy is publicly available, specify the proportion of listed equity assets it applies to and describe the process for reviewing and updating it. If your organisation does not have a policy, explain why not.* 
+**1.2 Does your organisation have a responsible investment policy?**
+*If it does, provide a copy. State whether the policy is publicly available, specify the proportion of listed equity assets it applies to and describe the process for reviewing and updating it. If your organisation does not have a policy, explain why not.*
 
 We do not segregate responsible investing from regular investing. All of our policy documents can be found on the process page of our website[^1]
 
-**1.3 What international standards, industry (association) guidelines, reporting frameworks, or initiatives that promote responsible investment practices has your organisation committed to?** *Examples include publicly supporting the Paris Agreement, being a PRI signatory, endorsing the TCFD recommendations and participating in the United Nations Global Compact.* 
+**1.3 What international standards, industry (association) guidelines, reporting frameworks, or initiatives that promote responsible investment practices has your organisation committed to?** *Examples include publicly supporting the Paris Agreement, being a PRI signatory, endorsing the TCFD recommendations and participating in the United Nations Global Compact.*
 
-We are signatories to the plant based treaty and work closely with the investor community whenever we can to advance our mission. As a matter of policy, we do not sign onto statements that require membership payments to the sponsoring body, only activist-led initiatives. 
+We are signatories to the plant based treaty and work closely with the investor community whenever we can to advance our mission. As a matter of policy, we do not sign onto statements that require membership payments to the sponsoring body, only activist-led initiatives.
 
 An up-to-date list of our current involvements is available here:
 
-https://ethicic.com/support/how-does-ethical-capital-use-its-influence-to-support-its-mission/ 
+https://ethicic.com/support/how-does-ethical-capital-use-its-influence-to-support-its-mission/
 
-**1.4 How is responsible investment overseen and implemented within your organisation?**   
-*List the roles and/or committees involved in responsible investment activities, including stewardship. Describe how these roles and/or committees are positioned and describe any external resources used to support these activities.* 
+**1.4 How is responsible investment overseen and implemented within your organisation?**
+*List the roles and/or committees involved in responsible investment activities, including stewardship. Describe how these roles and/or committees are positioned and describe any external resources used to support these activities.*
 
-Responsible investment is inseparable from regular investment at our organisation. Accordingly, all relevant processes are overseen by our founder and chief investment officer. 
+Responsible investment is inseparable from regular investment at our organisation. Accordingly, all relevant processes are overseen by our founder and chief investment officer.
 
-**1.5 How are responsible investment objectives incorporated into individual or team performance reviews and compensation mechanisms?**   
-*Describe how responsible investment objectives are defined and measured and to which positions they apply (e.g. investment professionals, executive management).* 
+**1.5 How are responsible investment objectives incorporated into individual or team performance reviews and compensation mechanisms?**
+*Describe how responsible investment objectives are defined and measured and to which positions they apply (e.g. investment professionals, executive management).*
 
-We evaluate all teams on a holistic basis. There is no separate responsibility section. 
+We evaluate all teams on a holistic basis. There is no separate responsibility section.
 
-**1.6 What responsible investment training does your organisation provide to staff?**  
+**1.6 What responsible investment training does your organisation provide to staff?**
 *Describe what the training covers, which staff receive it, and how frequently it takes place.*
 
-All non-founding staff have undergone a rigorous training program designed to acquaint them with a holistic view of how companies create shared long-term value. Over the first six months of employee tenure, this happens in regular dialogues with the rest of the investment team. After that, it happens through staff-specific development plans that include external service opportunities, content generation activities, and other opportunities as they arise. 
+All non-founding staff have undergone a rigorous training program designed to acquaint them with a holistic view of how companies create shared long-term value. Over the first six months of employee tenure, this happens in regular dialogues with the rest of the investment team. After that, it happens through staff-specific development plans that include external service opportunities, content generation activities, and other opportunities as they arise.
 
 ## **2\. INVESTMENT PROCESS**
 
-**2.1 How is ESG materiality analysed for this strategy?**  
-*Mention the ESG factors that are analysed (e.g. climate change, human rights) and how their financial materiality is determined, including any tools, standards or data that are used.* 
+**2.1 How is ESG materiality analysed for this strategy?**
+*Mention the ESG factors that are analysed (e.g. climate change, human rights) and how their financial materiality is determined, including any tools, standards or data that are used.*
 
-We focus on the degree to which a firm’s revenue is directly associated with positive real-world outcomes. We do not use third-party tools, standards, or data to complete this analysis. 
+We focus on the degree to which a firm’s revenue is directly associated with positive real-world outcomes. We do not use third-party tools, standards, or data to complete this analysis.
 
-**2.2 How are financially material ESG factors incorporated into this strategy?**   
+**2.2 How are financially material ESG factors incorporated into this strategy?**
 *Mention how material ESG factors influence portfolio construction and security selection. For quantitative strategies, mention the use of any back-testing or simulations that are applied to the strategy, and how ESG factors are positioned alongside traditional factors or incorporated into them. Disclose the roles/ committees that are responsible for incorporating ESG factors into this strategy. Provide two examples from the past 12 months of how ESG factors have influenced security selection and/or portfolio construction for this strategy.*
 
-In the last twelve months: 
+In the last twelve months:
 
-* We exited a position in Eiffage SA (OTC:EFGSY) after uncovering evidence that the firm has failed to properly supervise some of its projects in the middle east, resulting in significant human rights challenges.  
-* We continued adding to our position in Badger Meter (NYSE:BMI) as their value-added water meters continued to add value to many municipal water systems.   
-* We re-entered our position in ELF cosmetics (NYSE:ELF) after a significant selloff in their stock price coincided with a stronger impact case and continued sales momentum. 
+* We exited a position in Eiffage SA (OTC:EFGSY) after uncovering evidence that the firm has failed to properly supervise some of its projects in the middle east, resulting in significant human rights challenges.
+* We continued adding to our position in Badger Meter (NYSE:BMI) as their value-added water meters continued to add value to many municipal water systems.
+* We re-entered our position in ELF cosmetics (NYSE:ELF) after a significant selloff in their stock price coincided with a stronger impact case and continued sales momentum.
 
- **2.3 How are ESG screens applied to this strategy?**   
-*Mention any positive, norms-based or exclusionary screens that are applied, including why and how they are used in combination with other responsible investment activities (such as stewardship). Specify whether your organisation can apply client-directed screens to the strategy.* 
+ **2.3 How are ESG screens applied to this strategy?**
+*Mention any positive, norms-based or exclusionary screens that are applied, including why and how they are used in combination with other responsible investment activities (such as stewardship). Specify whether your organisation can apply client-directed screens to the strategy.*
 
-We operate a distinctive screening process[^2] that materially informs all investment strategies we manage. We are able to apply client-directed screens to our strategies, but prefer to incorporate client ethical concerns into our overall strategy so that all clients can benefit from any given client’s oversight. 
+We operate a distinctive screening process[^2] that materially informs all investment strategies we manage. We are able to apply client-directed screens to our strategies, but prefer to incorporate client ethical concerns into our overall strategy so that all clients can benefit from any given client’s oversight.
 
-**2.4 Does this strategy seek to shape [sustainability outcomes](https://www.unpri.org/reporting-and-assessment/reporting-framework-glossary/6937.article)?[^3]**  
-*If so, mention i) the frameworks/tools used to identify intended or unintended sustainability outcomes (e.g. the Sustainable Development Goals, the Paris Agreement), ii) how sustainability outcome objectives are selected iii) and the steps being taken to intentionally increase positive and/or decrease negative sustainability outcomes (e.g. those that might adversely impact the SDGs).* 
+**2.4 Does this strategy seek to shape [sustainability outcomes](https://www.unpri.org/reporting-and-assessment/reporting-framework-glossary/6937.article)?[^3]**
+*If so, mention i) the frameworks/tools used to identify intended or unintended sustainability outcomes (e.g. the Sustainable Development Goals, the Paris Agreement), ii) how sustainability outcome objectives are selected iii) and the steps being taken to intentionally increase positive and/or decrease negative sustainability outcomes (e.g. those that might adversely impact the SDGs).*
 
-We use our own judgement to determine whether each company’s revenue is associated with a positive outcome. With that said, we do not seek to shape sustainability outcomes as defined by the SDGs or other frameworks.  
+We use our own judgement to determine whether each company’s revenue is associated with a positive outcome. With that said, we do not seek to shape sustainability outcomes as defined by the SDGs or other frameworks.
 
-**2.5 How are ESG incidents involving investee companies managed?**  
-*Mention how ESG incidents/controversies are monitored for investee involvement, any actions taken in response to their involvement (e.g. reducing exposure to the company) and how their involvement is communicated to clients.* 
+**2.5 How are ESG incidents involving investee companies managed?**
+*Mention how ESG incidents/controversies are monitored for investee involvement, any actions taken in response to their involvement (e.g. reducing exposure to the company) and how their involvement is communicated to clients.*
 
-We promptly reach out to all named investor contacts in response to any perceived, potential, or documented ESG Incident. In these cases, we always take care to include tracking beacons in our emails that allow us to see how our inquiry is progressing through the company. This, coupled with our approach to lie detection and the strategic use of evidence, allows us to evaluate company responses for forthrightness. 
+We promptly reach out to all named investor contacts in response to any perceived, potential, or documented ESG Incident. In these cases, we always take care to include tracking beacons in our emails that allow us to see how our inquiry is progressing through the company. This, coupled with our approach to lie detection and the strategic use of evidence, allows us to evaluate company responses for forthrightness.
 
-If we sense that a management team is misrepresenting any detail of the incident, we do not hesitate to reduce exposure. Our overall philosophy is that we want to be in business with teams we trust, so there is no such thing as a minor misrepresentation. 
+If we sense that a management team is misrepresenting any detail of the incident, we do not hesitate to reduce exposure. Our overall philosophy is that we want to be in business with teams we trust, so there is no such thing as a minor misrepresentation.
 
-**2.6 Does your organisation measure whether its responsible investment approach affects the financial performance of this strategy?**  
+**2.6 Does your organisation measure whether its responsible investment approach affects the financial performance of this strategy?**
 *If so, mention how responsible investment factors are considered as part of performance attribution analysis.*
 
-In our annual performance discussion[^4], we contrast our strategy’s performance with the performance of our index as well as a naive implementation of our ethical criteria. 
+In our annual performance discussion[^4], we contrast our strategy’s performance with the performance of our index as well as a naive implementation of our ethical criteria.
 
-## **3\. STEWARDSHIP** 
+## **3\. STEWARDSHIP**
 
-**3.1 Does your organisation have a stewardship policy?**   
+**3.1 Does your organisation have a stewardship policy?**
 *If so, provide a copy. State whether the policy is publicly available and specify the proportion of listed equity assets it applies to. Specify whether your organisation is willing to vote in line with a client’s voting policy, as opposed to its own, upon request.*
 
-We do not have a stewardship policy at this time. Our firm has historically prioritised making its strategies accessible to all clients, regardless of how much money they have available to invest. This has required us to make certain trade-offs. One of the most material is that we are not currently able to vote our proxies. 
+We do not have a stewardship policy at this time. Our firm has historically prioritised making its strategies accessible to all clients, regardless of how much money they have available to invest. This has required us to make certain trade-offs. One of the most material is that we are not currently able to vote our proxies.
 
-If we were to secure an institutional client relationship, we would promptly work to address this. 
+If we were to secure an institutional client relationship, we would promptly work to address this.
 
-**3.2 How does your organisation determine its stewardship priorities?**   
-*Mention how your organisation approaches selecting ESG issues and entities to engage with*. 
+**3.2 How does your organisation determine its stewardship priorities?**
+*Mention how your organisation approaches selecting ESG issues and entities to engage with*.
 
-When we determine that an issue affects substantially all of the companies in our portfolio, we will work to make our views public (as we did in the case of decarbonization[^5]). 
+When we determine that an issue affects substantially all of the companies in our portfolio, we will work to make our views public (as we did in the case of decarbonization[^5]).
 
-In other cases, we seek to uncover company-specific opportunities for a given firm to address. In general, we seek to make sure that these opportunities align with the company’s current priorities as they express them. This allows us to ensure that we are always engaging in a way that is constructive, but also builds a deeper understanding of the opportunities and risks a given company is associated with. 
+In other cases, we seek to uncover company-specific opportunities for a given firm to address. In general, we seek to make sure that these opportunities align with the company’s current priorities as they express them. This allows us to ensure that we are always engaging in a way that is constructive, but also builds a deeper understanding of the opportunities and risks a given company is associated with.
 
-**3.3 What stewardship methods does your organisation use?**   
-*Mention if/how your organisation escalates stewardship activities when initial efforts are deemed unsuccessful (e.g. publicly engaging with the entity via open letters), the approach taken to collaborative stewardship initiatives (such as collaborative engagements) and how often/to what extent specific escalation methods have been used over the past twelve months.* 
+**3.3 What stewardship methods does your organisation use?**
+*Mention if/how your organisation escalates stewardship activities when initial efforts are deemed unsuccessful (e.g. publicly engaging with the entity via open letters), the approach taken to collaborative stewardship initiatives (such as collaborative engagements) and how often/to what extent specific escalation methods have been used over the past twelve months.*
 
 We sought to develop an open letter campaign around carbon removals late last year, but our firm’s small size led potential partners to demur from working with us. In general, we emphasise collaborative engagement with the company’s management teams. We have found that by asking good questions, expressing our appreciation for their work, and highlighting opportunities we see we can be quite effective.
 
-With that said, we hope to grow in size so that we’ll be able to use other methods in the future if they are appropriate.  
+With that said, we hope to grow in size so that we’ll be able to use other methods in the future if they are appropriate.
 
-**3.4 What is your organisation’s approach to (proxy) voting?**   
-*Mention i) how responsibility for (proxy) voting decision making is structured (e.g. are voting principles decided at an organisation level? Is decision making delegated to portfolio managers?) ii) whether and in what circumstances voting is delegated to service providers iii) how your organisation assesses whether to support ESG resolutions iv) whether your organisation publishes voting decisions and vote justifications pre and/or post AGMs/EGMs.* 
+**3.4 What is your organisation’s approach to (proxy) voting?**
+*Mention i) how responsibility for (proxy) voting decision making is structured (e.g. are voting principles decided at an organisation level? Is decision making delegated to portfolio managers?) ii) whether and in what circumstances voting is delegated to service providers iii) how your organisation assesses whether to support ESG resolutions iv) whether your organisation publishes voting decisions and vote justifications pre and/or post AGMs/EGMs.*
 
-As noted in 3.1, we have chosen to prioritise making our strategies available to low-income and low-asset households over voting our proxies at this time. This was a painful decision, and we hope that growth in our asset base will allow us to vote on client securities in time. 
+As noted in 3.1, we have chosen to prioritise making our strategies available to low-income and low-asset households over voting our proxies at this time. This was a painful decision, and we hope that growth in our asset base will allow us to vote on client securities in time.
 
-**3.5 How are stewardship activities integrated into the investment process?**  
+**3.5 How are stewardship activities integrated into the investment process?**
 *Mention how stewardship is incorporated into security selection and/or portfolio construction.*
 
-One of our largest positions (Agricultural Mortgage Corporation, NYSE:AGM) was selected in part because we believe that constructive engagement with its management team over time will allow us to drive positive outcomes for animals. 
+One of our largest positions (Agricultural Mortgage Corporation, NYSE:AGM) was selected in part because we believe that constructive engagement with its management team over time will allow us to drive positive outcomes for animals.
 
-They are the largest agricultural lender in the United States, which includes a number of loans to animal agriculture that we are not excited about. However, they are still a high quality business with a material role to play in the future of agriculture. 
+They are the largest agricultural lender in the United States, which includes a number of loans to animal agriculture that we are not excited about. However, they are still a high quality business with a material role to play in the future of agriculture.
 
-We note that since our shareholding began, they have adopted at least one policy we have advocated for: discounted interest rates for farmers using regenerative agricultural practices like no-till, cover crops, and other such practices. 
+We note that since our shareholding began, they have adopted at least one policy we have advocated for: discounted interest rates for farmers using regenerative agricultural practices like no-till, cover crops, and other such practices.
 
-**3.6 How does your organisation assess the effectiveness of its stewardship activities?**   
+**3.6 How does your organisation assess the effectiveness of its stewardship activities?**
 *Mention any key performance indicators used to measure the effectiveness of engagement efforts and whether any of these relate to real-world outcomes (such as the SDGs). Provide two examples of engagements your organisation has conducted in the past 12 months and provide an assessment of the effectiveness of these engagements to date.*
 
-We view stewardship activities as part of the investment research process, and consider the clearest indicator of their effectiveness to be whether we continue to hold the position. 
+We view stewardship activities as part of the investment research process, and consider the clearest indicator of their effectiveness to be whether we continue to hold the position.
 
-In the case of our Farmer Mac (AGM) shareholding, our regular meetings with management have only deepened our understanding of the firm and our conviction that it is driving positive outcomes throughout rural america. It’s nice to see them enact programs that we’ve pushed for at various times, but we lack the ability to directly attribute such actions to our engagement. With that said, we remain happy shareholders. 
+In the case of our Farmer Mac (AGM) shareholding, our regular meetings with management have only deepened our understanding of the firm and our conviction that it is driving positive outcomes throughout rural america. It’s nice to see them enact programs that we’ve pushed for at various times, but we lack the ability to directly attribute such actions to our engagement. With that said, we remain happy shareholders.
 
-In the case of our Welltower shareholding, we uncovered a failure of governance that was compounded by managerial misrepresentations. We sold the position as a result, and consider that to be a positive outcome for our clients. 
+In the case of our Welltower shareholding, we uncovered a failure of governance that was compounded by managerial misrepresentations. We sold the position as a result, and consider that to be a positive outcome for our clients.
 
-**4\. REPORTING AND VERIFICATION**  
-**4.1 What information is disclosed in regular client reporting on the responsible investment activities and performance of this strategy?**  
-*Mention the types of information disclosed (e.g., stewardship activity, ESG ratings, weighted average carbon intensity or other metrics) and the frequency of the disclosures.* 
+**4\. REPORTING AND VERIFICATION**
+**4.1 What information is disclosed in regular client reporting on the responsible investment activities and performance of this strategy?**
+*Mention the types of information disclosed (e.g., stewardship activity, ESG ratings, weighted average carbon intensity or other metrics) and the frequency of the disclosures.*
 
-We choose to emphasise firm-specific outcomes in our client reporting rather than ratings, carbon intensity, or other data. For instance, we devoted a section of our client letter to discussion of how one of our companies, a real estate investment trust, was able to preserve a historic mill as a center of commerce in a rural town. We then emphasised that the firm’s strategy of building multi-use developments makes this part of a pattern, not a photogenic show piece. 
+We choose to emphasise firm-specific outcomes in our client reporting rather than ratings, carbon intensity, or other data. For instance, we devoted a section of our client letter to discussion of how one of our companies, a real estate investment trust, was able to preserve a historic mill as a center of commerce in a rural town. We then emphasised that the firm’s strategy of building multi-use developments makes this part of a pattern, not a photogenic show piece.
 
-**4.2 Which disclosure initiatives, and/or regulatory regimes, influence client reporting for this strategy, if any?**   
-*Mention whether the responsible investment reporting is aligned with any jurisdiction-specific regulation (e.g., SFDR or the EU Taxonomy Regulation in the European Union), the TCFD recommendations and any other voluntary disclosure initiatives (e.g., relevant stewardship codes). State whether your organisation would consider expanding its reporting scope in response to client requests.* 
+**4.2 Which disclosure initiatives, and/or regulatory regimes, influence client reporting for this strategy, if any?**
+*Mention whether the responsible investment reporting is aligned with any jurisdiction-specific regulation (e.g., SFDR or the EU Taxonomy Regulation in the European Union), the TCFD recommendations and any other voluntary disclosure initiatives (e.g., relevant stewardship codes). State whether your organisation would consider expanding its reporting scope in response to client requests.*
 
-We are not subject to jurisdiction-specific regulation or reporting, and do not report in alignment with any third-party framework. 
+We are not subject to jurisdiction-specific regulation or reporting, and do not report in alignment with any third-party framework.
 
-**4.3 How does your organisation audit the quality of its responsible investment processes and/or data?**   
-*Mention any internal quality audits conducted or any third-party independent assurance of your responsible investment processes and/or data received.* 
+**4.3 How does your organisation audit the quality of its responsible investment processes and/or data?**
+*Mention any internal quality audits conducted or any third-party independent assurance of your responsible investment processes and/or data received.*
 
-We routinely look for third-party groups that credibly assess companies for their alignment with various indicators of sound corporate practice, and will routinely spot check our exclusions to ensure that we are adequately incorporating the latest and deepest analysis of companies implicated in objectionable behavior. 
+We routinely look for third-party groups that credibly assess companies for their alignment with various indicators of sound corporate practice, and will routinely spot check our exclusions to ensure that we are adequately incorporating the latest and deepest analysis of companies implicated in objectionable behavior.
 
-Additionally, we seek to update our internal assessments of our investable universe no less than quarterly, which helps us ensure that we are consistently and coherently aligning with the best opportunities in our coverage universe. 
+Additionally, we seek to update our internal assessments of our investable universe no less than quarterly, which helps us ensure that we are consistently and coherently aligning with the best opportunities in our coverage universe.
 
 ## **5\. ADDITIONAL INFORMATION**
 
-**5.1 How does your organisation manage its internal ESG risks, opportunities and impacts?**  
+**5.1 How does your organisation manage its internal ESG risks, opportunities and impacts?**
 *Mention the main steps your organisation is taking to improve its ESG performance. Examples might include initiatives to reduce its carbon footprint and to enhance the diversity of its investment team.*
 
-Our internal approach to managing ESG risks is relatively radical, and involves avoiding flights wherever possible, partnering with a sibling company[^6] to originate high-quality carbon removals, and continuously seeking community with others in the investment community to exceed our own expectations. 
+Our internal approach to managing ESG risks is relatively radical, and involves avoiding flights wherever possible, partnering with a sibling company[^6] to originate high-quality carbon removals, and continuously seeking community with others in the investment community to exceed our own expectations.
 
-**5.2 Is there any information on your organisation’s responsible investment approach, not otherwise covered in the DDQ, that you would like to share?**  
+**5.2 Is there any information on your organisation’s responsible investment approach, not otherwise covered in the DDQ, that you would like to share?**
 *You could, for example, choose to expand upon your organisation’s approach to specific ESG issues, such as human rights or climate change, highlight any responsible investment challenges your organisation faces, or provide an overview of your organisation’s policy engagement activities.*
 
-We believe that the investment industry’s “original sin” is the way it prioritises the perspectives of the wealthy over all other stakeholders. 
+We believe that the investment industry’s “original sin” is the way it prioritises the perspectives of the wealthy over all other stakeholders.
 
-Our firm has been designed to counteract this by ensuring that our strategies are both accessible and understandable to clients regardless of how much wealth they happen to have access to. This is a structural governance advantage, as it allows us to not only serve a more diverse client base than traditional wealth managers, but also maintain direct dialogue with individuals that are deeply engaged with sustainability themes. 
+Our firm has been designed to counteract this by ensuring that our strategies are both accessible and understandable to clients regardless of how much wealth they happen to have access to. This is a structural governance advantage, as it allows us to not only serve a more diverse client base than traditional wealth managers, but also maintain direct dialogue with individuals that are deeply engaged with sustainability themes.
 
 # APPENDIX 1: INDICATOR MAPPING
 
@@ -201,35 +201,35 @@ APPENDIX 2: ACKNOWLEDGEMENTS
 
 The PRI would like to thank the members of the Listed Equity Advisory Committee, the Asset Owner Technical Advisory Committee, and others for their contribution to the development of this questionnaire:
 
-* abrdn, Mark Vincent  
-* Allianz SE, Carsten Quitter  
-* AP3, Anne-Charlotte Hormgard   
-* APG Asset Management, Martijn Olthof  
-* California State Teachers’ Retirement System, Brian Rice   
-* CFA Institute, Chris Fidler  
-* ClearBridge Investments, Mary Jane McQuillen   
-* LUCRF Super, Kylie Molinaro  
-* Manulife Investment Management, Peter Mennie   
-* New York City Comptroller, Jimmy Yan   
-* NN Investment Partners, Arnoud Diemers   
-* Nordea Life & Pensions, Peter Sandahl   
-* Norges Bank Investment Management, Wilhelm Mohn   
-* Old Mutual, Thabo Ncalo   
-* Ownership Capital, Alex Van Der Velden   
-* Ownership Capital, Rhian Jones   
-* Trillium Asset Management, Elizabeth Levy   
+* abrdn, Mark Vincent
+* Allianz SE, Carsten Quitter
+* AP3, Anne-Charlotte Hormgard
+* APG Asset Management, Martijn Olthof
+* California State Teachers’ Retirement System, Brian Rice
+* CFA Institute, Chris Fidler
+* ClearBridge Investments, Mary Jane McQuillen
+* LUCRF Super, Kylie Molinaro
+* Manulife Investment Management, Peter Mennie
+* New York City Comptroller, Jimmy Yan
+* NN Investment Partners, Arnoud Diemers
+* Nordea Life & Pensions, Peter Sandahl
+* Norges Bank Investment Management, Wilhelm Mohn
+* Old Mutual, Thabo Ncalo
+* Ownership Capital, Alex Van Der Velden
+* Ownership Capital, Rhian Jones
+* Trillium Asset Management, Elizabeth Levy
 * Wespath Benefits and Investments, Trish Halpe
 
 ![Text, letterDescription automatically generated][image1]
 
-![Graphical user interface, text, application, emailDescription automatically generated][image2]  
+![Graphical user interface, text, application, emailDescription automatically generated][image2]
 
 
 [^1]: https://ethicic.com/our-process/
 
 [^2]:  https://investvegan.org/our-process/screening/
 
-[^3]:  For further reference see Parts 1, 3, and 3 of the five-part SDG framework presented in PRI (2020) Investing with SDG outcomes. 
+[^3]:  For further reference see Parts 1, 3, and 3 of the five-part SDG framework presented in PRI (2020) Investing with SDG outcomes.
 
 [^4]: https://ethicic.com/where-returns-came-from-in-2023/
 

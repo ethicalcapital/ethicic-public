@@ -6,7 +6,7 @@
             <h4>{{ value.caption }}</h4>
         </div>
     {% endif %}
-    
+
     {% if value.description %}
         <div class="wagtail-table-description" id="table-desc-{{ forloop.parentloop.counter0|default:forloop.counter0 }}">
             {{ value.description|richtext }}
@@ -15,17 +15,17 @@
 
     <div class="wagtail-table-wrapper">
         {% if value.table and value.table.data %}
-            <table class="wagtail-data-table" 
+            <table class="wagtail-data-table"
                    role="table"
                    {% if value.caption %}aria-labelledby="table-caption-{{ forloop.parentloop.counter0|default:forloop.counter0 }}"{% endif %}
                    {% if value.description %}aria-describedby="table-desc-{{ forloop.parentloop.counter0|default:forloop.counter0 }}"{% endif %}>
-                
+
                 {% if value.caption %}
                     <caption id="table-caption-{{ forloop.parentloop.counter0|default:forloop.counter0 }}">
                         {{ value.caption }}
                     </caption>
                 {% endif %}
-                
+
                 {% for row in value.table.data %}
                     {% if forloop.first and value.table.first_row_is_table_header %}
                         <thead>
@@ -74,4 +74,3 @@
         </div>
     {% endif %}
 </div>
-

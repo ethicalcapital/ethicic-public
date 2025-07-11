@@ -23,7 +23,7 @@
             {% if page.strategy_description %}
                 <div class="strategy-description">{{ page.strategy_description|richtext }}</div>
             {% endif %}
-            
+
             <!-- Quick Access Actions -->
             <div class="quick-actions">
                 <a href="#performance" class="garden-action secondary">View Performance</a>
@@ -66,7 +66,7 @@
                     <!-- Performance Table with Benchmark -->
                     <div id="performance" class="performance-section">
                         <h3 class="section-subheading">PERFORMANCE VS {{ page.benchmark_name|default:"BENCHMARK" }}</h3>
-                        
+
                         <div class="performance-table">
                             <div class="table-header">
                                 <div class="header-cell">PERIOD</div>
@@ -74,7 +74,7 @@
                                 <div class="header-cell">{{ page.benchmark_name }}</div>
                                 <div class="header-cell">DIFFERENCE</div>
                             </div>
-                            
+
                             <div class="table-body">
                                 <div class="table-row">
                                     <div class="cell">YTD</div>
@@ -82,21 +82,21 @@
                                     <div class="cell">{{ page.ytd_benchmark }}</div>
                                     <div class="cell positive">{{ page.ytd_difference }}</div>
                                 </div>
-                                
+
                                 <div class="table-row">
                                     <div class="cell">1 Year</div>
                                     <div class="cell positive">{{ page.one_year_return }}</div>
                                     <div class="cell">{{ page.one_year_benchmark }}</div>
                                     <div class="cell positive">{{ page.one_year_difference }}</div>
                                 </div>
-                                
+
                                 <div class="table-row">
                                     <div class="cell">3 Year</div>
                                     <div class="cell positive">{{ page.three_year_return }}</div>
                                     <div class="cell">{{ page.three_year_benchmark }}</div>
                                     <div class="cell positive">{{ page.three_year_difference }}</div>
                                 </div>
-                                
+
                                 <div class="table-row">
                                     <div class="cell">Since Inception</div>
                                     <div class="cell positive">{{ page.since_inception_return }}</div>
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         {% if page.performance_disclaimer %}
                             <div class="performance-disclaimer">
                                 {{ page.performance_disclaimer|richtext }}
@@ -118,7 +118,7 @@
                         {% with risk_metric=page.risk_metrics.first %}
                         <div class="metrics-section">
                             <h3 class="section-subheading">RISK & QUALITY METRICS</h3>
-                            
+
                             <div class="metrics-grid">
                                 {% if risk_metric.standard_deviation %}
                                 <div class="metric-card">
@@ -126,21 +126,21 @@
                                     <div class="metric-label">Standard Deviation</div>
                                 </div>
                                 {% endif %}
-                                
+
                                 {% if risk_metric.sharpe_ratio %}
                                 <div class="metric-card">
                                     <div class="metric-value">{{ risk_metric.sharpe_ratio }}</div>
                                     <div class="metric-label">Sharpe Ratio</div>
                                 </div>
                                 {% endif %}
-                                
+
                                 {% if risk_metric.max_drawdown %}
                                 <div class="metric-card">
                                     <div class="metric-value">{{ risk_metric.max_drawdown }}</div>
                                     <div class="metric-label">Max Drawdown</div>
                                 </div>
                                 {% endif %}
-                                
+
                                 {% if risk_metric.beta %}
                                 <div class="metric-card">
                                     <div class="metric-value">{{ risk_metric.beta }}</div>
@@ -164,7 +164,7 @@
                     {% if page.geographic_allocations.exists %}
                     <div class="geographic-section">
                         <h3 class="subsection-header">GEOGRAPHIC COMPOSITION</h3>
-                        
+
                         <div class="geographic-table">
                             <div class="geographic-header">
                                 <div class="col-region">REGION</div>
@@ -172,7 +172,7 @@
                                 <div class="col-benchmark">{{ page.benchmark_name }}</div>
                                 <div class="col-difference">DIFFERENCE</div>
                             </div>
-                            
+
                             {% for geo in page.geographic_allocations.all %}
                             <div class="geographic-row">
                                 <div class="region-name">{{ geo.region }}</div>
@@ -191,11 +191,11 @@
                     {% if page.sector_positions.exists %}
                     <div class="positioning-section">
                         <h3 class="subsection-header">SECTOR POSITIONING</h3>
-                        
+
                         <div class="positioning-grid">
                             {% comment %}Group sectors by position type{% endcomment %}
                             {% regroup page.sector_positions.all by position_type as position_groups %}
-                            
+
                             {% for group in position_groups %}
                                 {% if group.grouper == 'overweight' %}
                                 <div class="positioning-card overweight">
@@ -243,7 +243,7 @@
                     {% if page.holdings.exists %}
                     <div class="holdings-section">
                         <h3 class="subsection-header">TOP HOLDINGS</h3>
-                        
+
                         <div class="holdings-grid">
                             {% for holding in page.holdings.all %}
                             <div class="holding-card">
@@ -269,7 +269,7 @@
                     {% if page.vertical_allocations.exists %}
                     <div class="vertical-allocation-section">
                         <h3 class="subsection-header">PORTFOLIO ALLOCATION BY VERTICAL</h3>
-                        
+
                         <div class="allocation-table">
                             <div class="allocation-header">
                                 <div class="col-vertical">VERTICAL</div>
@@ -279,7 +279,7 @@
                                 <div class="col-revenue">REV CAGR</div>
                                 <div class="col-fcf">FCF/MCap</div>
                             </div>
-                            
+
                             {% for vertical in page.vertical_allocations.all %}
                             <div class="allocation-row{% if vertical.is_total_row %} total-row{% elif vertical.is_benchmark_row %} benchmark-row{% endif %}">
                                 <div class="vertical-name">{% if vertical.is_total_row %}<strong>{% endif %}{{ vertical.vertical_name }}{% if vertical.is_total_row %}</strong>{% endif %}</div>
@@ -335,19 +335,19 @@
                         {{ page.documents_content|richtext }}
                     </div>
                     {% endif %}
-                    
+
                     {% if page.documents.exists %}
                     <div class="documents-grid">
                         {% regroup page.documents.all by get_category_display as document_categories %}
-                        
+
                         {% for category in document_categories %}
                         <div class="document-category">
                             <h3>{{ category.grouper }}</h3>
-                            
+
                             <div class="document-list">
                                 {% for doc in category.list %}
-                                <a href="{% if doc.document_url %}{{ doc.document_url }}{% else %}javascript:requestDocument('{{ doc.title|slugify }}'){% endif %}" 
-                                   class="document-link" 
+                                <a href="{% if doc.document_url %}{{ doc.document_url }}{% else %}javascript:requestDocument('{{ doc.title|slugify }}'){% endif %}"
+                                   class="document-link"
                                    {% if doc.document_url %}target="_blank" rel="noopener"{% endif %}>
                                     <div class="document-icon">{{ doc.icon }}</div>
                                     <div class="document-info">
@@ -364,7 +364,7 @@
                 </div>
             </section>
         </div>
-        
+
         <!-- Right Sidebar Column -->
         <aside class="sidebar-column">
             <!-- Portfolio Characteristics -->
@@ -378,34 +378,34 @@
                             <div class="characteristic-label">Holdings</div>
                             <div class="characteristic-value">{{ page.holdings_count }}</div>
                         </div>
-                        
+
                         {% if page.inception_date %}
                         <div class="characteristic-item">
                             <div class="characteristic-label">Inception Date</div>
                             <div class="characteristic-value">{{ page.inception_date|date:"M Y" }}</div>
                         </div>
                         {% endif %}
-                        
+
                         <div class="characteristic-item">
                             <div class="characteristic-label">Benchmark</div>
                             <div class="characteristic-value">{{ page.benchmark_name }}</div>
                         </div>
-                        
+
                         <div class="characteristic-item">
                             <div class="characteristic-label">Cash Allocation</div>
                             <div class="characteristic-value">{{ page.cash_allocation }}</div>
                         </div>
-                        
+
                         <div class="characteristic-item">
                             <div class="characteristic-label">Risk Level</div>
                             <div class="characteristic-value">{{ page.risk_level }}</div>
                         </div>
-                        
+
                         <div class="characteristic-item">
                             <div class="characteristic-label">Ethical Implementation</div>
                             <div class="characteristic-value">{{ page.ethical_implementation }}</div>
                         </div>
-                        
+
                         <div class="characteristic-item">
                             <div class="characteristic-label">Best For</div>
                             <div class="characteristic-value">{{ page.best_for }}</div>
@@ -532,12 +532,12 @@
     .strategy-content-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .sidebar-column {
         position: static;
         order: -1; /* Move to top on mobile */
     }
-    
+
     /* Allow wrapping on tablets and below */
     .quick-actions {
         flex-wrap: wrap;
@@ -549,12 +549,12 @@
     .quick-actions {
         flex-direction: column;
     }
-    
+
     .quick-actions .garden-action {
         width: 100%;
         text-align: center;
     }
-    
+
     /* Adjust badge on mobile */
     .strategy-badge {
         position: static;
@@ -563,14 +563,14 @@
         font-size: 0.875rem;
         padding: 0.5rem 1.5rem;
     }
-    
+
     .strategy-header-panel .garden-panel__header {
         padding-right: 1rem;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .strategy-header-panel .panel-title {
         max-width: 100%;
     }

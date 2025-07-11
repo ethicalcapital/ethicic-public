@@ -188,7 +188,8 @@ class AIStatisticsPanel(FieldPanel):
                 else "💡"
             )
 
-            grid_items.append(f"""
+            grid_items.append(
+                f"""
                 <div class="ai-stat-card" data-stat-index="{i}">
                     <div class="ai-stat-header">
                         <span class="ai-stat-significance">{significance_icon}</span>
@@ -210,7 +211,8 @@ class AIStatisticsPanel(FieldPanel):
                         </button>
                     </div>
                 </div>
-            """)
+            """
+            )
 
         return "".join(grid_items)
 
@@ -219,7 +221,8 @@ class AIStatisticsPanel(FieldPanel):
         chart_items = []
 
         for i, chart in enumerate(charts[:4]):  # Limit to 4 recommendations
-            chart_items.append(f"""
+            chart_items.append(
+                f"""
                 <div class="ai-chart-rec" data-chart-index="{i}">
                     <div class="ai-chart-header">
                         <strong>{chart.get("title", "Untitled Chart")}</strong>
@@ -233,7 +236,8 @@ class AIStatisticsPanel(FieldPanel):
                         Add Chart Block
                     </button>
                 </div>
-            """)
+            """
+            )
 
         return "".join(chart_items)
 

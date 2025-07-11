@@ -31,7 +31,7 @@
         <div class="garden-panel__content garden-panel-content">
             <h2 id="strategies-heading" class="section-title">{{ page.strategies_section_title }}</h2>
             <p class="strategies-intro">{{ page.strategies_intro }}</p>
-            
+
             <div class="solutions-grid">
                 {% for card in page.strategy_cards.all %}
                 <div class="solution-card" role="article" aria-labelledby="strategy-{{ forloop.counter }}-heading" data-strategy="{{ card.title|slugify }}">
@@ -70,7 +70,7 @@
         </div>
         <div class="garden-panel__content garden-panel-content">
             <h2 id="audiences-heading" class="visually-hidden">Our Clients</h2>
-            
+
             <div class="audience-grid">
                 <!-- For Individuals -->
                 {% if page.individuals_title or page.individuals_content %}
@@ -121,26 +121,26 @@
         </div>
         <div class="garden-panel__content garden-panel-content">
             <h2 id="why-heading" class="section-title">A Different Approach to Ethical Investing</h2>
-            
+
             <div class="why-grid">
                 <div class="why-item">
                     <div class="why-icon">🔍</div>
                     <h4>Rigorous Screening</h4>
                     <p>We exclude 57% of the S&P 500 through comprehensive ethical criteria that go beyond standard ESG metrics.</p>
                 </div>
-                
+
                 <div class="why-item">
                     <div class="why-icon">📊</div>
                     <h4>Proven Performance</h4>
                     <p>Our concentrated portfolios have delivered competitive returns while maintaining strict ethical standards.</p>
                 </div>
-                
+
                 <div class="why-item">
                     <div class="why-icon">🤝</div>
                     <h4>Fiduciary Always</h4>
                     <p>As a registered investment adviser, we're legally bound to act in your best interests at all times.</p>
                 </div>
-                
+
                 <div class="why-item">
                     <div class="why-icon">💡</div>
                     <h4>Full Transparency</h4>

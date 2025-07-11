@@ -457,14 +457,133 @@ def onboarding_form_submit(request):
         form_data = form.cleaned_data
 
         try:
-            # Create basic support ticket for onboarding
-            full_name = f"{form_data['first_name']} {form_data['last_name']}"
+            # Create comprehensive support ticket for onboarding
+            full_name = form_data.get("legal_name", "")
+
+            # Build comprehensive message with all form data
+            message_parts = [
+                "## Onboarding Application\n",
+                f"**Legal Name:** {full_name}",
+                f"**Email:** {form_data.get('email', '')}",
+                f"**Phone:** {form_data.get('phone', '')}",
+                f"**Mailing Address:** {form_data.get('mailing_address', '')}",
+                f"**Pronouns:** {form_data.get('pronouns', '')}",
+                f"**Birthday:** {form_data.get('birthday', '')}",
+                f"**Employment Status:** {form_data.get('employment_status', '')}",
+                f"**Marital Status:** {form_data.get('marital_status', '')}",
+            ]
+
+            # Add communication preferences
+            if form_data.get("communication_preference"):
+                message_parts.append(
+                    f"\n**Communication Preferences:** {', '.join(form_data.get('communication_preference', []))}"
+                )
+
+            # Add co-client info if provided
+            if form_data.get("add_co_client") == "yes":
+                message_parts.extend(
+                    [
+                        "\n## Co-Client Information",
+                        f"**Name:** {form_data.get('co_client_legal_name', '')}",
+                        f"**Email:** {form_data.get('co_client_email', '')}",
+                        f"**Phone:** {form_data.get('co_client_phone', '')}",
+                        f"**Pronouns:** {form_data.get('co_client_pronouns', '')}",
+                        f"**Birthday:** {form_data.get('co_client_birthday', '')}",
+                        f"**Employment Status:** {form_data.get('co_client_employment_status', '')}",
+                        f"**Employer:** {form_data.get('co_client_employer_name', '')}",
+                        f"**Share Address:** {form_data.get('co_client_share_address', '')}",
+                    ]
+                )
+
+            # Add financial context
+            def format_currency(value):
+                """Format numeric string as currency."""
+                if value and value.isdigit():
+                    return f"${int(value):,}"
+                return value
+            
+            message_parts.extend(
+                [
+                    "\n## Financial Context",
+                    f"**Investment Experience:** {form_data.get('investment_experience', '')}",
+                    f"**Net Worth:** {format_currency(form_data.get('net_worth', ''))}",
+                    f"**Liquid Net Worth:** {format_currency(form_data.get('liquid_net_worth', ''))}",
+                    f"**Investable Net Worth:** {format_currency(form_data.get('investable_net_worth', ''))}",
+                ]
+            )
+
+            # Add initial investment if provided
+            if form_data.get("initial_investment"):
+                # Format as currency
+                initial_investment = form_data.get("initial_investment", "")
+                if initial_investment and initial_investment.isdigit():
+                    formatted_investment = f"${int(initial_investment):,}"
+                    message_parts.append(f"**Initial Investment:** {formatted_investment}")
+                else:
+                    message_parts.append(f"**Initial Investment:** {initial_investment}")
+
+            # Add values and ethical considerations
+            if form_data.get("ethical_considerations"):
+                message_parts.append(
+                    f"\n**Ethical Considerations:** {', '.join(form_data.get('ethical_considerations', []))}"
+                )
+
+            if form_data.get("ethical_considerations_other"):
+                message_parts.append(
+                    f"**Other Ethical Considerations:** {form_data.get('ethical_considerations_other', '')}"
+                )
+
+            if form_data.get("divestment_movements"):
+                message_parts.append(
+                    f"**Divestment Movements:** {', '.join(form_data.get('divestment_movements', []))}"
+                )
+
+            if form_data.get("divestment_movements_other"):
+                message_parts.append(
+                    f"**Other Divestment Movements:** {form_data.get('divestment_movements_other', '')}"
+                )
+
+            # Add additional fields from comprehensive form
+            if form_data.get("understanding_importance_other"):
+                message_parts.append(
+                    f"**Understanding Importance (Other):** {form_data.get('understanding_importance_other', '')}"
+                )
+
+            if form_data.get("ethical_evolution_other"):
+                message_parts.append(
+                    f"**Ethical Evolution (Other):** {form_data.get('ethical_evolution_other', '')}"
+                )
+
+            if form_data.get("ethical_concerns_unrecognized"):
+                message_parts.append(
+                    f"**Unrecognized Ethical Concerns:** {form_data.get('ethical_concerns_unrecognized', '')}"
+                )
+
+            if form_data.get("financial_team_coordinate"):
+                message_parts.append(
+                    f"**Financial Team Coordination:** {form_data.get('financial_team_coordinate', '')}"
+                )
+
+            if form_data.get("professional_referrals"):
+                message_parts.append(
+                    f"**Professional Referrals:** {', '.join(form_data.get('professional_referrals', []))}"
+                )
+
+            if form_data.get("professional_referrals_other"):
+                message_parts.append(
+                    f"**Other Professional Referrals:** {form_data.get('professional_referrals_other', '')}"
+                )
+
+            if form_data.get("anything_else"):
+                message_parts.append(
+                    f"**Additional Information:** {form_data.get('anything_else', '')}"
+                )
 
             ticket = SupportTicket.objects.create(
                 name=full_name,
                 email=form_data["email"],
                 subject=f"Onboarding Application - {full_name}",
-                message=f"Onboarding application submitted with ${float(form_data['initial_investment']):,.0f} initial investment",
+                message="\n".join(message_parts),
                 ticket_type="onboarding",
                 status="new",
             )
@@ -509,6 +628,11 @@ def onboarding_form_submit(request):
 
     else:
         # Form has errors
+        # Check if this is spam (honeypot field filled)
+        if request.POST.get("honeypot"):
+            # Even for HTMX requests, redirect for spam detection
+            return redirect("/onboarding/")
+        
         if is_htmx:
             return render(
                 request,

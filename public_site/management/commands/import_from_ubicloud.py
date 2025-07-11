@@ -87,12 +87,14 @@ class Command(BaseCommand):
             # Get data from Ubicloud
             with connections["ubicloud"].cursor() as cursor:
                 # Import HomePage
-                cursor.execute("""
+                cursor.execute(
+                    """
                     SELECT id, title, slug, hero_title, hero_subtitle, body
                     FROM public_site_homepage
                     WHERE live = true
                     LIMIT 1
-                """)
+                """
+                )
 
                 home_data = cursor.fetchone()
                 if home_data:
@@ -128,20 +130,24 @@ class Command(BaseCommand):
                         )
 
                 # Import BlogPosts
-                cursor.execute("""
+                cursor.execute(
+                    """
                     SELECT COUNT(*) FROM public_site_blogpost
                     WHERE live = true
-                """)
+                """
+                )
                 blog_count = cursor.fetchone()[0]
 
                 if blog_count > 0:
-                    cursor.execute("""
+                    cursor.execute(
+                        """
                         SELECT id, title, slug, subtitle, date, summary,
                                author, body, updated_at
                         FROM public_site_blogpost
                         WHERE live = true
                         ORDER BY date DESC
-                    """)
+                    """
+                    )
 
                     blog_posts = cursor.fetchall()
                     imported = 0
@@ -177,12 +183,14 @@ class Command(BaseCommand):
 
         try:
             with connections["ubicloud"].cursor() as cursor:
-                cursor.execute("""
+                cursor.execute(
+                    """
                     SELECT title, publication, url, date, excerpt,
                            featured, created_at, updated_at
                     FROM public_site_mediaitem
                     ORDER BY date DESC
-                """)
+                """
+                )
 
                 media_items = cursor.fetchall()
                 imported = 0
@@ -217,14 +225,16 @@ class Command(BaseCommand):
 
         try:
             with connections["ubicloud"].cursor() as cursor:
-                cursor.execute("""
+                cursor.execute(
+                    """
                     SELECT ticket_type, name, email, company, subject,
                            message, status, priority, created_at,
                            updated_at, resolved_at, notes
                     FROM public_site_supportticket
                     WHERE created_at > NOW() - INTERVAL '90 days'
                     ORDER BY created_at DESC
-                """)
+                """
+                )
 
                 tickets = cursor.fetchall()
                 imported = 0

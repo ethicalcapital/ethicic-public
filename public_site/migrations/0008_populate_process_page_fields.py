@@ -4,8 +4,8 @@ from django.db import migrations
 
 
 def populate_process_page_fields(apps, schema_editor):
-    ProcessPage = apps.get_model('public_site', 'ProcessPage')
-    
+    ProcessPage = apps.get_model("public_site", "ProcessPage")
+
     # Define product exclusions data
     product_exclusions = [
         {
@@ -18,9 +18,9 @@ def populate_process_page_fields(apps, schema_editor):
                     "→ Fishing & hunting equipment",
                     "→ Factory farming operations",
                     "→ Animal testing for non-medical purposes",
-                    "→ Entertainment using live animals"
-                ]
-            }
+                    "→ Entertainment using live animals",
+                ],
+            },
         },
         {
             "type": "exclusion_category",
@@ -30,9 +30,9 @@ def populate_process_page_fields(apps, schema_editor):
                     "→ Weapons manufacturing",
                     "→ Military materiel & consulting",
                     "→ Defense contracting",
-                    "→ Private military contractors"
-                ]
-            }
+                    "→ Private military contractors",
+                ],
+            },
         },
         {
             "type": "exclusion_category",
@@ -42,9 +42,9 @@ def populate_process_page_fields(apps, schema_editor):
                     "→ Fossil fuel extraction & refining",
                     "→ Thermal coal (≥30% revenue/operations)",
                     "→ Coal power (>10,000 MW capacity)",
-                    "→ Extractive industries (>20M tonnes annually)"
-                ]
-            }
+                    "→ Extractive industries (>20M tonnes annually)",
+                ],
+            },
         },
         {
             "type": "exclusion_category",
@@ -54,9 +54,9 @@ def populate_process_page_fields(apps, schema_editor):
                     "→ Tobacco products",
                     "→ Harmful chemicals & toxins",
                     "→ Addiction-enabling businesses",
-                    "→ For-profit prison operations"
-                ]
-            }
+                    "→ For-profit prison operations",
+                ],
+            },
         },
         {
             "type": "exclusion_category",
@@ -67,12 +67,12 @@ def populate_process_page_fields(apps, schema_editor):
                     "→ Data exploitation without consent",
                     "→ Surveillance technology for oppression",
                     "→ Social manipulation technologies",
-                    "→ Authoritarian surveillance enablement"
-                ]
-            }
-        }
+                    "→ Authoritarian surveillance enablement",
+                ],
+            },
+        },
     ]
-    
+
     # Define conduct exclusions data
     conduct_exclusions = [
         {
@@ -85,9 +85,9 @@ def populate_process_page_fields(apps, schema_editor):
                     "→ Anti-union activities",
                     "→ Human trafficking involvement",
                     "→ Workplace safety negligence",
-                    "→ Discrimination & harassment"
-                ]
-            }
+                    "→ Discrimination & harassment",
+                ],
+            },
         },
         {
             "type": "exclusion_category",
@@ -98,9 +98,9 @@ def populate_process_page_fields(apps, schema_editor):
                     "→ Climate change acceleration",
                     "→ Pollution & toxic waste",
                     "→ Environmental cover-ups",
-                    "→ Ecosystem destruction"
-                ]
-            }
+                    "→ Ecosystem destruction",
+                ],
+            },
         },
         {
             "type": "exclusion_category",
@@ -111,9 +111,9 @@ def populate_process_page_fields(apps, schema_editor):
                     "→ Tax avoidance schemes",
                     "→ Consumer fraud",
                     "→ Regulatory capture attempts",
-                    "→ Greenwashing & deception"
-                ]
-            }
+                    "→ Greenwashing & deception",
+                ],
+            },
         },
         {
             "type": "exclusion_category",
@@ -125,12 +125,12 @@ def populate_process_page_fields(apps, schema_editor):
                     "→ Community displacement",
                     "→ Indigenous rights violations",
                     "→ Developing nation exploitation",
-                    "→ Predatory lending practices"
-                ]
-            }
-        }
+                    "→ Predatory lending practices",
+                ],
+            },
+        },
     ]
-    
+
     # Update all ProcessPage instances
     for page in ProcessPage.objects.all():
         page.product_exclusions = product_exclusions
@@ -139,8 +139,8 @@ def populate_process_page_fields(apps, schema_editor):
 
 
 def reverse_populate_process_page_fields(apps, schema_editor):
-    ProcessPage = apps.get_model('public_site', 'ProcessPage')
-    
+    ProcessPage = apps.get_model("public_site", "ProcessPage")
+
     for page in ProcessPage.objects.all():
         page.product_exclusions = []
         page.conduct_exclusions = []
@@ -148,14 +148,12 @@ def reverse_populate_process_page_fields(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("public_site", "0007_add_process_page_fields"),
     ]
 
     operations = [
         migrations.RunPython(
-            populate_process_page_fields,
-            reverse_populate_process_page_fields
+            populate_process_page_fields, reverse_populate_process_page_fields
         ),
     ]

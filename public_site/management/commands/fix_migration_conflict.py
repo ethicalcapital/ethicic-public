@@ -16,10 +16,12 @@ class Command(BaseCommand):
         # First, check if we need to clean up any references to the removed 0002 migration
         with connection.cursor() as cursor:
             # Remove any stale migration records for the deleted 0002 migration
-            cursor.execute("""
+            cursor.execute(
+                """
                 DELETE FROM django_migrations
                 WHERE app = 'public_site' AND name = '0002_add_missing_homepage_fields'
-            """)
+            """
+            )
             deleted_count = cursor.rowcount
             if deleted_count > 0:
                 self.stdout.write(

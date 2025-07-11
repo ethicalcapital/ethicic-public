@@ -87,7 +87,7 @@ The test suite is **complete** but cannot be executed because:
 ```python
 INSTALLED_APPS = [
     # ... existing apps ...
-    
+
     # Wagtail apps
     'wagtail',
     'wagtail.admin',
@@ -99,7 +99,7 @@ INSTALLED_APPS = [
     'wagtail.snippets',
     'modelcluster',
     'taggit',
-    
+
     # Your app
     'public_site',
 ]

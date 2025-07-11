@@ -19,7 +19,7 @@
         <div class="encyclopedia-container">
             <div class="encyclopedia-description">
                 <p>Our Investment Encyclopedia provides clear, accessible explanations of key investment terms and concepts. Whether you're new to investing or looking to expand your knowledge, this resource helps you understand the language of finance and ethical investing.</p>
-                
+
                 <p>Each entry includes detailed explanations, real-world examples, and connections to related concepts. Our goal is to demystify investment terminology and help you make more informed decisions about your financial future.</p>
             </div>
 
@@ -48,7 +48,7 @@
 
             <!-- Search Box -->
             <div class="encyclopedia-search">
-                <input type="text" id="encyclopedia-search" placeholder="Search encyclopedia..." 
+                <input type="text" id="encyclopedia-search" placeholder="Search encyclopedia..."
                        class="search-input">
             </div>
 
@@ -61,7 +61,7 @@
             <div class="encyclopedia-entries">
                 <div class="letter-section" id="A">
                     <h2 class="letter-header">A</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="active management">
                         <div class="entry-header">
                             <h3 class="entry-title">Active Management</h3>
@@ -97,7 +97,7 @@
 
                 <div class="letter-section" id="C">
                     <h2 class="letter-header">C</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="catastrophic risk">
                         <div class="entry-header">
                             <h3 class="entry-title">Catastrophic Risk</h3>
@@ -149,7 +149,7 @@
 
                 <div class="letter-section" id="D">
                     <h2 class="letter-header">D</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="data sources">
                         <div class="entry-header">
                             <h3 class="entry-title">Data Sources</h3>
@@ -169,7 +169,7 @@
 
                 <div class="letter-section" id="E">
                     <h2 class="letter-header">E</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="equity risk">
                         <div class="entry-header">
                             <h3 class="entry-title">Equity (Stock) Risk</h3>
@@ -221,7 +221,7 @@
 
                 <div class="letter-section" id="F">
                     <h2 class="letter-header">F</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="financial risk">
                         <div class="entry-header">
                             <h3 class="entry-title">Financial Risk</h3>
@@ -273,7 +273,7 @@
 
                 <div class="letter-section" id="G">
                     <h2 class="letter-header">G</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="gearing ratios">
                         <div class="entry-header">
                             <h3 class="entry-title">Gearing Ratios</h3>
@@ -293,7 +293,7 @@
 
                 <div class="letter-section" id="I">
                     <h2 class="letter-header">I</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="inflation risk">
                         <div class="entry-header">
                             <h3 class="entry-title">Inflation Risk</h3>
@@ -345,7 +345,7 @@
 
                 <div class="letter-section" id="L">
                     <h2 class="letter-header">L</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="liquidity risk">
                         <div class="entry-header">
                             <h3 class="entry-title">Liquidity Risk</h3>
@@ -365,7 +365,7 @@
 
                 <div class="letter-section" id="M">
                     <h2 class="letter-header">M</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="macroeconomic risk">
                         <div class="entry-header">
                             <h3 class="entry-title">Macroeconomic Risk</h3>
@@ -401,7 +401,7 @@
 
                 <div class="letter-section" id="O">
                     <h2 class="letter-header">O</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="options risk">
                         <div class="entry-header">
                             <h3 class="entry-title">Options Risk</h3>
@@ -421,7 +421,7 @@
 
                 <div class="letter-section" id="P">
                     <h2 class="letter-header">P</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="political risk">
                         <div class="entry-header">
                             <h3 class="entry-title">Political Risk</h3>
@@ -441,7 +441,7 @@
 
                 <div class="letter-section" id="Q">
                     <h2 class="letter-header">Q</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="qualified dividend income ratios">
                         <div class="entry-header">
                             <h3 class="entry-title">Qualified Dividend Income Ratios</h3>
@@ -461,7 +461,7 @@
 
                 <div class="letter-section" id="R">
                     <h2 class="letter-header">R</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="regional event risk">
                         <div class="entry-header">
                             <h3 class="entry-title">Regional Event Risk</h3>
@@ -497,7 +497,7 @@
 
                 <div class="letter-section" id="S">
                     <h2 class="letter-header">S</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="sequence of return risk">
                         <div class="entry-header">
                             <h3 class="entry-title">Sequence of Return Risk</h3>
@@ -565,7 +565,7 @@
 
                 <div class="letter-section" id="T">
                     <h2 class="letter-header">T</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="technical analysis">
                         <div class="entry-header">
                             <h3 class="entry-title">Technical Analysis</h3>
@@ -585,7 +585,7 @@
 
                 <div class="letter-section" id="W">
                     <h2 class="letter-header">W</h2>
-                    
+
                     <div class="encyclopedia-entry" data-title="warrants">
                         <div class="entry-header">
                             <h3 class="entry-title">Warrants</h3>
@@ -618,16 +618,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('encyclopedia-search');
     const entries = document.querySelectorAll('.encyclopedia-entry');
     const letterLinks = document.querySelectorAll('.letter-link');
-    
+
     // Search functionality
     searchInput.addEventListener('input', function() {
         const query = this.value.toLowerCase();
         let visibleCount = 0;
-        
+
         entries.forEach(entry => {
             const title = entry.dataset.title;
             const summary = entry.querySelector('.entry-summary').textContent.toLowerCase();
-            
+
             if (query.length === 0 || title.includes(query) || summary.includes(query)) {
                 entry.style.display = 'block';
                 visibleCount++;
@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 entry.style.display = 'none';
             }
         });
-        
+
         // Update entry count
         const countElement = document.querySelector('.entry-count');
         if (countElement) {
@@ -646,7 +646,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    
+
     // Smooth scroll for letter navigation
     letterLinks.forEach(link => {
         link.addEventListener('click', function(e) {

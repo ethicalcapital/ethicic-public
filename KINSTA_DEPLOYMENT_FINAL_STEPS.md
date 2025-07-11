@@ -51,7 +51,7 @@ git push origin main
 
 Test these endpoints on your Kinsta app:
 
-1. **Health Check**: 
+1. **Health Check**:
    ```
    https://ethical-capital-public-frezv.kinsta.app/health/
    ```

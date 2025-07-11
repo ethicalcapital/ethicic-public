@@ -12,13 +12,15 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         with connection.cursor() as cursor:
             # Get all public_site tables
-            cursor.execute("""
+            cursor.execute(
+                """
                 SELECT table_name
                 FROM information_schema.tables
                 WHERE table_schema = 'public'
                 AND table_name LIKE 'public_site_%'
                 ORDER BY table_name
-            """)
+            """
+            )
 
             tables = cursor.fetchall()
 
@@ -53,7 +55,8 @@ class Command(BaseCommand):
 
             # Also output sample SQL queries for reference
             self.stdout.write("\n=== Sample Import Queries ===")
-            self.stdout.write("""
+            self.stdout.write(
+                """
 -- HomePage
 SELECT id, title, slug, hero_title, hero_subtitle, body
 FROM public_site_homepage
@@ -75,4 +78,5 @@ SELECT ticket_type, name, email, company, subject, message,
        status, priority, created_at, updated_at, resolved_at, notes
 FROM public_site_supportticket
 WHERE created_at > NOW() - INTERVAL '90 days';
-""")
+"""
+            )

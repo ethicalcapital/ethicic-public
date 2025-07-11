@@ -9,7 +9,7 @@ Complete workflow guide for developing with the Ethical Capital CSS system and m
 # 1. Install git hooks
 make install-hooks
 
-# 2. Create CSS baseline  
+# 2. Create CSS baseline
 make css-baseline
 
 # 3. Verify everything works
@@ -220,7 +220,7 @@ git commit -m "Your changes"
 - [ ] Includes dark mode variants if applicable
 - [ ] Accessibility contrast requirements met
 
-### For Template Changes  
+### For Template Changes
 - [ ] Uses Garden UI classes (`garden-*`)
 - [ ] No deprecated classes (`form-control`, `btn-*`)
 - [ ] Proper semantic HTML structure
@@ -238,7 +238,7 @@ git commit -m "Your changes"
 ### Pre-commit Hook Behavior
 The installed git hook automatically:
 1. **Checks for CSS regressions** against baseline
-2. **Validates no undefined variables** 
+2. **Validates no undefined variables**
 3. **Prevents deprecated class usage**
 4. **Warns about excessive hardcoded colors**
 5. **Blocks commit if conflicts found**
@@ -278,7 +278,7 @@ GitHub Actions automatically:
 
 ### File Size Monitoring
 - Keep individual CSS files under **200KB**
-- Monitor total CSS payload (**<500KB** target)  
+- Monitor total CSS payload (**<500KB** target)
 - Use CSS layers for cascade control
 - Remove unused styles regularly
 
@@ -310,7 +310,7 @@ make install-hooks  # Install git pre-commit hooks
 ### Monitoring Scripts
 ```bash
 python css_monitoring.py                    # Quick status
-python css_monitoring.py --check           # Check against baseline  
+python css_monitoring.py --check           # Check against baseline
 python css_monitoring.py --report          # Detailed report
 python css_monitoring.py --create-baseline # Create new baseline
 ```

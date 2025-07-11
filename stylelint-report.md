@@ -30,7 +30,7 @@ CSS variables cannot be used in media queries (browser limitation):
 
 ### 3. Single Line Declarations (13 instances)
 Stylelint wants multi-line formatting for readability:
-- Lines like `.col-1 { grid-column: span 1; }` 
+- Lines like `.col-1 { grid-column: span 1; }`
 
 **Impact**: None - purely stylistic preference
 

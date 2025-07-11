@@ -13,7 +13,7 @@ Generates action buttons/links with Garden UI styling
 {% with class=class|default:"" %}
 {% with target=target|default:"" %}
 
-<a href="{{ url }}" 
+<a href="{{ url }}"
    class="garden-action {{ variant }} {{ class }}"
    aria-label="{{ aria_label }}"
    {% if target %}target="{{ target }}"{% endif %}

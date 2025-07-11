@@ -75,29 +75,53 @@ class BasePublicSiteTestCase(TestCase):
         return data
 
     def create_test_onboarding_data(self, **overrides):
-        """Create test data for onboarding forms."""
+        """Create test data for onboarding forms that matches actual form structure."""
         data = {
-            "first_name": "Test",
-            "last_name": "User",
+            # Section 1: About You
             "email": "onboarding@example.com",
+            "legal_name": "Test User",
+            "preferred_name_choice": "nope",
+            "pronouns": "they/them",
+            "mailing_address": "123 Test St, New York, NY 10001",
             "phone": "555-123-4567",
-            "location": "New York, NY",
-            "initial_investment": "50000",
-            "monthly_contribution": "1000",
-            "time_horizon": "5-10",
-            "accredited_investor": True,
-            "primary_goal": "growth",
-            "risk_tolerance": "moderate",
-            "investment_experience": "intermediate",
-            "experience_level": "intermediate",
-            "exclusions": ["fossil_fuels", "weapons"],
-            "impact_areas": ["renewable_energy"],
-            "referral_source": "web_search",
-            "additional_notes": "Test notes",
-            "consent": True,
-            "agree_terms": True,
-            "terms_accepted": True,
-            "confirm_accuracy": True,
+            "birthday": "1990-01-01",
+            "employment_status": "full_time",
+            "employer_name": "Test Company",
+            "job_title": "Software Engineer",
+            "marital_status": "single",
+            "add_co_client": "no",
+            
+            # Section 3: Contact Preferences
+            "communication_preference": ["email"],
+            "newsletter_subscribe": "yes",
+            
+            # Section 4: Risk Questions
+            "risk_question_1": "neutral",
+            "risk_question_2": "agree",
+            "risk_question_3": "neutral",
+            "risk_question_4": "agree",
+            "risk_question_5": "strongly_agree",
+            "risk_question_6": "agree",
+            "risk_question_7": "strongly_agree",
+            
+            # Section 5: Values and Viewpoint
+            "ethical_considerations": ["environmental_impact"],
+            "divestment_movements": ["fossil_fuels"],
+            "understanding_importance": "very",
+            "ethical_evolution": "strongly_support",
+            
+            # Section 6: Financial Context
+            "investment_experience": "average",
+            "emergency_access": "yes",
+            "net_worth": "500000",
+            "liquid_net_worth": "200000",
+            "investable_net_worth": "100000",
+            "investment_familiarity": "get_gist",
+            "worked_with_adviser": "yes",
+            "account_types": ["individual_taxable"],
+            
+            # Anti-spam
+            "honeypot": "",
         }
         data.update(overrides)
         return data

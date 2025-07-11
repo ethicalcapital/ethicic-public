@@ -15,35 +15,35 @@ on:
 jobs:
   css-conflict-check:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-    
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install django pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    
+
     - name: Run CSS conflict tests
       run: |
         python -m pytest tests/test_css_conflicts.py -v --tb=short
-    
+
     - name: Check CSS baseline
       run: |
         # Create baseline if it doesn't exist
         if [ ! -f css_baseline.json ]; then
           python css_monitoring.py --create-baseline
         fi
-        
+
         # Check for regressions
         python css_monitoring.py --check
-    
+
     - name: Generate CSS report
       if: failure()
       run: |
@@ -52,7 +52,7 @@ jobs:
         echo '```' >> $GITHUB_STEP_SUMMARY
         cat css_report.txt >> $GITHUB_STEP_SUMMARY
         echo '```' >> $GITHUB_STEP_SUMMARY
-    
+
     - name: Upload CSS report
       if: failure()
       uses: actions/upload-artifact@v3
@@ -62,14 +62,14 @@ jobs:
 
   template-consistency-check:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Check for deprecated CSS classes
       run: |
         echo "🔍 Checking for deprecated CSS classes in templates..."
-        
+
         # Check for old Bootstrap/form classes
         if grep -r "form-control\|form-input\|btn-primary\|btn-secondary" templates/ --include="*.html"; then
           echo "❌ Found deprecated CSS classes!"
@@ -79,17 +79,17 @@ jobs:
           echo "  btn-secondary → garden-action secondary"
           exit 1
         fi
-        
+
         echo "✅ No deprecated CSS classes found"
-    
+
     - name: Check Garden UI usage
       run: |
         echo "🔍 Checking Garden UI adoption..."
-        
+
         # Count Garden UI usage
         garden_usage=$(grep -r "garden-" templates/ --include="*.html" | wc -l || echo "0")
         echo "Garden UI classes found: $garden_usage"
-        
+
         if [ "$garden_usage" -lt 10 ]; then
           echo "⚠️  Low Garden UI adoption detected"
           echo "Consider migrating more components to Garden UI"

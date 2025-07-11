@@ -6,13 +6,13 @@ from wagtail.models import Page, Site
 from wagtail.models.i18n import Locale
 
 
-@pytest.fixture
+@pytest.fixture()
 def client():
     """Return a Django test client."""
     return Client()
 
 
-@pytest.fixture
+@pytest.fixture()
 def authenticated_client(client, django_user_model):
     """Return an authenticated test client."""
     user = django_user_model.objects.create_user(
@@ -24,7 +24,7 @@ def authenticated_client(client, django_user_model):
     return client
 
 
-@pytest.fixture
+@pytest.fixture()
 def wagtail_site(db):
     """Create a Wagtail site for testing."""
     # Create default locale first
@@ -68,7 +68,7 @@ def wagtail_site(db):
     return site
 
 
-@pytest.fixture
+@pytest.fixture()
 def blog_index_page(wagtail_site):
     """Create a blog index page."""
     from wagtail.models.i18n import Locale
@@ -94,7 +94,7 @@ def blog_index_page(wagtail_site):
     return blog
 
 
-@pytest.fixture
+@pytest.fixture()
 def sample_blog_post(blog_index_page):
     """Create a sample blog post."""
     from wagtail.models.i18n import Locale
@@ -118,7 +118,7 @@ def sample_blog_post(blog_index_page):
     return post
 
 
-@pytest.fixture
+@pytest.fixture()
 def faq_index_page(wagtail_site):
     """Create an FAQ index page."""
     from wagtail.models.i18n import Locale
@@ -144,7 +144,7 @@ def faq_index_page(wagtail_site):
     return faq
 
 
-@pytest.fixture
+@pytest.fixture()
 def sample_faq_article(faq_index_page):
     """Create a sample FAQ article."""
     from wagtail.models.i18n import Locale

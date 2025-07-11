@@ -1,23 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <!-- Background -->
   <rect width="1200" height="630" fill="#553C9A"/>
-  
+
   <!-- Centered E logo -->
   <g transform="translate(600, 315)">
     <!-- White circle background -->
     <circle cx="0" cy="0" r="150" fill="#ffffff" opacity="0.1"/>
-    
+
     <!-- Letter E -->
-    <path d="M -60 -80 L -60 80 L 60 80 L 60 40 L -20 40 L -20 20 L 40 20 L 40 -20 L -20 -20 L -20 -40 L 60 -40 L 60 -80 Z" 
-          fill="#ffffff" 
+    <path d="M -60 -80 L -60 80 L 60 80 L 60 40 L -20 40 L -20 20 L 40 20 L 40 -20 L -20 -20 L -20 -40 L 60 -40 L 60 -80 Z"
+          fill="#ffffff"
           transform="scale(1.5)"/>
   </g>
-  
+
   <!-- Text -->
   <text x="600" y="520" text-anchor="middle" font-family="Inter, sans-serif" font-size="36" font-weight="600" fill="#ffffff">
     ETHICAL CAPITAL
   </text>
-  
+
   <text x="600" y="560" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" fill="#ffffff" opacity="0.8">
     Institutional-Grade Ethical Investing
   </text>
