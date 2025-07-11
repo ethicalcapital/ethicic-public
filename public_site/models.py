@@ -3865,39 +3865,32 @@ class AdvisorPage(Page):
     # Hero section
     hero_title = models.CharField(
         max_length=200,
-        default="Partner with Ethical Capital",
         blank=True,
     )
     hero_subtitle = models.CharField(
         max_length=300,
         blank=True,
-        default="Deep research expertise and proven strategies to help you serve clients with complex values and sophisticated needs",
     )
     hero_description = RichTextField(
         blank=True,
-        default="<p>As investment advisers ourselves, we understand the challenges of serving clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and easy access you need to deliver exceptional outcomes.</p>",
     )
 
     # Services section
     services_title = models.CharField(
         max_length=200,
-        default="Advisory Services",
         blank=True,
     )
     services_content = RichTextField(
         blank=True,
-        default="<p>We provide investment advisers with specialized expertise in niche and ethical investing, rigorous analytical processes, effective client communication support, operational assistance, and educational resources to help you serve clients with complex needs and values.</p>",
     )
 
     # What We Offer section
     offer_section_title = models.CharField(
         max_length=200,
-        default="WHAT WE OFFER ADVISERS",
         blank=True,
     )
     offer_section_intro = RichTextField(
         blank=True,
-        default="<p>We provide investment advisers with institutional-grade research capabilities and proven strategies to confidently serve clients who prioritize ethical investing, without compromising on performance or professionalism.</p>",
     )
     services_offered = StreamField(
         [
@@ -3919,12 +3912,10 @@ class AdvisorPage(Page):
     # Partnership Benefits section
     benefits_section_title = models.CharField(
         max_length=200,
-        default="WHY ADVISERS CHOOSE US",
         blank=True,
     )
     benefits_section_intro = RichTextField(
         blank=True,
-        default="<p>Leading investment advisers partner with us because we deliver the institutional-grade expertise and transparency their sophisticated clients demand.</p>",
     )
     partnership_benefits = StreamField(
         [
@@ -3946,7 +3937,6 @@ class AdvisorPage(Page):
     # Process Overview section
     process_section_title = models.CharField(
         max_length=200,
-        default="OUR COLLABORATIVE APPROACH",
         blank=True,
     )
     process_steps = StreamField(
@@ -3970,17 +3960,14 @@ class AdvisorPage(Page):
     # Due Diligence Resources section
     ddq_section_title = models.CharField(
         max_length=200,
-        default="DUE DILIGENCE RESOURCES",
         blank=True,
     )
     ddq_section_subtitle = models.CharField(
         max_length=200,
-        default="Documentation for Investment Advisers",
         blank=True,
     )
     ddq_section_description = RichTextField(
         blank=True,
-        default="<p>Comprehensive documentation to support your due diligence process and adviser requirements.</p>",
     )
     resource_categories = StreamField(
         [
@@ -4022,60 +4009,49 @@ class AdvisorPage(Page):
     # CTA section
     cta_section_title = models.CharField(
         max_length=200,
-        default="READY TO PARTNER?",
         blank=True,
     )
     cta_primary_text = models.CharField(
         max_length=100,
-        default="SCHEDULE A CONSULTATION",
         blank=True,
     )
     cta_primary_url = models.URLField(
         blank=True,
-        default="https://tidycal.com/ecic/adviser",
     )
     cta_secondary_text = models.CharField(
         max_length=100,
-        default="SEND A MESSAGE",
         blank=True,
     )
     cta_secondary_url = models.CharField(
         max_length=200,
-        default="/contact/",
         blank=True,
     )
 
     # Benefits section
     benefits_title = models.CharField(
         max_length=200,
-        default="Why Partner With Us",
         blank=True,
     )
     benefits_content = RichTextField(
         blank=True,
-        default="<h4>Expertise in Niche and Ethical Investing</h4><p>Deep knowledge and specialized focus on sustainable and ethical investing. Our in-house ethical screening goes beyond standard third-party data, offering rigorous transparency that distinguishes us from conventional options.</p><h4>Rigorous Analytical Process</h4><p>Systematic approach to investment analysis with proprietary screening of thousands of companies using our 'Tick' rating system, ensuring strategies are both ethically aligned and financially sound.</p><h4>Effective Client Communication</h4><p>High closing rates with prospective clients through clear communication of complex financial concepts and personal engagement, helping manage the emotional aspects of investing.</p><h4>Operational Support</h4><p>Experience with platforms like Altruist and Schwab, streamlining account opening, transfers, and SMA implementation for busy advisers.</p><h4>Educational Partnership</h4><p>Trusted thought partner providing consulting, ad-hoc analysis, and insights to help you navigate challenging client scenarios and develop expertise in ethical investing.</p>",
     )
 
     # Technology section
     technology_title = models.CharField(
         max_length=200,
-        default="Technology Platform",
         blank=True,
     )
     technology_content = RichTextField(
         blank=True,
-        default="<p>Access our comprehensive platform for portfolio construction, compliance monitoring, and client reporting.</p>",
     )
 
     # CTA section
     cta_title = models.CharField(
         max_length=200,
-        default="Ready to Partner?",
         blank=True,
     )
     cta_description = RichTextField(
         blank=True,
-        default="<p>Join leading investment advisers who trust our multi-faceted approach to help them serve a broader range of clients with complex needs and values more effectively.</p>",
     )
 
     content_panels: ClassVar[list] = [
@@ -4172,39 +4148,32 @@ class InstitutionalPage(Page):
     # Hero section
     hero_title = models.CharField(
         max_length=200,
-        default="Institutional Investment Solutions",
         blank=True,
     )
     hero_subtitle = models.CharField(
         max_length=300,
         blank=True,
-        default="Scalable ethical investment solutions for institutions, endowments, and pension funds",
     )
     hero_description = RichTextField(
         blank=True,
-        default="<p>Custom investment strategies and compliance solutions designed for institutional scale and requirements.</p>",
     )
 
     # Solutions section
     solutions_title = models.CharField(
         max_length=200,
-        default="Institutional Solutions",
         blank=True,
     )
     solutions_content = RichTextField(
         blank=True,
-        default="<p>We work with institutions to implement ethical investment strategies at scale.</p>",
     )
 
     # What We Offer section
     offer_section_title = models.CharField(
         max_length=200,
-        default="WHAT WE OFFER INSTITUTIONS",
         blank=True,
     )
     offer_section_intro = RichTextField(
         blank=True,
-        default="<p>We provide institutions with proven ethical investment strategies that can be implemented at scale using liquid securities. Our approach focuses on delivering strategies that meet fiduciary standards while achieving alignment with institutional values and stakeholder expectations.</p>",
     )
     services = StreamField(
         [
@@ -4226,12 +4195,10 @@ class InstitutionalPage(Page):
     # Partnership Benefits section
     benefits_section_title = models.CharField(
         max_length=200,
-        default="WHY INSTITUTIONS CHOOSE US",
         blank=True,
     )
     benefits_section_intro = RichTextField(
         blank=True,
-        default="<p>Leading institutions partner with us because we deliver proven strategies, transparent methodology, and direct access to decision-makers that institutional fiduciary standards demand.</p>",
     )
     benefits = StreamField(
         [
@@ -4253,7 +4220,6 @@ class InstitutionalPage(Page):
     # Process Overview section
     process_section_title = models.CharField(
         max_length=200,
-        default="OUR INSTITUTIONAL APPROACH",
         blank=True,
     )
     process_steps = StreamField(
@@ -4277,12 +4243,10 @@ class InstitutionalPage(Page):
     # Scale & Capabilities section
     scale_section_title = models.CharField(
         max_length=200,
-        default="INSTITUTIONAL SCALE & CAPABILITIES",
         blank=True,
     )
     scale_section_intro = RichTextField(
         blank=True,
-        default="<p>Our investment strategies and operational infrastructure are designed to support institutional-scale implementations with the rigor and transparency institutional oversight requires.</p>",
     )
     scale_metrics = StreamField(
         [
@@ -4305,17 +4269,14 @@ class InstitutionalPage(Page):
     # Due Diligence Resources section
     ddq_section_title = models.CharField(
         max_length=200,
-        default="DUE DILIGENCE RESOURCES",
         blank=True,
     )
     ddq_section_subtitle = models.CharField(
         max_length=200,
-        default="Documentation for Institutional Partners",
         blank=True,
     )
     ddq_section_description = RichTextField(
         blank=True,
-        default="<p>Comprehensive documentation to support your due diligence process and institutional requirements.</p>",
     )
     resource_categories = StreamField(
         [
@@ -4357,33 +4318,27 @@ class InstitutionalPage(Page):
     # CTA section updates
     cta_section_title = models.CharField(
         max_length=200,
-        default="READY TO PARTNER?",
         blank=True,
     )
     cta_primary_text = models.CharField(
         max_length=100,
-        default="SCHEDULE INSTITUTIONAL CONSULTATION",
         blank=True,
     )
     cta_primary_url = models.URLField(
         blank=True,
-        default="https://tidycal.com/ecic/institutional",
     )
     cta_secondary_text = models.CharField(
         max_length=100,
-        default="SEND A MESSAGE",
         blank=True,
     )
     cta_secondary_url = models.CharField(
         max_length=200,
-        default="/contact/",
         blank=True,
     )
 
     # Capabilities section
     capabilities_title = models.CharField(
         max_length=200,
-        default="Our Capabilities",
         blank=True,
     )
     capabilities_content = RichTextField(blank=True)
@@ -4391,23 +4346,19 @@ class InstitutionalPage(Page):
     # Scale section
     scale_title = models.CharField(
         max_length=200,
-        default="Institutional Scale",
         blank=True,
     )
     scale_content = RichTextField(
         blank=True,
-        default="<p>Our technology platform scales to handle institutional portfolio sizes and complexity.</p>",
     )
 
     # CTA section
     cta_title = models.CharField(
         max_length=200,
-        default="Discuss Your Needs",
         blank=True,
     )
     cta_description = RichTextField(
         blank=True,
-        default="<p>Contact us to explore how we can support your institutional investment objectives.</p>",
     )
 
     content_panels: ClassVar[list] = [

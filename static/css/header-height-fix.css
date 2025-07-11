@@ -1,0 +1,51 @@
+/* Header Height Fix - Reduce excessive header height */
+
+.garden-header {
+    padding: 0.5rem 1rem !important;
+    min-height: auto !important;
+}
+
+.garden-header-content {
+    padding: 0 !important;
+    min-height: auto !important;
+}
+
+/* Ensure nav items are properly sized */
+.garden-nav-left,
+.garden-nav-right {
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Fix brand/logo sizing */
+.garden-brand {
+    font-size: 1.25rem !important;
+    padding: 0.25rem 0 !important;
+}
+
+/* Fix navigation item sizing */
+.garden-nav-item,
+.desktop-nav a {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+}
+
+/* Fix search input sizing */
+.garden-search-input {
+    padding: 0.4rem 0.75rem !important;
+    font-size: 0.9rem !important;
+}
+
+/* Fix button sizing */
+.garden-header .garden-action,
+.garden-header button {
+    padding: 0.4rem 1rem !important;
+    font-size: 0.9rem !important;
+}
+
+/* Fix mobile menu toggle */
+.mobile-menu-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0.5rem !important;
+}
