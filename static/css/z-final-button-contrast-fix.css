@@ -48,22 +48,3 @@ html body.blog-index-page.public-site-context .article-list-actions a.garden-act
     -webkit-text-fill-color: var(--garden-color-white, var(--color-background)) !important;
     border: 2px solid var(--garden-accent) !important;
 }
-
-/* Fix header GET STARTED button - should be purple text on white background with visible border */
-/* stylelint-disable color-no-hex */
-html body.public-site-context .garden-header .nav-user-actions .garden-action.primary {
-    background-color: #fff !important;
-    color: var(--color-primary, var(--garden-accent)) !important;
-    -webkit-text-fill-color: var(--color-primary, var(--garden-accent)) !important;
-    border: 2px solid var(--color-primary, var(--garden-accent)) !important;
-    box-shadow: var(--shadow-sm) !important;
-}
-
-/* Header primary button hover state */
-html body.public-site-context .garden-header .nav-user-actions .garden-action.primary:hover {
-    background-color: var(--color-primary, var(--garden-accent)) !important;
-    color: var(--color-surface, #fff) !important;
-    -webkit-text-fill-color: var(--color-surface, #fff) !important;
-    border: 2px solid var(--color-primary, var(--garden-accent)) !important;
-}
-/* stylelint-enable color-no-hex */

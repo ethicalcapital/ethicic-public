@@ -111,6 +111,9 @@
     <!-- Final button contrast fix - must load after button-contrast-fixes.css -->
     <link rel="stylesheet" href="{% static 'css/z-final-button-contrast-fix.css' %}?v=9">
 
+    <!-- Header button specific fixes -->
+    <link rel="stylesheet" href="{% static 'css/header-button-fix.css' %}?v=1">
+
     <!-- Utility layout classes for common patterns -->
     <link rel="stylesheet" href="{% static 'css/utility-layout.css' %}?v=1">
 
@@ -443,7 +446,7 @@
                     </div>
 
                     <!-- Primary CTA -->
-                    {% include 'components/garden_action.html' with text="Get Started" url="/onboarding/" variant="primary" aria_label="Start the onboarding process" %}
+                    {% include 'components/garden_action.html' with text="Get Started" url="/onboarding/" variant="header-primary" aria_label="Start the onboarding process" %}
                 </div>
 
                 <!-- Theme Toggle - Site Utility (Alpine.js powered) -->
