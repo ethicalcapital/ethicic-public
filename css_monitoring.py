@@ -128,6 +128,7 @@ class CSSMonitor:
 
         with open(self.baseline_file, "w") as f:
             json.dump(baseline, f, indent=2)
+            f.write("\n")
 
         print(
             f"✅ Baseline created: {baseline['total_undefined_vars']} undefined vars in {len(baseline['files_with_issues'])} files"
@@ -172,6 +173,7 @@ class CSSMonitor:
         # Save current report
         with open(self.report_file, "w") as f:
             json.dump(current, f, indent=2)
+            f.write("\n")
 
         if not regression_found:
             print("✅ No regressions detected!")

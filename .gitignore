@@ -94,3 +94,6 @@ wordpress-exportxml.xml
 # Temporary scripts
 test_*.py
 .backup
+
+# CSS monitoring report (generated file)
+css_monitoring_report.json
