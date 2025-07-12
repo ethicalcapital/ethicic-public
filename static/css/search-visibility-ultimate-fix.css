@@ -31,12 +31,12 @@ html body .garden-search-container input.garden-search-input {
     -moz-text-fill-color: #000000 !important;
     -ms-text-fill-color: #000000 !important;
     
-    /* Background */
-    background: #ffffff !important;
-    background-color: #ffffff !important;
+    /* Background - use theme variables */
+    background: var(--color-surface) !important;
+    background-color: var(--color-surface) !important;
     
-    /* Border for visibility */
-    border: 2px solid #cccccc !important;
+    /* Border - use theme variables */
+    border: 1px solid var(--color-border) !important;
     
     /* Cursor */
     caret-color: #000000 !important;
@@ -87,9 +87,9 @@ input#search-input:focus,
 input.garden-search-input:focus {
     color: #000000 !important;
     -webkit-text-fill-color: #000000 !important;
-    background-color: #ffffff !important;
-    border-color: #0066cc !important;
-    outline: 2px solid #0066cc !important;
+    background-color: var(--color-surface) !important;
+    border-color: var(--color-primary) !important;
+    outline: 2px solid var(--color-primary) !important;
     outline-offset: 2px !important;
 }
 
@@ -121,8 +121,8 @@ html[data-theme="dark"] input.garden-search-input::placeholder {
 /* Absolute nuclear option - inline style override */
 input[type="text"]#search-input,
 input[type="search"]#search-input {
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
-    background: #ffffff !important;
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+    background: var(--color-surface) !important;
 }
 

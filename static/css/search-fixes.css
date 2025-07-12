@@ -191,11 +191,11 @@ input.garden-search-input {
     -webkit-touch-callout: default !important;
     -webkit-user-modify: read-write !important;
     outline: none;
-    /* CRITICAL: Force visible text color */
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
-    background-color: #ffffff !important;
-    caret-color: #000000 !important;
+    /* CRITICAL: Force visible text color using theme variables */
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+    background-color: var(--color-surface) !important;
+    caret-color: var(--color-text-primary) !important;
 }
 
 .garden-header .garden-search-input:focus,
