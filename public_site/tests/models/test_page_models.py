@@ -2,9 +2,13 @@
 Tests for Wagtail page models in the public site.
 """
 
+import os
+import sys
+
+# Import our Wagtail test base
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 from datetime import timedelta
 
-from django.test import TestCase
 from django.utils import timezone
 
 from public_site.models import (
@@ -20,7 +24,7 @@ from public_site.models import (
     StrategyPage,
     SupportTicket,
 )
-from public_site.tests.test_base import WagtailPublicSiteTestCase
+from public_site.tests.test_base import WagtailPublicSiteTestCase, WagtailTestCase
 
 
 class HomePageTest(WagtailPublicSiteTestCase):
@@ -384,7 +388,7 @@ class ContactPageTest(WagtailPublicSiteTestCase):
         self.assertEqual(response.status_code, 200)
 
 
-class SupportTicketTest(TestCase):
+class SupportTicketTest(WagtailTestCase):
     """Test SupportTicket model."""
 
     def test_support_ticket_creation(self):

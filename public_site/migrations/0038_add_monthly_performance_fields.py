@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("public_site", "0037_remove_model_defaults_for_cms_editability"),
     ]

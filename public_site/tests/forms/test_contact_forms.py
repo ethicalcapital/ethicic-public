@@ -2,6 +2,11 @@
 Tests for contact and communication forms in the public site.
 """
 
+import os
+import sys
+
+# Import our Wagtail test base
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 from django.test import TestCase, override_settings
 
 from public_site.forms import (
@@ -245,10 +250,17 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         return {
             # Section 1: About You
             "email": "test@example.com",
-            "legal_name": "John Doe",
+            "first_name": "John",
+            "middle_names": "Michael",
+            "last_name": "Doe",
             "preferred_name_choice": "nope",
             "pronouns": "he/him",
-            "mailing_address": "123 Main St, San Francisco, CA 94102",
+            "street_address": "123 Main St",
+            "street_address_2": "Apt 4B",
+            "city": "San Francisco",
+            "state": "CA",
+            "zip_code": "94102",
+            "country": "United States",
             "phone": "+1 555-0123",
             "birthday": "1990-01-01",
             "employment_status": "full_time",
@@ -297,9 +309,11 @@ class OnboardingFormTest(TestCase, FormTestMixin):
 
         # Check some key required fields
         self.assertFalse(form.is_valid())
-        self.assertIn("legal_name", form.errors)
+        self.assertIn("first_name", form.errors)
+        self.assertIn("last_name", form.errors)
         self.assertIn("email", form.errors)
-        self.assertIn("mailing_address", form.errors)
+        self.assertIn("street_address", form.errors)
+        self.assertIn("city", form.errors)
         self.assertIn("pronouns", form.errors)
         self.assertIn("employment_status", form.errors)
 
@@ -329,7 +343,8 @@ class OnboardingFormTest(TestCase, FormTestMixin):
 
         form = OnboardingForm(data=data)
         self.assert_form_invalid(form)
-        self.assertIn("co_client_legal_name", form.errors)
+        self.assertIn("co_client_first_name", form.errors)
+        self.assertIn("co_client_last_name", form.errors)
         self.assertIn("co_client_email", form.errors)
 
     def test_onboarding_form_choice_fields(self):
@@ -359,6 +374,63 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         self.assertIn("environmental_impact", ethical_choices)
         self.assertIn("human_rights", ethical_choices)
         self.assertIn("animal_welfare", ethical_choices)
+
+    def test_onboarding_form_po_box_validation(self):
+        """Test that PO Boxes are rejected in street address."""
+        data = self.create_basic_onboarding_data()
+
+        # Test various PO Box formats
+        po_box_addresses = [
+            "P.O. Box 123",
+            "PO Box 456",
+            "P O BOX 789",
+            "POBOX 321",
+            "Box 654",
+            "PMB 987",
+        ]
+
+        for po_address in po_box_addresses:
+            with self.subTest(address=po_address):
+                data["street_address"] = po_address
+                form = OnboardingForm(data=data)
+                self.assertFalse(form.is_valid())
+                self.assertIn("street_address", form.errors)
+                self.assertIn(
+                    "PO Boxes are not permitted", str(form.errors["street_address"])
+                )
+
+    def test_onboarding_form_valid_street_address(self):
+        """Test that valid street addresses are accepted."""
+        data = self.create_basic_onboarding_data()
+
+        valid_addresses = [
+            "123 Main Street",
+            "456 Oak Avenue Apt 2B",
+            "789 First Street Unit 5",
+            "321 Elm Drive",
+        ]
+
+        for valid_address in valid_addresses:
+            with self.subTest(address=valid_address):
+                data["street_address"] = valid_address
+                form = OnboardingForm(data=data)
+                self.assertTrue(
+                    form.is_valid(),
+                    f"Form should be valid for address: {valid_address}",
+                )
+
+    def test_onboarding_form_name_assembly(self):
+        """Test that names are properly assembled from components."""
+        data = self.create_basic_onboarding_data()
+        form = OnboardingForm(data=data)
+        self.assertTrue(form.is_valid())
+
+        # The view will assemble the name as "John Michael Doe"
+        # We can't test the view logic directly in form tests,
+        # but we ensure all name components are present
+        self.assertEqual(form.cleaned_data["first_name"], "John")
+        self.assertEqual(form.cleaned_data["middle_names"], "Michael")
+        self.assertEqual(form.cleaned_data["last_name"], "Doe")
 
 
 @override_settings(TESTING=True)

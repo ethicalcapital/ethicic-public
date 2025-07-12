@@ -1,5 +1,4 @@
 from typing import ClassVar
-from datetime import datetime, date
 
 from django.core.paginator import Paginator
 from django.db import models
@@ -3253,39 +3252,46 @@ class StrategyPage(Page):
     def save(self, *args, **kwargs):
         """Override save to auto-calculate performance when monthly data is updated."""
         # Check if we have new monthly performance data to process
-        if self.latest_month_return and self.latest_month_benchmark and self.latest_month_date:
+        if (
+            self.latest_month_return
+            and self.latest_month_benchmark
+            and self.latest_month_date
+        ):
             # Update monthly_returns with new data
             year_str = str(self.latest_month_date.year)
-            month_name = self.latest_month_date.strftime('%b')
-            
+            month_name = self.latest_month_date.strftime("%b")
+
             if not self.monthly_returns:
                 self.monthly_returns = {}
-            
+
             if year_str not in self.monthly_returns:
                 self.monthly_returns[year_str] = {}
-            
+
             self.monthly_returns[year_str][month_name] = {
-                'strategy': self.latest_month_return,
-                'benchmark': self.latest_month_benchmark
+                "strategy": self.latest_month_return,
+                "benchmark": self.latest_month_benchmark,
             }
-            
+
             # Update performance calculations
             self._update_calculated_performance()
-            
+
             # Clear the input fields after processing
-            self.latest_month_return = ''
-            self.latest_month_benchmark = ''
+            self.latest_month_return = ""
+            self.latest_month_benchmark = ""
             self.latest_month_date = None
-            
+
             # Update timestamp
             self.performance_last_updated = timezone.now()
-        
+
         super().save(*args, **kwargs)
 
     def _update_calculated_performance(self):
         """Update all calculated performance fields from monthly_returns data."""
         try:
-            from .utils.performance_calculator import update_performance_from_monthly_data
+            from .utils.performance_calculator import (
+                update_performance_from_monthly_data,
+            )
+
             update_performance_from_monthly_data(self, self.monthly_returns)
         except ImportError:
             # Fallback if utility is not available

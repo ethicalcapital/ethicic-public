@@ -71,8 +71,19 @@
                         </div>
 
                         <div class="garden-form-group">
-                            <label class="form-label required" for="legal_name">What's your legal name?</label>
-                            <input type="text" id="legal_name" name="legal_name" class="garden-input" required>
+                            <label class="form-label required" for="first_name">What's your first name?</label>
+                            <input type="text" id="first_name" name="first_name" class="garden-input" autocomplete="given-name" required>
+                        </div>
+
+                        <div class="garden-form-group">
+                            <label class="form-label" for="middle_names">What are your middle names? (optional)</label>
+                            <input type="text" id="middle_names" name="middle_names" class="garden-input" autocomplete="additional-name" placeholder="Enter all middle names separated by spaces">
+                            <div class="form-help">Enter all middle names separated by spaces</div>
+                        </div>
+
+                        <div class="garden-form-group">
+                            <label class="form-label required" for="last_name">What's your last name?</label>
+                            <input type="text" id="last_name" name="last_name" class="garden-input" autocomplete="family-name" required>
                         </div>
 
                         <div class="garden-form-group">
@@ -118,8 +129,34 @@
                         </div>
 
                         <div class="garden-form-group">
-                            <label class="form-label required" for="mailing_address">What's your mailing address?</label>
-                            <textarea id="mailing_address" name="mailing_address" class="garden-input" rows="3" required></textarea>
+                            <label class="form-label required" for="street_address">Street address</label>
+                            <input type="text" id="street_address" name="street_address" class="garden-input" autocomplete="address-line1" required>
+                            <div class="form-help">Enter your street address (PO Boxes are not permitted)</div>
+                        </div>
+
+                        <div class="garden-form-group">
+                            <label class="form-label" for="street_address_2">Apartment, suite, unit, etc. (optional)</label>
+                            <input type="text" id="street_address_2" name="street_address_2" class="garden-input" autocomplete="address-line2">
+                        </div>
+
+                        <div class="garden-form-group-row">
+                            <div class="garden-form-group">
+                                <label class="form-label required" for="city">City</label>
+                                <input type="text" id="city" name="city" class="garden-input" autocomplete="address-level2" required>
+                            </div>
+                            <div class="garden-form-group">
+                                <label class="form-label required" for="state">State/Province</label>
+                                <input type="text" id="state" name="state" class="garden-input" autocomplete="address-level1" required>
+                            </div>
+                            <div class="garden-form-group">
+                                <label class="form-label required" for="zip_code">ZIP/Postal code</label>
+                                <input type="text" id="zip_code" name="zip_code" class="garden-input" autocomplete="postal-code" required>
+                            </div>
+                        </div>
+
+                        <div class="garden-form-group">
+                            <label class="form-label required" for="country">Country</label>
+                            <input type="text" id="country" name="country" class="garden-input" autocomplete="country-name" value="United States" required>
                         </div>
 
                         <div class="garden-form-group">
@@ -226,8 +263,19 @@
                         <div class="section-description">The more, the merrier! We just need a bit more information so we can come up with a better nickname than "co-client."</div>
 
                         <div class="garden-form-group">
-                            <label class="form-label" :class="{'required': addCoClient}" for="co_client_legal_name">What's your co-client's legal name?</label>
-                            <input type="text" id="co_client_legal_name" name="co_client_legal_name" class="garden-input" :required="addCoClient">
+                            <label class="form-label" :class="{'required': addCoClient}" for="co_client_first_name">What's your co-client's first name?</label>
+                            <input type="text" id="co_client_first_name" name="co_client_first_name" class="garden-input" :required="addCoClient">
+                        </div>
+
+                        <div class="garden-form-group">
+                            <label class="form-label" for="co_client_middle_names">What are your co-client's middle names? (optional)</label>
+                            <input type="text" id="co_client_middle_names" name="co_client_middle_names" class="garden-input" placeholder="Enter all middle names separated by spaces">
+                            <div class="form-help">Enter all middle names separated by spaces</div>
+                        </div>
+
+                        <div class="garden-form-group">
+                            <label class="form-label" :class="{'required': addCoClient}" for="co_client_last_name">What's your co-client's last name?</label>
+                            <input type="text" id="co_client_last_name" name="co_client_last_name" class="garden-input" :required="addCoClient">
                         </div>
 
                         <div class="garden-form-group">

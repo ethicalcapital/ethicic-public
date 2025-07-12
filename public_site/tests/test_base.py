@@ -3,19 +3,124 @@ Base test classes for the public site app.
 """
 
 import json
-import os
 
-# Import our Wagtail test base
-import sys
+# Import Django and Wagtail test utilities
 from datetime import datetime
 from typing import Optional
 
-from django.test import RequestFactory, TestCase
+from django.contrib.auth import get_user_model
+from django.test import RequestFactory, TestCase, TransactionTestCase
 from django.utils import timezone
-from wagtail.models import Page
+from wagtail.models import Locale, Page, Site
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-from tests.wagtail_test_base import WagtailTestCase
+
+class WagtailTestCase(TestCase):
+    """Base test case that ensures Wagtail is properly set up."""
+
+    @classmethod
+    def setUpTestData(cls):
+        """Set up test data once for the entire test class."""
+        super().setUpTestData()
+
+        # Ensure we have a locale
+        cls.locale = Locale.objects.get_or_create(language_code="en")[0]
+
+        # Ensure we have a root page
+        if not Page.objects.filter(depth=1).exists():
+            cls.root_page = Page.add_root(title="Root", locale=cls.locale)
+        else:
+            cls.root_page = Page.objects.get(depth=1)
+
+        # Ensure we have a home page
+        home_pages = Page.objects.filter(slug="home", depth=2)
+        if not home_pages.exists():
+            from public_site.models import HomePage
+
+            cls.home_page = HomePage(
+                title="Home",
+                slug="home",
+                hero_title="Test Home Page",
+                hero_tagline="Test tagline",
+                locale=cls.locale,
+            )
+            cls.root_page.add_child(instance=cls.home_page)
+        else:
+            cls.home_page = home_pages.first()
+
+        # Ensure we have a default site
+        cls.site = Site.objects.get_or_create(
+            hostname="localhost",
+            defaults={
+                "port": 80,
+                "root_page": cls.home_page,
+                "is_default_site": True,
+            },
+        )[0]
+
+        # Create a test user
+        user_model = get_user_model()
+        cls.user = user_model.objects.get_or_create(
+            username="testuser",
+            defaults={
+                "email": "test@example.com",
+                "is_staff": True,
+                "is_superuser": True,
+            },
+        )[0]
+
+
+class WagtailTransactionTestCase(TransactionTestCase):
+    """Transaction test case version for tests that need transactions."""
+
+    def setUp(self):
+        """Set up test data for each test."""
+        super().setUp()
+
+        # Ensure we have a locale
+        self.locale = Locale.objects.get_or_create(language_code="en")[0]
+
+        # Ensure we have a root page
+        if not Page.objects.filter(depth=1).exists():
+            self.root_page = Page.add_root(title="Root", locale=self.locale)
+        else:
+            self.root_page = Page.objects.get(depth=1)
+
+        # Ensure we have a home page
+        home_pages = Page.objects.filter(slug="home", depth=2)
+        if not home_pages.exists():
+            from public_site.models import HomePage
+
+            self.home_page = HomePage(
+                title="Home",
+                slug="home",
+                hero_title="Test Home Page",
+                hero_tagline="Test tagline",
+                locale=self.locale,
+            )
+            self.root_page.add_child(instance=self.home_page)
+        else:
+            self.home_page = home_pages.first()
+
+        # Ensure we have a default site
+        self.site = Site.objects.get_or_create(
+            hostname="localhost",
+            defaults={
+                "port": 80,
+                "root_page": self.home_page,
+                "is_default_site": True,
+            },
+        )[0]
+
+        # Create a test user
+        user_model = get_user_model()
+        self.user = user_model.objects.get_or_create(
+            username="testuser",
+            defaults={
+                "email": "test@example.com",
+                "is_staff": True,
+                "is_superuser": True,
+            },
+        )[0]
 
 
 class MockRequestFactory:
@@ -41,15 +146,17 @@ class MockRequestFactory:
         return request
 
 
-class BasePublicSiteTestCase(TestCase):
+class BasePublicSiteTestCase(WagtailTestCase):
     """Base test case for public site tests."""
 
     @classmethod
     def setUpTestData(cls):
         """Set up test data once for the entire test class."""
+        super().setUpTestData()
 
     def setUp(self):
         """Set up each test."""
+        super().setUp()
 
     def create_test_contact_data(self, **overrides):
         """Create test data for contact forms."""
@@ -194,7 +301,7 @@ class APITestMixin:
         return data
 
 
-class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
+class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
     """Base test case for Wagtail page tests with proper Wagtail setup."""
 
     @classmethod

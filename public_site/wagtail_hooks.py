@@ -21,16 +21,15 @@ from .models import (
 class SupportTicketSnippetViewSet(SnippetViewSet):
     model = SupportTicket
     list_display: ClassVar[list] = [
-        "first_name",
-        "last_name",
+        "name",
+        "email",
         "subject",
         "status",
         "created_at",
     ]
-    list_filter: ClassVar[list] = ["status", "category", "created_at"]
+    list_filter: ClassVar[list] = ["status", "ticket_type", "created_at"]
     search_fields: ClassVar[list] = [
-        "first_name",
-        "last_name",
+        "name",
         "email",
         "subject",
         "message",
@@ -179,23 +178,26 @@ def add_public_site_instructions(request, panels):
             return Media()
 
         def render(self):
-            return format_html(
-                """
-                <div class="help-block">
-                    <h3>📋 Content Management Tips</h3>
-                    <ul>
-                        <li><strong>Blog Posts:</strong> Use StreamField blocks for rich content layout</li>
-                        <li><strong>Key Statistics:</strong> Use the Key Statistic block to highlight important data</li>
-                        <li><strong>Images:</strong> Always add alt text for accessibility</li>
-                        <li><strong>SEO:</strong> Fill in meta description and search keywords</li>
-                    </ul>
-                    <p>
-                        <a href="/admin/pages/" class="button">📄 Manage Pages</a>
-                        <a href="/admin/snippets/public_site/supportticket/" class="button">🎫 Support Tickets</a>
-                    </p>
-                </div>
-                """
-            )
+            try:
+                return format_html(
+                    """
+                    <div class="help-block">
+                        <h3>📋 Content Management Tips</h3>
+                        <ul>
+                            <li><strong>Blog Posts:</strong> Use StreamField blocks for rich content layout</li>
+                            <li><strong>Key Statistics:</strong> Use the Key Statistic block to highlight important data</li>
+                            <li><strong>Images:</strong> Always add alt text for accessibility</li>
+                            <li><strong>SEO:</strong> Fill in meta description and search keywords</li>
+                        </ul>
+                        <p>
+                            <a href="/admin/pages/" class="button">📄 Manage Pages</a>
+                            <a href="/admin/snippets/public_site/supportticket/" class="button">🎫 Support Tickets</a>
+                        </p>
+                    </div>
+                    """
+                )
+            except Exception:
+                return "<div class='help-block'>Content management tips temporarily unavailable.</div>"
 
     panels.append(InstructionsPanel())
 
@@ -220,6 +222,8 @@ class MediaItemSnippetViewSet(SnippetViewSet):
 
     def get_page_title(self, obj):
         """Display the parent page title."""
+        if obj is None:
+            return "No page"
         return obj.page.title if obj.page else "No page"
 
     # Add the method to the model for display

@@ -47,6 +47,38 @@
     margin-bottom: var(--space-4);
 }
 
+/* Form Row Layout for Address Fields */
+.onboarding-page .garden-form-group-row {
+    display: flex;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+}
+
+.onboarding-page .garden-form-group-row .garden-form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.onboarding-page .garden-form-group-row .garden-form-group:nth-child(1) {
+    flex: 2; /* City gets more space */
+}
+
+.onboarding-page .garden-form-group-row .garden-form-group:nth-child(2) {
+    flex: 1; /* State */
+}
+
+.onboarding-page .garden-form-group-row .garden-form-group:nth-child(3) {
+    flex: 1; /* ZIP */
+}
+
+/* Form Help Text */
+.onboarding-page .form-help {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2);
+    font-style: italic;
+}
+
 /* Radio and Checkbox Groups */
 .onboarding-page .radio-group,
 .onboarding-page .checkbox-group {

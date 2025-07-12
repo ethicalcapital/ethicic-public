@@ -198,10 +198,17 @@ class OnboardingFormViewTest(BasePublicSiteTestCase, FormTestMixin):
         return {
             # Section 1: About You
             "email": "test@example.com",
-            "legal_name": "John Doe",
+            "first_name": "John",
+            "middle_names": "Michael",
+            "last_name": "Doe",
             "preferred_name_choice": "nope",
             "pronouns": "he/him",
-            "mailing_address": "123 Main St, San Francisco, CA 94102",
+            "street_address": "123 Main St",
+            "street_address_2": "Apt 4B",
+            "city": "San Francisco",
+            "state": "CA",
+            "zip_code": "94102",
+            "country": "United States",
             "phone": "+1 555-0123",
             "birthday": "1990-01-01",
             "employment_status": "full_time",
@@ -273,7 +280,9 @@ class OnboardingFormViewTest(BasePublicSiteTestCase, FormTestMixin):
         data.update(
             {
                 "add_co_client": "yes",
-                "co_client_legal_name": "Jane Doe",
+                "co_client_first_name": "Jane",
+                "co_client_middle_names": "Elizabeth",
+                "co_client_last_name": "Doe",
                 "co_client_call_them": "that",
                 "co_client_email": "jane@example.com",
                 "co_client_pronouns": "she/her",
@@ -585,6 +594,8 @@ class MediaItemsAPITest(BasePublicSiteTestCase, APITestMixin):
         self.media_page = MediaPage(
             title="Media",
             slug="media",
+            sidebar_interview_show=False,
+            sidebar_contact_show=False,
         )
         root.add_child(instance=self.media_page)
 

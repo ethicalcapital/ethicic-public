@@ -21,11 +21,12 @@ class QuickSmokeTest(TestCase):
             email="test@example.com",
             subject="Test Subject",
             message="Test message",
-            status="new",
+            status="open",
+            ticket_type="question",
         )
 
         self.assertEqual(ticket.name, "Test User")
-        self.assertEqual(ticket.status, "new")
+        self.assertEqual(ticket.status, "open")
         self.assertEqual(SupportTicket.objects.count(), 1)
 
     def test_url_access(self):

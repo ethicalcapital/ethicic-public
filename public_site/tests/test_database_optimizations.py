@@ -3,11 +3,17 @@ Tests for database optimizations including indexes and constraints.
 These tests verify the performance improvements and business rules we added.
 """
 
+import os
+import sys
+
+# Import our Wagtail test base
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 from datetime import date, timedelta
 
 from django.db import IntegrityError
-from django.test import TestCase, TransactionTestCase
+from django.test import TransactionTestCase
 from django.utils import timezone
+from wagtail.models import Page
 
 from public_site.models import (
     BlogIndexPage,
@@ -218,7 +224,7 @@ class DatabaseConstraintValidationTestCase(TransactionTestCase):
         # Note: Django choice fields don't create database constraints
         # They validate at the application level, not database level
         # These tests verify that invalid choices can be saved (but would fail form validation)
-        
+
         # Test that invalid choices can be saved to database (Django allows this)
         ticket_with_invalid_status = SupportTicket.objects.create(
             name="Test User",
@@ -338,7 +344,7 @@ class DatabaseConstraintValidationTestCase(TransactionTestCase):
         # but would fail form validation at the application level
         invalid_emails = [
             "not-an-email",
-            "@domain.com", 
+            "@domain.com",
             "user@",
             "user space@domain.com",
             "user@domain",
@@ -439,7 +445,7 @@ class DatabaseConstraintValidationTestCase(TransactionTestCase):
         try:
             old_strategy = StrategyPage(
                 title="Old Strategy",
-                slug="old-strategy", 
+                slug="old-strategy",
                 inception_date=date(1999, 12, 31),
                 locale=locale,
             )
@@ -450,7 +456,7 @@ class DatabaseConstraintValidationTestCase(TransactionTestCase):
             # Constraint exists and is working
             pass
 
-        # Future date - test depends on whether constraint is actually defined  
+        # Future date - test depends on whether constraint is actually defined
         # If no database constraint exists, this will save successfully
         try:
             future_strategy = StrategyPage(
@@ -488,7 +494,7 @@ class DatabaseConstraintValidationTestCase(TransactionTestCase):
         # The constraint is there as a safety net at the database level.
 
 
-class IndexPerformanceTestCase(TestCase):
+class IndexPerformanceTestCase(WagtailTestCase):
     """Test that indexes actually improve query performance."""
 
     def setUp(self):

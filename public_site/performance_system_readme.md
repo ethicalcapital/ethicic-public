@@ -14,7 +14,7 @@ The strategy pages now have an automated performance calculation system. You onl
 4. Scroll to the **📊 Performance Update - Enter New Month** section
 5. Fill in:
    - **Latest month return**: e.g., "3.25%"
-   - **Latest month benchmark**: e.g., "2.10%" 
+   - **Latest month benchmark**: e.g., "2.10%"
    - **Latest month date**: e.g., "2025-07-31"
 6. Click **Save**
 
@@ -71,7 +71,7 @@ When you enter monthly data, the system automatically calculates:
 ## Benefits
 
 - **One-time entry**: Just enter the latest month's data
-- **Automatic calculations**: All metrics update instantly  
+- **Automatic calculations**: All metrics update instantly
 - **Historical preservation**: All monthly data is preserved
 - **Error reduction**: No manual calculation of compound returns
 - **Audit trail**: Performance update timestamps

@@ -44,7 +44,7 @@ def create_test_page_tree():
 
 
 def create_test_user(
-    username="testuser", email="test@example.com", password="testpass123"
+    username="fixtureuser", email="test@example.com", password="testpass123"
 ):
     """Create a test user."""
     return User.objects.create_user(username=username, email=email, password=password)

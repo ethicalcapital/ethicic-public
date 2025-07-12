@@ -3,22 +3,20 @@ Base test classes and utilities for public site tests.
 """
 
 import json
+import os
+
+# Import our Wagtail test base
+import sys
 from datetime import datetime, timedelta
 from typing import Any, Optional
 
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.cache import cache
-from django.test import TestCase
 from django.utils import timezone
 from wagtail.models import Page
 
-# Import our Wagtail test base
-import sys
-import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-from tests.wagtail_test_base import WagtailTestCase
-
 from public_site.models import (
     BlogIndexPage,
     BlogPost,
@@ -31,6 +29,7 @@ from public_site.models import (
     OnboardingPage,
     StrategyPage,
 )
+from tests.wagtail_test_base import WagtailTestCase
 
 
 class BasePublicSiteTestCase(WagtailTestCase):
@@ -48,7 +47,7 @@ class BasePublicSiteTestCase(WagtailTestCase):
 
         # Create test user
         self.user = User.objects.create_user(
-            username="testuser", email="test@ethicic.com", password="testpass123"
+            username="baseolduser", email="test@ethicic.com", password="testpass123"
         )
 
         # Set up test settings
@@ -350,6 +349,8 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
             title="Media",
             slug="media",
             intro_text="<p>Test media page</p>",
+            sidebar_interview_show=False,
+            sidebar_contact_show=False,
         )
         self.home_page.add_child(instance=media_page)
 
@@ -372,7 +373,7 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
         """Log in a user for tests."""
         if not user:
             user = User.objects.create_user(
-                username="testuser", email="test@ethicic.com", password="testpass123"
+                username="baseolduser", email="test@ethicic.com", password="testpass123"
             )
         self.client.force_login(user)
         return user

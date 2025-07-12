@@ -27,9 +27,22 @@ class CacheInvalidationMiddleware:
 @receiver(post_save)
 def sync_to_cache_on_save(sender, instance, created, **kwargs):
     """Sync model instances to cache database when saved to Ubicloud."""
-    from public_site.db_router import HybridDatabaseRouter
+    # Handle None instance
+    if instance is None:
+        return
 
-    router = HybridDatabaseRouter()
+    # Handle missing _meta
+    if not hasattr(sender, "_meta"):
+        return
+
+    try:
+        from public_site.db_router import HybridDatabaseRouter
+
+        router = HybridDatabaseRouter()
+    except ImportError:
+        # Handle import errors gracefully
+        return
+
     model_label = f"{sender._meta.app_label}.{sender._meta.model_name}"
 
     # Only sync cached models
@@ -50,9 +63,22 @@ def sync_to_cache_on_save(sender, instance, created, **kwargs):
 @receiver(post_delete)
 def remove_from_cache_on_delete(sender, instance, **kwargs):
     """Remove model instances from cache database when deleted from Ubicloud."""
-    from public_site.db_router import HybridDatabaseRouter
+    # Handle None instance
+    if instance is None:
+        return
 
-    router = HybridDatabaseRouter()
+    # Handle missing _meta
+    if not hasattr(sender, "_meta"):
+        return
+
+    try:
+        from public_site.db_router import HybridDatabaseRouter
+
+        router = HybridDatabaseRouter()
+    except ImportError:
+        # Handle import errors gracefully
+        return
+
     model_label = f"{sender._meta.app_label}.{sender._meta.model_name}"
 
     # Only handle cached models

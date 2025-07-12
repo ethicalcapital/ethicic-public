@@ -458,15 +458,34 @@ def onboarding_form_submit(request):
 
         try:
             # Create comprehensive support ticket for onboarding
-            full_name = form_data.get("legal_name", "")
+            # Build full name from components
+            name_parts = [form_data.get("first_name", "")]
+            if form_data.get("middle_names"):
+                name_parts.append(form_data.get("middle_names"))
+            name_parts.append(form_data.get("last_name", ""))
+            full_name = " ".join(filter(None, name_parts))
+
+            # Build full address from components
+            address_parts = [form_data.get("street_address", "")]
+            if form_data.get("street_address_2"):
+                address_parts.append(form_data.get("street_address_2"))
+            address_parts.extend(
+                [
+                    form_data.get("city", ""),
+                    form_data.get("state", ""),
+                    form_data.get("zip_code", ""),
+                    form_data.get("country", ""),
+                ]
+            )
+            full_address = ", ".join(filter(None, address_parts))
 
             # Build comprehensive message with all form data
             message_parts = [
                 "## Onboarding Application\n",
-                f"**Legal Name:** {full_name}",
+                f"**Name:** {full_name}",
                 f"**Email:** {form_data.get('email', '')}",
                 f"**Phone:** {form_data.get('phone', '')}",
-                f"**Mailing Address:** {form_data.get('mailing_address', '')}",
+                f"**Mailing Address:** {full_address}",
                 f"**Pronouns:** {form_data.get('pronouns', '')}",
                 f"**Birthday:** {form_data.get('birthday', '')}",
                 f"**Employment Status:** {form_data.get('employment_status', '')}",
@@ -481,10 +500,17 @@ def onboarding_form_submit(request):
 
             # Add co-client info if provided
             if form_data.get("add_co_client") == "yes":
+                # Build co-client full name from components
+                co_name_parts = [form_data.get("co_client_first_name", "")]
+                if form_data.get("co_client_middle_names"):
+                    co_name_parts.append(form_data.get("co_client_middle_names"))
+                co_name_parts.append(form_data.get("co_client_last_name", ""))
+                co_full_name = " ".join(filter(None, co_name_parts))
+
                 message_parts.extend(
                     [
                         "\n## Co-Client Information",
-                        f"**Name:** {form_data.get('co_client_legal_name', '')}",
+                        f"**Name:** {co_full_name}",
                         f"**Email:** {form_data.get('co_client_email', '')}",
                         f"**Phone:** {form_data.get('co_client_phone', '')}",
                         f"**Pronouns:** {form_data.get('co_client_pronouns', '')}",

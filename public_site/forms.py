@@ -338,11 +338,12 @@ class AccessibleContactForm(forms.Form):
     def _validate_form_timing(self, cleaned_data):
         """Validate form submission timing to detect bots."""
         import sys
+
         from django.conf import settings
 
         # SECURITY: Use more secure test detection that doesn't rely on settings
         # Check settings first to allow override_settings to work properly
-        if hasattr(settings, 'TESTING'):
+        if hasattr(settings, "TESTING"):
             is_testing = settings.TESTING
         else:
             is_testing = "test" in sys.argv or "pytest" in sys.modules
@@ -763,10 +764,30 @@ class OnboardingForm(forms.Form):
         ),
     )
 
-    legal_name = forms.CharField(
+    first_name = forms.CharField(
+        max_length=100,
+        label="What's your first name?",
+        widget=forms.TextInput(
+            attrs={"autocomplete": "given-name", "class": "garden-input"}
+        ),
+    )
+
+    middle_names = forms.CharField(
         max_length=200,
-        label="What's your legal name?",
-        widget=forms.TextInput(attrs={"autocomplete": "name", "class": "garden-input"}),
+        required=False,
+        label="What are your middle names? (optional)",
+        help_text="Enter all middle names separated by spaces",
+        widget=forms.TextInput(
+            attrs={"autocomplete": "additional-name", "class": "garden-input"}
+        ),
+    )
+
+    last_name = forms.CharField(
+        max_length=100,
+        label="What's your last name?",
+        widget=forms.TextInput(
+            attrs={"autocomplete": "family-name", "class": "garden-input"}
+        ),
     )
 
     PREFERRED_NAME_CHOICES: ClassVar[list] = [
@@ -807,10 +828,56 @@ class OnboardingForm(forms.Form):
         widget=forms.TextInput(attrs={"class": "garden-input"}),
     )
 
-    mailing_address = forms.CharField(
-        max_length=500,
-        label="What's your mailing address?",
-        widget=forms.Textarea(attrs={"class": "garden-input", "rows": 3}),
+    # Address components (no PO Boxes allowed)
+    street_address = forms.CharField(
+        max_length=200,
+        label="Street address",
+        help_text="Enter your street address (PO Boxes are not permitted)",
+        widget=forms.TextInput(
+            attrs={"autocomplete": "address-line1", "class": "garden-input"}
+        ),
+    )
+
+    street_address_2 = forms.CharField(
+        max_length=200,
+        required=False,
+        label="Apartment, suite, unit, etc. (optional)",
+        widget=forms.TextInput(
+            attrs={"autocomplete": "address-line2", "class": "garden-input"}
+        ),
+    )
+
+    city = forms.CharField(
+        max_length=100,
+        label="City",
+        widget=forms.TextInput(
+            attrs={"autocomplete": "address-level2", "class": "garden-input"}
+        ),
+    )
+
+    state = forms.CharField(
+        max_length=50,
+        label="State/Province",
+        widget=forms.TextInput(
+            attrs={"autocomplete": "address-level1", "class": "garden-input"}
+        ),
+    )
+
+    zip_code = forms.CharField(
+        max_length=20,
+        label="ZIP/Postal code",
+        widget=forms.TextInput(
+            attrs={"autocomplete": "postal-code", "class": "garden-input"}
+        ),
+    )
+
+    country = forms.CharField(
+        max_length=100,
+        label="Country",
+        initial="United States",
+        widget=forms.TextInput(
+            attrs={"autocomplete": "country-name", "class": "garden-input"}
+        ),
     )
 
     phone = forms.CharField(
@@ -872,10 +939,25 @@ class OnboardingForm(forms.Form):
     )
 
     # Section 2: Your Co-Client (conditional fields)
-    co_client_legal_name = forms.CharField(
+    co_client_first_name = forms.CharField(
+        max_length=100,
+        required=False,
+        label="What's your co-client's first name?",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    co_client_middle_names = forms.CharField(
         max_length=200,
         required=False,
-        label="What's your co-client's legal name?",
+        label="What are your co-client's middle names? (optional)",
+        help_text="Enter all middle names separated by spaces",
+        widget=forms.TextInput(attrs={"class": "garden-input"}),
+    )
+
+    co_client_last_name = forms.CharField(
+        max_length=100,
+        required=False,
+        label="What's your co-client's last name?",
         widget=forms.TextInput(attrs={"class": "garden-input"}),
     )
 
@@ -1257,6 +1339,30 @@ class OnboardingForm(forms.Form):
         email = self.cleaned_data.get("email", "")
         return email.lower().strip()
 
+    def clean_street_address(self):
+        """Validate street address and reject PO Boxes"""
+        street_address = self.cleaned_data.get("street_address", "").strip()
+
+        # Check for PO Box patterns
+        po_box_patterns = [
+            r"\bP\.?\s*O\.?\s*BOX\b",
+            r"\bPOBOX\b",
+            r"\bPO\s+BOX\b",
+            r"\bP\.O\.\s*BOX\b",
+            r"\bBOX\s+\d+\b",
+            r"\bPMB\s+\d+\b",  # Private Mail Box
+        ]
+
+        import re
+
+        for pattern in po_box_patterns:
+            if re.search(pattern, street_address.upper()):
+                raise forms.ValidationError(
+                    "PO Boxes are not permitted. Please provide a physical street address."
+                )
+
+        return street_address
+
     def clean(self):
         """Form validation with spam protection and conditional field handling."""
         cleaned_data = super().clean()
@@ -1270,7 +1376,8 @@ class OnboardingForm(forms.Form):
         if cleaned_data.get("add_co_client") == "yes":
             # Make co-client fields required when adding a co-client
             co_client_required_fields = [
-                ("co_client_legal_name", "Please provide your co-client's legal name."),
+                ("co_client_first_name", "Please provide your co-client's first name."),
+                ("co_client_last_name", "Please provide your co-client's last name."),
                 ("co_client_email", "Please provide your co-client's email."),
                 ("co_client_phone", "Please provide your co-client's phone number."),
                 ("co_client_birthday", "Please provide your co-client's birthday."),
