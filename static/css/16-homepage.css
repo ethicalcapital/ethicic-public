@@ -424,6 +424,7 @@
 
     .process-step {
         display: flex;
+        align-items: flex-start;
         gap: var(--space-6);
         padding: var(--space-6);
         margin-bottom: var(--space-6);
@@ -453,6 +454,29 @@
         font-family: var(--font-sans);
         border-radius: var(--radius-full);
         flex-shrink: 0;
+        /* Ensure proper alignment within process steps */
+        align-self: flex-start;
+        margin-top: 0;
+    }
+
+    /* Higher specificity override to ensure homepage step numbers display correctly */
+    .home-page .process-step .step-number {
+        width: 48px !important;
+        height: 48px !important;
+        min-width: 48px !important;
+        background: var(--color-primary) !important;
+        color: var(--color-on-primary) !important;
+        font-size: var(--font-lg) !important;
+        font-weight: var(--font-bold) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-family: var(--font-sans) !important;
+        border-radius: var(--radius-full) !important;
+        flex-shrink: 0 !important;
+        align-self: flex-start !important;
+        margin: 0 !important;
+        position: relative !important;
     }
 
     .step-content p {
