@@ -531,7 +531,6 @@
         margin-top: var(--space-12);
         position: relative;
         overflow: hidden;
-        box-shadow: var(--shadow-lg);
     }
 
     .cta-panel::before {

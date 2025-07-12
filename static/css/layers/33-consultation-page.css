@@ -1,0 +1,246 @@
+/* Consultation Page Styles */
+/* Complete styling for consultation booking page using Garden UI components */
+
+@layer components {
+    /* ===== CONSULTATION PAGE STYLES ===== */
+    
+    .consultation-page {
+        background: var(--color-background);
+        min-height: 100vh;
+    }
+
+    /* Hero Section */
+    .consultation-page .hero {
+        background: var(--color-surface);
+        border: none;
+        text-align: center;
+        padding: var(--space-12) var(--space-6);
+    }
+
+    .consultation-page .hero-title {
+        font-size: var(--font-3xl);
+        font-weight: var(--font-bold);
+        color: var(--color-primary);
+        margin-bottom: var(--space-4);
+        font-family: var(--font-sans);
+        letter-spacing: -0.02em;
+    }
+
+    .consultation-page .hero-subtitle {
+        font-size: var(--font-lg);
+        color: var(--color-text-secondary);
+        max-width: var(--content-width-narrow);
+        margin: 0 auto;
+        line-height: var(--line-relaxed);
+    }
+
+    /* Garden Panel Styling */
+    .consultation-page .garden-panel {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        margin-bottom: var(--space-8);
+        overflow: hidden;
+    }
+
+    .consultation-page .panel-header {
+        background: var(--color-primary);
+        color: var(--color-on-primary);
+        padding: var(--space-4) var(--space-6);
+        font-size: var(--font-lg);
+        font-weight: var(--font-semibold);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-family: var(--font-sans);
+    }
+
+    .consultation-page .panel-content {
+        padding: var(--space-8) var(--space-6);
+    }
+
+    /* Introduction Section */
+    .consultation-page .introduction {
+        text-align: center;
+    }
+
+    .consultation-page .introduction .panel-content {
+        max-width: var(--content-width-normal);
+        margin: 0 auto;
+    }
+
+    /* Contact Section */
+    .consultation-page .intro-text {
+        text-align: center;
+        margin-bottom: var(--space-8);
+        font-size: var(--font-lg);
+        color: var(--color-text-secondary);
+        max-width: var(--content-width-narrow);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Consultation Options Grid */
+    .consultation-page .consultation-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-6);
+        margin: var(--space-8) 0;
+    }
+
+    .consultation-page .consultation-type {
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: var(--space-6);
+        text-align: center;
+        transition: var(--transition-normal);
+        position: relative;
+    }
+
+    .consultation-page .consultation-type:hover {
+        border-color: var(--color-primary);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+    }
+
+    .consultation-page .consultation-type h3 {
+        font-size: var(--font-xl);
+        font-weight: var(--font-semibold);
+        color: var(--color-primary);
+        margin-bottom: var(--space-4);
+        font-family: var(--font-sans);
+    }
+
+    .consultation-page .consultation-type p {
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-6);
+        line-height: var(--line-relaxed);
+    }
+
+    .consultation-page .consultation-type .garden-action {
+        width: 100%;
+        margin-top: var(--space-4);
+    }
+
+    /* Alternative Contact */
+    .consultation-page .alternative-contact {
+        background: var(--color-surface-variant);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: var(--space-6);
+        margin-top: var(--space-8);
+        text-align: center;
+    }
+
+    .consultation-page .alternative-contact p {
+        margin: 0;
+        color: var(--color-text-secondary);
+        font-size: var(--font-base);
+    }
+
+    /* Expectations Section */
+    .consultation-page .expectation-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-6);
+        margin-top: var(--space-6);
+    }
+
+    .consultation-page .expectation-item {
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: var(--space-5);
+        position: relative;
+    }
+
+    .consultation-page .expectation-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--color-primary);
+        border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    }
+
+    .consultation-page .expectation-item h4 {
+        font-size: var(--font-lg);
+        font-weight: var(--font-semibold);
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-3);
+        font-family: var(--font-sans);
+    }
+
+    .consultation-page .expectation-item p {
+        color: var(--color-text-secondary);
+        margin: 0;
+        line-height: var(--line-relaxed);
+    }
+
+    /* No Obligation Section */
+    .consultation-page .no-obligation {
+        background: var(--color-primary-alpha-10);
+        border: 1px solid var(--color-primary-alpha-20);
+        text-align: center;
+    }
+
+    .consultation-page .no-obligation .panel-content {
+        padding: var(--space-6);
+    }
+
+    .consultation-page .disclaimer {
+        font-size: var(--font-base);
+        color: var(--color-text-primary);
+        margin: 0;
+        line-height: var(--line-relaxed);
+    }
+
+    .consultation-page .disclaimer strong {
+        color: var(--color-primary);
+        font-weight: var(--font-bold);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .consultation-page .hero {
+            padding: var(--space-8) var(--space-4);
+        }
+
+        .consultation-page .hero-title {
+            font-size: var(--font-2xl);
+        }
+
+        .consultation-page .panel-content {
+            padding: var(--space-6) var(--space-4);
+        }
+
+        .consultation-page .consultation-options {
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+        }
+
+        .consultation-page .expectation-grid {
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+        }
+    }
+
+    /* Dark Mode Support */
+    [data-theme="dark"] .consultation-page .garden-panel {
+        background: var(--color-surface);
+        border-color: var(--color-border);
+    }
+
+    [data-theme="dark"] .consultation-page .consultation-type,
+    [data-theme="dark"] .consultation-page .expectation-item {
+        background: var(--color-surface-variant);
+        border-color: var(--color-border);
+    }
+
+    [data-theme="dark"] .consultation-page .alternative-contact {
+        background: var(--color-surface);
+        border-color: var(--color-border);
+    }
+}

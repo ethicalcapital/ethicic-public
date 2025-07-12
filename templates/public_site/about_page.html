@@ -101,10 +101,10 @@
     <section class="about-panels two-columns">
         <!-- Panel 1: What I Do Now -->
         <div class="garden-panel">
-            <div class="garden-panel-header">
+            <div class="garden-panel__header">
                 <h2 class="panel-title">WHAT I DO NOW</h2>
             </div>
-            <div class="garden-panel-content">
+            <div class="garden-panel__content">
                 <div class="panel-section">
                     <h3>Current Role</h3>
                     {{ page.current_role_content|safe }}
@@ -124,10 +124,10 @@
 
         <!-- Panel 2: Beyond Work -->
         <div class="garden-panel">
-            <div class="garden-panel-header">
+            <div class="garden-panel__header">
                 <h2 class="panel-title">BEYOND WORK</h2>
             </div>
-            <div class="garden-panel-content">
+            <div class="garden-panel__content">
                 {{ page.external_roles_content|safe }}
 
                 {% for hobby in page.hobbies %}
@@ -145,10 +145,10 @@
 
     <!-- EXPERIENCE SECTION - HORIZONTAL TIMELINE -->
     <section class="experience-section garden-panel">
-        <div class="garden-panel-header">
+        <div class="garden-panel__header">
             <h2 class="panel-title">EXPERIENCE</h2>
         </div>
-        <div class="garden-panel-content">
+        <div class="garden-panel__content">
             <div class="horizontal-timeline">
                 {% for item in page.experience_timeline %}
                 <div class="timeline-item">
@@ -168,10 +168,10 @@
 
     <!-- WRITING & SPEAKING SECTION -->
     <section class="writing-speaking-section garden-panel">
-        <div class="garden-panel-header">
+        <div class="garden-panel__header">
             <h2 class="panel-title">{{ page.speaking_writing_title|upper }}</h2>
         </div>
-        <div class="garden-panel-content">
+        <div class="garden-panel__content">
             <div class="writing-speaking-grid">
                 <!-- Featured Posts -->
                 <div class="featured-posts">

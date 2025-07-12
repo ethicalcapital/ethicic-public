@@ -8,8 +8,8 @@
 {% block content %}
 <div class="garden-container">
 <!-- Streamlined Hero Section -->
-<section class="hero-panel" role="banner" aria-labelledby="hero-heading">
-    <div class="hero-panel-content">
+<section class="hero-panel garden-panel" role="banner" aria-labelledby="hero-heading">
+    <div class="garden-panel__content hero-panel-content">
         <div class="hero-content-grid">
             <!-- Main Hero Content -->
             <div class="hero-main">
@@ -112,26 +112,29 @@
 </section>
 
 <!-- Articles Section -->
-<section class="articles-section">
-    <div class="articles-content">
+<section class="articles-section garden-panel">
+    <div class="garden-panel__header">
+        <div class="panel-title">LATEST ARTICLES</div>
+    </div>
+    <div class="garden-panel__content articles-content">
         <div class="articles-container">
         <!-- Articles Content -->
         <div class="articles-main" class="full-width-important">
         {% if tag %}
-        <section class="tag-filter">
-            <div class="section-title-wrapper">
-                <h2 class="section-title">FILTER RESULTS</h2>
+        <section class="tag-filter garden-panel">
+            <div class="garden-panel__header">
+                <div class="panel-title">FILTER RESULTS</div>
             </div>
+            <div class="garden-panel__content">
             <p>Showing posts tagged with: <strong>{{ tag }}</strong></p>
             <a href="{{ page.url }}" class="garden-action secondary">CLEAR FILTER</a>
+            </div>
         </section>
         {% endif %}
 
         <!-- Blog Posts -->
         <section class="blog-posts" class="full-width-important">
-            <div class="section-title-wrapper">
-                <h2 class="section-title">LATEST ARTICLES</h2>
-            </div>
+            <div class="blog-posts-content">
             {% if posts %}
                 <div class="articles-list" id="articles-container" class="full-width-important">
                     {% for post in posts %}

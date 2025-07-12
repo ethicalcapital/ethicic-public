@@ -5,6 +5,10 @@
 
 {% block body_class %}encyclopedia-index{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/encyclopedia-page-fix.css' %}?v=1">
+{% endblock %}
+
 {% block content %}
 <div class="garden-container">
     <!-- Hero Section -->
@@ -36,7 +40,7 @@
             </div>
 
             <!-- Entry Count -->
-            <div class="entry-count" style="margin: var(--space-4, 16px) 0; color: var(--theme-on-surface-variant); font-size: var(--font-sm, 14px);">
+            <div class="entry-count">
                 {% if selected_letter %}
                     Showing {{ entries.count }} term{{ entries.count|pluralize }} starting with "{{ selected_letter }}"
                 {% else %}
@@ -47,11 +51,11 @@
             <!-- Encyclopedia Entries -->
             <div class="encyclopedia-entries">
                 {% for entry in entries %}
-                    <div class="encyclopedia-entry" data-title="{{ entry.title|lower }}" data-category="{{ entry.category|default:'' }}" style="border: 1px solid var(--theme-border); border-radius: var(--radius-md, 6px); padding: var(--space-4, 16px); margin-bottom: var(--space-4, 16px); background: var(--theme-surface);">
+                    <div class="encyclopedia-entry" data-title="{{ entry.title|lower }}" data-category="{{ entry.category|default:'' }}">
                         <!-- Entry Header with Title and Tags -->
-                        <div class="entry-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-3, 12px);">
-                            <h3 style="margin: 0; font-size: var(--font-lg, 18px); font-weight: var(--font-semibold, 600); color: var(--theme-on-surface);">{{ entry.title }}</h3>
-                            <div style="display: flex; gap: var(--space-2, 8px); flex-wrap: wrap;">
+                        <div class="entry-header">
+                            <h3>{{ entry.title }}</h3>
+                            <div class="entry-tags">
                                 {% if entry.category %}
                                     <span class="article-tag">
                                         {{ entry.get_category_display }}
@@ -66,16 +70,16 @@
                         </div>
 
                         <!-- Summary - Always visible by default -->
-                        <div style="color: var(--theme-on-surface-variant); line-height: 1.6; margin-bottom: var(--space-3, 12px);">
+                        <div class="entry-summary">
                             {{ entry.summary }}
                         </div>
 
                         <!-- Expandable detailed content (only show if additional content exists) -->
                         {% if entry.detailed_content or entry.examples or entry.further_reading or entry.related_terms %}
-                            <details style="margin-top: var(--space-3, 12px);">
-                                <summary style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: var(--space-2, 8px) 0; color: var(--theme-primary); font-weight: var(--font-medium, 500); transition: color 0.2s ease;">
-                                    <span class="toggle-text">Show More Details</span>
-                                    <span class="expand-icon" aria-hidden="true" style="font-size: var(--font-lg, 18px); line-height: 1;">+</span>
+                            <details class="entry-details">
+                                <summary>
+                                    <span class="toggle-text">Show</span>
+                                    <span class="expand-icon" aria-hidden="true">+</span>
                                 </summary>
 
                                 <div class="entry-details" style="padding-top: var(--space-3, 12px); border-top: 1px solid var(--theme-border); margin-top: var(--space-2, 8px);">

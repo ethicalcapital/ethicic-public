@@ -7,17 +7,21 @@
 
 {% block body_class %}blog-post-page{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/blog-post-garden-ui-fix.css' %}?v=1">
+{% endblock %}
+
 {% block content %}
 <div class="garden-container">
 <!-- Modern Article Layout -->
-<div class="blog-article-wrapper">
-    <div class="blog-article">
+<div class="blog-article-wrapper garden-panel">
+    <div class="garden-panel__content blog-article">
         <!-- Key Statistics Hero Section - Above Title -->
         {% if page.content %}
             {% with key_stats=page.content|select_key_statistics %}
                 {% if key_stats %}
-                    <section class="article-kpis-hero">
-                        <div class="kpis-hero-container">
+                    <section class="article-kpis-hero garden-panel">
+                        <div class="garden-panel__content kpis-hero-container">
                             {% for block in key_stats %}
                                 {% include_block block %}
                             {% endfor %}
@@ -82,10 +86,12 @@
         </main>
 
         <!-- Newsletter CTA Section -->
-        <section class="article-newsletter-cta" style="background: #f8f4ff; padding: 48px 24px; margin: 48px 0; border-radius: 12px; text-align: center;">
-            <div style="max-width: 600px; margin: 0 auto;">
-                <h3 style="font-size: 1.75rem; margin: 0 0 16px 0; color: #1a1a1a; font-weight: 700;">Stay Informed on Ethical Investing</h3>
-                <p style="color: #666; margin: 0 0 32px 0; line-height: 1.6; font-size: 1.1rem;">Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.</p>
+        <section class="article-newsletter-cta garden-panel">
+            <div class="garden-panel__header">
+                <div class="panel-title">Stay Informed on Ethical Investing</div>
+            </div>
+            <div class="garden-panel__content newsletter-cta-content">
+                <p class="newsletter-description">Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.</p>
                 <form method="post" action="/newsletter/signup/" style="margin-bottom: 16px;">
                     {% csrf_token %}
                     <input type="hidden" name="source" value="blog-article">
