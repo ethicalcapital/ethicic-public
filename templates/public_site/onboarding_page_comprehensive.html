@@ -55,7 +55,7 @@
 
             <!-- Comprehensive Onboarding Form -->
             <form id="onboardingForm" method="post" action="/onboarding/submit/"
-                  x-data="onboardingForm"
+                  x-data="onboardingForm()"
                   @submit.prevent="submitting = true; $el.submit()">
                 {% csrf_token %}
 
