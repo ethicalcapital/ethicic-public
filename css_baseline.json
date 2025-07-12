@@ -1,8 +1,9 @@
 {
-  "timestamp": "2025-07-12T09:27:08.153736+00:00",
-  "total_files": 74,
+  "timestamp": "2025-07-12T22:13:30.504747+00:00",
+  "total_files": 75,
   "total_defined_vars": 385,
   "files_with_issues": [
+    "login-dropdown-fix.css",
     "strategy-nuclear-fix.css",
     "header-text-fix.css",
     "search-fixes.css",
@@ -19,6 +20,28 @@
     ]
   },
   "hardcoded_colors": {
+    "login-dropdown-fix.css": [
+      [
+        36,
+        "#fff"
+      ],
+      [
+        37,
+        "#e5e7eb"
+      ],
+      [
+        61,
+        "#374151"
+      ],
+      [
+        63,
+        "#f3f4f6"
+      ],
+      [
+        72,
+        "#f9fafb"
+      ]
+    ],
     "strategy-nuclear-fix.css": [
       [
         7,
@@ -235,6 +258,7 @@
     ]
   },
   "file_sizes": {
+    "login-dropdown-fix.css": 4.23,
     "accessibility-contrast-fixes.css": 5.73,
     "fix-formatting-issues.css": 6.27,
     "strategy-nuclear-fix.css": 1.99,
@@ -312,5 +336,5 @@
   },
   "total_undefined_vars": 1,
   "is_baseline": true,
-  "baseline_created": "2025-07-12T09:27:08.173996+00:00"
+  "baseline_created": "2025-07-12T22:13:30.524594+00:00"
 }
