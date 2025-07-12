@@ -25,7 +25,7 @@
     z-index: 100 !important;
 }
 
-/* Fix login dropdown positioning and visibility */
+/* Fix login dropdown positioning ONLY - let Alpine control visibility */
 .garden-login-dropdown {
     position: absolute !important;
     top: calc(100% + 8px) !important;
@@ -41,7 +41,7 @@
     overflow: visible !important;
     transform-origin: top right !important;
     transition: opacity 0.15s ease, transform 0.15s ease !important;
-    /* Let Alpine.js control display via inline styles */
+    /* DO NOT set display property - let Alpine.js inline styles control it */
 }
 
 /* Fix dropdown items */
@@ -142,8 +142,6 @@ main {
         min-width: 240px !important;
     }
 }
-
-/* Combined with main dropdown selector above to avoid duplication */
 
 /* Alpine cloak to prevent flash of content */
 [x-cloak] {
