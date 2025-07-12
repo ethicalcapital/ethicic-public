@@ -1,0 +1,133 @@
+/* ULTIMATE SEARCH INPUT VISIBILITY FIX - Load this last */
+
+/* Nuclear option - Override ALL search input styling with maximum specificity */
+#search-input,
+input#search-input,
+.garden-search-input,
+input.garden-search-input,
+.garden-header #search-input,
+.garden-header input#search-input,
+.garden-header .garden-search-input,
+.garden-header input.garden-search-input,
+.garden-search-container #search-input,
+.garden-search-container input#search-input,
+.garden-search-container .garden-search-input,
+.garden-search-container input.garden-search-input,
+.garden-search #search-input,
+.garden-search input#search-input,
+.garden-search .garden-search-input,
+.garden-search input.garden-search-input,
+html body .garden-header #search-input,
+html body .garden-header input#search-input,
+html body .garden-header .garden-search-input,
+html body .garden-header input.garden-search-input,
+html body .garden-search-container #search-input,
+html body .garden-search-container input#search-input,
+html body .garden-search-container .garden-search-input,
+html body .garden-search-container input.garden-search-input {
+    /* Text visibility */
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    -moz-text-fill-color: #000000 !important;
+    -ms-text-fill-color: #000000 !important;
+    
+    /* Background */
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    
+    /* Border for visibility */
+    border: 2px solid #cccccc !important;
+    
+    /* Cursor */
+    caret-color: #000000 !important;
+    
+    /* Remove any effects that might hide text */
+    text-shadow: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    
+    /* Font settings */
+    font-size: 14px !important;
+    font-weight: normal !important;
+    font-family: inherit !important;
+    
+    /* Ensure it's interactive */
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    cursor: text !important;
+    
+    /* Layout */
+    display: inline-block !important;
+    visibility: visible !important;
+    z-index: 9999 !important;
+    position: relative !important;
+    
+    /* Padding */
+    padding: 8px 12px !important;
+}
+
+/* Placeholder text */
+#search-input::placeholder,
+input#search-input::placeholder,
+.garden-search-input::placeholder,
+input.garden-search-input::placeholder {
+    color: #666666 !important;
+    -webkit-text-fill-color: #666666 !important;
+    opacity: 1 !important;
+}
+
+/* Focus state */
+#search-input:focus,
+input#search-input:focus,
+.garden-search-input:focus,
+input.garden-search-input:focus {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    background-color: #ffffff !important;
+    border-color: #0066cc !important;
+    outline: 2px solid #0066cc !important;
+    outline-offset: 2px !important;
+}
+
+/* Dark mode overrides */
+html[data-theme="dark"] #search-input,
+html[data-theme="dark"] input#search-input,
+html[data-theme="dark"] .garden-search-input,
+html[data-theme="dark"] input.garden-search-input,
+[data-theme="dark"] #search-input,
+[data-theme="dark"] input#search-input,
+[data-theme="dark"] .garden-search-input,
+[data-theme="dark"] input.garden-search-input {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: #1a1a1a !important;
+    border-color: #444444 !important;
+    caret-color: #ffffff !important;
+}
+
+/* Dark mode placeholder */
+html[data-theme="dark"] #search-input::placeholder,
+html[data-theme="dark"] input#search-input::placeholder,
+html[data-theme="dark"] .garden-search-input::placeholder,
+html[data-theme="dark"] input.garden-search-input::placeholder {
+    color: #cccccc !important;
+    -webkit-text-fill-color: #cccccc !important;
+}
+
+/* Absolute nuclear option - inline style override */
+input[type="text"]#search-input,
+input[type="search"]#search-input {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    background: #ffffff !important;
+}
+
+/* Debug styling - this should make the input very obvious */
+.garden-header .garden-search {
+    background: rgba(255, 0, 0, 0.1) !important; /* Light red background for debugging */
+    padding: 2px !important;
+}
