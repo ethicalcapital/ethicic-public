@@ -191,6 +191,11 @@ input.garden-search-input {
     -webkit-touch-callout: default !important;
     -webkit-user-modify: read-write !important;
     outline: none;
+    /* CRITICAL: Force visible text color */
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    background-color: #ffffff !important;
+    caret-color: #000000 !important;
 }
 
 .garden-header .garden-search-input:focus,
@@ -201,4 +206,30 @@ input.garden-search-input:focus {
     outline: 2px solid var(--color-primary) !important;
     outline-offset: 2px !important;
     z-index: 102 !important;
+}
+
+/* ULTIMATE TEXT VISIBILITY FIX - Theme-specific with maximum specificity */
+html[data-theme="light"] .garden-header .garden-search-input,
+html[data-theme="light"] .garden-search-container .garden-search-input,
+html[data-theme="light"] input.garden-search-input,
+body .garden-header .garden-search-input,
+body .garden-search-container .garden-search-input,
+body input.garden-search-input {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    background-color: #ffffff !important;
+    caret-color: #000000 !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+}
+
+html[data-theme="dark"] .garden-header .garden-search-input,
+html[data-theme="dark"] .garden-search-container .garden-search-input,
+html[data-theme="dark"] input.garden-search-input {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: #1a1a1a !important;
+    caret-color: #ffffff !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
 }
