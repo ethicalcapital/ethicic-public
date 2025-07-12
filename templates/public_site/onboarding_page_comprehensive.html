@@ -40,70 +40,7 @@
 
             <!-- Comprehensive Onboarding Form -->
             <form id="onboardingForm" method="post" action="/onboarding/submit/"
-                  x-data="{
-                      currentStep: 1,
-                      totalSteps: 8,
-                      submitting: false,
-                      addCoClient: false,
-                      stepNames: {
-                          1: 'About You',
-                          2: 'Your Co-Client',
-                          3: 'Contact Preferences',
-                          4: 'Risk Assessment',
-                          5: 'Values & Viewpoint',
-                          6: 'Financial Context',
-                          7: 'Your Financial Team',
-                          8: 'Review & Submit'
-                      },
-                      get actualTotalSteps() {
-                          return this.addCoClient ? 8 : 7;
-                      },
-                      get actualStepNumber() {
-                          if (!this.addCoClient && this.currentStep > 2) {
-                              return this.currentStep - 1;
-                          }
-                          return this.currentStep;
-                      },
-                      get progress() {
-                          return (this.actualStepNumber / this.actualTotalSteps) * 100;
-                      },
-                      get progressText() {
-                          return `Step ${this.actualStepNumber} of ${this.actualTotalSteps}: ${this.stepNames[this.currentStep]}`;
-                      },
-                      nextStep() {
-                          if (this.validateStep(this.currentStep)) {
-                              if (this.currentStep === 1 && this.addCoClient === false) {
-                                  this.currentStep = 3; // Skip co-client section
-                              } else if (this.currentStep < this.totalSteps) {
-                                  this.currentStep++;
-                              }
-                              window.scrollTo(0, 0);
-                          }
-                      },
-                      prevStep() {
-                          if (this.currentStep === 3 && this.addCoClient === false && this.currentStep > 1) {
-                              this.currentStep = 1; // Skip back over co-client section
-                          } else if (this.currentStep > 1) {
-                              this.currentStep--;
-                          }
-                          window.scrollTo(0, 0);
-                      },
-                      validateStep(step) {
-                          const section = document.querySelector(`[data-step='${step}']`);
-                          const requiredFields = section.querySelectorAll('[required]:not([x-show]):not([style*=\"display: none\"])');
-                          let isValid = true;
-                          requiredFields.forEach(field => {
-                              if (!field.value || (field.type === 'radio' && !section.querySelector(`input[name='${field.name}']:checked`))) {
-                                  isValid = false;
-                                  field.classList.add('error');
-                              } else {
-                                  field.classList.remove('error');
-                              }
-                          });
-                          if (!isValid) alert('Please fill in all required fields.');
-                          return isValid;
-                      }
-                  }"
+                  x-data="onboardingForm"
                   @submit.prevent="submitting = true; $el.submit()">
                 {% csrf_token %}
 
@@ -1069,5 +1006,73 @@
 {% endblock %}
 
 {% block extra_js %}
+<script>
+document.addEventListener('alpine:init', () => {
+    Alpine.data('onboardingForm', () => ({
+        currentStep: 1,
+        totalSteps: 8,
+        submitting: false,
+        addCoClient: false,
+        stepNames: {
+            1: 'About You',
+            2: 'Your Co-Client',
+            3: 'Contact Preferences',
+            4: 'Risk Assessment',
+            5: 'Values & Viewpoint',
+            6: 'Financial Context',
+            7: 'Your Financial Team',
+            8: 'Review & Submit'
+        },
+        get actualTotalSteps() {
+            return this.addCoClient ? 8 : 7;
+        },
+        get actualStepNumber() {
+            if (!this.addCoClient && this.currentStep > 2) {
+                return this.currentStep - 1;
+            }
+            return this.currentStep;
+        },
+        get progress() {
+            return (this.actualStepNumber / this.actualTotalSteps) * 100;
+        },
+        get progressText() {
+            return `Step ${this.actualStepNumber} of ${this.actualTotalSteps}: ${this.stepNames[this.currentStep]}`;
+        },
+        nextStep() {
+            if (this.validateStep(this.currentStep)) {
+                if (this.currentStep === 1 && this.addCoClient === false) {
+                    this.currentStep = 3; // Skip co-client section
+                } else if (this.currentStep < this.totalSteps) {
+                    this.currentStep++;
+                }
+                window.scrollTo(0, 0);
+            }
+        },
+        prevStep() {
+            if (this.currentStep === 3 && this.addCoClient === false && this.currentStep > 1) {
+                this.currentStep = 1; // Skip back over co-client section
+            } else if (this.currentStep > 1) {
+                this.currentStep--;
+            }
+            window.scrollTo(0, 0);
+        },
+        validateStep(step) {
+            const section = document.querySelector(`[data-step='${step}']`);
+            const requiredFields = section.querySelectorAll('[required]:not([x-show]):not([style*="display: none"])');
+            let isValid = true;
+            requiredFields.forEach(field => {
+                if (!field.value || (field.type === 'radio' && !section.querySelector(`input[name='${field.name}']:checked`))) {
+                    isValid = false;
+                    field.classList.add('error');
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+            if (!isValid) alert('Please fill in all required fields.');
+            return isValid;
+        }
+    }));
+});
+</script>
 <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 {% endblock %}
