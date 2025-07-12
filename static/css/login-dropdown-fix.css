@@ -40,20 +40,8 @@
                 0 2px 4px -1px rgb(0, 0, 0, 0.06) !important;
     overflow: visible !important;
     transform-origin: top right !important;
-    display: none; /* Hidden by default */
     transition: opacity 0.15s ease, transform 0.15s ease !important;
-}
-
-/* Ensure dropdown is hidden by default and only shows when Alpine.js opens it */
-
-/* Show dropdown when Alpine.js sets x-show to true */
-.garden-login-dropdown[x-show="true"] {
-    display: block !important;
-}
-
-/* Ensure proper hiding when x-show is false */
-.garden-login-dropdown[x-show="false"] {
-    display: none !important;
+    /* Let Alpine.js control display via inline styles */
 }
 
 /* Fix dropdown items */

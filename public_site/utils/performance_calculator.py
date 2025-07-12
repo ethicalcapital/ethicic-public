@@ -141,7 +141,9 @@ def calculate_one_year_return(
 
 
 def calculate_three_year_return(
-    monthly_returns: dict[str, dict[str, str]], current_date: date
+    monthly_returns: dict[str, dict[str, str]],
+    current_date: date,
+    inception_date: date = None,
 ) -> tuple[float, float]:
     """
     Calculate trailing 3-year annualized return.
@@ -195,6 +197,19 @@ def calculate_three_year_return(
     # Reverse to get chronological order
     strategy_returns.reverse()
     benchmark_returns.reverse()
+
+    # Check if we have enough data for three years
+    # If inception date is provided, check if strategy has been operative for 3 years
+    if inception_date:
+        years_since_inception = (current_date - inception_date).days / 365.25
+        if years_since_inception < 3:
+            # Return None to indicate not enough data
+            return None, None
+
+    # For strategies operative for 3+ years, require at least 30 months of data (allowing for some gaps)
+    # For newer strategies, we'll already have returned None above
+    if len(strategy_returns) < 30:
+        return None, None
 
     # Calculate compound returns
     strategy_compound = compound_returns(strategy_returns)
@@ -339,13 +354,20 @@ def update_performance_from_monthly_data(
 
     # Calculate 3-year
     three_yr_strategy, three_yr_benchmark = calculate_three_year_return(
-        monthly_returns, current_date
+        monthly_returns, current_date, strategy_page.inception_date
     )
-    strategy_page.three_year_return = format_percentage(three_yr_strategy)
-    strategy_page.three_year_benchmark = format_percentage(three_yr_benchmark)
-    strategy_page.three_year_difference = format_percentage(
-        three_yr_strategy - three_yr_benchmark
-    )
+
+    # If None is returned, the strategy hasn't been operative for 3 years
+    if three_yr_strategy is None or three_yr_benchmark is None:
+        strategy_page.three_year_return = "-"
+        strategy_page.three_year_benchmark = "-"
+        strategy_page.three_year_difference = "-"
+    else:
+        strategy_page.three_year_return = format_percentage(three_yr_strategy)
+        strategy_page.three_year_benchmark = format_percentage(three_yr_benchmark)
+        strategy_page.three_year_difference = format_percentage(
+            three_yr_strategy - three_yr_benchmark
+        )
 
     # Calculate since inception
     if strategy_page.inception_date:

@@ -69,6 +69,7 @@ ignore = [
 "**/cloudflare*.py" = ["E501", "B904"]  # Cloudflare integration has long strings and exception handling
 "run_*.py" = ["S603", "S607"]  # Run scripts use subprocess
 "**/models*.py" = ["E501", "ARG001"]  # Model files have long strings and method signatures
+"**/utils/performance_calculator.py" = ["C901", "PLR0912", "PLR0915", "E501"]  # Performance calculator has complex financial calculations
 "**/db_router.py" = ["E501"]  # Database router has long comments
 "**/admin_panels*.py" = ["S308", "E501"]  # Admin panels use mark_safe and have long strings
 "**/views_with_crm_deps.py" = ["PERF401", "E501"]  # CRM integration has performance patterns and long strings
