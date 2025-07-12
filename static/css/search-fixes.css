@@ -7,6 +7,7 @@
     align-items: center;
     max-width: 240px;
     flex-shrink: 1;
+    z-index: 100;
 }
 
 /* Search input styling */
@@ -19,6 +20,13 @@
     color: var(--color-text-primary);
     font-size: var(--font-sm);
     transition: all var(--duration-normal) ease;
+    /* Ensure input is editable */
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    cursor: text !important;
 }
 
 .garden-search-input:focus {
@@ -112,6 +120,11 @@
     background: var(--color-surface);
     border-color: var(--color-border);
     color: var(--color-text-primary);
+    /* Ensure input is editable in light mode */
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    cursor: text !important;
 }
 
 [data-theme="light"] .garden-search-results {
@@ -160,4 +173,32 @@
         padding: var(--space-2);
         margin: 0;
     }
+}
+
+/* CRITICAL: Override any potential conflicts that prevent search input editing */
+.garden-header .garden-search-input,
+.garden-search-container .garden-search-input,
+input.garden-search-input {
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    cursor: text !important;
+    z-index: 101 !important;
+    position: relative !important;
+    /* Ensure input is actually functional */
+    -webkit-touch-callout: default !important;
+    -webkit-user-modify: read-write !important;
+    outline: none;
+}
+
+.garden-header .garden-search-input:focus,
+.garden-search-container .garden-search-input:focus,
+input.garden-search-input:focus {
+    pointer-events: auto !important;
+    cursor: text !important;
+    outline: 2px solid var(--color-primary) !important;
+    outline-offset: 2px !important;
+    z-index: 102 !important;
 }
