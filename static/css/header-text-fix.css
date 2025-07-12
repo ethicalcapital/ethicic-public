@@ -32,8 +32,27 @@
     background: var(--color-surface) !important;
 }
 
+/* Force search input text visibility with maximum specificity */
+html[data-theme="light"] body .garden-header .garden-search-input,
+html[data-theme="light"] body .garden-header .mobile-search-input,
+html[data-theme="light"] body .mobile-search-input {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+    background: #ffffff !important;
+    border: 1px solid #e5e5e5 !important;
+}
+
 /* Light mode search input - ensure dark text on light background */
-[data-theme="light"] .garden-header .garden-search-input {
+[data-theme="light"] .garden-header .garden-search-input,
+[data-theme="light"] .garden-header .mobile-search-input {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+    background: #fff !important;
+    border: 1px solid #e5e5e5 !important;
+}
+
+/* Additional mobile search input fix */
+[data-theme="light"] .mobile-search-input {
     color: #1a1a1a !important;
     -webkit-text-fill-color: #1a1a1a !important;
     background: #fff !important;
