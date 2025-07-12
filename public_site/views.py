@@ -1694,3 +1694,24 @@ def disclosures_page(request):
 def test_clean_nav(request):
     """Test page for clean navigation system"""
     return render(request, "public_site/test_clean_nav.html")
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def theme_api(request):
+    """API endpoint to save user theme preference"""
+    try:
+        data = json.loads(request.body)
+        theme = data.get("theme", "light")
+
+        # Validate theme value
+        if theme not in ["light", "dark"]:
+            return JsonResponse({"error": "Invalid theme"}, status=400)
+
+        # Store theme in session for anonymous users
+        request.session["theme"] = theme
+
+        return JsonResponse({"success": True, "theme": theme})
+
+    except (json.JSONDecodeError, Exception) as e:
+        return JsonResponse({"error": str(e)}, status=400)

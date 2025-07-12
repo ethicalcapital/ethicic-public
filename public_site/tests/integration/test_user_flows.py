@@ -308,7 +308,7 @@ class APIIntegrationFlowTest(BasePublicSiteTestCase, APITestMixin):
 
 
 @override_settings(TESTING=True)
-class GardenPlatformFlowTest(BasePublicSiteTestCase, APITestMixin):
+class GardenPlatformFlowTest(WagtailPublicSiteTestCase, APITestMixin):
     """Test Garden platform interest flow."""
 
     def test_adviser_garden_interest_flow(self):

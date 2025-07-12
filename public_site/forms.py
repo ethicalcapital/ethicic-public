@@ -338,9 +338,14 @@ class AccessibleContactForm(forms.Form):
     def _validate_form_timing(self, cleaned_data):
         """Validate form submission timing to detect bots."""
         import sys
+        from django.conf import settings
 
         # SECURITY: Use more secure test detection that doesn't rely on settings
-        is_testing = "test" in sys.argv or "pytest" in sys.modules
+        # Check settings first to allow override_settings to work properly
+        if hasattr(settings, 'TESTING'):
+            is_testing = settings.TESTING
+        else:
+            is_testing = "test" in sys.argv or "pytest" in sys.modules
 
         form_start_time = cleaned_data.get("form_start_time")
         if not form_start_time:

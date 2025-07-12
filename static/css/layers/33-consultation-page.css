@@ -3,7 +3,7 @@
 
 @layer components {
     /* ===== CONSULTATION PAGE STYLES ===== */
-    
+
     .consultation-page {
         background: var(--color-background);
         min-height: 100vh;

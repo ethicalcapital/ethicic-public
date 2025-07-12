@@ -177,12 +177,35 @@
                     <!-- Theme Toggle -->
                     <button class="garden-theme-toggle"
                             x-data="{
-                                isDark: localStorage.getItem('theme') === 'dark',
+                                isDark: false,
+                                init() {
+                                    // Initialize from current DOM state or localStorage
+                                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                                    const savedTheme = localStorage.getItem('theme');
+
+                                    // Priority: saved theme > current DOM theme > default light
+                                    const theme = savedTheme || currentTheme || 'light';
+                                    this.isDark = theme === 'dark';
+
+                                    // Apply the theme to ensure consistency
+                                    document.documentElement.setAttribute('data-theme', theme);
+                                    localStorage.setItem('theme', theme);
+                                },
                                 toggle() {
                                     this.isDark = !this.isDark;
                                     const theme = this.isDark ? 'dark' : 'light';
                                     document.documentElement.setAttribute('data-theme', theme);
                                     localStorage.setItem('theme', theme);
+
+                                    // Send to server to persist
+                                    fetch('/api/theme/set/', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRFToken': document.querySelector('[name=csrf-token]')?.content || ''
+                                        },
+                                        body: JSON.stringify({ theme })
+                                    }).catch(e => console.log('Theme save failed:', e));
                                 }
                             }"
                             @click="toggle()"

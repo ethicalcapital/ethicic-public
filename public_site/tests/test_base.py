@@ -372,6 +372,8 @@ class WagtailPublicSiteTestCase(WagtailTestCase, BasePublicSiteTestCase):
         media_page = MediaPage(
             title="Media",
             slug="media",
+            sidebar_interview_show=True,
+            sidebar_contact_show=True,
         )
         home_page.add_child(instance=media_page)
 

@@ -25,18 +25,18 @@
     -webkit-text-fill-color: white !important;
 }
 
-/* Search input text - ensure dark text on light background */
+/* Search input text - ensure proper contrast */
 .garden-header .garden-search-input {
-    color: #333333 !important;
-    -webkit-text-fill-color: #333333 !important;
-    background: white !important;
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+    background: var(--color-surface) !important;
 }
 
 /* Dark mode search input */
 [data-theme="dark"] .garden-header .garden-search-input {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    background: #2a2a2a !important;
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+    background: var(--color-surface) !important;
 }
 
 /* Mobile menu toggle */

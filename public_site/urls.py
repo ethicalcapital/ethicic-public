@@ -19,7 +19,6 @@ urlpatterns = [
     # Contact page is handled by Wagtail routing
     # Newsletter signup
     path("newsletter/signup/", views.newsletter_signup, name="newsletter_subscribe"),
-
     # Test clean navigation
     path("test-clean-nav/", views.test_clean_nav, name="test_clean_nav"),
     # Onboarding form
@@ -72,6 +71,8 @@ urlpatterns = [
     ),
     # Form validation endpoints
     path("api/validate-email/", views.validate_email_api, name="api_validate_email"),
+    # Theme preference API
+    path("api/theme/set/", views.theme_api, name="api_theme"),
     # Current Holdings transparency page - temporarily disabled for testing
     # path("holdings/", views.current_holdings, name="current_holdings"),
     # Note: Media files are served by Django/WhiteNoise and configured in main urls.py
