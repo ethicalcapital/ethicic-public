@@ -395,8 +395,10 @@ class OnboardingFormTest(TestCase, FormTestMixin):
                 form = OnboardingForm(data=data)
                 self.assertFalse(form.is_valid())
                 self.assertIn("street_address", form.errors)
-                self.assertIn(
-                    "PO Boxes are not permitted", str(form.errors["street_address"])
+                error_text = str(form.errors["street_address"])
+                self.assertTrue(
+                    "unable to use P.O. boxes" in error_text,
+                    f"Expected PO Box error message in: {error_text}"
                 )
 
     def test_onboarding_form_valid_street_address(self):

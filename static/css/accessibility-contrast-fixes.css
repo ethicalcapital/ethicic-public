@@ -1,0 +1,221 @@
+/*
+ * Accessibility Contrast Fixes
+ * Addresses WCAG AA contrast ratio failures across the site
+ * Uses Garden UI theme variables for consistent theming
+ */
+
+@layer utilities {
+    /* ===== HERO SECTION CONTRAST FIXES ===== */
+
+    /* Fix hero panel text contrast against background */
+    .hero-panel,
+    .garden-panel.hero-panel {
+        background: var(--color-background);
+        color: var(--color-text-primary);
+    }
+
+    /* Ensure main content has proper contrast */
+    #main-content,
+    .main-content {
+        background: var(--color-background);
+        color: var(--color-text-primary);
+    }
+
+    /* ===== STATISTICS CONTRAST FIXES ===== */
+
+    /* Fix stat labels for better contrast - be more specific */
+    .stat-label,
+    .stat-label span,
+    span.stat-label {
+        color: var(--color-text-primary) !important;
+        font-weight: var(--font-medium) !important;
+        opacity: 1 !important;
+    }
+
+    /* Fix stat dates for better contrast - be more specific */
+    .stat-date,
+    .stat-date span,
+    span.stat-date {
+        color: var(--color-text-primary) !important;
+        opacity: 0.85 !important;
+        font-weight: var(--font-medium) !important;
+    }
+
+    /* Ensure stat values maintain good contrast */
+    .stat-value,
+    .stat-value span {
+        color: var(--color-primary) !important;
+        font-weight: var(--font-bold);
+    }
+
+    /* ===== STRATEGY TABLE CONTRAST FIXES ===== */
+
+    /* Fix strategy table label contrast */
+    .strategy-table .label,
+    .strategy-table td.label {
+        color: var(--color-text-primary) !important;
+        font-weight: var(--font-medium);
+    }
+
+    /* Ensure table cell text has proper contrast */
+    .strategy-table td {
+        color: var(--color-text-primary) !important;
+    }
+
+    /* Fix table row backgrounds for better contrast */
+    .strategy-table tbody tr {
+        background: var(--color-surface);
+    }
+
+    .strategy-table tbody tr:nth-child(even) {
+        background: var(--color-surface-variant);
+    }
+
+    /* ===== FOOTER CONTRAST FIXES ===== */
+
+    /* Enhance footer text contrast */
+    .garden-footer {
+        background: var(--color-surface);
+        color: var(--color-text-primary);
+    }
+
+    /* Fix footer paragraph and legal text contrast - very specific targeting */
+    footer p,
+    .garden-footer p,
+    .garden-footer-legal,
+    .garden-footer-legal p,
+    .garden-footer-bottom p,
+    [role="contentinfo"] p {
+        color: var(--color-text-primary) !important;
+        opacity: 0.9 !important;
+        font-weight: var(--font-normal) !important;
+    }
+
+    /* Fix footer link contrast */
+    .garden-footer-link {
+        color: var(--color-text-primary) !important;
+        opacity: 0.85;
+    }
+
+    .garden-footer-link:hover {
+        color: var(--color-primary) !important;
+        opacity: 1;
+    }
+
+    /* Fix footer section headings */
+    .garden-footer-section h3 {
+        color: var(--color-text-primary) !important;
+    }
+
+    /* ===== GENERAL CONTENT CONTRAST FIXES ===== */
+
+    /* Ensure all muted text meets minimum contrast */
+    .garden-muted,
+    [class*="muted"] {
+        color: var(--color-text-primary) !important;
+        opacity: 0.8;
+    }
+
+    /* Fix secondary text elements */
+    .color-text-secondary,
+    [class*="text-secondary"] {
+        color: var(--color-text-primary) !important;
+        opacity: 0.85;
+    }
+
+    /* ===== SPECIFIC ELEMENT FIXES ===== */
+
+    /* Fix principle content and strategy features */
+    .principle-content,
+    .strategy-features p,
+    .strategy-features li {
+        color: var(--color-text-primary) !important;
+        opacity: 0.9;
+    }
+
+    /* Fix step content paragraphs */
+    .step-content p {
+        color: var(--color-text-primary) !important;
+        opacity: 0.9;
+    }
+
+    /* Fix disclaimer text */
+    .disclaimer {
+        color: var(--color-text-primary) !important;
+        opacity: 0.8;
+    }
+
+    /* Fix CTA info items */
+    .cta-info-item {
+        color: var(--color-text-primary) !important;
+    }
+
+    /* ===== BANNER AND HERO TEXT FIXES ===== */
+
+    /* Ensure hero tagline has proper contrast */
+    .hero-tagline {
+        color: var(--color-primary) !important;
+        font-weight: var(--font-bold);
+    }
+
+    /* Fix philosophy highlight */
+    .philosophy-highlight {
+        color: var(--color-primary) !important;
+        font-weight: var(--font-semibold);
+    }
+
+    /* ===== HIGH CONTRAST MODE SUPPORT ===== */
+
+    /* Enhanced contrast for users who prefer it */
+    @media (prefers-contrast: more) {
+        .stat-label,
+        .stat-date,
+        .garden-footer p,
+        .garden-footer-legal,
+        .garden-muted,
+        .principle-content,
+        .strategy-features p,
+        .step-content p {
+            color: var(--color-text-primary) !important;
+            opacity: 1 !important;
+            font-weight: var(--font-medium) !important;
+        }
+
+        /* Increase border visibility in high contrast mode */
+        .strategy-table,
+        .strategy-card,
+        .garden-footer {
+            border-color: var(--color-text-primary) !important;
+            border-width: 2px !important;
+        }
+    }
+
+    /* ===== FORCED COLORS MODE (Windows High Contrast) ===== */
+
+    @media (forced-colors: active) {
+        .stat-label,
+        .stat-date,
+        .garden-footer p,
+        .garden-footer-legal,
+        .garden-muted,
+        .principle-content,
+        .strategy-features p,
+        .step-content p {
+            color: CanvasText !important;
+            opacity: 1 !important;
+        }
+
+        .stat-value,
+        .hero-tagline,
+        .philosophy-highlight {
+            color: Highlight !important;
+        }
+
+        .garden-footer,
+        .hero-panel,
+        .strategy-card {
+            background: Canvas !important;
+            border-color: CanvasText !important;
+        }
+    }
+}

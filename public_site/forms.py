@@ -1358,7 +1358,7 @@ class OnboardingForm(forms.Form):
         for pattern in po_box_patterns:
             if re.search(pattern, street_address.upper()):
                 raise forms.ValidationError(
-                    "PO Boxes are not permitted. Please provide a physical street address."
+                    "We're unable to use P.O. boxes - please provide your mailing address."
                 )
 
         return street_address

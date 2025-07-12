@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-07-12T05:17:48.202780+00:00",
-  "total_files": 73,
+  "timestamp": "2025-07-12T09:27:08.153736+00:00",
+  "total_files": 74,
   "total_defined_vars": 385,
   "files_with_issues": [
     "strategy-nuclear-fix.css",
@@ -8,11 +8,16 @@
     "search-fixes.css",
     "search-visibility-ultimate-fix.css",
     "header-height-fix.css",
+    "onboarding-comprehensive.css",
     "wcag-contrast-fixes.css",
     "process-dark-mode-fix.css",
     "strategy-card-text-fix.css"
   ],
-  "undefined_variables": {},
+  "undefined_variables": {
+    "onboarding-comprehensive.css": [
+      "--color-text-muted"
+    ]
+  },
   "hardcoded_colors": {
     "strategy-nuclear-fix.css": [
       [
@@ -82,24 +87,24 @@
     ],
     "search-fixes.css": [
       [
-        195,
+        218,
         "#000000"
       ],
       [
-        196,
+        219,
         "#000000"
       ],
       [
-        197,
+        220,
         "#ffffff"
       ],
       [
-        198,
+        221,
         "#000000"
       ],
       [
-        218,
-        "#000000"
+        229,
+        "#ffffff"
       ]
     ],
     "search-visibility-ultimate-fix.css": [
@@ -120,8 +125,8 @@
         "#000000"
       ],
       [
-        35,
-        "#ffffff"
+        42,
+        "#000000"
       ]
     ],
     "header-height-fix.css": [
@@ -230,6 +235,7 @@
     ]
   },
   "file_sizes": {
+    "accessibility-contrast-fixes.css": 5.73,
     "fix-formatting-issues.css": 6.27,
     "strategy-nuclear-fix.css": 1.99,
     "mobile-menu-override.css": 7.97,
@@ -247,16 +253,16 @@
     "header-text-fix.css": 5.46,
     "process-page.css": 10.82,
     "garden-data-table.css": 9.95,
-    "search-fixes.css": 6.26,
+    "search-fixes.css": 6.35,
     "core-styles.css": 17.83,
     "critical-page-overrides.css": 8.17,
-    "search-visibility-ultimate-fix.css": 4.04,
+    "search-visibility-ultimate-fix.css": 4.19,
     "public-site-modular.css": 6.99,
     "header-height-fix.css": 6.63,
     "16-homepage.css": 19.01,
     "blog-formatting-fixes.css": 1.92,
     "garden-blog-panels.css": 6.89,
-    "onboarding-comprehensive.css": 6.35,
+    "onboarding-comprehensive.css": 10.47,
     "footer-fix.css": 3.84,
     "header-button-fix.css": 1.71,
     "garden-ui-utilities.css": 5.16,
@@ -304,7 +310,7 @@
     "strategy-card-text-fix.css": 2.2,
     "strategy-dark-mode-fix.css": 2.58
   },
-  "total_undefined_vars": 0,
+  "total_undefined_vars": 1,
   "is_baseline": true,
-  "baseline_created": "2025-07-12T05:17:48.222200+00:00"
+  "baseline_created": "2025-07-12T09:27:08.173996+00:00"
 }
