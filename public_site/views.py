@@ -1064,6 +1064,7 @@ def site_search(request):
                 "query_string": query_string,
                 "search_results": page_obj,
                 "total_results": paginator.count,
+                "page": None,  # Add page=None to prevent template errors
             }
         except Exception as e:
             # If search fails (e.g., in testing with missing FTS tables), fall back to simple filtering
@@ -1079,12 +1080,14 @@ def site_search(request):
                 "query_string": query_string,
                 "search_results": page_obj,
                 "total_results": paginator.count,
+                "page": None,  # Add page=None to prevent template errors
             }
     else:
         context = {
             "query_string": "",
             "search_results": None,
             "total_results": 0,
+            "page": None,  # Add page=None to prevent template errors
         }
 
     return render(request, "public_site/search_results.html", context)

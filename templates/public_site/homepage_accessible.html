@@ -5,7 +5,30 @@
 
 {% block extra_css %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/16-homepage.css' %}?v=2025070402">
+<link rel="stylesheet" href="{% static 'css/16-homepage.css' %}?v=2025071202">
+<style>
+/* Critical fix for dark mode text visibility in strategy cards */
+[data-theme="dark"] .strategy-card .strategy-table th {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+}
+
+[data-theme="dark"] .strategy-table .subtitle {
+    color: rgba(255, 255, 255, 0.9) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Light mode should also have consistent colors */
+[data-theme="light"] .strategy-card .strategy-table th {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+}
+
+[data-theme="light"] .strategy-table .subtitle {
+    color: rgba(255, 255, 255, 0.9) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+}
+</style>
 {% endblock %}
 
 {% block body_class %}home-page{% endblock %}
@@ -310,13 +333,8 @@
 <!-- CTA Section -->
 <div class="garden-container">
     <section class="garden-panel cta-panel">
-        <div class="garden-panel__header garden-panel-header accepting-clients-header">
-            <div class="accepting-clients-banner header-banner">
-                <div class="banner-icon">{{ page.accepting_clients_icon }}</div>
-                <div class="banner-text">
-                    <strong>{{ page.client_availability_text|upper }}</strong>
-                </div>
-            </div>
+        <div class="garden-panel__header garden-panel-header">
+            <div class="panel-title">{{ page.accepting_clients_icon }} {{ page.client_availability_text|upper }}</div>
         </div>
         <div class="garden-panel__content garden-panel-content">
         <h2>{{ page.cta_title }}</h2>
@@ -333,6 +351,39 @@
 {% endblock %}
 
 {% block extra_js %}
+{% load static %}
+<script src="{% static 'js/strategy-card-color-fix.js' %}?v=1"></script>
+<script>
+    // Debug: Check if CTA section exists
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded - checking for CTA section...');
+        const ctaSection = document.querySelector('.cta-panel');
+        const ctaActions = document.querySelector('.cta-actions');
+        const ctaButtons = document.querySelectorAll('.cta-actions .garden-action');
+
+        console.log('CTA Panel found:', !!ctaSection);
+        console.log('CTA Actions found:', !!ctaActions);
+        console.log('CTA Buttons found:', ctaButtons.length);
+
+        if (ctaSection) {
+            console.log('CTA Section visible:', window.getComputedStyle(ctaSection).display !== 'none');
+            console.log('CTA Section styles:', {
+                display: window.getComputedStyle(ctaSection).display,
+                visibility: window.getComputedStyle(ctaSection).visibility,
+                opacity: window.getComputedStyle(ctaSection).opacity,
+                height: window.getComputedStyle(ctaSection).height
+            });
+        }
+
+        if (ctaActions) {
+            console.log('CTA Actions visible:', window.getComputedStyle(ctaActions).display !== 'none');
+        }
+
+        ctaButtons.forEach((btn, idx) => {
+            console.log(`Button ${idx + 1}:`, btn.textContent.trim(), btn.href);
+        });
+    });
+</script>
 <script>
     // Calculate years since October 2021
     document.addEventListener('DOMContentLoaded', function() {
@@ -366,10 +417,4 @@
         }
     });
 </script>
-{% endblock %}
-
-{% block disclaimer %}
-<div class="disclaimer">
-    {{ page.disclaimer_text|richtext }}
-</div>
 {% endblock %}

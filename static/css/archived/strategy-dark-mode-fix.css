@@ -1,0 +1,79 @@
+/* Strategy Cards Dark Mode Fix */
+
+/* Fix strategy table text colors for dark mode */
+/* Need to override both color and webkit-text-fill-color together */
+[data-theme="dark"] .strategy-card .strategy-table th,
+[data-theme="dark"] .strategy-table th {
+    color: var(--color-on-primary) !important;
+    -webkit-text-fill-color: var(--color-on-primary) !important;
+    /* Ensure both properties match to avoid color mismatch */
+}
+
+[data-theme="dark"] .strategy-table .subtitle {
+    color: rgb(255, 255, 255, 0.9) !important;
+    -webkit-text-fill-color: rgb(255, 255, 255, 0.9) !important;
+    opacity: 1 !important;
+}
+
+[data-theme="dark"] .strategy-table td {
+    color: var(--garden-fg) !important;
+    -webkit-text-fill-color: var(--garden-fg) !important;
+}
+
+[data-theme="dark"] .strategy-table .label {
+    color: var(--garden-fg) !important;
+    -webkit-text-fill-color: var(--garden-fg) !important;
+    opacity: 0.8 !important;
+}
+
+[data-theme="dark"] .strategy-features p {
+    color: var(--garden-fg) !important;
+    -webkit-text-fill-color: var(--garden-fg) !important;
+}
+
+[data-theme="dark"] .strategy-features li {
+    color: var(--garden-fg) !important;
+    -webkit-text-fill-color: var(--garden-fg) !important;
+}
+
+/* Light mode - ensure proper contrast */
+[data-theme="light"] .strategy-card .strategy-table th {
+    color: var(--color-on-primary) !important;
+    -webkit-text-fill-color: var(--color-on-primary) !important;
+}
+
+[data-theme="light"] .strategy-table .subtitle {
+    color: rgb(255, 255, 255, 0.9) !important;
+    -webkit-text-fill-color: rgb(255, 255, 255, 0.9) !important;
+    opacity: 1 !important;
+}
+
+[data-theme="light"] .strategy-table td {
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+}
+
+[data-theme="light"] .strategy-table .label {
+    color: var(--color-text-secondary) !important;
+    -webkit-text-fill-color: var(--color-text-secondary) !important;
+    opacity: 1 !important;
+}
+
+[data-theme="light"] .strategy-features p,
+[data-theme="light"] .strategy-features li {
+    color: var(--color-text-secondary) !important;
+    -webkit-text-fill-color: var(--color-text-secondary) !important;
+}
+
+/* Remove the inline styles from homepage_accessible.html override */
+[data-theme="dark"] .strategy-card table * {
+    color: var(--garden-fg) !important;
+    -webkit-text-fill-color: var(--garden-fg) !important;
+}
+
+/* Keep buttons properly styled in both modes */
+[data-theme="light"] .strategy-card .garden-action,
+[data-theme="dark"] .strategy-card .garden-action {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}

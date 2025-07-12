@@ -527,7 +527,7 @@
 
     .cta-panel {
         background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-variant) 100%);
-        border: none;
+        /* DEBUG removed for production */
         margin-top: var(--space-12);
         position: relative;
         overflow: hidden;
@@ -544,7 +544,7 @@
         background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     }
 
-    .cta-panel .panel-content {
+    .cta-panel .garden-panel-content {
         max-width: var(--content-width-normal);
         margin: 0 auto;
         text-align: center;
@@ -560,43 +560,12 @@
         color: var(--color-text-primary);
     }
 
-    /* New accepting clients banner */
-    .accepting-clients-banner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--space-3);
-        background: var(--color-primary);
-        color: var(--color-on-primary);
-        padding: var(--space-3) var(--space-6);
-        border-radius: var(--radius-md);
-        margin: var(--space-4) auto var(--space-6) auto;
-        box-shadow: var(--shadow-md);
-        animation: pulse-glow 2s ease-in-out infinite;
-        max-width: fit-content;
-    }
-
-    /* Accepting clients banner when in header */
-    .garden-panel__header .accepting-clients-banner.header-banner {
-        margin: 0;
-        border-radius: 0;
-        max-width: 100%;
-        padding: var(--space-3) var(--space-4);
-        background: transparent;
-        color: var(--color-on-primary);
-        box-shadow: none;
-        animation: none;
-    }
-
-    .accepting-clients-header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: var(--space-4);
+    /* CTA panel header styling - matches other panel titles */
+    .cta-panel .garden-panel__header {
         background: var(--color-primary);
     }
 
-    .accepting-clients-header .banner-text strong {
+    .cta-panel .panel-title {
         color: var(--color-on-primary);
         font-size: var(--font-lg);
         text-transform: uppercase;
@@ -604,28 +573,6 @@
         opacity: 0.9;
     }
 
-    .banner-text span {
-        font-size: var(--font-sm);
-        opacity: 0.9;
-        margin-top: var(--space-1);
-    }
-
-    .accepting-clients-header .banner-text span {
-        color: var(--color-on-primary);
-        opacity: 0.9;
-    }
-
-    .banner-icon {
-        font-size: var(--font-lg);
-        line-height: 1;
-    }
-
-    .banner-text {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-    }
 
     /* Banner text styles - after specific selectors to avoid specificity issues */
 
@@ -639,6 +586,7 @@
         flex-wrap: nowrap;
         max-width: none;
         padding: 0;
+        /* DEBUG removed for production */
     }
 
 
@@ -744,15 +692,6 @@
             text-align: left;
         }
 
-        .accepting-clients-banner {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .banner-text {
-            align-items: center;
-            text-align: center;
-        }
     }
 
     @media (max-width: 480px) {

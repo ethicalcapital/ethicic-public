@@ -1,0 +1,147 @@
+/* Header Text Color Fix - Ensure white text on purple header */
+
+/* Force white text for all header elements */
+.garden-header,
+.garden-header * {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+
+/* Ensure links in header are white - base selector first */
+.garden-header a {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+
+/* Specific elements to ensure they're white - more specific selectors after */
+.garden-header .garden-brand,
+.garden-header .garden-nav-item,
+.garden-header .desktop-nav a,
+.garden-header .garden-search-input::placeholder,
+.garden-header .garden-login-btn,
+.garden-header .garden-action,
+.garden-header .garden-theme-toggle {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+
+/* Search input text */
+.garden-header .garden-search-input {
+    color: var(--color-text-primary) !important;
+}
+
+/* Mobile menu toggle */
+.garden-header .mobile-menu-toggle span {
+    background-color: var(--header-text, white) !important;
+}
+
+/* Hover states */
+.garden-header a:hover,
+.garden-header .garden-nav-item:hover,
+.garden-header .desktop-nav a:hover {
+    color: white !important;
+    opacity: 0.9;
+}
+
+/* Fix panel headers text visibility */
+.garden-panel__header,
+.garden-panel-header,
+.panel-header {
+    color: var(--color-text-primary) !important;
+    background: var(--color-surface-variant) !important;
+}
+
+/* Panel title text */
+.panel-title {
+    color: var(--color-text-primary) !important;
+}
+
+/* Ensure proper contrast for THREE CORE STRATEGIES section */
+.strategies-section .garden-panel__header,
+.strategies-section .panel-header {
+    background: var(--color-surface-variant) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* Fix strategy card text visibility in light mode */
+.strategy-table .label {
+    color: var(--color-text-primary) !important;
+    opacity: 0.8 !important;
+}
+
+.strategy-table .value {
+    color: var(--color-text-primary) !important;
+}
+
+/* Fix table headers - base selector first, then more specific */
+.strategy-table th {
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+    background-color: var(--color-surface-variant) !important;
+}
+
+.strategy-card .strategy-table th {
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+    background-color: var(--color-surface-variant) !important;
+}
+
+/* Fix table cells - base selector first, then more specific */
+.strategy-table td {
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+}
+
+.strategy-card .strategy-table td {
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+}
+
+/* Fix subtitle in strategy tables */
+.strategy-table .subtitle {
+    color: var(--color-text-secondary) !important;
+    -webkit-text-fill-color: var(--color-text-secondary) !important;
+    opacity: 0.8 !important;
+}
+
+/* Ensure strategy cards have proper text contrast */
+.strategy-card .label,
+.strategy-info .label {
+    color: var(--color-text-primary) !important;
+    opacity: 0.8 !important;
+}
+
+.strategy-card .value,
+.strategy-info .value {
+    color: var(--color-text-primary) !important;
+}
+
+/* Fix any gray text in strategy section - target all text in strategy cards */
+.strategy-row .label,
+.strategy-row .value,
+.strategy-content .label,
+.strategy-content .value,
+.strategy-details .label,
+.strategy-details .value {
+    color: var(--color-text-primary) !important;
+}
+
+/* Specifically target the Focus, Screening, Management labels */
+.strategy-row:has(.label) .label {
+    color: var(--color-text-primary) !important;
+    opacity: 0.7 !important;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .garden-header,
+[data-theme="dark"] .garden-header * {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+
+[data-theme="dark"] .garden-panel__header,
+[data-theme="dark"] .garden-panel-header,
+[data-theme="dark"] .panel-header,
+[data-theme="dark"] .panel-title {
+    color: var(--color-text-primary) !important;
+}

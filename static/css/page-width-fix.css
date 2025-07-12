@@ -50,7 +50,7 @@ body, html {
 }
 
 /* Fix for any full-width divs that should be contained */
-.public-site-context div:not(.garden-header):not(.garden-footer):not(.mobile-nav):not(.garden-footer-content):not(.garden-footer-grid) {
+.public-site-context div:not(.garden-header, .garden-footer, .mobile-nav, .garden-footer-content, .garden-footer-grid) {
     max-width: 100%;
 }
 

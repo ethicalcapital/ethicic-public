@@ -1,0 +1,136 @@
+/* WCAG Contrast Compliance Fixes */
+
+/* Fix 1: Header Navigation Buttons - Remove transparent backgrounds */
+.garden-header .garden-search-btn,
+.garden-header .garden-login-btn,
+.garden-header .garden-theme-toggle {
+    background: transparent !important;
+    color: white !important;
+    border: 1px solid rgb(255, 255, 255, 0.3) !important;
+}
+
+.garden-header .garden-search-btn:hover,
+.garden-header .garden-login-btn:hover,
+.garden-header .garden-theme-toggle:hover {
+    background: rgb(255, 255, 255, 0.1) !important;
+    border-color: rgb(255, 255, 255, 0.5) !important;
+}
+
+/* Fix 2: Banner Text - Ensure proper contrast */
+.accepting-clients-banner {
+    background: var(--color-primary) !important;
+}
+
+.accepting-clients-banner .banner-text strong {
+    color: white !important;
+}
+
+/* Fix 3: Dark Mode Link Colors - Use lighter purple for better contrast */
+:root[data-theme="dark"] {
+    --link-color-dark: #9b7dd8; /* Lighter purple for dark mode */
+}
+
+[data-theme="dark"] a,
+[data-theme="dark"] .policy-link,
+[data-theme="dark"] .process-link,
+[data-theme="dark"] .resource-link {
+    color: var(--link-color-dark) !important;
+}
+
+[data-theme="dark"] a:hover,
+[data-theme="dark"] .policy-link:hover,
+[data-theme="dark"] .process-link:hover,
+[data-theme="dark"] .resource-link:hover {
+    color: #b19cd9 !important; /* Even lighter on hover */
+    text-decoration: underline;
+}
+
+/* Fix 4: Ensure purple headings have sufficient contrast in dark mode */
+[data-theme="dark"] .exclusions-section-title,
+[data-theme="dark"] .principles-section-title,
+[data-theme="dark"] h1.text-primary,
+[data-theme="dark"] h2.text-primary,
+[data-theme="dark"] h3.text-primary,
+[data-theme="dark"] h4.text-primary,
+[data-theme="dark"] .text-primary {
+    color: #9b7dd8 !important; /* Lighter purple for dark backgrounds */
+}
+
+/* Fix 5: Purple stat values in dark mode */
+[data-theme="dark"] .stat-value,
+[data-theme="dark"] .stat-number {
+    color: #9b7dd8 !important;
+}
+
+/* Fix 6: Process page specific purple elements */
+[data-theme="dark"] .exclusion-title,
+[data-theme="dark"] .criteria-card h4,
+[data-theme="dark"] .methodology-card h4,
+[data-theme="dark"] .principle-title,
+[data-theme="dark"] .principle-card h4 {
+    color: #9b7dd8 !important;
+}
+
+/* Fix 7: Hero tagline in dark mode */
+[data-theme="dark"] .hero-tagline {
+    color: #9b7dd8 !important;
+}
+
+[data-theme="dark"] .hero-tagline::before {
+    color: #9b7dd8 !important;
+}
+
+/* Fix 8: Philosophy highlight text */
+[data-theme="dark"] .philosophy-highlight {
+    color: #9b7dd8 !important;
+}
+
+/* Fix 9: Feature list arrows */
+[data-theme="dark"] .strategy-features li::before {
+    color: #9b7dd8 !important;
+}
+
+/* Fix 10: Ensure all primary colored elements use the lighter purple in dark mode */
+[data-theme="dark"] .color-primary,
+[data-theme="dark"] .text-color-primary,
+[data-theme="dark"] [style*="color: var(--color-primary)"] {
+    color: #9b7dd8 !important;
+}
+
+/* Light mode - ensure existing purple remains accessible (it already is) */
+[data-theme="light"] .exclusions-section-title,
+[data-theme="light"] .principles-section-title,
+[data-theme="light"] .stat-value,
+[data-theme="light"] .hero-tagline {
+    color: var(--color-primary) !important; /* Keep original purple in light mode */
+}
+
+/* Additional fixes for any missed purple elements */
+[data-theme="dark"] *[style*="#3d2970"],
+[data-theme="dark"] *[style*="rgb(61, 41, 112)"] {
+    color: #9b7dd8 !important;
+}
+
+/* Ensure buttons maintain proper contrast */
+.garden-action.primary {
+    background: var(--color-primary) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.garden-action.secondary {
+    background: transparent !important;
+    color: var(--color-primary) !important;
+    border: 2px solid var(--color-primary) !important;
+}
+
+[data-theme="dark"] .garden-action.secondary {
+    color: #9b7dd8 !important;
+    border-color: #9b7dd8 !important;
+}
+
+[data-theme="dark"] .garden-action.secondary:hover {
+    background: rgb(155, 125, 216, 0.1) !important;
+    color: #b19cd9 !important;
+    border-color: #b19cd9 !important;
+}

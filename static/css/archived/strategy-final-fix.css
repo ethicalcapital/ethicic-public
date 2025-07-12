@@ -1,0 +1,71 @@
+/* Final fix for strategy cards - ensure color and webkit-text-fill-color always match */
+
+/* Remove any inherited or mismatched color properties */
+.strategy-card .strategy-table * {
+    color: inherit;
+    -webkit-text-fill-color: inherit;
+}
+
+/* Light mode */
+html[data-theme="light"] body .strategy-card .strategy-table th,
+html[data-theme="light"] body .strategy-table th {
+    color: rgb(255, 255, 255) !important;
+    -webkit-text-fill-color: rgb(255, 255, 255) !important;
+    background-color: rgb(61, 41, 112) !important;
+}
+
+html[data-theme="light"] body .strategy-table .subtitle {
+    color: rgb(255, 255, 255, 0.9) !important;
+    -webkit-text-fill-color: rgb(255, 255, 255, 0.9) !important;
+}
+
+html[data-theme="light"] body .strategy-table td {
+    color: rgb(17, 17, 17) !important;
+    -webkit-text-fill-color: rgb(17, 17, 17) !important;
+}
+
+html[data-theme="light"] body .strategy-table .label {
+    color: rgb(102, 102, 102) !important;
+    -webkit-text-fill-color: rgb(102, 102, 102) !important;
+}
+
+html[data-theme="light"] body .strategy-features p,
+html[data-theme="light"] body .strategy-features li {
+    color: rgb(102, 102, 102) !important;
+    -webkit-text-fill-color: rgb(102, 102, 102) !important;
+}
+
+/* Dark mode - use ultra-specific selectors */
+html[data-theme="dark"] body .strategy-card .strategy-table th,
+html[data-theme="dark"] body .strategy-table th {
+    color: rgb(255, 255, 255) !important;
+    -webkit-text-fill-color: rgb(255, 255, 255) !important;
+    background-color: rgb(61, 41, 112) !important;
+}
+
+html[data-theme="dark"] body .strategy-table .subtitle {
+    color: rgb(255, 255, 255, 0.9) !important;
+    -webkit-text-fill-color: rgb(255, 255, 255, 0.9) !important;
+}
+
+html[data-theme="dark"] body .strategy-table td {
+    color: rgb(240, 240, 240) !important;
+    -webkit-text-fill-color: rgb(240, 240, 240) !important;
+}
+
+html[data-theme="dark"] body .strategy-table .label {
+    color: rgb(176, 176, 176) !important;
+    -webkit-text-fill-color: rgb(176, 176, 176) !important;
+}
+
+html[data-theme="dark"] body .strategy-features p,
+html[data-theme="dark"] body .strategy-features li {
+    color: rgb(176, 176, 176) !important;
+    -webkit-text-fill-color: rgb(176, 176, 176) !important;
+}
+
+/* Ensure buttons stay white */
+.strategy-card .garden-action {
+    color: rgb(255, 255, 255) !important;
+    -webkit-text-fill-color: rgb(255, 255, 255) !important;
+}

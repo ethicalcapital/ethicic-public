@@ -1,0 +1,92 @@
+{
+  "StrategyListPage": {
+    "intro_text": "<p>Our investment strategies are designed to align your portfolio with your values while delivering strong financial performance.</p>",
+    "description": "<p>Each strategy follows our rigorous ethical screening process and disciplined investment approach to help you achieve your financial goals.</p>",
+    "comparison_title": "Strategy Comparison",
+    "comparison_description": "<p>Compare our investment strategies to find the approach that best matches your goals and risk tolerance.</p>",
+    "resources_section_title": "STRATEGY RESOURCES",
+    "resources_section_subtitle": "Documentation & Research",
+    "resources_section_description": "<p>Learn more about our investment approach, methodology, and compliance practices.</p>",
+    "cta_section_title": "GET STARTED",
+    "cta_title": "Ready to Align Your Investments with Your Values?",
+    "cta_description": "<p>Our team is here to help you choose the strategy that best fits your financial goals and ethical principles.</p>"
+  },
+  "ConsultationPage": {
+    "hero_title": "Schedule a Consultation",
+    "hero_subtitle": "Let's discuss how we can help align your investments with your values.",
+    "contact_email": "hello@ec1c.com",
+    "schedule_section_title": "Schedule Your Consultation",
+    "schedule_intro_text": "<p>Choose the conversation type that best fits your situation. All consultations are complimentary and without obligation. Note: We can't promise prompt email responses, but we're great at keeping scheduled appointments!</p>",
+    "alternative_contact_text": "<p>Prefer to start with an email? <a href=\"/contact/\" class=\"garden-link\">Use our contact form</a> and we'll get back to you when we can.</p>",
+    "expectations_section_title": "What to Expect",
+    "disclaimer_title": "No obligation consultation.",
+    "disclaimer_text": "<p>We believe in finding the right fit for both parties. There's no pressure to move forward, and we're happy to answer questions even if we're not the right match.</p>"
+  },
+  "CriteriaPage": {
+    "hero_title": "Our Ethical Criteria",
+    "hero_subtitle": "Transparent, rigorous screening criteria that guide our investment decisions.",
+    "transparency_section_title": "Open Source Transparency",
+    "transparency_description": "<p>Our ethical screening criteria are publicly available on GitHub. This ensures complete transparency about what we exclude and why.</p>",
+    "transparency_benefits": "Full documentation of exclusion criteria\nRegular updates as our research evolves\nCommunity feedback and discussion\nVersion history and change tracking",
+    "github_criteria_url": "https://github.com/ethicalcapital/sage/blob/main/screening_policy.md",
+    "exclusions_section_title": "Key Exclusion Categories",
+    "exclusions_note": "<p><strong>Important:</strong> This is a high-level overview. The complete criteria, methodology, and specific examples are detailed in our GitHub repository.</p>"
+  },
+  "GuidePage": {
+    "hero_title": "Investment Guide",
+    "hero_subtitle": "Comprehensive guide to ethical investing principles and strategies.",
+    "description_section_header": "What's Included",
+    "download_section_header": "Download Guide",
+    "resources_section_header": "Additional Resources",
+    "newsletter_section_header": "Stay Updated",
+    "newsletter_description": "<p>Get updates on new resources, market insights, and ethical investing research.</p>"
+  },
+  "FAQIndexPage": {
+    "intro_text": "<p>Find answers to frequently asked questions about Ethical Capital Investment Collaborative.</p>",
+    "description": "<p>Our comprehensive FAQ section provides detailed answers to help you understand our investment approach, account management, and ethical screening process.</p>",
+    "contact_email": "hello@ethicic.com",
+    "contact_phone": "+1 347 625 9000",
+    "contact_address": "90 N 400 E, Provo, UT, 84606",
+    "meeting_link": "https://tidycal.com/ecic"
+  },
+  "FAQPage": {
+    "intro_text": "<p>Frequently asked questions about the Garden Platform.</p>",
+    "empty_state_title": "No FAQs Available",
+    "empty_state_message": "<p>We're building our FAQ section. In the meantime, please don't hesitate to contact us directly with any questions.</p>",
+    "empty_state_button_text": "Contact Us",
+    "empty_state_button_url": "/contact/"
+  },
+  "BlogIndexPage": {
+    "intro_text": "<p>In-depth research and analysis on ethical investing, portfolio construction, and sustainable finance strategies.</p>",
+    "description": "<p>I provide actionable research insights to help you make informed investment decisions that align with your values and financial goals.</p>",
+    "featured_title": "Featured Research",
+    "featured_description": "<p>Essential research findings and market insights for ethical investing.</p>"
+  },
+  "ResearchPage": {
+    "intro_text": "<p>In-depth research and analysis on ethical investing, portfolio construction, and sustainable finance strategies.</p>",
+    "description": "<p>I provide actionable research insights to help you make informed investment decisions that align with your values and financial goals.</p>",
+    "featured_title": "Featured Research",
+    "featured_description": "<p>Essential research findings and market insights for ethical investing.</p>"
+  },
+  "OnboardingPage": {
+    "intro_text": "<p>Take your first step toward ethical investing or jump in with both feet. Let's find the perfect mix of strategies for your values and needs.</p>",
+    "form_description": "<p>This comprehensive form helps us understand your investment goals, risk tolerance, and ethical priorities to create your personalized portfolio strategy.</p>",
+    "thank_you_title": "Thank You!",
+    "thank_you_message": "<p>We've received your information and will be in touch within 1-2 business days to discuss your personalized investment strategy.</p>"
+  },
+  "ContactPage": {
+    "intro_text": "<p>Ready to transform your investment research and compliance workflow?</p>",
+    "email": "hello@ethicic.com"
+  },
+  "EncyclopediaIndexPage": {
+    "intro_text": "<p>Comprehensive investment terminology and concepts explained in plain language.</p>",
+    "description": "<p>Our Investment Encyclopedia provides clear, accessible explanations of key investment terms and concepts. Whether you're new to investing or looking to expand your knowledge, this resource helps you understand the language of finance and ethical investing.</p>"
+  },
+  "BlogPost": {
+    "author": "Sloane Ortel",
+    "reading_time": 5
+  },
+  "EncyclopediaEntry": {
+    "difficulty_level": "beginner"
+  }
+}

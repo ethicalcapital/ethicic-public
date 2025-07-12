@@ -14,20 +14,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 
     <!-- Core CSS in optimized loading order -->
-    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v={{ BUILD_VERSION|default:'1' }}">
-    <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v={{ BUILD_VERSION|default:'1' }}">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v={{ BUILD_VERSION|default:'2' }}">
+    <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v={{ BUILD_VERSION|default:'2' }}">
     <link rel="stylesheet" href="{% static 'css/mobile-menu-clean.css' %}?v=2">
     <link rel="stylesheet" href="{% static 'css/header-height-fix.css' %}?v=4">
     <link rel="stylesheet" href="{% static 'css/page-width-fix.css' %}?v=2">
     <link rel="stylesheet" href="{% static 'css/footer-fix.css' %}?v=2">
+    <link rel="stylesheet" href="{% static 'css/mobile-nav-fix.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/header-text-fix.css' %}?v=4">
+    <link rel="stylesheet" href="{% static 'css/strategy-nuclear-fix.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'css/wcag-contrast-fixes.css' %}?v=1">
 
     <!-- Meta tags for SEO and social sharing -->
-    <meta name="description" content="{% block meta_description %}{{ page.search_description|default:site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{% if page %}{{ page.search_description|default:site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% else %}{{ site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% endif %}{% endblock %}">
     <meta name="keywords" content="{% block meta_keywords %}{{ site_config.meta_keywords|default:'ethical investing, sustainable investing, ESG investing, socially responsible investing, investment advisory' }}{% endblock %}">
 
     <!-- Open Graph tags -->
-    <meta property="og:title" content="{% block og_title %}{{ page.seo_title|default:page.title|default:'Ethical Capital' }}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{{ page.search_description|default:site_config.meta_description }}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{% if page %}{{ page.seo_title|default:page.title|default:'Ethical Capital' }}{% else %}Ethical Capital{% endif %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% if page %}{{ page.search_description|default:site_config.meta_description }}{% else %}{{ site_config.meta_description }}{% endif %}{% endblock %}">
     <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{% static 'images/og-default.svg' %}{% endblock %}">
@@ -52,6 +56,7 @@
     <script src="{% static 'js/accessibility-focus-trap.js' %}?v=1"></script>
 
     {% block extra_css %}{% endblock %}
+</head>
 <body class="public-site-context {% block body_class %}{% endblock %}">
     <!-- Skip navigation links for screen readers -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -86,8 +91,13 @@
 
             <!-- Right: Search + User Actions + Theme Toggle -->
             <div class="garden-nav-right">
+                <!-- Mobile Search Toggle -->
+                <button class="mobile-search-toggle" @click="$refs.mobileSearch.classList.toggle('show')" aria-label="Toggle search">
+                    🔍
+                </button>
+
                 <!-- Search -->
-                <div class="garden-search-container" x-data="{ searchOpen: false, query: '', searching: false }"
+                <div class="garden-search-container" x-data="{ searchOpen: false, query: '', searching: false }" x-ref="mobileSearch"
                      @htmx:before-request="searching = true"
                      @htmx:after-request="searching = false">
                     <form method="get" action="/search/" class="garden-search" role="search" id="search">
@@ -186,6 +196,17 @@
             <button class="mobile-nav-close" @click="mobileMenuOpen = false" aria-label="Close navigation menu">
                 ×
             </button>
+
+            <!-- Mobile Search -->
+            <div class="mobile-search-container">
+                <form method="get" action="/search/" class="mobile-search-form">
+                    <input type="text"
+                           name="q"
+                           placeholder="Search..."
+                           class="mobile-search-input"
+                           aria-label="Search">
+                </form>
+            </div>
 
             {% main_menu max_levels=1 template="wagtailmenus/mobile_menu.html" %}
 
@@ -310,5 +331,7 @@
     </script>
 
     {% block extra_js %}{% endblock %}
+
+    {% block disclaimer %}{% endblock %}
 </body>
 </html>

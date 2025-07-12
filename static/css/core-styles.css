@@ -7,8 +7,9 @@ html {
     padding: 0;
     font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    color: var(--garden-color-gray-900);
-    background: var(--garden-color-white);
+    color: var(--garden-fg, var(--color-on-background));
+    background: var(--garden-bg, var(--color-background));
+    transition: background-color var(--duration-normal), color var(--duration-normal);
 }
 
 body {
@@ -16,8 +17,9 @@ body {
     padding: 0;
     font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    color: var(--garden-color-gray-900);
-    background: var(--garden-color-white);
+    color: var(--garden-fg, var(--color-on-background));
+    background: var(--garden-bg, var(--color-background));
+    transition: background-color var(--duration-normal), color var(--duration-normal);
 }
 
 h1 {
@@ -477,10 +479,7 @@ td {
     font-style: italic;
 }
 
-[data-theme="dark"] body {
-    color: var(--garden-color-gray-200);
-    background: var(--garden-color-gray-950);
-}
+/* Dark mode body styles now handled by theme variables in base body rule */
 
 [data-theme="dark"] input {
     background: var(--garden-color-gray-800);
@@ -568,20 +567,11 @@ td {
     color: var(--theme-primary-hover, var(--garden-accent-light));
 }
 
-[data-theme="dark"] .garden-panel {
-    background: var(--garden-color-gray-900);
-    color: var(--garden-color-gray-200);
-}
+/* Dark mode panel styles now handled by theme variables in garden-ui-theme.css */
 
-[data-theme="dark"] .garden-panel__header {
-    background: var(--garden-color-gray-800);
-    border-bottom-color: var(--garden-color-gray-700);
-}
+/* Dark mode panel header styles now handled by theme variables in garden-ui-theme.css */
 
-[data-theme="dark"] .garden-footer {
-    background: var(--garden-color-gray-900);
-    border-top-color: var(--garden-color-gray-700);
-}
+/* Dark mode footer styles now handled by theme variables */
 
 [data-theme="dark"] .garden-footer-legal {
     color: var(--garden-color-gray-500);
