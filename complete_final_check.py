@@ -26,7 +26,7 @@ def check_model_editability():
     ]
 
     print("=== COMPLETE CMS EDITABILITY CHECK ===")
-    
+
     models_100_percent = []
     models_needing_work = []
 
@@ -34,7 +34,7 @@ def check_model_editability():
         content_fields = get_content_fields(model)
         hardcoded_fields = get_hardcoded_fields(model, content_fields)
         truly_editable = len(content_fields) - len(hardcoded_fields)
-        
+
         editability = calculate_editability(content_fields, truly_editable)
 
         if editability == 100:
@@ -42,9 +42,15 @@ def check_model_editability():
                 {"name": model.__name__, "fields": len(content_fields)}
             )
         else:
-            models_needing_work.append(create_work_item(
-                model.__name__, content_fields, hardcoded_fields, truly_editable, editability
-            ))
+            models_needing_work.append(
+                create_work_item(
+                    model.__name__,
+                    content_fields,
+                    hardcoded_fields,
+                    truly_editable,
+                    editability,
+                )
+            )
 
     display_results(models_100_percent, models_needing_work)
     return models_needing_work
@@ -84,7 +90,9 @@ def calculate_editability(content_fields, truly_editable):
     return (truly_editable / len(content_fields) * 100) if content_fields else 100
 
 
-def create_work_item(name, content_fields, hardcoded_fields, truly_editable, editability):
+def create_work_item(
+    name, content_fields, hardcoded_fields, truly_editable, editability
+):
     """Create work item dictionary."""
     return {
         "name": name,

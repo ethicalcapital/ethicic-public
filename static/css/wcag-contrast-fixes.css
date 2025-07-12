@@ -26,15 +26,11 @@
 }
 
 /* Fix 3: Dark Mode Link Colors - Use lighter purple for better contrast */
-:root[data-theme="dark"] {
-    --link-color-dark: #9b7dd8; /* Lighter purple for dark mode */
-}
-
 [data-theme="dark"] a,
 [data-theme="dark"] .policy-link,
 [data-theme="dark"] .process-link,
 [data-theme="dark"] .resource-link {
-    color: var(--link-color-dark) !important;
+    color: #9b7dd8 !important;
 }
 
 [data-theme="dark"] a:hover,
