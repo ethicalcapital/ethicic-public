@@ -1,7 +1,9 @@
 from typing import ClassVar
+from datetime import datetime, date
 
 from django.core.paginator import Paginator
 from django.db import models
+from django.utils import timezone
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -3100,6 +3102,33 @@ class StrategyPage(Page):
         blank=True,
     )
 
+    # Monthly performance data - new automated system
+    monthly_returns = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text="Historical monthly returns data {year: {month: {strategy: %, benchmark: %}}}",
+    )
+    performance_last_updated = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="When performance data was last updated",
+    )
+    latest_month_return = models.CharField(
+        max_length=20,
+        blank=True,
+        help_text="Enter latest month return (e.g., '5.51%') - will auto-update all calculations",
+    )
+    latest_month_benchmark = models.CharField(
+        max_length=20,
+        blank=True,
+        help_text="Enter latest month benchmark return (e.g., '4.64%')",
+    )
+    latest_month_date = models.DateField(
+        null=True,
+        blank=True,
+        help_text="Date of the latest monthly data (e.g., June 30, 2025)",
+    )
+
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         # Strategy Overview
@@ -3123,24 +3152,36 @@ class StrategyPage(Page):
             ],
             heading="Strategy Characteristics",
         ),
-        # Performance Data
+        # Performance Data - Monthly Update System
         MultiFieldPanel(
             [
-                FieldPanel("ytd_return"),
-                FieldPanel("ytd_benchmark"),
-                FieldPanel("ytd_difference"),
-                FieldPanel("one_year_return"),
-                FieldPanel("one_year_benchmark"),
-                FieldPanel("one_year_difference"),
-                FieldPanel("three_year_return"),
-                FieldPanel("three_year_benchmark"),
-                FieldPanel("three_year_difference"),
-                FieldPanel("since_inception_return"),
-                FieldPanel("since_inception_benchmark"),
-                FieldPanel("since_inception_difference"),
+                FieldPanel("latest_month_return"),
+                FieldPanel("latest_month_benchmark"),
+                FieldPanel("latest_month_date"),
+                FieldPanel("performance_last_updated", read_only=True),
+            ],
+            heading="📊 Performance Update - Enter New Month",
+            help_text="Enter the latest month's performance data. All other metrics will auto-calculate when saved.",
+        ),
+        # Performance Data - Auto-Calculated
+        MultiFieldPanel(
+            [
+                FieldPanel("ytd_return", read_only=True),
+                FieldPanel("ytd_benchmark", read_only=True),
+                FieldPanel("ytd_difference", read_only=True),
+                FieldPanel("one_year_return", read_only=True),
+                FieldPanel("one_year_benchmark", read_only=True),
+                FieldPanel("one_year_difference", read_only=True),
+                FieldPanel("three_year_return", read_only=True),
+                FieldPanel("three_year_benchmark", read_only=True),
+                FieldPanel("three_year_difference", read_only=True),
+                FieldPanel("since_inception_return", read_only=True),
+                FieldPanel("since_inception_benchmark", read_only=True),
+                FieldPanel("since_inception_difference", read_only=True),
                 FieldPanel("inception_date"),
             ],
-            heading="Performance Data",
+            heading="📈 Calculated Performance Data (Auto-Updated)",
+            classname="collapsed",
         ),
         # Risk Metrics
         InlinePanel("risk_metrics", max_num=1, heading="Risk & Quality Metrics"),
@@ -3208,6 +3249,47 @@ class StrategyPage(Page):
         index.SearchField("strategy_subtitle"),
         index.SearchField("strategy_description"),
     ]
+
+    def save(self, *args, **kwargs):
+        """Override save to auto-calculate performance when monthly data is updated."""
+        # Check if we have new monthly performance data to process
+        if self.latest_month_return and self.latest_month_benchmark and self.latest_month_date:
+            # Update monthly_returns with new data
+            year_str = str(self.latest_month_date.year)
+            month_name = self.latest_month_date.strftime('%b')
+            
+            if not self.monthly_returns:
+                self.monthly_returns = {}
+            
+            if year_str not in self.monthly_returns:
+                self.monthly_returns[year_str] = {}
+            
+            self.monthly_returns[year_str][month_name] = {
+                'strategy': self.latest_month_return,
+                'benchmark': self.latest_month_benchmark
+            }
+            
+            # Update performance calculations
+            self._update_calculated_performance()
+            
+            # Clear the input fields after processing
+            self.latest_month_return = ''
+            self.latest_month_benchmark = ''
+            self.latest_month_date = None
+            
+            # Update timestamp
+            self.performance_last_updated = timezone.now()
+        
+        super().save(*args, **kwargs)
+
+    def _update_calculated_performance(self):
+        """Update all calculated performance fields from monthly_returns data."""
+        try:
+            from .utils.performance_calculator import update_performance_from_monthly_data
+            update_performance_from_monthly_data(self, self.monthly_returns)
+        except ImportError:
+            # Fallback if utility is not available
+            pass
 
     class Meta:
         verbose_name = "Strategy Page"
