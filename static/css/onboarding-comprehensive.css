@@ -3,6 +3,48 @@
 /* Form Section Styling */
 .onboarding-page.comprehensive .form-section {
     min-height: 500px;
+    margin-bottom: var(--space-6);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease-out;
+}
+
+.onboarding-page.comprehensive .form-section[x-show="true"] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.onboarding-page .form-section .panel-header {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.onboarding-page .form-section .panel-content {
+    padding: var(--space-6);
+}
+
+/* Form Group Spacing */
+.onboarding-page .garden-form-group {
+    margin-bottom: var(--space-5);
+}
+
+.onboarding-page .garden-form-group:first-child {
+    margin-top: 0;
+}
+
+.onboarding-page .garden-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.onboarding-page .garden-form-group + .garden-form-group {
+    margin-top: var(--space-5);
+}
+
+/* Nested form groups */
+.onboarding-page .garden-form-group .garden-form-group {
+    margin-bottom: var(--space-4);
 }
 
 /* Radio and Checkbox Groups */
@@ -193,6 +235,113 @@
     font-size: var(--text-sm);
 }
 
+/* Step Indicators */
+.onboarding-page .step-indicators {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.onboarding-page .step-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    border: 2px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+}
+
+.onboarding-page .step-dot.completed {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-inverse);
+}
+
+.onboarding-page .step-dot.current {
+    background: var(--color-primary-alpha-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: scale(1.1);
+}
+
+.onboarding-page .step-dot.future {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    color: var(--color-text-secondary);
+    cursor: not-allowed;
+}
+
+.onboarding-page .step-dot:hover:not(.future) {
+    transform: scale(1.05);
+}
+
+/* Validation Messages */
+.onboarding-page .validation-message {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    margin-bottom: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    animation: slide-in 0.3s ease-out;
+}
+
+.onboarding-page .validation-message.error {
+    background: var(--color-error-10);
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
+}
+
+.onboarding-page .validation-message.success {
+    background: var(--color-success-alpha-10);
+    border: 1px solid var(--color-success);
+    color: var(--color-success);
+}
+
+.onboarding-page .validation-icon {
+    font-size: var(--text-base);
+}
+
+.onboarding-page .validation-text {
+    flex: 1;
+    font-weight: 500;
+}
+
+/* Error State Styling */
+.onboarding-page .garden-input.error,
+.onboarding-page .radio-option:has(input.error),
+.onboarding-page .checkbox-option:has(input.error) {
+    border-color: var(--color-error) !important;
+    background: var(--color-error-10) !important;
+}
+
+.onboarding-page .garden-input.error:focus {
+    border-color: var(--color-error) !important;
+    box-shadow: 0 0 0 2px var(--color-error-10) !important;
+}
+
+/* Animation for validation messages */
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Thank You Panel */
 .onboarding-page .thank-you-panel {
     text-align: center;
@@ -264,18 +413,4 @@
 /* stylelint-disable-next-line declaration-no-important */
 .onboarding-page .form-section[x-show]:not(.active) {
     display: none !important;
-}
-
-/* Form Group Spacing */
-.onboarding-page .garden-form-group {
-    margin-bottom: var(--space-5);
-}
-
-.onboarding-page .garden-form-group:last-child {
-    margin-bottom: 0;
-}
-
-/* Nested form groups */
-.onboarding-page .garden-form-group .garden-form-group {
-    margin-bottom: var(--space-4);
 }

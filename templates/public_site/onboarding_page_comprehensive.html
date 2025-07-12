@@ -34,6 +34,21 @@
                             <div class="progress-fill" :style="`width: ${progress}%`"></div>
                         </div>
                         <div class="progress-text" x-text="progressText"></div>
+
+                        <!-- Step Dots -->
+                        <div class="step-indicators">
+                            <template x-for="displayStep in actualTotalSteps" :key="displayStep">
+                                <div class="step-dot"
+                                     :class="{
+                                        'completed': displayStep < actualStepNumber,
+                                        'current': displayStep === actualStepNumber,
+                                        'future': displayStep > actualStepNumber
+                                     }"
+                                     @click="goToDisplayStep(displayStep)"
+                                     x-text="displayStep">
+                                </div>
+                            </template>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1056,19 +1071,97 @@ document.addEventListener('alpine:init', () => {
             }
             window.scrollTo(0, 0);
         },
+        goToStep(targetStep) {
+            // Allow going to previous steps or current step without validation
+            if (targetStep <= this.currentStep) {
+                this.currentStep = targetStep;
+                window.scrollTo(0, 0);
+            } else {
+                // For future steps, validate current step first
+                if (this.validateStep(this.currentStep)) {
+                    this.currentStep = targetStep;
+                    window.scrollTo(0, 0);
+                }
+            }
+        },
+        goToDisplayStep(displayStep) {
+            // Convert display step number to actual step number
+            let targetStep;
+            if (this.addCoClient) {
+                targetStep = displayStep;
+            } else {
+                // If no co-client, adjust step numbers (skip step 2)
+                targetStep = displayStep >= 2 ? displayStep + 1 : displayStep;
+            }
+            this.goToStep(targetStep);
+        },
+        showValidationMessage(message, type = 'error') {
+            // Remove any existing validation messages
+            const existingMessage = document.querySelector('.validation-message');
+            if (existingMessage) existingMessage.remove();
+
+            // Create new validation message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `validation-message ${type}`;
+            messageDiv.innerHTML = `
+                <span class="validation-icon">${type === 'error' ? '⚠️' : '✓'}</span>
+                <span class="validation-text">${message}</span>
+            `;
+
+            // Insert at top of current step
+            const currentSection = document.querySelector(`[data-step='${this.currentStep}']`);
+            const panelContent = currentSection.querySelector('.panel-content');
+            panelContent.insertBefore(messageDiv, panelContent.firstChild);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (messageDiv.parentNode) messageDiv.remove();
+            }, 5000);
+        },
         validateStep(step) {
             const section = document.querySelector(`[data-step='${step}']`);
             const requiredFields = section.querySelectorAll('[required]:not([x-show]):not([style*="display: none"])');
             let isValid = true;
+            let errorFields = [];
+
             requiredFields.forEach(field => {
-                if (!field.value || (field.type === 'radio' && !section.querySelector(`input[name='${field.name}']:checked`))) {
+                let fieldValid = true;
+
+                if (field.type === 'radio') {
+                    fieldValid = section.querySelector(`input[name='${field.name}']:checked`) !== null;
+                } else if (field.type === 'checkbox' && field.hasAttribute('required')) {
+                    fieldValid = field.checked;
+                } else {
+                    fieldValid = field.value.trim() !== '';
+                }
+
+                if (!fieldValid) {
                     isValid = false;
                     field.classList.add('error');
+
+                    // Get field label for error message
+                    const label = field.closest('.garden-form-group')?.querySelector('label');
+                    const fieldName = label ? label.textContent.replace('*', '').trim() : field.name;
+                    errorFields.push(fieldName);
                 } else {
                     field.classList.remove('error');
                 }
             });
-            if (!isValid) alert('Please fill in all required fields.');
+
+            if (!isValid) {
+                const message = errorFields.length === 1
+                    ? `Please complete: ${errorFields[0]}`
+                    : `Please complete these required fields: ${errorFields.join(', ')}`;
+                this.showValidationMessage(message, 'error');
+
+                // Focus on first error field
+                const firstErrorField = section.querySelector('.error');
+                if (firstErrorField) {
+                    firstErrorField.focus();
+                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+
             return isValid;
         }
     }));
