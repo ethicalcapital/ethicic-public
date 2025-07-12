@@ -9,7 +9,7 @@
     transition: all 0.3s ease-out;
 }
 
-.onboarding-page.comprehensive .form-section[x-show="true"] {
+.onboarding-page.comprehensive .form-section:not([style*="display: none"]) {
     opacity: 1;
     transform: translateY(0);
 }
