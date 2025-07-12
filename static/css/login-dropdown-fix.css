@@ -40,15 +40,20 @@
                 0 2px 4px -1px rgb(0, 0, 0, 0.06) !important;
     overflow: visible !important;
     transform-origin: top right !important;
+    display: none; /* Hidden by default */
+    transition: opacity 0.15s ease, transform 0.15s ease !important;
 }
 
-/* Ensure dropdown shows when open */
-.garden-login-dropdown[x-show] {
+/* Ensure dropdown is hidden by default and only shows when Alpine.js opens it */
+
+/* Show dropdown when Alpine.js sets x-show to true */
+.garden-login-dropdown[x-show="true"] {
     display: block !important;
 }
 
-.garden-login-dropdown:not([style*="display: none"]) {
-    display: block !important;
+/* Ensure proper hiding when x-show is false */
+.garden-login-dropdown[x-show="false"] {
+    display: none !important;
 }
 
 /* Fix dropdown items */
@@ -80,6 +85,14 @@
     gap: 2px !important;
 }
 
+/* Ensure dropdown item content is structured properly */
+.garden-login-item > div {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+}
+
 .login-icon {
     font-size: 22px !important;
     flex-shrink: 0 !important;
@@ -89,14 +102,16 @@
 .login-title {
     font-weight: 600 !important;
     font-size: 14px !important;
-    color: var(--color-text-primary, #111827) !important;
+    color: #111827 !important; /* Hardcoded for visibility */
     line-height: 1.4 !important;
+    margin: 0 !important;
 }
 
 .login-desc {
     font-size: 13px !important;
-    color: var(--color-text-secondary, #6b7280) !important;
+    color: #6b7280 !important; /* Hardcoded for visibility */
     line-height: 1.4 !important;
+    margin: 0 !important;
 }
 
 /* Dark mode specific fixes */
@@ -117,11 +132,11 @@
 }
 
 [data-theme="dark"] .login-title {
-    color: var(--color-text-primary, #f9fafb) !important;
+    color: #f9fafb !important; /* Hardcoded for visibility */
 }
 
 [data-theme="dark"] .login-desc {
-    color: var(--color-text-secondary, #d1d5db) !important;
+    color: #d1d5db !important; /* Hardcoded for visibility */
 }
 
 /* Ensure page content doesn't overlap dropdown */
@@ -140,20 +155,9 @@ main {
     }
 }
 
-/* Fix for Alpine.js transitions */
-/* stylelint-disable-next-line no-descending-specificity, no-duplicate-selectors */
-.garden-login-dropdown {
-    transition: opacity 0.2s ease, transform 0.2s ease !important;
-}
+/* Combined with main dropdown selector above to avoid duplication */
 
-.garden-login-dropdown[x-show="false"] {
-    opacity: 0 !important;
-    transform: translateY(-10px) !important;
-    pointer-events: none !important;
-}
-
-.garden-login-dropdown[x-show="true"] {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    pointer-events: auto !important;
+/* Alpine cloak to prevent flash of content */
+[x-cloak] {
+    display: none !important;
 }
