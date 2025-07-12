@@ -1,0 +1,246 @@
+/*
+ * Strategy Table Contrast Fix
+ * Fixes visibility issues for performance tables in both light and dark modes
+ * Ensures WCAG AA compliance with proper contrast ratios
+ */
+
+@layer utilities {
+    /* ===== PERFORMANCE TABLE FIXES ===== */
+
+    /* Table container styling */
+    .strategy-page .performance-table {
+        background: var(--color-surface) !important;
+        border: 2px solid var(--color-border) !important;
+        border-radius: var(--radius-lg) !important;
+        overflow: hidden !important;
+    }
+
+    /* Table header - Purple background with white text */
+    .strategy-page .table-header,
+    .strategy-page .performance-table .table-header {
+        background: var(--color-primary) !important;
+        border-bottom: none !important;
+    }
+
+    .strategy-page .header-cell,
+    .strategy-page .table-header .header-cell,
+    .strategy-page .performance-table .header-cell {
+        color: var(--garden-color-white) !important;
+        font-weight: var(--font-bold) !important;
+        padding: var(--space-4) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        font-size: var(--text-sm) !important;
+        opacity: 1 !important;
+    }
+
+    /* Table body styling */
+    .strategy-page .table-body {
+        background: var(--color-surface) !important;
+    }
+
+    /* Table rows - clear alternating colors */
+    .strategy-page .table-row {
+        border-bottom: 1px solid var(--color-border) !important;
+        background: var(--color-surface) !important;
+    }
+
+    .strategy-page .table-row:nth-child(even) {
+        background: var(--color-surface-variant) !important;
+    }
+
+    .strategy-page .table-row:last-child {
+        border-bottom: none !important;
+    }
+
+    /* Table cells - ensure proper contrast */
+    .strategy-page .cell,
+    .strategy-page .table-body .cell {
+        color: var(--color-text-primary) !important;
+        font-weight: var(--font-normal) !important;
+        padding: var(--space-4) !important;
+        font-size: var(--text-base) !important;
+        opacity: 1 !important;
+    }
+
+    /* Positive values - green with proper contrast */
+    .strategy-page .cell.positive {
+        color: var(--color-success) !important;
+        font-weight: var(--font-semibold) !important;
+    }
+
+    /* Negative values - red with proper contrast */
+    .strategy-page .cell.negative {
+        color: var(--color-error) !important;
+        font-weight: var(--font-semibold) !important;
+    }
+
+    /* First column (Period) - slightly bolder - moved to after dark mode selectors for specificity */
+
+    /* ===== GEOGRAPHIC & ALLOCATION TABLES ===== */
+
+    /* Geographic table headers */
+    .strategy-page .geographic-header,
+    .strategy-page .allocation-header {
+        background: var(--color-primary) !important;
+        border-bottom: none !important;
+        padding: 0 !important;
+    }
+
+    .strategy-page .geographic-header > div,
+    .strategy-page .allocation-header > div {
+        color: var(--garden-color-white) !important;
+        font-weight: var(--font-bold) !important;
+        padding: var(--space-4) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        font-size: var(--text-sm) !important;
+    }
+
+    /* Geographic table rows */
+    .strategy-page .geographic-row,
+    .strategy-page .allocation-row {
+        background: var(--color-surface) !important;
+        border-bottom: 1px solid var(--color-border) !important;
+    }
+
+    .strategy-page .geographic-row:nth-child(even),
+    .strategy-page .allocation-row:nth-child(even) {
+        background: var(--color-surface-variant) !important;
+    }
+
+    .strategy-page .geographic-row > div,
+    .strategy-page .allocation-row > div {
+        color: var(--color-text-primary) !important;
+        opacity: 1 !important;
+    }
+
+    /* Total row styling */
+    .strategy-page .total-row {
+        background: var(--color-surface-elevated) !important;
+        border-top: 2px solid var(--color-primary) !important;
+        font-weight: var(--font-bold) !important;
+    }
+
+    .strategy-page .benchmark-row {
+        background: var(--color-background) !important;
+        font-style: italic !important;
+    }
+
+    /* ===== DARK MODE SPECIFIC FIXES ===== */
+
+    /* Dark mode specific surface colors */
+    [data-theme="dark"] .strategy-page {
+        /* Use calculated dark surfaces based on theme */
+        --color-surface: var(--theme-surface, var(--color-shadow-80));
+        --color-surface-variant: var(--theme-surface-variant, var(--color-shadow-50));
+        --color-surface-elevated: var(--color-shadow-40);
+    }
+
+    [data-theme="dark"] .strategy-page .performance-table,
+    [data-theme="dark"] .strategy-page .geographic-table,
+    [data-theme="dark"] .strategy-page .allocation-table {
+        background: var(--color-surface) !important;
+        border-color: var(--color-border) !important;
+    }
+
+    /* Headers remain purple with white text in dark mode */
+    [data-theme="dark"] .strategy-page .table-header,
+    [data-theme="dark"] .strategy-page .geographic-header,
+    [data-theme="dark"] .strategy-page .allocation-header {
+        background: var(--color-primary) !important;
+    }
+
+    [data-theme="dark"] .strategy-page .header-cell,
+    [data-theme="dark"] .strategy-page .geographic-header > div,
+    [data-theme="dark"] .strategy-page .allocation-header > div {
+        color: var(--garden-color-white) !important;
+    }
+
+    /* Table rows in dark mode */
+    [data-theme="dark"] .strategy-page .table-row {
+        background: var(--color-surface) !important;
+    }
+
+    [data-theme="dark"] .strategy-page .table-row:nth-child(even) {
+        background: var(--color-surface-variant) !important;
+    }
+
+    /* Ensure text contrast in dark mode */
+    [data-theme="dark"] .strategy-page .cell,
+    [data-theme="dark"] .strategy-page .geographic-row > div,
+    [data-theme="dark"] .strategy-page .allocation-row > div {
+        color: var(--color-white-90) !important;
+    }
+
+    /* Positive/negative values in dark mode */
+    [data-theme="dark"] .strategy-page .cell.positive {
+        color: var(--color-success) !important;
+    }
+
+    [data-theme="dark"] .strategy-page .cell.negative {
+        color: var(--color-error) !important;
+    }
+
+    /* First column (Period) - slightly bolder - placed after dark mode selectors for specificity */
+    .strategy-page .table-row > .cell:first-child {
+        font-weight: var(--font-medium) !important;
+    }
+
+    /* ===== HIGH CONTRAST MODE ===== */
+
+    @media (prefers-contrast: more) {
+        .strategy-page .table-header,
+        .strategy-page .geographic-header,
+        .strategy-page .allocation-header {
+            background: var(--color-shadow-80) !important;
+        }
+
+        .strategy-page .header-cell,
+        .strategy-page .geographic-header > div,
+        .strategy-page .allocation-header > div {
+            color: var(--garden-color-white) !important;
+            font-weight: 900 !important;
+        }
+
+        .strategy-page .cell,
+        .strategy-page .geographic-row > div,
+        .strategy-page .allocation-row > div {
+            font-weight: var(--font-semibold) !important;
+        }
+
+        .strategy-page .table-row,
+        .strategy-page .geographic-row,
+        .strategy-page .allocation-row {
+            border: 2px solid var(--color-text-primary) !important;
+        }
+    }
+
+    /* ===== FORCED COLORS MODE (Windows High Contrast) ===== */
+
+    @media (forced-colors: active) {
+        .strategy-page .table-header,
+        .strategy-page .geographic-header,
+        .strategy-page .allocation-header {
+            background: Highlight !important;
+        }
+
+        .strategy-page .header-cell,
+        .strategy-page .geographic-header > div,
+        .strategy-page .allocation-header > div {
+            color: HighlightText !important;
+            forced-color-adjust: none;
+        }
+
+        .strategy-page .table-row,
+        .strategy-page .geographic-row,
+        .strategy-page .allocation-row {
+            border: 1px solid CanvasText !important;
+        }
+
+        .strategy-page .cell.positive,
+        .strategy-page .cell.negative {
+            forced-color-adjust: none;
+        }
+    }
+}
