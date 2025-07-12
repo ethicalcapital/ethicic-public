@@ -186,10 +186,15 @@ class BasePublicSiteTestCase(WagtailTestCase):
         data = {
             # Section 1: About You
             "email": "onboarding@example.com",
-            "legal_name": "Test User",
+            "first_name": "Test",
+            "last_name": "User",
             "preferred_name_choice": "nope",
             "pronouns": "they/them",
-            "mailing_address": "123 Test St, New York, NY 10001",
+            "street_address": "123 Test St",
+            "city": "New York",
+            "state": "NY",
+            "zip_code": "10001",
+            "country": "United States",
             "phone": "555-123-4567",
             "birthday": "1990-01-01",
             "employment_status": "full_time",
@@ -234,8 +239,7 @@ class FormTestMixin:
 
     def submit_form(self, url, data, expect_redirect=True, follow=False):
         """Submit a form and return the response."""
-        response = self.client.post(url, data, follow=follow)
-        return response
+        return self.client.post(url, data, follow=follow)
 
     def assert_redirect(self, response, expected_url):
         """Assert that response is a redirect to expected URL."""
@@ -273,7 +277,8 @@ class FormTestMixin:
                 )
                 self.assertTrue(
                     error_found,
-                    f"Expected error message '{expected_message}' not found in field '{field}' errors: {field_errors}",
+                    f"Expected error message '{expected_message}' not found in "
+                    f"field '{field}' errors: {field_errors}",
                 )
 
 
@@ -350,10 +355,12 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
         if not parent:
             try:
                 parent = self.create_test_blog_index()
-            except:
+            except Exception:
                 from unittest import SkipTest
 
-                raise SkipTest("Cannot create blog index for blog post creation")
+                raise SkipTest(
+                    "Cannot create blog index for blog post creation"
+                ) from None
 
         if not parent:
             from unittest import SkipTest

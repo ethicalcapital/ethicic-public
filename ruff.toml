@@ -44,7 +44,7 @@ ignore = [
 # File-specific ignores
 [lint.per-file-ignores]
 "**/migrations/*.py" = ["ALL"]  # Django migrations can be messy
-"**/tests/*.py" = ["S101", "PLR2004", "ARG001", "S106"]  # Tests have different patterns
+"**/tests/*.py" = ["S101", "PLR2004", "ARG001", "S106", "PT009"]  # Tests have different patterns, Django tests use unittest assertions
 "**/settings/*.py" = ["S105", "S106"]  # Settings may have dummy secrets
 "**/management/commands/*.py" = ["S106", "C901", "PLR0915", "PLR0912", "PLR0911", "S608", "PERF203", "PERF401", "E501"]  # Setup commands are complex by nature and contain long content strings
 "**/views.py" = ["C901", "PLR0911", "E501"]  # Django views can be complex with multiple return paths and long strings
