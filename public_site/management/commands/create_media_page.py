@@ -32,6 +32,8 @@ class Command(BaseCommand):
             intro_text="<p>Media coverage, press releases, and news about Ethical Capital's mission to transform investing through ethical screening and sustainable practices.</p>",
             press_kit_title="Press Kit & Resources",
             press_kit_description="<p>For journalists and media professionals, we offer comprehensive resources about Ethical Capital, including our mission, investment philosophy, and impact data. Contact us for high-resolution images, logos, and additional materials.</p>",
+            sidebar_interview_show=False,
+            sidebar_contact_show=False,
         )
 
         root_page.add_child(instance=media_page)

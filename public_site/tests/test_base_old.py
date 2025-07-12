@@ -13,6 +13,12 @@ from django.test import TestCase
 from django.utils import timezone
 from wagtail.models import Page
 
+# Import our Wagtail test base
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from tests.wagtail_test_base import WagtailTestCase
+
 from public_site.models import (
     BlogIndexPage,
     BlogPost,
@@ -27,7 +33,7 @@ from public_site.models import (
 )
 
 
-class BasePublicSiteTestCase(TestCase):
+class BasePublicSiteTestCase(WagtailTestCase):
     """Base test case with common setup for public site tests."""
 
     @classmethod

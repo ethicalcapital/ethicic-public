@@ -202,6 +202,8 @@ class Command(BaseCommand):
                 intro_text="<p>Media coverage, press releases, and company news.</p>",
                 press_kit_title="Press Kit",
                 press_kit_description="<p>Download our press kit for logos, company information, and executive bios.</p>",
+                sidebar_interview_show=False,
+                sidebar_contact_show=False,
             )
             home_page.add_child(instance=media_page)
             self.stdout.write(

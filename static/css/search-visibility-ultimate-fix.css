@@ -126,8 +126,3 @@ input[type="search"]#search-input {
     background: #ffffff !important;
 }
 
-/* Debug styling - this should make the input very obvious */
-.garden-header .garden-search {
-    background: rgba(255, 0, 0, 0.1) !important; /* Light red background for debugging */
-    padding: 2px !important;
-}
