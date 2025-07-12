@@ -112,8 +112,26 @@ def calculate_one_year_return(
         "Dec",
     ]
 
-    current_month_idx = current_date.month - 1
-    current_year = current_date.year
+    # Find the last month with data (same logic as three-year calculation)
+    last_data_year = max(int(y) for y in monthly_returns)
+    last_data_month_idx = -1
+
+    for i in range(11, -1, -1):  # Check from Dec to Jan
+        if months[i] in monthly_returns.get(str(last_data_year), {}):
+            last_data_month_idx = i
+            break
+
+    if last_data_month_idx == -1:  # No data in the last year
+        return 0.0, 0.0
+
+    # Use the last data month instead of current date if current date is beyond data
+    last_data_date = date(last_data_year, last_data_month_idx + 1, 1)
+    if last_data_date < current_date:
+        current_month_idx = last_data_month_idx
+        current_year = last_data_year
+    else:
+        current_month_idx = current_date.month - 1
+        current_year = current_date.year
 
     # Collect 12 months of data going backwards
     for i in range(12):

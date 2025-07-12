@@ -32,7 +32,9 @@
         letter-spacing: 0.05em !important;
         font-size: var(--text-sm) !important;
         opacity: 1 !important;
+        text-align: right !important;
     }
+
 
     /* Table body styling */
     .strategy-page .table-body {
@@ -53,7 +55,7 @@
         border-bottom: none !important;
     }
 
-    /* Table cells - ensure proper contrast */
+    /* Table cells - ensure proper contrast and alignment */
     .strategy-page .cell,
     .strategy-page .table-body .cell {
         color: var(--color-text-primary) !important;
@@ -61,7 +63,9 @@
         padding: var(--space-4) !important;
         font-size: var(--text-base) !important;
         opacity: 1 !important;
+        text-align: right !important;
     }
+
 
     /* Positive values - green with proper contrast */
     .strategy-page .cell.positive {
@@ -74,8 +78,6 @@
         color: var(--color-error) !important;
         font-weight: var(--font-semibold) !important;
     }
-
-    /* First column (Period) - slightly bolder - moved to after dark mode selectors for specificity */
 
     /* ===== GEOGRAPHIC & ALLOCATION TABLES ===== */
 
@@ -182,8 +184,13 @@
         color: var(--color-error) !important;
     }
 
-    /* First column (Period) - slightly bolder - placed after dark mode selectors for specificity */
+    /* First column alignment - placed after dark mode for specificity */
+    .strategy-page .table-header .header-cell:first-child {
+        text-align: left !important;
+    }
+
     .strategy-page .table-row > .cell:first-child {
+        text-align: left !important;
         font-weight: var(--font-medium) !important;
     }
 
