@@ -121,8 +121,8 @@ def send_compliance_email(subject, message, recipient_email):
     Returns:
         bool: True if email sent successfully, False otherwise
     """
-    # Validate inputs
-    if not all([subject, message, recipient_email]):
+    # Validate inputs - allow empty strings but not None
+    if subject is None or message is None or not recipient_email:
         logger.warning("Compliance email called with missing parameters")
         return False
         

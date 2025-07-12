@@ -32,6 +32,14 @@
     background: var(--color-surface) !important;
 }
 
+/* Light mode search input - ensure dark text on light background */
+[data-theme="light"] .garden-header .garden-search-input {
+    color: #1a1a1a !important;
+    -webkit-text-fill-color: #1a1a1a !important;
+    background: #fff !important;
+    border: 1px solid #e5e5e5 !important;
+}
+
 /* Dark mode search input */
 [data-theme="dark"] .garden-header .garden-search-input {
     color: var(--color-text-primary) !important;

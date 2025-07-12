@@ -573,6 +573,7 @@ class QueryOptimizationValidationTestCase(WagtailTestCase):
                 slug=f"opt-test-{i}",
                 author=f"Author {i}",
                 locale=self.locale,
+                owner=self.user,  # Set owner to avoid None owner
             )
             blog_index.add_child(instance=post)
             post.tags.add(f"tag-{i}", "common")
