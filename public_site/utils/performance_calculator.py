@@ -167,19 +167,38 @@ def calculate_three_year_return(
         "Dec",
     ]
 
-    current_month_idx = current_date.month - 1
-    current_year = current_date.year
+    # Find the last month with data
+    last_data_year = max(int(y) for y in monthly_returns)
+    last_data_month_idx = -1
+
+    for i in range(11, -1, -1):  # Check from Dec to Jan
+        if months[i] in monthly_returns.get(str(last_data_year), {}):
+            last_data_month_idx = i
+            break
+
+    if last_data_month_idx == -1:  # No data in the last year
+        return None, None
+
+    # Use the last data month instead of current date if current date is beyond data
+    last_data_date = date(last_data_year, last_data_month_idx + 1, 1)
+    if last_data_date < current_date:
+        current_month_idx = last_data_month_idx
+        current_year = last_data_year
+    else:
+        current_month_idx = current_date.month - 1
+        current_year = current_date.year
 
     # Collect 36 months of data going backwards
     for i in range(36):
-        month_offset = current_month_idx - i
-        year_offset = month_offset // 12
-        month_idx = month_offset % 12
-        year = current_year - year_offset
+        # Calculate how many months back we're going
+        months_back = i
+
+        # Calculate year and month
+        year = current_year - (months_back + (11 - current_month_idx)) // 12
+        month_idx = (current_month_idx - months_back) % 12
 
         if month_idx < 0:
             month_idx += 12
-            year -= 1
 
         year_str = str(year)
         month = months[month_idx]
