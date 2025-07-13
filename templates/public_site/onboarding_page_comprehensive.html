@@ -24,7 +24,7 @@
 
     <main class="main-content">
         <!-- Form Container -->
-        <div class="form-container">
+        <div class="form-container" x-data="onboardingForm()">
             <!-- Progress Indicator Panel -->
             <section class="garden-panel progress-panel">
                 <div class="panel-header">PROGRESS</div>
@@ -55,7 +55,6 @@
 
             <!-- Comprehensive Onboarding Form -->
             <form id="onboardingForm" method="post" action="/onboarding/submit/"
-                  x-data="onboardingForm()"
                   @submit.prevent="submitting = true; $el.submit()">
                 {% csrf_token %}
 
@@ -1035,6 +1034,18 @@
 
                 <!-- Hidden honeypot field -->
                 <input type="text" name="honeypot" style="position: absolute; left: -9999px; top: -9999px;" tabindex="-1" autocomplete="off">
+                
+                <!-- Turnstile hidden field -->
+                <input type="hidden" name="cf_turnstile_response" value="">
+                
+                <!-- Cloudflare Turnstile before submit -->
+                <div class="garden-form-group" x-show="currentStep === 8" style="margin-bottom: 1rem;">
+                    <div class="cf-turnstile" 
+                         data-sitekey="{{ TURNSTILE_SITE_KEY }}"
+                         data-callback="onTurnstileSuccess"
+                         data-expired-callback="onTurnstileExpired"
+                         data-error-callback="onTurnstileError"></div>
+                </div>
             </form>
 
             <!-- Thank You Message -->
@@ -1269,5 +1280,36 @@ document.addEventListener('alpine:init', () => {
         }
     }));
 });
+
+// Turnstile callback functions
+function onTurnstileSuccess(token) {
+    // Store the token in the hidden field
+    const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
+    if (hiddenField) {
+        hiddenField.value = token;
+    }
+    console.log('Turnstile verification successful');
+}
+
+function onTurnstileExpired() {
+    // Clear the token when expired
+    const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
+    if (hiddenField) {
+        hiddenField.value = '';
+    }
+    console.log('Turnstile token expired');
+}
+
+function onTurnstileError(error) {
+    // Clear the token on error
+    const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
+    if (hiddenField) {
+        hiddenField.value = '';
+    }
+    console.log('Turnstile error:', error);
+}
 </script>
+
+<!-- Cloudflare Turnstile Script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 {% endblock %}
