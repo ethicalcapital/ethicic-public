@@ -32,7 +32,6 @@
         letter-spacing: 0.05em !important;
         font-size: var(--text-sm) !important;
         opacity: 1 !important;
-        text-align: right !important;
     }
 
 
@@ -55,7 +54,7 @@
         border-bottom: none !important;
     }
 
-    /* Table cells - ensure proper contrast and alignment */
+    /* Table cells - ensure proper contrast */
     .strategy-page .cell,
     .strategy-page .table-body .cell {
         color: var(--color-text-primary) !important;
@@ -63,7 +62,6 @@
         padding: var(--space-4) !important;
         font-size: var(--text-base) !important;
         opacity: 1 !important;
-        text-align: right !important;
     }
 
 
@@ -184,13 +182,22 @@
         color: var(--color-error) !important;
     }
 
-    /* First column alignment - placed after dark mode for specificity */
-    .strategy-page .table-header .header-cell:first-child {
+    /* Table alignment - headers and data cells should match */
+
+    /* All headers and cells center-aligned by default */
+    .strategy-page .table-header .header-cell,
+    .strategy-page .table-row > .cell {
+        text-align: center !important;
+    }
+
+    /* First column (Period) - both header and data left-aligned */
+    .strategy-page .table-header .header-cell:first-child,
+    .strategy-page .table-row > .cell:first-child {
         text-align: left !important;
     }
 
+    /* First column data gets medium font weight */
     .strategy-page .table-row > .cell:first-child {
-        text-align: left !important;
         font-weight: var(--font-medium) !important;
     }
 

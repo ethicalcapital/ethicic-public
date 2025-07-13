@@ -367,6 +367,21 @@
 
         <!-- Right Sidebar Column -->
         <aside class="sidebar-column">
+            <!-- Quick Access Actions in Right Rail -->
+            <section class="garden-panel right-rail-actions">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">QUICK ACCESS</div>
+                </div>
+                <div class="garden-panel__content garden-panel-content">
+                    <div class="action-buttons">
+                        <a href="#performance" class="action-button">View Performance</a>
+                        <a href="#portfolio" class="action-button">Portfolio Details</a>
+                        <a href="#documents" class="action-button primary">Documents & Reports</a>
+                        <a href="/onboarding/" class="action-button">Get Started</a>
+                    </div>
+                </div>
+            </section>
+
             <!-- Portfolio Characteristics -->
             <section class="garden-panel portfolio-characteristics-panel">
                 <div class="garden-panel__header garden-panel-header">
@@ -419,7 +434,8 @@
 {% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=8-right-rail">
+<link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=9-right-rail-buttons">
+<link rel="stylesheet" href="{% static 'css/strategy-right-rail-buttons.css' %}?v=1">
 <style>
 /* Use the same styles from the original template */
 {% include "public_site/strategy_page_styles.html" %}
@@ -446,29 +462,7 @@
     padding-right: 200px;
 }
 
-/* Quick actions - ensure buttons stay on one line */
-.quick-actions {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 2rem;
-    flex-wrap: nowrap;
-    align-items: center;
-}
-
-.quick-actions .garden-action {
-    white-space: nowrap;
-    padding: 0.4rem 0.9rem;
-    font-size: 0.8125rem;
-    min-width: 0;
-    flex: 0 1 auto;
-    line-height: 1.2;
-}
-
-/* Ensure primary and secondary buttons have consistent sizing */
-.quick-actions .garden-action.primary,
-.quick-actions .garden-action.secondary {
-    min-height: auto;
-}
+/* Quick actions styles are now in strategy-right-rail-buttons.css */
 
 /* Ensure header panel has enough width */
 .strategy-page .garden-panel:first-child .garden-panel__content {
@@ -491,6 +485,8 @@
     position: sticky;
     top: 2rem;
     height: fit-content;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
 }
 
 .portfolio-characteristics-panel {
