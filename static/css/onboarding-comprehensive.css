@@ -561,6 +561,18 @@ html body .onboarding-page .panel-content select:focus {
     }
 }
 
+/* Temporary override for fix-white-line.css issue until deployment */
+.main-content .onboarding-page .garden-input,
+.main-content .onboarding-page input[type="text"],
+.main-content .onboarding-page input[type="email"],
+.main-content .onboarding-page input[type="tel"],
+.main-content .onboarding-page input[type="number"],
+.main-content .onboarding-page input[type="date"],
+.main-content .onboarding-page textarea,
+.main-content .onboarding-page select {
+    border-color: var(--color-border) !important;
+}
+
 /* Hide inactive sections */
 /* stylelint-disable-next-line declaration-no-important */
 .onboarding-page .form-section[x-show]:not(.active) {
