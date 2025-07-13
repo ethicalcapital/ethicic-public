@@ -8,11 +8,35 @@
       class="garden-form"
       x-data="{
           submitting: false,
+          submissionId: null,
           handleSubmit() {
               this.submitting = true;
           },
-          handleResponse() {
+          handleResponse(event) {
               this.submitting = false;
+              // Extract submission ID from response if available
+              const response = event.detail.xhr.responseText;
+              try {
+                  const data = JSON.parse(response);
+                  if (data.submission_id) {
+                      this.submissionId = data.submission_id;
+                      console.log('Form submitted with ID:', this.submissionId);
+                      // Optionally check status after a delay
+                      setTimeout(() => this.checkSubmissionStatus(), 2000);
+                  }
+              } catch (e) {
+                  // Response might be HTML, not JSON
+              }
+          },
+          async checkSubmissionStatus() {
+              if (!this.submissionId) return;
+              try {
+                  const response = await fetch(`/api/submission-status/${this.submissionId}/`);
+                  const data = await response.json();
+                  console.log('Submission status:', data);
+              } catch (e) {
+                  console.log('Could not check submission status:', e);
+              }
           }
       }"
       @htmx:before-request="handleSubmit()"
@@ -75,12 +99,15 @@
             {{ contact_form.message|as_crispy_field }}
         </div>
 
-        <!-- Spam Protection (if present) -->
-        {% if contact_form.human_check %}
-            <div class="garden-form-group">
-                {{ contact_form.human_check|as_crispy_field }}
-            </div>
-        {% endif %}
+        <!-- Cloudflare Turnstile -->
+        <div class="garden-form-group">
+            <div class="cf-turnstile"
+                 data-sitekey="{{ TURNSTILE_SITE_KEY }}"
+                 data-callback="onTurnstileSuccess"
+                 data-expired-callback="onTurnstileExpired"
+                 data-error-callback="onTurnstileError"></div>
+            {{ contact_form.cf_turnstile_response }}
+        </div>
 
         <!-- Submit Button -->
         <div class="form-actions">
@@ -201,4 +228,42 @@
     .form-response-container {
         margin-top: 1rem;
     }
+
+    /* Turnstile styling */
+    .cf-turnstile {
+        margin: 1rem 0;
+    }
 </style>
+
+<!-- Cloudflare Turnstile Script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+// Turnstile callback functions
+function onTurnstileSuccess(token) {
+    // Store the token in the hidden field
+    const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
+    if (hiddenField) {
+        hiddenField.value = token;
+    }
+    console.log('Turnstile verification successful');
+}
+
+function onTurnstileExpired() {
+    // Clear the token when expired
+    const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
+    if (hiddenField) {
+        hiddenField.value = '';
+    }
+    console.log('Turnstile token expired');
+}
+
+function onTurnstileError(error) {
+    // Clear the token on error
+    const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
+    if (hiddenField) {
+        hiddenField.value = '';
+    }
+    console.log('Turnstile error:', error);
+}
+</script>

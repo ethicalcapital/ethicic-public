@@ -16,3 +16,8 @@ def theme_context(request):
 def analytics_context(request):  # noqa: ARG001
     """Add analytics configuration to all template contexts"""
     return {"POSTHOG_API_KEY": os.getenv("POSTHOG_API_KEY", "")}
+
+
+def turnstile_context(request):  # noqa: ARG001
+    """Add Turnstile configuration to all template contexts"""
+    return {"TURNSTILE_SITE_KEY": os.getenv("TURNSTILE_SITE_KEY", "")}

@@ -167,39 +167,43 @@ def contact_form_submit(request):
                 "Contact form submitted successfully, created ticket #%s", ticket.id
             )
 
-            # Optional: Still try to submit to main platform API if available
+            # Try secure API submission first, fallback to local storage
+            secure_submission_result = None
             try:
-                api_url = getattr(settings, "MAIN_PLATFORM_API_URL", None)
-                if api_url and requests:
-                    submission_data = {
-                        "first_name": first_name,
-                        "last_name": last_name,
-                        "email": contact_data["email"],
-                        "subject": ticket.subject,
-                        "message": contact_data["message"],
-                        "category": contact_data["subject"],
-                        "company": contact_data.get("company", ""),
-                        "source": "public_website",
-                    }
+                from public_site.services.platform_client import platform_client
 
-                    response = requests.post(
-                        f"{api_url}contact/submit/",
-                        json=submission_data,
-                        timeout=5,  # Shorter timeout since this is optional
-                        headers={"Content-Type": "application/json"},
+                submission_data = {
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "email": contact_data["email"],
+                    "subject": ticket.subject,
+                    "message": contact_data["message"],
+                    "category": contact_data["subject"],
+                    "company": contact_data.get("company", ""),
+                    "source": "public_website",
+                    "ticket_id": ticket.id,
+                }
+
+                secure_submission_result = platform_client.secure_contact_submission(
+                    submission_data
+                )
+
+                if secure_submission_result:
+                    # Store submission ID for tracking
+                    ticket.external_reference = secure_submission_result.get(
+                        "submission_id"
                     )
-
-                    if response.status_code == 201:
-                        logger.info("Also submitted to main platform API successfully")
-                    else:
-                        logger.info(
-                            "Main platform API submission failed (non-critical): %s",
-                            response.status_code,
-                        )
+                    ticket.save()
+                    logger.info(
+                        "Contact submitted via secure API: %s",
+                        secure_submission_result.get("submission_id"),
+                    )
+                else:
+                    logger.info("Secure API not available, using local storage only")
 
             except Exception as e:
-                logger.info("Main platform API submission failed (non-critical): %s", e)
-                # Use fallback email as backup notification method
+                logger.warning("Secure API submission failed: %s", e)
+                # Fallback email as backup notification method
                 send_fallback_email(contact_data)
 
             messages.success(
@@ -448,7 +452,7 @@ def create_or_update_contact(email, form_data, form_type, user=None):
 @require_http_methods(["POST"])
 def onboarding_form_submit(request):
     """Handle comprehensive onboarding form submissions"""
-    form = OnboardingForm(request.POST)
+    form = OnboardingForm(request.POST, request=request)
 
     # Check if this is an HTMX request
     is_htmx = request.headers.get("HX-Request") == "true"
@@ -617,6 +621,88 @@ def onboarding_form_submit(request):
                 ticket_type="onboarding",
                 status="new",
             )
+
+            logger.info(
+                "Onboarding form submitted successfully, created ticket #%s", ticket.id
+            )
+
+            # Try secure API submission first, fallback to local storage
+            secure_submission_result = None
+            try:
+                from public_site.services.platform_client import platform_client
+
+                # Prepare comprehensive form data for secure submission
+                comprehensive_message = "\n".join(message_parts)
+                onboarding_data = {
+                    "name": full_name,
+                    "email": form_data.get("email"),
+                    "phone": form_data.get("phone"),
+                    "address": full_address,
+                    "birthday": form_data.get("birthday"),
+                    "pronouns": form_data.get("pronouns"),
+                    "employment_status": form_data.get("employment_status"),
+                    "marital_status": form_data.get("marital_status"),
+                    "communication_preferences": form_data.get(
+                        "communication_preference", []
+                    ),
+                    "net_worth": form_data.get("net_worth"),
+                    "liquid_net_worth": form_data.get("liquid_net_worth"),
+                    "investable_net_worth": form_data.get("investable_net_worth"),
+                    "investment_experience": form_data.get("investment_experience"),
+                    "comprehensive_message": comprehensive_message,
+                    "ticket_id": ticket.id,
+                    "source": "onboarding_form",
+                }
+
+                # Add co-client data if present
+                if form_data.get("add_co_client") == "yes":
+                    co_name_parts = [form_data.get("co_client_first_name", "")]
+                    if form_data.get("co_client_middle_names"):
+                        co_name_parts.append(form_data.get("co_client_middle_names"))
+                    co_name_parts.append(form_data.get("co_client_last_name", ""))
+                    co_full_name = " ".join(filter(None, co_name_parts))
+
+                    onboarding_data["co_client"] = {
+                        "name": co_full_name,
+                        "email": form_data.get("co_client_email"),
+                        "phone": form_data.get("co_client_phone"),
+                        "pronouns": form_data.get("co_client_pronouns"),
+                        "birthday": form_data.get("co_client_birthday"),
+                        "employment_status": form_data.get(
+                            "co_client_employment_status"
+                        ),
+                    }
+
+                secure_submission_result = platform_client.secure_onboarding_submission(
+                    onboarding_data
+                )
+
+                if secure_submission_result:
+                    # Store submission ID for tracking
+                    ticket.external_reference = secure_submission_result.get(
+                        "submission_id"
+                    )
+                    ticket.save()
+                    logger.info(
+                        "Onboarding submitted via secure API: %s",
+                        secure_submission_result.get("submission_id"),
+                    )
+                else:
+                    logger.info("Secure API not available, using local storage only")
+
+            except Exception as e:
+                logger.warning("Secure API submission failed: %s", e)
+                # Use fallback email as backup notification method
+                from public_site.standalone_email_utils import send_fallback_email
+
+                send_fallback_email(
+                    {
+                        "name": full_name,
+                        "email": form_data.get("email"),
+                        "subject": "Onboarding Application",
+                        "message": comprehensive_message,
+                    }
+                )
 
             # Handle HTMX request
             if is_htmx:
@@ -1741,3 +1827,43 @@ def theme_api(request):
 
     except (json.JSONDecodeError, Exception) as e:
         return JsonResponse({"error": str(e)}, status=400)
+
+
+@require_http_methods(["GET"])
+def check_submission_status(request, submission_id):
+    """Check the status of a form submission using its external reference ID."""
+    try:
+        # First check local database
+        try:
+            ticket = SupportTicket.objects.get(external_reference=submission_id)
+            local_status = {
+                "found": True,
+                "ticket_id": ticket.id,
+                "status": ticket.status,
+                "created_at": ticket.created_at.isoformat(),
+                "ticket_type": ticket.ticket_type,
+            }
+        except SupportTicket.DoesNotExist:
+            local_status = {"found": False}
+
+        # Try to get status from secure API if available
+        api_status = None
+        try:
+            from public_site.services.platform_client import platform_client
+
+            api_status = platform_client.check_submission_status(submission_id)
+        except Exception as e:
+            logger.warning(f"Failed to check API submission status: {e}")
+
+        return JsonResponse(
+            {
+                "submission_id": submission_id,
+                "local": local_status,
+                "api": api_status,
+                "timestamp": timezone.now().isoformat(),
+            }
+        )
+
+    except Exception as e:
+        logger.error(f"Error checking submission status: {e}")
+        return JsonResponse({"error": "Unable to check submission status"}, status=500)

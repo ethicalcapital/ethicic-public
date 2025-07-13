@@ -1,6 +1,5 @@
 """Accessible forms for the public site using django-crispy-forms"""
 
-import random
 import re
 from typing import ClassVar
 
@@ -133,22 +132,10 @@ class AccessibleContactForm(forms.Form):
         label="If you are human, leave this field blank",
     )
 
-    human_check = forms.CharField(
-        max_length=10,
-        label="Simple verification",
-        help_text="Please solve this simple math problem to help us prevent automated spam",
-        error_messages={
-            "required": "Please solve the math problem to verify you are human.",
-        },
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Enter the answer (numbers only)",
-                "class": "form-input",
-                "aria-describedby": "id_human_check_help",
-                "inputmode": "numeric",
-                "pattern": "[0-9]*",
-            }
-        ),
+    cf_turnstile_response = forms.CharField(
+        widget=forms.HiddenInput(),
+        required=False,
+        label="",
     )
 
     form_start_time = forms.CharField(
@@ -161,6 +148,9 @@ class AccessibleContactForm(forms.Form):
         # Extract request for spam protection setup
         request = kwargs.pop("request", None)
         super().__init__(*args, **kwargs)
+
+        # Store request for validation
+        self._request = request
 
         # Set up spam protection
         self._setup_spam_protection(request)
@@ -195,18 +185,12 @@ class AccessibleContactForm(forms.Form):
                 Field("message", css_class="form-group"),
                 css_class="message-fieldset",
             ),
-            Fieldset(
-                "Verification",
-                Field("human_check", css_class="form-group"),
-                HTML(
-                    '<div class="verification-help">This helps us prevent automated spam submissions.</div>'
-                ),
-                css_class="verification-fieldset",
-            ),
+            # Turnstile will be added in template
             # Hidden spam protection fields
             Field("website", css_class="honeypot-field"),
             Field("honeypot", css_class="honeypot-field"),
             Field("form_start_time"),
+            Field("cf_turnstile_response"),
             FormActions(
                 Submit(
                     "submit",
@@ -225,38 +209,13 @@ class AccessibleContactForm(forms.Form):
     def _setup_spam_protection(self, request):
         """Set up spam protection features."""
 
-        # Generate math challenge - always use proper security validation
-        # SECURITY: Removed testing bypass to prevent production vulnerabilities
-        import sys
-
-        is_running_tests = "test" in sys.argv or "pytest" in sys.modules
-
-        if is_running_tests:
-            # Only in actual test execution: use predictable values
-            self.math_a = 1
-            self.math_b = 1
-            self.math_answer = 2
-        else:
-            # Production: Always use random math challenge
-            self.math_a = random.randint(1, 10)
-            self.math_b = random.randint(1, 10)
-            self.math_answer = self.math_a + self.math_b
-
-        # Store the answer in form's initial data
+        # Store initial data
         if not hasattr(self, "initial") or self.initial is None:
             self.initial = {}
 
         # Set form start time for timing analysis
         current_time = timezone.now().timestamp()
         self.initial["form_start_time"] = str(current_time)
-
-        # Update human_check field with math question
-        self.fields[
-            "human_check"
-        ].help_text = (
-            f"What is {self.math_a} + {self.math_b}? (This helps us prevent spam)"
-        )
-        self.fields["human_check"].label = f"What is {self.math_a} + {self.math_b}?"
 
     def _check_rate_limiting(self, request):
         """Check if this IP is rate limited."""
@@ -291,7 +250,7 @@ class AccessibleContactForm(forms.Form):
         cleaned_data = super().clean()
 
         self._validate_honeypot_fields(cleaned_data)
-        self._validate_human_verification(cleaned_data)
+        self._validate_turnstile(cleaned_data)
         self._validate_form_timing(cleaned_data)
 
         return cleaned_data
@@ -312,28 +271,46 @@ class AccessibleContactForm(forms.Form):
                 }
             )
 
-    def _validate_human_verification(self, cleaned_data):
-        """Validate human verification math problem."""
-        human_answer = cleaned_data.get("human_check", "")
+    def _validate_turnstile(self, cleaned_data):
+        """Validate Cloudflare Turnstile response."""
+        import requests
+        from django.conf import settings
+
+        turnstile_response = cleaned_data.get("cf_turnstile_response", "")
+
+        if not turnstile_response:
+            raise forms.ValidationError(
+                "Please complete the security challenge to verify you are human."
+            )
+
+        # Get client IP
+        request = getattr(self, "_request", None)
+        client_ip = self._get_client_ip(request) if request else None
+
+        # Validate with Cloudflare
+        validation_url = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+        data = {
+            "secret": settings.TURNSTILE_SECRET_KEY,
+            "response": turnstile_response,
+        }
+        if client_ip:
+            data["remoteip"] = client_ip
 
         try:
-            if hasattr(self, "math_answer") and int(human_answer) != self.math_answer:
+            response = requests.post(validation_url, data=data, timeout=10)
+            result = response.json()
+
+            if not result.get("success", False):
                 raise forms.ValidationError(
-                    {
-                        "human_check": "Please solve the math problem correctly to verify you are human."
-                    }
+                    "Security challenge verification failed. Please try again."
                 )
-            if not hasattr(self, "math_answer") and (
-                not human_answer or not human_answer.strip()
-            ):
-                # If math_answer is not set (shouldn't happen), require any non-empty value
-                raise forms.ValidationError(
-                    {"human_check": "Please provide a value for verification."}
-                )
-        except (ValueError, AttributeError) as e:
-            raise forms.ValidationError(
-                {"human_check": "Please enter a number to solve the math problem."}
-            ) from e
+        except requests.RequestException:
+            # If Turnstile API is down, log but don't block the form
+            # This provides graceful degradation
+            import logging
+
+            logger = logging.getLogger(__name__)
+            logger.warning("Turnstile validation failed due to network error")
 
     def _validate_form_timing(self, cleaned_data):
         """Validate form submission timing to detect bots."""
@@ -755,6 +732,14 @@ class InstitutionalContactForm(forms.Form):
 
 class OnboardingForm(forms.Form):
     """Comprehensive onboarding form for client acquisition matching the detailed questionnaire"""
+
+    def __init__(self, *args, **kwargs):
+        # Extract request for Turnstile validation
+        request = kwargs.pop("request", None)
+        super().__init__(*args, **kwargs)
+
+        # Store request for validation
+        self._request = request
 
     # Section 1: About You
     email = forms.EmailField(
@@ -1334,6 +1319,12 @@ class OnboardingForm(forms.Form):
         label="If you are human, leave this field blank",
     )
 
+    cf_turnstile_response = forms.CharField(
+        widget=forms.HiddenInput(),
+        required=False,
+        label="",
+    )
+
     def clean_email(self):
         """Enhanced email validation"""
         email = self.cleaned_data.get("email", "")
@@ -1371,6 +1362,9 @@ class OnboardingForm(forms.Form):
         if cleaned_data.get("honeypot"):
             msg = "We detected unusual activity. Please contact us directly if you're having trouble."
             raise forms.ValidationError(msg)
+
+        # Validate Turnstile
+        self._validate_turnstile(cleaned_data)
 
         # Handle conditional co-client fields
         if cleaned_data.get("add_co_client") == "yes":
@@ -1436,12 +1430,11 @@ class OnboardingForm(forms.Form):
             "full_time",
             "part_time",
             "self_employed",
-        ]:
-            if not cleaned_data.get("co_client_employer_name"):
-                self.add_error(
-                    "co_client_employer_name",
-                    "Please provide your co-client's employer name.",
-                )
+        ] and not cleaned_data.get("co_client_employer_name"):
+            self.add_error(
+                "co_client_employer_name",
+                "Please provide your co-client's employer name.",
+            )
 
         # Validate co-client address if they don't share address
         if cleaned_data.get("co_client_share_address") == "no" and not cleaned_data.get(
@@ -1453,6 +1446,54 @@ class OnboardingForm(forms.Form):
             )
 
         return cleaned_data
+
+    def _validate_turnstile(self, cleaned_data):
+        """Validate Cloudflare Turnstile response."""
+        import requests
+        from django.conf import settings
+
+        turnstile_response = cleaned_data.get("cf_turnstile_response", "")
+
+        if not turnstile_response:
+            raise forms.ValidationError(
+                "Please complete the security challenge to verify you are human."
+            )
+
+        # Get client IP
+        request = getattr(self, "_request", None)
+        client_ip = self._get_client_ip(request) if request else None
+
+        # Validate with Cloudflare
+        validation_url = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+        data = {
+            "secret": settings.TURNSTILE_SECRET_KEY,
+            "response": turnstile_response,
+        }
+        if client_ip:
+            data["remoteip"] = client_ip
+
+        try:
+            response = requests.post(validation_url, data=data, timeout=10)
+            result = response.json()
+
+            if not result.get("success", False):
+                raise forms.ValidationError(
+                    "Security challenge verification failed. Please try again."
+                )
+        except requests.RequestException:
+            # If Turnstile API is down, log but don't block the form
+            # This provides graceful degradation
+            import logging
+
+            logger = logging.getLogger(__name__)
+            logger.warning("Turnstile validation failed due to network error")
+
+    def _get_client_ip(self, request):
+        """Get the client's IP address."""
+        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+        if x_forwarded_for:
+            return x_forwarded_for.split(",")[0].strip()
+        return request.META.get("REMOTE_ADDR")
 
 
 class CustomUserEditForm(UserEditForm):

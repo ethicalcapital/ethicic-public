@@ -105,6 +105,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "public_site.context_processors.theme_context",
                 "public_site.context_processors.analytics_context",
+                "public_site.context_processors.turnstile_context",
             ],
         },
     },
@@ -447,3 +448,14 @@ else:
 CACHE_MIDDLEWARE_ALIAS = "default"
 CACHE_MIDDLEWARE_SECONDS = 300  # 5 minutes
 CACHE_MIDDLEWARE_KEY_PREFIX = "ethicic"
+
+# Secure Form Submission API Configuration
+BACKEND_API_KEY = os.getenv("BACKEND_API_KEY")
+FORM_ENCRYPTION_KEY = os.getenv("FORM_ENCRYPTION_KEY")
+MAIN_PLATFORM_API_URL = os.getenv(
+    "MAIN_PLATFORM_API_URL", "http://garden-platform:8000"
+)
+
+# Cloudflare Turnstile Configuration
+TURNSTILE_SITE_KEY = os.getenv("TURNSTILE_SITE_KEY")
+TURNSTILE_SECRET_KEY = os.getenv("TURNSTILE_SECRET_KEY")

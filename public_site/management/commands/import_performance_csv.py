@@ -79,7 +79,7 @@ class Command(BaseCommand):
         strategy_row = None
         benchmark_row = None
 
-        for line_num, line in enumerate(lines):
+        for _line_num, line in enumerate(lines):
             if not line.strip():
                 continue
 
@@ -88,7 +88,7 @@ class Command(BaseCommand):
             # Look for year headers (e.g., ",2025,Jan,Feb,Mar...")
             if len(parts) > 1 and parts[1].isdigit() and len(parts[1]) == 4:
                 current_year = parts[1]
-                month_headers = parts[2:14]  # Get the month names
+                parts[2:14]  # Get the month names
                 continue
 
             # Look for Strategy TWR rows

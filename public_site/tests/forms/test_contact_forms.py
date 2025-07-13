@@ -20,11 +20,12 @@ from public_site.tests.test_base import (
     BasePublicSiteTestCase,
     FormTestMixin,
     MockRequestFactory,
+    TurnstileMixin,
 )
 
 
 @override_settings(TESTING=True)
-class AccessibleContactFormTest(BasePublicSiteTestCase, FormTestMixin):
+class AccessibleContactFormTest(TurnstileMixin, BasePublicSiteTestCase, FormTestMixin):
     """Test AccessibleContactForm."""
 
     def setUp(self):
@@ -54,7 +55,6 @@ class AccessibleContactFormTest(BasePublicSiteTestCase, FormTestMixin):
                 "email": "Please provide your email address",
                 "subject": "Please select a subject",
                 "message": "Please provide a detailed message",
-                "human_check": "Please solve the math problem",
             },
         )
 
@@ -95,26 +95,29 @@ class AccessibleContactFormTest(BasePublicSiteTestCase, FormTestMixin):
         form = AccessibleContactForm(data=data, request=self.mock_request)
         self.assert_form_invalid(form, {"honeypot": "unusual activity"})
 
-    def test_contact_form_human_check(self):
-        """Test human verification field."""
+    def test_contact_form_turnstile_validation(self):
+        """Test Turnstile validation."""
         data = self.create_test_contact_data()
 
-        # Correct answer should pass (in testing mode: 1+1=2)
-        data["human_check"] = "2"
+        # Valid token should pass (mocked to succeed)
         form = AccessibleContactForm(data=data, request=self.mock_request)
         self.assert_form_valid(form)
 
-        # Wrong answer should fail
-        data["human_check"] = "5"
+        # Invalid token should fail
+        self.mock_turnstile_failure()
         form = AccessibleContactForm(data=data, request=self.mock_request)
-        self.assert_form_invalid(
-            form, {"human_check": "solve the math problem correctly"}
-        )
+        self.assert_form_invalid(form, "Security challenge verification failed")
 
-        # Empty value should fail
-        data["human_check"] = ""
+        # Empty token should fail
+        data["cf_turnstile_response"] = ""
         form = AccessibleContactForm(data=data, request=self.mock_request)
-        self.assert_form_invalid(form, {"human_check": "Please solve the math problem"})
+        self.assert_form_invalid(form, "Please complete the security challenge")
+
+        # Network error should allow form through (graceful degradation)
+        data["cf_turnstile_response"] = "test_token"
+        self.mock_turnstile_network_error()
+        form = AccessibleContactForm(data=data, request=self.mock_request)
+        self.assert_form_valid(form)
 
     def test_contact_form_spam_detection(self):
         """Test spam content detection in message."""
@@ -185,10 +188,10 @@ class AccessibleContactFormTest(BasePublicSiteTestCase, FormTestMixin):
         email_field = form.fields["email"]
         self.assertEqual(email_field.widget.attrs["autocomplete"], "email")
 
-        # Check human_check field
-        human_field = form.fields["human_check"]
-        self.assertEqual(human_field.widget.attrs["inputmode"], "numeric")
-        self.assertEqual(human_field.widget.attrs["pattern"], "[0-9]*")
+        # Check Turnstile field
+        turnstile_field = form.fields["cf_turnstile_response"]
+        self.assertEqual(turnstile_field.required, False)
+        self.assertEqual(turnstile_field.label, "")
 
 
 @override_settings(TESTING=True)
@@ -242,8 +245,12 @@ class AccessibleNewsletterFormTest(TestCase, FormTestMixin):
 
 
 @override_settings(TESTING=True)
-class OnboardingFormTest(TestCase, FormTestMixin):
+class OnboardingFormTest(TurnstileMixin, TestCase, FormTestMixin):
     """Test OnboardingForm - basic tests (comprehensive tests in separate file)."""
+
+    def setUp(self):
+        super().setUp()
+        self.mock_request = MockRequestFactory.create_request()
 
     def create_basic_onboarding_data(self):
         """Create basic test data for onboarding form."""
@@ -295,17 +302,18 @@ class OnboardingFormTest(TestCase, FormTestMixin):
             "account_types": ["individual_taxable"],
             # Anti-spam
             "honeypot": "",
+            "cf_turnstile_response": "test_turnstile_token",
         }
 
     def test_onboarding_form_valid(self):
         """Test valid onboarding form submission."""
         data = self.create_basic_onboarding_data()
-        form = OnboardingForm(data=data)
+        form = OnboardingForm(data=data, request=self.mock_request)
         self.assert_form_valid(form)
 
     def test_onboarding_form_required_fields(self):
         """Test required field validation."""
-        form = OnboardingForm(data={})
+        form = OnboardingForm(data={}, request=self.mock_request)
 
         # Check some key required fields
         self.assertFalse(form.is_valid())
@@ -322,7 +330,7 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         data = self.create_basic_onboarding_data()
         data["honeypot"] = "spam content"
 
-        form = OnboardingForm(data=data)
+        form = OnboardingForm(data=data, request=self.mock_request)
         self.assert_form_invalid(form)
         self.assertIn("unusual activity", str(form.errors))
 
@@ -331,7 +339,7 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         data = self.create_basic_onboarding_data()
         data["email"] = "TEST@EXAMPLE.COM"
 
-        form = OnboardingForm(data=data)
+        form = OnboardingForm(data=data, request=self.mock_request)
         self.assert_form_valid(form)
         self.assertEqual(form.cleaned_data["email"], "test@example.com")
 
@@ -341,7 +349,7 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         data["add_co_client"] = "yes"
         # Don't provide co-client fields
 
-        form = OnboardingForm(data=data)
+        form = OnboardingForm(data=data, request=self.mock_request)
         self.assert_form_invalid(form)
         self.assertIn("co_client_first_name", form.errors)
         self.assertIn("co_client_last_name", form.errors)
@@ -349,7 +357,7 @@ class OnboardingFormTest(TestCase, FormTestMixin):
 
     def test_onboarding_form_choice_fields(self):
         """Test form choice field validation."""
-        form = OnboardingForm()
+        form = OnboardingForm(request=self.mock_request)
 
         # Check pronoun choices
         pronoun_choices = [choice[0] for choice in form.fields["pronouns"].choices]
@@ -392,13 +400,13 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         for po_address in po_box_addresses:
             with self.subTest(address=po_address):
                 data["street_address"] = po_address
-                form = OnboardingForm(data=data)
+                form = OnboardingForm(data=data, request=self.mock_request)
                 self.assertFalse(form.is_valid())
                 self.assertIn("street_address", form.errors)
                 error_text = str(form.errors["street_address"])
                 self.assertTrue(
                     "unable to use P.O. boxes" in error_text,
-                    f"Expected PO Box error message in: {error_text}"
+                    f"Expected PO Box error message in: {error_text}",
                 )
 
     def test_onboarding_form_valid_street_address(self):
@@ -415,7 +423,7 @@ class OnboardingFormTest(TestCase, FormTestMixin):
         for valid_address in valid_addresses:
             with self.subTest(address=valid_address):
                 data["street_address"] = valid_address
-                form = OnboardingForm(data=data)
+                form = OnboardingForm(data=data, request=self.mock_request)
                 self.assertTrue(
                     form.is_valid(),
                     f"Form should be valid for address: {valid_address}",
@@ -424,7 +432,7 @@ class OnboardingFormTest(TestCase, FormTestMixin):
     def test_onboarding_form_name_assembly(self):
         """Test that names are properly assembled from components."""
         data = self.create_basic_onboarding_data()
-        form = OnboardingForm(data=data)
+        form = OnboardingForm(data=data, request=self.mock_request)
         self.assertTrue(form.is_valid())
 
         # The view will assemble the name as "John Michael Doe"

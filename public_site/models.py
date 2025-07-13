@@ -4452,6 +4452,14 @@ class SupportTicket(models.Model):
         help_text="Internal notes about this ticket",
     )
 
+    # External tracking
+    external_reference = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text="External submission ID for tracking secure API submissions",
+    )
+
     class Meta:
         verbose_name = "Support Ticket"
         verbose_name_plural = "Support Tickets"

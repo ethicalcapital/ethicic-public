@@ -73,12 +73,14 @@ def send_newsletter_notification(email, source="website"):
     if not email or not email.strip():
         logger.warning("Newsletter notification called with empty email")
         return False
-        
+
     # Basic email format validation
     if "@" not in email or "." not in email.split("@")[-1]:
-        logger.warning(f"Newsletter notification called with invalid email format: {email}")
+        logger.warning(
+            f"Newsletter notification called with invalid email format: {email}"
+        )
         return False
-        
+
     try:
         subject = f"New Newsletter Subscription - {email}"
 
@@ -125,16 +127,18 @@ def send_compliance_email(subject, message, recipient_email):
     if subject is None or message is None or not recipient_email:
         logger.warning("Compliance email called with missing parameters")
         return False
-        
+
     if not recipient_email.strip():
         logger.warning("Compliance email called with empty recipient")
         return False
-        
+
     # Basic email format validation
     if "@" not in recipient_email or "." not in recipient_email.split("@")[-1]:
-        logger.warning(f"Compliance email called with invalid email format: {recipient_email}")
+        logger.warning(
+            f"Compliance email called with invalid email format: {recipient_email}"
+        )
         return False
-        
+
     try:
         send_mail(
             subject,

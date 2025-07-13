@@ -73,6 +73,12 @@ urlpatterns = [
     path("api/validate-email/", views.validate_email_api, name="api_validate_email"),
     # Theme preference API
     path("api/theme/set/", views.theme_api, name="api_theme"),
+    # Form submission status checking
+    path(
+        "api/submission-status/<str:submission_id>/",
+        views.check_submission_status,
+        name="api_submission_status",
+    ),
     # Current Holdings transparency page - temporarily disabled for testing
     # path("holdings/", views.current_holdings, name="current_holdings"),
     # Note: Media files are served by Django/WhiteNoise and configured in main urls.py

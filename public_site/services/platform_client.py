@@ -5,10 +5,14 @@ Provides optional integration with main platform via API calls.
 Falls back gracefully when main platform is unavailable.
 """
 
+import base64
+import json
 import logging
+import uuid
 from typing import Any
 
 import requests
+from cryptography.fernet import Fernet
 from django.conf import settings
 
 logger = logging.getLogger(__name__)
@@ -24,27 +28,68 @@ class PlatformAPIClient:
         self.timeout = getattr(settings, "AI_API_TIMEOUT", 30)
         self.quick_timeout = getattr(settings, "AI_QUICK_ANALYSIS_TIMEOUT", 10)
 
+        # Secure API configuration
+        self.api_key = getattr(settings, "BACKEND_API_KEY", None)
+        self.encryption_key = getattr(settings, "FORM_ENCRYPTION_KEY", None)
+        self._cipher = None
+
+        if self.encryption_key:
+            try:
+                # Ensure key is properly formatted for Fernet
+                if isinstance(self.encryption_key, str):
+                    key_bytes = self.encryption_key.encode()
+                    if (
+                        len(key_bytes) != 44
+                    ):  # Fernet key should be 44 bytes when base64 encoded
+                        key_bytes = base64.urlsafe_b64encode(key_bytes[:32])
+                    self._cipher = Fernet(key_bytes)
+                else:
+                    self._cipher = Fernet(self.encryption_key)
+            except Exception as e:
+                logger.warning(f"Failed to initialize encryption: {e}")
+                self._cipher = None
+
+    def _encrypt_data(self, data: dict[str, Any]) -> str | None:
+        """Encrypt data payload using Fernet encryption."""
+        if not self._cipher:
+            return None
+        try:
+            json_data = json.dumps(data, default=str)
+            encrypted_data = self._cipher.encrypt(json_data.encode())
+            return base64.urlsafe_b64encode(encrypted_data).decode()
+        except Exception as e:
+            logger.error(f"Encryption failed: {e}")
+            return None
+
     def _make_request(
         self,
         endpoint: str,
         data: dict[str, Any] | None = None,
         timeout: int | None = None,
         method: str = "POST",
+        use_secure_api: bool = False,
     ) -> dict[str, Any] | None:
         """Make API request with graceful error handling."""
         try:
             url = f"{self.base_url.rstrip('/')}/{endpoint.lstrip('/')}"
             timeout = timeout or self.timeout
+            headers = {"Content-Type": "application/json"}
+
+            # Add API key authentication for secure endpoints
+            if use_secure_api and self.api_key:
+                headers["X-API-Key"] = self.api_key
 
             if method.upper() == "POST":
                 response = requests.post(
                     url,
                     json=data,
-                    headers={"Content-Type": "application/json"},
+                    headers=headers,
                     timeout=timeout,
                 )
             else:
-                response = requests.get(url, params=data, timeout=timeout)
+                response = requests.get(
+                    url, params=data, headers=headers, timeout=timeout
+                )
 
             if response.status_code == 200:
                 return response.json()
@@ -187,6 +232,130 @@ class PlatformAPIClient:
             logger.info(f"Research insights retrieved for topic: {topic or 'all'}")
 
         return result
+
+    def secure_contact_submission(
+        self, form_data: dict[str, Any]
+    ) -> dict[str, Any] | None:
+        """
+        Submit contact form data using secure encrypted API.
+
+        Args:
+            form_data: Contact form data to submit
+
+        Returns:
+            Submission result with confirmation details if successful
+        """
+        if not self.api_key:
+            logger.warning("No API key configured for secure contact submission")
+            return None
+
+        # Add submission metadata
+        submission_data = {
+            "submission_id": str(uuid.uuid4()),
+            "form_type": "contact",
+            "submitted_at": str(uuid.uuid1().time),
+            "data": form_data,
+        }
+
+        # Encrypt the payload if encryption is available
+        if self._cipher:
+            encrypted_payload = self._encrypt_data(submission_data)
+            if encrypted_payload:
+                payload = {"encrypted_data": encrypted_payload}
+            else:
+                logger.warning(
+                    "Encryption failed, falling back to unencrypted submission"
+                )
+                payload = submission_data
+        else:
+            logger.info("No encryption key configured, sending unencrypted data")
+            payload = submission_data
+
+        result = self._make_request(
+            "/api/v1/secure/contact-submission/",
+            payload,
+            self.timeout,
+            use_secure_api=True,
+        )
+
+        if result:
+            logger.info(
+                f"Secure contact submission successful: {result.get('submission_id', 'unknown')}"
+            )
+
+        return result
+
+    def secure_onboarding_submission(
+        self, form_data: dict[str, Any]
+    ) -> dict[str, Any] | None:
+        """
+        Submit onboarding form data using secure encrypted API.
+
+        Args:
+            form_data: Onboarding form data to submit
+
+        Returns:
+            Submission result with confirmation details if successful
+        """
+        if not self.api_key:
+            logger.warning("No API key configured for secure onboarding submission")
+            return None
+
+        # Add submission metadata
+        submission_data = {
+            "submission_id": str(uuid.uuid4()),
+            "form_type": "onboarding",
+            "submitted_at": str(uuid.uuid1().time),
+            "data": form_data,
+        }
+
+        # Encrypt the payload if encryption is available
+        if self._cipher:
+            encrypted_payload = self._encrypt_data(submission_data)
+            if encrypted_payload:
+                payload = {"encrypted_data": encrypted_payload}
+            else:
+                logger.warning(
+                    "Encryption failed, falling back to unencrypted submission"
+                )
+                payload = submission_data
+        else:
+            logger.info("No encryption key configured, sending unencrypted data")
+            payload = submission_data
+
+        result = self._make_request(
+            "/api/v1/secure/onboarding-submission/",
+            payload,
+            self.timeout,
+            use_secure_api=True,
+        )
+
+        if result:
+            logger.info(
+                f"Secure onboarding submission successful: {result.get('submission_id', 'unknown')}"
+            )
+
+        return result
+
+    def check_submission_status(self, submission_id: str) -> dict[str, Any] | None:
+        """
+        Check the status of a form submission.
+
+        Args:
+            submission_id: ID of the submission to check
+
+        Returns:
+            Status information if available
+        """
+        if not self.api_key or not submission_id:
+            return None
+
+        return self._make_request(
+            f"/api/v1/secure/submission-status/{submission_id}/",
+            timeout=self.quick_timeout,
+            method="GET",
+            use_secure_api=True,
+        )
 
     def health_check(self) -> bool:
         """

@@ -7,6 +7,7 @@ import json
 # Import Django and Wagtail test utilities
 from datetime import datetime
 from typing import Optional
+from unittest.mock import patch
 
 from django.contrib.auth import get_user_model
 from django.test import RequestFactory, TestCase, TransactionTestCase
@@ -166,7 +167,7 @@ class BasePublicSiteTestCase(WagtailTestCase):
             "company": "Test Company",
             "subject": "general",
             "message": "This is a test message for contact form submission.",
-            "human_check": "2",  # 1+1=2 (test math problem)
+            "cf_turnstile_response": "test_turnstile_token",  # Mock Turnstile token
             "consent": True,
         }
         data.update(overrides)
@@ -504,3 +505,34 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
             )
 
         return media_page
+
+
+class TurnstileMixin:
+    """Mixin to mock Turnstile validation in tests."""
+
+    def setUp(self):
+        """Set up Turnstile mocking."""
+        super().setUp()
+
+        # Mock Turnstile validation to always succeed
+        self.turnstile_patcher = patch("public_site.forms.requests.post")
+        self.mock_turnstile = self.turnstile_patcher.start()
+
+        # Configure mock to return successful Turnstile response
+        self.mock_turnstile.return_value.json.return_value = {"success": True}
+        self.mock_turnstile.return_value.status_code = 200
+
+    def tearDown(self):
+        """Clean up Turnstile mocking."""
+        super().tearDown()
+        self.turnstile_patcher.stop()
+
+    def mock_turnstile_failure(self):
+        """Configure mock to return failed Turnstile response."""
+        self.mock_turnstile.return_value.json.return_value = {"success": False}
+
+    def mock_turnstile_network_error(self):
+        """Configure mock to simulate network error."""
+        import requests
+
+        self.mock_turnstile.side_effect = requests.RequestException("Network error")
