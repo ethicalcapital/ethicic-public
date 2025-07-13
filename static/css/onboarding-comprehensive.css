@@ -133,7 +133,7 @@
     line-height: 1.5;
 }
 
-/* Garden Input Styling - Enhanced visibility like contact form */
+/* Garden Input Styling - Enhanced visibility with borders in all states */
 .onboarding-page .garden-input,
 .onboarding-page input[type="text"],
 .onboarding-page input[type="email"],
@@ -145,7 +145,7 @@
     width: 100%;
     padding: var(--space-4);
     background: var(--color-surface) !important;
-    border: 2px solid var(--color-border) !important;
+    border: 1px solid var(--color-border) !important;
     border-radius: var(--radius-md);
     color: var(--color-text-primary) !important;
     font-family: var(--font-sans);
@@ -160,12 +160,21 @@
     min-height: 100px;
 }
 
+/* Hover state - intermediate feedback */
+.onboarding-page .garden-input:hover,
+.onboarding-page input:hover,
+.onboarding-page textarea:hover,
+.onboarding-page select:hover {
+    border-color: var(--color-primary-light) !important;
+}
+
+/* Focus state - clear, accessible focus indicator */
 .onboarding-page .garden-input:focus,
 .onboarding-page input:focus,
 .onboarding-page textarea:focus,
 .onboarding-page select:focus {
-    outline: none;
-    border-color: var(--color-primary) !important;
+    outline: none; /* Remove default outline since we provide better custom indicator */
+    border: 2px solid var(--color-primary) !important;
     box-shadow: 0 0 0 3px var(--color-primary-alpha) !important;
 }
 
@@ -235,12 +244,22 @@ html body .onboarding-page .panel-content input,
 html body .onboarding-page .panel-content textarea,
 html body .onboarding-page .panel-content select {
     background: var(--color-surface) !important;
-    border: 2px solid var(--color-border) !important;
+    border: 1px solid var(--color-border) !important;
     color: var(--color-text-primary) !important;
     border-radius: var(--radius-md) !important;
     padding: var(--space-4) !important;
     font-size: var(--text-base) !important;
     transition: all var(--duration-fast) !important;
+}
+
+/* Make sure hover states are visible */
+html body .onboarding-page .garden-form-group input:hover,
+html body .onboarding-page .garden-form-group textarea:hover,
+html body .onboarding-page .garden-form-group select:hover,
+html body .onboarding-page .panel-content input:hover,
+html body .onboarding-page .panel-content textarea:hover,
+html body .onboarding-page .panel-content select:hover {
+    border-color: var(--color-primary-light) !important;
 }
 
 /* Make sure focus states are clearly visible */
@@ -250,7 +269,7 @@ html body .onboarding-page .garden-form-group select:focus,
 html body .onboarding-page .panel-content input:focus,
 html body .onboarding-page .panel-content textarea:focus,
 html body .onboarding-page .panel-content select:focus {
-    border-color: var(--color-primary) !important;
+    border: 2px solid var(--color-primary) !important;
     box-shadow: 0 0 0 3px var(--color-primary-alpha) !important;
     outline: none !important;
 }
@@ -512,7 +531,7 @@ html body .onboarding-page .panel-content select:focus {
 [data-theme="dark"] html body .onboarding-page .panel-content textarea,
 [data-theme="dark"] html body .onboarding-page .panel-content select {
     background: var(--color-surface) !important;
-    border: 2px solid var(--color-border) !important;
+    border: 1px solid var(--color-border) !important;
     color: var(--color-text-primary) !important;
 }
 
