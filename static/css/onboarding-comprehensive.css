@@ -561,15 +561,21 @@ html body .onboarding-page .panel-content select:focus {
     }
 }
 
-/* Temporary override for fix-white-line.css issue until deployment */
-.main-content .onboarding-page .garden-input,
-.main-content .onboarding-page input[type="text"],
-.main-content .onboarding-page input[type="email"],
-.main-content .onboarding-page input[type="tel"],
-.main-content .onboarding-page input[type="number"],
-.main-content .onboarding-page input[type="date"],
-.main-content .onboarding-page textarea,
-.main-content .onboarding-page select {
+/* Emergency fix for invisible form borders - highest specificity override */
+html body .main-content .onboarding-page .garden-input,
+html body .main-content .onboarding-page input[type="text"],
+html body .main-content .onboarding-page input[type="email"],
+html body .main-content .onboarding-page input[type="tel"],
+html body .main-content .onboarding-page input[type="number"],
+html body .main-content .onboarding-page input[type="date"],
+html body .main-content .onboarding-page textarea,
+html body .main-content .onboarding-page select,
+html body .main-content .onboarding-page input,
+html body .main-content input.garden-input,
+html body .main-content input#email,
+html body .main-content input#first_name,
+html body .main-content input#last_name {
+    border: 1px solid var(--color-border) !important;
     border-color: var(--color-border) !important;
 }
 
