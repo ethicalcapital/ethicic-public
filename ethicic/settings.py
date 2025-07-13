@@ -35,7 +35,7 @@ if os.getenv("KINSTA_DOMAIN"):
     ALLOWED_HOSTS.append(f"*.{os.getenv('KINSTA_DOMAIN')}")
 
 # Temporary: Allow all hosts if not specified
-if ["*"] == ALLOWED_HOSTS:
+if ALLOWED_HOSTS == ["*"]:
     ALLOWED_HOSTS = ["*"]
 
 # Application definition

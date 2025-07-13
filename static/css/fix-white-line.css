@@ -55,9 +55,8 @@ body {
     border-color: transparent !important;
 }
 
-/* Remove any light borders that might appear as white lines */
-.garden-header *,
-.main-content * {
+/* Remove any light borders that might appear as white lines - targeting specific header elements only */
+.garden-header * {
     border-color: transparent !important;
 }
 
