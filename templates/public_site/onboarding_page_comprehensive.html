@@ -1066,6 +1066,31 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/onboarding-comprehensive.css' %}">
+<style>
+/* Emergency fix for invisible form borders - inline override */
+html body .main-content .onboarding-page input,
+html body .main-content .onboarding-page textarea,
+html body .main-content .onboarding-page select,
+html body .main-content input.garden-input,
+html body .main-content input#email,
+html body .main-content input#first_name,
+html body .main-content input#last_name,
+html body .main-content input#middle_names,
+html body .main-content input#preferred_name,
+html body .main-content input#pronouns,
+html body .main-content input#street_address,
+html body .main-content input#apartment,
+html body .main-content input#city,
+html body .main-content input#state,
+html body .main-content input#zip_code,
+html body .main-content input#country,
+html body .main-content input#phone_number,
+html body .main-content input#birthday,
+html body .main-content textarea {
+    border: 1px solid #e5e7eb !important;
+    border-color: #e5e7eb !important;
+}
+</style>
 {% endblock %}
 
 {% block extra_js %}
