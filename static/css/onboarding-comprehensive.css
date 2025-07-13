@@ -52,23 +52,28 @@
     display: flex;
     gap: var(--space-4);
     margin-bottom: var(--space-5);
+    flex-wrap: wrap;
+    align-items: flex-end;
 }
 
 .onboarding-page .garden-form-group-row .garden-form-group {
-    flex: 1;
     margin-bottom: 0;
+    min-width: 0; /* Allow flex items to shrink below content size */
 }
 
 .onboarding-page .garden-form-group-row .garden-form-group:nth-child(1) {
     flex: 2; /* City gets more space */
+    min-width: 120px;
 }
 
 .onboarding-page .garden-form-group-row .garden-form-group:nth-child(2) {
-    flex: 1; /* State */
+    flex: 1.5; /* State gets medium space */
+    min-width: 100px;
 }
 
 .onboarding-page .garden-form-group-row .garden-form-group:nth-child(3) {
-    flex: 1; /* ZIP */
+    flex: 1; /* ZIP gets least space */
+    min-width: 80px;
 }
 
 /* Form Help Text */
