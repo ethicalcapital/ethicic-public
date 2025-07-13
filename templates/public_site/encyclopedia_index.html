@@ -7,6 +7,92 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/encyclopedia-page-fix.css' %}?v=1">
+<style>
+/* Encyclopedia Page Styling */
+.encyclopedia-search {
+    margin-bottom: var(--space-6, 24px);
+}
+
+.encyclopedia-entry {
+    transition: all 0.2s ease;
+}
+
+.encyclopedia-entry:hover {
+    border-color: var(--theme-primary) !important;
+    box-shadow: 0 2px 8px var(--theme-shadow-variant);
+}
+
+/* Tag styling matching article tags */
+.article-tag {
+    background: var(--theme-surface-variant);
+    color: var(--theme-on-surface-variant);
+    border: 1px solid var(--theme-border);
+    padding: var(--space-1, 4px) var(--space-2, 8px);
+    font-size: var(--font-xs, 12px);
+    font-weight: var(--font-medium, 500);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: var(--radius-sm, 4px);
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.article-tag:hover {
+    background: var(--theme-primary-alpha);
+    color: var(--theme-on-surface);
+    border-color: var(--theme-primary);
+}
+
+/* Details/Summary styling */
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary:hover {
+    color: var(--theme-primary-hover) !important;
+}
+
+details summary:focus-visible {
+    outline: 2px solid var(--theme-primary);
+    outline-offset: 2px;
+}
+
+/* Search input styling */
+.garden-input {
+    width: 100%;
+    padding: var(--space-3, 12px) var(--space-4, 16px);
+    border: 1px solid var(--theme-border);
+    border-radius: var(--radius-sm, 4px);
+    background: var(--theme-surface);
+    color: var(--theme-on-surface);
+    font-family: inherit;
+    font-size: var(--font-base, 16px);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.garden-input:focus {
+    outline: none;
+    border-color: var(--theme-primary);
+    box-shadow: 0 0 0 2px var(--theme-primary-alpha);
+}
+
+.garden-input::placeholder {
+    color: var(--theme-on-surface-variant);
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .entry-header {
+        flex-direction: column !important;
+        gap: var(--space-2, 8px);
+    }
+
+    .encyclopedia-entry {
+        padding: var(--space-3, 12px) !important;
+    }
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -131,95 +217,6 @@
         </div>
     </section>
 </div>
-{% endblock %}
-
-{% block extra_css %}
-<style>
-/* Encyclopedia Page Styling */
-.encyclopedia-search {
-    margin-bottom: var(--space-6, 24px);
-}
-
-.encyclopedia-entry {
-    transition: all 0.2s ease;
-}
-
-.encyclopedia-entry:hover {
-    border-color: var(--theme-primary) !important;
-    box-shadow: 0 2px 8px var(--theme-shadow-variant);
-}
-
-/* Tag styling matching article tags */
-.article-tag {
-    background: var(--theme-surface-variant);
-    color: var(--theme-on-surface-variant);
-    border: 1px solid var(--theme-border);
-    padding: var(--space-1, 4px) var(--space-2, 8px);
-    font-size: var(--font-xs, 12px);
-    font-weight: var(--font-medium, 500);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    border-radius: var(--radius-sm, 4px);
-    display: inline-block;
-    white-space: nowrap;
-}
-
-.article-tag:hover {
-    background: var(--theme-primary-alpha);
-    color: var(--theme-on-surface);
-    border-color: var(--theme-primary);
-}
-
-/* Details/Summary styling */
-details summary::-webkit-details-marker {
-    display: none;
-}
-
-details summary:hover {
-    color: var(--theme-primary-hover) !important;
-}
-
-details summary:focus-visible {
-    outline: 2px solid var(--theme-primary);
-    outline-offset: 2px;
-}
-
-/* Search input styling */
-.garden-input {
-    width: 100%;
-    padding: var(--space-3, 12px) var(--space-4, 16px);
-    border: 1px solid var(--theme-border);
-    border-radius: var(--radius-sm, 4px);
-    background: var(--theme-surface);
-    color: var(--theme-on-surface);
-    font-family: inherit;
-    font-size: var(--font-base, 16px);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.garden-input:focus {
-    outline: none;
-    border-color: var(--theme-primary);
-    box-shadow: 0 0 0 2px var(--theme-primary-alpha);
-}
-
-.garden-input::placeholder {
-    color: var(--theme-on-surface-variant);
-    opacity: 0.8;
-}
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
-    .entry-header {
-        flex-direction: column !important;
-        gap: var(--space-2, 8px);
-    }
-
-    .encyclopedia-entry {
-        padding: var(--space-3, 12px) !important;
-    }
-}
-</style>
 {% endblock %}
 
 {% block extra_js %}

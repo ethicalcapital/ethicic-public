@@ -35,7 +35,7 @@ if os.getenv("KINSTA_DOMAIN"):
     ALLOWED_HOSTS.append(f"*.{os.getenv('KINSTA_DOMAIN')}")
 
 # Temporary: Allow all hosts if not specified
-if ["*"] == ALLOWED_HOSTS:
+if ALLOWED_HOSTS == ["*"]:
     ALLOWED_HOSTS = ["*"]
 
 # Application definition
@@ -104,6 +104,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "public_site.context_processors.theme_context",
+                "public_site.context_processors.analytics_context",
             ],
         },
     },

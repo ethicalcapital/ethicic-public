@@ -18,6 +18,8 @@ from wagtail.models import Orderable, Page
 from wagtail.search import index
 
 # Import StreamField blocks
+# Import models from other modules
+from .models_newsletter import AccessibilityPage, NewsletterPage  # noqa: F401
 
 # ============================================================================
 # PAGE MODELS

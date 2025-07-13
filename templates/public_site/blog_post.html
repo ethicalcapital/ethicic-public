@@ -7,9 +7,6 @@
 
 {% block body_class %}blog-post-page{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/blog-post-garden-ui-fix.css' %}?v=1">
-{% endblock %}
 
 {% block content %}
 <div class="garden-container">
@@ -150,11 +147,7 @@
 </div>
 {% endblock %}
 
-{% block extra_css %}
-<!-- garden-blog.css and garden-blog-streamfield.css load in base template -->
-<link rel="stylesheet" href="{% static 'css/blog-button-fixes.css' %}?v=2025-01-fix-visibility">
-<link rel="stylesheet" href="{% static 'css/blog-formatting-fixes.css' %}?v=2025-01-fix-purple-sections">
-
+{% block extra_js %}
 <style>
 /* Modern Responsive Blog Post Styles */
 .blog-article-wrapper {
