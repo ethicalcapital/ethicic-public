@@ -1067,11 +1067,20 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/onboarding-comprehensive.css' %}">
 <style>
-/* Emergency fix for invisible form borders - inline override */
-html body .main-content .onboarding-page input,
+/* Emergency fix for invisible form borders - comprehensive override for all onboarding form fields */
+html body .main-content .onboarding-page input[type="text"],
+html body .main-content .onboarding-page input[type="email"],
+html body .main-content .onboarding-page input[type="tel"],
+html body .main-content .onboarding-page input[type="number"],
+html body .main-content .onboarding-page input[type="date"],
+html body .main-content .onboarding-page input[type="url"],
+html body .main-content .onboarding-page input[type="password"],
 html body .main-content .onboarding-page textarea,
 html body .main-content .onboarding-page select,
+html body .main-content .onboarding-page .garden-input,
+html body .main-content .onboarding-page input,
 html body .main-content input.garden-input,
+/* Specific field IDs for all sections */
 html body .main-content input#email,
 html body .main-content input#first_name,
 html body .main-content input#last_name,
@@ -1086,6 +1095,27 @@ html body .main-content input#zip_code,
 html body .main-content input#country,
 html body .main-content input#phone_number,
 html body .main-content input#birthday,
+html body .main-content input#household_income,
+html body .main-content input#liquid_assets,
+html body .main-content input#portfolio_size,
+html body .main-content input#annual_income,
+html body .main-content input#net_worth,
+html body .main-content input#investment_timeline,
+html body .main-content input#risk_tolerance,
+html body .main-content input#current_investments,
+html body .main-content input#investment_goals,
+html body .main-content input#employer_name,
+html body .main-content input#job_title,
+html body .main-content input#work_experience,
+html body .main-content input#industry,
+html body .main-content input#investment_experience,
+html body .main-content input#previous_advisors,
+html body .main-content input#referral_source,
+html body .main-content input#specific_needs,
+html body .main-content input#additional_comments,
+html body .main-content textarea#additional_comments,
+html body .main-content textarea#investment_goals,
+html body .main-content textarea#specific_needs,
 html body .main-content textarea {
     border: 1px solid #e5e7eb !important;
     border-color: #e5e7eb !important;
