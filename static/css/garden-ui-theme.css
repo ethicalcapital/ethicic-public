@@ -349,19 +349,19 @@
   --theme-primary-alpha: color-mix(in srgb, var(--garden-accent) 10%, transparent);
   --theme-primary-rgb: 85, 60, 154;
   --theme-on-primary: #fff;
-  --theme-surface: #fff;
+  --theme-surface: #fcecc9; /* Dutch White */
   --theme-on-surface: #111;
-  --theme-surface-variant: #f9fafb;
+  --theme-surface-variant: #fdf4df; /* Lighter Dutch White variant */
   --theme-on-surface-variant: var(--theme-text-secondary);
-  --theme-background: #fff;
+  --theme-background: #fcecc9; /* Dutch White background */
   --theme-on-background: #111;
-  --theme-hover: #f9fafb;
-  --theme-focus: #f3f4f6;
-  --theme-active: #e5e7eb;
+  --theme-hover: #fdf4df;
+  --theme-focus: #fef8eb;
+  --theme-active: #fae5ba;
   --theme-selection: color-mix(in srgb, var(--garden-accent) 15%, transparent);
-  --theme-border: #e5e7eb;
-  --theme-border-variant: #d1d5db;
-  --theme-divider: #f3f4f6;
+  --theme-border: #f0ddb5; /* Slightly darker Dutch White for borders */
+  --theme-border-variant: #e8d3a8;
+  --theme-divider: #f5e6c4;
   --theme-success: #065d42;
   --theme-success-rgb: 6, 93, 66;
   --theme-success-alpha: color-mix(in srgb, #065d42 10%, transparent);
@@ -386,6 +386,13 @@
   --garden-selection: var(--theme-selection);
   --garden-text: var(--theme-on-background);
   --garden-text-muted: var(--theme-text-secondary);
+
+  /* Tiffany Blue for CTAs */
+  --color-cta: #7bcdba;
+  --color-cta-hover: #6ab8a5;
+  --color-cta-active: #5aa394;
+  --color-cta-text: #111;
+  --color-cta-alpha-30: rgba(123, 205, 186, 0.3);
 
   /* Garden color system */
   --garden-color-white: #ffffff;

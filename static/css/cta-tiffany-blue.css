@@ -1,0 +1,67 @@
+/* Tiffany Blue CTA Button Styles for Light Mode */
+
+/* Apply Tiffany Blue to primary CTA buttons in light mode, including header Get Started */
+[data-theme="light"] .garden-action.primary,
+[data-theme="light"] .cta-actions .garden-action.primary,
+[data-theme="light"] .hero-panel .garden-action.primary,
+[data-theme="light"] .cta-panel .garden-action.primary,
+[data-theme="light"] .garden-nav-actions .garden-action.primary,
+[data-theme="light"] .garden-header .garden-action.primary {
+    background-color: var(--color-cta) !important;
+    color: var(--color-cta-text) !important;
+    border: 2px solid var(--color-cta) !important;
+}
+
+/* Hover state for Tiffany Blue CTAs */
+[data-theme="light"] .garden-action.primary:hover,
+[data-theme="light"] .cta-actions .garden-action.primary:hover,
+[data-theme="light"] .hero-panel .garden-action.primary:hover,
+[data-theme="light"] .cta-panel .garden-action.primary:hover,
+[data-theme="light"] .garden-nav-actions .garden-action.primary:hover,
+[data-theme="light"] .garden-header .garden-action.primary:hover {
+    background-color: var(--color-cta-hover) !important;
+    border-color: var(--color-cta-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--color-cta-alpha-30);
+}
+
+/* Active/pressed state */
+[data-theme="light"] .garden-action.primary:active,
+[data-theme="light"] .cta-actions .garden-action.primary:active,
+[data-theme="light"] .hero-panel .garden-action.primary:active,
+[data-theme="light"] .cta-panel .garden-action.primary:active,
+[data-theme="light"] .garden-nav-actions .garden-action.primary:active,
+[data-theme="light"] .garden-header .garden-action.primary:active {
+    background-color: var(--color-cta-active) !important;
+    border-color: var(--color-cta-active) !important;
+    transform: translateY(0);
+}
+
+/* Focus state for accessibility */
+[data-theme="light"] .garden-action.primary:focus,
+[data-theme="light"] .cta-actions .garden-action.primary:focus,
+[data-theme="light"] .hero-panel .garden-action.primary:focus,
+[data-theme="light"] .cta-panel .garden-action.primary:focus,
+[data-theme="light"] .garden-nav-actions .garden-action.primary:focus,
+[data-theme="light"] .garden-header .garden-action.primary:focus {
+    outline: 3px solid var(--color-cta);
+    outline-offset: 2px;
+}
+
+/* Ensure text remains readable */
+[data-theme="light"] .garden-action.primary span,
+[data-theme="light"] .garden-action.primary * {
+    color: var(--color-cta-text) !important;
+}
+
+/* Keep secondary buttons with purple theme */
+[data-theme="light"] .garden-action.secondary {
+    background-color: transparent !important;
+    color: var(--color-primary) !important;
+    border: 2px solid var(--color-primary) !important;
+}
+
+[data-theme="light"] .garden-action.secondary:hover {
+    background-color: var(--color-primary-alpha) !important;
+    color: var(--color-primary) !important;
+}

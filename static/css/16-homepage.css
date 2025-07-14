@@ -126,6 +126,27 @@
         flex: 1;
     }
 
+    /* Border around S&P 500 exclusion indicator */
+    .stat-item:first-child {
+        border: 2px solid var(--color-primary);
+        border-radius: var(--radius-md);
+        padding: var(--space-4);
+    }
+
+    /* Make all panel headers purple like the main header */
+    .garden-panel__header,
+    .garden-panel-header {
+        background: var(--color-primary) !important;
+        color: var(--theme-on-primary) !important;
+    }
+
+    .garden-panel__header .panel-title,
+    .garden-panel-header .panel-title,
+    .garden-panel__header h2,
+    .garden-panel-header h2 {
+        color: var(--theme-on-primary) !important;
+    }
+
     .stat-bar {
         width: 120px;
         height: 8px;
