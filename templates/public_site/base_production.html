@@ -51,6 +51,35 @@
     <script src="{% static 'js/accessibility-focus-trap.js' %}?v=1"></script>
 
     {% block extra_css %}{% endblock %}
+    
+    <!-- Temporary inline styles to force Dutch White and Tiffany Blue -->
+    <style>
+        /* Dutch White background for light mode */
+        [data-theme="light"] body,
+        [data-theme="light"] .main-content,
+        [data-theme="light"] .garden-panel {
+            background-color: #fcecc9 !important;
+        }
+        
+        /* Tiffany Blue CTAs in light mode */
+        [data-theme="light"] .garden-action.primary,
+        [data-theme="light"] .garden-nav-actions .garden-action.primary,
+        [data-theme="light"] .garden-header .garden-action.primary {
+            background-color: #7bcdba !important;
+            color: #111 !important;
+            border: 2px solid #7bcdba !important;
+        }
+        
+        [data-theme="light"] .garden-action.primary:hover {
+            background-color: #6ab8a5 !important;
+            border-color: #6ab8a5 !important;
+        }
+        
+        /* Ensure text is readable on Dutch White */
+        [data-theme="light"] body {
+            color: #111 !important;
+        }
+    </style>
 </head>
 
 <body class="public-site-context {% block body_class %}{% endblock %}">
