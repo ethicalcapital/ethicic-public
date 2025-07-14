@@ -1,14 +1,14 @@
 /* Header Text Color Fix - Ensure white text on purple header */
 
-/* Force white text for all header elements */
+/* Force white text for all header elements - EXCEPT dropdowns */
 .garden-header,
-.garden-header * {
+.garden-header *:not(.garden-login-dropdown, .garden-login-dropdown *) {
     color: white !important;
     -webkit-text-fill-color: white !important;
 }
 
-/* Ensure links in header are white - base selector first */
-.garden-header a {
+/* Ensure links in header are white - EXCEPT dropdown links */
+.garden-header a:not(.garden-login-item) {
     color: white !important;
     -webkit-text-fill-color: white !important;
 }
@@ -38,7 +38,7 @@ html[data-theme="light"] body .garden-header .mobile-search-input,
 html[data-theme="light"] body .mobile-search-input {
     color: #1a1a1a !important;
     -webkit-text-fill-color: #1a1a1a !important;
-    background: #ffffff !important;
+    background: #fff !important;
     border: 1px solid #e5e5e5 !important;
 }
 
@@ -168,9 +168,31 @@ html[data-theme="light"] body .mobile-search-input {
     opacity: 0.7 !important;
 }
 
+/* Login dropdown specific fixes - override header white text */
+.garden-login-dropdown,
+.garden-login-dropdown * {
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+}
+
+.garden-login-dropdown .garden-login-item {
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+}
+
+.garden-login-dropdown .login-title {
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+}
+
+.garden-login-dropdown .login-desc {
+    color: var(--color-text-secondary) !important;
+    -webkit-text-fill-color: var(--color-text-secondary) !important;
+}
+
 /* Dark mode adjustments */
 [data-theme="dark"] .garden-header,
-[data-theme="dark"] .garden-header * {
+[data-theme="dark"] .garden-header *:not(.garden-login-dropdown, .garden-login-dropdown *) {
     color: white !important;
     -webkit-text-fill-color: white !important;
 }
@@ -180,4 +202,11 @@ html[data-theme="light"] body .mobile-search-input {
 [data-theme="dark"] .panel-header,
 [data-theme="dark"] .panel-title {
     color: var(--color-text-primary) !important;
+}
+
+/* Dark mode login dropdown - ensure proper contrast */
+[data-theme="dark"] .garden-login-dropdown,
+[data-theme="dark"] .garden-login-dropdown * {
+    color: var(--color-text-primary) !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
 }
