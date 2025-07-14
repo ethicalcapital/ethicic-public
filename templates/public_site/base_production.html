@@ -68,18 +68,29 @@
             background-color: #B57EDC !important;
         }
         
-        /* Tiffany Blue CTAs in light mode */
+        /* Tiffany Blue CTAs in light mode - comprehensive selectors */
         [data-theme="light"] .garden-action.primary,
         [data-theme="light"] .garden-nav-actions .garden-action.primary,
-        [data-theme="light"] .garden-header .garden-action.primary {
+        [data-theme="light"] .garden-header .garden-action.primary,
+        [data-theme="light"] .hero-panel .cta-actions .garden-action.primary,
+        [data-theme="light"] .cta-panel .garden-action.primary,
+        [data-theme="light"] .serve-item .garden-action.primary,
+        [data-theme="light"] a.garden-action.primary,
+        [data-theme="light"] button.garden-action.primary,
+        html[data-theme="light"] .garden-action.primary {
             background-color: #7bcdba !important;
             color: #111 !important;
             border: 2px solid #7bcdba !important;
+            text-decoration: none !important;
         }
         
-        [data-theme="light"] .garden-action.primary:hover {
+        [data-theme="light"] .garden-action.primary:hover,
+        [data-theme="light"] a.garden-action.primary:hover,
+        [data-theme="light"] button.garden-action.primary:hover,
+        html[data-theme="light"] .garden-action.primary:hover {
             background-color: #6ab8a5 !important;
             border-color: #6ab8a5 !important;
+            color: #111 !important;
         }
         
         /* Dark purple for dark mode */
@@ -105,6 +116,36 @@
         /* Ensure text is readable */
         [data-theme="light"] body {
             color: #111 !important;
+        }
+        
+        /* Force ALL primary buttons to be Tiffany Blue in light mode */
+        html[data-theme="light"] body .garden-action.primary {
+            background-color: #7bcdba !important;
+            background-image: none !important;
+            color: #111 !important;
+            border: 2px solid #7bcdba !important;
+        }
+        
+        /* Debug: Make sure we catch the header Get Started button */
+        html[data-theme="light"] body .garden-header .garden-nav-actions a.primary {
+            background-color: #7bcdba !important;
+            color: #111 !important;
+        }
+        
+        /* Hero section buttons - target both primary and ensure specificity */
+        html[data-theme="light"] body .hero-panel .cta-actions a.garden-action.primary,
+        html[data-theme="light"] body .cta-actions .garden-action.primary {
+            background-color: #7bcdba !important;
+            color: #111 !important;
+            border-color: #7bcdba !important;
+        }
+        
+        /* Target any link with garden-action primary classes */
+        html[data-theme="light"] body a.garden-action.primary {
+            background-color: #7bcdba !important;
+            background-image: none !important;
+            color: #111 !important;
+            border: 2px solid #7bcdba !important;
         }
     </style>
 </head>
