@@ -241,10 +241,10 @@
 @layer themes {
   /* ===== PURPLE DARK THEME (Default) ===== */
 :root, [data-theme="purple-dark"] {
-  --theme-primary: var(--garden-accent);
-  --theme-primary-hover: #6B46C1; /* Consistent purple hover shade */
-  --theme-primary-alpha: color-mix(in srgb, var(--garden-accent) 15%, transparent);
-  --theme-primary-rgb: 85, 60, 154;
+  --theme-primary: #1f0322; /* Dark purple */
+  --theme-primary-hover: #2a0430;
+  --theme-primary-alpha: color-mix(in srgb, #1f0322 15%, transparent);
+  --theme-primary-rgb: 31, 3, 34;
   --theme-on-primary: #fff;
   --theme-surface: #1a1a1a;
   --theme-on-surface: #f0f0f0;
@@ -255,7 +255,7 @@
   --theme-hover: #222222;
   --theme-focus: #2a2a2a;
   --theme-active: #333;
-  --theme-selection: color-mix(in srgb, var(--garden-accent) 20%, transparent);
+  --theme-selection: color-mix(in srgb, #1f0322 20%, transparent);
   --theme-border: #333;
   --theme-border-variant: #444;
   --theme-divider: #2a2a2a;
@@ -277,13 +277,19 @@
   --theme-shadow-variant: color-mix(in srgb, var(--garden-text) 20%, transparent);
   --garden-bg: var(--theme-background);
   --garden-fg: var(--theme-on-background);
-  --garden-accent: #3d2970;
+  --garden-accent: #1f0322; /* Dark purple */
   --garden-muted: var(--theme-text-secondary);
   --garden-border: var(--theme-border);
   --garden-hover: var(--theme-hover);
   --garden-selection: var(--theme-selection);
   --garden-text: var(--theme-on-background);
   --garden-text-muted: var(--theme-text-secondary);
+  
+  /* Maya Blue for dark mode CTAs */
+  --color-cta: #55c1ff;
+  --color-cta-hover: #3fb4ff;
+  --color-cta-active: #2aa5ff;
+  --color-cta-text: #000;
 
   /* Garden color system */
   --garden-color-white: #ffffff;
@@ -344,24 +350,24 @@
 
   /* ===== PURPLE LIGHT THEME ===== */
 [data-theme="light"], [data-theme="purple-light"] {
-  --theme-primary: var(--garden-accent);
-  --theme-primary-hover: #442f7a;
-  --theme-primary-alpha: color-mix(in srgb, var(--garden-accent) 10%, transparent);
-  --theme-primary-rgb: 85, 60, 154;
+  --theme-primary: #B57EDC; /* Lavender */
+  --theme-primary-hover: #a56cc9;
+  --theme-primary-alpha: color-mix(in srgb, #B57EDC 10%, transparent);
+  --theme-primary-rgb: 181, 126, 220;
   --theme-on-primary: #fff;
-  --theme-surface: #fcecc9; /* Dutch White */
+  --theme-surface: #FCEFEF; /* Lavender Blush */
   --theme-on-surface: #111;
-  --theme-surface-variant: #fdf4df; /* Lighter Dutch White variant */
+  --theme-surface-variant: #fdf5f5; /* Lighter Lavender Blush variant */
   --theme-on-surface-variant: var(--theme-text-secondary);
-  --theme-background: #fcecc9; /* Dutch White background */
+  --theme-background: #FCEFEF; /* Lavender Blush background */
   --theme-on-background: #111;
-  --theme-hover: #fdf4df;
-  --theme-focus: #fef8eb;
-  --theme-active: #fae5ba;
-  --theme-selection: color-mix(in srgb, var(--garden-accent) 15%, transparent);
-  --theme-border: #f0ddb5; /* Slightly darker Dutch White for borders */
-  --theme-border-variant: #e8d3a8;
-  --theme-divider: #f5e6c4;
+  --theme-hover: #fdf5f5;
+  --theme-focus: #fef8f8;
+  --theme-active: #fae5e5;
+  --theme-selection: color-mix(in srgb, #B57EDC 15%, transparent);
+  --theme-border: #f5e0e0; /* Slightly darker Lavender Blush for borders */
+  --theme-border-variant: #edd2d2;
+  --theme-divider: #f8e8e8;
   --theme-success: #065d42;
   --theme-success-rgb: 6, 93, 66;
   --theme-success-alpha: color-mix(in srgb, #065d42 10%, transparent);
@@ -379,7 +385,7 @@
   --theme-shadow-variant: color-mix(in srgb, var(--garden-text) 8%, transparent);
   --garden-bg: var(--theme-background);
   --garden-fg: var(--theme-on-background);
-  --garden-accent: #3d2970;
+  --garden-accent: #B57EDC; /* Lavender */
   --garden-muted: var(--theme-text-secondary);
   --garden-border: var(--theme-border);
   --garden-hover: var(--theme-hover);

@@ -128,7 +128,7 @@
 
     /* Border around S&P 500 exclusion indicator */
     .stat-item:first-child {
-        border: 2px solid var(--color-primary);
+        border: 2px solid #B57EDC; /* Lavender */
         border-radius: var(--radius-md);
         padding: var(--space-4);
     }

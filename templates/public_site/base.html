@@ -72,13 +72,20 @@
 
     {% block extra_css %}{% endblock %}
     
-    <!-- Temporary inline styles to force Dutch White and Tiffany Blue -->
+    <!-- Temporary inline styles to force new color scheme -->
     <style>
-        /* Dutch White background for light mode */
+        /* Lavender Blush background for light mode */
         [data-theme="light"] body,
         [data-theme="light"] .main-content,
         [data-theme="light"] .garden-panel {
-            background-color: #fcecc9 !important;
+            background-color: #FCEFEF !important;
+        }
+        
+        /* Lavender primary color for headers and accents */
+        [data-theme="light"] .garden-header,
+        [data-theme="light"] .garden-panel__header,
+        [data-theme="light"] .garden-panel-header {
+            background-color: #B57EDC !important;
         }
         
         /* Tiffany Blue CTAs in light mode */
@@ -95,7 +102,27 @@
             border-color: #6ab8a5 !important;
         }
         
-        /* Ensure text is readable on Dutch White */
+        /* Dark purple for dark mode */
+        [data-theme="dark"] .garden-header,
+        :root .garden-header {
+            background-color: #1f0322 !important;
+        }
+        
+        /* Maya Blue CTAs in dark mode */
+        [data-theme="dark"] .garden-action.primary,
+        :root .garden-action.primary {
+            background-color: #55c1ff !important;
+            color: #000 !important;
+            border: 2px solid #55c1ff !important;
+        }
+        
+        [data-theme="dark"] .garden-action.primary:hover,
+        :root .garden-action.primary:hover {
+            background-color: #3fb4ff !important;
+            border-color: #3fb4ff !important;
+        }
+        
+        /* Ensure text is readable */
         [data-theme="light"] body {
             color: #111 !important;
         }
