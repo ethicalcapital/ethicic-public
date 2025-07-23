@@ -35,7 +35,7 @@ if os.getenv("KINSTA_DOMAIN"):
     ALLOWED_HOSTS.append(f"*.{os.getenv('KINSTA_DOMAIN')}")
 
 # Temporary: Allow all hosts if not specified
-if ALLOWED_HOSTS == ["*"]:
+if ["*"] == ALLOWED_HOSTS:
     ALLOWED_HOSTS = ["*"]
 
 # Application definition
@@ -340,6 +340,14 @@ WAGTAILADMIN_BASE_URL = os.getenv("WAGTAILADMIN_BASE_URL", "https://ethicic.com"
 WAGTAILIMAGES_MAX_UPLOAD_SIZE = 20 * 1024 * 1024  # 20MB max file size
 WAGTAILIMAGES_MAX_IMAGE_PIXELS = 128000000  # 128 megapixels max
 WAGTAILIMAGES_JPEG_QUALITY = 85
+
+# Enable image feature detection and processing
+WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = True
+WAGTAILIMAGES_AVIF_QUALITY = 50
+WAGTAILIMAGES_WEBP_QUALITY = 85
+
+# Ensure image renditions are saved properly
+WAGTAILIMAGES_EXTENSIONS = ['gif', 'jpg', 'jpeg', 'png', 'webp', 'avif']
 
 # Disable avatar uploads to prevent 404 errors with missing media files
 # Users can still have avatars but uploads are disabled since media isn't persistent on Kinsta
