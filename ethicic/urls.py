@@ -89,6 +89,27 @@ def health_check(request):
                 "storages_installed": "storages" in settings.INSTALLED_APPS,
             }
         )
+    
+    # List media files
+    if request.GET.get("list") == "media":
+        import os
+        try:
+            media_root = getattr(settings, "MEDIA_ROOT", "/var/lib/data")
+            files = []
+            if os.path.exists(media_root):
+                for root, dirs, filenames in os.walk(media_root):
+                    for filename in filenames:
+                        full_path = os.path.join(root, filename)
+                        rel_path = os.path.relpath(full_path, media_root)
+                        size = os.path.getsize(full_path)
+                        files.append({"path": rel_path, "size": size})
+            response_data.update({
+                "media_root": media_root,
+                "files_count": len(files),
+                "files": files[:10],  # Show first 10 files
+            })
+        except Exception as e:
+            response_data.update({"media_list_error": str(e)})
 
     return JsonResponse(response_data)
 
