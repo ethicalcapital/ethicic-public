@@ -31,12 +31,31 @@ def health_check(request):
     
     # Add R2 debug info if requested
     if request.GET.get('debug') == 'r2':
+        # Test R2 storage
+        try:
+            from django.core.files.storage import default_storage
+            from django.core.files.base import ContentFile
+            
+            # Quick storage test
+            test_content = "R2 test file"
+            test_file = ContentFile(test_content.encode('utf-8'))
+            saved_name = default_storage.save("test_r2.txt", test_file)
+            file_url = default_storage.url(saved_name)
+            default_storage.delete(saved_name)
+            storage_test = "SUCCESS"
+            storage_url = file_url
+        except Exception as e:
+            storage_test = f"FAILED: {str(e)}"
+            storage_url = "N/A"
+            
         response_data.update({
             "r2_access_key": "SET" if os.getenv('R2_ACCESS_KEY_ID') else "MISSING",
             "r2_secret_key": "SET" if os.getenv('R2_SECRET_ACCESS_KEY') else "MISSING",
             "debug_mode": os.getenv('DEBUG', 'False'),
             "media_url": getattr(settings, 'MEDIA_URL', 'NOT_SET'),
             "storages_config": "SET" if hasattr(settings, 'STORAGES') else "MISSING",
+            "storage_test": storage_test,
+            "storage_url": storage_url,
         })
     
     return JsonResponse(response_data)
