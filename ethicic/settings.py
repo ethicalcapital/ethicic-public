@@ -315,8 +315,6 @@ WHITENOISE_MIMETYPES = {
 # Media files - Cloudflare R2 Storage
 if not DEBUG:
     # Production: Use Cloudflare R2
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    
     # R2 Configuration
     AWS_ACCESS_KEY_ID = os.getenv('R2_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('R2_SECRET_ACCESS_KEY')
@@ -331,8 +329,17 @@ if not DEBUG:
     AWS_QUERYSTRING_AUTH = False  # Don't add auth to URLs
     AWS_S3_FILE_OVERWRITE = False  # Don't overwrite files with same name
     
+    # Use newer STORAGES setting for Django 4.2+
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
+    
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
-    MEDIA_ROOT = None  # Not used with S3
 else:
     # Development: Use local storage
     MEDIA_URL = "/media/"
