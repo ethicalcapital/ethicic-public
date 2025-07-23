@@ -20,15 +20,26 @@ from public_site.homepage_view_cms import homepage_view_cms
 
 def health_check(request):
     """Simple health check endpoint for Kinsta"""
+    import os
     # Don't test database on health check to avoid 503s
-    return JsonResponse(
-        {
-            "status": "healthy",
-            "service": "ethicic-public",
-            "version": "1.0",
-            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        }
-    )
+    response_data = {
+        "status": "healthy",
+        "service": "ethicic-public",
+        "version": "1.0",
+        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    }
+    
+    # Add R2 debug info if requested
+    if request.GET.get('debug') == 'r2':
+        response_data.update({
+            "r2_access_key": "SET" if os.getenv('R2_ACCESS_KEY_ID') else "MISSING",
+            "r2_secret_key": "SET" if os.getenv('R2_SECRET_ACCESS_KEY') else "MISSING",
+            "debug_mode": os.getenv('DEBUG', 'False'),
+            "media_url": getattr(settings, 'MEDIA_URL', 'NOT_SET'),
+            "storages_config": "SET" if hasattr(settings, 'STORAGES') else "MISSING",
+        })
+    
+    return JsonResponse(response_data)
 
 
 def simple_test(request):
