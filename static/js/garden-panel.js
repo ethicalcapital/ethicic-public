@@ -45,7 +45,7 @@ const GardenPanel = {
       this.collapse(panelId, false); // No animation on init
     }
 
-    console.log('GardenPanel initialized:', panelId);
+    // GardenPanel initialized
   },
 
   /**

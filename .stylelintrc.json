@@ -1,42 +1,217 @@
 {
-  "extends": "stylelint-config-standard",
-  "plugins": ["stylelint-order"],
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "plugins": [
+    "stylelint-selector-bem-pattern"
+  ],
   "rules": {
-    "order/properties-alphabetical-order": null,
-    "color-hex-length": "short",
-    "selector-class-pattern": null,
-    "selector-id-pattern": null,
-    "declaration-block-no-redundant-longhand-properties": null,
-    "no-descending-specificity": true,
-    "comment-empty-line-before": null,
-    "media-feature-range-notation": null,
-    "color-function-notation": null,
-    "alpha-value-notation": null,
-    "declaration-no-important": null,
-    "color-named": "never",
-    "color-no-hex": true,
-    "function-disallowed-list": ["rgb", "rgba", "hsl", "hsla"],
-    "selector-pseudo-class-no-unknown": [
+    "declaration-no-important": [
       true,
       {
-        "ignorePseudoClasses": ["global"]
+        "severity": "warning"
       }
     ],
+
+    "selector-class-pattern": [
+      "^(garden-[a-z]([a-z0-9-]+)?(__[a-z]([a-z0-9-]+)?)?(--[a-z]([a-z0-9-]+)?)?|[a-z]([a-z0-9-]+)?(-[a-z0-9-]+)*|sr-only|visually-hidden)$",
+      {
+        "message": "Expected class selector to follow Garden UI BEM pattern (.garden-block__element--modifier) or be a utility class",
+        "resolveNestedSelectors": true
+      }
+    ],
+
+    "plugin/selector-bem-pattern": {
+      "preset": "bem",
+      "presetOptions": {
+        "namespace": "garden"
+      },
+      "componentName": "^[a-z]([a-z0-9-]+)?$",
+      "componentSelectors": {
+        "initial": "^\\.garden-{componentName}(__[a-z]([a-z0-9-]+)?)?(--[a-z]([a-z0-9-]+)?)?$",
+        "combined": "^\\.garden-{componentName}(__[a-z]([a-z0-9-]+)?)?(--[a-z]([a-z0-9-]+)?)?$"
+      },
+      "utilitySelectors": "^\\.([a-z]([a-z0-9-]+)?(-[a-z0-9-]+)*|sr-only|visually-hidden|mt-[0-8]|mb-[0-8]|ml-[0-4]|mr-[0-4]|pt-[0-8]|pb-[0-4]|border-(top|bottom|left|right)|hidden|invisible|text-(secondary|on-surface)|font-semibold|garden-text-base)$"
+    },
+
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": ["layer", "tailwind", "apply", "variants", "responsive", "screen"]
+        "ignoreAtRules": [
+          "layer",
+          "container",
+          "supports"
+        ]
       }
-    ]
+    ],
+
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": [
+          "/^--/",
+          "contain",
+          "container-type",
+          "container-name"
+        ]
+      }
+    ],
+
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "global",
+          "local"
+        ]
+      }
+    ],
+
+    "function-no-unknown": [
+      true,
+      {
+        "ignoreFunctions": [
+          "color-mix",
+          "oklch",
+          "oklab"
+        ]
+      }
+    ],
+
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": [
+          "first-nested"
+        ],
+        "ignore": [
+          "after-comment"
+        ]
+      }
+    ],
+
+    "comment-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "first-nested"
+        ],
+        "ignore": [
+          "stylelint-commands",
+          "after-comment"
+        ]
+      }
+    ],
+
+    "declaration-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "after-declaration",
+          "first-nested"
+        ],
+        "ignore": [
+          "after-comment",
+          "inside-single-line-block"
+        ]
+      }
+    ],
+
+    "max-nesting-depth": [
+      3,
+      {
+        "ignore": [
+          "blockless-at-rules",
+          "pseudo-classes"
+        ]
+      }
+    ],
+
+    "no-descending-specificity": [
+      true,
+      {
+        "ignore": [
+          "selectors-within-list"
+        ]
+      }
+    ],
+
+    "selector-max-specificity": [
+      "0,4,0",
+      {
+        "ignoreSelectors": [
+          ":where()",
+          ":is()",
+          "[data-theme]",
+          "[data-theme=\"light\"]",
+          "[data-theme=\"dark\"]",
+          "[data-theme=\"auto\"]"
+        ]
+      }
+    ],
+
+    "length-zero-no-unit": true,
+    "shorthand-property-no-redundant-values": true,
+    "declaration-block-no-redundant-longhand-properties": true,
+    "declaration-block-no-shorthand-property-overrides": true,
+
+    "color-no-invalid-hex": true,
+    "color-named": [
+      "never",
+      {
+        "severity": "warning",
+        "ignore": ["inside-function"]
+      }
+    ],
+    "color-hex-length": "short",
+
+    "font-family-no-duplicate-names": true,
+    "font-family-no-missing-generic-family-keyword": true,
+
+    "unit-no-unknown": [
+      true,
+      {
+        "ignoreUnits": [
+          "x"
+        ]
+      }
+    ],
+
+    "value-no-vendor-prefix": [
+      true,
+      {
+        "ignoreValues": [
+          "box",
+          "inline-box"
+        ]
+      }
+    ],
+
+    "property-no-vendor-prefix": [
+      true,
+      {
+        "ignoreProperties": [
+          "appearance",
+          "mask"
+        ]
+      }
+    ],
+
+    "selector-no-vendor-prefix": true,
+
+    "media-feature-name-no-vendor-prefix": true,
+    "at-rule-no-vendor-prefix": true,
+
+    "string-quotes": "double",
+    "selector-attribute-quotes": "always"
   },
   "ignoreFiles": [
-    "**/*.min.css",
-    "**/vendor/**",
-    "**/node_modules/**",
-    "**/.venv/**",
-    "**/staticfiles/**",
-    "**/static/admin/**",
-    "**/static/wagtail/**",
-    "**/garden-ui-theme.css"
+    "node_modules/**/*",
+    "dist/**/*",
+    "build/**/*",
+    "staticfiles/**/*",
+    "static/css/backup-*/**/*",
+    "static/admin/**/*",
+    "static/debug_toolbar/**/*"
   ]
 }

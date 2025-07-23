@@ -40,7 +40,7 @@ const GardenForm = {
     }
 
     this.setupValidation(formId);
-    console.log('GardenForm initialized:', formId);
+    // GardenForm initialized
   },
 
   /**

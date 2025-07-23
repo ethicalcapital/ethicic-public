@@ -230,6 +230,7 @@ class BasePublicSiteTestCase(WagtailTestCase):
             "account_types": ["individual_taxable"],
             # Anti-spam
             "honeypot": "",
+            "cf_turnstile_response": "test_token",
         }
         data.update(overrides)
         return data
@@ -265,7 +266,21 @@ class FormTestMixin:
         self.assertFalse(form.is_valid(), "Form should be invalid but was valid")
 
         if expected_errors:
-            # Check for expected error messages
+            # Handle string expected_errors for backwards compatibility
+            if isinstance(expected_errors, str):
+                # Check if the expected message is anywhere in the form errors
+                error_found = any(
+                    expected_errors in str(error)
+                    for error_list in form.errors.values()
+                    for error in error_list
+                )
+                self.assertTrue(
+                    error_found,
+                    f"Expected error message '{expected_errors}' not found in form errors: {form.errors}",
+                )
+                return
+
+            # Check for expected error messages (dictionary format)
             for field, expected_message in expected_errors.items():
                 self.assertIn(
                     field, form.errors, f"Expected error for field '{field}' not found"
@@ -515,7 +530,7 @@ class TurnstileMixin:
         super().setUp()
 
         # Mock Turnstile validation to always succeed
-        self.turnstile_patcher = patch("public_site.forms.requests.post")
+        self.turnstile_patcher = patch("requests.post")
         self.mock_turnstile = self.turnstile_patcher.start()
 
         # Configure mock to return successful Turnstile response

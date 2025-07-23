@@ -89,15 +89,15 @@
                             <label class="form-label required">Would you prefer we call you by any other name?</label>
                             <div class="radio-group">
                                 <label class="radio-option">
-                                    <input type="radio" name="preferred_name_choice" value="nope" class="radio-input" @change="$refs.preferredNameField.style.display = 'none'" checked>
+                                    <input type="radio" name="preferred_name_choice" value="nope" class="radio-input" @change="$refs.preferredNameField.classList.add('hidden')" checked>
                                     <span class="radio-label">Nope</span>
                                 </label>
                                 <label class="radio-option">
-                                    <input type="radio" name="preferred_name_choice" value="other" class="radio-input" @change="$refs.preferredNameField.style.display = 'block'">
+                                    <input type="radio" name="preferred_name_choice" value="other" class="radio-input" @change="$refs.preferredNameField.classList.remove('hidden')">
                                     <span class="radio-label">Other</span>
                                 </label>
                             </div>
-                            <div x-ref="preferredNameField" style="display: none;" class="garden-form-group mt-3">
+                            <div x-ref="preferredNameField" class="garden-form-group mt-3 hidden">
                                 <input type="text" name="preferred_name" class="garden-input" placeholder="Preferred name">
                             </div>
                         </div>
@@ -1033,14 +1033,14 @@
                 </section>
 
                 <!-- Hidden honeypot field -->
-                <input type="text" name="honeypot" style="position: absolute; left: -9999px; top: -9999px;" tabindex="-1" autocomplete="off">
-                
+                <input type="text" name="honeypot" class="visually-hidden" tabindex="-1" autocomplete="off">
+
                 <!-- Turnstile hidden field -->
                 <input type="hidden" name="cf_turnstile_response" value="">
-                
+
                 <!-- Cloudflare Turnstile before submit -->
                 <div class="garden-form-group" x-show="currentStep === 8" style="margin-bottom: 1rem;">
-                    <div class="cf-turnstile" 
+                    <div class="cf-turnstile"
                          data-sitekey="{{ TURNSTILE_SITE_KEY }}"
                          data-callback="onTurnstileSuccess"
                          data-expired-callback="onTurnstileExpired"

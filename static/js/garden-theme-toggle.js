@@ -19,9 +19,9 @@
   let isInitialized = false;
 
   // Debug logging - enabled by default for troubleshooting
-  function debugLog (message, data = null) {
+  function debugLog (_message) {
     if (window.gardenDebug || true) { // Always log for now
-      console.log(`[GARDEN THEME] ${message}`, data || '');
+      // Debug: [GARDEN THEME] message
     }
   }
 
@@ -197,77 +197,71 @@
     return setTheme(nextTheme);
   }
 
-  // Initialize theme system
-  function initializeTheme () {
-    if (isInitialized) {
-      debugLog('Theme system already initialized');
-      return;
-    }
-
-    debugLog('Initializing theme system...');
-
-    // Get initial theme from various sources (priority order)
-    let initialTheme = 'auto';
-
+  // Get initial theme from various sources
+  function getInitialTheme() {
     // 1. Check URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const urlTheme = urlParams.get('theme');
     if (urlTheme && THEMES.includes(urlTheme)) {
-      initialTheme = urlTheme;
-      debugLog(`Theme from URL: ${initialTheme}`);
+      debugLog(`Theme from URL: ${urlTheme}`);
+      return urlTheme;
     }
+
     // 2. Check template variable
-    else if (window.gardenInitialTheme && THEMES.includes(window.gardenInitialTheme)) {
-      initialTheme = window.gardenInitialTheme;
-      debugLog(`Theme from template: ${initialTheme}`);
+    if (window.gardenInitialTheme && THEMES.includes(window.gardenInitialTheme)) {
+      debugLog(`Theme from template: ${window.gardenInitialTheme}`);
+      return window.gardenInitialTheme;
     }
+
     // 3. Check localStorage
-    else {
-      try {
-        const storedTheme = localStorage.getItem('garden-theme');
-        if (storedTheme && THEMES.includes(storedTheme)) {
-          initialTheme = storedTheme;
-          debugLog(`Theme from localStorage: ${initialTheme}`);
-        }
-      } catch (e) {
-        debugLog(`localStorage read error: ${e.message}`);
+    try {
+      const storedTheme = localStorage.getItem('garden-theme');
+      if (storedTheme && THEMES.includes(storedTheme)) {
+        debugLog(`Theme from localStorage: ${storedTheme}`);
+        return storedTheme;
       }
+    } catch (e) {
+      debugLog(`localStorage read error: ${e.message}`);
     }
 
-    // Apply initial theme
-    applyTheme(initialTheme);
+    return 'auto';
+  }
 
-    // Set up theme toggle button
+  // Set up theme toggle button
+  function setupThemeToggleButton() {
     const toggleButton = document.getElementById('theme-toggle');
-    if (toggleButton) {
-      debugLog('Theme toggle button found, attaching event listener');
-
-      // Remove any existing listeners by cloning the button
-      const newButton = toggleButton.cloneNode(true);
-      toggleButton.parentNode.replaceChild(newButton, toggleButton);
-
-      // Add click listener
-      newButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        debugLog('Theme toggle button clicked');
-        cycleTheme();
-      });
-
-      // Add keyboard support
-      newButton.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          debugLog('Theme toggle button activated via keyboard');
-          cycleTheme();
-        }
-      });
-
-      debugLog('Theme toggle button event listeners attached');
-    } else {
+    if (!toggleButton) {
       debugLog('Theme toggle button not found');
+      return;
     }
 
-    // Set up system and time-based theme updates for auto mode
+    debugLog('Theme toggle button found, attaching event listener');
+
+    // Remove any existing listeners by cloning the button
+    const newButton = toggleButton.cloneNode(true);
+    toggleButton.parentNode.replaceChild(newButton, toggleButton);
+
+    // Add click listener
+    newButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      debugLog('Theme toggle button clicked');
+      cycleTheme();
+    });
+
+    // Add keyboard support
+    newButton.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        debugLog('Theme toggle button activated via keyboard');
+        cycleTheme();
+      }
+    });
+
+    debugLog('Theme toggle button event listeners attached');
+  }
+
+  // Set up auto theme listeners
+  function setupAutoThemeListeners() {
     try {
       // Listen for system theme changes
       if (window.matchMedia) {
@@ -281,15 +275,15 @@
         debugLog('System theme change listener added');
       }
 
-      // Check for theme changes every hour when in auto mode (fallback for time-based)
+      // Check for theme changes every hour when in auto mode
       setInterval(function () {
         if (currentTheme === 'auto') {
           debugLog('Hourly time check, updating auto theme');
           applyTheme('auto');
         }
-      }, 60 * 60 * 1000); // Check every hour
+      }, 60 * 60 * 1000);
 
-      // Also check at the start of each day (light/dark transition times) - only used as fallback
+      // Set up time-based transitions
       const msUntilNext6AM = getTimeUntilHour(6);
       const msUntilNext8PM = getTimeUntilHour(20);
 
@@ -311,6 +305,24 @@
     } catch (e) {
       debugLog(`Theme listener error: ${e.message}`);
     }
+  }
+
+  // Initialize theme system
+  function initializeTheme () {
+    if (isInitialized) {
+      debugLog('Theme system already initialized');
+      return;
+    }
+
+    debugLog('Initializing theme system...');
+
+    // Get and apply initial theme
+    const initialTheme = getInitialTheme();
+    applyTheme(initialTheme);
+
+    // Set up UI and listeners
+    setupThemeToggleButton();
+    setupAutoThemeListeners();
 
     // Add keyboard shortcut (Ctrl+Shift+T)
     document.addEventListener('keydown', function (e) {

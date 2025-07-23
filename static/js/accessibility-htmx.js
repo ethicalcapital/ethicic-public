@@ -174,13 +174,21 @@
       });
     },
 
+    getFormDescription(form) {
+      // Helper to determine form type
+      if (form.querySelector('input[type="email"]')) {
+        return 'Newsletter signup';
+      }
+      if (form.querySelector('[name="subject"]')) {
+        return 'Contact form';
+      }
+      return form.getAttribute('aria-label') || 'Form submission';
+    },
+
     getActionDescription(element) {
       // Get user-friendly description of the action
       if (element.tagName === 'FORM') {
-        const formType = element.querySelector('input[type="email"]') ? 'Newsletter signup' :
-          element.querySelector('[name="subject"]') ? 'Contact form' :
-            element.getAttribute('aria-label') || 'Form submission';
-        return formType;
+        return this.getFormDescription(element);
       }
 
       if (element.tagName === 'BUTTON') {
@@ -317,7 +325,7 @@
     HTMXAccessibility.init();
     NewsletterAccessibility.init();
 
-    console.log('HTMX accessibility enhancements loaded');
+    // HTMX accessibility enhancements loaded
   }
 
   // Initialize immediately if DOM is ready, otherwise wait

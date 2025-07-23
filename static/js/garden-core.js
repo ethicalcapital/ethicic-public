@@ -38,9 +38,9 @@
 
   // Utility functions
   const Utils = {
-    log: function (message, data) {
+    log: function (_message, _data) {
       if (CONFIG.debug) {
-        console.log('[Garden]', message, data || '');
+        // Debug: [Garden] message
       }
     },
 
@@ -148,6 +148,20 @@
       Utils.log('Navigation items updated', this.items.length);
     },
 
+    getKeyAction: function(key) {
+      const actions = {
+        [CONFIG.hotkeys.up]: () => this.navigate(-1),
+        [CONFIG.hotkeys.down]: () => this.navigate(1),
+        [CONFIG.hotkeys.enter]: () => this.activate(),
+        [CONFIG.hotkeys.search]: () => this.focusSearch(),
+        [CONFIG.hotkeys.help]: () => this.showHelp(),
+        [CONFIG.hotkeys.escape]: () => this.escape(),
+        [CONFIG.hotkeys.plus]: () => this.adjustValue(1),
+        [CONFIG.hotkeys.minus]: () => this.adjustValue(-1)
+      };
+      return actions[key];
+    },
+
     handleKeyDown: function (event) {
       // Don't interfere when user is typing
       if (this.isTyping(event.target)) {
@@ -155,47 +169,11 @@
       }
 
       const key = event.key.toLowerCase();
+      const action = this.getKeyAction(key);
 
-      switch (key) {
-      case CONFIG.hotkeys.up:
-        this.navigate(-1);
+      if (action) {
+        action();
         Utils.preventDefault(event);
-        break;
-
-      case CONFIG.hotkeys.down:
-        this.navigate(1);
-        Utils.preventDefault(event);
-        break;
-
-      case CONFIG.hotkeys.enter:
-        this.activate();
-        Utils.preventDefault(event);
-        break;
-
-      case CONFIG.hotkeys.search:
-        this.focusSearch();
-        Utils.preventDefault(event);
-        break;
-
-      case CONFIG.hotkeys.help:
-        this.showHelp();
-        Utils.preventDefault(event);
-        break;
-
-      case CONFIG.hotkeys.escape:
-        this.escape();
-        Utils.preventDefault(event);
-        break;
-
-      case CONFIG.hotkeys.plus:
-        this.adjustValue(1);
-        Utils.preventDefault(event);
-        break;
-
-      case CONFIG.hotkeys.minus:
-        this.adjustValue(-1);
-        Utils.preventDefault(event);
-        break;
       }
     },
 

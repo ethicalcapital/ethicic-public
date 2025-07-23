@@ -28,6 +28,25 @@ else
     exit 1
 fi
 
+# Run Stylelint on staged CSS files
+echo "🔍 Running Stylelint checks..."
+if command -v npm &> /dev/null; then
+    if npm run lint:css; then
+        echo "✅ Stylelint checks passed"
+    else
+        echo "❌ Stylelint checks failed!"
+        echo ""
+        echo "CSS linting errors detected. Please fix before committing:"
+        echo "  1. Run: npm run lint:css:fix (auto-fix some issues)"
+        echo "  2. Run: npm run lint:css (see remaining issues)"
+        echo "  3. Fix issues manually if needed"
+        echo ""
+        exit 1
+    fi
+else
+    echo "⚠️  npm not found, skipping Stylelint checks"
+fi
+
 # Check for common CSS anti-patterns in staged files
 staged_css_files=$(git diff --cached --name-only | grep '\.css$' || true)
 

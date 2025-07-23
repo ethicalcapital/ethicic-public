@@ -388,7 +388,7 @@
     AutoInitializer.init();
     NotificationDropdownEnhancer.init();
 
-    console.log('Focus trapping accessibility enhancements loaded');
+    // Focus trapping accessibility enhancements loaded
   }
 
   if (document.readyState === 'loading') {

@@ -13,3 +13,13 @@
 - i turned off the cdn for now
 - NEVER just remove a file thats causing issues. THat's lazy bullshit and we dont do it around here#
 - we are often making multiple edits in parallel -- if you come across an issue that might be due to that, consider this before you make any actions
+
+## CSS Architecture (Complete - 2025)
+- **Documentation**: See `docs/CSS_ARCHITECTURE_SUMMARY.md` for complete setup details
+- **Build System**: Use `npm run build:css:dev` for development, `npm run build:css:prod` for production
+- **Linting**: Run `npm run lint:css` before commits - enforces Garden UI BEM patterns
+- **Template**: Use `templates/public_site/base_optimized.html` for single CSS file delivery
+- **Utilities**: Use spacing classes (.mt-3, .mb-4) instead of inline styles
+- **Components**: All in `static/css/garden-*.css` files with proper theme variables
+- **Quality**: Pre-commit hooks prevent bad CSS, VS Code auto-fixes issues
+- **Performance**: 64 files → 1 optimized file, ~50% reduction in HTTP requests

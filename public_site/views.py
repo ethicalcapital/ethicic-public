@@ -449,52 +449,207 @@ def create_or_update_contact(email, form_data, form_type, user=None):
         return MockContact(), True
 
 
+def _build_full_name(first, middle, last):
+    """Build full name from components."""
+    name_parts = [first or ""]
+    if middle:
+        name_parts.append(middle)
+    name_parts.append(last or "")
+    return " ".join(filter(None, name_parts))
+
+
+def _build_full_address(form_data):
+    """Build full address from form data."""
+    address_parts = [form_data.get("street_address", "")]
+    if form_data.get("street_address_2"):
+        address_parts.append(form_data.get("street_address_2"))
+    address_parts.extend(
+        [
+            form_data.get("city", ""),
+            form_data.get("state", ""),
+            form_data.get("zip_code", ""),
+            form_data.get("country", ""),
+        ]
+    )
+    return ", ".join(filter(None, address_parts))
+
+
+def _format_currency(value):
+    """Format numeric string as currency."""
+    if value and value.isdigit():
+        return f"${int(value):,}"
+    return value
+
+
+def _build_basic_info_parts(form_data, full_name, full_address):
+    """Build basic information message parts."""
+    return [
+        "## Onboarding Application\n",
+        f"**Name:** {full_name}",
+        f"**Email:** {form_data.get('email', '')}",
+        f"**Phone:** {form_data.get('phone', '')}",
+        f"**Mailing Address:** {full_address}",
+        f"**Pronouns:** {form_data.get('pronouns', '')}",
+        f"**Birthday:** {form_data.get('birthday', '')}",
+        f"**Employment Status:** {form_data.get('employment_status', '')}",
+        f"**Marital Status:** {form_data.get('marital_status', '')}",
+    ]
+
+
+def _add_co_client_info(message_parts, form_data):
+    """Add co-client information to message parts if applicable."""
+    if form_data.get("add_co_client") == "yes":
+        co_full_name = _build_full_name(
+            form_data.get("co_client_first_name"),
+            form_data.get("co_client_middle_names"),
+            form_data.get("co_client_last_name"),
+        )
+
+        message_parts.extend(
+            [
+                "\n## Co-Client Information",
+                f"**Name:** {co_full_name}",
+                f"**Email:** {form_data.get('co_client_email', '')}",
+                f"**Phone:** {form_data.get('co_client_phone', '')}",
+                f"**Pronouns:** {form_data.get('co_client_pronouns', '')}",
+                f"**Birthday:** {form_data.get('co_client_birthday', '')}",
+                f"**Employment Status:** {form_data.get('co_client_employment_status', '')}",
+                f"**Employer:** {form_data.get('co_client_employer_name', '')}",
+                f"**Share Address:** {form_data.get('co_client_share_address', '')}",
+            ]
+        )
+
+
+def _add_financial_context(message_parts, form_data):
+    """Add financial context to message parts."""
+    message_parts.extend(
+        [
+            "\n## Financial Context",
+            f"**Investment Experience:** {form_data.get('investment_experience', '')}",
+            f"**Net Worth:** {_format_currency(form_data.get('net_worth', ''))}",
+            f"**Liquid Net Worth:** {_format_currency(form_data.get('liquid_net_worth', ''))}",
+            f"**Investable Net Worth:** {_format_currency(form_data.get('investable_net_worth', ''))}",
+        ]
+    )
+
+    if form_data.get("initial_investment"):
+        formatted_investment = _format_currency(form_data.get("initial_investment", ""))
+        message_parts.append(f"**Initial Investment:** {formatted_investment}")
+
+
+def _add_ethical_considerations(message_parts, form_data):
+    """Add ethical considerations to message parts."""
+    fields = [
+        ("ethical_considerations", "Ethical Considerations"),
+        ("ethical_considerations_other", "Other Ethical Considerations"),
+        ("divestment_movements", "Divestment Movements"),
+        ("divestment_movements_other", "Other Divestment Movements"),
+        ("understanding_importance_other", "Understanding Importance (Other)"),
+        ("ethical_evolution_other", "Ethical Evolution (Other)"),
+        ("ethical_concerns_unrecognized", "Unrecognized Ethical Concerns"),
+        ("financial_team_coordinate", "Financial Team Coordination"),
+        ("professional_referrals", "Professional Referrals"),
+        ("professional_referrals_other", "Other Professional Referrals"),
+        ("anything_else", "Additional Information"),
+    ]
+
+    for field_name, label in fields:
+        value = form_data.get(field_name)
+        if value:
+            if isinstance(value, list):
+                value = ", ".join(value)
+            message_parts.append(f"\n**{label}:** {value}")
+
+
+def _handle_secure_submission(
+    ticket, form_data, full_name, full_address, comprehensive_message
+):
+    """Handle secure API submission with fallback."""
+    try:
+        from public_site.services.platform_client import platform_client
+
+        onboarding_data = {
+            "name": full_name,
+            "email": form_data.get("email"),
+            "phone": form_data.get("phone"),
+            "address": full_address,
+            "birthday": form_data.get("birthday"),
+            "pronouns": form_data.get("pronouns"),
+            "employment_status": form_data.get("employment_status"),
+            "marital_status": form_data.get("marital_status"),
+            "communication_preferences": form_data.get("communication_preference", []),
+            "net_worth": form_data.get("net_worth"),
+            "liquid_net_worth": form_data.get("liquid_net_worth"),
+            "investable_net_worth": form_data.get("investable_net_worth"),
+            "investment_experience": form_data.get("investment_experience"),
+            "comprehensive_message": comprehensive_message,
+            "ticket_id": ticket.id,
+            "source": "onboarding_form",
+        }
+
+        if form_data.get("add_co_client") == "yes":
+            co_full_name = _build_full_name(
+                form_data.get("co_client_first_name"),
+                form_data.get("co_client_middle_names"),
+                form_data.get("co_client_last_name"),
+            )
+
+            onboarding_data["co_client"] = {
+                "name": co_full_name,
+                "email": form_data.get("co_client_email"),
+                "phone": form_data.get("co_client_phone"),
+                "pronouns": form_data.get("co_client_pronouns"),
+                "birthday": form_data.get("co_client_birthday"),
+                "employment_status": form_data.get("co_client_employment_status"),
+            }
+
+        result = platform_client.secure_onboarding_submission(onboarding_data)
+
+        if result:
+            ticket.external_reference = result.get("submission_id")
+            ticket.save()
+            logger.info(
+                "Onboarding submitted via secure API: %s", result.get("submission_id")
+            )
+            return result
+        logger.info("Secure API not available, using local storage only")
+
+    except Exception as e:
+        logger.warning("Secure API submission failed: %s", e)
+        from public_site.standalone_email_utils import send_fallback_email
+
+        send_fallback_email(
+            {
+                "name": full_name,
+                "email": form_data.get("email"),
+                "subject": "Onboarding Application",
+                "message": comprehensive_message,
+            }
+        )
+
+    return None
+
+
 @require_http_methods(["POST"])
 def onboarding_form_submit(request):
     """Handle comprehensive onboarding form submissions"""
     form = OnboardingForm(request.POST, request=request)
-
-    # Check if this is an HTMX request
     is_htmx = request.headers.get("HX-Request") == "true"
 
     if form.is_valid():
         form_data = form.cleaned_data
 
         try:
-            # Create comprehensive support ticket for onboarding
-            # Build full name from components
-            name_parts = [form_data.get("first_name", "")]
-            if form_data.get("middle_names"):
-                name_parts.append(form_data.get("middle_names"))
-            name_parts.append(form_data.get("last_name", ""))
-            full_name = " ".join(filter(None, name_parts))
-
-            # Build full address from components
-            address_parts = [form_data.get("street_address", "")]
-            if form_data.get("street_address_2"):
-                address_parts.append(form_data.get("street_address_2"))
-            address_parts.extend(
-                [
-                    form_data.get("city", ""),
-                    form_data.get("state", ""),
-                    form_data.get("zip_code", ""),
-                    form_data.get("country", ""),
-                ]
+            # Build names and addresses
+            full_name = _build_full_name(
+                form_data.get("first_name"),
+                form_data.get("middle_names"),
+                form_data.get("last_name"),
             )
-            full_address = ", ".join(filter(None, address_parts))
+            full_address = _build_full_address(form_data)
 
-            # Build comprehensive message with all form data
-            message_parts = [
-                "## Onboarding Application\n",
-                f"**Name:** {full_name}",
-                f"**Email:** {form_data.get('email', '')}",
-                f"**Phone:** {form_data.get('phone', '')}",
-                f"**Mailing Address:** {full_address}",
-                f"**Pronouns:** {form_data.get('pronouns', '')}",
-                f"**Birthday:** {form_data.get('birthday', '')}",
-                f"**Employment Status:** {form_data.get('employment_status', '')}",
-                f"**Marital Status:** {form_data.get('marital_status', '')}",
-            ]
+            # Build message parts
+            message_parts = _build_basic_info_parts(form_data, full_name, full_address)
 
             # Add communication preferences
             if form_data.get("communication_preference"):
@@ -502,117 +657,16 @@ def onboarding_form_submit(request):
                     f"\n**Communication Preferences:** {', '.join(form_data.get('communication_preference', []))}"
                 )
 
-            # Add co-client info if provided
-            if form_data.get("add_co_client") == "yes":
-                # Build co-client full name from components
-                co_name_parts = [form_data.get("co_client_first_name", "")]
-                if form_data.get("co_client_middle_names"):
-                    co_name_parts.append(form_data.get("co_client_middle_names"))
-                co_name_parts.append(form_data.get("co_client_last_name", ""))
-                co_full_name = " ".join(filter(None, co_name_parts))
-
-                message_parts.extend(
-                    [
-                        "\n## Co-Client Information",
-                        f"**Name:** {co_full_name}",
-                        f"**Email:** {form_data.get('co_client_email', '')}",
-                        f"**Phone:** {form_data.get('co_client_phone', '')}",
-                        f"**Pronouns:** {form_data.get('co_client_pronouns', '')}",
-                        f"**Birthday:** {form_data.get('co_client_birthday', '')}",
-                        f"**Employment Status:** {form_data.get('co_client_employment_status', '')}",
-                        f"**Employer:** {form_data.get('co_client_employer_name', '')}",
-                        f"**Share Address:** {form_data.get('co_client_share_address', '')}",
-                    ]
-                )
+            # Add co-client info
+            _add_co_client_info(message_parts, form_data)
 
             # Add financial context
-            def format_currency(value):
-                """Format numeric string as currency."""
-                if value and value.isdigit():
-                    return f"${int(value):,}"
-                return value
+            _add_financial_context(message_parts, form_data)
 
-            message_parts.extend(
-                [
-                    "\n## Financial Context",
-                    f"**Investment Experience:** {form_data.get('investment_experience', '')}",
-                    f"**Net Worth:** {format_currency(form_data.get('net_worth', ''))}",
-                    f"**Liquid Net Worth:** {format_currency(form_data.get('liquid_net_worth', ''))}",
-                    f"**Investable Net Worth:** {format_currency(form_data.get('investable_net_worth', ''))}",
-                ]
-            )
+            # Add ethical considerations
+            _add_ethical_considerations(message_parts, form_data)
 
-            # Add initial investment if provided
-            if form_data.get("initial_investment"):
-                # Format as currency
-                initial_investment = form_data.get("initial_investment", "")
-                if initial_investment and initial_investment.isdigit():
-                    formatted_investment = f"${int(initial_investment):,}"
-                    message_parts.append(
-                        f"**Initial Investment:** {formatted_investment}"
-                    )
-                else:
-                    message_parts.append(
-                        f"**Initial Investment:** {initial_investment}"
-                    )
-
-            # Add values and ethical considerations
-            if form_data.get("ethical_considerations"):
-                message_parts.append(
-                    f"\n**Ethical Considerations:** {', '.join(form_data.get('ethical_considerations', []))}"
-                )
-
-            if form_data.get("ethical_considerations_other"):
-                message_parts.append(
-                    f"**Other Ethical Considerations:** {form_data.get('ethical_considerations_other', '')}"
-                )
-
-            if form_data.get("divestment_movements"):
-                message_parts.append(
-                    f"**Divestment Movements:** {', '.join(form_data.get('divestment_movements', []))}"
-                )
-
-            if form_data.get("divestment_movements_other"):
-                message_parts.append(
-                    f"**Other Divestment Movements:** {form_data.get('divestment_movements_other', '')}"
-                )
-
-            # Add additional fields from comprehensive form
-            if form_data.get("understanding_importance_other"):
-                message_parts.append(
-                    f"**Understanding Importance (Other):** {form_data.get('understanding_importance_other', '')}"
-                )
-
-            if form_data.get("ethical_evolution_other"):
-                message_parts.append(
-                    f"**Ethical Evolution (Other):** {form_data.get('ethical_evolution_other', '')}"
-                )
-
-            if form_data.get("ethical_concerns_unrecognized"):
-                message_parts.append(
-                    f"**Unrecognized Ethical Concerns:** {form_data.get('ethical_concerns_unrecognized', '')}"
-                )
-
-            if form_data.get("financial_team_coordinate"):
-                message_parts.append(
-                    f"**Financial Team Coordination:** {form_data.get('financial_team_coordinate', '')}"
-                )
-
-            if form_data.get("professional_referrals"):
-                message_parts.append(
-                    f"**Professional Referrals:** {', '.join(form_data.get('professional_referrals', []))}"
-                )
-
-            if form_data.get("professional_referrals_other"):
-                message_parts.append(
-                    f"**Other Professional Referrals:** {form_data.get('professional_referrals_other', '')}"
-                )
-
-            if form_data.get("anything_else"):
-                message_parts.append(
-                    f"**Additional Information:** {form_data.get('anything_else', '')}"
-                )
-
+            # Create support ticket
             ticket = SupportTicket.objects.create(
                 name=full_name,
                 email=form_data["email"],
@@ -626,83 +680,11 @@ def onboarding_form_submit(request):
                 "Onboarding form submitted successfully, created ticket #%s", ticket.id
             )
 
-            # Try secure API submission first, fallback to local storage
-            secure_submission_result = None
-            try:
-                from public_site.services.platform_client import platform_client
-
-                # Prepare comprehensive form data for secure submission
-                comprehensive_message = "\n".join(message_parts)
-                onboarding_data = {
-                    "name": full_name,
-                    "email": form_data.get("email"),
-                    "phone": form_data.get("phone"),
-                    "address": full_address,
-                    "birthday": form_data.get("birthday"),
-                    "pronouns": form_data.get("pronouns"),
-                    "employment_status": form_data.get("employment_status"),
-                    "marital_status": form_data.get("marital_status"),
-                    "communication_preferences": form_data.get(
-                        "communication_preference", []
-                    ),
-                    "net_worth": form_data.get("net_worth"),
-                    "liquid_net_worth": form_data.get("liquid_net_worth"),
-                    "investable_net_worth": form_data.get("investable_net_worth"),
-                    "investment_experience": form_data.get("investment_experience"),
-                    "comprehensive_message": comprehensive_message,
-                    "ticket_id": ticket.id,
-                    "source": "onboarding_form",
-                }
-
-                # Add co-client data if present
-                if form_data.get("add_co_client") == "yes":
-                    co_name_parts = [form_data.get("co_client_first_name", "")]
-                    if form_data.get("co_client_middle_names"):
-                        co_name_parts.append(form_data.get("co_client_middle_names"))
-                    co_name_parts.append(form_data.get("co_client_last_name", ""))
-                    co_full_name = " ".join(filter(None, co_name_parts))
-
-                    onboarding_data["co_client"] = {
-                        "name": co_full_name,
-                        "email": form_data.get("co_client_email"),
-                        "phone": form_data.get("co_client_phone"),
-                        "pronouns": form_data.get("co_client_pronouns"),
-                        "birthday": form_data.get("co_client_birthday"),
-                        "employment_status": form_data.get(
-                            "co_client_employment_status"
-                        ),
-                    }
-
-                secure_submission_result = platform_client.secure_onboarding_submission(
-                    onboarding_data
-                )
-
-                if secure_submission_result:
-                    # Store submission ID for tracking
-                    ticket.external_reference = secure_submission_result.get(
-                        "submission_id"
-                    )
-                    ticket.save()
-                    logger.info(
-                        "Onboarding submitted via secure API: %s",
-                        secure_submission_result.get("submission_id"),
-                    )
-                else:
-                    logger.info("Secure API not available, using local storage only")
-
-            except Exception as e:
-                logger.warning("Secure API submission failed: %s", e)
-                # Use fallback email as backup notification method
-                from public_site.standalone_email_utils import send_fallback_email
-
-                send_fallback_email(
-                    {
-                        "name": full_name,
-                        "email": form_data.get("email"),
-                        "subject": "Onboarding Application",
-                        "message": comprehensive_message,
-                    }
-                )
+            # Handle secure submission
+            comprehensive_message = "\n".join(message_parts)
+            _handle_secure_submission(
+                ticket, form_data, full_name, full_address, comprehensive_message
+            )
 
             # Handle HTMX request
             if is_htmx:

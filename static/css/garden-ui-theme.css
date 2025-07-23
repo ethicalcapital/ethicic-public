@@ -284,7 +284,7 @@
   --garden-selection: var(--theme-selection);
   --garden-text: var(--theme-on-background);
   --garden-text-muted: var(--theme-text-secondary);
-  
+
   /* Maya Blue for dark mode CTAs */
   --color-cta: #55c1ff;
   --color-cta-hover: #3fb4ff;
@@ -458,6 +458,50 @@
   --header-bg: var(--theme-primary);
   --header-text: var(--theme-on-primary);
   --header-border: var(--theme-border);
+
+  /* Component-specific variables for buttons */
+  --garden-button-bg: var(--theme-primary);
+  --garden-button-fg: var(--theme-on-primary);
+  --garden-button-border: var(--theme-primary);
+  --garden-button-hover-bg: var(--theme-primary-hover);
+  --garden-button-hover-fg: var(--theme-on-primary);
+  --garden-button-hover-border: var(--theme-primary-hover);
+  --garden-button-focus-ring: 0 0 0 4px var(--theme-primary-alpha);
+  --garden-button-disabled-opacity: 0.6;
+
+  /* Secondary button variants */
+  --garden-button-secondary-bg: transparent;
+  --garden-button-secondary-fg: var(--theme-primary);
+  --garden-button-secondary-border: var(--theme-border);
+  --garden-button-secondary-hover-bg: var(--theme-hover);
+  --garden-button-secondary-hover-fg: var(--theme-primary-hover);
+  --garden-button-secondary-hover-border: var(--theme-primary);
+
+  /* Button on colored background */
+  --garden-button-on-color-bg: var(--theme-background);
+  --garden-button-on-color-fg: var(--theme-primary);
+  --garden-button-on-color-border: var(--theme-background);
+  --garden-button-on-color-hover-bg: var(--theme-surface);
+  --garden-button-on-color-hover-fg: var(--theme-primary);
+
+  /* Form input variables */
+  --garden-input-bg: var(--theme-background);
+  --garden-input-fg: var(--theme-on-background);
+  --garden-input-border: var(--theme-border);
+  --garden-input-hover-border: var(--theme-border-variant);
+  --garden-input-focus-border: var(--theme-primary);
+  --garden-input-focus-ring: 0 0 0 2px var(--theme-primary-alpha);
+  --garden-input-disabled-bg: var(--theme-surface);
+  --garden-input-disabled-opacity: 0.5;
+  --garden-input-error-border: var(--theme-error);
+  --garden-input-success-border: var(--theme-success);
+
+  /* These ensure compatibility with existing code */
+  --garden-bg: var(--theme-background);
+  --garden-fg: var(--theme-on-background);
+  --garden-accent: var(--theme-primary);
+  --garden-border: var(--theme-border);
+  --garden-surface: var(--theme-surface);
 }
 
   /* ===== AUTO THEME (Follows system preference) ===== */
@@ -632,6 +676,43 @@
   --garden-surface: var(--theme-surface);
   --garden-border: var(--theme-border);
   --garden-muted: var(--theme-text-secondary);
+
+  /* Component-specific variables for dark theme */
+  --garden-button-bg: var(--theme-primary);
+  --garden-button-fg: var(--theme-on-primary);
+  --garden-button-border: var(--theme-primary);
+  --garden-button-hover-bg: var(--theme-primary-hover);
+  --garden-button-hover-fg: var(--theme-on-primary);
+  --garden-button-hover-border: var(--theme-primary-hover);
+  --garden-button-focus-ring: 0 0 0 4px var(--theme-primary-alpha);
+  --garden-button-disabled-opacity: 0.6;
+
+  /* Secondary button variants for dark theme */
+  --garden-button-secondary-bg: transparent;
+  --garden-button-secondary-fg: var(--theme-on-surface);
+  --garden-button-secondary-border: var(--theme-border);
+  --garden-button-secondary-hover-bg: var(--theme-surface);
+  --garden-button-secondary-hover-fg: var(--theme-on-surface);
+  --garden-button-secondary-hover-border: var(--theme-border-variant);
+
+  /* Button on colored background for dark theme */
+  --garden-button-on-color-bg: var(--theme-surface);
+  --garden-button-on-color-fg: var(--theme-on-surface);
+  --garden-button-on-color-border: var(--theme-surface);
+  --garden-button-on-color-hover-bg: var(--theme-surface-variant);
+  --garden-button-on-color-hover-fg: var(--theme-on-surface);
+
+  /* Form input variables for dark theme */
+  --garden-input-bg: var(--theme-surface);
+  --garden-input-fg: var(--theme-on-surface);
+  --garden-input-border: var(--theme-border);
+  --garden-input-hover-border: var(--theme-border-variant);
+  --garden-input-focus-border: var(--theme-primary);
+  --garden-input-focus-ring: 0 0 0 2px var(--theme-primary-alpha);
+  --garden-input-disabled-bg: var(--theme-surface-variant);
+  --garden-input-disabled-opacity: 0.5;
+  --garden-input-error-border: var(--theme-error);
+  --garden-input-success-border: var(--theme-success);
 }
 
   /* Green Theme - Another example */
@@ -780,9 +861,11 @@ button, input, optgroup, select, textarea {
   border: 1px solid var(--garden-border);
   border-radius: var(--radius-sm);
   margin-bottom: var(--space-3);
+  width: 100%;
   overflow: hidden;
   transition: background-color var(--duration-normal), border-color var(--duration-normal);
   break-inside: avoid;
+  box-sizing: border-box;
 }
 
 .garden-panel-header {
@@ -823,6 +906,8 @@ button, input, optgroup, select, textarea {
 
 .garden-panel-content {
   padding: var(--space-3);
+  width: 100%;
+  box-sizing: border-box;
 }
 
   /* Panel Variants */
@@ -1086,9 +1171,9 @@ button, input, optgroup, select, textarea {
 
   /* Primary Button - Main brand actions with sweet ass brackets */
 .garden-action.primary {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  border: 2px solid var(--color-primary);
+  background: var(--garden-button-bg);
+  color: var(--garden-button-fg);
+  border: 2px solid var(--garden-button-border);
   text-shadow: 0 1px 2px var(--color-shadow);
   /* Ensure contrast is maintained */
   min-height: 40px;
@@ -1105,9 +1190,9 @@ button, input, optgroup, select, textarea {
 }
 
 .garden-action.primary:hover {
-  background: var(--color-primary-hover);
-  border-color: var(--color-primary-hover);
-  color: var(--color-on-primary);
+  background: var(--garden-button-hover-bg);
+  border-color: var(--garden-button-hover-border);
+  color: var(--garden-button-hover-fg);
   transform: translateY(-1px);
   text-shadow: 0 1px 2px var(--color-shadow);
 }
@@ -1129,9 +1214,9 @@ button, input, optgroup, select, textarea {
 
   /* Secondary Button - Outline style */
 .garden-action.secondary {
-  background: transparent;
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  background: var(--garden-button-secondary-bg);
+  color: var(--garden-button-secondary-fg);
+  border: 2px solid var(--garden-button-secondary-border);
   font-weight: var(--font-semibold);
   text-shadow: none;
   /* Ensure secondary buttons never have white text */
@@ -1139,9 +1224,9 @@ button, input, optgroup, select, textarea {
 }
 
 .garden-action.secondary:hover {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  border-color: var(--color-primary);
+  background: var(--garden-button-secondary-hover-bg);
+  color: var(--garden-button-secondary-hover-fg);
+  border-color: var(--garden-button-secondary-hover-border);
   text-shadow: 0 1px 2px var(--color-shadow);
   transform: translateY(-1px);
 }
@@ -1450,6 +1535,42 @@ button, input, optgroup, select, textarea {
   outline: none !important;
 }
 
+/* Button variant for colored backgrounds */
+.garden-action.on-color,
+.garden-button--on-color {
+  background: var(--garden-button-on-color-bg);
+  color: var(--garden-button-on-color-fg);
+  border: 2px solid var(--garden-button-on-color-border);
+  font-weight: var(--font-semibold);
+  text-shadow: none;
+}
+
+.garden-action.on-color:hover,
+.garden-button--on-color:hover {
+  background: var(--garden-button-on-color-hover-bg);
+  color: var(--garden-button-on-color-hover-fg);
+  border-color: var(--garden-button-on-color-border);
+  transform: translateY(-1px);
+}
+
+/* Button variant for header */
+.garden-action.in-header,
+.garden-button--header {
+  background: var(--color-white-15);
+  color: var(--garden-button-fg);
+  border: 1px solid var(--color-white-30);
+  font-weight: var(--font-semibold);
+  text-shadow: 0 1px 2px var(--color-shadow);
+}
+
+.garden-action.in-header:hover,
+.garden-button--header:hover {
+  background: var(--color-white-25);
+  color: var(--garden-button-hover-fg);
+  border-color: var(--color-white-50);
+  transform: translateY(-1px);
+}
+
 /* === WORKBENCH BUTTONS - Garden UI Compliant === */
 /* Custom workbench styles removed - using standardized garden-action system */
 
@@ -1626,9 +1747,9 @@ button, input, optgroup, select, textarea {
 
   /* Form Elements */
 .garden-input {
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  color: var(--garden-fg);
+  background: var(--garden-input-bg);
+  border: 1px solid var(--garden-input-border);
+  color: var(--garden-input-fg);
   padding: var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--font-base); /* Prevent zoom on iOS */;
@@ -1638,9 +1759,9 @@ button, input, optgroup, select, textarea {
 }
 
 .garden-input:focus {
-  border-color: var(--input-focus-border);
-  outline: var(--focus-ring);
-  outline-offset: var(--focus-offset);
+  border-color: var(--garden-input-focus-border);
+  outline: none;
+  box-shadow: var(--garden-input-focus-ring);
 }
 
 .garden-input:disabled {
@@ -7219,3 +7340,185 @@ html body .garden-panel .strategy-card {
 }
 
 }}
+
+/* ========================================================================
+   MOBILE NAVIGATION SYSTEM - Responsive Navigation Components
+   ======================================================================== */
+
+/* Mobile hamburger menu button */
+.garden-hamburger,
+.garden-mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  gap: 4px;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  z-index: var(--z-header-controls);
+}
+
+/* Hamburger lines */
+.garden-hamburger-line,
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  transition: all var(--duration-fast);
+  border-radius: 1px;
+}
+
+/* Hamburger animation when active */
+.garden-hamburger.active .hamburger-line:nth-child(1),
+.garden-mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.garden-hamburger.active .hamburger-line:nth-child(2),
+.garden-mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.garden-hamburger.active .hamburger-line:nth-child(3),
+.garden-mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile navigation container */
+.garden-nav-mobile {
+  display: none;
+  position: fixed;
+  top: var(--header-height, 60px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--garden-bg);
+  z-index: var(--z-modal);
+  overflow-y: auto;
+  padding: var(--space-4);
+  transform: translateX(-100%);
+  transition: transform var(--duration-normal);
+}
+
+.garden-nav-mobile.active {
+  display: block;
+  transform: translateX(0);
+}
+
+/* Mobile nav items */
+.garden-nav-mobile .garden-nav-item {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  color: var(--garden-fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--garden-border);
+  transition: background-color var(--duration-fast);
+}
+
+.garden-nav-mobile .garden-nav-item:hover {
+  background-color: var(--garden-hover);
+}
+
+.garden-nav-mobile .garden-nav-item.active {
+  background-color: var(--garden-surface);
+  color: var(--garden-accent);
+  font-weight: var(--font-semibold);
+}
+
+/* Mobile search and user actions */
+.garden-nav-mobile .garden-search,
+.garden-nav-mobile .garden-user-actions {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--garden-border);
+}
+
+/* Mobile-first responsive behavior */
+@media (max-width: 768px) {
+  /* Show hamburger on mobile */
+  .garden-hamburger,
+  .garden-mobile-menu-toggle {
+    display: flex;
+  }
+
+  /* Hide desktop nav on mobile */
+  .garden-nav,
+  .garden-nav-main {
+    display: none !important;
+  }
+
+  /* Mobile nav transition */
+  .garden-nav-mobile {
+    display: block;
+  }
+
+  /* Mobile nav overlay */
+  .garden-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: calc(var(--z-modal) - 1);
+    opacity: 0;
+    transition: opacity var(--duration-normal);
+  }
+
+  .garden-nav-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+
+  /* Ensure header is above mobile nav */
+  .garden-header {
+    z-index: calc(var(--z-modal) + 1);
+  }
+}
+
+/* Desktop responsive behavior */
+@media (min-width: 769px) {
+  /* Hide hamburger on desktop */
+  .garden-hamburger,
+  .garden-mobile-menu-toggle {
+    display: none !important;
+  }
+
+  /* Show desktop nav */
+  .garden-nav,
+  .garden-nav-main {
+    display: flex !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Hide mobile nav on desktop */
+  .garden-nav-mobile,
+  .garden-nav-overlay {
+    display: none !important;
+  }
+}
+
+/* Dark mode mobile nav */
+[data-theme="dark"] .garden-nav-mobile {
+  background-color: var(--garden-surface);
+}
+
+[data-theme="dark"] .garden-nav-mobile .garden-nav-item {
+  border-bottom-color: var(--garden-border);
+}
+
+[data-theme="dark"] .garden-nav-mobile .garden-nav-item:hover {
+  background-color: var(--garden-hover);
+}

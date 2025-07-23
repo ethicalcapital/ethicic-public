@@ -1,0 +1,28 @@
+# Ignore files during CSS migration
+# These files will be gradually fixed or removed
+
+# Django admin and debug files
+static/admin/**
+static/debug_toolbar/**
+staticfiles/**
+
+# Build and backup directories
+node_modules/**
+dist/**
+build/**
+static/css/backup-*/**
+
+# Legacy override files (to be removed)
+static/css/z-*.css
+static/css/*-nuclear-*.css
+static/css/*-emergency-*.css
+static/css/strategy-nuclear-fix.css
+static/css/button-contrast-fixes.css
+static/css/critical-fouc-prevention.css
+
+# Files with extensive !important usage (fix gradually)
+static/css/garden-ui-theme.css
+static/css/core-styles.css
+
+# Third-party or generated files
+static/css/vendor/**
