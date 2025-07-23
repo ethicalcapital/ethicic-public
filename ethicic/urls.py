@@ -32,12 +32,45 @@ def health_check(request):
     # Add R2 debug info if requested
     if request.GET.get('debug') == 'r2':
         import os
+        
+        # Test R2 storage with image-like file
+        storage_test = "UNKNOWN"
+        try:
+            from django.core.files.storage import default_storage
+            from django.core.files.base import ContentFile
+            from PIL import Image
+            import io
+            
+            # Create a small test image
+            img = Image.new('RGB', (10, 10), color='red')
+            img_bytes = io.BytesIO()
+            img.save(img_bytes, format='JPEG')
+            img_bytes.seek(0)
+            
+            # Test saving like Wagtail would
+            test_file = ContentFile(img_bytes.getvalue())
+            saved_name = default_storage.save("test_images/test_upload.jpg", test_file)
+            file_url = default_storage.url(saved_name)
+            
+            # Test if we can read it back
+            stored_file = default_storage.open(saved_name)
+            stored_content = stored_file.read()
+            stored_file.close()
+            
+            # Clean up
+            default_storage.delete(saved_name)
+            
+            storage_test = f"SUCCESS - Saved {len(stored_content)} bytes"
+        except Exception as e:
+            storage_test = f"FAILED: {str(e)}"
+        
         response_data.update({
             "r2_access_key": "SET" if os.getenv('R2_ACCESS_KEY_ID') else "MISSING",
             "r2_secret_key": "SET" if os.getenv('R2_SECRET_ACCESS_KEY') else "MISSING",
             "debug_mode": os.getenv('DEBUG', 'False'),
             "media_url": getattr(settings, 'MEDIA_URL', 'NOT_SET'),
             "storages_config": "SET" if hasattr(settings, 'STORAGES') else "MISSING",
+            "image_storage_test": storage_test,
         })
     
     return JsonResponse(response_data)
@@ -46,6 +79,56 @@ def health_check(request):
 def simple_test(request):
     """Simple test endpoint that doesn't require database"""
     return JsonResponse({"message": "Hello from ethicic-public!", "status": "ok"})
+
+
+def debug_image_model(request):
+    """Debug Wagtail image model to see what's required"""
+    if request.GET.get('test') != 'image':
+        return JsonResponse({"error": "Add ?test=image to run test"})
+        
+    try:
+        from wagtail.images.models import Image
+        from django.core.files.base import ContentFile
+        from PIL import Image as PILImage
+        import io
+        
+        # Create a test image
+        img = PILImage.new('RGB', (100, 100), color='blue')
+        img_bytes = io.BytesIO()
+        img.save(img_bytes, format='JPEG')
+        img_bytes.seek(0)
+        
+        # Try to create Wagtail Image model
+        test_file = ContentFile(img_bytes.getvalue(), name='debug_test.jpg')
+        
+        wagtail_image = Image(
+            title="Debug Test Image",
+            file=test_file,
+        )
+        
+        # Try to save and see what validation errors occur
+        wagtail_image.full_clean()  # This will raise ValidationError if invalid
+        wagtail_image.save()
+        
+        result = {
+            "status": "SUCCESS",
+            "image_id": wagtail_image.id,
+            "image_url": wagtail_image.file.url,
+            "title": wagtail_image.title,
+        }
+        
+        # Clean up
+        wagtail_image.delete()
+        
+        return JsonResponse(result)
+        
+    except Exception as e:
+        import traceback
+        return JsonResponse({
+            "status": "FAILED", 
+            "error": str(e),
+            "traceback": traceback.format_exc()
+        })
 
 
 def favicon_view(request):
@@ -408,6 +491,7 @@ urlpatterns = [
     # Health check
     path("health/", health_check, name="health_check"),
     path("test/", simple_test, name="simple_test"),
+    path("debug-image/", debug_image_model, name="debug_image"),
     path("debug-homepage/", debug_homepage, name="debug_homepage"),
     path("debug-static/", debug_static, name="debug_static"),
     path("debug-file/<path:filepath>", debug_static_file, name="debug_static_file"),
