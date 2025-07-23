@@ -36,7 +36,12 @@ db.sqlite3
 db.sqlite3-journal
 cache.sqlite3
 cache.sqlite3-journal
-media/
+media/*
+!media/.gitkeep
+!media/images/
+!media/images/.gitkeep
+!media/documents/
+!media/documents/.gitkeep
 staticfiles/
 # certs/ - SSL certificates need to be included for deployment
 
@@ -97,3 +102,7 @@ test_*.py
 
 # CSS monitoring report (generated file)
 css_monitoring_report.json
+
+# GitHub secrets documentation (contains secret names, not values)
+.claude/docs/github_secrets.md
+github_secrets.md
