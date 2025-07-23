@@ -40,42 +40,17 @@ def health_check(request):
             "storages_config": "SET" if hasattr(settings, 'STORAGES') else "MISSING",
         })
     
-    # Test Wagtail Image model creation
-    if request.GET.get('test') == 'wagtail':
-        try:
-            from wagtail.images.models import Image
-            from django.core.files.base import ContentFile
-            
-            # Create minimal test content (not a real image to avoid PIL issues)
-            test_content = b"fake image data for testing"
-            test_file = ContentFile(test_content, name='debug_test.txt')
-            
-            wagtail_image = Image(
-                title="Debug Test Image",
-                file=test_file,
-            )
-            
-            # Try to save and see what validation errors occur
-            wagtail_image.full_clean()  # This will raise ValidationError if invalid
-            wagtail_image.save()
-            
-            response_data.update({
-                "wagtail_test": "SUCCESS",
-                "image_id": wagtail_image.id,
-                "image_url": wagtail_image.file.url if wagtail_image.file else "NO_URL",
-                "title": wagtail_image.title,
-            })
-            
-            # Clean up
-            wagtail_image.delete()
-            
-        except Exception as e:
-            import traceback
-            response_data.update({
-                "wagtail_test": "FAILED", 
-                "error": str(e),
-                "traceback": traceback.format_exc()[:500]  # Truncate for JSON
-            })
+    # Basic environment check
+    if request.GET.get('env') == 'check':
+        import os
+        response_data.update({
+            "django_settings_module": os.getenv('DJANGO_SETTINGS_MODULE', 'NOT_SET'),
+            "python_path": str(settings.BASE_DIR),
+            "installed_apps": len(settings.INSTALLED_APPS),
+            "media_root": getattr(settings, 'MEDIA_ROOT', 'NOT_SET'),
+            "wagtail_installed": 'wagtail' in settings.INSTALLED_APPS,
+            "storages_installed": 'storages' in settings.INSTALLED_APPS,
+        })
     
     return JsonResponse(response_data)
 
