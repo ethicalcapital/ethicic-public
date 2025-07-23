@@ -374,6 +374,11 @@ else:
 WAGTAIL_SITE_NAME = "Ethical Capital"
 WAGTAILADMIN_BASE_URL = os.getenv("WAGTAILADMIN_BASE_URL", "https://ethicic.com")
 
+# Image upload settings
+WAGTAILIMAGES_MAX_UPLOAD_SIZE = 20 * 1024 * 1024  # 20MB max file size
+WAGTAILIMAGES_MAX_IMAGE_PIXELS = 128000000  # 128 megapixels max
+WAGTAILIMAGES_JPEG_QUALITY = 85
+
 # Disable avatar uploads to prevent 404 errors with missing media files
 # Users can still have avatars but uploads are disabled since media isn't persistent on Kinsta
 WAGTAIL_USER_EDIT_FORM = "public_site.forms.CustomUserEditForm"
