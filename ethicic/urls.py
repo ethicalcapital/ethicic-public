@@ -45,7 +45,8 @@ def health_check(request):
             storage_test = "SUCCESS"
             storage_url = file_url
         except Exception as e:
-            storage_test = f"FAILED: {str(e)}"
+            import traceback
+            storage_test = f"FAILED: {str(e)} | Traceback: {traceback.format_exc()}"
             storage_url = "N/A"
             
         response_data.update({
