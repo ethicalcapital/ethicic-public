@@ -110,6 +110,21 @@ def health_check(request):
             })
         except Exception as e:
             response_data.update({"media_list_error": str(e)})
+    
+    # Test media serving
+    if request.GET.get("test") == "media":
+        import os
+        from django.http import FileResponse, Http404
+        try:
+            # Try to serve the first image file directly
+            media_root = getattr(settings, "MEDIA_ROOT", "/var/lib/data")
+            test_file = os.path.join(media_root, "images", "sloane_bike_IMG_8124.max-165x165.jpg")
+            if os.path.exists(test_file):
+                return FileResponse(open(test_file, 'rb'), content_type='image/jpeg')
+            else:
+                response_data.update({"test_error": f"File not found: {test_file}"})
+        except Exception as e:
+            response_data.update({"test_error": str(e)})
 
     return JsonResponse(response_data)
 
@@ -561,6 +576,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Media files need to be served in both DEBUG and production
+# IMPORTANT: This must be BEFORE Wagtail URLs to prevent conflicts
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Custom error handlers
