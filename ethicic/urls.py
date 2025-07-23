@@ -21,6 +21,7 @@ from public_site.homepage_view_cms import homepage_view_cms
 def health_check(request):
     """Simple health check endpoint for Kinsta"""
     import os
+
     # Don't test database on health check to avoid 503s
     response_data = {
         "status": "healthy",
@@ -28,30 +29,67 @@ def health_check(request):
         "version": "1.0",
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
     }
-    
-    # Add R2 debug info if requested
-    if request.GET.get('debug') == 'r2':
-        import os
-        response_data.update({
-            "r2_access_key": "SET" if os.getenv('R2_ACCESS_KEY_ID') else "MISSING",
-            "r2_secret_key": "SET" if os.getenv('R2_SECRET_ACCESS_KEY') else "MISSING",
-            "debug_mode": os.getenv('DEBUG', 'False'),
-            "media_url": getattr(settings, 'MEDIA_URL', 'NOT_SET'),
-            "storages_config": "SET" if hasattr(settings, 'STORAGES') else "MISSING",
-        })
-    
+
+    # Add storage debug info if requested
+    if request.GET.get("debug") == "storage":
+        # Test local storage
+        storage_test = "UNKNOWN"
+        try:
+            from django.core.files.base import ContentFile
+            from django.core.files.storage import default_storage
+
+            # Test basic file operations
+            test_content = "Local storage test file"
+            test_file = ContentFile(test_content.encode("utf-8"))
+            saved_name = default_storage.save("test_local.txt", test_file)
+
+            # Check if file exists and can be read
+            if default_storage.exists(saved_name):
+                stored_file = default_storage.open(saved_name)
+                content = stored_file.read().decode("utf-8")
+                stored_file.close()
+                storage_test = f"SUCCESS - Saved and read {len(content)} chars"
+            else:
+                storage_test = "FAILED - File not found after save"
+
+            # Clean up
+            default_storage.delete(saved_name)
+
+        except Exception as e:
+            storage_test = f"FAILED: {str(e)}"
+
+        response_data.update(
+            {
+                "debug_mode": os.getenv("DEBUG", "False"),
+                "media_url": getattr(settings, "MEDIA_URL", "NOT_SET"),
+                "media_root": getattr(settings, "MEDIA_ROOT", "NOT_SET"),
+                "storage_backend": getattr(settings, "STORAGES", {})
+                .get("default", {})
+                .get("BACKEND", "NOT_SET"),
+                "storages_config": "SET"
+                if hasattr(settings, "STORAGES")
+                else "MISSING",
+                "local_storage_test": storage_test,
+            }
+        )
+
     # Basic environment check
-    if request.GET.get('env') == 'check':
+    if request.GET.get("env") == "check":
         import os
-        response_data.update({
-            "django_settings_module": os.getenv('DJANGO_SETTINGS_MODULE', 'NOT_SET'),
-            "python_path": str(settings.BASE_DIR),
-            "installed_apps": len(settings.INSTALLED_APPS),
-            "media_root": getattr(settings, 'MEDIA_ROOT', 'NOT_SET'),
-            "wagtail_installed": 'wagtail' in settings.INSTALLED_APPS,
-            "storages_installed": 'storages' in settings.INSTALLED_APPS,
-        })
-    
+
+        response_data.update(
+            {
+                "django_settings_module": os.getenv(
+                    "DJANGO_SETTINGS_MODULE", "NOT_SET"
+                ),
+                "python_path": str(settings.BASE_DIR),
+                "installed_apps": len(settings.INSTALLED_APPS),
+                "media_root": getattr(settings, "MEDIA_ROOT", "NOT_SET"),
+                "wagtail_installed": "wagtail" in settings.INSTALLED_APPS,
+                "storages_installed": "storages" in settings.INSTALLED_APPS,
+            }
+        )
+
     return JsonResponse(response_data)
 
 
@@ -62,52 +100,52 @@ def simple_test(request):
 
 def debug_image_model(request):
     """Debug Wagtail image model to see what's required"""
-    if request.GET.get('test') != 'image':
+    if request.GET.get("test") != "image":
         return JsonResponse({"error": "Add ?test=image to run test"})
-        
+
     try:
-        from wagtail.images.models import Image
+        import io
+
         from django.core.files.base import ContentFile
         from PIL import Image as PILImage
-        import io
-        
+        from wagtail.images.models import Image
+
         # Create a test image
-        img = PILImage.new('RGB', (100, 100), color='blue')
+        img = PILImage.new("RGB", (100, 100), color="blue")
         img_bytes = io.BytesIO()
-        img.save(img_bytes, format='JPEG')
+        img.save(img_bytes, format="JPEG")
         img_bytes.seek(0)
-        
+
         # Try to create Wagtail Image model
-        test_file = ContentFile(img_bytes.getvalue(), name='debug_test.jpg')
-        
+        test_file = ContentFile(img_bytes.getvalue(), name="debug_test.jpg")
+
         wagtail_image = Image(
             title="Debug Test Image",
             file=test_file,
         )
-        
+
         # Try to save and see what validation errors occur
         wagtail_image.full_clean()  # This will raise ValidationError if invalid
         wagtail_image.save()
-        
+
         result = {
             "status": "SUCCESS",
             "image_id": wagtail_image.id,
             "image_url": wagtail_image.file.url,
             "title": wagtail_image.title,
         }
-        
+
         # Clean up
         wagtail_image.delete()
-        
+
         return JsonResponse(result)
-        
+
     except Exception as e:
         import traceback
-        return JsonResponse({
-            "status": "FAILED", 
-            "error": str(e),
-            "traceback": traceback.format_exc()
-        })
+
+        return JsonResponse(
+            {"status": "FAILED", "error": str(e), "traceback": traceback.format_exc()}
+        )
 
 
 def favicon_view(request):

@@ -312,63 +312,25 @@ WHITENOISE_MIMETYPES = {
     ".woff2": "font/woff2",
 }
 
-# Media files - Cloudflare R2 Storage
-if not DEBUG:
-    # Production: Use Cloudflare R2
-    # R2 Configuration
-    AWS_ACCESS_KEY_ID = os.getenv('R2_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.getenv('R2_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = 'images'  # Your R2 bucket name
-    AWS_S3_ENDPOINT_URL = 'https://483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com'
-    AWS_S3_REGION_NAME = 'auto'  # R2 uses 'auto' for region
-    AWS_DEFAULT_ACL = None
-    AWS_S3_CUSTOM_DOMAIN = '483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com/images'
-    AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',  # 1 day cache
-    }
-    AWS_QUERYSTRING_AUTH = False  # Don't add auth to URLs
-    AWS_S3_FILE_OVERWRITE = False  # Don't overwrite files with same name
-    
-    # Use newer STORAGES setting for Django 4.2+
-    STORAGES = {
-        "default": {
-            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-            "OPTIONS": {
-                "access_key": AWS_ACCESS_KEY_ID,
-                "secret_key": AWS_SECRET_ACCESS_KEY,
-                "bucket_name": AWS_STORAGE_BUCKET_NAME,
-                "endpoint_url": AWS_S3_ENDPOINT_URL,
-                "region_name": AWS_S3_REGION_NAME,
-                "default_acl": AWS_DEFAULT_ACL,
-                "querystring_auth": AWS_QUERYSTRING_AUTH,
-                "file_overwrite": AWS_S3_FILE_OVERWRITE,
-                "object_parameters": AWS_S3_OBJECT_PARAMETERS,
-            },
-        },
-        "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-        },
-    }
-    
-    # Use direct R2 URL without custom domain for better compatibility
-    MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/'
-else:
-    # Development: Use local storage
-    MEDIA_URL = "/media/"
-    MEDIA_ROOT = BASE_DIR / "media"
-    # Set static files storage for development
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+# Media files - Local Disk Storage
+MEDIA_URL = "/media/"
+MEDIA_ROOT = "/var/lib/data"
+
+# Use local storage for both development and production
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+}
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Wagtail document serving configuration
-if not DEBUG:
-    # For cloud storage, use redirect method
-    WAGTAILDOCS_SERVE_METHOD = 'redirect'
-else:
-    # For development, use direct serving
-    WAGTAILDOCS_SERVE_METHOD = 'serve_view'
+WAGTAILDOCS_SERVE_METHOD = "serve_view"  # Use direct serving for local storage
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "Ethical Capital"

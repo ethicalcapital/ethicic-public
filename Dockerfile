@@ -46,11 +46,13 @@ RUN chmod +x runtime_init.sh build.sh 2>/dev/null || true
 
 # Create static and media directories and add cache-busting marker
 RUN mkdir -p staticfiles/css staticfiles/js staticfiles/images && \
-    mkdir -p media/images media/documents && \
+    mkdir -p /var/lib/data/images /var/lib/data/documents && \
     echo "BUILD_TIME=$(date +%s)" > /app/.build_marker
 
-# Create non-root user
-RUN useradd --create-home --shell /bin/bash app && chown -R app:app /app
+# Create non-root user and set up permissions
+RUN useradd --create-home --shell /bin/bash app && \
+    chown -R app:app /app && \
+    chown -R app:app /var/lib/data
 USER app
 
 # Health check
