@@ -290,7 +290,7 @@ STATICFILES_DIRS = [
 ]
 
 # Static files storage - use manifest storage for cache busting
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# Note: STATICFILES_STORAGE is set in STORAGES configuration below in production
 
 # WhiteNoise settings
 WHITENOISE_USE_FINDERS = True
@@ -344,6 +344,8 @@ else:
     # Development: Use local storage
     MEDIA_URL = "/media/"
     MEDIA_ROOT = BASE_DIR / "media"
+    # Set static files storage for development
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
