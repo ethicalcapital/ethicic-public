@@ -111,20 +111,7 @@ def health_check(request):
         except Exception as e:
             response_data.update({"media_list_error": str(e)})
     
-    # Test media serving
-    if request.GET.get("test") == "media":
-        import os
-        from django.http import FileResponse, Http404
-        try:
-            # Try to serve the first image file directly
-            media_root = getattr(settings, "MEDIA_ROOT", "/var/lib/data")
-            test_file = os.path.join(media_root, "images", "sloane_bike_IMG_8124.max-165x165.jpg")
-            if os.path.exists(test_file):
-                return FileResponse(open(test_file, 'rb'), content_type='image/jpeg')
-            else:
-                response_data.update({"test_error": f"File not found: {test_file}"})
-        except Exception as e:
-            response_data.update({"test_error": str(e)})
+    # Note: Removed test=media endpoint that was causing 503 errors
 
     return JsonResponse(response_data)
 
@@ -258,6 +245,42 @@ def robots_txt_view(request):
             raise Http404(f"Error reading robots.txt: {e}")
     else:
         raise Http404("robots.txt file not found")
+
+
+def serve_media_file(request, filepath):
+    """Serve media files directly in production"""
+    import os
+    import mimetypes
+    from django.http import FileResponse, Http404
+    from django.conf import settings
+    
+    # Build the full file path
+    media_root = getattr(settings, 'MEDIA_ROOT', '/var/lib/data')
+    full_path = os.path.join(media_root, filepath)
+    
+    # Security check: ensure the path is within media root
+    if not os.path.commonpath([media_root, full_path]).startswith(media_root):
+        raise Http404("File not found")
+    
+    # Check if file exists
+    if not os.path.exists(full_path) or not os.path.isfile(full_path):
+        raise Http404(f"File not found: {filepath}")
+    
+    # Determine content type
+    content_type, _ = mimetypes.guess_type(full_path)
+    if not content_type:
+        content_type = 'application/octet-stream'
+    
+    # Serve the file
+    try:
+        response = FileResponse(
+            open(full_path, 'rb'),
+            content_type=content_type
+        )
+        response['Cache-Control'] = 'public, max-age=31536000'  # 1 year cache
+        return response
+    except Exception as e:
+        raise Http404(f"Error serving file: {e}")
 
 
 def debug_homepage(request):
@@ -550,6 +573,8 @@ urlpatterns = [
     path("debug-file/<path:filepath>", debug_static_file, name="debug_static_file"),
     path("emergency-css/<str:filename>", serve_css, name="serve_css"),
     path("favicon.ico", favicon_view, name="favicon"),
+    # Direct media serving for production
+    path("media/<path:filepath>", serve_media_file, name="serve_media"),
     # Sustainability transparency
     path("carbon.txt", carbon_txt_view, name="carbon_txt"),
     # AI/LLM information file
