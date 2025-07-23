@@ -8,7 +8,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
     dependencies = [
         ("public_site", "0038_add_monthly_performance_fields"),
-        ("wagtailcore", "0095_query_searchpromotion_querydailyhits"),
     ]
 
     operations = [
