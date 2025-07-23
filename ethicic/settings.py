@@ -35,7 +35,7 @@ if os.getenv("KINSTA_DOMAIN"):
     ALLOWED_HOSTS.append(f"*.{os.getenv('KINSTA_DOMAIN')}")
 
 # Temporary: Allow all hosts if not specified
-if ["*"] == ALLOWED_HOSTS:
+if ALLOWED_HOSTS == ["*"]:
     ALLOWED_HOSTS = ["*"]
 
 # Application definition
@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap4",
     "wagtailmenus",
+    "storages",
     # Local apps
     "public_site",
 ]
@@ -311,9 +312,31 @@ WHITENOISE_MIMETYPES = {
     ".woff2": "font/woff2",
 }
 
-# Media files
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+# Media files - Cloudflare R2 Storage
+if not DEBUG:
+    # Production: Use Cloudflare R2
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    
+    # R2 Configuration
+    AWS_ACCESS_KEY_ID = os.getenv('R2_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('R2_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = 'images'  # Your R2 bucket name
+    AWS_S3_ENDPOINT_URL = 'https://483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com'
+    AWS_S3_REGION_NAME = 'auto'  # R2 uses 'auto' for region
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = '483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com/images'
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',  # 1 day cache
+    }
+    AWS_QUERYSTRING_AUTH = False  # Don't add auth to URLs
+    AWS_S3_FILE_OVERWRITE = False  # Don't overwrite files with same name
+    
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
+    MEDIA_ROOT = None  # Not used with S3
+else:
+    # Development: Use local storage
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
