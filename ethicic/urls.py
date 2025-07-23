@@ -425,7 +425,9 @@ urlpatterns = [
 # Only add Django's static serving in DEBUG mode
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Media files need to be served in both DEBUG and production
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Custom error handlers
 handler404 = "public_site.views.custom_404"
