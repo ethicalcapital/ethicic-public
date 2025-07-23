@@ -258,13 +258,13 @@ def serve_media_file(request, filepath):
     media_root = getattr(settings, 'MEDIA_ROOT', '/var/lib/data')
     full_path = os.path.join(media_root, filepath)
     
-    # Security check: ensure the path is within media root
-    if not os.path.commonpath([media_root, full_path]).startswith(media_root):
-        raise Http404("File not found")
+    # Simplified security check: ensure no path traversal
+    if '..' in filepath or filepath.startswith('/'):
+        raise Http404("Invalid file path")
     
     # Check if file exists
     if not os.path.exists(full_path) or not os.path.isfile(full_path):
-        raise Http404(f"File not found: {filepath}")
+        raise Http404(f"Media file not found: {filepath}")
     
     # Determine content type
     content_type, _ = mimetypes.guess_type(full_path)
@@ -280,7 +280,7 @@ def serve_media_file(request, filepath):
         response['Cache-Control'] = 'public, max-age=31536000'  # 1 year cache
         return response
     except Exception as e:
-        raise Http404(f"Error serving file: {e}")
+        raise Http404(f"Error serving media file: {e}")
 
 
 def debug_homepage(request):
