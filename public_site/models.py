@@ -2040,6 +2040,67 @@ class BlogPost(Page):
         auto_now=True, help_text="Automatically updated when the content is modified"
     )
 
+    def calculate_reading_time(self):
+        """Calculate reading time based on content word count."""
+        import re
+        from math import ceil
+        
+        # Average reading speed (words per minute)
+        WORDS_PER_MINUTE = 200
+        
+        word_count = 0
+        
+        # Count words in excerpt
+        if self.excerpt:
+            word_count += len(self.excerpt.split())
+        
+        # Count words in StreamField content
+        if self.content:
+            for block in self.content:
+                block_text = ""
+                
+                if block.block_type == 'rich_text':
+                    # Extract text from RichTextBlock (removes HTML tags)
+                    import re
+                    from django.utils.html import strip_tags
+                    block_text = strip_tags(str(block.value))
+                
+                elif block.block_type in ['key_statistic', 'callout', 'quote']:
+                    # Extract text from structured blocks
+                    if hasattr(block.value, 'items'):
+                        for key, value in block.value.items():
+                            if isinstance(value, str):
+                                block_text += " " + value
+                
+                elif block.block_type == 'table':
+                    # Extract text from table blocks (if they have text)
+                    if hasattr(block.value, 'items'):
+                        for key, value in block.value.items():
+                            if isinstance(value, str):
+                                block_text += " " + value
+                
+                # Count words in this block
+                if block_text:
+                    word_count += len(block_text.split())
+        
+        # Count words in legacy body field (for backwards compatibility)
+        if self.body:
+            from django.utils.html import strip_tags
+            body_text = strip_tags(str(self.body))
+            word_count += len(body_text.split())
+        
+        # Calculate reading time (minimum 1 minute)
+        reading_time = ceil(word_count / WORDS_PER_MINUTE) if word_count > 0 else 1
+        return max(reading_time, 1)
+
+    def save(self, *args, **kwargs):
+        """Override save to auto-calculate reading time."""
+        # Auto-calculate reading time if not manually set
+        if not self.reading_time:
+            self.reading_time = self.calculate_reading_time()
+        
+        super().save(*args, **kwargs)
+
     content_panels: ClassVar[list] = [
         *Page.content_panels,
         MultiFieldPanel(
