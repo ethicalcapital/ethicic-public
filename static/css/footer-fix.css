@@ -86,7 +86,7 @@
 .garden-footer-section h3 {
     font-size: 1rem;
     font-weight: 600;
-    color: #fff;
+    color: #fff !important;
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -111,7 +111,7 @@
 }
 
 .garden-footer-link {
-    color: #e0e0e0;
+    color: #e0e0e0 !important;
     text-decoration: none;
     font-size: 0.875rem;
     transition: color 0.2s;
@@ -120,7 +120,7 @@
 }
 
 .garden-footer-link:hover {
-    color: #fff;
+    color: #fff !important;
     text-decoration: underline;
 }
 
@@ -147,7 +147,7 @@
 
 .garden-footer-legal {
     font-size: 0.75rem;
-    color: #ccc;
+    color: #ccc !important;
     line-height: 1.4;
     display: block;
 }
@@ -155,7 +155,7 @@
 .garden-footer-legal p {
     margin-bottom: 0.75rem;
     display: block;
-    color: #ccc;
+    color: #ccc !important;
 }
 
 [data-theme="dark"] .garden-footer-legal {
