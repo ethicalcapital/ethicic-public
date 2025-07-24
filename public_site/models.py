@@ -2059,6 +2059,7 @@ class BlogPost(Page):
         # Count words in legacy body field (for backwards compatibility)
         if self.body:
             from django.utils.html import strip_tags
+
             body_text = strip_tags(str(self.body))
             word_count += len(body_text.split())
 
@@ -2078,17 +2079,17 @@ class BlogPost(Page):
     def _extract_block_text(self, block):
         """Extract text content from a StreamField block."""
         from django.utils.html import strip_tags
-        
+
         if block.block_type == "rich_text":
             return strip_tags(str(block.value))
-        
-        if block.block_type in ["key_statistic", "callout", "quote", "table"]:
-            if hasattr(block.value, "values"):
-                return " ".join(
-                    str(value) for value in block.value.values()
-                    if isinstance(value, str)
-                )
-        
+
+        if block.block_type in ["key_statistic", "callout", "quote", "table"] and hasattr(block.value, "values"):
+            return " ".join(
+                str(value)
+                for value in block.value.values()
+                if isinstance(value, str)
+            )
+
         return ""
 
     def save(self, *args, **kwargs):
