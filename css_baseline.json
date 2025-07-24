@@ -1,10 +1,11 @@
 {
-  "timestamp": "2025-07-24T10:49:25.331650+00:00",
-  "total_files": 83,
+  "timestamp": "2025-07-24T14:12:23.105127+00:00",
+  "total_files": 84,
   "total_defined_vars": 422,
   "files_with_issues": [
     "login-dropdown-fix.css",
     "strategy-nuclear-fix.css",
+    "faq-blog-consistency.css",
     "header-text-fix.css",
     "search-fixes.css",
     "search-visibility-ultimate-fix.css",
@@ -94,6 +95,28 @@
         "#111"
       ]
     ],
+    "faq-blog-consistency.css": [
+      [
+        11,
+        "#B57EDC"
+      ],
+      [
+        11,
+        "#9B6BCF"
+      ],
+      [
+        11,
+        "#7C4DCD"
+      ],
+      [
+        72,
+        "#FCEFEF"
+      ],
+      [
+        93,
+        "#e5e7eb"
+      ]
+    ],
     "garden-ui-theme.css": [
       [
         54,
@@ -140,23 +163,23 @@
     ],
     "search-fixes.css": [
       [
-        222,
+        215,
         "#000"
       ],
       [
-        223,
+        216,
         "#000"
       ],
       [
-        224,
+        217,
         "#fff"
       ],
       [
-        225,
+        218,
         "#000"
       ],
       [
-        233,
+        226,
         "#fff"
       ]
     ],
@@ -237,15 +260,15 @@
       ],
       [
         30,
-        "#3d2970"
+        "#FCEFEF"
       ],
       [
         31,
-        "#3d2970"
+        "#B57EDC"
       ],
       [
         37,
-        "#fff"
+        "#333"
       ]
     ],
     "garden-blog.css": [
@@ -395,6 +418,7 @@
     "garden-forms.css": 6.85,
     "mobile-menu-override.css": 7.91,
     "public-site-simple.css": 12.48,
+    "faq-blog-consistency.css": 10.9,
     "blog-unified.css": 11.63,
     "button-on-color-fix.css": 2.44,
     "process-page-working.css": 8.77,
@@ -408,10 +432,10 @@
     "header-text-fix.css": 6.56,
     "process-page.css": 10.82,
     "garden-data-table.css": 9.94,
-    "search-fixes.css": 6.29,
+    "search-fixes.css": 6.06,
     "core-styles.css": 17.83,
     "critical-page-overrides.css": 8.16,
-    "search-visibility-ultimate-fix.css": 4.13,
+    "search-visibility-ultimate-fix.css": 4.0,
     "public-site-modular.css": 6.99,
     "garden-critical.css": 4.18,
     "header-height-fix.css": 6.63,
@@ -420,7 +444,7 @@
     "garden-blog-panels.css": 6.89,
     "onboarding-comprehensive.css": 15.95,
     "onboarding-mobile-optimization.css": 8.68,
-    "footer-fix.css": 3.32,
+    "footer-fix.css": 5.94,
     "responsive-breakpoints-fix.css": 5.66,
     "header-button-fix.css": 1.71,
     "garden-ui-utilities.css": 9.08,
@@ -474,5 +498,5 @@
   },
   "total_undefined_vars": 14,
   "is_baseline": true,
-  "baseline_created": "2025-07-24T10:49:25.439156+00:00"
+  "baseline_created": "2025-07-24T14:12:23.186037+00:00"
 }
