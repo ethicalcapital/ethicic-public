@@ -2083,11 +2083,14 @@ class BlogPost(Page):
         if block.block_type == "rich_text":
             return strip_tags(str(block.value))
 
-        if block.block_type in ["key_statistic", "callout", "quote", "table"] and hasattr(block.value, "values"):
+        if block.block_type in [
+            "key_statistic",
+            "callout",
+            "quote",
+            "table",
+        ] and hasattr(block.value, "values"):
             return " ".join(
-                str(value)
-                for value in block.value.values()
-                if isinstance(value, str)
+                str(value) for value in block.value.values() if isinstance(value, str)
             )
 
         return ""
