@@ -131,6 +131,17 @@ urlpatterns = [
         RedirectView.as_view(url="/faq/", permanent=True),
         name="redirect_support_to_faq",
     ),
+    # Ethical Capital FAQ redirects (fix for 404s on /ethical-capital/faq/* URLs)
+    path(
+        "ethical-capital/faq/",
+        RedirectView.as_view(url="/faq/", permanent=True),
+        name="redirect_ethical_capital_faq_index",
+    ),
+    path(
+        "ethical-capital/faq/<path:slug>/",
+        RedirectView.as_view(url="/faq/%(slug)s/", permanent=True),
+        name="redirect_ethical_capital_faq_articles",
+    ),
     # Legal redirects
     # Redirect old legal URL to new disclosures URL
     path(
