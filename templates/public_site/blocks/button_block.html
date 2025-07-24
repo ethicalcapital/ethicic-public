@@ -1,8 +1,8 @@
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags safe_urls %}
 
 <div class="button-block">
     {% if value.page %}
-        {% pageurl value.page as button_url %}
+        {% safe_pageurl value.page "#" as button_url %}
     {% else %}
         {% with value.url as button_url %}
     {% endif %}

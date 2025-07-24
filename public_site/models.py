@@ -27,7 +27,120 @@ from .models_newsletter import AccessibilityPage, NewsletterPage  # noqa: F401
 # These are Wagtail Page models that represent different page types on the site
 
 
-class HomePage(Page):
+class SafeUrlMixin:
+    """
+    Mixin class that provides safe URL generation methods for Wagtail pages.
+    Handles cases where standard URL methods might return None.
+    """
+    
+    def get_safe_url(self, request=None, fallback_url="#"):
+        """
+        Generate a safe URL for this page, handling None values gracefully.
+        
+        Args:
+            request: Django request object (optional)
+            fallback_url: URL to use if page URL cannot be determined
+        
+        Returns:
+            str: A valid URL or the fallback URL
+        """
+        # Try multiple method to get a valid URL
+        url = None
+        
+        # Method 1: Try the standard url property
+        try:
+            url = self.url
+            if url and url != 'None' and url.strip():
+                return url
+        except (AttributeError, Exception):
+            pass
+        
+        # Method 2: Try get_url() method
+        try:
+            url = self.get_url(request=request)
+            if url and url != 'None' and url.strip():
+                return url
+        except (AttributeError, Exception):
+            pass
+        
+        # Method 3: Try get_full_url() method
+        try:
+            url = self.get_full_url(request=request)
+            if url and url != 'None' and url.strip():
+                return url
+        except (AttributeError, Exception):
+            pass
+        
+        # Method 4: Construct URL from url_path if available
+        try:
+            if hasattr(self, 'url_path') and self.url_path:
+                url_path = self.url_path.strip()
+                if url_path and url_path != '/':
+                    # Remove any leading duplicate slashes and ensure single leading slash
+                    url_path = '/' + url_path.lstrip('/')
+                    if url_path != 'None' and url_path != '/None':
+                        return url_path
+        except (AttributeError, Exception):
+            pass
+        
+        # Method 5: If all else fails, try to construct from slug
+        try:
+            if hasattr(self, 'slug') and self.slug:
+                slug = self.slug.strip()
+                if slug and slug != 'None':
+                    # For most pages, we can construct the URL as /slug/
+                    constructed_url = f"/{slug}/"
+                    return constructed_url
+        except (AttributeError, Exception):
+            pass
+        
+        # Last resort: return fallback URL
+        return fallback_url
+    
+    def get_safe_absolute_url(self, request=None, fallback_url="#"):
+        """
+        Generate a safe absolute URL for this page.
+        
+        Args:
+            request: Django request object (optional)
+            fallback_url: URL to use if page URL cannot be determined
+        
+        Returns:
+            str: A valid absolute URL or the fallback URL
+        """
+        # Get the relative URL first
+        relative_url = self.get_safe_url(request=request, fallback_url=None)
+        
+        if not relative_url or relative_url == "#":
+            return fallback_url
+        
+        # If it's already absolute, return it
+        if relative_url.startswith('http'):
+            return relative_url
+        
+        # Construct absolute URL
+        try:
+            if request:
+                # Use request to build absolute URL
+                scheme = 'https' if request.is_secure() else 'http'
+                host = request.get_host()
+                return f"{scheme}://{host}{relative_url}"
+        except (AttributeError, Exception):
+            pass
+        
+        # Fallback to site domain if available
+        try:
+            if hasattr(self, 'get_site'):
+                site = self.get_site()
+                if site and hasattr(site, 'root_url'):
+                    return f"{site.root_url.rstrip('/')}{relative_url}"
+        except (AttributeError, Exception):
+            pass
+        
+        return fallback_url
+
+
+class HomePage(SafeUrlMixin, Page):
     """Homepage model for Ethical Capital Investment Collaborative."""
 
     template = "public_site/homepage_accessible.html"
@@ -695,7 +808,7 @@ class HomePage(Page):
         verbose_name_plural = "Homepages"
 
 
-class AboutPage(Page):
+class AboutPage(SafeUrlMixin, Page):
     """About/Our Story page."""
 
     # Hero section
@@ -1067,7 +1180,7 @@ class AboutPage(Page):
         verbose_name = "About Page"
 
 
-class PricingPage(Page):
+class PricingPage(SafeUrlMixin, Page):
     """Pricing/Fees page."""
 
     # Header section
@@ -1284,7 +1397,7 @@ class PricingPage(Page):
         verbose_name = "Pricing Page"
 
 
-class ContactPage(RoutablePageMixin, Page):
+class ContactPage(SafeUrlMixin, RoutablePageMixin, Page):
     """Contact/Get Started page with accessible form."""
 
     template = "public_site/contact_page.html"
@@ -1535,7 +1648,7 @@ class BlogTag(TaggedItemBase):
     )
 
 
-class BlogIndexPage(RoutablePageMixin, Page):
+class BlogIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
     """Blog index page with pagination and filtering."""
 
     template = "public_site/blog_index_page.html"
@@ -1788,7 +1901,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
         verbose_name = "Blog Index Page"
 
 
-class BlogPost(Page):
+class BlogPost(SafeUrlMixin, Page):
     """Individual blog post with rich StreamField content."""
 
     excerpt = models.CharField(
@@ -2154,7 +2267,7 @@ class BlogPost(Page):
         verbose_name = "BlogPost"
 
 
-class FAQPage(Page):
+class FAQPage(SafeUrlMixin, Page):
     """FAQ/Support page."""
 
     intro_text = RichTextField(
@@ -2222,7 +2335,7 @@ class FAQItem(Orderable):
         return self.question
 
 
-class LegalPage(Page):
+class LegalPage(SafeUrlMixin, Page):
     """Legal pages for disclosures, privacy policy, etc."""
 
     intro_text = RichTextField(blank=True)
@@ -2260,7 +2373,7 @@ class LegalPage(Page):
         verbose_name = "Legal Page"
 
 
-class MediaPage(Page):
+class MediaPage(SafeUrlMixin, Page):
     """Media/Press page."""
 
     template = "public_site/media_page.html"
@@ -2427,7 +2540,7 @@ class MediaItem(Orderable):
         ]  # Featured first, then most recent
 
 
-class ResearchPage(RoutablePageMixin, Page):
+class ResearchPage(SafeUrlMixin, RoutablePageMixin, Page):
     """Research index page with blog posts and categories."""
 
     template = "public_site/research_page.html"
@@ -2578,7 +2691,7 @@ class ResearchPage(RoutablePageMixin, Page):
         verbose_name = "Research Page"
 
 
-class ProcessPage(Page):
+class ProcessPage(SafeUrlMixin, Page):
     """Investment process and workflow page."""
 
     intro_text = RichTextField(
@@ -2807,7 +2920,7 @@ class ProcessPage(Page):
         verbose_name = "Process Page"
 
 
-class CompliancePage(Page):
+class CompliancePage(SafeUrlMixin, Page):
     """Compliance-specific pages (Form ADV, exclusion lists, etc.)."""
 
     intro_text = RichTextField(blank=True)
@@ -2855,7 +2968,7 @@ class CompliancePage(Page):
         verbose_name = "Compliance Page"
 
 
-class OnboardingPage(Page):
+class OnboardingPage(SafeUrlMixin, Page):
     """Client onboarding form page."""
 
     intro_text = RichTextField(
@@ -3073,7 +3186,7 @@ class StrategyDocument(Orderable):
     ]
 
 
-class StrategyPage(Page):
+class StrategyPage(SafeUrlMixin, Page):
     """Investment strategy detail page with performance data and portfolio information."""
 
     template = "public_site/strategy_page_editable.html"
@@ -3387,7 +3500,7 @@ class StrategyPage(Page):
         verbose_name = "Strategy Page"
 
 
-class StrategyListPage(Page):
+class StrategyListPage(SafeUrlMixin, Page):
     """Strategies listing page that displays all available investment strategies."""
 
     template = "public_site/strategy_list.html"
@@ -3556,7 +3669,7 @@ class StrategyListPage(Page):
 # Support System Models
 
 
-class FAQIndexPage(RoutablePageMixin, Page):
+class FAQIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
     """FAQ index page with categories and search."""
 
     template = "public_site/faq_index.html"
@@ -3668,7 +3781,7 @@ class FAQIndexPage(RoutablePageMixin, Page):
         verbose_name = "FAQ Index Page"
 
 
-class FAQArticle(Page):
+class FAQArticle(SafeUrlMixin, Page):
     """Individual FAQ article."""
 
     template = "public_site/faq_article.html"
@@ -3763,7 +3876,7 @@ class FAQArticle(Page):
         ordering: ClassVar[list] = ["-priority", "title"]
 
 
-class ContactFormPage(Page):
+class ContactFormPage(SafeUrlMixin, Page):
     """Contact form page for support inquiries."""
 
     template = "public_site/contact_form.html"
@@ -3884,7 +3997,7 @@ class ContactFormPage(Page):
         verbose_name = "Contact Form Page"
 
 
-class AdvisorPage(Page):
+class AdvisorPage(SafeUrlMixin, Page):
     """Investment Adviser services page."""
 
     template = "public_site/adviser_page.html"
@@ -4167,7 +4280,7 @@ class AdvisorPage(Page):
         verbose_name = "Adviser Page"
 
 
-class InstitutionalPage(Page):
+class InstitutionalPage(SafeUrlMixin, Page):
     """Institutional services page."""
 
     template = "public_site/institutional_page.html"
@@ -4553,7 +4666,7 @@ class SupportTicket(models.Model):
         return f"#{self.id} - {self.subject or 'General Inquiry'} - {self.email}"
 
 
-class EncyclopediaIndexPage(RoutablePageMixin, Page):
+class EncyclopediaIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
     """Investment Encyclopedia index page with alphabetical navigation."""
 
     template = "public_site/encyclopedia_index.html"
@@ -4635,7 +4748,7 @@ class EncyclopediaIndexPage(RoutablePageMixin, Page):
         verbose_name = "Encyclopedia Index Page"
 
 
-class EncyclopediaEntry(Page):
+class EncyclopediaEntry(SafeUrlMixin, Page):
     """Individual encyclopedia entry."""
 
     template = "public_site/encyclopedia_entry.html"
@@ -4728,7 +4841,7 @@ class EncyclopediaEntry(Page):
         verbose_name = "Encyclopedia Entry"
 
 
-class ConsultationPage(Page):
+class ConsultationPage(SafeUrlMixin, Page):
     """Consultation scheduling page."""
 
     template = "public_site/consultation_page.html"
@@ -4880,7 +4993,7 @@ class ConsultationPage(Page):
         verbose_name = "Consultation Page"
 
 
-class GuidePage(Page):
+class GuidePage(SafeUrlMixin, Page):
     """Investment guide download page."""
 
     template = "public_site/guide_page.html"
@@ -5033,7 +5146,7 @@ class ExclusionCategory(Orderable):
     ]
 
 
-class CriteriaPage(Page):
+class CriteriaPage(SafeUrlMixin, Page):
     """Ethical criteria page - links to GitHub."""
 
     template = "public_site/criteria_page_editable.html"
@@ -5151,7 +5264,7 @@ class StrategyCard(Orderable):
     ]
 
 
-class SolutionsPage(Page):
+class SolutionsPage(SafeUrlMixin, Page):
     """Solutions page showcasing services for individuals, institutions, and advisers."""
 
     template = "public_site/solutions_page_editable.html"
@@ -5254,7 +5367,7 @@ class SolutionsPage(Page):
         verbose_name = "Solutions Page"
 
 
-class PRIDDQPage(Page):
+class PRIDDQPage(SafeUrlMixin, Page):
     """PRI Due Diligence Questionnaire response page."""
 
     template = "public_site/pri_ddq_page.html"
