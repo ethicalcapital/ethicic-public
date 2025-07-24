@@ -58,6 +58,16 @@
                                 <span class="featured-badge">FEATURED</span>
                             </div>
 
+                            <!-- Article Meta -->
+                            <div class="featured-meta">
+                                {% if featured_post.publish_date %}
+                                    <span class="featured-publish-date">{{ featured_post.publish_date|date:"F j, Y" }}</span>
+                                {% endif %}
+                                {% if featured_post.reading_time %}
+                                    <span class="featured-reading-time">{{ featured_post.reading_time }} min read</span>
+                                {% endif %}
+                            </div>
+
                             <!-- Tags -->
                             {% if featured_post.tags.all %}
                                 <div class="featured-tags">
@@ -169,6 +179,14 @@
                                 {% endif %}
 
                                 <div class="article-list-meta">
+                                    <div class="article-meta-row">
+                                        {% if post.publish_date %}
+                                            <span class="article-publish-date">{{ post.publish_date|date:"F j, Y" }}</span>
+                                        {% endif %}
+                                        {% if post.reading_time %}
+                                            <span class="article-reading-time">{{ post.reading_time }} min read</span>
+                                        {% endif %}
+                                    </div>
                                     {% if post.tags.all %}
                                         <div class="article-list-tags">
                                             {% for tag in post.tags.all|slice:":2" %}
@@ -245,6 +263,36 @@
 
         <!-- Sidebar -->
         <aside class="blog-sticky-sidebar" aria-label="Blog sidebar">
+            <!-- Most Popular Section -->
+            {% if popular_posts %}
+            <div class="sidebar-section popular-section">
+                <div class="garden-panel">
+                    <div class="garden-panel__header garden-panel-header">
+                        <div class="panel-title">MOST POPULAR</div>
+                    </div>
+                    <div class="garden-panel__content garden-panel-content">
+                        <div class="popular-posts-list">
+                            {% for post in popular_posts %}
+                            <article class="popular-post-item">
+                                <h3 class="popular-post-title">
+                                    <a href="{{ post.url_path }}">{{ post.title }}</a>
+                                </h3>
+                                <div class="popular-post-meta">
+                                    {% if post.publish_date %}
+                                        <span class="popular-post-date">{{ post.publish_date|date:"M j, Y" }}</span>
+                                    {% endif %}
+                                    {% if post.reading_time %}
+                                        <span class="popular-post-reading-time">{{ post.reading_time }} min</span>
+                                    {% endif %}
+                                </div>
+                            </article>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
             <!-- Newsletter Subscribe Section -->
             <div class="sidebar-section newsletter-section">
                 <div class="garden-panel">
@@ -310,7 +358,8 @@
 
 {% block extra_css %}
 <!-- Unified blog styles - replaces 7 separate CSS files -->
-<link rel="stylesheet" href="{% static 'css/blog-unified.css' %}?v=2025-width-fix-3">
+<link rel="stylesheet" href="{% static 'css/garden-blog.css' %}?v=2025-blog-improvements-1">
+<link rel="stylesheet" href="{% static 'css/garden-blog-sidebar.css' %}?v=2025-blog-improvements-1">
 {% endblock %}
 
 {% block extra_js %}

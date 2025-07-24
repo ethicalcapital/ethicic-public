@@ -1600,6 +1600,24 @@ class BlogIndexPage(RoutablePageMixin, Page):
             .order_by("-first_published_at")
         )
 
+    def get_popular_posts(self, limit=5):
+        """Get popular blog posts based on reading time and recent publication."""
+        from django.db.models import Case, F, IntegerField, When
+
+        # Simple popularity algorithm: prioritize posts with longer reading time
+        # (indicating substantial content) and more recent publication dates
+        return (
+            self.get_posts()
+            .annotate(
+                popularity_score=Case(
+                    When(reading_time__isnull=True, then=0),
+                    default=F("reading_time"),
+                    output_field=IntegerField(),
+                )
+            )
+            .order_by("-first_published_at", "-popularity_score")[:limit]
+        )
+
     def get_all_authors(self):
         """Get all unique authors with post counts."""
         from django.db.models import Count
@@ -1760,6 +1778,9 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
         # Add custom display title
         context["display_title"] = self.display_title or self.title
+
+        # Add popular posts for sidebar
+        context["popular_posts"] = self.get_popular_posts(limit=5)
 
         return context
 

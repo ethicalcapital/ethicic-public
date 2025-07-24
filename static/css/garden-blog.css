@@ -1,3 +1,4 @@
+/* stylelint-disable string-quotes, no-descending-specificity */
 /* Garden Blog Styling - Fully Integrated with Garden UI Design System */
 
 /* ===============================================
@@ -255,12 +256,6 @@
     line-height: var(--line-tight);
 }
 
-.article-body a {
-    color: var(--color-primary);
-    text-decoration: underline;
-    transition: opacity 0.2s ease;
-}
-
 /* Additional pagination link styles - placed before article body hover for proper specificity */
 .pagination-alternate a {
     display: inline-flex;
@@ -286,6 +281,66 @@
     background: var(--color-primary);
     color: var(--garden-bg);
     transform: translateY(-1px);
+}
+
+.article-body a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    transition: opacity 0.2s ease;
+}
+
+/* ===============================================
+   MOST POPULAR SIDEBAR SECTION - placed early for CSS specificity
+   =============================================== */
+
+.popular-section {
+    margin-bottom: var(--space-6);
+}
+
+.popular-posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.popular-post-item {
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.popular-post-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.popular-post-title {
+    font-size: var(--font-sm);
+    font-weight: var(--font-semibold);
+    line-height: var(--line-tight);
+    margin-bottom: var(--space-2);
+}
+
+.popular-post-title a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.popular-post-title a:hover {
+    color: var(--color-primary);
+}
+
+.popular-post-meta {
+    display: flex;
+    gap: var(--space-2);
+    font-size: var(--font-xs);
+    color: var(--color-text-tertiary);
+}
+
+.popular-post-reading-time::before {
+    content: "•";
+    margin-right: var(--space-2);
+    color: var(--color-text-tertiary);
 }
 
 .article-body a:hover {
@@ -977,4 +1032,76 @@
 .article-wrapper .garden-panel {
     max-width: 100%;
     width: 100%;
+}
+
+/* ===============================================
+   BLOG ARTICLE METADATA - Publication Dates & Reading Time
+   =============================================== */
+
+/* Article meta row for dates and reading time */
+.article-meta-row {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+    font-size: var(--font-xs);
+    color: var(--color-text-secondary);
+}
+
+.article-publish-date,
+.article-reading-time {
+    font-weight: var(--font-medium);
+    color: var(--color-text-secondary);
+}
+
+.article-reading-time::before {
+    content: "•";
+    margin-right: var(--space-2);
+    color: var(--color-text-tertiary);
+}
+
+/* Featured article meta */
+.featured-meta {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+}
+
+.featured-publish-date,
+.featured-reading-time {
+    font-weight: var(--font-medium);
+    color: var(--color-text-secondary);
+}
+
+.featured-reading-time::before {
+    content: "•";
+    margin-right: var(--space-2);
+    color: var(--color-text-tertiary);
+}
+
+
+/* ===============================================
+   VISUAL VARIETY - Topic-based colors
+   =============================================== */
+
+/* Add subtle colored left borders for visual variety */
+.article-list-item:nth-child(4n+1) .article-list-content {
+    border-left: 3px solid var(--color-primary);
+    padding-left: var(--space-4);
+}
+
+.article-list-item:nth-child(4n+2) .article-list-content {
+    border-left: 3px solid var(--color-secondary);
+    padding-left: var(--space-4);
+}
+
+.article-list-item:nth-child(4n+3) .article-list-content {
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-4);
+}
+
+.article-list-item:nth-child(4n+4) .article-list-content {
+    border-left: 3px solid var(--color-success);
+    padding-left: var(--space-4);
 }
