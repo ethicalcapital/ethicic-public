@@ -1,0 +1,465 @@
+{
+  "timestamp": "2025-07-24T10:02:54.441817+00:00",
+  "total_files": 83,
+  "total_defined_vars": 422,
+  "files_with_issues": [
+    "login-dropdown-fix.css",
+    "strategy-nuclear-fix.css",
+    "header-text-fix.css",
+    "search-fixes.css",
+    "search-visibility-ultimate-fix.css",
+    "garden-critical.css",
+    "header-height-fix.css",
+    "onboarding-comprehensive.css",
+    "onboarding-mobile-optimization.css",
+    "garden-ui-utilities.css",
+    "garden-blog.css",
+    "wcag-contrast-fixes.css",
+    "process-dark-mode-fix.css",
+    "combined.css",
+    "production.css",
+    "development.css"
+  ],
+  "undefined_variables": {
+    "onboarding-comprehensive.css": [
+      "--color-text-muted"
+    ],
+    "onboarding-mobile-optimization.css": [
+      "--color-surface-rgb",
+      "--color-error-alpha-light"
+    ],
+    "garden-ui-utilities.css": [
+      "--garden-container-max-width",
+      "--garden-gutter"
+    ],
+    "combined.css": [
+      "--color-text-muted",
+      "--garden-container-max-width",
+      "--garden-gutter"
+    ],
+    "production.css": [
+      "--color-text-muted",
+      "--garden-container-max-width",
+      "--garden-gutter"
+    ],
+    "development.css": [
+      "--color-text-muted",
+      "--garden-container-max-width",
+      "--garden-gutter"
+    ]
+  },
+  "hardcoded_colors": {
+    "login-dropdown-fix.css": [
+      [
+        36,
+        "#fff"
+      ],
+      [
+        37,
+        "#e5e7eb"
+      ],
+      [
+        48,
+        "#374151"
+      ],
+      [
+        60,
+        "#374151"
+      ],
+      [
+        62,
+        "#f3f4f6"
+      ]
+    ],
+    "strategy-nuclear-fix.css": [
+      [
+        7,
+        "#fff"
+      ],
+      [
+        8,
+        "#fff"
+      ],
+      [
+        9,
+        "#3d2970"
+      ],
+      [
+        18,
+        "#111"
+      ],
+      [
+        19,
+        "#111"
+      ]
+    ],
+    "garden-ui-theme.css": [
+      [
+        54,
+        "#dcfce7"
+      ],
+      [
+        55,
+        "#bbf7d0"
+      ],
+      [
+        56,
+        "#86efac"
+      ],
+      [
+        57,
+        "#22c55e"
+      ],
+      [
+        58,
+        "#34d399"
+      ]
+    ],
+    "header-text-fix.css": [
+      [
+        39,
+        "#1a1a1a"
+      ],
+      [
+        40,
+        "#1a1a1a"
+      ],
+      [
+        41,
+        "#fff"
+      ],
+      [
+        42,
+        "#e5e5e5"
+      ],
+      [
+        48,
+        "#1a1a1a"
+      ]
+    ],
+    "search-fixes.css": [
+      [
+        222,
+        "#000"
+      ],
+      [
+        223,
+        "#000"
+      ],
+      [
+        224,
+        "#fff"
+      ],
+      [
+        225,
+        "#000"
+      ],
+      [
+        233,
+        "#fff"
+      ]
+    ],
+    "search-visibility-ultimate-fix.css": [
+      [
+        29,
+        "#000"
+      ],
+      [
+        30,
+        "#000"
+      ],
+      [
+        31,
+        "#000"
+      ],
+      [
+        32,
+        "#000"
+      ],
+      [
+        42,
+        "#000"
+      ]
+    ],
+    "garden-critical.css": [
+      [
+        11,
+        "#fff"
+      ],
+      [
+        12,
+        "#111"
+      ],
+      [
+        14,
+        "#e5e7eb"
+      ],
+      [
+        15,
+        "#fff"
+      ],
+      [
+        20,
+        "#121212"
+      ]
+    ],
+    "header-height-fix.css": [
+      [
+        120,
+        "#e5e7eb"
+      ],
+      [
+        135,
+        "#374151"
+      ],
+      [
+        137,
+        "#f3f4f6"
+      ],
+      [
+        145,
+        "#f9fafb"
+      ],
+      [
+        156,
+        "#111827"
+      ]
+    ],
+    "footer-fix.css": [
+      [
+        8,
+        "#553c9a"
+      ],
+      [
+        25,
+        "#553c9a"
+      ]
+    ],
+    "garden-blog.css": [
+      [
+        1136,
+        "#B57EDC"
+      ],
+      [
+        1136,
+        "#9B65C7"
+      ],
+      [
+        1140,
+        "#fff"
+      ],
+      [
+        1160,
+        "#fff"
+      ],
+      [
+        1171,
+        "#fff"
+      ]
+    ],
+    "fix-white-line.css": [
+      [
+        89,
+        "#f0f0f0"
+      ]
+    ],
+    "wcag-contrast-fixes.css": [
+      [
+        33,
+        "#9b7dd8"
+      ],
+      [
+        58,
+        "#9b7dd8"
+      ],
+      [
+        67,
+        "#9b7dd8"
+      ],
+      [
+        72,
+        "#9b7dd8"
+      ],
+      [
+        76,
+        "#9b7dd8"
+      ]
+    ],
+    "process-dark-mode-fix.css": [
+      [
+        231,
+        "#fff"
+      ],
+      [
+        232,
+        "#3d2970"
+      ],
+      [
+        233,
+        "#fff"
+      ],
+      [
+        234,
+        "#3d2970"
+      ],
+      [
+        240,
+        "#fff"
+      ]
+    ],
+    "combined.css": [
+      [
+        60,
+        "#dcfce7"
+      ],
+      [
+        61,
+        "#bbf7d0"
+      ],
+      [
+        62,
+        "#86efac"
+      ],
+      [
+        63,
+        "#22c55e"
+      ],
+      [
+        64,
+        "#34d399"
+      ]
+    ],
+    "production.css": [
+      [
+        60,
+        "#dcfce7"
+      ],
+      [
+        61,
+        "#bbf7d0"
+      ],
+      [
+        62,
+        "#86efac"
+      ],
+      [
+        63,
+        "#22c55e"
+      ],
+      [
+        64,
+        "#34d399"
+      ]
+    ],
+    "development.css": [
+      [
+        60,
+        "#dcfce7"
+      ],
+      [
+        61,
+        "#bbf7d0"
+      ],
+      [
+        62,
+        "#86efac"
+      ],
+      [
+        63,
+        "#22c55e"
+      ],
+      [
+        64,
+        "#34d399"
+      ]
+    ]
+  },
+  "file_sizes": {
+    "login-dropdown-fix.css": 9.63,
+    "accessibility-contrast-fixes.css": 6.04,
+    "fix-formatting-issues.css": 6.27,
+    "strategy-nuclear-fix.css": 1.99,
+    "garden-forms.css": 6.85,
+    "mobile-menu-override.css": 7.91,
+    "public-site-simple.css": 12.48,
+    "blog-unified.css": 11.63,
+    "button-on-color-fix.css": 2.44,
+    "process-page-working.css": 8.77,
+    "garden-blog-streamfield.css": 12.47,
+    "garden-ui-theme.css": 175.49,
+    "button-contrast-fixes.css": 4.7,
+    "pricing-features-fix.css": 0.73,
+    "contact-page-fixes.css": 6.61,
+    "dropdown-fix.css": 2.87,
+    "garden-blog-articles.css": 18.93,
+    "header-text-fix.css": 6.56,
+    "process-page.css": 10.82,
+    "garden-data-table.css": 9.94,
+    "search-fixes.css": 6.29,
+    "core-styles.css": 17.83,
+    "critical-page-overrides.css": 8.16,
+    "search-visibility-ultimate-fix.css": 4.13,
+    "public-site-modular.css": 6.99,
+    "garden-critical.css": 4.18,
+    "header-height-fix.css": 6.63,
+    "16-homepage.css": 19.87,
+    "blog-formatting-fixes.css": 1.92,
+    "garden-blog-panels.css": 6.89,
+    "onboarding-comprehensive.css": 15.95,
+    "onboarding-mobile-optimization.css": 8.68,
+    "footer-fix.css": 3.84,
+    "responsive-breakpoints-fix.css": 5.66,
+    "header-button-fix.css": 1.71,
+    "garden-ui-utilities.css": 9.08,
+    "garden-blog.css": 31.96,
+    "container-structure-enhancements.css": 4.74,
+    "critical-fixes.css": 0.34,
+    "mobile-nav-fix.css": 3.44,
+    "encyclopedia-page-fix.css": 4.46,
+    "z-final-button-contrast-fix.css": 2.76,
+    "critical-fouc-prevention.css": 16.3,
+    "fix-white-line.css": 1.96,
+    "faq-page-fixes.css": 4.97,
+    "public-site-layout-fixes.css": 2.11,
+    "about-page-fix.css": 2.11,
+    "blog-nuclear-button-fix.css": 7.92,
+    "critical.css": 9.51,
+    "about-page-v2.css": 7.85,
+    "garden-blog-sidebar.css": 7.79,
+    "garden-widgets.css": 6.35,
+    "blog-post-garden-ui-fix.css": 2.03,
+    "page-width-fix.css": 1.9,
+    "mobile-menu-clean.css": 3.04,
+    "strategy-table-contrast-fix.css": 8.39,
+    "utility-layout.css": 3.28,
+    "garden-blog-hero.css": 6.71,
+    "page-specific-overrides.css": 3.15,
+    "process-page-minimal.css": 0.34,
+    "accessibility-touch-targets.css": 4.36,
+    "blog-button-fixes.css": 4.34,
+    "wcag-contrast-fixes.css": 3.88,
+    "process-dark-mode-fix.css": 7.81,
+    "cta-tiffany-blue.css": 2.81,
+    "button-alignment-fix.css": 1.37,
+    "z-contact-emergency-fix.css": 2.12,
+    "07-footer.css": 2.84,
+    "high-contrast-mode.css": 4.88,
+    "strategy-right-rail-buttons.css": 4.2,
+    "workbench-layout.css": 5.45,
+    "33-consultation-page.css": 6.86,
+    "27-institutional-page.css": 8.55,
+    "22-about-page.css": 4.3,
+    "43-garden-overview.css": 10.28,
+    "99-breadcrumb-fix.css": 0.78,
+    "30-strategy-page.css": 17.65,
+    "30-solutions-page.css": 6.11,
+    "40-adviser-page.css": 8.85,
+    "18-pricing.css": 11.39,
+    "combined.css": 616.04,
+    "production.css": 773.17,
+    "development.css": 616.04
+  },
+  "total_undefined_vars": 14,
+  "is_baseline": true,
+  "baseline_created": "2025-07-24T10:02:54.530158+00:00"
+}
