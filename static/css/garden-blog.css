@@ -164,11 +164,31 @@
     grid-template-columns: 1fr 400px;
     gap: var(--space-8);
     align-items: start;
+    position: relative;
+    z-index: 1;
 }
 
 .blog-main-content {
     min-width: 0;
     width: 100%;
+}
+
+/* Simplified, accessible sidebar - high specificity to override all conflicting rules */
+.blog-layout-grid .blog-sticky-sidebar,
+html body .blog-layout-grid .blog-sticky-sidebar {
+    position: static !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    z-index: auto !important;
+    top: auto !important;
+    overflow-y: visible !important;
+    max-height: none !important;
+    transform: none !important;
+    isolation: auto !important;
+    contain: none !important;
 }
 
 /* Responsive blog layout */
