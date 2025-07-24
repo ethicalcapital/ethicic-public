@@ -97,26 +97,6 @@
                 {% endif %}
             </div>
 
-            <!-- Hero Utilities -->
-            <div class="hero-utilities">
-                <!-- Encyclopedia Section -->
-                <div class="hero-encyclopedia">
-                    <h3 class="utility-title">ENCYCLOPEDIA</h3>
-                    <div class="encyclopedia-links">
-                        <p class="encyclopedia-placeholder">Comprehensive definitions and explanations of ethical investing terms and concepts.</p>
-                    </div>
-                    <a href="/encyclopedia/" class="garden-action secondary">Browse Encyclopedia</a>
-                </div>
-
-                <!-- In the Media Section -->
-                <div class="hero-media">
-                    <h3 class="utility-title">IN THE MEDIA</h3>
-                    <div class="media-links">
-                        <p class="media-placeholder">Press coverage and media appearances featuring Ethical Capital's insights on sustainable investing.</p>
-                    </div>
-                    <a href="/media/" class="garden-action secondary">View Media Coverage</a>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -349,6 +329,32 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Encyclopedia Section -->
+            <div class="sidebar-section encyclopedia-section">
+                <div class="garden-panel">
+                    <div class="garden-panel__header garden-panel-header">
+                        <div class="panel-title">ENCYCLOPEDIA</div>
+                    </div>
+                    <div class="garden-panel__content garden-panel-content">
+                        <p class="sidebar-description">Comprehensive definitions and explanations of ethical investing terms and concepts.</p>
+                        <a href="/encyclopedia/" class="garden-action secondary full-width">Browse Encyclopedia</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- In the Media Section -->
+            <div class="sidebar-section media-section">
+                <div class="garden-panel">
+                    <div class="garden-panel__header garden-panel-header">
+                        <div class="panel-title">IN THE MEDIA</div>
+                    </div>
+                    <div class="garden-panel__content garden-panel-content">
+                        <p class="sidebar-description">Press coverage and media appearances featuring Ethical Capital's insights on sustainable investing.</p>
+                        <a href="/media/" class="garden-action secondary full-width">View Media Coverage</a>
+                    </div>
+                </div>
+            </div>
         </aside>
         </div>
     </div>
@@ -358,8 +364,8 @@
 
 {% block extra_css %}
 <!-- Unified blog styles - replaces 7 separate CSS files -->
-<link rel="stylesheet" href="{% static 'css/garden-blog.css' %}?v=2025-blog-layout-fix-1">
-<link rel="stylesheet" href="{% static 'css/garden-blog-sidebar.css' %}?v=2025-blog-layout-fix-1">
+<link rel="stylesheet" href="{% static 'css/garden-blog.css' %}?v=2025-blog-refinements-1">
+<link rel="stylesheet" href="{% static 'css/garden-blog-sidebar.css' %}?v=2025-blog-refinements-1">
 {% endblock %}
 
 {% block extra_js %}

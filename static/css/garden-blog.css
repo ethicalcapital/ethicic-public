@@ -1109,6 +1109,90 @@
 
 
 /* ===============================================
+   FEATURED ARTICLE STYLING - Purple Background
+   =============================================== */
+
+.integrated-featured-section {
+    background: linear-gradient(135deg, #B57EDC 0%, #9B65C7 100%);
+    border-radius: var(--radius-md);
+    padding: var(--space-8);
+    margin: var(--space-6) 0;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.integrated-featured-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.integrated-featured-section * {
+    position: relative;
+    z-index: 1;
+}
+
+.featured-badge {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+}
+
+.featured-meta .featured-publish-date,
+.featured-meta .featured-reading-time {
+    color: rgba(255,255,255,0.9);
+}
+
+.featured-title a {
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.featured-title a:hover {
+    color: rgba(255,255,255,0.9) !important;
+}
+
+.featured-excerpt {
+    color: rgba(255,255,255,0.95);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.featured-actions .garden-action.primary {
+    background: white !important;
+    color: #B57EDC !important;
+    border-color: white !important;
+    font-weight: var(--font-bold);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.featured-actions .garden-action.primary:hover {
+    background: rgba(255,255,255,0.9) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+/* ===============================================
+   GLOBAL PANEL TITLE SPACING FIX
+   =============================================== */
+
+.garden-panel__header,
+.garden-panel-header {
+    padding: var(--space-4) var(--space-6) !important;
+}
+
+.panel-title {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ===============================================
    VISUAL VARIETY - Topic-based colors
    =============================================== */
 
