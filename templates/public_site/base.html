@@ -125,14 +125,18 @@
             color: #ffffff !important;
         }
 
-        /* All footer text should be white by default */
+        /* All footer text should be white by default - force override */
+        html[data-theme="light"] .garden-footer *,
+        html[data-theme="light"] body .garden-footer *,
         [data-theme="light"] .garden-footer *,
         [data-theme="dark"] .garden-footer *,
         .garden-footer * {
             color: #ffffff !important;
         }
 
-        /* Footer headings */
+        /* Footer headings - force override */
+        html[data-theme="light"] .garden-footer h3,
+        html[data-theme="light"] body .garden-footer h3,
         [data-theme="light"] .garden-footer h3,
         [data-theme="dark"] .garden-footer h3,
         .garden-footer h3 {
@@ -140,14 +144,20 @@
             font-weight: var(--font-semibold);
         }
 
-        /* Footer sections */
+        /* Footer sections - force override */
+        html[data-theme="light"] .garden-footer-section,
+        html[data-theme="light"] body .garden-footer-section,
         [data-theme="light"] .garden-footer-section,
         [data-theme="dark"] .garden-footer-section,
         .garden-footer-section {
             color: #ffffff !important;
         }
 
-        /* Footer links */
+        /* Footer links - force override */
+        html[data-theme="light"] .garden-footer-link,
+        html[data-theme="light"] body .garden-footer-link,
+        html[data-theme="light"] .garden-footer a,
+        html[data-theme="light"] body .garden-footer a,
         [data-theme="light"] .garden-footer-link,
         [data-theme="dark"] .garden-footer-link,
         .garden-footer-link,
@@ -158,6 +168,10 @@
             text-decoration: none;
         }
 
+        html[data-theme="light"] .garden-footer-link:hover,
+        html[data-theme="light"] body .garden-footer-link:hover,
+        html[data-theme="light"] .garden-footer a:hover,
+        html[data-theme="light"] body .garden-footer a:hover,
         [data-theme="light"] .garden-footer-link:hover,
         [data-theme="dark"] .garden-footer-link:hover,
         .garden-footer-link:hover,
@@ -168,13 +182,17 @@
             text-decoration: underline;
         }
 
-        /* Footer legal text */
+        /* Footer legal text - force override */
+        html[data-theme="light"] .garden-footer-legal,
+        html[data-theme="light"] body .garden-footer-legal,
         [data-theme="light"] .garden-footer-legal,
         [data-theme="dark"] .garden-footer-legal,
         .garden-footer-legal {
             color: #cccccc !important;
         }
 
+        html[data-theme="light"] .garden-footer-legal *,
+        html[data-theme="light"] body .garden-footer-legal *,
         [data-theme="light"] .garden-footer-legal *,
         [data-theme="dark"] .garden-footer-legal *,
         .garden-footer-legal * {
