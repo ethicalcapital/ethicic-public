@@ -472,10 +472,7 @@
 .garden-page .hero-panel::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-secondary) 100%);
     opacity: 0.5;
     z-index: 1;

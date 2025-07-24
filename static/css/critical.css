@@ -21,7 +21,7 @@
     width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .strategies-grid {
         grid-template-columns: 1fr;
         gap: var(--space-4);
@@ -344,7 +344,7 @@ a:hover {
 
 /* ===== RESPONSIVE CRITICAL ===== */
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .garden-mobile-menu-toggle {
         display: flex;
     }

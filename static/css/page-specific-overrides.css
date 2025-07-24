@@ -12,14 +12,13 @@
 
 .pricing-page .cta-actions {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: var(--space-4);
-    flex-wrap: wrap;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .pricing-page .cta-actions {
         flex-direction: column;
         align-items: center;
@@ -100,7 +99,7 @@
 }
 
 /* ===== RESPONSIVE OVERRIDES ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .blog-post-page .article-body,
     .blog-index-page .main-content,
     .faq-page .main-content,
@@ -113,7 +112,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .blog-post-page .article-body,
     .blog-index-page .main-content,
     .faq-page .main-content,

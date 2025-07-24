@@ -1,7 +1,7 @@
 /* Mobile Navigation Fixes */
 
 /* Mobile-specific header adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     /* Fix header layout on mobile */
     .garden-header-content {
         padding: 0 0.5rem !important;
@@ -36,7 +36,7 @@
         padding: 0.5rem !important;
         display: none !important; /* Hide by default */
         z-index: 100 !important;
-        box-shadow: 0 2px 8px rgb(0, 0, 0, 0.1) !important;
+        box-shadow: 0 2px 8px rgb(0 0 0 / 10%) !important;
     }
 
     /* Show search when it has 'show' class */
@@ -108,7 +108,7 @@
 }
 
 /* Desktop search toggle should be hidden */
-@media (min-width: 769px) {
+@media (width >= 769px) {
     .mobile-search-toggle {
         display: none !important;
     }

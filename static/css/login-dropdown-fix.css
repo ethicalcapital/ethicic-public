@@ -36,11 +36,12 @@
     background: var(--color-surface, #fff) !important;
     border: 1px solid var(--color-border, #e5e7eb) !important;
     border-radius: 8px !important;
-    box-shadow: 0 4px 6px -1px rgb(0, 0, 0, 0.1),
-                0 2px 4px -1px rgb(0, 0, 0, 0.06) !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%),
+                0 2px 4px -1px rgb(0 0 0 / 6%) !important;
     overflow: visible !important;
     transform-origin: top right !important;
     transition: opacity 0.15s ease, transform 0.15s ease !important;
+
     /* DO NOT set display property - let Alpine.js inline styles control it */
 
     /* CRITICAL: Reset text color inheritance from header */
@@ -54,6 +55,7 @@
     gap: 12px !important;
     padding: 14px 16px !important;
     text-decoration: none !important;
+
     /* CRITICAL: Explicitly set text color to override header inheritance */
     color: var(--color-text-primary, #374151) !important;
     transition: background-color 0.2s ease !important;
@@ -110,10 +112,10 @@
 html[data-theme="light"] .garden-login-dropdown,
 [data-theme="light"] body .garden-login-dropdown,
 body[data-theme="light"] .garden-login-dropdown {
-    background: #ffffff !important;
+    background: #fff !important;
     border: 1px solid #e5e7eb !important;
-    box-shadow: 0 4px 6px -1px rgb(0, 0, 0, 0.1),
-                0 2px 4px -1px rgb(0, 0, 0, 0.06) !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%),
+                0 2px 4px -1px rgb(0 0 0 / 6%) !important;
 }
 
 html[data-theme="light"] .garden-login-item,
@@ -158,8 +160,8 @@ html[data-theme="light"] .garden-header .garden-login-dropdown .login-desc,
 [data-theme="dark"] .garden-login-dropdown {
     background: var(--color-surface, #1f2937) !important;
     border-color: var(--color-border, #374151) !important;
-    box-shadow: 0 4px 6px -1px rgb(0, 0, 0, 0.3),
-                0 2px 4px -1px rgb(0, 0, 0, 0.2) !important;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 30%),
+                0 2px 4px -1px rgb(0 0 0 / 20%) !important;
 }
 
 [data-theme="dark"] .garden-login-item {
@@ -188,7 +190,7 @@ main {
 }
 
 /* Mobile responsiveness */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .garden-login-dropdown {
         right: -16px !important; /* Adjust for mobile viewport */
         min-width: 240px !important;
@@ -275,7 +277,7 @@ html[data-theme="light"] body .garden-login-dropdown * {
 /* Ensure dropdown background is always visible in light mode */
 html[data-theme="light"] .garden-header .garden-login-dropdown,
 html[data-theme="light"] body .garden-header .garden-login-dropdown {
-    background: #ffffff !important;
-    background-color: #ffffff !important;
+    background: #fff !important;
+    background-color: #fff !important;
     border: 1px solid #e5e7eb !important;
 }

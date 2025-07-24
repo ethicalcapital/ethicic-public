@@ -120,7 +120,7 @@
 }
 
 /* Mobile responsive */
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     /* Hide right rail on tablets and below */
     .strategy-page .right-rail-actions {
         display: none;
@@ -128,8 +128,7 @@
 
     /* Quick actions remain visible and stack on mobile */
     .strategy-page .quick-actions {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
     }
 
     .strategy-page .quick-actions .garden-action {
@@ -138,7 +137,7 @@
     }
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
     /* Stack all buttons vertically on small mobile */
     .strategy-page .quick-actions {
         flex-direction: column;

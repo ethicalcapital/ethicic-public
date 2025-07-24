@@ -18,6 +18,7 @@
 a, .link {
     color: var(--garden-accent);
     text-decoration: underline;
+
     /* Minimum 7:1 contrast ratio enforced */
     min-height: 44px; /* Touch target size */
 }

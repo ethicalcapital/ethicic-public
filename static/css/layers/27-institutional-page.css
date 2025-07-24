@@ -360,7 +360,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .institutional-page .hero-title {
         font-size: 2rem;
     }

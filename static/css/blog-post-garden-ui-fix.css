@@ -76,7 +76,7 @@
 }
 
 /* Responsive design */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .newsletter-form-container {
         flex-direction: column;
         max-width: none;

@@ -213,7 +213,7 @@
 
       // Comprehensive list of input types where users can type
       const typingInputTypes = [
-        'text', 'email', 'password', 'search', 'url', 'number', 
+        'text', 'email', 'password', 'search', 'url', 'number',
         'tel', 'date', 'datetime-local', 'month', 'time', 'week',
         'color' // color picker can have manual input in some browsers
       ];

@@ -203,7 +203,7 @@
     }
 
     /* Responsive Design */
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         .consultation-page .hero {
             padding: var(--space-8) var(--space-4);
         }

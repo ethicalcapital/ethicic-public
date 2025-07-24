@@ -94,7 +94,7 @@
     }
 
     /* Responsive adjustments */
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         .garden-footer-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: var(--space-6);
@@ -106,7 +106,7 @@
         }
     }
 
-    @media (max-width: 480px) {
+    @media (width <= 480px) {
         .garden-footer-grid {
             grid-template-columns: 1fr;
             gap: var(--space-4);

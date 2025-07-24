@@ -272,7 +272,7 @@
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .garden-widget.metric-card {
     min-width: 100%;
   }
@@ -286,8 +286,7 @@
   }
 
   .widget-row.tickers {
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
   }
 }
 

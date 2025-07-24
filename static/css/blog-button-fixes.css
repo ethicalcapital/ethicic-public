@@ -128,7 +128,7 @@
 }
 
 /* ===== MOBILE RESPONSIVE FIXES ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .blog-page .garden-action,
     .blog-post .garden-action,
     .blog-index-page .garden-action {

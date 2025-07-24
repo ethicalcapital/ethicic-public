@@ -287,7 +287,7 @@
    ENHANCED RESPONSIVE DESIGN - Mobile First Approach
    ======================================================================== */
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .blog-container {
         padding: 0 var(--space-4);
         gap: var(--space-4);
@@ -353,7 +353,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .article-list-item {
         padding: var(--space-3);
     }
@@ -645,7 +645,7 @@
    RESPONSIVE DESIGN - Garden UI Breakpoints
    ======================================================================== */
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     .blog-container {
         gap: var(--space-8);
     }
@@ -657,7 +657,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .blog-container {
         flex-direction: column;
         gap: var(--space-6);
@@ -747,7 +747,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .blog-container {
         padding: 0 var(--space-2);
     }

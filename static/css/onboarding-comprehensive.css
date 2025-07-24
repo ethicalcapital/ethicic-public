@@ -516,7 +516,7 @@ html body .onboarding-page .panel-content select:focus {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .onboarding-page .form-navigation {
         flex-direction: column;
         gap: var(--space-4);

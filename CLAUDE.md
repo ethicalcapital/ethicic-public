@@ -23,3 +23,16 @@
 - **Components**: All in `static/css/garden-*.css` files with proper theme variables
 - **Quality**: Pre-commit hooks prevent bad CSS, VS Code auto-fixes issues
 - **Performance**: 64 files → 1 optimized file, ~50% reduction in HTTP requests
+
+## System Architecture Context (Investigation - Jan 2025)
+- **Business Domain**: Ethical Capital - SEC-regulated ESG investment advisory firm managing real portfolios
+- **Technical Stack**: Django 4.x + Wagtail 5.x CMS with PostgreSQL, Redis caching, Kinsta hosting
+- **Architecture**: Monolithic with service-oriented components, standalone deployment (migrated from "Garden Platform")
+- **Key Models**: StrategyPage (with performance calculations), BlogPost, OnboardingForm, MediaItem
+- **Performance Data**: Monthly investment returns stored as JSON, compound calculations in `public_site/utils/performance_calculator.py`
+- **Multi-Database**: Primary (Kinsta PostgreSQL), Secondary (Ubicloud legacy), Fallback (SQLite)
+- **Management Commands**: 50+ commands for content migration, performance import, site setup - see `management/commands/`
+- **Security**: Enterprise-grade with Cloudflare Turnstile, multi-layer spam protection, WCAG 2.1 AA compliance
+- **Forms**: Sophisticated client onboarding (70+ fields), comprehensive validation, accessibility-first design
+- **API Endpoints**: 50+ routes for form submissions, AJAX functionality, search, media APIs
+- **Investigation Report**: See `.claude/docs/investigation-2025-01-24.md` for comprehensive architecture analysis

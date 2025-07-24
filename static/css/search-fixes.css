@@ -20,12 +20,13 @@
     color: var(--color-text-primary);
     font-size: var(--font-sm);
     transition: all var(--duration-normal) ease;
+
     /* Ensure input is editable */
     pointer-events: auto !important;
     user-select: text !important;
-    -webkit-user-select: text !important;
-    -moz-user-select: text !important;
-    -ms-user-select: text !important;
+    user-select: text !important;
+    user-select: text !important;
+    user-select: text !important;
     cursor: text !important;
 }
 
@@ -120,10 +121,11 @@
     background: var(--color-surface);
     border-color: var(--color-border);
     color: var(--color-text-primary);
+
     /* Ensure input is editable in light mode */
     pointer-events: auto !important;
     user-select: text !important;
-    -webkit-user-select: text !important;
+    user-select: text !important;
     cursor: text !important;
 }
 
@@ -155,7 +157,7 @@
 }
 
 /* Mobile responsive search */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .garden-search-container {
         max-width: 180px;
     }
@@ -181,16 +183,18 @@
 input.garden-search-input {
     pointer-events: auto !important;
     user-select: text !important;
-    -webkit-user-select: text !important;
-    -moz-user-select: text !important;
-    -ms-user-select: text !important;
+    user-select: text !important;
+    user-select: text !important;
+    user-select: text !important;
     cursor: text !important;
     z-index: 101 !important;
     position: relative !important;
+
     /* Ensure input is actually functional */
     -webkit-touch-callout: default !important;
     -webkit-user-modify: read-write !important;
     outline: none;
+
     /* CRITICAL: Force visible text color using theme variables */
     color: var(--color-text-primary) !important;
     -webkit-text-fill-color: var(--color-text-primary) !important;
@@ -215,10 +219,10 @@ html[data-theme="light"] input.garden-search-input,
 body .garden-header .garden-search-input,
 body .garden-search-container .garden-search-input,
 body input.garden-search-input {
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
-    background-color: #ffffff !important;
-    caret-color: #000000 !important;
+    color: #000 !important;
+    -webkit-text-fill-color: #000 !important;
+    background-color: #fff !important;
+    caret-color: #000 !important;
     text-shadow: none !important;
     opacity: 1 !important;
 }
@@ -226,10 +230,10 @@ body input.garden-search-input {
 html[data-theme="dark"] .garden-header .garden-search-input,
 html[data-theme="dark"] .garden-search-container .garden-search-input,
 html[data-theme="dark"] input.garden-search-input {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
     background-color: #1a1a1a !important;
-    caret-color: #ffffff !important;
+    caret-color: #fff !important;
     text-shadow: none !important;
     opacity: 1 !important;
 }

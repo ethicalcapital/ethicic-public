@@ -27,33 +27,33 @@
 }
 
 /* ===== MEDIA QUERIES ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .home-page .principles-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 }
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
     .home-page .principles-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .home-page .hero-title {
         font-size: 2rem;
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .garden-panel .garden-panel__content {
         padding: 1.5rem;
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .home-page .cta-actions,
     .home-page .hero-panel .cta-actions {
         flex-direction: column;
@@ -61,7 +61,7 @@
     }
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
     .home-page .serve-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -410,12 +410,11 @@
 
 .home-page .cta-actions {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
     margin: 2rem auto;
-    flex-wrap: wrap;
 }
 
 .home-page .principles-grid,
@@ -459,12 +458,11 @@
 /* Hero panel specific styles */
 .home-page .hero-panel .cta-actions {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
     margin: 2rem auto;
-    flex-wrap: wrap;
 }
 
 .home-page .hero-panel .hero-stats {
@@ -551,12 +549,11 @@
 .home-page .cta-panel .cta-actions,
 .home-page .hero-panel .cta-actions {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
     margin: 2rem auto;
-    flex-wrap: wrap;
     width: 100%;
 }
 
@@ -569,12 +566,11 @@
 .home-page .garden-container section .cta-actions,
 .home-page .garden-container .garden-panel .cta-actions {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
     margin: 2rem auto;
-    flex-wrap: wrap;
     width: 100%;
 }
 

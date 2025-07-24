@@ -30,7 +30,7 @@ html body header.garden-header .garden-header-content .garden-nav-left button.ga
 }
 
 /* Hide hamburger on desktop/tablet - only show on mobile */
-@media (min-width: 769px) {
+@media (width >= 769px) {
     /* stylelint-disable no-descending-specificity */
     html body header.garden-header .garden-header-content .garden-nav-left button.garden-mobile-menu-toggle,
     html body header.garden-header .garden-header-content .garden-nav-left .garden-mobile-menu-toggle,
@@ -54,7 +54,7 @@ html body header.garden-header .garden-header-content .garden-nav-left button.ga
 }
 
 /* Mobile-specific styling */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     /* Show hamburger button on mobile only */
     html body header.garden-header .garden-header-content .garden-nav-left .garden-mobile-menu-toggle {
         display: flex !important;
@@ -77,10 +77,7 @@ html body header.garden-header .garden-header-content .garden-nav-left button.ga
     .garden-nav-main {
         display: none !important;
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         width: 100vw;
         height: 100vh;
         background: var(--color-surface);

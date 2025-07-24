@@ -508,7 +508,7 @@
    RESPONSIVE
    ======================================== */
 
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
   .articles-container {
     grid-template-columns: 1fr;
   }
@@ -529,7 +529,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .article-list-content {
     grid-template-columns: 1fr;
   }

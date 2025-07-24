@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-24T10:02:54.441817+00:00",
+  "timestamp": "2025-07-24T10:49:25.331650+00:00",
   "total_files": 83,
   "total_defined_vars": 422,
   "files_with_issues": [
@@ -12,6 +12,7 @@
     "header-height-fix.css",
     "onboarding-comprehensive.css",
     "onboarding-mobile-optimization.css",
+    "footer-fix.css",
     "garden-ui-utilities.css",
     "garden-blog.css",
     "wcag-contrast-fixes.css",
@@ -25,26 +26,26 @@
       "--color-text-muted"
     ],
     "onboarding-mobile-optimization.css": [
-      "--color-surface-rgb",
-      "--color-error-alpha-light"
+      "--color-error-alpha-light",
+      "--color-surface-rgb"
     ],
     "garden-ui-utilities.css": [
       "--garden-container-max-width",
       "--garden-gutter"
     ],
     "combined.css": [
-      "--color-text-muted",
       "--garden-container-max-width",
+      "--color-text-muted",
       "--garden-gutter"
     ],
     "production.css": [
-      "--color-text-muted",
       "--garden-container-max-width",
+      "--color-text-muted",
       "--garden-gutter"
     ],
     "development.css": [
-      "--color-text-muted",
       "--garden-container-max-width",
+      "--color-text-muted",
       "--garden-gutter"
     ]
   },
@@ -233,6 +234,18 @@
       [
         25,
         "#553c9a"
+      ],
+      [
+        30,
+        "#3d2970"
+      ],
+      [
+        31,
+        "#3d2970"
+      ],
+      [
+        37,
+        "#fff"
       ]
     ],
     "garden-blog.css": [
@@ -407,7 +420,7 @@
     "garden-blog-panels.css": 6.89,
     "onboarding-comprehensive.css": 15.95,
     "onboarding-mobile-optimization.css": 8.68,
-    "footer-fix.css": 3.84,
+    "footer-fix.css": 3.32,
     "responsive-breakpoints-fix.css": 5.66,
     "header-button-fix.css": 1.71,
     "garden-ui-utilities.css": 9.08,
@@ -461,5 +474,5 @@
   },
   "total_undefined_vars": 14,
   "is_baseline": true,
-  "baseline_created": "2025-07-24T10:02:54.530158+00:00"
+  "baseline_created": "2025-07-24T10:49:25.439156+00:00"
 }

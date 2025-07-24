@@ -43,6 +43,13 @@
    SECRET_KEY=<generated-secret-key>
    DATABASE_URL=<provided-by-kinsta>
    ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
+   ADMIN_PASSWORD=<secure-admin-password>
+   ```
+
+   Optional admin configuration:
+   ```
+   ADMIN_USERNAME=srvo
+   ADMIN_EMAIL=sloane@ethicic.com
    ```
 
    Optional email configuration:

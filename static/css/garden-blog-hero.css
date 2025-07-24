@@ -248,7 +248,7 @@
    RESPONSIVE DESIGN - Garden UI Breakpoints
    ======================================================================== */
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .hero-content-grid {
         grid-template-columns: 1fr;
         gap: var(--space-4);
@@ -275,7 +275,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .hero-panel .garden-panel-content {
         padding: var(--space-4) var(--space-3);
     }

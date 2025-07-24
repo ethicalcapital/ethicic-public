@@ -174,7 +174,7 @@
    RESPONSIVE DESIGN - Garden UI Breakpoints
    ======================================================================== */
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .garden-panel .garden-panel-header {
         padding: var(--space-2) var(--space-3);
         font-size: var(--font-xs);
@@ -200,7 +200,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .garden-panel .garden-panel-header {
         padding: var(--space-2);
         font-size: var(--font-xs);

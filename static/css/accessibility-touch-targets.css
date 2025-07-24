@@ -21,7 +21,7 @@
   height: 18px;
   margin-right: var(--space-3);
   margin-top: 2px; /* Center align with text */
-  
+
   /* But touch area is expanded */
   position: relative;
   cursor: pointer;
@@ -37,6 +37,7 @@
   transform: translate(-50%, -50%);
   width: 44px;
   height: 44px;
+
   /* Invisible touch area */
   background: transparent;
   border-radius: 50%;
@@ -50,6 +51,7 @@
   line-height: 1.4;
   padding: var(--space-2) 0;
   flex: 1;
+
   /* Ensure text doesn't break touch interaction */
   user-select: none;
 }
@@ -140,13 +142,13 @@
 }
 
 /* Mobile-specific touch target improvements */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   /* Increase spacing between radio/checkbox options on mobile */
   .garden-radio,
   .garden-checkbox {
     margin-bottom: var(--space-3);
   }
-  
+
   /* Ensure links in mobile menu have adequate touch targets */
   .mobile-nav-item {
     min-height: 44px;
@@ -155,7 +157,7 @@
     padding: var(--space-3) var(--space-4);
     margin-bottom: var(--space-1);
   }
-  
+
   /* Form fields on mobile */
   .garden-input,
   .garden-select,
@@ -163,7 +165,7 @@
     min-height: 44px;
     padding: var(--space-3);
   }
-  
+
   /* Button groups on mobile */
   .button-group button,
   .action-group button {
@@ -185,7 +187,7 @@
   .garden-radio input[type="radio"]::before {
     border: 2px solid transparent;
   }
-  
+
   .garden-checkbox input:focus::before,
   .garden-radio input:focus::before {
     border-color: var(--color-focus);

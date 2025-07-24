@@ -6,14 +6,14 @@
 .garden-header .garden-theme-toggle {
     background: transparent !important;
     color: white !important;
-    border: 1px solid rgb(255, 255, 255, 0.3) !important;
+    border: 1px solid rgb(255 255 255 / 30%) !important;
 }
 
 .garden-header .garden-search-btn:hover,
 .garden-header .garden-login-btn:hover,
 .garden-header .garden-theme-toggle:hover {
-    background: rgb(255, 255, 255, 0.1) !important;
-    border-color: rgb(255, 255, 255, 0.5) !important;
+    background: rgb(255 255 255 / 10%) !important;
+    border-color: rgb(255 255 255 / 50%) !important;
 }
 
 /* Fix 2: Banner Text - Ensure proper contrast */
@@ -126,7 +126,7 @@
 }
 
 [data-theme="dark"] .garden-action.secondary:hover {
-    background: rgb(155, 125, 216, 0.1) !important;
+    background: rgb(155 125 216 / 10%) !important;
     color: #b19cd9 !important;
     border-color: #b19cd9 !important;
 }

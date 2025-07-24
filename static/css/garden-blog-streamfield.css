@@ -548,7 +548,7 @@
    RESPONSIVE DESIGN
    ================= */
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     :root {
         --streamfield-spacing: var(--space-4);
     }

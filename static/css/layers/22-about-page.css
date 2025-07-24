@@ -20,7 +20,7 @@
     align-items: start;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .about-hero {
         grid-template-columns: 1fr;
         text-align: center;
@@ -207,7 +207,7 @@
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .about-identity .name {
         font-size: 2rem;
     }

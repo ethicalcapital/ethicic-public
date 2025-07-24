@@ -235,7 +235,7 @@
 }
 
 /* Responsive Tables */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .garden-table {
     font-size: var(--font-xs);
   }
@@ -442,7 +442,7 @@
 }
 
 /* Responsive pagination */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .pagination-controls {
     flex-direction: column;
     gap: 0.75rem;

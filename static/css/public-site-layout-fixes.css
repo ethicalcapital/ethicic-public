@@ -62,7 +62,7 @@
 }
 
 /* ===== RESPONSIVE LAYOUT ===== */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .public-site-context .main-content,
     .public-site-context .garden-panel-content,
     .hero-panel .panel-content {
@@ -75,7 +75,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .public-site-context .main-content,
     .public-site-context .garden-panel-content,
     .hero-panel .panel-content {

@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{% static 'css/strategy-nuclear-fix.css' %}?v=3">
     <link rel="stylesheet" href="{% static 'css/wcag-contrast-fixes.css' %}?v=1">
     <link rel="stylesheet" href="{% static 'css/accessibility-contrast-fixes.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/footer-fix.css' %}?v=12">
+    <link rel="stylesheet" href="{% static 'css/footer-fix.css' %}?v=14">
     <link rel="stylesheet" href="{% static 'css/strategy-table-contrast-fix.css' %}?v=1">
     <link rel="stylesheet" href="{% static 'css/button-alignment-fix.css' %}?v=1">
     <link rel="stylesheet" href="{% static 'css/container-structure-enhancements.css' %}?v=1">
@@ -117,7 +117,7 @@
             background-color: #1f0322 !important;
         }
 
-        /* Footer styling now handled in footer-fix.css v5 */
+        /* Footer styling now handled after body color rule below */
 
         /* Maya Blue CTAs in dark mode */
         [data-theme="dark"] .garden-action.primary,
@@ -137,6 +137,8 @@
         [data-theme="light"] body {
             color: #111 !important;
         }
+
+        /* Footer styling handled in footer-fix.css with light grey background */
 
         /* Tiffany Blue for CTA-specific buttons only (not navigation) */
         html[data-theme="light"] body .hero-panel .cta-actions a.garden-action.primary,

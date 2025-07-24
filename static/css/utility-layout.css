@@ -168,14 +168,14 @@
   }
 
   /* ===== RESPONSIVE UTILITIES ===== */
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     .mobile-full-width {
       width: 100%;
       max-width: none;
     }
   }
 
-  @media (min-width: 769px) {
+  @media (width >= 769px) {
     .desktop-constrained {
       max-width: var(--container-xl);
       margin: 0 auto;

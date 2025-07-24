@@ -10,7 +10,6 @@
 /* ===== LAYER: COMPONENTS ===== */
 /* Low specificity (0,0,1,0) - base component styles */
 @layer components {
-
 /* Category filter buttons - base styles */
 .faq-categories .category-btn {
     display: inline-block;
@@ -57,7 +56,6 @@
 /* ===== LAYER: PAGES ===== */
 /* Medium specificity (0,0,2,0) - page-specific styles */
 @layer pages {
-
 /* SPECIFICITY 0,0,2,0 - Two class selectors */
 .faq-categories .category-btn:hover,
 .faq-categories .category-btn.active {
@@ -168,7 +166,6 @@
 /* ===== LAYER: OVERRIDES ===== */
 /* Dark mode overrides - highest specificity */
 @layer overrides {
-
 /* SPECIFICITY 0,0,1,1 - Attribute selector + class */
 [data-theme="dark"] .contact-method .full-width {
     width: 100%;
