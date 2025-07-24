@@ -200,8 +200,23 @@ main {
     display: none !important;
 }
 
-/* ABSOLUTE FINAL OVERRIDE - Counter header-text-fix.css variables in light mode */
-/* These rules specifically target the exact selectors used in header-text-fix.css */
+/* ABSOLUTE FINAL OVERRIDE - Counter header-text-fix.css universal header rule */
+/* The header-text-fix.css has .garden-header * { color: white !important } which catches our dropdown */
+/* We need ultra-specific selectors to override this universal rule */
+
+/* Override the .garden-header * universal white text rule for login dropdown */
+[data-theme="light"] .garden-header .garden-login-dropdown,
+[data-theme="light"] .garden-header .garden-login-dropdown *,
+[data-theme="light"] .garden-header .garden-login-dropdown .login-title,
+[data-theme="light"] .garden-header .garden-login-dropdown .login-desc,
+[data-theme="light"] .garden-header .garden-login-dropdown .garden-login-item,
+[data-theme="light"] .garden-header .garden-login-dropdown .garden-login-item * {
+    color: inherit !important;  
+    -webkit-text-fill-color: inherit !important;
+}
+
+/* Now set the specific colors we want */
+[data-theme="light"] .garden-header .garden-login-dropdown .login-title,
 [data-theme="light"] .garden-login-dropdown .login-title {
     color: #111827 !important;
     -webkit-text-fill-color: #111827 !important;
@@ -209,10 +224,9 @@ main {
     opacity: 1 !important;
     text-shadow: none !important;
     filter: none !important;
-    /* Force override of any CSS variable */
-    background-color: transparent !important;
 }
 
+[data-theme="light"] .garden-header .garden-login-dropdown .login-desc,
 [data-theme="light"] .garden-login-dropdown .login-desc {
     color: #6b7280 !important;
     -webkit-text-fill-color: #6b7280 !important;
@@ -220,8 +234,6 @@ main {
     opacity: 1 !important;
     text-shadow: none !important;
     filter: none !important;
-    /* Force override of any CSS variable */
-    background-color: transparent !important;
 }
 
 /* NUCLEAR OPTION: Emergency light mode text visibility fixes */
