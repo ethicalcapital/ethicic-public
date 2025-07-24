@@ -125,8 +125,10 @@
             color: #ffffff !important;
         }
 
-        /* All footer text should be white by default - force override body inheritance */
+        /* All footer text should be white by default - ultimate specificity override */
+        html[data-theme="light"] body.public-site-context .garden-footer *,
         html[data-theme="light"] body .garden-footer *,
+        body[data-theme="light"].public-site-context .garden-footer *,
         body[data-theme="light"] .garden-footer *,
         html[data-theme="light"] .garden-footer *,
         [data-theme="light"] body .garden-footer *,
@@ -136,8 +138,10 @@
             color: #ffffff !important;
         }
 
-        /* Footer headings - force override body inheritance */
+        /* Footer headings - ultimate specificity override */
+        html[data-theme="light"] body.public-site-context .garden-footer h3,
         html[data-theme="light"] body .garden-footer h3,
+        body[data-theme="light"].public-site-context .garden-footer h3,
         body[data-theme="light"] .garden-footer h3,
         html[data-theme="light"] .garden-footer h3,
         [data-theme="light"] body .garden-footer h3,
@@ -148,8 +152,10 @@
             font-weight: var(--font-semibold);
         }
 
-        /* Footer sections - force override body inheritance */
+        /* Footer sections - ultimate specificity override */
+        html[data-theme="light"] body.public-site-context .garden-footer-section,
         html[data-theme="light"] body .garden-footer-section,
+        body[data-theme="light"].public-site-context .garden-footer-section,
         body[data-theme="light"] .garden-footer-section,
         html[data-theme="light"] .garden-footer-section,
         [data-theme="light"] body .garden-footer-section,
@@ -159,9 +165,13 @@
             color: #ffffff !important;
         }
 
-        /* Footer links - force override body inheritance */
+        /* Footer links - ultimate specificity override */
+        html[data-theme="light"] body.public-site-context .garden-footer-link,
+        html[data-theme="light"] body.public-site-context .garden-footer a,
         html[data-theme="light"] body .garden-footer-link,
         html[data-theme="light"] body .garden-footer a,
+        body[data-theme="light"].public-site-context .garden-footer-link,
+        body[data-theme="light"].public-site-context .garden-footer a,
         body[data-theme="light"] .garden-footer-link,
         body[data-theme="light"] .garden-footer a,
         html[data-theme="light"] .garden-footer-link,
@@ -178,8 +188,12 @@
             text-decoration: none;
         }
 
+        html[data-theme="light"] body.public-site-context .garden-footer-link:hover,
+        html[data-theme="light"] body.public-site-context .garden-footer a:hover,
         html[data-theme="light"] body .garden-footer-link:hover,
         html[data-theme="light"] body .garden-footer a:hover,
+        body[data-theme="light"].public-site-context .garden-footer-link:hover,
+        body[data-theme="light"].public-site-context .garden-footer a:hover,
         body[data-theme="light"] .garden-footer-link:hover,
         body[data-theme="light"] .garden-footer a:hover,
         html[data-theme="light"] .garden-footer-link:hover,
@@ -196,8 +210,10 @@
             text-decoration: underline;
         }
 
-        /* Footer legal text - force override body inheritance */
+        /* Footer legal text - ultimate specificity override */
+        html[data-theme="light"] body.public-site-context .garden-footer-legal,
         html[data-theme="light"] body .garden-footer-legal,
+        body[data-theme="light"].public-site-context .garden-footer-legal,
         body[data-theme="light"] .garden-footer-legal,
         html[data-theme="light"] .garden-footer-legal,
         [data-theme="light"] body .garden-footer-legal,
@@ -207,7 +223,9 @@
             color: #cccccc !important;
         }
 
+        html[data-theme="light"] body.public-site-context .garden-footer-legal *,
         html[data-theme="light"] body .garden-footer-legal *,
+        body[data-theme="light"].public-site-context .garden-footer-legal *,
         body[data-theme="light"] .garden-footer-legal *,
         html[data-theme="light"] .garden-footer-legal *,
         [data-theme="light"] body .garden-footer-legal *,
