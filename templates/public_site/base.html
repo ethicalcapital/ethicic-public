@@ -91,7 +91,7 @@
             background-color: #B57EDC !important;
         }
 
-        /* Tiffany Blue CTAs in light mode - comprehensive selectors */
+        /* Tiffany Blue CTAs in light mode - comprehensive selectors - WCAG AA Compliant */
         [data-theme="light"] .garden-action.primary,
         [data-theme="light"] .garden-nav-actions .garden-action.primary,
         [data-theme="light"] .garden-header .garden-action.primary,
@@ -101,9 +101,9 @@
         [data-theme="light"] a.garden-action.primary,
         [data-theme="light"] button.garden-action.primary,
         html[data-theme="light"] .garden-action.primary {
-            background-color: #7bcdba !important;
-            color: #111 !important;
-            border: 2px solid #7bcdba !important;
+            background-color: #2d7a68 !important;
+            color: #ffffff !important;
+            border: 2px solid #2d7a68 !important;
             text-decoration: none !important;
         }
 
@@ -111,9 +111,9 @@
         [data-theme="light"] a.garden-action.primary:hover,
         [data-theme="light"] button.garden-action.primary:hover,
         html[data-theme="light"] .garden-action.primary:hover {
-            background-color: #6ab8a5 !important;
-            border-color: #6ab8a5 !important;
-            color: #111 !important;
+            background-color: #256559 !important;
+            border-color: #256559 !important;
+            color: #ffffff !important;
         }
 
         /* Dark purple for dark mode */
@@ -141,34 +141,34 @@
             color: #111 !important;
         }
 
-        /* Force ALL primary buttons to be Tiffany Blue in light mode */
+        /* Force ALL primary buttons to be WCAG AA compliant Tiffany Blue in light mode */
         html[data-theme="light"] body .garden-action.primary {
-            background-color: #7bcdba !important;
+            background-color: #2d7a68 !important;
             background-image: none !important;
-            color: #111 !important;
-            border: 2px solid #7bcdba !important;
+            color: #ffffff !important;
+            border: 2px solid #2d7a68 !important;
         }
 
         /* Debug: Make sure we catch the header Get Started button */
         html[data-theme="light"] body .garden-header .garden-nav-actions a.primary {
-            background-color: #7bcdba !important;
-            color: #111 !important;
+            background-color: #2d7a68 !important;
+            color: #ffffff !important;
         }
 
         /* Hero section buttons - target both primary and ensure specificity */
         html[data-theme="light"] body .hero-panel .cta-actions a.garden-action.primary,
         html[data-theme="light"] body .cta-actions .garden-action.primary {
-            background-color: #7bcdba !important;
-            color: #111 !important;
-            border-color: #7bcdba !important;
+            background-color: #2d7a68 !important;
+            color: #ffffff !important;
+            border-color: #2d7a68 !important;
         }
 
         /* Target any link with garden-action primary classes */
         html[data-theme="light"] body a.garden-action.primary {
-            background-color: #7bcdba !important;
+            background-color: #2d7a68 !important;
             background-image: none !important;
-            color: #111 !important;
-            border: 2px solid #7bcdba !important;
+            color: #ffffff !important;
+            border: 2px solid #2d7a68 !important;
         }
     </style>
 </head>
@@ -330,9 +330,9 @@
         </div>
 
         <!-- Mobile navigation overlay -->
-        <nav class="mobile-nav" 
-             :class="{ 'open': mobileMenuOpen }" 
-             x-show="mobileMenuOpen" 
+        <nav class="mobile-nav"
+             :class="{ 'open': mobileMenuOpen }"
+             x-show="mobileMenuOpen"
              x-transition
              role="dialog"
              aria-modal="true"
@@ -359,8 +359,8 @@
                      document.body.style.overflow = '';
                  }
              })">
-            <button class="mobile-nav-close" 
-                    @click="mobileMenuOpen = false" 
+            <button class="mobile-nav-close"
+                    @click="mobileMenuOpen = false"
                     aria-label="Close navigation menu"
                     x-ref="closeButton">
                 ×
