@@ -187,6 +187,15 @@
     color: rgb(255 255 255 / 90%);
 }
 
+.featured-faq-excerpt {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 2rem;
+    opacity: 0.9;
+    color: rgb(255 255 255 / 85%);
+    font-style: italic;
+}
+
 .faq-answer p:last-child {
     margin-bottom: 0;
 }
@@ -386,12 +395,22 @@
     transform: translateX(4px);
 }
 
-/* Remove shadows from featured FAQ actions that may come from other CSS files */
+/* Remove all shadows from featured FAQ section and its contents */
+.featured-faq-section,
+.featured-faq-section *,
+.featured-faq-container,
+.featured-faq-item,
+.featured-faq-content,
 .featured-faq-section .garden-action,
 .featured-faq-actions .garden-action {
     box-shadow: none !important;
 }
 
+.featured-faq-section:hover,
+.featured-faq-section *:hover,
+.featured-faq-container:hover,
+.featured-faq-item:hover,
+.featured-faq-content:hover,
 .featured-faq-section .garden-action:hover,
 .featured-faq-actions .garden-action:hover {
     box-shadow: none !important;
