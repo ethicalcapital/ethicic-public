@@ -32,111 +32,111 @@ class SafeUrlMixin:
     Mixin class that provides safe URL generation methods for Wagtail pages.
     Handles cases where standard URL methods might return None.
     """
-    
+
     def get_safe_url(self, request=None, fallback_url="#"):
         """
         Generate a safe URL for this page, handling None values gracefully.
-        
+
         Args:
             request: Django request object (optional)
             fallback_url: URL to use if page URL cannot be determined
-        
+
         Returns:
             str: A valid URL or the fallback URL
         """
         # Try multiple method to get a valid URL
         url = None
-        
+
         # Method 1: Try the standard url property
         try:
             url = self.url
-            if url and url != 'None' and url.strip():
+            if url and url != "None" and url.strip():
                 return url
         except (AttributeError, Exception):
             pass
-        
+
         # Method 2: Try get_url() method
         try:
             url = self.get_url(request=request)
-            if url and url != 'None' and url.strip():
+            if url and url != "None" and url.strip():
                 return url
         except (AttributeError, Exception):
             pass
-        
+
         # Method 3: Try get_full_url() method
         try:
             url = self.get_full_url(request=request)
-            if url and url != 'None' and url.strip():
+            if url and url != "None" and url.strip():
                 return url
         except (AttributeError, Exception):
             pass
-        
+
         # Method 4: Construct URL from url_path if available
         try:
-            if hasattr(self, 'url_path') and self.url_path:
+            if hasattr(self, "url_path") and self.url_path:
                 url_path = self.url_path.strip()
-                if url_path and url_path != '/':
+                if url_path and url_path != "/":
                     # Remove any leading duplicate slashes and ensure single leading slash
-                    url_path = '/' + url_path.lstrip('/')
-                    if url_path != 'None' and url_path != '/None':
+                    url_path = "/" + url_path.lstrip("/")
+                    if url_path != "None" and url_path != "/None":
                         return url_path
         except (AttributeError, Exception):
             pass
-        
+
         # Method 5: If all else fails, try to construct from slug
         try:
-            if hasattr(self, 'slug') and self.slug:
+            if hasattr(self, "slug") and self.slug:
                 slug = self.slug.strip()
-                if slug and slug != 'None':
+                if slug and slug != "None":
                     # For most pages, we can construct the URL as /slug/
                     constructed_url = f"/{slug}/"
                     return constructed_url
         except (AttributeError, Exception):
             pass
-        
+
         # Last resort: return fallback URL
         return fallback_url
-    
+
     def get_safe_absolute_url(self, request=None, fallback_url="#"):
         """
         Generate a safe absolute URL for this page.
-        
+
         Args:
             request: Django request object (optional)
             fallback_url: URL to use if page URL cannot be determined
-        
+
         Returns:
             str: A valid absolute URL or the fallback URL
         """
         # Get the relative URL first
         relative_url = self.get_safe_url(request=request, fallback_url=None)
-        
+
         if not relative_url or relative_url == "#":
             return fallback_url
-        
+
         # If it's already absolute, return it
-        if relative_url.startswith('http'):
+        if relative_url.startswith("http"):
             return relative_url
-        
+
         # Construct absolute URL
         try:
             if request:
                 # Use request to build absolute URL
-                scheme = 'https' if request.is_secure() else 'http'
+                scheme = "https" if request.is_secure() else "http"
                 host = request.get_host()
                 return f"{scheme}://{host}{relative_url}"
         except (AttributeError, Exception):
             pass
-        
+
         # Fallback to site domain if available
         try:
-            if hasattr(self, 'get_site'):
+            if hasattr(self, "get_site"):
                 site = self.get_site()
-                if site and hasattr(site, 'root_url'):
+                if site and hasattr(site, "root_url"):
                     return f"{site.root_url.rstrip('/')}{relative_url}"
         except (AttributeError, Exception):
             pass
-        
+
         return fallback_url
 
 
