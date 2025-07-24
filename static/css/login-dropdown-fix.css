@@ -106,29 +106,52 @@
     margin: 0 !important;
 }
 
-/* Light mode specific fixes */
-[data-theme="light"] .garden-login-dropdown {
+/* Light mode specific fixes - HIGH SPECIFICITY to override all conflicts */
+html[data-theme="light"] .garden-login-dropdown,
+[data-theme="light"] body .garden-login-dropdown,
+body[data-theme="light"] .garden-login-dropdown {
     background: #ffffff !important;
     border: 1px solid #e5e7eb !important;
     box-shadow: 0 4px 6px -1px rgb(0, 0, 0, 0.1),
                 0 2px 4px -1px rgb(0, 0, 0, 0.06) !important;
 }
 
-[data-theme="light"] .garden-login-item {
+html[data-theme="light"] .garden-login-item,
+[data-theme="light"] body .garden-login-item,
+body[data-theme="light"] .garden-login-item,
+html[data-theme="light"] .garden-header .garden-login-item,
+[data-theme="light"] body .garden-header .garden-login-item {
     color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
     border-bottom-color: #f3f4f6 !important;
 }
 
-[data-theme="light"] .garden-login-item:hover {
+html[data-theme="light"] .garden-login-item:hover,
+[data-theme="light"] body .garden-login-item:hover,
+body[data-theme="light"] .garden-login-item:hover {
     background: #f9fafb !important;
 }
 
-[data-theme="light"] .login-title {
+html[data-theme="light"] .login-title,
+[data-theme="light"] body .login-title,
+body[data-theme="light"] .login-title,
+html[data-theme="light"] .garden-login-dropdown .login-title,
+[data-theme="light"] body .garden-login-dropdown .login-title,
+html[data-theme="light"] .garden-header .garden-login-dropdown .login-title,
+[data-theme="light"] body .garden-header .garden-login-dropdown .login-title {
     color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
 }
 
-[data-theme="light"] .login-desc {
+html[data-theme="light"] .login-desc,
+[data-theme="light"] body .login-desc,
+body[data-theme="light"] .login-desc,
+html[data-theme="light"] .garden-login-dropdown .login-desc,
+[data-theme="light"] body .garden-login-dropdown .login-desc,
+html[data-theme="light"] .garden-header .garden-login-dropdown .login-desc,
+[data-theme="light"] body .garden-header .garden-login-dropdown .login-desc {
     color: #6b7280 !important;
+    -webkit-text-fill-color: #6b7280 !important;
 }
 
 /* Dark mode specific fixes */
@@ -175,4 +198,72 @@ main {
 /* Alpine cloak to prevent flash of content */
 [x-cloak] {
     display: none !important;
+}
+
+/* ABSOLUTE FINAL OVERRIDE - Counter header-text-fix.css variables in light mode */
+/* These rules specifically target the exact selectors used in header-text-fix.css */
+[data-theme="light"] .garden-login-dropdown .login-title {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+    filter: none !important;
+    /* Force override of any CSS variable */
+    background-color: transparent !important;
+}
+
+[data-theme="light"] .garden-login-dropdown .login-desc {
+    color: #6b7280 !important;
+    -webkit-text-fill-color: #6b7280 !important;
+    font-size: 13px !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+    filter: none !important;
+    /* Force override of any CSS variable */
+    background-color: transparent !important;
+}
+
+/* NUCLEAR OPTION: Emergency light mode text visibility fixes */
+/* These rules have maximum specificity to override ANY conflicts */
+html[data-theme="light"] body .garden-header .garden-login-dropdown .login-title,
+html[data-theme="light"] body .garden-header .garden-login-container .garden-login-dropdown .login-title,
+html[data-theme="light"] .garden-header .garden-login-dropdown .garden-login-item .login-title {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+html[data-theme="light"] body .garden-header .garden-login-dropdown .login-desc,
+html[data-theme="light"] body .garden-header .garden-login-container .garden-login-dropdown .login-desc,
+html[data-theme="light"] .garden-header .garden-login-dropdown .garden-login-item .login-desc {
+    color: #6b7280 !important;
+    -webkit-text-fill-color: #6b7280 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+/* Ensure dropdown items have proper text color inheritance */
+html[data-theme="light"] .garden-header .garden-login-dropdown .garden-login-item,
+html[data-theme="light"] body .garden-header .garden-login-dropdown .garden-login-item,
+html[data-theme="light"] .garden-header .garden-login-container .garden-login-dropdown .garden-login-item {
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+}
+
+/* Override any potential white text inheritance from header */
+html[data-theme="light"] .garden-login-dropdown *,
+html[data-theme="light"] body .garden-login-dropdown * {
+    text-shadow: none !important;
+}
+
+/* Ensure dropdown background is always visible in light mode */
+html[data-theme="light"] .garden-header .garden-login-dropdown,
+html[data-theme="light"] body .garden-header .garden-login-dropdown {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
 }
