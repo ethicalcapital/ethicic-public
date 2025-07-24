@@ -82,7 +82,9 @@
     color: #fff !important;
 }
 
-/* Fix footer section headings - Override [data-theme="light"] body */
+/* Fix footer section headings - Override [data-theme="light"] body with higher specificity */
+html[data-theme="light"] body .garden-footer .garden-footer-section h3,
+[data-theme="light"] body .garden-footer .garden-footer-section h3,
 [data-theme="light"] .garden-footer .garden-footer-section h3,
 .garden-footer-section h3 {
     font-size: 1rem;
@@ -111,7 +113,9 @@
     display: block;
 }
 
-/* Fix footer links - Override [data-theme="light"] body */
+/* Fix footer links - Override [data-theme="light"] body with higher specificity */
+html[data-theme="light"] body .garden-footer .garden-footer-link,
+[data-theme="light"] body .garden-footer .garden-footer-link,
 [data-theme="light"] .garden-footer .garden-footer-link,
 .garden-footer-link {
     color: #e0e0e0 !important;
@@ -122,6 +126,8 @@
     padding: 0.25rem 0;
 }
 
+html[data-theme="light"] body .garden-footer .garden-footer-link:hover,
+[data-theme="light"] body .garden-footer .garden-footer-link:hover,
 [data-theme="light"] .garden-footer .garden-footer-link:hover,
 .garden-footer-link:hover {
     color: #fff !important;
@@ -149,7 +155,9 @@
     border-top-color: rgb(255 255 255 / 20%);
 }
 
-/* Fix footer legal text - Override [data-theme="light"] body */
+/* Fix footer legal text - Override [data-theme="light"] body with higher specificity */
+html[data-theme="light"] body .garden-footer .garden-footer-legal,
+[data-theme="light"] body .garden-footer .garden-footer-legal,
 [data-theme="light"] .garden-footer .garden-footer-legal,
 .garden-footer-legal {
     font-size: 0.75rem;
@@ -158,6 +166,8 @@
     display: block;
 }
 
+html[data-theme="light"] body .garden-footer .garden-footer-legal p,
+[data-theme="light"] body .garden-footer .garden-footer-legal p,
 [data-theme="light"] .garden-footer .garden-footer-legal p,
 .garden-footer-legal p {
     margin-bottom: 0.75rem;
