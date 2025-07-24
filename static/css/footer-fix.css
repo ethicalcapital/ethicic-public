@@ -27,13 +27,14 @@
 }
 
 .garden-footer {
-    background: var(--color-surface, var(--garden-color-white));
-    border-top: 1px solid var(--color-border, var(--garden-color-gray-150));
+    background: #3d2970;
+    border-top: 1px solid #3d2970;
     padding: 3rem 0 2rem;
     margin-top: 4rem;
     width: 100%;
     display: block;
     clear: both;
+    color: #fff;
 }
 
 /* Ensure footer content is properly contained */
@@ -55,36 +56,37 @@
 }
 
 /* Responsive footer grid */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .garden-footer-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
     .garden-footer-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .garden-footer {
         padding: 2rem 0 1.5rem;
         margin-top: 3rem;
     }
 }
 
-/* Dark mode footer */
+/* Dark mode footer - keep same dark purple */
 [data-theme="dark"] .garden-footer {
-    background: var(--color-surface, var(--garden-color-gray-900));
-    border-top-color: var(--color-border, var(--garden-color-gray-700));
+    background: #3d2970;
+    border-top-color: #3d2970;
+    color: #fff;
 }
 
 /* Fix footer section headings */
 .garden-footer-section h3 {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--color-text-primary, var(--garden-color-gray-800));
+    color: #fff;
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -92,7 +94,7 @@
 }
 
 [data-theme="dark"] .garden-footer-section h3 {
-    color: var(--color-text-primary, var(--garden-color-gray-200));
+    color: #fff;
 }
 
 /* Fix footer links */
@@ -109,7 +111,7 @@
 }
 
 .garden-footer-link {
-    color: var(--color-text-secondary, var(--garden-color-gray-600));
+    color: #e0e0e0;
     text-decoration: none;
     font-size: 0.875rem;
     transition: color 0.2s;
@@ -118,34 +120,34 @@
 }
 
 .garden-footer-link:hover {
-    color: var(--color-primary, var(--garden-accent));
+    color: #fff;
     text-decoration: underline;
 }
 
 [data-theme="dark"] .garden-footer-link {
-    color: var(--color-text-secondary, var(--garden-color-gray-300));
+    color: #e0e0e0;
 }
 
 [data-theme="dark"] .garden-footer-link:hover {
-    color: var(--color-primary, var(--garden-accent));
+    color: #fff;
 }
 
 /* Footer bottom section */
 .garden-footer-bottom {
     padding-top: 2rem;
-    border-top: 1px solid var(--color-border, var(--garden-color-gray-150));
+    border-top: 1px solid rgb(255 255 255 / 20%);
     text-align: center;
     display: block;
     width: 100%;
 }
 
 [data-theme="dark"] .garden-footer-bottom {
-    border-top-color: var(--color-border, var(--garden-color-gray-700));
+    border-top-color: rgb(255 255 255 / 20%);
 }
 
 .garden-footer-legal {
     font-size: 0.75rem;
-    color: var(--color-text-tertiary, var(--garden-color-gray-600));
+    color: #ccc;
     line-height: 1.4;
     display: block;
 }
@@ -153,8 +155,9 @@
 .garden-footer-legal p {
     margin-bottom: 0.75rem;
     display: block;
+    color: #ccc;
 }
 
 [data-theme="dark"] .garden-footer-legal {
-    color: var(--color-text-tertiary, var(--garden-color-gray-500));
+    color: #ccc;
 }
