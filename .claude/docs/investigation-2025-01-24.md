@@ -1,6 +1,6 @@
 # Deep Architectural Investigation: Ethical Capital Public Site
-**Date**: January 24, 2025  
-**Investigation Scope**: Complete system architecture, patterns, and technical context  
+**Date**: January 24, 2025
+**Investigation Scope**: Complete system architecture, patterns, and technical context
 
 ## System Overview
 
@@ -103,7 +103,7 @@ HomePage (/)
 **Comprehensive Client Onboarding** (70+ fields):
 - Personal information (including pronouns, preferred names)
 - Co-client support for joint accounts
-- 7-question risk tolerance assessment  
+- 7-question risk tolerance assessment
 - Ethical investment preferences aligned with divestment movements
 - Financial context and experience evaluation
 - Professional team coordination
@@ -280,7 +280,7 @@ Wagtail implementation goes beyond basic CMS - StreamFields, image optimization,
 
 The codebase demonstrates **senior-level engineering practices** across the entire stack, with particular strength in:
 - Database architecture and performance optimization
-- Security-first development practices  
+- Security-first development practices
 - Accessibility and inclusive design
 - Modern CSS architecture and build systems
 - Comprehensive testing and quality assurance

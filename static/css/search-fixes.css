@@ -24,9 +24,6 @@
     /* Ensure input is editable */
     pointer-events: auto !important;
     user-select: text !important;
-    user-select: text !important;
-    user-select: text !important;
-    user-select: text !important;
     cursor: text !important;
 }
 
@@ -125,7 +122,6 @@
     /* Ensure input is editable in light mode */
     pointer-events: auto !important;
     user-select: text !important;
-    user-select: text !important;
     cursor: text !important;
 }
 
@@ -182,9 +178,6 @@
 .garden-search-container .garden-search-input,
 input.garden-search-input {
     pointer-events: auto !important;
-    user-select: text !important;
-    user-select: text !important;
-    user-select: text !important;
     user-select: text !important;
     cursor: text !important;
     z-index: 101 !important;

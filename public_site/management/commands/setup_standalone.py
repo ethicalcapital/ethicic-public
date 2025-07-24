@@ -3,6 +3,7 @@ Setup standalone mode with SQLite database
 """
 
 import os
+
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from wagtail.models import Page, Site
@@ -20,7 +21,7 @@ class Command(BaseCommand):
         admin_username = os.getenv("ADMIN_USERNAME", "srvo")
         admin_email = os.getenv("ADMIN_EMAIL", "sloane@ethicic.com")
         admin_password = os.getenv("ADMIN_PASSWORD")
-        
+
         if not admin_password:
             self.stdout.write(
                 self.style.ERROR(
@@ -29,14 +30,16 @@ class Command(BaseCommand):
                 )
             )
             return
-        
+
         if not User.objects.filter(username=admin_username).exists():
             User.objects.create_superuser(
                 username=admin_username,
                 email=admin_email,
                 password=admin_password,
             )
-            self.stdout.write(self.style.SUCCESS(f"✓ Created admin user: {admin_username}"))
+            self.stdout.write(
+                self.style.SUCCESS(f"✓ Created admin user: {admin_username}")
+            )
         else:
             self.stdout.write(f"Admin user '{admin_username}' already exists")
 

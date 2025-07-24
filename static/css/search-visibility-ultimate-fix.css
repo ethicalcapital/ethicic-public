@@ -30,42 +30,39 @@ html body .garden-search-container input.garden-search-input {
     -webkit-text-fill-color: #000 !important;
     -moz-text-fill-color: #000 !important;
     -ms-text-fill-color: #000 !important;
-    
+
     /* Background - use theme variables */
     background: var(--color-surface) !important;
     background-color: var(--color-surface) !important;
-    
+
     /* Border - use theme variables */
     border: 1px solid var(--color-border) !important;
-    
+
     /* Cursor */
     caret-color: #000 !important;
-    
+
     /* Remove any effects that might hide text */
     text-shadow: none !important;
     opacity: 1 !important;
     filter: none !important;
     transform: none !important;
-    
+
     /* Font settings */
     font-size: 14px !important;
     font-weight: normal !important;
     font-family: inherit !important;
-    
+
     /* Ensure it's interactive */
     pointer-events: auto !important;
     user-select: text !important;
-    user-select: text !important;
-    user-select: text !important;
-    user-select: text !important;
     cursor: text !important;
-    
+
     /* Layout */
     display: inline-block !important;
     visibility: visible !important;
     z-index: 9999 !important;
     position: relative !important;
-    
+
     /* Padding */
     padding: 8px 12px !important;
 }
@@ -125,4 +122,3 @@ input[type="search"]#search-input {
     -webkit-text-fill-color: var(--color-text-primary) !important;
     background: var(--color-surface) !important;
 }
-

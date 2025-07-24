@@ -213,7 +213,7 @@ main {
 [data-theme="light"] .garden-header .garden-login-dropdown .login-desc,
 [data-theme="light"] .garden-header .garden-login-dropdown .garden-login-item,
 [data-theme="light"] .garden-header .garden-login-dropdown .garden-login-item * {
-    color: inherit !important;  
+    color: inherit !important;
     -webkit-text-fill-color: inherit !important;
 }
 

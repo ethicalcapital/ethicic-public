@@ -27,8 +27,8 @@
 }
 
 .garden-footer {
-    background: #f5f5f5 !important;
-    border-top: 1px solid #e0e0e0 !important;
+    background: #FCEFEF !important;
+    border-top: 4px solid #B57EDC !important;
     padding: 3rem 0 2rem;
     margin-top: 4rem;
     width: 100%;
@@ -75,10 +75,10 @@
     }
 }
 
-/* Dark mode footer - keep dark purple for dark theme */
+/* Dark mode footer - use dark theme colors */
 [data-theme="dark"] .garden-footer {
-    background: #3d2970 !important;
-    border-top-color: #3d2970 !important;
+    background: #1f0322 !important;
+    border-top: 4px solid #B57EDC !important;
     color: #fff !important;
 }
 
