@@ -202,7 +202,6 @@
     "media-feature-name-no-vendor-prefix": true,
     "at-rule-no-vendor-prefix": true,
 
-    "string-quotes": "double",
     "selector-attribute-quotes": "always"
   },
   "ignoreFiles": [
@@ -216,7 +215,6 @@
     "static/css/accessibility-touch-targets.css",
     "static/css/onboarding-mobile-optimization.css",
     "static/css/responsive-breakpoints-fix.css",
-    "static/css/footer-fix.css",
-    "static/css/faq-blog-consistency.css"
+    "static/css/footer-fix.css"
   ]
 }

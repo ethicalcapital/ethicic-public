@@ -171,6 +171,22 @@
     margin-bottom: 1rem;
 }
 
+.contact-cta p {
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+.featured-faq-section p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin: 0 0 2rem;
+    opacity: 0.95;
+    position: relative;
+    z-index: 3;
+    color: rgb(255 255 255 / 90%);
+}
+
 .faq-answer p:last-child {
     margin-bottom: 0;
 }
@@ -237,12 +253,6 @@
     font-weight: 600;
 }
 
-.contact-cta p {
-    margin: 0 0 1rem;
-    font-size: 0.875rem;
-    opacity: 0.9;
-}
-
 .contact-cta .garden-action {
     background: white;
     color: #B57EDC;
@@ -253,6 +263,25 @@
     text-decoration: none;
     display: inline-block;
     transition: all 0.2s ease;
+}
+
+.featured-faq-section .garden-action {
+    background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+    color: #7C4DCD;
+    border: 2px solid rgb(255 255 255 / 50%);
+    padding: 1.25rem 2.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 3;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .contact-cta .garden-action:hover {
@@ -305,6 +334,7 @@
         transform: rotate(0deg) scale(1);
         opacity: 0.5;
     }
+
     50% {
         transform: rotate(180deg) scale(1.1);
         opacity: 0.8;
@@ -341,35 +371,6 @@
     text-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 }
 
-.featured-faq-section p {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    margin: 0 0 2rem;
-    opacity: 0.95;
-    position: relative;
-    z-index: 3;
-    color: rgb(255 255 255 / 90%);
-}
-
-.featured-faq-section .garden-action {
-    background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
-    color: #7C4DCD;
-    border: 2px solid rgb(255 255 255 / 50%);
-    padding: 1.25rem 2.5rem;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 1rem;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    z-index: 3;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
 .featured-faq-section .garden-action::after {
     content: '→';
     transition: transform 0.3s ease;
@@ -383,6 +384,17 @@
 
 .featured-faq-section .garden-action:hover::after {
     transform: translateX(4px);
+}
+
+/* Remove shadows from featured FAQ actions that may come from other CSS files */
+.featured-faq-section .garden-action,
+.featured-faq-actions .garden-action {
+    box-shadow: none !important;
+}
+
+.featured-faq-section .garden-action:hover,
+.featured-faq-actions .garden-action:hover {
+    box-shadow: none !important;
 }
 
 /* ===============================================
