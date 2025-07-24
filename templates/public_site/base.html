@@ -117,11 +117,18 @@
             background-color: #1f0322 !important;
         }
 
-        /* Dark purple footer styling */
+        /* Dark purple footer styling - comprehensive */
         [data-theme="light"] .garden-footer,
         [data-theme="dark"] .garden-footer,
         .garden-footer {
             background-color: #3d2970 !important;
+            color: #ffffff !important;
+        }
+
+        /* All footer text should be white by default */
+        [data-theme="light"] .garden-footer *,
+        [data-theme="dark"] .garden-footer *,
+        .garden-footer * {
             color: #ffffff !important;
         }
 
@@ -133,17 +140,30 @@
             font-weight: var(--font-semibold);
         }
 
+        /* Footer sections */
+        [data-theme="light"] .garden-footer-section,
+        [data-theme="dark"] .garden-footer-section,
+        .garden-footer-section {
+            color: #ffffff !important;
+        }
+
         /* Footer links */
         [data-theme="light"] .garden-footer-link,
         [data-theme="dark"] .garden-footer-link,
-        .garden-footer-link {
+        .garden-footer-link,
+        [data-theme="light"] .garden-footer a,
+        [data-theme="dark"] .garden-footer a,
+        .garden-footer a {
             color: #e0e0e0 !important;
             text-decoration: none;
         }
 
         [data-theme="light"] .garden-footer-link:hover,
         [data-theme="dark"] .garden-footer-link:hover,
-        .garden-footer-link:hover {
+        .garden-footer-link:hover,
+        [data-theme="light"] .garden-footer a:hover,
+        [data-theme="dark"] .garden-footer a:hover,
+        .garden-footer a:hover {
             color: #ffffff !important;
             text-decoration: underline;
         }
@@ -155,9 +175,9 @@
             color: #cccccc !important;
         }
 
-        [data-theme="light"] .garden-footer-legal p,
-        [data-theme="dark"] .garden-footer-legal p,
-        .garden-footer-legal p {
+        [data-theme="light"] .garden-footer-legal *,
+        [data-theme="dark"] .garden-footer-legal *,
+        .garden-footer-legal * {
             color: #cccccc !important;
         }
 
