@@ -34,9 +34,7 @@ class Command(BaseCommand):
         total_posts = posts.count()
 
         if total_posts == 0:
-            self.stdout.write(
-                self.style.WARNING("No blog posts found.")
-            )
+            self.stdout.write(self.style.WARNING("No blog posts found."))
             return
 
         self.stdout.write(f"Found {total_posts} blog posts to process")
@@ -52,9 +50,9 @@ class Command(BaseCommand):
 
                 # Determine if we should update
                 should_update = (
-                    options["force"] or 
-                    current_time is None or 
-                    current_time == 5  # Update the common default value
+                    options["force"]
+                    or current_time is None
+                    or current_time == 5  # Update the common default value
                 )
 
                 if should_update:
@@ -66,8 +64,8 @@ class Command(BaseCommand):
                     else:
                         # Update reading time
                         post.reading_time = calculated_time
-                        post.save(update_fields=['reading_time'])
-                        
+                        post.save(update_fields=["reading_time"])
+
                         self.stdout.write(
                             f"[{i:2d}/{total_posts}] ✅ UPDATED: {post.title[:40]:<40} | "
                             f"{current_time} → {calculated_time} min"
@@ -99,6 +97,8 @@ class Command(BaseCommand):
 
         self.stdout.write("\n💡 NOTES:")
         self.stdout.write("- New posts will automatically calculate reading time")
-        self.stdout.write("- Existing posts with custom times were preserved (use --force to override)")
+        self.stdout.write(
+            "- Existing posts with custom times were preserved (use --force to override)"
+        )
         self.stdout.write("- Reading time is based on 200 words per minute")
         self.stdout.write("- Minimum reading time is 1 minute")
