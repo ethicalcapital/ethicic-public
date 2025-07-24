@@ -127,9 +127,9 @@
         <div class="panel-title">LATEST ARTICLES</div>
     </div>
     <div class="garden-panel__content articles-content">
-        <div class="articles-container">
+        <div class="articles-container blog-layout-grid">
         <!-- Articles Content -->
-        <div class="articles-main" class="full-width-important">
+        <div class="articles-main blog-main-content" class="full-width-important">
         {% if tag %}
         <section class="tag-filter garden-panel">
             <div class="garden-panel__header">
@@ -358,8 +358,8 @@
 
 {% block extra_css %}
 <!-- Unified blog styles - replaces 7 separate CSS files -->
-<link rel="stylesheet" href="{% static 'css/garden-blog.css' %}?v=2025-blog-improvements-1">
-<link rel="stylesheet" href="{% static 'css/garden-blog-sidebar.css' %}?v=2025-blog-improvements-1">
+<link rel="stylesheet" href="{% static 'css/garden-blog.css' %}?v=2025-blog-layout-fix-1">
+<link rel="stylesheet" href="{% static 'css/garden-blog-sidebar.css' %}?v=2025-blog-layout-fix-1">
 {% endblock %}
 
 {% block extra_js %}

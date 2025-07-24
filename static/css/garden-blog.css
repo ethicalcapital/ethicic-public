@@ -1,4 +1,4 @@
-/* stylelint-disable string-quotes, no-descending-specificity */
+/* stylelint-disable no-descending-specificity */
 /* Garden Blog Styling - Fully Integrated with Garden UI Design System */
 
 /* ===============================================
@@ -156,6 +156,33 @@
     margin: 0 auto;
     padding: 0 var(--space-4);
     gap: var(--space-6);
+}
+
+/* Blog layout grid - main content + sidebar */
+.blog-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--space-8);
+    align-items: start;
+}
+
+.blog-main-content {
+    min-width: 0;
+    width: 100%;
+}
+
+/* Responsive blog layout */
+@media (width <= 1024px) {
+    .blog-layout-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+    
+    .blog-sticky-sidebar {
+        position: static;
+        max-width: none;
+        width: 100%;
+    }
 }
 
 /* Article containers */
