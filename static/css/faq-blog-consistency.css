@@ -395,15 +395,20 @@
     transform: translateX(4px);
 }
 
-/* Remove all shadows from featured FAQ section and its contents */
+/* Remove all shadows from featured FAQ section and its contents - ULTRA AGGRESSIVE */
 .featured-faq-section,
 .featured-faq-section *,
 .featured-faq-container,
 .featured-faq-item,
 .featured-faq-content,
 .featured-faq-section .garden-action,
-.featured-faq-actions .garden-action {
+.featured-faq-actions .garden-action,
+html .featured-faq-section,
+body .featured-faq-section,
+[data-theme] .featured-faq-section,
+.faq-page .featured-faq-section {
     box-shadow: none !important;
+    filter: none !important;
 }
 
 .featured-faq-section:hover,
@@ -412,8 +417,13 @@
 .featured-faq-item:hover,
 .featured-faq-content:hover,
 .featured-faq-section .garden-action:hover,
-.featured-faq-actions .garden-action:hover {
+.featured-faq-actions .garden-action:hover,
+html .featured-faq-section:hover,
+body .featured-faq-section:hover,
+[data-theme] .featured-faq-section:hover,
+.faq-page .featured-faq-section:hover {
     box-shadow: none !important;
+    filter: none !important;
 }
 
 /* ===============================================
