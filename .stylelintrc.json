@@ -216,6 +216,7 @@
     "static/css/accessibility-touch-targets.css",
     "static/css/onboarding-mobile-optimization.css",
     "static/css/responsive-breakpoints-fix.css",
-    "static/css/footer-fix.css"
+    "static/css/footer-fix.css",
+    "static/css/faq-blog-consistency.css"
   ]
 }

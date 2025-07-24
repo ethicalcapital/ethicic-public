@@ -273,7 +273,7 @@
     max-width: 900px;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgb(255 255 255 / 15%);
+    border: 2px solid rgb(255 255 255 / 30%);
 }
 
 .featured-faq-section::before {
@@ -301,8 +301,14 @@
 }
 
 @keyframes shimmer {
-    0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.5; }
-    50% { transform: rotate(180deg) scale(1.1); opacity: 0.8; }
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+        opacity: 0.8;
+    }
 }
 
 .featured-faq-section .featured-badge {
@@ -348,7 +354,7 @@
 .featured-faq-section .garden-action {
     background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
     color: #7C4DCD;
-    border: none;
+    border: 2px solid rgb(255 255 255 / 50%);
     padding: 1.25rem 2.5rem;
     border-radius: 12px;
     font-weight: 700;
@@ -360,9 +366,6 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     z-index: 3;
-    box-shadow:
-        0 4px 14px rgb(255 255 255 / 30%),
-        0 2px 6px rgb(124 77 205 / 20%);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -374,10 +377,8 @@
 
 .featured-faq-section .garden-action:hover {
     background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow:
-        0 8px 25px rgb(255 255 255 / 40%),
-        0 4px 12px rgb(124 77 205 / 30%);
+    transform: translateY(-2px);
+    border-color: rgb(255 255 255 / 70%);
 }
 
 .featured-faq-section .garden-action:hover::after {
