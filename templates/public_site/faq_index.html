@@ -5,47 +5,6 @@
 
 {% block content %}
 <div class="garden-container">
-<!-- Streamlined Hero Section -->
-<section class="hero-panel" role="banner" aria-labelledby="hero-heading">
-    <div class="hero-panel-content">
-        <div class="hero-content-grid">
-            <!-- Main Hero Content -->
-            <div class="hero-main">
-                <h1 id="hero-heading" class="hero-title">{{ page.title }}</h1>
-                {% if page.intro_text %}
-                    <div class="hero-subtitle">{{ page.intro_text|richtext }}</div>
-                {% endif %}
-                {% if page.description %}
-                    <div class="hero-description">
-                        {{ page.description|richtext }}
-                    </div>
-                {% endif %}
-            </div>
-
-            <!-- Hero Utilities -->
-            <div class="hero-utilities">
-                <!-- Contact Information -->
-                <div class="hero-contact">
-                    <h3 class="utility-title">NEED HELP?</h3>
-                    <div class="contact-content">
-                        <p class="contact-description">Can't find what you're looking for? We're here to help.</p>
-                    </div>
-                    <a href="/contact/" class="garden-action secondary">CONTACT US</a>
-                </div>
-
-                <!-- Quick Actions -->
-                <div class="hero-quick-actions">
-                    <h3 class="utility-title">QUICK ACCESS</h3>
-                    <div class="quick-actions-links">
-                        <p class="actions-placeholder">Access our most frequently requested resources and support materials.</p>
-                    </div>
-                    <a href="/encyclopedia/" class="garden-action secondary">BROWSE ENCYCLOPEDIA</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- FAQ Articles Section -->
 <section class="articles-section">
     <div class="articles-content">
