@@ -211,12 +211,23 @@
       const tagName = element.tagName.toLowerCase();
       const type = element.type ? element.type.toLowerCase() : '';
 
+      // Comprehensive list of input types where users can type
+      const typingInputTypes = [
+        'text', 'email', 'password', 'search', 'url', 'number', 
+        'tel', 'date', 'datetime-local', 'month', 'time', 'week',
+        'color' // color picker can have manual input in some browsers
+      ];
+
       return (
-        tagName === 'input' &&
-                ['text', 'email', 'password', 'search', 'url', 'number'].includes(type)
+        tagName === 'input' && typingInputTypes.includes(type)
       ) ||
             tagName === 'textarea' ||
-            element.contentEditable === 'true';
+            tagName === 'select' || // Select elements should also disable keyboard nav
+            element.contentEditable === 'true' ||
+            element.isContentEditable === true ||
+            // Check for ARIA role that indicates editable content
+            element.getAttribute('role') === 'textbox' ||
+            element.getAttribute('role') === 'searchbox';
     },
 
     navigate: function (direction) {

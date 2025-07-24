@@ -1,0 +1,202 @@
+/* ========================================
+   ACCESSIBILITY TOUCH TARGET FIXES
+   Ensures all interactive elements meet 44px minimum touch target size
+   WCAG 2.1 AA compliance for mobile accessibility
+   ======================================== */
+
+/* Radio buttons and checkboxes - increase touch area */
+.garden-checkbox,
+.garden-radio {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  min-height: 44px;
+  padding: var(--space-2) 0;
+}
+
+.garden-checkbox input[type="checkbox"],
+.garden-radio input[type="radio"] {
+  /* Visual size remains small for design */
+  width: 18px;
+  height: 18px;
+  margin-right: var(--space-3);
+  margin-top: 2px; /* Center align with text */
+  
+  /* But touch area is expanded */
+  position: relative;
+  cursor: pointer;
+}
+
+/* Expand touch area using pseudo-element */
+.garden-checkbox input[type="checkbox"]::before,
+.garden-radio input[type="radio"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  /* Invisible touch area */
+  background: transparent;
+  border-radius: 50%;
+}
+
+/* Ensure labels are also part of touch target */
+.garden-checkbox label,
+.garden-radio label {
+  cursor: pointer;
+  font-size: var(--font-sm);
+  line-height: 1.4;
+  padding: var(--space-2) 0;
+  flex: 1;
+  /* Ensure text doesn't break touch interaction */
+  user-select: none;
+}
+
+/* Form step indicators - ensure they're touchable */
+.step-indicator,
+.step-dot,
+.progress-step {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Navigation toggle buttons */
+.mobile-menu-toggle,
+.garden-mobile-menu-toggle,
+.mobile-nav-close {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+  cursor: pointer;
+}
+
+/* Search toggle and other small buttons */
+.mobile-search-toggle,
+.notification-bell,
+.theme-toggle,
+.settings-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+  cursor: pointer;
+}
+
+/* Pagination and navigation arrows */
+.pagination-link,
+.nav-arrow,
+.carousel-button {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+}
+
+/* Form navigation buttons (Previous/Next) */
+.form-nav-button,
+.step-button,
+.navigation-button {
+  min-height: 44px;
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal close buttons */
+.modal-close,
+.dialog-close,
+.overlay-close {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Onboarding form specific fixes */
+.onboarding-page .garden-radio,
+.onboarding-page .garden-checkbox {
+  min-height: 44px;
+  margin-bottom: var(--space-2);
+}
+
+.onboarding-page .step-navigation button {
+  min-height: 44px;
+  padding: var(--space-3) var(--space-6);
+}
+
+/* Mobile-specific touch target improvements */
+@media (max-width: 768px) {
+  /* Increase spacing between radio/checkbox options on mobile */
+  .garden-radio,
+  .garden-checkbox {
+    margin-bottom: var(--space-3);
+  }
+  
+  /* Ensure links in mobile menu have adequate touch targets */
+  .mobile-nav-item {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-1);
+  }
+  
+  /* Form fields on mobile */
+  .garden-input,
+  .garden-select,
+  .garden-textarea {
+    min-height: 44px;
+    padding: var(--space-3);
+  }
+  
+  /* Button groups on mobile */
+  .button-group button,
+  .action-group button {
+    min-height: 44px;
+    margin-bottom: var(--space-2);
+  }
+}
+
+/* Focus indicators for touch targets */
+.garden-checkbox input:focus,
+.garden-radio input:focus {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .garden-checkbox input[type="checkbox"]::before,
+  .garden-radio input[type="radio"]::before {
+    border: 2px solid transparent;
+  }
+  
+  .garden-checkbox input:focus::before,
+  .garden-radio input:focus::before {
+    border-color: var(--color-focus);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .step-indicator,
+  .mobile-menu-toggle,
+  .navigation-button {
+    transition: none;
+  }
+}

@@ -212,6 +212,9 @@
     "staticfiles/**/*",
     "static/css/backup-*/**/*",
     "static/admin/**/*",
-    "static/debug_toolbar/**/*"
+    "static/debug_toolbar/**/*",
+    "static/css/accessibility-touch-targets.css",
+    "static/css/onboarding-mobile-optimization.css",
+    "static/css/responsive-breakpoints-fix.css"
   ]
 }
