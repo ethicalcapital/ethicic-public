@@ -111,10 +111,54 @@
             color: #ffffff !important;
         }
 
-        /* Dark purple for dark mode */
+        /* Dark purple for header and footer */
         [data-theme="dark"] .garden-header,
         :root .garden-header {
             background-color: #1f0322 !important;
+        }
+
+        /* Dark purple footer styling */
+        [data-theme="light"] .garden-footer,
+        [data-theme="dark"] .garden-footer,
+        .garden-footer {
+            background-color: #3d2970 !important;
+            color: #ffffff !important;
+        }
+
+        /* Footer headings */
+        [data-theme="light"] .garden-footer h3,
+        [data-theme="dark"] .garden-footer h3,
+        .garden-footer h3 {
+            color: #ffffff !important;
+            font-weight: var(--font-semibold);
+        }
+
+        /* Footer links */
+        [data-theme="light"] .garden-footer-link,
+        [data-theme="dark"] .garden-footer-link,
+        .garden-footer-link {
+            color: #e0e0e0 !important;
+            text-decoration: none;
+        }
+
+        [data-theme="light"] .garden-footer-link:hover,
+        [data-theme="dark"] .garden-footer-link:hover,
+        .garden-footer-link:hover {
+            color: #ffffff !important;
+            text-decoration: underline;
+        }
+
+        /* Footer legal text */
+        [data-theme="light"] .garden-footer-legal,
+        [data-theme="dark"] .garden-footer-legal,
+        .garden-footer-legal {
+            color: #cccccc !important;
+        }
+
+        [data-theme="light"] .garden-footer-legal p,
+        [data-theme="dark"] .garden-footer-legal p,
+        .garden-footer-legal p {
+            color: #cccccc !important;
         }
 
         /* Maya Blue CTAs in dark mode */
