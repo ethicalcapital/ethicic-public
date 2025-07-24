@@ -109,6 +109,7 @@
         flex-wrap: nowrap;
         max-width: none;
     }
+
 /* ===== STATS DISPLAY ===== */
 
     .hero-stats {
@@ -124,6 +125,9 @@
         min-width: 150px;
         max-width: calc(var(--space-24) * 2.08); /* 200px using design system */
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     /* Border around S&P 500 exclusion indicator */
@@ -193,6 +197,7 @@
         display: block;
         font-family: var(--font-sans);
         white-space: nowrap;
+        order: 1; /* Ensure value appears first */
     }
 
     /* Ensure nested spans also get purple color */
@@ -209,6 +214,7 @@
         white-space: nowrap;
         line-height: 1.4;
         margin-top: var(--space-2);
+        order: 2; /* Ensure label appears after value */
     }
 
     .stat-date {
@@ -216,8 +222,9 @@
         color: var(--garden-muted);
         font-style: italic;
         display: block;
-        margin-top: var(--space-1);
+        margin-top: var(--space-2);
         font-family: var(--font-sans);
+        order: 3; /* Ensure date appears last */
     }
 
     /* ===== SECTION DIVIDERS ===== */
@@ -475,6 +482,7 @@
         font-family: var(--font-sans);
         border-radius: var(--radius-full);
         flex-shrink: 0;
+
         /* Ensure proper alignment within process steps */
         align-self: flex-start;
         margin-top: 0;
@@ -572,6 +580,7 @@
 
     .cta-panel {
         background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-variant) 100%);
+
         /* DEBUG removed for production */
         margin-top: var(--space-12);
         position: relative;
@@ -630,6 +639,7 @@
         flex-wrap: nowrap;
         max-width: none;
         padding: 0;
+
         /* DEBUG removed for production */
     }
 
@@ -699,7 +709,7 @@
     /* ===== RESPONSIVE DESIGN ===== */
 
     /* Medium screen responsive - Only collapse on smaller screens */
-    @media (max-width: 900px) {
+    @media (width <= 900px) {
         .hero-stats {
             gap: var(--space-8);
             margin: var(--space-6) 0;
@@ -738,7 +748,7 @@
 
     }
 
-    @media (max-width: 480px) {
+    @media (width <= 480px) {
         .hero-stats {
             gap: var(--space-6);
             justify-content: space-around;
@@ -760,7 +770,7 @@
         }
     }
 
-    @media (min-width: 768px) {
+    @media (width >= 768px) {
         .cta-actions {
             flex-direction: row;
             justify-content: center;

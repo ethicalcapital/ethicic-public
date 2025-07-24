@@ -37,7 +37,7 @@
     .stat-date span,
     span.stat-date {
         color: var(--color-text-primary) !important;
-        opacity: 0.85 !important;
+        opacity: 0.9 !important;
         font-weight: var(--font-medium) !important;
     }
 
@@ -162,6 +162,16 @@
     .philosophy-highlight {
         color: var(--color-primary) !important;
         font-weight: var(--font-semibold);
+    }
+
+    /* ===== LIGHT MODE SPECIFIC FIXES ===== */
+
+    /* Ensure better contrast in light mode */
+    [data-theme="light"] .stat-label,
+    [data-theme="light"] .stat-date {
+        color: var(--color-text-secondary) !important;
+        opacity: 1 !important;
+        font-weight: var(--font-medium) !important;
     }
 
     /* ===== HIGH CONTRAST MODE SUPPORT ===== */
