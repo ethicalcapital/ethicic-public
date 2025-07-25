@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="{% static 'css/faq-blog-consistency.css' %}?v=5">
     <link rel="stylesheet" href="{% static 'css/mobile-full-width.css' %}?v=1">
     <link rel="stylesheet" href="{% static 'css/cta-button-fixes.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/mobile-header-cleanup.css' %}?v=1">
 
     <!-- Meta tags for SEO and social sharing -->
     <meta name="description" content="{% block meta_description %}{% if page %}{{ page.search_description|default:site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% else %}{{ site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% endif %}{% endblock %}">

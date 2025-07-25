@@ -1,0 +1,81 @@
+/* Mobile Header Cleanup - Remove search and login elements */
+
+@media (width <= 768px) {
+    /* Hide search button/toggle completely on mobile */
+    .mobile-search-toggle,
+    .garden-search-container,
+    .garden-search-toggle,
+    button[aria-label*="search"],
+    .search-toggle,
+    .header-search,
+    [class*="search-toggle"],
+    [class*="search-button"] {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    
+    /* Hide login dropdown completely on mobile */
+    .garden-login-btn,
+    .garden-login-dropdown,
+    .login-dropdown,
+    .garden-user-menu,
+    .user-menu,
+    .login-toggle,
+    [class*="login-btn"],
+    [class*="login-dropdown"],
+    [class*="user-menu"] {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    
+    /* Hide any other authentication elements */
+    .garden-nav-actions .garden-action:not(.garden-cta),
+    .nav-user-actions,
+    .auth-buttons,
+    .user-actions {
+        display: none !important;
+    }
+    
+    /* Clean up nav-right spacing after removing elements */
+    .garden-nav-right {
+        gap: 0.5rem !important;
+        min-width: auto !important;
+    }
+    
+    /* Ensure CTA button remains visible and properly styled */
+    .garden-cta,
+    .garden-nav-right .garden-cta,
+    .mobile-nav-cta,
+    [class*="cta"] {
+        display: flex !important;
+        visibility: visible !important;
+    }
+    
+    /* Adjust header content layout after cleanup */
+    .garden-header-content {
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    
+    /* Ensure hamburger menu and logo have proper spacing */
+    .garden-nav-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 1rem !important;
+        flex: 1 !important;
+    }
+    
+    /* Make sure brand/logo is properly positioned */
+    .garden-brand,
+    .garden-logo {
+        flex: 1 !important;
+        text-align: left !important;
+    }
+    
+    /* Clean hamburger menu positioning */
+    .mobile-menu-toggle {
+        order: 0 !important;
+        margin: 0 !important;
+        padding: 0.5rem !important;
+    }
+}
