@@ -49,7 +49,7 @@ a.btn {
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    
+
     /* If text is too long, allow wrapping but maintain proper styling */
     .garden-button.allow-wrap,
     .garden-btn.allow-wrap,

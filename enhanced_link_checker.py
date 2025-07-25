@@ -155,7 +155,9 @@ class EnhancedLinkChecker:
         # Handle special cases
         if url.startswith("//"):
             url = "https:" + url
-        elif url.startswith("/") or not url.startswith(("http://", "https://", "mailto:", "tel:", "ftp://")):
+        elif url.startswith("/") or not url.startswith(
+            ("http://", "https://", "mailto:", "tel:", "ftp://")
+        ):
             url = urljoin(base_url, url)
 
         # Clean up the URL
