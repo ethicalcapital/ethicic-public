@@ -41,7 +41,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: var(--color-primary);
+    background: var(--color-primary) !important;
     z-index: 1000;
     padding: 2rem;
     flex-direction: column;
