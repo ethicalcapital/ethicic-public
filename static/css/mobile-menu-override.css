@@ -23,7 +23,7 @@ html body header.garden-header .garden-header-content .garden-nav-left button.ga
     display: block !important;
     width: 24px;
     height: 2px;
-    background-color: var(--color-text-inverse) !important;
+    background-color: var(--color-text-primary) !important;
     margin: 2px 0 !important;
     transition: all 0.3s ease;
     border-radius: 1px;

@@ -149,6 +149,59 @@ urlpatterns = [
         RedirectView.as_view(url="/disclosures/", permanent=True),
         name="redirect_legal_to_disclosures",
     ),
+    # ============================================================================
+    # BROKEN LINKS FIX REDIRECTS - July 2025
+    # ============================================================================
+    # Form ADV to SEC document
+    path(
+        "disclosures/form-adv/",
+        RedirectView.as_view(
+            url="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf", 
+            permanent=True
+        ),
+        name="redirect_form_adv",
+    ),
+    # Research page to blog
+    path(
+        "research/",
+        RedirectView.as_view(url="/blog/", permanent=True),
+        name="redirect_research_to_blog",
+    ),
+    # Process screening to main process
+    path(
+        "our-process/screening/",
+        RedirectView.as_view(url="/process/", permanent=True),
+        name="redirect_screening",
+    ),
+    # Reach out to contact
+    path(
+        "reach-out/",
+        RedirectView.as_view(url="/contact/", permanent=True),
+        name="redirect_reach_out",
+    ),
+    # Fix strategies typo
+    path(
+        "strategies/global-opportunitites/",
+        RedirectView.as_view(url="/strategies/growth/", permanent=True),
+        name="redirect_strategies_typo",
+    ),
+    # Blog post slug redirects
+    path(
+        "blog/what-does-inflation-mean-to-you/",
+        RedirectView.as_view(url="/blog/the-progressive-view-of-inflation/", permanent=True),
+        name="redirect_inflation_blog",
+    ),
+    path(
+        "blog/what-should-you-expect-when-youre-investing/",
+        RedirectView.as_view(url="/blog/stock-market-performance-what-should-you-expect/", permanent=True),
+        name="redirect_investing_expectations_blog",
+    ),
+    # Charitable giving resources - redirect to correct blog post
+    path(
+        "charitable-giving-resources/",
+        RedirectView.as_view(url="/blog/charitable-giving-resources/", permanent=True),
+        name="redirect_charitable_giving",
+    ),
     # Privacy and Terms redirects to disclosures page
     path(
         "privacy-policy/",

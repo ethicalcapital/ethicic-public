@@ -9,10 +9,12 @@ import datetime
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.http import JsonResponse
 from django.urls import include, path
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.contrib.sitemaps import Sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 
 from public_site.homepage_view_cms import homepage_view_cms
@@ -581,6 +583,8 @@ urlpatterns = [
     path("llms.txt", llms_txt_view, name="llms_txt"),
     # Search engine crawler instructions
     path("robots.txt", robots_txt_view, name="robots_txt"),
+    # SEO sitemap
+    path("sitemap.xml", sitemap, {"sitemaps": {"wagtail": Sitemap}}, name="sitemap"),
     # Admin
     path("admin/", admin.site.urls),
     path("cms/", include(wagtailadmin_urls)),

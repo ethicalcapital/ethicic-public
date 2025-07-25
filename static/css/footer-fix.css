@@ -134,7 +134,10 @@ html[data-theme="light"] body .garden-footer .garden-footer-link,
     font-size: 0.875rem !important;
     transition: color 0.2s !important;
     display: block !important;
-    padding: 0.25rem 0 !important;
+    padding: 0.75rem 0 !important; /* Increased from 0.25rem for better mobile touch targets */
+    min-height: 44px !important; /* WCAG AA minimum touch target size */
+    line-height: 1.4 !important;
+    position: relative !important;
 }
 
 html[data-theme="light"] body.public-site-context .garden-footer .garden-footer-link:hover,
@@ -153,6 +156,37 @@ html[data-theme="light"] body .garden-footer .garden-footer-link:hover,
 
 [data-theme="dark"] .garden-footer-link:hover {
     color: #fff;
+}
+
+/* Mobile-specific footer link improvements */
+@media (max-width: 768px) {
+    /* Even larger touch targets on mobile */
+    .garden-footer-link {
+        padding: 1rem 0.5rem !important; /* More generous padding on mobile */
+        margin: 0.25rem 0 !important; /* Add margin for easier targeting */
+        min-height: 48px !important; /* Slightly larger than 44px minimum for mobile */
+        font-size: 1rem !important; /* Larger text on mobile for readability */
+        border-radius: 4px !important; /* Subtle rounding for modern touch feel */
+    }
+    
+    /* Add visual feedback on touch */
+    .garden-footer-link:active,
+    .garden-footer-link:focus {
+        background-color: rgba(0, 0, 0, 0.05) !important;
+        outline: 2px solid var(--color-primary) !important;
+        outline-offset: 2px !important;
+    }
+    
+    /* Dark theme touch feedback */
+    [data-theme="dark"] .garden-footer-link:active,
+    [data-theme="dark"] .garden-footer-link:focus {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    /* Ensure footer sections have proper spacing on mobile */
+    .garden-footer-links li {
+        margin-bottom: 0.25rem !important; /* Reduce gaps between items */
+    }
 }
 
 /* Footer bottom section */
