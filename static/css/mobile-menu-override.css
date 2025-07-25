@@ -85,7 +85,7 @@ html body header.garden-header .garden-header-content .garden-nav-left button.ga
         flex-direction: column;
         justify-content: flex-start;
         align-items: stretch;
-        padding: 80px 2rem 2rem;
+        padding: 80px 1rem 2rem; /* Reduced padding for full-width consistency */
         overflow-y: auto;
         box-shadow: var(--shadow-lg);
     }
