@@ -1,5 +1,5 @@
 # Missing InvestVegan.org Content Report
-**Generated**: July 24, 2025  
+**Generated**: July 24, 2025
 **Status**: Investigation Complete
 
 ## Overview
@@ -126,7 +126,7 @@ These investvegan.org pages are referenced but should point to existing ethicic.
 
 ---
 
-**Investigation Status**: ✅ Complete  
-**Ready for Implementation**: ⚠️ Pending image recovery  
-**Affected Blog Posts**: 7 posts identified  
+**Investigation Status**: ✅ Complete
+**Ready for Implementation**: ⚠️ Pending image recovery
+**Affected Blog Posts**: 7 posts identified
 **Missing Assets**: 20 images catalogued

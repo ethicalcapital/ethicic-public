@@ -1,6 +1,6 @@
 # Enhanced Link Check Report - ethicic.com
 
-**Generated**: 2025-07-24 at 02:17 PM 
+**Generated**: 2025-07-24 at 02:17 PM
 **Execution Time**: 43.5 seconds
 
 ## 📊 Summary

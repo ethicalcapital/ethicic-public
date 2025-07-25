@@ -21,7 +21,7 @@ This plan addresses the 100 broken links identified in our comprehensive site cr
 path(
     "disclosures/form-adv/",
     RedirectView.as_view(
-        url="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf", 
+        url="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf",
         permanent=True
     ),
     name="redirect_form_adv",
@@ -58,7 +58,7 @@ urlpatterns = [
 ]
 ```
 
-THIS IS APPROVED -- GENERATE THE SITEMAP. 
+THIS IS APPROVED -- GENERATE THE SITEMAP.
 
 
 #### **C. PRI DDQ Page (`/pri-ddq/` - 404)**
@@ -70,7 +70,7 @@ THIS IS APPROVED -- GENERATE THE SITEMAP.
 
 **Need User Input**: What should happen when someone visits `/pri-ddq/`?
 
-WE HAVE A PAGE FOR THIS ALREADY 
+WE HAVE A PAGE FOR THIS ALREADY
 
 #### **D. Performance Page (`/performance/` - 404)**
 **Analysis**: You mentioned performance data lives on strategy pages.
@@ -98,14 +98,14 @@ These blog posts are referenced but return 404:
 
 **Need User Input**: Should these posts be restored, removed, or redirected?
 
-THE POSTS SHOULD BE PUBLISHED -- INVESTIGATE WHY THE PAGES ARE NOT WORKING PROPERLY. 
+THE POSTS SHOULD BE PUBLISHED -- INVESTIGATE WHY THE PAGES ARE NOT WORKING PROPERLY.
 
 ### **1.4 Broken Internal Process/Form Links**
 
 #### **Missing Process Sub-pages:**
 - `/our-process/screening/` → **Redirect to** `/process/` ?
 CHANGE REFERENCES TO POINT TO JUST /PROCESS
-- `/reach-out/` → **Redirect to** `/contact/` 
+- `/reach-out/` → **Redirect to** `/contact/`
 GOOD PLAN
 - `/charitable-giving-resources/` → **Create page or redirect** ?
 THIS IS A BLOG POST THAT SHOULD EXIST
@@ -139,12 +139,12 @@ WE'RE NOT DOING THE FORM REFERENCE THNG ANYMORE
 
 **Recommendation**: Remove references and update content to be self-contained.
 
-EACH OF THESE RESOURCES SHOULD EXIST ON OUR SITE ALREADY. WORK THROUGH THEM MANUALLY AND FIND ISUES. 
+EACH OF THESE RESOURCES SHOULD EXIST ON OUR SITE ALREADY. WORK THROUGH THEM MANUALLY AND FIND ISUES.
 
 **Implementation**: Search and replace across templates/content:
 ```bash
 # Find all references
-grep -r "investvegan.org" templates/ static/ 
+grep -r "investvegan.org" templates/ static/
 # Replace or remove based on context
 ```
 
@@ -172,7 +172,7 @@ Various internal links that need redirects or content creation:
 - `/dont-stop-with-divestment/` → Blog post?
 - `/our-investment-beliefs-and-competitive-advantages/` → `/about/` ?
 
-FIX THESE EACH MANUALLY, ASKING FOR APPROVAL AS YOU GO. 
+FIX THESE EACH MANUALLY, ASKING FOR APPROVAL AS YOU GO.
 
 ---
 
@@ -184,7 +184,7 @@ FIX THESE EACH MANUALLY, ASKING FOR APPROVAL AS YOU GO.
 
 # Form ADV (confirmed by user)
 path("disclosures/form-adv/", RedirectView.as_view(
-    url="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf", 
+    url="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf",
     permanent=True), name="redirect_form_adv"),
 
 # Performance page → strategies

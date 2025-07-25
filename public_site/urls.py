@@ -156,8 +156,8 @@ urlpatterns = [
     path(
         "disclosures/form-adv/",
         RedirectView.as_view(
-            url="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf", 
-            permanent=True
+            url="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf",
+            permanent=True,
         ),
         name="redirect_form_adv",
     ),
@@ -188,12 +188,16 @@ urlpatterns = [
     # Blog post slug redirects
     path(
         "blog/what-does-inflation-mean-to-you/",
-        RedirectView.as_view(url="/blog/the-progressive-view-of-inflation/", permanent=True),
+        RedirectView.as_view(
+            url="/blog/the-progressive-view-of-inflation/", permanent=True
+        ),
         name="redirect_inflation_blog",
     ),
     path(
         "blog/what-should-you-expect-when-youre-investing/",
-        RedirectView.as_view(url="/blog/stock-market-performance-what-should-you-expect/", permanent=True),
+        RedirectView.as_view(
+            url="/blog/stock-market-performance-what-should-you-expect/", permanent=True
+        ),
         name="redirect_investing_expectations_blog",
     ),
     # Charitable giving resources - redirect to correct blog post

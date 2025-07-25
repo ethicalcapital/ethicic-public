@@ -168,7 +168,7 @@ html[data-theme="light"] body .garden-footer .garden-footer-link:hover,
         font-size: 1rem !important; /* Larger text on mobile for readability */
         border-radius: 4px !important; /* Subtle rounding for modern touch feel */
     }
-    
+
     /* Add visual feedback on touch */
     .garden-footer-link:active,
     .garden-footer-link:focus {
@@ -176,13 +176,13 @@ html[data-theme="light"] body .garden-footer .garden-footer-link:hover,
         outline: 2px solid var(--color-primary) !important;
         outline-offset: 2px !important;
     }
-    
+
     /* Dark theme touch feedback */
     [data-theme="dark"] .garden-footer-link:active,
     [data-theme="dark"] .garden-footer-link:focus {
         background-color: rgba(255, 255, 255, 0.1) !important;
     }
-    
+
     /* Ensure footer sections have proper spacing on mobile */
     .garden-footer-links li {
         margin-bottom: 0.25rem !important; /* Reduce gaps between items */

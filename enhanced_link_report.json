@@ -1,0 +1,3888 @@
+{
+  "summary": {
+    "site_url": "https://ethicic.com",
+    "crawl_timestamp": "2025-07-24T14:17:14.058448",
+    "pages_crawled": 136,
+    "unique_links_found": 309,
+    "working_links": 206,
+    "broken_links": 57,
+    "redirect_links": 14,
+    "error_links": 32,
+    "success_rate": 66.7,
+    "execution_time_seconds": 43.5
+  },
+  "link_categories": {
+    "by_type": {
+      "text_link": 128,
+      "meta_reference": 59,
+      "asset": 10,
+      "stylesheet": 55,
+      "form_reference": 4,
+      "telephone": 3,
+      "email": 5,
+      "javascript_reference": 1,
+      "text_content": 2,
+      "image": 42
+    },
+    "by_domain": {
+      "www.autostraddle.com": 1,
+      "ethicic.com": 191,
+      "nca2023.globalchange.gov": 1,
+      "movemoneyshiftpower.com": 1,
+      "www.linkedin.com": 3,
+      "www.healthywealthyroots.org": 1,
+      "fred.stlouisfed.org": 1,
+      "www.science.org": 1,
+      "www.iea.org": 1,
+      "special_schemes": 9,
+      "tidycal.com": 5,
+      "lh7-us.googleusercontent.com": 1,
+      "unpkg.com": 2,
+      "www.financesforfeminists.com": 1,
+      "investvegan.org": 21,
+      "challenges.cloudflare.com": 1,
+      "www.tiktok.com": 1,
+      "www.imf.org": 1,
+      "www.worldbank.org": 1,
+      "www.ted.com": 1,
+      "www.outstanding-returns.com": 1,
+      "reports.adviserinfo.sec.gov": 1,
+      "www.jec.senate.gov": 1,
+      "fonts.googleapis.com": 2,
+      "www.cfainstitute.org": 1,
+      "app.precisefp.com": 2,
+      "www.youtube.com": 1,
+      "app.altruist.com": 1,
+      "advisorservices.schwab.com": 1,
+      "realbankreform.org": 1,
+      "altruist.com": 2,
+      "Issued public": 1,
+      "www.cdr.fyi": 2,
+      "ourworldindata.org": 1,
+      "www.ada.gov": 1,
+      "youtu.be": 1,
+      "lowerhomeenergycosts.org": 1,
+      "www.bothandfinance.com": 2,
+      "www.carboncollective.co": 2,
+      "www.nature.com": 1,
+      "github.com": 2,
+      "am.jpmorgan.com": 1,
+      "www.mymoneystory.com": 1,
+      "www.irisbrilliant.com": 1,
+      "pub-324a685032214395a8bcad478c265d4b.r2.dev": 2,
+      "www.youngandscrappy.com": 1,
+      "www.nbim.no": 1,
+      "fonts.gstatic.com": 1,
+      "bsky.app": 1,
+      "carbontracker.org": 1,
+      "linkedin.com": 1,
+      "www.communityrootsfinancials.com": 1,
+      "financialtherapyassociation.org": 1,
+      "sciencebasedtargets.org": 1,
+      "docs.google.com": 1,
+      "tiktok.com": 1,
+      "wpcarey.asu.edu": 1,
+      "instagram.com": 1,
+      "www.dcceew.gov.au": 1,
+      "fitzlab.shinyapps.io": 1,
+      "planet-tracker.org": 1,
+      "adviserinfo.sec.gov": 1,
+      "www.castillofinancialtherapy.com": 1,
+      "www.morganhcurtis.com": 1,
+      "www.nclc.org": 1,
+      "wsp.wharton.upenn.edu": 1,
+      "www.ustreasuryyieldcurve.com": 1,
+      "twitter.com": 1,
+      "www.advisorperspectives.com": 1,
+      "plantbasedtreaty.org": 1,
+      "miriamzperez.com": 1,
+      "www.dahliawealth.com": 1,
+      "learn.beintentionalfinancial.com": 1,
+      "www.summerhillfirm.com": 1,
+      "www.tiaa.org": 1,
+      "www.w3.org": 1
+    }
+  },
+  "broken_link_categories": {
+    "internal_broken": [
+      {
+        "url": "https://ethicic.com/performance/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/",
+          "https://ethicic.com/blog/seek-perfection-elsewhere/",
+          "https://ethicic.com/faq/where-are-my-assets-held/"
+        ],
+        "context": {
+          "text": "Performance Data",
+          "tag": "a",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/04/image-6-1024x576.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/search/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/seek-perfection-elsewhere/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/what-we-own-and-why/"
+        ],
+        "context": {
+          "text": "this essay",
+          "tag": "a",
+          "page": "https://ethicic.com/blog/what-we-own-and-why/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/strategies/global-opportunitites/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/is-ethical-capital-fiduciary/",
+          "https://ethicic.com/faq/how-are-financially-material-esg-factors-incorpora/",
+          "https://ethicic.com/faq/comparing-forward-looking-yield-apy-and-historical-total-return/"
+        ],
+        "context": {
+          "text": "Global Opportunity",
+          "tag": "a",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/support/how-does-ethical-capital-use-its-influence-to-support-its-mission/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/static/css/header-text-fix.css?v=4",
+          "https://ethicic.com/pri-ddq/"
+        ],
+        "context": {
+          "text": "ethicic.com/support",
+          "tag": "a",
+          "page": "https://ethicic.com/pri-ddq/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/home/h/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/static/js/accessibility-focus-trap.js?v=1"
+        ],
+        "context": {
+          "text": "VIEW DETAILS \u2192",
+          "tag": "a",
+          "page": "https://ethicic.com/static/js/accessibility-focus-trap.js?v=1"
+        }
+      },
+      {
+        "url": "https://ethicic.com/disclosures/form-adv/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/institutions/",
+          "https://ethicic.com/static/css/strategy-nuclear-fix.css?v=3",
+          "https://ethicic.com/faq/setting-up-recurring-deposits/"
+        ],
+        "context": {
+          "text": "Form ADV",
+          "tag": "a",
+          "page": "https://ethicic.com/static/js/accessibility-focus-trap.js?v=1"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/07/Screen-Shot-2022-08-30-at-4.22.27-PM-264x300.webp",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-you-handle-market-volatility/",
+          "https://ethicic.com/faq/is-it-ethical-to-invest-in-real-estate/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/is-it-ethical-to-invest-in-real-estate/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/blog/what-should-you-expect-when-youre-investing/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/about/"
+        ],
+        "context": {
+          "text": "What Should You Expect When You're Investing?Setting realistic expectations",
+          "tag": "a",
+          "page": "https://ethicic.com/about/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/122-1225602_image-lemonade-insurance-logo-hd-png-download.jpg",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/search/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/onboarding/submit/",
+        "type": "form_reference",
+        "error": "HTTP 405",
+        "status_code": 405,
+        "found_on": [
+          "https://ethicic.com/onboarding/"
+        ],
+        "context": {
+          "text": "ABOUT YOUWe're so excited to get to know you! This section will gather the basic information about y",
+          "tag": "form",
+          "page": "https://ethicic.com/onboarding/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/01/2023-Benchmark-Comparison-Global-Opportunities.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/how-are-financially-material-esg-factors-incorpora/",
+          "https://ethicic.com/faq/comparing-forward-looking-yield-apy-and-historical-total-return/",
+          "https://ethicic.com/static/css/blog-formatting-fixes.css?v=2025-01-fix-purple-sections"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/static/css/blog-formatting-fixes.css?v=2025-01-fix-purple-sections"
+        }
+      },
+      {
+        "url": "https://ethicic.com/home/sification/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/static/js/accessibility-focus-trap.js?v=1"
+        ],
+        "context": {
+          "text": "VIEW DETAILS \u2192",
+          "tag": "a",
+          "page": "https://ethicic.com/static/js/accessibility-focus-trap.js?v=1"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/CleanShot-2024-05-23-at-17.29.59.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/there-s-a-lot-of-informed-apprehension-a/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/there-s-a-lot-of-informed-apprehension-a/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/charitable-giving-resources/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/should-i-opt-in-to-the-securities-lending-program/",
+          "https://ethicic.com/static/css/blog-formatting-fixes.css?v=2025-01-fix-purple-sections"
+        ],
+        "context": {
+          "text": "some resources to help you on your philanthropic journey",
+          "tag": "a",
+          "page": "https://ethicic.com/static/css/blog-formatting-fixes.css?v=2025-01-fix-purple-sections"
+        }
+      },
+      {
+        "url": "https://ethicic.com/dont-stop-with-divestment/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/is-ethical-capital-fiduciary/"
+        ],
+        "context": {
+          "text": "click here",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/is-ethical-capital-fiduciary/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/garden/platform/auth/login/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/strategies/income/"
+        ],
+        "context": {
+          "text": "\ud83d\udd10 Platform Login",
+          "tag": "a",
+          "page": "https://ethicic.com/strategies/income/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/Your-paragraph-text-1-717x1024.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2023/12/IMG_0641-1024x683.jpg",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/IMG_0643-683x1024.jpg",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/what-id-tell-your-chief-investment-officer-about-divestment/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/should-i-opt-in-to-the-dividend-reinvestment-program-drip-for-stocks-and-etfs/"
+        ],
+        "context": {
+          "text": "here",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/should-i-opt-in-to-the-dividend-reinvestment-program-drip-for-stocks-and-etfs/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/CleanShot-2024-05-23-at-17.13.22.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/static/css/garden-blog-articles.css?v=20250621-dark-mode-badge-fix",
+          "https://ethicic.com/strategies/"
+        ],
+        "context": {
+          "text": "A stylized heirarchy of ",
+          "tag": "img",
+          "page": "https://ethicic.com/strategies/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/IMG_0634-683x1024.jpg",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/04/image-2-1024x336.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/search/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/06/CleanShot-2024-05-21-at-08.34.46.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/wp-content/uploads/2024/07/Screen-Shot-2022-08-30-at-4.22.27-PM-264x300.webp",
+          "https://ethicic.com/faq/what-types-of-accounts-do-you-offer/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/what-types-of-accounts-do-you-offer/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/newsletter/signup/",
+        "type": "form_reference",
+        "error": "HTTP 405",
+        "status_code": 405,
+        "found_on": [
+          "https://ethicic.com/newsletter/",
+          "https://ethicic.com/static/css/cta-tiffany-blue.css?v=2",
+          "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        ],
+        "context": {
+          "text": "SUBSCRIBE",
+          "tag": "form",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/blog/what-does-inflation-mean-to-you/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/about/"
+        ],
+        "context": {
+          "text": "What Does Inflation Mean to You?Personal impact of economic changes",
+          "tag": "a",
+          "page": "https://ethicic.com/about/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2023/12/IMG_0636-683x1024.jpg",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/01/2023-Return-Attribution-Global-Opportunities-1024x466.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/how-are-financially-material-esg-factors-incorpora/",
+          "https://ethicic.com/faq/comparing-forward-looking-yield-apy-and-historical-total-return/",
+          "https://ethicic.com/static/css/blog-formatting-fixes.css?v=2025-01-fix-purple-sections"
+        ],
+        "context": {
+          "text": "Image showing the return contribution by stock of the Global Opportunities strategy in 2023",
+          "tag": "img",
+          "page": "https://ethicic.com/static/css/blog-formatting-fixes.css?v=2025-01-fix-purple-sections"
+        }
+      },
+      {
+        "url": "https://ethicic.com/workshop-request/",
+        "type": "form_reference",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/static/css/strategy-nuclear-fix.css?v=3"
+        ],
+        "context": {
+          "text": "We are a nonprofit organization or advocacy group\u2713 Eligible for complimentary presentationSubmit Wor",
+          "tag": "form",
+          "page": "https://ethicic.com/static/css/strategy-nuclear-fix.css?v=3"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/04/image-9-1024x687.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/search/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/reach-out/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-i-deposit-funds/",
+          "https://ethicic.com/faq/does-ethical-capital-offer-financial-planning/",
+          "https://ethicic.com/faq/how-do-you-handle-market-volatility/"
+        ],
+        "context": {
+          "text": "contact page",
+          "tag": "a",
+          "page": "https://ethicic.com/blog/a-subtle-rebuttal-to-an-energy-realist/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/04/image-1.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/search/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/07/Planetary-boundaries.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/ethical-capital-investment-collaborative/",
+          "https://ethicic.com/faq/how-are-financially-material-esg-factors-incorpora/",
+          "https://ethicic.com/faq/how-can-i-balance-my-own-needs-and-my-desire-to-give-generously/"
+        ],
+        "context": {
+          "text": "Graphic depicting the nine biological systems that are essential for the biosphere to continue suppo",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-can-i-balance-my-own-needs-and-my-desire-to-give-generously/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/form-library/ask-a-question/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/they-grow-up-so-fast/",
+          "https://ethicic.com/faq/setting-up-recurring-deposits/"
+        ],
+        "context": {
+          "text": "send them in",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/setting-up-recurring-deposits/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/do-you-need-diversification/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/what-we-own-and-why/"
+        ],
+        "context": {
+          "text": "click here",
+          "tag": "a",
+          "page": "https://ethicic.com/blog/what-we-own-and-why/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/IMG_0644-1024x683.jpg",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/our-process/screening/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/is-ethical-capital-fiduciary/"
+        ],
+        "context": {
+          "text": "policy",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/is-ethical-capital-fiduciary/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/06/CleanShot-2024-06-03-at-12.28.22@2x-1-1024x515.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/search/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/form-library/account-transfer-form/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/consultation/",
+          "https://ethicic.com/consultation/",
+          "https://ethicic.com/faq/faq-question-3/"
+        ],
+        "context": {
+          "text": "complete our account transfer form",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/faq-question-3/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/home/e/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/static/js/accessibility-focus-trap.js?v=1"
+        ],
+        "context": {
+          "text": "VIEW DETAILS \u2192",
+          "tag": "a",
+          "page": "https://ethicic.com/static/js/accessibility-focus-trap.js?v=1"
+        }
+      },
+      {
+        "url": "https://ethicic.com/how-i-became-an-active-manager/",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/is-ethical-capital-fiduciary/"
+        ],
+        "context": {
+          "text": "an essay",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/is-ethical-capital-fiduciary/"
+        }
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2023/12/IMG_0642-1024x683.jpg",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/"
+        }
+      }
+    ],
+    "other_broken": [
+      {
+        "url": "https://www.linkedin.com/company/ethicalcapitalcollective/",
+        "type": "text_link",
+        "error": "HTTP 999",
+        "status_code": 999,
+        "found_on": [
+          "https://ethicic.com/static/css/cta-tiffany-blue.css?v=2",
+          "https://ethicic.com/faq/where-should-i-go-to-learn-more-about-managing-my-finances/"
+        ],
+        "context": {
+          "text": "\ud83d\udcbcLinkedIn",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/where-should-i-go-to-learn-more-about-managing-my-finances/"
+        }
+      },
+      {
+        "url": "https://www.linkedin.com/in/srvo0/",
+        "type": "text_link",
+        "error": "HTTP 999",
+        "status_code": 999,
+        "found_on": [
+          "https://ethicic.com/about/"
+        ],
+        "context": {
+          "text": "\ud83d\udd17LinkedIn",
+          "tag": "a",
+          "page": "https://ethicic.com/about/"
+        }
+      },
+      {
+        "url": "https://nca2023.globalchange.gov/",
+        "type": "text_link",
+        "error": "Cannot connect to host nca2023.globalchange.gov:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/static/css/container-structure-enhancements.css?v=1",
+          "https://ethicic.com/blog/how-i-became-an-active-manager/"
+        ],
+        "context": {
+          "text": "fifth National Climate Assessment",
+          "tag": "a",
+          "page": "https://ethicic.com/blog/how-i-became-an-active-manager/"
+        }
+      },
+      {
+        "url": "mailto:ir@ethicalcapital.com?subject=Document Request: ${documentType}",
+        "type": "javascript_reference",
+        "error": "mailto:ir@ethicalcapital.com?subject=Document+Request:+$%7BdocumentType%7D",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/static/css/core-styles.css?v=3",
+          "https://ethicic.com/workshop-request/",
+          "https://ethicic.com/garden/"
+        ],
+        "context": {}
+      },
+      {
+        "url": "mailto:accessibility@ethicic.com",
+        "type": "email",
+        "error": "mailto:accessibility@ethicic.com",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/static/css/onboarding-mobile-optimization.css?v=1"
+        ],
+        "context": {
+          "text": "accessibility@ethicic.com",
+          "tag": "a",
+          "page": "https://ethicic.com/static/css/onboarding-mobile-optimization.css?v=1"
+        }
+      },
+      {
+        "url": "http://Issued public",
+        "type": "text_link",
+        "error": "Cannot connect to host issued public:80 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/should-i-opt-in-to-the-dividend-reinvestment-program-drip-for-stocks-and-etfs/"
+        ],
+        "context": {
+          "text": "public-facing decarbonization guidance",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/should-i-opt-in-to-the-dividend-reinvestment-program-drip-for-stocks-and-etfs/"
+        }
+      },
+      {
+        "url": "mailto:ir@ethicalcapital.com?subject=Document",
+        "type": "email",
+        "error": "mailto:ir@ethicalcapital.com?subject=Document",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/static/css/core-styles.css?v=3",
+          "https://ethicic.com/workshop-request/",
+          "https://ethicic.com/garden/"
+        ],
+        "context": {}
+      },
+      {
+        "url": "mailto:hello@ethicic.com",
+        "type": "email",
+        "error": "mailto:hello@ethicic.com",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/static/css/header-text-fix.css?v=4",
+          "https://ethicic.com/pri-ddq/",
+          "https://ethicic.com/static/css/garden-ui-theme.css?v=3"
+        ],
+        "context": {
+          "text": "\u2709\ufe0f EMAIL",
+          "tag": "a",
+          "page": "https://ethicic.com/about/"
+        }
+      },
+      {
+        "url": "tel:+13476259000",
+        "type": "telephone",
+        "error": "tel:+13476259000",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/disclosures/",
+          "https://ethicic.com/static/js/accessibility-htmx.js?v=1",
+          "https://ethicic.com/faq/how-does-ethical-capital-use-its-influence-to-support-its-mission/"
+        ],
+        "context": {
+          "text": "+1 347 625 9000",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/how-does-ethical-capital-use-its-influence-to-support-its-mission/"
+        }
+      },
+      {
+        "url": "tel:+1 347 625 9000",
+        "type": "telephone",
+        "error": "tel:+1%20347%20625%209000",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/static/css/garden-ui-theme.css?v=3"
+        ],
+        "context": {
+          "text": "CALL US",
+          "tag": "a",
+          "page": "https://ethicic.com/static/css/garden-ui-theme.css?v=3"
+        }
+      },
+      {
+        "url": "mailto:sloane@ethicic.com",
+        "type": "email",
+        "error": "mailto:sloane@ethicic.com",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/disclosures/"
+        ],
+        "context": {
+          "text": "sloane@ethicic.com",
+          "tag": "a",
+          "page": "https://ethicic.com/disclosures/"
+        }
+      },
+      {
+        "url": "mailto:ir@ethicalcapital.com",
+        "type": "email",
+        "error": "mailto:ir@ethicalcapital.com",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/static/css/core-styles.css?v=3",
+          "https://ethicic.com/workshop-request/",
+          "https://ethicic.com/garden/"
+        ],
+        "context": {}
+      },
+      {
+        "url": "tel:+1-555-0123",
+        "type": "telephone",
+        "error": "tel:+1-555-0123",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/static/css/onboarding-mobile-optimization.css?v=1"
+        ],
+        "context": {
+          "text": "+1 (555) 012-3456",
+          "tag": "a",
+          "page": "https://ethicic.com/static/css/onboarding-mobile-optimization.css?v=1"
+        }
+      }
+    ],
+    "access_denied": [
+      {
+        "url": "https://www.science.org/doi/10.1126/sciadv.adh2458",
+        "type": "text_link",
+        "error": "HTTP 403",
+        "status_code": 403,
+        "found_on": [
+          "https://ethicic.com/faq/ethical-capital-investment-collaborative/",
+          "https://ethicic.com/faq/how-are-financially-material-esg-factors-incorpora/",
+          "https://ethicic.com/faq/how-can-i-balance-my-own-needs-and-my-desire-to-give-generously/"
+        ],
+        "context": {
+          "text": "enumerated",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/how-can-i-balance-my-own-needs-and-my-desire-to-give-generously/"
+        }
+      },
+      {
+        "url": "https://www.tiktok.com/@ethicalcapital",
+        "type": "text_link",
+        "error": "HTTP 403",
+        "status_code": 403,
+        "found_on": [
+          "https://ethicic.com/static/css/cta-tiffany-blue.css?v=2",
+          "https://ethicic.com/faq/where-should-i-go-to-learn-more-about-managing-my-finances/"
+        ],
+        "context": {
+          "text": "\ud83c\udfb5TikTok",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/where-should-i-go-to-learn-more-about-managing-my-finances/"
+        }
+      },
+      {
+        "url": "https://twitter.com/sloaneortel",
+        "type": "text_link",
+        "error": "HTTP 403",
+        "status_code": 403,
+        "found_on": [
+          "https://ethicic.com/about/"
+        ],
+        "context": {
+          "text": "\ud83d\udc26Twitter",
+          "tag": "a",
+          "page": "https://ethicic.com/about/"
+        }
+      }
+    ],
+    "external_404": [
+      {
+        "url": "https://app.precisefp.com/w/ixj9du",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/is-ethical-capital-fiduciary/",
+          "https://ethicic.com/search/"
+        ],
+        "context": {
+          "text": "click here",
+          "tag": "a",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://www.carboncollective.co/hs-fs/hubfs/Screen Shot 2022-08-30 at 4.30.16 PM.png?width=218&name=Screen Shot 2022-08-30 at 4.30.16 PM.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-you-handle-market-volatility/",
+          "https://ethicic.com/faq/is-it-ethical-to-invest-in-real-estate/"
+        ],
+        "context": {
+          "text": "Screen Shot 2022-08-30 at 4.30.16 PM",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/is-it-ethical-to-invest-in-real-estate/"
+        }
+      },
+      {
+        "url": "https://www.irisbrilliant.com/individual-money-coaching",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/static/css/onboarding-mobile-optimization.css?v=1"
+        ],
+        "context": {
+          "text": "Individual Money Coaching with Iris Brilliant",
+          "tag": "a",
+          "page": "https://ethicic.com/static/css/onboarding-mobile-optimization.css?v=1"
+        }
+      },
+      {
+        "url": "https://www.youngandscrappy.com/Financial-coaching-services",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/static/css/onboarding-mobile-optimization.css?v=1"
+        ],
+        "context": {
+          "text": "Young & Scrappy",
+          "tag": "a",
+          "page": "https://ethicic.com/static/css/onboarding-mobile-optimization.css?v=1"
+        }
+      },
+      {
+        "url": "https://fonts.gstatic.com",
+        "type": "asset",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com",
+          "https://ethicic.com/onboarding/",
+          "https://ethicic.com/newsletter/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "link",
+          "page": "https://ethicic.com/about/"
+        }
+      },
+      {
+        "url": "https://bsky.app/profile/sloaneortel.bsky.social",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/about/"
+        ],
+        "context": {
+          "text": "\ud83e\udd8bBluesky",
+          "tag": "a",
+          "page": "https://ethicic.com/about/"
+        }
+      },
+      {
+        "url": "https://app.precisefp.com/w/bi4ccx",
+        "type": "text_link",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/how-does-your-organisation-audit-the-quality-of-it/",
+          "https://ethicic.com/search/"
+        ],
+        "context": {
+          "text": "click here",
+          "tag": "a",
+          "page": "https://ethicic.com/search/"
+        }
+      },
+      {
+        "url": "https://fonts.googleapis.com",
+        "type": "asset",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com",
+          "https://ethicic.com/onboarding/",
+          "https://ethicic.com/newsletter/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "link",
+          "page": "https://ethicic.com/about/"
+        }
+      },
+      {
+        "url": "https://www.carboncollective.co/hs-fs/hubfs/Screen Shot 2022-08-30 at 4.30.22 PM.png?width=334&name=Screen Shot 2022-08-30 at 4.30.22 PM.png",
+        "type": "image",
+        "error": "HTTP 404",
+        "status_code": 404,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-you-handle-market-volatility/",
+          "https://ethicic.com/faq/is-it-ethical-to-invest-in-real-estate/"
+        ],
+        "context": {
+          "text": "Screen Shot 2022-08-30 at 4.30.22 PM",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/is-it-ethical-to-invest-in-real-estate/"
+        }
+      }
+    ],
+    "investvegan_broken": [
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/01/CleanShot-2024-01-28-at-10.08.46-1024x185.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/are-we-invested-in-congolese-mining/",
+          "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.25.08-1024x405.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.22.36-1024x333.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/01/CleanShot-2024-01-28-at-10.10.21-1024x818.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/are-we-invested-in-congolese-mining/",
+          "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/02/CleanShot-2024-02-12-at-21.58.51-1024x174.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/advisers/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/advisers/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/01/CleanShot-2024-01-28-at-10.06.18-1024x390.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/are-we-invested-in-congolese-mining/",
+          "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.42.12.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/02/CleanShot-2024-02-12-at-21.55.02-1024x59.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/advisers/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/advisers/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/01/CleanShot-2024-01-28-at-10.05.05-1024x278.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/are-we-invested-in-congolese-mining/",
+          "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/contact-us/",
+        "type": "text_link",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        ],
+        "context": {
+          "text": "us",
+          "tag": "a",
+          "page": "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/05/image-1-1024x576.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/there-s-a-lot-of-informed-apprehension-a/"
+        ],
+        "context": {
+          "text": "Chart of the largest intra-year decline for the S&P 500 since 1980 alongside each full year's perfor",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/there-s-a-lot-of-informed-apprehension-a/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.48.09.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/02/CleanShot-2024-02-12-at-22.00.24.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/advisers/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/advisers/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.39.45.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/02/CleanShot-2024-02-12-at-22.01.48.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/advisers/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/advisers/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/gimmewebinar",
+        "type": "text_link",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/blog/seek-perfection-elsewhere/",
+          "https://ethicic.com/static/css/garden-blog-articles.css?v=20250621-dark-mode-badge-fix",
+          "https://ethicic.com/strategies/"
+        ],
+        "context": {
+          "text": "regular webinars",
+          "tag": "a",
+          "page": "https://ethicic.com/strategies/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.29.43-422x1024.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/05/image-2.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/there-s-a-lot-of-informed-apprehension-a/"
+        ],
+        "context": {
+          "text": "Chart of the highest and lowest real returns on stocks, bonds, and treasury bills over various time ",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/there-s-a-lot-of-informed-apprehension-a/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/our-process/",
+        "type": "text_link",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/static/css/header-height-fix.css?v=4"
+        ],
+        "context": {
+          "text": "our process",
+          "tag": "a",
+          "page": "https://ethicic.com/static/css/header-height-fix.css?v=4"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.27.37.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-deposit-funds/"
+        }
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/01/CleanShot-2024-01-28-at-10.03.23-1024x300.png",
+        "type": "image",
+        "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
+        "status_code": null,
+        "found_on": [
+          "https://ethicic.com/faq/are-we-invested-in-congolese-mining/",
+          "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/"
+        ],
+        "context": {
+          "text": "",
+          "tag": "img",
+          "page": "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/"
+        }
+      }
+    ]
+  },
+  "detailed_results": {
+    "working": [
+      {
+        "url": "https://www.autostraddle.com/trans-financial-planning/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.21972393989562988,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/does-ethical-capital-offer-financial-planning/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.29961323738098145,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/who-can-invest-with-ethical-capital-investment-collaborative/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.32018613815307617,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/blog-button-fixes.css?v=2025-01-fix-visibility",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.1417698860168457,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://movemoneyshiftpower.com/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.33824801445007324,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/p-there-are-countless-ways-to-hold-cash-in-your-in/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.209428071975708,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/is-it-ethical-to-invest-in-real-estate/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2669808864593506,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/cta-tiffany-blue.css?v=2",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07177591323852539,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/search-fixes.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.05822420120239258,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.25519394874572754,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.linkedin.com/pulse/navigating-money-movement-contradictions-together-jasmine-rashid-wjj7c/?utm_source=share&utm_medium=member_ios&utm_campaign=share_via",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.9290800094604492,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/they-grow-up-so-fast/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.20881199836730957,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.healthywealthyroots.org/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.25635790824890137,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://fred.stlouisfed.org/series/T10Y2Y",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.28096795082092285,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/whats-the-best-way-to-refer-a-friend-to-ethical-capital/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22484707832336426,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.iea.org/reports/oil-2024",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 1.2851588726043701,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/button-on-color-fix.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.059760093688964844,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/onboarding/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.28661298751831055,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/header-text-fix.css?v=4",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06287217140197754,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/what-is-minimum-investment/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.23807525634765625,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/accessibility-touch-targets.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.1615920066833496,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/should-i-opt-in-to-the-dividend-reinvestment-program-drip-for-stocks-and-etfs/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2501230239868164,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/is-ethical-capital-fiduciary/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.33550119400024414,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://tidycal.com/ecic",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.18545269966125488,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/faq-question-3/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.35857415199279785,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://lh7-us.googleusercontent.com/docsz/AD_4nXe616uR0Ks1VTv2VO2eOTnvlREHqn0IlbVXDr2ccuVvooOYuQsFwiLENJvoQgjrHYE-qIPx85U8ISUY-_fkp_UN2xg03fGbyIHdv7koSrxX7ygVtnLnFOr2CsmyIbsqbTtizo8JqWYqBGOawQcBbDzf-nNu?key=onMyQ6TvvwXik9hTgP-qag",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.4390549659729004,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22202801704406738,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/disclosures/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.34737205505371094,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-blog.css?v=2025-article-cards-enhanced",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.08534717559814453,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/layers/33-consultation-page.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06804704666137695,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-blog-sidebar.css?v=2025-article-cards-enhanced",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.05430316925048828,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/should-i-opt-in-to-the-securities-lending-program/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22132420539855957,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://unpkg.com/alpinejs@3.13.7/dist/cdn.min.js",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2785918712615967,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.financesforfeminists.com/coaching",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.258465051651001,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/comparing-forward-looking-yield-apy-and-historical-total-return/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.24812865257263184,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/newsletter/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3010528087615967,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/search-visibility-ultimate-fix.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.11829710006713867,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-blog.css",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07382822036743164,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/search/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.19176697731018066,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.imf.org/en/Publications/WP/Issues/2024/06/20/The-Price-of-De-Risking-Reshoring-Friend-Shoring-and-Quality-Downgrading-545774",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.11035704612731934,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/strategies/income/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.27196693420410156,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.worldbank.org/en/news/press-release/2024/04/14/the-great-reversal-prospects-risks-and-policies-in-international-development-association-countries",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.09786796569824219,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/financial-literacy-is-a-journey-not-a-de/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.23443388938903809,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/strategies/growth/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3064730167388916,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.ted.com/talks/luis_von_ahn_massive_scale_online_collaboration",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 1.2082109451293945,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/blog-unified.css?v=2025-width-fix-3",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.1625819206237793,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/faq-auto-37/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2965869903564453,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/will-you-invest-in-my-startup/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2966487407684326,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/page-width-fix.css?v=2",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07431697845458984,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/js/strategy-card-color-fix.js?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.0717930793762207,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.outstanding-returns.com/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.19241595268249512,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.19222116470336914,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/does-your-organisation-have-a-responsible-investme/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.27402377128601074,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/institutions/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.21140480041503906,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/strategy-nuclear-fix.css?v=3",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07467007637023926,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.jec.senate.gov/public/index.cfm/republicans/2019/9/long-term-trends-in-deaths-of-despair",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 1.2277791500091553,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-blog.css?v=20250621-dark-mode-badge-fix",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06709098815917969,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.1616361141204834,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/where-are-my-assets-held/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.24074888229370117,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/how-do-you-handle-market-volatility/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3362579345703125,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/setting-up-recurring-deposits/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3376030921936035,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/how-does-your-organisation-audit-the-quality-of-it/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2290661334991455,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/what-are-your-fees/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2428128719329834,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/our-investment-philosophy-is-built-on-th/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.337116003036499,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/why-we-own-farmer-mac/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22229790687561035,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://tidycal.com/ecic/institutional",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.1590120792388916,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/encyclopedia-page-fix.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.0637810230255127,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-blog-streamfield.css",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.0744631290435791,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/16-homepage.css?v=2025071202",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06606507301330566,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.youtube.com/@EthicalCapital",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3825201988220215,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/what-information-is-disclosed-in-regular-client-re/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.24880194664001465,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/strategies/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2424020767211914,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://app.altruist.com/login",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.18028879165649414,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/what-is-your-organisations-overall-approach-to-responsible-investment/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22653484344482422,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/there-s-a-lot-of-informed-apprehension-a/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3696119785308838,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/why-esg-investing-has-been-such-a-letdown/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.30132365226745605,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/how-i-became-an-active-manager/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.30500125885009766,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/js/cta-button-fix.js?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.201308012008667,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/faq-question-2/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22390508651733398,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/container-structure-enhancements.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.0779411792755127,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/strategy-table-contrast-fix.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07494211196899414,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/process/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.23273277282714844,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/are-we-invested-in-congolese-mining/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2655344009399414,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/strategy-right-rail-buttons.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07054686546325684,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/3-practical-questions-for-corporate-stewards-about-decarbonization/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2993278503417969,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/pricing/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.30865001678466797,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/contact-page-fixes.css?v=2025071101",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06591582298278809,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.19549798965454102,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/what-types-of-accounts-do-you-offer/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22917580604553223,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/strategies/diversification/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22509479522705078,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://realbankreform.org/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.24660682678222656,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2237379550933838,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://altruist.com/legal/altruist-llc-fee-schedule/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.28113794326782227,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-data-table.css",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.1717219352722168,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/pricing-features-fix.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06530189514160156,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/process-dark-mode-fix.css?v=6",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07963800430297852,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/button-alignment-fix.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07484173774719238,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ourworldindata.org/co2-and-greenhouse-gas-emissions",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.18211007118225098,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/core-styles.css?v=3",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06730079650878906,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/how-can-i-balance-my-own-needs-and-my-desire-to-give-generously/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.33522510528564453,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/layers/18-pricing.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.11236023902893066,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/where-returns-came-from-in-2023/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.21596193313598633,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/when-evaluating-investments-it-s-crucial/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22561287879943848,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.ada.gov/filing_complaint.htm",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.16233491897583008,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/about/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2409210205078125,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://tidycal.com/ecic/adviser",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.18529295921325684,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/accessibility-contrast-fixes.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.10546994209289551,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/solutions/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22149395942687988,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/pri-ddq/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.23548388481140137,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://lowerhomeenergycosts.org/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.1692028045654297,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.bothandfinance.com/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.1029057502746582,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/onboarding-mobile-optimization.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.09684133529663086,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/seek-perfection-elsewhere/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22040605545043945,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/where-should-i-go-to-learn-more-about-managing-my-finances/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22561216354370117,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/layers/27-institutional-page.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07695579528808594,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-blog-panels.css?v=20250621-dark-mode-badge-fix",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07736897468566895,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/the-climate-conundrum/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.24773001670837402,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.bothandfinance.com/courses/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.024352073669433594,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/cutting-interest-rates-wont-change-much/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.31353092193603516,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://github.com/ethicalcapital/sage",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.7365028858184814,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/how-do-i-add-a-beneficiary-to-my-account/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.24874281883239746,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://am.jpmorgan.com/us/en/asset-management/adv/insights/market-insights/guide-to-the-markets/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.38854503631591797,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/layers/40-adviser-page.css?v=4",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.11565899848937988,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.mymoneystory.com/coaching",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2173459529876709,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/can-i-exclude-certain-stocks/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2628941535949707,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/should-i-opt-into-the-sweep-program/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2275681495666504,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/wcag-contrast-fixes.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.04351019859313965,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/about-page-v2.css",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.08390283584594727,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://pub-324a685032214395a8bcad478c265d4b.r2.dev/headshot sketch_slim.png",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.1900022029876709,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-ui-theme.css?v=3",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07056283950805664,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/header-height-fix.css?v=4",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06406712532043457,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/is-ethical-capital-a-mutual-fund-etf-or-hedge-fund/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.23193001747131348,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://tidycal.com/ecic/discovery",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.15939593315124512,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/what-id-tell-your-chief-investment-officer-about-divestment/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.27991414070129395,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.nbim.no/en/responsible-investment/ethical-exclusions/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3272740840911865,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/stock-market-performance-what-should-you-expect/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22993683815002441,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/consultation/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.23733282089233398,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/footer-fix.css?v=15",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.05779886245727539,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-blog-hero.css?v=20250621-bottom-align-utilities",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06624317169189453,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://carbontracker.org/investors-need-to-look-carefully-at-stranded-asset-risks/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.4916069507598877,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/how-do-i-add-or-update-a-beneficiary/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.23629474639892578,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.cdr.fyi/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.5109951496124268,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/images/og-default.svg",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.10089492797851562,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/media/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.21379804611206055,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.communityrootsfinancials.com/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.6024792194366455,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/when-gabe-pulled-together-some-resources/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.23666906356811523,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/layers/43-garden-overview.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.0901331901550293,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/how-are-financially-material-esg-factors-incorpora/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2785611152648926,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/blog-post-garden-ui-fix.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07703495025634766,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://financialtherapyassociation.org/find-a-financial-therapist/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 1.478281021118164,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/faq-question-8/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22664999961853027,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/a-subtle-rebuttal-to-an-energy-realist/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2628309726715088,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/js/accessibility-htmx.js?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06942605972290039,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://sciencebasedtargets.org/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.5820820331573486,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/faq-blog-consistency.css?v=5",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.09420228004455566,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/mobile-nav-fix.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.09136605262756348,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/responsive-breakpoints-fix.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07567691802978516,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://docs.google.com/document/d/1WLEBTU1jFoUuEGSLhwnmMxloOAoj8XlfiZ1MkCzektc/edit?usp=sharing",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.451448917388916,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/process-page-working.css?v=6",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.072174072265625,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/onboarding-comprehensive.css",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.13195395469665527,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://wpcarey.asu.edu/department-finance/faculty-research/do-stocks-outperform-treasury-bills",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.425368070602417,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/how-do-you-screen-companies/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.24433374404907227,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.dcceew.gov.au/parks-heritage/great-barrier-reef/protecting/our-investments",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.7048821449279785,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/how-do-i-deposit-funds/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.23326897621154785,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://fitzlab.shinyapps.io/cityapp/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.5009698867797852,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/mobile-menu-clean.css?v=2",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06448793411254883,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://planet-tracker.org/petchem-investors/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 1.7074971199035645,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/what-my-grandparents-collection-of-cursed-antique-dolls-taught-me-about-valuation/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2616729736328125,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2545149326324463,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/fix-white-line.css?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06397199630737305,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/layers/30-strategy-page.css?v=9-right-rail-buttons",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.09269475936889648,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/do-you-offer-tax-loss-harvesting/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.326246976852417,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/advisers/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.19256019592285156,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/favicon.svg",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.05625772476196289,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-blog-panels.css?v=2025-strategies-update",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.08677291870117188,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://adviserinfo.sec.gov/individual/summary/5388169",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.8430378437042236,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/what-are-your-investment-minimums/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22501301765441895,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.castillofinancialtherapy.com/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.22370100021362305,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/how-does-ethical-capital-use-its-influence-to-support-its-mission/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2236931324005127,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.morganhcurtis.com/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2246248722076416,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/contact/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.25117015838623047,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/js/accessibility-focus-trap.js?v=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3413679599761963,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://altruist.com/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.08890175819396973,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/garden-blog-articles.css?v=20250621-dark-mode-badge-fix",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.06059098243713379,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.nclc.org/wp-content/uploads/2023/11/FHFA-letter-Nov30-2023.pdf",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.6235179901123047,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/login-dropdown-fix.css?v=5",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.11333990097045898,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.ustreasuryyieldcurve.com/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.1325240135192871,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.advisorperspectives.com/articles/2024/06/24/realist-assesses-energy-transition-laurence-siegel",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3314950466156006,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/how-do-i-transfer-my-old-401k-or-403b-to-ethical-capital/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.24312686920166016,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://plantbasedtreaty.org/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.21001005172729492,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/layers/30-solutions-page.css",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.07909727096557617,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://miriamzperez.com/consulting/ynabcoaching/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2765841484069824,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://tidycal.com/ecic/interview",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.16453814506530762,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/static/css/blog-formatting-fixes.css?v=2025-01-fix-purple-sections",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.11834096908569336,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://learn.beintentionalfinancial.com/TakeControl?r_done=1",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3184661865234375,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/ethical-capital-investment-collaborative/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2661399841308594,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.summerhillfirm.com/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.20949888229370117,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/accessibility/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3870561122894287,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.tiaa.org/public/support/forms/forms-to-take-money-out",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.129533052444458,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/what-makes-you-different-from-other-esg-funds/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2257070541381836,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/faq/withdrawing-your-funds/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.2294621467590332,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/blog/what-we-own-and-why/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.29540038108825684,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/encyclopedia/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.29717183113098145,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/garden/",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.20524191856384277,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://pub-324a685032214395a8bcad478c265d4b.r2.dev/Sloane-Ortel-Speaker-Bio.pdf",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.09064602851867676,
+        "redirect_url": "",
+        "error_message": ""
+      },
+      {
+        "url": "https://github.com/ethicalcapital/sage/blob/main/screening_policy.md",
+        "status": "working",
+        "status_code": 200,
+        "response_time": 0.3878672122955322,
+        "redirect_url": "",
+        "error_message": ""
+      }
+    ],
+    "broken": [
+      {
+        "url": "https://ethicic.com/performance/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.19275188446044922,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://www.linkedin.com/company/ethicalcapitalcollective/",
+        "status": "broken",
+        "status_code": 999,
+        "response_time": 0.13148093223571777,
+        "redirect_url": "",
+        "error_message": "HTTP 999"
+      },
+      {
+        "url": "https://www.science.org/doi/10.1126/sciadv.adh2458",
+        "status": "broken",
+        "status_code": 403,
+        "response_time": 0.07534122467041016,
+        "redirect_url": "",
+        "error_message": "HTTP 403"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/04/image-6-1024x576.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5370850563049316,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/seek-perfection-elsewhere/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.3308727741241455,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/strategies/global-opportunitites/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.2530088424682617,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/support/how-does-ethical-capital-use-its-influence-to-support-its-mission/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.3270862102508545,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/home/h/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.22516775131225586,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/disclosures/form-adv/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.2252178192138672,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/07/Screen-Shot-2022-08-30-at-4.22.27-PM-264x300.webp",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.48766589164733887,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://www.tiktok.com/@ethicalcapital",
+        "status": "broken",
+        "status_code": 403,
+        "response_time": 0.18687200546264648,
+        "redirect_url": "",
+        "error_message": "HTTP 403"
+      },
+      {
+        "url": "https://ethicic.com/blog/what-should-you-expect-when-youre-investing/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.21499300003051758,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/122-1225602_image-lemonade-insurance-logo-hd-png-download.jpg",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5220479965209961,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/onboarding/submit/",
+        "status": "broken",
+        "status_code": 405,
+        "response_time": 0.21546196937561035,
+        "redirect_url": "",
+        "error_message": "HTTP 405"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/01/2023-Benchmark-Comparison-Global-Opportunities.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.492419958114624,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/home/sification/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.22276902198791504,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://app.precisefp.com/w/ixj9du",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.38483715057373047,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/CleanShot-2024-05-23-at-17.29.59.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5127859115600586,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/charitable-giving-resources/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.21333909034729004,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/dont-stop-with-divestment/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.23952889442443848,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/garden/platform/auth/login/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.2864062786102295,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/Your-paragraph-text-1-717x1024.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.521075963973999,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2023/12/IMG_0641-1024x683.jpg",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5155799388885498,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/IMG_0643-683x1024.jpg",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.599686861038208,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/what-id-tell-your-chief-investment-officer-about-divestment/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.20260095596313477,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/CleanShot-2024-05-23-at-17.13.22.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5283401012420654,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/IMG_0634-683x1024.jpg",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5154738426208496,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/04/image-2-1024x336.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5719568729400635,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://www.carboncollective.co/hs-fs/hubfs/Screen Shot 2022-08-30 at 4.30.16 PM.png?width=218&name=Screen Shot 2022-08-30 at 4.30.16 PM.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.47272706031799316,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/06/CleanShot-2024-05-21-at-08.34.46.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.529541015625,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://www.irisbrilliant.com/individual-money-coaching",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.25593113899230957,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/newsletter/signup/",
+        "status": "broken",
+        "status_code": 405,
+        "response_time": 0.2250356674194336,
+        "redirect_url": "",
+        "error_message": "HTTP 405"
+      },
+      {
+        "url": "https://ethicic.com/blog/what-does-inflation-mean-to-you/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.23985695838928223,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://www.youngandscrappy.com/Financial-coaching-services",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.435697078704834,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://fonts.gstatic.com",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.10418391227722168,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://bsky.app/profile/sloaneortel.bsky.social",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.1804490089416504,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2023/12/IMG_0636-683x1024.jpg",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5204358100891113,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/01/2023-Return-Attribution-Global-Opportunities-1024x466.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5252277851104736,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/workshop-request/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.25774168968200684,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/04/image-9-1024x687.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.560197114944458,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/reach-out/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.22741079330444336,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://app.precisefp.com/w/bi4ccx",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.36474180221557617,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/04/image-1.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.2401580810546875,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/07/Planetary-boundaries.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5417861938476562,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/form-library/ask-a-question/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.20355820655822754,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/do-you-need-diversification/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.22846007347106934,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/05/IMG_0644-1024x683.jpg",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5325667858123779,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/our-process/screening/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.21445393562316895,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2024/06/CleanShot-2024-06-03-at-12.28.22@2x-1-1024x515.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5404007434844971,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/form-library/account-transfer-form/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.25249814987182617,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/home/e/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.22411489486694336,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/how-i-became-an-active-manager/",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.21988320350646973,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://twitter.com/sloaneortel",
+        "status": "broken",
+        "status_code": 403,
+        "response_time": 0.24216175079345703,
+        "redirect_url": "",
+        "error_message": "HTTP 403"
+      },
+      {
+        "url": "https://www.linkedin.com/in/srvo0/",
+        "status": "broken",
+        "status_code": 999,
+        "response_time": 0.120635986328125,
+        "redirect_url": "",
+        "error_message": "HTTP 999"
+      },
+      {
+        "url": "https://fonts.googleapis.com",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.11046910285949707,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://ethicic.com/wp-content/uploads/2023/12/IMG_0642-1024x683.jpg",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.5179347991943359,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      },
+      {
+        "url": "https://www.carboncollective.co/hs-fs/hubfs/Screen Shot 2022-08-30 at 4.30.22 PM.png?width=334&name=Screen Shot 2022-08-30 at 4.30.22 PM.png",
+        "status": "broken",
+        "status_code": 404,
+        "response_time": 0.8001589775085449,
+        "redirect_url": "",
+        "error_message": "HTTP 404"
+      }
+    ],
+    "redirects": [
+      {
+        "url": "https://challenges.cloudflare.com/turnstile/v0/api.js",
+        "status": "redirect",
+        "status_code": 302,
+        "response_time": 0.13205409049987793,
+        "redirect_url": "https://challenges.cloudflare.com/turnstile/v0/b/8359bcf47b68/api.js",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.cfainstitute.org/en/research/foundation/2022/rfbr-managing-material-risk",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 0.08002901077270508,
+        "redirect_url": "https://www.cfainstitute.org/research/foundation/2022/rfbr-managing-material-risk",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.cdr.fyi/blog/p/SBTi-purchases-analysis",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 0.24277305603027344,
+        "redirect_url": "https://www.cdr.fyi/blog/SBTi-purchases-analysis",
+        "error_message": ""
+      },
+      {
+        "url": "https://youtu.be/VzedBljBNNM?si=e998LCF-QJDenvCr",
+        "status": "redirect",
+        "status_code": 303,
+        "response_time": 0.1816561222076416,
+        "redirect_url": "https://www.youtube.com/watch?si=e998LCF-QJDenvCr&v=VzedBljBNNM&feature=youtu.be",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.nature.com/articles/s41467-019-08540-3",
+        "status": "redirect",
+        "status_code": 303,
+        "response_time": 0.303541898727417,
+        "redirect_url": "https://idp.nature.com/authorize?response_type=cookie&client_id=grover&redirect_uri=https://www.nature.com/articles/s41467-019-08540-3",
+        "error_message": ""
+      },
+      {
+        "url": "https://unpkg.com/htmx.org@1.9.11",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 0.0637969970703125,
+        "redirect_url": "https://unpkg.com/htmx.org@1.9.11/dist/htmx.min.js",
+        "error_message": ""
+      },
+      {
+        "url": "https://linkedin.com/company/ecic",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 0.15358781814575195,
+        "redirect_url": "https://www.linkedin.com/company/ecic",
+        "error_message": ""
+      },
+      {
+        "url": "https://tiktok.com/@ethicalcapital",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 0.13537812232971191,
+        "redirect_url": "https://www.tiktok.com/@ethicalcapital",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/how-we-invest/impact-income/",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 0.23239612579345703,
+        "redirect_url": "https://ethicic.com/strategies/income/",
+        "error_message": ""
+      },
+      {
+        "url": "https://instagram.com/sloaneortel",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 0.3247408866882324,
+        "redirect_url": "https://instagram.com/sloaneortel/",
+        "error_message": ""
+      },
+      {
+        "url": "https://ethicic.com/our-process/",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 0.22518706321716309,
+        "redirect_url": "https://ethicic.com/process/",
+        "error_message": ""
+      },
+      {
+        "url": "https://wsp.wharton.upenn.edu/book/stocks-for-the-long-run/",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 0.24495530128479004,
+        "redirect_url": "https://www.pennpress.org/wharton-school-press/book/stocks-for-the-long-run/",
+        "error_message": ""
+      },
+      {
+        "url": "https://www.dahliawealth.com/",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 2.0874269008636475,
+        "redirect_url": "https://dahliawealth.com/",
+        "error_message": ""
+      },
+      {
+        "url": "http://www.w3.org/2000/svg",
+        "status": "redirect",
+        "status_code": 301,
+        "response_time": 0.060936927795410156,
+        "redirect_url": "https://www.w3.org/2000/svg",
+        "error_message": ""
+      }
+    ],
+    "errors": [
+      {
+        "url": "https://nca2023.globalchange.gov/",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.14337897300720215,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host nca2023.globalchange.gov:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "mailto:ir@ethicalcapital.com?subject=Document Request: ${documentType}",
+        "status": "error",
+        "status_code": null,
+        "response_time": 1.0967254638671875e-05,
+        "redirect_url": "",
+        "error_message": "mailto:ir@ethicalcapital.com?subject=Document+Request:+$%7BdocumentType%7D"
+      },
+      {
+        "url": "mailto:accessibility@ethicic.com",
+        "status": "error",
+        "status_code": null,
+        "response_time": 3.695487976074219e-05,
+        "redirect_url": "",
+        "error_message": "mailto:accessibility@ethicic.com"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/01/CleanShot-2024-01-28-at-10.08.46-1024x185.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 1.0550801753997803,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.25.08-1024x405.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0025908946990966797,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.22.36-1024x333.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0024847984313964844,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/01/CleanShot-2024-01-28-at-10.10.21-1024x818.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0016827583312988281,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/02/CleanShot-2024-02-12-at-21.58.51-1024x174.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.002274751663208008,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/01/CleanShot-2024-01-28-at-10.06.18-1024x390.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.002937793731689453,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.42.12.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0027840137481689453,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/02/CleanShot-2024-02-12-at-21.55.02-1024x59.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0023109912872314453,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/01/CleanShot-2024-01-28-at-10.05.05-1024x278.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0046460628509521484,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "http://Issued public",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.013123035430908203,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host issued public:80 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "mailto:ir@ethicalcapital.com?subject=Document",
+        "status": "error",
+        "status_code": null,
+        "response_time": 2.5987625122070312e-05,
+        "redirect_url": "",
+        "error_message": "mailto:ir@ethicalcapital.com?subject=Document"
+      },
+      {
+        "url": "https://investvegan.org/contact-us/",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0028259754180908203,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/05/image-1-1024x576.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0035178661346435547,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "mailto:hello@ethicic.com",
+        "status": "error",
+        "status_code": null,
+        "response_time": 2.5033950805664062e-05,
+        "redirect_url": "",
+        "error_message": "mailto:hello@ethicic.com"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.48.09.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0030641555786132812,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/02/CleanShot-2024-02-12-at-22.00.24.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0023169517517089844,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "tel:+13476259000",
+        "status": "error",
+        "status_code": null,
+        "response_time": 1.1920928955078125e-05,
+        "redirect_url": "",
+        "error_message": "tel:+13476259000"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.39.45.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0018849372863769531,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/02/CleanShot-2024-02-12-at-22.01.48.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0016660690307617188,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/gimmewebinar",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.004200935363769531,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.29.43-422x1024.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.002293825149536133,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "tel:+1 347 625 9000",
+        "status": "error",
+        "status_code": null,
+        "response_time": 9.059906005859375e-06,
+        "redirect_url": "",
+        "error_message": "tel:+1%20347%20625%209000"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/05/image-2.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0022001266479492188,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/our-process/",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.002588033676147461,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2023/11/CleanShot-2023-11-04-at-04.27.37.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0026519298553466797,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      },
+      {
+        "url": "mailto:sloane@ethicic.com",
+        "status": "error",
+        "status_code": null,
+        "response_time": 1.5974044799804688e-05,
+        "redirect_url": "",
+        "error_message": "mailto:sloane@ethicic.com"
+      },
+      {
+        "url": "mailto:ir@ethicalcapital.com",
+        "status": "error",
+        "status_code": null,
+        "response_time": 6.9141387939453125e-06,
+        "redirect_url": "",
+        "error_message": "mailto:ir@ethicalcapital.com"
+      },
+      {
+        "url": "tel:+1-555-0123",
+        "status": "error",
+        "status_code": null,
+        "response_time": 5.9604644775390625e-06,
+        "redirect_url": "",
+        "error_message": "tel:+1-555-0123"
+      },
+      {
+        "url": "https://investvegan.org/wp-content/uploads/2024/01/CleanShot-2024-01-28-at-10.03.23-1024x300.png",
+        "status": "error",
+        "status_code": null,
+        "response_time": 0.0036270618438720703,
+        "redirect_url": "",
+        "error_message": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]"
+      }
+    ]
+  }
+}

@@ -22,7 +22,7 @@ During comprehensive broken links analysis, discovered **20 missing images** tha
   - **Usage**: Supporting data visualization in food system analysis
   - **Priority**: HIGH - Critical content illustration
 
-### 📈 Investment Performance Illustrations  
+### 📈 Investment Performance Illustrations
 **Post**: [Stock Market Performance: What Should You Expect When You're Investing?](https://ethicic.com/blog/stock-market-performance-what-should-you-expect/)
 - [ ] `image-1-1024x576.png`
   - **Context**: Investment performance illustration (generic filename)
@@ -31,7 +31,7 @@ During comprehensive broken links analysis, discovered **20 missing images** tha
 
 - [ ] `image-2.png`
   - **Context**: Investment performance illustration (generic filename)
-  - **Usage**: Visual explanation of market performance concepts  
+  - **Usage**: Visual explanation of market performance concepts
   - **Priority**: HIGH - Critical content illustration
 
 ## Legacy Screenshots (Investigation Required)
@@ -50,7 +50,7 @@ During comprehensive broken links analysis, discovered **20 missing images** tha
 ### 🖥️ January 2024 CleanShot Screenshots
 - [ ] `CleanShot-2024-01-28-at-10.03.23-1024x300.png`
 - [ ] `CleanShot-2024-01-28-at-10.05.05-1024x278.png`
-- [ ] `CleanShot-2024-01-28-at-10.06.18-1024x390.png`  
+- [ ] `CleanShot-2024-01-28-at-10.06.18-1024x390.png`
 - [ ] `CleanShot-2024-01-28-at-10.08.46-1024x185.png`
 - [ ] `CleanShot-2024-01-28-at-10.10.21-1024x818.png`
 
@@ -92,7 +92,7 @@ During comprehensive broken links analysis, discovered **20 missing images** tha
 - [ ] Search local systems/backups for original image files
 - [ ] Prioritize the 4 critical images for immediate replacement
 
-### Short Term (Next 2 Weeks)  
+### Short Term (Next 2 Weeks)
 - [ ] Recreate or replace the 4 critical images
 - [ ] Update blog post content to reference new image locations
 - [ ] Test all image links in affected posts
@@ -104,7 +104,7 @@ During comprehensive broken links analysis, discovered **20 missing images** tha
 
 ## Files for Reference
 - **Detailed analysis**: `MISSING_INVESTVEGAN_CONTENT.md`
-- **Broken links report**: `EXHAUSTIVE_BROKEN_LINKS_REPORT.md` 
+- **Broken links report**: `EXHAUSTIVE_BROKEN_LINKS_REPORT.md`
 - **Technical data**: `exhaustive_link_report.json`
 
 ## Affected Posts
@@ -113,13 +113,13 @@ During comprehensive broken links analysis, discovered **20 missing images** tha
 
 ## Success Criteria
 - [ ] All critical blog post images display properly
-- [ ] No broken image links in published content  
+- [ ] No broken image links in published content
 - [ ] All assets hosted on ethicic.com domain
 - [ ] Documentation updated with asset sources
 
 ---
 
-**Priority**: High  
-**Assignee**: TBD  
-**Labels**: content, images, bug, user-experience  
+**Priority**: High
+**Assignee**: TBD
+**Labels**: content, images, bug, user-experience
 **Milestone**: Content Quality Improvement

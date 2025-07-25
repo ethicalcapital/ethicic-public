@@ -80,7 +80,7 @@ html body header.garden-header .garden-header-content .garden-nav-left button.ga
         inset: 0;
         width: 100vw;
         height: 100vh;
-        background: var(--color-surface);
+        background: var(--color-primary);
         z-index: 1000;
         flex-direction: column;
         justify-content: flex-start;
@@ -104,10 +104,10 @@ html body header.garden-header .garden-header-content .garden-nav-left button.ga
     .garden-nav-main.mobile-menu-open .garden-nav-item {
         display: block !important;
         padding: 1.25rem 0;
-        border-bottom: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border-light);
         font-size: var(--font-lg);
         font-weight: var(--font-medium);
-        color: var(--color-text-primary);
+        color: var(--color-text-inverse);
         text-decoration: none;
         transition: all 0.2s ease;
     }

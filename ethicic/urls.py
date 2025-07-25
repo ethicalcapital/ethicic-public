@@ -91,10 +91,11 @@ def health_check(request):
                 "storages_installed": "storages" in settings.INSTALLED_APPS,
             }
         )
-    
+
     # List media files
     if request.GET.get("list") == "media":
         import os
+
         try:
             media_root = getattr(settings, "MEDIA_ROOT", "/var/lib/data")
             files = []
@@ -105,14 +106,16 @@ def health_check(request):
                         rel_path = os.path.relpath(full_path, media_root)
                         size = os.path.getsize(full_path)
                         files.append({"path": rel_path, "size": size})
-            response_data.update({
-                "media_root": media_root,
-                "files_count": len(files),
-                "files": files[:10],  # Show first 10 files
-            })
+            response_data.update(
+                {
+                    "media_root": media_root,
+                    "files_count": len(files),
+                    "files": files[:10],  # Show first 10 files
+                }
+            )
         except Exception as e:
             response_data.update({"media_list_error": str(e)})
-    
+
     # Note: Removed test=media endpoint that was causing 503 errors
 
     return JsonResponse(response_data)
@@ -251,35 +254,33 @@ def robots_txt_view(request):
 
 def serve_media_file(request, filepath):
     """Serve media files directly in production"""
-    import os
     import mimetypes
-    from django.http import FileResponse, Http404
+    import os
+
     from django.conf import settings
-    
+    from django.http import FileResponse, Http404
+
     # Build the full file path
-    media_root = getattr(settings, 'MEDIA_ROOT', '/var/lib/data')
+    media_root = getattr(settings, "MEDIA_ROOT", "/var/lib/data")
     full_path = os.path.join(media_root, filepath)
-    
+
     # Simplified security check: ensure no path traversal
-    if '..' in filepath or filepath.startswith('/'):
+    if ".." in filepath or filepath.startswith("/"):
         raise Http404("Invalid file path")
-    
+
     # Check if file exists
     if not os.path.exists(full_path) or not os.path.isfile(full_path):
         raise Http404(f"Media file not found: {filepath}")
-    
+
     # Determine content type
     content_type, _ = mimetypes.guess_type(full_path)
     if not content_type:
-        content_type = 'application/octet-stream'
-    
+        content_type = "application/octet-stream"
+
     # Serve the file
     try:
-        response = FileResponse(
-            open(full_path, 'rb'),
-            content_type=content_type
-        )
-        response['Cache-Control'] = 'public, max-age=31536000'  # 1 year cache
+        response = FileResponse(open(full_path, "rb"), content_type=content_type)
+        response["Cache-Control"] = "public, max-age=31536000"  # 1 year cache
         return response
     except Exception as e:
         raise Http404(f"Error serving media file: {e}")
