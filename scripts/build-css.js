@@ -49,6 +49,7 @@ const CONFIG = {
     'accessibility-contrast-fixes-clean.css',
     'container-structure-enhancements.css',
     'search-clean.css',
+    'mobile-responsive-clean.css',
     'fix-white-line.css',
     'login-dropdown-clean.css',
     'cta-tiffany-blue.css'
@@ -84,7 +85,8 @@ const CONFIG = {
     'process-dark-mode-fix.css',
     'footer-fix.css',
     'search-fixes.css',
-    'search-visibility-ultimate-fix.css'
+    'search-visibility-ultimate-fix.css',
+    'mobile-full-width.css'
   ]
 };
 
