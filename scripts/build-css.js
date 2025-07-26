@@ -48,8 +48,7 @@ const CONFIG = {
     'wcag-contrast-fixes.css',
     'accessibility-contrast-fixes-clean.css',
     'container-structure-enhancements.css',
-    'search-fixes.css',
-    'search-visibility-ultimate-fix.css',
+    'search-clean.css',
     'fix-white-line.css',
     'login-dropdown-clean.css',
     'cta-tiffany-blue.css'
@@ -83,7 +82,9 @@ const CONFIG = {
     'accessibility-contrast-fixes.css',
     'login-dropdown-fix.css',
     'process-dark-mode-fix.css',
-    'footer-fix.css'
+    'footer-fix.css',
+    'search-fixes.css',
+    'search-visibility-ultimate-fix.css'
   ]
 };
 
