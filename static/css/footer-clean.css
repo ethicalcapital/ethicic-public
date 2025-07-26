@@ -41,7 +41,7 @@
 
   /* Main footer container */
   .garden-footer {
-    background: var(--garden-footer-bg, var(--color-surface-secondary));
+    background: var(--garden-footer-bg, #FCEFEF);
     border-top: 4px solid var(--garden-footer-border, var(--color-primary));
     padding: var(--space-12) 0 var(--space-8);
     margin-top: var(--space-16);
