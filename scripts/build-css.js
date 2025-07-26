@@ -29,7 +29,7 @@ const CONFIG = {
     'garden-data-table.css',
 
     // Page-specific files (lower priority)
-    'onboarding-comprehensive.css',
+    'onboarding-forms-clean.css',
     'process-page.css',
 
     // Layer-specific files (clean versions only)
@@ -86,7 +86,8 @@ const CONFIG = {
     'footer-fix.css',
     'search-fixes.css',
     'search-visibility-ultimate-fix.css',
-    'mobile-full-width.css'
+    'mobile-full-width.css',
+    'onboarding-comprehensive.css'
   ]
 };
 
