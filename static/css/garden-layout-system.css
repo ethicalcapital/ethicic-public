@@ -1,0 +1,572 @@
+/*!
+ * Garden Layout System - Comprehensive Clean Implementation
+ * Consolidates homepage, layout, and visual fixes into a unified system
+ * Replaces: public-site-layout-fixes.css, fix-white-line.css, critical-fixes.css
+ */
+
+@layer base {
+  /* ===== FOUNDATION: HTML & BODY SETUP ===== */
+
+  /* Prevent overflow and visual artifacts */
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  /* Remove any borders or outlines that could cause visual artifacts */
+  html,
+  body,
+  .main-content,
+  main {
+    border: none;
+    outline: none;
+  }
+
+  /* Remove pseudo-elements that might create unwanted lines */
+  body::before,
+  body::after,
+  html::before,
+  html::after,
+  .main-content::before,
+  .main-content::after {
+    display: none;
+  }
+
+  /* ===== CONTAINER SYSTEM ===== */
+
+  /* Base container constraints */
+  .public-site-context .main-content,
+  .public-site-context .garden-container,
+  .public-site-context .garden-panel,
+  .public-site-context .garden-panel-content,
+  .public-site-context .panel-content {
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+
+  /* Page-specific container constraints */
+  .homepage-page .main-content,
+  .about-page .main-content,
+  .contact-page .main-content,
+  .pricing-page .main-content,
+  .blog-index-page .main-content,
+  .blog-post .main-content,
+  .institutional-page .main-content,
+  .solutions-page .main-content,
+  .process-page .main-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  /* Prevent any element from exceeding viewport width */
+  * {
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  /* ===== HEADER LAYOUT SYSTEM ===== */
+
+  /* Header positioning and z-index management */
+  .public-site-context .garden-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header, 1000);
+    background: var(--color-primary);
+    overflow: visible; /* Allow dropdowns */
+    border: none;
+    outline: none;
+  }
+
+  /* Remove any header pseudo-elements that could create artifacts */
+  .garden-header::before,
+  .garden-header::after,
+  .garden-header-content::before,
+  .garden-header-content::after,
+  .garden-nav-right::before,
+  .garden-nav-right::after {
+    display: none;
+    content: none;
+  }
+
+  /* Remove header box-shadows that might appear as lines */
+  .garden-header,
+  .garden-header-content,
+  .garden-nav-right,
+  .garden-nav-actions {
+    box-shadow: none;
+  }
+
+  /* ===== NAVIGATION LAYOUT ===== */
+
+  .public-site-context .garden-nav {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-2) 0;
+  }
+
+  .public-site-context .garden-nav-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ===== HOMEPAGE LAYOUT SYSTEM ===== */
+
+  /* Homepage structure */
+  .home-page {
+    width: 100%;
+    position: relative;
+  }
+
+  /* Hero panel layout - full width background, constrained content */
+  .hero-panel {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-panel .panel-content,
+  .hero-panel .garden-panel-content,
+  .hero-panel .hero-panel-content {
+    max-width: var(--content-width-normal);
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-6);
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Hero content spacing */
+  .hero-title {
+    margin-bottom: var(--space-6);
+    font-size: var(--font-4xl);
+    font-weight: var(--font-bold);
+    line-height: 1.1;
+  }
+
+  .hero-tagline {
+    font-size: var(--font-2xl);
+    font-weight: var(--font-medium);
+    color: var(--color-primary);
+    margin-bottom: var(--space-8);
+    line-height: 1.3;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* ===== SECTION LAYOUT SYSTEM ===== */
+
+  /* Standard section spacing */
+  .garden-section {
+    padding: var(--space-16) 0;
+    position: relative;
+  }
+
+  .garden-section.compact {
+    padding: var(--space-12) 0;
+  }
+
+  .garden-section.spacious {
+    padding: var(--space-20) 0;
+  }
+
+  /* Section content constraints */
+  .garden-section > .garden-container,
+  .garden-section > .section-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+  }
+
+  /* ===== PANEL LAYOUT SYSTEM ===== */
+
+  .garden-panel {
+    position: relative;
+    overflow: hidden; /* Prevent margin collapse */
+  }
+
+  /* Panel spacing and structure */
+  .garden-panel + .garden-panel {
+    margin-top: var(--space-8);
+  }
+
+  .garden-panel-content,
+  .panel-content {
+    padding: var(--space-8) var(--space-6);
+  }
+
+  /* Panel headers */
+  .garden-panel-header,
+  .panel-header {
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-surface-variant);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* ===== FOOTER LAYOUT SYSTEM ===== */
+
+  /* Footer structure - full width with constrained content */
+  .garden-footer {
+    width: 100%;
+    max-width: none;
+    overflow-x: hidden;
+    margin-top: auto;
+  }
+
+  .garden-footer-content {
+    max-width: var(--content-width-normal);
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-6);
+  }
+
+  .garden-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-8);
+  }
+
+  /* ===== GRID LAYOUT UTILITIES ===== */
+
+  /* Flexible grid systems */
+  .garden-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .garden-grid.cols-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .garden-grid.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .garden-grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .garden-grid.cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .garden-grid.cols-auto {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* ===== FLEX LAYOUT UTILITIES ===== */
+
+  .garden-flex {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .garden-flex.center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .garden-flex.between {
+    justify-content: space-between;
+  }
+
+  .garden-flex.around {
+    justify-content: space-around;
+  }
+
+  .garden-flex.evenly {
+    justify-content: space-evenly;
+  }
+
+  .garden-flex.wrap {
+    flex-wrap: wrap;
+  }
+
+  .garden-flex.column {
+    flex-direction: column;
+  }
+}
+
+@layer responsive {
+  /* ===== TABLET BREAKPOINT (1024px and below) ===== */
+
+  @media (width <= 1024px) {
+    .public-site-context .main-content,
+    .public-site-context .garden-container,
+    .public-site-context .garden-panel-content,
+    .hero-panel .panel-content,
+    .garden-section > .garden-container {
+      max-width: none;
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+
+    .public-site-context .garden-nav-content {
+      padding: 0 var(--space-4);
+    }
+
+    .garden-grid.cols-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .garden-grid.cols-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ===== MOBILE BREAKPOINT (768px and below) ===== */
+
+  @media (width <= 768px) {
+    .public-site-context .main-content,
+    .public-site-context .garden-container,
+    .public-site-context .garden-panel-content,
+    .hero-panel .panel-content,
+    .garden-section > .garden-container {
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+
+    .hero-panel .panel-content {
+      padding-top: var(--space-8);
+      padding-bottom: var(--space-8);
+    }
+
+    .hero-title {
+      font-size: var(--font-3xl);
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-tagline {
+      font-size: var(--font-xl);
+      margin-bottom: var(--space-6);
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .garden-grid.cols-2,
+    .garden-grid.cols-3,
+    .garden-grid.cols-4 {
+      grid-template-columns: 1fr;
+    }
+
+    .garden-flex:not(.no-mobile-stack) {
+      flex-direction: column;
+    }
+
+    .garden-section {
+      padding: var(--space-12) 0;
+    }
+
+    .garden-section.compact {
+      padding: var(--space-8) 0;
+    }
+
+    .garden-section.spacious {
+      padding: var(--space-16) 0;
+    }
+  }
+
+  /* ===== SMALL MOBILE BREAKPOINT (480px and below) ===== */
+
+  @media (width <= 480px) {
+    .public-site-context .main-content,
+    .public-site-context .garden-container,
+    .public-site-context .garden-panel-content,
+    .hero-panel .panel-content,
+    .garden-section > .garden-container {
+      padding-left: var(--space-3);
+      padding-right: var(--space-3);
+    }
+
+    .public-site-context .garden-nav-content {
+      padding: 0 var(--space-3);
+    }
+
+    .hero-title {
+      font-size: var(--font-2xl);
+    }
+
+    .hero-tagline {
+      font-size: var(--font-lg);
+    }
+
+    .garden-panel-content,
+    .panel-content {
+      padding: var(--space-6) var(--space-4);
+    }
+
+    .garden-panel-header,
+    .panel-header {
+      padding: var(--space-3) var(--space-4);
+    }
+  }
+}
+
+@layer theme-modes {
+  /* ===== DARK MODE LAYOUT ADJUSTMENTS ===== */
+
+  [data-theme="dark"] * {
+    border-color: var(--color-border);
+  }
+
+  [data-theme="dark"] .garden-header * {
+    border-color: transparent;
+  }
+
+  /* ===== LIGHT MODE LAYOUT ADJUSTMENTS ===== */
+
+  [data-theme="light"] .garden-header * {
+    border-color: transparent;
+  }
+}
+
+@layer utilities {
+  /* ===== LAYOUT UTILITIES ===== */
+
+  /* Container width variants */
+  .garden-container.narrow {
+    max-width: var(--content-width-narrow, 800px);
+  }
+
+  .garden-container.wide {
+    max-width: var(--content-width-wide, 1400px);
+  }
+
+  .garden-container.full {
+    max-width: none;
+  }
+
+  /* Spacing utilities */
+  .garden-spacing-none {
+    padding: 0;
+  }
+
+  .garden-spacing-sm {
+    padding: var(--space-4);
+  }
+
+  .garden-spacing-md {
+    padding: var(--space-6);
+  }
+
+  .garden-spacing-lg {
+    padding: var(--space-8);
+  }
+
+  .garden-spacing-xl {
+    padding: var(--space-12);
+  }
+
+  /* Margin utilities */
+  .garden-margin-none {
+    margin: 0;
+  }
+
+  .garden-margin-auto {
+    margin: 0 auto;
+  }
+
+  /* Position utilities */
+  .garden-position-relative {
+    position: relative;
+  }
+
+  .garden-position-absolute {
+    position: absolute;
+  }
+
+  .garden-position-sticky {
+    position: sticky;
+  }
+
+  /* Z-index utilities */
+  .garden-z-base {
+    z-index: 1;
+  }
+
+  .garden-z-header {
+    z-index: var(--z-header, 1000);
+  }
+
+  .garden-z-dropdown {
+    z-index: var(--z-dropdown, 2000);
+  }
+
+  .garden-z-modal {
+    z-index: var(--z-modal, 3000);
+  }
+
+  /* Overflow utilities */
+  .garden-overflow-hidden {
+    overflow: hidden;
+  }
+
+  .garden-overflow-auto {
+    overflow: auto;
+  }
+
+  .garden-overflow-x-hidden {
+    overflow-x: hidden;
+  }
+
+  /* ===== EMERGENCY LAYOUT FIXES ===== */
+
+  /* Force proper container constraints when cascade fails */
+  .force-content-width {
+    max-width: var(--content-width-normal);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Fix white lines and visual artifacts */
+  .fix-white-lines {
+    overflow: hidden;
+  }
+
+  .fix-white-lines > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  /* Force proper header layout */
+  .force-header-layout .garden-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header, 1000);
+    overflow: visible;
+  }
+
+  /* Prevent layout breaking */
+  .prevent-overflow {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
