@@ -81,7 +81,8 @@ const CONFIG = {
     // Exclude original files replaced by clean versions
     '16-homepage.css',
     'accessibility-contrast-fixes.css',
-    'login-dropdown-fix.css'
+    'login-dropdown-fix.css',
+    'process-dark-mode-fix.css'
   ]
 };
 
