@@ -1,0 +1,56 @@
+/*!
+ * Adviser Page Specific Styles - Clean Implementation
+ * Uses proper component-level specificity instead of html body overrides
+ */
+
+@layer components {
+  /* Adviser page specific container */
+  .adviser-page {
+    /* Page-specific styles that don't conflict with global components */
+  }
+
+  /* CTA panel specific to adviser page - use class-based specificity */
+  .adviser-page .cta-panel {
+    /* Panel-specific styling */
+    margin: var(--space-8) 0;
+  }
+
+  /* Adviser page buttons - use existing Garden UI system */
+  .adviser-page .garden-action {
+    /* No overrides needed - inherit from garden-buttons-clean.css */
+    /* Garden UI theme variables handle all button states properly */
+  }
+
+  /* Adviser page button variants - reduced specificity */
+  .adviser-page .garden-action.primary {
+    background: var(--garden-button-bg);
+    color: var(--garden-button-fg);
+    border: 2px solid var(--garden-button-border);
+  }
+
+  .adviser-page .garden-action.secondary {
+    background: var(--garden-button-secondary-bg);
+    color: var(--garden-button-secondary-fg);
+    border: 2px solid var(--garden-button-secondary-border);
+  }
+
+  /* Hover states use theme variables */
+  .adviser-page .garden-action.primary:hover {
+    background: var(--garden-button-hover-bg);
+    color: var(--garden-button-hover-fg);
+    border-color: var(--garden-button-hover-border);
+  }
+
+  .adviser-page .garden-action.secondary:hover {
+    background: var(--garden-button-secondary-hover-bg);
+    color: var(--garden-button-secondary-hover-fg);
+    border-color: var(--garden-button-secondary-hover-border);
+  }
+
+  /* Responsive design for adviser page */
+  @media (width <= 768px) {
+    .adviser-page .cta-panel {
+      margin: var(--space-6) 0;
+    }
+  }
+}

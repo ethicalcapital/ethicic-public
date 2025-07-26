@@ -1,0 +1,275 @@
+/*!
+ * Homepage Styles - Clean Implementation
+ * Uses proper component specificity instead of !important overrides
+ */
+
+@layer components {
+  /* ===== HOME PAGE STYLES ===== */
+  /* Clean homepage layout using Garden UI theme variables */
+
+  /* Generic panel adjacency rules */
+  .garden-panel + .garden-panel {
+    margin-top: var(--space-8);
+    position: relative;
+  }
+
+  .garden-panel + .garden-panel::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--space-8) * -0.5);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: repeating-linear-gradient(
+      to right,
+      var(--garden-border) 0,
+      var(--garden-border) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+  }
+
+  /* Page background for document contrast */
+  .home-page {
+    background: var(--color-background);
+    min-height: 100vh;
+  }
+
+  .home-page .garden-panel:first-child {
+    border-top: none;
+  }
+
+  .home-page .garden-panel:last-child {
+    border-bottom: none;
+  }
+
+  /* Document section hierarchy with different grays */
+  .garden-panel.level-0 {
+    background: var(--doc-surface-0);
+    border: none;
+  }
+
+  .garden-panel.level-1 {
+    background: var(--doc-surface-1);
+    border: 1px solid var(--garden-border-light);
+  }
+
+  .garden-panel.level-2 {
+    background: var(--doc-surface-2);
+    border: 1px solid var(--garden-border);
+  }
+
+  /* Hero section - use theme variables instead of !important */
+  .hero-section .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--theme-on-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  .hero-section .garden-action.primary:hover {
+    background: var(--color-primary-hover);
+    color: var(--theme-on-primary);
+    border-color: var(--color-primary-hover);
+  }
+
+  /* Step number styling - clean implementation without !important */
+  .step-number,
+  .feature-step-number,
+  .process-step .step-number {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-size: var(--font-lg);
+    font-weight: var(--font-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin: 0;
+    position: relative;
+  }
+
+  /* Stats section */
+  .stats-section {
+    background: var(--color-surface-secondary);
+    padding: var(--space-12) 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-8);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: var(--space-6);
+  }
+
+  .stat-number {
+    font-size: var(--font-3xl);
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-label {
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Features section */
+  .features-section {
+    padding: var(--space-16) 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+
+  .feature-card {
+    background: var(--color-surface);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+  }
+
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--color-primary-light);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-4);
+    font-size: var(--font-xl);
+    color: var(--color-primary);
+  }
+
+  .feature-title {
+    font-size: var(--font-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .feature-description {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Process steps */
+  .process-section {
+    background: var(--color-surface-secondary);
+    padding: var(--space-16) 0;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+
+  .process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-6);
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  .step-content {
+    flex: 1;
+  }
+
+  .step-title {
+    font-size: var(--font-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .step-description {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* CTA section */
+  .cta-section {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    padding: var(--space-16) 0;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-size: var(--font-2xl);
+    font-weight: var(--font-bold);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-description {
+    font-size: var(--font-lg);
+    margin-bottom: var(--space-8);
+    opacity: 0.9;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive design */
+  @media (width <= 768px) {
+    .process-step {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cta-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (width <= 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

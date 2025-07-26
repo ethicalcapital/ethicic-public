@@ -20,6 +20,7 @@ const CONFIG = {
     'garden-ui-theme.css',
     'garden-ui-utilities.css',
     'garden-forms.css',
+    'garden-buttons-clean.css',
     'core-styles.css',
 
     // Component-specific files
@@ -31,8 +32,11 @@ const CONFIG = {
     'onboarding-comprehensive.css',
     'process-page.css',
 
-    // Layer-specific files
-    'layers/*.css',
+    // Layer-specific files (clean versions only)
+    'layers/*-clean.css',
+
+    // Clean homepage implementation
+    '16-homepage-clean.css',
 
     // Utility and layout files
     'utility-layout.css',
@@ -69,7 +73,13 @@ const CONFIG = {
     'header-text-fix.css',
     'strategy-nuclear-fix.css',
     'strategy-table-contrast-fix.css',
-    'button-alignment-fix.css'
+    'button-alignment-fix.css',
+    // Exclude problematic layer files with html body selectors
+    'layers/40-adviser-page.css',
+    'layers/*-nuclear-*.css',
+    'layers/*-fix.css',
+    // Exclude original files replaced by clean versions
+    '16-homepage.css'
   ]
 };
 
@@ -162,16 +172,14 @@ function combineCSS(files) {
 }
 
 /**
- * Add CSS layers to combined output
+ * Add CSS layers to combined output - fixed to avoid nesting
  */
 function addCSSLayers(css) {
   const layeredCSS = `/* CSS Layers for proper cascade control */
-@layer reset, base, components, utilities, overrides;
+@layer reset, tokens, themes, base, components, utilities, overrides;
 
-/* Combined Garden UI CSS */
-@layer components {
+/* Combined Garden UI CSS - no wrapping layer to avoid nesting */
 ${css}
-}
 `;
 
   return layeredCSS;
