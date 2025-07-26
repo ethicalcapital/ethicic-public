@@ -1,0 +1,246 @@
+/*!
+ * Accessibility Contrast Fixes - Clean Implementation
+ * Addresses WCAG AA contrast ratio failures using proper component specificity
+ * Uses Garden UI theme variables for consistent theming
+ */
+
+@layer utilities {
+  /* ===== HERO SECTION CONTRAST FIXES ===== */
+
+  /* Fix hero panel text contrast against background */
+  .hero-panel,
+  .garden-panel.hero-panel {
+    background: var(--color-background);
+    color: var(--color-text-primary);
+  }
+
+  /* Ensure main content has proper contrast */
+  .main-content,
+  .garden-main-content {
+    background: var(--color-background);
+    color: var(--color-text-primary);
+  }
+
+  /* ===== STATISTICS CONTRAST FIXES ===== */
+
+  /* Fix stat labels for better contrast - use component specificity */
+  .stats-section .stat-label,
+  .strategy-table .stat-label,
+  .stat-label {
+    color: var(--color-text-primary);
+    font-weight: var(--font-medium);
+    opacity: 1;
+  }
+
+  .stats-section .stat-label span,
+  .strategy-table .stat-label span,
+  .stat-label span {
+    color: inherit;
+    font-weight: inherit;
+    opacity: inherit;
+  }
+
+  /* Fix stat dates for better contrast - use component specificity */
+  .stats-section .stat-date,
+  .strategy-table .stat-date,
+  .stat-date {
+    color: var(--color-text-primary);
+    opacity: 0.9;
+    font-weight: var(--font-medium);
+  }
+
+  .stats-section .stat-date span,
+  .strategy-table .stat-date span,
+  .stat-date span {
+    color: inherit;
+    opacity: inherit;
+    font-weight: inherit;
+  }
+
+  /* Ensure stat values maintain good contrast */
+  .stats-section .stat-value,
+  .strategy-table .stat-value,
+  .stat-value {
+    color: var(--color-primary);
+    font-weight: var(--font-bold);
+  }
+
+  .stats-section .stat-value span,
+  .strategy-table .stat-value span,
+  .stat-value span {
+    color: inherit;
+    font-weight: inherit;
+  }
+
+  /* ===== STRATEGY TABLE CONTRAST FIXES ===== */
+
+  /* Fix table cell labels */
+  .strategy-table td.label {
+    color: var(--color-text-primary);
+    font-weight: var(--font-medium);
+  }
+
+  /* Fix general table cells */
+  .strategy-table td,
+  .strategy-table th {
+    color: var(--color-text-primary);
+  }
+
+  /* ===== FOOTER CONTRAST FIXES ===== */
+
+  /* Fix footer content contrast */
+  .garden-footer,
+  .site-footer {
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+  }
+
+  .garden-footer p,
+  .site-footer p,
+  [role="contentinfo"] p {
+    color: var(--color-text-primary);
+    opacity: 0.9;
+    font-weight: var(--font-normal);
+  }
+
+  /* Fix footer links */
+  .garden-footer .garden-footer-link,
+  .site-footer .footer-link,
+  .garden-footer-link {
+    color: var(--color-text-primary);
+    opacity: 0.85;
+    text-decoration: underline;
+  }
+
+  .garden-footer .garden-footer-link:hover,
+  .site-footer .footer-link:hover,
+  .garden-footer-link:hover {
+    color: var(--color-primary);
+    opacity: 1;
+  }
+
+  /* Fix footer section headings */
+  .garden-footer .garden-footer-section h3,
+  .site-footer .footer-section h3,
+  .garden-footer-section h3 {
+    color: var(--color-text-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  /* ===== GENERAL TEXT CONTRAST FIXES ===== */
+
+  /* Fix muted text classes */
+  .text-muted,
+  .muted,
+  [class*="muted"] {
+    color: var(--color-text-primary);
+    opacity: 0.8;
+  }
+
+  /* Fix secondary text classes */
+  .text-secondary,
+  [class*="text-secondary"] {
+    color: var(--color-text-primary);
+    opacity: 0.85;
+  }
+
+  /* ===== CONTENT SPECIFIC FIXES ===== */
+
+  /* Fix strategy features list */
+  .strategy-section .strategy-features li,
+  .strategy-features li {
+    color: var(--color-text-primary);
+    opacity: 0.9;
+  }
+
+  /* Fix step content */
+  .process-section .step-content p,
+  .step-content p {
+    color: var(--color-text-primary);
+    opacity: 0.9;
+  }
+
+  /* Fix disclaimer text */
+  .disclaimer,
+  .legal-disclaimer {
+    color: var(--color-text-primary);
+    opacity: 0.8;
+    font-size: var(--font-sm);
+  }
+
+  /* Fix CTA info items */
+  .cta-section .cta-info-item,
+  .cta-info-item {
+    color: var(--color-text-primary);
+  }
+
+  /* ===== ACCENT TEXT FIXES ===== */
+
+  /* Fix hero tagline */
+  .hero-section .hero-tagline,
+  .hero-tagline {
+    color: var(--color-primary);
+    font-weight: var(--font-bold);
+  }
+
+  /* Fix philosophy highlights */
+  .about-section .philosophy-highlight,
+  .philosophy-highlight {
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  /* ===== THEME SPECIFIC OVERRIDES ===== */
+
+  /* Light theme specific fixes */
+  [data-theme="light"] .stats-section .stat-date,
+  [data-theme="light"] .stat-date {
+    color: var(--color-text-secondary);
+    opacity: 1;
+    font-weight: var(--font-medium);
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    /* Enhanced contrast for high contrast mode */
+    .step-content p,
+    .strategy-features li {
+      color: var(--color-text-primary);
+      opacity: 1;
+      font-weight: var(--font-medium);
+    }
+
+    .garden-footer,
+    .site-footer {
+      border-color: var(--color-text-primary);
+      border-width: 2px;
+    }
+  }
+
+  /* Forced colors mode (Windows high contrast) */
+  @media (forced-colors: active) {
+    .step-content p,
+    .strategy-features li {
+      color: CanvasText;
+      opacity: 1;
+    }
+
+    .hero-tagline,
+    .philosophy-highlight {
+      color: Highlight;
+    }
+
+    .strategy-card {
+      background: Canvas;
+      border-color: CanvasText;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .garden-footer-link:hover,
+    .footer-link:hover {
+      transition: none;
+    }
+  }
+}

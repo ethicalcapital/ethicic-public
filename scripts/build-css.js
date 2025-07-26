@@ -46,7 +46,7 @@ const CONFIG = {
     // Keep only essential fixes during migration
     'footer-fix.css',
     'wcag-contrast-fixes.css',
-    'accessibility-contrast-fixes.css',
+    'accessibility-contrast-fixes-clean.css',
     'container-structure-enhancements.css',
     'search-fixes.css',
     'search-visibility-ultimate-fix.css',
@@ -79,7 +79,8 @@ const CONFIG = {
     'layers/*-nuclear-*.css',
     'layers/*-fix.css',
     // Exclude original files replaced by clean versions
-    '16-homepage.css'
+    '16-homepage.css',
+    'accessibility-contrast-fixes.css'
   ]
 };
 
