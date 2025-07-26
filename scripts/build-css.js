@@ -51,7 +51,7 @@ const CONFIG = {
     'search-fixes.css',
     'search-visibility-ultimate-fix.css',
     'fix-white-line.css',
-    'login-dropdown-fix.css',
+    'login-dropdown-clean.css',
     'cta-tiffany-blue.css'
   ],
 
@@ -80,7 +80,8 @@ const CONFIG = {
     'layers/*-fix.css',
     // Exclude original files replaced by clean versions
     '16-homepage.css',
-    'accessibility-contrast-fixes.css'
+    'accessibility-contrast-fixes.css',
+    'login-dropdown-fix.css'
   ]
 };
 

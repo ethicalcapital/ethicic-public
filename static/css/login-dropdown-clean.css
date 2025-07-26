@@ -1,0 +1,228 @@
+/*!
+ * Login Dropdown - Clean Implementation
+ * Proper z-index management and component hierarchy without !important
+ */
+
+@layer components {
+  /* ===== HEADER DROPDOWN SUPPORT ===== */
+
+  /* Ensure header supports dropdown components */
+  .garden-header {
+    position: relative;
+    overflow: visible;
+    z-index: var(--z-header, 100);
+  }
+
+  /* Header content allows dropdown overflow */
+  .garden-header-content {
+    position: relative;
+    overflow: visible;
+  }
+
+  /* Navigation containers support dropdowns */
+  .garden-nav-right,
+  .garden-nav-actions {
+    position: relative;
+    overflow: visible;
+  }
+
+  /* ===== LOGIN DROPDOWN COMPONENT ===== */
+
+  /* Login container - positioned for dropdown */
+  .garden-login-container {
+    position: relative;
+    overflow: visible;
+    z-index: var(--z-dropdown-trigger, 50);
+  }
+
+  /* Login dropdown - proper positioning and theming */
+  .garden-login-dropdown {
+    /* Positioning */
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+    z-index: var(--z-dropdown, 200);
+    
+    /* Sizing */
+    min-width: 280px;
+    max-width: 320px;
+    width: max-content;
+    
+    /* Appearance */
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    
+    /* Layout */
+    overflow: visible;
+    padding: var(--space-4);
+    
+    /* Animation support */
+    transform-origin: top right;
+    transition: 
+      opacity var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out),
+      visibility var(--duration-fast) var(--ease-out);
+    
+    /* Typography */
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--font-sm);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Dropdown states - Alpine.js compatible */
+  .garden-login-dropdown[x-show="false"],
+  .garden-login-dropdown:not([x-show="true"]) {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .garden-login-dropdown[x-show="true"] {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* ===== DROPDOWN CONTENT STYLING ===== */
+
+  /* Login form within dropdown */
+  .garden-login-dropdown .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  /* Form fields in dropdown */
+  .garden-login-dropdown .garden-field {
+    margin-bottom: var(--space-2);
+  }
+
+  .garden-login-dropdown .garden-input {
+    width: 100%;
+    background: var(--color-input-bg);
+    border: 1px solid var(--color-input-border);
+    color: var(--color-text-primary);
+    font-size: var(--font-sm);
+  }
+
+  .garden-login-dropdown .garden-input:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+    border-color: var(--color-primary);
+  }
+
+  /* Labels in dropdown */
+  .garden-login-dropdown .garden-label {
+    color: var(--color-text-primary);
+    font-weight: var(--font-medium);
+    font-size: var(--font-sm);
+    margin-bottom: var(--space-1);
+  }
+
+  /* Buttons in dropdown */
+  .garden-login-dropdown .garden-action {
+    justify-self: stretch;
+    width: 100%;
+    font-size: var(--font-sm);
+  }
+
+  /* Links in dropdown */
+  .garden-login-dropdown .login-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .garden-login-dropdown .login-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: var(--font-xs);
+    text-align: center;
+  }
+
+  .garden-login-dropdown .login-link:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+  }
+
+  /* Error messages in dropdown */
+  .garden-login-dropdown .error-message {
+    color: var(--color-error);
+    font-size: var(--font-xs);
+    margin-top: var(--space-1);
+  }
+
+  /* Success messages in dropdown */
+  .garden-login-dropdown .success-message {
+    color: var(--color-success);
+    font-size: var(--font-xs);
+    margin-top: var(--space-1);
+  }
+
+  /* ===== RESPONSIVE DESIGN ===== */
+
+  @media (width <= 768px) {
+    .garden-login-dropdown {
+      /* Adjust positioning for mobile */
+      right: var(--space-2);
+      left: var(--space-2);
+      width: auto;
+      max-width: none;
+      min-width: 0;
+    }
+
+    .garden-login-container {
+      /* Ensure mobile dropdown doesn't overflow viewport */
+      position: static;
+    }
+
+    .garden-header .garden-login-dropdown {
+      position: fixed;
+      top: calc(var(--header-height, 60px) + var(--space-2));
+      z-index: var(--z-modal, 300);
+    }
+  }
+
+  /* ===== ACCESSIBILITY SUPPORT ===== */
+
+  /* Focus management */
+  .garden-login-dropdown:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Screen reader support */
+  .garden-login-dropdown[aria-hidden="true"] {
+    display: none;
+  }
+
+  /* High contrast mode support */
+  @media (forced-colors: active) {
+    .garden-login-dropdown {
+      background: Canvas;
+      border-color: CanvasText;
+      color: CanvasText;
+    }
+
+    .garden-login-dropdown .garden-input {
+      background: Field;
+      border-color: FieldText;
+      color: FieldText;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .garden-login-dropdown {
+      transition: none;
+    }
+  }
+}
