@@ -355,7 +355,7 @@
   }
 
   /* ===== STRATEGY CARD THEME INTEGRATION ===== */
-  
+
   /* Ultra-high specificity fix for strategy card headers */
   html[data-theme="light"] body .strategy-card .strategy-table th,
   html[data-theme="light"] .home-page .strategy-card .strategy-table th,
@@ -366,32 +366,32 @@
     color: var(--color-on-primary) !important;
     -webkit-text-fill-color: var(--color-on-primary) !important;
   }
-  
+
   [data-theme="light"] .strategy-card .strategy-table .subtitle {
     color: var(--color-on-primary) !important;
     -webkit-text-fill-color: var(--color-on-primary) !important;
     opacity: 0.9 !important;
   }
-  
+
   [data-theme="light"] .strategy-card .strategy-table td {
     color: var(--color-text-primary);
     background: var(--color-surface);
   }
-  
+
   [data-theme="light"] .strategy-card .strategy-table .label {
     color: var(--color-text-primary);
     font-weight: var(--font-medium);
   }
-  
+
   [data-theme="light"] .strategy-card .strategy-features p,
   [data-theme="light"] .strategy-card .strategy-features li {
     color: var(--color-text-primary);
   }
-  
+
   [data-theme="light"] .strategy-card .strategy-features .strategy-description {
     color: var(--color-text-secondary);
   }
-  
+
   /* Ultra-high specificity fix for dark theme strategy card headers */
   html[data-theme="dark"] body .strategy-card .strategy-table th,
   html[data-theme="dark"] .home-page .strategy-card .strategy-table th,
@@ -402,39 +402,39 @@
     color: var(--color-on-primary) !important;
     -webkit-text-fill-color: var(--color-on-primary) !important;
   }
-  
+
   [data-theme="dark"] .strategy-card .strategy-table .subtitle {
     color: var(--color-on-primary) !important;
     -webkit-text-fill-color: var(--color-on-primary) !important;
     opacity: 0.9 !important;
   }
-  
+
   [data-theme="dark"] .strategy-card .strategy-table td {
     color: var(--garden-fg);
     background: var(--color-surface);
   }
-  
+
   [data-theme="dark"] .strategy-card .strategy-table .label {
     color: var(--garden-fg);
     font-weight: var(--font-medium);
   }
-  
+
   [data-theme="dark"] .strategy-card .strategy-features p,
   [data-theme="dark"] .strategy-card .strategy-features li {
     color: var(--garden-fg);
   }
-  
+
   [data-theme="dark"] .strategy-card .strategy-features .strategy-description {
     color: var(--color-text-secondary);
   }
-  
+
   /* Ensure strategy card buttons maintain visibility */
   .strategy-card .garden-action {
     background: var(--color-primary);
     color: var(--color-on-primary);
     border-color: var(--color-primary);
   }
-  
+
   .strategy-card .garden-action:hover {
     background: var(--color-primary-hover);
     border-color: var(--color-primary-hover);
