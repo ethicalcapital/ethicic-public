@@ -1,0 +1,104 @@
+/* Table Contrast Accessibility Fix - WCAG AA Compliance */
+
+/* ===== STRATEGY TABLE LABEL FIXES ===== */
+
+/* Light mode - ensure minimum 4.5:1 contrast ratio */
+[data-theme="light"] td.label,
+[data-theme="light"] .strategy-table .label,
+[data-theme="light"] .strategy-card .label,
+[data-theme="light"] table .label {
+    color: #333 !important;
+    -webkit-text-fill-color: #333 !important;
+    font-weight: 500 !important;
+}
+
+/* Default light mode (no data-theme) */
+td.label,
+.strategy-table .label,
+.strategy-card .label,
+table .label {
+    color: #333 !important;
+    -webkit-text-fill-color: #333 !important;
+    font-weight: 500 !important;
+}
+
+/* Dark mode - ensure proper contrast on dark backgrounds */
+[data-theme="dark"] td.label,
+[data-theme="dark"] .strategy-table .label,
+[data-theme="dark"] .strategy-card .label,
+[data-theme="dark"] table .label {
+    color: #e0e0e0 !important;
+    -webkit-text-fill-color: #e0e0e0 !important;
+    font-weight: 500 !important;
+}
+
+/* ===== GENERAL TABLE TEXT IMPROVEMENTS ===== */
+
+/* Ensure all table text meets contrast requirements */
+[data-theme="light"] td,
+[data-theme="light"] .strategy-table td,
+[data-theme="light"] .strategy-card td {
+    color: #111 !important;
+    -webkit-text-fill-color: #111 !important;
+}
+
+[data-theme="dark"] td,
+[data-theme="dark"] .strategy-table td,
+[data-theme="dark"] .strategy-card td {
+    color: #f0f0f0 !important;
+    -webkit-text-fill-color: #f0f0f0 !important;
+}
+
+/* ===== FOCUS AND HOVER STATES ===== */
+
+/* Ensure focus states are visible and accessible */
+td.label:focus,
+.strategy-table .label:focus,
+.strategy-card .label:focus,
+table .label:focus {
+    outline: 2px solid var(--color-primary) !important;
+    outline-offset: 2px !important;
+    background: var(--color-primary-alpha-light) !important;
+}
+
+/* ===== HIGH CONTRAST MODE SUPPORT ===== */
+
+@media (prefers-contrast: more) {
+    td.label,
+    .strategy-table .label,
+    .strategy-card .label,
+    table .label {
+        color: var(--color-text-primary) !important;
+        font-weight: 600 !important;
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    [data-theme="light"] td.label,
+    [data-theme="light"] .strategy-table .label,
+    [data-theme="light"] .strategy-card .label,
+    [data-theme="light"] table .label {
+        color: #000 !important;
+        -webkit-text-fill-color: #000 !important;
+    }
+    
+    [data-theme="dark"] td.label,
+    [data-theme="dark"] .strategy-table .label,
+    [data-theme="dark"] .strategy-card .label,
+    [data-theme="dark"] table .label {
+        color: #fff !important;
+        -webkit-text-fill-color: #fff !important;
+    }
+}
+
+/* ===== FORCED COLORS MODE (Windows High Contrast) ===== */
+
+@media (forced-colors: active) {
+    td.label,
+    .strategy-table .label,
+    .strategy-card .label,
+    table .label {
+        color: CanvasText !important;
+        -webkit-text-fill-color: CanvasText !important;
+        forced-color-adjust: none;
+    }
+}

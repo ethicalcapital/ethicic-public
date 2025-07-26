@@ -20,8 +20,8 @@
 }
 
 [data-theme="light"] .strategy-card .strategy-table .label {
-    color: #666 !important;
-    -webkit-text-fill-color: #666 !important;
+    color: #333 !important;
+    -webkit-text-fill-color: #333 !important;
 }
 
 [data-theme="light"] .strategy-card .strategy-features p,
@@ -48,8 +48,8 @@ html[data-theme="dark"] .strategy-card .strategy-table td {
 }
 
 html[data-theme="dark"] .strategy-card .strategy-table .label {
-    color: #b0b0b0 !important;
-    -webkit-text-fill-color: #b0b0b0 !important;
+    color: #e0e0e0 !important;
+    -webkit-text-fill-color: #e0e0e0 !important;
 }
 
 html[data-theme="dark"] .strategy-card .strategy-features p,
