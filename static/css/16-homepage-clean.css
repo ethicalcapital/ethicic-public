@@ -272,4 +272,233 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* ===== STRATEGY SECTION ===== */
+
+  .strategy-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: var(--space-6);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .strategy-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+  }
+
+  .strategy-table {
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: var(--font-sm);
+    border-collapse: collapse;
+  }
+
+  .strategy-table th {
+    background: var(--color-surface-variant);
+    padding: var(--space-3);
+    text-align: left;
+    font-weight: var(--font-semibold);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .strategy-table td {
+    padding: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .strategy-features {
+    padding: var(--space-4);
+    background: var(--color-surface);
+  }
+
+  .strategy-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .strategy-features li {
+    padding-left: var(--space-4);
+    margin-bottom: var(--space-2);
+    position: relative;
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .strategy-features li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+  }
+
+  /* ===== PHILOSOPHY SECTION ===== */
+
+  .philosophy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .philosophy-highlight {
+    font-size: var(--font-2xl);
+    color: var(--color-primary);
+    font-weight: var(--font-semibold);
+    margin: var(--space-6) 0;
+  }
+
+  /* ===== PRINCIPLES SECTION ===== */
+
+  .principles-section {
+    margin: var(--space-12) 0;
+  }
+
+  .principles-section-header {
+    font-size: var(--font-3xl);
+    text-align: center;
+    margin-bottom: var(--space-8);
+    color: var(--color-text-primary);
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .principle-card {
+    background: transparent;
+    padding: var(--space-6);
+    text-align: center;
+  }
+
+  .principle-title {
+    font-size: var(--font-lg);
+    font-weight: var(--font-semibold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  /* ===== SERVE SECTION ===== */
+
+  .serve-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+    margin: var(--space-8) 0;
+  }
+
+  .serve-item {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    position: relative;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .serve-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .serve-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-primary);
+    transform: scaleY(0);
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .serve-item:hover::before {
+    transform: scaleY(1);
+  }
+
+  /* ===== HERO STATS ===== */
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-8);
+    margin: var(--space-8) 0;
+    flex-wrap: wrap;
+  }
+
+  .stat-bar {
+    width: 120px;
+    height: 8px;
+    background: var(--color-surface-variant);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+    border-radius: var(--radius-full);
+    transition: width var(--duration-slow) var(--ease-out);
+  }
+
+  .stat-indicator {
+    width: 16px;
+    height: 16px;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+
+  /* Higher specificity override for homepage step numbers */
+  .home-page .process-step .step-number {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-size: var(--font-lg);
+    font-weight: var(--font-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin: 0;
+    position: relative;
+  }
+
+  /* ===== ACCESSIBILITY SUPPORT ===== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .process-step,
+    .strategy-card,
+    .serve-item {
+      transition: none;
+    }
+
+    .stat-indicator {
+      animation: none;
+    }
+
+    .serve-item:hover,
+    .strategy-card:hover,
+    .process-step:hover {
+      transform: none;
+    }
+  }
 }
