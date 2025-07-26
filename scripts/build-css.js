@@ -44,7 +44,7 @@ const CONFIG = {
     'public-site-modular.css',
 
     // Keep only essential fixes during migration
-    'footer-fix.css',
+    'footer-clean.css',
     'wcag-contrast-fixes.css',
     'accessibility-contrast-fixes-clean.css',
     'container-structure-enhancements.css',
@@ -82,7 +82,8 @@ const CONFIG = {
     '16-homepage.css',
     'accessibility-contrast-fixes.css',
     'login-dropdown-fix.css',
-    'process-dark-mode-fix.css'
+    'process-dark-mode-fix.css',
+    'footer-fix.css'
   ]
 };
 
