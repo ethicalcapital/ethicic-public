@@ -1,0 +1,315 @@
+/*!
+ * WCAG Contrast Compliance - Clean Implementation
+ * Ensures AA-level contrast ratios throughout the application
+ */
+
+@layer utilities {
+  /* ===== HEADER NAVIGATION BUTTONS ===== */
+
+  /* Header navigation buttons - ensure proper contrast */
+  .garden-header .garden-search-btn,
+  .garden-header .garden-login-btn,
+  .garden-header .garden-theme-toggle {
+    background: transparent;
+    color: var(--garden-header-button-text, var(--color-on-primary));
+    border: 1px solid var(--garden-header-button-border, rgb(255 255 255 / 30%));
+    min-height: 44px;
+    min-width: 44px;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    transition: 
+      background-color var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+  }
+
+  /* Header button hover states */
+  .garden-header .garden-search-btn:hover,
+  .garden-header .garden-login-btn:hover,
+  .garden-header .garden-theme-toggle:hover {
+    background: var(--garden-header-button-hover-bg, rgb(255 255 255 / 10%));
+    border-color: var(--garden-header-button-hover-border, rgb(255 255 255 / 50%));
+    color: var(--garden-header-button-hover-text, var(--color-on-primary));
+  }
+
+  /* Header button focus states for accessibility */
+  .garden-header .garden-search-btn:focus,
+  .garden-header .garden-login-btn:focus,
+  .garden-header .garden-theme-toggle:focus {
+    outline: 2px solid var(--color-focus, var(--color-secondary));
+    outline-offset: 2px;
+  }
+
+  /* ===== BANNER COMPONENTS ===== */
+
+  /* Client acceptance banner */
+  .accepting-clients-banner {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  .accepting-clients-banner .banner-text {
+    color: var(--color-on-primary);
+  }
+
+  .accepting-clients-banner .banner-text strong {
+    color: var(--color-on-primary);
+    font-weight: var(--font-bold);
+  }
+
+  /* ===== LIGHT THEME SPECIFIC ===== */
+
+  /* Ensure primary elements maintain contrast in light mode */
+  [data-theme="light"] .hero-tagline {
+    color: var(--color-primary);
+  }
+
+  [data-theme="light"] .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: none;
+  }
+
+  [data-theme="light"] .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  /* ===== DARK THEME CONTRAST IMPROVEMENTS ===== */
+
+  /* Dark theme link colors - enhanced contrast */
+  [data-theme="dark"] a,
+  [data-theme="dark"] .policy-link,
+  [data-theme="dark"] .process-link,
+  [data-theme="dark"] .resource-link {
+    color: var(--color-primary-light, #9b7dd8);
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary-alpha, rgb(155 125 216 / 50%));
+  }
+
+  [data-theme="dark"] a:hover,
+  [data-theme="dark"] .policy-link:hover,
+  [data-theme="dark"] .process-link:hover,
+  [data-theme="dark"] .resource-link:hover {
+    color: var(--color-primary-lighter, #b19cd9);
+    text-decoration-color: var(--color-primary-lighter, #b19cd9);
+  }
+
+  /* Dark theme primary text elements */
+  [data-theme="dark"] .exclusions-section-title,
+  [data-theme="dark"] .principles-section-title,
+  [data-theme="dark"] h1.text-primary,
+  [data-theme="dark"] h2.text-primary,
+  [data-theme="dark"] h3.text-primary,
+  [data-theme="dark"] h4.text-primary,
+  [data-theme="dark"] .text-primary {
+    color: var(--color-primary-light, #9b7dd8);
+  }
+
+  /* Dark theme statistical elements */
+  [data-theme="dark"] .stat-number {
+    color: var(--color-primary-light, #9b7dd8);
+    font-weight: var(--font-bold);
+  }
+
+  /* Dark theme card elements */
+  [data-theme="dark"] .principle-card h4 {
+    color: var(--color-primary-light, #9b7dd8);
+  }
+
+  /* Dark theme hero elements */
+  [data-theme="dark"] .hero-tagline {
+    color: var(--color-primary-light, #9b7dd8);
+  }
+
+  [data-theme="dark"] .hero-tagline::before {
+    color: var(--color-primary-light, #9b7dd8);
+  }
+
+  /* Dark theme philosophy highlights */
+  [data-theme="dark"] .philosophy-highlight {
+    color: var(--color-primary-light, #9b7dd8);
+    font-weight: var(--font-semibold);
+  }
+
+  /* Dark theme list indicators */
+  [data-theme="dark"] .strategy-features li::before {
+    color: var(--color-primary-light, #9b7dd8);
+  }
+
+  /* Dark theme inline styled elements */
+  [data-theme="dark"] [style*="color: var(--color-primary)"] {
+    color: var(--color-primary-light, #9b7dd8);
+  }
+
+  [data-theme="dark"] *[style*="rgb(61, 41, 112)"] {
+    color: var(--color-primary-light, #9b7dd8);
+  }
+
+  /* ===== DARK THEME BUTTON ADJUSTMENTS ===== */
+
+  /* Primary buttons in dark theme */
+  [data-theme="dark"] .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: none;
+  }
+
+  [data-theme="dark"] .garden-action.primary:hover {
+    background: var(--color-primary-hover);
+    color: var(--color-on-primary);
+  }
+
+  /* Secondary buttons in dark theme */
+  [data-theme="dark"] .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary-light, #9b7dd8);
+    border: 2px solid var(--color-primary-light, #9b7dd8);
+  }
+
+  [data-theme="dark"] .garden-action.secondary:hover {
+    background: var(--color-primary-alpha, rgb(155 125 216 / 10%));
+    color: var(--color-primary-lighter, #b19cd9);
+    border-color: var(--color-primary-lighter, #b19cd9);
+  }
+
+  /* ===== FORM ELEMENTS CONTRAST ===== */
+
+  /* Dark theme form inputs */
+  [data-theme="dark"] .garden-input,
+  [data-theme="dark"] input,
+  [data-theme="dark"] textarea,
+  [data-theme="dark"] select {
+    background: var(--color-input-dark-bg, var(--color-surface-variant));
+    border-color: var(--color-input-dark-border, var(--color-border));
+    color: var(--color-input-dark-text, var(--garden-fg));
+  }
+
+  [data-theme="dark"] .garden-input:focus,
+  [data-theme="dark"] input:focus,
+  [data-theme="dark"] textarea:focus,
+  [data-theme="dark"] select:focus {
+    border-color: var(--color-primary-light, #9b7dd8);
+    box-shadow: 0 0 0 2px var(--color-primary-alpha, rgb(155 125 216 / 30%));
+  }
+
+  /* ===== TABLE ELEMENTS ===== */
+
+  /* Dark theme table headers */
+  [data-theme="dark"] .garden-table th,
+  [data-theme="dark"] .data-table th {
+    background: var(--color-surface-variant);
+    color: var(--garden-fg);
+    border-color: var(--color-border);
+  }
+
+  /* Dark theme table cells */
+  [data-theme="dark"] .garden-table td,
+  [data-theme="dark"] .data-table td {
+    background: var(--color-surface);
+    color: var(--garden-fg);
+    border-color: var(--color-border);
+  }
+
+  /* ===== HIGH CONTRAST MODE SUPPORT ===== */
+
+  /* Windows High Contrast Mode */
+  @media (forced-colors: active) {
+    .garden-header .garden-search-btn,
+    .garden-header .garden-login-btn,
+    .garden-header .garden-theme-toggle {
+      background: ButtonFace;
+      color: ButtonText;
+      border-color: ButtonText;
+    }
+
+    .accepting-clients-banner {
+      background: Highlight;
+      color: HighlightText;
+    }
+
+    .garden-action.primary {
+      background: Highlight;
+      color: HighlightText;
+      border-color: HighlightText;
+    }
+
+    .garden-action.secondary {
+      background: ButtonFace;
+      color: ButtonText;
+      border-color: ButtonText;
+    }
+
+    .hero-tagline,
+    .text-primary,
+    .stat-number {
+      color: Highlight;
+    }
+  }
+
+  /* ===== ENHANCED CONTRAST MODE ===== */
+
+  @media (prefers-contrast: high) {
+    /* Increase contrast for all primary elements */
+    .hero-tagline,
+    .text-primary,
+    .stat-number,
+    .philosophy-highlight {
+      font-weight: var(--font-bold);
+      text-shadow: 0 0 1px currentcolor;
+    }
+
+    /* Enhanced button contrast */
+    .garden-action.primary {
+      border: 2px solid var(--color-on-primary);
+    }
+
+    .garden-action.secondary {
+      border-width: 3px;
+      font-weight: var(--font-semibold);
+    }
+
+    /* Enhanced link contrast */
+    [data-theme="dark"] a,
+    [data-theme="dark"] .policy-link,
+    [data-theme="dark"] .process-link,
+    [data-theme="dark"] .resource-link {
+      text-decoration-thickness: 2px;
+      text-underline-offset: 2px;
+    }
+  }
+
+  /* ===== REDUCED MOTION SUPPORT ===== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .garden-header .garden-search-btn,
+    .garden-header .garden-login-btn,
+    .garden-header .garden-theme-toggle,
+    .garden-action.primary,
+    .garden-action.secondary {
+      transition: none;
+    }
+  }
+
+  /* ===== PRINT STYLES ===== */
+
+  @media print {
+    /* Ensure adequate contrast for printing */
+    .hero-tagline,
+    .text-primary,
+    .stat-number {
+      color: #000;
+      background: #fff;
+    }
+
+    .garden-action.primary,
+    .garden-action.secondary {
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
+    }
+  }
+}

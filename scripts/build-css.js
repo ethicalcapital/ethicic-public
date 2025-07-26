@@ -45,7 +45,7 @@ const CONFIG = {
 
     // Keep only essential fixes during migration
     'footer-clean.css',
-    'wcag-contrast-fixes.css',
+    'wcag-contrast-clean.css',
     'accessibility-contrast-fixes-clean.css',
     'container-structure-enhancements.css',
     'search-clean.css',
@@ -87,7 +87,8 @@ const CONFIG = {
     'search-fixes.css',
     'search-visibility-ultimate-fix.css',
     'mobile-full-width.css',
-    'onboarding-comprehensive.css'
+    'onboarding-comprehensive.css',
+    'wcag-contrast-fixes.css'
   ]
 };
 
