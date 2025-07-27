@@ -1,0 +1,331 @@
+/*!
+ * Garden UI Header System - Public Site Version
+ * Complete header layout, navigation, text styling, and search components
+ * Consolidated from header-layout-layers.css + header-text-clean.css
+ */
+
+/* Consolidated from:
+ * - header-layout-layers.css
+ * - header-text-clean.css
+ */
+
+@layer components {
+    /* ===== HEADER LAYOUT FOUNDATION ===== */
+    
+    .garden-header {
+        padding: 0.5rem 1rem;
+        min-height: auto;
+        overflow: visible;
+        color: var(--garden-header-text, var(--color-on-primary));
+        background: var(--garden-header-bg, var(--color-primary));
+    }
+
+    .garden-header-content {
+        padding: 0;
+        min-height: auto;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 1400px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* ===== NAVIGATION LAYOUT ===== */
+
+    .garden-nav-left {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+
+    .garden-nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 0 0 auto;
+    }
+
+    .garden-nav-main {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex: 0 0 auto;
+    }
+
+    .garden-nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 0 0 auto;
+        position: relative;
+        overflow: visible;
+    }
+
+    /* ===== NAVIGATION ELEMENTS ===== */
+
+    .garden-nav-item {
+        color: var(--garden-header-text, var(--color-on-primary));
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.875rem;
+        padding: 0.5rem 0;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .garden-brand {
+        color: var(--garden-header-text, var(--color-on-primary));
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        letter-spacing: 1px;
+        font-family: var(--font-mono);
+        flex-shrink: 0;
+    }
+
+    /* ===== HEADER LINKS ===== */
+
+    .garden-header .garden-brand,
+    .garden-header .garden-nav-item,
+    .garden-header .desktop-nav a,
+    .garden-header .garden-login-btn,
+    .garden-header .garden-action,
+    .garden-header .garden-theme-toggle {
+        color: var(--garden-header-text, var(--color-on-primary));
+    }
+
+    .garden-header a:not(.garden-login-item) {
+        color: var(--garden-header-link, var(--color-on-primary));
+        text-decoration: none;
+        transition: opacity var(--duration-fast) var(--ease-out);
+    }
+
+    .garden-header a:hover:not(.garden-login-item) {
+        opacity: 0.9;
+    }
+
+    /* ===== SEARCH COMPONENTS ===== */
+
+    .garden-search {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        flex: 0 0 auto;
+    }
+
+    .garden-search-input {
+        width: 200px;
+        padding: 0.5rem;
+        background: var(--garden-search-bg, var(--color-surface));
+        border: 1px solid var(--garden-search-border, var(--color-border));
+        color: var(--garden-search-text, var(--color-text-primary));
+        border-radius: var(--radius-md);
+        font-size: 0.875rem;
+    }
+
+    .garden-search-input::placeholder {
+        color: var(--garden-search-placeholder, var(--color-text-secondary));
+    }
+
+    .garden-search-button,
+    .garden-action {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+        cursor: pointer;
+        font-size: 0.875rem;
+    }
+
+    /* ===== THEME TOGGLE ===== */
+
+    .garden-theme-toggle {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        color: var(--garden-header-text, var(--color-on-primary));
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    /* ===== LOGIN COMPONENTS ===== */
+
+    .garden-login-container {
+        position: relative;
+        overflow: visible;
+    }
+
+    .garden-login-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        color: var(--garden-header-text, var(--color-on-primary));
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        min-height: 44px;
+    }
+
+    .garden-login-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Login dropdown uses normal surface colors */
+    .garden-login-dropdown,
+    .garden-login-dropdown .garden-login-item {
+        background: var(--color-surface);
+        color: var(--color-text-primary);
+    }
+
+    .garden-login-dropdown .login-title {
+        color: var(--color-text-primary);
+        font-weight: var(--font-semibold);
+    }
+
+    .garden-login-dropdown .login-desc {
+        color: var(--color-text-secondary);
+    }
+
+    /* ===== MOBILE MENU ELEMENTS ===== */
+
+    .garden-header .mobile-menu-toggle span {
+        background-color: var(--garden-header-text, var(--color-on-primary));
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    /* ===== PANEL HEADERS ===== */
+
+    .garden-panel__header,
+    .garden-panel-header,
+    .panel-header {
+        background: var(--color-surface-variant);
+        color: var(--color-text-primary);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .panel-title {
+        color: var(--color-text-primary);
+        font-weight: var(--font-semibold);
+    }
+}
+
+@layer themes {
+    /* ===== THEME-SPECIFIC SEARCH STYLING ===== */
+
+    [data-theme="light"] .garden-header .garden-search-input,
+    [data-theme="light"] .garden-header .mobile-search-input,
+    [data-theme="light"] .mobile-search-input {
+        background: var(--garden-color-white);
+        border-color: var(--garden-color-gray-200);
+        color: var(--garden-color-gray-900);
+    }
+
+    [data-theme="dark"] .garden-header .garden-search-input,
+    [data-theme="dark"] .garden-header .mobile-search-input {
+        background: var(--color-surface);
+        border-color: var(--color-border);
+        color: var(--garden-fg);
+    }
+}
+
+@layer responsive {
+    /* ===== MOBILE RESPONSIVE BEHAVIOR ===== */
+    
+    @media (width <= 768px) {
+        .garden-nav-main {
+            display: none;
+        }
+        
+        .garden-search {
+            display: none;
+        }
+        
+        .garden-header-content {
+            gap: 0.5rem;
+        }
+        
+        .garden-search-input {
+            width: 150px;
+        }
+    }
+
+    /* Hide mobile menu toggle on desktop */
+    @media (width >= 769px) {
+        .mobile-menu-toggle {
+            display: none;
+        }
+    }
+}
+
+@layer accessibility {
+    /* ===== ACCESSIBILITY SUPPORT ===== */
+
+    /* High contrast mode adjustments */
+    @media (prefers-contrast: high) {
+        .garden-header {
+            background: Canvas;
+            color: CanvasText;
+            border-bottom: 2px solid CanvasText;
+        }
+
+        .garden-header .garden-search-input {
+            background: Field;
+            color: FieldText;
+            border-color: CanvasText;
+        }
+
+        .garden-login-dropdown {
+            background: Canvas;
+            color: CanvasText;
+            border: 2px solid CanvasText;
+        }
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+        .garden-header a,
+        .garden-header .garden-search-input,
+        .garden-header .mobile-menu-toggle span {
+            transition: none;
+        }
+    }
+}
+
+@layer utilities {
+    /* ===== EMERGENCY OVERRIDES ===== */
+
+    /* Force header text visibility when needed */
+    .garden-header.force-white-text,
+    .garden-header.force-white-text * {
+        color: var(--garden-color-white);
+    }
+
+    /* Force search input readability */
+    .garden-search-input.force-readable {
+        background: var(--color-surface);
+        color: var(--color-text-primary);
+        border-color: var(--color-border);
+    }
+}

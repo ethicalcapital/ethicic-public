@@ -142,9 +142,20 @@
 
   .stat-label {
     font-size: var(--font-sm);
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+  }
+
+  .stat-value {
+    color: var(--color-text-primary);
+    font-weight: var(--font-bold);
+    font-size: var(--font-lg);
+  }
+
+  .stat-date {
+    color: var(--color-text-secondary);
+    font-size: var(--font-xs);
   }
 
   /* Features section */
@@ -356,22 +367,26 @@
 
   /* ===== STRATEGY CARD THEME INTEGRATION ===== */
 
+@layer themes {
   /* Ultra-high specificity fix for strategy card headers */
   html[data-theme="light"] body .strategy-card .strategy-table th,
   html[data-theme="light"] .home-page .strategy-card .strategy-table th,
   [data-theme="light"] body .strategy-card .strategy-table th,
   [data-theme="light"] .strategy-card .strategy-table th {
-    background: var(--color-primary) !important;
-    background-color: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    -webkit-text-fill-color: var(--color-on-primary) !important;
+    background: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    -webkit-text-fill-color: var(--color-on-primary);
   }
+}
 
+@layer themes {
   [data-theme="light"] .strategy-card .strategy-table .subtitle {
-    color: var(--color-on-primary) !important;
-    -webkit-text-fill-color: var(--color-on-primary) !important;
-    opacity: 0.9 !important;
+    color: var(--color-on-primary);
+    -webkit-text-fill-color: var(--color-on-primary);
+    opacity: 0.9;
   }
+}
 
   [data-theme="light"] .strategy-card .strategy-table td {
     color: var(--color-text-primary);
@@ -392,22 +407,26 @@
     color: var(--color-text-secondary);
   }
 
+@layer themes {
   /* Ultra-high specificity fix for dark theme strategy card headers */
   html[data-theme="dark"] body .strategy-card .strategy-table th,
   html[data-theme="dark"] .home-page .strategy-card .strategy-table th,
   [data-theme="dark"] body .strategy-card .strategy-table th,
   [data-theme="dark"] .strategy-card .strategy-table th {
-    background: var(--color-primary) !important;
-    background-color: var(--color-primary) !important;
-    color: var(--color-on-primary) !important;
-    -webkit-text-fill-color: var(--color-on-primary) !important;
+    background: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    -webkit-text-fill-color: var(--color-on-primary);
   }
+}
 
+@layer themes {
   [data-theme="dark"] .strategy-card .strategy-table .subtitle {
-    color: var(--color-on-primary) !important;
-    -webkit-text-fill-color: var(--color-on-primary) !important;
-    opacity: 0.9 !important;
+    color: var(--color-on-primary);
+    -webkit-text-fill-color: var(--color-on-primary);
+    opacity: 0.9;
   }
+}
 
   [data-theme="dark"] .strategy-card .strategy-table td {
     color: var(--garden-fg);
@@ -541,10 +560,16 @@
   .stat-bar {
     width: 120px;
     height: 8px;
-    background: var(--color-surface-variant);
+    background: var(--color-border);
     border-radius: var(--radius-full);
     overflow: hidden;
     position: relative;
+  }
+
+  /* Dark mode stat bar improvements */
+  [data-theme="dark"] .stat-bar {
+    background: var(--color-surface-variant);
+    border: 1px solid var(--color-border);
   }
 
   .stat-fill {

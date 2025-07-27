@@ -1,0 +1,335 @@
+{% extends "public_site/base_tailwind.html" %}
+{% load wagtailcore_tags static %}
+
+{% block title %}{{ page.title }} - Ethical Capital{% endblock %}
+
+{% block meta_description %}Frequently asked questions about ethical investing, ESG strategies, investment process, and Ethical Capital's services. Find answers to common investor questions.{% endblock %}
+
+{% block content %}
+<div class="container-ec py-8">
+    <!-- Hero Section -->
+    <section class="card-ec mb-8" role="banner" aria-labelledby="faq-heading">
+        <div class="card-header-ec">
+            <h1 id="faq-heading" class="card-title-ec">{{ page.title }}</h1>
+        </div>
+        {% if page.intro_text %}
+        <div class="card-content-ec">
+            <div class="text-gray-200">
+                {{ page.intro_text|richtext }}
+            </div>
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- FAQ Categories Grid -->
+    {% if page.get_children.live %}
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {% for faq_page in page.get_children.live %}
+        <article class="card-ec hover:border-purple-400 transition-colors">
+            <div class="card-content-ec space-y-4">
+                <!-- Category Icon/Badge -->
+                <div class="flex items-center justify-between">
+                    <span class="badge-ec-primary">{{ faq_page.title }}</span>
+                    <span class="text-purple-400 text-sm">
+                        {% if faq_page.faq_items.count %}
+                            {{ faq_page.faq_items.count }} Q&A
+                        {% else %}
+                            New
+                        {% endif %}
+                    </span>
+                </div>
+                
+                <!-- Description -->
+                {% if faq_page.intro_text %}
+                <p class="text-gray-200 text-sm">
+                    {{ faq_page.intro_text|richtext|striptags|truncatewords:25 }}
+                </p>
+                {% endif %}
+                
+                <!-- Preview Questions -->
+                {% if faq_page.faq_items.all %}
+                <div class="space-y-2">
+                    <h4 class="font-mono text-xs text-purple-400 font-semibold uppercase">Sample Questions:</h4>
+                    <ul class="space-y-1">
+                        {% for faq in faq_page.faq_items.all|slice:":3" %}
+                        <li class="text-xs text-gray-400">
+                            • {{ faq.question|truncatewords:8 }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                
+                <!-- Action Button -->
+                <a href="{{ faq_page.url }}" class="btn-ec-secondary w-full text-center block">
+                    View FAQ Category
+                </a>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <!-- Popular Questions Section -->
+    {% if popular_questions %}
+    <section class="card-ec mb-8">
+        <div class="card-header-ec">
+            <h2 class="card-title-ec">Popular Questions</h2>
+        </div>
+        <div class="card-content-ec space-y-4">
+            {% for question in popular_questions %}
+            <details class="bg-gray-800 border border-gray-600 rounded-lg p-4">
+                <summary class="cursor-pointer hover:bg-gray-700 transition-colors p-2 -m-2 rounded">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-mono text-purple-400 font-semibold pr-4">{{ question.question }}</h3>
+                        <span class="flex-shrink-0 w-6 h-6 bg-purple-900 text-white rounded-full flex items-center justify-center text-sm font-mono font-bold">
+                            +
+                        </span>
+                    </div>
+                </summary>
+                <div class="mt-4 pt-4 border-t border-gray-600 text-gray-200">
+                    {{ question.answer|richtext }}
+                </div>
+            </details>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Search FAQ Section -->
+    <section class="card-ec mb-8">
+        <div class="card-header-ec">
+            <h3 class="card-title-ec">Search FAQ</h3>
+        </div>
+        <div class="card-content-ec">
+            <form class="space-y-4" onsubmit="return searchFAQ(event)">
+                <div class="form-group-ec">
+                    <label for="faq-search" class="form-label-ec">Search for answers</label>
+                    <input type="text" 
+                           id="faq-search" 
+                           name="q"
+                           class="form-input-ec" 
+                           placeholder="e.g., minimum investment, ESG screening..."
+                           autocomplete="off">
+                    <p class="form-help-ec">Try searching for terms like "investment minimum", "ESG criteria", or "fees"</p>
+                </div>
+                <button type="submit" class="btn-ec-primary">Search FAQ</button>
+            </form>
+            
+            <!-- Search Results -->
+            <div id="faq-search-results" class="mt-6 hidden">
+                <h4 class="font-mono text-sm text-purple-400 font-semibold mb-3">Search Results:</h4>
+                <div id="faq-results-container" class="space-y-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Help Section -->
+    <section class="grid-2col">
+        <!-- Contact Support -->
+        <div class="card-ec">
+            <div class="card-content-ec text-center space-y-4">
+                <div class="text-3xl">💬</div>
+                <h4 class="font-mono text-purple-400 font-semibold">Still Need Help?</h4>
+                <p class="text-gray-200 text-sm">
+                    Can't find the answer you're looking for? Our team is here to help with any questions about ethical investing.
+                </p>
+                <div class="space-y-3">
+                    <a href="/contact/" class="btn-ec-primary block">Contact Us</a>
+                    <a href="mailto:sloane@ethicalcapital.com" 
+                       class="text-purple-400 hover:text-purple-300 transition-colors text-sm">
+                        sloane@ethicalcapital.com
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources -->
+        <div class="card-ec">
+            <div class="card-header-ec">
+                <h4 class="card-title-ec">Helpful Resources</h4>
+            </div>
+            <div class="card-content-ec space-y-3">
+                <a href="/process/" 
+                   class="block text-purple-400 hover:text-purple-300 transition-colors text-sm py-2 border-b border-gray-600">
+                    📋 Our Investment Process
+                </a>
+                <a href="/strategies/" 
+                   class="block text-purple-400 hover:text-purple-300 transition-colors text-sm py-2 border-b border-gray-600">
+                    📊 Investment Strategies
+                </a>
+                <a href="/about/" 
+                   class="block text-purple-400 hover:text-purple-300 transition-colors text-sm py-2 border-b border-gray-600">
+                    👤 About Ethical Capital
+                </a>
+                <a href="/blog/" 
+                   class="block text-purple-400 hover:text-purple-300 transition-colors text-sm py-2 border-b border-gray-600">
+                    📰 Investment Blog
+                </a>
+                <a href="/disclosures/" 
+                   class="block text-purple-400 hover:text-purple-300 transition-colors text-sm py-2">
+                    📜 Legal Disclosures
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regulatory Information -->
+    <section class="bg-gray-800 border border-gray-600 rounded-lg p-6 mt-8 text-center">
+        <div class="space-y-3">
+            <div class="badge-ec-primary">SEC Registered Investment Adviser</div>
+            <p class="text-sm text-gray-400">
+                Investment Adviser Representative | CRD: 7114756 | SEC: 801-120708
+            </p>
+            <div class="flex justify-center gap-4 text-xs">
+                <a href="https://brokercheck.finra.org/individual/summary/7114756" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="text-purple-400 hover:text-purple-300">
+                    BrokerCheck Profile
+                </a>
+                <a href="/disclosures/" 
+                   class="text-purple-400 hover:text-purple-300">
+                    Form ADV
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+/* Enhanced details styling */
+details[open] summary span {
+    transform: rotate(45deg);
+}
+
+details summary span {
+    transition: transform 0.2s ease;
+}
+
+details[open] > div {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+details summary {
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// FAQ search functionality
+function searchFAQ(event) {
+    event.preventDefault();
+    
+    const query = document.getElementById('faq-search').value.trim().toLowerCase();
+    const resultsContainer = document.getElementById('faq-search-results');
+    const resultsContent = document.getElementById('faq-results-container');
+    
+    if (!query) {
+        resultsContainer.classList.add('hidden');
+        return false;
+    }
+    
+    // Mock search results - in production, this would hit an API endpoint
+    const mockResults = [
+        {
+            question: "What is the minimum investment amount?",
+            answer: "Our minimum investment is $100,000 for individual accounts and $500,000 for institutional accounts.",
+            page: "Investment Basics"
+        },
+        {
+            question: "How do you screen companies for ESG compliance?",
+            answer: "We use a comprehensive screening process that evaluates environmental, social, and governance factors...",
+            page: "ESG Process"
+        },
+        {
+            question: "What are your management fees?",
+            answer: "Our management fees are 1% annually for accounts over $100,000, with reduced fees for larger accounts.",
+            page: "Fees & Pricing"
+        }
+    ];
+    
+    // Filter results based on query
+    const filteredResults = mockResults.filter(result => 
+        result.question.toLowerCase().includes(query) ||
+        result.answer.toLowerCase().includes(query)
+    );
+    
+    // Display results
+    resultsContent.innerHTML = '';
+    
+    if (filteredResults.length > 0) {
+        filteredResults.forEach(result => {
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'bg-gray-800 border border-gray-600 rounded p-3';
+            resultDiv.innerHTML = `
+                <h5 class="font-mono text-sm text-purple-400 font-semibold mb-2">${result.question}</h5>
+                <p class="text-xs text-gray-200 mb-2">${result.answer}</p>
+                <span class="text-xs text-gray-400">From: ${result.page}</span>
+            `;
+            resultsContent.appendChild(resultDiv);
+        });
+    } else {
+        resultsContent.innerHTML = '<p class="text-gray-400 text-sm">No results found. Try different keywords or <a href="/contact/" class="text-purple-400 hover:text-purple-300">contact us</a> directly.</p>';
+    }
+    
+    resultsContainer.classList.remove('hidden');
+    return false;
+}
+
+// Enhanced FAQ functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-focus search on page load
+    const searchInput = document.getElementById('faq-search');
+    if (searchInput && window.location.hash === '#search') {
+        searchInput.focus();
+    }
+    
+    // Handle FAQ category hover effects
+    const faqCards = document.querySelectorAll('article');
+    faqCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.transition = 'transform 0.2s ease';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Search input enhancements
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim();
+            if (query.length > 2) {
+                // Auto-search after 500ms delay
+                clearTimeout(this.searchTimeout);
+                this.searchTimeout = setTimeout(() => {
+                    searchFAQ({ preventDefault: () => {} });
+                }, 500);
+            } else if (query.length === 0) {
+                document.getElementById('faq-search-results').classList.add('hidden');
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

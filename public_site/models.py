@@ -143,7 +143,7 @@ class SafeUrlMixin:
 class HomePage(SafeUrlMixin, Page):
     """Homepage model for Ethical Capital Investment Collaborative."""
 
-    template = "public_site/homepage_accessible.html"
+    template = "public_site/homepage_tailwind.html"
 
     # Hero Section - Main banner content
     hero_tagline = models.CharField(
@@ -1400,7 +1400,7 @@ class PricingPage(SafeUrlMixin, Page):
 class ContactPage(SafeUrlMixin, RoutablePageMixin, Page):
     """Contact/Get Started page with accessible form."""
 
-    template = "public_site/contact_page.html"
+    template = "public_site/contact_form_tailwind.html"
 
     @path("")
     def contact_page_view(self, request):
@@ -1651,7 +1651,7 @@ class BlogTag(TaggedItemBase):
 class BlogIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
     """Blog index page with pagination and filtering."""
 
-    template = "public_site/blog_index_page.html"
+    template = "public_site/blog_index_tailwind.html"
 
     intro_text = RichTextField(
         blank=True,
@@ -3503,7 +3503,7 @@ class StrategyPage(SafeUrlMixin, Page):
 class StrategyListPage(SafeUrlMixin, Page):
     """Strategies listing page that displays all available investment strategies."""
 
-    template = "public_site/strategy_list.html"
+    template = "public_site/strategy_list_tailwind.html"
 
     intro_text = RichTextField(
         blank=True,
@@ -3672,7 +3672,7 @@ class StrategyListPage(SafeUrlMixin, Page):
 class FAQIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
     """FAQ index page with categories and search."""
 
-    template = "public_site/faq_index.html"
+    template = "public_site/faq_index_tailwind.html"
 
     intro_text = RichTextField(
         blank=True,
@@ -3784,7 +3784,7 @@ class FAQIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
 class FAQArticle(SafeUrlMixin, Page):
     """Individual FAQ article."""
 
-    template = "public_site/faq_article.html"
+    template = "public_site/faq_page_tailwind.html"
 
     # Article content
     summary = models.TextField(
@@ -3879,7 +3879,7 @@ class FAQArticle(SafeUrlMixin, Page):
 class ContactFormPage(SafeUrlMixin, Page):
     """Contact form page for support inquiries."""
 
-    template = "public_site/contact_form.html"
+    template = "public_site/contact_form_tailwind.html"
 
     intro_text = RichTextField(
         blank=True,

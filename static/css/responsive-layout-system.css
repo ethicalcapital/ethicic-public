@@ -1,0 +1,249 @@
+/* Responsive Layout System - CSS Layers Architecture */
+/* Consolidates page-width-fix.css and mobile-full-width.css */
+/* Eliminates !important wars with proper responsive design */
+
+@layer layout {
+    /* ===== BASE CONTAINER SYSTEM ===== */
+    
+    /* Default desktop container constraints */
+    .main-content,
+    .garden-container,
+    .garden-panel-content,
+    .panel-content {
+        max-width: var(--content-width-normal);
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    /* Main content area base styling */
+    .main-content {
+        padding: 0 1rem;
+    }
+
+    /* Garden container base styling */
+    .garden-container {
+        padding: 0 1rem;
+    }
+
+    /* ===== PAGE-SPECIFIC CONTAINER CONSISTENCY ===== */
+    
+    .homepage-page .main-content,
+    .about-page .main-content,
+    .contact-page .main-content,
+    .pricing-page .main-content,
+    .blog-index-page .main-content,
+    .blog-post .main-content,
+    .institutional-page .main-content,
+    .solutions-page .main-content,
+    .process-page .main-content,
+    .faq-page .main-content,
+    .strategy-page .main-content,
+    .onboarding-page .main-content {
+        max-width: var(--content-width-normal);
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    /* Ensure nested containers don't override parent constraints */
+    .main-content > *:not(.garden-container) {
+        max-width: 100%;
+    }
+
+    /* ===== HERO PANEL LAYOUT ===== */
+    
+    .hero-panel {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero-panel .panel-content,
+    .hero-panel .garden-panel-content,
+    .hero-panel .hero-panel-content {
+        max-width: var(--content-width-normal);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 var(--space-6);
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    /* ===== FOOTER LAYOUT ===== */
+    
+    .garden-footer {
+        width: 100%;
+        max-width: none;
+    }
+
+    .garden-footer-content {
+        max-width: var(--content-width-normal);
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    /* ===== HEADER POSITIONING ===== */
+    
+    .garden-header {
+        position: sticky;
+        top: 0;
+        z-index: var(--z-header);
+        background: var(--color-primary);
+    }
+
+    /* ===== OVERFLOW PREVENTION ===== */
+    
+    body, html {
+        overflow-x: hidden;
+    }
+
+    /* Fix for any full-width divs that should be contained */
+    div:not(.garden-header, .garden-footer, .mobile-nav, .garden-footer-content, .garden-footer-grid) {
+        max-width: 100%;
+    }
+}
+
+@layer responsive {
+    /* ===== TABLET ADJUSTMENTS ===== */
+    @media (width >= 769px) and (width <= 1024px) {
+        .garden-container {
+            max-width: 95%;
+            padding-left: var(--space-5);
+            padding-right: var(--space-5);
+        }
+
+        .blog-post-page .garden-container,
+        .blog-index-page .garden-container {
+            max-width: 100%;
+            padding-left: var(--space-4);
+            padding-right: var(--space-4);
+        }
+    }
+
+    /* ===== MOBILE OPTIMIZATIONS ===== */
+    @media (width <= 768px) {
+        /* Mobile-first: Full width containers for better UX */
+        .garden-container {
+            max-width: 100%;
+            padding-left: var(--space-4);
+            padding-right: var(--space-4);
+        }
+
+        /* Blog specific mobile adjustments */
+        .blog-post-page .garden-container,
+        .blog-index-page .garden-container {
+            max-width: 100%;
+            padding-left: var(--space-3);
+            padding-right: var(--space-3);
+        }
+
+        /* Blog article wrapper mobile optimization */
+        .blog-article-wrapper {
+            margin-left: 0;
+            margin-right: 0;
+            border-radius: 0; /* Full edge-to-edge on mobile */
+        }
+
+        .blog-article-wrapper .garden-panel,
+        .blog-post-page .garden-panel {
+            margin-left: 0;
+            margin-right: 0;
+            border-radius: 0;
+        }
+
+        /* Page-specific mobile containers */
+        .faq-page .garden-container,
+        .about-page .garden-container,
+        .contact-page .garden-container,
+        .onboarding-page .garden-container,
+        .home-page .garden-container,
+        .strategy-page .garden-container {
+            max-width: 100%;
+            padding-left: var(--space-4);
+            padding-right: var(--space-4);
+        }
+
+        /* Remove nested container constraints on mobile */
+        .garden-container .garden-container {
+            max-width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        /* Content adjustments within mobile containers */
+        .blog-article {
+            padding-left: var(--space-4);
+            padding-right: var(--space-4);
+        }
+
+        .garden-panel__content {
+            padding-left: var(--space-4);
+            padding-right: var(--space-4);
+        }
+
+        /* Form containers mobile optimization */
+        .form-container,
+        .contact-form-container,
+        .onboarding-form-container {
+            max-width: 100%;
+            padding-left: var(--space-4);
+            padding-right: var(--space-4);
+        }
+
+        /* Navigation content mobile adjustments */
+        .garden-nav-content {
+            padding: 0 var(--space-4);
+        }
+    }
+
+    /* ===== EXTRA SMALL MOBILE ===== */
+    @media (width <= 480px) {
+        .garden-container,
+        .blog-post-page .garden-container,
+        .blog-index-page .garden-container {
+            padding-left: var(--space-2);
+            padding-right: var(--space-2);
+        }
+
+        .blog-article,
+        .garden-panel__content {
+            padding-left: var(--space-3);
+            padding-right: var(--space-3);
+        }
+
+        .garden-nav-content {
+            padding: 0 var(--space-3);
+        }
+    }
+}
+
+@layer content {
+    /* ===== MOBILE CONTENT OPTIMIZATION ===== */
+    @media (width <= 768px) {
+        /* Ensure images are responsive within containers */
+        .garden-container img,
+        .blog-article img,
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Tables should be scrollable on mobile */
+        .garden-container table,
+        .blog-article table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        /* Text content flows properly in full-width containers */
+        .blog-article p,
+        .blog-article li,
+        .article-content p,
+        .article-content li {
+            max-width: none;
+        }
+    }
+}

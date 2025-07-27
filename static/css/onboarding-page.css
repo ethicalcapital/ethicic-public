@@ -1,0 +1,987 @@
+/*!
+ * ONBOARDING PAGE - CONSOLIDATED
+ * Combines: onboarding-comprehensive.css + onboarding-mobile-optimization.css
+ * Complete onboarding form styles with mobile optimization using CSS Layers
+ */
+
+@layer components {
+  /* ===== FORM FOUNDATION ===== */
+  
+  /* Form Section Styling */
+  .onboarding-page.comprehensive .form-section {
+    min-height: 500px;
+    margin-bottom: var(--space-6);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease-out;
+  }
+
+  .onboarding-page.comprehensive .form-section:not([style*="display: none"]) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .onboarding-page .form-section .panel-header {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .onboarding-page .form-section .panel-content {
+    padding: var(--space-6);
+  }
+
+  /* Base Mobile Styles */
+  .onboarding-page {
+    padding: 0;
+  }
+
+  .onboarding-page .garden-container {
+    padding: var(--space-2);
+  }
+
+  /* Form Group Spacing */
+  .onboarding-page .garden-form-group {
+    margin-bottom: var(--space-5);
+  }
+
+  .onboarding-page .garden-form-group:first-child {
+    margin-top: 0;
+  }
+
+  .onboarding-page .garden-form-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .onboarding-page .garden-form-group + .garden-form-group {
+    margin-top: var(--space-5);
+  }
+
+  /* Nested form groups */
+  .onboarding-page .garden-form-group .garden-form-group {
+    margin-bottom: var(--space-4);
+  }
+
+  /* Form Row Layout for Address Fields */
+  .onboarding-page .garden-form-group-row {
+    display: flex;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  .onboarding-page .garden-form-group-row .garden-form-group {
+    margin-bottom: 0;
+    min-width: 0; /* Allow flex items to shrink below content size */
+  }
+
+  .onboarding-page .garden-form-group-row .garden-form-group:nth-child(1) {
+    flex: 2; /* City gets more space */
+    min-width: 120px;
+  }
+
+  .onboarding-page .garden-form-group-row .garden-form-group:nth-child(2) {
+    flex: 1.5; /* State gets medium space */
+    min-width: 100px;
+  }
+
+  .onboarding-page .garden-form-group-row .garden-form-group:nth-child(3) {
+    flex: 1; /* ZIP gets least space */
+    min-width: 80px;
+  }
+
+  /* Form Help Text */
+  .onboarding-page .form-help {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2);
+    font-style: italic;
+  }
+
+  /* Radio and Checkbox Groups */
+  .onboarding-page .radio-group,
+  .onboarding-page .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .onboarding-page .radio-option,
+  .onboarding-page .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    min-height: 56px;
+  }
+
+  .onboarding-page .radio-option:hover,
+  .onboarding-page .checkbox-option:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+  }
+
+  .onboarding-page .radio-option:has(input:checked),
+  .onboarding-page .checkbox-option:has(input:checked) {
+    background: var(--color-surface-variant);
+    border-color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .onboarding-page .radio-input,
+  .onboarding-page .checkbox-input {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-primary);
+    transform: scale(1.2);
+    flex-shrink: 0;
+  }
+
+  .onboarding-page .radio-label,
+  .onboarding-page .checkbox-label {
+    flex: 1;
+    cursor: pointer;
+    line-height: 1.5;
+  }
+
+  /* Garden Input Styling - Enhanced visibility with borders in all states */
+  .onboarding-page .garden-input,
+@layer components {
+  .onboarding-page input[type="text"],
+  .onboarding-page input[type="email"],
+  .onboarding-page input[type="tel"],
+  .onboarding-page input[type="number"],
+  .onboarding-page input[type="date"],
+  .onboarding-page textarea,
+  .onboarding-page select {
+    width: 100%;
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    transition: all var(--duration-fast);
+    box-sizing: border-box;
+  }
+}
+
+  .onboarding-page textarea.garden-input,
+  .onboarding-page textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+@layer components {
+  /* Hover state - intermediate feedback */
+  .onboarding-page .garden-input:hover,
+  .onboarding-page input:hover,
+  .onboarding-page textarea:hover,
+  .onboarding-page select:hover {
+    border-color: var(--color-primary-light);
+  }
+}
+
+@layer components {
+  /* Focus state - clear, accessible focus indicator */
+  .onboarding-page .garden-input:focus,
+  .onboarding-page input:focus,
+  .onboarding-page textarea:focus,
+  .onboarding-page select:focus {
+    outline: none; /* Remove default outline since we provide better custom indicator */
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-alpha);
+  }
+}
+
+  .onboarding-page .garden-input.error {
+    border-color: var(--color-error);
+  }
+
+  /* Add placeholder styling for better visibility */
+  .onboarding-page .garden-input::placeholder,
+  .onboarding-page input::placeholder,
+  .onboarding-page textarea::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.7;
+  }
+
+  /* Form Labels */
+  .onboarding-page .form-label {
+    display: block;
+    margin-bottom: var(--space-3);
+    font-weight: 500;
+    color: var(--color-on-surface);
+  }
+
+  .onboarding-page .form-label.required::after {
+    content: " *";
+    color: var(--color-error);
+  }
+
+  /* Form Navigation */
+  .onboarding-page .form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Section Descriptions */
+  .onboarding-page .section-description {
+    margin-bottom: var(--space-5);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .onboarding-page .section-description p {
+    margin-bottom: var(--space-4);
+  }
+
+  .onboarding-page .section-description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .onboarding-page .section-description ul {
+    margin-left: var(--space-5);
+    margin-top: var(--space-3);
+  }
+
+  .onboarding-page .section-description ul li {
+    margin-bottom: var(--space-2);
+  }
+
+  /* Progress Bar Enhancement */
+  .onboarding-page .progress-container {
+    margin-bottom: var(--space-4);
+  }
+
+  .onboarding-page .progress-bar {
+    height: 8px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .onboarding-page .progress-fill {
+    height: 100%;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+  }
+
+  .onboarding-page .progress-text {
+    margin-top: var(--space-3);
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+  }
+
+  /* Step Indicators */
+  .onboarding-page .step-indicators {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .onboarding-page .step-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    border: 2px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+  }
+
+  .onboarding-page .step-dot.completed {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-inverse);
+  }
+
+  .onboarding-page .step-dot.current {
+    background: var(--color-primary-alpha-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: scale(1.1);
+  }
+
+  .onboarding-page .step-dot.future {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    color: var(--color-text-secondary);
+    cursor: not-allowed;
+  }
+
+  .onboarding-page .step-dot:hover:not(.future) {
+    transform: scale(1.05);
+  }
+
+  /* Validation Messages */
+  .onboarding-page .validation-message {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    margin-bottom: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    animation: slide-in 0.3s ease-out;
+  }
+
+  .onboarding-page .validation-message.error {
+    background: var(--color-error-10);
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
+  }
+
+  .onboarding-page .validation-message.success {
+    background: var(--color-success-alpha-10);
+    border: 1px solid var(--color-success);
+    color: var(--color-success);
+  }
+
+  .onboarding-page .validation-icon {
+    font-size: var(--text-base);
+  }
+
+  .onboarding-page .validation-text {
+    flex: 1;
+    font-weight: 500;
+  }
+
+@layer utilities {
+  /* Error State Styling */
+  .onboarding-page .garden-input.error,
+  .onboarding-page .radio-option:has(input.error),
+  .onboarding-page .checkbox-option:has(input.error) {
+    border-color: var(--color-error);
+    background: var(--color-error-10);
+  }
+}
+
+@layer utilities {
+  .onboarding-page .garden-input.error:focus {
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 2px var(--color-error-10);
+  }
+}
+
+  /* Garden Actions */
+  .onboarding-page .garden-action {
+    padding: var(--space-4) var(--space-5);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .onboarding-page .garden-action:hover {
+    background: var(--color-surface-hover);
+    transform: translateY(-1px);
+  }
+
+  .onboarding-page .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--garden-color-white);
+    border-color: var(--color-primary);
+  }
+
+  .onboarding-page .garden-action.primary:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+  }
+
+  .onboarding-page .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  .onboarding-page .garden-action.secondary:hover {
+    background: var(--color-primary);
+    color: var(--garden-color-white);
+    transform: translateY(-1px);
+  }
+
+  /* Conditional Field Display */
+  .onboarding-page .mt-3 {
+    margin-top: var(--space-4);
+  }
+
+  /* Thank You Panel */
+  .onboarding-page .thank-you-panel {
+    text-align: center;
+    padding: var(--space-6);
+  }
+
+  .onboarding-page .success-icon {
+    font-size: 3rem;
+    color: var(--color-success);
+    margin-bottom: var(--space-5);
+  }
+
+  .onboarding-page .thank-you-message h2 {
+    margin-bottom: var(--space-5);
+    color: var(--color-on-surface);
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .onboarding-page .thank-you-message p {
+    margin-bottom: var(--space-4);
+    color: var(--color-text-secondary);
+  }
+
+  .onboarding-page .next-steps {
+    margin: var(--space-6) 0;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .onboarding-page .next-steps h3 {
+    margin-bottom: var(--space-4);
+    color: var(--color-on-surface);
+  }
+
+  .onboarding-page .next-steps ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .onboarding-page .next-steps ul li {
+    padding: var(--space-3) 0;
+    padding-left: var(--space-5);
+    position: relative;
+  }
+
+  .onboarding-page .next-steps ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+  }
+
+@layer utilities {
+  /* Hide inactive sections */
+  .onboarding-page .form-section[x-show]:not(.active) {
+    display: none;
+  }
+}
+}
+
+@layer utilities {
+  /* Animation for validation messages */
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Loading animation */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+@layer utilities {
+  /* Additional form input specificity to override any theme conflicts */
+  html body .onboarding-page .garden-form-group input,
+  html body .onboarding-page .garden-form-group textarea,
+  html body .onboarding-page .garden-form-group select,
+  html body .onboarding-page .panel-content input,
+  html body .onboarding-page .panel-content textarea,
+  html body .onboarding-page .panel-content select {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    font-size: var(--text-base);
+    transition: all var(--duration-fast);
+  }
+
+  /* Make sure hover states are visible */
+  html body .onboarding-page .garden-form-group input:hover,
+  html body .onboarding-page .garden-form-group textarea:hover,
+  html body .onboarding-page .garden-form-group select:hover,
+  html body .onboarding-page .panel-content input:hover,
+  html body .onboarding-page .panel-content textarea:hover,
+  html body .onboarding-page .panel-content select:hover {
+    border-color: var(--color-primary-light);
+  }
+
+  /* Make sure focus states are clearly visible */
+  html body .onboarding-page .garden-form-group input:focus,
+  html body .onboarding-page .garden-form-group textarea:focus,
+  html body .onboarding-page .garden-form-group select:focus,
+  html body .onboarding-page .panel-content input:focus,
+  html body .onboarding-page .panel-content textarea:focus,
+  html body .onboarding-page .panel-content select:focus {
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-alpha);
+    outline: none;
+  }
+
+  /* Emergency fix for invisible form borders - highest specificity override */
+  html body .main-content .onboarding-page .garden-input,
+  html body .main-content .onboarding-page input[type="text"],
+  html body .main-content .onboarding-page input[type="email"],
+  html body .main-content .onboarding-page input[type="tel"],
+  html body .main-content .onboarding-page input[type="number"],
+  html body .main-content .onboarding-page input[type="date"],
+  html body .main-content .onboarding-page textarea,
+  html body .main-content .onboarding-page select,
+  html body .main-content .onboarding-page input,
+  html body .main-content input.garden-input,
+  html body .main-content input#email,
+  html body .main-content input#first_name,
+  html body .main-content input#last_name {
+    border: 1px solid var(--color-border) !important;
+    border-color: var(--color-border) !important;
+  }
+}
+
+@layer themes {
+  /* Dark mode form field visibility fixes */
+  [data-theme="dark"] html body .onboarding-page .garden-form-group input,
+  [data-theme="dark"] html body .onboarding-page .garden-form-group textarea,
+  [data-theme="dark"] html body .onboarding-page .garden-form-group select,
+  [data-theme="dark"] html body .onboarding-page .panel-content input,
+  [data-theme="dark"] html body .onboarding-page .panel-content textarea,
+  [data-theme="dark"] html body .onboarding-page .panel-content select {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-text-primary) !important;
+  }
+
+  [data-theme="dark"] .onboarding-page .garden-input::placeholder,
+  [data-theme="dark"] .onboarding-page input::placeholder,
+  [data-theme="dark"] .onboarding-page textarea::placeholder {
+    color: var(--color-text-secondary) !important;
+    opacity: 0.8 !important;
+  }
+}
+
+/* ===== MOBILE OPTIMIZATION ===== */
+
+/* Hero Section Mobile Optimization */
+@media (width <= 767px) {
+  .onboarding-page .hero-panel {
+    margin-bottom: var(--space-4);
+  }
+
+  .onboarding-page .hero-title {
+    font-size: var(--font-xl);
+    line-height: 1.3;
+    margin-bottom: var(--space-3);
+  }
+
+  .onboarding-page .hero-subtitle {
+    font-size: var(--font-sm);
+    line-height: 1.5;
+  }
+
+  .onboarding-page .hero-subtitle p {
+    margin-bottom: var(--space-3);
+  }
+
+  /* Progress Indicator Mobile Optimization */
+  .onboarding-page .progress-panel {
+    position: sticky;
+    top: 60px; /* Below header */
+    z-index: 100;
+    margin-bottom: var(--space-3);
+  }
+
+  .onboarding-page .progress-container {
+    padding: var(--space-3);
+  }
+
+  .onboarding-page .progress-bar {
+    height: 6px;
+    margin-bottom: var(--space-2);
+  }
+
+  .onboarding-page .progress-text {
+    font-size: var(--font-sm);
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+
+  /* Step dots - make them more touch-friendly */
+  .onboarding-page .step-indicators {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .onboarding-page .step-dot {
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-sm);
+    font-weight: var(--font-semibold);
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  /* Form Steps Mobile Layout */
+  .onboarding-page .form-step {
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .onboarding-page .step-header {
+    margin-bottom: var(--space-4);
+    text-align: center;
+  }
+
+  .onboarding-page .step-title {
+    font-size: var(--font-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  .onboarding-page .step-description {
+    font-size: var(--font-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Form Fields Mobile Optimization */
+  /* All form groups stack vertically on mobile */
+  .onboarding-page .garden-form-row {
+    display: block;
+  }
+
+  .onboarding-page .garden-form-group {
+    margin-bottom: var(--space-4);
+  }
+
+  .onboarding-page .garden-form-group:last-child {
+    margin-bottom: var(--space-6);
+  }
+
+  /* Input fields optimized for mobile */
+  .onboarding-page .garden-input,
+  .onboarding-page .garden-select,
+  .onboarding-page .garden-textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: var(--space-3);
+    border-radius: 8px;
+    min-height: 44px;
+  }
+
+  .onboarding-page .garden-textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  /* Labels with better spacing */
+  .onboarding-page .garden-label {
+    font-size: var(--font-base);
+    margin-bottom: var(--space-2);
+    display: block;
+    font-weight: var(--font-medium);
+  }
+
+  .onboarding-page .garden-label.required::after {
+    content: " *";
+    color: var(--color-error);
+  }
+
+  /* Radio and Checkbox Groups Mobile */
+  .onboarding-page .garden-radio-group,
+  .onboarding-page .garden-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .onboarding-page .garden-radio,
+  .onboarding-page .garden-checkbox {
+    min-height: 44px;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .onboarding-page .garden-radio:hover,
+  .onboarding-page .garden-checkbox:hover {
+    background-color: var(--color-surface-variant);
+  }
+
+  .onboarding-page .garden-radio.selected,
+  .onboarding-page .garden-checkbox.selected {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-alpha-light);
+  }
+
+  .onboarding-page .garden-radio input,
+  .onboarding-page .garden-checkbox input {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .onboarding-page .garden-radio label,
+  .onboarding-page .garden-checkbox label {
+    margin: 0;
+    flex: 1;
+    font-size: var(--font-base);
+    line-height: 1.4;
+    cursor: pointer;
+  }
+
+  /* Special handling for risk assessment questions */
+  .onboarding-page .risk-question {
+    margin-bottom: var(--space-6);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background-color: var(--color-surface);
+  }
+
+  .onboarding-page .risk-question-title {
+    font-size: var(--font-base);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--space-3);
+    line-height: 1.4;
+  }
+
+  .onboarding-page .risk-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .onboarding-page .risk-option {
+    min-height: 44px;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    cursor: pointer;
+    font-size: var(--font-sm);
+  }
+
+  /* Navigation Buttons Mobile */
+  .onboarding-page .step-navigation {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-4);
+    margin: 0 calc(-1 * var(--space-4));
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .onboarding-page .step-navigation button {
+    flex: 1;
+    min-height: 44px;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-base);
+    font-weight: var(--font-medium);
+    border-radius: 8px;
+    touch-action: manipulation;
+  }
+
+  .onboarding-page .step-navigation .btn-secondary {
+    order: 1;
+  }
+
+  .onboarding-page .step-navigation .btn-primary {
+    order: 2;
+  }
+
+  /* Error States Mobile */
+  .onboarding-page .garden-form-group.error {
+    border: 2px solid var(--color-error);
+    border-radius: 8px;
+    padding: var(--space-3);
+    background-color: var(--color-error-alpha-light);
+  }
+
+  .onboarding-page .error-message {
+    color: var(--color-error);
+    font-size: var(--font-sm);
+    margin-top: var(--space-2);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .onboarding-page .error-message::before {
+    content: "⚠️";
+    flex-shrink: 0;
+  }
+
+  /* Loading States Mobile */
+  .onboarding-page .step-loading {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(var(--color-surface-rgb), 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .onboarding-page .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-border);
+    border-top: 3px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  /* Responsive Design */
+  .onboarding-page .form-navigation {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .onboarding-page .garden-action {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Accessibility Improvements */
+  /* Focus indicators more visible on mobile */
+  .onboarding-page input:focus,
+  .onboarding-page select:focus,
+  .onboarding-page textarea:focus,
+  .onboarding-page button:focus {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  /* Skip link for mobile */
+  .onboarding-page .skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+  }
+
+  .onboarding-page .skip-to-content:focus {
+    top: 6px;
+  }
+
+  /* Screen reader only content */
+  .onboarding-page .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+/* Tablet Optimization (768px - 1023px) */
+@media (width >= 768px) and (width <= 1023px) {
+  .onboarding-page .garden-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--space-4);
+  }
+
+  .onboarding-page .garden-form-row {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .onboarding-page .garden-form-row .garden-form-group {
+    flex: 1;
+  }
+
+  .onboarding-page .step-navigation {
+    position: relative;
+    bottom: auto;
+    margin: var(--space-6) 0 0 0;
+    padding: 0;
+    background: none;
+    border: none;
+    justify-content: space-between;
+  }
+
+  .onboarding-page .step-navigation button {
+    flex: none;
+    min-width: 120px;
+  }
+}
+
+/* High contrast mode for better accessibility */
+@media (prefers-contrast: more) {
+  .onboarding-page .garden-input,
+  .onboarding-page input,
+  .onboarding-page textarea,
+  .onboarding-page select {
+    border-width: 3px !important;
+    border-color: var(--color-text-primary) !important;
+  }
+
+  .onboarding-page .garden-input:focus,
+  .onboarding-page input:focus,
+  .onboarding-page textarea:focus,
+  .onboarding-page select:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 4px var(--color-primary) !important;
+  }
+}

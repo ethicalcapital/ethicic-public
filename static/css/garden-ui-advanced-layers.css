@@ -1,0 +1,46 @@
+/* Advanced CSS Layers Architecture - Phase 2 */
+/* Granular sub-layer system for eliminating remaining !important usage */
+
+@layer reset, base, layout, components, states, themes, utilities, overrides;
+
+/* Sub-layer definitions for granular cascade control */
+@layer components {
+  @layer buttons, forms, panels, cards, navigation, modals;
+}
+
+@layer states {
+  @layer default, hover, focus, active, disabled, loading, error, success;
+}
+
+@layer themes {
+  @layer base-themes, component-themes, state-themes, variant-themes;
+}
+
+@layer utilities {
+  @layer spacing, typography, colors, positioning, display, accessibility;
+}
+
+/* Advanced sub-layer hierarchy eliminates need for !important */
+/* Order of precedence (later layers override earlier): */
+/* 1. reset - normalize browser defaults */
+/* 2. base - fundamental tokens and variables */
+/* 3. layout - grid, containers, positioning */
+/* 4. components - UI components in order of specificity */
+/*    - buttons (lowest specificity) */
+/*    - forms */
+/*    - panels */
+/*    - cards */
+/*    - navigation */
+/*    - modals (highest specificity) */
+/* 5. states - interactive states in order of priority */
+/*    - default */
+/*    - hover */
+/*    - focus */
+/*    - active */
+/*    - disabled */
+/*    - loading */
+/*    - error */
+/*    - success (highest priority) */
+/* 6. themes - theme variations */
+/* 7. utilities - helper classes and overrides */
+/* 8. overrides - emergency overrides only */

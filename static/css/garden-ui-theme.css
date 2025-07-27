@@ -870,7 +870,7 @@ button, input, optgroup, select, textarea {
 
 .garden-panel-header {
   background: var(--panel-header-bg);
-  color: var(--garden-accent);
+  color: var(--color-text-primary);
   padding: var(--space-2) var(--space-3);
   font-size: var(--font-xs);
   font-weight: var(--font-bold);
@@ -888,7 +888,7 @@ button, input, optgroup, select, textarea {
   font-weight: var(--font-semibold);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--garden-fg);
+  color: var(--color-text-primary);
   margin: 0;
 }
 
@@ -900,8 +900,20 @@ button, input, optgroup, select, textarea {
   /* Special case: Panel headers with purple background */
 .garden-panel-header.accent-bg {
   background: var(--garden-accent);
-  color: var(--accent-text);
-  text-shadow: var(--accent-text-shadow);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode panel header improvements */
+[data-theme="dark"] .garden-panel-header {
+  background: var(--color-surface-variant);
+  color: var(--color-text-primary);
+  border-bottom-color: var(--color-border);
+}
+
+[data-theme="dark"] .garden-panel-header.accent-bg {
+  background: var(--garden-accent);
+  color: white;
 }
 
 .garden-panel-content {
@@ -1263,27 +1275,33 @@ button, input, optgroup, select, textarea {
 /* Button Contrast Safeguards - Prevent white-on-white issues */
 /* Ensure primary buttons always have proper contrast */
 .garden-action.primary,
-.blog-page .garden-action.primary,
-.blog-post .garden-action.primary,
-.newsletter-form .garden-action.primary {
-  background: var(--color-primary) !important;
-  color: var(--color-on-primary) !important;
-  border-color: var(--color-primary) !important;
+@layer components {
+  .blog-page .garden-action.primary,
+  .blog-post .garden-action.primary,
+  .newsletter-form .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+  }
 }
 
 /* Ensure secondary buttons never have white text on transparent */
 .garden-action.secondary,
-.blog-page .garden-action.secondary,
-.blog-post .garden-action.secondary {
-  color: var(--color-primary) !important;
-  background: transparent !important;
+@layer components {
+  .blog-page .garden-action.secondary,
+  .blog-post .garden-action.secondary {
+    color: var(--color-primary);
+    background: transparent;
+  }
 }
 
 .garden-action.secondary:hover,
-.blog-page .garden-action.secondary:hover,
-.blog-post .garden-action.secondary:hover {
-  background: var(--color-primary) !important;
-  color: var(--color-on-primary) !important;
+@layer components {
+  .blog-page .garden-action.secondary:hover,
+  .blog-post .garden-action.secondary:hover {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
 }
 
   /* Ghost/Outline buttons - No background */
@@ -1412,30 +1430,32 @@ button, input, optgroup, select, textarea {
   min-height: 56px;
 }
 
+@layer components {
   /* Enhanced specificity for CRM and other contexts where buttons might not display */
   .status-actions .garden-action,
   .crm-status-bar .garden-action,
   .garden-panel .garden-action:not(.secondary),
-.panel-content .garden-action:not(.secondary) {
-  background: var(--color-primary) !important;
-  color: var(--color-on-primary) !important;
-  border: 2px solid var(--color-primary) !important;
-  padding: var(--space-2) var(--space-4) !important;
-  font-size: var(--font-sm) !important;
-  font-weight: var(--font-semibold) !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-  border-radius: var(--radius-sm) !important;
-  text-decoration: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: var(--space-2) !important;
-  font-family: var(--font-mono) !important;
-  text-shadow: 0 1px 2px var(--color-shadow) !important;
-  cursor: pointer !important;
-  transition: all var(--duration-fast) !important;
-  min-height: 40px !important;
-  box-sizing: border-box !important;
+  .panel-content .garden-action:not(.secondary) {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-primary);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    text-shadow: 0 1px 2px var(--color-shadow);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    min-height: 40px;
+    box-sizing: border-box;
+  }
 }
 
 /* Disabled State - Enhanced accessibility */
@@ -1447,66 +1467,79 @@ button, input, optgroup, select, textarea {
   transform: none !important;
 }
 
+@layer components {
   .status-actions .garden-action:hover,
   .crm-status-bar .garden-action:hover,
   .garden-panel .garden-action:hover,
-.panel-content .garden-action:hover {
-  background: var(--color-primary-hover) !important;
-  border-color: var(--color-primary-hover) !important;
-  color: var(--color-on-primary) !important;
-  transform: translateY(-1px) !important;
-  text-shadow: 0 1px 2px var(--color-shadow) !important;
+  .panel-content .garden-action:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    color: var(--color-on-primary);
+    transform: translateY(-1px);
+    text-shadow: 0 1px 2px var(--color-shadow);
+  }
 }
 
   /* Enhanced specificity for button variants in problematic contexts */
+@layer components {
   .status-actions .garden-action.secondary,
   .crm-status-bar .garden-action.secondary,
   .garden-panel .garden-action.secondary,
-.panel-content .garden-action.secondary {
-  background: transparent !important;
-  color: var(--color-primary) !important;
-  border: 2px solid var(--color-primary) !important;
+  .panel-content .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
 }
 
+@layer components {
   .status-actions .garden-action.secondary:hover,
   .crm-status-bar .garden-action.secondary:hover,
   .garden-panel .garden-action.secondary:hover,
-.panel-content .garden-action.secondary:hover {
-  background: var(--color-primary) !important;
-  color: var(--color-on-primary) !important;
+  .panel-content .garden-action.secondary:hover {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
 }
 
+@layer components {
   .status-actions .garden-action.success,
   .crm-status-bar .garden-action.success,
   .garden-panel .garden-action.success,
-.panel-content .garden-action.success {
-  background: var(--color-success) !important;
-  color: var(--color-on-primary) !important;
-  border: 2px solid var(--color-success) !important;
-  border-color: var(--color-success) !important;
+  .panel-content .garden-action.success {
+    background: var(--color-success);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-success);
+    border-color: var(--color-success);
+  }
 }
 
+@layer components {
   .status-actions .garden-action.info,
   .crm-status-bar .garden-action.info,
   .garden-panel .garden-action.info,
-.panel-content .garden-action.info {
-  background: var(--color-info) !important;
-  color: var(--color-on-primary) !important;
-  border: 2px solid var(--color-info) !important;
-  border-color: var(--color-info) !important;
+  .panel-content .garden-action.info {
+    background: var(--color-info);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-info);
+    border-color: var(--color-info);
+  }
 }
 
+@layer components {
   .status-actions .garden-action.accent,
   .crm-status-bar .garden-action.accent,
   .garden-panel .garden-action.accent,
-.panel-content .garden-action.accent {
-  background: var(--color-primary) !important;
-  color: var(--color-on-primary) !important;
-  border: 2px solid var(--color-primary) !important;
-  border-color: var(--color-primary) !important;
-  text-shadow: 0 1px 2px var(--color-shadow) !important;
+  .panel-content .garden-action.accent {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-primary);
+    border-color: var(--color-primary);
+    text-shadow: 0 1px 2px var(--color-shadow);
+  }
 }
 
+@layer components.buttons {
   .status-actions .garden-action.small,
   .crm-status-bar .garden-action.small,
   .garden-panel .garden-action.small,
@@ -1514,25 +1547,28 @@ button, input, optgroup, select, textarea {
   .status-actions .garden-action.compact,
   .crm-status-bar .garden-action.compact,
   .garden-panel .garden-action.compact,
-.panel-content .garden-action.compact {
-  padding: var(--space-1) var(--space-3) !important;
-  font-size: var(--font-xs) !important;
-  min-height: 32px !important;
-  font-weight: var(--font-medium) !important;
+  .panel-content .garden-action.compact {
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-xs);
+    min-height: 32px;
+    font-weight: var(--font-medium);
+  }
 }
 
+@layer states.disabled {
   .garden-action:disabled:hover,
   .garden-action[disabled]:hover,
   .garden-action.disabled:hover,
   .garden-action:disabled:focus,
   .garden-action[disabled]:focus,
-.garden-action.disabled:focus {
-  background: var(--color-surface-variant) !important;
-  color: var(--color-text-tertiary) !important;
-  border-color: var(--color-border-variant) !important;
-  transform: none !important;
-  box-shadow: none !important;
-  outline: none !important;
+  .garden-action.disabled:focus {
+    background: var(--color-surface-variant);
+    color: var(--color-text-tertiary);
+    border-color: var(--color-border-variant);
+    transform: none;
+    box-shadow: none;
+    outline: none;
+  }
 }
 
 /* Button variant for colored backgrounds */
@@ -6232,84 +6268,11 @@ to {
   margin: 0 auto;
 }
 
-/* Responsive Display Utilities */
-@media (max-width: 479px) {
-  .hidden-xs { display: none !important; }
-  .block-xs { display: block !important; }
-  .flex-xs { display: flex !important; }
-  .grid-xs { display: grid !important; }
-}
+/* Responsive Display Utilities - Moved to responsive-utilities-layered.css */
+/* Using CSS Layers instead of !important for proper cascade management */
 
-@media (min-width: 480px) and (max-width: 639px) {
-  .hidden-sm { display: none !important; }
-  .block-sm { display: block !important; }
-  .flex-sm { display: flex !important; }
-  .grid-sm { display: grid !important; }
-}
-
-@media (min-width: 640px) and (max-width: 767px) {
-  .hidden-md { display: none !important; }
-  .block-md { display: block !important; }
-  .flex-md { display: flex !important; }
-  .grid-md { display: grid !important; }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .hidden-lg { display: none !important; }
-  .block-lg { display: block !important; }
-  .flex-lg { display: flex !important; }
-  .grid-lg { display: grid !important; }
-}
-
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .hidden-xl { display: none !important; }
-  .block-xl { display: block !important; }
-  .flex-xl { display: flex !important; }
-  .grid-xl { display: grid !important; }
-}
-
-@media (min-width: 1280px) {
-  .hidden-2xl { display: none !important; }
-  .block-2xl { display: block !important; }
-  .flex-2xl { display: flex !important; }
-  .grid-2xl { display: grid !important; }
-}
-
-/* Responsive Spacing Utilities */
-@media (max-width: 768px) {
-  .p-mobile { padding: var(--space-3) !important; }
-
-  .px-mobile {
-    padding-left: var(--space-3) !important;
-    padding-right: var(--space-3) !important;
-  }
-
-  .py-mobile {
-    padding-top: var(--space-3) !important;
-    padding-bottom: var(--space-3) !important;
-  }
-
-  .m-mobile {
-    margin: var(--space-3) !important;
-  }
-
-  .mx-mobile {
-    margin-left: var(--space-3) !important;
-    margin-right: var(--space-3) !important;
-  }
-
-  .my-mobile {
-    margin-top: var(--space-3) !important;
-    margin-bottom: var(--space-3) !important;
-  }
-}
-
-/* Responsive Typography Utilities */
-@media (max-width: 768px) {
-  .text-mobile-sm { font-size: var(--font-sm) !important; }
-  .text-mobile-base { font-size: var(--font-base) !important; }
-  .text-mobile-lg { font-size: var(--font-lg) !important; }
-}
+/* Responsive Utilities - Moved to responsive-utilities-layered.css */
+/* Using CSS Layers for proper cascade management without !important */
 
 /* Mobile-First Responsive Grid System */
 .grid-responsive {
@@ -6330,23 +6293,7 @@ to {
   .grid-responsive { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* Mobile Navigation Utilities */
-@media (max-width: 768px) {
-  .mobile-stack {
-    flex-direction: column !important;
-    gap: var(--space-2) !important;
-  }
-
-  .mobile-full-width {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-  .mobile-center {
-    text-align: center !important;
-    justify-content: center !important;
-  }
-}
+/* Mobile Navigation Utilities - Moved to responsive-utilities-layered.css */
 
 /* ===== HITL QUEUE STYLES ===== */
 /* Evidence item styles for queue items */

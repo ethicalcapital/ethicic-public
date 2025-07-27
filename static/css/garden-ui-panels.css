@@ -1,0 +1,317 @@
+/*!
+ * Garden UI Panels System - Public Site Version
+ * Panel components with headers, content areas, and responsive behavior
+ * Extracted from garden-ui-public.css for better maintainability
+ */
+
+@layer components {
+  /* ===== COMPREHENSIVE PANEL SYSTEM ===== */
+  /* Consolidated from garden-platform.css for single source of truth */
+
+  /* Base Panel Styles */
+.garden-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--garden-border);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-3);
+  width: 100%;
+  overflow: hidden;
+  transition: background-color var(--duration-normal), border-color var(--duration-normal);
+  break-inside: avoid;
+  box-sizing: border-box;
+}
+
+.garden-panel-header {
+  background: var(--panel-header-bg);
+  color: var(--color-text-primary);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-xs);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--panel-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+  /* Panel Title Styling */
+.panel-title {
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.panel-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+  /* Special case: Panel headers with purple background */
+.garden-panel-header.accent-bg {
+  background: var(--garden-accent);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode panel header improvements */
+[data-theme="dark"] .garden-panel-header {
+  background: var(--color-surface-variant);
+  color: var(--color-text-primary);
+  border-bottom-color: var(--color-border);
+}
+
+[data-theme="dark"] .garden-panel-header.accent-bg {
+  background: var(--garden-accent);
+  color: white;
+}
+
+.garden-panel-content {
+  padding: var(--space-3);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+  /* Panel Variants */
+.garden-panel-content.no-padding {
+  padding: 0;
+}
+
+.garden-panel-scrollable .garden-panel-content {
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.garden-panel-compact .garden-panel-content {
+  padding: var(--space-2);
+}
+
+  /* Collapsible Panels */
+  .garden-panel-collapsible .garden-panel-header,
+.garden-panel.collapsible .garden-panel-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.garden-panel.collapsible .panel-title::before {
+  content: '▼';
+  display: inline-block;
+  margin-right: var(--space-2);
+  transition: transform var(--duration-fast);
+}
+
+.garden-panel.collapsible.collapsed .panel-title::before {
+  transform: rotate(-90deg);
+}
+
+.garden-panel.collapsible.collapsed .garden-panel-content {
+  display: none;
+}
+
+  /* Nested Panels */
+.garden-panel .garden-panel {
+  margin-bottom: var(--space-3);
+}
+
+.garden-panel .garden-panel:last-child {
+  margin-bottom: 0;
+}
+
+  /* Panel Grid Layout */
+.garden-panel-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+  /* Panel States */
+.garden-panel.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.garden-panel.error {
+  border-color: var(--color-error);
+}
+
+.garden-panel.error .garden-panel-header {
+  background: var(--color-error-alpha);
+  border-bottom-color: var(--color-error);
+}
+
+.garden-panel.success {
+  border-color: var(--color-success);
+}
+
+.garden-panel.success .garden-panel-header {
+  background: var(--color-success-alpha);
+  border-bottom-color: var(--color-success);
+}
+
+  /* Status Indicators */
+.garden-panel[data-status="success"] {
+  border-left: 3px solid var(--color-success);
+}
+
+.garden-panel[data-status="warning"] {
+  border-left: 3px solid var(--color-warning);
+}
+
+.garden-panel[data-status="error"] {
+  border-left: 3px solid var(--color-error);
+}
+
+  /* Panel Footer */
+.garden-panel-footer {
+  background: var(--panel-bg);
+  border-top: 1px solid var(--panel-border);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+  /* Panel Header Components */
+.panel-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.panel-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+  /* Panel Loading State */
+.panel-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  color: var(--garden-muted);
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--garden-border);
+  border-top: 2px solid var(--garden-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--space-2);
+}
+
+.loading-text {
+  font-size: var(--font-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.panel-count {
+  font-size: var(--font-xs);
+  background: var(--garden-muted);
+  color: var(--color-on-surface);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.collapse-icon {
+  font-family: var(--font-mono);
+  font-size: var(--font-sm);
+}
+
+.action-display-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-flex-gap-3 {
+  display: flex;
+  gap: var(--space-3);
+}
+
+  /* Composite utility classes for common patterns */
+.action-section-label {
+  font-size: var(--font-xs);
+  text-transform: uppercase;
+  color: var(--garden-text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.action-panel-content-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-controls-section {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--garden-border);
+}
+
+.action-console-header {
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-white-2);
+  border-bottom: 1px solid var(--garden-border);
+}
+
+.action-console-output {
+  flex: 1;
+  padding: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--font-xs);
+  overflow-y: auto;
+  max-height: 200px;
+  background: var(--color-shadow-30);
+}
+
+.action-detail-section {
+  margin-bottom: var(--space-4);
+}
+
+.action-detail-header {
+  font-size: var(--font-lg);
+  margin-bottom: var(--space-2);
+}
+
+.action-detail-meta {
+  display: flex;
+  gap: var(--space-3);
+  font-size: var(--font-sm);
+  color: var(--garden-text-muted);
+}
+
+.action-empty-state {
+  padding: var(--space-4);
+  text-align: center;
+  color: var(--garden-text-muted);
+}
+
+.action-panel-header-count {
+  font-size: var(--font-xs);
+  color: var(--garden-text-muted);
+}
+
+.action-quick-button-full {
+  width: 100%;
+  margin-bottom: var(--space-2);
+}
+
+.action-shortcuts-text {
+  font-size: var(--font-xs);
+  line-height: 1.6;
+}
+
+.action-console-flex-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+}

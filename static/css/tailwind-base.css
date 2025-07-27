@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+@layer components {
+  .btn-ec-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded font-mono text-sm border;
+    @apply bg-purple-900 text-white border-purple-900;
+    transition: all 0.25s ease;
+  }
+  
+  .btn-ec-primary:hover {
+    @apply bg-purple-800 border-purple-800;
+  }
+  
+  .btn-ec-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded font-mono text-sm border;
+    @apply bg-teal-500 text-gray-900 border-teal-500;
+    transition: all 0.25s ease;
+  }
+  
+  .btn-ec-secondary:hover {
+    @apply bg-teal-400 border-teal-400;
+  }
+  
+  .panel-ec {
+    @apply bg-gray-800 border border-gray-600 rounded p-4;
+  }
+  
+  .container-ec {
+    @apply max-w-6xl mx-auto px-4;
+  }
+  
+  .grid-2col {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+  
+  /* Garden-style hero section */
+  .hero-grid-ec {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 items-center;
+  }
+  
+  /* Garden-style panel title */
+  .panel-title-ec {
+    @apply font-mono text-sm uppercase text-purple-400 mb-2;
+  }
+  
+  /* Social link styling similar to Garden UI */
+  .social-link-ec {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2;
+    @apply border border-gray-600 rounded bg-gray-800 text-gray-200;
+    @apply hover:border-purple-400 hover:text-purple-400;
+    @apply transition-all duration-300 text-center font-mono text-sm;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .social-link-ec:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.15);
+  }
+  
+  /* Form Components */
+  .form-ec {
+    @apply space-y-6;
+  }
+  
+  .form-group-ec {
+    @apply space-y-2;
+  }
+  
+  .form-label-ec {
+    @apply block font-mono text-sm text-purple-400 font-semibold;
+  }
+  
+  .form-input-ec {
+    @apply w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg;
+    @apply text-white placeholder-gray-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent;
+    transition: all 0.25s ease;
+  }
+  
+  .form-textarea-ec {
+    @apply w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg;
+    @apply text-white placeholder-gray-400 min-h-32 resize-y;
+    @apply focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent;
+    transition: all 0.25s ease;
+  }
+  
+  .form-select-ec {
+    @apply w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg;
+    @apply text-white appearance-none bg-no-repeat bg-right;
+    @apply focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    padding-right: 2.5rem;
+  }
+  
+  .form-checkbox-ec {
+    @apply w-4 h-4 text-purple-600 bg-gray-800 border border-gray-600 rounded;
+    @apply focus:ring-purple-400 focus:ring-2;
+  }
+  
+  .form-radio-ec {
+    @apply w-4 h-4 text-purple-600 bg-gray-800 border border-gray-600;
+    @apply focus:ring-purple-400 focus:ring-2;
+  }
+  
+  .form-error-ec {
+    @apply text-red-400 text-sm font-mono;
+  }
+  
+  .form-help-ec {
+    @apply text-gray-400 text-sm;
+  }
+  
+  /* Card Components */
+  .card-ec {
+    @apply bg-gray-800 border border-gray-600 rounded-lg p-6 shadow-lg;
+  }
+  
+  .card-header-ec {
+    @apply border-b border-gray-600 pb-4 mb-4;
+  }
+  
+  .card-title-ec {
+    @apply font-mono text-lg text-purple-400 font-semibold;
+  }
+  
+  .card-content-ec {
+    @apply text-gray-200;
+  }
+  
+  /* Badge Components */
+  .badge-ec {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold;
+  }
+  
+  .badge-ec-primary {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold;
+    @apply bg-purple-900 text-purple-200;
+  }
+  
+  .badge-ec-secondary {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold;
+    @apply bg-teal-900 text-teal-200;
+  }
+  
+  .badge-ec-success {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold;
+    @apply bg-green-900 text-green-200;
+  }
+  
+  .badge-ec-warning {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold;
+    @apply bg-yellow-900 text-yellow-200;
+  }
+  
+  .badge-ec-error {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold;
+    @apply bg-red-900 text-red-200;
+  }
+  
+  /* Semantic CSS Classes for Component Identification */
+  .strategy-card {
+    @apply bg-gray-800 border border-gray-600 rounded-lg overflow-hidden;
+  }
+  
+  .strategy-table {
+    @apply w-full;
+  }
+  
+  .hero-tagline {
+    @apply text-sm text-purple-400 font-mono uppercase tracking-wider;
+  }
+  
+  /* Additional semantic classes for maintainability */
+  .featured-badge {
+    @apply badge-ec-primary;
+  }
+  
+  .article-card {
+    @apply card-ec;
+  }
+  
+  .contact-form {
+    @apply form-ec;
+  }
+}

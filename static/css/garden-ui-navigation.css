@@ -1,0 +1,614 @@
+/*!
+ * Garden UI Navigation System - Public Site Version  
+ * Search components, login dropdowns, and navigation interactions
+ * Consolidated from search-clean.css + login-dropdown-clean.css
+ */
+
+/* Consolidated from:
+ * - search-clean.css
+ * - login-dropdown-clean.css
+ */
+
+@layer components {
+    /* ===== HEADER DROPDOWN SUPPORT ===== */
+
+    /* Ensure header supports dropdown components */
+    .garden-header {
+        position: relative;
+        overflow: visible;
+        z-index: var(--z-header, 100);
+    }
+
+    /* Header content allows dropdown overflow */
+    .garden-header-content {
+        position: relative;
+        overflow: visible;
+    }
+
+    /* Navigation containers support dropdowns */
+    .garden-nav-right,
+    .garden-nav-actions {
+        position: relative;
+        overflow: visible;
+    }
+
+    /* ===== SEARCH COMPONENTS ===== */
+
+    /* Main search container */
+    .garden-search,
+    .garden-search-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    /* Header search container */
+    .garden-header .garden-search-container {
+        max-width: 300px;
+    }
+
+    /* Search input field */
+    .garden-search-input,
+    .search-input {
+        /* Layout */
+        width: 100%;
+        padding: var(--space-2) var(--space-3);
+        padding-right: var(--space-10); /* Space for search icon */
+        
+        /* Appearance */
+        background: var(--color-input-bg, var(--color-surface));
+        border: 1px solid var(--color-input-border, var(--color-border));
+        border-radius: var(--radius-md);
+        
+        /* Typography */
+        color: var(--color-input-text, var(--color-text-primary));
+        font-family: var(--font-sans);
+        font-size: var(--font-sm);
+        line-height: var(--leading-normal);
+        
+        /* Override browser defaults */
+        -webkit-text-fill-color: var(--color-input-text, var(--color-text-primary));
+        -moz-text-fill-color: var(--color-input-text, var(--color-text-primary));
+        
+        /* Transitions */
+        transition: 
+            border-color var(--duration-fast) var(--ease-out),
+            box-shadow var(--duration-fast) var(--ease-out),
+            background-color var(--duration-fast) var(--ease-out);
+    }
+
+    /* Search input focus state */
+    .garden-search-input:focus,
+    .search-input:focus {
+        outline: none;
+        border-color: var(--color-input-focus-border, var(--color-primary));
+        box-shadow: 0 0 0 2px var(--color-input-focus-ring, var(--color-primary-light));
+        background: var(--color-input-focus-bg, var(--color-surface));
+    }
+
+    /* Search input placeholder */
+    .garden-search-input::placeholder,
+    .search-input::placeholder {
+        color: var(--color-input-placeholder, var(--color-text-tertiary));
+        opacity: 1;
+    }
+
+    /* Search button */
+    .garden-search-button,
+    .search-button {
+        position: absolute;
+        right: var(--space-1);
+        top: 50%;
+        transform: translateY(-50%);
+        
+        /* Layout */
+        width: 32px;
+        height: 32px;
+        padding: var(--space-1);
+        
+        /* Appearance */
+        background: transparent;
+        border: none;
+        border-radius: var(--radius-sm);
+        
+        /* Icon styling */
+        color: var(--color-text-tertiary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        
+        /* Transitions */
+        transition: 
+            color var(--duration-fast) var(--ease-out),
+            background-color var(--duration-fast) var(--ease-out);
+    }
+
+    /* Search button hover */
+    .garden-search-button:hover,
+    .search-button:hover {
+        color: var(--color-primary);
+        background: var(--color-surface-variant);
+    }
+
+    /* Search button focus */
+    .garden-search-button:focus,
+    .search-button:focus {
+        outline: 2px solid var(--color-focus, var(--color-primary));
+        outline-offset: 1px;
+        color: var(--color-primary);
+    }
+
+    /* Search icon */
+    .garden-search-icon,
+    .search-icon {
+        width: 18px;
+        height: 18px;
+        fill: currentcolor;
+        stroke: currentcolor;
+        stroke-width: 2;
+    }
+
+    /* ===== SEARCH RESULTS ===== */
+
+    /* Search results dropdown */
+    .garden-search-results,
+    .search-results {
+        position: absolute;
+        top: calc(100% + var(--space-1));
+        left: 0;
+        right: 0;
+        z-index: var(--z-dropdown, 200);
+        
+        /* Appearance */
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        
+        /* Layout */
+        max-height: 300px;
+        overflow-y: auto;
+        padding: var(--space-2) 0;
+        
+        /* Animation */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition:
+            opacity var(--duration-fast) var(--ease-out),
+            visibility var(--duration-fast) var(--ease-out),
+            transform var(--duration-fast) var(--ease-out);
+    }
+
+    /* Search results visible state */
+    .garden-search-results.show,
+    .search-results.show,
+    .garden-search-results[aria-expanded="true"],
+    .search-results[aria-expanded="true"] {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* Search result items */
+    .garden-search-result,
+    .search-result {
+        display: flex;
+        align-items: center;
+        padding: var(--space-2) var(--space-3);
+        text-decoration: none;
+        color: var(--color-text-primary);
+        border: none;
+        background: transparent;
+        width: 100%;
+        cursor: pointer;
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    /* Search result hover */
+    .garden-search-result:hover,
+    .search-result:hover,
+    .garden-search-result:focus,
+    .search-result:focus {
+        background: var(--color-surface-variant);
+        outline: none;
+    }
+
+    /* Search result text */
+    .garden-search-result-text,
+    .search-result-text {
+        flex: 1;
+        font-size: var(--font-sm);
+        line-height: var(--leading-normal);
+    }
+
+    /* Search result highlight */
+    .garden-search-highlight,
+    .search-highlight {
+        background: var(--color-warning-light);
+        color: var(--color-warning-dark);
+        padding: 0 2px;
+        border-radius: 2px;
+        font-weight: var(--font-medium);
+    }
+
+    /* ===== LOGIN DROPDOWN COMPONENT ===== */
+
+    /* Login container - positioned for dropdown */
+    .garden-login-container {
+        position: relative;
+        overflow: visible;
+        z-index: 50;
+    }
+
+    /* Login dropdown - proper positioning and theming */
+    .garden-login-dropdown {
+        /* Positioning */
+        position: absolute;
+        top: calc(100% + var(--space-2));
+        right: 0;
+        z-index: var(--z-dropdown, 200);
+
+        /* Sizing */
+        min-width: 280px;
+        max-width: 320px;
+        width: max-content;
+
+        /* Appearance */
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+
+        /* Layout */
+        overflow: visible;
+        padding: var(--space-4);
+
+        /* Animation support */
+        transform-origin: top right;
+        transition:
+            opacity var(--duration-fast) ease-out,
+            transform var(--duration-fast) ease-out,
+            visibility var(--duration-fast) ease-out;
+
+        /* Typography */
+        color: var(--color-text-primary);
+        font-family: var(--font-sans);
+        font-size: var(--font-sm);
+        line-height: var(--leading-relaxed);
+    }
+
+    /* Dropdown visibility states - Alpine.js compatible */
+
+    /* Default and hidden states */
+    .garden-login-dropdown,
+    .garden-login-dropdown[style*="display: none"],
+    .garden-login-dropdown[x-cloak]:not([x-show]) {
+        opacity: 0;
+        transform: scale(0.95) translateY(-8px);
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    /* Focus management */
+    .garden-login-dropdown:focus-within {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+
+    /* Show state when Alpine.js x-show is active */
+    .garden-login-dropdown:not([style*="display: none"]) {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .garden-login-dropdown[x-cloak] {
+        opacity: 0;
+        transform: scale(0.95) translateY(-8px);
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    /* ===== DROPDOWN CONTENT STYLING ===== */
+
+    /* Login items - actual implementation */
+    .garden-login-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-3);
+        text-decoration: none;
+        color: var(--color-text-primary);
+        border-radius: var(--radius-md);
+        transition: background-color var(--duration-fast) ease-out;
+        margin-bottom: var(--space-2);
+    }
+
+    .garden-login-item:hover {
+        background-color: var(--color-surface-hover, var(--color-primary-subtle));
+        text-decoration: none;
+    }
+
+    .garden-login-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .garden-login-item .login-icon {
+        font-size: var(--font-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+    }
+
+    .garden-login-item .login-title {
+        font-weight: var(--font-semibold);
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-1);
+    }
+
+    .garden-login-item .login-desc {
+        font-size: var(--font-xs);
+        color: var(--color-text-secondary);
+        line-height: var(--leading-tight);
+    }
+
+    /* Login form within dropdown */
+    .garden-login-dropdown .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    /* Form fields in dropdown */
+    .garden-login-dropdown .garden-field {
+        margin-bottom: var(--space-2);
+    }
+
+    .garden-login-dropdown .garden-input {
+        width: 100%;
+        background: var(--color-surface);
+        border: 1px solid var(--color-input-border);
+        color: var(--color-text-primary);
+        font-size: var(--font-sm);
+    }
+
+    .garden-login-dropdown .garden-input:focus {
+        outline: 2px solid var(--color-primary);
+        outline-offset: -2px;
+        border-color: var(--color-primary);
+    }
+
+    /* Labels in dropdown */
+    .garden-login-dropdown .garden-label {
+        color: var(--color-text-primary);
+        font-weight: var(--font-medium);
+        font-size: var(--font-sm);
+        margin-bottom: var(--space-1);
+    }
+
+    /* Buttons in dropdown */
+    .garden-login-dropdown .garden-action {
+        justify-self: stretch;
+        width: 100%;
+        font-size: var(--font-sm);
+    }
+
+    /* Links in dropdown */
+    .garden-login-dropdown .login-links {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        margin-top: var(--space-3);
+        padding-top: var(--space-3);
+        border-top: 1px solid var(--color-border);
+    }
+
+    .garden-login-dropdown .login-link {
+        color: var(--color-primary);
+        text-decoration: none;
+        font-size: var(--font-xs);
+        text-align: center;
+    }
+
+    .garden-login-dropdown .login-link:hover {
+        color: var(--color-primary-hover);
+        text-decoration: underline;
+    }
+
+    /* Error messages in dropdown */
+    .garden-login-dropdown .error-message {
+        color: var(--color-error);
+        font-size: var(--font-xs);
+        margin-top: var(--space-1);
+    }
+
+    /* Success messages in dropdown */
+    .garden-login-dropdown .success-message {
+        color: var(--color-success);
+        font-size: var(--font-xs);
+        margin-top: var(--space-1);
+    }
+}
+
+@layer themes {
+    /* ===== THEME SUPPORT ===== */
+
+    /* Dark theme adjustments for search */
+    [data-theme="dark"] .garden-search-input,
+    [data-theme="dark"] .search-input {
+        background: var(--color-input-dark-bg, var(--color-surface-variant));
+        border-color: var(--color-input-dark-border, var(--color-border));
+        color: var(--color-input-dark-text, var(--garden-fg));
+        -webkit-text-fill-color: var(--color-input-dark-text, var(--garden-fg));
+        -moz-text-fill-color: var(--color-input-dark-text, var(--garden-fg));
+    }
+
+    [data-theme="dark"] .garden-search-input:focus,
+    [data-theme="dark"] .search-input:focus {
+        border-color: var(--color-primary);
+        background: var(--color-surface);
+    }
+
+    [data-theme="dark"] .garden-search-results,
+    [data-theme="dark"] .search-results {
+        background: var(--color-surface-variant);
+        border-color: var(--color-border);
+    }
+}
+
+@layer responsive {
+    /* ===== RESPONSIVE DESIGN ===== */
+
+    @media (width <= 768px) {
+        .garden-header .garden-search-container {
+            max-width: 250px;
+        }
+
+        .garden-search-input,
+        .search-input {
+            font-size: var(--font-sm);
+            padding: var(--space-2);
+            padding-right: var(--space-8);
+        }
+
+        .garden-search-button,
+        .search-button {
+            width: 28px;
+            height: 28px;
+        }
+
+        .garden-search-results,
+        .search-results {
+            left: calc(-1 * var(--space-2));
+            right: calc(-1 * var(--space-2));
+        }
+
+        .garden-login-dropdown {
+            /* Adjust positioning for mobile */
+            right: var(--space-2);
+            left: var(--space-2);
+            width: auto;
+            max-width: none;
+            min-width: 0;
+        }
+
+        .garden-login-container {
+            /* Ensure mobile dropdown doesn't overflow viewport */
+            position: static;
+        }
+
+        .garden-header .garden-login-dropdown {
+            position: fixed;
+            top: calc(var(--header-height, 60px) + var(--space-2));
+            z-index: var(--z-modal, 300);
+        }
+    }
+
+    @media (width <= 480px) {
+        .garden-header .garden-search-container {
+            max-width: 200px;
+        }
+
+        .garden-search-results,
+        .search-results {
+            left: calc(-1 * var(--space-4));
+            right: calc(-1 * var(--space-4));
+            max-height: 250px;
+        }
+    }
+}
+
+@layer accessibility {
+    /* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+
+    /* Screen reader support for search */
+    .garden-search-label,
+    .search-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    /* ARIA live region for search results */
+    .garden-search-status,
+    .search-status {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    /* Screen reader support for dropdowns */
+    .garden-login-dropdown[aria-hidden="true"] {
+        display: none;
+    }
+
+    /* High contrast mode support */
+    @media (forced-colors: active) {
+        .garden-search-input,
+        .search-input {
+            background: Field;
+            border-color: FieldText;
+            color: FieldText;
+            -webkit-text-fill-color: FieldText;
+            -moz-text-fill-color: FieldText;
+        }
+
+        .garden-search-results,
+        .search-results {
+            background: Canvas;
+            border-color: CanvasText;
+        }
+
+        .garden-search-result:hover,
+        .search-result:hover,
+        .garden-search-result:focus,
+        .search-result:focus {
+            background: Highlight;
+            color: HighlightText;
+        }
+
+        .garden-login-dropdown {
+            background: Canvas;
+            border-color: CanvasText;
+            color: CanvasText;
+        }
+
+        .garden-login-dropdown .garden-input {
+            background: Field;
+            border-color: FieldText;
+            color: FieldText;
+        }
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+        .garden-search-input,
+        .search-input,
+        .garden-search-button,
+        .search-button,
+        .garden-search-results,
+        .search-results,
+        .garden-login-dropdown {
+            transition: none;
+        }
+    }
+}

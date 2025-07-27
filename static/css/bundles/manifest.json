@@ -1,0 +1,76 @@
+{
+  "bundles": {
+    "garden-ui-foundation.css": {
+      "files": [
+        "garden-ui-layers.css",
+        "garden-ui-advanced-layers.css",
+        "garden-ui-tokens.css"
+      ],
+      "size_bytes": 30179,
+      "size_kb": 29.5,
+      "modified": "2025-07-27T15:32:35.532091"
+    },
+    "garden-ui-core.css": {
+      "files": [
+        "garden-ui-panels.css",
+        "garden-ui-buttons.css",
+        "garden-ui-forms.css",
+        "garden-ui-typography.css",
+        "garden-ui-layout.css",
+        "garden-ui-core.css"
+      ],
+      "size_bytes": 105969,
+      "size_kb": 103.5,
+      "modified": "2025-07-27T15:32:35.534554"
+    },
+    "garden-ui-layout.css": {
+      "files": [
+        "garden-ui-responsive.css",
+        "garden-ui-header.css",
+        "garden-ui-navigation.css",
+        "garden-ui-footer.css"
+      ],
+      "size_bytes": 35698,
+      "size_kb": 34.9,
+      "modified": "2025-07-27T15:32:35.535562"
+    },
+    "garden-ui-complete.css": {
+      "files": [
+        "garden-ui-layers.css",
+        "garden-ui-advanced-layers.css",
+        "garden-ui-tokens.css",
+        "garden-ui-panels.css",
+        "garden-ui-buttons.css",
+        "garden-ui-forms.css",
+        "garden-ui-typography.css",
+        "garden-ui-layout.css",
+        "garden-ui-core.css",
+        "garden-ui-responsive.css",
+        "garden-ui-header.css",
+        "garden-ui-navigation.css",
+        "garden-ui-footer.css"
+      ],
+      "size_bytes": 171166,
+      "size_kb": 167.2,
+      "modified": "2025-07-27T15:32:35.539096"
+    }
+  },
+  "generated": "2025-07-27T15:32:35.539151",
+  "source_directory": "/Users/srvo/ethicic-public/static/css",
+  "modular_files": [
+    "garden-ui-panels.css",
+    "garden-ui-core.css",
+    "garden-ui-theme.css",
+    "garden-ui-layers.css",
+    "garden-ui-responsive.css",
+    "garden-ui-navigation.css",
+    "garden-ui-tokens.css",
+    "garden-ui-buttons.css",
+    "garden-ui-forms.css",
+    "garden-ui-typography.css",
+    "garden-ui-advanced-layers.css",
+    "garden-ui-header.css",
+    "garden-ui-layout.css",
+    "garden-ui-footer.css"
+  ]
+}

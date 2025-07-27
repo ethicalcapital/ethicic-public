@@ -7,25 +7,31 @@
     "build:css:prod": "NODE_ENV=production node scripts/build-css.js && postcss static/css/dist/combined.css -o static/css/dist/production.css",
     "build:css": "npm run build:css:dev",
     "build:css:watch": "npm run build:css:dev && chokidar \"static/css/**/*.css\" -c \"npm run build:css:dev\"",
-    "build": "npm run build:css:prod",
+    "build:tailwind:dev": "NODE_ENV=development postcss static/css/tailwind-base.css -o static/css/dist/tailwind.css",
+    "build:tailwind:prod": "NODE_ENV=production postcss static/css/tailwind-base.css -o static/css/dist/tailwind.min.css",
+    "build:tailwind:watch": "npm run build:tailwind:dev && chokidar \"static/css/tailwind-base.css\" \"templates/**/*.html\" -c \"npm run build:tailwind:dev\"",
+    "build": "npm run build:css:prod && npm run build:tailwind:prod",
     "lint:css": "stylelint \"static/css/**/*.css\"",
     "lint:css:fix": "stylelint \"static/css/**/*.css\" --fix",
     "lint:css:report": "stylelint \"static/css/**/*.css\" --formatter json --output-file lint-report.json",
     "precommit": "npm run lint:css",
-    "quality": "npm run lint:css && npm run build:css:prod",
-    "dev": "npm run build:css:watch"
+    "quality": "npm run lint:css && npm run build:css:prod && npm run build:tailwind:prod",
+    "dev": "npm run build:css:watch",
+    "dev:tailwind": "npm run build:tailwind:watch"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "autoprefixer": "^10.4.16",
+    "chokidar-cli": "^3.0.0",
+    "cssnano": "^6.0.1",
+    "glob": "^10.3.10",
     "postcss": "^8.4.31",
     "postcss-cli": "^11.0.0",
-    "postcss-nested": "^6.0.1",
     "postcss-custom-properties": "^13.3.0",
-    "cssnano": "^6.0.1",
-    "autoprefixer": "^10.4.16",
-    "glob": "^10.3.10",
-    "chokidar-cli": "^3.0.0",
+    "postcss-nested": "^6.0.1",
     "stylelint": "^16.0.0",
     "stylelint-config-standard": "^36.0.0",
-    "stylelint-selector-bem-pattern": "^4.0.0"
+    "stylelint-selector-bem-pattern": "^4.0.0",
+    "tailwindcss": "^4.1.11"
   }
 }

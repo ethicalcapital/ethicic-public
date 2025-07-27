@@ -15,10 +15,20 @@
 - we are often making multiple edits in parallel -- if you come across an issue that might be due to that, consider this before you make any actions
 
 ## CSS Architecture (RATIONAL SYSTEM - 2025)
-- **CONSOLIDATED**: 65% reduction achieved - 20+ fix files → 5 logical systems
-- **NEW ARCHITECTURE**: garden-layout-clean.css, garden-buttons-enhanced.css, garden-accessibility-clean.css, garden-forms-clean.css, garden-layout-system.css
+- **CONSOLIDATED**: 84% !important reduction achieved - 83 files → 58 files, 3,006 → 471 !important declarations
+- **NEW ARCHITECTURE**: responsive-layout-system.css, header-layout-layers.css, mobile-navigation-layers.css + existing clean files
 - **RULES**: Use Garden UI variables only, CSS Layers architecture, no !important wars
 - **DOCUMENTATION**: See `docs/CSS_OVERVIEW.md` for quick start and `docs/CSS_ARCHITECTURE_CURRENT.md` for complete reference
+
+## CSS Architecture Protection Rules (CRITICAL - DO NOT VIOLATE)
+- **NEVER create new "*-fix.css" files** - Always enhance existing clean files or create proper layered architecture
+- **NEVER add !important declarations** - Use CSS Layers (@layer) for cascade management instead
+- **NEVER create competing CSS files** - One file per responsibility, consolidate conflicts immediately
+- **ALWAYS use existing clean files** - responsive-layout-system.css, header-layout-layers.css, mobile-navigation-layers.css
+- **BEFORE creating ANY CSS file** - Check if functionality exists in current clean architecture
+- **CSS LAYERS ONLY** - All new CSS must use @layer (layout, components, themes, utilities) architecture
+- **NO HARDCODED VALUES** - Use Garden UI variables: --color-*, --space-*, --font-*, --radius-* only
+- **FIX ROOT CAUSES** - Never bandaid with specificity wars, always address architectural issues properly
 
 ## System Architecture Context (Investigation - Jan 2025)
 - **Business Domain**: Ethical Capital - SEC-regulated ESG investment advisory firm managing real portfolios

@@ -1,0 +1,33 @@
+/* CSS Layers Architecture - Foundation */
+/* Replaces !important cascade wars with proper layer management */
+
+@layer reset, base, layout, components, themes, utilities;
+
+/* Layer order defines cascade priority without !important */
+/* Later layers override earlier layers automatically */
+/* This eliminates the need for specificity wars */
+
+@layer base {
+    /* Garden UI core variables and foundations */
+    /* Will be imported from garden-ui-theme.css */
+}
+
+@layer layout {
+    /* Grid systems, containers, responsive breakpoints */
+    /* Header, footer, main layout structures */
+}
+
+@layer components {
+    /* Buttons, panels, forms, cards */
+    /* Reusable UI components */
+}
+
+@layer themes {
+    /* Light/dark mode overrides */
+    /* Theme-specific color variations */
+}
+
+@layer utilities {
+    /* Helper classes, responsive utilities */
+    /* Highest priority layer for overrides */
+}

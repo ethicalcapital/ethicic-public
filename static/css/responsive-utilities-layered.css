@@ -1,0 +1,122 @@
+/* Responsive Display Utilities - Advanced Layers */
+/* Replaces !important with proper layer cascade management */
+
+@layer utilities.display {
+  /* Extra Small Screens */
+  @media (max-width: 479px) {
+    .hidden-xs { display: none; }
+    .block-xs { display: block; }
+    .flex-xs { display: flex; }
+    .grid-xs { display: grid; }
+  }
+
+  /* Small Screens */
+  @media (min-width: 480px) and (max-width: 639px) {
+    .hidden-sm { display: none; }
+    .block-sm { display: block; }
+    .flex-sm { display: flex; }
+    .grid-sm { display: grid; }
+  }
+
+  /* Medium Screens */
+  @media (min-width: 640px) and (max-width: 767px) {
+    .hidden-md { display: none; }
+    .block-md { display: block; }
+    .flex-md { display: flex; }
+    .grid-md { display: grid; }
+  }
+
+  /* Large Screens */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .hidden-lg { display: none; }
+    .block-lg { display: block; }
+    .flex-lg { display: flex; }
+    .grid-lg { display: grid; }
+  }
+
+  /* Extra Large Screens */
+  @media (min-width: 1024px) {
+    .hidden-xl { display: none; }
+    .block-xl { display: block; }
+    .flex-xl { display: flex; }
+    .grid-xl { display: grid; }
+  }
+}
+
+/* Responsive Spacing Utilities */
+@layer utilities.spacing {
+  @media (max-width: 768px) {
+    .p-mobile { padding: var(--space-3); }
+    .px-mobile {
+      padding-left: var(--space-3);
+      padding-right: var(--space-3);
+    }
+    .py-mobile {
+      padding-top: var(--space-3);
+      padding-bottom: var(--space-3);
+    }
+    .m-mobile { margin: var(--space-3); }
+    .mx-mobile {
+      margin-left: var(--space-3);
+      margin-right: var(--space-3);
+    }
+    .my-mobile {
+      margin-top: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+  }
+}
+
+/* Responsive Typography Utilities */
+@layer utilities.typography {
+  @media (max-width: 768px) {
+    .text-mobile-sm { font-size: var(--font-sm); }
+    .text-mobile-base { font-size: var(--font-base); }
+    .text-mobile-lg { font-size: var(--font-lg); }
+  }
+}
+
+/* Mobile Navigation Utilities */
+@layer utilities.positioning {
+  @media (max-width: 768px) {
+    .mobile-stack {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .mobile-full-width {
+      width: 100%;
+      max-width: none;
+    }
+    .mobile-center {
+      text-align: center;
+      justify-content: center;
+    }
+  }
+}
+
+/* Accessibility Utilities */
+@layer utilities.accessibility {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}

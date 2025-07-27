@@ -1,5 +1,8 @@
 module.exports = {
   plugins: [
+    // Tailwind CSS processing
+    require('@tailwindcss/postcss'),
+
     // Support for CSS nesting
     require('postcss-nested'),
 

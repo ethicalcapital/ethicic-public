@@ -13,30 +13,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 
-    <!-- Core CSS in optimized loading order -->
-    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v={{ BUILD_VERSION|default:'3' }}">
+    <!-- CSS Layers Foundation -->
+    <link rel="stylesheet" href="{% static 'css/garden-ui-layers.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-advanced-layers.css' %}?v=1">
+    
+    <!-- Garden UI Modular CSS Architecture - Foundation -->
+    <link rel="stylesheet" href="{% static 'css/garden-ui-tokens.css' %}?v=1">
+    
+    <!-- Garden UI Modular CSS Architecture - Core Systems -->
+    <link rel="stylesheet" href="{% static 'css/garden-ui-panels.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-buttons.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-forms.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-typography.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-layout.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-core.css' %}?v=1">
+    
+    <!-- Garden UI Modular CSS Architecture - Layout & Navigation -->
+    <link rel="stylesheet" href="{% static 'css/garden-ui-responsive.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-header.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-navigation.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/garden-ui-footer.css' %}?v=1">
+    
+    <!-- Remaining Legacy CSS - To Be Consolidated -->
     <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v={{ BUILD_VERSION|default:'3' }}">
     <link rel="stylesheet" href="{% static 'css/garden-layout-system.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/garden-accessibility-clean.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/mobile-menu-clean.css' %}?v=4">
-    <link rel="stylesheet" href="{% static 'css/header-height-fix.css' %}?v=4">
-    <link rel="stylesheet" href="{% static 'css/page-width-fix.css' %}?v=2">
-    <link rel="stylesheet" href="{% static 'css/mobile-nav-fix.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/header-text-clean.css' %}?v=4">
-    <link rel="stylesheet" href="{% static 'css/garden-buttons-enhanced.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/wcag-contrast-clean.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/accessibility-contrast-fixes-clean.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/footer-clean.css' %}?v=15">
-    <link rel="stylesheet" href="{% static 'css/search-clean.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/login-dropdown-clean.css' %}?v=5">
-    <link rel="stylesheet" href="{% static 'css/cta-tiffany-blue.css' %}?v=2">
-    <link rel="stylesheet" href="{% static 'css/accessibility-touch-targets.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/responsive-breakpoints-fix.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/onboarding-mobile-optimization.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/faq-blog-consistency.css' %}?v=5">
-    <link rel="stylesheet" href="{% static 'css/mobile-full-width.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/mobile-header-cleanup.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/accessibility-sr-only-fix.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/accessibility-consolidated.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/cta-tiffany-blue.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'css/onboarding-page.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'css/blog-consistency-consolidated.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/theme-overrides-clean.css' %}?v=1">
 
     <!-- Meta tags for SEO and social sharing -->
     <meta name="description" content="{% block meta_description %}{% if page %}{{ page.search_description|default:site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% else %}{{ site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% endif %}{% endblock %}">
@@ -82,85 +87,6 @@
     {% block extra_css %}{% endblock %}
 
     <!-- Temporary inline styles to force new color scheme -->
-    <style>
-        /* Lavender Blush background for light mode */
-        [data-theme="light"] body,
-        [data-theme="light"] .main-content,
-        [data-theme="light"] .garden-panel {
-            background-color: #FCEFEF !important;
-        }
-
-        /* Lavender primary color for headers and accents */
-        [data-theme="light"] .garden-header,
-        [data-theme="light"] .garden-panel__header,
-        [data-theme="light"] .garden-panel-header {
-            background-color: #B57EDC !important;
-        }
-
-        /* Tiffany Blue for CTA buttons only (not navigation) - WCAG AA Compliant */
-        [data-theme="light"] .hero-panel .cta-actions .garden-action.primary,
-        [data-theme="light"] .cta-panel .garden-action.primary,
-        [data-theme="light"] .serve-item .garden-action.primary,
-        [data-theme="light"] .cta-actions .garden-action.primary {
-            background-color: #2d7a68 !important;
-            color: #ffffff !important;
-            border: 2px solid #2d7a68 !important;
-            text-decoration: none !important;
-        }
-
-        [data-theme="light"] .hero-panel .cta-actions .garden-action.primary:hover,
-        [data-theme="light"] .cta-panel .garden-action.primary:hover,
-        [data-theme="light"] .serve-item .garden-action.primary:hover,
-        [data-theme="light"] .cta-actions .garden-action.primary:hover {
-            background-color: #256559 !important;
-            border-color: #256559 !important;
-            color: #ffffff !important;
-        }
-
-        /* Dark purple for header and footer */
-        [data-theme="dark"] .garden-header,
-        :root .garden-header {
-            background-color: #1f0322 !important;
-        }
-
-        /* Footer styling now handled after body color rule below */
-
-        /* Maya Blue CTAs in dark mode */
-        [data-theme="dark"] .garden-action.primary,
-        :root .garden-action.primary {
-            background-color: #55c1ff !important;
-            color: #000 !important;
-            border: 2px solid #55c1ff !important;
-        }
-
-        [data-theme="dark"] .garden-action.primary:hover,
-        :root .garden-action.primary:hover {
-            background-color: #3fb4ff !important;
-            border-color: #3fb4ff !important;
-        }
-
-        /* Ensure text is readable */
-        [data-theme="light"] body {
-            color: #111 !important;
-        }
-
-        /* Footer styling - consistent with site theme */
-        [data-theme="light"] .garden-footer {
-            background-color: #FCEFEF !important;
-            border-top-color: #B57EDC !important;
-        }
-
-        /* Tiffany Blue for CTA-specific buttons only (not navigation) */
-        html[data-theme="light"] body .hero-panel .cta-actions a.garden-action.primary,
-        html[data-theme="light"] body .cta-actions .garden-action.primary,
-        html[data-theme="light"] body .cta-panel .garden-action.primary,
-        html[data-theme="light"] body .serve-item .garden-action.primary {
-            background-color: #2d7a68 !important;
-            background-image: none !important;
-            color: #ffffff !important;
-            border: 2px solid #2d7a68 !important;
-        }
-    </style>
 </head>
 <body class="public-site-context {% block body_class %}{% endblock %}">
     <!-- Skip navigation links for screen readers -->

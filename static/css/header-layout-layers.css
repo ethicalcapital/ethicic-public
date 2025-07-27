@@ -1,0 +1,175 @@
+/* Header Layout - CSS Layers Architecture */
+/* Replaces header-height-fix.css with proper cascade management */
+
+@layer components {
+    .garden-header {
+        padding: 0.5rem 1rem;
+        min-height: auto;
+        overflow: visible;
+    }
+
+    .garden-header-content {
+        padding: 0;
+        min-height: auto;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 1400px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .garden-nav-left {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+
+    .garden-nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 0 0 auto;
+    }
+
+    .garden-nav-main {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex: 0 0 auto;
+    }
+
+    .garden-nav-item {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.875rem;
+        padding: 0.5rem 0;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .garden-brand {
+        color: white;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        letter-spacing: 1px;
+        font-family: var(--font-mono);
+        flex-shrink: 0;
+    }
+
+    .garden-search {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        flex: 0 0 auto;
+    }
+
+    .garden-search-input {
+        width: 200px;
+        padding: 0.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 0.875rem;
+    }
+
+    .garden-search-button,
+    .garden-action {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+        cursor: pointer;
+        font-size: 0.875rem;
+    }
+
+    .garden-theme-toggle {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    .garden-nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 0 0 auto;
+        position: relative;
+        overflow: visible;
+    }
+
+    .garden-login-container {
+        position: relative;
+        overflow: visible;
+    }
+
+    .garden-login-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        color: white;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        min-height: 44px;
+    }
+
+    .garden-login-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
+
+@layer utilities {
+    /* Mobile responsive behavior */
+    @media (width <= 768px) {
+        .garden-nav-main {
+            display: none;
+        }
+        
+        .garden-search {
+            display: none;
+        }
+        
+        .garden-header-content {
+            gap: 0.5rem;
+        }
+        
+        .garden-search-input {
+            width: 150px;
+        }
+    }
+
+    /* Hide mobile menu toggle on desktop */
+    @media (width >= 769px) {
+        .mobile-menu-toggle {
+            display: none;
+        }
+    }
+}

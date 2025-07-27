@@ -1,0 +1,749 @@
+/*!
+ * Garden UI Buttons System - Public Site Version
+ * Semantic button components with states, variants, and accessibility
+ * Extracted from garden-ui-public.css for better maintainability
+ */
+
+/* ===== SEMANTIC BUTTON SYSTEM WITH BRACKETS ===== */
+  /* Base button styles - shared by all variants */
+.garden-action {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  position: relative;
+  border: 2px solid transparent;
+}
+
+  /* Primary Button - Main brand actions with sweet ass brackets */
+.garden-action.primary {
+  background: var(--garden-button-bg);
+  color: var(--garden-button-fg);
+  border: 2px solid var(--garden-button-border);
+  text-shadow: 0 1px 2px var(--color-shadow);
+  /* Ensure contrast is maintained */
+  min-height: 40px;
+  font-weight: var(--font-semibold);
+}
+
+  /* Clean button design - no brackets for professional appearance */
+.garden-action::before {
+  content: none;
+}
+
+.garden-action::after {
+  content: none;
+}
+
+.garden-action.primary:hover {
+  background: var(--garden-button-hover-bg);
+  border-color: var(--garden-button-hover-border);
+  color: var(--garden-button-hover-fg);
+  transform: translateY(-1px);
+  text-shadow: 0 1px 2px var(--color-shadow);
+}
+
+.garden-action:focus, .garden-action:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.garden-action.primary:focus, .garden-action.primary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-primary-alpha);
+}
+
+.garden-action:active {
+  transform: translateY(0);
+}
+
+  /* Secondary Button - Outline style */
+.garden-action.secondary {
+  background: var(--garden-button-secondary-bg);
+  color: var(--garden-button-secondary-fg);
+  border: 2px solid var(--garden-button-secondary-border);
+  font-weight: var(--font-semibold);
+  text-shadow: none;
+  /* Ensure secondary buttons never have white text */
+  min-height: 40px;
+}
+
+.garden-action.secondary:hover {
+  background: var(--garden-button-secondary-hover-bg);
+  color: var(--garden-button-secondary-hover-fg);
+  border-color: var(--garden-button-secondary-hover-border);
+  text-shadow: 0 1px 2px var(--color-shadow);
+  transform: translateY(-1px);
+}
+
+  .garden-action.secondary:focus,
+.garden-action.secondary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-primary-alpha);
+}
+
+  /* Surface Button - Adapts to surface color */
+.garden-action.surface {
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  border: 2px solid var(--color-border);
+  text-shadow: none;
+}
+
+.garden-action.surface:hover {
+  background: var(--color-hover);
+  color: var(--color-on-surface);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+  .garden-action.surface:focus,
+.garden-action.surface:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-primary-alpha);
+}
+
+/* Button Contrast Safeguards - Prevent white-on-white issues */
+/* Ensure primary buttons always have proper contrast */
+.garden-action.primary,
+@layer components {
+  .blog-page .garden-action.primary,
+  .blog-post .garden-action.primary,
+  .newsletter-form .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+/* Ensure secondary buttons never have white text on transparent */
+.garden-action.secondary,
+@layer components {
+  .blog-page .garden-action.secondary,
+  .blog-post .garden-action.secondary {
+    color: var(--color-primary);
+    background: transparent;
+  }
+}
+
+.garden-action.secondary:hover,
+@layer components {
+  .blog-page .garden-action.secondary:hover,
+  .blog-post .garden-action.secondary:hover {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+}
+
+  /* Ghost/Outline buttons - No background */
+  .garden-action.outline,
+.garden-action.ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  font-weight: var(--font-semibold);
+  text-shadow: none;
+}
+
+  .garden-action.outline:hover,
+.garden-action.ghost:hover {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  text-shadow: 0 1px 2px var(--color-shadow);
+  transform: translateY(-1px);
+}
+
+  .garden-action.outline:focus,
+  .garden-action.outline:focus-visible,
+  .garden-action.ghost:focus,
+.garden-action.ghost:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-primary-alpha);
+}
+
+  /* Accent Button - Uses primary color with proper contrast */
+.garden-action.accent {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border: 2px solid var(--color-primary);
+  text-shadow: 0 1px 2px var(--color-shadow);
+}
+
+.garden-action.accent:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--color-on-primary);
+  transform: translateY(-1px);
+  text-shadow: 0 1px 2px var(--color-shadow);
+}
+
+.garden-action.accent:focus,
+.garden-action.accent:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-primary-alpha);
+}
+
+  /* Status Button Variants */
+.garden-action.success {
+  background: var(--color-success);
+  color: var(--color-on-primary);
+  border: 2px solid var(--color-success);
+  text-shadow: 0 1px 2px var(--color-shadow);
+}
+
+.garden-action.warning {
+  background: var(--color-warning);
+  color: var(--color-on-primary);
+  border: 2px solid var(--color-warning);
+  text-shadow: 0 1px 2px var(--color-shadow);
+}
+
+  .garden-action.error,
+.garden-action.danger {
+  background: var(--color-error);
+  color: var(--color-on-primary);
+  border: 2px solid var(--color-error);
+  text-shadow: 0 1px 2px var(--color-shadow);
+}
+
+.garden-action.info {
+  background: var(--color-info);
+  color: var(--color-on-primary);
+  border: 2px solid var(--color-info);
+  text-shadow: 0 1px 2px var(--color-shadow);
+}
+
+  /* Status Button Focus States for accessibility */
+  .garden-action.success:focus,
+.garden-action.success:focus-visible {
+  outline: 2px solid var(--color-success);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-success-alpha);
+}
+
+  .garden-action.warning:focus,
+.garden-action.warning:focus-visible {
+  outline: 2px solid var(--color-warning);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-warning-alpha);
+}
+
+  .garden-action.error:focus,
+  .garden-action.error:focus-visible,
+  .garden-action.danger:focus,
+.garden-action.danger:focus-visible {
+  outline: 2px solid var(--color-error);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-error-alpha);
+}
+
+  .garden-action.info:focus,
+.garden-action.info:focus-visible {
+  outline: 2px solid var(--color-info);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-info-alpha);
+}
+
+  /* Button Sizes */
+.garden-action.small,
+.garden-action.compact {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-xs);
+  min-height: 32px;
+  font-weight: var(--font-medium);
+}
+
+.garden-action.large {
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--font-md);
+  min-height: 56px;
+}
+
+@layer components {
+  /* Enhanced specificity for public site button contexts */
+  .garden-panel .garden-action:not(.secondary),
+  .panel-content .garden-action:not(.secondary) {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-primary);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    text-shadow: 0 1px 2px var(--color-shadow);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    min-height: 40px;
+    box-sizing: border-box;
+  }
+}
+
+/* Disabled State - Enhanced accessibility */
+.garden-action:disabled,
+.garden-action[disabled],
+.garden-action.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+@layer components {
+  .status-actions .garden-action:hover,
+  .crm-status-bar .garden-action:hover,
+  .garden-panel .garden-action:hover,
+  .panel-content .garden-action:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    color: var(--color-on-primary);
+    transform: translateY(-1px);
+    text-shadow: 0 1px 2px var(--color-shadow);
+  }
+}
+
+  /* Enhanced specificity for button variants in problematic contexts */
+@layer components {
+  .status-actions .garden-action.secondary,
+  .crm-status-bar .garden-action.secondary,
+  .garden-panel .garden-action.secondary,
+  .panel-content .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+}
+
+@layer components {
+  .status-actions .garden-action.secondary:hover,
+  .crm-status-bar .garden-action.secondary:hover,
+  .garden-panel .garden-action.secondary:hover,
+  .panel-content .garden-action.secondary:hover {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+}
+
+@layer components {
+  .status-actions .garden-action.success,
+  .crm-status-bar .garden-action.success,
+  .garden-panel .garden-action.success,
+  .panel-content .garden-action.success {
+    background: var(--color-success);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-success);
+    border-color: var(--color-success);
+  }
+}
+
+@layer components {
+  .status-actions .garden-action.info,
+  .crm-status-bar .garden-action.info,
+  .garden-panel .garden-action.info,
+  .panel-content .garden-action.info {
+    background: var(--color-info);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-info);
+    border-color: var(--color-info);
+  }
+}
+
+@layer components {
+  .status-actions .garden-action.accent,
+  .crm-status-bar .garden-action.accent,
+  .garden-panel .garden-action.accent,
+  .panel-content .garden-action.accent {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-primary);
+    border-color: var(--color-primary);
+    text-shadow: 0 1px 2px var(--color-shadow);
+  }
+}
+
+@layer components.buttons {
+  .status-actions .garden-action.small,
+  .crm-status-bar .garden-action.small,
+  .garden-panel .garden-action.small,
+  .panel-content .garden-action.small,
+  .status-actions .garden-action.compact,
+  .crm-status-bar .garden-action.compact,
+  .garden-panel .garden-action.compact,
+  .panel-content .garden-action.compact {
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-xs);
+    min-height: 32px;
+    font-weight: var(--font-medium);
+  }
+}
+
+@layer states.disabled {
+  .garden-action:disabled:hover,
+  .garden-action[disabled]:hover,
+  .garden-action.disabled:hover,
+  .garden-action:disabled:focus,
+  .garden-action[disabled]:focus,
+  .garden-action.disabled:focus {
+    background: var(--color-surface-variant);
+    color: var(--color-text-tertiary);
+    border-color: var(--color-border-variant);
+    transform: none;
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+/* Button variant for colored backgrounds */
+.garden-action.on-color,
+.garden-button--on-color {
+  background: var(--garden-button-on-color-bg);
+  color: var(--garden-button-on-color-fg);
+  border: 2px solid var(--garden-button-on-color-border);
+  font-weight: var(--font-semibold);
+  text-shadow: none;
+}
+
+.garden-action.on-color:hover,
+.garden-button--on-color:hover {
+  background: var(--garden-button-on-color-hover-bg);
+  color: var(--garden-button-on-color-hover-fg);
+  border-color: var(--garden-button-on-color-border);
+  transform: translateY(-1px);
+}
+
+/* Button variant for header */
+.garden-action.in-header,
+.garden-button--header {
+  background: var(--color-white-15);
+  color: var(--garden-button-fg);
+  border: 1px solid var(--color-white-30);
+  font-weight: var(--font-semibold);
+  text-shadow: 0 1px 2px var(--color-shadow);
+}
+
+.garden-action.in-header:hover,
+.garden-button--header:hover {
+  background: var(--color-white-25);
+  color: var(--garden-button-hover-fg);
+  border-color: var(--color-white-50);
+  transform: translateY(-1px);
+}
+
+/* === WORKBENCH BUTTONS - Garden UI Compliant === */
+/* Custom workbench styles removed - using standardized garden-action system */
+
+  /* Universal Button Base - Apply to all button-like elements */
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  .btn,
+  .terminal-action,
+  .search-btn,
+  .submit-btn,
+  .cancel-btn,
+  .action-btn,
+.platform-btn {
+  font-family: var(--font-ui);
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border: 2px solid var(--color-primary);
+  text-shadow: 0 1px 2px var(--color-shadow);
+  position: relative;
+  min-height: 44px; /* WCAG touch target */;
+  outline: none;
+}
+
+  /* Base button hover states - only for elements without specific overrides */
+  .terminal-action:hover,
+  .search-btn:hover,
+  .submit-btn:hover,
+  .action-btn:hover,
+.platform-btn:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px var(--color-shadow);
+}
+
+  /* Secondary button variants - define before specific overrides */
+  /* stylelint-disable no-descending-specificity */
+  .btn.secondary,
+  .garden-action.outline,
+  .btn.outline,
+  .btn.ghost,
+  .cancel-btn,
+.outline-btn {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  text-shadow: none;
+}
+
+  .btn.secondary:hover,
+  .garden-action.outline:hover,
+  .btn.outline:hover,
+  .btn.ghost:hover,
+  .cancel-btn:hover,
+.outline-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  text-shadow: 0 1px 2px var(--color-shadow);
+}
+
+  /* Context-Specific Button Overrides */
+
+  /* Header buttons - smaller, transparent */
+  header button,
+  header .garden-action,
+  header .btn,
+  .garden-header button,
+  .garden-header .garden-action,
+.garden-header .btn {
+  min-height: auto;
+  height: auto;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-xs);
+  background: transparent;
+  border: 1px solid var(--color-white-30);
+  color: var(--header-text);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+  header button:hover,
+  header .garden-action:hover,
+  header .btn:hover,
+  .garden-header button:hover,
+  .garden-header .garden-action:hover,
+.garden-header .btn:hover {
+  background: var(--color-white-10);
+  transform: none;
+  box-shadow: none;
+}
+
+  /* Button size variants */
+  .btn.small,
+
+  .btn.large,
+
+  /* Generic button focus states - Enhanced accessibility */
+  button:focus,
+  input[type="button"]:focus,
+  input[type="submit"]:focus,
+  input[type="reset"]:focus,
+.btn:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-primary-alpha);
+}
+
+  button:focus-visible,
+  input[type="button"]:focus-visible,
+  input[type="submit"]:focus-visible,
+  input[type="reset"]:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-primary-alpha);
+}
+
+  /* Generic button hover states - defined last to avoid specificity issues */
+  button:hover,
+  input[type="button"]:hover,
+  input[type="submit"]:hover,
+  input[type="reset"]:hover,
+.btn:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px var(--color-shadow);
+}
+
+  /* Enhanced specificity for CRM and other contexts where buttons might not display */
+  .status-actions .garden-action,
+  .crm-status-bar .garden-action,
+  .garden-panel .garden-action,
+
+  .status-actions .garden-action:hover,
+  .crm-status-bar .garden-action:hover,
+  .garden-panel .garden-action:hover,
+
+  .status-actions .garden-action.secondary,
+  .crm-status-bar .garden-action.secondary,
+  .garden-panel .garden-action.secondary,
+
+  .status-actions .garden-action.secondary:hover,
+  .crm-status-bar .garden-action.secondary:hover,
+  .garden-panel .garden-action.secondary:hover,
+
+  .status-actions .garden-action.success,
+  .crm-status-bar .garden-action.success,
+  .garden-panel .garden-action.success,
+
+  .status-actions .garden-action.info,
+  .crm-status-bar .garden-action.info,
+  .garden-panel .garden-action.info,
+
+  .status-actions .garden-action.small,
+  .crm-status-bar .garden-action.small,
+  .garden-panel .garden-action.small,
+
+  /* stylelint-enable no-descending-specificity */
+
+  /* Form Elements */
+.garden-input {
+  background: var(--garden-input-bg);
+  border: 1px solid var(--garden-input-border);
+  color: var(--garden-input-fg);
+  padding: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--font-base); /* Prevent zoom on iOS */;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  transition: border-color var(--duration-fast);
+}
+
+.garden-input:focus {
+  border-color: var(--garden-input-focus-border);
+  outline: none;
+  box-shadow: var(--garden-input-focus-ring);
+}
+
+.garden-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.garden-label {
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  font-size: var(--font-xs);
+  margin-bottom: var(--space-2);
+  display: block;
+  letter-spacing: 0.5px;
+}
+
+  /* Status & Priority Indicators */
+.garden-badge {
+  background: var(--garden-accent);
+  color: var(--accent-text);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-xs);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  text-shadow: var(--accent-text-shadow);
+}
+
+  /* Data Tables */
+.garden-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: var(--font-xs);
+}
+
+.garden-table th {
+  background: var(--panel-header-bg);
+  color: var(--garden-accent);
+  padding: var(--space-3);
+  text-align: left;
+  font-size: var(--font-xs);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.garden-table td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--garden-border);
+  font-size: var(--font-sm);
+}
+
+.garden-table tr:hover {
+  background: var(--garden-hover);
+}
+
+  /* Modals */
+.garden-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-shadow-80);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+}
+
+.garden-modal.show {
+  display: flex;
+}
+
+.garden-modal-content {
+  background: var(--garden-bg);
+  border: 1px solid var(--garden-border);
+  border-radius: var(--radius-sm);
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.garden-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--garden-border);
+}
+
+.garden-modal-body {
+  padding: var(--space-4);
+}
+
+.garden-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-top: 1px solid var(--garden-border);
+}
+}
+
