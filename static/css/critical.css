@@ -62,12 +62,13 @@
 /* Screen reader only content */
 .sr-only {
     position: absolute;
-    width: var(--space-1);
-    height: var(--space-1);
+    width: 1px;
+    height: 1px;
     padding: 0;
-    margin: calc(var(--space-1) * -1);
+    margin: -1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
     white-space: nowrap;
     border: 0;
 }
