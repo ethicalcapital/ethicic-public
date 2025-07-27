@@ -47,12 +47,13 @@
     }
 }
 
-/* Fix brand/logo sizing */
+/* Fix brand/logo sizing and color */
 .garden-brand {
     font-size: 1.25rem !important;
     padding: 0.25rem 0 !important;
     white-space: nowrap !important;
     flex-shrink: 0;
+    color: white !important;
 }
 
 /* Fix navigation item sizing */
@@ -251,11 +252,7 @@
     background: var(--color-white-10) !important;
 }
 
-/* Brand should be white on dark header in both themes */
-.garden-brand {
-    color: white !important;
-}
-
+/* Dark mode brand color override */
 [data-theme="dark"] .garden-brand {
     color: var(--color-text-primary) !important;
 }
