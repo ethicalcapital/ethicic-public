@@ -5,8 +5,8 @@ This directory contains comprehensive documentation for the Ethical Capital webs
 ## 📚 Documentation Index
 
 ### CSS Architecture & Build System
-- **[CSS_ARCHITECTURE_SUMMARY.md](CSS_ARCHITECTURE_SUMMARY.md)** - Complete overview of CSS architecture
-- **[CSS_ARCHITECTURE.md](CSS_ARCHITECTURE.md)** - CSS architecture, theme system, and variables
+- **[CSS_OVERVIEW.md](CSS_OVERVIEW.md)** - Quick start guide for CSS changes (START HERE)
+- **[CSS_ARCHITECTURE_CURRENT.md](CSS_ARCHITECTURE_CURRENT.md)** - Complete technical reference (2025 Rational Architecture)
 - **[POSTCSS_BUILD_PROCESS.md](POSTCSS_BUILD_PROCESS.md)** - Build system documentation
 - **[CSS_LINTING_SETUP.md](CSS_LINTING_SETUP.md)** - Linting and quality control
 
@@ -20,10 +20,8 @@ This directory contains comprehensive documentation for the Ethical Capital webs
 - **[LINTING.md](LINTING.md)** - Code linting and quality control
 
 ### Migration Documentation
-- **[css-override-elimination-plan.md](css-override-elimination-plan.md)** - Plan for removing override files
-- **[css-integration-final-summary.md](css-integration-final-summary.md)** - Override elimination summary
 - **[inline-style-migration.md](inline-style-migration.md)** - Inline style migration guide
-- **[css-testing-checklist.md](css-testing-checklist.md)** - CSS testing procedures
+- **[archive/css-legacy-2025-01/](archive/css-legacy-2025-01/)** - Archived CSS documentation (pre-consolidation)
 
 ### Deployment & Infrastructure
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Main deployment instructions
@@ -67,24 +65,24 @@ npm run quality          # Lint + production build
 
 ## 🔧 System Status
 
-### Current Metrics
-- ✅ **Complete CSS architecture** with build system
-- ✅ **64 CSS files** combined into 1 optimized file
-- ✅ **~50% reduction** in HTTP requests
-- ✅ **CSS linting** enforces Garden UI BEM patterns
-- ✅ **Git hooks** prevent bad CSS commits
-- ✅ **PostCSS build process** with dev/prod modes
+### Current Metrics (July 27, 2025)
+- ✅ **Rational CSS Architecture** - 65% consolidation complete
+- ✅ **20+ fix files → 5 logical systems** consolidated
+- ✅ **Garden UI variables** throughout (no hardcoded colors)
+- ✅ **CSS Layers architecture** for proper cascade
+- ✅ **WCAG AA compliance** built-in
+- ✅ **Performance optimized** with fewer HTTP requests
 
 ### Protection Against
-- CSS override technical debt (eliminated 22 override files)
-- Inline style pollution (migrated to utility classes)
-- Naming inconsistencies (enforced BEM patterns)
-- Performance regressions (optimized builds)
-- Code quality issues (pre-commit validation)
+- CSS specificity wars (eliminated !important battles)
+- Scattered fix files (consolidated into logical systems)
+- Hardcoded values (Garden UI variables enforced)
+- Accessibility issues (WCAG AA built-in)
+- Code quality regressions (pre-commit validation)
 
 ## 📖 Getting Started
 
-1. **Read the CSS Architecture Summary** first: [CSS_ARCHITECTURE_SUMMARY.md](CSS_ARCHITECTURE_SUMMARY.md)
+1. **Read the CSS Overview** first: [CSS_OVERVIEW.md](CSS_OVERVIEW.md)
 2. **Install dependencies**: `npm install`
 3. **Build CSS**: `npm run build:css:dev`
 4. **Run linting**: `npm run lint:css`

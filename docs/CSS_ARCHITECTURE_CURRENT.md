@@ -370,6 +370,6 @@ Remove references to old fix files:
 
 ---
 
-**Last Updated**: January 27, 2025
+**Last Updated**: July 27, 2025
 **Version**: 2.0 (Rational Architecture)
-**Next Review**: April 2025
+**Next Review**: October 2025
