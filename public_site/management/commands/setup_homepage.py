@@ -5,6 +5,7 @@ Management command to set up the complete site structure for production deployme
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from wagtail.models import Page, Site
+from wagtailmenus.models import MainMenu, MainMenuItem
 
 from public_site.models import AboutPage, BlogIndexPage, ContactPage, HomePage
 
@@ -215,5 +216,49 @@ class Command(BaseCommand):
             self.stdout.write(f"Homepage live: {homepage.live}")
             self.stdout.write(f"Homepage content type: {homepage.content_type}")
 
+            # Set up navigation menu
+            self.setup_navigation_menu(site)
+
         except Exception as e:
             self.stdout.write(self.style.ERROR(f"Error creating site: {e}"))
+
+    def setup_navigation_menu(self, site):
+        """Set up the main navigation menu."""
+        self.stdout.write("Setting up navigation menu...")
+
+        try:
+            # Get or create main menu
+            menu, created = MainMenu.objects.get_or_create(site=site)
+
+            # Clear existing items
+            menu.get_menu_items_manager().all().delete()
+
+            # Add navigation items
+            menu_items = [
+                ("About", "/about/", 1),
+                ("Process", "/process/", 2),
+                ("Solutions", "/solutions/", 3),
+                ("Blog", "/blog/", 4),
+                ("FAQ", "/faq/", 5),
+                ("Contact", "/contact/", 6),
+            ]
+
+            for text, url, sort_order in menu_items:
+                MainMenuItem.objects.create(
+                    menu=menu,
+                    link_text=text,
+                    link_url=url,
+                    sort_order=sort_order,
+                    allow_subnav=False,
+                )
+
+            self.stdout.write(
+                self.style.SUCCESS(
+                    f"Navigation menu created with {len(menu_items)} items:"
+                )
+            )
+            for text, url, _ in menu_items:
+                self.stdout.write(f"  ✓ {text}: {url}")
+
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f"Error creating navigation menu: {e}"))
