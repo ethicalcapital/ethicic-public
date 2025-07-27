@@ -32,7 +32,7 @@
   .garden-login-container {
     position: relative;
     overflow: visible;
-    z-index: var(--z-dropdown-trigger, 50);
+    z-index: 50;
   }
 
   /* Login dropdown - proper positioning and theming */
@@ -42,29 +42,29 @@
     top: calc(100% + var(--space-2));
     right: 0;
     z-index: var(--z-dropdown, 200);
-    
+
     /* Sizing */
     min-width: 280px;
     max-width: 320px;
     width: max-content;
-    
+
     /* Appearance */
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-    
+
     /* Layout */
     overflow: visible;
     padding: var(--space-4);
-    
+
     /* Animation support */
     transform-origin: top right;
-    transition: 
-      opacity var(--duration-fast) var(--ease-out),
-      transform var(--duration-fast) var(--ease-out),
-      visibility var(--duration-fast) var(--ease-out);
-    
+    transition:
+      opacity var(--duration-fast) ease-out,
+      transform var(--duration-fast) ease-out,
+      visibility var(--duration-fast) ease-out;
+
     /* Typography */
     color: var(--color-text-primary);
     font-family: var(--font-sans);
@@ -72,23 +72,83 @@
     line-height: var(--leading-relaxed);
   }
 
-  /* Dropdown states - Alpine.js compatible */
-  .garden-login-dropdown[x-show="false"],
-  .garden-login-dropdown:not([x-show="true"]) {
+  /* Dropdown visibility states - Alpine.js compatible */
+
+  /* Default and hidden states */
+  .garden-login-dropdown,
+  .garden-login-dropdown[style*="display: none"],
+  .garden-login-dropdown[x-cloak]:not([x-show]) {
     opacity: 0;
     transform: scale(0.95) translateY(-8px);
     visibility: hidden;
     pointer-events: none;
   }
 
-  .garden-login-dropdown[x-show="true"] {
+  /* Focus management */
+  .garden-login-dropdown:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Show state when Alpine.js x-show is active */
+  .garden-login-dropdown:not([style*="display: none"]) {
     opacity: 1;
     transform: scale(1) translateY(0);
     visibility: visible;
     pointer-events: auto;
   }
 
+  .garden-login-dropdown[x-cloak] {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   /* ===== DROPDOWN CONTENT STYLING ===== */
+
+  /* Login items - actual implementation */
+  .garden-login-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text-primary);
+    border-radius: var(--radius-md);
+    transition: background-color var(--duration-fast) ease-out;
+    margin-bottom: var(--space-2);
+  }
+
+  .garden-login-item:hover {
+    background-color: var(--color-surface-hover, var(--color-primary-subtle));
+    text-decoration: none;
+  }
+
+  .garden-login-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .garden-login-item .login-icon {
+    font-size: var(--font-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+  }
+
+  .garden-login-item .login-title {
+    font-weight: var(--font-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .garden-login-item .login-desc {
+    font-size: var(--font-xs);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-tight);
+  }
 
   /* Login form within dropdown */
   .garden-login-dropdown .login-form {
@@ -104,7 +164,7 @@
 
   .garden-login-dropdown .garden-input {
     width: 100%;
-    background: var(--color-input-bg);
+    background: var(--color-surface);
     border: 1px solid var(--color-input-border);
     color: var(--color-text-primary);
     font-size: var(--font-sm);
@@ -192,12 +252,6 @@
   }
 
   /* ===== ACCESSIBILITY SUPPORT ===== */
-
-  /* Focus management */
-  .garden-login-dropdown:focus-within {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
 
   /* Screen reader support */
   .garden-login-dropdown[aria-hidden="true"] {
