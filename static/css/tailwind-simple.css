@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+@layer components {
+  .container-ec {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .btn-ec-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    border: 1px solid;
+    background-color: rgb(88 28 135);
+    color: rgb(255 255 255);
+    border-color: rgb(88 28 135);
+    transition: all 0.25s ease;
+  }
+
+  .btn-ec-primary:hover {
+    background-color: rgb(107 33 168);
+    border-color: rgb(107 33 168);
+  }
+
+  .btn-ec-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    border: 1px solid;
+    background-color: rgb(20 184 166);
+    color: rgb(17 24 39);
+    border-color: rgb(20 184 166);
+    transition: all 0.25s ease;
+  }
+
+  .btn-ec-secondary:hover {
+    background-color: rgb(45 212 191);
+    border-color: rgb(45 212 191);
+  }
+}
