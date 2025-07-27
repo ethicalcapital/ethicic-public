@@ -39,11 +39,6 @@ module.exports = {
           variant: '#444444',
         },
         // Add semantic color mappings for utility classes
-        'border': '#333333',
-        'surface': {
-          DEFAULT: '#1a1a1a',
-          foreground: '#f0f0f0',
-        },
         'surface-foreground': '#f0f0f0',
         'primary-foreground': '#ffffff',
         'primary-hover': '#2a0430',
@@ -130,4 +125,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

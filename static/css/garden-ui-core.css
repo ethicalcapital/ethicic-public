@@ -6,11 +6,12 @@
 
 /* This file contains the remaining components after extracting:
  * - Design tokens (moved to garden-ui-tokens.css)
- * - Button system (moved to garden-ui-buttons.css) 
+ * - Button system (moved to garden-ui-buttons.css)
  * - Panel system (moved to garden-ui-panels.css)
- * 
+ *
  * Remaining: Layout, Forms, Typography, Navigation, Accessibility
  *//* ===== RESET & BASE STYLES ===== */
+
 @layer reset {
 *, *::before, *::after {
   box-sizing: border-box;
@@ -757,10 +758,7 @@ button, input, optgroup, select, textarea {
 .garden-toggle-slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: var(--color-border);
   transition: .4s;
   border-radius: 24px;
@@ -787,7 +785,7 @@ button, input, optgroup, select, textarea {
 }
 
   /* Form Responsive */
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
 .garden-action {
   width: 100%;
 }
@@ -1482,13 +1480,13 @@ to {
 }
 
 .form-message-success {
-  background: rgb(34 197 94 / 0.1);
+  background: rgb(34 197 94 / 10%);
   color: var(--success);
   border: 1px solid var(--success);
 }
 
 .form-message-error {
-  background: rgb(239 68 68 / 0.1);
+  background: rgb(239 68 68 / 10%);
   color: var(--error);
   border: 1px solid var(--error);
 }
@@ -1503,7 +1501,7 @@ to {
 }
 
 .form-errors {
-  background: rgb(239 68 68 / 0.1);
+  background: rgb(239 68 68 / 10%);
   border: 1px solid var(--error);
   border-radius: var(--radius-sm);
   padding: var(--space-4);
@@ -1834,7 +1832,7 @@ to {
   grid-template-rows: auto auto auto;
 }
 
-  @media (max-width: 992px) {
+  @media (width <= 992px) {
     .terminal-sidebar,
 .terminal-detail {
   display: none; /* Hide sidebars on mobile */;
@@ -1857,7 +1855,7 @@ to {
   margin-bottom: var(--space-5);
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
   .form-row {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
@@ -2013,7 +2011,7 @@ to {
   border-width: 2px;
   border-color: var(--info);
   box-shadow: 0 0 0 1px var(--info);
-  background: rgb(37 99 235 / 0.05);
+  background: rgb(37 99 235 / 5%);
 }
 
   /* Monospace Layout Override System */
@@ -3241,7 +3239,7 @@ to {
 }
 
 /* Responsive adjustments for mobile */
-@media (max-width: 640px) {
+@media (width <= 640px) {
   .homepage-hero-stats {
     gap: var(--space-4);
     margin-top: var(--space-6);
@@ -3360,7 +3358,7 @@ to {
 }
 
 /* Responsive KPI Cards */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .kpi-card {
     padding: var(--space-4);
     min-width: 160px;
@@ -3381,7 +3379,7 @@ to {
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .kpi-card {
     min-width: 140px;
     padding: var(--space-3);
@@ -3405,14 +3403,14 @@ to {
   align-items: start;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .kpi-grid {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: var(--space-4);
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .kpi-grid {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: var(--space-3);
@@ -3554,3 +3552,4 @@ to {
 
 
 /* End of Garden UI Public Site Styles */
+}

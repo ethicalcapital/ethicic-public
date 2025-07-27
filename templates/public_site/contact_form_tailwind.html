@@ -18,7 +18,7 @@
             <div class="card-header-ec">
                 <h2 class="card-title-ec">Send a Message</h2>
             </div>
-            
+
             <!-- HTMX Contact Form with Alpine.js -->
             <form id="contact-form"
                   hx-post="/api/contact/"
@@ -61,16 +61,16 @@
                   }"
                   @htmx:before-request="handleSubmit()"
                   @htmx:after-request="handleResponse()">
-                
+
                 {% csrf_token %}
-                
+
                 <!-- Name Field (combined name field matching HTMX form) -->
                 <div class="form-group-ec">
                     <label for="name" class="form-label-ec">Full Name *</label>
-                    <input type="text" 
-                           id="name" 
-                           name="name" 
-                           class="form-input-ec" 
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           class="form-input-ec"
                            placeholder="Your full name"
                            :disabled="submitting"
                            required>
@@ -79,10 +79,10 @@
                 <!-- Email Field with inline validation -->
                 <div class="form-group-ec">
                     <label for="email" class="form-label-ec">Email Address *</label>
-                    <input type="email" 
-                           id="email" 
-                           name="email" 
-                           class="form-input-ec" 
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           class="form-input-ec"
                            placeholder="your@email.com"
                            autocomplete="email"
                            required
@@ -108,10 +108,10 @@
                 <!-- Company Field -->
                 <div class="form-group-ec">
                     <label for="company" class="form-label-ec">Company</label>
-                    <input type="text" 
-                           id="company" 
-                           name="company" 
-                           class="form-input-ec" 
+                    <input type="text"
+                           id="company"
+                           name="company"
+                           class="form-input-ec"
                            placeholder="Your company or organization"
                            :disabled="submitting">
                 </div>
@@ -133,9 +133,9 @@
                 <!-- Message -->
                 <div class="form-group-ec">
                     <label for="message" class="form-label-ec">Message *</label>
-                    <textarea id="message" 
-                              name="message" 
-                              class="form-textarea-ec" 
+                    <textarea id="message"
+                              name="message"
+                              class="form-textarea-ec"
                               placeholder="Tell us about your investment goals, timeline, or any specific questions you have..."
                               :disabled="submitting"
                               required></textarea>
@@ -182,7 +182,7 @@
                     </div>
                 </div>
             </form>
-            
+
             <!-- Response container -->
             <div id="form-response"
                  x-ref="formResponse"
@@ -202,34 +202,34 @@
                 <div class="card-content-ec space-y-4">
                     <div>
                         <h4 class="font-mono text-sm text-purple-400 mb-2">Schedule a Meeting</h4>
-                        <a href="https://calendly.com/sloane-ortel" 
-                           target="_blank" 
+                        <a href="https://calendly.com/sloane-ortel"
+                           target="_blank"
                            rel="noopener noreferrer"
                            class="btn-ec-primary inline-block">
                             📅 Book Calendar Slot
                         </a>
                     </div>
-                    
+
                     <div>
                         <h4 class="font-mono text-sm text-purple-400 mb-2">Email</h4>
-                        <a href="mailto:sloane@ethicalcapital.com" 
+                        <a href="mailto:sloane@ethicalcapital.com"
                            class="text-gray-200 hover:text-purple-400 transition-colors">
                             sloane@ethicalcapital.com
                         </a>
                     </div>
-                    
+
                     <div>
                         <h4 class="font-mono text-sm text-purple-400 mb-2">Professional Networks</h4>
                         <div class="flex flex-wrap gap-2">
-                            <a href="https://linkedin.com/in/sloane-ortel" 
-                               target="_blank" 
+                            <a href="https://linkedin.com/in/sloane-ortel"
+                               target="_blank"
                                rel="noopener noreferrer"
                                class="social-link-ec">
                                 <span>🔗</span>
                                 <span>LinkedIn</span>
                             </a>
-                            <a href="https://brokercheck.finra.org/individual/summary/7114756" 
-                               target="_blank" 
+                            <a href="https://brokercheck.finra.org/individual/summary/7114756"
+                               target="_blank"
                                rel="noopener noreferrer"
                                class="social-link-ec">
                                 <span>📋</span>
@@ -254,7 +254,7 @@
                         <p>SEC: 801-120708</p>
                     </div>
                     <div class="text-xs text-gray-500 pt-3 border-t border-gray-600">
-                        <p>Ethical Capital operates as a Registered Investment Adviser. 
+                        <p>Ethical Capital operates as a Registered Investment Adviser.
                            All investment advice is provided in accordance with SEC regulations.</p>
                     </div>
                 </div>
@@ -319,33 +319,33 @@ styleSheet.textContent = `
     .htmx-indicator {
         display: none;
     }
-    
+
     .htmx-request .htmx-indicator {
         display: block;
     }
-    
+
     .htmx-request #form-loading {
         display: flex !important;
     }
-    
+
     /* Email validation feedback */
     #email-feedback.valid {
         color: var(--color-success, #10b981);
     }
-    
+
     #email-feedback.invalid {
         color: var(--color-error, #ef4444);
     }
-    
+
     /* Spinner animation */
     @keyframes spin {
         to { transform: rotate(360deg); }
     }
-    
+
     .animate-spin {
         animation: spin 1s linear infinite;
     }
-    
+
     /* Form disabled state */
     .form-input-ec:disabled,
     .form-select-ec:disabled,
@@ -353,7 +353,7 @@ styleSheet.textContent = `
         opacity: 0.6;
         cursor: not-allowed;
     }
-    
+
     /* Turnstile styling */
     .cf-turnstile {
         margin: 1rem 0;

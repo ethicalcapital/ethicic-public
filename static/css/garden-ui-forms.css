@@ -204,10 +204,7 @@
 .garden-toggle-slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: var(--color-border);
   transition: .4s;
   border-radius: 24px;
@@ -234,7 +231,7 @@
 }
 
   /* Form Responsive */
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
 .garden-action {
   width: 100%;
 }
@@ -242,3 +239,4 @@
 }
 
 /* ========================================================================
+*/

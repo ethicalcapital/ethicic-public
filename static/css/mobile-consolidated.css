@@ -1,4 +1,4 @@
-/* 
+/*
  * MOBILE CONSOLIDATED
  * Merges: mobile-menu-clean.css + mobile-header-cleanup.css + mobile-navigation-layers.css
  * Complete mobile responsiveness with clean CSS Layers architecture
@@ -6,7 +6,7 @@
 
 @layer components {
     /* ===== MOBILE MENU TOGGLE BUTTON ===== */
-    
+
     .mobile-menu-toggle {
         display: none;
         background: none;
@@ -32,7 +32,7 @@
         display: block;
         width: 18px;
         height: 2px;
-        background: currentColor;
+        background: currentcolor;
         border-radius: 1px;
         transition: all var(--duration-fast);
     }
@@ -51,13 +51,10 @@
     }
 
     /* ===== MOBILE NAVIGATION OVERLAY ===== */
-    
+
     .mobile-nav {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         background: var(--color-surface);
         z-index: var(--z-overlay, 1000);
         transform: translateY(-100%);
@@ -126,7 +123,7 @@
     }
 
     /* ===== MOBILE SEARCH ===== */
-    
+
     .mobile-search-container {
         margin: var(--space-6) 0;
         padding: var(--space-6) 0;
@@ -152,7 +149,7 @@
 
 @layer responsive {
     /* ===== MOBILE BREAKPOINTS ===== */
-    
+
     @media (width <= 768px) {
         /* Show mobile menu toggle */
         .mobile-menu-toggle {
@@ -263,7 +260,7 @@
 
 @layer themes {
     /* ===== DARK MODE MOBILE ===== */
-    
+
     [data-theme="dark"] .mobile-nav {
         background: var(--color-surface);
         border-top: 1px solid var(--color-border);

@@ -6,16 +6,17 @@
 
 /* Consolidated from:
  * - responsive-layout-system.css
- * - responsive-utilities-layered.css  
+ * - responsive-utilities-layered.css
  * - responsive-breakpoints-fix.css
  * - mobile-consolidated.css
  *//* Responsive Layout System - CSS Layers Architecture */
+
 /* Consolidates page-width-fix.css and mobile-full-width.css */
 /* Eliminates !important wars with proper responsive design */
 
 @layer layout {
     /* ===== BASE CONTAINER SYSTEM ===== */
-    
+
     /* Default desktop container constraints */
     .main-content,
     .garden-container,
@@ -39,7 +40,7 @@
     }
 
     /* ===== PAGE-SPECIFIC CONTAINER CONSISTENCY ===== */
-    
+
     .homepage-page .main-content,
     .about-page .main-content,
     .contact-page .main-content,
@@ -63,7 +64,7 @@
     }
 
     /* ===== HERO PANEL LAYOUT ===== */
-    
+
     .hero-panel {
         width: 100%;
         margin: 0;
@@ -82,7 +83,7 @@
     }
 
     /* ===== FOOTER LAYOUT ===== */
-    
+
     .garden-footer {
         width: 100%;
         max-width: none;
@@ -95,7 +96,7 @@
     }
 
     /* ===== HEADER POSITIONING ===== */
-    
+
     .garden-header {
         position: sticky;
         top: 0;
@@ -104,7 +105,7 @@
     }
 
     /* ===== OVERFLOW PREVENTION ===== */
-    
+
     body, html {
         overflow-x: hidden;
     }
@@ -258,12 +259,13 @@
         }
     }
 }
+
 /* Responsive Display Utilities - Advanced Layers */
 /* Replaces !important with proper layer cascade management */
 
 @layer utilities.display {
   /* Extra Small Screens */
-  @media (max-width: 479px) {
+  @media (width <= 479px) {
     .hidden-xs { display: none; }
     .block-xs { display: block; }
     .flex-xs { display: flex; }
@@ -271,7 +273,7 @@
   }
 
   /* Small Screens */
-  @media (min-width: 480px) and (max-width: 639px) {
+  @media (width >= 480px) and (width <= 639px) {
     .hidden-sm { display: none; }
     .block-sm { display: block; }
     .flex-sm { display: flex; }
@@ -279,7 +281,7 @@
   }
 
   /* Medium Screens */
-  @media (min-width: 640px) and (max-width: 767px) {
+  @media (width >= 640px) and (width <= 767px) {
     .hidden-md { display: none; }
     .block-md { display: block; }
     .flex-md { display: flex; }
@@ -287,7 +289,7 @@
   }
 
   /* Large Screens */
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (width >= 768px) and (width <= 1023px) {
     .hidden-lg { display: none; }
     .block-lg { display: block; }
     .flex-lg { display: flex; }
@@ -295,7 +297,7 @@
   }
 
   /* Extra Large Screens */
-  @media (min-width: 1024px) {
+  @media (width >= 1024px) {
     .hidden-xl { display: none; }
     .block-xl { display: block; }
     .flex-xl { display: flex; }
@@ -305,21 +307,25 @@
 
 /* Responsive Spacing Utilities */
 @layer utilities.spacing {
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     .p-mobile { padding: var(--space-3); }
+
     .px-mobile {
       padding-left: var(--space-3);
       padding-right: var(--space-3);
     }
+
     .py-mobile {
       padding-top: var(--space-3);
       padding-bottom: var(--space-3);
     }
     .m-mobile { margin: var(--space-3); }
+
     .mx-mobile {
       margin-left: var(--space-3);
       margin-right: var(--space-3);
     }
+
     .my-mobile {
       margin-top: var(--space-3);
       margin-bottom: var(--space-3);
@@ -329,7 +335,7 @@
 
 /* Responsive Typography Utilities */
 @layer utilities.typography {
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     .text-mobile-sm { font-size: var(--font-sm); }
     .text-mobile-base { font-size: var(--font-base); }
     .text-mobile-lg { font-size: var(--font-lg); }
@@ -338,15 +344,17 @@
 
 /* Mobile Navigation Utilities */
 @layer utilities.positioning {
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     .mobile-stack {
       flex-direction: column;
       gap: var(--space-2);
     }
+
     .mobile-full-width {
       width: 100%;
       max-width: none;
     }
+
     .mobile-center {
       text-align: center;
       justify-content: center;
@@ -380,7 +388,8 @@
     border: 0;
   }
 }
-/* 
+
+/*
  * MOBILE CONSOLIDATED
  * Merges: mobile-menu-clean.css + mobile-header-cleanup.css + mobile-navigation-layers.css
  * Complete mobile responsiveness with clean CSS Layers architecture
@@ -388,7 +397,7 @@
 
 @layer components {
     /* ===== MOBILE MENU TOGGLE BUTTON ===== */
-    
+
     .mobile-menu-toggle {
         display: none;
         background: none;
@@ -414,7 +423,7 @@
         display: block;
         width: 18px;
         height: 2px;
-        background: currentColor;
+        background: currentcolor;
         border-radius: 1px;
         transition: all var(--duration-fast);
     }
@@ -433,13 +442,10 @@
     }
 
     /* ===== MOBILE NAVIGATION OVERLAY ===== */
-    
+
     .mobile-nav {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         background: var(--color-surface);
         z-index: var(--z-overlay, 1000);
         transform: translateY(-100%);
@@ -508,7 +514,7 @@
     }
 
     /* ===== MOBILE SEARCH ===== */
-    
+
     .mobile-search-container {
         margin: var(--space-6) 0;
         padding: var(--space-6) 0;
@@ -534,7 +540,7 @@
 
 @layer responsive {
     /* ===== MOBILE BREAKPOINTS ===== */
-    
+
     @media (width <= 768px) {
         /* Show mobile menu toggle */
         .mobile-menu-toggle {
@@ -645,7 +651,7 @@
 
 @layer themes {
     /* ===== DARK MODE MOBILE ===== */
-    
+
     [data-theme="dark"] .mobile-nav {
         background: var(--color-surface);
         border-top: 1px solid var(--color-border);

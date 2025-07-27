@@ -9,7 +9,7 @@ Analysis of conditional CSS loading opportunities to further optimize performanc
 
 ### Modular Structure (167.2KB total)
 - **Foundation Bundle**: 29.5KB (layers, tokens)
-- **Core Bundle**: 103.5KB (components, forms, typography)  
+- **Core Bundle**: 103.5KB (components, forms, typography)
 - **Layout Bundle**: 34.9KB (responsive, header, navigation, footer)
 - **Legacy CSS**: ~30KB (remaining 6 files)
 

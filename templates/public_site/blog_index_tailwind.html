@@ -24,7 +24,7 @@
     {% with featured_post=posts.0 %}
     <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6 mb-8">
         <div class="badge-ec-primary mb-4">Featured Article</div>
-        
+
         <div class="grid-2col">
             <!-- Featured Content -->
             <div class="space-y-4">
@@ -33,23 +33,23 @@
                         {{ featured_post.title }}
                     </a>
                 </h2>
-                
+
                 {% if featured_post.intro %}
                     <p class="text-gray-200">{{ featured_post.intro }}</p>
                 {% endif %}
-                
+
                 <div class="flex items-center gap-4 text-sm text-gray-400">
                     <span>📅 {{ featured_post.date|date:"F j, Y" }}</span>
                     {% if featured_post.reading_time %}
                         <span>⏱️ {{ featured_post.reading_time }} min read</span>
                     {% endif %}
                 </div>
-                
+
                 <a href="{{ featured_post.url }}" class="btn-ec-primary inline-block">
                     Read Article
                 </a>
             </div>
-            
+
             <!-- Featured Image -->
             {% if featured_post.featured_image %}
             <div class="order-first md:order-last">
@@ -100,7 +100,7 @@
                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                     </div>
                     {% endif %}
-                    
+
                     <!-- Article Content -->
                     <div class="p-4 space-y-3">
                         <!-- Category/Tags -->
@@ -111,19 +111,19 @@
                             {% endfor %}
                         </div>
                         {% endif %}
-                        
+
                         <!-- Title -->
                         <h4 class="font-mono text-lg text-purple-400 font-semibold leading-tight">
                             <a href="{{ post.url }}" class="hover:text-purple-300 transition-colors">
                                 {{ post.title }}
                             </a>
                         </h4>
-                        
+
                         <!-- Excerpt -->
                         {% if post.intro %}
                         <p class="text-gray-200 text-sm line-clamp-3">{{ post.intro|truncatewords:20 }}</p>
                         {% endif %}
-                        
+
                         <!-- Meta -->
                         <div class="flex items-center justify-between text-xs text-gray-400 pt-2 border-t border-gray-600">
                             <span>{{ post.date|date:"M j, Y" }}</span>
@@ -131,7 +131,7 @@
                                 <span>{{ post.reading_time }} min read</span>
                             {% endif %}
                         </div>
-                        
+
                         <!-- Read More -->
                         <a href="{{ post.url }}" class="btn-ec-secondary text-sm w-full text-center block">
                             Read More
@@ -183,12 +183,12 @@
         <p class="text-gray-200 mb-6 max-w-2xl mx-auto">
             Get our latest research and analysis delivered to your inbox. No spam, just thoughtful investment commentary.
         </p>
-        
+
         <!-- Newsletter Form -->
         <form class="max-w-md mx-auto flex gap-3" action="/newsletter-signup/" method="post">
             {% csrf_token %}
-            <input type="email" 
-                   name="email" 
+            <input type="email"
+                   name="email"
                    placeholder="your@email.com"
                    class="form-input-ec flex-1"
                    required>
@@ -196,7 +196,7 @@
                 Subscribe
             </button>
         </form>
-        
+
         <p class="text-xs text-gray-400 mt-3">
             Unsubscribe anytime. Read our <a href="/disclosures/privacy/" class="text-purple-400 hover:text-purple-300">Privacy Policy</a>.
         </p>
@@ -204,23 +204,23 @@
 
     <!-- Archive Navigation (hidden when HTMX infinite scroll is active) -->
     {% if posts.has_other_pages %}
-    <section class="pagination-container flex justify-center mt-8" 
-             x-data="{ htmxEnabled: document.body.classList.contains('htmx-settling') || typeof htmx !== 'undefined' }" 
+    <section class="pagination-container flex justify-center mt-8"
+             x-data="{ htmxEnabled: document.body.classList.contains('htmx-settling') || typeof htmx !== 'undefined' }"
              x-show="!htmxEnabled">
         <nav class="flex items-center gap-4" aria-label="Blog pagination">
             {% if posts.has_previous %}
-                <a href="?page={{ posts.previous_page_number }}" 
+                <a href="?page={{ posts.previous_page_number }}"
                    class="btn-ec-secondary">
                     ← Previous
                 </a>
             {% endif %}
-            
+
             <span class="text-gray-400 text-sm">
                 Page {{ posts.number }} of {{ posts.paginator.num_pages }}
             </span>
-            
+
             {% if posts.has_next %}
-                <a href="?page={{ posts.next_page_number }}" 
+                <a href="?page={{ posts.next_page_number }}"
                    class="btn-ec-secondary">
                     Next →
                 </a>
@@ -263,26 +263,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const articles = document.querySelectorAll('article:not([data-clickable])');
         articles.forEach(article => {
             article.setAttribute('data-clickable', 'true');
-            
+
             // Make clickable
             article.addEventListener('click', function(e) {
                 // Don't trigger if clicking on a link or button
                 if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
                     return;
                 }
-                
+
                 const link = this.querySelector('a[href*="/blog/"]');
                 if (link) {
                     window.location.href = link.href;
                 }
             });
-            
+
             // Add hover effects
             article.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-2px)';
                 this.style.transition = 'transform 0.2s ease';
             });
-            
+
             article.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0)';
             });

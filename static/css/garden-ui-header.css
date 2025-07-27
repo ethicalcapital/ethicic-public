@@ -11,7 +11,7 @@
 
 @layer components {
     /* ===== HEADER LAYOUT FOUNDATION ===== */
-    
+
     .garden-header {
         padding: 0.5rem 1rem;
         min-height: auto;
@@ -154,8 +154,8 @@
         height: 44px;
         min-width: 44px;
         min-height: 44px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgb(255 255 255 / 10%);
+        border: 1px solid rgb(255 255 255 / 30%);
         border-radius: 4px;
         color: var(--garden-header-text, var(--color-on-primary));
         cursor: pointer;
@@ -178,8 +178,8 @@
         align-items: center;
         gap: 0.5rem;
         padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgb(255 255 255 / 10%);
+        border: 1px solid rgb(255 255 255 / 30%);
         border-radius: 4px;
         color: var(--garden-header-text, var(--color-on-primary));
         font-size: 0.875rem;
@@ -189,7 +189,7 @@
     }
 
     .garden-login-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgb(255 255 255 / 20%);
     }
 
     /* Login dropdown uses normal surface colors */
@@ -252,20 +252,20 @@
 
 @layer responsive {
     /* ===== MOBILE RESPONSIVE BEHAVIOR ===== */
-    
+
     @media (width <= 768px) {
         .garden-nav-main {
             display: none;
         }
-        
+
         .garden-search {
             display: none;
         }
-        
+
         .garden-header-content {
             gap: 0.5rem;
         }
-        
+
         .garden-search-input {
             width: 150px;
         }

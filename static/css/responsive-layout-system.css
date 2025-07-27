@@ -4,7 +4,7 @@
 
 @layer layout {
     /* ===== BASE CONTAINER SYSTEM ===== */
-    
+
     /* Default desktop container constraints */
     .main-content,
     .garden-container,
@@ -28,7 +28,7 @@
     }
 
     /* ===== PAGE-SPECIFIC CONTAINER CONSISTENCY ===== */
-    
+
     .homepage-page .main-content,
     .about-page .main-content,
     .contact-page .main-content,
@@ -52,7 +52,7 @@
     }
 
     /* ===== HERO PANEL LAYOUT ===== */
-    
+
     .hero-panel {
         width: 100%;
         margin: 0;
@@ -71,7 +71,7 @@
     }
 
     /* ===== FOOTER LAYOUT ===== */
-    
+
     .garden-footer {
         width: 100%;
         max-width: none;
@@ -84,7 +84,7 @@
     }
 
     /* ===== HEADER POSITIONING ===== */
-    
+
     .garden-header {
         position: sticky;
         top: 0;
@@ -93,7 +93,7 @@
     }
 
     /* ===== OVERFLOW PREVENTION ===== */
-    
+
     body, html {
         overflow-x: hidden;
     }

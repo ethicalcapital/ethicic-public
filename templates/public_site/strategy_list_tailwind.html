@@ -32,15 +32,15 @@
                     Available Investment Strategies
                 </h2>
                 <p class="text-gray-200 max-w-3xl mx-auto">
-                    Our comprehensive suite of ethical investment strategies, each designed to meet specific investor 
+                    Our comprehensive suite of ethical investment strategies, each designed to meet specific investor
                     objectives while maintaining our commitment to values-based investing.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {% for strategy in strategies %}
-                <article class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-purple-400 transition-colors" 
-                         aria-labelledby="strategy-{{ strategy.id }}-heading" 
+                <article class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-purple-400 transition-colors"
+                         aria-labelledby="strategy-{{ strategy.id }}-heading"
                          data-strategy="{{ strategy.slug }}">
                     <!-- Strategy Header -->
                     <div class="bg-purple-900 p-4 text-center">
@@ -211,14 +211,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Add hover effects for strategy cards
     const strategyCards = document.querySelectorAll('[data-strategy]');
-    
+
     strategyCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             // Subtle animation on hover
             this.style.transform = 'translateY(-2px)';
             this.style.transition = 'transform 0.2s ease';
         });
-        
+
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
         });
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             const filter = this.dataset.filter;
-            
+
             strategyCards.forEach(card => {
                 if (filter === 'all' || card.dataset.strategy.includes(filter)) {
                     card.style.display = 'block';

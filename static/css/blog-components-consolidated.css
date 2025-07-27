@@ -1,4 +1,4 @@
-/* 
+/*
  * BLOG COMPONENTS CONSOLIDATED
  * Merges: garden-blog-articles.css + garden-blog-sidebar.css + garden-blog-hero.css + garden-blog-panels.css
  * Reusable blog components with Garden UI compliance
@@ -6,7 +6,7 @@
 
 @layer components {
     /* ===== BLOG HERO SECTION ===== */
-    
+
     .blog-hero {
         background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
         color: white;
@@ -19,11 +19,8 @@
     .blog-hero::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+        inset: 0;
+        background: linear-gradient(45deg, transparent 30%, rgb(255 255 255 / 10%) 50%, transparent 70%);
         pointer-events: none;
     }
 
@@ -39,7 +36,7 @@
         font-size: var(--font-4xl);
         font-weight: var(--font-bold);
         margin: 0 0 var(--space-4) 0;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-shadow: 0 2px 4px rgb(0 0 0 / 10%);
     }
 
     .blog-hero-subtitle {
@@ -52,7 +49,7 @@
     }
 
     /* ===== ARTICLE CARDS ===== */
-    
+
     .blog-articles-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -130,7 +127,7 @@
     }
 
     /* ===== BLOG SIDEBAR ===== */
-    
+
     .blog-layout {
         display: grid;
         grid-template-columns: 1fr 300px;
@@ -217,7 +214,7 @@
     }
 
     /* ===== BLOG PANELS ===== */
-    
+
     .blog-panel {
         background: var(--color-surface);
         border: 1px solid var(--color-border);
@@ -244,7 +241,7 @@
     }
 
     /* ===== FEATURED ARTICLES ===== */
-    
+
     .featured-articles {
         background: var(--color-primary-alpha-5);
         border: 1px solid var(--color-primary-alpha-20);
@@ -281,7 +278,7 @@
     }
 
     /* ===== BLOG NAVIGATION ===== */
-    
+
     .blog-pagination {
         display: flex;
         justify-content: center;
@@ -323,7 +320,7 @@
 
 @layer responsive {
     /* ===== MOBILE OPTIMIZATIONS ===== */
-    
+
     @media (width <= 1024px) {
         .blog-layout {
             grid-template-columns: 1fr;
@@ -375,7 +372,7 @@
 
 @layer themes {
     /* ===== DARK MODE SUPPORT ===== */
-    
+
     [data-theme="dark"] .blog-hero {
         background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
     }

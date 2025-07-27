@@ -72,7 +72,7 @@
                         <ul class="space-y-2">
                             {% for faq in page.faq_items.all %}
                             <li>
-                                <a href="#faq-{{ forloop.counter }}" 
+                                <a href="#faq-{{ forloop.counter }}"
                                    class="text-purple-400 hover:text-purple-300 transition-colors text-sm block py-1">
                                     {{ forloop.counter }}. {{ faq.question|truncatewords:8 }}
                                 </a>
@@ -92,7 +92,7 @@
                     </p>
                     <div class="space-y-3">
                         <a href="/contact/" class="btn-ec-primary block">Contact Us</a>
-                        <a href="mailto:sloane@ethicalcapital.com" 
+                        <a href="mailto:sloane@ethicalcapital.com"
                            class="text-purple-400 hover:text-purple-300 transition-colors text-sm">
                             sloane@ethicalcapital.com
                         </a>
@@ -106,19 +106,19 @@
                     <h4 class="card-title-ec">Related Resources</h4>
                 </div>
                 <div class="card-content-ec space-y-3">
-                    <a href="/process/" 
+                    <a href="/process/"
                        class="block text-purple-400 hover:text-purple-300 transition-colors text-sm py-1">
                         Our Investment Process
                     </a>
-                    <a href="/strategies/" 
+                    <a href="/strategies/"
                        class="block text-purple-400 hover:text-purple-300 transition-colors text-sm py-1">
                         Investment Strategies
                     </a>
-                    <a href="/about/" 
+                    <a href="/about/"
                        class="block text-purple-400 hover:text-purple-300 transition-colors text-sm py-1">
                         About Ethical Capital
                     </a>
-                    <a href="/blog/" 
+                    <a href="/blog/"
                        class="block text-purple-400 hover:text-purple-300 transition-colors text-sm py-1">
                         Investment Blog
                     </a>
@@ -134,8 +134,8 @@
                             Investment Adviser Representative<br>
                             CRD: 7114756 | SEC: 801-120708
                         </p>
-                        <a href="https://brokercheck.finra.org/individual/summary/7114756" 
-                           target="_blank" 
+                        <a href="https://brokercheck.finra.org/individual/summary/7114756"
+                           target="_blank"
                            rel="noopener noreferrer"
                            class="text-purple-400 hover:text-purple-300 text-xs">
                             View BrokerCheck Profile
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         detail.addEventListener('toggle', function() {
             if (this.open) {
                 history.replaceState(null, null, '#' + this.id);
-                
+
                 // Close other FAQ items for better UX
                 document.querySelectorAll('details').forEach(other => {
                     if (other !== this && other.open) {

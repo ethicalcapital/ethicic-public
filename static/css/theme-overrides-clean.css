@@ -3,7 +3,7 @@
 
 @layer themes {
     /* ===== LIGHT THEME OVERRIDES ===== */
-    
+
     /* Lavender Blush background for light mode */
     [data-theme="light"] body,
     [data-theme="light"] .main-content,
@@ -30,7 +30,7 @@
     [data-theme="light"] .serve-item .garden-action.primary,
     [data-theme="light"] .cta-actions .garden-action.primary {
         background-color: #2d7a68;
-        color: #ffffff;
+        color: #fff;
         border: 2px solid #2d7a68;
         text-decoration: none;
     }
@@ -41,11 +41,11 @@
     [data-theme="light"] .cta-actions .garden-action.primary:hover {
         background-color: #256559;
         border-color: #256559;
-        color: #ffffff;
+        color: #fff;
     }
 
     /* ===== DARK THEME OVERRIDES ===== */
-    
+
     /* Dark purple for header and footer */
     [data-theme="dark"] .garden-header,
     :root .garden-header {
@@ -67,7 +67,7 @@
     }
 
     /* ===== HIGH SPECIFICITY CTA OVERRIDES ===== */
-    
+
     /* Tiffany Blue for CTA-specific buttons only (not navigation) - highest specificity */
     html[data-theme="light"] body .hero-panel .cta-actions a.garden-action.primary,
     html[data-theme="light"] body .cta-actions .garden-action.primary,
@@ -75,12 +75,12 @@
     html[data-theme="light"] body .serve-item .garden-action.primary {
         background-color: #2d7a68;
         background-image: none;
-        color: #ffffff;
+        color: #fff;
         border: 2px solid #2d7a68;
     }
 
     /* ===== FOOTER STYLING ===== */
-    
+
     /* Footer styling - consistent with site theme */
     [data-theme="light"] .garden-footer {
         background-color: #FCEFEF;
@@ -93,7 +93,7 @@
     }
 
     /* ===== BODY AND BACKGROUND COLORS ===== */
-    
+
     /* Dark theme body */
     [data-theme="dark"] body {
         background-color: #0f0f0f;
@@ -102,7 +102,7 @@
 
     /* Light theme body */
     [data-theme="light"] body {
-        background-color: #ffffff;
-        color: #333333;
+        background-color: #fff;
+        color: #333;
     }
 }

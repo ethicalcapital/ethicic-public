@@ -14,29 +14,40 @@
  * For production, use this optimized bundle.
  */
 @layer reset, base, layout, components, themes, utilities;
+
 @layer base {
 }
+
 @layer layout {
 }
+
 @layer components {
 }
+
 @layer themes {
 }
+
 @layer utilities {
 }
+
 @layer reset, base, layout, components, states, themes, utilities, overrides;
+
 @layer components {
  @layer buttons, forms, panels, cards, navigation, modals;
 }
+
 @layer states {
  @layer default, hover, focus, active, disabled, loading, error, success;
 }
+
 @layer themes {
  @layer base-themes, component-themes, state-themes, variant-themes;
 }
+
 @layer utilities {
  @layer spacing, typography, colors, positioning, display, accessibility;
 }
+
 /*!
  * Garden UI Design Tokens - Public Site Version
  * Core design system variables, themes, and color definitions
@@ -45,6 +56,7 @@
  * Contains: CSS Layers, Design Tokens, Theme Definitions, Reset Styles
  */
 @layer reset, tokens, themes, base, components, utilities;
+
 @layer tokens {
 :root {
  --color-primary: var(--theme-primary);
@@ -119,21 +131,21 @@
  --color-white-5: #ffffff0d;
  --color-white-10: #ffffff1a;
  --color-white-15: #ffffff26;
- --color-white-20: #ffffff33;
+ --color-white-20: #fff3;
  --color-white-25: #ffffff40;
  --color-white-30: #ffffff4d;
  --color-white-50: #ffffff80;
- --color-white-60: #ffffff99;
+ --color-white-60: #fff9;
  --color-white-70: #ffffffb3;
  --color-white-90: #ffffffe6;
  --color-shadow-5: #0000000d;
  --color-shadow-10: #0000001a;
  --color-shadow-15: #00000026;
- --color-shadow-20: #00000033;
+ --color-shadow-20: #0003;
  --color-shadow-30: #0000004d;
- --color-shadow-40: #00000066;
+ --color-shadow-40: #0006;
  --color-shadow-50: #00000080;
- --color-shadow-80: #000000cc;
+ --color-shadow-80: #000c;
  --font-mono: var(--font-sans);
  --font-sans: 'Inter', 'Source Sans Pro', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Roboto', 'Helvetica Neue', arial, sans-serif;
  --font-body: 'Inter', 'Source Sans Pro', system-ui, -apple-system, sans-serif;
@@ -245,6 +257,7 @@
  --syntax-comment: var(--color-on-surface-variant);
  --syntax-selector: var(--color-primary);
 }
+
 @layer themes {
 :root, [data-theme="purple-dark"] {
  --theme-primary: #1f0322;
@@ -258,7 +271,7 @@
  --theme-on-surface-variant: #d0d0d0;
  --theme-background: #121212;
  --theme-on-background: #f0f0f0;
- --theme-hover: #222222;
+ --theme-hover: #222;
  --theme-focus: #2a2a2a;
  --theme-active: #333;
  --theme-selection: color-mix(in srgb, #1f0322 20%, transparent);
@@ -293,8 +306,8 @@
  --color-cta: #4fbbba;
  --color-cta-hover: #5cc7c6;
  --color-cta-active: #3fa8a7;
- --color-cta-text: #111111;
- --garden-color-white: #ffffff;
+ --color-cta-text: #111;
+ --garden-color-white: #fff;
  --garden-color-gray-50: #f9fafb;
  --garden-color-gray-100: #f3f4f6;
  --garden-color-gray-150: #e5e7eb;
@@ -307,7 +320,7 @@
  --garden-color-gray-800: #1f2937;
  --garden-color-gray-900: #111827;
  --garden-color-gray-950: #030712;
- --garden-color-black: #000000;
+ --garden-color-black: #000;
  --garden-accent-light: color-mix(in srgb, var(--garden-accent) 60%, white);
  --garden-accent-lighter: color-mix(in srgb, var(--garden-accent) 40%, white);
  --garden-accent-lightest: color-mix(in srgb, var(--garden-accent) 20%, white);
@@ -346,6 +359,7 @@
  --terminal-border: var(--theme-border);
  --terminal-hover: var(--theme-hover);
 }
+
 [data-theme="light"], [data-theme="purple-light"] {
  --theme-primary: #B57EDC;
  --theme-primary-hover: #a56cc9;
@@ -392,9 +406,9 @@
  --color-cta: #2d7a68;
  --color-cta-hover: #236354;
  --color-cta-active: #1a4d41;
- --color-cta-text: #ffffff;
- --color-cta-alpha-30: rgba(45, 122, 104, 0.3);
- --garden-color-white: #ffffff;
+ --color-cta-text: #fff;
+ --color-cta-alpha-30: rgb(45 122 104 / 30%);
+ --garden-color-white: #fff;
  --garden-color-gray-50: #f9fafb;
  --garden-color-gray-100: #f3f4f6;
  --garden-color-gray-150: #e5e7eb;
@@ -407,7 +421,7 @@
  --garden-color-gray-800: #1f2937;
  --garden-color-gray-900: #111827;
  --garden-color-gray-950: #030712;
- --garden-color-black: #000000;
+ --garden-color-black: #000;
  --garden-accent-light: color-mix(in srgb, var(--garden-accent) 60%, white);
  --garden-accent-lighter: color-mix(in srgb, var(--garden-accent) 40%, white);
  --garden-accent-lightest: color-mix(in srgb, var(--garden-accent) 20%, white);
@@ -483,6 +497,7 @@
  --garden-border: var(--theme-border);
  --garden-surface: var(--theme-surface);
 }
+
  @media (prefers-color-scheme: light) {
 [data-theme="auto"] {
  --theme-primary: var(--garden-accent);
@@ -508,6 +523,7 @@
  --accent-text-shadow: 0 1px 2px var(--theme-shadow);
 }
  }
+
 [data-theme="blue-light"] {
  --theme-primary: #2563EB;
  --theme-primary-hover: var(--garden-accent);
@@ -525,6 +541,7 @@
  --garden-accent: #3d2970;
  --accent-text: var(--theme-on-primary);
 }
+
 [data-theme="blue-dark"] {
  --theme-primary: var(--color-info);
  --theme-primary-hover: #60a5fa;
@@ -534,7 +551,7 @@
  --theme-on-surface: #e0e0e0;
  --theme-background: #121212;
  --theme-on-background: #e0e0e0;
- --theme-hover: #222222;
+ --theme-hover: #222;
  --theme-border: #333;
  --theme-text-primary: #f0f0f0;
  --theme-text-secondary: #b0b0b0;
@@ -542,6 +559,7 @@
  --garden-accent: #3d2970;
  --accent-text: var(--theme-on-primary);
 }
+
 [data-theme="light"] {
  --theme-primary: #3d2970;
  --theme-primary-hover: #2d1f52;
@@ -577,7 +595,7 @@
  --theme-text-secondary: color-mix(in srgb, #111 60%, #fff);
  --theme-text-tertiary: color-mix(in srgb, #111 40%, #fff);
  --theme-text-muted: #6b7280;
- --theme-shadow: rgba(0, 0, 0, 0.1);
+ --theme-shadow: rgb(0 0 0 / 10%);
  --color-background: var(--theme-background);
  --color-surface: var(--theme-surface);
  --color-surface-variant: var(--theme-surface-variant);
@@ -592,6 +610,7 @@
  --garden-border: var(--theme-border);
  --garden-muted: var(--theme-text-secondary);
 }
+
 [data-theme="dark"] {
  --theme-primary: var(--garden-accent);
  --theme-primary-hover: #6B46C1;
@@ -604,7 +623,7 @@
  --theme-on-surface-variant: #d0d0d0;
  --theme-background: #121212;
  --theme-on-background: #f0f0f0;
- --theme-hover: #222222;
+ --theme-hover: #222;
  --theme-focus: #2a2a2a;
  --theme-active: #333;
  --theme-selection: color-mix(in srgb, var(--garden-accent) 20%, transparent);
@@ -627,7 +646,7 @@
  --theme-text-secondary: #b0b0b0;
  --theme-text-tertiary: #808080;
  --theme-text-muted: #808080;
- --theme-shadow: rgba(0, 0, 0, 0.5);
+ --theme-shadow: rgb(0 0 0 / 50%);
  --color-background: var(--theme-background);
  --color-surface: var(--theme-surface);
  --color-surface-variant: var(--theme-surface-variant);
@@ -671,6 +690,7 @@
  --garden-input-error-border: var(--theme-error);
  --garden-input-success-border: var(--theme-success);
 }
+
 [data-theme="green-light"] {
  --theme-primary: var(--color-success);
  --theme-primary-hover: #047857;
@@ -760,5 +780,6 @@
  --text-base: var(--font-base);
  --text-2xl: var(--font-2xl);
  --text-xs: var(--font-xs);
+}
 }
 }

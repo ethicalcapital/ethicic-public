@@ -61,8 +61,8 @@
 
         <!-- Author Info -->
         <div class="flex items-center space-x-4 pt-6">
-            <img src="{% static 'images/sloane-headshot-small.jpg' %}" 
-                 alt="Sloane Ortel" 
+            <img src="{% static 'images/sloane-headshot-small.jpg' %}"
+                 alt="Sloane Ortel"
                  class="w-12 h-12 rounded border border-gray-600">
             <div>
                 <div class="font-mono text-sm text-purple-400">Sloane Ortel</div>
@@ -76,7 +76,7 @@
         <!-- Featured Image -->
         {% if page.featured_image %}
         <div class="mb-8">
-            <img src="{{ page.featured_image.url }}" 
+            <img src="{{ page.featured_image.url }}"
                  alt="{{ page.featured_image.title|default:page.title }}"
                  class="w-full rounded-lg border border-gray-600">
             {% if page.featured_image.caption %}
@@ -91,41 +91,41 @@
         <div class="prose prose-invert prose-purple max-w-none">
             <!-- Custom prose styles for dark theme -->
             <style>
-                .prose-purple h2 { 
+                .prose-purple h2 {
                     @apply text-purple-300 font-mono text-xl font-semibold mt-8 mb-4;
                 }
-                .prose-purple h3 { 
+                .prose-purple h3 {
                     @apply text-purple-400 font-mono text-lg font-semibold mt-6 mb-3;
                 }
-                .prose-purple h4 { 
+                .prose-purple h4 {
                     @apply text-purple-400 font-mono text-base font-semibold mt-4 mb-2;
                 }
-                .prose-purple p { 
+                .prose-purple p {
                     @apply text-gray-200 leading-relaxed mb-4;
                 }
-                .prose-purple a { 
+                .prose-purple a {
                     @apply text-purple-400 hover:text-purple-300 transition-colors;
                 }
-                .prose-purple ul, .prose-purple ol { 
+                .prose-purple ul, .prose-purple ol {
                     @apply text-gray-200 space-y-2 mb-4;
                 }
-                .prose-purple li { 
+                .prose-purple li {
                     @apply leading-relaxed;
                 }
-                .prose-purple blockquote { 
+                .prose-purple blockquote {
                     @apply border-l-4 border-purple-400 pl-4 italic text-purple-300 bg-gray-800 py-2 my-6;
                 }
-                .prose-purple code { 
+                .prose-purple code {
                     @apply bg-gray-800 text-purple-300 px-2 py-1 rounded font-mono text-sm;
                 }
-                .prose-purple pre { 
+                .prose-purple pre {
                     @apply bg-gray-800 border border-gray-600 rounded-lg p-4 overflow-x-auto mb-4;
                 }
-                .prose-purple img { 
+                .prose-purple img {
                     @apply rounded-lg border border-gray-600 my-6;
                 }
             </style>
-            
+
             {{ page.body|safe }}
         </div>
 
@@ -156,21 +156,21 @@
         <div class="mb-8">
             <h4 class="font-mono text-sm text-purple-400 mb-4">Share This Article</h4>
             <div class="flex gap-3">
-                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ page.title|urlencode }}" 
-                   target="_blank" 
+                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ page.title|urlencode }}"
+                   target="_blank"
                    rel="noopener noreferrer"
                    class="social-link-ec">
                     <span>🐦</span>
                     <span>Twitter</span>
                 </a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" 
-                   target="_blank" 
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}"
+                   target="_blank"
                    rel="noopener noreferrer"
                    class="social-link-ec">
                     <span>🔗</span>
                     <span>LinkedIn</span>
                 </a>
-                <a href="mailto:?subject={{ page.title|urlencode }}&body=I thought you might find this interesting: {{ request.build_absolute_uri }}" 
+                <a href="mailto:?subject={{ page.title|urlencode }}&body=I thought you might find this interesting: {{ request.build_absolute_uri }}"
                    class="social-link-ec">
                     <span>✉️</span>
                     <span>Email</span>
@@ -197,7 +197,7 @@
         <!-- Navigation -->
         <div class="flex justify-between items-center">
             {% if page.get_prev_sibling %}
-            <a href="{{ page.get_prev_sibling.url }}" 
+            <a href="{{ page.get_prev_sibling.url }}"
                class="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors">
                 <span>←</span>
                 <span class="text-sm">Previous Article</span>
@@ -211,7 +211,7 @@
             </a>
 
             {% if page.get_next_sibling %}
-            <a href="{{ page.get_next_sibling.url }}" 
+            <a href="{{ page.get_next_sibling.url }}"
                class="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors">
                 <span class="text-sm">Next Article</span>
                 <span>→</span>

@@ -8,18 +8,20 @@ from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    help = "Run deployment setup: migrations, CSS bundles, collectstatic, and site setup"
+    help = (
+        "Run deployment setup: migrations, CSS bundles, collectstatic, and site setup"
+    )
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--skip-css',
-            action='store_true',
-            help='Skip CSS bundle building (for development or testing)',
+            "--skip-css",
+            action="store_true",
+            help="Skip CSS bundle building (for development or testing)",
         )
         parser.add_argument(
-            '--development',
-            action='store_true',
-            help='Build development CSS bundles instead of production',
+            "--development",
+            action="store_true",
+            help="Build development CSS bundles instead of production",
         )
 
     def handle(self, *args, **options):
@@ -34,18 +36,24 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING(f"⚠️  Migration warnings: {e}"))
 
         # 2. Build CSS bundles for production
-        if not options['skip_css']:
+        if not options["skip_css"]:
             self.stdout.write("🎨 Building CSS bundles...")
             try:
-                if options['development']:
+                if options["development"]:
                     call_command("build_css", development=True)
-                    self.stdout.write(self.style.SUCCESS("✅ Development CSS bundles built"))
+                    self.stdout.write(
+                        self.style.SUCCESS("✅ Development CSS bundles built")
+                    )
                 else:
                     call_command("build_css")
-                    self.stdout.write(self.style.SUCCESS("✅ Production CSS bundles built"))
+                    self.stdout.write(
+                        self.style.SUCCESS("✅ Production CSS bundles built")
+                    )
             except Exception as e:
                 self.stdout.write(self.style.ERROR(f"❌ CSS bundle build failed: {e}"))
-                self.stdout.write(self.style.WARNING("⚠️  Continuing deployment without CSS bundles"))
+                self.stdout.write(
+                    self.style.WARNING("⚠️  Continuing deployment without CSS bundles")
+                )
         else:
             self.stdout.write(self.style.WARNING("⏭️  Skipping CSS bundle building"))
 
@@ -74,28 +82,36 @@ class Command(BaseCommand):
         self.stdout.write("")
         self.stdout.write("📋 Deployment Summary:")
         self.stdout.write("   ✅ Database migrations applied")
-        
-        if not options['skip_css']:
-            bundle_type = "Development" if options['development'] else "Production"
+
+        if not options["skip_css"]:
+            bundle_type = "Development" if options["development"] else "Production"
             self.stdout.write(f"   ✅ {bundle_type} CSS bundles built")
             self.stdout.write("   📂 Bundles available at: static/css/bundles/")
         else:
             self.stdout.write("   ⏭️  CSS bundles skipped")
-            
+
         self.stdout.write("   ✅ Static files collected")
         self.stdout.write("   ✅ Site structure configured")
         self.stdout.write("")
-        
-        if not options['skip_css'] and not options['development']:
+
+        if not options["skip_css"] and not options["development"]:
             self.stdout.write("🏭 Production CSS Bundles:")
             self.stdout.write("   • garden-ui-foundation.css (29.5KB)")
-            self.stdout.write("   • garden-ui-core.css (103.5KB)")  
+            self.stdout.write("   • garden-ui-core.css (103.5KB)")
             self.stdout.write("   • garden-ui-layout.css (34.9KB)")
             self.stdout.write("   • garden-ui-complete.css (167.2KB)")
             self.stdout.write("")
-            self.stdout.write("💡 Recommendation: Use base_production_bundles.html template for optimal performance")
-        elif options['development']:
-            self.stdout.write("🔧 Development CSS bundles built with comments and debugging info")
-            self.stdout.write("💡 Use base.html template for development with modular CSS files")
+            self.stdout.write(
+                "💡 Recommendation: Use base_production_bundles.html template for optimal performance"
+            )
+        elif options["development"]:
+            self.stdout.write(
+                "🔧 Development CSS bundles built with comments and debugging info"
+            )
+            self.stdout.write(
+                "💡 Use base.html template for development with modular CSS files"
+            )
         else:
-            self.stdout.write("💡 Run 'python manage.py build_css' to create optimized CSS bundles")
+            self.stdout.write(
+                "💡 Run 'python manage.py build_css' to create optimized CSS bundles"
+            )

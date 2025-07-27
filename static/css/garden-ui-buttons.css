@@ -30,6 +30,7 @@
   color: var(--garden-button-fg);
   border: 2px solid var(--garden-button-border);
   text-shadow: 0 1px 2px var(--color-shadow);
+
   /* Ensure contrast is maintained */
   min-height: 40px;
   font-weight: var(--font-semibold);
@@ -74,6 +75,7 @@
   border: 2px solid var(--garden-button-secondary-border);
   font-weight: var(--font-semibold);
   text-shadow: none;
+
   /* Ensure secondary buttons never have white text */
   min-height: 40px;
 }
@@ -746,4 +748,3 @@
   border-top: 1px solid var(--garden-border);
 }
 }
-
