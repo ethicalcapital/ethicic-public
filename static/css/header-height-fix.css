@@ -202,17 +202,20 @@
 
 /* Fix theme toggle */
 .garden-theme-toggle {
-    padding: 0.35rem !important;
+    padding: 0.5rem !important;
     flex-shrink: 0 !important;
-    width: 30px !important;
-    height: 30px !important;
-    min-width: 30px !important;
+    width: 44px !important; /* WCAG compliance - updated from 30px */
+    height: 44px !important; /* WCAG compliance - updated from 30px */
+    min-width: 44px !important; /* WCAG compliance - updated from 30px */
+    min-height: 44px !important; /* Ensure proper touch target */
 }
 
 /* Fix mobile menu toggle */
 .mobile-menu-toggle {
-    width: 36px !important;
-    height: 36px !important;
+    width: 44px !important; /* WCAG compliance - updated from 36px */
+    height: 44px !important; /* WCAG compliance - updated from 36px */
+    min-width: 44px !important; /* Ensure proper touch target */
+    min-height: 44px !important; /* Ensure proper touch target */
     padding: 0.5rem !important;
     flex-shrink: 0;
 }

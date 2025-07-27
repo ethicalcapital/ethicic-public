@@ -84,6 +84,8 @@
     background: var(--color-surface-secondary);
     color: var(--color-primary);
     border-color: var(--color-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
   }
 
   /* Surface buttons - Light background, dark text */
@@ -160,7 +162,7 @@
 
   /* Header buttons */
   .garden-header .garden-action {
-    min-height: 40px;
+    min-height: 44px; /* WCAG compliance - updated from 40px */
     padding: var(--space-2) var(--space-4);
     font-size: var(--font-sm);
     border-width: 1px;
@@ -213,6 +215,12 @@
       min-height: 48px; /* Larger touch targets on mobile */
     }
 
+    /* Ensure header buttons also meet mobile touch targets */
+    .garden-header .garden-action {
+      min-height: 48px;
+      padding: var(--space-3) var(--space-4);
+    }
+
     /* Allow text wrapping for long CTAs on mobile if needed */
     .garden-action.allow-wrap,
     .garden-button.allow-wrap {
@@ -226,11 +234,20 @@
     .garden-button-group {
       flex-direction: column;
       align-items: stretch;
+      gap: var(--space-3);
     }
 
     .garden-button-group .garden-action,
     .garden-button-group .garden-button {
       width: 100%;
+      min-height: 48px; /* Ensure touch targets on mobile */
+    }
+
+    /* Full-width buttons on mobile for better usability */
+    .mobile-full-width .garden-action,
+    .mobile-full-width .garden-button {
+      width: 100%;
+      justify-content: center;
     }
   }
 
@@ -257,6 +274,8 @@
     background: rgb(157 123 218 / 10%); /* Light purple background on hover */
     color: #b399e0; /* Even lighter purple on hover */
     border-color: #9d7bda;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgb(157 123 218 / 20%);
   }
 
   /* ===== ACCESSIBILITY ENHANCEMENTS ===== */
