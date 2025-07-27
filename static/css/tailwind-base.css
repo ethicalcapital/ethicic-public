@@ -1,5 +1,27 @@
 @import "tailwindcss";
 
+@layer base {
+  /* Light mode (default) */
+  :root {
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #4a5568;
+    --color-text-muted: #718096;
+    --color-bg-primary: #ffffff;
+    --color-bg-surface: #f7fafc;
+    --color-border: #e2e8f0;
+  }
+
+  /* Dark mode */
+  [data-theme="dark"] {
+    --color-text-primary: #f0f0f0;
+    --color-text-secondary: #a0aec0;
+    --color-text-muted: #718096;
+    --color-bg-primary: #1a1a1a;
+    --color-bg-surface: #2d3748;
+    --color-border: #4a5568;
+  }
+}
+
 @layer components {
   .btn-ec-primary {
     display: inline-flex;
@@ -149,7 +171,7 @@
 
   /* Card Components */
   .card-ec {
-    @apply bg-gray-800 border border-gray-600 rounded-lg p-6 shadow-lg;
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-6 shadow-lg;
   }
 
   .card-header-ec {
@@ -196,7 +218,7 @@
 
   /* Semantic CSS Classes for Component Identification */
   .strategy-card {
-    @apply bg-gray-800 border border-gray-600 rounded-lg overflow-hidden;
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden;
   }
 
   .strategy-table {
@@ -209,14 +231,14 @@
 
   /* Additional semantic classes for maintainability */
   .featured-badge {
-    @apply badge-ec-primary;
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-purple-900 text-purple-200;
   }
 
   .article-card {
-    @apply card-ec;
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-6 shadow-lg;
   }
 
   .contact-form {
-    @apply form-ec;
+    @apply space-y-6;
   }
 }

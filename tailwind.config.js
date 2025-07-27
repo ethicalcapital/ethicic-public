@@ -5,6 +5,7 @@ module.exports = {
     './static/js/**/*.js',
     './public_site/**/*.py',
   ],
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       colors: {

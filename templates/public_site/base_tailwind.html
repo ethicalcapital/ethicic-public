@@ -44,7 +44,7 @@
 
     {% block extra_css %}{% endblock %}
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex flex-col {% block body_class %}{% endblock %}">
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col {% block body_class %}{% endblock %}">
     <!-- Skip navigation links for screen readers -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-purple-600 text-white px-4 py-2 rounded z-50">Skip to main content</a>
     <a href="#main-navigation" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-32 bg-purple-600 text-white px-4 py-2 rounded z-50">Skip to navigation</a>
@@ -54,7 +54,7 @@
     <div aria-live="assertive" aria-atomic="true" class="sr-only" id="urgent-announcements"></div>
 
     <!-- Tailwind Navigation Header -->
-    <header class="bg-purple-900 border-b border-purple-800 relative z-40" role="banner" x-data="{ mobileMenuOpen: false }">
+    <header class="bg-purple-900 dark:bg-purple-900 border-b border-purple-800 dark:border-purple-800 relative z-40" role="banner" x-data="{ mobileMenuOpen: false }">
         <div class="container-ec">
             <div class="flex items-center justify-between py-4">
                 <!-- Left: Brand and Navigation -->

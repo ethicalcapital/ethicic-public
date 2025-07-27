@@ -1,5 +1,27 @@
 @import "tailwindcss";
 
+@layer base {
+  /* Light mode (default) */
+  :root {
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #4a5568;
+    --color-text-muted: #718096;
+    --color-bg-primary: #ffffff;
+    --color-bg-surface: #f7fafc;
+    --color-border: #e2e8f0;
+  }
+
+  /* Dark mode */
+  [data-theme="dark"] {
+    --color-text-primary: #f0f0f0;
+    --color-text-secondary: #a0aec0;
+    --color-text-muted: #718096;
+    --color-bg-primary: #1a1a1a;
+    --color-bg-surface: #2d3748;
+    --color-border: #4a5568;
+  }
+}
+
 @layer components {
   .container-ec {
     max-width: 72rem;

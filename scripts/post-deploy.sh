@@ -34,7 +34,7 @@ if [ "$SKIP_CSS" = false ]; then
     # Build Tailwind CSS first
     echo "🎨 Building Tailwind CSS..."
     if command -v npx >/dev/null 2>&1; then
-        npx postcss static/css/tailwind-simple.css -o static/css/dist/tailwind.min.css --env production
+        npx postcss static/css/tailwind-base.css -o static/css/dist/tailwind.min.css --env production
         echo "✅ Tailwind CSS built successfully"
     else
         echo "⚠️  npx not found, skipping Tailwind CSS build"
