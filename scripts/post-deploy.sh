@@ -29,20 +29,30 @@ done
 echo "📊 Running database migrations..."
 python manage.py migrate --noinput
 
-# Build CSS bundles for production
+# Build CSS for production
 if [ "$SKIP_CSS" = false ]; then
-    echo "🎨 Building CSS bundles..."
+    # Build Tailwind CSS first
+    echo "🎨 Building Tailwind CSS..."
+    if command -v npx >/dev/null 2>&1; then
+        npx postcss static/css/tailwind-simple.css -o static/css/dist/tailwind.min.css --env production
+        echo "✅ Tailwind CSS built successfully"
+    else
+        echo "⚠️  npx not found, skipping Tailwind CSS build"
+    fi
+
+    # Build Garden UI CSS bundles
+    echo "🎨 Building Garden UI CSS bundles..."
     if [ "$DEVELOPMENT" = true ]; then
         echo "🔧 Building development CSS bundles..."
         python manage.py build_css --development
-        echo "✅ Development CSS bundles built"
+        echo "✅ Development Garden UI bundles built"
     else
         echo "🏭 Building production CSS bundles..."
         python manage.py build_css
-        echo "✅ Production CSS bundles built"
+        echo "✅ Production Garden UI bundles built"
     fi
 else
-    echo "⏭️  Skipping CSS bundle building"
+    echo "⏭️  Skipping CSS building"
 fi
 
 # Collect static files
@@ -61,17 +71,18 @@ echo "📋 Deployment Summary:"
 echo "   ✅ Database migrations applied"
 
 if [ "$SKIP_CSS" = false ]; then
+    echo "   ✅ Tailwind CSS built"
     if [ "$DEVELOPMENT" = true ]; then
-        echo "   ✅ Development CSS bundles built"
+        echo "   ✅ Development Garden UI bundles built"
         echo "   💡 Use base.html template for development"
     else
-        echo "   ✅ Production CSS bundles built"
+        echo "   ✅ Production Garden UI bundles built"
         echo "   📂 Bundles available at: static/css/bundles/"
-        echo "   💡 Use base_production_bundles.html template for optimal performance"
+        echo "   💡 Use base_tailwind.html template for Tailwind pages"
     fi
 else
-    echo "   ⏭️  CSS bundles skipped"
-    echo "   💡 Run 'python manage.py build_css' to create CSS bundles"
+    echo "   ⏭️  CSS building skipped"
+    echo "   💡 Run post-deploy script without --skip-css to build CSS"
 fi
 
 echo "   ✅ Static files collected"
