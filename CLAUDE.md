@@ -14,15 +14,11 @@
 - NEVER just remove a file thats causing issues. THat's lazy bullshit and we dont do it around here#
 - we are often making multiple edits in parallel -- if you come across an issue that might be due to that, consider this before you make any actions
 
-## CSS Architecture (CRITICAL TECHNICAL DEBT - 2025)
-- **Scale**: 84 files, 95K lines, 700KB output - MASSIVE system with sophisticated Garden UI design
-- **Quality Crisis**: 1,099 stylelint issues (988 !important warnings, 111 specificity errors)
-- **Technical Debt**: 39 "fix" files, 4 "nuclear/emergency" fixes, 146 `html body` selectors, 458 hardcoded colors
-- **Architecture**: Excellent Garden UI theme (7.5K lines, 300+ variables) defeated by specificity wars
-- **Root Cause**: Legacy high-specificity selectors force !important escalation throughout system
-- **Performance**: Despite optimization, 35K line development build indicates significant bloat
-- **Investigation**: See `.claude/docs/css-investigation-2025-01-26.md` for comprehensive analysis
-- **Action Required**: Systematic specificity reduction and !important elimination needed
+## CSS Architecture (RATIONAL SYSTEM - 2025)
+- **CONSOLIDATED**: 65% reduction achieved - 20+ fix files → 5 logical systems
+- **NEW ARCHITECTURE**: garden-layout-clean.css, garden-buttons-enhanced.css, garden-accessibility-clean.css, garden-forms-clean.css, garden-layout-system.css
+- **RULES**: Use Garden UI variables only, CSS Layers architecture, no !important wars
+- **DOCUMENTATION**: See `css-consolidation-plan.md` for roadmap and `.claude/docs/css-investigation-2025-01-26.md` for analysis
 
 ## System Architecture Context (Investigation - Jan 2025)
 - **Business Domain**: Ethical Capital - SEC-regulated ESG investment advisory firm managing real portfolios

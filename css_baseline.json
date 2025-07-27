@@ -1,14 +1,17 @@
 {
-  "timestamp": "2025-07-24T14:12:23.105127+00:00",
-  "total_files": 84,
+  "timestamp": "2025-07-27T12:38:10.750635+00:00",
+  "total_files": 99,
   "total_defined_vars": 422,
   "files_with_issues": [
     "login-dropdown-fix.css",
-    "strategy-nuclear-fix.css",
     "faq-blog-consistency.css",
+    "footer-clean.css",
+    "search-clean.css",
     "header-text-fix.css",
+    "garden-layout-clean.css",
     "search-fixes.css",
     "search-visibility-ultimate-fix.css",
+    "onboarding-forms-clean.css",
     "garden-critical.css",
     "header-height-fix.css",
     "onboarding-comprehensive.css",
@@ -16,38 +19,261 @@
     "footer-fix.css",
     "garden-ui-utilities.css",
     "garden-blog.css",
+    "header-text-clean.css",
+    "garden-forms-clean.css",
+    "mobile-responsive-clean.css",
+    "process-dark-mode-clean.css",
+    "garden-layout-system.css",
+    "table-contrast-accessibility-fix.css",
+    "wcag-contrast-clean.css",
+    "garden-buttons-enhanced.css",
+    "16-homepage-clean.css",
     "wcag-contrast-fixes.css",
     "process-dark-mode-fix.css",
+    "login-dropdown-clean.css",
+    "garden-accessibility-clean.css",
+    "40-adviser-page-clean.css",
     "combined.css",
     "production.css",
     "development.css"
   ],
   "undefined_variables": {
+    "footer-clean.css": [
+      "--garden-footer-social-hover-bg",
+      "--garden-footer-dark-heading",
+      "--garden-footer-social-hover-border",
+      "--garden-footer-heading",
+      "--z-skip-link",
+      "--garden-footer-link-hover",
+      "--garden-footer-border-light",
+      "--garden-footer-social-hover-icon",
+      "--garden-footer-link",
+      "--garden-footer-social-icon",
+      "--leading-relaxed",
+      "--garden-footer-dark-text",
+      "--garden-footer-text",
+      "--garden-footer-dark-link-hover",
+      "--ease-out",
+      "--garden-footer-dark-link",
+      "--leading-tight",
+      "--garden-footer-social-bg",
+      "--garden-footer-dark-border",
+      "--garden-footer-dark-bg",
+      "--garden-footer-social-border"
+    ],
+    "search-clean.css": [
+      "--color-input-bg",
+      "--color-warning-dark",
+      "--leading-normal",
+      "--color-input-dark-border",
+      "--ease-out",
+      "--color-input-dark-bg",
+      "--color-input-dark-text",
+      "--color-warning-light",
+      "--color-input-border",
+      "--color-input-focus-ring",
+      "--color-input-focus-border",
+      "--color-input-placeholder",
+      "--color-input-focus-bg",
+      "--color-input-text"
+    ],
+    "garden-layout-clean.css": [
+      "--ease-out",
+      "--z-mobile-nav"
+    ],
+    "onboarding-forms-clean.css": [
+      "--color-input-bg",
+      "--leading-normal",
+      "--color-input-hover-border",
+      "--ease-out",
+      "--color-input-dark-border",
+      "--color-input-dark-bg",
+      "--color-input-dark-text",
+      "--color-input-border",
+      "--color-input-focus-ring",
+      "--color-input-focus-border",
+      "--color-input-placeholder",
+      "--color-input-dark-placeholder",
+      "--leading-tight",
+      "--color-input-text"
+    ],
     "onboarding-comprehensive.css": [
       "--color-text-muted"
     ],
     "onboarding-mobile-optimization.css": [
-      "--color-error-alpha-light",
-      "--color-surface-rgb"
+      "--color-surface-rgb",
+      "--color-error-alpha-light"
     ],
     "garden-ui-utilities.css": [
       "--garden-container-max-width",
       "--garden-gutter"
     ],
+    "header-text-clean.css": [
+      "--garden-header-link",
+      "--garden-header-bg",
+      "--ease-out",
+      "--garden-search-placeholder",
+      "--garden-search-border",
+      "--garden-header-text",
+      "--garden-search-bg",
+      "--garden-search-text"
+    ],
+    "garden-forms-clean.css": [
+      "--ease-out"
+    ],
+    "mobile-responsive-clean.css": [
+      "--leading-tight",
+      "--leading-relaxed"
+    ],
+    "process-dark-mode-clean.css": [
+      "--color-input-bg",
+      "--color-input-border"
+    ],
+    "garden-layout-system.css": [
+      "--font-4xl"
+    ],
+    "wcag-contrast-clean.css": [
+      "--garden-header-button-hover-bg",
+      "--color-input-dark-border",
+      "--ease-out",
+      "--color-input-dark-bg",
+      "--color-input-dark-text",
+      "--garden-header-button-hover-border",
+      "--garden-header-button-text",
+      "--garden-header-button-hover-text",
+      "--garden-header-button-border",
+      "--color-primary-lighter"
+    ],
+    "garden-buttons-enhanced.css": [
+      "--ease-out"
+    ],
+    "16-homepage-clean.css": [
+      "--ease-out"
+    ],
+    "login-dropdown-clean.css": [
+      "--color-input-bg",
+      "--ease-out",
+      "--color-input-border",
+      "--z-dropdown-trigger",
+      "--leading-relaxed"
+    ],
+    "garden-accessibility-clean.css": [
+      "--accessible-purple-dark",
+      "--accessible-text-primary",
+      "--accessible-purple-light"
+    ],
+    "40-adviser-page-clean.css": [
+      "--leading-relaxed",
+      "--leading-tight",
+      "--leading-normal",
+      "--ease-out"
+    ],
     "combined.css": [
+      "--color-warning-dark",
+      "--garden-footer-social-hover-bg",
+      "--color-input-dark-text",
+      "--garden-footer-dark-heading",
+      "--garden-footer-bg",
+      "--color-input-focus-ring",
+      "--garden-footer-heading",
+      "--garden-footer-social-hover-border",
+      "--garden-header-button-text",
+      "--color-error-alpha-light",
+      "--z-dropdown-trigger",
+      "--color-input-placeholder",
+      "--color-primary-lighter",
+      "--z-skip-link",
+      "--garden-gutter",
+      "--leading-normal",
+      "--color-input-hover-border",
+      "--garden-footer-link-hover",
+      "--garden-footer-border-light",
       "--garden-container-max-width",
-      "--color-text-muted",
-      "--garden-gutter"
+      "--garden-footer-social-hover-icon",
+      "--garden-footer-link",
+      "--garden-footer-social-icon",
+      "--leading-relaxed",
+      "--garden-footer-dark-text",
+      "--garden-footer-text",
+      "--garden-footer-dark-link-hover",
+      "--color-input-text",
+      "--color-input-bg",
+      "--garden-header-button-hover-bg",
+      "--color-input-dark-border",
+      "--ease-out",
+      "--garden-footer-dark-link",
+      "--garden-header-button-hover-border",
+      "--color-input-border",
+      "--color-surface-rgb",
+      "--garden-header-button-hover-text",
+      "--color-input-dark-placeholder",
+      "--leading-tight",
+      "--garden-footer-social-bg",
+      "--garden-footer-dark-border",
+      "--color-input-dark-bg",
+      "--color-warning-light",
+      "--garden-footer-border",
+      "--garden-header-button-border",
+      "--color-input-focus-border",
+      "--garden-footer-dark-bg",
+      "--color-input-focus-bg",
+      "--garden-footer-social-border"
     ],
     "production.css": [
-      "--garden-container-max-width",
       "--color-text-muted",
+      "--garden-container-max-width",
       "--garden-gutter"
     ],
     "development.css": [
+      "--color-warning-dark",
+      "--garden-footer-social-hover-bg",
+      "--color-input-dark-text",
+      "--garden-footer-dark-heading",
+      "--garden-footer-bg",
+      "--color-input-focus-ring",
+      "--garden-footer-heading",
+      "--garden-footer-social-hover-border",
+      "--garden-header-button-text",
+      "--color-error-alpha-light",
+      "--z-dropdown-trigger",
+      "--color-input-placeholder",
+      "--color-primary-lighter",
+      "--z-skip-link",
+      "--garden-gutter",
+      "--leading-normal",
+      "--color-input-hover-border",
+      "--garden-footer-link-hover",
+      "--garden-footer-border-light",
       "--garden-container-max-width",
-      "--color-text-muted",
-      "--garden-gutter"
+      "--garden-footer-social-hover-icon",
+      "--garden-footer-link",
+      "--garden-footer-social-icon",
+      "--leading-relaxed",
+      "--garden-footer-dark-text",
+      "--garden-footer-text",
+      "--garden-footer-dark-link-hover",
+      "--color-input-text",
+      "--color-input-bg",
+      "--garden-header-button-hover-bg",
+      "--color-input-dark-border",
+      "--ease-out",
+      "--garden-footer-dark-link",
+      "--garden-header-button-hover-border",
+      "--color-input-border",
+      "--color-surface-rgb",
+      "--garden-header-button-hover-text",
+      "--color-input-dark-placeholder",
+      "--leading-tight",
+      "--garden-footer-social-bg",
+      "--garden-footer-dark-border",
+      "--color-input-dark-bg",
+      "--color-warning-light",
+      "--garden-footer-border",
+      "--garden-header-button-border",
+      "--color-input-focus-border",
+      "--garden-footer-dark-bg",
+      "--color-input-focus-bg",
+      "--garden-footer-social-border"
     ]
   },
   "hardcoded_colors": {
@@ -73,28 +299,6 @@
         "#f3f4f6"
       ]
     ],
-    "strategy-nuclear-fix.css": [
-      [
-        7,
-        "#fff"
-      ],
-      [
-        8,
-        "#fff"
-      ],
-      [
-        9,
-        "#3d2970"
-      ],
-      [
-        18,
-        "#111"
-      ],
-      [
-        19,
-        "#111"
-      ]
-    ],
     "faq-blog-consistency.css": [
       [
         11,
@@ -115,6 +319,20 @@
       [
         93,
         "#e5e7eb"
+      ]
+    ],
+    "footer-clean.css": [
+      [
+        44,
+        "#FCEFEF"
+      ],
+      [
+        45,
+        "#B57EDC"
+      ],
+      [
+        51,
+        "#333"
       ]
     ],
     "garden-ui-theme.css": [
@@ -299,6 +517,50 @@
         "#f0f0f0"
       ]
     ],
+    "table-contrast-accessibility-fix.css": [
+      [
+        10,
+        "#333"
+      ],
+      [
+        11,
+        "#333"
+      ],
+      [
+        20,
+        "#333"
+      ],
+      [
+        21,
+        "#333"
+      ],
+      [
+        30,
+        "#e0e0e0"
+      ]
+    ],
+    "wcag-contrast-clean.css": [
+      [
+        88,
+        "#9b7dd8"
+      ],
+      [
+        97,
+        "#b19cd9"
+      ],
+      [
+        98,
+        "#b19cd9"
+      ],
+      [
+        109,
+        "#9b7dd8"
+      ],
+      [
+        114,
+        "#9b7dd8"
+      ]
+    ],
     "wcag-contrast-fixes.css": [
       [
         33,
@@ -343,25 +605,47 @@
         "#fff"
       ]
     ],
+    "garden-accessibility-clean.css": [
+      [
+        97,
+        "#fff"
+      ],
+      [
+        331,
+        "#333"
+      ],
+      [
+        332,
+        "#333"
+      ],
+      [
+        338,
+        "#111"
+      ],
+      [
+        339,
+        "#111"
+      ]
+    ],
     "combined.css": [
       [
-        60,
+        59,
         "#dcfce7"
       ],
       [
-        61,
+        60,
         "#bbf7d0"
       ],
       [
-        62,
+        61,
         "#86efac"
       ],
       [
-        63,
+        62,
         "#22c55e"
       ],
       [
-        64,
+        63,
         "#34d399"
       ]
     ],
@@ -389,23 +673,23 @@
     ],
     "development.css": [
       [
-        60,
+        59,
         "#dcfce7"
       ],
       [
-        61,
+        60,
         "#bbf7d0"
       ],
       [
-        62,
+        61,
         "#86efac"
       ],
       [
-        63,
+        62,
         "#22c55e"
       ],
       [
-        64,
+        63,
         "#34d399"
       ]
     ]
@@ -414,28 +698,32 @@
     "login-dropdown-fix.css": 9.63,
     "accessibility-contrast-fixes.css": 6.04,
     "fix-formatting-issues.css": 6.27,
-    "strategy-nuclear-fix.css": 1.99,
     "garden-forms.css": 6.85,
-    "mobile-menu-override.css": 7.91,
+    "mobile-full-width.css": 4.6,
     "public-site-simple.css": 12.48,
-    "faq-blog-consistency.css": 10.9,
+    "faq-blog-consistency.css": 11.87,
     "blog-unified.css": 11.63,
     "button-on-color-fix.css": 2.44,
     "process-page-working.css": 8.77,
     "garden-blog-streamfield.css": 12.47,
+    "footer-clean.css": 8.01,
+    "accessibility-contrast-fixes-clean.css": 5.47,
+    "search-clean.css": 8.27,
     "garden-ui-theme.css": 175.49,
     "button-contrast-fixes.css": 4.7,
     "pricing-features-fix.css": 0.73,
     "contact-page-fixes.css": 6.61,
-    "dropdown-fix.css": 2.87,
     "garden-blog-articles.css": 18.93,
     "header-text-fix.css": 6.56,
     "process-page.css": 10.82,
+    "garden-layout-clean.css": 6.08,
     "garden-data-table.css": 9.94,
     "search-fixes.css": 6.06,
     "core-styles.css": 17.83,
     "critical-page-overrides.css": 8.16,
     "search-visibility-ultimate-fix.css": 4.0,
+    "cta-button-fixes.css": 2.68,
+    "onboarding-forms-clean.css": 10.95,
     "public-site-modular.css": 6.99,
     "garden-critical.css": 4.18,
     "header-height-fix.css": 6.63,
@@ -444,41 +732,51 @@
     "garden-blog-panels.css": 6.89,
     "onboarding-comprehensive.css": 15.95,
     "onboarding-mobile-optimization.css": 8.68,
-    "footer-fix.css": 5.94,
+    "footer-fix.css": 7.32,
     "responsive-breakpoints-fix.css": 5.66,
     "header-button-fix.css": 1.71,
     "garden-ui-utilities.css": 9.08,
     "garden-blog.css": 31.96,
     "container-structure-enhancements.css": 4.74,
     "critical-fixes.css": 0.34,
+    "header-text-clean.css": 4.39,
     "mobile-nav-fix.css": 3.44,
+    "garden-forms-clean.css": 14.4,
     "encyclopedia-page-fix.css": 4.46,
-    "z-final-button-contrast-fix.css": 2.76,
+    "garden-buttons-clean.css": 3.46,
     "critical-fouc-prevention.css": 16.3,
+    "mobile-responsive-clean.css": 6.86,
     "fix-white-line.css": 1.96,
+    "process-dark-mode-clean.css": 7.93,
+    "garden-layout-system.css": 11.54,
     "faq-page-fixes.css": 4.97,
     "public-site-layout-fixes.css": 2.11,
     "about-page-fix.css": 2.11,
-    "blog-nuclear-button-fix.css": 7.92,
     "critical.css": 9.51,
+    "table-contrast-accessibility-fix.css": 2.91,
     "about-page-v2.css": 7.85,
     "garden-blog-sidebar.css": 7.79,
+    "wcag-contrast-clean.css": 8.7,
     "garden-widgets.css": 6.35,
     "blog-post-garden-ui-fix.css": 2.03,
     "page-width-fix.css": 1.9,
-    "mobile-menu-clean.css": 3.04,
+    "mobile-menu-clean.css": 3.05,
     "strategy-table-contrast-fix.css": 8.39,
+    "garden-buttons-enhanced.css": 7.73,
     "utility-layout.css": 3.28,
     "garden-blog-hero.css": 6.71,
     "page-specific-overrides.css": 3.15,
     "process-page-minimal.css": 0.34,
     "accessibility-touch-targets.css": 4.36,
+    "mobile-header-cleanup.css": 2.12,
+    "16-homepage-clean.css": 14.16,
     "blog-button-fixes.css": 4.34,
     "wcag-contrast-fixes.css": 3.88,
     "process-dark-mode-fix.css": 7.81,
+    "login-dropdown-clean.css": 5.35,
     "cta-tiffany-blue.css": 2.81,
     "button-alignment-fix.css": 1.37,
-    "z-contact-emergency-fix.css": 2.12,
+    "garden-accessibility-clean.css": 15.12,
     "07-footer.css": 2.84,
     "high-contrast-mode.css": 4.88,
     "strategy-right-rail-buttons.css": 4.2,
@@ -487,16 +785,17 @@
     "27-institutional-page.css": 8.55,
     "22-about-page.css": 4.3,
     "43-garden-overview.css": 10.28,
+    "40-adviser-page-clean.css": 13.2,
     "99-breadcrumb-fix.css": 0.78,
     "30-strategy-page.css": 17.65,
     "30-solutions-page.css": 6.11,
     "40-adviser-page.css": 8.85,
     "18-pricing.css": 11.39,
-    "combined.css": 616.04,
+    "combined.css": 662.91,
     "production.css": 773.17,
-    "development.css": 616.04
+    "development.css": 824.22
   },
-  "total_undefined_vars": 14,
+  "total_undefined_vars": 195,
   "is_baseline": true,
-  "baseline_created": "2025-07-24T14:12:23.186037+00:00"
+  "baseline_created": "2025-07-27T12:38:10.841803+00:00"
 }
