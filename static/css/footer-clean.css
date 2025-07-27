@@ -272,8 +272,8 @@
 
   /* Dark theme adjustments */
   [data-theme="dark"] .garden-footer {
-    background: var(--garden-footer-dark-bg, var(--color-surface-variant));
-    border-top-color: var(--garden-footer-dark-border, var(--color-primary));
+    background: #1a1a1a;
+    border-top: 4px solid #3d2970;
     color: var(--garden-footer-dark-text, var(--garden-fg));
   }
 

@@ -243,6 +243,22 @@
     }
   }
 
+  /* ===== THEME SUPPORT ===== */
+
+  /* Dark theme adjustments for secondary buttons */
+  [data-theme="dark"] .garden-action.secondary,
+  [data-theme="dark"] .garden-button-secondary {
+    color: #9d7bda; /* Lighter purple for better contrast on dark background */
+    border-color: #4a4a4a; /* Lighter border for visibility */
+  }
+
+  [data-theme="dark"] .garden-action.secondary:hover,
+  [data-theme="dark"] .garden-button-secondary:hover {
+    background: rgb(157 123 218 / 10%); /* Light purple background on hover */
+    color: #b399e0; /* Even lighter purple on hover */
+    border-color: #9d7bda;
+  }
+
   /* ===== ACCESSIBILITY ENHANCEMENTS ===== */
 
   /* High contrast mode support */
