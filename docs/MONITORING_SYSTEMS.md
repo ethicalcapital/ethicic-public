@@ -13,7 +13,7 @@ The monitoring system provides **continuous quality assurance** through:
 ## 🔍 Monitoring Components
 
 ### 1. Git Pre-commit Hook
-**Location**: `git_hooks/pre-commit`
+**Location**: `.git/hooks/pre-commit`
 **Purpose**: Prevent CSS conflicts at commit time
 
 #### What It Checks
@@ -77,8 +77,8 @@ if len(current_state['files_with_issues']) > len(baseline_state['files_with_issu
 ```
 
 ### 3. CI/CD Pipeline
-**File**: `.github/workflows/css-conflicts.yml`
-**Purpose**: Automated testing on every push and pull request
+**Note**: GitHub Actions workflow not currently implemented
+**Purpose**: Would provide automated testing on every push and pull request
 
 #### Trigger Conditions
 ```yaml

@@ -324,8 +324,8 @@ make ci-css-check          # CI/CD test command
 ## 📚 Learning Resources
 
 ### Key Documentation
-- [CSS_MAINTENANCE_GUIDE.md](CSS_MAINTENANCE_GUIDE.md) - Complete maintenance system
-- [CSS_ARCHITECTURE.md](CSS_ARCHITECTURE.md) - Architecture and design patterns
+- [CSS_OVERVIEW.md](CSS_OVERVIEW.md) - Quick start guide for CSS changes
+- [CSS_ARCHITECTURE_CURRENT.md](CSS_ARCHITECTURE_CURRENT.md) - Current architecture and design patterns
 - [CSS_TESTING.md](CSS_TESTING.md) - Testing infrastructure details
 
 ### Garden UI Patterns

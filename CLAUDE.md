@@ -32,3 +32,5 @@
 - **Forms**: Sophisticated client onboarding (70+ fields), comprehensive validation, accessibility-first design
 - **API Endpoints**: 50+ routes for form submissions, AJAX functionality, search, media APIs
 - **Investigation Report**: See `.claude/docs/investigation-2025-01-24.md` for comprehensive architecture analysis
+- **Current Documentation**: See `docs/README.md` for complete documentation index
+- **KEEP DOCS CURRENT**: Always update documentation when making architectural changes, new features, or process modifications

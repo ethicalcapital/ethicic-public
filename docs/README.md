@@ -22,9 +22,9 @@ This directory contains comprehensive documentation for the Ethical Capital webs
 ### Migration Documentation
 - **[inline-style-migration.md](inline-style-migration.md)** - Inline style migration guide
 - **[archive/css-legacy-2025-01/](archive/css-legacy-2025-01/)** - Archived CSS documentation (pre-consolidation)
+- **[archive/deployment-legacy-2025/](archive/deployment-legacy-2025/)** - Archived deployment documentation (outdated)
 
 ### Deployment & Infrastructure
-- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Main deployment instructions
 - **[KINSTA_DEPLOYMENT_CHECKLIST.md](KINSTA_DEPLOYMENT_CHECKLIST.md)** - Kinsta deployment checklist
 - **[KINSTA_DEPLOYMENT_FINAL_STEPS.md](KINSTA_DEPLOYMENT_FINAL_STEPS.md)** - Final deployment steps
 
