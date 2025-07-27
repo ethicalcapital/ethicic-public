@@ -198,6 +198,7 @@
     white-space: nowrap !important;
     flex-shrink: 0 !important;
     min-width: auto !important;
+    min-height: 44px !important; /* WCAG compliance */
 }
 
 /* Fix theme toggle */
@@ -248,6 +249,11 @@
     color: var(--color-text-primary) !important;
     opacity: 1;
     background: var(--color-white-10) !important;
+}
+
+/* Brand should be white on dark header in both themes */
+.garden-brand {
+    color: white !important;
 }
 
 [data-theme="dark"] .garden-brand {
