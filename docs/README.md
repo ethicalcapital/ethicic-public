@@ -39,11 +39,9 @@ This directory contains comprehensive documentation for the Ethical Capital webs
 - **[pri_ddq.md](pri_ddq.md)** - PRI DDQ documentation
 
 ### Reference Files
-- **[garden-ui-override-mapping.md](garden-ui-override-mapping.md)** - Override file mapping
-- **[override-files-to-remove.md](override-files-to-remove.md)** - Files to be removed
-- **[wcag_contrast_audit_report.md](wcag_contrast_audit_report.md)** - Accessibility audit
 - **[errorlogs.md](errorlogs.md)** - Error logging and debugging
 - **[performance_calculation.md](performance_calculation.md)** - Performance calculation methods
+- **[archive/](archive/)** - Historical documentation and audits
 
 ## 🎯 Quick Reference
 
