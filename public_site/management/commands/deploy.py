@@ -35,29 +35,75 @@ class Command(BaseCommand):
         except Exception as e:
             self.stdout.write(self.style.WARNING(f"⚠️  Migration warnings: {e}"))
 
-        # 2. Build CSS bundles for production
+        # 2. Build Tailwind CSS for production
         if not options["skip_css"]:
-            self.stdout.write("🎨 Building CSS bundles...")
+            self.stdout.write("🎨 Building Tailwind CSS...")
+            try:
+                import subprocess
+
+                from django.conf import settings
+
+                # Build Tailwind CSS using npm
+                subprocess.run(
+                    [
+                        "npx",
+                        "postcss",
+                        "static/css/tailwind-simple.css",
+                        "-o",
+                        "static/css/dist/tailwind.min.css",
+                        "--env",
+                        "production",
+                    ],
+                    cwd=settings.BASE_DIR,
+                    capture_output=True,
+                    text=True,
+                    check=True,
+                )
+                self.stdout.write(
+                    self.style.SUCCESS("✅ Tailwind CSS built successfully")
+                )
+
+            except subprocess.CalledProcessError as e:
+                self.stdout.write(
+                    self.style.ERROR(f"❌ Tailwind CSS build failed: {e}")
+                )
+                self.stdout.write(self.style.ERROR(f"Output: {e.stdout}"))
+                self.stdout.write(self.style.ERROR(f"Error: {e.stderr}"))
+                self.stdout.write(
+                    self.style.WARNING("⚠️  Continuing deployment without Tailwind CSS")
+                )
+            except Exception as e:
+                self.stdout.write(self.style.ERROR(f"❌ Tailwind CSS build error: {e}"))
+                self.stdout.write(
+                    self.style.WARNING("⚠️  Continuing deployment without Tailwind CSS")
+                )
+
+            # 3. Build Garden UI CSS bundles
+            self.stdout.write("🎨 Building Garden UI CSS bundles...")
             try:
                 if options["development"]:
                     call_command("build_css", development=True)
                     self.stdout.write(
-                        self.style.SUCCESS("✅ Development CSS bundles built")
+                        self.style.SUCCESS("✅ Development Garden UI bundles built")
                     )
                 else:
                     call_command("build_css")
                     self.stdout.write(
-                        self.style.SUCCESS("✅ Production CSS bundles built")
+                        self.style.SUCCESS("✅ Production Garden UI bundles built")
                     )
             except Exception as e:
-                self.stdout.write(self.style.ERROR(f"❌ CSS bundle build failed: {e}"))
                 self.stdout.write(
-                    self.style.WARNING("⚠️  Continuing deployment without CSS bundles")
+                    self.style.ERROR(f"❌ Garden UI bundle build failed: {e}")
+                )
+                self.stdout.write(
+                    self.style.WARNING(
+                        "⚠️  Continuing deployment without Garden UI bundles"
+                    )
                 )
         else:
-            self.stdout.write(self.style.WARNING("⏭️  Skipping CSS bundle building"))
+            self.stdout.write(self.style.WARNING("⏭️  Skipping CSS building"))
 
-        # 3. Collect static files
+        # 4. Collect static files
         self.stdout.write("📁 Collecting static files...")
         try:
             call_command("collectstatic", verbosity=1, interactive=False, clear=True)
@@ -65,7 +111,7 @@ class Command(BaseCommand):
         except Exception as e:
             self.stdout.write(self.style.WARNING(f"⚠️  Static collection warnings: {e}"))
 
-        # 4. Set up homepage
+        # 5. Set up homepage
         self.stdout.write("🏠 Setting up site structure...")
         try:
             call_command("setup_homepage")
@@ -73,7 +119,7 @@ class Command(BaseCommand):
         except Exception as e:
             self.stdout.write(self.style.WARNING(f"⚠️  Site setup warnings: {e}"))
 
-        # 5. Deployment summary
+        # 6. Deployment summary
         self._print_deployment_summary(options)
 
     def _print_deployment_summary(self, options):
