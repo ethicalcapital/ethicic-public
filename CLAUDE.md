@@ -18,7 +18,7 @@
 - **CONSOLIDATED**: 65% reduction achieved - 20+ fix files → 5 logical systems
 - **NEW ARCHITECTURE**: garden-layout-clean.css, garden-buttons-enhanced.css, garden-accessibility-clean.css, garden-forms-clean.css, garden-layout-system.css
 - **RULES**: Use Garden UI variables only, CSS Layers architecture, no !important wars
-- **DOCUMENTATION**: See `css-consolidation-plan.md` for roadmap and `.claude/docs/css-investigation-2025-01-26.md` for analysis
+- **DOCUMENTATION**: See `docs/CSS_OVERVIEW.md` for quick start and `docs/CSS_ARCHITECTURE_CURRENT.md` for complete reference
 
 ## System Architecture Context (Investigation - Jan 2025)
 - **Business Domain**: Ethical Capital - SEC-regulated ESG investment advisory firm managing real portfolios
@@ -32,4 +32,3 @@
 - **Forms**: Sophisticated client onboarding (70+ fields), comprehensive validation, accessibility-first design
 - **API Endpoints**: 50+ routes for form submissions, AJAX functionality, search, media APIs
 - **Investigation Report**: See `.claude/docs/investigation-2025-01-24.md` for comprehensive architecture analysis
-- **Documentation Sync Report**: See `.claude/docs/investigation-2025-01-26.md` for documentation accuracy analysis
