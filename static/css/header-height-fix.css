@@ -222,6 +222,13 @@
     flex-shrink: 0;
 }
 
+/* Hide mobile menu toggle on desktop */
+@media (width >= 769px) {
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+}
+
 /* Responsive adjustments */
 @media (width <= 768px) {
     .garden-search-input {
