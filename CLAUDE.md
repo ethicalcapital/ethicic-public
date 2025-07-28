@@ -13,6 +13,7 @@
 - i turned off the cdn for now
 - NEVER just remove a file thats causing issues. THat's lazy bullshit and we dont do it around here#
 - we are often making multiple edits in parallel -- if you come across an issue that might be due to that, consider this before you make any actions
+- sleep 120 after you push -- it takes time to rebuild
 
 ## CSS Architecture (RATIONAL SYSTEM - 2025)
 - **CONSOLIDATED**: 84% !important reduction achieved - 83 files → 58 files, 3,006 → 471 !important declarations

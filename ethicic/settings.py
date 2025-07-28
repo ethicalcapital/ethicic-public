@@ -35,7 +35,7 @@ if os.getenv("KINSTA_DOMAIN"):
     ALLOWED_HOSTS.append(f"*.{os.getenv('KINSTA_DOMAIN')}")
 
 # Temporary: Allow all hosts if not specified
-if ["*"] == ALLOWED_HOSTS:
+if ALLOWED_HOSTS == ["*"]:
     ALLOWED_HOSTS = ["*"]
 
 # Application definition
@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "django.contrib.humanize",
+    # CSS Processing
+    "django_tailwind_cli",
     # Wagtail dependencies
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -347,7 +349,7 @@ WAGTAILIMAGES_AVIF_QUALITY = 50
 WAGTAILIMAGES_WEBP_QUALITY = 85
 
 # Ensure image renditions are saved properly
-WAGTAILIMAGES_EXTENSIONS = ['gif', 'jpg', 'jpeg', 'png', 'webp', 'avif']
+WAGTAILIMAGES_EXTENSIONS = ["gif", "jpg", "jpeg", "png", "webp", "avif"]
 
 # Disable avatar uploads to prevent 404 errors with missing media files
 # Users can still have avatars but uploads are disabled since media isn't persistent on Kinsta

@@ -1,6 +1,7 @@
 # Core Django
 # Updated: 2024-06-26 - Fixed django-taggit version conflict
 Django==5.1.5
+django-tailwind-cli==4.3.0
 gunicorn==21.2.0
 psycopg2-binary==2.9.9
 
