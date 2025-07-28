@@ -69,13 +69,13 @@
                 {% if page.content %}
                     {% for block in page.content %}
                         {% if block.block_type != 'key_statistic' and block.block_type != 'ai_statistic' %}
-                            <div class="content-block content-block-{{ block.block_type }} {% if block.block_type == 'rich_text' %}prose prose-lg prose-purple dark:prose-invert mx-auto{% endif %}">
+                            <div class="content-block content-block-{{ block.block_type }} {% if block.block_type == 'rich_text' %}prose{% endif %}">
                                 {% include_block block %}
                             </div>
                         {% endif %}
                     {% endfor %}
                 {% elif page.body %}
-                    <div class="content-block content-block-richtext prose prose-lg prose-purple dark:prose-invert mx-auto">
+                    <div class="content-block content-block-richtext prose">
                         {{ page.body|richtext }}
                     </div>
                 {% endif %}
