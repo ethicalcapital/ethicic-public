@@ -89,7 +89,11 @@
 
         <!-- Article Body -->
         <div class="prose prose-lg prose-purple dark:prose-invert mx-auto">
-            {{ page.body|safe }}
+            {% if page.content %}
+                {{ page.content }}
+            {% else %}
+                {{ page.body|safe }}
+            {% endif %}
         </div>
 
         <!-- Call-to-Action -->
