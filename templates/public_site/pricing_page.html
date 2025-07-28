@@ -95,16 +95,16 @@
                     <form method="post" action="/workshop-request/" class="workshop-form" x-data="{ submitted: false, isNonprofit: false }">
                         {% csrf_token %}
                         <div class="form-group">
-                            <input type="text" name="organization_name" placeholder="Organization name" class="garden-input" required>
+                            <input type="text" name="organization_name" placeholder="Organization name" class="garden-input" aria-label="Organization name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Contact email" class="garden-input" required>
+                            <input type="email" name="email" placeholder="Contact email" class="garden-input" aria-label="Contact email address" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="event_date" placeholder="Proposed date/timeframe" class="garden-input">
+                            <input type="text" name="event_date" placeholder="Proposed date/timeframe" class="garden-input" aria-label="Proposed workshop date or timeframe">
                         </div>
                         <div class="form-group">
-                            <textarea name="description" placeholder="Please describe your audience, desired topics, and educational objectives" class="garden-input" rows="3" required></textarea>
+                            <textarea name="description" placeholder="Please describe your audience, desired topics, and educational objectives" class="garden-input" aria-label="Workshop description and objectives" rows="3" required></textarea>
                         </div>
                         <div class="form-group checkbox-group">
                             <label class="checkbox-label">

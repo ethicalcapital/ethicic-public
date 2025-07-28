@@ -1904,7 +1904,6 @@ button, input, optgroup, select, textarea {
   padding: var(--space-4);
   border-top: 1px solid var(--garden-border);
 }
-}
 
 /* ===== LAYOUT UTILITIES ===== */
 @layer utilities {
