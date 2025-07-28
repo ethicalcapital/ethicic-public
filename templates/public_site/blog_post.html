@@ -9,16 +9,15 @@
 
 
 {% block content %}
-<div class="garden-container">
-<!-- Modern Article Layout -->
-<div class="blog-article-wrapper garden-panel">
-    <div class="garden-panel__content blog-article">
+<div class="container-ec py-8">
+    <!-- Blog Article -->
+    <article class="card-ec" role="main" aria-labelledby="article-title">
         <!-- Key Statistics Hero Section - Above Title -->
         {% if page.content %}
             {% with key_stats=page.content|select_key_statistics %}
                 {% if key_stats %}
-                    <section class="article-kpis-hero garden-panel">
-                        <div class="garden-panel__content kpis-hero-container">
+                    <section class="card-header-ec kpis-hero-section">
+                        <div class="kpis-hero-container">
                             {% for block in key_stats %}
                                 {% include_block block %}
                             {% endfor %}
@@ -29,619 +28,117 @@
         {% endif %}
 
         <!-- Article Header -->
-        <header class="article-header">
-            <div class="article-header-content">
-                <div class="article-meta">
-                    {% if page.author %}
-                        <span class="meta-item">By {{ page.author }}</span>
-                    {% endif %}
-                    {% if page.publish_date %}
-                        <time class="meta-item" datetime="{{ page.publish_date|date:'Y-m-d' }}">{{ page.publish_date|date:"F j, Y" }}</time>
-                    {% else %}
-                        <time class="meta-item" datetime="{{ page.first_published_at|date:'Y-m-d' }}">{{ page.first_published_at|date:"F j, Y" }}</time>
-                    {% endif %}
-                    {% if page.updated_at %}
-                        <span class="meta-item meta-updated">Updated {{ page.updated_at|date:"F j, Y" }}</span>
-                    {% endif %}
-                </div>
-
-                <h1 class="article-title">{{ page.title }}</h1>
-
-                {% if page.excerpt %}
-                    <div class="article-excerpt">
-                        {{ page.excerpt|richtext }}
-                    </div>
+        <header class="card-header-ec">
+            <div class="article-meta space-x-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                {% if page.author %}
+                    <span class="meta-item">By {{ page.author }}</span>
                 {% endif %}
-
-                {% if page.tags.all %}
-                    <div class="article-tags">
-                        {% for tag in page.tags.all %}
-                            <a href="{{ page.get_parent.url_path }}tag/{{ tag.slug }}/" class="article-tag">{{ tag }}</a>
-                        {% endfor %}
-                    </div>
+                {% if page.publish_date %}
+                    <time class="meta-item" datetime="{{ page.publish_date|date:'Y-m-d' }}">{{ page.publish_date|date:"F j, Y" }}</time>
+                {% else %}
+                    <time class="meta-item" datetime="{{ page.first_published_at|date:'Y-m-d' }}">{{ page.first_published_at|date:"F j, Y" }}</time>
+                {% endif %}
+                {% if page.updated_at %}
+                    <span class="meta-item meta-updated">Updated {{ page.updated_at|date:"F j, Y" }}</span>
                 {% endif %}
             </div>
+
+            <h1 id="article-title" class="font-mono text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">{{ page.title }}</h1>
+
+            {% if page.excerpt %}
+                <div class="article-excerpt text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                    {{ page.excerpt|richtext }}
+                </div>
+            {% endif %}
+
+            {% if page.tags.all %}
+                <div class="article-tags flex flex-wrap gap-2">
+                    {% for tag in page.tags.all %}
+                        <a href="{{ page.get_parent.url_path }}tag/{{ tag.slug }}/" class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm px-3 py-1 rounded-full hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </header>
 
-        <!-- Article Content with Responsive Images -->
-        <main class="article-content">
+        <!-- Article Content -->
+        <div class="card-content-ec">
             <div class="article-body">
                 {% if page.content %}
                     {% for block in page.content %}
                         {% if block.block_type != 'key_statistic' and block.block_type != 'ai_statistic' %}
-                            <div class="content-block content-block-{{ block.block_type }} {% if block.block_type == 'rich_text' %}prose prose-lg prose-purple dark:prose-invert max-w-none{% endif %}">
+                            <div class="content-block content-block-{{ block.block_type }} {% if block.block_type == 'rich_text' %}prose prose-lg prose-purple dark:prose-invert{% endif %}">
                                 {% include_block block %}
                             </div>
                         {% endif %}
                     {% endfor %}
                 {% elif page.body %}
-                    <div class="content-block content-block-richtext prose prose-lg prose-purple dark:prose-invert max-w-none">
+                    <div class="content-block content-block-richtext prose prose-lg prose-purple dark:prose-invert">
                         {{ page.body|richtext }}
                     </div>
                 {% endif %}
             </div>
-        </main>
+        </div>
 
         <!-- Newsletter CTA Section -->
-        <section class="article-newsletter-cta garden-panel">
-            <div class="garden-panel__header">
-                <div class="panel-title">Stay Informed on Ethical Investing</div>
+        <section class="card-ec mt-8 bg-purple-50 dark:bg-purple-900/20">
+            <div class="card-header-ec">
+                <div class="panel-title-ec">Stay Informed on Ethical Investing</div>
             </div>
-            <div class="garden-panel__content newsletter-cta-content">
-                <p class="newsletter-description">Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.</p>
-                <form method="post" action="/newsletter/signup/" style="margin-bottom: 16px;">
+            <div class="card-content-ec text-center space-y-6">
+                <p class="text-gray-700 dark:text-gray-300">Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.</p>
+                <form method="post" action="/newsletter/signup/" class="max-w-md mx-auto">
                     {% csrf_token %}
                     <input type="hidden" name="source" value="blog-article">
-                    <div class="newsletter-form-container">
+                    <div class="flex gap-3">
                         <input type="email"
                                name="email"
                                placeholder="Your email address"
-                               class="newsletter-input-field"
+                               class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                                required
                                aria-label="Email address for newsletter subscription">
-                        <button type="submit" class="newsletter-button">SUBSCRIBE</button>
+                        <button type="submit" class="btn-ec-primary">SUBSCRIBE</button>
                     </div>
                 </form>
-                <p style="color: #888; font-size: 0.875rem; margin: 0;">We respect your privacy. Unsubscribe anytime.</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">We respect your privacy. Unsubscribe anytime.</p>
             </div>
         </section>
 
         <!-- Solutions CTA Section -->
-        <section class="article-solutions-cta">
-            <div class="garden-panel">
-                <div class="garden-panel__header">
-                    <div class="panel-title">READY TO GET STARTED?</div>
-                </div>
-                <div class="garden-panel__content">
-                    <div class="solutions-cta-content">
-                        <h3 class="solutions-cta-title">Align Your Investments with Your Values</h3>
-                        <p class="solutions-cta-description">Discover how our ethical investment strategies can help you achieve your financial goals while making a positive impact.</p>
-                        <div class="solutions-cta-actions">
-                            <a href="/solutions/" class="garden-action primary">EXPLORE SOLUTIONS</a>
-                            <a href="/consultation/" class="garden-action secondary">SCHEDULE CONSULTATION</a>
-                            <a href="/process/" class="garden-action secondary">LEARN OUR PROCESS</a>
-                        </div>
-                    </div>
+        <section class="card-ec mt-8 border-2 border-purple-300 dark:border-purple-700">
+            <div class="card-header-ec">
+                <div class="panel-title-ec">READY TO GET STARTED?</div>
+            </div>
+            <div class="card-content-ec text-center space-y-6">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Align Your Investments with Your Values</h3>
+                <p class="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">Discover how our ethical investment strategies can help you achieve your financial goals while making a positive impact.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/solutions/" class="btn-ec-primary">EXPLORE SOLUTIONS</a>
+                    <a href="/consultation/" class="btn-ec-secondary">SCHEDULE CONSULTATION</a>
+                    <a href="/process/" class="btn-ec-secondary">LEARN OUR PROCESS</a>
                 </div>
             </div>
         </section>
 
         <!-- Article Footer -->
-        <footer class="article-footer">
-            <div class="article-navigation">
-                <a href="/blog/" class="garden-action secondary">← BACK TO BLOG</a>
-            </div>
+        <footer class="card-ec mt-8">
+            <div class="card-content-ec space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <a href="/blog/" class="btn-ec-secondary">← BACK TO BLOG</a>
+                </div>
 
-            <!-- Related Content -->
-            <div class="related-content">
-                <h4>Explore More</h4>
-                <div class="related-links">
-                    <a href="/strategies/" class="related-link">Investment Strategies</a>
-                    <a href="/strategies/" class="related-link">Strategy Performance</a>
-                    <a href="/disclosures/" class="related-link">Important Disclosures</a>
+                <!-- Related Content -->
+                <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Explore More</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <a href="/strategies/" class="btn-ec-outline text-center">Investment Strategies</a>
+                        <a href="/strategies/" class="btn-ec-outline text-center">Strategy Performance</a>
+                        <a href="/disclosures/" class="btn-ec-outline text-center">Important Disclosures</a>
+                    </div>
                 </div>
             </div>
         </footer>
-    </div>
-</div>
+    </article>
 </div>
 {% endblock %}
 
-{% block extra_js %}
-<style>
-/* Modern Responsive Blog Post Styles */
-.blog-article-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 var(--space-4);
-}
-
-.blog-article {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
-}
-
-/* Article Header Improvements */
-.article-header {
-    text-align: center;
-    padding: var(--space-8) 0;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.article-title {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    line-height: 1.2;
-    margin: var(--space-4) 0;
-    color: var(--color-on-surface);
-}
-
-.article-excerpt {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--color-on-surface-variant);
-    margin: var(--space-4) 0;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.article-meta {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-4);
-    font-size: 0.9rem;
-    color: var(--color-on-surface-variant);
-}
-
-.article-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-2);
-    margin-top: var(--space-4);
-}
-
-.article-tag {
-    background: var(--color-surface-variant);
-    color: var(--color-on-surface-variant);
-    padding: var(--space-1) var(--space-3);
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.article-tag:hover {
-    background: var(--color-primary);
-    color: white;
-}
-
-/* Content Block Improvements with Image Constraints */
-.article-content {
-    line-height: 1.7;
-    font-size: 1.1rem;
-}
-
-.content-block {
-    margin-bottom: var(--space-6);
-}
-
-/* Image Constraints and Responsive Behavior */
-.content-block img,
-.article-body img {
-    max-width: 100%;
-    height: auto;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    margin: var(--space-4) 0;
-    display: block;
-}
-
-/* Large images get centered with max width */
-.content-block img[width],
-.article-body img[width] {
-    max-width: min(100%, 600px);
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Charts and data visualizations keep aspect ratio */
-.content-block img[alt*="chart"],
-.content-block img[alt*="graph"],
-.content-block img[alt*="data"],
-.article-body img[alt*="chart"],
-.article-body img[alt*="graph"],
-.article-body img[alt*="data"] {
-    max-width: 100%;
-    aspect-ratio: 16/10;
-    object-fit: contain;
-    background: var(--color-surface-variant);
-}
-
-/* Newsletter CTA Styling */
-.article-newsletter-cta {
-    background: #f8f4ff; /* Light purple background */
-    border-radius: 12px;
-    padding: 48px 32px;
-    margin: 48px 0;
-    text-align: center;
-}
-
-.newsletter-cta-wrapper {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.newsletter-cta-title {
-    font-size: 1.75rem;
-    margin: 0 0 16px 0;
-    color: #1a1a1a;
-    font-weight: 700;
-}
-
-.newsletter-cta-description {
-    color: #666;
-    margin: 0 0 32px 0;
-    line-height: 1.6;
-    font-size: 1.1rem;
-}
-
-.article-newsletter-form {
-    margin-bottom: 16px;
-}
-
-.newsletter-form-row {
-    display: flex;
-    gap: 12px;
-    max-width: 500px;
-    margin: 0 auto;
-    align-items: stretch;
-}
-
-.newsletter-email-input {
-    flex: 1;
-    min-height: 52px;
-    padding: 14px 20px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    background: white;
-    color: #1a1a1a;
-    font-size: 16px;
-    font-family: inherit;
-    transition: border-color 0.2s ease;
-}
-
-.newsletter-email-input::placeholder {
-    color: #999;
-}
-
-.newsletter-email-input:focus {
-    border-color: #6a4c93;
-    outline: none;
-}
-
-.newsletter-submit-btn {
-    min-height: 52px;
-    padding: 14px 32px;
-    background: #6a4c93;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-}
-
-.newsletter-submit-btn:hover {
-    background: #553a7a;
-    transform: translateY(-1px);
-}
-
-.newsletter-privacy {
-    color: #888;
-    font-size: 0.875rem;
-    margin: 0;
-}
-
-/* Solutions CTA Styling */
-.article-solutions-cta .garden-panel {
-    border: 2px solid var(--color-primary);
-    border-radius: var(--radius-lg);
-}
-
-.solutions-cta-content {
-    text-align: center;
-    padding: var(--space-4);
-}
-
-.solutions-cta-title {
-    font-size: 1.4rem;
-    margin-bottom: var(--space-2);
-    color: var(--color-on-surface);
-}
-
-.solutions-cta-description {
-    color: var(--color-on-surface-variant);
-    margin-bottom: var(--space-4);
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.solutions-cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-3);
-}
-
-/* Article Footer */
-.article-footer {
-    padding-top: var(--space-8);
-    border-top: 1px solid var(--color-border);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-}
-
-.related-content h4 {
-    margin-bottom: var(--space-3);
-    color: var(--color-on-surface);
-}
-
-.related-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-}
-
-.related-link {
-    color: var(--color-primary);
-    text-decoration: none;
-    padding: var(--space-2) var(--space-3);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    transition: all 0.2s ease;
-}
-
-.related-link:hover {
-    background: var(--color-primary);
-    color: white;
-}
-
-/* Mobile Responsive Adjustments */
-@media (max-width: 768px) {
-    .blog-article-wrapper {
-        padding: 0 var(--space-3);
-    }
-
-    .article-header {
-        padding: var(--space-6) 0;
-    }
-
-    .article-meta {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--space-1);
-    }
-
-    .article-newsletter-cta {
-        padding: 32px 20px;
-        margin: 32px 0;
-    }
-
-    .newsletter-cta-title {
-        font-size: 1.5rem;
-    }
-
-    .newsletter-cta-description {
-        font-size: 1rem;
-        margin-bottom: 24px;
-    }
-
-    .newsletter-form-row {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .newsletter-email-input {
-        width: 100%;
-        font-size: 16px; /* Prevents zoom on iOS */
-    }
-
-    .newsletter-submit-btn {
-        width: 100%;
-    }
-
-    .solutions-cta-actions {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .solutions-cta-actions .garden-action {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .related-links {
-        flex-direction: column;
-    }
-
-    .content-block img,
-    .article-body img {
-        margin-left: calc(-1 * var(--space-3));
-        margin-right: calc(-1 * var(--space-3));
-        width: calc(100% + 2 * var(--space-3));
-        max-width: calc(100% + 2 * var(--space-3));
-        border-radius: 0;
-    }
-}
-
-/* Typography Improvements */
-.article-body h2 {
-    font-size: 1.5rem;
-    margin: var(--space-8) 0 var(--space-4);
-    color: var(--color-on-surface);
-    border-bottom: 2px solid var(--color-primary);
-    padding-bottom: var(--space-2);
-}
-
-.article-body h3 {
-    font-size: 1.3rem;
-    margin: var(--space-6) 0 var(--space-3);
-    color: var(--color-on-surface);
-}
-
-.article-body p {
-    margin-bottom: var(--space-4);
-    color: var(--color-on-surface);
-}
-
-.article-body blockquote {
-    border-left: 4px solid var(--color-primary);
-    padding-left: var(--space-4);
-    margin: var(--space-6) 0;
-    font-style: italic;
-    background: var(--color-surface-variant);
-    padding: var(--space-4);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-}
-
-.article-body ul,
-.article-body ol {
-    margin-bottom: var(--space-4);
-    padding-left: var(--space-5);
-}
-
-.article-body li {
-    margin-bottom: var(--space-1);
-}
-
-/* Table Responsiveness */
-.article-body table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: var(--space-6) 0;
-    font-size: 0.9rem;
-}
-
-.article-body th,
-.article-body td {
-    padding: var(--space-2) var(--space-3);
-    border: 1px solid var(--color-border);
-    text-align: left;
-}
-
-.article-body th {
-    background: var(--color-surface-variant);
-    font-weight: 600;
-}
-
-@media (max-width: 768px) {
-    .article-body table {
-        font-size: 0.8rem;
-    }
-
-    .article-body th,
-    .article-body td {
-        padding: var(--space-1) var(--space-2);
-    }
-}
-
-/* Fix button visibility issues */
-.garden-action.primary {
-    background: var(--color-primary) !important;
-    color: white !important;
-    border: 2px solid var(--color-primary) !important;
-}
-
-.garden-action.secondary {
-    background: white !important;
-    color: var(--color-primary) !important;
-    border: 2px solid var(--color-primary) !important;
-}
-
-[data-theme="dark"] .garden-action.secondary {
-    background: var(--color-surface) !important;
-    color: var(--color-primary) !important;
-}
-
-/* Newsletter Form Fix */
-.newsletter-form-container {
-    display: flex;
-    gap: 12px;
-    max-width: 500px;
-    margin: 0 auto;
-    align-items: stretch;
-}
-
-.newsletter-input-field {
-    flex: 1;
-    min-width: 0; /* Important for flex items */
-    height: 52px;
-    padding: 14px 20px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    background: white !important;
-    color: #1a1a1a !important;
-    font-size: 16px;
-    font-family: inherit;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.newsletter-input-field::placeholder {
-    color: #999;
-    opacity: 1;
-}
-
-.newsletter-input-field:focus {
-    border-color: #6a4c93;
-    outline: none;
-}
-
-.newsletter-button {
-    height: 52px;
-    padding: 0 32px;
-    background: #6a4c93 !important;
-    color: white !important;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-    white-space: nowrap;
-    flex-shrink: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.newsletter-button:hover {
-    background: #553a7a !important;
-}
-
-/* Mobile styles for newsletter form */
-@media (max-width: 600px) {
-    .newsletter-form-container {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .newsletter-input-field,
-    .newsletter-button {
-        width: 100%;
-    }
-}
-</style>
 {% endblock %}
