@@ -26,3 +26,4 @@ static/css/core-styles.css
 
 # Third-party or generated files
 static/css/vendor/**
+static/css/dist/**

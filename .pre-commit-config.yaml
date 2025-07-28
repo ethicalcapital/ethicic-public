@@ -37,7 +37,7 @@ repos:
         entry: npx stylelint
         language: system
         files: \.css$
-        args: [--fix]
+        args: [--fix, --allow-empty-input]
         pass_filenames: true
         require_serial: true
 
