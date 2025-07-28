@@ -7,7 +7,6 @@
 
 {% block body_class %}blog-post-page{% endblock %}
 
-
 {% block content %}
 <div class="container-ec py-8">
     <!-- Blog Article -->
@@ -29,15 +28,41 @@
 
         <!-- Article Header -->
         <header class="card-header-ec">
-            <div class="article-meta space-x-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+            <!-- Category Badge -->
+            {% if page.category %}
+            <div class="mb-4">
+                <span class="badge-ec-secondary">{{ page.category }}</span>
+            </div>
+            {% endif %}
+
+            <div class="article-meta flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600 dark:text-gray-400 mb-4">
                 {% if page.author %}
                     <span class="meta-item">By {{ page.author }}</span>
                 {% endif %}
                 {% if page.publish_date %}
                     <time class="meta-item" datetime="{{ page.publish_date|date:'Y-m-d' }}">{{ page.publish_date|date:"F j, Y" }}</time>
+                {% elif page.date %}
+                    <time class="meta-item" datetime="{{ page.date|date:'Y-m-d' }}">{{ page.date|date:"F j, Y" }}</time>
                 {% else %}
                     <time class="meta-item" datetime="{{ page.first_published_at|date:'Y-m-d' }}">{{ page.first_published_at|date:"F j, Y" }}</time>
                 {% endif %}
+
+                <!-- Reading Time -->
+                <span class="meta-item flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                    </svg>
+                    {% if page.reading_time %}
+                        {{ page.reading_time }} min read
+                    {% elif page.content %}
+                        {{ page.content|reading_time }}
+                    {% elif page.body %}
+                        {{ page.body|reading_time }}
+                    {% else %}
+                        1 min read
+                    {% endif %}
+                </span>
+
                 {% if page.updated_at %}
                     <span class="meta-item meta-updated">Updated {{ page.updated_at|date:"F j, Y" }}</span>
                 {% endif %}
@@ -52,13 +77,27 @@
             {% endif %}
 
             {% if page.tags.all %}
-                <div class="article-tags flex flex-wrap gap-2">
+                <div class="article-tags flex flex-wrap gap-2" role="navigation" aria-label="Article tags">
                     {% for tag in page.tags.all %}
-                        <a href="{{ page.get_parent.url_path }}tag/{{ tag.slug }}/" class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm px-3 py-1 rounded-full hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors">{{ tag }}</a>
+                        <a href="{{ page.get_parent.url_path }}tag/{{ tag.slug }}/)" class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm px-3 py-1 rounded-full hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors" aria-label="View all articles tagged with {{ tag }}">{{ tag }}</a>
                     {% endfor %}
                 </div>
             {% endif %}
         </header>
+
+        <!-- Featured Image (from tailwind template) -->
+        {% if page.featured_image %}
+        <div class="card-content-ec mb-8">
+            <img src="{{ page.featured_image.url }}"
+                 alt="{{ page.featured_image.title|default:page.title }}"
+                 class="w-full rounded-lg border border-gray-600">
+            {% if page.featured_image.caption %}
+            <p class="text-sm text-gray-400 mt-2 text-center italic">
+                {{ page.featured_image.caption }}
+            </p>
+            {% endif %}
+        </div>
+        {% endif %}
 
         <!-- Article Content -->
         <div class="card-content-ec">
@@ -80,23 +119,52 @@
         </div>
 
         <!-- Newsletter CTA Section -->
-        <section class="card-ec mt-8 bg-purple-50 dark:bg-purple-900/20">
+        <section class="card-ec mt-8 bg-purple-50 dark:bg-purple-900/20" role="complementary" aria-labelledby="newsletter-heading">
             <div class="card-header-ec">
-                <div class="panel-title-ec">Stay Informed on Ethical Investing</div>
+                <div id="newsletter-heading" class="panel-title-ec">Stay Informed on Ethical Investing</div>
             </div>
             <div class="card-content-ec text-center space-y-6">
                 <p class="text-gray-700 dark:text-gray-300">Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.</p>
-                <form method="post" action="/newsletter/signup/" class="max-w-md mx-auto">
+                <form method="post" action="/newsletter/signup/" class="max-w-md mx-auto"
+                      x-data="{ submitting: false, message: '', messageType: '' }"
+                      @submit="submitting = true"
+                      aria-describedby="newsletter-form-description">
                     {% csrf_token %}
                     <input type="hidden" name="source" value="blog-article">
-                    <div class="flex gap-3">
+                    <p id="newsletter-form-description" class="sr-only">Subscribe to receive our latest insights on ethical investing</p>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <label for="newsletter-email" class="sr-only">Email address</label>
                         <input type="email"
+                               id="newsletter-email"
                                name="email"
                                placeholder="Your email address"
-                               class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                               class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                                required
-                               aria-label="Email address for newsletter subscription">
-                        <button type="submit" class="btn-ec-primary">SUBSCRIBE</button>
+                               aria-describedby="newsletter-form-description"
+                               :disabled="submitting">
+                        <button type="submit"
+                                class="btn-ec-primary flex items-center justify-center min-w-[120px]"
+                                :disabled="submitting"
+                                :class="{ 'opacity-75 cursor-not-allowed': submitting }">
+                            <span x-show="!submitting">SUBSCRIBE</span>
+                            <span x-show="submitting" class="flex items-center">
+                                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                SUBSCRIBING...
+                            </span>
+                        </button>
+                    </div>
+
+                    <!-- Success/Error Messages -->
+                    <div x-show="message"
+                         x-text="message"
+                         :class="messageType === 'success' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'"
+                         class="mt-3 text-sm text-center"
+                         role="status"
+                         aria-live="polite">
                     </div>
                 </form>
                 <p class="text-sm text-gray-500 dark:text-gray-400">We respect your privacy. Unsubscribe anytime.</p>
@@ -104,9 +172,9 @@
         </section>
 
         <!-- Solutions CTA Section -->
-        <section class="card-ec mt-8 border-2 border-purple-300 dark:border-purple-700">
+        <section class="card-ec mt-8 border-2 border-purple-300 dark:border-purple-700" role="complementary" aria-labelledby="solutions-heading">
             <div class="card-header-ec">
-                <div class="panel-title-ec">READY TO GET STARTED?</div>
+                <div id="solutions-heading" class="panel-title-ec">READY TO GET STARTED?</div>
             </div>
             <div class="card-content-ec text-center space-y-6">
                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Align Your Investments with Your Values</h3>
@@ -119,24 +187,192 @@
             </div>
         </section>
 
+        <!-- Social Sharing Section - Enhanced with both implementations -->
+        <section class="card-ec mt-8 bg-gray-50 dark:bg-gray-900/20" role="complementary" aria-labelledby="share-heading">
+            <div class="card-content-ec">
+                <h3 id="share-heading" class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Share This Article</h3>
+                <div class="flex flex-wrap gap-3">
+                    <!-- Twitter -->
+                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri|urlencode }}&text={{ page.title|urlencode }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-link-ec flex items-center"
+                       aria-label="Share on Twitter">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        Twitter
+                    </a>
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri|urlencode }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-link-ec flex items-center"
+                       aria-label="Share on LinkedIn">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <!-- Email -->
+                    <a href="mailto:?subject={{ page.title|urlencode }}&body=I thought you might find this interesting: {{ request.build_absolute_uri }}"
+                       class="social-link-ec flex items-center"
+                       aria-label="Share via email">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 3.26a2 2 0 001.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Email
+                    </a>
+                    <!-- Native Share/Copy -->
+                    <button onclick="navigator.share ? navigator.share({title: '{{ page.title|escapejs }}', url: '{{ request.build_absolute_uri|escapejs }}'}) : copyToClipboard('{{ request.build_absolute_uri|escapejs }}')"
+                            class="social-link-ec flex items-center"
+                            aria-label="Share article link">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                        </svg>
+                        Share
+                    </button>
+                </div>
+            </div>
+        </section>
+
         <!-- Article Footer -->
-        <footer class="card-ec mt-8">
+        <footer class="card-ec mt-8" role="contentinfo" aria-labelledby="article-footer-heading">
             <div class="card-content-ec space-y-6">
+                <!-- Navigation with Previous/Next from tailwind template -->
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <a href="/blog/" class="btn-ec-secondary">← BACK TO BLOG</a>
+                    {% if page.get_prev_sibling %}
+                    <a href="{{ page.get_prev_sibling.url }}"
+                       class="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors"
+                       aria-label="Previous article: {{ page.get_prev_sibling.title }}">
+                        <span>←</span>
+                        <span class="text-sm">Previous Article</span>
+                    </a>
+                    {% else %}
+                    <div></div>
+                    {% endif %}
+
+                    <a href="/blog/" class="btn-ec-secondary" aria-label="Return to blog index">← BACK TO BLOG</a>
+
+                    {% if page.get_next_sibling %}
+                    <a href="{{ page.get_next_sibling.url }}"
+                       class="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors"
+                       aria-label="Next article: {{ page.get_next_sibling.title }}">
+                        <span class="text-sm">Next Article</span>
+                        <span>→</span>
+                    </a>
+                    {% else %}
+                    <div></div>
+                    {% endif %}
                 </div>
 
                 <!-- Related Content -->
                 <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
-                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Explore More</h4>
+                    <h4 id="article-footer-heading" class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Explore More</h4>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <a href="/strategies/" class="btn-ec-outline text-center">Investment Strategies</a>
-                        <a href="/strategies/" class="btn-ec-outline text-center">Strategy Performance</a>
-                        <a href="/disclosures/" class="btn-ec-outline text-center">Important Disclosures</a>
+                        <a href="/strategies/" class="btn-ec-secondary text-center">Investment Strategies</a>
+                        <a href="/about/" class="btn-ec-secondary text-center">About Our Approach</a>
+                        <a href="/disclosures/" class="btn-ec-secondary text-center">Important Disclosures</a>
                     </div>
                 </div>
             </div>
         </footer>
     </article>
 </div>
+
+<!-- JSON-LD Structured Data from tailwind template -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ page.title|escapejs }}",
+  "description": "{{ page.search_description|default:page.excerpt|striptags|escapejs }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ page.author|default:'Sloane Ortel'|escapejs }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ethical Capital",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.svg' %}"
+    }
+  },
+  "datePublished": "{% if page.date %}{{ page.date|date:'c' }}{% else %}{{ page.first_published_at|date:'c' }}{% endif %}",
+  "dateModified": "{{ page.last_published_at|date:'c' }}",
+  "url": "{{ request.build_absolute_uri }}"
+}
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Copy to clipboard functionality for sharing
+function copyToClipboard(text) {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+            // Show success message
+            showShareMessage('Link copied to clipboard!', 'success');
+        }).catch(function() {
+            fallbackCopyTextToClipboard(text);
+        });
+    } else {
+        fallbackCopyTextToClipboard(text);
+    }
+}
+
+function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        document.execCommand('copy');
+        showShareMessage('Link copied to clipboard!', 'success');
+    } catch (err) {
+        showShareMessage('Unable to copy link', 'error');
+    }
+
+    document.body.removeChild(textArea);
+}
+
+function showShareMessage(message, type) {
+    // Create a temporary notification
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.className = `fixed top-4 right-4 px-4 py-2 rounded-lg shadow-lg z-50 ${
+        type === 'success'
+            ? 'bg-green-600 text-white'
+            : 'bg-red-600 text-white'
+    }`;
+
+    document.body.appendChild(notification);
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 3000);
+}
+
+// Enhanced newsletter form handling
+document.addEventListener('DOMContentLoaded', function() {
+    const newsletterForm = document.querySelector('form[action="/newsletter/signup/"]');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            const formData = new FormData(this);
+
+            // You can add AJAX handling here if needed
+            // For now, let the form submit normally
+        });
+    }
+});
+</script>
 {% endblock %}
