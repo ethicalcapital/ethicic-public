@@ -3,7 +3,7 @@
 
 {% block title %}{{ page.title }} | Ethical Capital Blog{% endblock %}
 
-{% block meta_description %}{{ page.search_description|default:page.intro|striptags|truncatewords:25 }}{% endblock %}
+{% block meta_description %}{{ page.search_description|default:page.excerpt|striptags|truncatewords:25 }}{% endblock %}
 
 {% block content %}
 <article class="container-ec py-8">
@@ -22,9 +22,9 @@
         </h1>
 
         <!-- Intro/Excerpt -->
-        {% if page.intro %}
+        {% if page.excerpt %}
         <p class="text-xl text-gray-300 mb-6 leading-relaxed">
-            {{ page.intro }}
+            {{ page.excerpt }}
         </p>
         {% endif %}
 
@@ -192,7 +192,7 @@
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "{{ page.title|escapejs }}",
-  "description": "{{ page.search_description|default:page.intro|striptags|escapejs }}",
+  "description": "{{ page.search_description|default:page.excerpt|striptags|escapejs }}",
   "author": {
     "@type": "Person",
     "name": "Sloane Ortel"
