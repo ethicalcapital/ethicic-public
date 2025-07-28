@@ -2266,7 +2266,9 @@ class BlogPost(SafeUrlMixin, Page):
 
     # Restrict to only allow BlogIndexPage as parent
     parent_page_types = ["public_site.BlogIndexPage"]
-
+    
+    # Use the Tailwind template with typography plugin
+    template = "public_site/blog_post_tailwind.html"
 
     class Meta:
         verbose_name = "BlogPost"
