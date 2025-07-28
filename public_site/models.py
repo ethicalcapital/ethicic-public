@@ -811,6 +811,8 @@ class HomePage(SafeUrlMixin, Page):
 class AboutPage(SafeUrlMixin, Page):
     """About/Our Story page."""
 
+    template = "public_site/about_page.html"
+
     # Hero section
     headshot_image = models.URLField(
         blank=True,
@@ -1182,6 +1184,8 @@ class AboutPage(SafeUrlMixin, Page):
 
 class PricingPage(SafeUrlMixin, Page):
     """Pricing/Fees page."""
+
+    template = "public_site/pricing_page.html"
 
     # Header section
     section_header = models.CharField(
@@ -2337,6 +2341,8 @@ class FAQItem(Orderable):
 
 class LegalPage(SafeUrlMixin, Page):
     """Legal pages for disclosures, privacy policy, etc."""
+
+    template = "public_site/legal_page.html"
 
     intro_text = RichTextField(blank=True)
     content = RichTextField()
