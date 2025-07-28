@@ -88,44 +88,7 @@
         {% endif %}
 
         <!-- Article Body -->
-        <div class="prose prose-invert prose-purple max-w-none">
-            <!-- Custom prose styles for dark theme -->
-            <style>
-                .prose-purple h2 {
-                    @apply text-purple-300 font-mono text-xl font-semibold mt-8 mb-4;
-                }
-                .prose-purple h3 {
-                    @apply text-purple-400 font-mono text-lg font-semibold mt-6 mb-3;
-                }
-                .prose-purple h4 {
-                    @apply text-purple-400 font-mono text-base font-semibold mt-4 mb-2;
-                }
-                .prose-purple p {
-                    @apply text-gray-200 leading-relaxed mb-4;
-                }
-                .prose-purple a {
-                    @apply text-purple-400 hover:text-purple-300 transition-colors;
-                }
-                .prose-purple ul, .prose-purple ol {
-                    @apply text-gray-200 space-y-2 mb-4;
-                }
-                .prose-purple li {
-                    @apply leading-relaxed;
-                }
-                .prose-purple blockquote {
-                    @apply border-l-4 border-purple-400 pl-4 italic text-purple-300 bg-gray-800 py-2 my-6;
-                }
-                .prose-purple code {
-                    @apply bg-gray-800 text-purple-300 px-2 py-1 rounded font-mono text-sm;
-                }
-                .prose-purple pre {
-                    @apply bg-gray-800 border border-gray-600 rounded-lg p-4 overflow-x-auto mb-4;
-                }
-                .prose-purple img {
-                    @apply rounded-lg border border-gray-600 my-6;
-                }
-            </style>
-
+        <div class="prose prose-lg prose-purple dark:prose-invert mx-auto">
             {{ page.body|safe }}
         </div>
 

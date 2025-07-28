@@ -123,7 +123,172 @@ module.exports = {
         'garden': '0 1px 3px var(--color-shadow)',
         'garden-lg': '0 4px 12px var(--color-shadow)',
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': theme('colors.gray[700]'),
+            '--tw-prose-headings': theme('colors.gray[900]'),
+            '--tw-prose-lead': theme('colors.gray[600]'),
+            '--tw-prose-links': theme('colors.ec-purple.DEFAULT'),
+            '--tw-prose-bold': theme('colors.gray[900]'),
+            '--tw-prose-counters': theme('colors.gray[500]'),
+            '--tw-prose-bullets': theme('colors.gray[300]'),
+            '--tw-prose-hr': theme('colors.gray[200]'),
+            '--tw-prose-quotes': theme('colors.gray[900]'),
+            '--tw-prose-quote-borders': theme('colors.gray[200]'),
+            '--tw-prose-captions': theme('colors.gray[500]'),
+            '--tw-prose-code': theme('colors.gray[900]'),
+            '--tw-prose-pre-code': theme('colors.gray[200]'),
+            '--tw-prose-pre-bg': theme('colors.gray[800]'),
+            '--tw-prose-th-borders': theme('colors.gray[300]'),
+            '--tw-prose-td-borders': theme('colors.gray[200]'),
+            maxWidth: '68ch', // Optimal reading width
+            fontSize: theme('fontSize.base'),
+            lineHeight: '1.7',
+            p: {
+              marginTop: theme('spacing.6'),
+              marginBottom: theme('spacing.6'),
+            },
+            h1: {
+              fontFamily: theme('fontFamily.mono').join(', '),
+              fontWeight: '700',
+              fontSize: theme('fontSize.3xl'),
+              marginTop: theme('spacing.0'),
+              marginBottom: theme('spacing.8'),
+            },
+            h2: {
+              fontFamily: theme('fontFamily.mono').join(', '),
+              fontWeight: '600',
+              fontSize: theme('fontSize.2xl'),
+              marginTop: theme('spacing.8'),
+              marginBottom: theme('spacing.6'),
+            },
+            h3: {
+              fontFamily: theme('fontFamily.mono').join(', '),
+              fontWeight: '600',
+              fontSize: theme('fontSize.xl'),
+              marginTop: theme('spacing.6'),
+              marginBottom: theme('spacing.4'),
+            },
+            a: {
+              color: 'var(--tw-prose-links)',
+              textDecoration: 'underline',
+              textUnderlineOffset: '2px',
+              '&:hover': {
+                color: theme('colors.ec-purple.light'),
+              },
+            },
+            blockquote: {
+              borderLeftColor: theme('colors.ec-teal.DEFAULT'),
+              borderLeftWidth: '4px',
+              paddingLeft: theme('spacing.6'),
+              fontStyle: 'italic',
+              color: 'var(--tw-prose-quotes)',
+            },
+            code: {
+              backgroundColor: theme('colors.gray[100]'),
+              padding: `${theme('spacing.1')} ${theme('spacing.2')}`,
+              borderRadius: theme('borderRadius.sm'),
+              fontSize: theme('fontSize.sm'),
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+            pre: {
+              backgroundColor: 'var(--tw-prose-pre-bg)',
+              color: 'var(--tw-prose-pre-code)',
+              borderRadius: theme('borderRadius.lg'),
+              padding: theme('spacing.6'),
+              overflow: 'auto',
+              fontSize: theme('fontSize.sm'),
+            },
+            'pre code': {
+              backgroundColor: 'transparent',
+              padding: '0',
+            },
+            ul: {
+              listStyleType: 'disc',
+              paddingLeft: theme('spacing.6'),
+            },
+            ol: {
+              listStyleType: 'decimal',
+              paddingLeft: theme('spacing.6'),
+            },
+            li: {
+              marginTop: theme('spacing.2'),
+              marginBottom: theme('spacing.2'),
+            },
+            table: {
+              width: '100%',
+              tableLayout: 'auto',
+              marginTop: theme('spacing.8'),
+              marginBottom: theme('spacing.8'),
+            },
+            th: {
+              backgroundColor: theme('colors.gray[50]'),
+              fontWeight: '600',
+              padding: theme('spacing.3'),
+              textAlign: 'left',
+            },
+            td: {
+              padding: theme('spacing.3'),
+            },
+          },
+        },
+        // Dark mode variant
+        invert: {
+          css: {
+            '--tw-prose-body': theme('colors.gray[300]'),
+            '--tw-prose-headings': theme('colors.gray[100]'),
+            '--tw-prose-lead': theme('colors.gray[400]'),
+            '--tw-prose-links': theme('colors.ec-teal.DEFAULT'),
+            '--tw-prose-bold': theme('colors.gray[100]'),
+            '--tw-prose-counters': theme('colors.gray[400]'),
+            '--tw-prose-bullets': theme('colors.gray[600]'),
+            '--tw-prose-hr': theme('colors.gray[700]'),
+            '--tw-prose-quotes': theme('colors.gray[100]'),
+            '--tw-prose-quote-borders': theme('colors.gray[700]'),
+            '--tw-prose-captions': theme('colors.gray[400]'),
+            '--tw-prose-code': theme('colors.gray[100]'),
+            '--tw-prose-pre-code': theme('colors.gray[200]'),
+            '--tw-prose-pre-bg': theme('colors.gray[900]'),
+            '--tw-prose-th-borders': theme('colors.gray[600]'),
+            '--tw-prose-td-borders': theme('colors.gray[700]'),
+            code: {
+              backgroundColor: theme('colors.gray[800]'),
+            },
+            th: {
+              backgroundColor: theme('colors.gray[800]'),
+            },
+          },
+        },
+        // Purple variant for brand alignment
+        purple: {
+          css: {
+            '--tw-prose-links': theme('colors.ec-purple.DEFAULT'),
+            '--tw-prose-quote-borders': theme('colors.ec-purple.DEFAULT'),
+            blockquote: {
+              borderLeftColor: theme('colors.ec-purple.DEFAULT'),
+            },
+          },
+        },
+        // Teal variant for accent content
+        teal: {
+          css: {
+            '--tw-prose-links': theme('colors.ec-teal.DEFAULT'),
+            '--tw-prose-quote-borders': theme('colors.ec-teal.DEFAULT'),
+            blockquote: {
+              borderLeftColor: theme('colors.ec-teal.DEFAULT'),
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };

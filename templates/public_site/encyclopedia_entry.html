@@ -51,7 +51,9 @@
                     {% if page.detailed_content %}
                         <div class="detailed-content">
                             <h2 class="section-header">Detailed Explanation</h2>
-                            {{ page.detailed_content|safe }}
+                            <div class="prose prose-lg prose-teal dark:prose-invert max-w-none">
+                                {{ page.detailed_content|safe }}
+                            </div>
                         </div>
                     {% endif %}
 

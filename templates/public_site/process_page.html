@@ -23,7 +23,9 @@
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <h3>{{ page.screening_title }}</h3>
-                        {{ page.screening_description|richtext }}
+                        <div class="prose prose-teal dark:prose-invert max-w-none">
+                            {{ page.screening_description|richtext }}
+                        </div>
 
                         <!-- Product-Based Exclusions Section -->
                         <div class="exclusions-section">
