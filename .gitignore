@@ -4,6 +4,18 @@ __pycache__/
 *$py.class
 *.so
 .Python
+
+# Backup and temporary files
+*.bak
+*.backup
+*.tmp
+*.temp
+*~
+.DS_Store
+
+# Build artifacts and caches
+.django_tailwind_cli/
+static/css/tailwind.css
 build/
 develop-eggs/
 dist/

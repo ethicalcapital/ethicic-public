@@ -1908,6 +1908,8 @@ class BlogIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
 class BlogPost(SafeUrlMixin, Page):
     """Individual blog post with rich StreamField content."""
 
+    template = "public_site/blog_post.html"
+
     excerpt = models.CharField(
         max_length=300,
         blank=True,
