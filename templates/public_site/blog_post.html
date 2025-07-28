@@ -69,13 +69,13 @@
                 {% if page.content %}
                     {% for block in page.content %}
                         {% if block.block_type != 'key_statistic' and block.block_type != 'ai_statistic' %}
-                            <div class="content-block content-block-{{ block.block_type }} {% if block.block_type == 'rich_text' %}prose{% endif %}">
+                            <div class="content-block content-block-{{ block.block_type }}">
                                 {% include_block block %}
                             </div>
                         {% endif %}
                     {% endfor %}
                 {% elif page.body %}
-                    <div class="content-block content-block-richtext prose">
+                    <div class="content-block content-block-richtext">
                         {{ page.body|richtext }}
                     </div>
                 {% endif %}
