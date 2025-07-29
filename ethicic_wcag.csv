@@ -1,0 +1,283 @@
+Issue,Target,Pages,HTML,Flags,Impact,Requires involvement of,Tags
+Elements must meet minimum color contrast ratio thresholds,#philosophy-heading,https://ethicic.com/,"<h2 id=""philosophy-heading"" class=""font-mono text-2xl font-semibold text-blue-300"">Ethics Reveal Quality</h2>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"p[data-block-key=""u15sb""]",https://ethicic.com/,"<p data-block-key=""u15sb"">",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,#principles-heading,https://ethicic.com/,"<h2 id=""principles-heading"" class=""panel-title-ec"">
+                            PRINCIPLES THAT GUIDE OUR WORK
+                        </h2>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div:nth-child(1) > .mb-6.text-lg
+div:nth-child(2) > .mb-6.text-lg",https://ethicic.com/,"<h3 class=""mb-6 font-mono text-lg font-semibold text-blue-300"">PROCESS</h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"section[aria-labelledby=""strategies-heading""] > .card-header-ec > .panel-title-ec","https://ethicic.com/
+https://ethicic.com/solutions","<div class=""panel-title-ec"">
+                            THREE CORE STRATEGIES—MULTIPLE PATHS FORWARD
+                        </div>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"p[data-block-key=""6w8np""]",https://ethicic.com/,"<p data-block-key=""6w8np"">Each strategy offers a different approach to ethical investing, with varying levels of diversification and implementation.</p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,#process-section-heading,https://ethicic.com/,"<h2 id=""process-section-heading"" class=""panel-title-ec"">
+                            OUR SIGNATURE PROCESS
+                        </h2>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.space-y-6.card-content-ec > .text-xl,https://ethicic.com/,"<h3 class=""text-center font-mono text-xl font-semibold text-blue-300"">How We Build Ethical Portfolios</h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".gap-4.flex:nth-child(1) > .flex-1 > h4
+.gap-4.flex:nth-child(2) > .flex-1 > h4
+.gap-4.flex:nth-child(3) > .flex-1 > h4
+.gap-4.flex:nth-child(4) > .flex-1 > h4",https://ethicic.com/,"<h4 class=""mb-2 font-mono font-semibold text-blue-300"">Comprehensive Ethical Screening</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".gap-4.flex:nth-child(1) > .flex-1 > .text-gray-900.dark\:text-gray-300
+.gap-4.flex:nth-child(2) > .flex-1 > .text-gray-900.dark\:text-gray-300
+.gap-4.flex:nth-child(3) > .flex-1 > .text-gray-900.dark\:text-gray-300
+.gap-4.flex:nth-child(4) > .flex-1 > .text-gray-900.dark\:text-gray-300",https://ethicic.com/,"<p class=""text-sm text-gray-900 dark:text-gray-300"">",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"section[aria-labelledby=""serve-heading""] > .card-header-ec > .panel-title-ec",https://ethicic.com/,"<div class=""panel-title-ec"">WHO WE SERVE</div>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.tracking-wider,https://ethicic.com/solutions,"<div class=""mb-4 font-mono text-sm font-bold uppercase tracking-wider text-purple-400"">
+        ETHICAL INVESTMENT SOLUTIONS
+      </div>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,#hero-heading,"https://ethicic.com/solutions
+https://ethicic.com/blog","<h1 id=""hero-heading"" class=""mb-6 font-mono text-4xl font-bold leading-tight text-slate-900 dark:text-slate-100 md:text-5xl"">
+        Investment Solutions
+      </h1>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.text-xl.mb-6.text-slate-600,https://ethicic.com/solutions,"<div class=""mb-6 text-xl text-slate-600 dark:text-slate-400"">
+        Ethical investment strategies tailored for individuals, institutions, and investment advisers.
+      </div>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"section[aria-labelledby=""hero-heading""] > .text-center > .prose.mx-auto > p",https://ethicic.com/solutions,"<p>Whether you're an individual investor, institutional client, or investment adviser, we provide sophisticated ethical investment solutions that align your portfolio with your principles without compromising on performance.</p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,#strategies-heading,https://ethicic.com/solutions,"<h2 id=""strategies-heading"" class=""mb-4 font-mono text-2xl font-semibold text-purple-400"">
+        Three Core Strategies, Infinite Possibilities
+      </h2>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.mb-8.text-lg.text-slate-600,https://ethicic.com/solutions,"<p class=""mb-8 text-lg text-slate-600 dark:text-slate-400"">
+        Our investment solutions are built around three core strategies, tailored to three distinct audiences, and delivered through multiple channels to meet you where you are.
+      </p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"#strategy-1-heading
+#strategy-2-heading
+#strategy-3-heading",https://ethicic.com/solutions,"<h3 id=""strategy-1-heading"" class=""font-mono text-lg font-semibold text-slate-900 dark:text-slate-100"">
+              Growth Strategy
+            </h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""strategy-1-heading""] > .space-y-4.mb-6 > .font-medium.text-slate-700.dark\:text-slate-300
+div[aria-labelledby=""strategy-2-heading""] > .space-y-4.mb-6 > .font-medium.text-slate-700.dark\:text-slate-300
+div[aria-labelledby=""strategy-3-heading""] > .space-y-4.mb-6 > .font-medium.text-slate-700.dark\:text-slate-300",https://ethicic.com/solutions,"<p class=""font-medium text-slate-700 dark:text-slate-300"">
+              Our Flagship Approach - High-conviction portfolios where our ethical criteria can be fully implemented without compromise.
+            </p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""strategy-1-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(1) > span:nth-child(2)
+div[aria-labelledby=""strategy-1-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(2) > span:nth-child(2)
+div[aria-labelledby=""strategy-1-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(3) > span:nth-child(2)
+div[aria-labelledby=""strategy-1-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(4) > span:nth-child(2)
+div[aria-labelledby=""strategy-2-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(1) > span:nth-child(2)
+div[aria-labelledby=""strategy-2-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(2) > span:nth-child(2)
+div[aria-labelledby=""strategy-2-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(3) > span:nth-child(2)
+div[aria-labelledby=""strategy-2-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(4) > span:nth-child(2)
+div[aria-labelledby=""strategy-3-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(1) > span:nth-child(2)
+div[aria-labelledby=""strategy-3-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(2) > span:nth-child(2)
+div[aria-labelledby=""strategy-3-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(3) > span:nth-child(2)
+div[aria-labelledby=""strategy-3-heading""] > .space-y-4.mb-6 > .space-y-2 > .space-x-2.items-start.flex:nth-child(4) > span:nth-child(2)",https://ethicic.com/solutions,<span>Focus: 15-25 Companies</span>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"section[role=""complementary""] > .card-header-ec > .panel-title-ec",https://ethicic.com/solutions,"<div class=""panel-title-ec"">WHO WE SERVE</div>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,#individuals-heading,https://ethicic.com/solutions,"<h3 id=""individuals-heading"" class=""mb-4 font-mono text-xl font-semibold text-purple-400"">
+            For Individual Investors
+          </h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""individuals-heading""] > .space-y-4.mb-6.text-slate-600 > p:nth-child(1)",https://ethicic.com/solutions,<p>Take your first step toward ethical investing or jump in with both feet. Our personalized approach helps you align your investments with your values while achieving your financial goals.</p>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""individuals-heading""] > .space-y-4.mb-6.text-slate-600 > p:nth-child(2) > strong",https://ethicic.com/solutions,<strong>What we offer:</strong>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""individuals-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(1)
+div[aria-labelledby=""individuals-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(2)
+div[aria-labelledby=""individuals-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(3)
+div[aria-labelledby=""individuals-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(4)",https://ethicic.com/solutions,<li>Concentrated ethical portfolios that exclude 57% of the S&amp;P 500</li>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,#institutions-heading,https://ethicic.com/solutions,"<h3 id=""institutions-heading"" class=""mb-4 font-mono text-xl font-semibold text-purple-400"">
+            For Institutional Investors
+          </h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""institutions-heading""] > .space-y-4.mb-6.text-slate-600 > p:nth-child(1)",https://ethicic.com/solutions,"<p>Scalable ethical investment solutions for endowments, pension funds, and institutional clients who require sophisticated strategies at institutional scale.</p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""institutions-heading""] > .space-y-4.mb-6.text-slate-600 > p:nth-child(2) > strong",https://ethicic.com/solutions,<strong>Our institutional capabilities:</strong>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""institutions-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(1)
+div[aria-labelledby=""institutions-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(2)
+div[aria-labelledby=""institutions-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(3)
+div[aria-labelledby=""institutions-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(4)",https://ethicic.com/solutions,<li>Custom investment mandates and reporting</li>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,#advisors-heading,https://ethicic.com/solutions,"<h3 id=""advisors-heading"" class=""mb-4 font-mono text-xl font-semibold text-purple-400"">
+            For Investment Advisers
+          </h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""advisors-heading""] > .space-y-4.mb-6.text-slate-600 > p:nth-child(1)",https://ethicic.com/solutions,"<p>Partner with us to serve clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and operational support you need.</p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""advisors-heading""] > .space-y-4.mb-6.text-slate-600 > p:nth-child(2) > strong",https://ethicic.com/solutions,<strong>Adviser partnership benefits:</strong>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"div[aria-labelledby=""advisors-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(1)
+div[aria-labelledby=""advisors-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(2)
+div[aria-labelledby=""advisors-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(3)
+div[aria-labelledby=""advisors-heading""] > .space-y-4.mb-6.text-slate-600 > ul > li:nth-child(4)",https://ethicic.com/solutions,<li>White-label investment strategies and reporting</li>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"section[aria-labelledby=""why-heading""] > .card-header-ec > .panel-title-ec",https://ethicic.com/solutions,"<div class=""panel-title-ec"">WHY ETHICAL CAPITAL</div>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,#why-heading,https://ethicic.com/solutions,"<h2 id=""why-heading"" class=""mb-8 font-mono text-2xl font-semibold text-purple-400"">
+        A Different Approach to Ethical Investing
+      </h2>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".p-6.dark\:bg-gray-800.shadow-lg:nth-child(1) > h4
+.p-6.dark\:bg-gray-800.shadow-lg:nth-child(2) > h4
+.p-6.dark\:bg-gray-800.shadow-lg:nth-child(3) > h4
+.p-6.dark\:bg-gray-800.shadow-lg:nth-child(4) > h4",https://ethicic.com/solutions,"<h4 class=""mb-3 font-mono text-lg font-semibold text-slate-900 dark:text-slate-100"">
+            Rigorous Screening
+          </h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".gap-6.md\:grid-cols-2.grid > .p-6.dark\:bg-gray-800.shadow-lg:nth-child(1) > .text-slate-600.dark\:text-slate-400
+.gap-6.md\:grid-cols-2.grid > .p-6.dark\:bg-gray-800.shadow-lg:nth-child(2) > .text-slate-600.dark\:text-slate-400
+.gap-6.md\:grid-cols-2.grid > .p-6.dark\:bg-gray-800.shadow-lg:nth-child(3) > .text-slate-600.dark\:text-slate-400",https://ethicic.com/solutions,"<p class=""text-slate-600 dark:text-slate-400"">
+            We exclude 57% of the S&amp;P 500 through comprehensive ethical criteria that go beyond standard ESG metrics.
+          </p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.p-6.dark\:bg-gray-800.shadow-lg:nth-child(4) > .text-slate-600.dark\:text-slate-400,https://ethicic.com/solutions,"<p class=""text-slate-600 dark:text-slate-400"">
+            Our screening criteria are open source. You'll always know exactly what you own and why.
+          </p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,#cta-heading,https://ethicic.com/solutions,"<h2 id=""cta-heading"" class=""mb-6 font-mono text-3xl font-bold text-slate-900 dark:text-slate-100"">
+        Ready to Align Your Investments with Your Values?
+      </h2>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.prose.mx-auto.mb-8 > p,https://ethicic.com/solutions,<p>Let's find the perfect solution for your needs. Contact us to discuss how we can help you achieve your investment goals while staying true to your values.</p>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".gap-6.items-start.flex:nth-child(1) > .flex-1 > .text-2xl
+.gap-6.items-start.flex:nth-child(2) > .flex-1 > .text-2xl
+.gap-6.items-start.flex:nth-child(3) > .flex-1 > .text-2xl
+.gap-6.items-start.flex:nth-child(4) > .flex-1 > .text-2xl",https://ethicic.com/process,"<h3 class=""mb-4 text-2xl font-bold text-gray-100"">Ethical Screening &amp; Exclusions</h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"p[data-block-key=""fmi1i""]",https://ethicic.com/process,"<p data-block-key=""fmi1i"">",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".mb-8:nth-child(3) > .mb-2.text-xl.font-bold
+.mb-8:nth-child(4) > .mb-2.text-xl.font-bold",https://ethicic.com/process,"<h4 class=""mb-2 text-xl font-bold text-gray-100"">PRODUCT-BASED EXCLUSIONS</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"p[data-block-key=""b4ph5""]",https://ethicic.com/process,"<p data-block-key=""b4ph5"">We exclude companies whose business models depend on creating products that harm living beings.</p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".border-red-200.bg-red-50.dark\:border-red-800:nth-child(1) > .text-red-800.dark\:text-red-200
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(2) > .text-red-800.dark\:text-red-200
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(3) > .text-red-800.dark\:text-red-200
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(4) > .text-red-800.dark\:text-red-200
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(5) > .text-red-800.dark\:text-red-200",https://ethicic.com/process,"<h5 class=""mb-3 font-semibold text-red-800 dark:text-red-200"">Animal Products</h5>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".border-red-200.bg-red-50.dark\:border-red-800:nth-child(1) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(1) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(1) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(1) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(4) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(1) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(5) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(2) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(2) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(2) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(2) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(4) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(3) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(3) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(3) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(3) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(4) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(4) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(4) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(4) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(4) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(4) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(5) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(5) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(5) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(5) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(4) > span:nth-child(2)
+.border-red-200.bg-red-50.dark\:border-red-800:nth-child(5) > .text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(5) > span:nth-child(2)",https://ethicic.com/process,"<span>→ Meat, dairy, eggs production</span>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.text-red-700.dark\:text-red-300.space-y-1 > .gap-2.items-start:nth-child(6) > span:nth-child(2),https://ethicic.com/process,<span>→ Entertainment using live animals</span>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"p[data-block-key=""59wn4""]",https://ethicic.com/process,"<p data-block-key=""59wn4"">Even companies making beneficial products can cause harm through their conduct. We track patterns of behavior that damage communities, workers, and ecosystems.</p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(1) > .text-orange-800.dark\:text-orange-200
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(2) > .text-orange-800.dark\:text-orange-200
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(3) > .text-orange-800.dark\:text-orange-200
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(4) > .text-orange-800.dark\:text-orange-200",https://ethicic.com/process,"<h5 class=""mb-3 font-semibold text-orange-800 dark:text-orange-200"">Human Rights Violations</h5>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(1) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(1) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(1) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(1) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(4) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(1) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(5) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(1) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(6) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(2) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(2) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(2) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(2) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(4) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(2) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(5) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(3) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(3) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(3) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(3) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(4) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(3) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(5) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(4) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(4) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(4) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(4) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(4) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(4) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(5) > span:nth-child(2)
+.border-orange-200.bg-orange-50.dark\:border-orange-800:nth-child(4) > .text-orange-700.dark\:text-orange-300.space-y-1 > .gap-2.items-start:nth-child(6) > span:nth-child(2)",https://ethicic.com/process,<span>→ Labor rights violations</span>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.gap-6.items-start.flex:nth-child(1) > .flex-1 > .text-lg,https://ethicic.com/process,"<h4 class=""mb-3 text-lg font-semibold text-gray-100"">Do Our Best, Then Do Better</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"p[data-block-key=""81rcs""]",https://ethicic.com/process,"<p data-block-key=""81rcs"">",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"p[data-block-key=""81rcs""] > a",https://ethicic.com/process,"<a href=""https://github.com/ethicalcapital/sage/blob/main/screening_policy.md"">open source on GitHub</a>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.text-green-800.dark\:text-green-200.text-lg,https://ethicic.com/process,"<h4 class=""mb-3 text-lg font-semibold text-green-800 dark:text-green-200"">Open Source &amp; Collaborative</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.bg-green-50 > .text-green-700.dark\:text-green-300.mb-4,https://ethicic.com/process,"<p class=""mb-4 text-green-700 dark:text-green-300"">",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".hover\:bg-green-700.bg-green-600[rel=""noopener noreferrer""]",https://ethicic.com/process,"<a href=""https://github.com/ethicalcapital/sage/blob/main/screening_policy.md"" target=""_blank"" rel=""noopener noreferrer"" class=""inline-flex items-center rounded-lg bg-green-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-green-700"">",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".gap-6.items-start.flex:nth-child(2) > .flex-1 > .mb-6
+.gap-6.items-start.flex:nth-child(3) > .flex-1 > .mb-6",https://ethicic.com/process,"<p class=""mb-6 text-gray-300"">",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".text-blue-600
+.text-blue-300",https://ethicic.com/process,"<a href=""https://wpcarey.asu.edu/department-finance/faculty-research/do-stocks-outperform-treasury-bills"" target=""_blank"" rel=""noopener noreferrer"" class=""text-blue-600 underline hover:text-blue-800"">ASU research</a>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".lg\:grid-cols-3.gap-4.md\:grid-cols-2 > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(1) > h4
+.lg\:grid-cols-3.gap-4.md\:grid-cols-2 > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(2) > h4
+.lg\:grid-cols-3.gap-4.md\:grid-cols-2 > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(3) > h4",https://ethicic.com/process,"<h4 class=""mb-3 font-semibold text-gray-100"">People</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(1) > .space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(1) > .space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(1) > .space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(2) > .space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(2) > .space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(2) > .space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(3) > .space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(3) > .space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(3) > .space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(4) > .space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(4) > .space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(4) > .space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(5) > .space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(5) > .space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(5) > .space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(6) > .space-y-1 > .gap-2.items-start:nth-child(1) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(6) > .space-y-1 > .gap-2.items-start:nth-child(2) > span:nth-child(2)
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(6) > .space-y-1 > .gap-2.items-start:nth-child(3) > span:nth-child(2)",https://ethicic.com/process,<span>Staff retention rates</span>,,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(4) > h4
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(5) > h4
+.bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(6) > h4",https://ethicic.com/process,"<h4 class=""mb-3 font-semibold text-gray-100"">Valuation</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.flex-1 > .text-lg.mb-4,https://ethicic.com/process,"<h4 class=""mb-4 text-lg font-semibold text-gray-100"">Our Three Core Strategies</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"a[href$=""growth/""]",https://ethicic.com/process,"<a href=""/strategies/growth/"" class=""inline-flex items-center rounded-lg bg-green-600 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-green-700"">
+                                    Learn More →
+                                </a>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.gap-6.items-start.flex:nth-child(4) > .flex-1 > .mb-6:nth-child(2),https://ethicic.com/process,"<p class=""mb-6 text-gray-300"">",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.mb-6.bg-gray-50.dark\:border-gray-600 > .text-lg.mb-4,https://ethicic.com/process,"<h4 class=""mb-4 text-lg font-semibold text-gray-100"">Our Refinement Process</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".space-y-3:nth-child(1) > div:nth-child(1) > .text-orange-600.font-semibold
+.space-y-3:nth-child(1) > div:nth-child(2) > .text-orange-600.font-semibold
+.space-y-3:nth-child(1) > div:nth-child(3) > .text-orange-600.font-semibold
+.space-y-3:nth-child(2) > div:nth-child(1) > .text-orange-600.font-semibold
+.space-y-3:nth-child(2) > div:nth-child(2) > .text-orange-600.font-semibold
+.space-y-3:nth-child(2) > div:nth-child(3) > .text-orange-600.font-semibold",https://ethicic.com/process,"<span class=""font-semibold text-orange-600"">Scenario Analysis:</span>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".space-y-3:nth-child(1) > div:nth-child(1) > .text-gray-300
+.space-y-3:nth-child(1) > div:nth-child(2) > .text-gray-300
+.space-y-3:nth-child(1) > div:nth-child(3) > .text-gray-300
+.space-y-3:nth-child(2) > div:nth-child(1) > .text-gray-300
+.space-y-3:nth-child(2) > div:nth-child(2) > .text-gray-300
+.space-y-3:nth-child(2) > div:nth-child(3) > .text-gray-300",https://ethicic.com/process,"<span class=""text-gray-300"">Testing how portfolios perform under different market conditions</span>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.bg-blue-50 > .text-blue-800.dark\:text-blue-200.font-semibold,https://ethicic.com/process,"<span class=""font-semibold text-blue-800 dark:text-blue-200"">A Natural Cycle:</span>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.bg-blue-50 > .text-blue-700.dark\:text-blue-300,https://ethicic.com/process,"<span class=""text-blue-700 dark:text-blue-300"">",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.text-gray-600,https://ethicic.com/process,"<p class=""text-xl font-medium text-gray-600 italic dark:text-gray-400"">
+                    When ethics and excellence converge, sustainable investing outcomes follow.
+                </p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > h2",https://ethicic.com/process,"<h2 class=""mb-6 text-center text-3xl font-bold text-gray-100"">GUIDING PRINCIPLES</h2>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > .max-w-3xl.mx-auto.mb-8 > p[data-block-key=""d94e2""]",https://ethicic.com/process,"<p data-block-key=""d94e2"">Throughout our process, we're guided by simple principles: ethics reveal quality, transparency builds trust, and sustainable investing means considering all stakeholders.</p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > h3",https://ethicic.com/process,"<h3 class=""mb-6 text-center font-mono text-lg font-bold text-gray-100"">// PROCESS</h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(1) > h4
+.container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(2) > h4
+.container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(3) > h4",https://ethicic.com/process,"<h4 class=""mb-3 font-semibold text-gray-100"">▸ Institutional Rigor, Boutique Attention</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(1) > p
+.container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(2) > p
+.container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(3) > p",https://ethicic.com/process,"<p class=""text-sm text-gray-300"">
+                            We combine analytical depth with personalized service. Every holding is hand-researched, every client
+                            relationship carefully tended.
+                        </p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > div:nth-child(5) > h3",https://ethicic.com/process,"<h3 class=""mb-6 text-center font-mono text-lg font-bold text-gray-100"">// PRACTICE</h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(1) > h4
+.container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(2) > h4
+.container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(3) > h4",https://ethicic.com/process,"<h4 class=""mb-3 font-semibold text-gray-100"">▸ Continuous Evolution</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,".container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(1) > p
+.container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(2) > p
+.container-ec > .dark\:border-gray-700.dark\:bg-gray-800[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:border-gray-600.dark\:bg-gray-700:nth-child(3) > p",https://ethicic.com/process,"<p class=""text-sm text-gray-300"">
+                            Ethics is not static. As companies evolve and disappoint we adapt. Our screening is a living framework,
+                            refined through ongoing research and client dialogue.
+                        </p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.container-ec > .p-8.bg-gradient-to-r.from-purple-600 > .px-8.text-purple-600.hover\:bg-gray-100,https://ethicic.com/process,"<a href=""/onboarding/"" class=""rounded-lg bg-white px-8 py-4 font-bold text-purple-600 transition-colors hover:bg-gray-100"" aria-label=""Start the onboarding process"">GET STARTED</a>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > .text-center.mb-8:nth-child(1) > .font-medium.italic.text-xl",https://ethicic.com/process,"<p class=""text-xl font-medium text-gray-400 italic"">When ethics and excellence converge, sustainable investing outcomes follow.</p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > h2",https://ethicic.com/process,"<h2 class=""text-3xl font-bold text-gray-100 text-center mb-6"">GUIDING PRINCIPLES</h2>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > .max-w-3xl.mx-auto.text-center > p[data-block-key=""d94e2""]",https://ethicic.com/process,"<p data-block-key=""d94e2"">Throughout our process, we're guided by simple principles: ethics reveal quality, transparency builds trust, and sustainable investing means considering all stakeholders.</p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > h3",https://ethicic.com/process,"<h3 class=""text-lg font-mono font-bold text-gray-100 mb-6 text-center"">// PROCESS</h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(1) > h4
+#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(2) > h4
+#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(3) > h4",https://ethicic.com/process,"<h4 class=""font-semibold text-gray-100 mb-3"">▸ Institutional Rigor, Boutique Attention</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(1) > p
+#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(2) > p
+#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > .mb-8:nth-child(4) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(3) > p",https://ethicic.com/process,"<p class=""text-gray-300 text-sm"">
+            We combine analytical depth with personalized service. Every holding is hand-researched, every client
+            relationship carefully tended.
+          </p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > div:nth-child(5) > h3",https://ethicic.com/process,"<h3 class=""text-lg font-mono font-bold text-gray-100 mb-6 text-center"">// PRACTICE</h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(1) > h4
+#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(2) > h4
+#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(3) > h4",https://ethicic.com/process,"<h4 class=""font-semibold text-gray-100 mb-3"">▸ Continuous Evolution</h4>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,"#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(1) > p
+#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(2) > p
+#main-content > .dark\:bg-gray-800.dark\:border-gray-700[aria-labelledby=""principles-heading""] > div:nth-child(5) > .md\:grid-cols-3.gap-6.grid > .bg-gray-50.dark\:bg-gray-700.dark\:border-gray-600:nth-child(3) > p",https://ethicic.com/process,"<p class=""text-gray-300 text-sm"">
+            Ethics is not static. As companies evolve and disappoint we adapt. Our screening is a living framework,
+            refined through ongoing research and client dialogue.
+          </p>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,#main-content > .p-8.bg-gradient-to-r.from-purple-600 > .px-8.text-purple-600.hover\:bg-gray-100,https://ethicic.com/process,"<a href=""https://docs.google.com/forms/d/e/1FAIpQLSdx1ex4pj5iYaj1v1Yxjt7iFbicqZbKWNuOZVyMlG8sKswbgQ/viewform?usp=header"" class=""px-8 py-4 bg-white text-purple-600 font-bold rounded-lg hover:bg-gray-100 transition-colors"" target=""_blank"" rel=""noopener"" aria-label=""Start the onboarding process"">",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
+Elements must meet minimum color contrast ratio thresholds,.card-title-ec,https://ethicic.com/blog,"<h3 class=""card-title-ec"">Recent Articles</h3>",,Serious,UI designer,"WCAG 2.1 AA, WCAG 1.4.3, WCAG 2.0 AA, EN 301 549, Section 508, WCAG 2.2 AA, ACT, EN 301 549 9.1.4.3"
