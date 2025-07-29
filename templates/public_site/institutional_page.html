@@ -26,15 +26,15 @@
                  role="main"
                  aria-labelledby="services-heading">
             <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.offer_section_title }}</h2>
+                <h2 class="text-2xl font-bold text-gray-100">{{ page.offer_section_title }}</h2>
             </div>
             <div class="space-y-6">
-                <p class="text-lg text-gray-700 dark:text-gray-300">{{ page.offer_section_intro|safe }}</p>
+                <p class="text-lg text-gray-300">{{ page.offer_section_intro|safe }}</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {% for service in page.services %}
                         <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-                            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">{{ service.value.title }}</h3>
-                            <div class="text-gray-700 dark:text-gray-300">{{ service.value.description|safe }}</div>
+                            <h3 class="text-xl font-semibold text-gray-100 mb-3">{{ service.value.title }}</h3>
+                            <div class="text-gray-300">{{ service.value.description|safe }}</div>
                         </div>
                     {% endfor %}
                 </div>
@@ -45,15 +45,15 @@
                  role="complementary"
                  aria-labelledby="benefits-heading">
             <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.benefits_section_title }}</h2>
+                <h2 class="text-2xl font-bold text-gray-100">{{ page.benefits_section_title }}</h2>
             </div>
             <div class="space-y-6">
-                <p class="text-lg text-gray-700 dark:text-gray-300">{{ page.benefits_section_intro|safe }}</p>
+                <p class="text-lg text-gray-300">{{ page.benefits_section_intro|safe }}</p>
                 <div class="space-y-4">
                     {% for benefit in page.benefits %}
                         <div class="border-l-4 border-purple-600 pl-4">
-                            <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">{{ benefit.value.title }}</h4>
-                            <div class="text-gray-700 dark:text-gray-300">{{ benefit.value.description|safe }}</div>
+                            <h4 class="text-lg font-semibold text-gray-100 mb-2">{{ benefit.value.title }}</h4>
+                            <div class="text-gray-300">{{ benefit.value.description|safe }}</div>
                         </div>
                     {% endfor %}
                 </div>
@@ -64,7 +64,7 @@
                  role="region"
                  aria-labelledby="process-heading">
             <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.process_section_title }}</h2>
+                <h2 class="text-2xl font-bold text-gray-100">{{ page.process_section_title }}</h2>
             </div>
             <div class="space-y-8">
                 <div class="space-y-6">
@@ -74,15 +74,15 @@
                                 {{ step.value.step_number }}
                             </div>
                             <div class="flex-1">
-                                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">{{ step.value.title }}</h3>
-                                <p class="text-gray-700 dark:text-gray-300">{{ step.value.description }}</p>
+                                <h3 class="text-lg font-semibold text-gray-100 mb-2">{{ step.value.title }}</h3>
+                                <p class="text-gray-300">{{ step.value.description }}</p>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
                 <div class="text-center">
                     <a href="/process/"
-                       class="inline-block px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                       class="inline-block px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                         LEARN ABOUT OUR FULL PROCESS
                     </a>
                 </div>
@@ -93,18 +93,18 @@
                  role="region"
                  aria-labelledby="scale-heading">
             <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.scale_section_title }}</h2>
+                <h2 class="text-2xl font-bold text-gray-100">{{ page.scale_section_title }}</h2>
             </div>
             <div class="space-y-6">
-                <p class="text-lg text-gray-700 dark:text-gray-300">{{ page.scale_section_intro|safe }}</p>
+                <p class="text-lg text-gray-300">{{ page.scale_section_intro|safe }}</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {% for metric in page.scale_metrics %}
                         <div class="text-center bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
                             <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">{{ metric.value.value }}</div>
-                            <div class="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wide mb-2">
+                            <div class="text-sm font-semibold text-gray-100 uppercase tracking-wide mb-2">
                                 {{ metric.value.label }}
                             </div>
-                            <div class="text-sm text-gray-600 dark:text-gray-400">{{ metric.value.description }}</div>
+                            <div class="text-sm text-gray-400">{{ metric.value.description }}</div>
                         </div>
                     {% endfor %}
                 </div>
@@ -115,20 +115,20 @@
                  role="complementary"
                  aria-labelledby="ddq-heading">
             <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.ddq_section_title }}</h2>
+                <h2 class="text-2xl font-bold text-gray-100">{{ page.ddq_section_title }}</h2>
             </div>
             <div class="space-y-6">
                 <div>
                     <h3 id="ddq-heading"
-                        class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">
+                        class="text-xl font-semibold text-gray-100 mb-3">
                         {{ page.ddq_section_subtitle }}
                     </h3>
-                    <p class="text-gray-700 dark:text-gray-300">{{ page.ddq_section_description|safe }}</p>
+                    <p class="text-gray-300">{{ page.ddq_section_description|safe }}</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {% for category in page.resource_categories %}
                         <div class="space-y-4">
-                            <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ category.value.title }}</h4>
+                            <h4 class="text-lg font-semibold text-gray-100">{{ category.value.title }}</h4>
                             <div class="space-y-3">
                                 {% for resource in category.value.resources %}
                                     <a href="{{ resource.url }}"
@@ -136,8 +136,8 @@
                                        {% if resource.url|slice:":4" == "http" %}target="_blank" rel="noopener"{% endif %}>
                                         <span class="text-2xl">{{ resource.icon }}</span>
                                         <div class="flex-1">
-                                            <div class="font-medium text-gray-900 dark:text-gray-100">{{ resource.title }}</div>
-                                            <div class="text-sm text-gray-600 dark:text-gray-400">{{ resource.description }}</div>
+                                            <div class="font-medium text-gray-100">{{ resource.title }}</div>
+                                            <div class="text-sm text-gray-400">{{ resource.description }}</div>
                                         </div>
                                     </a>
                                 {% endfor %}

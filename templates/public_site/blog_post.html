@@ -36,7 +36,7 @@ block content %}
                     <span class="badge-ec-secondary">{{ page.category }}</span>
                 </div>
             {% endif %}
-            <div class="article-meta mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600 dark:text-gray-400">
+            <div class="article-meta mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-400">
                 {% if page.author %}<span class="meta-item">By {{ page.author }}</span>{% endif %}
                 {% if page.publish_date %}
                     <time class="meta-item" datetime="{{ page.publish_date|date:'Y-m-d' }}">
@@ -80,7 +80,7 @@ block content %}
                 {{ page.title }}
             </h1>
             {% if page.excerpt %}
-                <div class="article-excerpt mb-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+                <div class="article-excerpt mb-6 text-lg leading-relaxed text-gray-300">
                     {{ page.excerpt|richtext }}
                 </div>
             {% endif %}
@@ -137,7 +137,7 @@ block content %}
                 <div id="newsletter-heading" class="panel-title-ec">Stay Informed on Ethical Investing</div>
             </div>
             <div class="card-content-ec space-y-6 text-center">
-                <p class="text-gray-700 dark:text-gray-300">
+                <p class="text-gray-300">
                     Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.
                 </p>
                 <form method="post"
@@ -197,7 +197,7 @@ block content %}
             </div>
             <div class="card-content-ec space-y-6 text-center">
                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Align Your Investments with Your Values</h3>
-                <p class="mx-auto max-w-2xl text-gray-700 dark:text-gray-300">
+                <p class="mx-auto max-w-2xl text-gray-300">
                     Discover how our ethical investment strategies can help you achieve your financial goals while making a
                     positive impact.
                 </p>
@@ -348,7 +348,7 @@ block content %}
       {% endif %}
 
       <div
-        class="article-meta flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600 dark:text-gray-400 mb-4"
+        class="article-meta flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-400 mb-4"
       >
         {% if page.author %}
         <span class="meta-item">By {{ page.author }}</span>
@@ -393,7 +393,7 @@ block content %}
       </h1>
 
       {% if page.excerpt %}
-      <div class="article-excerpt text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+      <div class="article-excerpt text-lg text-gray-300 mb-6 leading-relaxed">
         {{ page.excerpt|richtext }}
       </div>
       {% endif %}
@@ -457,7 +457,7 @@ block content %}
         <div id="newsletter-heading" class="panel-title-ec">Stay Informed on Ethical Investing</div>
       </div>
       <div class="card-content-ec text-center space-y-6">
-        <p class="text-gray-700 dark:text-gray-300">
+        <p class="text-gray-300">
           Get our latest insights on sustainable investment strategies and market analysis delivered to your inbox.
         </p>
         <form
@@ -537,7 +537,7 @@ block content %}
       </div>
       <div class="card-content-ec text-center space-y-6">
         <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Align Your Investments with Your Values</h3>
-        <p class="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+        <p class="text-gray-300 max-w-2xl mx-auto">
           Discover how our ethical investment strategies can help you achieve your financial goals while making a
           positive impact.
         </p>

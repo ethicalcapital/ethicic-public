@@ -66,13 +66,13 @@
         <!-- Popular Questions Section -->
         {% if popular_questions %}
             <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-                <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">Popular Questions</h2>
+                <h2 class="mb-6 text-2xl font-bold text-gray-100">Popular Questions</h2>
                 <div class="space-y-4">
                     {% for question in popular_questions %}
                         <details class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
                             <summary class="-m-2 cursor-pointer rounded p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-600">
                                 <div class="flex items-center justify-between">
-                                    <h3 class="pr-4 font-semibold text-gray-900 dark:text-gray-100">{{ question.question }}</h3>
+                                    <h3 class="pr-4 font-semibold text-gray-100">{{ question.question }}</h3>
                                     <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 text-sm font-bold text-white">
                                         +
                                     </span>
@@ -88,11 +88,11 @@
         {% endif %}
         <!-- Search FAQ Section -->
         <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-            <h3 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">Search FAQ</h3>
+            <h3 class="mb-6 text-2xl font-bold text-gray-100">Search FAQ</h3>
             <form class="space-y-4" onsubmit="return searchFAQ(event)">
                 <div class="space-y-2">
                     <label for="faq-search"
-                           class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                           class="block text-sm font-semibold text-gray-100">
                         Search for answers
                     </label>
                     <input type="text"
@@ -101,7 +101,7 @@
                            class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                            placeholder="e.g., minimum investment, ESG screening..."
                            autocomplete="off" />
-                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                    <p class="text-sm text-gray-400">
                         Try searching for terms like "investment minimum", "ESG criteria", or "fees"
                     </p>
                 </div>
@@ -140,7 +140,7 @@
             </div>
             <!-- Resources -->
             <div class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-                <h4 class="mb-4 text-lg font-bold text-gray-900 dark:text-gray-100">Helpful Resources</h4>
+                <h4 class="mb-4 text-lg font-bold text-gray-100">Helpful Resources</h4>
                 <div class="space-y-3">
                     <a href="/process/"
                        class="block border-b border-gray-200 py-2 text-sm text-purple-600 transition-colors hover:text-purple-700 dark:border-gray-600 dark:text-purple-400 dark:hover:text-purple-300">
@@ -171,7 +171,7 @@
                 <div class="inline-block rounded-full bg-purple-600 px-4 py-2 text-sm font-semibold text-white">
                     Registered Investment Adviser
                 </div>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Investment Adviser Representative | CRD #316032</p>
+                <p class="text-sm text-gray-400">Investment Adviser Representative | CRD #316032</p>
                 <div class="flex justify-center gap-4 text-xs">
                     <a href="https://brokercheck.finra.org/individual/summary/7114756"
                        target="_blank"
@@ -271,7 +271,7 @@
         resultDiv.className = "bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-3";
         resultDiv.innerHTML = `
                 <h5 class="text-sm text-purple-600 dark:text-purple-400 font-semibold mb-2">${result.question}</h5>
-                <p class="text-xs text-gray-700 dark:text-gray-300 mb-2">${result.answer}</p>
+                <p class="text-xs text-gray-300 mb-2">${result.answer}</p>
                 <span class="text-xs text-gray-500 dark:text-gray-400">From: ${result.page}</span>
             `;
         resultsContent.appendChild(resultDiv);

@@ -31,13 +31,13 @@
             <div class="form-container" x-data="onboardingForm()">
                 <!-- Progress Indicator Panel -->
                 <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-                    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-gray-100">PROGRESS</h2>
+                    <h2 class="mb-4 text-xl font-bold text-gray-100">PROGRESS</h2>
                     <div class="progress-container">
                         <div class="mb-4 h-3 rounded-full bg-gray-200 dark:bg-gray-700">
                             <div class="h-3 rounded-full bg-purple-600 transition-all duration-300"
                                  :style="`width: ${progress}%`"></div>
                         </div>
-                        <div class="mb-6 text-sm text-gray-600 dark:text-gray-400"
+                        <div class="mb-6 text-sm text-gray-400"
                              x-text="progressText"></div>
                         <!-- Step Dots -->
                         <div class="flex items-center justify-center space-x-4">
@@ -61,7 +61,7 @@
                              :class="{ 'ring-2 ring-purple-500': currentStep === 1 }"
                              data-step="1"
                              x-show="currentStep === 1">
-                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">ABOUT YOU</h2>
+                        <h2 class="mb-4 text-2xl font-bold text-gray-100">ABOUT YOU</h2>
                         <div class="mb-6 rounded-lg border border-purple-200 bg-purple-50 p-4 dark:border-purple-800 dark:bg-purple-900/20">
                             <p class="text-purple-800 dark:text-purple-200">
                                 We're so excited to get to know you! This section will gather the basic information about you that we need
@@ -70,7 +70,7 @@
                         </div>
                         <div class="space-y-6">
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="email">
                                     What's the best email to reach you at?
                                     <span class="ml-1 text-red-500">*</span>
@@ -82,7 +82,7 @@
                                        required />
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="first_name">
                                     What's your first name?
                                     <span class="ml-1 text-red-500">*</span>
@@ -95,7 +95,7 @@
                                        required />
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="middle_names">What are your middle names? (optional)</label>
                                 <input type="text"
                                        id="middle_names"
@@ -103,10 +103,10 @@
                                        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
                                        autocomplete="additional-name"
                                        placeholder="Enter all middle names separated by spaces" />
-                                <div class="text-sm text-gray-600 dark:text-gray-400">Enter all middle names separated by spaces</div>
+                                <div class="text-sm text-gray-400">Enter all middle names separated by spaces</div>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="last_name">
                                     What's your last name?
                                     <span class="ml-1 text-red-500">*</span>
@@ -119,7 +119,7 @@
                                        required />
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                <label class="block text-sm font-semibold text-gray-100">
                                     Would you prefer we call you by any other name?
                                     <span class="ml-1 text-red-500">*</span>
                                 </label>
@@ -131,7 +131,7 @@
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                @change="$refs.preferredNameField.classList.add('hidden')"
                                                checked />
-                                        <span class="text-gray-900 dark:text-gray-100">Nope</span>
+                                        <span class="text-gray-100">Nope</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="radio"
@@ -139,7 +139,7 @@
                                                value="other"
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                @change="$refs.preferredNameField.classList.remove('hidden')" />
-                                        <span class="text-gray-900 dark:text-gray-100">Other</span>
+                                        <span class="text-gray-100">Other</span>
                                     </label>
                                 </div>
                                 <div x-ref="preferredNameField" class="mt-3 hidden">
@@ -151,7 +151,7 @@
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                <label class="block text-sm font-semibold text-gray-100">
                                     What are your pronouns?
                                     <span class="ml-1 text-red-500">*</span>
                                 </label>
@@ -162,7 +162,7 @@
                                                value="he/him"
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                @change="$refs.pronounsOtherField.style.display = 'none'" />
-                                        <span class="text-gray-900 dark:text-gray-100">he/him</span>
+                                        <span class="text-gray-100">he/him</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="radio"
@@ -170,7 +170,7 @@
                                                value="she/her"
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                @change="$refs.pronounsOtherField.style.display = 'none'" />
-                                        <span class="text-gray-900 dark:text-gray-100">she/her</span>
+                                        <span class="text-gray-100">she/her</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="radio"
@@ -178,7 +178,7 @@
                                                value="they/them"
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                @change="$refs.pronounsOtherField.style.display = 'none'" />
-                                        <span class="text-gray-900 dark:text-gray-100">they/them</span>
+                                        <span class="text-gray-100">they/them</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="radio"
@@ -186,7 +186,7 @@
                                                value="other"
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                @change="$refs.pronounsOtherField.style.display = 'block'" />
-                                        <span class="text-gray-900 dark:text-gray-100">Other</span>
+                                        <span class="text-gray-100">Other</span>
                                     </label>
                                 </div>
                                 <div x-ref="pronounsOtherField" class="mt-3" style="display: none">
@@ -198,7 +198,7 @@
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                <label class="block text-sm font-semibold text-gray-100">
                                     Are you adding a co-client to this account?
                                 </label>
                                 <div class="space-y-3">
@@ -209,7 +209,7 @@
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                @change="addCoClient = false"
                                                checked />
-                                        <span class="text-gray-900 dark:text-gray-100">No, just me</span>
+                                        <span class="text-gray-100">No, just me</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="radio"
@@ -217,7 +217,7 @@
                                                value="yes"
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                @change="addCoClient = true" />
-                                        <span class="text-gray-900 dark:text-gray-100">Yes, add a co-client</span>
+                                        <span class="text-gray-100">Yes, add a co-client</span>
                                     </label>
                                 </div>
                             </div>
@@ -237,7 +237,7 @@
                              :class="{ 'ring-2 ring-purple-500': currentStep === 2 }"
                              data-step="2"
                              x-show="currentStep === 2 && addCoClient">
-                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">YOUR CO-CLIENT</h2>
+                        <h2 class="mb-4 text-2xl font-bold text-gray-100">YOUR CO-CLIENT</h2>
                         <div class="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
                             <p class="text-blue-800 dark:text-blue-200">
                                 Please provide information about your co-client who will be added to this account.
@@ -245,7 +245,7 @@
                         </div>
                         <div class="space-y-6">
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="co_client_email">
                                     Co-client's email address
                                     <span class="ml-1 text-red-500">*</span>
@@ -258,7 +258,7 @@
                             </div>
                             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                                 <div class="space-y-2">
-                                    <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                    <label class="block text-sm font-semibold text-gray-100"
                                            for="co_client_first_name">
                                         Co-client's first name
                                         <span class="ml-1 text-red-500">*</span>
@@ -270,7 +270,7 @@
                                            :required="addCoClient" />
                                 </div>
                                 <div class="space-y-2">
-                                    <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                    <label class="block text-sm font-semibold text-gray-100"
                                            for="co_client_last_name">
                                         Co-client's last name
                                         <span class="ml-1 text-red-500">*</span>
@@ -302,7 +302,7 @@
                              :class="{ 'ring-2 ring-purple-500': currentStep === 3 }"
                              data-step="3"
                              x-show="currentStep === 3">
-                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">CONTACT PREFERENCES</h2>
+                        <h2 class="mb-4 text-2xl font-bold text-gray-100">CONTACT PREFERENCES</h2>
                         <div class="mb-6 rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-900/20">
                             <p class="text-green-800 dark:text-green-200">
                                 How would you like us to reach you for important account updates and investment discussions?
@@ -310,7 +310,7 @@
                         </div>
                         <div class="space-y-6">
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="phone">
                                     Phone number
                                     <span class="ml-1 text-red-500">*</span>
@@ -322,7 +322,7 @@
                                        required />
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                <label class="block text-sm font-semibold text-gray-100">
                                     Preferred contact method
                                     <span class="ml-1 text-red-500">*</span>
                                 </label>
@@ -333,7 +333,7 @@
                                                value="email"
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                required />
-                                        <span class="text-gray-900 dark:text-gray-100">Email</span>
+                                        <span class="text-gray-100">Email</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="radio"
@@ -341,7 +341,7 @@
                                                value="phone"
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                required />
-                                        <span class="text-gray-900 dark:text-gray-100">Phone</span>
+                                        <span class="text-gray-100">Phone</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="radio"
@@ -349,7 +349,7 @@
                                                value="both"
                                                class="mr-3 text-purple-600 focus:ring-purple-500"
                                                required />
-                                        <span class="text-gray-900 dark:text-gray-100">Both</span>
+                                        <span class="text-gray-100">Both</span>
                                     </label>
                                 </div>
                             </div>
@@ -373,7 +373,7 @@
                              :class="{ 'ring-2 ring-purple-500': currentStep === 4 }"
                              data-step="4"
                              x-show="currentStep === 4">
-                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">RISK ASSESSMENT</h2>
+                        <h2 class="mb-4 text-2xl font-bold text-gray-100">RISK ASSESSMENT</h2>
                         <div class="mb-6 rounded-lg border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-900/20">
                             <p class="text-orange-800 dark:text-orange-200">
                                 Understanding your risk tolerance helps us recommend appropriate investment strategies.
@@ -381,7 +381,7 @@
                         </div>
                         <div class="space-y-6">
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                <label class="block text-sm font-semibold text-gray-100">
                                     How would you describe your risk tolerance?
                                     <span class="ml-1 text-red-500">*</span>
                                 </label>
@@ -393,8 +393,8 @@
                                                class="mt-1 mr-3 text-purple-600 focus:ring-purple-500"
                                                required />
                                         <div>
-                                            <span class="font-medium text-gray-900 dark:text-gray-100">Conservative</span>
-                                            <p class="text-sm text-gray-600 dark:text-gray-400">I prefer stable returns and am uncomfortable with volatility</p>
+                                            <span class="font-medium text-gray-100">Conservative</span>
+                                            <p class="text-sm text-gray-400">I prefer stable returns and am uncomfortable with volatility</p>
                                         </div>
                                     </label>
                                     <label class="flex items-start">
@@ -404,8 +404,8 @@
                                                class="mt-1 mr-3 text-purple-600 focus:ring-purple-500"
                                                required />
                                         <div>
-                                            <span class="font-medium text-gray-900 dark:text-gray-100">Moderate</span>
-                                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                            <span class="font-medium text-gray-100">Moderate</span>
+                                            <p class="text-sm text-gray-400">
                                                 I'm comfortable with some volatility for potentially higher returns
                                             </p>
                                         </div>
@@ -417,8 +417,8 @@
                                                class="mt-1 mr-3 text-purple-600 focus:ring-purple-500"
                                                required />
                                         <div>
-                                            <span class="font-medium text-gray-900 dark:text-gray-100">Aggressive</span>
-                                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                            <span class="font-medium text-gray-100">Aggressive</span>
+                                            <p class="text-sm text-gray-400">
                                                 I'm comfortable with high volatility for maximum growth potential
                                             </p>
                                         </div>
@@ -426,7 +426,7 @@
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="investment_timeline">
                                     What is your investment timeline?
                                     <span class="ml-1 text-red-500">*</span>
@@ -461,7 +461,7 @@
                              :class="{ 'ring-2 ring-purple-500': currentStep === 5 }"
                              data-step="5"
                              x-show="currentStep === 5">
-                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">VALUES & VIEWPOINT</h2>
+                        <h2 class="mb-4 text-2xl font-bold text-gray-100">VALUES & VIEWPOINT</h2>
                         <div class="mb-6 rounded-lg border border-purple-200 bg-purple-50 p-4 dark:border-purple-800 dark:bg-purple-900/20">
                             <p class="text-purple-800 dark:text-purple-200">
                                 Tell us about your values and what's important to you in your investments.
@@ -469,7 +469,7 @@
                         </div>
                         <div class="space-y-6">
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="investment_goals">
                                     What are your primary investment goals?
                                     <span class="ml-1 text-red-500">*</span>
@@ -482,7 +482,7 @@
                                           required></textarea>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                <label class="block text-sm font-semibold text-gray-100">
                                     Which ESG factors are most important to you? (Select all that apply)
                                 </label>
                                 <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -491,28 +491,28 @@
                                                name="esg_factors"
                                                value="environmental"
                                                class="mr-3 rounded text-purple-600 focus:ring-purple-500" />
-                                        <span class="text-gray-900 dark:text-gray-100">Environmental sustainability</span>
+                                        <span class="text-gray-100">Environmental sustainability</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="checkbox"
                                                name="esg_factors"
                                                value="social"
                                                class="mr-3 rounded text-purple-600 focus:ring-purple-500" />
-                                        <span class="text-gray-900 dark:text-gray-100">Social responsibility</span>
+                                        <span class="text-gray-100">Social responsibility</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="checkbox"
                                                name="esg_factors"
                                                value="governance"
                                                class="mr-3 rounded text-purple-600 focus:ring-purple-500" />
-                                        <span class="text-gray-900 dark:text-gray-100">Corporate governance</span>
+                                        <span class="text-gray-100">Corporate governance</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="checkbox"
                                                name="esg_factors"
                                                value="diversity"
                                                class="mr-3 rounded text-purple-600 focus:ring-purple-500" />
-                                        <span class="text-gray-900 dark:text-gray-100">Diversity & inclusion</span>
+                                        <span class="text-gray-100">Diversity & inclusion</span>
                                     </label>
                                 </div>
                             </div>
@@ -536,7 +536,7 @@
                              :class="{ 'ring-2 ring-purple-500': currentStep === 6 }"
                              data-step="6"
                              x-show="currentStep === 6">
-                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">FINANCIAL CONTEXT</h2>
+                        <h2 class="mb-4 text-2xl font-bold text-gray-100">FINANCIAL CONTEXT</h2>
                         <div class="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
                             <p class="text-blue-800 dark:text-blue-200">
                                 Help us understand your financial situation to provide better recommendations.
@@ -544,7 +544,7 @@
                         </div>
                         <div class="space-y-6">
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="annual_income">
                                     Approximate annual income
                                     <span class="ml-1 text-red-500">*</span>
@@ -563,7 +563,7 @@
                                 </select>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="investment_amount">
                                     Initial investment amount
                                     <span class="ml-1 text-red-500">*</span>
@@ -581,7 +581,7 @@
                                 </select>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="investment_experience">
                                     Investment experience
                                     <span class="ml-1 text-red-500">*</span>
@@ -613,7 +613,7 @@
                              :class="{ 'ring-2 ring-purple-500': currentStep === 7 }"
                              data-step="7"
                              x-show="currentStep === 7">
-                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">YOUR FINANCIAL TEAM</h2>
+                        <h2 class="mb-4 text-2xl font-bold text-gray-100">YOUR FINANCIAL TEAM</h2>
                         <div class="mb-6 rounded-lg border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-800 dark:bg-yellow-900/20">
                             <p class="text-yellow-800 dark:text-yellow-200">
                                 Tell us about your current financial advisors and professional relationships.
@@ -621,7 +621,7 @@
                         </div>
                         <div class="space-y-6">
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="current_advisor">Do you currently work with a financial advisor?</label>
                                 <textarea id="current_advisor"
                                           name="current_advisor"
@@ -630,7 +630,7 @@
                                           placeholder="Please share details about your current advisor relationships..."></textarea>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="other_professionals">
                                     Other financial professionals (CPA, attorney, etc.)
                                 </label>
@@ -641,7 +641,7 @@
                                           placeholder="Tell us about your CPA, attorney, or other financial professionals..."></textarea>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="referral_source">How did you hear about Ethical Capital?</label>
                                 <input type="text"
                                        id="referral_source"
@@ -669,7 +669,7 @@
                              :class="{ 'ring-2 ring-purple-500': currentStep === 8 }"
                              data-step="8"
                              x-show="currentStep === 8">
-                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">REVIEW & SUBMIT</h2>
+                        <h2 class="mb-4 text-2xl font-bold text-gray-100">REVIEW & SUBMIT</h2>
                         <div class="mb-6 rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-900/20">
                             <p class="text-green-800 dark:text-green-200">
                                 Please review your information and add any final comments before submitting.
@@ -677,7 +677,7 @@
                         </div>
                         <div class="space-y-6">
                             <div class="space-y-2">
-                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                <label class="block text-sm font-semibold text-gray-100"
                                        for="additional_comments">Additional comments or questions</label>
                                 <textarea id="additional_comments"
                                           name="additional_comments"
@@ -701,7 +701,7 @@
                                            name="agree_terms"
                                            class="mt-1 mr-3 rounded text-purple-600 focus:ring-purple-500"
                                            required />
-                                    <span class="text-sm text-gray-900 dark:text-gray-100">
+                                    <span class="text-sm text-gray-100">
                                         I agree to the
                                         <a href="/legal/terms/"
                                            class="text-purple-600 underline hover:text-purple-800"
@@ -718,7 +718,7 @@
                                            name="consent_contact"
                                            class="mt-1 mr-3 rounded text-purple-600 focus:ring-purple-500"
                                            required />
-                                    <span class="text-sm text-gray-900 dark:text-gray-100">
+                                    <span class="text-sm text-gray-100">
                                         I consent to being contacted by Ethical Capital regarding my application and potential investment
                                         services
                                         <span class="ml-1 text-red-500">*</span>

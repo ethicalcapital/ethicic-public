@@ -24,8 +24,8 @@
         <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-8"
                  role="main">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">RECENT MEDIA MENTIONS</h2>
-                <span class="text-sm text-gray-600 dark:text-gray-400" id="article-count">{{ page.media_items.all.count }} ARTICLES</span>
+                <h2 class="text-2xl font-bold text-gray-100">RECENT MEDIA MENTIONS</h2>
+                <span class="text-sm text-gray-400" id="article-count">{{ page.media_items.all.count }} ARTICLES</span>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Media Articles Content -->
@@ -45,10 +45,10 @@
                                             <span class="text-purple-600 dark:text-purple-400 font-semibold">{{ item.publication|upper }}</span>
                                         {% endif %}
                                         {% if item.publication_date %}
-                                            <span class="text-gray-600 dark:text-gray-400">{{ item.publication_date|date:"M j, Y"|upper }}</span>
+                                            <span class="text-gray-400">{{ item.publication_date|date:"M j, Y"|upper }}</span>
                                         {% endif %}
                                     </div>
-                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3 leading-tight">
+                                    <h3 class="text-xl font-semibold text-gray-100 mb-3 leading-tight">
                                         {% if item.external_url %}
                                             <a href="{{ item.external_url }}"
                                                target="_blank"
@@ -61,7 +61,7 @@
                                         {% endif %}
                                     </h3>
                                     {% if item.description %}
-                                        <p class="text-gray-700 dark:text-gray-300 mb-4">{{ item.description|striptags|truncatewords:25 }}</p>
+                                        <p class="text-gray-300 mb-4">{{ item.description|striptags|truncatewords:25 }}</p>
                                     {% endif %}
                                     {% if item.external_url %}
                                         <a href="{{ item.external_url }}"
@@ -89,12 +89,12 @@
                         <!-- Loading indicator -->
                         <div id="loading-indicator" class="text-center py-8 hidden htmx-indicator">
                             <div class="inline-block animate-spin text-2xl mb-2">⟳</div>
-                            <p class="text-gray-600 dark:text-gray-400">Loading more articles...</p>
+                            <p class="text-gray-400">Loading more articles...</p>
                         </div>
                     {% else %}
                         <div class="text-center py-12">
-                            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">{{ page.empty_state_title }}</h3>
-                            <div class="text-gray-600 dark:text-gray-400">{{ page.empty_state_message|safe }}</div>
+                            <h3 class="text-xl font-semibold text-gray-100 mb-2">{{ page.empty_state_title }}</h3>
+                            <div class="text-gray-400">{{ page.empty_state_message|safe }}</div>
                         </div>
                     {% endif %}
                 </div>
@@ -102,8 +102,8 @@
                 <aside class="space-y-6">
                     {% if page.sidebar_interview_show %}
                         <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ page.sidebar_interview_title }}</h3>
-                            <div class="text-gray-600 dark:text-gray-400 mb-4 text-sm">{{ page.sidebar_interview_description|safe }}</div>
+                            <h3 class="text-lg font-semibold text-gray-100 mb-4">{{ page.sidebar_interview_title }}</h3>
+                            <div class="text-gray-400 mb-4 text-sm">{{ page.sidebar_interview_description|safe }}</div>
                             <a href="{{ page.sidebar_interview_button_url }}"
                                target="_blank"
                                rel="noopener noreferrer"
@@ -114,8 +114,8 @@
                     {% endif %}
                     {% if page.sidebar_contact_show %}
                         <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ page.sidebar_contact_title }}</h3>
-                            <div class="text-gray-600 dark:text-gray-400 mb-4 text-sm">{{ page.sidebar_contact_description|safe }}</div>
+                            <h3 class="text-lg font-semibold text-gray-100 mb-4">{{ page.sidebar_contact_title }}</h3>
+                            <div class="text-gray-400 mb-4 text-sm">{{ page.sidebar_contact_description|safe }}</div>
                             <a href="{{ page.sidebar_contact_button_url }}"
                                class="block w-full text-center px-4 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-purple-600 transition-colors">
                                 {{ page.sidebar_contact_button_text }}
@@ -145,8 +145,8 @@
   <!-- Media Coverage -->
   <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-8" role="main">
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">RECENT MEDIA MENTIONS</h2>
-      <span class="text-sm text-gray-600 dark:text-gray-400" id="article-count">{{ page.media_items.all.count }} ARTICLES</span>
+      <h2 class="text-2xl font-bold text-gray-100">RECENT MEDIA MENTIONS</h2>
+      <span class="text-sm text-gray-400" id="article-count">{{ page.media_items.all.count }} ARTICLES</span>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <!-- Media Articles Content -->
@@ -169,11 +169,11 @@
                 <span class="text-purple-600 dark:text-purple-400 font-semibold">{{ item.publication|upper }}</span>
                 {% endif %}
                 {% if item.publication_date %}
-                <span class="text-gray-600 dark:text-gray-400">{{ item.publication_date|date:"M j, Y"|upper }}</span>
+                <span class="text-gray-400">{{ item.publication_date|date:"M j, Y"|upper }}</span>
                 {% endif %}
               </div>
 
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3 leading-tight">
+              <h3 class="text-xl font-semibold text-gray-100 mb-3 leading-tight">
                 {% if item.external_url %}
                 <a
                   href="{{ item.external_url }}"
@@ -189,7 +189,7 @@
               </h3>
 
               {% if item.description %}
-              <p class="text-gray-700 dark:text-gray-300 mb-4">
+              <p class="text-gray-300 mb-4">
                 {{ item.description|striptags|truncatewords:25 }}
               </p>
               {% endif %}
@@ -226,12 +226,12 @@
           <!-- Loading indicator -->
           <div id="loading-indicator" class="text-center py-8 hidden htmx-indicator">
             <div class="inline-block animate-spin text-2xl mb-2">⟳</div>
-            <p class="text-gray-600 dark:text-gray-400">Loading more articles...</p>
+            <p class="text-gray-400">Loading more articles...</p>
           </div>
           {% else %}
           <div class="text-center py-12">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">{{ page.empty_state_title }}</h3>
-            <div class="text-gray-600 dark:text-gray-400">{{ page.empty_state_message|safe }}</div>
+            <h3 class="text-xl font-semibold text-gray-100 mb-2">{{ page.empty_state_title }}</h3>
+            <div class="text-gray-400">{{ page.empty_state_message|safe }}</div>
           </div>
           {% endif %}
 >>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
@@ -240,11 +240,11 @@
     <!-- Press Kit Section -->
     {% if page.press_kit_title or page.press_kit_description %}
         <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h2 class="text-2xl font-bold text-gray-100 mb-4">
                 {{ page.press_kit_title|default:"PRESS KIT & RESOURCES" }}
             </h2>
             {% if page.press_kit_description %}
-                <div class="text-gray-700 dark:text-gray-300 mb-6">{{ page.press_kit_description|richtext }}</div>
+                <div class="text-gray-300 mb-6">{{ page.press_kit_description|richtext }}</div>
             {% endif %}
             <div class="flex flex-col sm:flex-row gap-4">
                 <a href="/contact/"
@@ -254,7 +254,7 @@
                 <a href="https://github.com/ethicalcapital/sage"
                    target="_blank"
                    rel="noopener"
-                   class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-center">
+                   class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-center">
                     View Open Source Methodology
                 </a>
             </div>

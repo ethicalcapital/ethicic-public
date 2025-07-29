@@ -53,7 +53,7 @@
     font-size: 0.875rem;
     border: 1px solid;
     background-color: rgb(20 184 166);
-    color: rgb(17 24 39);
+    color: rgb(31 41 55);
     border-color: rgb(20 184 166);
     transition: all 0.25s ease;
   }
@@ -183,7 +183,7 @@
   }
 
   .card-content-ec {
-    @apply text-gray-200;
+    @apply text-gray-300;
   }
 
   /* Badge Components */
