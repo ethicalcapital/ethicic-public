@@ -21,6 +21,8 @@ urlpatterns = [
     path("newsletter/signup/", views.newsletter_signup, name="newsletter_subscribe"),
     # Test clean navigation
     path("test-clean-nav/", views.test_clean_nav, name="test_clean_nav"),
+    # Test form inputs
+    path("test-form/", views.test_form, name="test_form"),
     # Onboarding form
     path("onboarding/submit/", views.onboarding_form_submit, name="onboarding_submit"),
     path(

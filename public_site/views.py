@@ -1790,6 +1790,11 @@ def test_clean_nav(request):
     return render(request, "public_site/test_clean_nav.html")
 
 
+def test_form(request):
+    """Test page for form input debugging"""
+    return render(request, "public_site/test_form.html")
+
+
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def theme_api(request):

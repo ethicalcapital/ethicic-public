@@ -26,31 +26,31 @@
         hx-target="#form-response"
         hx-indicator="#form-loading"
         hx-swap="innerHTML"
-        class="form-ec relative"
+        class="space-y-6 relative"
       >
         {% csrf_token %}
 
         <!-- Name Field -->
-        <div class="form-group-ec">
-          <label for="name" class="form-label-ec">Full Name *</label>
+        <div class="mb-6">
+          <label for="name" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Full Name *</label>
           <input
             type="text"
             id="name"
             name="name"
-            class="form-input-ec"
+            class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
             placeholder="Your full name"
             required
           />
         </div>
 
         <!-- Email Field with inline validation -->
-        <div class="form-group-ec">
-          <label for="email" class="form-label-ec">Email Address *</label>
+        <div class="mb-6">
+          <label for="email" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Email Address *</label>
           <input
             type="email"
             id="email"
             name="email"
-            class="form-input-ec"
+            class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
             placeholder="your@email.com"
             autocomplete="email"
             required
@@ -73,21 +73,21 @@
         </div>
 
         <!-- Company Field -->
-        <div class="form-group-ec">
-          <label for="company" class="form-label-ec">Company/Organization</label>
+        <div class="mb-6">
+          <label for="company" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Company/Organization</label>
           <input
             type="text"
             id="company"
             name="company"
-            class="form-input-ec"
+            class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
             placeholder="Your company or organization"
           />
         </div>
 
         <!-- Subject -->
-        <div class="form-group-ec">
-          <label for="subject" class="form-label-ec">Subject *</label>
-          <select id="subject" name="subject" class="form-select-ec" :disabled="submitting" required>
+        <div class="mb-6">
+          <label for="subject" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Subject *</label>
+          <select id="subject" name="subject" class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none" :disabled="submitting" required>
             <option value="">Select a topic...</option>
             <option value="general">General Inquiry</option>
             <option value="investment_inquiry">Investment Services</option>
@@ -100,19 +100,20 @@
         </div>
 
         <!-- Message -->
-        <div class="form-group-ec">
-          <label for="message" class="form-label-ec">Message *</label>
+        <div class="mb-6">
+          <label for="message" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Message *</label>
           <textarea
             id="message"
             name="message"
-            class="form-textarea-ec"
+            class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
+            rows="4"
             placeholder="Tell us about your investment goals, timeline, or any specific questions you have..."
             required
           ></textarea>
         </div>
 
         <!-- Cloudflare Turnstile -->
-        <div class="form-group-ec">
+        <div class="mb-6">
           <div
             class="cf-turnstile"
             data-sitekey="0x4AAAAAABk5jZxSl-TKV1hs"
@@ -223,7 +224,7 @@
       margin: 1rem 0;
     }
     
-    .form-group-ec {
+    .mb-6 {
       margin-bottom: 1.5rem;
     }
     
@@ -240,9 +241,9 @@
     }
     
     /* Ensure proper focus styles for accessibility */
-    .form-input-ec:focus,
-    .form-select-ec:focus,
-    .form-textarea-ec:focus {
+    .w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none:focus,
+    .w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none:focus,
+    .w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none:focus {
       outline: 2px solid #a855f7;
       outline-offset: 2px;
     }
