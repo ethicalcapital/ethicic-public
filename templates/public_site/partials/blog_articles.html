@@ -1,4 +1,7 @@
-{% load wagtailcore_tags wagtailimages_tags %} {% for post in posts %} {% if not forloop.first or page_number > 1 %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% for post in posts %}
+  {% if not forloop.first or page_number > 1 %}
 <article class="article-list-item" data-article-id="{{ post.id }}">
   <div class="article-list-content">
     <!-- Featured Image Only (no KPIs here) -->

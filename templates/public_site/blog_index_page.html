@@ -1,7 +1,11 @@
-{% extends "public_site/base_tailwind.html" %} {% load wagtailcore_tags wagtailimages_tags static blog_filters %} {%
-block title %}{{ display_title }} - Ethical Capital{% endblock %} {% block meta_description %}Explore Ethical Capital's
-investment research, market analysis, and insights on sustainable finance and ESG investing strategies.{% endblock %} {%
-block content %}
+{% extends "public_site/base_tailwind.html" %}
+{% load wagtailcore_tags wagtailimages_tags static blog_filters %}
+
+{% block title %}{{ display_title }} - Ethical Capital{% endblock %}
+
+{% block meta_description %}Explore Ethical Capital's investment research, market analysis, and insights on sustainable finance and ESG investing strategies.{% endblock %}
+
+{% block content %}
 <div class="container-ec py-8">
   <!-- Hero Section -->
   <section class="card-ec mb-8" role="banner" aria-labelledby="hero-heading">
