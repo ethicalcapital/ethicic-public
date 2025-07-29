@@ -36,11 +36,11 @@
                             <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                                 {% for exclusion in page.product_exclusions %}
                                     <div class="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
-                                        <h5 class="mb-3 font-semibold text-red-800 dark:text-red-200">{{ exclusion.value.title }}</h5>
-                                        <ul class="space-y-1 text-sm text-red-700 dark:text-red-300">
+                                        <h5 class="mb-3 font-semibold text-red-900 dark:text-red-200">{{ exclusion.value.title }}</h5>
+                                        <ul class="space-y-1 text-sm text-red-900 dark:text-red-300">
                                             {% for item in exclusion.value.items %}
                                                 <li class="flex items-start gap-2">
-                                                    <span class="mt-1 text-red-500">•</span>
+                                                    <span class="mt-1 text-red-600">•</span>
                                                     <span>{{ item }}</span>
                                                 </li>
                                             {% endfor %}
@@ -57,11 +57,11 @@
                             <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                                 {% for exclusion in page.conduct_exclusions %}
                                     <div class="rounded-lg border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-900/20">
-                                        <h5 class="mb-3 font-semibold text-orange-800 dark:text-orange-200">{{ exclusion.value.title }}</h5>
-                                        <ul class="space-y-1 text-sm text-orange-700 dark:text-orange-300">
+                                        <h5 class="mb-3 font-semibold text-orange-900 dark:text-orange-200">{{ exclusion.value.title }}</h5>
+                                        <ul class="space-y-1 text-sm text-orange-900 dark:text-orange-300">
                                             {% for item in exclusion.value.items %}
                                                 <li class="flex items-start gap-2">
-                                                    <span class="mt-1 text-orange-500">•</span>
+                                                    <span class="mt-1 text-orange-600">•</span>
                                                     <span>{{ item }}</span>
                                                 </li>
                                             {% endfor %}
@@ -74,21 +74,21 @@
                         <div class="mb-6 text-gray-300">{{ page.methodology_content|richtext }}</div>
                         <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
                             <div class="rounded-lg bg-gradient-to-br from-purple-100 to-purple-200 p-6 text-center dark:from-purple-900/30 dark:to-purple-800/30">
-                                <div class="mb-2 text-3xl font-bold text-purple-800 dark:text-purple-200">{{ page.exclusion_percentage }}</div>
-                                <div class="text-sm text-purple-700 dark:text-purple-300">
+                                <div class="mb-2 text-3xl font-bold text-purple-900 dark:text-purple-200">{{ page.exclusion_percentage }}</div>
+                                <div class="text-sm text-purple-900 dark:text-purple-300">
                                     of S&P 500 excluded
                                     <br />
                                     <span class="text-xs">({{ page.exclusion_date }})</span>
                                 </div>
                             </div>
                             <div class="rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 p-6 text-center dark:from-blue-900/30 dark:to-blue-800/30">
-                                <div class="mb-2 text-3xl font-bold text-blue-800 dark:text-blue-200">Open Source</div>
-                                <div class="text-sm text-blue-700 dark:text-blue-300">methodology</div>
+                                <div class="mb-2 text-3xl font-bold text-blue-900 dark:text-blue-200">Open Source</div>
+                                <div class="text-sm text-blue-900 dark:text-blue-300">methodology</div>
                             </div>
                         </div>
                         <div class="rounded-lg border border-green-200 bg-green-50 p-6 dark:border-green-800 dark:bg-green-900/20">
-                            <h4 class="mb-3 text-lg font-semibold text-green-800 dark:text-green-200">Open Source & Collaborative</h4>
-                            <p class="mb-4 text-green-700 dark:text-green-300">
+                            <h4 class="mb-3 text-lg font-semibold text-green-900 dark:text-green-200">Open Source & Collaborative</h4>
+                            <p class="mb-4 text-green-900 dark:text-green-300">
                                 Our complete framework lives on GitHub under an MIT license with full version control—think of it as a
                                 living document with a conversation attached. Want to suggest changes? Send us a pull request. See
                                 something we missed? Raise an issue. Have ideas for improvement? Join the discussion forum. This
@@ -128,15 +128,15 @@
                                 <h4 class="mb-3 font-semibold text-gray-100">People</h4>
                                 <ul class="space-y-1 text-sm text-gray-300">
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Staff retention rates</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Governance quality</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Company culture</span>
                                     </li>
                                 </ul>
@@ -145,15 +145,15 @@
                                 <h4 class="mb-3 font-semibold text-gray-100">Product</h4>
                                 <ul class="space-y-1 text-sm text-gray-300">
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Innovation potential</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Market share position</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Strategic KPIs</span>
                                     </li>
                                 </ul>
@@ -162,15 +162,15 @@
                                 <h4 class="mb-3 font-semibold text-gray-100">Execution</h4>
                                 <ul class="space-y-1 text-sm text-gray-300">
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>R&D returns</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Sales effectiveness</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Operational results</span>
                                     </li>
                                 </ul>
@@ -179,15 +179,15 @@
                                 <h4 class="mb-3 font-semibold text-gray-100">Valuation</h4>
                                 <ul class="space-y-1 text-sm text-gray-300">
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Price-to-earnings ratios</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Asset valuations</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Free cash flow</span>
                                     </li>
                                 </ul>
@@ -196,15 +196,15 @@
                                 <h4 class="mb-3 font-semibold text-gray-100">Moat</h4>
                                 <ul class="space-y-1 text-sm text-gray-300">
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Disruption resistance</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Competitive pressures</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Community engagement</span>
                                     </li>
                                 </ul>
@@ -213,15 +213,15 @@
                                 <h4 class="mb-3 font-semibold text-gray-100">Risk</h4>
                                 <ul class="space-y-1 text-sm text-gray-300">
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Adoption challenges</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Regulatory risks</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Capital loss potential</span>
                                     </li>
                                 </ul>
@@ -244,22 +244,22 @@
                         <h4 class="mb-4 text-lg font-semibold text-gray-100">Our Three Core Strategies</h4>
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                             <div class="rounded-lg border border-green-200 bg-gradient-to-br from-green-50 to-green-100 p-6 dark:border-green-700 dark:from-green-900/30 dark:to-green-800/30">
-                                <h4 class="mb-3 font-semibold text-green-800 dark:text-green-200">Growth Strategy</h4>
-                                <ul class="mb-4 space-y-2 text-sm text-green-700 dark:text-green-300">
+                                <h4 class="mb-3 font-semibold text-green-900 dark:text-green-200">Growth Strategy</h4>
+                                <ul class="mb-4 space-y-2 text-sm text-green-900 dark:text-green-300">
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-green-500">•</span>
+                                        <span class="mt-1 text-green-700">•</span>
                                         <span>Full ethical criteria implementation</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-green-500">•</span>
+                                        <span class="mt-1 text-green-700">•</span>
                                         <span>~25 concentrated positions</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-green-500">•</span>
+                                        <span class="mt-1 text-green-700">•</span>
                                         <span>Long-term growth focus</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-green-500">•</span>
+                                        <span class="mt-1 text-green-700">•</span>
                                         <span>Our flagship strategy</span>
                                     </li>
                                 </ul>
@@ -269,22 +269,22 @@
                                 </a>
                             </div>
                             <div class="rounded-lg border border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-6 dark:border-blue-700 dark:from-blue-900/30 dark:to-blue-800/30">
-                                <h4 class="mb-3 font-semibold text-blue-800 dark:text-blue-200">Income Strategy</h4>
-                                <ul class="mb-4 space-y-2 text-sm text-blue-700 dark:text-blue-300">
+                                <h4 class="mb-3 font-semibold text-blue-900 dark:text-blue-200">Income Strategy</h4>
+                                <ul class="mb-4 space-y-2 text-sm text-blue-900 dark:text-blue-300">
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Income-generating focus</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Ethical dividend companies</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Balanced risk approach</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span class="mt-1 text-blue-700">•</span>
                                         <span>Regular distributions</span>
                                     </li>
                                 </ul>
@@ -294,22 +294,22 @@
                                 </a>
                             </div>
                             <div class="rounded-lg border border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100 p-6 dark:border-purple-700 dark:from-purple-900/30 dark:to-purple-800/30">
-                                <h4 class="mb-3 font-semibold text-purple-800 dark:text-purple-200">Diversification Strategy</h4>
-                                <ul class="mb-4 space-y-2 text-sm text-purple-700 dark:text-purple-300">
+                                <h4 class="mb-3 font-semibold text-purple-900 dark:text-purple-200">Diversification Strategy</h4>
+                                <ul class="mb-4 space-y-2 text-sm text-purple-900 dark:text-purple-300">
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-purple-500">•</span>
+                                        <span class="mt-1 text-purple-700">•</span>
                                         <span>Broader diversification</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-purple-500">•</span>
+                                        <span class="mt-1 text-purple-700">•</span>
                                         <span>Risk management focus</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-purple-500">•</span>
+                                        <span class="mt-1 text-purple-700">•</span>
                                         <span>Ethical foundation</span>
                                     </li>
                                     <li class="flex items-start gap-2">
-                                        <span class="mt-1 text-purple-500">•</span>
+                                        <span class="mt-1 text-purple-700">•</span>
                                         <span>Portfolio stabilization</span>
                                     </li>
                                 </ul>
@@ -367,8 +367,8 @@
                             </div>
                         </div>
                         <div class="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
-                            <span class="font-semibold text-blue-800 dark:text-blue-200">A Natural Cycle:</span>
-                            <span class="text-blue-700 dark:text-blue-300">
+                            <span class="font-semibold text-blue-900 dark:text-blue-200">A Natural Cycle:</span>
+                            <span class="text-blue-900 dark:text-blue-300">
                                 We rebalance portfolios on the new moon—a systematic timing approach that removes emotional
                                 decision-making from our process while ensuring regular review cycles.
                             </span>
