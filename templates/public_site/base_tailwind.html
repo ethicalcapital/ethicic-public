@@ -535,12 +535,17 @@
                 </nav>
                 <!-- Mobile search -->
                 <div class="border-t border-gray-600 p-4">
-                    <form method="get" action="/search/" role="search">
+                    <form method="get" action="/search/" role="search" class="relative">
                         <input type="text"
                                name="q"
                                placeholder="Search..."
-                               class="w-full rounded-lg border border-gray-600 bg-gray-700 px-4 py-2 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                               class="w-full rounded-lg border border-gray-600 bg-gray-700 px-4 py-2 pr-12 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-400 focus:outline-none"
                                aria-label="Search our website" />
+                        <button type="submit"
+                                class="absolute top-1/2 right-1 -translate-y-1/2 transform rounded-md bg-purple-600 px-2 py-1 text-white transition-colors hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                                aria-label="Submit search">
+                            🔍
+                        </button>
                     </form>
                 </div>
                 <!-- Mobile login links -->
