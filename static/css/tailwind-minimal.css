@@ -1,22 +1,25 @@
-@import url("tailwindcss");
+@import "tailwindcss" reference;
 
 @layer components {
   .btn-ec-primary {
-    @apply inline-flex items-center justify-center rounded border px-4 py-2 font-mono text-sm;
+    @apply inline-flex items-center justify-center border px-4 py-2 font-mono text-sm;
+    border-radius: 4px;
     @apply border-purple-900 bg-purple-900 text-white;
 
     transition: all 0.25s ease;
   }
 
   .btn-ec-secondary {
-    @apply inline-flex items-center justify-center rounded border px-4 py-2 font-mono text-sm;
+    @apply inline-flex items-center justify-center border px-4 py-2 font-mono text-sm;
+    border-radius: 4px;
     @apply border-teal-500 bg-teal-500 text-gray-900;
 
     transition: all 0.25s ease;
   }
 
   .panel-ec {
-    @apply rounded border border-gray-600 bg-gray-800 p-4;
+    @apply border border-gray-600 bg-gray-800 p-4;
+    border-radius: 4px;
   }
 
   .container-ec {

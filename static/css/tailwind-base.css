@@ -101,7 +101,8 @@
   /* Social link styling similar to Garden UI */
   .social-link-ec {
     @apply inline-flex items-center justify-center gap-2 px-3 py-2;
-    @apply rounded border border-gray-600 bg-gray-800 text-gray-200;
+    @apply border border-gray-600 bg-gray-800 text-gray-200;
+    border-radius: 4px;
     @apply hover:border-purple-400 hover:text-purple-400;
     @apply text-center font-mono text-sm transition-all duration-300;
 
@@ -152,7 +153,8 @@
   }
 
   .form-checkbox-ec {
-    @apply h-4 w-4 rounded border border-gray-600 bg-gray-800 text-purple-600;
+    @apply h-4 w-4 border border-gray-600 bg-gray-800 text-purple-600;
+    border-radius: 4px;
     @apply focus:ring-2 focus:ring-purple-400;
   }
 

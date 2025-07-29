@@ -1,0 +1,25 @@
+# Browserslist configuration for autoprefixer
+# https://github.com/browserslist/browserslist
+
+# Production browsers
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions
+
+# Include Chromium separately to ensure compatibility
+last 2 ChromeAndroid versions
+
+# Support for testing environments and older browsers
+> 0.5%
+not dead
+not op_mini all
+
+# Support Chromium for Playwright testing (Chrome >= 90 covers Chromium)
+Chrome >= 90
+
+# iOS Safari for mobile compatibility
+ios_saf >= 14
+
+# Samsung Internet for Android compatibility
+Samsung >= 13
