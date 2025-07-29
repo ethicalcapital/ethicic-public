@@ -382,9 +382,9 @@
 
   @layer themes {
     [data-theme="light"] .strategy-card .strategy-table .subtitle {
-      color: var(--color-on-primary);
-      -webkit-text-fill-color: var(--color-on-primary);
-      opacity: 0.9;
+      color: #1a1a1a;
+      -webkit-text-fill-color: #1a1a1a;
+      opacity: 1;
     }
   }
 
@@ -422,9 +422,9 @@
 
   @layer themes {
     [data-theme="dark"] .strategy-card .strategy-table .subtitle {
-      color: var(--color-on-primary);
-      -webkit-text-fill-color: var(--color-on-primary);
-      opacity: 0.9;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      opacity: 1;
     }
   }
 
