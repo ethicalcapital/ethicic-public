@@ -368,11 +368,10 @@
                             <div class="positioning-section">
                                 <h3 class="subsection-header">SECTOR POSITIONING</h3>
                                 <div class="positioning-grid">
-                                    {% comment %}Group sectors by position type{% endcomment %} {% regroup page.sector_positions.all by
-                                    position_type as position_groups %}
+                                    {% comment %}Group sectors by position type{% endcomment %}
+                                    {% regroup page.sector_positions.all by position_type as position_groups %}
                                     {% for group in position_groups %}
-                                        {% if group.grouper == 'overweight'
-                                            %}
+                                        {% if group.grouper == 'overweight' %}
                                             <div class="positioning-card overweight">
                                                 <h4>OVERWEIGHTS</h4>
                                                 <ul>
