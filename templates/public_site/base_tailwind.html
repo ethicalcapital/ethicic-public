@@ -642,40 +642,14 @@
                                 <!-- Results populated by HTMX -->
                             </div>
                         </div>
-                        <!-- Login Dropdown -->
-                        <div class="relative hidden md:block" x-data="{ open: false }">
-                            <button class="flex items-center space-x-1 rounded-lg border border-gray-600 bg-gray-700 px-2 lg:px-3 py-2 text-white transition-colors hover:border-gray-500 hover:bg-gray-600"
-                                    @click="open = !open"
-                                    @click.outside="open = false"
-                                    aria-label="Login options">
-                                <span class="text-sm lg:text-base">Login</span>
-                                <span class="text-xs" :class="{ 'rotate-180': open }">▼</span>
-                            </button>
-                            <div class="absolute right-0 z-50 mt-2 w-64 rounded-lg border border-gray-600 bg-gray-800 shadow-lg"
-                                 x-show="open"
-                                 x-transition
-                                 @click="open = false"
-                                 x-cloak>
-                                <a href="/garden/"
-                                   class="flex items-center space-x-3 rounded-t-lg px-4 py-3 transition-colors hover:bg-gray-700">
-                                    <span class="text-2xl" aria-hidden="true">🌱</span>
-                                    <div>
-                                        <div class="font-mono text-sm text-purple-400">Garden Login</div>
-                                        <div class="text-xs text-gray-400">Research platform access</div>
-                                    </div>
-                                </a>
-                                <a href="https://app.altruist.com/login"
-                                   class="flex items-center space-x-3 rounded-b-lg px-4 py-3 transition-colors hover:bg-gray-700"
-                                   target="_blank"
-                                   rel="noopener">
-                                    <span class="text-2xl" aria-hidden="true">👤</span>
-                                    <div>
-                                        <div class="font-mono text-sm text-purple-400">Client Login</div>
-                                        <div class="text-xs text-gray-400">Portfolio access via Altruist</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        <!-- Login Button -->
+                        <a href="https://app.altruist.com/login"
+                           class="hidden md:flex items-center space-x-1 rounded-lg border border-gray-600 bg-gray-700 px-2 lg:px-3 py-2 text-white transition-colors hover:border-gray-500 hover:bg-gray-600"
+                           target="_blank"
+                           rel="noopener"
+                           aria-label="Client login">
+                            <span class="text-sm lg:text-base">Login</span>
+                        </a>
                         <!-- Enhanced CTA Button -->
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdx1ex4pj5iYaj1v1Yxjt7iFbicqZbKWNuOZVyMlG8sKswbgQ/viewform?usp=header"
                            class="btn-ec-primary transform transition-all duration-200 hover:scale-105 hover:shadow-lg text-sm lg:text-base px-3 lg:px-4 py-2 font-semibold"
@@ -747,16 +721,8 @@
                         </button>
                     </form>
                 </div>
-                <!-- Mobile login links -->
-                <div class="space-y-3 border-t border-gray-600 p-4">
-                    <a href="/garden/"
-                       class="flex items-center space-x-3 rounded-lg bg-gray-700 p-3 hover:bg-gray-600">
-                        <span class="text-xl">🌱</span>
-                        <div>
-                            <div class="font-mono text-sm text-purple-400">Garden Login</div>
-                            <div class="text-xs text-gray-400">Research platform</div>
-                        </div>
-                    </a>
+                <!-- Mobile login link -->
+                <div class="border-t border-gray-600 p-4">
                     <a href="https://app.altruist.com/login"
                        class="flex items-center space-x-3 rounded-lg bg-gray-700 p-3 hover:bg-gray-600"
                        target="_blank">
