@@ -154,21 +154,21 @@
                     <div class="card-content-ec space-y-6">
                         <div class="text-gray-900 dark:text-gray-300">{{ page.strategies_intro|richtext }}</div>
                         
-                        <!-- Strategy Comparison Table - Desktop -->
-                        <div class="hidden lg:block overflow-x-auto">
+                        <!-- Strategy Comparison Table - Desktop & Tablet -->
+                        <div class="hidden md:block overflow-x-auto">
                             <table class="w-full border border-gray-600 bg-gray-800 rounded-lg overflow-hidden">
                                 <thead>
                                     <tr>
-                                        <th class="bg-gray-700 p-4 text-left"></th>
-                                        <th class="bg-purple-900 p-4 text-center min-w-64">
+                                        <th class="bg-gray-700 p-4 text-left w-32"></th>
+                                        <th class="bg-purple-900 p-4 text-center">
                                             <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_1_name }}</h3>
                                             <div class="subtitle mt-1 text-sm text-purple-200">{{ page.strategy_1_subtitle }}</div>
                                         </th>
-                                        <th class="bg-purple-900 p-4 text-center min-w-64">
+                                        <th class="bg-purple-900 p-4 text-center">
                                             <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_2_name }}</h3>
                                             <div class="subtitle mt-1 text-sm text-purple-200">{{ page.strategy_2_subtitle }}</div>
                                         </th>
-                                        <th class="bg-purple-900 p-4 text-center min-w-64">
+                                        <th class="bg-purple-900 p-4 text-center">
                                             <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_3_name }}</h3>
                                             <div class="subtitle mt-1 text-sm text-purple-200">{{ page.strategy_3_subtitle }}</div>
                                         </th>
@@ -218,8 +218,8 @@
                             </table>
                         </div>
                         
-                        <!-- Strategy Cards - Mobile & Tablet -->
-                        <div class="lg:hidden grid grid-cols-1 gap-6">
+                        <!-- Strategy Cards - Mobile Only -->
+                        <div class="md:hidden grid grid-cols-1 gap-6">
                             <!-- Strategy 1 -->
                             <article class="strategy-card overflow-hidden rounded-lg border border-gray-600 bg-gray-800">
                                 <header class="bg-purple-900 p-4 text-center">
