@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{{ page_title|default:"Ethical Capital" }}{% endblock %}</title>
 
-    {% load static wagtailsettings_tags menu_tags tailwind_cli %} {% get_settings "public_site.SiteConfiguration" as
-    site_config %}
+    {% load static wagtailsettings_tags menu_tags %}
+    {% get_settings "public_site.SiteConfiguration" as site_config %}
 
     <!-- Optimized font loading strategy -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

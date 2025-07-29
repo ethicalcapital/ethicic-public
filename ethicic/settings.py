@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "django.contrib.humanize",
-    # CSS Processing managed via PostCSS build pipeline
+    # CSS Processing
+    "django_tailwind_cli",
     # Wagtail dependencies
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -487,3 +488,7 @@ MAIN_PLATFORM_API_URL = os.getenv(
 # Cloudflare Turnstile Configuration
 TURNSTILE_SITE_KEY = os.getenv("TURNSTILE_SITE_KEY")
 TURNSTILE_SECRET_KEY = os.getenv("TURNSTILE_SECRET_KEY")
+
+# Tailwind CLI Configuration - Use existing CSS files, don't build
+TAILWIND_CLI_CONFIG_FILE = None  # Disable config-based builds
+TAILWIND_CLI_DIST_CSS = "static/css/dist/tailwind.css"  # Use pre-built CSS
