@@ -154,119 +154,83 @@
                         <div class="text-gray-700 dark:text-gray-300">{{ page.strategies_intro|richtext }}</div>
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                             <!-- Strategy 1 -->
-                            <div class="strategy-card overflow-hidden rounded-lg border border-gray-600 bg-gray-800">
-                                <table class="strategy-table w-full">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="2" class="bg-purple-900 p-4 text-center">
-                                                <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_1_name }}</h3>
-                                                <div class="subtitle mt-1 text-sm text-purple-200">{{ page.strategy_1_subtitle }}</div>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_focus }}</td>
-                                            <td class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_1_focus }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_screening }}</td>
-                                            <td class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_1_screening }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">
-                                                {{ page.strategy_label_management }}
-                                            </td>
-                                            <td class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_1_management }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_ownership }}</td>
-                                            <td class="p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_1_ownership }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="strategy-features space-y-3 border-t border-gray-600 p-4">
+                            <article class="strategy-card overflow-hidden rounded-lg border border-gray-600 bg-gray-800"
+                                     aria-labelledby="strategy-1-heading">
+                                <header class="bg-purple-900 p-4 text-center">
+                                    <h3 id="strategy-1-heading" class="font-mono text-lg font-semibold text-white">{{ page.strategy_1_name }}</h3>
+                                    <div class="subtitle mt-1 text-sm text-purple-200">{{ page.strategy_1_subtitle }}</div>
+                                </header>
+                                <div class="strategy-details grid grid-cols-[auto_1fr] gap-0">
+                                    <div class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_focus }}</div>
+                                    <div class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_1_focus }}</div>
+                                    
+                                    <div class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_screening }}</div>
+                                    <div class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_1_screening }}</div>
+                                    
+                                    <div class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_management }}</div>
+                                    <div class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_1_management }}</div>
+                                    
+                                    <div class="label p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_ownership }}</div>
+                                    <div class="p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_1_ownership }}</div>
+                                </div>
+                                <footer class="strategy-features space-y-3 border-t border-gray-600 p-4">
                                     <p class="text-sm text-gray-700 dark:text-gray-300">{{ page.strategy_1_description }}</p>
                                     <a href="{{ page.strategy_1_link }}"
                                        class="btn-ec-secondary inline-block">{{ page.strategy_1_link_text }}</a>
-                                </div>
-                            </div>
+                                </footer>
+                            </article>
                             <!-- Strategy 2 -->
-                            <div class="strategy-card overflow-hidden rounded-lg border border-gray-600 bg-gray-800">
-                                <table class="strategy-table w-full">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="2" class="bg-purple-900 p-4 text-center">
-                                                <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_2_name }}</h3>
-                                                <div class="subtitle mt-1 text-sm text-purple-200">{{ page.strategy_2_subtitle }}</div>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_focus }}</td>
-                                            <td class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_2_focus }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_screening }}</td>
-                                            <td class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_2_screening }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">
-                                                {{ page.strategy_label_management }}
-                                            </td>
-                                            <td class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_2_management }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_ownership }}</td>
-                                            <td class="p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_2_ownership }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="strategy-features space-y-3 border-t border-gray-600 p-4">
+                            <article class="strategy-card overflow-hidden rounded-lg border border-gray-600 bg-gray-800"
+                                     aria-labelledby="strategy-2-heading">
+                                <header class="bg-purple-900 p-4 text-center">
+                                    <h3 id="strategy-2-heading" class="font-mono text-lg font-semibold text-white">{{ page.strategy_2_name }}</h3>
+                                    <div class="subtitle mt-1 text-sm text-purple-200">{{ page.strategy_2_subtitle }}</div>
+                                </header>
+                                <div class="strategy-details grid grid-cols-[auto_1fr] gap-0">
+                                    <div class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_focus }}</div>
+                                    <div class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_2_focus }}</div>
+                                    
+                                    <div class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_screening }}</div>
+                                    <div class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_2_screening }}</div>
+                                    
+                                    <div class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_management }}</div>
+                                    <div class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_2_management }}</div>
+                                    
+                                    <div class="label p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_ownership }}</div>
+                                    <div class="p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_2_ownership }}</div>
+                                </div>
+                                <footer class="strategy-features space-y-3 border-t border-gray-600 p-4">
                                     <p class="text-sm text-gray-700 dark:text-gray-300">{{ page.strategy_2_description }}</p>
                                     <a href="{{ page.strategy_2_link }}"
                                        class="btn-ec-secondary inline-block">{{ page.strategy_2_link_text }}</a>
-                                </div>
-                            </div>
+                                </footer>
+                            </article>
                             <!-- Strategy 3 -->
-                            <div class="strategy-card overflow-hidden rounded-lg border border-gray-600 bg-gray-800">
-                                <table class="strategy-table w-full">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="2" class="bg-purple-900 p-4 text-center">
-                                                <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_3_name }}</h3>
-                                                <div class="subtitle mt-1 text-sm text-purple-200">{{ page.strategy_3_subtitle }}</div>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_focus }}</td>
-                                            <td class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_3_focus }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_screening }}</td>
-                                            <td class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_3_screening }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">
-                                                {{ page.strategy_label_management }}
-                                            </td>
-                                            <td class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_3_management }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_ownership }}</td>
-                                            <td class="p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_3_ownership }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="strategy-features space-y-3 border-t border-gray-600 p-4">
+                            <article class="strategy-card overflow-hidden rounded-lg border border-gray-600 bg-gray-800"
+                                     aria-labelledby="strategy-3-heading">
+                                <header class="bg-purple-900 p-4 text-center">
+                                    <h3 id="strategy-3-heading" class="font-mono text-lg font-semibold text-white">{{ page.strategy_3_name }}</h3>
+                                    <div class="subtitle mt-1 text-sm text-purple-200">{{ page.strategy_3_subtitle }}</div>
+                                </header>
+                                <div class="strategy-details grid grid-cols-[auto_1fr] gap-0">
+                                    <div class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_focus }}</div>
+                                    <div class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_3_focus }}</div>
+                                    
+                                    <div class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_screening }}</div>
+                                    <div class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_3_screening }}</div>
+                                    
+                                    <div class="label border-b border-gray-600 p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_management }}</div>
+                                    <div class="border-b border-gray-600 p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_3_management }}</div>
+                                    
+                                    <div class="label p-3 font-mono text-xs text-blue-300">{{ page.strategy_label_ownership }}</div>
+                                    <div class="p-3 text-xs text-gray-700 dark:text-gray-300">{{ page.strategy_3_ownership }}</div>
+                                </div>
+                                <footer class="strategy-features space-y-3 border-t border-gray-600 p-4">
                                     <p class="text-sm text-gray-700 dark:text-gray-300">{{ page.strategy_3_description }}</p>
                                     <a href="{{ page.strategy_3_link }}"
                                        class="btn-ec-secondary inline-block">{{ page.strategy_3_link_text }}</a>
-                                </div>
-                            </div>
+                                </footer>
+                            </article>
                         </div>
                     </div>
                 </section>

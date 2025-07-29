@@ -8,9 +8,9 @@ import os
 def theme_context(request):
     """Add theme information to all template contexts"""
     # Handle cases where session might not exist or doesn't have get method
-    theme = "light"
+    theme = "dark"  # Changed default to dark theme
     if hasattr(request, "session") and hasattr(request.session, "get"):
-        theme = request.session.get("theme", "light")
+        theme = request.session.get("theme", "dark")  # Changed default to dark theme
     return {"current_theme": theme}
 
 

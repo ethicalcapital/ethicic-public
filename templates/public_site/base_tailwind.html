@@ -226,18 +226,8 @@
         }
       }
         </style>
-        <!-- CRITICAL FIX: Ensure text is visible on dark background -->
-        <style>
-            body, body * {
-                color: #f1f5f9 !important; /* Force light text */
-            }
-            h1, h2, h3, h4, h5, h6 {
-                color: #ffffff !important; /* Force white headers */
-            }
-            .panel-title-ec {
-                color: #c084fc !important; /* Purple for titles */
-            }
-        </style>
+        <!-- Removed hardcoded color overrides for proper WCAG compliance -->
+        <!-- Text colors now managed through Tailwind's dark mode system -->
     </head>
     <body class="{% block body_class %}{% endblock %} block flex min-h-screen flex-col bg-gray-900 font-sans text-gray-100">
         <!-- Skip navigation links for screen readers -->
@@ -335,7 +325,7 @@
                                  x-cloak>
                                 <a href="/garden/"
                                    class="flex items-center space-x-3 rounded-t-lg px-4 py-3 transition-colors hover:bg-gray-700">
-                                    <span class="text-2xl">🌱</span>
+                                    <span class="text-2xl" aria-hidden="true">🌱</span>
                                     <div>
                                         <div class="font-mono text-sm text-purple-400">Garden Login</div>
                                         <div class="text-xs text-gray-400">Research platform access</div>
@@ -345,7 +335,7 @@
                                    class="flex items-center space-x-3 rounded-b-lg px-4 py-3 transition-colors hover:bg-gray-700"
                                    target="_blank"
                                    rel="noopener">
-                                    <span class="text-2xl">👤</span>
+                                    <span class="text-2xl" aria-hidden="true">👤</span>
                                     <div>
                                         <div class="font-mono text-sm text-purple-400">Client Login</div>
                                         <div class="text-xs text-gray-400">Portfolio access via Altruist</div>
@@ -357,16 +347,17 @@
                         <a href="/onboarding/"
                            class="btn-ec-primary"
                            aria-label="Get started with Ethical Capital">Get Started</a>
-                        <!-- Theme Toggle -->
-                        <button class="rounded-lg border border-gray-600 bg-gray-700 p-2 text-white transition-colors hover:border-gray-500 hover:bg-gray-600"
+                        <!-- Theme Toggle (temporarily hidden) -->
+                        <button class="hidden rounded-lg border border-gray-600 bg-gray-700 p-2 text-white transition-colors hover:border-gray-500 hover:bg-gray-600"
                                 x-data="{ isDark: false, init() { // Initialize from current DOM state or localStorage const currentTheme = document.documentElement.getAttribute('data-theme'); const savedTheme = localStorage.getItem('theme');  // Priority: saved theme > current DOM theme > default light const theme = savedTheme || currentTheme || 'light'; this.isDark = theme === 'dark';  // Apply the theme to ensure consistency document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); }, toggle() { this.isDark = !this.isDark; const theme = this.isDark ? 'dark' : 'light'; document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme);  // Send to server to persist fetch('/api/theme/set/', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRFToken': document.querySelector('[name=csrf-token]')?.content || '' }, body: JSON.stringify({ theme }) }).catch(e => console.log('Theme save failed:', e)); } }"
                                 @click="toggle()"
                                 aria-label="Toggle light/dark theme">
-                            <span x-text="isDark ? '🌙' : '☀️'"></span>
+                            <span x-text="isDark ? '🌙' : '☀️'" aria-hidden="true"></span>
                         </button>
                         <!-- Mobile menu toggle -->
                         <button class="flex flex-col space-y-1 p-2 md:hidden"
                                 @click="mobileMenuOpen = true"
+                                :aria-expanded="mobileMenuOpen"
                                 aria-label="Open navigation menu">
                             <span class="block h-0.5 w-6 bg-white"></span>
                             <span class="block h-0.5 w-6 bg-white"></span>
@@ -435,7 +426,6 @@
                     </a>
                 </div>
             </div>
-<<<<<<< HEAD
         </header>
         <!-- Main Content -->
         <main id="main-content" class="flex-1" role="main">
@@ -500,122 +490,6 @@
                 <div class="mt-8 border-t border-gray-600 pt-8 text-center">
                     <p class="text-xs text-gray-500">© {{ "now"|date:"Y" }} Ethical Capital. All rights reserved.</p>
                 </div>
-=======
-
-            <!-- CTA Button -->
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdx1ex4pj5iYaj1v1Yxjt7iFbicqZbKWNuOZVyMlG8sKswbgQ/viewform?usp=header" class="btn-ec-primary" target="_blank" rel="noopener" aria-label="Get started with Ethical Capital">Get Started</a>
-
-            <!-- Theme Toggle -->
-            <button
-              class="p-2 rounded-lg border border-gray-600 hover:border-gray-500 bg-gray-700 hover:bg-gray-600 text-white transition-colors"
-              x-data="{
-                                isDark: false,
-                                init() {
-                                    // Initialize from current DOM state or localStorage
-                                    const currentTheme = document.documentElement.getAttribute('data-theme');
-                                    const savedTheme = localStorage.getItem('theme');
-
-                                    // Priority: saved theme > current DOM theme > default light
-                                    const theme = savedTheme || currentTheme || 'light';
-                                    this.isDark = theme === 'dark';
-
-                                    // Apply the theme to ensure consistency
-                                    document.documentElement.setAttribute('data-theme', theme);
-                                    localStorage.setItem('theme', theme);
-                                },
-                                toggle() {
-                                    this.isDark = !this.isDark;
-                                    const theme = this.isDark ? 'dark' : 'light';
-                                    document.documentElement.setAttribute('data-theme', theme);
-                                    localStorage.setItem('theme', theme);
-
-                                    // Send to server to persist
-                                    fetch('/api/theme/set/', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRFToken': document.querySelector('[name=csrf-token]')?.content || ''
-                                        },
-                                        body: JSON.stringify({ theme })
-                                    }).catch(e => console.log('Theme save failed:', e));
-                                }
-                            }"
-              @click="toggle()"
-              aria-label="Toggle light/dark theme"
-            >
-              <span x-text="isDark ? '🌙' : '☀️'"></span>
-            </button>
-
-            <!-- Mobile menu toggle -->
-            <button
-              class="md:hidden flex flex-col space-y-1 p-2"
-              @click="mobileMenuOpen = true"
-              aria-label="Open navigation menu"
-            >
-              <span class="block w-6 h-0.5 bg-white"></span>
-              <span class="block w-6 h-0.5 bg-white"></span>
-              <span class="block w-6 h-0.5 bg-white"></span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Menu Overlay -->
-      <div
-        class="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden"
-        x-show="mobileMenuOpen"
-        @click="mobileMenuOpen = false"
-        x-transition
-        x-cloak
-      ></div>
-
-      <!-- Mobile Menu Panel -->
-      <div
-        class="fixed top-0 right-0 h-full w-80 bg-gray-800 border-l border-gray-600 z-50 md:hidden transform transition-transform"
-        x-show="mobileMenuOpen"
-        x-transition:enter="transition-transform duration-300"
-        x-transition:enter-start="translate-x-full"
-        x-transition:enter-end="translate-x-0"
-        x-transition:leave="transition-transform duration-300"
-        x-transition:leave-start="translate-x-0"
-        x-transition:leave-end="translate-x-full"
-        x-cloak
-      >
-        <!-- Mobile menu header -->
-        <div class="flex items-center justify-between p-4 border-b border-gray-600">
-          <span class="font-mono text-lg text-white">Menu</span>
-          <button @click="mobileMenuOpen = false" class="text-gray-400 hover:text-white">
-            <span class="sr-only">Close menu</span>
-            ✕
-          </button>
-        </div>
-
-        <!-- Mobile navigation -->
-        <nav class="p-4 space-y-4">
-          {% main_menu max_levels=1 template="wagtailmenus/main_menu_mobile_tailwind.html" %}
-        </nav>
-
-        <!-- Mobile search -->
-        <div class="p-4 border-t border-gray-600">
-          <form method="get" action="/search/" role="search">
-            <input
-              type="text"
-              name="q"
-              placeholder="Search..."
-              class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
-              aria-label="Search our website"
-            />
-          </form>
-        </div>
-
-        <!-- Mobile login links -->
-        <div class="p-4 border-t border-gray-600 space-y-3">
-          <a href="/garden/" class="flex items-center space-x-3 p-3 rounded-lg bg-gray-700 hover:bg-gray-600">
-            <span class="text-xl">🌱</span>
-            <div>
-              <div class="font-mono text-sm text-purple-400">Garden Login</div>
-              <div class="text-xs text-gray-400">Research platform</div>
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
             </div>
         </footer>
     </body>

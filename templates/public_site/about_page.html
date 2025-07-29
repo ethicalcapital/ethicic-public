@@ -1,22 +1,18 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load static %}
-<<<<<<< HEAD
-{% block title %}
-    {{ page.title }} | Ethical Capital{%
-    endblock %}
-    {% block extra_css %}
-        <link rel="stylesheet" href="{% static 'css/dist/tailwind.css' %}" />
-    {% endblock %}
-    {% block meta_description %}
-        {{ page.search_description|default:"Learn about Ethical Capital's mission,
-        values, and approach to institutional-grade ethical investing." }}
-    {% endblock %}
-    {% block body_class
-        %}
-        about-page-tailwind
-    {% endblock %}
-    {% block content %}
-        <div class="container-ec">
+
+{% block title %}{{ page.title }} | Ethical Capital{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dist/tailwind.css' %}" />
+{% endblock %}
+
+{% block meta_description %}{{ page.search_description|default:"Learn about Ethical Capital's mission, values, and approach to institutional-grade ethical investing." }}{% endblock %}
+
+{% block body_class %}about-page-tailwind{% endblock %}
+
+{% block content %}
+<div class="container-ec">
             <!-- HERO SECTION - Tailwind Implementation -->
             <section class="panel-ec mb-8" role="main" aria-labelledby="about-heading">
                 <div class="hero-grid-ec">
@@ -53,7 +49,7 @@
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    class="social-link-ec">
-                                    <span class="text-lg">🔗</span>
+                                    <span class="text-lg" aria-hidden="true">🔗</span>
                                     <span>LinkedIn</span>
                                 </a>
                             {% endif %}
@@ -62,7 +58,7 @@
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    class="social-link-ec">
-                                    <span class="text-lg">🐦</span>
+                                    <span class="text-lg" aria-hidden="true">🐦</span>
                                     <span>Twitter</span>
                                 </a>
                             {% endif %}
@@ -71,7 +67,7 @@
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    class="social-link-ec">
-                                    <span class="text-lg">🦋</span>
+                                    <span class="text-lg" aria-hidden="true">🦋</span>
                                     <span>Bluesky</span>
                                 </a>
                             {% endif %}
@@ -80,7 +76,7 @@
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    class="social-link-ec">
-                                    <span class="text-lg">📋</span>
+                                    <span class="text-lg" aria-hidden="true">📋</span>
                                     <span>BrokerCheck</span>
                                 </a>
                             {% endif %}
@@ -177,54 +173,5 @@
                     </div>
                 </div>
             </section>
-=======
-
-{% block title %}{{ page.title }} | Ethical Capital{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/dist/tailwind.css' %}" />
+</div>
 {% endblock %}
-
-{% block meta_description %}{{ page.search_description|default:"Learn about Ethical Capital's mission, values, and approach to institutional-grade ethical investing." }}{% endblock %}
-
-{% block body_class %}about-page-tailwind{% endblock %}
-
-{% block content %}
-<div class="container-ec">
-  <!-- HERO SECTION - Tailwind Implementation -->
-  <section class="panel-ec mb-8" role="main" aria-labelledby="about-heading">
-    <div class="hero-grid-ec">
-      <!-- Left: Larger Headshot -->
-      <div class="text-center">
-        <img
-          src="{{ page.headshot_image|default:'https://pub-324a685032214395a8bcad478c265d4b.r2.dev/headshot%20sketch_slim.png' }}"
-          alt="{{ page.headshot_alt_text|default:'Sloane Ortel headshot' }}"
-          class="max-w-xs mx-auto border-2 border-gray-600 rounded"
-          loading="eager"
-          width="400"
-          height="500"
-        />
-      </div>
-
-      <!-- Right: Identity & Quote -->
-      <div class="pt-3">
-        <h1 class="font-mono text-3xl font-semibold text-white mb-2">{{ page.name|upper }}</h1>
-        <div class="panel-title-ec">{{ page.professional_title }}</div>
-
-        <div class="w-20 h-0.5 bg-purple-400 mb-4"></div>
-
-        <blockquote class="font-sans text-xl italic text-purple-400 mb-6 pl-4 border-l-3 border-purple-400">
-          {{ page.philosophy_quote|safe }}
-        </blockquote>
-
-        <div class="flex gap-4 mb-6 flex-wrap justify-center md:justify-start">
-          {% if page.calendar_url %}
-          <a href="{{ page.calendar_url }}" target="_blank" rel="noopener noreferrer" class="btn-ec-primary">
-            📅 SCHEDULE MEETING
-          </a>
-          {% endif %} {% if page.email_link %}
-          <a href="mailto:{{ page.email_link }}" class="btn-ec-secondary">✉️ EMAIL</a>
-          {% endif %}
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
-        </div>
-    {% endblock %}
