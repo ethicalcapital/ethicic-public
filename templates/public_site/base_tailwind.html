@@ -197,7 +197,7 @@
               content="{% block meta_keywords %}{{ site_config.meta_keywords|default:'ethical investing, sustainable investing, ESG investing, socially responsible investing, investment advisory' }}{% endblock %}" />
         <!-- Open Graph tags -->
         <meta property="og:title"
-              content="{% block og_title %}{% if page %}{{ page.seo_title|default:page.title|default:'Ethical Capital' }}{% else %}Ethical Capital{% endif %}{% endblock %}" />
+              content="{% block og_title %}{% if page %}{{ page.seo_title|default:page.hero_title|default:page.title|default:'Ethical Capital' }}{% else %}Ethical Capital{% endif %}{% endblock %}" />
         <meta property="og:description"
               content="{% block og_description %}{% if page %}{{ page.search_description|default:site_config.meta_description }}{% else %}{{ site_config.meta_description }}{% endif %}{% endblock %}" />
         <meta property="og:url"
