@@ -31,7 +31,7 @@
     <div class="grid-2col">
       <!-- Featured Content -->
       <div class="space-y-4">
-        <h3 class="font-mono text-2xl text-purple-400 font-semibold">
+        <h3 class="font-mono text-2xl text-purple-200 font-semibold">
           <a href="{{ featured_post.url_path }}" class="hover:text-purple-300 transition-colors">
             {{ featured_post.title }}
           </a>
@@ -72,7 +72,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-purple-800">
       {% for block in key_stats|slice:":3" %}
       <div class="text-center">
-        <div class="font-mono text-2xl font-bold text-purple-400">{{ block.value.value }}</div>
+        <div class="font-mono text-2xl font-bold text-purple-200">{{ block.value.value }}</div>
         <div class="text-sm text-gray-400">{{ block.value.label }}</div>
       </div>
       {% endfor %}
@@ -120,7 +120,7 @@
             {% endif %}
 
             <!-- Title -->
-            <h3 class="font-mono text-lg text-purple-400 font-semibold leading-tight">
+            <h3 class="font-mono text-lg text-purple-200 font-semibold leading-tight">
               <a href="{{ post.url_path }}" class="hover:text-purple-300 transition-colors">{{ post.title }}</a>
             </h3>
 
@@ -161,7 +161,7 @@
 
       <!-- Loading indicator for infinite scroll -->
       <div id="loading-indicator" class="loading-indicator htmx-indicator text-center py-8">
-        <div class="inline-block text-2xl animate-spin text-purple-400 mb-2">⟳</div>
+        <div class="inline-block text-2xl animate-spin text-purple-200 mb-2">⟳</div>
         <p class="text-gray-400">Loading more articles...</p>
       </div>
     </div>
@@ -172,7 +172,7 @@
     <div class="card-content-ec">
       <div class="text-gray-400 space-y-4">
         <div class="text-4xl">📰</div>
-        <h2 class="font-mono text-lg text-purple-400">No Articles Yet</h2>
+        <h2 class="font-mono text-lg text-purple-200">No Articles Yet</h2>
         <p>We're working on bringing you insightful content about ethical investing.</p>
         <a href="/contact/" class="btn-ec-primary">Get Notified</a>
       </div>
@@ -182,7 +182,7 @@
 
   <!-- Newsletter Signup CTA -->
   <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6 text-center">
-    <h2 class="font-mono text-xl text-purple-400 font-semibold mb-4">Stay Updated on Market Insights</h2>
+    <h2 class="font-mono text-xl text-purple-200 font-semibold mb-4">Stay Updated on Market Insights</h2>
     <p class="text-gray-200 mb-6 max-w-2xl mx-auto">
       Get our latest research and analysis delivered to your inbox. No spam, just thoughtful investment commentary.
     </p>
@@ -203,7 +203,7 @@
 
     <p class="text-xs text-gray-400 mt-3">
       Unsubscribe anytime. Read our
-      <a href="/disclosures/privacy/" class="text-purple-400 hover:text-purple-300">Privacy Policy</a>
+      <a href="/disclosures/privacy/" class="text-purple-200 hover:text-purple-100">Privacy Policy</a>
       .
     </p>
   </section>
