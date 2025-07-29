@@ -367,26 +367,26 @@
 
   /* ===== STRATEGY CARD THEME INTEGRATION ===== */
 
-@layer themes {
-  /* Ultra-high specificity fix for strategy card headers */
-  html[data-theme="light"] body .strategy-card .strategy-table th,
-  html[data-theme="light"] .home-page .strategy-card .strategy-table th,
-  [data-theme="light"] body .strategy-card .strategy-table th,
-  [data-theme="light"] .strategy-card .strategy-table th {
-    background: var(--color-primary);
-    background-color: var(--color-primary);
-    color: var(--color-on-primary);
-    -webkit-text-fill-color: var(--color-on-primary);
+  @layer themes {
+    /* Ultra-high specificity fix for strategy card headers */
+    html[data-theme="light"] body .strategy-card .strategy-table th,
+    html[data-theme="light"] .home-page .strategy-card .strategy-table th,
+    [data-theme="light"] body .strategy-card .strategy-table th,
+    [data-theme="light"] .strategy-card .strategy-table th {
+      background: var(--color-primary);
+      background-color: var(--color-primary);
+      color: var(--color-on-primary);
+      -webkit-text-fill-color: var(--color-on-primary);
+    }
   }
-}
 
-@layer themes {
-  [data-theme="light"] .strategy-card .strategy-table .subtitle {
-    color: var(--color-on-primary);
-    -webkit-text-fill-color: var(--color-on-primary);
-    opacity: 0.9;
+  @layer themes {
+    [data-theme="light"] .strategy-card .strategy-table .subtitle {
+      color: var(--color-on-primary);
+      -webkit-text-fill-color: var(--color-on-primary);
+      opacity: 0.9;
+    }
   }
-}
 
   [data-theme="light"] .strategy-card .strategy-table td {
     color: var(--color-text-primary);
@@ -407,26 +407,26 @@
     color: var(--color-text-secondary);
   }
 
-@layer themes {
-  /* Ultra-high specificity fix for dark theme strategy card headers */
-  html[data-theme="dark"] body .strategy-card .strategy-table th,
-  html[data-theme="dark"] .home-page .strategy-card .strategy-table th,
-  [data-theme="dark"] body .strategy-card .strategy-table th,
-  [data-theme="dark"] .strategy-card .strategy-table th {
-    background: var(--color-primary);
-    background-color: var(--color-primary);
-    color: var(--color-on-primary);
-    -webkit-text-fill-color: var(--color-on-primary);
+  @layer themes {
+    /* Ultra-high specificity fix for dark theme strategy card headers */
+    html[data-theme="dark"] body .strategy-card .strategy-table th,
+    html[data-theme="dark"] .home-page .strategy-card .strategy-table th,
+    [data-theme="dark"] body .strategy-card .strategy-table th,
+    [data-theme="dark"] .strategy-card .strategy-table th {
+      background: var(--color-primary);
+      background-color: var(--color-primary);
+      color: var(--color-on-primary);
+      -webkit-text-fill-color: var(--color-on-primary);
+    }
   }
-}
 
-@layer themes {
-  [data-theme="dark"] .strategy-card .strategy-table .subtitle {
-    color: var(--color-on-primary);
-    -webkit-text-fill-color: var(--color-on-primary);
-    opacity: 0.9;
+  @layer themes {
+    [data-theme="dark"] .strategy-card .strategy-table .subtitle {
+      color: var(--color-on-primary);
+      -webkit-text-fill-color: var(--color-on-primary);
+      opacity: 0.9;
+    }
   }
-}
 
   [data-theme="dark"] .strategy-card .strategy-table td {
     color: var(--garden-fg);
@@ -588,8 +588,15 @@
   }
 
   @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(1.1); }
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.1);
+    }
   }
 
   /* Higher specificity override for homepage step numbers */

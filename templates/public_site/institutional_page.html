@@ -7,36 +7,34 @@
 {% block body_class %}institutional-page{% endblock %}
 
 {% block content %}
-<div class="garden-container">
+<div class="container-ec">
     <!-- Hero Section -->
-    <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
-        <div class="garden-panel__content">
-            <h1 id="hero-heading" class="hero-title">
-                {{ page.hero_title|default:"Institutional-Grade Ethical Investment Solutions" }}
-            </h1>
-            <p class="hero-subtitle">
-                {{ page.hero_subtitle|default:"Scalable research capabilities and proven methodologies to help institutions implement ethical investing strategies at scale" }}
-            </p>
+    <section class="mb-8 bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800 rounded-xl p-8 text-center" role="banner" aria-labelledby="hero-heading">
+        <h1 id="hero-heading" class="text-4xl md:text-5xl font-bold text-white mb-4">
+            {{ page.hero_title|default:"Institutional-Grade Ethical Investment Solutions" }}
+        </h1>
+        <p class="text-xl text-purple-100 max-w-3xl mx-auto mb-6">
+            {{ page.hero_subtitle|default:"Scalable research capabilities and proven methodologies to help institutions implement ethical investing strategies at scale" }}
+        </p>
 
-            <div class="hero-description">
-                {{ page.hero_description|default:"As institutional investors increasingly prioritize ESG and ethical considerations, we provide the specialized research, proven strategies, and operational infrastructure you need to implement ethical investing at institutional scale."|safe }}
-            </div>
+        <div class="text-lg text-purple-100 max-w-4xl mx-auto">
+            {{ page.hero_description|default:"As institutional investors increasingly prioritize ESG and ethical considerations, we provide the specialized research, proven strategies, and operational infrastructure you need to implement ethical investing at institutional scale."|safe }}
         </div>
     </section>
 
     <!-- What We Offer Section -->
-    <section class="garden-panel" role="main" aria-labelledby="services-heading">
-        <div class="garden-panel__header">
-            <div class="panel-title">{{ page.offer_section_title }}</div>
+    <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-8" role="main" aria-labelledby="services-heading">
+        <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.offer_section_title }}</h2>
         </div>
-        <div class="garden-panel__content">
-            <p class="section-intro">{{ page.offer_section_intro|safe }}</p>
+        <div class="space-y-6">
+            <p class="text-lg text-gray-700 dark:text-gray-300">{{ page.offer_section_intro|safe }}</p>
 
-            <div class="services-grid">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {% for service in page.services %}
-                <div class="service-card">
-                    <h3 class="service-title">{{ service.value.title }}</h3>
-                    {{ service.value.description|safe }}
+                <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">{{ service.value.title }}</h3>
+                    <div class="text-gray-700 dark:text-gray-300">{{ service.value.description|safe }}</div>
                 </div>
                 {% endfor %}
             </div>
@@ -44,18 +42,18 @@
     </section>
 
     <!-- Partnership Benefits Section -->
-    <section class="garden-panel" role="complementary" aria-labelledby="benefits-heading">
-        <div class="garden-panel__header">
-            <div class="panel-title">{{ page.benefits_section_title }}</div>
+    <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-8" role="complementary" aria-labelledby="benefits-heading">
+        <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.benefits_section_title }}</h2>
         </div>
-        <div class="garden-panel__content">
-            <p class="section-intro">{{ page.benefits_section_intro|safe }}</p>
+        <div class="space-y-6">
+            <p class="text-lg text-gray-700 dark:text-gray-300">{{ page.benefits_section_intro|safe }}</p>
 
-            <div class="benefits-list">
+            <div class="space-y-4">
                 {% for benefit in page.benefits %}
-                <div class="benefit-item">
-                    <h4>{{ benefit.value.title }}</h4>
-                    {{ benefit.value.description|safe }}
+                <div class="border-l-4 border-purple-600 pl-4">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">{{ benefit.value.title }}</h4>
+                    <div class="text-gray-700 dark:text-gray-300">{{ benefit.value.description|safe }}</div>
                 </div>
                 {% endfor %}
             </div>
@@ -63,43 +61,47 @@
     </section>
 
     <!-- Process Overview Section -->
-    <section class="garden-panel" role="region" aria-labelledby="process-heading">
-        <div class="garden-panel__header">
-            <div class="panel-title">{{ page.process_section_title }}</div>
+    <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-8" role="region" aria-labelledby="process-heading">
+        <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.process_section_title }}</h2>
         </div>
-        <div class="garden-panel__content">
-            <div class="process-steps">
+        <div class="space-y-8">
+            <div class="space-y-6">
                 {% for step in page.process_steps %}
-                <div class="process-step">
-                    <div class="step-number">{{ step.value.step_number }}</div>
-                    <div class="step-content">
-                        <h3 class="step-title">{{ step.value.title }}</h3>
-                        <p>{{ step.value.description }}</p>
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        {{ step.value.step_number }}
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">{{ step.value.title }}</h3>
+                        <p class="text-gray-700 dark:text-gray-300">{{ step.value.description }}</p>
                     </div>
                 </div>
                 {% endfor %}
             </div>
 
-            <div class="process-action">
-                <a href="/process/" class="garden-action secondary">LEARN ABOUT OUR FULL PROCESS</a>
+            <div class="text-center">
+                <a href="/process/" class="inline-block px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    LEARN ABOUT OUR FULL PROCESS
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Scale & Capabilities Section -->
-    <section class="garden-panel" role="region" aria-labelledby="scale-heading">
-        <div class="garden-panel__header">
-            <div class="panel-title">{{ page.scale_section_title }}</div>
+    <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-8" role="region" aria-labelledby="scale-heading">
+        <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.scale_section_title }}</h2>
         </div>
-        <div class="garden-panel__content">
-            <p class="section-intro">{{ page.scale_section_intro|safe }}</p>
+        <div class="space-y-6">
+            <p class="text-lg text-gray-700 dark:text-gray-300">{{ page.scale_section_intro|safe }}</p>
 
-            <div class="scale-metrics">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {% for metric in page.scale_metrics %}
-                <div class="metric-item">
-                    <div class="metric-value">{{ metric.value.value }}</div>
-                    <div class="metric-label">{{ metric.value.label }}</div>
-                    <div class="metric-description">{{ metric.value.description }}</div>
+                <div class="text-center bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
+                    <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">{{ metric.value.value }}</div>
+                    <div class="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wide mb-2">{{ metric.value.label }}</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">{{ metric.value.description }}</div>
                 </div>
                 {% endfor %}
             </div>
@@ -107,25 +109,27 @@
     </section>
 
     <!-- Due Diligence Resources -->
-    <section class="garden-panel ddq-resources" role="complementary" aria-labelledby="ddq-heading">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">{{ page.ddq_section_title }}</div>
+    <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-8" role="complementary" aria-labelledby="ddq-heading">
+        <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.ddq_section_title }}</h2>
         </div>
-        <div class="garden-panel__content garden-panel-content">
-            <h2 id="ddq-heading" class="section-title">{{ page.ddq_section_subtitle }}</h2>
-            <p class="section-description">{{ page.ddq_section_description|safe }}</p>
+        <div class="space-y-6">
+            <div>
+                <h3 id="ddq-heading" class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">{{ page.ddq_section_subtitle }}</h3>
+                <p class="text-gray-700 dark:text-gray-300">{{ page.ddq_section_description|safe }}</p>
+            </div>
 
-            <div class="resources-grid">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {% for category in page.resource_categories %}
-                <div class="resource-category">
-                    <h3>{{ category.value.title }}</h3>
-                    <div class="resource-list">
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ category.value.title }}</h4>
+                    <div class="space-y-3">
                         {% for resource in category.value.resources %}
-                        <a href="{{ resource.url }}" class="resource-link"{% if resource.url|slice:":4" == "http" %} target="_blank" rel="noopener"{% endif %}>
-                            <span class="resource-icon">{{ resource.icon }}</span>
-                            <div class="resource-info">
-                                <div class="resource-title">{{ resource.title }}</div>
-                                <div class="resource-desc">{{ resource.description }}</div>
+                        <a href="{{ resource.url }}" class="flex items-center space-x-3 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"{% if resource.url|slice:":4" == "http" %} target="_blank" rel="noopener"{% endif %}>
+                            <span class="text-2xl">{{ resource.icon }}</span>
+                            <div class="flex-1">
+                                <div class="font-medium text-gray-900 dark:text-gray-100">{{ resource.title }}</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">{{ resource.description }}</div>
                             </div>
                         </a>
                         {% endfor %}
@@ -137,151 +141,32 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section class="garden-panel cta-panel" role="complementary" aria-labelledby="cta-heading">
-        <div class="garden-panel__header">
-            <div class="panel-title">{{ page.cta_section_title }}</div>
-        </div>
-        <div class="garden-panel__content">
-            <h2 id="cta-heading" class="cta-title">
+    <section class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-8 text-center text-white" role="complementary" aria-labelledby="cta-heading">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <h2 class="text-3xl font-bold">{{ page.cta_section_title }}</h2>
+            
+            <h3 id="cta-heading" class="text-2xl font-semibold">
                 {{ page.cta_title }}
-            </h2>
+            </h3>
 
-            <div class="cta-description">
+            <div class="text-lg text-purple-100">
                 {{ page.cta_description|safe }}
             </div>
 
-            <div class="cta-actions">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <!-- Primary CTA - Schedule Consultation -->
                 <button onclick="window.open('{{ page.cta_primary_url }}', '_blank')"
-                        class="garden-action institutional-cta-primary">
+                        class="px-8 py-4 bg-white text-purple-600 font-bold rounded-lg hover:bg-gray-100 transition-colors">
                     {{ page.cta_primary_text }}
                 </button>
 
                 <!-- Secondary CTA - Send Message -->
                 <button onclick="window.location.href='{{ page.cta_secondary_url }}'"
-                        class="garden-action institutional-cta-secondary">
+                        class="px-8 py-4 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-purple-600 transition-colors">
                     {{ page.cta_secondary_text }}
                 </button>
             </div>
         </div>
     </section>
 </div>
-{% endblock %}
-
-{% block extra_css %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/layers/27-institutional-page.css' %}?v=1">
-<style>
-/* Institutional page button styles */
-.institutional-page .institutional-cta-primary {
-    display: inline-block !important;
-    padding: 20px 40px !important;
-    background: #553C9A !important;
-    color: #ffffff !important;
-    border: 3px solid #553C9A !important;
-    border-radius: 8px !important;
-    font-family: Inter, sans-serif !important;
-    font-size: 16px !important;
-    font-weight: 800 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1.2px !important;
-    cursor: pointer !important;
-    margin: 10px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
-    transition: all 0.3s ease !important;
-}
-
-.institutional-page .institutional-cta-secondary {
-    display: inline-block !important;
-    padding: 20px 40px !important;
-    background: transparent !important;
-    color: #553C9A !important;
-    border: 3px solid #553C9A !important;
-    border-radius: 8px !important;
-    font-family: Inter, sans-serif !important;
-    font-size: 16px !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1.2px !important;
-    cursor: pointer !important;
-    margin: 10px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
-    transition: all 0.3s ease !important;
-}
-
-.institutional-page .institutional-cta-primary:hover {
-    background-color: #6b4ba0 !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
-}
-
-.institutional-page .institutional-cta-secondary:hover {
-    background-color: #553C9A !important;
-    color: #ffffff !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
-}
-</style>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-// Add hover effects and force text colors
-document.addEventListener('DOMContentLoaded', function() {
-    const ctaButtons = document.querySelectorAll('.cta-actions button');
-
-    ctaButtons.forEach(function(button, index) {
-        // Force initial colors
-        if (index === 0) { // Schedule button
-            button.style.color = '#ffffff';
-            button.style.background = '#553C9A';
-        } else { // Send message button
-            button.style.color = '#553C9A';
-            button.style.background = 'transparent';
-        }
-
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px)';
-            this.style.boxShadow = '0 8px 20px rgba(0,0,0,0.4)';
-
-            if (this.textContent.includes('SCHEDULE')) {
-                this.style.background = '#442a8a';
-                this.style.color = '#ffffff';
-            } else {
-                this.style.background = '#553C9A';
-                this.style.color = '#ffffff';
-            }
-        });
-
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-
-            // Reset to original styles with forced colors
-            if (this.textContent.includes('SCHEDULE')) {
-                this.style.background = '#553C9A';
-                this.style.color = '#ffffff';
-            } else {
-                this.style.background = 'transparent';
-                this.style.color = '#553C9A';
-            }
-        });
-    });
-
-    // Additional color enforcement every 100ms for 3 seconds
-    let colorEnforcementCount = 0;
-    const colorInterval = setInterval(function() {
-        const scheduleButton = document.querySelector('.cta-actions button:nth-child(1)');
-        if (scheduleButton) {
-            scheduleButton.style.color = '#ffffff';
-        }
-        colorEnforcementCount++;
-        if (colorEnforcementCount > 30) {
-            clearInterval(colorInterval);
-        }
-    }, 100);
-
-    console.log('CTA button hover effects and color enforcement applied');
-});
-</script>
 {% endblock %}

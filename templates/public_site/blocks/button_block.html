@@ -1,22 +1,27 @@
 {% load wagtailcore_tags safe_urls %}
 
 <div class="button-block">
-    {% if value.page %}
-        {% safe_pageurl value.page "#" as button_url %}
-    {% else %}
-        {% with value.url as button_url %}
-    {% endif %}
+  {% if value.page %} {% safe_pageurl value.page "#" as button_url %} {% else %} {% with value.url as button_url %} {%
+  endif %}
 
-    <a href="{{ button_url }}"
-       class="garden-action {{ value.style }} {{ value.size }}"
-       {% if value.url and not value.page %}
-           target="_blank"
-           rel="noopener noreferrer"
-       {% endif %}>
-        {{ value.text }}
-    </a>
+  <a
+    href="{{ button_url }}"
+    class="garden-action {{ value.style }} {{ value.size }}"
+    {%
+    if
+    value.url
+    and
+    not
+    value.page
+    %}
+    target="_blank"
+    rel="noopener noreferrer"
+    {%
+    endif
+    %}
+  >
+    {{ value.text }}
+  </a>
 
-    {% if not value.page %}
-        {% endwith %}
-    {% endif %}
+  {% if not value.page %} {% endwith %} {% endif %}
 </div>

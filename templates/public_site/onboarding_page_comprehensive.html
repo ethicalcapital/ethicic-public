@@ -1,1315 +1,1065 @@
-{% extends "public_site/base_tailwind.html" %}
-{% load wagtailcore_tags %}
-{% load static %}
-
-{% block title %}Onboarding - Ethical Capital{% endblock %}
-
-{% block body_class %}onboarding-page comprehensive{% endblock %}
-
+{% extends "public_site/base_tailwind.html" %} 
+{% load wagtailcore_tags %} 
+{% load static %} 
+{% block title %}Onboarding - Ethical Capital{% endblock %} 
+{% block body_class %}onboarding-page comprehensive{% endblock %} 
 {% block content %}
-<div class="garden-container">
-    <!-- Hero Section -->
-    <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
-        <div class="panel-header">ETHICAL CAPITAL ONBOARDING</div>
-        <div class="panel-content">
-            <h1 id="hero-heading" class="hero-title">Welcome to Ethical Capital</h1>
-            <div class="hero-subtitle">
-                <p>I'm delighted to welcome you to Ethical Capital. Our client relationships are lifelong partnerships, so this form is designed to quicken the "getting to know you" process so we can serve you with loyalty, prudence, and care over the long term.</p>
-                <p><strong>But to be clear, we want to know you.</strong></p>
-                <p>That means: be human. You are encouraged to make jokes, share fears, and say "I don't know" without a moment's hesitation.</p>
-                <p>Thank you in advance for sharing a bit of yourself with us. And welcome!</p>
+<div class="container-ec">
+  <!-- Hero Section -->
+  <section class="mb-8 bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800 rounded-xl p-8 text-center" role="banner" aria-labelledby="hero-heading">
+    <div class="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-4">ETHICAL CAPITAL ONBOARDING</div>
+    <h1 id="hero-heading" class="text-4xl md:text-5xl font-bold text-white mb-6">Welcome to Ethical Capital</h1>
+    <div class="max-w-4xl mx-auto text-lg text-purple-100 space-y-4">
+      <p>
+        I'm delighted to welcome you to Ethical Capital. Our client relationships are lifelong partnerships, so this
+        form is designed to quicken the "getting to know you" process so we can serve you with loyalty, prudence, and
+        care over the long term.
+      </p>
+      <p class="text-white font-semibold">But to be clear, we want to know you.</p>
+      <p>
+        That means: be human. You are encouraged to make jokes, share fears, and say "I don't know" without a moment's
+        hesitation.
+      </p>
+      <p>Thank you in advance for sharing a bit of yourself with us. And welcome!</p>
+    </div>
+  </section>
+
+  <main class="main-content">
+    <!-- Form Container -->
+    <div class="form-container" x-data="onboardingForm()">
+      <!-- Progress Indicator Panel -->
+      <section class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">PROGRESS</h2>
+        <div class="progress-container">
+          <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-3 mb-4">
+            <div class="bg-purple-600 h-3 rounded-full transition-all duration-300" :style="`width: ${progress}%`"></div>
+          </div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 mb-6" x-text="progressText"></div>
+
+          <!-- Step Dots -->
+          <div class="flex justify-center items-center space-x-4">
+            <template x-for="displayStep in actualTotalSteps" :key="displayStep">
+              <div
+                class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold cursor-pointer transition-all"
+                :class="{
+                  'bg-purple-600 text-white': displayStep === actualStepNumber,
+                  'bg-purple-200 text-purple-800': displayStep < actualStepNumber,
+                  'bg-gray-200 text-gray-500': displayStep > actualStepNumber
+                }"
+                @click="goToDisplayStep(displayStep)"
+                x-text="displayStep"
+              ></div>
+            </template>
+          </div>
+        </div>
+      </section>      <!-- Comprehensive Onboarding Form -->
+      <form
+        id="onboardingForm"
+        method="post"
+        action="/onboarding/submit/"
+        @submit.prevent="submitting = true; $el.submit()"
+      >
+        {% csrf_token %}
+
+        <!-- Section 1: About You -->
+        <section
+          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
+          :class="{ 'ring-2 ring-purple-500': currentStep === 1 }"
+          data-step="1"
+          x-show="currentStep === 1"
+        >
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">ABOUT YOU</h2>
+          <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
+            <p class="text-purple-800 dark:text-purple-200">
+              We're so excited to get to know you! This section will gather the basic information about you that we need
+              in order to open your account.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="email">
+                What's the best email to reach you at? <span class="text-red-500 ml-1">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent" 
+                required 
+              />
             </div>
-        </div>
-    </section>
 
-    <main class="main-content">
-        <!-- Form Container -->
-        <div class="form-container" x-data="onboardingForm()">
-            <!-- Progress Indicator Panel -->
-            <section class="garden-panel progress-panel">
-                <div class="panel-header">PROGRESS</div>
-                <div class="panel-content">
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" :style="`width: ${progress}%`"></div>
-                        </div>
-                        <div class="progress-text" x-text="progressText"></div>
-
-                        <!-- Step Dots -->
-                        <div class="step-indicators">
-                            <template x-for="displayStep in actualTotalSteps" :key="displayStep">
-                                <div class="step-dot"
-                                     :class="{
-                                        'completed': displayStep < actualStepNumber,
-                                        'current': displayStep === actualStepNumber,
-                                        'future': displayStep > actualStepNumber
-                                     }"
-                                     @click="goToDisplayStep(displayStep)"
-                                     x-text="displayStep">
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Comprehensive Onboarding Form -->
-            <form id="onboardingForm" method="post" action="/onboarding/submit/"
-                  @submit.prevent="submitting = true; $el.submit()">
-                {% csrf_token %}
-
-                <!-- Section 1: About You -->
-                <section class="garden-panel form-section" :class="{ 'active': currentStep === 1 }" data-step="1" x-show="currentStep === 1">
-                    <div class="panel-header">ABOUT YOU</div>
-                    <div class="panel-content">
-                        <div class="section-description">We're so excited to get to know you! This section will gather the basic information about you that we need in order to open your account.</div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required" for="email">What's the best email to reach you at?</label>
-                            <input type="email" id="email" name="email" class="garden-input" required>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required" for="first_name">What's your first name?</label>
-                            <input type="text" id="first_name" name="first_name" class="garden-input" autocomplete="given-name" required>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" for="middle_names">What are your middle names? (optional)</label>
-                            <input type="text" id="middle_names" name="middle_names" class="garden-input" autocomplete="additional-name" placeholder="Enter all middle names separated by spaces">
-                            <div class="form-help">Enter all middle names separated by spaces</div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required" for="last_name">What's your last name?</label>
-                            <input type="text" id="last_name" name="last_name" class="garden-input" autocomplete="family-name" required>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">Would you prefer we call you by any other name?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="preferred_name_choice" value="nope" class="radio-input" @change="$refs.preferredNameField.classList.add('hidden')" checked>
-                                    <span class="radio-label">Nope</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="preferred_name_choice" value="other" class="radio-input" @change="$refs.preferredNameField.classList.remove('hidden')">
-                                    <span class="radio-label">Other</span>
-                                </label>
-                            </div>
-                            <div x-ref="preferredNameField" class="garden-form-group mt-3 hidden">
-                                <input type="text" name="preferred_name" class="garden-input" placeholder="Preferred name" aria-label="Preferred name for client">
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">What are your pronouns?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="pronouns" value="he/him" class="radio-input" @change="$refs.pronounsOtherField.style.display = 'none'">
-                                    <span class="radio-label">he/him</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="pronouns" value="she/her" class="radio-input" @change="$refs.pronounsOtherField.style.display = 'none'">
-                                    <span class="radio-label">she/her</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="pronouns" value="they/them" class="radio-input" @change="$refs.pronounsOtherField.style.display = 'none'">
-                                    <span class="radio-label">they/them</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="pronouns" value="other" class="radio-input" @change="$refs.pronounsOtherField.style.display = 'block'">
-                                    <span class="radio-label">Other</span>
-                                </label>
-                            </div>
-                            <div x-ref="pronounsOtherField" style="display: none;" class="garden-form-group mt-3">
-                                <input type="text" name="pronouns_other" class="garden-input" placeholder="Your pronouns" aria-label="Custom pronouns">
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required" for="street_address">Street address</label>
-                            <input type="text" id="street_address" name="street_address" class="garden-input" autocomplete="address-line1" required>
-                            <div class="form-help">Enter your street address (PO Boxes are not permitted)</div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" for="street_address_2">Apartment, suite, unit, etc. (optional)</label>
-                            <input type="text" id="street_address_2" name="street_address_2" class="garden-input" autocomplete="address-line2">
-                        </div>
-
-                        <div class="garden-form-group-row">
-                            <div class="garden-form-group">
-                                <label class="form-label required" for="city">City</label>
-                                <input type="text" id="city" name="city" class="garden-input" autocomplete="address-level2" required>
-                            </div>
-                            <div class="garden-form-group">
-                                <label class="form-label required" for="state">State/Province</label>
-                                <input type="text" id="state" name="state" class="garden-input" autocomplete="address-level1" required>
-                            </div>
-                            <div class="garden-form-group">
-                                <label class="form-label required" for="zip_code">ZIP/Postal code</label>
-                                <input type="text" id="zip_code" name="zip_code" class="garden-input" autocomplete="postal-code" required>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required" for="country">Country</label>
-                            <input type="text" id="country" name="country" class="garden-input" autocomplete="country-name" value="United States" required>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required" for="phone">What's your phone number?</label>
-                            <input type="tel" id="phone" name="phone" class="garden-input" required>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required" for="birthday">What's your birthday?</label>
-                            <input type="date" id="birthday" name="birthday" class="garden-input" required>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">How would you describe your employment status?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="employment_status" value="full_time" class="radio-input" @change="$refs.employmentFields.style.display = 'block'">
-                                    <span class="radio-label">Full-time employed</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="employment_status" value="part_time" class="radio-input" @change="$refs.employmentFields.style.display = 'block'">
-                                    <span class="radio-label">Part-time employed</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="employment_status" value="self_employed" class="radio-input" @change="$refs.employmentFields.style.display = 'block'">
-                                    <span class="radio-label">Self-employed</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="employment_status" value="retired" class="radio-input" @change="$refs.employmentFields.style.display = 'none'">
-                                    <span class="radio-label">Retired</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="employment_status" value="unemployed" class="radio-input" @change="$refs.employmentFields.style.display = 'none'">
-                                    <span class="radio-label">Unemployed</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div x-ref="employmentFields" style="display: none;">
-                            <div class="garden-form-group">
-                                <label class="form-label" for="employer_name">What's the name of your employer?</label>
-                                <input type="text" id="employer_name" name="employer_name" class="garden-input">
-                            </div>
-                            <div class="garden-form-group">
-                                <label class="form-label" for="job_title">What's your job title?</label>
-                                <input type="text" id="job_title" name="job_title" class="garden-input">
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">How would you describe your marital status?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="marital_status" value="single" class="radio-input">
-                                    <span class="radio-label">Single</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="marital_status" value="married" class="radio-input">
-                                    <span class="radio-label">Married</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="marital_status" value="partnered" class="radio-input">
-                                    <span class="radio-label">Partnered</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="marital_status" value="complicated" class="radio-input">
-                                    <span class="radio-label">It's complicated</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">Would you like to add anyone else to your household?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="add_co_client" value="yes" class="radio-input" @change="addCoClient = true">
-                                    <span class="radio-label">Yes!</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="add_co_client" value="no" class="radio-input" @change="addCoClient = false" checked>
-                                    <span class="radio-label">No, thank you.</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-navigation">
-                            <div></div>
-                            <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 2: Your Co-Client (conditional) -->
-                <section class="garden-panel form-section" data-step="2"
-                         x-show="currentStep === 2 && addCoClient"
-                         x-transition:enter="transition ease-out duration-300"
-                         x-transition:enter-start="opacity-0 transform translate-y-4"
-                         x-transition:enter-end="opacity-100 transform translate-y-0"
-                         x-transition:leave="transition ease-in duration-200"
-                         x-transition:leave-start="opacity-100 transform translate-y-0"
-                         x-transition:leave-end="opacity-0 transform translate-y-4">
-                    <div class="panel-header">YOUR CO-CLIENT</div>
-                    <div class="panel-content">
-                        <div class="section-description">The more, the merrier! We just need a bit more information so we can come up with a better nickname than "co-client."</div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" :class="{'required': addCoClient}" for="co_client_first_name">What's your co-client's first name?</label>
-                            <input type="text" id="co_client_first_name" name="co_client_first_name" class="garden-input" :required="addCoClient">
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" for="co_client_middle_names">What are your co-client's middle names? (optional)</label>
-                            <input type="text" id="co_client_middle_names" name="co_client_middle_names" class="garden-input" placeholder="Enter all middle names separated by spaces">
-                            <div class="form-help">Enter all middle names separated by spaces</div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" :class="{'required': addCoClient}" for="co_client_last_name">What's your co-client's last name?</label>
-                            <input type="text" id="co_client_last_name" name="co_client_last_name" class="garden-input" :required="addCoClient">
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" :class="{'required': addCoClient}">Should we call them that, or something other than that?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_call_them" value="that" class="radio-input" @change="$refs.coClientPreferredNameField.style.display = 'none'" checked>
-                                    <span class="radio-label">Call them that!</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_call_them" value="other" class="radio-input" @change="$refs.coClientPreferredNameField.style.display = 'block'">
-                                    <span class="radio-label">Other</span>
-                                </label>
-                            </div>
-                            <div x-ref="coClientPreferredNameField" style="display: none;" class="garden-form-group mt-3">
-                                <input type="text" name="co_client_preferred_name" class="garden-input" placeholder="Preferred name" aria-label="Co-client preferred name">
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" :class="{'required': addCoClient}" for="co_client_email">What's the best email to reach them at?</label>
-                            <input type="email" id="co_client_email" name="co_client_email" class="garden-input" :required="addCoClient">
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" :class="{'required': addCoClient}">What are their pronouns?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_pronouns" value="he/him" class="radio-input" @change="$refs.coClientPronounsOtherField.style.display = 'none'">
-                                    <span class="radio-label">he/him</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_pronouns" value="she/her" class="radio-input" @change="$refs.coClientPronounsOtherField.style.display = 'none'">
-                                    <span class="radio-label">she/her</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_pronouns" value="they/them" class="radio-input" @change="$refs.coClientPronounsOtherField.style.display = 'none'">
-                                    <span class="radio-label">they/them</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_pronouns" value="other" class="radio-input" @change="$refs.coClientPronounsOtherField.style.display = 'block'">
-                                    <span class="radio-label">Other</span>
-                                </label>
-                            </div>
-                            <div x-ref="coClientPronounsOtherField" style="display: none;" class="garden-form-group mt-3">
-                                <input type="text" name="co_client_pronouns_other" class="garden-input" placeholder="Their pronouns" aria-label="Co-client custom pronouns">
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" :class="{'required': addCoClient}" for="co_client_phone">What's their phone number?</label>
-                            <input type="tel" id="co_client_phone" name="co_client_phone" class="garden-input" :required="addCoClient">
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" :class="{'required': addCoClient}" for="co_client_birthday">What's their birthday?</label>
-                            <input type="date" id="co_client_birthday" name="co_client_birthday" class="garden-input" :required="addCoClient">
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" :class="{'required': addCoClient}">What best describes their employment status?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_employment_status" value="full_time" class="radio-input" @change="$refs.coClientEmploymentFields.style.display = 'block'">
-                                    <span class="radio-label">Full-time employed</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_employment_status" value="part_time" class="radio-input" @change="$refs.coClientEmploymentFields.style.display = 'block'">
-                                    <span class="radio-label">Part-time employed</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_employment_status" value="self_employed" class="radio-input" @change="$refs.coClientEmploymentFields.style.display = 'block'">
-                                    <span class="radio-label">Self-employed</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_employment_status" value="retired" class="radio-input" @change="$refs.coClientEmploymentFields.style.display = 'none'">
-                                    <span class="radio-label">Retired</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_employment_status" value="unemployed" class="radio-input" @change="$refs.coClientEmploymentFields.style.display = 'none'">
-                                    <span class="radio-label">Unemployed</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div x-ref="coClientEmploymentFields" style="display: none;">
-                            <div class="garden-form-group">
-                                <label class="form-label" for="co_client_employer_name">What's the name of their employer?</label>
-                                <input type="text" id="co_client_employer_name" name="co_client_employer_name" class="garden-input">
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" :class="{'required': addCoClient}">Do you share a mailing address with your co-client?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_share_address" value="yes" class="radio-input" @change="$refs.coClientAddressField.style.display = 'none'" checked>
-                                    <span class="radio-label">Yes</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="co_client_share_address" value="no" class="radio-input" @change="$refs.coClientAddressField.style.display = 'block'">
-                                    <span class="radio-label">No</span>
-                                </label>
-                            </div>
-                            <div x-ref="coClientAddressField" style="display: none;" class="garden-form-group mt-3">
-                                <label class="form-label" for="co_client_mailing_address">Co-client's mailing address</label>
-                                <textarea id="co_client_mailing_address" name="co_client_mailing_address" class="garden-input" rows="3"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
-                            <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 3: Your Contact Preferences -->
-                <section class="garden-panel form-section" data-step="3" x-show="currentStep === 3">
-                    <div class="panel-header">YOUR CONTACT PREFERENCES</div>
-                    <div class="panel-content">
-                        <div class="section-description">We're big fans of consent, so let us know how you'd prefer to stay in touch!</div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">How do you prefer to communicate with us?</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="communication_preference" value="email" class="checkbox-input">
-                                    <span class="checkbox-label">Email</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="communication_preference" value="phone" class="checkbox-input">
-                                    <span class="checkbox-label">Phone</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="communication_preference" value="virtual_meetings" class="checkbox-input">
-                                    <span class="checkbox-label">I'd like to schedule virtual meetings</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="communication_preference" value="client_contact" class="checkbox-input">
-                                    <span class="checkbox-label">I'll contact you</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">Would you like to subscribe to our email newsletter?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="newsletter_subscribe" value="yes" class="radio-input">
-                                    <span class="radio-label">Yes, please!</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="newsletter_subscribe" value="no" class="radio-input">
-                                    <span class="radio-label">No, thank you.</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
-                            <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 4: Your Willingness and Ability to Take Investment Risk -->
-                <section class="garden-panel form-section" data-step="4" x-show="currentStep === 4">
-                    <div class="panel-header">YOUR WILLINGNESS AND ABILITY TO TAKE INVESTMENT RISK</div>
-                    <div class="panel-content">
-                        <div class="section-description">We need to understand the way your brain works in order to deliver the best possible results over the long term. So don't think too hard about these questions! Your intuitive responses are by far the best here: they'll help us craft a long-term investment strategy that you can truly consent to.</div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">It would bother me if my account gained 10% over a 3-6 month period, but it could have gained 25%</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_1" value="strongly_agree" class="radio-input">
-                                    <span class="radio-label">Strongly agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_1" value="agree" class="radio-input">
-                                    <span class="radio-label">Agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_1" value="neutral" class="radio-input">
-                                    <span class="radio-label">Neutral.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_1" value="disagree" class="radio-input">
-                                    <span class="radio-label">Disagree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_1" value="strongly_disagree" class="radio-input">
-                                    <span class="radio-label">Strongly disagree.</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">Avoiding the worst case scenario matters more to me than maximizing my investment returns.</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_2" value="strongly_agree" class="radio-input">
-                                    <span class="radio-label">Strongly agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_2" value="agree" class="radio-input">
-                                    <span class="radio-label">Agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_2" value="neutral" class="radio-input">
-                                    <span class="radio-label">Neutral.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_2" value="disagree" class="radio-input">
-                                    <span class="radio-label">Disagree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_2" value="strongly_disagree" class="radio-input">
-                                    <span class="radio-label">Strongly disagree.</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">I try to avoid risk in most areas of my life.</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_3" value="strongly_agree" class="radio-input">
-                                    <span class="radio-label">Strongly agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_3" value="agree" class="radio-input">
-                                    <span class="radio-label">Agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_3" value="neutral" class="radio-input">
-                                    <span class="radio-label">Neutral.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_3" value="disagree" class="radio-input">
-                                    <span class="radio-label">Disagree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_3" value="strongly_disagree" class="radio-input">
-                                    <span class="radio-label">Strongly disagree.</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">I rarely, if ever, lose sleep because of stress and anxiety.</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_4" value="strongly_agree" class="radio-input">
-                                    <span class="radio-label">Strongly agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_4" value="agree" class="radio-input">
-                                    <span class="radio-label">Agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_4" value="neutral" class="radio-input">
-                                    <span class="radio-label">Neutral.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_4" value="disagree" class="radio-input">
-                                    <span class="radio-label">Disagree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_4" value="strongly_disagree" class="radio-input">
-                                    <span class="radio-label">Strongly Disagree.</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">I plan to stay invested for a long enough period to recover from a temporary decline in stock prices.</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_5" value="strongly_agree" class="radio-input">
-                                    <span class="radio-label">Strongly agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_5" value="agree" class="radio-input">
-                                    <span class="radio-label">Agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_5" value="neutral" class="radio-input">
-                                    <span class="radio-label">Neutral.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_5" value="disagree" class="radio-input">
-                                    <span class="radio-label">Disagree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_5" value="strongly_disagree" class="radio-input">
-                                    <span class="radio-label">Strongly disagree.</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">I'd worry less about my finances if my investments fully aligned with my values</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_6" value="strongly_agree" class="radio-input">
-                                    <span class="radio-label">Strongly agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_6" value="agree" class="radio-input">
-                                    <span class="radio-label">Agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_6" value="neutral" class="radio-input">
-                                    <span class="radio-label">Neutral.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_6" value="disagree" class="radio-input">
-                                    <span class="radio-label">Disagree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_6" value="strongly_disagree" class="radio-input">
-                                    <span class="radio-label">Strongly disagree.</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">I would rather experience financial volatility than compromise my ethical beliefs.</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_7" value="strongly_agree" class="radio-input">
-                                    <span class="radio-label">Strongly agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_7" value="agree" class="radio-input">
-                                    <span class="radio-label">Agree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_7" value="neutral" class="radio-input">
-                                    <span class="radio-label">Neutral.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_7" value="disagree" class="radio-input">
-                                    <span class="radio-label">Disagree.</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="risk_question_7" value="strongly_disagree" class="radio-input">
-                                    <span class="radio-label">Strongly disagree.</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
-                            <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 5: Your Values and Viewpoint -->
-                <section class="garden-panel form-section" data-step="5" x-show="currentStep === 5">
-                    <div class="panel-header">YOUR VALUES AND VIEWPOINT</div>
-                    <div class="panel-content">
-                        <div class="section-description">At Ethical Capital, we maintain a unified ethical framework that applies consistently across all client portfolios. So this section isn't about creating a customized ethical approach for you specifically. Instead, we're gathering your insights to strengthen our collective standards. Because when one client raises a novel ethical concern, all of us benefit from their perspective.</div>
-                        <div class="section-description">You'd be surprised how many times clients with no professional background in investing or sustainability have steered us away from danger well before it was obvious. So thank you in advance!</div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label">What ethical considerations are critically important to you when thinking about your investments?</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="ethical_considerations" value="animal_welfare" class="checkbox-input">
-                                    <span class="checkbox-label">Animal welfare</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="ethical_considerations" value="corporate_governance" class="checkbox-input">
-                                    <span class="checkbox-label">Corporate governance</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="ethical_considerations" value="corruption" class="checkbox-input">
-                                    <span class="checkbox-label">Corruption</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="ethical_considerations" value="environmental_impact" class="checkbox-input">
-                                    <span class="checkbox-label">Environmental impact & sustainability</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="ethical_considerations" value="human_rights" class="checkbox-input">
-                                    <span class="checkbox-label">Human rights</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="ethical_considerations" value="labor_practices" class="checkbox-input">
-                                    <span class="checkbox-label">Labor practices</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="ethical_considerations" value="social_justice" class="checkbox-input">
-                                    <span class="checkbox-label">Social justice</span>
-                                </label>
-                            </div>
-                            <div class="garden-form-group mt-3">
-                                <label class="form-label" for="ethical_considerations_other">Other:</label>
-                                <textarea id="ethical_considerations_other" name="ethical_considerations_other" class="garden-input" rows="2"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label">Our investment strategies align with several activist-led divestment movements. Are any of them critically important to you?</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="divestment_movements" value="bds" class="checkbox-input">
-                                    <span class="checkbox-label">BDS</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="divestment_movements" value="fossil_fuels" class="checkbox-input">
-                                    <span class="checkbox-label">Fossil Fuels</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="divestment_movements" value="modern_slavery" class="checkbox-input">
-                                    <span class="checkbox-label">Modern Slavery</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="divestment_movements" value="private_prisons" class="checkbox-input">
-                                    <span class="checkbox-label">Private Prisons</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="divestment_movements" value="tobacco" class="checkbox-input">
-                                    <span class="checkbox-label">Tobacco</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="divestment_movements" value="weapons" class="checkbox-input">
-                                    <span class="checkbox-label">Weapons</span>
-                                </label>
-                            </div>
-                            <div class="garden-form-group mt-3">
-                                <label class="form-label" for="divestment_movements_other">Other:</label>
-                                <textarea id="divestment_movements_other" name="divestment_movements_other" class="garden-input" rows="2"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">How important is it for you to understand why each company is included in your portfolio?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="understanding_importance" value="extremely" class="radio-input" @change="$refs.understandingOtherField.style.display = 'none'">
-                                    <span class="radio-label">Extremely</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="understanding_importance" value="very" class="radio-input" @change="$refs.understandingOtherField.style.display = 'none'">
-                                    <span class="radio-label">Very</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="understanding_importance" value="somewhat" class="radio-input" @change="$refs.understandingOtherField.style.display = 'none'">
-                                    <span class="radio-label">Somewhat</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="understanding_importance" value="not_very" class="radio-input" @change="$refs.understandingOtherField.style.display = 'none'">
-                                    <span class="radio-label">Not very</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="understanding_importance" value="other" class="radio-input" @change="$refs.understandingOtherField.style.display = 'block'">
-                                    <span class="radio-label">Other</span>
-                                </label>
-                            </div>
-                            <div x-ref="understandingOtherField" style="display: none;" class="garden-form-group mt-3">
-                                <input type="text" name="understanding_importance_other" class="garden-input" placeholder="Please specify" aria-label="Other reason for understanding importance">
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">We evolve our ethical framework whenever we discover new information. How does that make you feel?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="ethical_evolution" value="strongly_support" class="radio-input" @change="$refs.evolutionOtherField.style.display = 'none'">
-                                    <span class="radio-label">I strongly support this</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="ethical_evolution" value="support" class="radio-input" @change="$refs.evolutionOtherField.style.display = 'none'">
-                                    <span class="radio-label">I support this</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="ethical_evolution" value="neutral" class="radio-input" @change="$refs.evolutionOtherField.style.display = 'none'">
-                                    <span class="radio-label">I'm neutral</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="ethical_evolution" value="concerned" class="radio-input" @change="$refs.evolutionOtherField.style.display = 'none'">
-                                    <span class="radio-label">I'm concerned</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="ethical_evolution" value="other" class="radio-input" @change="$refs.evolutionOtherField.style.display = 'block'">
-                                    <span class="radio-label">Other</span>
-                                </label>
-                            </div>
-                            <div x-ref="evolutionOtherField" style="display: none;" class="garden-form-group mt-3">
-                                <input type="text" name="ethical_evolution_other" class="garden-input" placeholder="Please specify" aria-label="Other way ethical views evolved">
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" for="ethical_concerns_unrecognized">Are you motivated by ethical concerns that might not be widely recognized?</label>
-                            <textarea id="ethical_concerns_unrecognized" name="ethical_concerns_unrecognized" class="garden-input" rows="3"></textarea>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
-                            <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 6: Your Financial Context -->
-                <section class="garden-panel form-section" data-step="6" x-show="currentStep === 6">
-                    <div class="panel-header">YOUR FINANCIAL CONTEXT</div>
-                    <div class="panel-content">
-                        <div class="garden-form-group">
-                            <label class="form-label required">How would you describe your level of investment experience?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="investment_experience" value="nonexistent" class="radio-input">
-                                    <span class="radio-label">Nonexistent</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="investment_experience" value="limited" class="radio-input">
-                                    <span class="radio-label">Limited</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="investment_experience" value="average" class="radio-input">
-                                    <span class="radio-label">Average</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="investment_experience" value="advanced" class="radio-input">
-                                    <span class="radio-label">Advanced</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="investment_experience" value="professional" class="radio-input">
-                                    <span class="radio-label">Professional</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">If you suddenly needed $1,000, would you be able to access it without selling investments or taking on debt?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="emergency_access" value="yes" class="radio-input">
-                                    <span class="radio-label">Yes</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="emergency_access" value="no" class="radio-input">
-                                    <span class="radio-label">No</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="emergency_access" value="not_sure" class="radio-input">
-                                    <span class="radio-label">I'm not sure</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required" for="net_worth">What's your approximate net worth?</label>
-                            <input type="text" id="net_worth" name="net_worth" class="garden-input" required>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required" for="liquid_net_worth">What's your liquid net worth?</label>
-                            <input type="text" id="liquid_net_worth" name="liquid_net_worth" class="garden-input" required>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required" for="investable_net_worth">What's your investable net worth?</label>
-                            <input type="text" id="investable_net_worth" name="investable_net_worth" class="garden-input" required>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">How familiar are you with the way we invest?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="investment_familiarity" value="not_very" class="radio-input">
-                                    <span class="radio-label">Not very</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="investment_familiarity" value="get_gist" class="radio-input">
-                                    <span class="radio-label">I get the gist</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="investment_familiarity" value="understand" class="radio-input">
-                                    <span class="radio-label">I understand it</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="investment_familiarity" value="deep_understanding" class="radio-input">
-                                    <span class="radio-label">I have a deep understanding</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label required">Have you worked with an investment adviser before?</label>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="worked_with_adviser" value="yes" class="radio-input">
-                                    <span class="radio-label">Yes</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="worked_with_adviser" value="no" class="radio-input">
-                                    <span class="radio-label">No</span>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="worked_with_adviser" value="not_sure" class="radio-input">
-                                    <span class="radio-label">I'm not sure</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label">What kinds of accounts would you like us to open for you?</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="account_types" value="not_sure" class="checkbox-input">
-                                    <span class="checkbox-label">I'm not sure</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="account_types" value="transfer_existing" class="checkbox-input">
-                                    <span class="checkbox-label">I'd like to transfer my existing accounts.</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="account_types" value="individual_taxable" class="checkbox-input">
-                                    <span class="checkbox-label">Individual taxable account</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="account_types" value="roth_ira" class="checkbox-input">
-                                    <span class="checkbox-label">Roth IRA</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="account_types" value="trust_account" class="checkbox-input">
-                                    <span class="checkbox-label">Trust Account</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="account_types" value="corporate_account" class="checkbox-input">
-                                    <span class="checkbox-label">Corporate Account</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="account_types" value="joint_account" class="checkbox-input">
-                                    <span class="checkbox-label">Joint Account</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="account_types" value="high_yield_savings" class="checkbox-input">
-                                    <span class="checkbox-label">High yield savings account</span>
-                                </label>
-                            </div>
-                            <div class="garden-form-group mt-3">
-                                <label class="form-label" for="account_types_other">Other:</label>
-                                <textarea id="account_types_other" name="account_types_other" class="garden-input" rows="2"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
-                            <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 7: Your Financial Team -->
-                <section class="garden-panel form-section" data-step="7" x-show="currentStep === 7">
-                    <div class="panel-header">YOUR FINANCIAL TEAM</div>
-                    <div class="panel-content">
-                        <div class="section-description">
-                            <p>Long-term investing is our sole focus at Ethical Capital. This specialty makes us somewhat akin to a surgeon. We are happy to offer practical guidance about anything we can — and are always interested to know more about our clients' lives — but most of what we do comes down to renovating and reassembling portfolios.</p>
-                            <p>This means over the course of the lifetime we hope to work together, you will have needs we can't fulfill. For instance, you may need:</p>
-                            <ul>
-                                <li>A financial planner to build out a detailed budget,</li>
-                                <li>A money coach to help you get your hands around everything, or</li>
-                                <li>A finance-informed therapist.</li>
-                            </ul>
-                            <p>We know those kinds of people, and love working alongside them to support our clients.</p>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" for="financial_team_coordinate">Is there someone (accountant, attorney, etc) you'd like us to coordinate with?</label>
-                            <textarea id="financial_team_coordinate" name="financial_team_coordinate" class="garden-input" rows="3"></textarea>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label">Would you like us to refer you to a values-aligned professional with one or more of these characteristics?</label>
-                            <div class="checkbox-group">
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="professional_referrals" value="accountant" class="checkbox-input">
-                                    <span class="checkbox-label">Accountant</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="professional_referrals" value="attorney" class="checkbox-input">
-                                    <span class="checkbox-label">Attorney</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="professional_referrals" value="bookkeeper" class="checkbox-input">
-                                    <span class="checkbox-label">Bookkeeper</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="professional_referrals" value="financial_planner" class="checkbox-input">
-                                    <span class="checkbox-label">Financial planner</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="professional_referrals" value="insurance_agent" class="checkbox-input">
-                                    <span class="checkbox-label">Insurance agent</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="professional_referrals" value="money_coach" class="checkbox-input">
-                                    <span class="checkbox-label">Money Coach</span>
-                                </label>
-                                <label class="checkbox-option">
-                                    <input type="checkbox" name="professional_referrals" value="therapist" class="checkbox-input">
-                                    <span class="checkbox-label">Therapist</span>
-                                </label>
-                            </div>
-                            <div class="garden-form-group mt-3">
-                                <label class="form-label" for="professional_referrals_other">Other:</label>
-                                <textarea id="professional_referrals_other" name="professional_referrals_other" class="garden-input" rows="2"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="form-label" for="anything_else">Is there anything else going on in your life you'd like to tell us about?</label>
-                            <textarea id="anything_else" name="anything_else" class="garden-input" rows="4"></textarea>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
-                            <button type="button" class="garden-action primary" @click="nextStep()">Continue</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 8: Review & Submit -->
-                <section class="garden-panel form-section" data-step="8" x-show="currentStep === 8">
-                    <div class="panel-header">REVIEW & SUBMIT</div>
-                    <div class="panel-content">
-                        <div class="section-description">
-                            <h3>That's it for now!</h3>
-                            <p>We'll be in touch shortly!</p>
-                            <p>In the meantime, you'll get a little something from Sloane in your inbox momentarily... a link to schedule an onboarding call.</p>
-                            <p>Don't hesitate to reply directly to that email with any questions you may have, and welcome!</p>
-                        </div>
-
-                        <div class="garden-form-group">
-                            <label class="checkbox-option">
-                                <input type="checkbox" id="confirm_accuracy" name="confirm_accuracy" class="checkbox-input" required>
-                                <span class="checkbox-label">I confirm that all information provided is accurate to the best of my knowledge.</span>
-                            </label>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="garden-action secondary" @click="prevStep()">Back</button>
-                            <button type="submit" class="garden-action primary" id="submitBtn">Submit Application</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Hidden honeypot field -->
-                <input type="text" name="honeypot" class="visually-hidden" tabindex="-1" autocomplete="off" aria-label="Leave this field empty">
-
-                <!-- Turnstile hidden field -->
-                <input type="hidden" name="cf_turnstile_response" value="">
-
-                <!-- Cloudflare Turnstile before submit -->
-                <div class="garden-form-group" x-show="currentStep === 8" style="margin-bottom: 1rem;">
-                    <div class="cf-turnstile"
-                         data-sitekey="{{ TURNSTILE_SITE_KEY }}"
-                         data-callback="onTurnstileSuccess"
-                         data-expired-callback="onTurnstileExpired"
-                         data-error-callback="onTurnstileError"></div>
-                </div>
-            </form>
-
-            <!-- Thank You Message -->
-            <section class="garden-panel thank-you-panel" id="thankYouMessage" style="display: none;">
-                <div class="panel-header">APPLICATION SUBMITTED</div>
-                <div class="panel-content">
-                    <div class="thank-you-message">
-                        <div class="success-icon">✓</div>
-                        <h2>Thank You for Your Application!</h2>
-                        <p>We've received your information and will review it shortly. You should receive a confirmation email within the next few minutes.</p>
-                        <p>A member of our team will contact you within 1-2 business days to discuss the next steps in opening your account.</p>
-                        <div class="next-steps">
-                            <h3>What Happens Next?</h3>
-                            <ul>
-                                <li>Account review and approval (1-2 business days)</li>
-                                <li>Schedule a consultation with your adviser</li>
-                                <li>Fund your account and begin investing</li>
-                                <li>Access your personalized investment dashboard</li>
-                            </ul>
-                        </div>
-                        <a href="/" class="garden-action primary">Return to Homepage</a>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="first_name">
+                What's your first name? <span class="text-red-500 ml-1">*</span>
+              </label>
+              <input
+                type="text"
+                id="first_name"
+                name="first_name"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                autocomplete="given-name"
+                required
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="middle_names">
+                What are your middle names? (optional)
+              </label>
+              <input
+                type="text"
+                id="middle_names"
+                name="middle_names"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                autocomplete="additional-name"
+                placeholder="Enter all middle names separated by spaces"
+              />
+              <div class="text-sm text-gray-600 dark:text-gray-400">Enter all middle names separated by spaces</div>
+            </div>            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="last_name">
+                What's your last name? <span class="text-red-500 ml-1">*</span>
+              </label>
+              <input
+                type="text"
+                id="last_name"
+                name="last_name"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                autocomplete="family-name"
+                required
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                Would you prefer we call you by any other name? <span class="text-red-500 ml-1">*</span>
+              </label>
+              <div class="space-y-3">
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="preferred_name_choice"
+                    value="nope"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    @change="$refs.preferredNameField.classList.add('hidden')"
+                    checked
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Nope</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="preferred_name_choice"
+                    value="other"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    @change="$refs.preferredNameField.classList.remove('hidden')"
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Other</span>
+                </label>
+              </div>
+              <div x-ref="preferredNameField" class="mt-3 hidden">
+                <input
+                  type="text"
+                  name="preferred_name"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="Preferred name"
+                  aria-label="Preferred name for client"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                What are your pronouns? <span class="text-red-500 ml-1">*</span>
+              </label>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="pronouns"
+                    value="he/him"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    @change="$refs.pronounsOtherField.style.display = 'none'"
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">he/him</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="pronouns"
+                    value="she/her"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    @change="$refs.pronounsOtherField.style.display = 'none'"
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">she/her</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="pronouns"
+                    value="they/them"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    @change="$refs.pronounsOtherField.style.display = 'none'"
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">they/them</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="pronouns"
+                    value="other"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    @change="$refs.pronounsOtherField.style.display = 'block'"
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Other</span>
+                </label>
+              </div>              <div x-ref="pronounsOtherField" class="mt-3" style="display: none;">
+                <input
+                  type="text"
+                  name="pronouns_other"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  placeholder="Please specify your pronouns"
+                  aria-label="Custom pronouns"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                Are you adding a co-client to this account?
+              </label>
+              <div class="space-y-3">
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="add_co_client"
+                    value="no"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    @change="addCoClient = false"
+                    checked
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">No, just me</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="add_co_client"
+                    value="yes"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    @change="addCoClient = true"
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Yes, add a co-client</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section Navigation -->
+          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
+            <div></div>
+            <button 
+              type="button" 
+              @click="nextStep()" 
+              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              Next Step →
+            </button>
+          </div>
+        </section>
+
+        <!-- Section 2: Your Co-Client (Conditional) -->
+        <section
+          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
+          :class="{ 'ring-2 ring-purple-500': currentStep === 2 }"
+          data-step="2"
+          x-show="currentStep === 2 && addCoClient"
+        >
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">YOUR CO-CLIENT</h2>
+          <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+            <p class="text-blue-800 dark:text-blue-200">
+              Please provide information about your co-client who will be added to this account.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="co_client_email">
+                Co-client's email address <span class="text-red-500 ml-1">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="co_client_email" 
+                name="co_client_email" 
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                :required="addCoClient"
+              />
+            </div>            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="co_client_first_name">
+                  Co-client's first name <span class="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="co_client_first_name"
+                  name="co_client_first_name"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  :required="addCoClient"
+                />
+              </div>
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="co_client_last_name">
+                  Co-client's last name <span class="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="co_client_last_name"
+                  name="co_client_last_name"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  :required="addCoClient"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section Navigation -->
+          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
+            <button 
+              type="button" 
+              @click="prevStep()" 
+              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            >
+              ← Previous
+            </button>
+            <button 
+              type="button" 
+              @click="nextStep()" 
+              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              Next Step →
+            </button>
+          </div>
+        </section>
+
+        <!-- Section 3: Contact Preferences -->
+        <section
+          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
+          :class="{ 'ring-2 ring-purple-500': currentStep === 3 }"
+          data-step="3"
+          x-show="currentStep === 3"
+        >
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">CONTACT PREFERENCES</h2>
+          <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
+            <p class="text-green-800 dark:text-green-200">
+              How would you like us to reach you for important account updates and investment discussions?
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="phone">
+                Phone number <span class="text-red-500 ml-1">*</span>
+              </label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                required
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                Preferred contact method <span class="text-red-500 ml-1">*</span>
+              </label>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="preferred_contact"
+                    value="email"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    required
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Email</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="preferred_contact"
+                    value="phone"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    required
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Phone</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="preferred_contact"
+                    value="both"
+                    class="mr-3 text-purple-600 focus:ring-purple-500"
+                    required
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Both</span>
+                </label>
+              </div>
+            </div>          </div>
+
+          <!-- Section Navigation -->
+          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
+            <button 
+              type="button" 
+              @click="prevStep()" 
+              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            >
+              ← Previous
+            </button>
+            <button 
+              type="button" 
+              @click="nextStep()" 
+              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              Next Step →
+            </button>
+          </div>
+        </section>
+
+        <!-- Section 4: Risk Assessment -->
+        <section
+          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
+          :class="{ 'ring-2 ring-purple-500': currentStep === 4 }"
+          data-step="4"
+          x-show="currentStep === 4"
+        >
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">RISK ASSESSMENT</h2>
+          <div class="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 mb-6">
+            <p class="text-orange-800 dark:text-orange-200">
+              Understanding your risk tolerance helps us recommend appropriate investment strategies.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                How would you describe your risk tolerance? <span class="text-red-500 ml-1">*</span>
+              </label>
+              <div class="space-y-3">
+                <label class="flex items-start">
+                  <input
+                    type="radio"
+                    name="risk_tolerance"
+                    value="conservative"
+                    class="mr-3 mt-1 text-purple-600 focus:ring-purple-500"
+                    required
+                  />
+                  <div>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium">Conservative</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">I prefer stable returns and am uncomfortable with volatility</p>
+                  </div>
+                </label>
+                <label class="flex items-start">
+                  <input
+                    type="radio"
+                    name="risk_tolerance"
+                    value="moderate"
+                    class="mr-3 mt-1 text-purple-600 focus:ring-purple-500"
+                    required
+                  />
+                  <div>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium">Moderate</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">I'm comfortable with some volatility for potentially higher returns</p>
+                  </div>
+                </label>
+                <label class="flex items-start">
+                  <input
+                    type="radio"
+                    name="risk_tolerance"
+                    value="aggressive"
+                    class="mr-3 mt-1 text-purple-600 focus:ring-purple-500"
+                    required
+                  />
+                  <div>
+                    <span class="text-gray-900 dark:text-gray-100 font-medium">Aggressive</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">I'm comfortable with high volatility for maximum growth potential</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_timeline">
+                What is your investment timeline? <span class="text-red-500 ml-1">*</span>
+              </label>
+              <select 
+                id="investment_timeline" 
+                name="investment_timeline" 
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                required
+              >
+                <option value="">Select timeline...</option>
+                <option value="short">Less than 3 years</option>
+                <option value="medium">3-10 years</option>
+                <option value="long">More than 10 years</option>
+              </select>
+            </div>
+          </div>          <!-- Section Navigation -->
+          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
+            <button 
+              type="button" 
+              @click="prevStep()" 
+              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            >
+              ← Previous
+            </button>
+            <button 
+              type="button" 
+              @click="nextStep()" 
+              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              Next Step →
+            </button>
+          </div>
+        </section>
+
+        <!-- Section 5: Values & Viewpoint -->
+        <section
+          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
+          :class="{ 'ring-2 ring-purple-500': currentStep === 5 }"
+          data-step="5"
+          x-show="currentStep === 5"
+        >
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">VALUES & VIEWPOINT</h2>
+          <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
+            <p class="text-purple-800 dark:text-purple-200">
+              Tell us about your values and what's important to you in your investments.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_goals">
+                What are your primary investment goals? <span class="text-red-500 ml-1">*</span>
+              </label>
+              <textarea 
+                id="investment_goals" 
+                name="investment_goals" 
+                rows="4"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Tell us about your investment objectives, financial goals, and what you hope to achieve..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                Which ESG factors are most important to you? (Select all that apply)
+              </label>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="esg_factors"
+                    value="environmental"
+                    class="mr-3 text-purple-600 focus:ring-purple-500 rounded"
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Environmental sustainability</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="esg_factors"
+                    value="social"
+                    class="mr-3 text-purple-600 focus:ring-purple-500 rounded"
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Social responsibility</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="esg_factors"
+                    value="governance"
+                    class="mr-3 text-purple-600 focus:ring-purple-500 rounded"
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Corporate governance</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="esg_factors"
+                    value="diversity"
+                    class="mr-3 text-purple-600 focus:ring-purple-500 rounded"
+                  />
+                  <span class="text-gray-900 dark:text-gray-100">Diversity & inclusion</span>
+                </label>
+              </div>
+            </div>
+          </div>          <!-- Section Navigation -->
+          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
+            <button 
+              type="button" 
+              @click="prevStep()" 
+              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            >
+              ← Previous
+            </button>
+            <button 
+              type="button" 
+              @click="nextStep()" 
+              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              Next Step →
+            </button>
+          </div>
+        </section>
+
+        <!-- Section 6: Financial Context -->
+        <section
+          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
+          :class="{ 'ring-2 ring-purple-500': currentStep === 6 }"
+          data-step="6"
+          x-show="currentStep === 6"
+        >
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">FINANCIAL CONTEXT</h2>
+          <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+            <p class="text-blue-800 dark:text-blue-200">
+              Help us understand your financial situation to provide better recommendations.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="annual_income">
+                Approximate annual income <span class="text-red-500 ml-1">*</span>
+              </label>
+              <select 
+                id="annual_income" 
+                name="annual_income" 
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                required
+              >
+                <option value="">Select income range...</option>
+                <option value="under_50k">Under $50,000</option>
+                <option value="50k_100k">$50,000 - $100,000</option>
+                <option value="100k_250k">$100,000 - $250,000</option>
+                <option value="250k_500k">$250,000 - $500,000</option>
+                <option value="500k_1m">$500,000 - $1,000,000</option>
+                <option value="over_1m">Over $1,000,000</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_amount">
+                Initial investment amount <span class="text-red-500 ml-1">*</span>
+              </label>
+              <select 
+                id="investment_amount" 
+                name="investment_amount" 
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                required
+              >
+                <option value="">Select amount range...</option>
+                <option value="under_100k">Under $100,000</option>
+                <option value="100k_250k">$100,000 - $250,000</option>
+                <option value="250k_500k">$250,000 - $500,000</option>
+                <option value="500k_1m">$500,000 - $1,000,000</option>
+                <option value="over_1m">Over $1,000,000</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_experience">
+                Investment experience <span class="text-red-500 ml-1">*</span>
+              </label>
+              <textarea 
+                id="investment_experience" 
+                name="investment_experience" 
+                rows="3"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Tell us about your previous investment experience..."
+                required
+              ></textarea>
+            </div>
+          </div>          <!-- Section Navigation -->
+          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
+            <button 
+              type="button" 
+              @click="prevStep()" 
+              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            >
+              ← Previous
+            </button>
+            <button 
+              type="button" 
+              @click="nextStep()" 
+              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              Next Step →
+            </button>
+          </div>
+        </section>
+
+        <!-- Section 7: Your Financial Team -->
+        <section
+          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
+          :class="{ 'ring-2 ring-purple-500': currentStep === 7 }"
+          data-step="7"
+          x-show="currentStep === 7"
+        >
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">YOUR FINANCIAL TEAM</h2>
+          <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6">
+            <p class="text-yellow-800 dark:text-yellow-200">
+              Tell us about your current financial advisors and professional relationships.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="current_advisor">
+                Do you currently work with a financial advisor?
+              </label>
+              <textarea 
+                id="current_advisor" 
+                name="current_advisor" 
+                rows="3"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Please share details about your current advisor relationships..."
+              ></textarea>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="other_professionals">
+                Other financial professionals (CPA, attorney, etc.)
+              </label>
+              <textarea 
+                id="other_professionals" 
+                name="other_professionals" 
+                rows="3"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Tell us about your CPA, attorney, or other financial professionals..."
+              ></textarea>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="referral_source">
+                How did you hear about Ethical Capital?
+              </label>
+              <input 
+                type="text" 
+                id="referral_source" 
+                name="referral_source" 
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Referral source, search engine, social media, etc."
+              />
+            </div>
+          </div>          <!-- Section Navigation -->
+          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
+            <button 
+              type="button" 
+              @click="prevStep()" 
+              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            >
+              ← Previous
+            </button>
+            <button 
+              type="button" 
+              @click="nextStep()" 
+              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              Next Step →
+            </button>
+          </div>
+        </section>
+
+        <!-- Section 8: Review & Submit -->
+        <section
+          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
+          :class="{ 'ring-2 ring-purple-500': currentStep === 8 }"
+          data-step="8"
+          x-show="currentStep === 8"
+        >
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">REVIEW & SUBMIT</h2>
+          <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
+            <p class="text-green-800 dark:text-green-200">
+              Please review your information and add any final comments before submitting.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="additional_comments">
+                Additional comments or questions
+              </label>
+              <textarea 
+                id="additional_comments" 
+                name="additional_comments" 
+                rows="4"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                placeholder="Any additional information you'd like to share with us..."
+              ></textarea>
+            </div>
+
+            <!-- Cloudflare Turnstile -->
+            <div class="space-y-2">
+              <div
+                class="cf-turnstile mx-auto"
+                data-sitekey="{{ TURNSTILE_SITE_KEY }}"
+                data-callback="onTurnstileSuccess"
+                data-expired-callback="onTurnstileExpired"
+                data-error-callback="onTurnstileError"
+              ></div>
+              <input type="hidden" name="cf_turnstile_response" value="" />
+            </div>
+
+            <!-- Terms and Privacy -->
+            <div class="space-y-4">
+              <label class="flex items-start">
+                <input
+                  type="checkbox"
+                  name="agree_terms"
+                  class="mr-3 mt-1 text-purple-600 focus:ring-purple-500 rounded"
+                  required
+                />
+                <span class="text-sm text-gray-900 dark:text-gray-100">
+                  I agree to the <a href="/legal/terms/" class="text-purple-600 hover:text-purple-800 underline" target="_blank">Terms of Service</a> 
+                  and <a href="/legal/privacy/" class="text-purple-600 hover:text-purple-800 underline" target="_blank">Privacy Policy</a>
+                  <span class="text-red-500 ml-1">*</span>
+                </span>
+              </label>
+              
+              <label class="flex items-start">
+                <input
+                  type="checkbox"
+                  name="consent_contact"
+                  class="mr-3 mt-1 text-purple-600 focus:ring-purple-500 rounded"
+                  required
+                />
+                <span class="text-sm text-gray-900 dark:text-gray-100">
+                  I consent to being contacted by Ethical Capital regarding my application and potential investment services
+                  <span class="text-red-500 ml-1">*</span>
+                </span>
+              </label>
+            </div>
+          </div>          <!-- Final Section Navigation -->
+          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
+            <button 
+              type="button" 
+              @click="prevStep()" 
+              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            >
+              ← Previous
+            </button>
+            <button 
+              type="submit" 
+              class="px-8 py-4 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              :disabled="submitting"
+            >
+              <span x-show="!submitting">Submit Application</span>
+              <span x-show="submitting" x-cloak class="flex items-center gap-2">
+                <span class="animate-spin">⟳</span>
+                Submitting...
+              </span>
+            </button>
+          </div>
+        </section>
+      </form>
+    </div>
+  </main>
 </div>
-{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/onboarding-page.css' %}">
-<style>
-/* Emergency fix for invisible form borders - comprehensive override for all onboarding form fields */
-html body .main-content .onboarding-page input[type="text"],
-html body .main-content .onboarding-page input[type="email"],
-html body .main-content .onboarding-page input[type="tel"],
-html body .main-content .onboarding-page input[type="number"],
-html body .main-content .onboarding-page input[type="date"],
-html body .main-content .onboarding-page input[type="url"],
-html body .main-content .onboarding-page input[type="password"],
-html body .main-content .onboarding-page textarea,
-html body .main-content .onboarding-page select,
-html body .main-content .onboarding-page .garden-input,
-html body .main-content .onboarding-page input,
-html body .main-content input.garden-input,
-/* Specific field IDs for all sections */
-html body .main-content input#email,
-html body .main-content input#first_name,
-html body .main-content input#last_name,
-html body .main-content input#middle_names,
-html body .main-content input#preferred_name,
-html body .main-content input#pronouns,
-html body .main-content input#street_address,
-html body .main-content input#apartment,
-html body .main-content input#city,
-html body .main-content input#state,
-html body .main-content input#zip_code,
-html body .main-content input#country,
-html body .main-content input#phone_number,
-html body .main-content input#birthday,
-html body .main-content input#household_income,
-html body .main-content input#liquid_assets,
-html body .main-content input#portfolio_size,
-html body .main-content input#annual_income,
-html body .main-content input#net_worth,
-html body .main-content input#investment_timeline,
-html body .main-content input#risk_tolerance,
-html body .main-content input#current_investments,
-html body .main-content input#investment_goals,
-html body .main-content input#employer_name,
-html body .main-content input#job_title,
-html body .main-content input#work_experience,
-html body .main-content input#industry,
-html body .main-content input#investment_experience,
-html body .main-content input#previous_advisors,
-html body .main-content input#referral_source,
-html body .main-content input#specific_needs,
-html body .main-content input#additional_comments,
-html body .main-content textarea#additional_comments,
-html body .main-content textarea#investment_goals,
-html body .main-content textarea#specific_needs,
-html body .main-content textarea {
-    border: 1px solid #e5e7eb !important;
-    border-color: #e5e7eb !important;
-}
-</style>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-document.addEventListener('alpine:init', () => {
-    Alpine.data('onboardingForm', () => ({
-        currentStep: 1,
-        totalSteps: 8,
-        submitting: false,
-        addCoClient: false,
-        stepNames: {
-            1: 'About You',
-            2: 'Your Co-Client',
-            3: 'Contact Preferences',
-            4: 'Risk Assessment',
-            5: 'Values & Viewpoint',
-            6: 'Financial Context',
-            7: 'Your Financial Team',
-            8: 'Review & Submit'
-        },
-        get actualTotalSteps() {
-            return this.addCoClient ? 8 : 7;
-        },
-        get actualStepNumber() {
-            if (!this.addCoClient && this.currentStep > 2) {
-                return this.currentStep - 1;
-            }
-            return this.currentStep;
-        },
-        get progress() {
-            return (this.actualStepNumber / this.actualTotalSteps) * 100;
-        },
-        get progressText() {
-            return `Step ${this.actualStepNumber} of ${this.actualTotalSteps}: ${this.stepNames[this.currentStep]}`;
-        },
-        nextStep() {
-            if (this.validateStep(this.currentStep)) {
-                if (this.currentStep === 1 && this.addCoClient === false) {
-                    this.currentStep = 3; // Skip co-client section
-                } else if (this.currentStep < this.totalSteps) {
-                    this.currentStep++;
-                }
-                window.scrollTo(0, 0);
-            }
-        },
-        prevStep() {
-            if (this.currentStep === 3 && this.addCoClient === false && this.currentStep > 1) {
-                this.currentStep = 1; // Skip back over co-client section
-            } else if (this.currentStep > 1) {
-                this.currentStep--;
-            }
-            window.scrollTo(0, 0);
-        },
-        goToStep(targetStep) {
-            // Allow going to previous steps or current step without validation
-            if (targetStep <= this.currentStep) {
-                this.currentStep = targetStep;
-                window.scrollTo(0, 0);
-            } else {
-                // For future steps, validate current step first
-                if (this.validateStep(this.currentStep)) {
-                    this.currentStep = targetStep;
-                    window.scrollTo(0, 0);
-                }
-            }
-        },
-        goToDisplayStep(displayStep) {
-            // Convert display step number to actual step number
-            let targetStep;
-            if (this.addCoClient) {
-                targetStep = displayStep;
-            } else {
-                // If no co-client, adjust step numbers (skip step 2)
-                targetStep = displayStep >= 2 ? displayStep + 1 : displayStep;
-            }
-            this.goToStep(targetStep);
-        },
-        showValidationMessage(message, type = 'error') {
-            // Remove any existing validation messages
-            const existingMessage = document.querySelector('.validation-message');
-            if (existingMessage) existingMessage.remove();
-
-            // Create new validation message
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `validation-message ${type}`;
-            messageDiv.innerHTML = `
-                <span class="validation-icon">${type === 'error' ? '⚠️' : '✓'}</span>
-                <span class="validation-text">${message}</span>
-            `;
-
-            // Insert at top of current step
-            const currentSection = document.querySelector(`[data-step='${this.currentStep}']`);
-            const panelContent = currentSection.querySelector('.panel-content');
-            panelContent.insertBefore(messageDiv, panelContent.firstChild);
-
-            // Auto-remove after 5 seconds
-            setTimeout(() => {
-                if (messageDiv.parentNode) messageDiv.remove();
-            }, 5000);
-        },
-        validateStep(step) {
-            const section = document.querySelector(`[data-step='${step}']`);
-            const requiredFields = section.querySelectorAll('[required]:not([x-show]):not([style*="display: none"])');
-            let isValid = true;
-            let errorFields = [];
-
-            requiredFields.forEach(field => {
-                let fieldValid = true;
-
-                if (field.type === 'radio') {
-                    fieldValid = section.querySelector(`input[name='${field.name}']:checked`) !== null;
-                } else if (field.type === 'checkbox' && field.hasAttribute('required')) {
-                    fieldValid = field.checked;
-                } else {
-                    fieldValid = field.value.trim() !== '';
-                }
-
-                if (!fieldValid) {
-                    isValid = false;
-                    field.classList.add('error');
-
-                    // Get field label for error message
-                    const label = field.closest('.garden-form-group')?.querySelector('label');
-                    const fieldName = label ? label.textContent.replace('*', '').trim() : field.name;
-                    errorFields.push(fieldName);
-                } else {
-                    field.classList.remove('error');
-                }
-            });
-
-            if (!isValid) {
-                const message = errorFields.length === 1
-                    ? `Please complete: ${errorFields[0]}`
-                    : `Please complete these required fields: ${errorFields.join(', ')}`;
-                this.showValidationMessage(message, 'error');
-
-                // Focus on first error field
-                const firstErrorField = section.querySelector('.error');
-                if (firstErrorField) {
-                    firstErrorField.focus();
-                    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
-
-            return isValid;
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("onboardingForm", () => ({
+      currentStep: 1,
+      totalSteps: 8,
+      submitting: false,
+      addCoClient: false,
+      stepNames: {
+        1: "About You",
+        2: "Your Co-Client",
+        3: "Contact Preferences",
+        4: "Risk Assessment",
+        5: "Values & Viewpoint",
+        6: "Financial Context",
+        7: "Your Financial Team",
+        8: "Review & Submit",
+      },
+      get actualTotalSteps() {
+        return this.addCoClient ? 8 : 7;
+      },
+      get actualStepNumber() {
+        if (!this.addCoClient && this.currentStep > 2) {
+          return this.currentStep - 1;
         }
-    }));
-});
+        return this.currentStep;
+      },
+      get progress() {
+        return (this.actualStepNumber / this.actualTotalSteps) * 100;
+      },
+      get progressText() {
+        return `Step ${this.actualStepNumber} of ${this.actualTotalSteps}: ${this.stepNames[this.currentStep]}`;
+      },      nextStep() {
+        if (this.validateStep(this.currentStep)) {
+          if (this.currentStep === 1 && this.addCoClient === false) {
+            this.currentStep = 3; // Skip co-client section
+          } else if (this.currentStep < this.totalSteps) {
+            this.currentStep++;
+          }
+          window.scrollTo(0, 0);
+        }
+      },
+      prevStep() {
+        if (this.currentStep === 3 && this.addCoClient === false && this.currentStep > 1) {
+          this.currentStep = 1; // Skip back over co-client section
+        } else if (this.currentStep > 1) {
+          this.currentStep--;
+        }
+        window.scrollTo(0, 0);
+      },
+      goToStep(targetStep) {
+        // Allow going to previous steps or current step without validation
+        if (targetStep <= this.currentStep) {
+          this.currentStep = targetStep;
+          window.scrollTo(0, 0);
+        } else {
+          // For future steps, validate current step first
+          if (this.validateStep(this.currentStep)) {
+            this.currentStep = targetStep;
+            window.scrollTo(0, 0);
+          }
+        }
+      },
+      goToDisplayStep(displayStep) {
+        // Convert display step number to actual step number
+        let targetStep;
+        if (this.addCoClient) {
+          targetStep = displayStep;
+        } else {
+          // If no co-client, adjust step numbers (skip step 2)
+          targetStep = displayStep >= 2 ? displayStep + 1 : displayStep;
+        }
+        this.goToStep(targetStep);
+      },      showValidationMessage(message, type = "error") {
+        // Remove any existing validation messages
+        const existingMessage = document.querySelector(".validation-message");
+        if (existingMessage) existingMessage.remove();
 
-// Turnstile callback functions
-function onTurnstileSuccess(token) {
+        // Create new validation message
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `validation-message ${type}`;
+        messageDiv.innerHTML = `
+          <span class="validation-icon">${type === "error" ? "⚠️" : "✓"}</span>
+          <span class="validation-text">${message}</span>
+        `;
+
+        // Insert at top of current step
+        const currentSection = document.querySelector(`[data-step='${this.currentStep}']`);
+        const panelContent = currentSection.querySelector(".space-y-6");
+        panelContent.insertBefore(messageDiv, panelContent.firstChild);
+
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+          if (messageDiv.parentNode) messageDiv.remove();
+        }, 5000);
+      },
+      validateStep(step) {
+        const section = document.querySelector(`[data-step='${step}']`);
+        const requiredFields = section.querySelectorAll('[required]:not([x-show]):not([style*="display: none"])');
+        let isValid = true;
+        let errorFields = [];
+
+        requiredFields.forEach((field) => {
+          let fieldValid = true;
+
+          if (field.type === "radio") {
+            fieldValid = section.querySelector(`input[name='${field.name}']:checked`) !== null;
+          } else if (field.type === "checkbox" && field.hasAttribute("required")) {
+            fieldValid = field.checked;
+          } else {
+            fieldValid = field.value.trim() !== "";
+          }
+
+          if (!fieldValid) {
+            isValid = false;
+            field.classList.add("ring-2", "ring-red-500");
+
+            // Get field label for error message
+            const label = field.closest(".space-y-2")?.querySelector("label");
+            const fieldName = label ? label.textContent.replace("*", "").trim() : field.name;
+            errorFields.push(fieldName);
+          } else {
+            field.classList.remove("ring-2", "ring-red-500");
+          }
+        });
+
+        if (!isValid) {
+          const message =
+            errorFields.length === 1
+              ? `Please complete: ${errorFields[0]}`
+              : `Please complete these required fields: ${errorFields.join(", ")}`;
+          this.showValidationMessage(message, "error");
+
+          // Focus on first error field
+          const firstErrorField = section.querySelector(".ring-red-500");
+          if (firstErrorField) {
+            firstErrorField.focus();
+            firstErrorField.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }
+
+        return isValid;
+      },
+    }));
+  });  // Turnstile callback functions
+  function onTurnstileSuccess(token) {
     // Store the token in the hidden field
     const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
     if (hiddenField) {
-        hiddenField.value = token;
+      hiddenField.value = token;
     }
-    console.log('Turnstile verification successful');
-}
+    console.log("Turnstile verification successful");
+  }
 
-function onTurnstileExpired() {
+  function onTurnstileExpired() {
     // Clear the token when expired
     const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
     if (hiddenField) {
-        hiddenField.value = '';
+      hiddenField.value = "";
     }
-    console.log('Turnstile token expired');
-}
+    console.log("Turnstile token expired");
+  }
 
-function onTurnstileError(error) {
+  function onTurnstileError(error) {
     // Clear the token on error
     const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
     if (hiddenField) {
-        hiddenField.value = '';
+      hiddenField.value = "";
     }
-    console.log('Turnstile error:', error);
-}
+    console.log("Turnstile error:", error);
+  }
 </script>
 
 <!-- Cloudflare Turnstile Script -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<style>
+  /* Validation Message Styles */
+  .validation-message {
+    @apply flex items-center gap-2 p-3 rounded-lg mb-4 border;
+  }
+  
+  .validation-message.error {
+    @apply bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200;
+  }
+  
+  .validation-message.success {
+    @apply bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200;
+  }
+
+  /* Alpine.js x-cloak */
+  [x-cloak] { display: none !important; }
+</style>
 {% endblock %}

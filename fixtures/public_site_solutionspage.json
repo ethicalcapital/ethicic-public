@@ -1,19 +1,19 @@
 [
-{
-  "model": "public_site.solutionspage",
-  "pk": 108,
-  "fields": {
-    "hero_title": "Investment Solutions",
-    "hero_subtitle": "Ethical investment strategies tailored for individuals, institutions, and investment advisors.",
-    "hero_description": "<p>Whether you are an individual investor, institutional client, or investment advisor, we provide sophisticated ethical investment solutions that align your portfolio with your principles.</p>",
-    "individuals_title": "For Individuals",
-    "individuals_content": "<p>Take your first step toward ethical investing or jump in with both feet. Our personalized approach helps you align your investments with your values while achieving your financial goals.</p><p><a href=\"/onboarding/\" class=\"btn btn-primary\">Get Started</a></p>",
-    "institutions_title": "For Institutions",
-    "institutions_content": "<p>Scalable ethical investment solutions for endowments, pension funds, and institutional clients who require sophisticated strategies at institutional scale.</p><p><a href=\"/institutions/\" class=\"btn btn-primary\">Learn More</a></p>",
-    "advisors_title": "For Investment Advisors",
-    "advisors_content": "<p>Partner with us to serve clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and operational support you need.</p><p><a href=\"/advisers/\" class=\"btn btn-primary\">Partner With Us</a></p>",
-    "cta_title": "Ready to Get Started?",
-    "cta_description": "<p>Let us find the perfect solution for your needs. Contact us to discuss how we can help you achieve your investment goals while staying true to your values.</p><p><a href=\"/contact/\" class=\"btn btn-primary btn-lg\">Contact Us</a></p>"
+  {
+    "model": "public_site.solutionspage",
+    "pk": 108,
+    "fields": {
+      "hero_title": "Investment Solutions",
+      "hero_subtitle": "Ethical investment strategies tailored for individuals, institutions, and investment advisors.",
+      "hero_description": "<p>Whether you are an individual investor, institutional client, or investment advisor, we provide sophisticated ethical investment solutions that align your portfolio with your principles.</p>",
+      "individuals_title": "For Individuals",
+      "individuals_content": "<p>Take your first step toward ethical investing or jump in with both feet. Our personalized approach helps you align your investments with your values while achieving your financial goals.</p><p><a href=\"/onboarding/\" class=\"btn btn-primary\">Get Started</a></p>",
+      "institutions_title": "For Institutions",
+      "institutions_content": "<p>Scalable ethical investment solutions for endowments, pension funds, and institutional clients who require sophisticated strategies at institutional scale.</p><p><a href=\"/institutions/\" class=\"btn btn-primary\">Learn More</a></p>",
+      "advisors_title": "For Investment Advisors",
+      "advisors_content": "<p>Partner with us to serve clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and operational support you need.</p><p><a href=\"/advisers/\" class=\"btn btn-primary\">Partner With Us</a></p>",
+      "cta_title": "Ready to Get Started?",
+      "cta_description": "<p>Let us find the perfect solution for your needs. Contact us to discuss how we can help you achieve your investment goals while staying true to your values.</p><p><a href=\"/contact/\" class=\"btn btn-primary btn-lg\">Contact Us</a></p>"
+    }
   }
-}
 ]

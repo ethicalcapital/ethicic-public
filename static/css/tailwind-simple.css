@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import url("tailwindcss");
 
 @layer base {
   /* Light mode (default) */
@@ -6,7 +6,7 @@
     --color-text-primary: #1a1a1a;
     --color-text-secondary: #4a5568;
     --color-text-muted: #718096;
-    --color-bg-primary: #ffffff;
+    --color-bg-primary: #fff;
     --color-bg-surface: #f7fafc;
     --color-border: #e2e8f0;
   }

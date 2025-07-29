@@ -1,13 +1,13 @@
 [
-{
-  "model": "public_site.blogindexpage",
-  "pk": 14,
-  "fields": {
-    "intro_text": "<p data-block-key=\"di7jr\">In-depth research and analysis on ethical investing, portfolio construction, and sustainable finance strategies.</p>",
-    "description": "",
-    "display_title": "Blog",
-    "featured_title": "Featured Research",
-    "featured_description": "<p data-block-key=\"t00f4\">Essential research findings and market insights for ethical investing.</p>"
+  {
+    "model": "public_site.blogindexpage",
+    "pk": 14,
+    "fields": {
+      "intro_text": "<p data-block-key=\"di7jr\">In-depth research and analysis on ethical investing, portfolio construction, and sustainable finance strategies.</p>",
+      "description": "",
+      "display_title": "Blog",
+      "featured_title": "Featured Research",
+      "featured_description": "<p data-block-key=\"t00f4\">Essential research findings and market insights for ethical investing.</p>"
+    }
   }
-}
 ]

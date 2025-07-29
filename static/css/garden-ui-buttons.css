@@ -5,7 +5,7 @@
  */
 
 /* ===== SEMANTIC BUTTON SYSTEM WITH BRACKETS ===== */
-  /* Base button styles - shared by all variants */
+/* Base button styles - shared by all variants */
 .garden-action {
   padding: var(--space-2) var(--space-4);
   font-size: var(--font-sm);
@@ -24,7 +24,7 @@
   border: 2px solid transparent;
 }
 
-  /* Primary Button - Main brand actions with sweet ass brackets */
+/* Primary Button - Main brand actions with sweet ass brackets */
 .garden-action.primary {
   background: var(--garden-button-bg);
   color: var(--garden-button-fg);
@@ -36,7 +36,7 @@
   font-weight: var(--font-semibold);
 }
 
-  /* Clean button design - no brackets for professional appearance */
+/* Clean button design - no brackets for professional appearance */
 .garden-action::before {
   content: none;
 }
@@ -53,12 +53,14 @@
   text-shadow: 0 1px 2px var(--color-shadow);
 }
 
-.garden-action:focus, .garden-action:focus-visible {
+.garden-action:focus,
+.garden-action:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
-.garden-action.primary:focus, .garden-action.primary:focus-visible {
+.garden-action.primary:focus,
+.garden-action.primary:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
@@ -68,7 +70,7 @@
   transform: translateY(0);
 }
 
-  /* Secondary Button - Outline style */
+/* Secondary Button - Outline style */
 .garden-action.secondary {
   background: var(--garden-button-secondary-bg);
   color: var(--garden-button-secondary-fg);
@@ -88,14 +90,14 @@
   transform: translateY(-1px);
 }
 
-  .garden-action.secondary:focus,
+.garden-action.secondary:focus,
 .garden-action.secondary:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
 
-  /* Surface Button - Adapts to surface color */
+/* Surface Button - Adapts to surface color */
 .garden-action.surface {
   background: var(--color-surface);
   color: var(--color-on-surface);
@@ -110,7 +112,7 @@
   transform: translateY(-1px);
 }
 
-  .garden-action.surface:focus,
+.garden-action.surface:focus,
 .garden-action.surface:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
@@ -149,8 +151,8 @@
   }
 }
 
-  /* Ghost/Outline buttons - No background */
-  .garden-action.outline,
+/* Ghost/Outline buttons - No background */
+.garden-action.outline,
 .garden-action.ghost {
   background: transparent;
   color: var(--color-primary);
@@ -159,7 +161,7 @@
   text-shadow: none;
 }
 
-  .garden-action.outline:hover,
+.garden-action.outline:hover,
 .garden-action.ghost:hover {
   background: var(--color-primary);
   color: var(--color-on-primary);
@@ -167,16 +169,16 @@
   transform: translateY(-1px);
 }
 
-  .garden-action.outline:focus,
-  .garden-action.outline:focus-visible,
-  .garden-action.ghost:focus,
+.garden-action.outline:focus,
+.garden-action.outline:focus-visible,
+.garden-action.ghost:focus,
 .garden-action.ghost:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
 
-  /* Accent Button - Uses primary color with proper contrast */
+/* Accent Button - Uses primary color with proper contrast */
 .garden-action.accent {
   background: var(--color-primary);
   color: var(--color-on-primary);
@@ -199,7 +201,7 @@
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
 
-  /* Status Button Variants */
+/* Status Button Variants */
 .garden-action.success {
   background: var(--color-success);
   color: var(--color-on-primary);
@@ -214,7 +216,7 @@
   text-shadow: 0 1px 2px var(--color-shadow);
 }
 
-  .garden-action.error,
+.garden-action.error,
 .garden-action.danger {
   background: var(--color-error);
   color: var(--color-on-primary);
@@ -229,38 +231,38 @@
   text-shadow: 0 1px 2px var(--color-shadow);
 }
 
-  /* Status Button Focus States for accessibility */
-  .garden-action.success:focus,
+/* Status Button Focus States for accessibility */
+.garden-action.success:focus,
 .garden-action.success:focus-visible {
   outline: 2px solid var(--color-success);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-success-alpha);
 }
 
-  .garden-action.warning:focus,
+.garden-action.warning:focus,
 .garden-action.warning:focus-visible {
   outline: 2px solid var(--color-warning);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-warning-alpha);
 }
 
-  .garden-action.error:focus,
-  .garden-action.error:focus-visible,
-  .garden-action.danger:focus,
+.garden-action.error:focus,
+.garden-action.error:focus-visible,
+.garden-action.danger:focus,
 .garden-action.danger:focus-visible {
   outline: 2px solid var(--color-error);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-error-alpha);
 }
 
-  .garden-action.info:focus,
+.garden-action.info:focus,
 .garden-action.info:focus-visible {
   outline: 2px solid var(--color-info);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-info-alpha);
 }
 
-  /* Button Sizes */
+/* Button Sizes */
 .garden-action.small,
 .garden-action.compact {
   padding: var(--space-1) var(--space-3);
@@ -323,7 +325,7 @@
   }
 }
 
-  /* Enhanced specificity for button variants in problematic contexts */
+/* Enhanced specificity for button variants in problematic contexts */
 @layer components {
   .status-actions .garden-action.secondary,
   .crm-status-bar .garden-action.secondary,
@@ -453,17 +455,17 @@
 /* === WORKBENCH BUTTONS - Garden UI Compliant === */
 /* Custom workbench styles removed - using standardized garden-action system */
 
-  /* Universal Button Base - Apply to all button-like elements */
-  button,
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"],
-  .btn,
-  .terminal-action,
-  .search-btn,
-  .submit-btn,
-  .cancel-btn,
-  .action-btn,
+/* Universal Button Base - Apply to all button-like elements */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.btn,
+.terminal-action,
+.search-btn,
+.submit-btn,
+.cancel-btn,
+.action-btn,
 .platform-btn {
   font-family: var(--font-ui);
   font-size: var(--font-sm);
@@ -483,15 +485,15 @@
   border: 2px solid var(--color-primary);
   text-shadow: 0 1px 2px var(--color-shadow);
   position: relative;
-  min-height: 44px; /* WCAG touch target */;
+  min-height: 44px; /* WCAG touch target */
   outline: none;
 }
 
-  /* Base button hover states - only for elements without specific overrides */
-  .terminal-action:hover,
-  .search-btn:hover,
-  .submit-btn:hover,
-  .action-btn:hover,
+/* Base button hover states - only for elements without specific overrides */
+.terminal-action:hover,
+.search-btn:hover,
+.submit-btn:hover,
+.action-btn:hover,
 .platform-btn:hover {
   background: var(--color-primary-hover);
   border-color: var(--color-primary-hover);
@@ -499,13 +501,13 @@
   box-shadow: 0 4px 8px var(--color-shadow);
 }
 
-  /* Secondary button variants - define before specific overrides */
-  /* stylelint-disable no-descending-specificity */
-  .btn.secondary,
-  .garden-action.outline,
-  .btn.outline,
-  .btn.ghost,
-  .cancel-btn,
+/* Secondary button variants - define before specific overrides */
+/* stylelint-disable no-descending-specificity */
+.btn.secondary,
+.garden-action.outline,
+.btn.outline,
+.btn.ghost,
+.cancel-btn,
 .outline-btn {
   background: transparent;
   color: var(--color-primary);
@@ -513,25 +515,25 @@
   text-shadow: none;
 }
 
-  .btn.secondary:hover,
-  .garden-action.outline:hover,
-  .btn.outline:hover,
-  .btn.ghost:hover,
-  .cancel-btn:hover,
+.btn.secondary:hover,
+.garden-action.outline:hover,
+.btn.outline:hover,
+.btn.ghost:hover,
+.cancel-btn:hover,
 .outline-btn:hover {
   background: var(--color-primary);
   color: var(--color-on-primary);
   text-shadow: 0 1px 2px var(--color-shadow);
 }
 
-  /* Context-Specific Button Overrides */
+/* Context-Specific Button Overrides */
 
-  /* Header buttons - smaller, transparent */
-  header button,
-  header .garden-action,
-  header .btn,
-  .garden-header button,
-  .garden-header .garden-action,
+/* Header buttons - smaller, transparent */
+header button,
+header .garden-action,
+header .btn,
+.garden-header button,
+.garden-header .garden-action,
 .garden-header .btn {
   min-height: auto;
   height: auto;
@@ -544,19 +546,19 @@
   letter-spacing: normal;
 }
 
-  header button:hover,
-  header .garden-action:hover,
-  header .btn:hover,
-  .garden-header button:hover,
-  .garden-header .garden-action:hover,
+header button:hover,
+header .garden-action:hover,
+header .btn:hover,
+.garden-header button:hover,
+.garden-header .garden-action:hover,
 .garden-header .btn:hover {
   background: var(--color-white-10);
   transform: none;
   box-shadow: none;
 }
 
-  /* Button size variants */
-  .btn.small,
+/* Button size variants */
+.btn.small,
 
   .btn.large,
 
@@ -571,21 +573,21 @@
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
 
-  button:focus-visible,
-  input[type="button"]:focus-visible,
-  input[type="submit"]:focus-visible,
-  input[type="reset"]:focus-visible,
+button:focus-visible,
+input[type="button"]:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="reset"]:focus-visible,
 .btn:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
 
-  /* Generic button hover states - defined last to avoid specificity issues */
-  button:hover,
-  input[type="button"]:hover,
-  input[type="submit"]:hover,
-  input[type="reset"]:hover,
+/* Generic button hover states - defined last to avoid specificity issues */
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
 .btn:hover {
   background: var(--color-primary-hover);
   border-color: var(--color-primary-hover);
@@ -593,8 +595,8 @@
   box-shadow: 0 4px 8px var(--color-shadow);
 }
 
-  /* Enhanced specificity for CRM and other contexts where buttons might not display */
-  .status-actions .garden-action,
+/* Enhanced specificity for CRM and other contexts where buttons might not display */
+.status-actions .garden-action,
   .crm-status-bar .garden-action,
   .garden-panel .garden-action,
 
@@ -631,7 +633,7 @@
   color: var(--garden-input-fg);
   padding: var(--space-3);
   font-family: var(--font-mono);
-  font-size: var(--font-base); /* Prevent zoom on iOS */;
+  font-size: var(--font-base); /* Prevent zoom on iOS */
   border-radius: var(--radius-sm);
   width: 100%;
   transition: border-color var(--duration-fast);
@@ -658,7 +660,7 @@
   letter-spacing: 0.5px;
 }
 
-  /* Status & Priority Indicators */
+/* Status & Priority Indicators */
 .garden-badge {
   background: var(--garden-accent);
   color: var(--accent-text);
@@ -670,7 +672,7 @@
   text-shadow: var(--accent-text-shadow);
 }
 
-  /* Data Tables */
+/* Data Tables */
 .garden-table {
   width: 100%;
   border-collapse: collapse;
@@ -700,7 +702,7 @@
   background: var(--garden-hover);
 }
 
-  /* Modals */
+/* Modals */
 .garden-modal {
   position: fixed;
   top: 0;

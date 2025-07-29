@@ -1,13 +1,13 @@
 [
-{
-  "model": "public_site.guidepage",
-  "pk": 104,
-  "fields": {
-    "hero_title": "Investment Guide",
-    "hero_subtitle": "Comprehensive guide to ethical investing principles and strategies.",
-    "guide_description": "\n            <p>Our investment guide provides a comprehensive overview of our approach to ethical investing, including:</p>\n            \n            <h3>What You'll Learn</h3>\n            <ul>\n                <li><strong>Ethical Screening Process:</strong> How we identify and exclude companies that don't meet our criteria</li>\n                <li><strong>Investment Strategies:</strong> Detailed explanation of our Growth, Income, and Diversification strategies</li>\n                <li><strong>Research Methodology:</strong> Our six-lens evaluation framework for company analysis</li>\n                <li><strong>Portfolio Construction:</strong> How we build concentrated, high-conviction portfolios</li>\n                <li><strong>Performance Considerations:</strong> Understanding risk, return, and ethical trade-offs</li>\n                <li><strong>Getting Started:</strong> Steps to begin your ethical investing journey</li>\n            </ul>\n            \n            <p>Whether you're new to ethical investing or looking to refine your approach, this guide provides the foundation you need to make informed decisions.</p>\n            ",
-    "guide_document": null,
-    "external_guide_url": ""
+  {
+    "model": "public_site.guidepage",
+    "pk": 104,
+    "fields": {
+      "hero_title": "Investment Guide",
+      "hero_subtitle": "Comprehensive guide to ethical investing principles and strategies.",
+      "guide_description": "\n            <p>Our investment guide provides a comprehensive overview of our approach to ethical investing, including:</p>\n            \n            <h3>What You'll Learn</h3>\n            <ul>\n                <li><strong>Ethical Screening Process:</strong> How we identify and exclude companies that don't meet our criteria</li>\n                <li><strong>Investment Strategies:</strong> Detailed explanation of our Growth, Income, and Diversification strategies</li>\n                <li><strong>Research Methodology:</strong> Our six-lens evaluation framework for company analysis</li>\n                <li><strong>Portfolio Construction:</strong> How we build concentrated, high-conviction portfolios</li>\n                <li><strong>Performance Considerations:</strong> Understanding risk, return, and ethical trade-offs</li>\n                <li><strong>Getting Started:</strong> Steps to begin your ethical investing journey</li>\n            </ul>\n            \n            <p>Whether you're new to ethical investing or looking to refine your approach, this guide provides the foundation you need to make informed decisions.</p>\n            ",
+      "guide_document": null,
+      "external_guide_url": ""
+    }
   }
-}
 ]

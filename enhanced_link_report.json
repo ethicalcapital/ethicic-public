@@ -126,9 +126,7 @@
         "type": "image",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/search/"
-        ],
+        "found_on": ["https://ethicic.com/search/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -140,9 +138,7 @@
         "type": "text_link",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/blog/what-we-own-and-why/"
-        ],
+        "found_on": ["https://ethicic.com/blog/what-we-own-and-why/"],
         "context": {
           "text": "this essay",
           "tag": "a",
@@ -230,9 +226,7 @@
         "type": "text_link",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/about/"
-        ],
+        "found_on": ["https://ethicic.com/about/"],
         "context": {
           "text": "What Should You Expect When You're Investing?Setting realistic expectations",
           "tag": "a",
@@ -244,9 +238,7 @@
         "type": "image",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/search/"
-        ],
+        "found_on": ["https://ethicic.com/search/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -258,9 +250,7 @@
         "type": "form_reference",
         "error": "HTTP 405",
         "status_code": 405,
-        "found_on": [
-          "https://ethicic.com/onboarding/"
-        ],
+        "found_on": ["https://ethicic.com/onboarding/"],
         "context": {
           "text": "ABOUT YOUWe're so excited to get to know you! This section will gather the basic information about y",
           "tag": "form",
@@ -331,9 +321,7 @@
         "type": "text_link",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/faq/is-ethical-capital-fiduciary/"
-        ],
+        "found_on": ["https://ethicic.com/faq/is-ethical-capital-fiduciary/"],
         "context": {
           "text": "click here",
           "tag": "a",
@@ -345,9 +333,7 @@
         "type": "text_link",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/strategies/income/"
-        ],
+        "found_on": ["https://ethicic.com/strategies/income/"],
         "context": {
           "text": "\ud83d\udd10 Platform Login",
           "tag": "a",
@@ -444,9 +430,7 @@
         "type": "image",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/search/"
-        ],
+        "found_on": ["https://ethicic.com/search/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -489,9 +473,7 @@
         "type": "text_link",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/about/"
-        ],
+        "found_on": ["https://ethicic.com/about/"],
         "context": {
           "text": "What Does Inflation Mean to You?Personal impact of economic changes",
           "tag": "a",
@@ -547,9 +529,7 @@
         "type": "image",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/search/"
-        ],
+        "found_on": ["https://ethicic.com/search/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -577,9 +557,7 @@
         "type": "image",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/search/"
-        ],
+        "found_on": ["https://ethicic.com/search/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -622,9 +600,7 @@
         "type": "text_link",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/blog/what-we-own-and-why/"
-        ],
+        "found_on": ["https://ethicic.com/blog/what-we-own-and-why/"],
         "context": {
           "text": "click here",
           "tag": "a",
@@ -650,9 +626,7 @@
         "type": "text_link",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/faq/is-ethical-capital-fiduciary/"
-        ],
+        "found_on": ["https://ethicic.com/faq/is-ethical-capital-fiduciary/"],
         "context": {
           "text": "policy",
           "tag": "a",
@@ -664,9 +638,7 @@
         "type": "image",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/search/"
-        ],
+        "found_on": ["https://ethicic.com/search/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -708,9 +680,7 @@
         "type": "text_link",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/faq/is-ethical-capital-fiduciary/"
-        ],
+        "found_on": ["https://ethicic.com/faq/is-ethical-capital-fiduciary/"],
         "context": {
           "text": "an essay",
           "tag": "a",
@@ -753,9 +723,7 @@
         "type": "text_link",
         "error": "HTTP 999",
         "status_code": 999,
-        "found_on": [
-          "https://ethicic.com/about/"
-        ],
+        "found_on": ["https://ethicic.com/about/"],
         "context": {
           "text": "\ud83d\udd17LinkedIn",
           "tag": "a",
@@ -866,9 +834,7 @@
         "type": "telephone",
         "error": "tel:+1%20347%20625%209000",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/static/css/garden-ui-theme.css?v=3"
-        ],
+        "found_on": ["https://ethicic.com/static/css/garden-ui-theme.css?v=3"],
         "context": {
           "text": "CALL US",
           "tag": "a",
@@ -880,9 +846,7 @@
         "type": "email",
         "error": "mailto:sloane@ethicic.com",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/disclosures/"
-        ],
+        "found_on": ["https://ethicic.com/disclosures/"],
         "context": {
           "text": "sloane@ethicic.com",
           "tag": "a",
@@ -953,9 +917,7 @@
         "type": "text_link",
         "error": "HTTP 403",
         "status_code": 403,
-        "found_on": [
-          "https://ethicic.com/about/"
-        ],
+        "found_on": ["https://ethicic.com/about/"],
         "context": {
           "text": "\ud83d\udc26Twitter",
           "tag": "a",
@@ -1043,9 +1005,7 @@
         "type": "text_link",
         "error": "HTTP 404",
         "status_code": 404,
-        "found_on": [
-          "https://ethicic.com/about/"
-        ],
+        "found_on": ["https://ethicic.com/about/"],
         "context": {
           "text": "\ud83e\udd8bBluesky",
           "tag": "a",
@@ -1120,9 +1080,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/faq/how-do-i-deposit-funds/"
-        ],
+        "found_on": ["https://ethicic.com/faq/how-do-i-deposit-funds/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -1134,9 +1092,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/faq/how-do-i-deposit-funds/"
-        ],
+        "found_on": ["https://ethicic.com/faq/how-do-i-deposit-funds/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -1163,9 +1119,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/advisers/"
-        ],
+        "found_on": ["https://ethicic.com/advisers/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -1192,9 +1146,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/faq/how-do-i-deposit-funds/"
-        ],
+        "found_on": ["https://ethicic.com/faq/how-do-i-deposit-funds/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -1206,9 +1158,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/advisers/"
-        ],
+        "found_on": ["https://ethicic.com/advisers/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -1235,9 +1185,7 @@
         "type": "text_link",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/faq/how-do-i-deposit-funds/"
-        ],
+        "found_on": ["https://ethicic.com/faq/how-do-i-deposit-funds/"],
         "context": {
           "text": "us",
           "tag": "a",
@@ -1263,9 +1211,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/faq/how-do-i-deposit-funds/"
-        ],
+        "found_on": ["https://ethicic.com/faq/how-do-i-deposit-funds/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -1277,9 +1223,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/advisers/"
-        ],
+        "found_on": ["https://ethicic.com/advisers/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -1291,9 +1235,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/faq/how-do-i-deposit-funds/"
-        ],
+        "found_on": ["https://ethicic.com/faq/how-do-i-deposit-funds/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -1305,9 +1247,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/advisers/"
-        ],
+        "found_on": ["https://ethicic.com/advisers/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -1335,9 +1275,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/faq/how-do-i-deposit-funds/"
-        ],
+        "found_on": ["https://ethicic.com/faq/how-do-i-deposit-funds/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -1377,9 +1315,7 @@
         "type": "image",
         "error": "Cannot connect to host investvegan.org:443 ssl:default [nodename nor servname provided, or not known]",
         "status_code": null,
-        "found_on": [
-          "https://ethicic.com/faq/how-do-i-deposit-funds/"
-        ],
+        "found_on": ["https://ethicic.com/faq/how-do-i-deposit-funds/"],
         "context": {
           "text": "",
           "tag": "img",
@@ -3639,7 +3575,7 @@
         "url": "mailto:ir@ethicalcapital.com?subject=Document Request: ${documentType}",
         "status": "error",
         "status_code": null,
-        "response_time": 1.0967254638671875e-05,
+        "response_time": 1.0967254638671875e-5,
         "redirect_url": "",
         "error_message": "mailto:ir@ethicalcapital.com?subject=Document+Request:+$%7BdocumentType%7D"
       },
@@ -3647,7 +3583,7 @@
         "url": "mailto:accessibility@ethicic.com",
         "status": "error",
         "status_code": null,
-        "response_time": 3.695487976074219e-05,
+        "response_time": 3.695487976074219e-5,
         "redirect_url": "",
         "error_message": "mailto:accessibility@ethicic.com"
       },
@@ -3735,7 +3671,7 @@
         "url": "mailto:ir@ethicalcapital.com?subject=Document",
         "status": "error",
         "status_code": null,
-        "response_time": 2.5987625122070312e-05,
+        "response_time": 2.5987625122070312e-5,
         "redirect_url": "",
         "error_message": "mailto:ir@ethicalcapital.com?subject=Document"
       },
@@ -3759,7 +3695,7 @@
         "url": "mailto:hello@ethicic.com",
         "status": "error",
         "status_code": null,
-        "response_time": 2.5033950805664062e-05,
+        "response_time": 2.5033950805664062e-5,
         "redirect_url": "",
         "error_message": "mailto:hello@ethicic.com"
       },
@@ -3783,7 +3719,7 @@
         "url": "tel:+13476259000",
         "status": "error",
         "status_code": null,
-        "response_time": 1.1920928955078125e-05,
+        "response_time": 1.1920928955078125e-5,
         "redirect_url": "",
         "error_message": "tel:+13476259000"
       },
@@ -3823,7 +3759,7 @@
         "url": "tel:+1 347 625 9000",
         "status": "error",
         "status_code": null,
-        "response_time": 9.059906005859375e-06,
+        "response_time": 9.059906005859375e-6,
         "redirect_url": "",
         "error_message": "tel:+1%20347%20625%209000"
       },
@@ -3855,7 +3791,7 @@
         "url": "mailto:sloane@ethicic.com",
         "status": "error",
         "status_code": null,
-        "response_time": 1.5974044799804688e-05,
+        "response_time": 1.5974044799804688e-5,
         "redirect_url": "",
         "error_message": "mailto:sloane@ethicic.com"
       },
@@ -3863,7 +3799,7 @@
         "url": "mailto:ir@ethicalcapital.com",
         "status": "error",
         "status_code": null,
-        "response_time": 6.9141387939453125e-06,
+        "response_time": 6.9141387939453125e-6,
         "redirect_url": "",
         "error_message": "mailto:ir@ethicalcapital.com"
       },
@@ -3871,7 +3807,7 @@
         "url": "tel:+1-555-0123",
         "status": "error",
         "status_code": null,
-        "response_time": 5.9604644775390625e-06,
+        "response_time": 5.9604644775390625e-6,
         "redirect_url": "",
         "error_message": "tel:+1-555-0123"
       },

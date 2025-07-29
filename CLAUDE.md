@@ -15,21 +15,22 @@
 - we are often making multiple edits in parallel -- if you come across an issue that might be due to that, consider this before you make any actions
 - sleep 120 after you push -- it takes time to rebuild
 
-## CSS Architecture (RATIONAL SYSTEM - 2025)
+## CSS Architecture Migration (2025 - CURRENT)
+- **MIGRATION TO TAILWIND**: Moving away from Garden UI system to pure Tailwind CSS for maintainability
 - **CONSOLIDATED**: 84% !important reduction achieved - 83 files → 58 files, 3,006 → 471 !important declarations
-- **NEW ARCHITECTURE**: responsive-layout-system.css, header-layout-layers.css, mobile-navigation-layers.css + existing clean files
-- **RULES**: Use Garden UI variables only, CSS Layers architecture, no !important wars
+- **TAILWIND FIRST**: All new templates use Tailwind utilities and @apply directives
+- **LEGACY GARDEN UI**: Still present in some templates, being gradually migrated
 - **DOCUMENTATION**: See `docs/CSS_OVERVIEW.md` for quick start and `docs/CSS_ARCHITECTURE_CURRENT.md` for complete reference
 
-## CSS Architecture Protection Rules (CRITICAL - DO NOT VIOLATE)
-- **NEVER create new "*-fix.css" files** - Always enhance existing clean files or create proper layered architecture
-- **NEVER add !important declarations** - Use CSS Layers (@layer) for cascade management instead
-- **NEVER create competing CSS files** - One file per responsibility, consolidate conflicts immediately
-- **ALWAYS use existing clean files** - responsive-layout-system.css, header-layout-layers.css, mobile-navigation-layers.css
-- **BEFORE creating ANY CSS file** - Check if functionality exists in current clean architecture
-- **CSS LAYERS ONLY** - All new CSS must use @layer (layout, components, themes, utilities) architecture
-- **NO HARDCODED VALUES** - Use Garden UI variables: --color-*, --space-*, --font-*, --radius-* only
-- **FIX ROOT CAUSES** - Never bandaid with specificity wars, always address architectural issues properly
+## CSS Architecture Rules (CURRENT MIGRATION STRATEGY)
+- **PREFER TAILWIND**: Use Tailwind utilities over Garden UI variables for new development
+- **NO HARDCODED COLORS**: Use Tailwind color system (slate, purple, teal) for brand consistency
+- **MIGRATION PRIORITY**: Templates extending base_tailwind.html → pure Tailwind first
+- **LEGACY SUPPORT**: Garden UI still functional for existing components during transition
+- **CSS LAYERS**: Use @layer for complex styling when Tailwind utilities aren't sufficient
+- **NO !IMPORTANT**: Avoid specificity wars - use Tailwind's specificity hierarchy
+- **RESPONSIVE FIRST**: Use Tailwind's mobile-first responsive utilities (sm:, md:, lg:)
+- **DARK MODE**: Use Tailwind's dark: variants for theme switching
 
 ## System Architecture Context (Investigation - Jan 2025)
 - **Business Domain**: Ethical Capital - SEC-regulated ESG investment advisory firm managing real portfolios

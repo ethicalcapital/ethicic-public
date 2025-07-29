@@ -1,39 +1,31 @@
-{% comment %}
-Tailwind Button Component - Replacement for Garden Action
-Provides EC-branded buttons with Tailwind utility classes
-{% endcomment %}
+{% comment %} Tailwind Button Component - Replacement for Garden Action Provides EC-branded buttons with Tailwind
+utility classes {% endcomment %} {% load static %} {# Set default values #} {% with text=text|default:"Action" %} {%
+with url=url|default:"#" %} {% with variant=variant|default:"primary" %} {% with aria_label=aria_label|default:text %}
+{% with class=class|default:"" %} {% with target=target|default:"" %} {# Map Garden UI variants to Tailwind classes #}
+{% if variant == "primary" %} {% with btn_class="btn-ec-primary" %} {% elif variant == "secondary" %} {% with
+btn_class="btn-ec-secondary" %} {% else %} {% with btn_class="btn-ec-primary" %} {% endif %}
 
-{% load static %}
-
-{# Set default values #}
-{% with text=text|default:"Action" %}
-{% with url=url|default:"#" %}
-{% with variant=variant|default:"primary" %}
-{% with aria_label=aria_label|default:text %}
-{% with class=class|default:"" %}
-{% with target=target|default:"" %}
-
-{# Map Garden UI variants to Tailwind classes #}
-{% if variant == "primary" %}
-    {% with btn_class="btn-ec-primary" %}
-{% elif variant == "secondary" %}
-    {% with btn_class="btn-ec-secondary" %}
-{% else %}
-    {% with btn_class="btn-ec-primary" %}
-{% endif %}
-
-<a href="{{ url }}"
-   class="{{ btn_class }} {{ class }}"
-   aria-label="{{ aria_label }}"
-   {% if target %}target="{{ target }}"{% endif %}
-   {% if target == "_blank" %}rel="noopener noreferrer"{% endif %}>
-   {{ text }}
+<a
+  href="{{ url }}"
+  class="{{ btn_class }} {{ class }}"
+  aria-label="{{ aria_label }}"
+  {%
+  if
+  target
+  %}target="{{ target }}"
+  {%
+  endif
+  %}
+  {%
+  if
+  target=""
+  ="_blank"
+  %}rel="noopener noreferrer"
+  {%
+  endif
+  %}
+>
+  {{ text }}
 </a>
 
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
+{% endwith %} {% endwith %} {% endwith %} {% endwith %} {% endwith %} {% endwith %} {% endwith %}

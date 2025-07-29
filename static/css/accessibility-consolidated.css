@@ -6,312 +6,312 @@
  */
 
 @layer utilities {
-    /* ===== SCREEN READER SUPPORT ===== */
+  /* ===== SCREEN READER SUPPORT ===== */
 
-    /* Screen reader only content */
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        clip-path: inset(50%);
-        white-space: nowrap;
-        border: 0;
+  /* Screen reader only content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* High specificity sr-only fix for headers */
+  html body .garden-header .sr-only,
+  html body .garden-search .sr-only,
+  html body label.sr-only,
+  html body span.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Skip links for keyboard navigation */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    z-index: 9999;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-sm);
+    font-weight: var(--font-semibold);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: all var(--duration-normal);
+  }
+
+  .skip-link:focus {
+    top: 6px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== TOUCH TARGET COMPLIANCE ===== */
+
+  /* WCAG AA minimum 44px touch targets */
+  .garden-action,
+  .garden-button,
+  button,
+  .btn,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  .clickable,
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    cursor: pointer;
+  }
+
+  /* Form controls minimum touch targets */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="number"],
+  input[type="date"],
+  input[type="time"],
+  textarea,
+  select {
+    min-height: 44px;
+    padding: var(--space-3);
+  }
+
+  /* Navigation elements */
+  .garden-nav-item,
+  .mobile-nav-item,
+  .sidebar-link,
+  .footer-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  /* Theme toggle and small controls */
+  .garden-theme-toggle,
+  .mobile-menu-toggle,
+  .dropdown-toggle {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* ===== CONTRAST COMPLIANCE ===== */
+
+  /* Header navigation contrast */
+  .garden-header .garden-search-btn,
+  .garden-header .garden-action,
+  .garden-header .garden-nav-item {
+    color: white;
+    background: rgb(255 255 255 / 10%);
+    border: 1px solid rgb(255 255 255 / 30%);
+  }
+
+  .garden-header .garden-action:hover,
+  .garden-header .garden-nav-item:hover {
+    background: rgb(255 255 255 / 20%);
+    color: white;
+  }
+
+  /* Hero section contrast fixes */
+  .hero-panel,
+  .garden-hero {
+    color: white;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+  }
+
+  .hero-panel .garden-action.primary {
+    background: var(--color-on-primary);
+    color: var(--color-primary);
+    border: 2px solid var(--color-on-primary);
+  }
+
+  .hero-panel .garden-action.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  /* Button contrast compliance */
+  .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: 2px solid var(--color-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  .garden-action.primary:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+  }
+
+  .garden-action.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    font-weight: var(--font-semibold);
+  }
+
+  .garden-action.secondary:hover {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  /* Panel header contrast */
+  .garden-panel-header {
+    background: var(--color-surface-variant);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Form field contrast */
+  .garden-form-field,
+  .form-input,
+  input,
+  textarea,
+  select {
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+  }
+
+  .garden-form-field:focus,
+  .form-input:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-color: var(--color-primary);
+  }
+
+  /* Error states */
+  .error,
+  .invalid,
+  .garden-form-field.error {
+    border-color: var(--color-error);
+    background: var(--color-error-alpha-5);
+  }
+
+  .error-message {
+    color: var(--color-error);
+    font-weight: var(--font-medium);
+  }
+
+  /* ===== FOCUS MANAGEMENT ===== */
+
+  /* Enhanced focus indicators */
+  *:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Remove default browser focus styles */
+  *:focus:not(.focus-visible) {
+    outline: none;
+  }
+
+  /* Keyboard navigation focus */
+  .focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Focus within containers */
+  .dropdown:focus-within,
+  .modal:focus-within,
+  .dialog:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* ===== MOTION PREFERENCES ===== */
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ===== HIGH CONTRAST MODE ===== */
+
+  @media (prefers-contrast: high) {
+    .garden-action {
+      border-width: 3px;
     }
 
-    /* High specificity sr-only fix for headers */
-    html body .garden-header .sr-only,
-    html body .garden-search .sr-only,
-    html body label.sr-only,
-    html body span.sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        clip-path: inset(50%);
-        white-space: nowrap;
-        border: 0;
+    .garden-panel {
+      border: 2px solid var(--color-border);
     }
 
-    /* Skip links for keyboard navigation */
-    .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: var(--color-primary);
-        color: white;
-        padding: var(--space-2) var(--space-3);
-        text-decoration: none;
-        z-index: 9999;
-        border-radius: var(--radius-sm);
-        font-size: var(--font-sm);
-        font-weight: var(--font-semibold);
-        opacity: 0;
-        transform: translateY(-8px);
-        transition: all var(--duration-normal);
+    .garden-form-field:focus {
+      outline-width: 3px;
     }
-
-    .skip-link:focus {
-        top: 6px;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* ===== TOUCH TARGET COMPLIANCE ===== */
-
-    /* WCAG AA minimum 44px touch targets */
-    .garden-action,
-    .garden-button,
-    button,
-    .btn,
-    input[type="submit"],
-    input[type="button"],
-    input[type="reset"],
-    .clickable,
-    .touch-target {
-        min-height: 44px;
-        min-width: 44px;
-        cursor: pointer;
-    }
-
-    /* Form controls minimum touch targets */
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="search"],
-    input[type="tel"],
-    input[type="url"],
-    input[type="number"],
-    input[type="date"],
-    input[type="time"],
-    textarea,
-    select {
-        min-height: 44px;
-        padding: var(--space-3);
-    }
-
-    /* Navigation elements */
-    .garden-nav-item,
-    .mobile-nav-item,
-    .sidebar-link,
-    .footer-link {
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        padding: var(--space-2) var(--space-3);
-    }
-
-    /* Theme toggle and small controls */
-    .garden-theme-toggle,
-    .mobile-menu-toggle,
-    .dropdown-toggle {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        min-height: 44px;
-    }
-
-    /* ===== CONTRAST COMPLIANCE ===== */
-
-    /* Header navigation contrast */
-    .garden-header .garden-search-btn,
-    .garden-header .garden-action,
-    .garden-header .garden-nav-item {
-        color: white;
-        background: rgb(255 255 255 / 10%);
-        border: 1px solid rgb(255 255 255 / 30%);
-    }
-
-    .garden-header .garden-action:hover,
-    .garden-header .garden-nav-item:hover {
-        background: rgb(255 255 255 / 20%);
-        color: white;
-    }
-
-    /* Hero section contrast fixes */
-    .hero-panel,
-    .garden-hero {
-        color: white;
-        text-shadow: 0 1px 2px rgb(0 0 0 / 10%);
-    }
-
-    .hero-panel .garden-action.primary {
-        background: var(--color-on-primary);
-        color: var(--color-primary);
-        border: 2px solid var(--color-on-primary);
-    }
-
-    .hero-panel .garden-action.secondary {
-        background: transparent;
-        color: white;
-        border: 2px solid white;
-    }
-
-    /* Button contrast compliance */
-    .garden-action.primary {
-        background: var(--color-primary);
-        color: var(--color-on-primary);
-        border: 2px solid var(--color-primary);
-        font-weight: var(--font-semibold);
-    }
-
-    .garden-action.primary:hover {
-        background: var(--color-primary-hover);
-        border-color: var(--color-primary-hover);
-    }
-
-    .garden-action.secondary {
-        background: transparent;
-        color: var(--color-primary);
-        border: 2px solid var(--color-primary);
-        font-weight: var(--font-semibold);
-    }
-
-    .garden-action.secondary:hover {
-        background: var(--color-primary);
-        color: var(--color-on-primary);
-    }
-
-    /* Panel header contrast */
-    .garden-panel-header {
-        background: var(--color-surface-variant);
-        color: var(--color-text-primary);
-        border-bottom: 1px solid var(--color-border);
-    }
-
-    /* Form field contrast */
-    .garden-form-field,
-    .form-input,
-    input,
-    textarea,
-    select {
-        background: var(--color-surface);
-        color: var(--color-text-primary);
-        border: 1px solid var(--color-border);
-    }
-
-    .garden-form-field:focus,
-    .form-input:focus,
-    input:focus,
-    textarea:focus,
-    select:focus {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 2px;
-        border-color: var(--color-primary);
-    }
-
-    /* Error states */
-    .error,
-    .invalid,
-    .garden-form-field.error {
-        border-color: var(--color-error);
-        background: var(--color-error-alpha-5);
-    }
-
-    .error-message {
-        color: var(--color-error);
-        font-weight: var(--font-medium);
-    }
-
-    /* ===== FOCUS MANAGEMENT ===== */
-
-    /* Enhanced focus indicators */
-    *:focus {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 2px;
-    }
-
-    /* Remove default browser focus styles */
-    *:focus:not(.focus-visible) {
-        outline: none;
-    }
-
-    /* Keyboard navigation focus */
-    .focus-visible {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 2px;
-    }
-
-    /* Focus within containers */
-    .dropdown:focus-within,
-    .modal:focus-within,
-    .dialog:focus-within {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 2px;
-    }
-
-    /* ===== MOTION PREFERENCES ===== */
-
-    @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
-        }
-    }
-
-    /* ===== HIGH CONTRAST MODE ===== */
-
-    @media (prefers-contrast: high) {
-        .garden-action {
-            border-width: 3px;
-        }
-
-        .garden-panel {
-            border: 2px solid var(--color-border);
-        }
-
-        .garden-form-field:focus {
-            outline-width: 3px;
-        }
-    }
+  }
 }
 
 @layer themes {
-    /* ===== DARK MODE ACCESSIBILITY ===== */
+  /* ===== DARK MODE ACCESSIBILITY ===== */
 
-    [data-theme="dark"] .skip-link {
-        background: var(--color-primary);
-        color: white;
-    }
+  [data-theme="dark"] .skip-link {
+    background: var(--color-primary);
+    color: white;
+  }
 
-    [data-theme="dark"] .garden-action.primary {
-        background: var(--color-primary);
-        color: var(--color-on-primary);
-    }
+  [data-theme="dark"] .garden-action.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
 
-    [data-theme="dark"] .garden-action.secondary {
-        color: var(--color-primary);
-        border-color: var(--color-primary);
-    }
+  [data-theme="dark"] .garden-action.secondary {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
 
-    [data-theme="dark"] .garden-form-field,
-    [data-theme="dark"] input,
-    [data-theme="dark"] textarea,
-    [data-theme="dark"] select {
-        background: var(--color-surface);
-        color: var(--color-text-primary);
-        border-color: var(--color-border);
-    }
+  [data-theme="dark"] .garden-form-field,
+  [data-theme="dark"] input,
+  [data-theme="dark"] textarea,
+  [data-theme="dark"] select {
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+  }
 
-    /* ===== LIGHT MODE ACCESSIBILITY ===== */
+  /* ===== LIGHT MODE ACCESSIBILITY ===== */
 
-    [data-theme="light"] .garden-action.primary {
-        background: var(--color-primary);
-        color: white;
-    }
+  [data-theme="light"] .garden-action.primary {
+    background: var(--color-primary);
+    color: white;
+  }
 
-    [data-theme="light"] .garden-action.secondary {
-        color: var(--color-primary);
-        border-color: var(--color-primary);
-    }
+  [data-theme="light"] .garden-action.secondary {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
 }

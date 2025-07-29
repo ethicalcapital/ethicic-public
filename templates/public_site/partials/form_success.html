@@ -1,70 +1,75 @@
 <div class="alert alert-success" role="alert">
-    <div class="alert-icon">✓</div>
-    <div class="alert-content">
-        <h3 class="alert-title">Message Sent Successfully!</h3>
-        {% load wagtailsettings_tags %}
-    {% get_settings "public_site.SiteConfiguration" as site_config %}
-    <p>{{ message|default:site_config.contact_success_message|default:"Thank you for your message! We will get back to you within 24 hours." }}</p>
-        {% if ticket_id %}
-            <p class="ticket-info">Your reference number is: <strong>#{{ ticket_id }}</strong></p>
-        {% endif %}
-    </div>
+  <div class="alert-icon">✓</div>
+  <div class="alert-content">
+    <h3 class="alert-title">Message Sent Successfully!</h3>
+    {% load wagtailsettings_tags %} {% get_settings "public_site.SiteConfiguration" as site_config %}
+    <p>
+      {{ message|default:site_config.contact_success_message|default:"Thank you for your message! We will get back to
+      you within 24 hours." }}
+    </p>
+    {% if ticket_id %}
+    <p class="ticket-info">
+      Your reference number is:
+      <strong>#{{ ticket_id }}</strong>
+    </p>
+    {% endif %}
+  </div>
 </div>
 
 <style>
-    .alert {
-        padding: 1.5rem;
-        border-radius: var(--radius-md);
-        display: flex;
-        gap: 1rem;
-        align-items: flex-start;
-        animation: slideInFromTop 0.3s ease-out;
-    }
+  .alert {
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    animation: slideInFromTop 0.3s ease-out;
+  }
 
-    .alert-success {
-        background-color: var(--color-success-alpha);
-        border: 1px solid var(--color-success);
-        color: var(--color-success);
-    }
+  .alert-success {
+    background-color: var(--color-success-alpha);
+    border: 1px solid var(--color-success);
+    color: var(--color-success);
+  }
 
-    .alert-icon {
-        font-size: 1.5rem;
-        line-height: 1;
-    }
+  .alert-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
 
-    .alert-content {
-        flex: 1;
-    }
+  .alert-content {
+    flex: 1;
+  }
 
-    .alert-title {
-        margin: 0 0 0.5rem 0;
-        font-size: 1.125rem;
-        font-weight: var(--font-semibold);
-    }
+  .alert-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    font-weight: var(--font-semibold);
+  }
 
-    .alert-content p {
-        margin: 0;
-        color: var(--color-text-primary);
-    }
+  .alert-content p {
+    margin: 0;
+    color: var(--color-text-primary);
+  }
 
-    .ticket-info {
-        margin-top: 0.5rem !important;
-        font-size: 0.875rem;
-    }
+  .ticket-info {
+    margin-top: 0.5rem !important;
+    font-size: 0.875rem;
+  }
 
-    @keyframes slideInFromTop {
-        from {
-            opacity: 0;
-            transform: translateY(-1rem);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+  @keyframes slideInFromTop {
+    from {
+      opacity: 0;
+      transform: translateY(-1rem);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-    /* Dark mode */
-    [data-theme="dark"] .alert-success {
-        background-color: rgba(34, 197, 94, 0.1);
-    }
+  /* Dark mode */
+  [data-theme="dark"] .alert-success {
+    background-color: rgba(34, 197, 94, 0.1);
+  }
 </style>

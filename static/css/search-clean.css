@@ -30,24 +30,24 @@
     width: 100%;
     padding: var(--space-2) var(--space-3);
     padding-right: var(--space-10); /* Space for search icon */
-    
+
     /* Appearance */
     background: var(--color-input-bg, var(--color-surface));
     border: 1px solid var(--color-input-border, var(--color-border));
     border-radius: var(--radius-md);
-    
+
     /* Typography */
     color: var(--color-input-text, var(--color-text-primary));
     font-family: var(--font-sans);
     font-size: var(--font-sm);
     line-height: var(--leading-normal);
-    
+
     /* Override browser defaults */
     -webkit-text-fill-color: var(--color-input-text, var(--color-text-primary));
     -moz-text-fill-color: var(--color-input-text, var(--color-text-primary));
-    
+
     /* Transitions */
-    transition: 
+    transition:
       border-color var(--duration-fast) var(--ease-out),
       box-shadow var(--duration-fast) var(--ease-out),
       background-color var(--duration-fast) var(--ease-out);
@@ -78,26 +78,26 @@
     right: var(--space-1);
     top: 50%;
     transform: translateY(-50%);
-    
+
     /* Layout */
     width: 32px;
     height: 32px;
     padding: var(--space-1);
-    
+
     /* Appearance */
     background: transparent;
     border: none;
     border-radius: var(--radius-sm);
-    
+
     /* Icon styling */
     color: var(--color-text-tertiary);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    
+
     /* Transitions */
-    transition: 
+    transition:
       color var(--duration-fast) var(--ease-out),
       background-color var(--duration-fast) var(--ease-out);
   }
@@ -137,18 +137,18 @@
     left: 0;
     right: 0;
     z-index: var(--z-dropdown, 200);
-    
+
     /* Appearance */
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-    
+
     /* Layout */
     max-height: 300px;
     overflow-y: auto;
     padding: var(--space-2) 0;
-    
+
     /* Animation */
     opacity: 0;
     visibility: hidden;

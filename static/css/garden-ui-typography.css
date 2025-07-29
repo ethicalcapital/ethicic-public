@@ -5,34 +5,32 @@
  */
 
 /* ===== TYPOGRAPHY SYSTEM - Universal Font Classes and Utilities ===== */
-   ======================================================================== */
-
-@layer components {
+======================================================================== */ @layer components {
   /* Font utility classes for semantic usage */
   .font-mono,
   .font-code,
   .font-terminal,
-.font-data {
-  font-family: var(--font-mono) !important;
-}
+  .font-data {
+    font-family: var(--font-mono) !important;
+  }
 
   .font-sans,
   .font-ui,
-.font-heading {
-  font-family: var(--font-sans) !important;
-}
+  .font-heading {
+    font-family: var(--font-sans) !important;
+  }
 
   .font-body,
-.font-content {
-  font-family: var(--font-body) !important;
-}
+  .font-content {
+    font-family: var(--font-body) !important;
+  }
 
   /* Terminal-specific font styles */
-.terminal-ui {
-  font-family: var(--font-terminal);
-  font-size: var(--font-base);
-  line-height: 1.5;
-}
+  .terminal-ui {
+    font-family: var(--font-terminal);
+    font-size: var(--font-base);
+    line-height: 1.5;
+  }
 
   /* Code and data display */
   .code-block,
@@ -40,74 +38,79 @@
   pre,
   code,
   kbd,
-samp {
-  font-family: var(--font-code);
-}
+  samp {
+    font-family: var(--font-code);
+  }
 
   /* UI elements */
   .ui-button,
   .ui-input,
   .ui-select,
-.ui-label {
-  font-family: var(--font-ui);
-}
+  .ui-label {
+    font-family: var(--font-ui);
+  }
 
   /* Content areas */
   .content-area,
   .document-text,
-.report-content {
-  font-family: var(--font-body);
-  font-size: var(--font-base);
-  line-height: 1.6;
-}
+  .report-content {
+    font-family: var(--font-body);
+    font-size: var(--font-base);
+    line-height: 1.6;
+  }
 
   /* Headings */
-  h1, h2, h3, h4, h5, h6,
-.heading {
-  font-family: var(--font-heading);
-  font-weight: var(--font-semibold);
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .heading {
+    font-family: var(--font-heading);
+    font-weight: var(--font-semibold);
+  }
 
   /* Ensure all form inputs use consistent fonts */
   input,
   textarea,
   select,
-button {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
+  button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
 
   /* Data tables should use monospace for better alignment */
   .garden-data-table td,
   .garden-data-table th,
   .data-value,
-.numeric-value {
-  font-family: var(--font-data);
-  font-variant-numeric: tabular-nums;
-}
+  .numeric-value {
+    font-family: var(--font-data);
+    font-variant-numeric: tabular-nums;
+  }
 
   /* Code highlighting consistency */
   .highlight,
   .hljs,
   .prism,
   code[class*="language-"],
-pre[class*="language-"] {
-  font-family: var(--font-code);
-  font-size: var(--font-sm);
-  line-height: 1.4;
-}
+  pre[class*="language-"] {
+    font-family: var(--font-code);
+    font-size: var(--font-sm);
+    line-height: 1.4;
+  }
 
   /* Terminal output styling */
   .terminal-output,
   .console-output,
-.log-output {
-  font-family: var(--font-terminal);
-  font-size: var(--font-sm);
-  line-height: 1.4;
-  white-space: pre-wrap;
-  word-break: break-all;
-}
+  .log-output {
+    font-family: var(--font-terminal);
+    font-size: var(--font-sm);
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
 
   /* Ensure consistent rendering */
   * {
@@ -117,9 +120,9 @@ pre[class*="language-"] {
   }
 
   /* Font loading optimization */
-.fonts-loading body {
-  font-family: var(--font-sans);
-}
+  .fonts-loading body {
+    font-family: var(--font-sans);
+  }
 
   /* Add font-display to improve performance */
   @font-face {

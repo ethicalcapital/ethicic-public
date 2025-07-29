@@ -1,609 +1,160 @@
-{% extends "public_site/base_tailwind.html" %}
-{% load wagtailcore_tags static %}
+{% extends "public_site/base_tailwind.html" %} {% load wagtailcore_tags static %} {% block title %}{{
+page.title|default:"Media & Press" }} | {{ block.super }}{% endblock %} {% block meta_description %}{{
+page.intro_text|striptags|truncatechars:160 }}{% endblock %} {% block body_class %}media-page{% endblock %} {% block
+content %}
+<div class="container-ec">
+  <!-- Hero Section -->
+  <section class="mb-8 bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800 rounded-xl p-8 text-center" role="banner">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ page.title }}</h1>
+    {% if page.intro_text %}
+    <div class="text-xl text-purple-100 max-w-3xl mx-auto">{{ page.intro_text|richtext }}</div>
+    {% endif %}
+  </section>
 
-{% block title %}{{ page.title|default:"Media & Press" }} | {{ block.super }}{% endblock %}
+  <!-- Media Coverage -->
+  <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-8" role="main">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">RECENT MEDIA MENTIONS</h2>
+      <span class="text-sm text-gray-600 dark:text-gray-400" id="article-count">{{ page.media_items.all.count }} ARTICLES</span>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Media Articles Content -->
+      <div class="lg:col-span-2">
+          {% if page.media_items.all %}
+          <div class="space-y-6" id="articles-container">
+            {% for item in page.media_items.all|slice:":6" %}
+            <article
+              class="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-b-0{% if item.featured %} relative{% endif %}"
+              data-item-id="{{ item.id }}"
+            >
+              {% if item.featured %}
+              <div class="mb-4">
+                <span class="inline-block bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold">FEATURED</span>
+              </div>
+              {% endif %}
 
-{% block meta_description %}{{ page.intro_text|striptags|truncatechars:160 }}{% endblock %}
+              <div class="flex gap-3 mb-3 text-sm">
+                {% if item.publication %}
+                <span class="text-purple-600 dark:text-purple-400 font-semibold">{{ item.publication|upper }}</span>
+                {% endif %} 
+                {% if item.publication_date %}
+                <span class="text-gray-600 dark:text-gray-400">{{ item.publication_date|date:"M j, Y"|upper }}</span>
+                {% endif %}
+              </div>
 
-{% block body_class %}media-page{% endblock %}
-
-{% block content %}
-<div class="garden-container">
-    <!-- Hero Section -->
-    <section class="garden-panel hero-panel" role="banner">
-        <div class="garden-panel__content garden-panel-content">
-            <h1>{{ page.title }}</h1>
-            {% if page.intro_text %}
-                <div class="intro-text">{{ page.intro_text|richtext }}</div>
-            {% endif %}
-        </div>
-    </section>
-
-    <!-- Media Coverage -->
-    <section class="garden-panel" role="main">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">RECENT MEDIA MENTIONS</div>
-            <div class="section-count" id="article-count">{{ page.media_items.all.count }} ARTICLES</div>
-        </div>
-        <div class="garden-panel__content garden-panel-content">
-            <div class="articles-container">
-                <!-- Media Articles Content -->
-                <div class="articles-main">
-
-                {% if page.media_items.all %}
-                    <div class="articles-list" id="articles-container">
-                        {% for item in page.media_items.all|slice:":6" %}
-                        <article class="article-list-item{% if item.featured %} featured-item{% endif %}" data-item-id="{{ item.id }}" class="full-width-important">
-                            <div class="article-list-content" class="article-content-flex">
-                                <div class="article-list-text" class="article-text-full">
-                                    {% if item.featured %}
-                                        <div class="featured-badge-container">
-                                            <span class="featured-badge">FEATURED</span>
-                                        </div>
-                                    {% endif %}
-
-                                    <div class="article-list-meta" class="full-width-important">
-                                        <div class="article-list-tags" class="full-width-important">
-                                            {% if item.publication %}
-                                                <span class="article-list-tag">{{ item.publication|upper }}</span>
-                                            {% endif %}
-                                            {% if item.publication_date %}
-                                                <span class="article-list-date">{{ item.publication_date|date:"M j, Y"|upper }}</span>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-
-                                    <h2 class="article-list-title" class="full-width-important">
-                                        {% if item.external_url %}
-                                            <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer" class="block-full-important">{{ item.title }}</a>
-                                        {% else %}
-                                            <span class="block-full-important">{{ item.title }}</span>
-                                        {% endif %}
-                                    </h2>
-
-                                    {% if item.description %}
-                                        <div class="article-list-excerpt" class="full-width-important">
-                                            {{ item.description|striptags|truncatewords:25 }}
-                                        </div>
-                                    {% endif %}
-
-                                    {% if item.external_url %}
-                                        <div class="article-list-actions" class="full-width-important">
-                                            <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer" class="garden-action secondary small">READ ARTICLE</a>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </article>
-                        {% endfor %}
-                    </div>
-
-                    <!-- HTMX Infinite Scroll Trigger -->
-                    {% if page.media_items.all.count > 6 %}
-                    <div id="load-more-trigger"
-                         hx-get="/api/media-items/?page=2&per_page=6"
-                         hx-trigger="revealed"
-                         hx-target="#articles-container"
-                         hx-swap="beforeend"
-                         hx-indicator="#loading-indicator"
-                         class="load-more-trigger">
-                        <!-- This div triggers loading when it comes into view -->
-                    </div>
-                    {% endif %}
-
-                    <!-- Loading indicator -->
-                    <div id="loading-indicator" class="loading-indicator htmx-indicator">
-                        <div class="loading-spinner">⟳</div>
-                        <p>Loading more articles...</p>
-                    </div>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3 leading-tight">
+                {% if item.external_url %}
+                <a
+                  href="{{ item.external_url }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                >
+                  {{ item.title }}
+                </a>
                 {% else %}
-                    <div class="no-articles">
-                        <h3>{{ page.empty_state_title }}</h3>
-                        {{ page.empty_state_message|safe }}
-                    </div>
+                {{ item.title }}
                 {% endif %}
-            </div>
+              </h3>
 
-            <!-- Sidebar -->
-            <aside class="blog-sticky-sidebar">
-                {% if page.sidebar_interview_show %}
-                <div class="sidebar-section">
-                    <div class="garden-panel">
-                        <div class="garden-panel__header garden-panel-header">
-                            <div class="panel-title">{{ page.sidebar_interview_title }}</div>
-                        </div>
-                        <div class="garden-panel__content garden-panel-content">
-                            <div class="sidebar-description">{{ page.sidebar_interview_description|safe }}</div>
-                            <div class="contact-method">
-                                <a href="{{ page.sidebar_interview_button_url }}" target="_blank" rel="noopener noreferrer" class="garden-action primary full-width">{{ page.sidebar_interview_button_text }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
+              {% if item.description %}
+              <p class="text-gray-700 dark:text-gray-300 mb-4">
+                {{ item.description|striptags|truncatewords:25 }}
+              </p>
+              {% endif %} 
+              
+              {% if item.external_url %}
+              <a
+                href="{{ item.external_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-purple-600 transition-colors text-sm font-medium"
+              >
+                READ ARTICLE
+              </a>
+              {% endif %}
+            </article>
+            {% endfor %}
+          </div>
 
-                {% if page.sidebar_contact_show %}
-                <div class="sidebar-section">
-                    <div class="garden-panel">
-                        <div class="garden-panel__header garden-panel-header">
-                            <div class="panel-title">{{ page.sidebar_contact_title }}</div>
-                        </div>
-                        <div class="garden-panel__content garden-panel-content">
-                            <div class="sidebar-description">{{ page.sidebar_contact_description|safe }}</div>
-                            <div class="contact-method">
-                                <a href="{{ page.sidebar_contact_button_url }}" class="garden-action secondary full-width">{{ page.sidebar_contact_button_text }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-            </aside>
+          <!-- HTMX Infinite Scroll Trigger -->
+          {% if page.media_items.all.count > 6 %}
+          <div
+            id="load-more-trigger"
+            hx-get="/api/media-items/?page=2&per_page=6"
+            hx-trigger="revealed"
+            hx-target="#articles-container"
+            hx-swap="beforeend"
+            hx-indicator="#loading-indicator"
+            class="h-1 mt-6"
+          >
+            <!-- This div triggers loading when it comes into view -->
+          </div>
+          {% endif %}
+
+          <!-- Loading indicator -->
+          <div id="loading-indicator" class="text-center py-8 hidden htmx-indicator">
+            <div class="inline-block animate-spin text-2xl mb-2">⟳</div>
+            <p class="text-gray-600 dark:text-gray-400">Loading more articles...</p>
+          </div>
+          {% else %}
+          <div class="text-center py-12">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">{{ page.empty_state_title }}</h3>
+            <div class="text-gray-600 dark:text-gray-400">{{ page.empty_state_message|safe }}</div>
+          </div>
+          {% endif %}
         </div>
-    </div>
-</section>
 
-<!-- Press Kit Section -->
-{% if page.press_kit_title or page.press_kit_description %}
-<section class="garden-panel">
-    <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">{{ page.press_kit_title|default:"PRESS KIT & RESOURCES" }}</div>
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+          {% if page.sidebar_interview_show %}
+          <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ page.sidebar_interview_title }}</h3>
+            <div class="text-gray-600 dark:text-gray-400 mb-4 text-sm">{{ page.sidebar_interview_description|safe }}</div>
+            <a
+              href="{{ page.sidebar_interview_button_url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block w-full text-center px-4 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              {{ page.sidebar_interview_button_text }}
+            </a>
+          </div>
+          {% endif %} 
+          
+          {% if page.sidebar_contact_show %}
+          <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">{{ page.sidebar_contact_title }}</h3>
+            <div class="text-gray-600 dark:text-gray-400 mb-4 text-sm">{{ page.sidebar_contact_description|safe }}</div>
+            <a 
+              href="{{ page.sidebar_contact_button_url }}" 
+              class="block w-full text-center px-4 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-purple-600 transition-colors"
+            >
+              {{ page.sidebar_contact_button_text }}
+            </a>
+          </div>
+          {% endif %}
+        </aside>
+      </div>
     </div>
-    <div class="garden-panel__content garden-panel-content">
-        {% if page.press_kit_description %}
-            {{ page.press_kit_description|richtext }}
-        {% endif %}
-        <div class="press-kit-actions">
-            <a href="/contact/" class="garden-action secondary">Request Press Materials</a>
-            <a href="https://github.com/ethicalcapital/sage" target="_blank" rel="noopener" class="garden-action secondary">View Open Source Methodology</a>
-        </div>
+  </section>
+
+  <!-- Press Kit Section -->
+  {% if page.press_kit_title or page.press_kit_description %}
+  <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">{{ page.press_kit_title|default:"PRESS KIT & RESOURCES" }}</h2>
+    {% if page.press_kit_description %} 
+    <div class="text-gray-700 dark:text-gray-300 mb-6">{{ page.press_kit_description|richtext }}</div>
+    {% endif %}
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a href="/contact/" class="px-6 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-purple-600 transition-colors text-center">
+        Request Press Materials
+      </a>
+      <a href="https://github.com/ethicalcapital/sage" target="_blank" rel="noopener" class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-center">
+        View Open Source Methodology
+      </a>
     </div>
-</section>
-{% endif %}
+  </section>
+  {% endif %}
 </div>
-{% endblock %}
-
-{% block extra_css %}
-<!-- Unified blog styles - same as blog and FAQ pages -->
-<link rel="stylesheet" href="{% static 'css/blog-consistency-consolidated.css' %}?v=1">
-<style>
-/* Media Page Styling */
-.media-page .hero-panel {
-    text-align: center;
-}
-
-.media-page .intro-text {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    color: var(--color-text-secondary);
-}
-
-/* Header with article count */
-.media-page .garden-panel__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.media-page .section-count {
-    font-size: 0.875rem;
-    opacity: 0.8;
-}
-
-/* Articles container */
-.media-page .articles-container {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 3rem;
-}
-
-/* Featured badge */
-.media-page .featured-badge {
-    display: inline-block;
-    background: var(--theme-primary);
-    color: var(--color-surface);
-    padding: 0.25rem 0.75rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
-}
-
-/* Article list items */
-.media-page .article-list-item {
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.media-page .article-list-item:first-child {
-    padding-top: 0;
-}
-
-.media-page .article-list-item:last-child {
-    border-bottom: none;
-}
-
-.media-page .article-list-meta {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-}
-
-.media-page .article-list-tag {
-    color: var(--theme-primary);
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.media-page .article-list-date {
-    color: var(--color-text-secondary);
-    font-size: 0.875rem;
-}
-
-.media-page .article-list-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-}
-
-.media-page .article-list-title a {
-    color: var(--color-text-primary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.media-page .article-list-title a:hover {
-    color: var(--theme-primary);
-}
-
-.media-page .article-list-description {
-    color: var(--color-text-secondary);
-    margin-bottom: 1rem;
-}
-
-.media-page .article-list-actions {
-    margin-top: 1rem;
-}
-
-/* Press kit section */
-.media-page .press-kit-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-}
-
-/* Sidebar styling */
-.media-page .blog-sticky-sidebar {
-    position: sticky;
-    top: 2rem;
-}
-
-.media-page .sidebar-section {
-    margin-bottom: 2rem;
-}
-
-.media-page .sidebar-description {
-    color: var(--color-text-secondary);
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-}
-
-.media-page .full-width {
-    width: 100%;
-    text-align: center;
-}
-
-/* No articles message */
-.media-page .no-articles {
-    text-align: center;
-    padding: 4rem 2rem;
-}
-
-.media-page .no-articles h3 {
-    color: var(--color-text-secondary);
-    margin-bottom: 1rem;
-}
-
-/* HTMX loading indicator */
-.htmx-indicator {
-    display: none;
-}
-
-.htmx-request .htmx-indicator {
-    display: block;
-}
-
-.loading-indicator {
-    text-align: center;
-    padding: 2rem;
-    color: var(--color-text-secondary);
-}
-
-.loading-spinner {
-    font-size: 2rem;
-    animation: spin 1s linear infinite;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.load-more-trigger {
-    height: 1px;
-    margin-top: 2rem;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .media-page .articles-container {
-        grid-template-columns: 1fr;
-    }
-
-    .media-page .blog-sticky-sidebar {
-        position: static;
-        margin-top: 3rem;
-    }
-
-    .media-page .press-kit-actions {
-        flex-direction: column;
-    }
-
-    .media-page .press-kit-actions .garden-action {
-        width: 100%;
-        text-align: center;
-    }
-}
-</style>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-// Media Page Layout Management - Same comprehensive system as blog and FAQ
-document.addEventListener('DOMContentLoaded', function() {
-    // Comprehensive layout refresh that matches template inline styles
-    function refreshLayout() {
-        console.log('🔧 Refreshing Media layout...');
-
-        // Apply the EXACT same styles as in the template
-
-        // 1. Article list items - match template: class="full-width-important"
-        const articles = document.querySelectorAll('.article-list-item');
-        articles.forEach(el => {
-            el.style.setProperty('width', '100%', 'important');
-            el.style.setProperty('max-width', 'none', 'important');
-        });
-
-        // 2. Article content - match template: class="article-content-flex"
-        const articleContents = document.querySelectorAll('.article-list-content');
-        articleContents.forEach(el => {
-            el.style.setProperty('width', '100%', 'important');
-            el.style.setProperty('display', 'flex', 'important');
-            el.style.setProperty('gap', 'var(--space-6)', 'important');
-        });
-
-        // 3. Article text containers - match template: class="article-text-full"
-        const articleTexts = document.querySelectorAll('.article-list-text');
-        articleTexts.forEach(el => {
-            el.style.setProperty('flex', '1', 'important');
-            el.style.setProperty('width', '100%', 'important');
-            el.style.setProperty('max-width', 'none', 'important');
-            el.style.setProperty('min-width', '0', 'important');
-        });
-
-        // 4. Article titles - match template: class="full-width-important"
-        const articleTitles = document.querySelectorAll('.article-list-title');
-        articleTitles.forEach(el => {
-            el.style.setProperty('width', '100%', 'important');
-            el.style.setProperty('max-width', 'none', 'important');
-        });
-
-        // 5. Article title links - match template: class="block-full-important"
-        const titleLinks = document.querySelectorAll('.article-list-title a, .article-list-title span');
-        titleLinks.forEach(el => {
-            el.style.setProperty('width', '100%', 'important');
-            el.style.setProperty('max-width', 'none', 'important');
-            el.style.setProperty('display', 'block', 'important');
-        });
-
-        // 6. Article excerpts - match template: class="full-width-important"
-        const excerpts = document.querySelectorAll('.article-list-excerpt');
-        excerpts.forEach(el => {
-            el.style.setProperty('width', '100%', 'important');
-            el.style.setProperty('max-width', 'none', 'important');
-        });
-
-        // 7. Container elements
-        const containers = document.querySelectorAll('.articles-list, .articles-main');
-        containers.forEach(el => {
-            el.style.setProperty('width', '100%', 'important');
-            el.style.setProperty('max-width', 'none', 'important');
-        });
-
-        // 8. Media-specific elements
-        const metas = document.querySelectorAll('.article-list-meta, .article-list-tags, .article-list-actions');
-        metas.forEach(el => {
-            el.style.setProperty('width', '100%', 'important');
-        });
-
-        console.log('✅ Media layout refreshed with inline styles applied');
-    }
-
-    // Apply initial refresh
-    refreshLayout();
-
-    // Periodic layout check for media content
-    setInterval(() => {
-        const allArticles = document.querySelectorAll('.article-list-item');
-        const needsRefresh = Array.from(allArticles).some(article => {
-            const content = article.querySelector('.article-list-content');
-            const text = article.querySelector('.article-list-text');
-
-            // Check if any article doesn't have the proper flex layout
-            if (content && content.style.display !== 'flex') {
-                return true;
-            }
-            if (text && text.style.flex !== '1') {
-                return true;
-            }
-            return false;
-        });
-
-        if (needsRefresh) {
-            console.log('🔄 Periodic Media layout check - refreshing layout');
-            refreshLayout();
-        }
-    }, 2000); // Check every 2 seconds
-
-    // Make entire article containers clickable
-    function makeArticlesClickable() {
-        const articles = document.querySelectorAll('.article-list-item:not([data-clickable])');
-        articles.forEach(article => {
-            article.setAttribute('data-clickable', 'true');
-            article.addEventListener('click', function(e) {
-                // Don't trigger if clicking on the actual link or button
-                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
-                    return;
-                }
-
-                const link = this.querySelector('.article-list-title a');
-                if (link) {
-                    window.open(link.href, '_blank', 'noopener noreferrer');
-                }
-            });
-
-            // Add hover effects
-            article.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px)';
-            });
-
-            article.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-    }
-
-    // Initialize clickable articles
-    makeArticlesClickable();
-
-    // Set up MutationObserver to watch for new media articles being added
-    const mediaContainer = document.querySelector('#articles-container');
-    if (mediaContainer) {
-        const mutationObserver = new MutationObserver((mutations) => {
-            let newArticlesAdded = false;
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'childList') {
-                    mutation.addedNodes.forEach((node) => {
-                        if (node.nodeType === 1 && node.classList && node.classList.contains('article-list-item')) {
-                            newArticlesAdded = true;
-                        }
-                    });
-                }
-            });
-
-            if (newArticlesAdded) {
-                console.log('🔍 New media articles detected by MutationObserver');
-                // Apply fixes immediately
-                refreshLayout();
-                makeArticlesClickable();
-
-                // And again after a delay to ensure they stick
-                setTimeout(() => {
-                    refreshLayout();
-                    console.log('🔄 MutationObserver triggered Media layout refresh');
-                }, 50);
-            }
-        });
-
-        // Start observing the media container
-        mutationObserver.observe(mediaContainer, {
-            childList: true,
-            subtree: true
-        });
-    }
-
-    // Function to apply comprehensive inline styles to newly added media articles
-    function applyInlineStylesToNewArticles(articles, pageNumber) {
-        articles.forEach((article, index) => {
-            // Apply inline styles directly to each new article
-            const articleId = `new-media-article-${pageNumber}-${index}`;
-            article.setAttribute('data-new-article', articleId);
-
-            // Force the exact same inline styles as the template
-            article.style.setProperty('width', '100%', 'important');
-            article.style.setProperty('max-width', 'none', 'important');
-
-            const content = article.querySelector('.article-list-content');
-            if (content) {
-                content.style.setProperty('width', '100%', 'important');
-                content.style.setProperty('display', 'flex', 'important');
-                content.style.setProperty('gap', 'var(--space-6)', 'important');
-            }
-
-            const text = article.querySelector('.article-list-text');
-            if (text) {
-                text.style.setProperty('flex', '1', 'important');
-                text.style.setProperty('width', '100%', 'important');
-                text.style.setProperty('max-width', 'none', 'important');
-                text.style.setProperty('min-width', '0', 'important');
-            }
-
-            const title = article.querySelector('.article-list-title');
-            if (title) {
-                title.style.setProperty('width', '100%', 'important');
-                title.style.setProperty('max-width', 'none', 'important');
-
-                const titleLink = title.querySelector('a, span');
-                if (titleLink) {
-                    titleLink.style.setProperty('width', '100%', 'important');
-                    titleLink.style.setProperty('max-width', 'none', 'important');
-                    titleLink.style.setProperty('display', 'block', 'important');
-                }
-            }
-
-            const excerpt = article.querySelector('.article-list-excerpt');
-            if (excerpt) {
-                excerpt.style.setProperty('width', '100%', 'important');
-                excerpt.style.setProperty('max-width', 'none', 'important');
-            }
-
-            const meta = article.querySelector('.article-list-meta');
-            if (meta) {
-                meta.style.setProperty('width', '100%', 'important');
-            }
-
-            const actions = article.querySelector('.article-list-actions');
-            if (actions) {
-                actions.style.setProperty('width', '100%', 'important');
-            }
-        });
-    }
-
-    // Enhanced HTMX support - automatically apply layout fixes when HTMX loads content
-    document.body.addEventListener('htmx:afterSwap', function(evt) {
-        console.log('🔄 HTMX content loaded - applying media layout fixes');
-        refreshLayout();
-        makeArticlesClickable();
-
-        // Apply again after a delay to ensure styles stick
-        setTimeout(() => {
-            refreshLayout();
-            console.log('🔄 HTMX delayed layout refresh complete');
-        }, 100);
-    });
-
-    // Global functions for external use
-    window.refreshMediaLayout = refreshLayout;
-    window.applyMediaInlineStyles = applyInlineStylesToNewArticles;
-
-    console.log('✅ Media page layout management system initialized');
-});
-</script>
 {% endblock %}

@@ -1,12 +1,13 @@
 {% load crispy_forms_tags %}
 
-<form id="contact-form"
-      hx-post="/api/contact/"
-      hx-target="#form-response"
-      hx-indicator="#form-loading"
-      hx-swap="innerHTML"
-      class="garden-form"
-      x-data="{
+<form
+  id="contact-form"
+  hx-post="/api/contact/"
+  hx-target="#form-response"
+  hx-indicator="#form-loading"
+  hx-swap="innerHTML"
+  class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 space-y-6 relative"
+  x-data="{
           submitting: false,
           submissionId: null,
           handleSubmit() {
@@ -39,231 +40,177 @@
               }
           }
       }"
-      @htmx:before-request="handleSubmit()"
-      @htmx:after-request="handleResponse()">
+  @htmx:before-request="handleSubmit()"
+  @htmx:after-request="handleResponse()"
+>
+  {% csrf_token %}
 
-    {% csrf_token %}
+  <div class="space-y-6">
+    <!-- Name Field -->
+    <div class="space-y-2">{{ contact_form.name|as_crispy_field }}</div>
 
-    <div class="form-wrapper">
-        <!-- Name Field -->
-        <div class="garden-form-group">
-            {{ contact_form.name|as_crispy_field }}
-        </div>
-
-        <!-- Email Field with inline validation -->
-        <div class="garden-form-group">
-            <label for="{{ contact_form.email.id_for_label }}">
-                {{ contact_form.email.label }}
-                {% if contact_form.email.field.required %}<span class="required-indicator" aria-label="required">*</span>{% endif %}
-            </label>
-            <input type="email"
-                   name="{{ contact_form.email.name }}"
-                   id="{{ contact_form.email.id_for_label }}"
-                   class="garden-input"
-                   placeholder="{{ contact_form.email.widget.attrs.placeholder }}"
-                   autocomplete="{{ contact_form.email.widget.attrs.autocomplete }}"
-                   required
-                   hx-post="/api/validate-email/"
-                   hx-trigger="blur changed"
-                   hx-target="#email-feedback"
-                   hx-indicator="#email-spinner"
-                   :disabled="submitting"
-                   aria-describedby="email-feedback{% if contact_form.email.help_text %} email-help{% endif %}"
-                   aria-invalid="false">
-            <span id="email-spinner"
-                  class="htmx-indicator field-spinner"
-                  role="status"
-                  aria-label="Validating email">⟳</span>
-            <div id="email-feedback"
-                 class="field-feedback"
-                 role="status"
-                 aria-live="polite"
-                 aria-atomic="true"></div>
-            {% if contact_form.email.help_text %}
-                <small id="email-help" class="form-text text-muted">{{ contact_form.email.help_text }}</small>
-            {% endif %}
-        </div>
-
-        <!-- Company Field -->
-        <div class="garden-form-group">
-            {{ contact_form.company|as_crispy_field }}
-        </div>
-
-        <!-- Subject Field -->
-        <div class="garden-form-group">
-            {{ contact_form.subject|as_crispy_field }}
-        </div>
-
-        <!-- Message Field -->
-        <div class="garden-form-group">
-            {{ contact_form.message|as_crispy_field }}
-        </div>
-
-        <!-- Cloudflare Turnstile -->
-        <div class="garden-form-group">
-            <div class="cf-turnstile"
-                 data-sitekey="{{ TURNSTILE_SITE_KEY }}"
-                 data-callback="onTurnstileSuccess"
-                 data-expired-callback="onTurnstileExpired"
-                 data-error-callback="onTurnstileError"></div>
-            {{ contact_form.cf_turnstile_response }}
-        </div>
-
-        <!-- Submit Button -->
-        <div class="form-actions">
-            <button type="submit"
-                    class="garden-action primary"
-                    :disabled="submitting"
-                    aria-describedby="form-response">
-                <span x-show="!submitting">Send Message</span>
-                <span x-show="submitting" x-cloak>
-                    <span class="spinner" role="status" aria-label="Loading">⟳</span> Sending...
-                </span>
-            </button>
-
-            <button type="reset"
-                    class="garden-action secondary"
-                    :disabled="submitting"
-                    @click="$refs.formResponse.innerHTML = ''"
-                    aria-label="Clear all form fields">
-                Clear Form
-            </button>
-        </div>
+    <!-- Email Field with inline validation -->
+    <div class="space-y-2">
+      <label for="{{ contact_form.email.id_for_label }}" class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+        {{ contact_form.email.label }} {% if contact_form.email.field.required %}
+        <span class="text-red-500 ml-1" aria-label="required">*</span>
+        {% endif %}
+      </label>
+      <input
+        type="email"
+        name="{{ contact_form.email.name }}"
+        id="{{ contact_form.email.id_for_label }}"
+        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+        placeholder="{{ contact_form.email.widget.attrs.placeholder }}"
+        autocomplete="{{ contact_form.email.widget.attrs.autocomplete }}"
+        required
+        hx-post="/api/validate-email/"
+        hx-trigger="blur changed"
+        hx-target="#email-feedback"
+        hx-indicator="#email-spinner"
+        :disabled="submitting"
+        aria-describedby="email-feedback{% if contact_form.email.help_text %} email-help{% endif %}"
+        aria-invalid="false"
+      />
+      <span id="email-spinner" class="htmx-indicator ml-2 text-purple-600 animate-spin hidden" role="status" aria-label="Validating email">⟳</span>
+      <div id="email-feedback" class="text-sm mt-1" role="status" aria-live="polite" aria-atomic="true"></div>
+      {% if contact_form.email.help_text %}
+      <small id="email-help" class="form-text text-muted">{{ contact_form.email.help_text }}</small>
+      {% endif %}
     </div>
 
-    <!-- Loading indicator -->
-    <div id="form-loading"
-         class="htmx-indicator form-loading-overlay"
-         role="status"
-         aria-label="Form submission in progress">
-        <div class="loading-content">
-            <div class="spinner-large" aria-hidden="true">⟳</div>
-            <p>Sending your message...</p>
-        </div>
+    <!-- Company Field -->
+    <div class="space-y-2">{{ contact_form.company|as_crispy_field }}</div>
+
+    <!-- Subject Field -->
+    <div class="space-y-2">{{ contact_form.subject|as_crispy_field }}</div>
+
+    <!-- Message Field -->
+    <div class="space-y-2">{{ contact_form.message|as_crispy_field }}</div>
+
+    <!-- Cloudflare Turnstile -->
+    <div class="space-y-2">
+      <div
+        class="cf-turnstile mx-auto"
+        data-sitekey="{{ TURNSTILE_SITE_KEY }}"
+        data-callback="onTurnstileSuccess"
+        data-expired-callback="onTurnstileExpired"
+        data-error-callback="onTurnstileError"
+      ></div>
+      {{ contact_form.cf_turnstile_response }}
     </div>
+
+    <!-- Submit Button -->
+    <div class="flex flex-col sm:flex-row gap-4">
+      <button type="submit" class="flex-1 px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors" :disabled="submitting" aria-describedby="form-response">
+        <span x-show="!submitting">Send Message</span>
+        <span x-show="submitting" x-cloak class="flex items-center justify-center gap-2">
+          <span class="animate-spin" role="status" aria-label="Loading">⟳</span>
+          Sending...
+        </span>
+      </button>
+
+      <button
+        type="reset"
+        class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        :disabled="submitting"
+        @click="$refs.formResponse.innerHTML = ''"
+        aria-label="Clear all form fields"
+      >
+        Clear Form
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading indicator -->
+  <div
+    id="form-loading"
+    class="htmx-indicator hidden absolute inset-0 bg-white/95 dark:bg-gray-800/95 flex items-center justify-center z-50 rounded-xl"
+    role="status"
+    aria-label="Form submission in progress"
+  >
+    <div class="text-center">
+      <div class="text-4xl text-purple-600 animate-spin mb-4" aria-hidden="true">⟳</div>
+      <p class="text-gray-700 dark:text-gray-300">Sending your message...</p>
+    </div>
+  </div>
 </form>
 
 <!-- Response container -->
-<div id="form-response"
-     x-ref="formResponse"
-     class="form-response-container"
-     role="status"
-     aria-live="polite"
-     aria-atomic="true"></div>
+<div
+  id="form-response"
+  x-ref="formResponse"
+  class="mt-6"
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
+></div>
 
 <style>
-    /* Form Loading States */
-    .form-loading-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--color-surface);
-        opacity: 0.95;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 100;
-        border-radius: var(--radius-md);
-    }
+  /* HTMX Loading States */
+  .htmx-request #form-loading {
+    display: flex !important;
+  }
 
-    .htmx-request .form-loading-overlay {
-        display: flex;
-    }
+  .htmx-request #email-spinner {
+    display: inline-block !important;
+  }
 
-    .loading-content {
-        text-align: center;
-    }
+  /* Field Feedback States */
+  #email-feedback.valid {
+    color: rgb(34 197 94); /* green-500 */
+  }
 
-    .spinner-large {
-        font-size: 2rem;
-        animation: spin 1s linear infinite;
-        display: inline-block;
-        margin-bottom: 1rem;
-    }
+  #email-feedback.invalid {
+    color: rgb(239 68 68); /* red-500 */
+  }
 
-    .field-spinner {
-        margin-left: 0.5rem;
-        display: none;
-    }
+  /* Crispy Forms Integration with Tailwind */
+  .crispy-field label {
+    @apply block text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2;
+  }
 
-    .htmx-request .field-spinner {
-        display: inline-block;
-        animation: spin 1s linear infinite;
-    }
+  .crispy-field input[type="text"],
+  .crispy-field input[type="email"],
+  .crispy-field select,
+  .crispy-field textarea {
+    @apply w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed;
+  }
 
-    @keyframes spin {
-        to { transform: rotate(360deg); }
-    }
-
-    /* Field Feedback */
-    .field-feedback {
-        margin-top: 0.25rem;
-        font-size: 0.875rem;
-    }
-
-    .field-feedback.valid {
-        color: var(--color-success);
-    }
-
-    .field-feedback.invalid {
-        color: var(--color-error);
-    }
-
-    /* Dark mode adjustments */
-    [data-theme="dark"] .form-loading-overlay {
-        background: var(--color-surface);
-        opacity: 0.95;
-        color: var(--color-text-primary);
-    }
-
-    /* Disabled state */
-    .form-input:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
-
-    /* Form response container */
-    .form-response-container {
-        margin-top: 1rem;
-    }
-
-    /* Turnstile styling */
-    .cf-turnstile {
-        margin: 1rem 0;
-    }
+  .crispy-field .required {
+    @apply text-red-500 ml-1;
+  }
 </style>
 
 <!-- Cloudflare Turnstile Script -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
-// Turnstile callback functions
-function onTurnstileSuccess(token) {
+  // Turnstile callback functions
+  function onTurnstileSuccess(token) {
     // Store the token in the hidden field
     const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
     if (hiddenField) {
-        hiddenField.value = token;
+      hiddenField.value = token;
     }
-    console.log('Turnstile verification successful');
-}
+    console.log("Turnstile verification successful");
+  }
 
-function onTurnstileExpired() {
+  function onTurnstileExpired() {
     // Clear the token when expired
     const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
     if (hiddenField) {
-        hiddenField.value = '';
+      hiddenField.value = "";
     }
-    console.log('Turnstile token expired');
-}
+    console.log("Turnstile token expired");
+  }
 
-function onTurnstileError(error) {
+  function onTurnstileError(error) {
     // Clear the token on error
     const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
     if (hiddenField) {
-        hiddenField.value = '';
+      hiddenField.value = "";
     }
-    console.log('Turnstile error:', error);
-}
+    console.log("Turnstile error:", error);
+  }
 </script>

@@ -1,29 +1,24 @@
-{% extends "public_site/base_tailwind.html" %}
-{% load wagtailcore_tags static %}
-
-{% block title %}Investment Encyclopedia | Ethical Capital{% endblock %}
-
-{% block body_class %}encyclopedia-index{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/encyclopedia-page-fix.css' %}?v=1">
+{% extends "public_site/base_tailwind.html" %} {% load wagtailcore_tags static %} {% block title %}Investment
+Encyclopedia | Ethical Capital{% endblock %} {% block body_class %}encyclopedia-index{% endblock %} {% block extra_css
+%}
+<link rel="stylesheet" href="{% static 'css/encyclopedia-page-fix.css' %}?v=1" />
 <style>
-/* Encyclopedia Page Styling */
-.encyclopedia-search {
+  /* Encyclopedia Page Styling */
+  .encyclopedia-search {
     margin-bottom: var(--space-6, 24px);
-}
+  }
 
-.encyclopedia-entry {
+  .encyclopedia-entry {
     transition: all 0.2s ease;
-}
+  }
 
-.encyclopedia-entry:hover {
+  .encyclopedia-entry:hover {
     border-color: var(--theme-primary) !important;
     box-shadow: 0 2px 8px var(--theme-shadow-variant);
-}
+  }
 
-/* Tag styling matching article tags */
-.article-tag {
+  /* Tag styling matching article tags */
+  .article-tag {
     background: var(--theme-surface-variant);
     color: var(--theme-on-surface-variant);
     border: 1px solid var(--theme-border);
@@ -35,30 +30,30 @@
     border-radius: var(--radius-sm, 4px);
     display: inline-block;
     white-space: nowrap;
-}
+  }
 
-.article-tag:hover {
+  .article-tag:hover {
     background: var(--theme-primary-alpha);
     color: var(--theme-on-surface);
     border-color: var(--theme-primary);
-}
+  }
 
-/* Details/Summary styling */
-details summary::-webkit-details-marker {
+  /* Details/Summary styling */
+  details summary::-webkit-details-marker {
     display: none;
-}
+  }
 
-details summary:hover {
+  details summary:hover {
     color: var(--theme-primary-hover) !important;
-}
+  }
 
-details summary:focus-visible {
+  details summary:focus-visible {
     outline: 2px solid var(--theme-primary);
     outline-offset: 2px;
-}
+  }
 
-/* Search input styling */
-.garden-input {
+  /* Search input styling */
+  .garden-input {
     width: 100%;
     padding: var(--space-3, 12px) var(--space-4, 16px);
     border: 1px solid var(--theme-border);
@@ -67,247 +62,293 @@ details summary:focus-visible {
     color: var(--theme-on-surface);
     font-family: inherit;
     font-size: var(--font-base, 16px);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
 
-.garden-input:focus {
+  .garden-input:focus {
     outline: none;
     border-color: var(--theme-primary);
     box-shadow: 0 0 0 2px var(--theme-primary-alpha);
-}
+  }
 
-.garden-input::placeholder {
+  .garden-input::placeholder {
     color: var(--theme-on-surface-variant);
     opacity: 0.8;
-}
+  }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
     .entry-header {
-        flex-direction: column !important;
-        gap: var(--space-2, 8px);
+      flex-direction: column !important;
+      gap: var(--space-2, 8px);
     }
 
     .encyclopedia-entry {
-        padding: var(--space-3, 12px) !important;
+      padding: var(--space-3, 12px) !important;
     }
-}
+  }
 </style>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="garden-container">
-    <!-- Hero Section -->
-    <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
-        <div class="garden-panel__content garden-panel-content">
-            <h1 id="hero-heading" class="hero-title">{{ page.title }}</h1>
-            {% if page.intro_text %}
-                <div class="hero-subtitle">{{ page.intro_text|richtext }}</div>
-            {% endif %}
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
+    <div class="garden-panel__content garden-panel-content">
+      <h1 id="hero-heading" class="hero-title">{{ page.title }}</h1>
+      {% if page.intro_text %}
+      <div class="hero-subtitle">{{ page.intro_text|richtext }}</div>
+      {% endif %}
+    </div>
+  </section>
 
-    <!-- Main Content Panel -->
-    <section class="garden-panel" role="main">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">INVESTMENT TERMS & CONCEPTS</div>
+  <!-- Main Content Panel -->
+  <section class="garden-panel" role="main">
+    <div class="garden-panel__header garden-panel-header">
+      <div class="panel-title">INVESTMENT TERMS & CONCEPTS</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+      <!-- Search Box -->
+      <div class="encyclopedia-search">
+        <div class="form-group">
+          <label for="encyclopedia-search" class="form-label">Search Encyclopedia</label>
+          <input
+            type="text"
+            id="encyclopedia-search"
+            placeholder="Search terms and definitions..."
+            class="garden-input"
+            aria-describedby="search-help"
+          />
+          <p id="search-help" class="help-text">Type to search through encyclopedia entries</p>
         </div>
-        <div class="garden-panel__content garden-panel-content">
-            <!-- Search Box -->
-            <div class="encyclopedia-search">
-                <div class="form-group">
-                    <label for="encyclopedia-search" class="form-label">Search Encyclopedia</label>
-                    <input type="text" id="encyclopedia-search"
-                           placeholder="Search terms and definitions..."
-                           class="garden-input"
-                           aria-describedby="search-help">
-                    <p id="search-help" class="help-text">Type to search through encyclopedia entries</p>
+      </div>
+
+      <!-- Entry Count -->
+      <div class="entry-count">
+        {% if selected_letter %} Showing {{ entries.count }} term{{ entries.count|pluralize }} starting with "{{
+        selected_letter }}" {% else %} {{ entries.count }} term{{ entries.count|pluralize }} available {% endif %}
+      </div>
+
+      <!-- Encyclopedia Entries -->
+      <div class="encyclopedia-entries">
+        {% for entry in entries %}
+        <div
+          class="encyclopedia-entry"
+          data-title="{{ entry.title|lower }}"
+          data-category="{{ entry.category|default:'' }}"
+        >
+          <!-- Entry Header with Title and Tags -->
+          <div class="entry-header">
+            <h3>{{ entry.title }}</h3>
+            <div class="entry-tags">
+              {% if entry.category %}
+              <span class="article-tag">{{ entry.get_category_display }}</span>
+              {% endif %} {% if entry.difficulty_level %}
+              <span class="article-tag">{{ entry.get_difficulty_level_display }}</span>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Summary - Always visible by default -->
+          <div class="entry-summary">{{ entry.summary }}</div>
+
+          <!-- Expandable detailed content (only show if additional content exists) -->
+          {% if entry.detailed_content or entry.examples or entry.further_reading or entry.related_terms %}
+          <details class="entry-details">
+            <summary>
+              <span class="toggle-text">Show</span>
+              <span class="expand-icon" aria-hidden="true">+</span>
+            </summary>
+
+            <div
+              class="entry-details"
+              style="
+                padding-top: var(--space-3, 12px);
+                border-top: 1px solid var(--theme-border);
+                margin-top: var(--space-2, 8px);
+              "
+            >
+              {% if entry.detailed_content %}
+              <div style="margin-bottom: var(--space-4, 16px)">
+                <h4
+                  style="
+                    font-size: var(--font-base, 16px);
+                    font-weight: var(--font-semibold, 600);
+                    margin: 0 0 var(--space-2, 8px) 0;
+                    color: var(--theme-on-surface);
+                  "
+                >
+                  Detailed Explanation
+                </h4>
+                <div style="color: var(--theme-on-surface-variant); line-height: 1.6">
+                  {{ entry.detailed_content|safe }}
                 </div>
+              </div>
+              {% endif %} {% if entry.examples %}
+              <div style="margin-bottom: var(--space-4, 16px)">
+                <h4
+                  style="
+                    font-size: var(--font-base, 16px);
+                    font-weight: var(--font-semibold, 600);
+                    margin: 0 0 var(--space-2, 8px) 0;
+                    color: var(--theme-on-surface);
+                  "
+                >
+                  Examples & Use Cases
+                </h4>
+                <div style="color: var(--theme-on-surface-variant); line-height: 1.6">{{ entry.examples|safe }}</div>
+              </div>
+              {% endif %} {% if entry.further_reading %}
+              <div style="margin-bottom: var(--space-4, 16px)">
+                <h4
+                  style="
+                    font-size: var(--font-base, 16px);
+                    font-weight: var(--font-semibold, 600);
+                    margin: 0 0 var(--space-2, 8px) 0;
+                    color: var(--theme-on-surface);
+                  "
+                >
+                  Further Reading
+                </h4>
+                <div style="color: var(--theme-on-surface-variant); line-height: 1.6">
+                  {{ entry.further_reading|safe }}
+                </div>
+              </div>
+              {% endif %} {% if entry.related_terms %}
+              <div>
+                <h4
+                  style="
+                    font-size: var(--font-base, 16px);
+                    font-weight: var(--font-semibold, 600);
+                    margin: 0 0 var(--space-2, 8px) 0;
+                    color: var(--theme-on-surface);
+                  "
+                >
+                  Related Terms
+                </h4>
+                <p style="color: var(--theme-on-surface-variant); line-height: 1.6; margin: 0">
+                  {{ entry.related_terms }}
+                </p>
+              </div>
+              {% endif %}
             </div>
-
-            <!-- Entry Count -->
-            <div class="entry-count">
-                {% if selected_letter %}
-                    Showing {{ entries.count }} term{{ entries.count|pluralize }} starting with "{{ selected_letter }}"
-                {% else %}
-                    {{ entries.count }} term{{ entries.count|pluralize }} available
-                {% endif %}
-            </div>
-
-            <!-- Encyclopedia Entries -->
-            <div class="encyclopedia-entries">
-                {% for entry in entries %}
-                    <div class="encyclopedia-entry" data-title="{{ entry.title|lower }}" data-category="{{ entry.category|default:'' }}">
-                        <!-- Entry Header with Title and Tags -->
-                        <div class="entry-header">
-                            <h3>{{ entry.title }}</h3>
-                            <div class="entry-tags">
-                                {% if entry.category %}
-                                    <span class="article-tag">
-                                        {{ entry.get_category_display }}
-                                    </span>
-                                {% endif %}
-                                {% if entry.difficulty_level %}
-                                    <span class="article-tag">
-                                        {{ entry.get_difficulty_level_display }}
-                                    </span>
-                                {% endif %}
-                            </div>
-                        </div>
-
-                        <!-- Summary - Always visible by default -->
-                        <div class="entry-summary">
-                            {{ entry.summary }}
-                        </div>
-
-                        <!-- Expandable detailed content (only show if additional content exists) -->
-                        {% if entry.detailed_content or entry.examples or entry.further_reading or entry.related_terms %}
-                            <details class="entry-details">
-                                <summary>
-                                    <span class="toggle-text">Show</span>
-                                    <span class="expand-icon" aria-hidden="true">+</span>
-                                </summary>
-
-                                <div class="entry-details" style="padding-top: var(--space-3, 12px); border-top: 1px solid var(--theme-border); margin-top: var(--space-2, 8px);">
-                                    {% if entry.detailed_content %}
-                                        <div style="margin-bottom: var(--space-4, 16px);">
-                                            <h4 style="font-size: var(--font-base, 16px); font-weight: var(--font-semibold, 600); margin: 0 0 var(--space-2, 8px) 0; color: var(--theme-on-surface);">Detailed Explanation</h4>
-                                            <div style="color: var(--theme-on-surface-variant); line-height: 1.6;">{{ entry.detailed_content|safe }}</div>
-                                        </div>
-                                    {% endif %}
-
-                                    {% if entry.examples %}
-                                        <div style="margin-bottom: var(--space-4, 16px);">
-                                            <h4 style="font-size: var(--font-base, 16px); font-weight: var(--font-semibold, 600); margin: 0 0 var(--space-2, 8px) 0; color: var(--theme-on-surface);">Examples & Use Cases</h4>
-                                            <div style="color: var(--theme-on-surface-variant); line-height: 1.6;">{{ entry.examples|safe }}</div>
-                                        </div>
-                                    {% endif %}
-
-                                    {% if entry.further_reading %}
-                                        <div style="margin-bottom: var(--space-4, 16px);">
-                                            <h4 style="font-size: var(--font-base, 16px); font-weight: var(--font-semibold, 600); margin: 0 0 var(--space-2, 8px) 0; color: var(--theme-on-surface);">Further Reading</h4>
-                                            <div style="color: var(--theme-on-surface-variant); line-height: 1.6;">{{ entry.further_reading|safe }}</div>
-                                        </div>
-                                    {% endif %}
-
-                                    {% if entry.related_terms %}
-                                        <div>
-                                            <h4 style="font-size: var(--font-base, 16px); font-weight: var(--font-semibold, 600); margin: 0 0 var(--space-2, 8px) 0; color: var(--theme-on-surface);">Related Terms</h4>
-                                            <p style="color: var(--theme-on-surface-variant); line-height: 1.6; margin: 0;">{{ entry.related_terms }}</p>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </details>
-                        {% endif %}
-                    </div>
-                {% empty %}
-                    <div style="text-align: center; padding: var(--space-8, 32px) var(--space-4, 16px); background: var(--theme-surface-variant); border-radius: var(--radius-md, 6px);">
-                        {% if selected_letter %}
-                            <h3 style="margin: 0 0 var(--space-3, 12px) 0; color: var(--theme-on-surface);">No entries found</h3>
-                            <p style="color: var(--theme-on-surface-variant); margin: 0 0 var(--space-4, 16px) 0;">No encyclopedia entries start with "{{ selected_letter }}".</p>
-                            <a href="{{ page.url }}" class="garden-action secondary">View all entries</a>
-                        {% else %}
-                            <h3 style="margin: 0 0 var(--space-3, 12px) 0; color: var(--theme-on-surface);">Encyclopedia coming soon</h3>
-                            <p style="color: var(--theme-on-surface-variant); margin: 0 0 var(--space-4, 16px) 0;">We're building our comprehensive investing encyclopedia. Check back soon for detailed explanations of investment terms and concepts.</p>
-                            <a href="/contact/" class="garden-action primary">Contact us with questions</a>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
+          </details>
+          {% endif %}
         </div>
-    </section>
+        {% empty %}
+        <div
+          style="
+            text-align: center;
+            padding: var(--space-8, 32px) var(--space-4, 16px);
+            background: var(--theme-surface-variant);
+            border-radius: var(--radius-md, 6px);
+          "
+        >
+          {% if selected_letter %}
+          <h3 style="margin: 0 0 var(--space-3, 12px) 0; color: var(--theme-on-surface)">No entries found</h3>
+          <p style="color: var(--theme-on-surface-variant); margin: 0 0 var(--space-4, 16px) 0">
+            No encyclopedia entries start with "{{ selected_letter }}".
+          </p>
+          <a href="{{ page.url }}" class="garden-action secondary">View all entries</a>
+          {% else %}
+          <h3 style="margin: 0 0 var(--space-3, 12px) 0; color: var(--theme-on-surface)">Encyclopedia coming soon</h3>
+          <p style="color: var(--theme-on-surface-variant); margin: 0 0 var(--space-4, 16px) 0">
+            We're building our comprehensive investing encyclopedia. Check back soon for detailed explanations of
+            investment terms and concepts.
+          </p>
+          <a href="/contact/" class="garden-action primary">Contact us with questions</a>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 </div>
-{% endblock %}
-
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 <script>
-// Encyclopedia Search and Filter Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('encyclopedia-search');
-    const searchResults = document.getElementById('search-results');
-    const entries = document.querySelectorAll('.encyclopedia-entry');
+  // Encyclopedia Search and Filter Functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("encyclopedia-search");
+    const searchResults = document.getElementById("search-results");
+    const entries = document.querySelectorAll(".encyclopedia-entry");
 
     // Search functionality
     if (searchInput) {
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase();
+      searchInput.addEventListener("input", function () {
+        const query = this.value.toLowerCase();
 
-            if (query.length === 0) {
-                // Show all entries
-                entries.forEach(entry => {
-                    entry.style.display = 'block';
-                });
-                if (searchResults) {
-                    searchResults.style.display = 'none';
-                }
-                updateCount();
-                return;
-            }
+        if (query.length === 0) {
+          // Show all entries
+          entries.forEach((entry) => {
+            entry.style.display = "block";
+          });
+          if (searchResults) {
+            searchResults.style.display = "none";
+          }
+          updateCount();
+          return;
+        }
 
-            if (query.length < 2) {
-                return;
-            }
+        if (query.length < 2) {
+          return;
+        }
 
-            // Filter entries
-            entries.forEach(entry => {
-                const title = entry.dataset.title || '';
-                const summary = entry.querySelector('.entry-summary');
-                const summaryText = summary ? summary.textContent.toLowerCase() : '';
+        // Filter entries
+        entries.forEach((entry) => {
+          const title = entry.dataset.title || "";
+          const summary = entry.querySelector(".entry-summary");
+          const summaryText = summary ? summary.textContent.toLowerCase() : "";
 
-                if (title.includes(query) || summaryText.includes(query)) {
-                    entry.style.display = 'block';
-                } else {
-                    entry.style.display = 'none';
-                }
-            });
-
-            updateCount(`matching term(s) for "${query}"`);
+          if (title.includes(query) || summaryText.includes(query)) {
+            entry.style.display = "block";
+          } else {
+            entry.style.display = "none";
+          }
         });
+
+        updateCount(`matching term(s) for "${query}"`);
+      });
     }
 
-    function updateCount(suffix = 'term(s) available') {
-        const visibleCount = Array.from(entries).filter(entry =>
-            entry.style.display !== 'none'
-        ).length;
+    function updateCount(suffix = "term(s) available") {
+      const visibleCount = Array.from(entries).filter((entry) => entry.style.display !== "none").length;
 
-        const countElement = document.querySelector('.entry-count');
-        if (countElement) {
-            countElement.textContent = `${visibleCount} ${suffix}`;
-        }
+      const countElement = document.querySelector(".entry-count");
+      if (countElement) {
+        countElement.textContent = `${visibleCount} ${suffix}`;
+      }
     }
 
     // Initialize count
     updateCount();
 
     // Clear search when clicking outside
-    document.addEventListener('click', function(e) {
-        if (searchInput && searchResults &&
-            !searchInput.contains(e.target) &&
-            !searchResults.contains(e.target)) {
-            searchResults.style.display = 'none';
-        }
+    document.addEventListener("click", function (e) {
+      if (searchInput && searchResults && !searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.style.display = "none";
+      }
     });
 
     // Update expand icons for detailed content toggles
-    const detailsElements = document.querySelectorAll('details.entry-details-toggle');
-    detailsElements.forEach(details => {
-        const summary = details.querySelector('summary.details-toggle-header');
-        const expandIcon = summary.querySelector('.expand-icon');
-        const toggleText = summary.querySelector('.toggle-text');
+    const detailsElements = document.querySelectorAll("details.entry-details-toggle");
+    detailsElements.forEach((details) => {
+      const summary = details.querySelector("summary.details-toggle-header");
+      const expandIcon = summary.querySelector(".expand-icon");
+      const toggleText = summary.querySelector(".toggle-text");
 
-        if (expandIcon && toggleText) {
-            // Update icon and text based on initial state
-            expandIcon.textContent = details.open ? '−' : '+';
-            toggleText.textContent = details.open ? 'Show Less Details' : 'Show More Details';
+      if (expandIcon && toggleText) {
+        // Update icon and text based on initial state
+        expandIcon.textContent = details.open ? "−" : "+";
+        toggleText.textContent = details.open ? "Show Less Details" : "Show More Details";
 
-            // Listen for toggle events
-            details.addEventListener('toggle', function() {
-                expandIcon.textContent = this.open ? '−' : '+';
-                toggleText.textContent = this.open ? 'Show Less Details' : 'Show More Details';
-                summary.setAttribute('aria-expanded', this.open);
-            });
-        }
+        // Listen for toggle events
+        details.addEventListener("toggle", function () {
+          expandIcon.textContent = this.open ? "−" : "+";
+          toggleText.textContent = this.open ? "Show Less Details" : "Show More Details";
+          summary.setAttribute("aria-expanded", this.open);
+        });
+      }
     });
-});
+  });
 </script>
 {% endblock %}

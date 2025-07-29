@@ -1,157 +1,155 @@
-{% comment %}
-LocalBusiness Schema for Financial Advisory Firms
-Optimized for local search and "near me" queries
-{% endcomment %}
+{% comment %} LocalBusiness Schema for Financial Advisory Firms Optimized for local search and "near me" queries {%
+endcomment %}
 
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": ["FinancialService", "LocalBusiness"],
-  "@id": "{{ request.scheme }}://{{ request.get_host }}/#localbusiness",
-  "name": "Ethical Capital",
-  "alternateName": "Ethical Capital Investment Collaborative",
-  "description": "SEC-registered investment advisor specializing in ethical investing, sustainable investing, fossil fuel divestment, BDS screening, and comprehensive ESG investment strategies from Provo, Utah. Serving individuals, families, and institutions nationwide with responsible investment solutions including animal welfare investing and human rights screening by appointment.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "90 N 400 E",
-    "addressLocality": "Provo",
-    "addressRegion": "UT",
-    "addressCountry": "US",
-    "postalCode": "84606"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 40.2338,
-    "longitude": -111.6585
-  },
-  "url": "{{ request.scheme }}://{{ request.get_host }}",
-  "telephone": "+1-800-ETHICAL",
-  "email": "hello@ethicic.com",
-  "priceRange": "$$$",
-  "paymentAccepted": ["ACH", "Wire Transfer", "Check"],
-  "currenciesAccepted": "USD",
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "08:00",
-      "closes": "17:00",
-      "validFrom": "2021-01-01",
-      "validThrough": "2025-12-31"
-    }
-  ],
-  "additionalProperty": [
-    {
-      "@type": "PropertyValue",
-      "name": "Appointment Required",
-      "value": "All client meetings by appointment only"
+  {
+    "@context": "https://schema.org",
+    "@type": ["FinancialService", "LocalBusiness"],
+    "@id": "{{ request.scheme }}://{{ request.get_host }}/#localbusiness",
+    "name": "Ethical Capital",
+    "alternateName": "Ethical Capital Investment Collaborative",
+    "description": "SEC-registered investment advisor specializing in ethical investing, sustainable investing, fossil fuel divestment, BDS screening, and comprehensive ESG investment strategies from Provo, Utah. Serving individuals, families, and institutions nationwide with responsible investment solutions including animal welfare investing and human rights screening by appointment.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "90 N 400 E",
+      "addressLocality": "Provo",
+      "addressRegion": "UT",
+      "addressCountry": "US",
+      "postalCode": "84606"
     },
-    {
-      "@type": "PropertyValue",
-      "name": "Service Model",
-      "value": "National service from Provo headquarters"
-    }
-  ],
-  "areaServed": [
-    {
-      "@type": "Country",
-      "name": "United States"
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 40.2338,
+      "longitude": -111.6585
     },
-    {
-      "@type": "State",
-      "name": "Utah"
-    },
-    {
-      "@type": "State",
-      "name": "California"
-    },
-    {
-      "@type": "State",
-      "name": "New York"
-    },
-    {
-      "@type": "State",
-      "name": "Texas"
-    },
-    {
-      "@type": "State",
-      "name": "Florida"
-    }
-  ],
-  "serviceArea": {
-    "@type": "Country",
-    "name": "United States"
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Investment Management Services",
-    "itemListElement": [
+    "url": "{{ request.scheme }}://{{ request.get_host }}",
+    "telephone": "+1-800-ETHICAL",
+    "email": "hello@ethicic.com",
+    "priceRange": "$$$",
+    "paymentAccepted": ["ACH", "Wire Transfer", "Check"],
+    "currenciesAccepted": "USD",
+    "openingHoursSpecification": [
       {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Ethical Investing & Divestment Services",
-          "description": "Comprehensive ethical investing, fossil fuel divestment, BDS screening, and sustainable investing with ESG and human rights screening"
-        },
-        "areaServed": "US",
-        "availability": "InStock"
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Values-Based Financial Planning",
-          "description": "Holistic financial planning aligned with ethical investing, divestment strategies, and sustainable investing principles including fossil fuel and weapons exclusions"
-        },
-        "areaServed": "US",
-        "availability": "InStock"
-      }
-    ]
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "12",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "parentOrganization": {
-    "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
-  },
-  "sameAs": [
-    "https://www.linkedin.com/company/ethical-capital",
-    "https://www.sec.gov/investment/investment-adviser-search"
-  ],
-  "contactPoint": [
-    {
-      "@type": "ContactPoint",
-      "contactType": "Client Services",
-      "telephone": "+1-800-ETHICAL",
-      "email": "hello@ethicic.com",
-      "availableLanguage": "English",
-      "hoursAvailable": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         "opens": "08:00",
-        "closes": "17:00"
+        "closes": "17:00",
+        "validFrom": "2021-01-01",
+        "validThrough": "2025-12-31"
+      }
+    ],
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Appointment Required",
+        "value": "All client meetings by appointment only"
       },
-      "additionalProperty": {
+      {
         "@type": "PropertyValue",
-        "name": "Scheduling",
-        "value": "Appointments required for all meetings"
+        "name": "Service Model",
+        "value": "National service from Provo headquarters"
       }
+    ],
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "United States"
+      },
+      {
+        "@type": "State",
+        "name": "Utah"
+      },
+      {
+        "@type": "State",
+        "name": "California"
+      },
+      {
+        "@type": "State",
+        "name": "New York"
+      },
+      {
+        "@type": "State",
+        "name": "Texas"
+      },
+      {
+        "@type": "State",
+        "name": "Florida"
+      }
+    ],
+    "serviceArea": {
+      "@type": "Country",
+      "name": "United States"
     },
-    {
-      "@type": "ContactPoint",
-      "contactType": "New Client Inquiries",
-      "email": "hello@ethicic.com",
-      "availableLanguage": "English",
-      "additionalProperty": {
-        "@type": "PropertyValue",
-        "name": "Service Area",
-        "value": "Nationwide service available"
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Investment Management Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Ethical Investing & Divestment Services",
+            "description": "Comprehensive ethical investing, fossil fuel divestment, BDS screening, and sustainable investing with ESG and human rights screening"
+          },
+          "areaServed": "US",
+          "availability": "InStock"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Values-Based Financial Planning",
+            "description": "Holistic financial planning aligned with ethical investing, divestment strategies, and sustainable investing principles including fossil fuel and weapons exclusions"
+          },
+          "areaServed": "US",
+          "availability": "InStock"
+        }
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "12",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "parentOrganization": {
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/ethical-capital",
+      "https://www.sec.gov/investment/investment-adviser-search"
+    ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "Client Services",
+        "telephone": "+1-800-ETHICAL",
+        "email": "hello@ethicic.com",
+        "availableLanguage": "English",
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        "additionalProperty": {
+          "@type": "PropertyValue",
+          "name": "Scheduling",
+          "value": "Appointments required for all meetings"
+        }
+      },
+      {
+        "@type": "ContactPoint",
+        "contactType": "New Client Inquiries",
+        "email": "hello@ethicic.com",
+        "availableLanguage": "English",
+        "additionalProperty": {
+          "@type": "PropertyValue",
+          "name": "Service Area",
+          "value": "Nationwide service available"
+        }
       }
-    }
-  ]
-}
+    ]
+  }
 </script>

@@ -1,179 +1,174 @@
-{% comment %}
-Service Schema Implementation
-For individual service pages (Growth Strategy, Income Strategy, etc.)
-{% endcomment %}
+{% comment %} Service Schema Implementation For individual service pages (Growth Strategy, Income Strategy, etc.) {%
+endcomment %}
 
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "{% block service_name %}Ethical Investment Management{% endblock %}",
-  "description": "{% block service_description %}Professional investment management services with comprehensive ethical screening and ESG integration for responsible investing.{% endblock %}",
-  "provider": {
-    "@type": "FinancialService",
-    "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
-    "name": "Ethical Capital",
-    "url": "{{ request.scheme }}://{{ request.get_host }}"
-  },
-  "serviceType": "{% block service_type %}Investment Management{% endblock %}",
-  "category": [
-    "Ethical Investing",
-    "Sustainable Investing",
-    "ESG Investment Management",
-    "Responsible Investment Strategies"
-  ],
-  "areaServed": {
-    "@type": "Country",
-    "name": "United States"
-  },
-  "audience": {
-    "@type": "Audience",
-    "audienceType": "Individual and Institutional Investors",
-    "geographicArea": {
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "{% block service_name %}Ethical Investment Management{% endblock %}",
+    "description": "{% block service_description %}Professional investment management services with comprehensive ethical screening and ESG integration for responsible investing.{% endblock %}",
+    "provider": {
+      "@type": "FinancialService",
+      "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+      "name": "Ethical Capital",
+      "url": "{{ request.scheme }}://{{ request.get_host }}"
+    },
+    "serviceType": "{% block service_type %}Investment Management{% endblock %}",
+    "category": [
+      "Ethical Investing",
+      "Sustainable Investing",
+      "ESG Investment Management",
+      "Responsible Investment Strategies"
+    ],
+    "areaServed": {
       "@type": "Country",
       "name": "United States"
-    }
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Investment Strategies",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "name": "Growth Strategy",
-        "description": "High-conviction portfolios of 15-25 companies with comprehensive ethical screening implementation",
-        "price": "1% annual management fee",
-        "priceCurrency": "USD",
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "1",
-          "priceCurrency": "USD",
-          "unitText": "% per year"
-        },
-        "eligibleQuantity": {
-          "@type": "QuantitativeValue",
-          "minValue": 100000,
-          "unitCode": "USD",
-          "unitText": "USD minimum investment"
-        },
-        "businessFunction": "http://purl.org/goodrelations/v1#Sell",
-        "itemCondition": "http://schema.org/NewCondition"
-      },
-      {
-        "@type": "Offer",
-        "name": "Income Strategy",
-        "description": "Ethical screening applied to income-generating securities with focus on sustainable yield",
-        "price": "1% annual management fee",
-        "priceCurrency": "USD",
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "1",
-          "priceCurrency": "USD",
-          "unitText": "% per year"
-        },
-        "businessFunction": "http://purl.org/goodrelations/v1#Sell",
-        "itemCondition": "http://schema.org/NewCondition"
-      },
-      {
-        "@type": "Offer",
-        "name": "Diversification Strategy",
-        "description": "Ethically screened external funds for broader portfolio diversification",
-        "price": "1% annual management fee",
-        "priceCurrency": "USD",
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "1",
-          "priceCurrency": "USD",
-          "unitText": "% per year"
-        },
-        "businessFunction": "http://purl.org/goodrelations/v1#Sell",
-        "itemCondition": "http://schema.org/NewCondition"
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Individual and Institutional Investors",
+      "geographicArea": {
+        "@type": "Country",
+        "name": "United States"
       }
-    ]
-  },
-  "serviceOutput": [
-    {
-      "@type": "Thing",
-      "name": "Customized Ethical Investment Portfolio",
-      "description": "Personalized investment portfolio aligned with client values and financial objectives"
     },
-    {
-      "@type": "Thing",
-      "name": "Quarterly Performance Reports",
-      "description": "Detailed reporting on portfolio performance and ethical impact"
-    },
-    {
-      "@type": "Thing",
-      "name": "Ongoing Portfolio Management",
-      "description": "Active monitoring and rebalancing of investments"
-    }
-  ],
-  "potentialAction": {
-    "@type": "ConsumeAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "{{ request.scheme }}://{{ request.get_host }}/contact/",
-      "actionPlatform": [
-        "http://schema.org/DesktopWebPlatform",
-        "http://schema.org/MobileWebPlatform"
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Investment Strategies",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Growth Strategy",
+          "description": "High-conviction portfolios of 15-25 companies with comprehensive ethical screening implementation",
+          "price": "1% annual management fee",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "1",
+            "priceCurrency": "USD",
+            "unitText": "% per year"
+          },
+          "eligibleQuantity": {
+            "@type": "QuantitativeValue",
+            "minValue": 100000,
+            "unitCode": "USD",
+            "unitText": "USD minimum investment"
+          },
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "itemCondition": "http://schema.org/NewCondition"
+        },
+        {
+          "@type": "Offer",
+          "name": "Income Strategy",
+          "description": "Ethical screening applied to income-generating securities with focus on sustainable yield",
+          "price": "1% annual management fee",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "1",
+            "priceCurrency": "USD",
+            "unitText": "% per year"
+          },
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "itemCondition": "http://schema.org/NewCondition"
+        },
+        {
+          "@type": "Offer",
+          "name": "Diversification Strategy",
+          "description": "Ethically screened external funds for broader portfolio diversification",
+          "price": "1% annual management fee",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "1",
+            "priceCurrency": "USD",
+            "unitText": "% per year"
+          },
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "itemCondition": "http://schema.org/NewCondition"
+        }
       ]
     },
-    "expectsAcceptanceOf": {
-      "@type": "Offer",
-      "name": "Investment Advisory Agreement",
-      "description": "Legal agreement governing the investment advisory relationship"
-    }
-  },
-  "additionalProperty": [
-    {
-      "@type": "PropertyValue",
-      "name": "Fiduciary Standard",
-      "value": "SEC-registered investment adviser operating under fiduciary standard"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Investment Philosophy",
-      "value": "Ethical investing through comprehensive ESG screening and values alignment"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Minimum Investment",
-      "value": "$100,000 for Growth Strategy"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Management Fee",
-      "value": "1% annually with no hidden fees"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Service Area",
-      "value": "United States"
-    }
-  ],
-  "review": [
-    {
-      "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": "Verified Client"
+    "serviceOutput": [
+      {
+        "@type": "Thing",
+        "name": "Customized Ethical Investment Portfolio",
+        "description": "Personalized investment portfolio aligned with client values and financial objectives"
       },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5"
+      {
+        "@type": "Thing",
+        "name": "Quarterly Performance Reports",
+        "description": "Detailed reporting on portfolio performance and ethical impact"
       },
-      "reviewBody": "Excellent service with transparent ethical screening methodology and competitive performance."
-    }
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "8",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "termsOfService": "{{ request.scheme }}://{{ request.get_host }}/terms/",
-  "disclaimer": "All investments carry risk. Past performance does not guarantee future results. Investment advice is provided only to advisory clients."
-}
+      {
+        "@type": "Thing",
+        "name": "Ongoing Portfolio Management",
+        "description": "Active monitoring and rebalancing of investments"
+      }
+    ],
+    "potentialAction": {
+      "@type": "ConsumeAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{ request.scheme }}://{{ request.get_host }}/contact/",
+        "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+      },
+      "expectsAcceptanceOf": {
+        "@type": "Offer",
+        "name": "Investment Advisory Agreement",
+        "description": "Legal agreement governing the investment advisory relationship"
+      }
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Fiduciary Standard",
+        "value": "SEC-registered investment adviser operating under fiduciary standard"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Investment Philosophy",
+        "value": "Ethical investing through comprehensive ESG screening and values alignment"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Minimum Investment",
+        "value": "$100,000 for Growth Strategy"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Management Fee",
+        "value": "1% annually with no hidden fees"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Service Area",
+        "value": "United States"
+      }
+    ],
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Verified Client"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Excellent service with transparent ethical screening methodology and competitive performance."
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "8",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "termsOfService": "{{ request.scheme }}://{{ request.get_host }}/terms/",
+    "disclaimer": "All investments carry risk. Past performance does not guarantee future results. Investment advice is provided only to advisory clients."
+  }
 </script>

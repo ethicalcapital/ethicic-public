@@ -1,19 +1,19 @@
 [
-{
-  "model": "public_site.advisorpage",
-  "pk": 99,
-  "fields": {
-    "hero_title": "Your Partner in Ethical Investing",
-    "hero_subtitle": "Institutional-grade research expertise and proven strategies for sophisticated investment advisers serving clients with complex values",
-    "hero_description": "<p>As investment advisers ourselves, we understand the challenges of serving clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and institutional-grade expertise you need to deliver exceptional outcomes.</p>",
-    "services_title": "Advisory Services",
-    "services_content": "<p>We provide investment advisers with specialized expertise in niche and ethical investing, rigorous analytical processes, effective client communication support, operational assistance, and educational resources to help you serve clients with complex needs and values.</p>",
-    "benefits_title": "Why Partner With Us",
-    "benefits_content": "<h4>Expertise in Niche and Ethical Investing</h4><p>Deep knowledge and specialized focus on sustainable and ethical investing.</p><h4>Rigorous Analytical Process</h4><p>Systematic approach to investment analysis with proprietary screening.</p><h4>Effective Client Communication</h4><p>High closing rates with prospective clients through clear communication.</p>",
-    "technology_title": "Technology Platform",
-    "technology_content": "<p>Access our comprehensive platform for portfolio construction, compliance monitoring, and client reporting.</p>",
-    "cta_title": "Ready to Partner?",
-    "cta_description": "<p>Join leading investment advisers who trust our specialized approach to help them serve clients with complex values and sophisticated investment needs. Schedule a consultation to explore how we can support your practice.</p>"
+  {
+    "model": "public_site.advisorpage",
+    "pk": 99,
+    "fields": {
+      "hero_title": "Your Partner in Ethical Investing",
+      "hero_subtitle": "Institutional-grade research expertise and proven strategies for sophisticated investment advisers serving clients with complex values",
+      "hero_description": "<p>As investment advisers ourselves, we understand the challenges of serving clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and institutional-grade expertise you need to deliver exceptional outcomes.</p>",
+      "services_title": "Advisory Services",
+      "services_content": "<p>We provide investment advisers with specialized expertise in niche and ethical investing, rigorous analytical processes, effective client communication support, operational assistance, and educational resources to help you serve clients with complex needs and values.</p>",
+      "benefits_title": "Why Partner With Us",
+      "benefits_content": "<h4>Expertise in Niche and Ethical Investing</h4><p>Deep knowledge and specialized focus on sustainable and ethical investing.</p><h4>Rigorous Analytical Process</h4><p>Systematic approach to investment analysis with proprietary screening.</p><h4>Effective Client Communication</h4><p>High closing rates with prospective clients through clear communication.</p>",
+      "technology_title": "Technology Platform",
+      "technology_content": "<p>Access our comprehensive platform for portfolio construction, compliance monitoring, and client reporting.</p>",
+      "cta_title": "Ready to Partner?",
+      "cta_description": "<p>Join leading investment advisers who trust our specialized approach to help them serve clients with complex values and sophisticated investment needs. Schedule a consultation to explore how we can support your practice.</p>"
+    }
   }
-}
 ]

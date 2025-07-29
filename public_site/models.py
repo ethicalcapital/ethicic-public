@@ -1404,7 +1404,7 @@ class PricingPage(SafeUrlMixin, Page):
 class ContactPage(SafeUrlMixin, RoutablePageMixin, Page):
     """Contact/Get Started page with accessible form."""
 
-    template = "public_site/contact_form_tailwind.html"
+    template = "public_site/contact_page.html"
 
     @path("")
     def contact_page_view(self, request):
@@ -1655,7 +1655,7 @@ class BlogTag(TaggedItemBase):
 class BlogIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
     """Blog index page with pagination and filtering."""
 
-    template = "public_site/blog_index_tailwind.html"
+    template = "public_site/blog_index_page.html"
 
     intro_text = RichTextField(
         blank=True,
@@ -3887,7 +3887,7 @@ class FAQArticle(SafeUrlMixin, Page):
 class ContactFormPage(SafeUrlMixin, Page):
     """Contact form page for support inquiries."""
 
-    template = "public_site/contact_form_tailwind.html"
+    template = "public_site/contact_page.html"
 
     intro_text = RichTextField(
         blank=True,

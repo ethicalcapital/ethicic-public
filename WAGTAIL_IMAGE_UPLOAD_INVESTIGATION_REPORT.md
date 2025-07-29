@@ -24,12 +24,14 @@ A comprehensive test suite was developed to systematically diagnose the issue:
 ## Technical Investigation Results
 
 ### 1. Basic Setup Analysis ✅
+
 - Django application is running correctly
 - Wagtail is properly installed and configured
 - Database connectivity is working
 - User authentication is functional
 
 ### 2. Permission Analysis ❌
+
 ```
 Media root: /var/lib/data
 Directory exists: False
@@ -37,20 +39,24 @@ Permission to create: Denied (Permission denied: [Errno 13])
 ```
 
 ### 3. User Authentication ✅
+
 - Found 3 staff users: admin, ethicadmin, srvo
 - All users have proper superuser privileges
 - Authentication mechanism working correctly
 
 ### 4. Direct Model Testing ❌
+
 - Wagtail Image model creation fails due to file system permissions
 - Error occurs at the storage layer, not the application layer
 
 ### 5. Middleware Analysis ✅
+
 - CSRF middleware properly configured
 - Authentication middleware present
 - No conflicting middleware identified
 
 ### 6. Storage Backend Analysis ✅
+
 - Django FileSystemStorage configured correctly
 - Storage backend functional when directory exists
 
@@ -61,6 +67,7 @@ Permission to create: Denied (Permission denied: [Errno 13])
 Django/Wagtail converts file system permission errors into HTTP 403 Forbidden responses instead of 500 Internal Server Error. This design choice masks the underlying file system issue, making it appear as an authentication/authorization problem rather than a configuration issue.
 
 ### Error Flow:
+
 1. User submits image upload form
 2. Wagtail processes upload and attempts to save file
 3. Django FileSystemStorage tries to write to `/var/lib/data/images/`
@@ -104,6 +111,7 @@ python test_after_fix.py
 ```
 
 Expected output:
+
 - ✅ Media directory exists and is writable
 - ✅ Direct Wagtail Image creation works
 - ✅ File operations successful
@@ -111,12 +119,14 @@ Expected output:
 ## Alternative Solutions
 
 ### 1. Temporary Development Fix
+
 ```python
 # In settings.py
 MEDIA_ROOT = '/tmp/media'  # Use /tmp for development
 ```
 
 ### 2. Cloud Storage (Production)
+
 ```python
 # Configure cloud storage
 STORAGES = {
@@ -131,6 +141,7 @@ STORAGES = {
 ```
 
 ### 3. Docker Volume Mount
+
 ```yaml
 # docker-compose.yml
 volumes:
@@ -140,11 +151,13 @@ volumes:
 ## Security Considerations
 
 ### Permissions Analysis
+
 - **775**: Read/write/execute for owner and group, read/execute for others
 - **1000:1000**: Standard non-root user/group for web applications
 - **Directory Structure**: Follows Django/Wagtail conventions
 
 ### Security Best Practices
+
 ✅ Minimal required permissions
 ✅ Non-root ownership
 ✅ Separate directories for images and documents
@@ -153,16 +166,19 @@ volumes:
 ## Production Deployment Recommendations
 
 ### 1. Persistent Storage
+
 - Ensure media directory is persistent across deployments
 - Include media files in backup strategy
 - Consider using managed file storage services
 
 ### 2. Performance Optimization
+
 - Configure CDN for media files
 - Implement image optimization pipeline
 - Use appropriate cache headers
 
 ### 3. Monitoring
+
 - Monitor disk space usage
 - Log file upload errors
 - Track media file access patterns
@@ -170,12 +186,14 @@ volumes:
 ## Testing Results
 
 ### Pre-Fix Status
+
 - ❌ Media directory missing
 - ❌ Direct image model creation fails
 - ❌ CMS image upload returns 403
 - ❌ File system operations fail
 
 ### Post-Fix Expected Status
+
 - ✅ Media directory exists with proper permissions
 - ✅ Direct image model creation works
 - ✅ CMS image upload successful
@@ -185,21 +203,22 @@ volumes:
 
 ## Files Created During Investigation
 
-| File | Purpose |
-|------|---------|
-| `test_wagtail_image_upload.py` | Comprehensive diagnostic test suite |
-| `diagnose_image_upload.py` | Direct model and permission testing |
-| `test_image_upload_simple.py` | Simple CMS access verification |
-| `fix_media_permissions.py` | Permission analysis and automated fix |
-| `test_after_fix.py` | Post-fix verification testing |
-| `wagtail_403_solution.py` | Complete solution explanation |
-| `fix_media_directory.sh` | Automated fix script |
+| File                           | Purpose                               |
+| ------------------------------ | ------------------------------------- |
+| `test_wagtail_image_upload.py` | Comprehensive diagnostic test suite   |
+| `diagnose_image_upload.py`     | Direct model and permission testing   |
+| `test_image_upload_simple.py`  | Simple CMS access verification        |
+| `fix_media_permissions.py`     | Permission analysis and automated fix |
+| `test_after_fix.py`            | Post-fix verification testing         |
+| `wagtail_403_solution.py`      | Complete solution explanation         |
+| `fix_media_directory.sh`       | Automated fix script                  |
 
 ## Conclusion
 
 The Wagtail CMS image upload 403 error was caused by a missing media directory, not authentication or permission issues within the application. The fix is straightforward: create the required directory structure with appropriate permissions.
 
 This investigation demonstrates the importance of:
+
 1. Systematic debugging approach
 2. Testing at multiple application layers
 3. Understanding how framework error handling can mask root causes

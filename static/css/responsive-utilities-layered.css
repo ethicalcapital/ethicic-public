@@ -4,49 +4,91 @@
 @layer utilities.display {
   /* Extra Small Screens */
   @media (width <= 479px) {
-    .hidden-xs { display: none; }
-    .block-xs { display: block; }
-    .flex-xs { display: flex; }
-    .grid-xs { display: grid; }
+    .hidden-xs {
+      display: none;
+    }
+    .block-xs {
+      display: block;
+    }
+    .flex-xs {
+      display: flex;
+    }
+    .grid-xs {
+      display: grid;
+    }
   }
 
   /* Small Screens */
   @media (width >= 480px) and (width <= 639px) {
-    .hidden-sm { display: none; }
-    .block-sm { display: block; }
-    .flex-sm { display: flex; }
-    .grid-sm { display: grid; }
+    .hidden-sm {
+      display: none;
+    }
+    .block-sm {
+      display: block;
+    }
+    .flex-sm {
+      display: flex;
+    }
+    .grid-sm {
+      display: grid;
+    }
   }
 
   /* Medium Screens */
   @media (width >= 640px) and (width <= 767px) {
-    .hidden-md { display: none; }
-    .block-md { display: block; }
-    .flex-md { display: flex; }
-    .grid-md { display: grid; }
+    .hidden-md {
+      display: none;
+    }
+    .block-md {
+      display: block;
+    }
+    .flex-md {
+      display: flex;
+    }
+    .grid-md {
+      display: grid;
+    }
   }
 
   /* Large Screens */
   @media (width >= 768px) and (width <= 1023px) {
-    .hidden-lg { display: none; }
-    .block-lg { display: block; }
-    .flex-lg { display: flex; }
-    .grid-lg { display: grid; }
+    .hidden-lg {
+      display: none;
+    }
+    .block-lg {
+      display: block;
+    }
+    .flex-lg {
+      display: flex;
+    }
+    .grid-lg {
+      display: grid;
+    }
   }
 
   /* Extra Large Screens */
   @media (width >= 1024px) {
-    .hidden-xl { display: none; }
-    .block-xl { display: block; }
-    .flex-xl { display: flex; }
-    .grid-xl { display: grid; }
+    .hidden-xl {
+      display: none;
+    }
+    .block-xl {
+      display: block;
+    }
+    .flex-xl {
+      display: flex;
+    }
+    .grid-xl {
+      display: grid;
+    }
   }
 }
 
 /* Responsive Spacing Utilities */
 @layer utilities.spacing {
   @media (width <= 768px) {
-    .p-mobile { padding: var(--space-3); }
+    .p-mobile {
+      padding: var(--space-3);
+    }
 
     .px-mobile {
       padding-left: var(--space-3);
@@ -57,7 +99,9 @@
       padding-top: var(--space-3);
       padding-bottom: var(--space-3);
     }
-    .m-mobile { margin: var(--space-3); }
+    .m-mobile {
+      margin: var(--space-3);
+    }
 
     .mx-mobile {
       margin-left: var(--space-3);
@@ -74,9 +118,15 @@
 /* Responsive Typography Utilities */
 @layer utilities.typography {
   @media (width <= 768px) {
-    .text-mobile-sm { font-size: var(--font-sm); }
-    .text-mobile-base { font-size: var(--font-base); }
-    .text-mobile-lg { font-size: var(--font-lg); }
+    .text-mobile-sm {
+      font-size: var(--font-sm);
+    }
+    .text-mobile-base {
+      font-size: var(--font-base);
+    }
+    .text-mobile-lg {
+      font-size: var(--font-lg);
+    }
   }
 }
 

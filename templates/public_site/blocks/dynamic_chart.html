@@ -1,164 +1,166 @@
 {% load wagtailcore_tags %}
 
 <div class="dynamic-chart-block chart-type-{{ value.chart_type }}" data-chart-id="{{ chart_id }}">
-    <div class="chart-container">
-        {% if value.title %}
-            <h3 class="chart-title">{{ value.title }}</h3>
-        {% endif %}
+  <div class="chart-container">
+    {% if value.title %}
+    <h3 class="chart-title">{{ value.title }}</h3>
+    {% endif %}
 
-        <div class="chart-wrapper" data-responsive="{{ value.responsive|yesno:'true,false' }}">
-            <canvas id="{{ chart_id }}"
-                    aria-label="{% if value.title %}{{ value.title }}{% else %}Data visualization chart{% endif %}"
-                    role="img">
-                <!-- Fallback content for accessibility -->
-                <p>This chart displays data visualization. Please enable JavaScript to view the interactive chart.</p>
-            </canvas>
-        </div>
-
-        {% if value.data_source == "ai_extracted" %}
-            <div class="chart-ai-indicator">
-                <span class="ai-badge" aria-label="AI-generated chart">
-                    <span aria-hidden="true">🤖</span>
-                    AI-Generated
-                </span>
-                {% if value.auto_generate %}
-                    <span class="auto-generated-badge" aria-label="Automatically configured">Auto-Configured</span>
-                {% endif %}
-            </div>
-        {% endif %}
-
-        {% if value.chart_type == "performance_comparison" %}
-            <div class="chart-description" aria-label="Chart description">
-                <p>Performance comparison showing relative returns or metrics across different investments or time periods.</p>
-            </div>
-        {% elif value.chart_type == "allocation_breakdown" %}
-            <div class="chart-description" aria-label="Chart description">
-                <p>Portfolio allocation breakdown showing the distribution of investments across different categories.</p>
-            </div>
-        {% elif value.chart_type == "trend_analysis" %}
-            <div class="chart-description" aria-label="Chart description">
-                <p>Trend analysis showing performance or metrics over time.</p>
-            </div>
-        {% elif value.chart_type == "risk_metrics" %}
-            <div class="chart-description" aria-label="Chart description">
-                <p>Risk metrics dashboard displaying various risk measurements and indicators.</p>
-            </div>
-        {% endif %}
+    <div class="chart-wrapper" data-responsive="{{ value.responsive|yesno:'true,false' }}">
+      <canvas
+        id="{{ chart_id }}"
+        aria-label="{% if value.title %}{{ value.title }}{% else %}Data visualization chart{% endif %}"
+        role="img"
+      >
+        <!-- Fallback content for accessibility -->
+        <p>This chart displays data visualization. Please enable JavaScript to view the interactive chart.</p>
+      </canvas>
     </div>
 
-    {% if value.show_legend and chart_config.data.datasets %}
-        <div class="chart-legend" aria-label="Chart legend">
-            <ul class="legend-list">
-                {% for dataset in chart_config.data.datasets %}
-                    <li class="legend-item">
-                        <span class="legend-color"
-                              data-color="{{ dataset.backgroundColor.0|default:'var(--color-primary)' }}"
-                              aria-hidden="true"></span>
-                        <span class="legend-label">{{ dataset.label|default:'Data Series' }}</span>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+    {% if value.data_source == "ai_extracted" %}
+    <div class="chart-ai-indicator">
+      <span class="ai-badge" aria-label="AI-generated chart">
+        <span aria-hidden="true">🤖</span>
+        AI-Generated
+      </span>
+      {% if value.auto_generate %}
+      <span class="auto-generated-badge" aria-label="Automatically configured">Auto-Configured</span>
+      {% endif %}
+    </div>
+    {% endif %} {% if value.chart_type == "performance_comparison" %}
+    <div class="chart-description" aria-label="Chart description">
+      <p>Performance comparison showing relative returns or metrics across different investments or time periods.</p>
+    </div>
+    {% elif value.chart_type == "allocation_breakdown" %}
+    <div class="chart-description" aria-label="Chart description">
+      <p>Portfolio allocation breakdown showing the distribution of investments across different categories.</p>
+    </div>
+    {% elif value.chart_type == "trend_analysis" %}
+    <div class="chart-description" aria-label="Chart description">
+      <p>Trend analysis showing performance or metrics over time.</p>
+    </div>
+    {% elif value.chart_type == "risk_metrics" %}
+    <div class="chart-description" aria-label="Chart description">
+      <p>Risk metrics dashboard displaying various risk measurements and indicators.</p>
+    </div>
     {% endif %}
+  </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('{{ chart_id }}');
-            if (!ctx) return;
+  {% if value.show_legend and chart_config.data.datasets %}
+  <div class="chart-legend" aria-label="Chart legend">
+    <ul class="legend-list">
+      {% for dataset in chart_config.data.datasets %}
+      <li class="legend-item">
+        <span
+          class="legend-color"
+          data-color="{{ dataset.backgroundColor.0|default:'var(--color-primary)' }}"
+          aria-hidden="true"
+        ></span>
+        <span class="legend-label">{{ dataset.label|default:'Data Series' }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
 
-            const chartConfig = {{ chart_config|safe }};
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('{{ chart_id }}');
+        if (!ctx) return;
 
-            // Enhanced configuration with accessibility
-            const config = {
-                ...chartConfig,
-                options: {
-                    ...chartConfig.options,
-                    responsive: {{ value.responsive|yesno:'true,false' }},
-                    maintainAspectRatio: true,
-                    plugins: {
-                        ...chartConfig.options.plugins,
-                        legend: {
-                            display: {{ value.show_legend|yesno:'true,false' }}
-                        },
-                        tooltip: {
-                            enabled: true,
-                            mode: 'index',
-                            intersect: false,
-                        }
+        const chartConfig = {{ chart_config|safe }};
+
+        // Enhanced configuration with accessibility
+        const config = {
+            ...chartConfig,
+            options: {
+                ...chartConfig.options,
+                responsive: {{ value.responsive|yesno:'true,false' }},
+                maintainAspectRatio: true,
+                plugins: {
+                    ...chartConfig.options.plugins,
+                    legend: {
+                        display: {{ value.show_legend|yesno:'true,false' }}
                     },
-                    interaction: {
-                        mode: 'nearest',
-                        axis: 'x',
-                        intersect: false
-                    },
-                    scales: {
-                        ...chartConfig.options.scales,
-                        {% if value.chart_type == "performance_comparison" %}
-                        y: {
-                            ...chartConfig.options.scales.y,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%';
-                                }
+                    tooltip: {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: false,
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'x',
+                    intersect: false
+                },
+                scales: {
+                    ...chartConfig.options.scales,
+                    {% if value.chart_type == "performance_comparison" %}
+                    y: {
+                        ...chartConfig.options.scales.y,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
                             }
                         }
-                        {% endif %}
                     }
+                    {% endif %}
                 }
-            };
+            }
+        };
 
-            {% if value.color_scheme == "performance" %}
-                // Apply performance color scheme (green/red)
-                if (config.data && config.data.datasets) {
-                    config.data.datasets.forEach((dataset, index) => {
-                        if (!dataset.backgroundColor) {
-                            dataset.backgroundColor = dataset.data.map(value =>
-                                value >= 0 ? 'var(--color-success)' : 'var(--color-error)'
-                            );
-                        }
-                    });
-                }
-            {% elif value.color_scheme == "monochrome" %}
-                // Apply monochrome color scheme
-                if (config.data && config.data.datasets) {
-                    const monoColors = ['var(--color-text-primary)', 'var(--color-text-secondary)', 'var(--color-text-tertiary)', 'var(--color-border)'];
-                    config.data.datasets.forEach((dataset, index) => {
-                        dataset.backgroundColor = monoColors[index % monoColors.length];
-                    });
-                }
-            {% elif value.color_scheme == "categorical" %}
-                // Apply categorical color scheme
-                if (config.data && config.data.datasets) {
-                    const catColors = ['var(--color-info)', 'var(--color-error)', 'var(--color-success)', 'var(--color-warning)', 'var(--color-primary)', 'var(--color-primary-hover)'];
-                    config.data.datasets.forEach((dataset, index) => {
-                        dataset.backgroundColor = catColors[index % catColors.length];
-                    });
-                }
-            {% endif %}
-
-            try {
-                new Chart(ctx, config);
-
-                // Set legend colors from data attributes
-                const legendColors = document.querySelectorAll('#{{ chart_id }}').closest('.dynamic-chart-block').querySelectorAll('.legend-color[data-color]');
-                legendColors.forEach(colorSpan => {
-                    const color = colorSpan.getAttribute('data-color');
-                    if (color) {
-                        colorSpan.style.backgroundColor = color;
+        {% if value.color_scheme == "performance" %}
+            // Apply performance color scheme (green/red)
+            if (config.data && config.data.datasets) {
+                config.data.datasets.forEach((dataset, index) => {
+                    if (!dataset.backgroundColor) {
+                        dataset.backgroundColor = dataset.data.map(value =>
+                            value >= 0 ? 'var(--color-success)' : 'var(--color-error)'
+                        );
                     }
                 });
-            } catch (error) {
-                console.error('Error creating chart:', error);
-                ctx.closest('.chart-wrapper').innerHTML =
-                    '<div class="chart-error">Unable to display chart. Please check the configuration.</div>';
             }
-        });
-    </script>
+        {% elif value.color_scheme == "monochrome" %}
+            // Apply monochrome color scheme
+            if (config.data && config.data.datasets) {
+                const monoColors = ['var(--color-text-primary)', 'var(--color-text-secondary)', 'var(--color-text-tertiary)', 'var(--color-border)'];
+                config.data.datasets.forEach((dataset, index) => {
+                    dataset.backgroundColor = monoColors[index % monoColors.length];
+                });
+            }
+        {% elif value.color_scheme == "categorical" %}
+            // Apply categorical color scheme
+            if (config.data && config.data.datasets) {
+                const catColors = ['var(--color-info)', 'var(--color-error)', 'var(--color-success)', 'var(--color-warning)', 'var(--color-primary)', 'var(--color-primary-hover)'];
+                config.data.datasets.forEach((dataset, index) => {
+                    dataset.backgroundColor = catColors[index % catColors.length];
+                });
+            }
+        {% endif %}
 
-    {% if value.data_source == "manual_entry" and value.manual_data %}
-        <details class="chart-data-source">
-            <summary>Chart Data Source</summary>
-            <pre class="chart-raw-data"><code>{{ value.manual_data }}</code></pre>
-        </details>
-    {% endif %}
+        try {
+            new Chart(ctx, config);
+
+            // Set legend colors from data attributes
+            const legendColors = document.querySelectorAll('#{{ chart_id }}').closest('.dynamic-chart-block').querySelectorAll('.legend-color[data-color]');
+            legendColors.forEach(colorSpan => {
+                const color = colorSpan.getAttribute('data-color');
+                if (color) {
+                    colorSpan.style.backgroundColor = color;
+                }
+            });
+        } catch (error) {
+            console.error('Error creating chart:', error);
+            ctx.closest('.chart-wrapper').innerHTML =
+                '<div class="chart-error">Unable to display chart. Please check the configuration.</div>';
+        }
+    });
+  </script>
+
+  {% if value.data_source == "manual_entry" and value.manual_data %}
+  <details class="chart-data-source">
+    <summary>Chart Data Source</summary>
+    <pre class="chart-raw-data"><code>{{ value.manual_data }}</code></pre>
+  </details>
+  {% endif %}
 </div>

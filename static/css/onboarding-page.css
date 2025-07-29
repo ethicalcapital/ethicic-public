@@ -156,26 +156,26 @@
 
   /* Garden Input Styling - Enhanced visibility with borders in all states */
   .onboarding-page .garden-input,
-@layer components {
-  .onboarding-page input[type="text"],
-  .onboarding-page input[type="email"],
-  .onboarding-page input[type="tel"],
-  .onboarding-page input[type="number"],
-  .onboarding-page input[type="date"],
-  .onboarding-page textarea,
-  .onboarding-page select {
-    width: 100%;
-    padding: var(--space-4);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    color: var(--color-text-primary);
-    font-family: var(--font-sans);
-    font-size: var(--text-base);
-    transition: all var(--duration-fast);
-    box-sizing: border-box;
+  @layer components {
+    .onboarding-page input[type="text"],
+    .onboarding-page input[type="email"],
+    .onboarding-page input[type="tel"],
+    .onboarding-page input[type="number"],
+    .onboarding-page input[type="date"],
+    .onboarding-page textarea,
+    .onboarding-page select {
+      width: 100%;
+      padding: var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      transition: all var(--duration-fast);
+      box-sizing: border-box;
+    }
   }
-}
 
   .onboarding-page textarea.garden-input,
   .onboarding-page textarea {
@@ -183,27 +183,27 @@
     min-height: 100px;
   }
 
-@layer components {
-  /* Hover state - intermediate feedback */
-  .onboarding-page .garden-input:hover,
-  .onboarding-page input:hover,
-  .onboarding-page textarea:hover,
-  .onboarding-page select:hover {
-    border-color: var(--color-primary-light);
+  @layer components {
+    /* Hover state - intermediate feedback */
+    .onboarding-page .garden-input:hover,
+    .onboarding-page input:hover,
+    .onboarding-page textarea:hover,
+    .onboarding-page select:hover {
+      border-color: var(--color-primary-light);
+    }
   }
-}
 
-@layer components {
-  /* Focus state - clear, accessible focus indicator */
-  .onboarding-page .garden-input:focus,
-  .onboarding-page input:focus,
-  .onboarding-page textarea:focus,
-  .onboarding-page select:focus {
-    outline: none; /* Remove default outline since we provide better custom indicator */
-    border: 2px solid var(--color-primary);
-    box-shadow: 0 0 0 3px var(--color-primary-alpha);
+  @layer components {
+    /* Focus state - clear, accessible focus indicator */
+    .onboarding-page .garden-input:focus,
+    .onboarding-page input:focus,
+    .onboarding-page textarea:focus,
+    .onboarding-page select:focus {
+      outline: none; /* Remove default outline since we provide better custom indicator */
+      border: 2px solid var(--color-primary);
+      box-shadow: 0 0 0 3px var(--color-primary-alpha);
+    }
   }
-}
 
   .onboarding-page .garden-input.error {
     border-color: var(--color-error);
@@ -369,22 +369,22 @@
     font-weight: 500;
   }
 
-@layer utilities {
-  /* Error State Styling */
-  .onboarding-page .garden-input.error,
-  .onboarding-page .radio-option:has(input.error),
-  .onboarding-page .checkbox-option:has(input.error) {
-    border-color: var(--color-error);
-    background: var(--color-error-10);
+  @layer utilities {
+    /* Error State Styling */
+    .onboarding-page .garden-input.error,
+    .onboarding-page .radio-option:has(input.error),
+    .onboarding-page .checkbox-option:has(input.error) {
+      border-color: var(--color-error);
+      background: var(--color-error-10);
+    }
   }
-}
 
-@layer utilities {
-  .onboarding-page .garden-input.error:focus {
-    border-color: var(--color-error);
-    box-shadow: 0 0 0 2px var(--color-error-10);
+  @layer utilities {
+    .onboarding-page .garden-input.error:focus {
+      border-color: var(--color-error);
+      box-shadow: 0 0 0 2px var(--color-error-10);
+    }
   }
-}
 
   /* Garden Actions */
   .onboarding-page .garden-action {
@@ -490,12 +490,12 @@
     color: var(--color-primary);
   }
 
-@layer utilities {
-  /* Hide inactive sections */
-  .onboarding-page .form-section[x-show]:not(.active) {
-    display: none;
+  @layer utilities {
+    /* Hide inactive sections */
+    .onboarding-page .form-section[x-show]:not(.active) {
+      display: none;
+    }
   }
-}
 }
 
 @layer utilities {
@@ -514,8 +514,12 @@
 
   /* Loading animation */
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
 

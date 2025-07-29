@@ -1,9 +1,6 @@
-{% extends "public_site/base_tailwind.html" %}
-{% load static %}
-
-{% block extra_css %}
-    <!-- Blog-specific CSS - consolidated for better performance -->
-    <link rel="stylesheet" href="{% static 'css/blog-core-consolidated.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/blog-components-consolidated.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/garden-data-table.css' %}">
+{% extends "public_site/base_tailwind.html" %} {% load static %} {% block extra_css %}
+<!-- Blog-specific CSS - consolidated for better performance -->
+<link rel="stylesheet" href="{% static 'css/blog-core-consolidated.css' %}?v=1" />
+<link rel="stylesheet" href="{% static 'css/blog-components-consolidated.css' %}?v=1" />
+<link rel="stylesheet" href="{% static 'css/garden-data-table.css' %}" />
 {% endblock %}

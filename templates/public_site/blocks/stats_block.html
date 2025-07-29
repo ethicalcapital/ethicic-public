@@ -1,17 +1,17 @@
 <div class="stats-block stats-{{ value.layout }}">
-    {% if value.title %}
-        <h3 class="stats-title">{{ value.title }}</h3>
-    {% endif %}
+  {% if value.title %}
+  <h3 class="stats-title">{{ value.title }}</h3>
+  {% endif %}
 
-    <div class="stats-container">
-        {% for stat in value.stats %}
-            <div class="stat-item">
-                <div class="stat-value">{{ stat.value }}</div>
-                <div class="stat-label">{{ stat.label }}</div>
-                {% if stat.description %}
-                    <div class="stat-description">{{ stat.description }}</div>
-                {% endif %}
-            </div>
-        {% endfor %}
+  <div class="stats-container">
+    {% for stat in value.stats %}
+    <div class="stat-item">
+      <div class="stat-value">{{ stat.value }}</div>
+      <div class="stat-label">{{ stat.label }}</div>
+      {% if stat.description %}
+      <div class="stat-description">{{ stat.description }}</div>
+      {% endif %}
     </div>
+    {% endfor %}
+  </div>
 </div>

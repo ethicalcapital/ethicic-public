@@ -1,0 +1,100 @@
+{% extends "public_site/base_tailwind.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{{ page.title }} - Ethical Capital{% endblock %}
+
+{% block content %}
+<div class="garden-container contact-page-container">
+    <div class="contact-page-layout">
+        <!-- Main Content -->
+        <div class="contact-main-content">
+            <!-- Hero Section -->
+            <section class="garden-panel" role="banner" aria-labelledby="contact-heading">
+                <div class="panel-header">CONTACT US</div>
+                <div class="panel-content">
+                    <h1 id="contact-heading" class="hero-title">{{ page.title }}</h1>
+                    {% if page.intro_text %}
+                        <div class="hero-description">
+                            {{ page.intro_text|richtext }}
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+
+            <!-- Contact Form Section -->
+            <section class="garden-panel">
+                <div class="panel-header">SEND MESSAGE</div>
+                <div class="panel-content">
+                    {% if page.form_description %}
+                        <div class="form-description">
+                            {{ page.form_description|richtext }}
+                        </div>
+                    {% endif %}
+
+                    <!-- Include the HTMX contact form -->
+                    {% include 'public_site/forms/contact_form_htmx.html' %}
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Contact Information Sidebar -->
+        <aside class="contact-sidebar">
+            <!-- Contact Information Panel -->
+            <div class="garden-panel">
+                <div class="panel-header">CONTACT INFORMATION</div>
+                <div class="panel-content">
+                    <div class="contact-info-sidebar">
+                        <div class="contact-item">
+                            <div class="contact-label">EMAIL:</div>
+                            <a href="mailto:hello@ethicic.com" class="contact-link">
+                                hello@ethicic.com
+                            </a>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-label">PHONE:</div>
+                            <a href="tel:+13476259000" class="contact-link">
+                                +1 347 625 9000
+                            </a>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-label">ADDRESS:</div>
+                            <div class="contact-value">90 N 400 E, Provo, UT 84606</div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-label">SCHEDULING:</div>
+                            <div class="sidebar-action">
+                                <a href="https://tidycal.com/ecic" class="garden-action secondary" target="_blank" rel="noopener noreferrer">
+                                    SCHEDULE CONSULTATION
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Get Started Panel -->
+            <div class="garden-panel">
+                <div class="panel-header">GET STARTED</div>
+                <div class="panel-content">
+                    <p class="panel-description">Ready to align your investments with your values? Start your journey with ethical investing today.</p>
+
+                    <div class="sidebar-action">
+                        <a href="/onboarding/" class="garden-action primary">
+                            START ONBOARDING
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/contact-page-fixes.css' %}?v=2025071101">
+{% endblock %}

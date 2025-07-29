@@ -10,8 +10,8 @@
 /* ===== LAYER: COMPONENTS ===== */
 /* Low specificity (0,0,1,0) - base component styles */
 @layer components {
-/* Category filter buttons - base styles */
-.faq-categories .category-btn {
+  /* Category filter buttons - base styles */
+  .faq-categories .category-btn {
     display: inline-block;
     padding: 0.5rem 1.25rem;
     background: var(--color-surface);
@@ -25,20 +25,20 @@
     letter-spacing: 0.05em;
     transition: all 0.2s ease;
     margin: 0.25rem;
-}
+  }
 
-/* Accordion toggle buttons - base styles */
-.accordion-toggle {
+  /* Accordion toggle buttons - base styles */
+  .accordion-toggle {
     background: transparent;
     border: none;
     color: var(--color-primary);
     cursor: pointer;
     padding: 0.5rem;
     transition: transform 0.2s ease;
-}
+  }
 
-/* Garden action base styles */
-.garden-action {
+  /* Garden action base styles */
+  .garden-action {
     /* Ensure buttons are always visible */
     opacity: 1;
     visibility: visible;
@@ -49,140 +49,137 @@
     padding: 0.75rem 1.5rem;
     height: 100%;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-}
-
+  }
 }
 
 /* ===== LAYER: PAGES ===== */
 /* Medium specificity (0,0,2,0) - page-specific styles */
 @layer pages {
-/* SPECIFICITY 0,0,2,0 - Two class selectors */
-.faq-categories .category-btn:hover,
-.faq-categories .category-btn.active {
+  /* SPECIFICITY 0,0,2,0 - Two class selectors */
+  .faq-categories .category-btn:hover,
+  .faq-categories .category-btn.active {
     background: var(--color-primary);
     color: var(--color-on-primary);
     border-color: var(--color-primary);
-}
+  }
 
-.faq-categories .category-btn:focus-visible {
+  .faq-categories .category-btn:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
-}
+  }
 
-.garden-action.primary {
+  .garden-action.primary {
     background: var(--color-primary);
     color: var(--color-on-primary);
     border: 2px solid var(--color-primary);
-}
+  }
 
-.garden-action.current {
+  .garden-action.current {
     background: var(--color-primary);
     color: var(--color-on-primary);
     cursor: default;
-}
+  }
 
-.garden-action.secondary {
+  .garden-action.secondary {
     background: transparent;
     color: var(--color-primary);
     border: 2px solid var(--color-border);
-}
+  }
 
-/* SPECIFICITY 0,0,2,1 - Two classes + pseudo-class */
-.garden-action:disabled {
+  /* SPECIFICITY 0,0,2,1 - Two classes + pseudo-class */
+  .garden-action:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-}
+  }
 
-.garden-action:focus-visible {
+  .garden-action:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
-}
+  }
 
-.garden-action.primary:hover {
+  .garden-action.primary:hover {
     background: var(--color-primary-dark);
     border-color: var(--color-primary-dark);
     transform: translateY(-1px);
-}
+  }
 
-.garden-action.secondary:hover {
+  .garden-action.secondary:hover {
     background: var(--color-surface-secondary);
     color: var(--color-primary);
     border-color: var(--color-primary);
-}
+  }
 
-.accordion-toggle:hover {
+  .accordion-toggle:hover {
     transform: scale(1.1);
-}
+  }
 
-.accordion-toggle[aria-expanded="true"] {
+  .accordion-toggle[aria-expanded="true"] {
     transform: rotate(180deg);
-}
+  }
 
-/* SPECIFICITY 0,0,3,0 - Three class selectors */
-.faq-index-page .garden-action.primary,
-.faq-article .garden-action.primary,
-.faq-page .garden-action.primary {
+  /* SPECIFICITY 0,0,3,0 - Three class selectors */
+  .faq-index-page .garden-action.primary,
+  .faq-article .garden-action.primary,
+  .faq-page .garden-action.primary {
     background: var(--color-primary);
     color: var(--color-on-primary);
-}
+  }
 
-.faq-index-page .garden-action.secondary,
-.faq-page .garden-action.secondary,
-.faq-article .garden-action.secondary {
+  .faq-index-page .garden-action.secondary,
+  .faq-page .garden-action.secondary,
+  .faq-article .garden-action.secondary {
     background: transparent;
     color: var(--color-primary);
     border: 2px solid var(--color-border);
-}
+  }
 
-.contact-method .garden-action.primary {
+  .contact-method .garden-action.primary {
     background: var(--color-primary);
     color: var(--color-on-primary);
     font-weight: 600;
-}
+  }
 
-/* SPECIFICITY 0,0,3,1 - Three classes + pseudo-class */
-.faq-index-page .garden-action:focus-visible,
-.faq-article .garden-action:focus-visible {
+  /* SPECIFICITY 0,0,3,1 - Three classes + pseudo-class */
+  .faq-index-page .garden-action:focus-visible,
+  .faq-article .garden-action:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
-}
+  }
 
-.faq-index-page .garden-action.primary:hover,
-.faq-page .garden-action.primary:hover {
+  .faq-index-page .garden-action.primary:hover,
+  .faq-page .garden-action.primary:hover {
     background: var(--color-primary-dark);
     border-color: var(--color-primary-dark);
     transform: translateY(-1px);
-}
+  }
 
-.faq-index-page .garden-action.secondary:hover,
-.faq-page .garden-action.secondary:hover {
+  .faq-index-page .garden-action.secondary:hover,
+  .faq-page .garden-action.secondary:hover {
     background: var(--color-surface-secondary);
     color: var(--color-primary);
     border-color: var(--color-primary);
-}
-
+  }
 }
 
 /* ===== LAYER: OVERRIDES ===== */
 /* Dark mode overrides - highest specificity */
 @layer overrides {
-/* SPECIFICITY 0,0,1,1 - Attribute selector + class */
-[data-theme="dark"] .contact-method .full-width {
+  /* SPECIFICITY 0,0,1,1 - Attribute selector + class */
+  [data-theme="dark"] .contact-method .full-width {
     width: 100%;
-}
+  }
 
-/* SPECIFICITY 0,0,2,1 - Attribute selector + two classes */
-[data-theme="dark"] .faq-categories .category-btn {
+  /* SPECIFICITY 0,0,2,1 - Attribute selector + two classes */
+  [data-theme="dark"] .faq-categories .category-btn {
     background: var(--color-surface);
     border-color: var(--color-border);
     color: var(--color-text-primary);
-}
+  }
 
-/* SPECIFICITY 0,0,2,2 - Attribute selector + two classes + pseudo-class */
-[data-theme="dark"] .accordion-toggle:hover {
+  /* SPECIFICITY 0,0,2,2 - Attribute selector + two classes + pseudo-class */
+  [data-theme="dark"] .accordion-toggle:hover {
     transform: scale(1.1);
-}
-
+  }
 }
 
 /* ===== UTILITY MIGRATION NOTES ===== */

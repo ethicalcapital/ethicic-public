@@ -7,11 +7,11 @@
 /* Standardized Mobile-First Breakpoints */
 /* Using Garden UI variables for consistency */
 :root {
-  --bp-xs: 480px;   /* Mobile phones (portrait) */
-  --bp-sm: 640px;   /* Large mobile (landscape) / Small tablet */
-  --bp-md: 768px;   /* Tablets (portrait) / Mobile-desktop boundary */
-  --bp-lg: 1024px;  /* Tablets (landscape) / Small desktop */
-  --bp-xl: 1200px;  /* Desktop / Large screens */
+  --bp-xs: 480px; /* Mobile phones (portrait) */
+  --bp-sm: 640px; /* Large mobile (landscape) / Small tablet */
+  --bp-md: 768px; /* Tablets (portrait) / Mobile-desktop boundary */
+  --bp-lg: 1024px; /* Tablets (landscape) / Small desktop */
+  --bp-xl: 1200px; /* Desktop / Large screens */
   --bp-2xl: 1400px; /* Large desktop / Extra wide screens */
 }
 

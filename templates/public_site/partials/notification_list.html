@@ -1,45 +1,39 @@
-{% load humanize %}
-
-{% if message %}
+{% load humanize %} {% if message %}
 <div class="notification-message">
-    <p>{{ message }}</p>
+  <p>{{ message }}</p>
 </div>
-{% elif notifications %}
-    {% for notification in notifications %}
-    <a href="{{ notification.url|default:'#' }}"
-       class="notification-item {% if notification.unread %}unread{% endif %}"
-       hx-post="/api/notifications/{{ notification.id }}/read/"
-       hx-trigger="click"
-       hx-swap="none">
-        <div class="notification-content">
-            {{ notification.content }}
-        </div>
-        <div class="notification-time">
-            {{ notification.time|naturaltime }}
-        </div>
-    </a>
-    {% endfor %}
-{% else %}
-    <div class="notification-empty">
-        <p>No new notifications</p>
-    </div>
+{% elif notifications %} {% for notification in notifications %}
+<a
+  href="{{ notification.url|default:'#' }}"
+  class="notification-item {% if notification.unread %}unread{% endif %}"
+  hx-post="/api/notifications/{{ notification.id }}/read/"
+  hx-trigger="click"
+  hx-swap="none"
+>
+  <div class="notification-content">{{ notification.content }}</div>
+  <div class="notification-time">{{ notification.time|naturaltime }}</div>
+</a>
+{% endfor %} {% else %}
+<div class="notification-empty">
+  <p>No new notifications</p>
+</div>
 {% endif %}
 
 <style>
-    .notification-message {
-        padding: 2rem;
-        text-align: center;
-        color: var(--color-text-secondary);
-        font-style: italic;
-    }
+  .notification-message {
+    padding: 2rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
 
-    .notification-empty {
-        padding: 3rem 2rem;
-        text-align: center;
-        color: var(--color-text-tertiary);
-    }
+  .notification-empty {
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--color-text-tertiary);
+  }
 
-    .notification-empty p {
-        margin: 0;
-    }
+  .notification-empty p {
+    margin: 0;
+  }
 </style>

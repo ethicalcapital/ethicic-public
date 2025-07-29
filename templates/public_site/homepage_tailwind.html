@@ -1,423 +1,442 @@
-{% extends "public_site/base_tailwind.html" %}
-{% load wagtailcore_tags %}
-
-{% block title %}Ethical Capital - Where Ethics Drive Investment Excellence{% endblock %}
-
-{% block meta_description %}SEC-registered investment adviser specializing in ethical ESG investing. Three core strategies, 57% S&P 500 exclusions, fiduciary counsel since 2021.{% endblock %}
-
-{% block content %}
-<!-- Hero Section -->
-<div class="container-ec py-8">
-    <section class="card-ec mb-8" role="banner" aria-labelledby="hero-heading">
-        <div class="text-center space-y-6">
-            <div class="hero-tagline text-sm text-purple-400 font-mono uppercase tracking-wider">{{ page.hero_tagline }}</div>
-            <h1 id="hero-heading" class="font-mono text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
-                {{ page.hero_title }}
-            </h1>
-            <div class="text-xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto">
-                {{ page.hero_subtitle|richtext }}
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ page.hero_cta_1_link }}" class="btn-ec-primary">{{ page.hero_cta_1_text }}</a>
-                <a href="{{ page.hero_cta_2_link }}" class="btn-ec-secondary">{{ page.hero_cta_2_text }}</a>
-            </div>
-
-            <!-- Hero Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 pt-8 border-t border-gray-600">
-                <div class="text-center">
-                    <div class="relative mb-3">
-                        <div class="w-full bg-gray-700 rounded-full h-2">
-                            <div class="bg-purple-400 h-2 rounded-full" style="width: 57%"></div>
-                        </div>
-                    </div>
-                    <div class="font-mono text-2xl font-bold text-purple-400">{{ page.excluded_percentage }}</div>
-                    <div class="text-sm text-gray-400 uppercase tracking-wider">S&P 500 EXCLUDED</div>
-                    <div class="text-xs text-gray-500">{{ page.hero_stats_date }}</div>
-                </div>
-                <div class="text-center">
-                    <div class="font-mono text-2xl font-bold text-purple-400">
-                        <span id="years-counter">3+</span> YEARS
-                    </div>
-                    <div class="text-sm text-gray-400 uppercase tracking-wider">OF FIDUCIARY COUNSEL</div>
-                </div>
-            </div>
+{% extends "public_site/base_tailwind.html" %} {% load wagtailcore_tags %} {% block title %}Ethical Capital - Where
+Ethics Drive Investment Excellence{% endblock %} {% block meta_description %}SEC-registered investment adviser
+specializing in ethical ESG investing. Three core strategies, 57% S&P 500 exclusions, fiduciary counsel since 2021.{%
+endblock %} {% block content %}
+<!-- Hero Section with Enhanced Visual Design -->
+<div class="relative bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800 overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-y-12"></div>
+  
+  <div class="container-ec py-16 md:py-24 relative z-10">
+    <section role="banner" aria-labelledby="hero-heading">
+      <div class="text-center space-y-8">
+        <!-- Subtle Tagline -->
+        <div class="text-sm text-purple-300 font-mono uppercase tracking-widest opacity-80">
+          {{ page.hero_tagline|default:"WE'RE NOT LIKE OTHER FIRMS. GOOD." }}
         </div>
+        
+        <!-- Main Headline with Enhanced Typography -->
+        <h1
+          id="hero-heading"
+          class="font-mono text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight"
+        >
+          <span class="bg-gradient-to-r from-white via-purple-100 to-teal-200 bg-clip-text text-transparent">
+            {{ page.hero_title }}
+          </span>
+        </h1>
+        
+        <!-- Subtitle with Better Spacing -->
+        <div class="text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed font-light">
+          {{ page.hero_subtitle|richtext }}
+        </div>
+
+        <!-- Enhanced CTAs -->
+        <div class="flex flex-col sm:flex-row gap-6 justify-center mt-12">
+          <a href="{{ page.hero_cta_1_link }}" 
+             class="px-8 py-4 bg-white text-purple-900 font-semibold rounded-lg hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            {{ page.hero_cta_1_text }}
+          </a>
+          <a href="{{ page.hero_cta_2_link }}" 
+             class="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-purple-900 transition-all duration-300 transform hover:scale-105">
+            {{ page.hero_cta_2_text }}
+          </a>
+        </div>
+
+        <!-- Elegant Divider -->
+        <div class="flex items-center justify-center my-12">
+          <div class="w-24 h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent"></div>
+          <div class="mx-4 w-2 h-2 bg-purple-300 rounded-full"></div>
+          <div class="w-24 h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent"></div>
+        </div>
+
+        <!-- Enhanced Hero Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+          <div class="text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+            <div class="relative mb-6">
+              <div class="w-full bg-purple-800/30 rounded-full h-3 shadow-inner overflow-hidden">
+                <div class="bg-gradient-to-r from-teal-400 to-purple-300 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg" 
+                     style="width: 57%"></div>
+              </div>
+            </div>
+            <div class="font-mono text-3xl font-bold text-white mb-2">{{ page.excluded_percentage }}</div>
+            <div class="text-sm text-purple-200 uppercase tracking-wider font-medium">S&P 500 EXCLUDED</div>
+            <div class="text-xs text-purple-300 mt-1">{{ page.hero_stats_date }}</div>
+          </div>
+          
+          <div class="text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+            <div class="font-mono text-3xl font-bold text-white mb-2">
+              <span id="years-counter">3+</span> YEARS
+            </div>
+            <div class="text-sm text-purple-200 uppercase tracking-wider font-medium">OF FIDUCIARY COUNSEL</div>
+          </div>
+        </div>
+      </div>
     </section>
+  </div>
 </div>
 
 <!-- Investment Philosophy Section -->
 <div class="container-ec py-8">
-    <section class="card-ec mb-8" role="main" aria-labelledby="philosophy-heading">
-        <div class="card-header-ec">
-            <div class="panel-title-ec">{{ page.philosophy_section_header|default:"OUR INVESTMENT PHILOSOPHY" }}</div>
-        </div>
-        <div class="card-content-ec space-y-4">
-            <h2 id="philosophy-heading" class="font-mono text-2xl text-purple-400 font-semibold">
-                {{ page.philosophy_title }}
-            </h2>
-            <div class="text-gray-200 space-y-4">
-                {{ page.philosophy_content|richtext }}
-            </div>
-            <div class="p-4 bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg">
-                <p class="text-purple-300 font-medium">{{ page.philosophy_highlight }}</p>
-            </div>
-        </div>
-    </section>
+  <section class="card-ec mb-8" role="main" aria-labelledby="philosophy-heading">
+    <div class="card-header-ec">
+      <div class="panel-title-ec">{{ page.philosophy_section_header|default:"OUR INVESTMENT PHILOSOPHY" }}</div>
+    </div>
+    <div class="card-content-ec space-y-4">
+      <h2 id="philosophy-heading" class="font-mono text-2xl text-purple-400 font-semibold">
+        {{ page.philosophy_title }}
+      </h2>
+      <div class="text-gray-200 space-y-4">{{ page.philosophy_content|richtext }}</div>
+      <div class="p-4 bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg">
+        <p class="text-purple-300 font-medium">{{ page.philosophy_highlight }}</p>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- Principles Section -->
 <div class="container-ec py-8">
-    <section class="card-ec mb-8" role="main" aria-labelledby="principles-heading">
-        <div class="card-header-ec">
-            <h2 id="principles-heading" class="panel-title-ec">
-                {{ page.principles_section_header|default:"PRINCIPLES THAT GUIDE OUR WORK" }}
-            </h2>
+  <section class="card-ec mb-8" role="main" aria-labelledby="principles-heading">
+    <div class="card-header-ec">
+      <h2 id="principles-heading" class="panel-title-ec">
+        {{ page.principles_section_header|default:"PRINCIPLES THAT GUIDE OUR WORK" }}
+      </h2>
+    </div>
+    <div class="card-content-ec space-y-8">
+      <!-- Process Section -->
+      <div>
+        <h3 class="font-mono text-lg text-purple-400 font-semibold mb-6">{{ page.process_subsection_header }}</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
+            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.process_principle_1_title }}</h4>
+            <p class="text-gray-200 text-sm">{{ page.process_principle_1_content }}</p>
+          </div>
+          <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
+            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.process_principle_2_title }}</h4>
+            <p class="text-gray-200 text-sm">{{ page.process_principle_2_content }}</p>
+          </div>
+          <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
+            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.process_principle_3_title }}</h4>
+            <p class="text-gray-200 text-sm">{{ page.process_principle_3_content }}</p>
+          </div>
         </div>
-        <div class="card-content-ec space-y-8">
-            <!-- Process Section -->
-            <div>
-                <h3 class="font-mono text-lg text-purple-400 font-semibold mb-6">
-                    {{ page.process_subsection_header }}
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-                        <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">
-                            {{ page.process_principle_1_title }}
-                        </h4>
-                        <p class="text-gray-200 text-sm">{{ page.process_principle_1_content }}</p>
-                    </div>
-                    <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-                        <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">
-                            {{ page.process_principle_2_title }}
-                        </h4>
-                        <p class="text-gray-200 text-sm">{{ page.process_principle_2_content }}</p>
-                    </div>
-                    <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-                        <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">
-                            {{ page.process_principle_3_title }}
-                        </h4>
-                        <p class="text-gray-200 text-sm">{{ page.process_principle_3_content }}</p>
-                    </div>
-                </div>
-            </div>
+      </div>
 
-            <!-- Practice Section -->
-            <div>
-                <h3 class="font-mono text-lg text-purple-400 font-semibold mb-6">
-                    {{ page.practice_subsection_header }}
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-                        <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">
-                            {{ page.practice_principle_1_title }}
-                        </h4>
-                        <p class="text-gray-200 text-sm">{{ page.practice_principle_1_content }}</p>
-                    </div>
-                    <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-                        <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">
-                            {{ page.practice_principle_2_title }}
-                        </h4>
-                        <p class="text-gray-200 text-sm">{{ page.practice_principle_2_content }}</p>
-                    </div>
-                    <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-                        <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">
-                            {{ page.practice_principle_3_title }}
-                        </h4>
-                        <p class="text-gray-200 text-sm">{{ page.practice_principle_3_content }}</p>
-                    </div>
-                </div>
-            </div>
+      <!-- Practice Section -->
+      <div>
+        <h3 class="font-mono text-lg text-purple-400 font-semibold mb-6">{{ page.practice_subsection_header }}</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
+            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.practice_principle_1_title }}</h4>
+            <p class="text-gray-200 text-sm">{{ page.practice_principle_1_content }}</p>
+          </div>
+          <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
+            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.practice_principle_2_title }}</h4>
+            <p class="text-gray-200 text-sm">{{ page.practice_principle_2_content }}</p>
+          </div>
+          <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
+            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.practice_principle_3_title }}</h4>
+            <p class="text-gray-200 text-sm">{{ page.practice_principle_3_content }}</p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- Strategies Section -->
 <div class="container-ec py-8">
-    <section class="card-ec mb-8" role="main" aria-labelledby="strategies-heading">
-        <div class="card-header-ec">
-            <div class="panel-title-ec">
-                {{ page.strategies_section_header|default:"THREE CORE STRATEGIES—MULTIPLE PATHS FORWARD" }}
-            </div>
+  <section class="card-ec mb-8" role="main" aria-labelledby="strategies-heading">
+    <div class="card-header-ec">
+      <div class="panel-title-ec">
+        {{ page.strategies_section_header|default:"THREE CORE STRATEGIES—MULTIPLE PATHS FORWARD" }}
+      </div>
+    </div>
+    <div class="card-content-ec space-y-6">
+      <div class="text-gray-200">{{ page.strategies_intro|richtext }}</div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Strategy 1 -->
+        <div class="strategy-card bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+          <table class="strategy-table w-full">
+            <thead>
+              <tr>
+                <th colspan="2" class="bg-purple-900 p-4 text-center">
+                  <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_1_name }}</h3>
+                  <div class="subtitle text-purple-200 text-sm mt-1">{{ page.strategy_1_subtitle }}</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                  {{ page.strategy_label_focus }}
+                </td>
+                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_focus }}</td>
+              </tr>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                  {{ page.strategy_label_screening }}
+                </td>
+                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_screening }}</td>
+              </tr>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                  {{ page.strategy_label_management }}
+                </td>
+                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_management }}</td>
+              </tr>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
+                <td class="text-gray-200 text-xs p-3">{{ page.strategy_1_ownership }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="strategy-features p-4 border-t border-gray-600 space-y-3">
+            <p class="text-gray-200 text-sm">{{ page.strategy_1_description }}</p>
+            <a href="{{ page.strategy_1_link }}" class="btn-ec-secondary inline-block">
+              {{ page.strategy_1_link_text }}
+            </a>
+          </div>
         </div>
-        <div class="card-content-ec space-y-6">
-            <div class="text-gray-200">{{ page.strategies_intro|richtext }}</div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Strategy 1 -->
-                <div class="strategy-card bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
-                    <table class="strategy-table w-full">
-                        <thead>
-                            <tr>
-                                <th colspan="2" class="bg-purple-900 p-4 text-center">
-                                    <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_1_name }}</h3>
-                                    <div class="subtitle text-purple-200 text-sm mt-1">{{ page.strategy_1_subtitle }}</div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">{{ page.strategy_label_focus }}</td>
-                                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_focus }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">{{ page.strategy_label_screening }}</td>
-                                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_screening }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">{{ page.strategy_label_management }}</td>
-                                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_management }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
-                                <td class="text-gray-200 text-xs p-3">{{ page.strategy_1_ownership }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="strategy-features p-4 border-t border-gray-600 space-y-3">
-                        <p class="text-gray-200 text-sm">{{ page.strategy_1_description }}</p>
-                        <a href="{{ page.strategy_1_link }}" class="btn-ec-secondary inline-block">
-                            {{ page.strategy_1_link_text }}
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Strategy 2 -->
-                <div class="strategy-card bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
-                    <table class="strategy-table w-full">
-                        <thead>
-                            <tr>
-                                <th colspan="2" class="bg-purple-900 p-4 text-center">
-                                    <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_2_name }}</h3>
-                                    <div class="subtitle text-purple-200 text-sm mt-1">{{ page.strategy_2_subtitle }}</div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">{{ page.strategy_label_focus }}</td>
-                                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_focus }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">{{ page.strategy_label_screening }}</td>
-                                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_screening }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">{{ page.strategy_label_management }}</td>
-                                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_management }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
-                                <td class="text-gray-200 text-xs p-3">{{ page.strategy_2_ownership }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="strategy-features p-4 border-t border-gray-600 space-y-3">
-                        <p class="text-gray-200 text-sm">{{ page.strategy_2_description }}</p>
-                        <a href="{{ page.strategy_2_link }}" class="btn-ec-secondary inline-block">
-                            {{ page.strategy_2_link_text }}
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Strategy 3 -->
-                <div class="strategy-card bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
-                    <table class="strategy-table w-full">
-                        <thead>
-                            <tr>
-                                <th colspan="2" class="bg-purple-900 p-4 text-center">
-                                    <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_3_name }}</h3>
-                                    <div class="subtitle text-purple-200 text-sm mt-1">{{ page.strategy_3_subtitle }}</div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">{{ page.strategy_label_focus }}</td>
-                                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_focus }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">{{ page.strategy_label_screening }}</td>
-                                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_screening }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">{{ page.strategy_label_management }}</td>
-                                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_management }}</td>
-                            </tr>
-                            <tr>
-                                <td class="label text-purple-400 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
-                                <td class="text-gray-200 text-xs p-3">{{ page.strategy_3_ownership }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="strategy-features p-4 border-t border-gray-600 space-y-3">
-                        <p class="text-gray-200 text-sm">{{ page.strategy_3_description }}</p>
-                        <a href="{{ page.strategy_3_link }}" class="btn-ec-secondary inline-block">
-                            {{ page.strategy_3_link_text }}
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <!-- Strategy 2 -->
+        <div class="strategy-card bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+          <table class="strategy-table w-full">
+            <thead>
+              <tr>
+                <th colspan="2" class="bg-purple-900 p-4 text-center">
+                  <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_2_name }}</h3>
+                  <div class="subtitle text-purple-200 text-sm mt-1">{{ page.strategy_2_subtitle }}</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                  {{ page.strategy_label_focus }}
+                </td>
+                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_focus }}</td>
+              </tr>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                  {{ page.strategy_label_screening }}
+                </td>
+                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_screening }}</td>
+              </tr>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                  {{ page.strategy_label_management }}
+                </td>
+                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_management }}</td>
+              </tr>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
+                <td class="text-gray-200 text-xs p-3">{{ page.strategy_2_ownership }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="strategy-features p-4 border-t border-gray-600 space-y-3">
+            <p class="text-gray-200 text-sm">{{ page.strategy_2_description }}</p>
+            <a href="{{ page.strategy_2_link }}" class="btn-ec-secondary inline-block">
+              {{ page.strategy_2_link_text }}
+            </a>
+          </div>
         </div>
-    </section>
+
+        <!-- Strategy 3 -->
+        <div class="strategy-card bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+          <table class="strategy-table w-full">
+            <thead>
+              <tr>
+                <th colspan="2" class="bg-purple-900 p-4 text-center">
+                  <h3 class="font-mono text-lg font-semibold text-white">{{ page.strategy_3_name }}</h3>
+                  <div class="subtitle text-purple-200 text-sm mt-1">{{ page.strategy_3_subtitle }}</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                  {{ page.strategy_label_focus }}
+                </td>
+                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_focus }}</td>
+              </tr>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                  {{ page.strategy_label_screening }}
+                </td>
+                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_screening }}</td>
+              </tr>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                  {{ page.strategy_label_management }}
+                </td>
+                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_management }}</td>
+              </tr>
+              <tr>
+                <td class="label text-purple-400 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
+                <td class="text-gray-200 text-xs p-3">{{ page.strategy_3_ownership }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="strategy-features p-4 border-t border-gray-600 space-y-3">
+            <p class="text-gray-200 text-sm">{{ page.strategy_3_description }}</p>
+            <a href="{{ page.strategy_3_link }}" class="btn-ec-secondary inline-block">
+              {{ page.strategy_3_link_text }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- Process Section -->
 <div class="container-ec py-8">
-    <section class="card-ec mb-8" role="main" aria-labelledby="process-section-heading">
-        <div class="card-header-ec">
-            <h2 id="process-section-heading" class="panel-title-ec">
-                {{ page.process_section_header|default:"OUR SIGNATURE PROCESS" }}
-            </h2>
+  <section class="card-ec mb-8" role="main" aria-labelledby="process-section-heading">
+    <div class="card-header-ec">
+      <h2 id="process-section-heading" class="panel-title-ec">
+        {{ page.process_section_header|default:"OUR SIGNATURE PROCESS" }}
+      </h2>
+    </div>
+    <div class="card-content-ec space-y-6">
+      <h3 class="text-center font-mono text-xl text-purple-400 font-semibold">How We Build Ethical Portfolios</h3>
+
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div
+            class="flex-shrink-0 w-8 h-8 bg-purple-900 text-white rounded-full flex items-center justify-center font-mono text-sm font-bold"
+          >
+            1
+          </div>
+          <div class="flex-1">
+            <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_1_title }}</h4>
+            <p class="text-gray-200 text-sm">{{ page.process_step_1_content }}</p>
+          </div>
         </div>
-        <div class="card-content-ec space-y-6">
-            <h3 class="text-center font-mono text-xl text-purple-400 font-semibold">
-                How We Build Ethical Portfolios
-            </h3>
 
-            <div class="space-y-6">
-                <div class="flex gap-4">
-                    <div class="flex-shrink-0 w-8 h-8 bg-purple-900 text-white rounded-full flex items-center justify-center font-mono text-sm font-bold">
-                        1
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_1_title }}</h4>
-                        <p class="text-gray-200 text-sm">{{ page.process_step_1_content }}</p>
-                    </div>
-                </div>
-
-                <div class="flex gap-4">
-                    <div class="flex-shrink-0 w-8 h-8 bg-purple-900 text-white rounded-full flex items-center justify-center font-mono text-sm font-bold">
-                        2
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_2_title }}</h4>
-                        <p class="text-gray-200 text-sm">{{ page.process_step_2_content }}</p>
-                    </div>
-                </div>
-
-                <div class="flex gap-4">
-                    <div class="flex-shrink-0 w-8 h-8 bg-purple-900 text-white rounded-full flex items-center justify-center font-mono text-sm font-bold">
-                        3
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_3_title }}</h4>
-                        <p class="text-gray-200 text-sm">{{ page.process_step_3_content }}</p>
-                    </div>
-                </div>
-
-                <div class="flex gap-4">
-                    <div class="flex-shrink-0 w-8 h-8 bg-purple-900 text-white rounded-full flex items-center justify-center font-mono text-sm font-bold">
-                        4
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_4_title }}</h4>
-                        <p class="text-gray-200 text-sm">{{ page.process_step_4_content }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-8">
-                <a href="{{ page.process_section_link }}" class="btn-ec-primary">
-                    {{ page.process_section_link_text }}
-                </a>
-            </div>
+        <div class="flex gap-4">
+          <div
+            class="flex-shrink-0 w-8 h-8 bg-purple-900 text-white rounded-full flex items-center justify-center font-mono text-sm font-bold"
+          >
+            2
+          </div>
+          <div class="flex-1">
+            <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_2_title }}</h4>
+            <p class="text-gray-200 text-sm">{{ page.process_step_2_content }}</p>
+          </div>
         </div>
-    </section>
+
+        <div class="flex gap-4">
+          <div
+            class="flex-shrink-0 w-8 h-8 bg-purple-900 text-white rounded-full flex items-center justify-center font-mono text-sm font-bold"
+          >
+            3
+          </div>
+          <div class="flex-1">
+            <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_3_title }}</h4>
+            <p class="text-gray-200 text-sm">{{ page.process_step_3_content }}</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div
+            class="flex-shrink-0 w-8 h-8 bg-purple-900 text-white rounded-full flex items-center justify-center font-mono text-sm font-bold"
+          >
+            4
+          </div>
+          <div class="flex-1">
+            <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_4_title }}</h4>
+            <p class="text-gray-200 text-sm">{{ page.process_step_4_content }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="{{ page.process_section_link }}" class="btn-ec-primary">{{ page.process_section_link_text }}</a>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- Who We Serve Section -->
 <div class="container-ec py-8">
-    <section class="card-ec mb-8" role="main" aria-labelledby="serve-heading">
-        <div class="card-header-ec">
-            <div class="panel-title-ec">{{ page.serve_section_header|default:"WHO WE SERVE" }}</div>
+  <section class="card-ec mb-8" role="main" aria-labelledby="serve-heading">
+    <div class="card-header-ec">
+      <div class="panel-title-ec">{{ page.serve_section_header|default:"WHO WE SERVE" }}</div>
+    </div>
+    <div class="card-content-ec">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 text-center">
+          <h3 class="font-mono text-lg text-purple-400 font-semibold mb-3">{{ page.serve_individual_title }}</h3>
+          <p class="text-gray-200 text-sm mb-4">{{ page.serve_individual_content }}</p>
+          <a href="{{ page.serve_individual_link }}" class="btn-ec-secondary">{{ page.serve_individual_link_text }}</a>
         </div>
-        <div class="card-content-ec">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 text-center">
-                    <h3 class="font-mono text-lg text-purple-400 font-semibold mb-3">
-                        {{ page.serve_individual_title }}
-                    </h3>
-                    <p class="text-gray-200 text-sm mb-4">{{ page.serve_individual_content }}</p>
-                    <a href="{{ page.serve_individual_link }}" class="btn-ec-secondary">
-                        {{ page.serve_individual_link_text }}
-                    </a>
-                </div>
 
-                <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 text-center">
-                    <h3 class="font-mono text-lg text-purple-400 font-semibold mb-3">
-                        {{ page.serve_advisor_title }}
-                    </h3>
-                    <p class="text-gray-200 text-sm mb-4">{{ page.serve_advisor_content }}</p>
-                    <a href="{{ page.serve_advisor_link }}" class="btn-ec-secondary">
-                        {{ page.serve_advisor_link_text }}
-                    </a>
-                </div>
-
-                <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 text-center">
-                    <h3 class="font-mono text-lg text-purple-400 font-semibold mb-3">
-                        {{ page.serve_institution_title }}
-                    </h3>
-                    <p class="text-gray-200 text-sm mb-4">{{ page.serve_institution_content }}</p>
-                    <a href="{{ page.serve_institution_link }}" class="btn-ec-secondary">
-                        {{ page.serve_institution_link_text }}
-                    </a>
-                </div>
-            </div>
+        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 text-center">
+          <h3 class="font-mono text-lg text-purple-400 font-semibold mb-3">{{ page.serve_advisor_title }}</h3>
+          <p class="text-gray-200 text-sm mb-4">{{ page.serve_advisor_content }}</p>
+          <a href="{{ page.serve_advisor_link }}" class="btn-ec-secondary">{{ page.serve_advisor_link_text }}</a>
         </div>
-    </section>
+
+        <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 text-center">
+          <h3 class="font-mono text-lg text-purple-400 font-semibold mb-3">{{ page.serve_institution_title }}</h3>
+          <p class="text-gray-200 text-sm mb-4">{{ page.serve_institution_content }}</p>
+          <a href="{{ page.serve_institution_link }}" class="btn-ec-secondary">
+            {{ page.serve_institution_link_text }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- CTA Section -->
 <div class="container-ec py-8">
-    <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6">
-        <div class="text-center space-y-4">
-            <div class="badge-ec-success">
-                {{ page.accepting_clients_icon }} {{ page.client_availability_text|upper }}
-            </div>
-            <h2 class="font-mono text-2xl text-purple-400 font-semibold">{{ page.cta_title }}</h2>
-            <div class="text-gray-200 max-w-2xl mx-auto">{{ page.cta_description|richtext }}</div>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ page.cta_button_1_link }}" class="btn-ec-primary">{{ page.cta_button_1_text }}</a>
-                <a href="{{ page.cta_button_2_link }}" class="btn-ec-secondary">{{ page.cta_button_2_text }}</a>
-            </div>
-        </div>
-    </section>
+  <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6">
+    <div class="text-center space-y-4">
+      <div class="badge-ec-success">{{ page.accepting_clients_icon }} {{ page.client_availability_text|upper }}</div>
+      <h2 class="font-mono text-2xl text-purple-400 font-semibold">{{ page.cta_title }}</h2>
+      <div class="text-gray-200 max-w-2xl mx-auto">{{ page.cta_description|richtext }}</div>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="{{ page.cta_button_1_link }}" class="btn-ec-primary">{{ page.cta_button_1_text }}</a>
+        <a href="{{ page.cta_button_2_link }}" class="btn-ec-secondary">{{ page.cta_button_2_text }}</a>
+      </div>
+    </div>
+  </section>
 </div>
-{% endblock %}
-
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 <script>
-    // Calculate years since October 2021
-    document.addEventListener('DOMContentLoaded', function() {
-        const startDate = new Date('2021-10-01');
-        const currentDate = new Date();
+  // Calculate years since October 2021
+  document.addEventListener("DOMContentLoaded", function () {
+    const startDate = new Date("2021-10-01");
+    const currentDate = new Date();
 
-        // Calculate years difference
-        let years = currentDate.getFullYear() - startDate.getFullYear();
-        const monthDiff = currentDate.getMonth() - startDate.getMonth();
+    // Calculate years difference
+    let years = currentDate.getFullYear() - startDate.getFullYear();
+    const monthDiff = currentDate.getMonth() - startDate.getMonth();
 
-        // Adjust if we haven't reached October yet in the current year
-        if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < startDate.getDate())) {
-            years--;
-        }
+    // Adjust if we haven't reached October yet in the current year
+    if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < startDate.getDate())) {
+      years--;
+    }
 
-        // Check if we're in October (month 9 in JavaScript)
-        const isOctober = currentDate.getMonth() === 9;
+    // Check if we're in October (month 9 in JavaScript)
+    const isOctober = currentDate.getMonth() === 9;
 
-        // Update the counter
-        const counter = document.getElementById('years-counter');
-        if (counter) {
-            // Show exact years in October, otherwise show with +
-            counter.textContent = isOctober ? years.toString() : years + '+';
+    // Update the counter
+    const counter = document.getElementById("years-counter");
+    if (counter) {
+      // Show exact years in October, otherwise show with +
+      counter.textContent = isOctober ? years.toString() : years + "+";
 
-            // Add a subtle animation
-            counter.style.opacity = '0';
-            setTimeout(() => {
-                counter.style.transition = 'opacity 0.5s ease-in';
-                counter.style.opacity = '1';
-            }, 100);
-        }
-    });
+      // Add a subtle animation
+      counter.style.opacity = "0";
+      setTimeout(() => {
+        counter.style.transition = "opacity 0.5s ease-in";
+        counter.style.opacity = "1";
+      }, 100);
+    }
+  });
 </script>
 {% endblock %}

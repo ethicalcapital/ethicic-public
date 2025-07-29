@@ -1,337 +1,73 @@
-{% extends "public_site/base_tailwind.html" %}
-{% load static %}
+{% extends "public_site/base_tailwind.html" %} {% load static %} {% block title %}Page Not Found (404) - Ethical
+Capital{% endblock %} {% block meta_description %}The page you're looking for could not be found. Navigate back to our
+homepage or explore our ethical investment solutions.{% endblock %} {% block body_class %}error-page error-404{%
+endblock %} {% block content %}
+<div class="container-ec">
+  <!-- Error Hero Section -->
+  <section class="mb-8 bg-gradient-to-br from-red-900 via-gray-900 to-red-800 rounded-xl p-8 text-center">
+    <div class="text-8xl font-bold text-red-300 mb-4">404</div>
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">PAGE NOT FOUND</h1>
+    <p class="text-xl text-red-100 max-w-2xl mx-auto mb-4">
+      We're sorry, but the page you're looking for doesn't exist or may have been moved.
+    </p>
+    <p class="text-lg text-red-200 max-w-xl mx-auto">Here are some helpful options to get you back on track:</p>
+  </section>
 
-{% block title %}Page Not Found (404) - Ethical Capital{% endblock %}
-
-{% block meta_description %}The page you're looking for could not be found. Navigate back to our homepage or explore our ethical investment solutions.{% endblock %}
-
-{% block body_class %}error-page error-404{% endblock %}
-
-{% block content %}
-<div class="garden-container error-page-container">
-    <div class="error-hero">
-        <div class="error-hero-content">
-            <div class="error-code-display">404</div>
-            <h1 class="error-title">PAGE NOT FOUND</h1>
-            <p class="error-description">
-                We're sorry, but the page you're looking for doesn't exist or may have been moved.
-            </p>
-            <p class="error-suggestion">
-                Here are some helpful options to get you back on track:
-            </p>
-        </div>
+  <!-- Error Actions Grid -->
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
+      <a href="/" class="block w-full px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors mb-3">
+        RETURN TO HOMEPAGE
+      </a>
+      <p class="text-gray-600 dark:text-gray-400">Go back to the main page</p>
     </div>
 
-    <div class="error-actions-grid">
-        <div class="error-action-card">
-            <a href="/" class="garden-action primary full-width">
-                RETURN TO HOMEPAGE
-            </a>
-            <p>Go back to the main page</p>
-        </div>
-
-        <div class="error-action-card">
-            <a href="/solutions/" class="garden-action secondary full-width">
-                EXPLORE INVESTMENT SOLUTIONS
-            </a>
-            <p>Browse our ethical investment options</p>
-        </div>
-
-        <div class="error-action-card">
-            <a href="/contact/" class="garden-action secondary full-width">
-                CONTACT US
-            </a>
-            <p>Get in touch with our team</p>
-        </div>
-
-        <div class="error-action-card">
-            <a href="/blog/" class="garden-action secondary full-width">
-                READ OUR BLOG
-            </a>
-            <p>Learn about ethical investing insights</p>
-        </div>
+    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
+      <a href="/solutions/" class="block w-full px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors mb-3">
+        EXPLORE INVESTMENT SOLUTIONS
+      </a>
+      <p class="text-gray-600 dark:text-gray-400">Browse our ethical investment options</p>
     </div>
 
-    <div class="error-search-section">
-        <div class="garden-panel">
-            <div class="garden-panel__content">
-                <h2 class="search-section-title">Search Our Site</h2>
-                <p class="search-section-description">Search for content on our website</p>
-
-                <form method="get" action="/search/" class="error-search-form">
-                    <div class="search-input-container">
-                        <input type="search"
-                               name="q"
-                               placeholder="Search..."
-                               class="garden-search-input"
-                               aria-label="Search">
-                        <button type="submit" class="search-submit-btn">SEARCH</button>
-                    </div>
-                </form>
-
-                <p class="search-help-text">
-                    Try searching for investment strategies, ESG criteria, or company analysis
-                </p>
-            </div>
-        </div>
+    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
+      <a href="/contact/" class="block w-full px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors mb-3">
+        CONTACT US
+      </a>
+      <p class="text-gray-600 dark:text-gray-400">Get in touch with our team</p>
     </div>
+
+    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
+      <a href="/blog/" class="block w-full px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors mb-3">
+        READ OUR BLOG
+      </a>
+      <p class="text-gray-600 dark:text-gray-400">Learn about ethical investing insights</p>
+    </div>
+  </section>
+
+  <!-- Search Section -->
+  <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">Search Our Site</h2>
+    <p class="text-gray-600 dark:text-gray-400 text-center mb-6">Search for content on our website</p>
+
+    <form method="get" action="/search/" class="max-w-md mx-auto">
+      <div class="flex gap-2">
+        <input 
+          type="search" 
+          name="q" 
+          placeholder="Search..." 
+          class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent" 
+          aria-label="Search" 
+        />
+        <button 
+          type="submit" 
+          class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+        >
+          SEARCH
+        </button>
+      </div>
+    </form>
+
+    <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-4">Try searching for investment strategies, ESG criteria, or company analysis</p>
+  </section>
 </div>
-{% endblock %}
-
-{% block extra_css %}
-<style>
-/* 404 Page Layout */
-.error-page-container {
-    max-width: var(--content-width-wide);
-    margin: 0 auto;
-    padding: var(--space-8) var(--space-4);
-}
-
-.error-hero {
-    text-align: center;
-    margin-bottom: var(--space-12);
-    padding: var(--space-8) 0;
-}
-
-.error-hero-content {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.error-code-display {
-    font-size: 8rem;
-    font-weight: var(--font-black);
-    color: var(--color-primary);
-    line-height: 1;
-    margin-bottom: var(--space-4);
-    font-family: var(--font-sans);
-    letter-spacing: -0.02em;
-}
-
-.error-title {
-    font-size: var(--font-3xl);
-    font-weight: var(--font-bold);
-    color: var(--color-text-primary);
-    margin-bottom: var(--space-6);
-    letter-spacing: 0.02em;
-    font-family: var(--font-sans);
-}
-
-.error-description {
-    font-size: var(--font-lg);
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-4);
-    line-height: var(--line-relaxed);
-    font-style: italic;
-}
-
-.error-suggestion {
-    font-size: var(--font-base);
-    color: var(--color-text-primary);
-    font-weight: var(--font-semibold);
-    margin-bottom: var(--space-8);
-}
-
-/* Action Cards Grid */
-.error-actions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-6);
-    margin-bottom: var(--space-12);
-}
-
-.error-action-card {
-    text-align: center;
-    padding: var(--space-6);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    transition: all var(--duration-normal) ease;
-}
-
-.error-action-card:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
-
-.error-action-card .garden-action {
-    margin-bottom: var(--space-3);
-    min-height: 48px;
-    font-weight: var(--font-semibold);
-    letter-spacing: 0.02em;
-}
-
-.error-action-card .full-width {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.error-action-card p {
-    margin: 0;
-    font-size: var(--font-sm);
-    color: var(--color-text-secondary);
-    line-height: var(--line-normal);
-}
-
-/* Search Section */
-.error-search-section {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.error-search-section .garden-panel {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-}
-
-.search-section-title {
-    font-size: var(--font-xl);
-    font-weight: var(--font-semibold);
-    color: var(--color-text-primary);
-    text-align: center;
-    margin-bottom: var(--space-2);
-    font-family: var(--font-sans);
-}
-
-.search-section-description {
-    text-align: center;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-6);
-    font-size: var(--font-base);
-}
-
-.error-search-form {
-    margin-bottom: var(--space-4);
-}
-
-.search-input-container {
-    display: flex;
-    gap: var(--space-3);
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.search-input-container .garden-search-input {
-    flex: 1;
-    padding: var(--space-3);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: var(--color-surface);
-    color: var(--color-text-primary);
-    font-size: var(--font-base);
-}
-
-.search-input-container .garden-search-input:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px var(--color-primary-alpha);
-}
-
-.search-submit-btn {
-    padding: var(--space-3) var(--space-4);
-    background: var(--color-primary);
-    color: var(--color-on-primary);
-    border: none;
-    border-radius: var(--radius-md);
-    font-weight: var(--font-semibold);
-    cursor: pointer;
-    transition: all var(--duration-normal) ease;
-    font-size: var(--font-sm);
-    letter-spacing: 0.02em;
-}
-
-.search-submit-btn:hover {
-    background: var(--color-primary-hover);
-    transform: translateY(-1px);
-}
-
-.search-help-text {
-    text-align: center;
-    font-size: var(--font-sm);
-    color: var(--color-text-secondary);
-    margin: 0;
-    line-height: var(--line-relaxed);
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .error-page-container {
-        padding: var(--space-6) var(--space-3);
-    }
-
-    .error-hero {
-        margin-bottom: var(--space-8);
-        padding: var(--space-6) 0;
-    }
-
-    .error-code-display {
-        font-size: 5rem;
-    }
-
-    .error-title {
-        font-size: var(--font-2xl);
-    }
-
-    .error-actions-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-4);
-        margin-bottom: var(--space-8);
-    }
-
-    .error-action-card {
-        padding: var(--space-4);
-    }
-
-    .search-input-container {
-        flex-direction: column;
-        max-width: 100%;
-    }
-
-    .search-submit-btn {
-        width: 100%;
-    }
-}
-
-/* Dark Mode Support */
-[data-theme="dark"] .error-action-card {
-    background: var(--color-surface);
-    border-color: var(--color-border);
-}
-
-[data-theme="dark"] .error-search-section .garden-panel {
-    background: var(--color-surface);
-    border-color: var(--color-border);
-}
-
-/* High Contrast Support */
-@media (prefers-contrast: more) {
-    .error-action-card {
-        border-width: 2px;
-    }
-
-    .search-input-container .garden-search-input {
-        border-width: 2px;
-    }
-}
-
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-    .error-action-card,
-    .search-submit-btn {
-        transition: none;
-    }
-
-    .error-action-card:hover {
-        transform: none;
-    }
-
-    .search-submit-btn:hover {
-        transform: none;
-    }
-}
-</style>
 {% endblock %}

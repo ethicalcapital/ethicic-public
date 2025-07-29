@@ -1,4 +1,5 @@
 # Deep Architectural Investigation: Ethical Capital Public Site
+
 **Date**: January 24, 2025
 **Investigation Scope**: Complete system architecture, patterns, and technical context
 
@@ -17,6 +18,7 @@
 ## Technical Architecture
 
 ### 1. Platform Foundation
+
 - **Framework**: Django 4.x with Wagtail CMS 5.x
 - **Architecture Pattern**: Monolithic with service-oriented components
 - **Deployment**: Standalone mode (migrated from larger "Garden Platform")
@@ -24,6 +26,7 @@
 - **Domain Migration**: Transitioned from ethicic.com to EC1C.com (evident in URL redirects)
 
 ### 2. Database Architecture
+
 ```
 Multi-Database Strategy:
 ├── Primary: Ethicic Public PostgreSQL (Kinsta)
@@ -33,6 +36,7 @@ Multi-Database Strategy:
 ```
 
 **Key Features**:
+
 - Connection pooling with 600s max age
 - SSL-required connections in production
 - Graceful fallback strategies with connection testing
@@ -41,6 +45,7 @@ Multi-Database Strategy:
 ### 3. Content Management System (Wagtail)
 
 **Page Types Hierarchy**:
+
 ```
 HomePage (/)
 ├── AboutPage (/about/)
@@ -61,6 +66,7 @@ HomePage (/)
 ```
 
 **Advanced Features**:
+
 - StreamField for flexible rich content
 - Multi-format image optimization (AVIF, WebP, JPEG)
 - 20MB file upload limit, 128MP image processing
@@ -69,6 +75,7 @@ HomePage (/)
 ### 4. Performance Data Management
 
 **Financial Performance System**:
+
 - Monthly return data stored as JSON with strategy/benchmark pairs
 - Automated calculation of YTD, 1-year, 3-year, and since-inception returns
 - Compound return calculations with annualization
@@ -76,11 +83,12 @@ HomePage (/)
 - Benchmark comparison (MSCI ACWI TR)
 
 **Data Format Example**:
+
 ```json
 {
   "2025": {
-    "Jan": {"strategy": "2.74%", "benchmark": "3.28%"},
-    "Feb": {"strategy": "2.49%", "benchmark": "-0.35%"}
+    "Jan": { "strategy": "2.74%", "benchmark": "3.28%" },
+    "Feb": { "strategy": "2.49%", "benchmark": "-0.35%" }
   }
 }
 ```
@@ -88,11 +96,13 @@ HomePage (/)
 ### 5. Form System & Client Onboarding
 
 **Accessibility-First Design** (WCAG 2.1 AA compliant):
+
 - Crispy Forms with Bootstrap 4 styling
 - ARIA attributes and semantic HTML
 - Comprehensive help text and error messages
 
 **Advanced Spam Protection**:
+
 - Cloudflare Turnstile integration
 - Multiple honeypot fields
 - Rate limiting with Redis
@@ -101,6 +111,7 @@ HomePage (/)
 - URL count limits and repetition detection
 
 **Comprehensive Client Onboarding** (70+ fields):
+
 - Personal information (including pronouns, preferred names)
 - Co-client support for joint accounts
 - 7-question risk tolerance assessment
@@ -111,6 +122,7 @@ HomePage (/)
 ### 6. Security Implementation
 
 **Production Security Configuration**:
+
 - XSS filtering and content type sniffing prevention
 - HSTS with subdomains (1-year expiry)
 - Secure cookies for HTTPS
@@ -119,6 +131,7 @@ HomePage (/)
 - Proxy-aware SSL handling for load balancers
 
 **API Security**:
+
 - Form encryption for sensitive submissions
 - Backend API key authentication
 - Turnstile bot protection
@@ -127,6 +140,7 @@ HomePage (/)
 ### 7. CSS Architecture & Design System
 
 **Garden UI Design System**:
+
 - BEM-based CSS architecture with 64+ component files
 - PostCSS build pipeline combining files into optimized bundles
 - CSS variables for consistent theming (never hardcoded colors)
@@ -135,6 +149,7 @@ HomePage (/)
 - Build commands: `npm run build:css:dev` and `npm run build:css:prod`
 
 **Performance Optimization**:
+
 - WhiteNoise for static file serving with compression
 - Manifest storage for cache busting
 - CSS file combination: 64 files → 1 optimized bundle
@@ -143,12 +158,14 @@ HomePage (/)
 ### 8. Integration Architecture
 
 **External Services**:
+
 - **Cloudflare Turnstile**: Bot protection and form validation
 - **Email Integration**: SMTP with development console fallback
 - **Redis Caching**: Session management and query optimization
 - **Main Platform API**: Integration with larger "Garden Platform"
 
 **API Endpoints** (50+ routes):
+
 - Form submission endpoints (`/contact/submit/`, `/onboarding/submit/`)
 - JSON APIs for AJAX functionality
 - Search functionality with live endpoints
@@ -159,6 +176,7 @@ HomePage (/)
 ### 9. Operational Management
 
 **Management Commands** (50+ commands):
+
 - **Content Migration**: `import_from_ubicloud`, `safe_import_from_ubicloud`
 - **Performance Data**: `import_performance_csv`, `show_performance`
 - **Site Setup**: `setup_standalone`, `setup_kinsta`, `setup_wagtail_pages`
@@ -166,6 +184,7 @@ HomePage (/)
 - **Deployment**: `deploy`, `check_database_schema`
 
 **Logging Configuration**:
+
 - Separate loggers for Django core, requests, and application
 - Console and file logging with structured formatting
 - DEBUG level for application code, INFO for Django core
@@ -173,6 +192,7 @@ HomePage (/)
 ### 10. Testing Philosophy
 
 **Comprehensive Test Coverage**:
+
 - Unit tests for models, forms, views, and utilities
 - Integration tests for form workflows
 - Performance calculation test suites
@@ -181,6 +201,7 @@ HomePage (/)
 - 90%+ coverage goals evident from test structure
 
 **Test Categories**:
+
 - Form validation (spam protection, accessibility)
 - Financial calculations (compound returns, annualization)
 - Content management (Wagtail page creation, media handling)
@@ -189,12 +210,14 @@ HomePage (/)
 ## Code Quality & Development Practices
 
 ### 1. Code Organization
+
 - **Single App Architecture**: All functionality in `public_site` app
 - **Clean Separation**: Models, forms, views, utilities properly separated
 - **Template Inheritance**: Consistent base templates with component reuse
 - **URL Patterns**: RESTful routing with proper namespacing
 
 ### 2. Security-First Development
+
 - Environment variable configuration for all secrets
 - Proper database connection handling with SSL
 - Input validation and sanitization throughout
@@ -202,6 +225,7 @@ HomePage (/)
 - SQL injection prevention with Django ORM
 
 ### 3. Performance Optimization
+
 - Database query optimization with select_related/prefetch_related
 - Redis caching for expensive operations
 - Static file optimization with compression
@@ -209,6 +233,7 @@ HomePage (/)
 - Connection pooling for database efficiency
 
 ### 4. Accessibility & UX
+
 - WCAG 2.1 AA compliance throughout
 - Semantic HTML with proper ARIA attributes
 - Keyboard navigation support
@@ -218,12 +243,14 @@ HomePage (/)
 ## Migration & Deployment Story
 
 **Infrastructure Evolution**:
+
 1. **Original Platform**: Part of larger "Garden Platform" ecosystem
 2. **Ubicloud Phase**: Intermediate hosting with PostgreSQL
 3. **Kinsta Deployment**: Current standalone deployment with optimized stack
 4. **Domain Transition**: ethicic.com → EC1C.com (SEO redirects maintained)
 
 **Migration Tooling**:
+
 - Safe import commands with schema validation
 - Dry-run capabilities for testing
 - Multi-database connection management
@@ -232,6 +259,7 @@ HomePage (/)
 ## Business Intelligence & Analytics
 
 **Performance Metrics**:
+
 - Real-time portfolio performance tracking
 - Monthly return calculations with compound interest
 - Benchmark comparison analysis
@@ -239,6 +267,7 @@ HomePage (/)
 - Historical performance data since 2021
 
 **Client Analytics**:
+
 - Comprehensive risk profiling questionnaire
 - Ethical investment preference mapping
 - Financial capacity assessment
@@ -247,24 +276,31 @@ HomePage (/)
 ## Remarkable Technical Insights
 
 ### 1. Financial Services Grade Architecture
+
 This isn't a typical CMS - it's built for SEC-regulated investment management with real money and regulatory compliance requirements.
 
 ### 2. Sophisticated Form Engineering
+
 The onboarding form system rivals enterprise SaaS applications with 70+ fields, conditional logic, and comprehensive validation.
 
 ### 3. Advanced Spam Protection
+
 Multi-layered bot detection that goes far beyond typical website forms, including behavioral analysis and timing validation.
 
 ### 4. Performance-First CSS Architecture
+
 The Garden UI system with PostCSS build pipeline shows enterprise-grade front-end engineering.
 
 ### 5. Accessibility Excellence
+
 True WCAG 2.1 AA compliance, not just checkboxes - built for users with disabilities from the ground up.
 
 ### 6. Multi-Database Mastery
+
 Sophisticated database architecture with connection testing, fallbacks, and safe migration tooling.
 
 ### 7. Content Management Sophistication
+
 Wagtail implementation goes beyond basic CMS - StreamFields, image optimization, and complex page hierarchies.
 
 ## Conclusion
@@ -279,6 +315,7 @@ Wagtail implementation goes beyond basic CMS - StreamFields, image optimization,
 - Enterprise-grade security and accessibility
 
 The codebase demonstrates **senior-level engineering practices** across the entire stack, with particular strength in:
+
 - Database architecture and performance optimization
 - Security-first development practices
 - Accessibility and inclusive design

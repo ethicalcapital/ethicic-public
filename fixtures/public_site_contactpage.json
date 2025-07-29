@@ -1,14 +1,14 @@
 [
-{
-  "model": "public_site.contactpage",
-  "pk": 41,
-  "fields": {
-    "intro_text": "<p>Ready to start your ethical investment journey?</p>",
-    "contact_description": "",
-    "email": "hello@ethicic.com",
-    "phone": "",
-    "address": "",
-    "show_contact_form": true
+  {
+    "model": "public_site.contactpage",
+    "pk": 41,
+    "fields": {
+      "intro_text": "<p>Ready to start your ethical investment journey?</p>",
+      "contact_description": "",
+      "email": "hello@ethicic.com",
+      "phone": "",
+      "address": "",
+      "show_contact_form": true
+    }
   }
-}
 ]

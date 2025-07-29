@@ -4,6 +4,7 @@
 **Execution Time**: 43.5 seconds
 
 ## 📊 Summary
+
 - **Pages Crawled**: 136
 - **Total Unique Links**: 309
 - **Working Links**: 206 (66.7%)
@@ -14,6 +15,7 @@
 ## 🚨 Critical Issues by Category
 
 ### Internal Site Issues (43)
+
 - ❌ `https://ethicic.com/performance/` - HTTP 404
 - ❌ `https://ethicic.com/wp-content/uploads/2024/04/image-6-1024x576.png` - HTTP 404
 - ❌ `https://ethicic.com/seek-perfection-elsewhere/` - HTTP 404
@@ -28,9 +30,11 @@
 ### External Domain Issues
 
 #### Investvegan.org Problems (21)
+
 All references to the defunct investvegan.org domain are failing.
 
 #### Other External Issues (12)
+
 - 404 Not Found: 9
 - DNS Errors: 0
 - Access Denied: 3
@@ -38,6 +42,7 @@ All references to the defunct investvegan.org domain are failing.
 ## 📈 Link Distribution
 
 ### By Link Type:
+
 - text_link: 128
 - meta_reference: 59
 - asset: 10
@@ -50,6 +55,7 @@ All references to the defunct investvegan.org domain are failing.
 - image: 42
 
 ### By Domain (Top 10):
+
 - ethicic.com: 191
 - investvegan.org: 21
 - special_schemes: 9
@@ -62,6 +68,7 @@ All references to the defunct investvegan.org domain are failing.
 - www.cdr.fyi: 2
 
 ## 🎯 Next Steps
+
 1. **Fix internal 404s** - Critical for user experience
 2. **Address investvegan.org references** - Remove or replace with alternatives
 3. **Review external link dependencies** - Update or remove broken external links

@@ -1,0 +1,85 @@
+# Dependencies
+node_modules/
+staticfiles/
+
+# Build outputs
+static/css/dist/
+static/css/bundles/
+
+# Django generated files
+migrations/
+*.pyc
+__pycache__/
+
+# Media files
+media/
+
+# Archives and backups
+archive/
+*.backup
+*.bak
+
+# Database files
+*.sqlite3
+*.db
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+*.logs
+
+# Cache
+.cache/
+.pytest_cache/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Large data files
+*.csv
+*.json.large
+
+# Specific files that should not be formatted
+uv.lock
+package-lock.json
+CLAUDE.md
+README.md
+**/CLAUDE.md
+docs/**/*.md
+
+# Wagtail static files
+wagtailadmin/
+wagtaildocs/
+wagtailembeds/
+wagtailimages/
+wagtailmenus/
+wagtailsnippets/
+
+# Third-party CSS/JS
+**/bootstrap.*
+**/jquery.*
+**/fontawesome.*
+
+# Minified files
+*.min.js
+*.min.css

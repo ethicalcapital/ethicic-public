@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Main web application with build cache optimization
@@ -34,7 +34,13 @@ services:
       - media_files:/app/media
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8080/health/', timeout=10)"]
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import requests; requests.get('http://localhost:8080/health/', timeout=10)",
+        ]
       interval: 30s
       timeout: 10s
       retries: 3

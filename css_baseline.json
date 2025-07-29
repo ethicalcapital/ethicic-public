@@ -57,9 +57,7 @@
       "--garden-footer-social-hover-bg",
       "--garden-footer-link"
     ],
-    "accessibility-consolidated.css": [
-      "--color-error-alpha-5"
-    ],
+    "accessibility-consolidated.css": ["--color-error-alpha-5"],
     "search-clean.css": [
       "--color-warning-dark",
       "--color-input-focus-border",
@@ -81,13 +79,8 @@
       "--color-error-alpha-light",
       "--color-surface-rgb"
     ],
-    "process-page.css": [
-      "--color-input-border",
-      "--color-input-bg"
-    ],
-    "garden-ui-responsive.css": [
-      "--z-overlay"
-    ],
+    "process-page.css": ["--color-input-border", "--color-input-bg"],
+    "garden-ui-responsive.css": ["--z-overlay"],
     "garden-ui-navigation.css": [
       "--color-warning-dark",
       "--color-input-focus-border",
@@ -211,18 +204,10 @@
       "--garden-search-border",
       "--garden-search-placeholder"
     ],
-    "garden-layout-system.css": [
-      "--font-4xl"
-    ],
-    "blog-components-consolidated.css": [
-      "--font-4xl"
-    ],
-    "mobile-consolidated.css": [
-      "--z-overlay"
-    ],
-    "garden-buttons-enhanced.css": [
-      "--ease-out"
-    ],
+    "garden-layout-system.css": ["--font-4xl"],
+    "blog-components-consolidated.css": ["--font-4xl"],
+    "mobile-consolidated.css": ["--z-overlay"],
+    "garden-buttons-enhanced.css": ["--ease-out"],
     "garden-ui-header.css": [
       "--garden-search-bg",
       "--garden-search-text",
@@ -233,9 +218,7 @@
       "--garden-search-border",
       "--garden-search-placeholder"
     ],
-    "16-homepage-clean.css": [
-      "--ease-out"
-    ],
+    "16-homepage-clean.css": ["--ease-out"],
     "login-dropdown-clean.css": [
       "--color-input-border",
       "--leading-tight",
@@ -542,354 +525,115 @@
   },
   "hardcoded_colors": {
     "tailwind-base.css": [
-      [
-        6,
-        "#1a1a1a"
-      ],
-      [
-        7,
-        "#4a5568"
-      ],
-      [
-        8,
-        "#718096"
-      ],
-      [
-        9,
-        "#ffffff"
-      ],
-      [
-        10,
-        "#f7fafc"
-      ]
+      [6, "#1a1a1a"],
+      [7, "#4a5568"],
+      [8, "#718096"],
+      [9, "#ffffff"],
+      [10, "#f7fafc"]
     ],
     "footer-clean.css": [
-      [
-        44,
-        "#FCEFEF"
-      ],
-      [
-        45,
-        "#B57EDC"
-      ],
-      [
-        51,
-        "#333"
-      ],
-      [
-        275,
-        "#1a1a1a"
-      ],
-      [
-        276,
-        "#3d2970"
-      ]
+      [44, "#FCEFEF"],
+      [45, "#B57EDC"],
+      [51, "#333"],
+      [275, "#1a1a1a"],
+      [276, "#3d2970"]
     ],
     "garden-ui-core.css": [
-      [
-        1763,
-        "#fff"
-      ],
-      [
-        2286,
-        "#fff"
-      ],
-      [
-        2916,
-        "#553C9A"
-      ],
-      [
-        2918,
-        "#553C9A"
-      ],
-      [
-        2922,
-        "#553C9A"
-      ]
+      [1763, "#fff"],
+      [2286, "#fff"],
+      [2916, "#553C9A"],
+      [2918, "#553C9A"],
+      [2922, "#553C9A"]
     ],
     "garden-ui-public.css": [
-      [
-        57,
-        "#dcfce7"
-      ],
-      [
-        58,
-        "#bbf7d0"
-      ],
-      [
-        59,
-        "#86efac"
-      ],
-      [
-        60,
-        "#22c55e"
-      ],
-      [
-        61,
-        "#34d399"
-      ]
+      [57, "#dcfce7"],
+      [58, "#bbf7d0"],
+      [59, "#86efac"],
+      [60, "#22c55e"],
+      [61, "#34d399"]
     ],
     "garden-ui-theme.css": [
-      [
-        54,
-        "#dcfce7"
-      ],
-      [
-        55,
-        "#bbf7d0"
-      ],
-      [
-        56,
-        "#86efac"
-      ],
-      [
-        57,
-        "#22c55e"
-      ],
-      [
-        58,
-        "#34d399"
-      ]
+      [54, "#dcfce7"],
+      [55, "#bbf7d0"],
+      [56, "#86efac"],
+      [57, "#22c55e"],
+      [58, "#34d399"]
     ],
     "theme-overrides-clean.css": [
-      [
-        11,
-        "#FCEFEF"
-      ],
-      [
-        16,
-        "#111"
-      ],
-      [
-        23,
-        "#B57EDC"
-      ],
-      [
-        32,
-        "#2d7a68"
-      ],
-      [
-        33,
-        "#fff"
-      ]
+      [11, "#FCEFEF"],
+      [16, "#111"],
+      [23, "#B57EDC"],
+      [32, "#2d7a68"],
+      [33, "#fff"]
     ],
     "tailwind.css": [
-      [
-        36,
-        "#000"
-      ],
-      [
-        37,
-        "#fff"
-      ],
-      [
-        876,
-        "#000"
-      ],
-      [
-        904,
-        "#fff"
-      ],
-      [
-        1146,
-        "#fff"
-      ]
+      [36, "#000"],
+      [37, "#fff"],
+      [876, "#000"],
+      [904, "#fff"],
+      [1146, "#fff"]
     ],
     "garden-ui-tokens.css": [
-      [
-        56,
-        "#dcfce7"
-      ],
-      [
-        57,
-        "#bbf7d0"
-      ],
-      [
-        58,
-        "#86efac"
-      ],
-      [
-        59,
-        "#22c55e"
-      ],
-      [
-        60,
-        "#34d399"
-      ]
+      [56, "#dcfce7"],
+      [57, "#bbf7d0"],
+      [58, "#86efac"],
+      [59, "#22c55e"],
+      [60, "#34d399"]
     ],
     "tailwind-simple.css": [
-      [
-        6,
-        "#1a1a1a"
-      ],
-      [
-        7,
-        "#4a5568"
-      ],
-      [
-        8,
-        "#718096"
-      ],
-      [
-        9,
-        "#ffffff"
-      ],
-      [
-        10,
-        "#f7fafc"
-      ]
+      [6, "#1a1a1a"],
+      [7, "#4a5568"],
+      [8, "#718096"],
+      [9, "#ffffff"],
+      [10, "#f7fafc"]
     ],
-    "garden-buttons-enhanced.css": [
-      [
-        276,
-        "#9d7bda"
-      ]
-    ],
+    "garden-buttons-enhanced.css": [[276, "#9d7bda"]],
     "garden-ui-layout.css": [
-      [
-        1460,
-        "#FCEFEF"
-      ],
-      [
-        1461,
-        "#B57EDC"
-      ],
-      [
-        1621,
-        "#1a1a1a"
-      ],
-      [
-        1622,
-        "#3d2970"
-      ]
+      [1460, "#FCEFEF"],
+      [1461, "#B57EDC"],
+      [1621, "#1a1a1a"],
+      [1622, "#3d2970"]
     ],
     "garden-ui-footer.css": [
-      [
-        47,
-        "#FCEFEF"
-      ],
-      [
-        48,
-        "#B57EDC"
-      ],
-      [
-        234,
-        "#1a1a1a"
-      ],
-      [
-        235,
-        "#3d2970"
-      ]
+      [47, "#FCEFEF"],
+      [48, "#B57EDC"],
+      [234, "#1a1a1a"],
+      [235, "#3d2970"]
     ],
     "tailwind.min.css": [
-      [
-        1,
-        "#0000"
-      ],
-      [
-        1,
-        "#0000"
-      ],
-      [
-        1,
-        "#0000"
-      ],
-      [
-        1,
-        "#0000"
-      ],
-      [
-        1,
-        "#fff"
-      ]
+      [1, "#0000"],
+      [1, "#0000"],
+      [1, "#0000"],
+      [1, "#0000"],
+      [1, "#fff"]
     ],
     "combined.css": [
-      [
-        59,
-        "#dcfce7"
-      ],
-      [
-        60,
-        "#bbf7d0"
-      ],
-      [
-        61,
-        "#86efac"
-      ],
-      [
-        62,
-        "#22c55e"
-      ],
-      [
-        63,
-        "#34d399"
-      ]
+      [59, "#dcfce7"],
+      [60, "#bbf7d0"],
+      [61, "#86efac"],
+      [62, "#22c55e"],
+      [63, "#34d399"]
     ],
     "development.css": [
-      [
-        59,
-        "#dcfce7"
-      ],
-      [
-        60,
-        "#bbf7d0"
-      ],
-      [
-        61,
-        "#86efac"
-      ],
-      [
-        62,
-        "#22c55e"
-      ],
-      [
-        63,
-        "#34d399"
-      ]
+      [59, "#dcfce7"],
+      [60, "#bbf7d0"],
+      [61, "#86efac"],
+      [62, "#22c55e"],
+      [63, "#34d399"]
     ],
     "garden-ui-foundation.css": [
-      [
-        100,
-        "#dcfce7"
-      ],
-      [
-        101,
-        "#bbf7d0"
-      ],
-      [
-        102,
-        "#86efac"
-      ],
-      [
-        103,
-        "#22c55e"
-      ],
-      [
-        104,
-        "#34d399"
-      ]
+      [100, "#dcfce7"],
+      [101, "#bbf7d0"],
+      [102, "#86efac"],
+      [103, "#22c55e"],
+      [104, "#34d399"]
     ],
     "garden-ui-complete.css": [
-      [
-        110,
-        "#dcfce7"
-      ],
-      [
-        111,
-        "#bbf7d0"
-      ],
-      [
-        112,
-        "#86efac"
-      ],
-      [
-        113,
-        "#22c55e"
-      ],
-      [
-        114,
-        "#34d399"
-      ]
+      [110, "#dcfce7"],
+      [111, "#bbf7d0"],
+      [112, "#86efac"],
+      [113, "#22c55e"],
+      [114, "#34d399"]
     ]
   },
   "file_sizes": {

@@ -1,12 +1,12 @@
 [
-{
-  "model": "public_site.researchpage",
-  "pk": 14,
-  "fields": {
-    "intro_text": "<p>In-depth research and analysis on ethical investing, portfolio construction, and sustainable finance strategies.</p>",
-    "description": "<p>Our research team provides actionable insights to help you make informed investment decisions that align with your values and financial goals.</p>",
-    "featured_title": "Featured Research",
-    "featured_description": "<p>Highlighting our most important research findings and market insights.</p>"
+  {
+    "model": "public_site.researchpage",
+    "pk": 14,
+    "fields": {
+      "intro_text": "<p>In-depth research and analysis on ethical investing, portfolio construction, and sustainable finance strategies.</p>",
+      "description": "<p>Our research team provides actionable insights to help you make informed investment decisions that align with your values and financial goals.</p>",
+      "featured_title": "Featured Research",
+      "featured_description": "<p>Highlighting our most important research findings and market insights.</p>"
+    }
   }
-}
 ]

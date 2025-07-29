@@ -1,152 +1,74 @@
-{% comment %}
-Financial Service Schema Implementation
-Based on Schema.org FinancialService markup optimized for financial advisory firms and RIAs
-{% endcomment %}
+{% comment %} Financial Service Schema Implementation Based on Schema.org FinancialService markup optimized for
+financial advisory firms and RIAs {% endcomment %}
 
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "FinancialService",
-      "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
-      "name": "Ethical Capital",
-      "alternateName": "Ethical Capital Investment Collaborative",
-      "url": "{{ request.scheme }}://{{ request.get_host }}",
-      "logo": "{{ request.scheme }}://{{ request.get_host }}{% load static %}{% static 'favicon-512x512.png' %}",
-      "description": "SEC-registered investment adviser specializing in ethical investing, sustainable investing, and ESG investment strategies. We hand-screen thousands of companies to build high-conviction portfolios where ethics and excellence converge in responsible investing.",
-      "foundingDate": "2021",
-      "hasCredential": [
-        {
-          "@type": "EducationalOccupationalCredential",
-          "credentialCategory": "SEC Registration",
-          "recognizedBy": {
-            "@type": "Organization",
-            "name": "Securities and Exchange Commission"
-          }
-        }
-      ],
-      "additionalProperty": [
-        {
-          "@type": "PropertyValue",
-          "name": "SEC Registration",
-          "value": "SEC-registered investment adviser"
-        },
-        {
-          "@type": "PropertyValue",
-          "name": "Fiduciary Standard",
-          "value": "Always acts as fiduciary for clients"
-        },
-        {
-          "@type": "PropertyValue",
-          "name": "Investment Philosophy",
-          "value": "Ethical investing and sustainable investing through rigorous ESG screening as core investment discipline"
-        },
-        {
-          "@type": "PropertyValue",
-          "name": "Risk Disclaimer",
-          "value": "Past performance does not guarantee future results. Investment advice involves risk. All investments carry the potential for loss."
-        }
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "Client Services",
-        "email": "hello@ethicic.com",
-        "availableLanguage": "English"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Salt Lake City",
-        "addressRegion": "UT",
-        "addressCountry": "US"
-      },
-      "areaServed": "US",
-      "currenciesAccepted": "USD",
-      "serviceType": [
-        "Ethical Investing",
-        "Sustainable Investing",
-        "ESG Investment Management",
-        "Responsible Investment Strategies",
-        "Ethical Investment Screening",
-        "Impact Investing",
-        "Values-Based Investing",
-        "Socially Responsible Investing",
-        "Fossil Fuel Divestment",
-        "BDS Investment Screening",
-        "Animal Welfare Investing",
-        "Human Rights Investment Screening",
-        "Environmental Exclusion Investing",
-        "Corporate Misconduct Screening",
-        "Weapons Divestment",
-        "Tobacco Divestment",
-        "Surveillance Technology Exclusions",
-        "Financial Planning",
-        "Portfolio Management"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Investment Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Growth Strategy",
-              "description": "High-conviction portfolios of 15-25 companies with full ethical screening implementation",
-              "provider": {
-                "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
-              }
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Income Strategy",
-              "description": "Ethical screening applied to income-generating securities with focus on yield",
-              "provider": {
-                "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
-              }
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Diversification Strategy",
-              "description": "Ethically screened external funds for broader diversification",
-              "provider": {
-                "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
-              }
-            }
-          }
-        ]
-      },
-      "founder": {
-        "@type": "Person",
-        "@id": "{{ request.scheme }}://{{ request.get_host }}/#founder",
-        "name": "Sloane Ortel",
-        "jobTitle": "Chief Investment Officer",
-        "worksFor": {
-          "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
-        },
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FinancialService",
+        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+        "name": "Ethical Capital",
+        "alternateName": "Ethical Capital Investment Collaborative",
+        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "logo": "{{ request.scheme }}://{{ request.get_host }}{% load static %}{% static 'favicon-512x512.png' %}",
+        "description": "SEC-registered investment adviser specializing in ethical investing, sustainable investing, and ESG investment strategies. We hand-screen thousands of companies to build high-conviction portfolios where ethics and excellence converge in responsible investing.",
+        "foundingDate": "2021",
         "hasCredential": [
           {
             "@type": "EducationalOccupationalCredential",
-            "name": "Investment Experience",
-            "credentialCategory": "Professional Experience",
-            "description": "Over 15 years of investment experience focused on ethical investing"
+            "credentialCategory": "SEC Registration",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Securities and Exchange Commission"
+            }
           }
         ],
-        "description": "Chief Investment Officer with extensive experience in ethical investing, sustainable investing, and ESG investment strategies. Sloane founded Ethical Capital to provide institutional-grade responsible investing with boutique attention.",
-        "knowsAbout": [
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "SEC Registration",
+            "value": "SEC-registered investment adviser"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Fiduciary Standard",
+            "value": "Always acts as fiduciary for clients"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Investment Philosophy",
+            "value": "Ethical investing and sustainable investing through rigorous ESG screening as core investment discipline"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Risk Disclaimer",
+            "value": "Past performance does not guarantee future results. Investment advice involves risk. All investments carry the potential for loss."
+          }
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Client Services",
+          "email": "hello@ethicic.com",
+          "availableLanguage": "English"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Salt Lake City",
+          "addressRegion": "UT",
+          "addressCountry": "US"
+        },
+        "areaServed": "US",
+        "currenciesAccepted": "USD",
+        "serviceType": [
           "Ethical Investing",
           "Sustainable Investing",
-          "ESG Investment Strategies",
-          "Responsible Investing",
+          "ESG Investment Management",
+          "Responsible Investment Strategies",
+          "Ethical Investment Screening",
           "Impact Investing",
-          "Socially Responsible Investing",
           "Values-Based Investing",
+          "Socially Responsible Investing",
           "Fossil Fuel Divestment",
           "BDS Investment Screening",
           "Animal Welfare Investing",
@@ -156,36 +78,110 @@ Based on Schema.org FinancialService markup optimized for financial advisory fir
           "Weapons Divestment",
           "Tobacco Divestment",
           "Surveillance Technology Exclusions",
-          "Ethical Investment Screening",
-          "Portfolio Management",
           "Financial Planning",
-          "ESG Analysis",
-          "Intersectional Company Analysis",
-          "Open Source Investment Methodology"
-        ]
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/ethical-capital"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "{{ request.scheme }}://{{ request.get_host }}/#website",
-      "url": "{{ request.scheme }}://{{ request.get_host }}",
-      "name": "Ethical Capital",
-      "description": "Ethical investment management and financial planning services",
-      "publisher": {
-        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "{{ request.scheme }}://{{ request.get_host }}/search/?q={search_term_string}"
+          "Portfolio Management"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Investment Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Growth Strategy",
+                "description": "High-conviction portfolios of 15-25 companies with full ethical screening implementation",
+                "provider": {
+                  "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+                }
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Income Strategy",
+                "description": "Ethical screening applied to income-generating securities with focus on yield",
+                "provider": {
+                  "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+                }
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Diversification Strategy",
+                "description": "Ethically screened external funds for broader diversification",
+                "provider": {
+                  "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+                }
+              }
+            }
+          ]
         },
-        "query-input": "required name=search_term_string"
+        "founder": {
+          "@type": "Person",
+          "@id": "{{ request.scheme }}://{{ request.get_host }}/#founder",
+          "name": "Sloane Ortel",
+          "jobTitle": "Chief Investment Officer",
+          "worksFor": {
+            "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+          },
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Investment Experience",
+              "credentialCategory": "Professional Experience",
+              "description": "Over 15 years of investment experience focused on ethical investing"
+            }
+          ],
+          "description": "Chief Investment Officer with extensive experience in ethical investing, sustainable investing, and ESG investment strategies. Sloane founded Ethical Capital to provide institutional-grade responsible investing with boutique attention.",
+          "knowsAbout": [
+            "Ethical Investing",
+            "Sustainable Investing",
+            "ESG Investment Strategies",
+            "Responsible Investing",
+            "Impact Investing",
+            "Socially Responsible Investing",
+            "Values-Based Investing",
+            "Fossil Fuel Divestment",
+            "BDS Investment Screening",
+            "Animal Welfare Investing",
+            "Human Rights Investment Screening",
+            "Environmental Exclusion Investing",
+            "Corporate Misconduct Screening",
+            "Weapons Divestment",
+            "Tobacco Divestment",
+            "Surveillance Technology Exclusions",
+            "Ethical Investment Screening",
+            "Portfolio Management",
+            "Financial Planning",
+            "ESG Analysis",
+            "Intersectional Company Analysis",
+            "Open Source Investment Methodology"
+          ]
+        },
+        "sameAs": ["https://www.linkedin.com/company/ethical-capital"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "{{ request.scheme }}://{{ request.get_host }}/#website",
+        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "name": "Ethical Capital",
+        "description": "Ethical investment management and financial planning services",
+        "publisher": {
+          "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "{{ request.scheme }}://{{ request.get_host }}/search/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
       }
-    }
-  ]
-}
+    ]
+  }
 </script>

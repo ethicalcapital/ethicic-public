@@ -2,107 +2,107 @@
 /* Replaces inline styles in base.html with proper CSS architecture */
 
 @layer themes {
-    /* ===== LIGHT THEME OVERRIDES ===== */
+  /* ===== LIGHT THEME OVERRIDES ===== */
 
-    /* Lavender Blush background for light mode */
-    [data-theme="light"] body,
-    [data-theme="light"] .main-content,
-    [data-theme="light"] .garden-panel {
-        background-color: #FCEFEF;
-    }
+  /* Lavender Blush background for light mode */
+  [data-theme="light"] body,
+  [data-theme="light"] .main-content,
+  [data-theme="light"] .garden-panel {
+    background-color: #fcefef;
+  }
 
-    /* Light mode text color */
-    [data-theme="light"] body {
-        color: #111;
-    }
+  /* Light mode text color */
+  [data-theme="light"] body {
+    color: #111;
+  }
 
-    /* Lavender primary color for headers and accents */
-    [data-theme="light"] .garden-header,
-    [data-theme="light"] .garden-panel__header,
-    [data-theme="light"] .garden-panel-header {
-        background-color: #B57EDC;
-        color: white;
-    }
+  /* Lavender primary color for headers and accents */
+  [data-theme="light"] .garden-header,
+  [data-theme="light"] .garden-panel__header,
+  [data-theme="light"] .garden-panel-header {
+    background-color: #b57edc;
+    color: white;
+  }
 
-    /* Tiffany Blue for CTA buttons only (not navigation) - WCAG AA Compliant */
-    [data-theme="light"] .hero-panel .cta-actions .garden-action.primary,
-    [data-theme="light"] .cta-panel .garden-action.primary,
-    [data-theme="light"] .serve-item .garden-action.primary,
-    [data-theme="light"] .cta-actions .garden-action.primary {
-        background-color: #2d7a68;
-        color: #fff;
-        border: 2px solid #2d7a68;
-        text-decoration: none;
-    }
+  /* Tiffany Blue for CTA buttons only (not navigation) - WCAG AA Compliant */
+  [data-theme="light"] .hero-panel .cta-actions .garden-action.primary,
+  [data-theme="light"] .cta-panel .garden-action.primary,
+  [data-theme="light"] .serve-item .garden-action.primary,
+  [data-theme="light"] .cta-actions .garden-action.primary {
+    background-color: #2d7a68;
+    color: #fff;
+    border: 2px solid #2d7a68;
+    text-decoration: none;
+  }
 
-    [data-theme="light"] .hero-panel .cta-actions .garden-action.primary:hover,
-    [data-theme="light"] .cta-panel .garden-action.primary:hover,
-    [data-theme="light"] .serve-item .garden-action.primary:hover,
-    [data-theme="light"] .cta-actions .garden-action.primary:hover {
-        background-color: #256559;
-        border-color: #256559;
-        color: #fff;
-    }
+  [data-theme="light"] .hero-panel .cta-actions .garden-action.primary:hover,
+  [data-theme="light"] .cta-panel .garden-action.primary:hover,
+  [data-theme="light"] .serve-item .garden-action.primary:hover,
+  [data-theme="light"] .cta-actions .garden-action.primary:hover {
+    background-color: #256559;
+    border-color: #256559;
+    color: #fff;
+  }
 
-    /* ===== DARK THEME OVERRIDES ===== */
+  /* ===== DARK THEME OVERRIDES ===== */
 
-    /* Dark purple for header and footer */
-    [data-theme="dark"] .garden-header,
-    :root .garden-header {
-        background-color: #1f0322;
-    }
+  /* Dark purple for header and footer */
+  [data-theme="dark"] .garden-header,
+  :root .garden-header {
+    background-color: #1f0322;
+  }
 
-    /* Maya Blue CTAs in dark mode */
-    [data-theme="dark"] .garden-action.primary,
-    :root .garden-action.primary {
-        background-color: #55c1ff;
-        color: #000;
-        border: 2px solid #55c1ff;
-    }
+  /* Maya Blue CTAs in dark mode */
+  [data-theme="dark"] .garden-action.primary,
+  :root .garden-action.primary {
+    background-color: #55c1ff;
+    color: #000;
+    border: 2px solid #55c1ff;
+  }
 
-    [data-theme="dark"] .garden-action.primary:hover,
-    :root .garden-action.primary:hover {
-        background-color: #3fb4ff;
-        border-color: #3fb4ff;
-    }
+  [data-theme="dark"] .garden-action.primary:hover,
+  :root .garden-action.primary:hover {
+    background-color: #3fb4ff;
+    border-color: #3fb4ff;
+  }
 
-    /* ===== HIGH SPECIFICITY CTA OVERRIDES ===== */
+  /* ===== HIGH SPECIFICITY CTA OVERRIDES ===== */
 
-    /* Tiffany Blue for CTA-specific buttons only (not navigation) - highest specificity */
-    html[data-theme="light"] body .hero-panel .cta-actions a.garden-action.primary,
-    html[data-theme="light"] body .cta-actions .garden-action.primary,
-    html[data-theme="light"] body .cta-panel .garden-action.primary,
-    html[data-theme="light"] body .serve-item .garden-action.primary {
-        background-color: #2d7a68;
-        background-image: none;
-        color: #fff;
-        border: 2px solid #2d7a68;
-    }
+  /* Tiffany Blue for CTA-specific buttons only (not navigation) - highest specificity */
+  html[data-theme="light"] body .hero-panel .cta-actions a.garden-action.primary,
+  html[data-theme="light"] body .cta-actions .garden-action.primary,
+  html[data-theme="light"] body .cta-panel .garden-action.primary,
+  html[data-theme="light"] body .serve-item .garden-action.primary {
+    background-color: #2d7a68;
+    background-image: none;
+    color: #fff;
+    border: 2px solid #2d7a68;
+  }
 
-    /* ===== FOOTER STYLING ===== */
+  /* ===== FOOTER STYLING ===== */
 
-    /* Footer styling - consistent with site theme */
-    [data-theme="light"] .garden-footer {
-        background-color: #FCEFEF;
-        border-top-color: #B57EDC;
-    }
+  /* Footer styling - consistent with site theme */
+  [data-theme="light"] .garden-footer {
+    background-color: #fcefef;
+    border-top-color: #b57edc;
+  }
 
-    [data-theme="dark"] .garden-footer {
-        background-color: #1a1a1a;
-        border-top: 4px solid #3d2970;
-    }
+  [data-theme="dark"] .garden-footer {
+    background-color: #1a1a1a;
+    border-top: 4px solid #3d2970;
+  }
 
-    /* ===== BODY AND BACKGROUND COLORS ===== */
+  /* ===== BODY AND BACKGROUND COLORS ===== */
 
-    /* Dark theme body */
-    [data-theme="dark"] body {
-        background-color: #0f0f0f;
-        color: #e0e0e0;
-    }
+  /* Dark theme body */
+  [data-theme="dark"] body {
+    background-color: #0f0f0f;
+    color: #e0e0e0;
+  }
 
-    /* Light theme body */
-    [data-theme="light"] body {
-        background-color: #fff;
-        color: #333;
-    }
+  /* Light theme body */
+  [data-theme="light"] body {
+    background-color: #fff;
+    color: #333;
+  }
 }

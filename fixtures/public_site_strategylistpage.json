@@ -1,12 +1,12 @@
 [
-{
-  "model": "public_site.strategylistpage",
-  "pk": 47,
-  "fields": {
-    "intro_text": "<p>Explore our range of ethical investment strategies designed to align your portfolio with your values while maintaining strong financial performance.</p>",
-    "description": "",
-    "comparison_title": "Strategy Comparison",
-    "comparison_description": ""
+  {
+    "model": "public_site.strategylistpage",
+    "pk": 47,
+    "fields": {
+      "intro_text": "<p>Explore our range of ethical investment strategies designed to align your portfolio with your values while maintaining strong financial performance.</p>",
+      "description": "",
+      "comparison_title": "Strategy Comparison",
+      "comparison_description": ""
+    }
   }
-}
 ]

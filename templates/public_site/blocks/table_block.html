@@ -1,76 +1,75 @@
 {% load wagtailcore_tags %}
 
 <div class="wagtail-table-block">
-    {% if value.caption %}
-        <div class="wagtail-table-caption">
-            <h4>{{ value.caption }}</h4>
-        </div>
-    {% endif %}
+  {% if value.caption %}
+  <div class="wagtail-table-caption">
+    <h4>{{ value.caption }}</h4>
+  </div>
+  {% endif %} {% if value.description %}
+  <div class="wagtail-table-description" id="table-desc-{{ forloop.parentloop.counter0|default:forloop.counter0 }}">
+    {{ value.description|richtext }}
+  </div>
+  {% endif %}
 
-    {% if value.description %}
-        <div class="wagtail-table-description" id="table-desc-{{ forloop.parentloop.counter0|default:forloop.counter0 }}">
-            {{ value.description|richtext }}
-        </div>
-    {% endif %}
+  <div class="wagtail-table-wrapper">
+    {% if value.table and value.table.data %}
+    <table
+      class="wagtail-data-table"
+      role="table"
+      {%
+      if
+      value.caption
+      %}aria-labelledby="table-caption-{{ forloop.parentloop.counter0|default:forloop.counter0 }}"
+      {%
+      endif
+      %}
+      {%
+      if
+      value.description
+      %}aria-describedby="table-desc-{{ forloop.parentloop.counter0|default:forloop.counter0 }}"
+      {%
+      endif
+      %}
+    >
+      {% if value.caption %}
+      <caption id="table-caption-{{ forloop.parentloop.counter0|default:forloop.counter0 }}">
+        {{ value.caption }}
+      </caption>
+      {% endif %} {% for row in value.table.data %} {% if forloop.first and value.table.first_row_is_table_header %}
+      <thead>
+        <tr>
+          {% for cell in row %} {% if cell %}
+          <th scope="col" role="columnheader">{{ cell }}</th>
+          {% endif %} {% endfor %}
+        </tr>
+      </thead>
+      <tbody>{% elif forloop.first and not value.table.first_row_is_table_header %}</tbody>
 
-    <div class="wagtail-table-wrapper">
-        {% if value.table and value.table.data %}
-            <table class="wagtail-data-table"
-                   role="table"
-                   {% if value.caption %}aria-labelledby="table-caption-{{ forloop.parentloop.counter0|default:forloop.counter0 }}"{% endif %}
-                   {% if value.description %}aria-describedby="table-desc-{{ forloop.parentloop.counter0|default:forloop.counter0 }}"{% endif %}>
-
-                {% if value.caption %}
-                    <caption id="table-caption-{{ forloop.parentloop.counter0|default:forloop.counter0 }}">
-                        {{ value.caption }}
-                    </caption>
-                {% endif %}
-
-                {% for row in value.table.data %}
-                    {% if forloop.first and value.table.first_row_is_table_header %}
-                        <thead>
-                            <tr>
-                                {% for cell in row %}
-                                    {% if cell %}
-                                        <th scope="col" role="columnheader">{{ cell }}</th>
-                                    {% endif %}
-                                {% endfor %}
-                            </tr>
-                        </thead>
-                        <tbody>
-                    {% elif forloop.first and not value.table.first_row_is_table_header %}
-                        <tbody>
-                        <tr>
-                            {% for cell in row %}
-                                {% if cell %}
-                                    <td role="cell">{{ cell }}</td>
-                                {% endif %}
-                            {% endfor %}
-                        </tr>
-                    {% else %}
-                        <tr>
-                            {% for cell in row %}
-                                {% if cell %}
-                                    {% if forloop.first and not value.table.first_row_is_table_header %}
-                                        <th scope="row" role="rowheader">{{ cell }}</th>
-                                    {% else %}
-                                        <td role="cell">{{ cell }}</td>
-                                    {% endif %}
-                                {% endif %}
-                            {% endfor %}
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
+      <tbody>
+        <tr>
+          {% for cell in row %} {% if cell %}
+          <td role="cell">{{ cell }}</td>
+          {% endif %} {% endfor %}
+        </tr>
         {% else %}
-            <p>No table data found</p>
-        {% endif %}
-    </div>
-
-    {% if value.source %}
-        <div class="wagtail-table-source">
-            <small>Source: {{ value.source }}</small>
-        </div>
+        <tr>
+          {% for cell in row %} {% if cell %} {% if forloop.first and not value.table.first_row_is_table_header %}
+          <th scope="row" role="rowheader">{{ cell }}</th>
+          {% else %}
+          <td role="cell">{{ cell }}</td>
+          {% endif %} {% endif %} {% endfor %}
+        </tr>
+        {% endif %} {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>No table data found</p>
     {% endif %}
+  </div>
+
+  {% if value.source %}
+  <div class="wagtail-table-source">
+    <small>Source: {{ value.source }}</small>
+  </div>
+  {% endif %}
 </div>

@@ -3,8 +3,8 @@
    Provides proper focus management for modal dialogs and dropdowns
    ======================================== */
 
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
   // Focus Trap Manager
   const FocusTrap = {
@@ -28,14 +28,14 @@
 
     // Remove all focus traps
     removeAll() {
-      this.activeTraps.forEach(trap => trap.destroy());
+      this.activeTraps.forEach((trap) => trap.destroy());
       this.activeTraps = [];
     },
 
     // Get the currently active focus trap
     getActive() {
       return this.activeTraps[this.activeTraps.length - 1] || null;
-    }
+    },
   };
 
   // Individual Focus Trap Instance
@@ -47,7 +47,7 @@
         returnFocus: options.returnFocus !== false,
         allowOutsideClick: options.allowOutsideClick || false,
         escapeKey: options.escapeKey !== false,
-        ...options
+        ...options,
       };
 
       this.previouslyFocusedElement = document.activeElement;
@@ -66,20 +66,20 @@
       this.updateFocusableElements();
 
       // Add event listeners
-      document.addEventListener('keydown', this.boundHandleKeydown, true);
+      document.addEventListener("keydown", this.boundHandleKeydown, true);
       if (!this.options.allowOutsideClick) {
-        document.addEventListener('click', this.boundHandleClick, true);
+        document.addEventListener("click", this.boundHandleClick, true);
       }
 
       // Set initial focus
       this.setInitialFocus();
 
       // Add role and aria attributes if not present
-      if (!this.element.getAttribute('role')) {
-        this.element.setAttribute('role', 'dialog');
+      if (!this.element.getAttribute("role")) {
+        this.element.setAttribute("role", "dialog");
       }
-      if (!this.element.getAttribute('aria-modal')) {
-        this.element.setAttribute('aria-modal', 'true');
+      if (!this.element.getAttribute("aria-modal")) {
+        this.element.setAttribute("aria-modal", "true");
       }
 
       // Hide other content from screen readers
@@ -92,8 +92,8 @@
       this.isActive = false;
 
       // Remove event listeners
-      document.removeEventListener('keydown', this.boundHandleKeydown, true);
-      document.removeEventListener('click', this.boundHandleClick, true);
+      document.removeEventListener("keydown", this.boundHandleKeydown, true);
+      document.removeEventListener("click", this.boundHandleClick, true);
 
       // Restore focus
       if (this.options.returnFocus && this.previouslyFocusedElement) {
@@ -110,19 +110,19 @@
 
     updateFocusableElements() {
       const focusableSelectors = [
-        'button:not([disabled])',
-        'input:not([disabled])',
-        'select:not([disabled])',
-        'textarea:not([disabled])',
-        'a[href]',
+        "button:not([disabled])",
+        "input:not([disabled])",
+        "select:not([disabled])",
+        "textarea:not([disabled])",
+        "a[href]",
         '[tabindex]:not([tabindex="-1"])',
-        '[contenteditable="true"]'
+        '[contenteditable="true"]',
       ];
 
       this.focusableElements = Array.from(
-        this.element.querySelectorAll(focusableSelectors.join(','))
-      ).filter(el => {
-        return this.isVisible(el) && !el.hasAttribute('aria-hidden');
+        this.element.querySelectorAll(focusableSelectors.join(","))
+      ).filter((el) => {
+        return this.isVisible(el) && !el.hasAttribute("aria-hidden");
       });
 
       this.firstFocusableElement = this.focusableElements[0];
@@ -131,10 +131,12 @@
 
     isVisible(element) {
       const style = window.getComputedStyle(element);
-      return style.display !== 'none' &&
-                   style.visibility !== 'hidden' &&
-                   style.opacity !== '0' &&
-                   element.offsetParent !== null;
+      return (
+        style.display !== "none" &&
+        style.visibility !== "hidden" &&
+        style.opacity !== "0" &&
+        element.offsetParent !== null
+      );
     }
 
     setInitialFocus() {
@@ -142,7 +144,7 @@
 
       // Use specified initial focus element
       if (this.options.initialFocus) {
-        if (typeof this.options.initialFocus === 'string') {
+        if (typeof this.options.initialFocus === "string") {
           targetElement = this.element.querySelector(this.options.initialFocus);
         } else if (this.options.initialFocus.nodeType) {
           targetElement = this.options.initialFocus;
@@ -157,7 +159,7 @@
       // Fallback to the container itself
       if (!targetElement) {
         targetElement = this.element;
-        this.element.setAttribute('tabindex', '-1');
+        this.element.setAttribute("tabindex", "-1");
       }
 
       if (targetElement) {
@@ -172,14 +174,14 @@
       if (!this.isActive) return;
 
       // Handle Escape key
-      if (event.key === 'Escape' && this.options.escapeKey) {
+      if (event.key === "Escape" && this.options.escapeKey) {
         event.preventDefault();
         this.deactivate();
         return;
       }
 
       // Handle Tab key for focus trapping
-      if (event.key === 'Tab') {
+      if (event.key === "Tab") {
         this.handleTabKey(event);
       }
     }
@@ -224,15 +226,14 @@
 
     hideOtherContent() {
       this.hiddenElements = [];
-      const siblings = Array.from(document.body.children).filter(child =>
-        child !== this.element &&
-                !this.element.contains(child) &&
-                !child.contains(this.element)
+      const siblings = Array.from(document.body.children).filter(
+        (child) =>
+          child !== this.element && !this.element.contains(child) && !child.contains(this.element)
       );
 
-      siblings.forEach(sibling => {
-        if (!sibling.hasAttribute('aria-hidden')) {
-          sibling.setAttribute('aria-hidden', 'true');
+      siblings.forEach((sibling) => {
+        if (!sibling.hasAttribute("aria-hidden")) {
+          sibling.setAttribute("aria-hidden", "true");
           this.hiddenElements.push(sibling);
         }
       });
@@ -240,8 +241,8 @@
 
     restoreOtherContent() {
       if (this.hiddenElements) {
-        this.hiddenElements.forEach(element => {
-          element.removeAttribute('aria-hidden');
+        this.hiddenElements.forEach((element) => {
+          element.removeAttribute("aria-hidden");
         });
         this.hiddenElements = [];
       }
@@ -258,12 +259,12 @@
 
     initializeDialogs() {
       // Auto-trap focus for elements with dialog role
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         const dialogs = document.querySelectorAll('[role="dialog"]');
-        dialogs.forEach(dialog => {
-          if (this.isVisible(dialog) && !dialog.hasAttribute('data-focus-trap-initialized')) {
+        dialogs.forEach((dialog) => {
+          if (this.isVisible(dialog) && !dialog.hasAttribute("data-focus-trap-initialized")) {
             FocusTrap.create(dialog);
-            dialog.setAttribute('data-focus-trap-initialized', 'true');
+            dialog.setAttribute("data-focus-trap-initialized", "true");
           }
         });
       });
@@ -271,17 +272,17 @@
 
     initializeDropdowns() {
       // Handle Alpine.js dropdowns
-      document.addEventListener('alpine:init', () => {
+      document.addEventListener("alpine:init", () => {
         // This will be enhanced when Alpine.js is available
-        if (typeof Alpine !== 'undefined') {
-          Alpine.directive('focus-trap', (el, _directive, { cleanup }) => {
+        if (typeof Alpine !== "undefined") {
+          Alpine.directive("focus-trap", (el, _directive, { cleanup }) => {
             let trap = null;
 
             const createTrap = () => {
               if (!trap && this.isVisible(el)) {
                 trap = FocusTrap.create(el, {
                   initialFocus: el.querySelector('[x-ref="firstFocusable"]'),
-                  returnFocus: true
+                  returnFocus: true,
                 });
               }
             };
@@ -304,7 +305,7 @@
 
             observer.observe(el, {
               attributes: true,
-              attributeFilter: ['style', 'class']
+              attributeFilter: ["style", "class"],
             });
 
             cleanup(() => {
@@ -318,9 +319,9 @@
 
     initializeModals() {
       // Handle HTMX modal responses
-      document.addEventListener('htmx:afterSwap', (event) => {
+      document.addEventListener("htmx:afterSwap", (event) => {
         const modals = event.target.querySelectorAll('.modal, [role="dialog"], [data-focus-trap]');
-        modals.forEach(modal => {
+        modals.forEach((modal) => {
           if (this.isVisible(modal)) {
             FocusTrap.create(modal);
           }
@@ -330,40 +331,37 @@
 
     isVisible(element) {
       const style = window.getComputedStyle(element);
-      return style.display !== 'none' &&
-                   style.visibility !== 'hidden' &&
-                   style.opacity !== '0';
-    }
+      return style.display !== "none" && style.visibility !== "hidden" && style.opacity !== "0";
+    },
   };
 
   // Notification dropdown specific enhancement
   const NotificationDropdownEnhancer = {
     init() {
-      document.addEventListener('alpine:init', () => {
+      document.addEventListener("alpine:init", () => {
         // Enhance notification bell dropdowns
-        const bells = document.querySelectorAll('.notification-bell');
-        bells.forEach(bell => {
+        const bells = document.querySelectorAll(".notification-bell");
+        bells.forEach((bell) => {
           this.enhanceNotificationBell(bell);
         });
       });
     },
 
     enhanceNotificationBell(bell) {
-      const dropdown = bell.querySelector('.notification-dropdown');
+      const dropdown = bell.querySelector(".notification-dropdown");
       if (!dropdown) return;
 
       let trap = null;
 
       // Create observer for dropdown visibility
       const observer = new MutationObserver(() => {
-        const isVisible = dropdown.style.display !== 'none' &&
-                                dropdown.offsetParent !== null;
+        const isVisible = dropdown.style.display !== "none" && dropdown.offsetParent !== null;
 
         if (isVisible && !trap) {
           trap = FocusTrap.create(dropdown, {
             initialFocus: dropdown.querySelector('[x-ref="firstFocusable"]'),
             returnFocus: true,
-            escapeKey: true
+            escapeKey: true,
           });
         } else if (!isVisible && trap) {
           FocusTrap.remove(trap);
@@ -373,10 +371,10 @@
 
       observer.observe(dropdown, {
         attributes: true,
-        attributeFilter: ['style', 'class'],
-        childList: true
+        attributeFilter: ["style", "class"],
+        childList: true,
       });
-    }
+    },
   };
 
   // Public API
@@ -391,10 +389,9 @@
     // Focus trapping accessibility enhancements loaded
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFocusTrapping);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFocusTrapping);
   } else {
     initFocusTrapping();
   }
-
 })();

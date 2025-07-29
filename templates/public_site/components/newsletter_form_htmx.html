@@ -1,169 +1,173 @@
 {% load crispy_forms_tags %}
 
 <div class="newsletter-widget" x-data="{ email: '', submitting: false }">
-    {% load wagtailsettings_tags %}
-    {% get_settings "public_site.SiteConfiguration" as site_config %}
-    <h3 class="newsletter-title">{{ site_config.newsletter_title|default:"Stay Updated" }}</h3>
-    <p class="newsletter-description">{{ site_config.newsletter_description|default:"Get our latest insights on ethical investing delivered to your inbox." }}</p>
+  {% load wagtailsettings_tags %} {% get_settings "public_site.SiteConfiguration" as site_config %}
+  <h3 class="newsletter-title">{{ site_config.newsletter_title|default:"Stay Updated" }}</h3>
+  <p class="newsletter-description">
+    {{ site_config.newsletter_description|default:"Get our latest insights on ethical investing delivered to your
+    inbox." }}
+  </p>
 
-    <form hx-post="/api/newsletter/"
-          hx-target="#newsletter-response"
-          hx-indicator="#newsletter-indicator"
-          hx-swap="innerHTML"
-          @htmx:before-request="submitting = true"
-          @htmx:after-request="submitting = false; if ($event.detail.successful) email = ''"
-          class="newsletter-form"
-          aria-label="Newsletter subscription form">
-        {% csrf_token %}
+  <form
+    hx-post="/api/newsletter/"
+    hx-target="#newsletter-response"
+    hx-indicator="#newsletter-indicator"
+    hx-swap="innerHTML"
+    @htmx:before-request="submitting = true"
+    @htmx:after-request="submitting = false; if ($event.detail.successful) email = ''"
+    class="newsletter-form"
+    aria-label="Newsletter subscription form"
+  >
+    {% csrf_token %}
 
-        <div class="newsletter-input-group">
-            <input type="email"
-                   name="email"
-                   x-model="email"
-                   placeholder="Enter your email"
-                   required
-                   :disabled="submitting"
-                   class="newsletter-input"
-                   aria-label="Email address for newsletter subscription"
-                   aria-describedby="newsletter-response newsletter-privacy"
-                   autocomplete="email">
+    <div class="newsletter-input-group">
+      <input
+        type="email"
+        name="email"
+        x-model="email"
+        placeholder="Enter your email"
+        required
+        :disabled="submitting"
+        class="newsletter-input"
+        aria-label="Email address for newsletter subscription"
+        aria-describedby="newsletter-response newsletter-privacy"
+        autocomplete="email"
+      />
 
-            <button type="submit"
-                    :disabled="submitting || !email"
-                    class="newsletter-submit"
-                    aria-label="Subscribe to newsletter">
-                <span x-show="!submitting">Subscribe</span>
-                <span x-show="submitting" x-cloak>
-                    <span id="newsletter-indicator"
-                          class="spinner"
-                          role="status"
-                          aria-label="Loading">⟳</span>
-                </span>
-            </button>
-        </div>
-    </form>
+      <button
+        type="submit"
+        :disabled="submitting || !email"
+        class="newsletter-submit"
+        aria-label="Subscribe to newsletter"
+      >
+        <span x-show="!submitting">Subscribe</span>
+        <span x-show="submitting" x-cloak>
+          <span id="newsletter-indicator" class="spinner" role="status" aria-label="Loading">⟳</span>
+        </span>
+      </button>
+    </div>
+  </form>
 
-    <div id="newsletter-response"
-         role="status"
-         aria-live="polite"
-         aria-atomic="true"></div>
+  <div id="newsletter-response" role="status" aria-live="polite" aria-atomic="true"></div>
 
-    <p id="newsletter-privacy" class="newsletter-privacy">
-        {{ site_config.newsletter_privacy_text|default:"We respect your privacy. Unsubscribe at any time." }}
-    </p>
+  <p id="newsletter-privacy" class="newsletter-privacy">
+    {{ site_config.newsletter_privacy_text|default:"We respect your privacy. Unsubscribe at any time." }}
+  </p>
 </div>
 
 <style>
-    .newsletter-widget {
-        background: var(--color-surface-variant);
-        padding: 1.5rem;
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--color-border);
-    }
+  .newsletter-widget {
+    background: var(--color-surface-variant);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
 
-    .newsletter-title {
-        margin: 0 0 0.5rem 0;
-        font-size: 1.25rem;
-        font-weight: var(--font-semibold);
-        color: var(--color-text-primary);
-    }
+  .newsletter-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: var(--font-semibold);
+    color: var(--color-text-primary);
+  }
 
-    .newsletter-description {
-        margin: 0 0 1rem 0;
-        color: var(--color-text-secondary);
-        font-size: 0.875rem;
-        line-height: 1.5;
-    }
+  .newsletter-description {
+    margin: 0 0 1rem 0;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
 
-    .newsletter-form {
-        margin-bottom: 0.5rem;
-    }
+  .newsletter-form {
+    margin-bottom: 0.5rem;
+  }
 
+  .newsletter-input-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-background);
+    color: var(--color-text-primary);
+    font-size: 0.875rem;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-alpha);
+  }
+
+  .newsletter-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .newsletter-submit {
+    padding: 0.75rem 1.5rem;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-medium);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .newsletter-submit:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px var(--color-primary-alpha);
+  }
+
+  .newsletter-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .spinner {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .newsletter-privacy {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary);
+    text-align: center;
+  }
+
+  /* Dark mode adjustments */
+  [data-theme="dark"] .newsletter-widget {
+    background: var(--color-surface-dark);
+  }
+
+  [data-theme="dark"] .newsletter-input {
+    background: var(--color-background);
+    border-color: var(--color-border-dark);
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
     .newsletter-input-group {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .newsletter-input {
-        flex: 1;
-        padding: 0.75rem 1rem;
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-md);
-        background: var(--color-background);
-        color: var(--color-text-primary);
-        font-size: 0.875rem;
-        transition: border-color 0.2s;
-    }
-
-    .newsletter-input:focus {
-        outline: none;
-        border-color: var(--color-primary);
-        box-shadow: 0 0 0 3px var(--color-primary-alpha);
-    }
-
-    .newsletter-input:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
+      flex-direction: column;
     }
 
     .newsletter-submit {
-        padding: 0.75rem 1.5rem;
-        background: var(--color-primary);
-        color: white;
-        border: none;
-        border-radius: var(--radius-md);
-        font-weight: var(--font-medium);
-        cursor: pointer;
-        transition: all 0.2s;
-        white-space: nowrap;
+      width: 100%;
     }
-
-    .newsletter-submit:hover:not(:disabled) {
-        background: var(--color-primary-hover);
-        transform: translateY(-1px);
-        box-shadow: 0 2px 8px var(--color-primary-alpha);
-    }
-
-    .newsletter-submit:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        transform: none;
-    }
-
-    .spinner {
-        display: inline-block;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        to { transform: rotate(360deg); }
-    }
-
-    .newsletter-privacy {
-        margin: 0;
-        font-size: 0.75rem;
-        color: var(--color-text-tertiary);
-        text-align: center;
-    }
-
-    /* Dark mode adjustments */
-    [data-theme="dark"] .newsletter-widget {
-        background: var(--color-surface-dark);
-    }
-
-    [data-theme="dark"] .newsletter-input {
-        background: var(--color-background);
-        border-color: var(--color-border-dark);
-    }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-        .newsletter-input-group {
-            flex-direction: column;
-        }
-
-        .newsletter-submit {
-            width: 100%;
-        }
-    }
+  }
 </style>

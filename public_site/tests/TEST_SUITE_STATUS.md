@@ -84,6 +84,7 @@ The test suite is **complete** but cannot be executed because:
 ## 🚀 How to Enable Tests
 
 1. Add to `INSTALLED_APPS` in your Django settings:
+
 ```python
 INSTALLED_APPS = [
     # ... existing apps ...
@@ -106,11 +107,13 @@ INSTALLED_APPS = [
 ```
 
 2. Run migrations:
+
 ```bash
 python manage.py migrate
 ```
 
 3. Run tests:
+
 ```bash
 # All tests
 python manage.py test public_site.tests -v 2

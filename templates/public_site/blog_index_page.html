@@ -1,654 +1,334 @@
-{% extends "public_site/base_tailwind.html" %}
-{% load wagtailcore_tags wagtailimages_tags static blog_filters %}
-
-{% block title %}{{ display_title }} - Ethical Capital{% endblock %}
-
-{% block body_class %}blog-index-page{% endblock %}
-
-{% block content %}
-<div class="garden-container">
-<!-- Streamlined Hero Section -->
-<section class="hero-panel garden-panel" role="banner" aria-labelledby="hero-heading">
-    <div class="garden-panel__content hero-panel-content">
-        <div class="hero-content-grid">
-            <!-- Main Hero Content -->
-            <div class="hero-main">
-                {% if display_title and display_title.strip and display_title.strip|lower != "hide" and display_title.strip|lower != "blank" %}
-                    <h1 id="hero-heading" class="hero-title">{{ display_title }}</h1>
-                {% endif %}
-                {% if page.intro %}
-                    <div class="hero-subtitle">{{ page.intro|richtext }}</div>
-                {% endif %}
-
-                <!-- Integrated Featured Article Section -->
-                {% if posts %}
-                {% with featured_post=posts.0 %}
-                    <div class="integrated-featured-section">
-                        <!-- Featured KPI Stats at Top -->
-                        {% if featured_post.content %}
-                            {% with key_stats=featured_post.content|select_key_statistics %}
-                                {% if key_stats %}
-                                    <div class="featured-kpi-stats">
-                                        {% for block in key_stats|slice:":3" %}
-                                            <div class="featured-kpi-card">
-                                                <div class="featured-kpi-value">{{ block.value.value }}</div>
-                                                <div class="featured-kpi-label">{{ block.value.label }}</div>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                            {% endwith %}
-                        {% endif %}
-
-                        <!-- Featured Image -->
-                        {% if featured_post.featured_image %}
-                            <div class="featured-image-container">
-                                {% image featured_post.featured_image width-500 as featured_img %}
-                                <img src="{{ featured_img.url }}"
-                                     alt="{{ featured_post.featured_image.title|default:featured_post.title }}"
-                                     loading="eager"
-                                     class="featured-hero-image">
-                            </div>
-                        {% endif %}
-
-                        <!-- Featured Article Content -->
-                        <div class="featured-article-details">
-                            <!-- Featured overlay badge -->
-                            <div class="featured-badge-container">
-                                <span class="featured-badge">FEATURED</span>
-                            </div>
-
-                            <!-- Article Meta -->
-                            <div class="featured-meta">
-                                {% if featured_post.publish_date %}
-                                    <span class="featured-publish-date">{{ featured_post.publish_date|date:"F j, Y" }}</span>
-                                {% endif %}
-                                {% if featured_post.reading_time %}
-                                    <span class="featured-reading-time">{{ featured_post.reading_time }} min read</span>
-                                {% endif %}
-                            </div>
-
-                            <!-- Tags -->
-                            {% if featured_post.tags.all %}
-                                <div class="featured-tags">
-                                    {% for tag in featured_post.tags.all|slice:":2" %}
-                                        <span class="featured-tag">{{ tag }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-
-                            <!-- Title -->
-                            <h2 class="featured-title">
-                                <a href="{{ featured_post.url_path }}">{{ featured_post.title }}</a>
-                            </h2>
-
-                            <!-- Excerpt -->
-                            {% if featured_post.excerpt %}
-                                <p class="featured-excerpt">{{ featured_post.excerpt|truncatewords:25 }}</p>
-                            {% endif %}
-
-                            <!-- Action Button -->
-                            <div class="featured-actions">
-                                <a href="{{ featured_post.url_path }}" class="garden-action primary large">READ FEATURED ARTICLE</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endwith %}
-                {% endif %}
-            </div>
-
-        </div>
+{% extends "public_site/base_tailwind.html" %} {% load wagtailcore_tags wagtailimages_tags static blog_filters %} {%
+block title %}{{ display_title }} - Ethical Capital{% endblock %} {% block meta_description %}Explore Ethical Capital's
+investment research, market analysis, and insights on sustainable finance and ESG investing strategies.{% endblock %} {%
+block content %}
+<div class="container-ec py-8">
+  <!-- Hero Section -->
+  <section class="card-ec mb-8" role="banner" aria-labelledby="hero-heading">
+    <div class="card-content-ec text-center space-y-4">
+      {% if display_title and display_title.strip and display_title.strip|lower != "hide" and display_title.strip|lower
+      != "blank" %}
+      <h1 id="hero-heading" class="font-mono text-4xl font-bold text-gray-900 dark:text-gray-100">
+        {{ display_title }}
+      </h1>
+      {% endif %} {% if page.intro %}
+      <div class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">{{ page.intro|richtext }}</div>
+      {% endif %}
     </div>
-</section>
+  </section>
 
-<!-- Articles Section -->
-<section class="articles-section garden-panel">
-    <div class="garden-panel__header">
-        <div class="panel-title">LATEST ARTICLES</div>
-    </div>
-    <div class="garden-panel__content articles-content">
-        <div class="articles-container blog-layout-grid">
-        <!-- Articles Content -->
-        <div class="articles-main blog-main-content" class="full-width-important">
-        {% if tag %}
-        <section class="tag-filter garden-panel">
-            <div class="garden-panel__header">
-                <div class="panel-title">FILTER RESULTS</div>
-            </div>
-            <div class="garden-panel__content">
-            <p>Showing posts tagged with: <strong>{{ tag }}</strong></p>
-            <a href="{{ page.url }}" class="garden-action secondary">CLEAR FILTER</a>
-            </div>
-        </section>
+  <!-- Featured Article Section -->
+  {% if posts %} {% with featured_post=posts.0 %}
+  <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6 mb-8">
+    <div class="badge-ec-primary mb-4">Featured Article</div>
+
+    <div class="grid-2col">
+      <!-- Featured Content -->
+      <div class="space-y-4">
+        <h2 class="font-mono text-2xl text-purple-400 font-semibold">
+          <a href="{{ featured_post.url_path }}" class="hover:text-purple-300 transition-colors">
+            {{ featured_post.title }}
+          </a>
+        </h2>
+
+        {% if featured_post.intro %}
+        <p class="text-gray-200">{{ featured_post.intro }}</p>
         {% endif %}
 
-        <!-- Blog Posts -->
-        <section class="blog-posts" class="full-width-important">
-            <div class="blog-posts-content">
-            {% if posts %}
-                <div class="articles-list" id="articles-container" class="full-width-important">
-                    {% for post in posts %}
-                    {% if not forloop.first %}
-                    <article class="article-list-item" data-article-id="{{ post.id }}" class="full-width-important">
-                        <div class="article-list-content" class="article-content-flex">
-                            <!-- Featured Image Only (no KPIs here) -->
-                            {% if post.featured_image %}
-                                <div class="article-list-image" class="article-image-fixed">
-                                    {% image post.featured_image width-200 as list_img %}
-                                    <img src="{{ list_img.url }}"
-                                         alt="{{ post.featured_image.title|default:post.title }}"
-                                         loading="lazy">
-                                </div>
-                            {% endif %}
-
-                            <div class="article-list-text" class="article-text-full">
-                                <!-- KPI Stats ABOVE title -->
-                                {% if post.content %}
-                                    {% with key_stats=post.content|select_key_statistics %}
-                                        {% if key_stats %}
-                                            <div class="article-kpi-header">
-                                                {% for block in key_stats|slice:":3" %}
-                                                    <div class="kpi-header-item">
-                                                        <span class="kpi-header-value">{{ block.value.value }}</span>
-                                                        <span class="kpi-header-label">{{ block.value.label }}</span>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    {% endwith %}
-                                {% endif %}
-
-                                <div class="article-list-meta">
-                                    <div class="article-meta-row">
-                                        {% if post.publish_date %}
-                                            <span class="article-publish-date">{{ post.publish_date|date:"F j, Y" }}</span>
-                                        {% endif %}
-                                        {% if post.reading_time %}
-                                            <span class="article-reading-time">{{ post.reading_time }} min read</span>
-                                        {% endif %}
-                                    </div>
-                                    {% if post.tags.all %}
-                                        <div class="article-list-tags">
-                                            {% for tag in post.tags.all|slice:":2" %}
-                                                <span class="article-list-tag">{{ tag }}</span>
-                                            {% endfor %}
-                                        </div>
-                                    {% endif %}
-                                </div>
-
-                                <h2 class="article-list-title" class="full-width-important">
-                                    <a href="{{ post.url_path }}" class="block-full-important">{{ post.title }}</a>
-                                </h2>
-
-                                {% if post.excerpt %}
-                                    <p class="article-list-excerpt" class="full-width-important">{{ post.excerpt|truncatewords:25 }}</p>
-                                {% endif %}
-
-                                <div class="article-list-actions">
-                                    <a href="{{ post.url_path }}" class="garden-action secondary small">READ MORE</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-
-                <!-- HTMX Infinite Scroll Trigger -->
-                {% if posts.has_next %}
-                <div id="load-more-trigger"
-                     hx-get="?page={{ posts.next_page_number }}"
-                     hx-trigger="revealed"
-                     hx-target="#articles-container"
-                     hx-swap="beforeend"
-                     hx-indicator="#loading-indicator"
-                     class="load-more-trigger">
-                    <!-- This div will trigger loading when it comes into view -->
-                </div>
-                {% endif %}
-
-                <!-- Loading indicator for infinite scroll -->
-                <div id="loading-indicator" class="loading-indicator htmx-indicator">
-                    <div class="loading-spinner">⟳</div>
-                    <p>Loading more articles...</p>
-                </div>
-
-            {% else %}
-                <div class="no-articles">
-                    <h3>NO ARTICLES FOUND</h3>
-                    <p>No articles match your current criteria.</p>
-                </div>
-            {% endif %}
-        </section>
-
-        <!-- Pagination (hidden when HTMX infinite scroll is active) -->
-        {% if paginator.num_pages > 1 %}
-        <div class="pagination-container" x-data="{ htmxEnabled: document.body.classList.contains('htmx-settling') || typeof htmx !== 'undefined' }" x-show="!htmxEnabled">
-            <nav class="pagination" aria-label="Article pagination">
-                {% if posts.has_previous %}
-                    <a href="?page={{ posts.previous_page_number }}" class="pagination-btn garden-action secondary">← Previous</a>
-                {% endif %}
-
-                <span class="pagination-info">
-                    Page {{ posts.number }} of {{ paginator.num_pages }}
-                </span>
-
-                {% if posts.has_next %}
-                    <a href="?page={{ posts.next_page_number }}" class="pagination-btn garden-action secondary">Next →</a>
-                {% endif %}
-            </nav>
+        <div class="flex items-center gap-4 text-sm text-gray-400">
+          <span>📅 {{ featured_post.publish_date|date:"F j, Y" }}</span>
+          {% if featured_post.reading_time %}
+          <span>⏱️ {{ featured_post.reading_time }} min read</span>
+          {% endif %}
         </div>
-        {% endif %}
-        </div> <!-- End articles-main -->
 
-        <!-- Sidebar -->
-        <aside class="blog-sticky-sidebar" aria-label="Blog sidebar">
-            <!-- Most Popular Section -->
-            {% if popular_posts %}
-            <div class="sidebar-section popular-section">
-                <div class="garden-panel">
-                    <div class="garden-panel__header garden-panel-header">
-                        <div class="panel-title">MOST POPULAR</div>
-                    </div>
-                    <div class="garden-panel__content garden-panel-content">
-                        <div class="popular-posts-list">
-                            {% for post in popular_posts %}
-                            <article class="popular-post-item">
-                                <h3 class="popular-post-title">
-                                    <a href="{{ post.url_path }}">{{ post.title }}</a>
-                                </h3>
-                                <div class="popular-post-meta">
-                                    {% if post.publish_date %}
-                                        <span class="popular-post-date">{{ post.publish_date|date:"M j, Y" }}</span>
-                                    {% endif %}
-                                    {% if post.reading_time %}
-                                        <span class="popular-post-reading-time">{{ post.reading_time }} min</span>
-                                    {% endif %}
-                                </div>
-                            </article>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+        <a href="{{ featured_post.url_path }}" class="btn-ec-primary inline-block">Read Article</a>
+      </div>
+
+      <!-- Featured Image -->
+      {% if featured_post.featured_image %}
+      <div class="order-first md:order-last">
+        {% image featured_post.featured_image width-500 as featured_img %}
+        <img
+          src="{{ featured_img.url }}"
+          alt="{{ featured_post.featured_image.title|default:featured_post.title }}"
+          loading="eager"
+          class="w-full rounded-lg border border-gray-600"
+        />
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Key Statistics from Featured Article -->
+    {% if featured_post.content %} {% with key_stats=featured_post.content|select_key_statistics %} {% if key_stats %}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-purple-800">
+      {% for block in key_stats|slice:":3" %}
+      <div class="text-center">
+        <div class="font-mono text-2xl font-bold text-purple-400">{{ block.value.value }}</div>
+        <div class="text-sm text-gray-400">{{ block.value.label }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %} {% endwith %} {% endif %}
+  </section>
+  {% endwith %} {% endif %}
+
+  <!-- Recent Articles Grid -->
+  {% if posts %}
+  <section class="card-ec mb-8">
+    <div class="card-header-ec">
+      <h3 class="card-title-ec">Recent Articles</h3>
+    </div>
+    <div class="card-content-ec">
+      <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for post in posts|slice:"1:" %}
+        <article
+          class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-purple-400 transition-colors"
+        >
+          <!-- Article Image -->
+          {% if post.featured_image %}
+          <div class="aspect-video overflow-hidden">
+            {% image post.featured_image width-400 as post_img %}
+            <img
+              src="{{ post_img.url }}"
+              alt="{{ post.featured_image.title|default:post.title }}"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          {% endif %}
+
+          <!-- Article Content -->
+          <div class="p-4 space-y-3">
+            <!-- Category/Tags -->
+            {% if post.tags.all %}
+            <div class="flex flex-wrap gap-1">
+              {% for tag in post.tags.all|slice:":2" %}
+              <span class="badge-ec-secondary">{{ tag.name }}</span>
+              {% endfor %}
             </div>
             {% endif %}
 
-            <!-- Newsletter Subscribe Section -->
-            <div class="sidebar-section newsletter-section">
-                <div class="garden-panel">
-                    <div class="garden-panel__header garden-panel-header">
-                        <div class="panel-title">SUBSCRIBE</div>
-                    </div>
-                    <div class="garden-panel__content garden-panel-content">
-                        <form method="post" action="/newsletter/signup/" class="sidebar-newsletter-form">
-                            {% csrf_token %}
-                            <input type="hidden" name="source" value="blog-sidebar">
-                            <div class="form-group">
-                                <input type="email"
-                                       name="email"
-                                       placeholder="Your email address"
-                                       class="sidebar-input"
-                                       required
-                                       aria-label="Email address for newsletter subscription">
-                            </div>
-                            <button type="submit" class="garden-action primary full-width">SUBSCRIBE</button>
-                        </form>
-                        <p class="sidebar-privacy">
-                            <small>We respect your privacy. Unsubscribe anytime.</small>
-                        </p>
-                    </div>
-                </div>
+            <!-- Title -->
+            <h4 class="font-mono text-lg text-purple-400 font-semibold leading-tight">
+              <a href="{{ post.url_path }}" class="hover:text-purple-300 transition-colors">{{ post.title }}</a>
+            </h4>
+
+            <!-- Excerpt -->
+            {% if post.intro %}
+            <p class="text-gray-200 text-sm line-clamp-3">{{ post.intro|truncatewords:20 }}</p>
+            {% endif %}
+
+            <!-- Meta -->
+            <div class="flex items-center justify-between text-xs text-gray-400 pt-2 border-t border-gray-600">
+              <span>{{ post.publish_date|date:"M j, Y" }}</span>
+              {% if post.reading_time %}
+              <span>{{ post.reading_time }} min read</span>
+              {% endif %}
             </div>
 
-            <!-- Connect Section -->
-            <div class="sidebar-section connect-section">
-                <div class="garden-panel">
-                    <div class="garden-panel__header garden-panel-header">
-                        <div class="panel-title">CONNECT</div>
-                    </div>
-                    <div class="garden-panel__content garden-panel-content">
-                        <p class="sidebar-description">Follow us for real-time insights and updates.</p>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/company/ethicalcapitalcollective/" class="social-link linkedin" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn">
-                                <span class="social-icon">💼</span>
-                                <span class="social-text">LinkedIn</span>
-                            </a>
-                            <a href="https://www.tiktok.com/@ethicalcapital" class="social-link tiktok" target="_blank" rel="noopener noreferrer" aria-label="Follow us on TikTok">
-                                <span class="social-icon">🎵</span>
-                                <span class="social-text">TikTok</span>
-                            </a>
-                            <a href="mailto:hello@ethicic.com" class="social-link email" aria-label="Contact us via email">
-                                <span class="social-icon">✉️</span>
-                                <span class="social-text">Email</span>
-                            </a>
-                            <a href="/contact/" class="social-link contact" aria-label="Contact us">
-                                <span class="social-icon">📞</span>
-                                <span class="social-text">Contact</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Read More -->
+            <a href="{{ post.url_path }}" class="btn-ec-secondary text-sm w-full text-center block">Read More</a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
 
-            <!-- Encyclopedia Section -->
-            <div class="sidebar-section encyclopedia-section">
-                <div class="garden-panel">
-                    <div class="garden-panel__header garden-panel-header">
-                        <div class="panel-title">ENCYCLOPEDIA</div>
-                    </div>
-                    <div class="garden-panel__content garden-panel-content">
-                        <p class="sidebar-description">Comprehensive definitions and explanations of ethical investing terms and concepts.</p>
-                        <a href="/encyclopedia/" class="garden-action secondary full-width">Browse Encyclopedia</a>
-                    </div>
-                </div>
-            </div>
+      <!-- HTMX Infinite Scroll Trigger -->
+      {% if posts.has_next %}
+      <div
+        id="load-more-trigger"
+        hx-get="?page={{ posts.next_page_number }}"
+        hx-trigger="revealed"
+        hx-target="#articles-container"
+        hx-swap="beforeend"
+        hx-indicator="#loading-indicator"
+        class="load-more-trigger"
+      >
+        <!-- This div will trigger loading when it comes into view -->
+      </div>
+      {% endif %}
 
-            <!-- In the Media Section -->
-            <div class="sidebar-section media-section">
-                <div class="garden-panel">
-                    <div class="garden-panel__header garden-panel-header">
-                        <div class="panel-title">IN THE MEDIA</div>
-                    </div>
-                    <div class="garden-panel__content garden-panel-content">
-                        <p class="sidebar-description">Press coverage and media appearances featuring Ethical Capital's insights on sustainable investing.</p>
-                        <a href="/media/" class="garden-action secondary full-width">View Media Coverage</a>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        </div>
+      <!-- Loading indicator for infinite scroll -->
+      <div id="loading-indicator" class="loading-indicator htmx-indicator text-center py-8">
+        <div class="inline-block text-2xl animate-spin text-purple-400 mb-2">⟳</div>
+        <p class="text-gray-400">Loading more articles...</p>
+      </div>
     </div>
-</section>
+  </section>
+  {% else %}
+  <!-- No Articles State -->
+  <section class="card-ec text-center">
+    <div class="card-content-ec">
+      <div class="text-gray-400 space-y-4">
+        <div class="text-4xl">📰</div>
+        <h3 class="font-mono text-lg text-purple-400">No Articles Yet</h3>
+        <p>We're working on bringing you insightful content about ethical investing.</p>
+        <a href="/contact/" class="btn-ec-primary">Get Notified</a>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Newsletter Signup CTA -->
+  <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6 text-center">
+    <h3 class="font-mono text-xl text-purple-400 font-semibold mb-4">Stay Updated on Market Insights</h3>
+    <p class="text-gray-200 mb-6 max-w-2xl mx-auto">
+      Get our latest research and analysis delivered to your inbox. No spam, just thoughtful investment commentary.
+    </p>
+
+    <!-- Newsletter Form -->
+    <form class="max-w-md mx-auto flex gap-3" action="/newsletter-signup/" method="post">
+      {% csrf_token %}
+      <input
+        type="email"
+        name="email"
+        placeholder="your@email.com"
+        class="form-input-ec flex-1"
+        aria-label="Your email address for newsletter subscription"
+        required
+      />
+      <button type="submit" class="btn-ec-primary whitespace-nowrap">Subscribe</button>
+    </form>
+
+    <p class="text-xs text-gray-400 mt-3">
+      Unsubscribe anytime. Read our
+      <a href="/disclosures/privacy/" class="text-purple-400 hover:text-purple-300">Privacy Policy</a>
+      .
+    </p>
+  </section>
+
+  <!-- Archive Navigation (hidden when HTMX infinite scroll is active) -->
+  {% if posts.has_other_pages %}
+  <section
+    class="pagination-container flex justify-center mt-8"
+    x-data="{ htmxEnabled: document.body.classList.contains('htmx-settling') || typeof htmx !== 'undefined' }"
+    x-show="!htmxEnabled"
+  >
+    <nav class="flex items-center gap-4" aria-label="Blog pagination">
+      {% if posts.has_previous %}
+      <a href="?page={{ posts.previous_page_number }}" class="btn-ec-secondary">← Previous</a>
+      {% endif %}
+
+      <span class="text-gray-400 text-sm">Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
+
+      {% if posts.has_next %}
+      <a href="?page={{ posts.next_page_number }}" class="btn-ec-secondary">Next →</a>
+      {% endif %}
+    </nav>
+  </section>
+  {% endif %}
 </div>
-{% endblock %}
 
-{% block extra_css %}
-<!-- Unified blog styles - replaces 7 separate CSS files -->
-<link rel="stylesheet" href="{% static 'css/blog-core-consolidated.css' %}?v=1">
-<link rel="stylesheet" href="{% static 'css/blog-components-consolidated.css' %}?v=1">
-{% endblock %}
-
-{% block extra_js %}
+<style>
+  /* Line clamp utility for article excerpts */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+{% endblock %} {% block extra_js %}
 <script>
-// Button styles now fixed via CSS - no DOM manipulation needed
-// Cache-busting comment: {{ "now"|date:"Y-m-d H:i:s" }}
+  // Enhanced blog index functionality with HTMX infinite scroll
+  document.addEventListener('DOMContentLoaded', function() {
+      // Newsletter form enhancement
+      const newsletterForm = document.querySelector('form[action="/newsletter-signup/"]');
+      if (newsletterForm) {
+          newsletterForm.addEventListener('submit', function(e) {
+              const email = this.email.value;
+              if (!email || !email.includes('@')) {
+                  e.preventDefault();
+                  alert('Please enter a valid email address.');
+                  return;
+              }
+          });
+      }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // CSS now handles all styling - minimal JavaScript intervention
-    function refreshLayout() {
-        console.log('🔧 Refreshing card layout...');
+      // Make article cards clickable and add hover effects
+      function makeArticlesClickable() {
+          const articles = document.querySelectorAll('article:not([data-clickable])');
+          articles.forEach(article => {
+              article.setAttribute('data-clickable', 'true');
 
-        // Ensure article cards maintain proper structure
-        const articles = document.querySelectorAll('.article-list-item');
-        articles.forEach(article => {
-            // Remove any conflicting inline styles that might break card layout
-            article.style.removeProperty('width');
-            article.style.removeProperty('max-width');
+              // Make clickable
+              article.addEventListener('click', function(e) {
+                  // Don't trigger if clicking on a link or button
+                  if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+                      return;
+                  }
 
-            const content = article.querySelector('.article-list-content');
-            if (content) {
-                content.style.removeProperty('width');
-                // Ensure flex layout is maintained
-                if (!content.style.display || content.style.display !== 'flex') {
-                    content.style.display = 'flex';
-                }
-            }
-        });
+                  const link = this.querySelector('a[href*="/blog/"]');
+                  if (link) {
+                      window.location.href = link.href;
+                  }
+              });
 
-        console.log('✅ Card layout refreshed');
-    }
+              // Add hover effects
+              article.addEventListener('mouseenter', function() {
+                  this.style.transform = 'translateY(-2px)';
+                  this.style.transition = 'transform 0.2s ease';
+              });
 
-    // Apply simple refresh
-    refreshLayout();
+              article.addEventListener('mouseleave', function() {
+                  this.style.transform = 'translateY(0)';
+              });
+          });
+      }
 
-    // Periodic check to ensure card layout integrity
-    setInterval(() => {
-        const allArticles = document.querySelectorAll('.article-list-item');
-        let needsRefresh = false;
+      // Initialize clickable articles
+      makeArticlesClickable();
 
-        allArticles.forEach(article => {
-            const content = article.querySelector('.article-list-content');
-            // Only check if flex layout is broken
-            if (content && (!content.style.display || content.style.display !== 'flex')) {
-                needsRefresh = true;
-            }
-        });
+      // HTMX Infinite Scroll Setup
+      let hasMorePages = {{ paginator.num_pages }} > 1;
 
-        if (needsRefresh) {
-            console.log('🔄 Periodic card layout check - refreshing');
-            refreshLayout();
-        }
-    }, 3000); // Check every 3 seconds
+      // Hide traditional pagination since we're using infinite scroll
+      const paginationContainer = document.querySelector('.pagination-container');
+      if (paginationContainer && hasMorePages) {
+          paginationContainer.style.display = 'none';
+      }
 
-    // Make entire article containers clickable (only new ones to avoid duplicate listeners)
-    function makeArticlesClickable() {
-        const articles = document.querySelectorAll('.article-list-item:not([data-clickable])');
-        articles.forEach(article => {
-            article.setAttribute('data-clickable', 'true');
-            article.addEventListener('click', function(e) {
-                // Don't trigger if clicking on the actual link or button
-                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
-                    return;
-                }
+      // MutationObserver to watch for new articles being added via HTMX
+      const mutationObserver = new MutationObserver((mutations) => {
+          let newArticlesAdded = false;
+          mutations.forEach((mutation) => {
+              if (mutation.type === 'childList') {
+                  mutation.addedNodes.forEach((node) => {
+                      if (node.nodeType === 1 && node.tagName === 'ARTICLE') {
+                          newArticlesAdded = true;
+                      }
+                  });
+              }
+          });
 
-                const link = this.querySelector('.article-list-title a');
-                if (link) {
-                    window.location.href = link.href;
-                }
-            });
+          if (newArticlesAdded) {
+              console.log('New articles detected via HTMX');
+              makeArticlesClickable();
+          }
+      });
 
-            // Add hover effects for new articles
-            article.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px)';
-            });
+      // Start observing the articles container
+      const articlesContainer = document.getElementById('articles-container');
+      if (articlesContainer) {
+          mutationObserver.observe(articlesContainer, {
+              childList: true,
+              subtree: true
+          });
+      }
 
-            article.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-    }
-
-    // Initialize clickable articles
-    makeArticlesClickable();
-
-    // Set up MutationObserver to watch for new articles being added
-    const mutationObserver = new MutationObserver((mutations) => {
-        let newArticlesAdded = false;
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'childList') {
-                mutation.addedNodes.forEach((node) => {
-                    if (node.nodeType === 1 && node.classList && node.classList.contains('article-list-item')) {
-                        newArticlesAdded = true;
-                    }
-                });
-            }
-        });
-
-        if (newArticlesAdded) {
-            console.log('🔍 New articles detected by MutationObserver');
-            // Apply fixes immediately
-            refreshLayout();
-            makeArticlesClickable();
-
-            // And again after a delay to ensure they stick
-            setTimeout(() => {
-                refreshLayout();
-                console.log('🔄 MutationObserver triggered layout refresh');
-            }, 50);
-        }
-    });
-
-    // Get DOM elements
-    const articlesContainer = document.getElementById('articles-container');
-    const loadingIndicator = document.getElementById('loading-indicator');
-
-    // Start observing the articles container
-    if (articlesContainer) {
-        mutationObserver.observe(articlesContainer, {
-            childList: true,
-            subtree: true
-        });
-    }
-
-    // Infinite scroll functionality
-    let currentPage = 1;
-    let isLoading = false;
-    let hasMorePages = {{ paginator.num_pages }} > 1;
-
-    // Function to load more articles
-    function loadMoreArticles() {
-        if (isLoading || !hasMorePages) return;
-
-        isLoading = true;
-        loadingIndicator.classList.remove('hidden');
-
-        // Build URL for next page
-        const nextPage = currentPage + 1;
-        const url = new URL(window.location.href);
-        url.searchParams.set('page', nextPage);
-
-        // Add AJAX parameter to get partial content
-        url.searchParams.set('ajax', '1');
-
-        fetch(url.toString(), {
-            method: 'GET',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-            }
-        })
-            .then(response => response.text())
-            .then(html => {
-                // Create a temporary div to parse the response
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = html;
-
-                // Extract articles from the response
-                const newArticles = tempDiv.querySelectorAll('.article-list-item');
-
-                if (newArticles.length > 0) {
-                    // Append new articles and ensure they inherit card styling
-                    newArticles.forEach((article, index) => {
-                        articlesContainer.appendChild(article);
-
-                        // Mark as new article for tracking
-                        const articleId = `new-article-${currentPage}-${index}`;
-                        article.setAttribute('data-new-article', articleId);
-
-                        // Ensure the card inherits proper CSS classes and structure
-                        if (!article.classList.contains('article-list-item')) {
-                            article.classList.add('article-list-item');
-                        }
-                    });
-
-                    // Apply layout fixes to newly loaded articles - multiple times with delays
-                    // to ensure they stick after any CSS/framework interference
-                    refreshLayout();
-                    makeArticlesClickable();
-
-                    // Apply again after a short delay to override any late-loading CSS
-                    setTimeout(() => {
-                        refreshLayout();
-                        makeArticlesClickable();
-                        console.log('🔄 Second layout refresh for infinite scroll content');
-                    }, 100);
-
-                    // And once more after DOM settles
-                    setTimeout(() => {
-                        refreshLayout();
-                        console.log('🔄 Final layout refresh for infinite scroll content');
-                    }, 300);
-
-                    // Ensure new articles have proper card structure
-                    setTimeout(() => {
-                        const newlyAddedArticles = document.querySelectorAll(`[data-new-article^="new-article-${currentPage}"]`);
-                        newlyAddedArticles.forEach(article => {
-                            // CSS should handle all styling - just ensure basic structure
-                            const content = article.querySelector('.article-list-content');
-                            if (content && content.style.display !== 'flex') {
-                                content.style.display = 'flex';
-                            }
-                        });
-                    }, 200);
-
-                    currentPage = nextPage;
-
-                    // Check if there are more pages
-                    const paginationInfo = tempDiv.querySelector('.pagination-info');
-                    if (paginationInfo) {
-                        const pageText = paginationInfo.textContent;
-                        const matches = pageText.match(/Page (\d+) of (\d+)/);
-                        if (matches) {
-                            const totalPages = parseInt(matches[2]);
-                            hasMorePages = currentPage < totalPages;
-                        }
-                    } else {
-                        hasMorePages = false;
-                    }
-                } else {
-                    hasMorePages = false;
-                }
-
-                isLoading = false;
-                loadingIndicator.classList.add('hidden');
-
-                // If no more pages, hide loading indicator permanently
-                if (!hasMorePages) {
-                    loadingIndicator.style.display = 'none';
-                }
-            })
-            .catch(error => {
-                console.error('Error loading more articles:', error);
-                isLoading = false;
-                loadingIndicator.classList.add('hidden');
-            });
-    }
-
-    // Intersection Observer for infinite scroll trigger
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && hasMorePages) {
-                loadMoreArticles();
-            }
-        });
-    }, {
-        root: null,
-        rootMargin: '100px',
-        threshold: 0.1
-    });
-
-    // Create a sentinel element to trigger loading
-    const sentinel = document.createElement('div');
-    sentinel.className = 'scroll-sentinel';
-    sentinel.style.height = '1px';
-    sentinel.style.position = 'relative';
-
-    // Insert sentinel before the loading indicator
-    if (loadingIndicator && hasMorePages) {
-        loadingIndicator.parentNode.insertBefore(sentinel, loadingIndicator);
-        observer.observe(sentinel);
-    }
-
-    // Hide traditional pagination since we're using infinite scroll
-    const paginationContainer = document.querySelector('.pagination-container');
-    if (paginationContainer) {
-        paginationContainer.style.display = 'none';
-    }
-
-    // Hover effects are now handled in makeArticlesClickable function
-
-    // Smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-});
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              const target = document.querySelector(this.getAttribute('href'));
+              if (target) {
+                  target.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                  });
+              }
+          });
+      });
+  });
 </script>
 {% endblock %}

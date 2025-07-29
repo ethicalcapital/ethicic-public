@@ -5,6 +5,7 @@ This directory contains comprehensive tests for the OnboardingForm functionality
 ## Test Files
 
 ### 1. `test_onboarding_form_comprehensive.py`
+
 The main comprehensive test file containing:
 
 - **OnboardingFormComprehensiveTest**: Detailed unit tests for the OnboardingForm class
@@ -12,11 +13,13 @@ The main comprehensive test file containing:
 - **OnboardingFormHTMXTest**: Tests for HTMX-specific behavior
 
 ### 2. `test_contact_forms.py`
+
 Contains basic onboarding form tests alongside other contact form tests:
 
 - **OnboardingFormTest**: Basic form validation tests
 
 ### 3. `../integration/test_onboarding_form_integration.py`
+
 Integration tests covering:
 
 - **OnboardingFormIntegrationTest**: End-to-end form processing tests
@@ -25,6 +28,7 @@ Integration tests covering:
 ## Test Coverage
 
 ### Form Field Testing
+
 - ✅ All form fields and their validation
 - ✅ Required field validation
 - ✅ Field-specific validation (email, phone, date formats)
@@ -33,6 +37,7 @@ Integration tests covering:
 - ✅ Multiple choice field handling
 
 ### Conditional Field Testing
+
 - ✅ Co-client section shows/hides based on selection
 - ✅ Co-client required fields validation
 - ✅ Co-client address sharing logic
@@ -41,6 +46,7 @@ Integration tests covering:
 - ✅ Co-client employment conditional fields
 
 ### Form Submission Testing
+
 - ✅ Successful form submission
 - ✅ Validation error handling
 - ✅ Spam protection (honeypot)
@@ -48,12 +54,14 @@ Integration tests covering:
 - ✅ Comprehensive data capture in support tickets
 
 ### HTMX Testing
+
 - ✅ HTMX vs regular POST handling
 - ✅ HTMX success responses
 - ✅ HTMX error handling
 - ✅ HTMX server error responses
 
 ### Integration Testing
+
 - ✅ Complete onboarding flow (regular POST)
 - ✅ Complete onboarding flow (HTMX)
 - ✅ Co-client flow integration
@@ -63,6 +71,7 @@ Integration tests covering:
 - ✅ Performance testing
 
 ### Edge Cases
+
 - ✅ Unicode characters in form fields
 - ✅ Special characters in text fields
 - ✅ Long text field validation
@@ -73,26 +82,31 @@ Integration tests covering:
 ## Running the Tests
 
 ### Run All Onboarding Form Tests
+
 ```bash
 python manage.py test public_site.tests.forms.test_onboarding_form_comprehensive --settings=ethicic.test_settings_fast
 ```
 
 ### Run Basic Onboarding Tests
+
 ```bash
 python manage.py test public_site.tests.forms.test_contact_forms.OnboardingFormTest --settings=ethicic.test_settings_fast
 ```
 
 ### Run Integration Tests
+
 ```bash
 python manage.py test public_site.tests.integration.test_onboarding_form_integration --settings=ethicic.test_settings_fast
 ```
 
 ### Run View Tests
+
 ```bash
 python manage.py test public_site.tests.views.test_form_views.OnboardingFormViewTest --settings=ethicic.test_settings_fast
 ```
 
 ### Run Specific Test Classes
+
 ```bash
 # Comprehensive form tests
 python manage.py test public_site.tests.forms.test_onboarding_form_comprehensive.OnboardingFormComprehensiveTest --settings=ethicic.test_settings_fast
@@ -105,6 +119,7 @@ python manage.py test public_site.tests.integration.test_onboarding_form_integra
 ```
 
 ### Run Individual Tests
+
 ```bash
 # Test co-client conditional behavior
 python manage.py test public_site.tests.forms.test_onboarding_form_comprehensive.OnboardingFormComprehensiveTest.test_co_client_conditional_fields_required_when_yes --settings=ethicic.test_settings_fast
@@ -121,20 +136,25 @@ python manage.py test public_site.tests.integration.test_onboarding_form_integra
 The tests use several helper methods to create test data:
 
 ### `create_complete_onboarding_data()`
+
 Creates a complete set of valid form data with all fields filled.
 
 ### `create_co_client_data()`
+
 Creates test data including co-client information.
 
 ### `create_minimal_valid_data()`
+
 Creates the minimum required data for a valid form submission.
 
 ### `create_basic_onboarding_data()`
+
 Creates basic test data for simple validation tests.
 
 ## Test Scenarios Covered
 
 ### 1. Valid Form Submissions
+
 - Complete form with all fields
 - Minimal required fields only
 - Form with co-client information
@@ -142,6 +162,7 @@ Creates basic test data for simple validation tests.
 - Form with multiple choice selections
 
 ### 2. Validation Scenarios
+
 - Missing required fields
 - Invalid field formats (email, phone, date)
 - Conditional field validation
@@ -149,6 +170,7 @@ Creates basic test data for simple validation tests.
 - Text field length validation
 
 ### 3. Conditional Logic
+
 - Co-client section appears when "yes" is selected
 - Co-client fields become required
 - Co-client address sharing logic
@@ -156,17 +178,20 @@ Creates basic test data for simple validation tests.
 - "Other" field requirements
 
 ### 4. Security Features
+
 - Honeypot spam protection
 - Form field sanitization
 - Email normalization
 
 ### 5. User Experience
+
 - HTMX vs regular POST handling
 - Error message display
 - Success response handling
 - Multi-step form navigation
 
 ### 6. Performance
+
 - Form validation speed
 - Form processing time
 - Database query optimization
@@ -184,6 +209,7 @@ When adding new fields to the OnboardingForm:
 ## Test Quality Standards
 
 All tests should:
+
 - Have descriptive names explaining what they test
 - Include docstrings explaining the test purpose
 - Use appropriate assertion methods
@@ -194,6 +220,7 @@ All tests should:
 ## Coverage Goals
 
 The onboarding form tests aim for:
+
 - 100% line coverage of the OnboardingForm class
 - 100% branch coverage of conditional logic
 - Coverage of all form fields and their validation

@@ -41,8 +41,8 @@
 
   /* Main footer container */
   .garden-footer {
-    background: #FCEFEF;
-    border-top: 4px solid #B57EDC;
+    background: #fcefef;
+    border-top: 4px solid #b57edc;
     padding: var(--space-12) 0 var(--space-8);
     margin-top: var(--space-16);
     width: 100%;

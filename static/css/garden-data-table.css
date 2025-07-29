@@ -48,19 +48,19 @@
 }
 
 .garden-table th.sortable::after {
-  content: '⇅';
+  content: "⇅";
   position: absolute;
   right: var(--space-3);
   opacity: 0.3;
 }
 
 .garden-table th.sortable.asc::after {
-  content: '↑';
+  content: "↑";
   opacity: 1;
 }
 
 .garden-table th.sortable.desc::after {
-  content: '↓';
+  content: "↓";
   opacity: 1;
 }
 
@@ -467,7 +467,8 @@
     gap: 0.125rem;
   }
 
-  .page-btn, .pagination-btn {
+  .page-btn,
+  .pagination-btn {
     min-width: 2rem;
     height: 2rem;
     padding: 0.25rem 0.5rem;
@@ -483,7 +484,8 @@
 
 /* High contrast mode support */
 @media (prefers-contrast: more) {
-  .pagination-btn, .page-btn {
+  .pagination-btn,
+  .page-btn {
     border-width: 2px;
   }
 

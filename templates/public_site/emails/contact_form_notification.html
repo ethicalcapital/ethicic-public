@@ -1,48 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>New Contact Form Submission</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="header">
-        <h1>New Contact Form Submission</h1>
+      <h1>New Contact Form Submission</h1>
     </div>
 
     <div class="content">
-        <div class="field">
-            <div class="field-label">Name:</div>
-            <div class="field-value">{{ form_data.name }}</div>
-        </div>
+      <div class="field">
+        <div class="field-label">Name:</div>
+        <div class="field-value">{{ form_data.name }}</div>
+      </div>
 
-        <div class="field">
-            <div class="field-label">Email:</div>
-            <div class="field-value">{{ form_data.email }}</div>
-        </div>
+      <div class="field">
+        <div class="field-label">Email:</div>
+        <div class="field-value">{{ form_data.email }}</div>
+      </div>
 
-        {% if form_data.company %}
-        <div class="field">
-            <div class="field-label">Company:</div>
-            <div class="field-value">{{ form_data.company }}</div>
-        </div>
-        {% endif %}
+      {% if form_data.company %}
+      <div class="field">
+        <div class="field-label">Company:</div>
+        <div class="field-value">{{ form_data.company }}</div>
+      </div>
+      {% endif %}
 
-        <div class="field">
-            <div class="field-label">Subject:</div>
-            <div class="field-value">{{ form_data.subject }}</div>
-        </div>
+      <div class="field">
+        <div class="field-label">Subject:</div>
+        <div class="field-value">{{ form_data.subject }}</div>
+      </div>
 
-        <div class="field">
-            <div class="field-label">Message:</div>
-            <div class="field-value">{{ form_data.message|linebreaksbr }}</div>
-        </div>
+      <div class="field">
+        <div class="field-label">Message:</div>
+        <div class="field-value">{{ form_data.message|linebreaksbr }}</div>
+      </div>
 
-        <div class="metadata">
-            <strong>Submission Details:</strong><br>
-            <strong>Timestamp:</strong> {{ timestamp|date:"F j, Y, g:i A T" }}<br>
-            <strong>IP Address:</strong> {{ ip_address }}<br>
-            <strong>User Agent:</strong> {{ user_agent }}<br>
-        </div>
+      <div class="metadata">
+        <strong>Submission Details:</strong>
+        <br />
+        <strong>Timestamp:</strong>
+        {{ timestamp|date:"F j, Y, g:i A T" }}
+        <br />
+        <strong>IP Address:</strong>
+        {{ ip_address }}
+        <br />
+        <strong>User Agent:</strong>
+        {{ user_agent }}
+        <br />
+      </div>
     </div>
-</body>
+  </body>
 </html>

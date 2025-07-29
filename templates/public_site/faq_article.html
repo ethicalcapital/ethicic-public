@@ -1,281 +1,117 @@
-{% extends "public_site/base_tailwind.html" %}
-{% load wagtailcore_tags static %}
-
-{% block title %}{{ page.title }} - FAQ - Ethical Capital{% endblock %}
-
+{% extends "public_site/base_tailwind.html" %} 
+{% load wagtailcore_tags static %} 
+{% block title %}{{ page.title }} - FAQ - Ethical Capital{% endblock %} 
 {% block content %}
-<div class="garden-container">
-<!-- FAQ Article with Blog-Style Layout -->
-<section class="articles-section">
-    <div class="articles-content">
-        <div class="articles-container">
-            <!-- Main Article Content (2/3 width) -->
-            <div class="articles-main">
-                <div class="faq-article">
-                    <!-- Article Header -->
-                    <header class="article-header">
-                        <div class="article-header-content">
-                            <!-- Breadcrumb Navigation -->
-                            <nav class="article-breadcrumb" aria-label="Breadcrumb">
-                                <a href="/" class="breadcrumb-link">Home</a>
-                                <span class="breadcrumb-separator">▶</span>
-                                <a href="/faq/" class="breadcrumb-link">FAQ</a>
-                                <span class="breadcrumb-separator">▶</span>
-                                <span class="breadcrumb-current">{{ page.title }}</span>
-                            </nav>
+<div class="container-ec">
+  <!-- FAQ Article Layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Main Article Content (2/3 width) -->
+    <div class="lg:col-span-2">
+      <article class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+        <!-- Article Header -->
+        <header class="mb-8">
+          <!-- Breadcrumb Navigation -->
+          <nav class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 mb-4" aria-label="Breadcrumb">
+            <a href="/" class="hover:text-purple-600 transition-colors">Home</a>
+            <span>▶</span>
+            <a href="/faq/" class="hover:text-purple-600 transition-colors">FAQ</a>
+            <span>▶</span>
+            <span class="text-gray-900 dark:text-gray-100">{{ page.title }}</span>
+          </nav>
 
-                            <div class="article-meta">
-                                {% if page.category %}
-                                    <span class="meta-item category-badge">{{ page.get_category_display }}</span>
-                                {% endif %}
-                                {% if page.last_published_at %}
-                                    <time class="meta-item" datetime="{{ page.last_published_at|date:'Y-m-d' }}">Last Updated {{ page.last_published_at|date:"F j, Y" }}</time>
-                                {% endif %}
-                            </div>
+          <div class="flex flex-wrap items-center gap-4 mb-4">
+            {% if page.category %}
+            <span class="px-3 py-1 bg-purple-600 text-white text-xs font-semibold uppercase rounded-full">{{ page.get_category_display }}</span>
+            {% endif %} 
+            {% if page.last_published_at %}
+            <time class="text-sm text-gray-600 dark:text-gray-400" datetime="{{ page.last_published_at|date:'Y-m-d' }}">
+              Last Updated {{ page.last_published_at|date:"F j, Y" }}
+            </time>
+            {% endif %}
+          </div>
 
-                            <h1 class="article-title">{{ page.title }}</h1>
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">{{ page.title }}</h1>
 
-                            {% if page.summary %}
-                                <div class="article-excerpt">
-                                    {{ page.summary }}
-                                </div>
-                            {% endif %}
-                        </div>
-                    </header>
+          {% if page.summary %}
+          <div class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{{ page.summary }}</div>
+          {% endif %}
+        </header>
 
-                    <!-- Article Content -->
-                    <main class="article-content">
-                        <div class="prose prose-lg prose-teal dark:prose-invert max-w-none">
-                            {{ page.content|richtext }}
-                        </div>
-                    </main>
+        <!-- Article Content -->
+        <main class="mb-8">
+          <div class="prose prose-lg prose-teal dark:prose-invert max-w-none">{{ page.content|richtext }}</div>
+        </main>
 
-                    <!-- Article Footer -->
-                    <footer class="article-footer">
-                        <div class="article-navigation">
-                            <div class="navigation-actions">
-                                <a href="/faq/" class="back-to-faq">← Back to All FAQs</a>
-                                <a href="/contact/" class="contact-action">Still Have Questions?</a>
-                            </div>
-                        </div>
+        <!-- Article Footer -->
+        <footer class="border-t border-gray-200 dark:border-gray-700 pt-6">
+          <div class="flex flex-wrap gap-4 mb-8">
+            <a href="/faq/" class="px-4 py-2 bg-gray-600 text-white rounded-lg font-semibold hover:bg-purple-600 transition-colors">← Back to All FAQs</a>
+            <a href="/contact/" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors">Still Have Questions?</a>
+          </div>
 
-                        <!-- Show related articles if available -->
-                        {% if page.get_parent.get_articles %}
-                            <div class="related-articles">
-                                <h3 class="related-title">Other FAQ Articles</h3>
-                                <div class="related-articles-grid">
-                                    {% for article in page.get_parent.get_articles|slice:":3" %}
-                                        {% if article != page %}
-                                            <div class="related-article-item">
-                                                <h4 class="related-article-title">
-                                                    <a href="{{ article.url_path }}" class="related-article-link">
-                                                        {{ article.title }}
-                                                    </a>
-                                                </h4>
-                                                {% if article.summary %}
-                                                    <p class="related-article-summary">{{ article.summary|truncatewords:15 }}</p>
-                                                {% endif %}
-                                                {% if article.category %}
-                                                    <span class="related-article-category">{{ article.get_category_display }}</span>
-                                                {% endif %}
-                                            </div>
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        {% endif %}
-                    </footer>
-                </div>
+          <!-- Show related articles if available -->
+          {% if page.get_parent.get_articles %}
+          <div class="related-articles">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Other FAQ Articles</h3>
+            <div class="grid grid-cols-1 gap-4">
+              {% for article in page.get_parent.get_articles|slice:":3" %} {% if article != page %}
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-gray-800">
+                <h4 class="text-base font-semibold mb-2">
+                  <a href="{{ article.url_path }}" class="text-purple-600 dark:text-purple-400 hover:underline">{{ article.title }}</a>
+                </h4>
+                {% if article.summary %}
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-2">{{ article.summary|truncatewords:15 }}</p>
+                {% endif %} 
+                {% if article.category %}
+                <span class="inline-block bg-purple-600 text-white px-2 py-1 rounded text-xs font-semibold uppercase">{{ article.get_category_display }}</span>
+                {% endif %}
+              </div>
+              {% endif %} {% endfor %}
             </div>
-
-            <!-- Sidebar (1/3 width) -->
-            <aside class="blog-sticky-sidebar" aria-label="FAQ sidebar">
-                <!-- FAQ Navigation Section -->
-                <div class="sidebar-section faq-nav-section">
-                    <div class="garden-panel">
-                        <div class="garden-panel__header garden-panel-header">
-                            <div class="panel-title">FAQ NAVIGATION</div>
-                        </div>
-                        <div class="garden-panel__content garden-panel-content">
-                            <p class="sidebar-description">Browse all frequently asked questions and helpful resources.</p>
-                            <div class="faq-nav-links">
-                                <a href="/faq/" class="faq-nav-link">
-                                    <span class="nav-icon">📚</span>
-                                    <span class="nav-text">All FAQs</span>
-                                </a>
-                                <a href="/contact/" class="faq-nav-link">
-                                    <span class="nav-icon">💬</span>
-                                    <span class="nav-text">Ask a Question</span>
-                                </a>
-                                <a href="/process/" class="faq-nav-link">
-                                    <span class="nav-icon">🔄</span>
-                                    <span class="nav-text">Our Process</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Support Section -->
-                <div class="sidebar-section support-section">
-                    <div class="garden-panel">
-                        <div class="garden-panel__header garden-panel-header">
-                            <div class="panel-title">NEED HELP?</div>
-                        </div>
-                        <div class="garden-panel__content garden-panel-content">
-                            <p class="sidebar-description">Can't find what you're looking for? We're here to help.</p>
-                            <div class="support-links">
-                                <a href="/contact/" class="support-link">
-                                    <span class="support-icon">✉️</span>
-                                    <span class="support-text">Contact Us</span>
-                                </a>
-                                <a href="/consultation/" class="support-link">
-                                    <span class="support-icon">📞</span>
-                                    <span class="support-text">Schedule Consultation</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-        </div>
+          </div>
+          {% endif %}
+        </footer>
+      </article>
     </div>
-</section>
+
+    <!-- Sidebar (1/3 width) -->
+    <aside class="space-y-6" aria-label="FAQ sidebar">
+      <!-- FAQ Navigation Section -->
+      <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">FAQ NAVIGATION</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">Browse all frequently asked questions and helpful resources.</p>
+        <div class="space-y-2">
+          <a href="/faq/" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+            <span class="text-xl">📚</span>
+            <span>All FAQs</span>
+          </a>
+          <a href="/contact/" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+            <span class="text-xl">💬</span>
+            <span>Ask a Question</span>
+          </a>
+          <a href="/process/" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+            <span class="text-xl">🔄</span>
+            <span>Our Process</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Support Section -->
+      <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">NEED HELP?</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">Can't find what you're looking for? We're here to help.</p>
+        <div class="space-y-2">
+          <a href="/contact/" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+            <span class="text-xl">✉️</span>
+            <span>Contact Us</span>
+          </a>
+          <a href="/consultation/" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+            <span class="text-xl">📞</span>
+            <span>Schedule Consultation</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+  </div>
 </div>
-{% endblock %}
-
-{% block extra_css %}
-<!-- Unified blog styles - same as FAQ index and blog pages -->
-<link rel="stylesheet" href="{% static 'css/blog-consistency-consolidated.css' %}?v=1">
-<style>
-/* FAQ article page specific styling */
-.faq-article {
-    width: 100% !important;
-    max-width: none !important;
-}
-
-.articles-main {
-    width: 100% !important;
-    max-width: none !important;
-}
-
-.article-header-content {
-    width: 100% !important;
-    max-width: none !important;
-}
-
-.article-content {
-    width: 100% !important;
-    max-width: none !important;
-}
-
-.article-body {
-    width: 100% !important;
-    max-width: none !important;
-    line-height: var(--line-relaxed);
-}
-
-.article-excerpt {
-    color: var(--color-text-secondary);
-    font-size: var(--font-lg);
-    line-height: var(--line-relaxed);
-    margin-bottom: var(--space-6);
-    width: 100% !important;
-    max-width: none !important;
-}
-
-/* Related articles styling */
-.related-articles-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-    margin-top: var(--space-4);
-}
-
-.related-article-item {
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-4);
-    background: var(--color-surface);
-}
-
-.related-article-title {
-    margin: 0 0 var(--space-2) 0;
-    font-size: var(--font-md);
-}
-
-.related-article-link {
-    color: var(--color-primary);
-    text-decoration: none;
-}
-
-.related-article-link:hover {
-    text-decoration: underline;
-}
-
-.related-article-summary {
-    color: var(--color-text-secondary);
-    font-size: var(--font-sm);
-    margin: var(--space-2) 0;
-}
-
-.related-article-category {
-    display: inline-block;
-    background: var(--color-primary);
-    color: white;
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius-sm);
-    font-size: var(--font-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-/* Navigation actions */
-.navigation-actions {
-    display: flex;
-    gap: var(--space-4);
-    flex-wrap: wrap;
-    margin-bottom: var(--space-6);
-}
-
-.back-to-faq,
-.contact-action {
-    display: inline-block;
-    padding: var(--space-2) var(--space-4);
-    background: var(--color-secondary);
-    color: white;
-    text-decoration: none;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-}
-
-.back-to-faq:hover,
-.contact-action:hover {
-    background: var(--color-primary);
-}
-
-/* FAQ navigation links */
-.faq-nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-}
-
-.faq-nav-link,
-.support-link {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--color-text);
-    text-decoration: none;
-    padding: var(--space-2);
-    border-radius: var(--radius-sm);
-    transition: background-color 0.2s;
-}
-
-.faq-nav-link:hover,
-.support-link:hover {
-    background: var(--color-surface-variant);
-}
-</style>
 {% endblock %}

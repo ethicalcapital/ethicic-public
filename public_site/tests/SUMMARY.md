@@ -33,6 +33,7 @@ public_site/tests/
 ## Test Coverage
 
 ### 1. Model Tests (test_page_models.py)
+
 - **HomePage**: All fields, template, verbose names
 - **BlogPost**: Creation, featured posts, tags, StreamField content, search fields
 - **BlogIndexPage**: Post retrieval, featured posts, tag filtering, routable paths
@@ -47,6 +48,7 @@ public_site/tests/
 - **LegalPage**: Effective dates, auto-updating
 
 ### 2. Form Tests (test_contact_forms.py)
+
 - **AccessibleContactForm**:
   - Required field validation
   - Email validation
@@ -68,6 +70,7 @@ public_site/tests/
 - **InstitutionalContactForm**: Institution types, capacity ranges
 
 ### 3. View Tests (test_form_views.py)
+
 - **Contact Form Submission**: Success flow, validation errors, honeypot, API integration
 - **Newsletter Signup**: Success, invalid email, CRM integration
 - **Onboarding**: Complete flow, validation, thank you page
@@ -79,6 +82,7 @@ public_site/tests/
 - **Media Items API**: Pagination, featured ordering
 
 ### 4. URL Tests (test_urls.py)
+
 - **URL Patterns**: All URLs resolve correctly
 - **URL Names**: Reverse lookups work with namespace
 - **Trailing Slashes**: Consistent URL formatting
@@ -87,6 +91,7 @@ public_site/tests/
 - **Parameter Handling**: Query parameters, pagination
 
 ### 5. Integration Tests (test_user_flows.py)
+
 - **Contact Inquiry Flow**: General, investment, adviser partnership inquiries
 - **Newsletter Subscription**: From blog, existing contacts
 - **Onboarding Flow**: Complete application process
@@ -99,12 +104,14 @@ public_site/tests/
 ## Key Features Tested
 
 ### Accessibility
+
 - WCAG 2.1 AA compliance in forms
 - Proper ARIA attributes
 - Semantic HTML structure
 - Keyboard navigation support
 
 ### Security
+
 - Honeypot spam protection
 - Human verification (math challenge)
 - Form timing analysis
@@ -112,6 +119,7 @@ public_site/tests/
 - Rate limiting framework
 
 ### API Endpoints
+
 - RESTful design
 - JSON request/response handling
 - Error responses
@@ -119,6 +127,7 @@ public_site/tests/
 - Pagination support
 
 ### User Experience
+
 - Form validation with helpful messages
 - Redirect flows
 - Success/error messaging
@@ -127,12 +136,14 @@ public_site/tests/
 ## Test Utilities Provided
 
 ### Base Classes
+
 - `BasePublicSiteTestCase`: Common test setup
 - `WagtailPublicSiteTestCase`: Wagtail-specific tests
 - `APITestMixin`: API testing helpers
 - `FormTestMixin`: Form testing utilities
 
 ### Helper Methods
+
 - `create_test_contact_data()`
 - `create_test_onboarding_data()`
 - `create_test_newsletter_data()`
@@ -143,6 +154,7 @@ public_site/tests/
 - `assert_api_success()`, `assert_api_error()`
 
 ### Mock Objects
+
 - `MockRequestFactory`: Create mock request objects
 - Mock CRM integration points
 
@@ -157,6 +169,7 @@ While the tests are ready, they need to be run in an environment where the `publ
 ## Notes
 
 The test suite is designed to:
+
 - Run independently without external dependencies
 - Use Django's test database
 - Clear cache between tests
@@ -166,6 +179,7 @@ The test suite is designed to:
 ## Next Steps
 
 To use these tests:
+
 1. Ensure `public_site` is in `INSTALLED_APPS`
 2. Run database migrations for test models
 3. Execute tests with Django's test runner

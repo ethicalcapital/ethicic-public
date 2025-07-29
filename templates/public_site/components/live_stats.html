@@ -1,142 +1,143 @@
 <!-- Live Statistics Component with HTMX Polling -->
-<div class="live-stats-widget"
-     hx-get="/api/live-stats/"
-     hx-trigger="load, every 30s"
-     hx-swap="innerHTML"
-     x-data="{ lastUpdate: new Date() }">
-
-    <!-- Initial content will be replaced by HTMX -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-value skeleton">--</div>
-            <div class="stat-label">Companies Screened</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-value skeleton">--</div>
-            <div class="stat-label">Excluded from S&P 500</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-value skeleton">--</div>
-            <div class="stat-label">Active Holdings</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-value skeleton">--</div>
-            <div class="stat-label">Years of Research</div>
-        </div>
+<div
+  class="live-stats-widget"
+  hx-get="/api/live-stats/"
+  hx-trigger="load, every 30s"
+  hx-swap="innerHTML"
+  x-data="{ lastUpdate: new Date() }"
+>
+  <!-- Initial content will be replaced by HTMX -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value skeleton">--</div>
+      <div class="stat-label">Companies Screened</div>
     </div>
 
-    <div class="update-indicator">
-        <span class="htmx-indicator">⟳ Updating...</span>
-        <span class="last-update" x-text="'Last updated: ' + lastUpdate.toLocaleTimeString()"></span>
+    <div class="stat-card">
+      <div class="stat-value skeleton">--</div>
+      <div class="stat-label">Excluded from S&P 500</div>
     </div>
+
+    <div class="stat-card">
+      <div class="stat-value skeleton">--</div>
+      <div class="stat-label">Active Holdings</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-value skeleton">--</div>
+      <div class="stat-label">Years of Research</div>
+    </div>
+  </div>
+
+  <div class="update-indicator">
+    <span class="htmx-indicator">⟳ Updating...</span>
+    <span class="last-update" x-text="'Last updated: ' + lastUpdate.toLocaleTimeString()"></span>
+  </div>
 </div>
 
 <style>
-    .live-stats-widget {
-        background: var(--color-surface);
-        padding: 2rem;
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--color-border);
-        margin: 2rem 0;
-    }
+  .live-stats-widget {
+    background: var(--color-surface);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    margin: 2rem 0;
+  }
 
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--color-background);
+    border-radius: var(--radius-md);
+    transition: transform 0.2s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--color-shadow-sm);
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+    font-weight: var(--font-bold);
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, var(--color-border) 25%, var(--color-surface) 50%, var(--color-border) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    color: transparent;
+    border-radius: var(--radius-sm);
+  }
+
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  .update-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary);
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .htmx-indicator {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .htmx-request .htmx-indicator {
+    opacity: 1;
+  }
+
+  /* Dark mode */
+  [data-theme="dark"] .live-stats-widget {
+    background: var(--color-surface-dark);
+  }
+
+  [data-theme="dark"] .stat-card {
+    background: var(--color-background-dark);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .stat-card {
-        text-align: center;
-        padding: 1.5rem;
-        background: var(--color-background);
-        border-radius: var(--radius-md);
-        transition: transform 0.2s;
-    }
-
-    .stat-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px var(--color-shadow-sm);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .stat-value {
-        font-size: 2.5rem;
-        font-weight: var(--font-bold);
-        color: var(--color-primary);
-        line-height: 1;
-        margin-bottom: 0.5rem;
+      font-size: 2rem;
     }
+  }
 
-    .stat-label {
-        font-size: 0.875rem;
-        color: var(--color-text-secondary);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+  @media (max-width: 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
     }
-
-    .skeleton {
-        background: linear-gradient(90deg,
-            var(--color-border) 25%,
-            var(--color-surface) 50%,
-            var(--color-border) 75%
-        );
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-        color: transparent;
-        border-radius: var(--radius-sm);
-    }
-
-    @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-    }
-
-    .update-indicator {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 0.75rem;
-        color: var(--color-text-tertiary);
-        padding-top: 1rem;
-        border-top: 1px solid var(--color-border);
-    }
-
-    .htmx-indicator {
-        opacity: 0;
-        transition: opacity 0.2s;
-    }
-
-    .htmx-request .htmx-indicator {
-        opacity: 1;
-    }
-
-    /* Dark mode */
-    [data-theme="dark"] .live-stats-widget {
-        background: var(--color-surface-dark);
-    }
-
-    [data-theme="dark"] .stat-card {
-        background: var(--color-background-dark);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .stats-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .stat-value {
-            font-size: 2rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .stats-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+  }
 </style>

@@ -8,26 +8,26 @@
 /* This eliminates the need for specificity wars */
 
 @layer base {
-    /* Garden UI core variables and foundations */
-    /* Will be imported from garden-ui-theme.css */
+  /* Garden UI core variables and foundations */
+  /* Will be imported from garden-ui-theme.css */
 }
 
 @layer layout {
-    /* Grid systems, containers, responsive breakpoints */
-    /* Header, footer, main layout structures */
+  /* Grid systems, containers, responsive breakpoints */
+  /* Header, footer, main layout structures */
 }
 
 @layer components {
-    /* Buttons, panels, forms, cards */
-    /* Reusable UI components */
+  /* Buttons, panels, forms, cards */
+  /* Reusable UI components */
 }
 
 @layer themes {
-    /* Light/dark mode overrides */
-    /* Theme-specific color variations */
+  /* Light/dark mode overrides */
+  /* Theme-specific color variations */
 }
 
 @layer utilities {
-    /* Helper classes, responsive utilities */
-    /* Highest priority layer for overrides */
+  /* Helper classes, responsive utilities */
+  /* Highest priority layer for overrides */
 }

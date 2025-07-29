@@ -5,146 +5,146 @@
 
 /* Right rail section for action buttons */
 .strategy-page .right-rail-actions {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-6);
-    margin-bottom: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
 }
 
 .strategy-page .right-rail-actions .panel-title {
-    font-size: var(--text-sm);
-    font-weight: var(--font-bold);
-    color: var(--color-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-4);
 }
 
 /* Button container */
 .strategy-page .right-rail-actions .action-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 /* Consistent button styling for both locations */
 .strategy-page .action-button,
 .strategy-page .quick-actions .garden-action {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: var(--space-4) var(--space-6);
-    font-size: var(--text-base);
-    font-weight: var(--font-semibold);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-md);
-    transition: all 0.2s ease;
-    text-align: center;
-    min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  text-align: center;
+  min-height: 48px;
 }
 
 /* Default outline style for all buttons */
 .strategy-page .action-button,
 .strategy-page .quick-actions .garden-action.secondary {
-    background: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
 }
 
 .strategy-page .action-button:hover,
 .strategy-page .quick-actions .garden-action.secondary:hover {
-    background: var(--color-primary);
-    color: var(--garden-color-white);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--color-shadow-20);
+  background: var(--color-primary);
+  color: var(--garden-color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-shadow-20);
 }
 
 /* Primary button style (filled) */
 .strategy-page .action-button.primary,
 .strategy-page .quick-actions .garden-action.primary {
-    background: var(--color-primary);
-    color: var(--garden-color-white);
-    border: 2px solid var(--color-primary);
+  background: var(--color-primary);
+  color: var(--garden-color-white);
+  border: 2px solid var(--color-primary);
 }
 
 .strategy-page .action-button.primary:hover,
 .strategy-page .quick-actions .garden-action.primary:hover {
-    background: var(--color-primary-dark);
-    border-color: var(--color-primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--color-shadow-30);
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-shadow-30);
 }
 
 /* Override existing quick actions to match new consistent style */
 .strategy-page .quick-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
 }
 
 .strategy-page .quick-actions .garden-action {
-    flex: 1;
-    min-width: 0;
-    white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
 }
 
 /* Dark mode adjustments */
 [data-theme="dark"] .strategy-page .action-button,
 [data-theme="dark"] .strategy-page .quick-actions .garden-action.secondary {
-    color: var(--color-primary-light);
-    border-color: var(--color-primary-light);
+  color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
 }
 
 [data-theme="dark"] .strategy-page .action-button:hover,
 [data-theme="dark"] .strategy-page .quick-actions .garden-action.secondary:hover {
-    background: var(--color-primary-light);
-    color: var(--color-surface);
+  background: var(--color-primary-light);
+  color: var(--color-surface);
 }
 
 [data-theme="dark"] .strategy-page .action-button.primary,
 [data-theme="dark"] .strategy-page .quick-actions .garden-action.primary {
-    background: var(--color-primary-light);
-    color: var(--color-surface);
-    border-color: var(--color-primary-light);
+  background: var(--color-primary-light);
+  color: var(--color-surface);
+  border-color: var(--color-primary-light);
 }
 
 [data-theme="dark"] .strategy-page .action-button.primary:hover,
 [data-theme="dark"] .strategy-page .quick-actions .garden-action.primary:hover {
-    background: var(--color-primary-light);
-    border-color: var(--color-primary-light);
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-light);
 }
 
 /* Mobile responsive */
 @media (width <= 1024px) {
-    /* Hide right rail on tablets and below */
-    .strategy-page .right-rail-actions {
-        display: none;
-    }
+  /* Hide right rail on tablets and below */
+  .strategy-page .right-rail-actions {
+    display: none;
+  }
 
-    /* Quick actions remain visible and stack on mobile */
-    .strategy-page .quick-actions {
-        flex-flow: row wrap;
-    }
+  /* Quick actions remain visible and stack on mobile */
+  .strategy-page .quick-actions {
+    flex-flow: row wrap;
+  }
 
-    .strategy-page .quick-actions .garden-action {
-        flex: 1 1 calc(50% - var(--space-2));
-        min-width: 150px;
-    }
+  .strategy-page .quick-actions .garden-action {
+    flex: 1 1 calc(50% - var(--space-2));
+    min-width: 150px;
+  }
 }
 
 @media (width <= 640px) {
-    /* Stack all buttons vertically on small mobile */
-    .strategy-page .quick-actions {
-        flex-direction: column;
-    }
+  /* Stack all buttons vertically on small mobile */
+  .strategy-page .quick-actions {
+    flex-direction: column;
+  }
 
-    .strategy-page .quick-actions .garden-action {
-        flex: 1 1 100%;
-        width: 100%;
-    }
+  .strategy-page .quick-actions .garden-action {
+    flex: 1 1 100%;
+    width: 100%;
+  }
 }

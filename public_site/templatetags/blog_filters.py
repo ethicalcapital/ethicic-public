@@ -450,15 +450,15 @@ def select_ai_statistics(content):
 @register.filter
 def reading_time(content):
     """Calculate estimated reading time for content.
-    
+
     Assumes average reading speed of 200 words per minute.
     Usage: {{ page.body|reading_time }} or {{ page.content|reading_time }}
     """
     if not content:
         return "1 min read"
-    
+
     # Convert content to plain text
-    if hasattr(content, '__iter__') and not isinstance(content, str):
+    if hasattr(content, "__iter__") and not isinstance(content, str):
         # Handle StreamField content
         text_content = ""
         for block in content:
@@ -466,13 +466,13 @@ def reading_time(content):
     else:
         # Handle RichTextField or string content
         text_content = strip_tags(str(content))
-    
+
     # Count words (simple split by whitespace)
     word_count = len(text_content.split())
-    
+
     # Calculate reading time (200 words per minute average)
     reading_minutes = max(1, round(word_count / 200))
-    
+
     if reading_minutes == 1:
         return "1 min read"
     else:
