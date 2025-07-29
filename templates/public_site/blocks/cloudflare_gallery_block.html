@@ -6,22 +6,8 @@ multiple layout options. {% endcomment %}
         {% if value.title %}<h3 class="cloudflare-gallery-title">{{ value.title }}</h3>{% endif %}
         <div
             class="cloudflare-gallery-container"
-            {%
-            if
-            value.layout=""
-            ="carousel"
-            %}data-gallery-type="carousel"
-            {%
-            endif
-            %}
-            {%
-            if
-            value.layout=""
-            ="lightbox"
-            %}data-gallery-type="lightbox"
-            {%
-            endif
-            %}
+            {% if value.layout == "carousel" %}data-gallery-type="carousel"{% endif %}
+            {% if value.layout == "lightbox" %}data-gallery-type="lightbox"{% endif %}
             >
             {% for image in processed_images %}
                 <div
