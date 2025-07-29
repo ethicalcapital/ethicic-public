@@ -439,10 +439,24 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     X_FRAME_OPTIONS = "DENY"
 
-# Cache configuration - Use Redis for query/session caching
+# Cache configuration - Use Redis for query/session caching with fallback
 REDIS_URL = os.getenv("REDIS_URL")
 
-if REDIS_URL:
+# Check if Redis is actually available before configuring it
+redis_available = False
+if REDIS_URL and REDIS_URL.strip():
+    try:
+        import redis
+        # Test Redis connection
+        r = redis.from_url(REDIS_URL)
+        r.ping()
+        redis_available = True
+        print(f"✅ Redis connection successful: {REDIS_URL}")
+    except Exception as e:
+        print(f"⚠️  Redis connection failed ({e}), falling back to local cache")
+        redis_available = False
+
+if redis_available:
     # Production: Use Redis for caching
     CACHES = {
         "default": {
@@ -463,13 +477,16 @@ if REDIS_URL:
     SESSION_CACHE_ALIAS = "session"
 
 else:
-    # Development: Use local memory cache
+    # Development/Fallback: Use local memory cache and database sessions
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
             "LOCATION": "unique-snowflake",
         }
     }
+    
+    # Use database sessions as fallback
+    SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 # Cache middleware settings
 CACHE_MIDDLEWARE_ALIAS = "default"
