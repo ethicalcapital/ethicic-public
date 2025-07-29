@@ -1,0 +1,56 @@
+/*!
+ * EMERGENCY TEXT VISIBILITY FIX
+ * This CSS must load FIRST to ensure text is visible on dark backgrounds
+ * Deployed at: {{ "now"|date:"c" }}
+ */
+
+/* CRITICAL: Override all dark text colors immediately */
+html body *,
+html body,
+p, div, span, h1, h2, h3, h4, h5, h6, li, td, th, label,
+.text-gray-900, .text-black, .text-slate-900, .text-slate-800,
+.prose, .prose *, .card-content-ec, .card-content-ec *,
+.panel-content, .panel-content *, .garden-panel-content, .garden-panel-content *,
+section *, main *, article * {
+    color: #e2e8f0 !important;
+}
+
+/* Headings should be brighter */
+h1, h2, h3, h4, h5, h6,
+.text-blue-300, .text-purple-300, .text-teal-300,
+.panel-title-ec, .font-mono {
+    color: #cbd5e1 !important;
+}
+
+/* Links visible */
+a:not(.btn-ec-primary):not(.btn-ec-secondary) {
+    color: #94a3b8 !important;
+}
+
+a:hover:not(.btn-ec-primary):not(.btn-ec-secondary) {
+    color: #f1f5f9 !important;
+}
+
+/* Preserve button colors */
+.btn-ec-primary {
+    color: #ffffff !important;
+    background-color: #581c87 !important;
+}
+
+.btn-ec-secondary {
+    color: #111827 !important;
+    background-color: #14b8a6 !important;
+}
+
+/* White text stays white */
+.text-white, .text-purple-100, .text-gray-100,
+header *, .bg-purple-900 .text-white, .bg-gray-800 .text-white {
+    color: #ffffff !important;
+}
+
+/* Nuclear override for inline styles */
+*[style*="color: #000"],
+*[style*="color: black"],
+*[style*="color: rgb(0,0,0)"] {
+    color: #e2e8f0 !important;
+}

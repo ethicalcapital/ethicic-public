@@ -1,79 +1,74 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load static %}
-{% block title %}
-    {{ page.hero_title }} | Ethical
-    Capital
-{% endblock %}
+{% block title %}{{ page.hero_title }} | Ethical Capital{% endblock %}
 {% block body_class %}consultation-page{% endblock %}
-{% block extra_css %}
-    <link rel="stylesheet"
-          href="{% static 'css/layers/33-consultation-page.css' %}?v=1" />
-{% endblock %}
 {% block content %}
-    <div class="garden-container">
-        <main class="consultation-page">
+    <div class="container-ec">
+        <main class="py-8">
             <!-- Hero Section -->
-            <section class="hero garden-panel" role="banner">
-                <div class="garden-panel__content panel-content">
-                    <h1 class="hero-title">{{ page.hero_title }}</h1>
-                    <p class="hero-subtitle">{{ page.hero_subtitle }}</p>
+            <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800 p-8 text-center" role="banner">
+                <h1 class="mb-4 font-mono text-4xl font-bold text-white">{{ page.hero_title }}</h1>
+                <p class="text-xl text-gray-300">{{ page.hero_subtitle }}</p>
+            </section>
+            
+            {% if page.introduction %}
+                <!-- Introduction Section -->
+                <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800 p-6">
+                    <div class="prose text-gray-300">{{ page.introduction|safe }}</div>
+                </section>
+            {% endif %}
+            
+            <!-- Contact Information -->
+            <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
+                <div class="border-b border-gray-600 bg-gray-700 p-4">
+                    <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.schedule_section_title }}</h2>
+                </div>
+                <div class="p-6 space-y-6">
+                    <div class="prose text-gray-300">{{ page.schedule_intro_text|safe }}</div>
+                    
+                    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {% for consultation_type in page.consultation_types %}
+                            <div class="rounded-lg border border-gray-600 bg-gray-700 p-6 text-center">
+                                <h3 class="mb-3 font-mono text-lg font-semibold text-blue-300">
+                                    {{ consultation_type.value.icon }} {{ consultation_type.value.title }}
+                                </h3>
+                                <p class="mb-4 text-sm text-gray-300">{{ consultation_type.value.description }}</p>
+                                <a href="{{ consultation_type.value.button_url }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="btn-ec-primary">{{ consultation_type.value.button_text }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="prose text-gray-300">{{ page.alternative_contact_text|safe }}</div>
                 </div>
             </section>
-            <!-- Main Content -->
-            <div class="main-content">
-                {% if page.introduction %}
-                    <section class="introduction garden-panel">
-                        <div class="garden-panel__content panel-content">{{ page.introduction|safe }}</div>
-                    </section>
-                {% endif %}
-                <!-- Contact Information -->
-                <section class="contact-section garden-panel">
-                    <div class="garden-panel__header panel-header">
-                        <div class="panel-title">{{ page.schedule_section_title }}</div>
+            
+            <!-- What to Expect -->
+            <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
+                <div class="border-b border-gray-600 bg-gray-700 p-4">
+                    <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.expectations_section_title }}</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                        {% for expectation in page.expectations %}
+                            <div class="rounded-lg border border-gray-600 bg-gray-700 p-4">
+                                <h4 class="mb-2 font-mono font-semibold text-blue-300">{{ expectation.value.title }}</h4>
+                                <p class="text-sm text-gray-300">{{ expectation.value.description }}</p>
+                            </div>
+                        {% endfor %}
                     </div>
-                    <div class="garden-panel__content panel-content">
-                        <div class="intro-text">{{ page.schedule_intro_text|safe }}</div>
-                        <div class="consultation-options">
-                            {% for consultation_type in page.consultation_types %}
-                                <div class="consultation-type">
-                                    <h3>{{ consultation_type.value.icon }} {{ consultation_type.value.title }}</h3>
-                                    <p>{{ consultation_type.value.description }}</p>
-                                    <a href="{{ consultation_type.value.button_url }}"
-                                       target="_blank"
-                                       rel="noopener noreferrer"
-                                       class="garden-action primary">{{ consultation_type.value.button_text }}</a>
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <div class="alternative-contact">{{ page.alternative_contact_text|safe }}</div>
-                    </div>
-                </section>
-                <!-- What to Expect -->
-                <section class="expectations garden-panel">
-                    <div class="garden-panel__header panel-header">
-                        <div class="panel-title">{{ page.expectations_section_title }}</div>
-                    </div>
-                    <div class="garden-panel__content panel-content">
-                        <div class="expectation-grid">
-                            {% for expectation in page.expectations %}
-                                <div class="expectation-item">
-                                    <h4>{{ expectation.value.title }}</h4>
-                                    <p>{{ expectation.value.description }}</p>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </section>
-                <!-- No Obligation Note -->
-                <section class="no-obligation garden-panel">
-                    <div class="garden-panel__content panel-content">
-                        <p class="disclaimer">
-                            <strong>{{ page.disclaimer_title }}</strong>
-                            {{ page.disclaimer_text|safe }}
-                        </p>
-                    </div>
-                </section>
-            </div>
+                </div>
+            </section>
+            
+            <!-- No Obligation Note -->
+            <section class="rounded-lg border border-purple-800 bg-purple-900/30 p-6">
+                <p class="text-center text-gray-300">
+                    <strong class="text-purple-300">{{ page.disclaimer_title }}</strong>
+                    {{ page.disclaimer_text|safe }}
+                </p>
+            </section>
         </main>
     </div>
 {% endblock %}
