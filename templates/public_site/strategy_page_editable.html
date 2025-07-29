@@ -188,9 +188,10 @@
             <h3 class="subsection-header">SECTOR POSITIONING</h3>
 
             <div class="positioning-grid">
-              {% comment %}Group sectors by position type{% endcomment %} {% regroup page.sector_positions.all by
-              position_type as position_groups %} {% for group in position_groups %} {% if group.grouper == 'overweight'
-              %}
+              {% comment %}Group sectors by position type{% endcomment %}
+              {% regroup page.sector_positions.all by position_type as position_groups %}
+              {% for group in position_groups %}
+                {% if group.grouper == 'overweight' %}
               <div class="positioning-card overweight">
                 <h4>OVERWEIGHTS</h4>
                 <ul>
@@ -217,7 +218,13 @@
                 <div class="exclusion-note">
                   <p>{{ page.healthcare_exclusion_note }}</p>
                 </div>
+                {% endif %}
+              </div>
+                {% endif %}
+              {% endfor %}
             </div>
+          </div>
+          {% endif %}
         </section>
         <!-- Two Column Layout -->
         <div class="strategy-content-grid">

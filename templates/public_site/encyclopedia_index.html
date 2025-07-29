@@ -137,23 +137,6 @@
       </div>
 
       <!-- Encyclopedia Entries -->
-      <div class="encyclopedia-entries">
-        {% for entry in entries %}
-        <div
-          class="encyclopedia-entry"
-          data-title="{{ entry.title|lower }}"
-          data-category="{{ entry.category|default:'' }}"
-        >
-          <!-- Entry Header with Title and Tags -->
-          <div class="entry-header">
-            <h3>{{ entry.title }}</h3>
-            <div class="entry-tags">
-              {% if entry.category %}
-              <span class="article-tag">{{ entry.get_category_display }}</span>
-              {% endif %} {% if entry.difficulty_level %}
-              <span class="article-tag">{{ entry.get_difficulty_level_display }}</span>
-              {% endif %}
-            </div>
         </section>
         <!-- Main Content Panel -->
         <section class="garden-panel" role="main">
