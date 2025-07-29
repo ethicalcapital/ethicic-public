@@ -86,10 +86,10 @@
       <div class="panel-title-ec">{{ page.philosophy_section_header|default:"OUR INVESTMENT PHILOSOPHY" }}</div>
     </div>
     <div class="card-content-ec space-y-4">
-      <h2 id="philosophy-heading" class="font-mono text-2xl text-purple-400 font-semibold">
+      <h2 id="philosophy-heading" class="font-mono text-2xl text-blue-300 font-semibold">
         {{ page.philosophy_title }}
       </h2>
-      <div class="text-gray-200 space-y-4">{{ page.philosophy_content|richtext }}</div>
+      <div class="text-gray-700 dark:text-gray-300 space-y-4">{{ page.philosophy_content|richtext }}</div>
       <div class="p-4 bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg">
         <p class="text-purple-300 font-medium">{{ page.philosophy_highlight }}</p>
       </div>
@@ -108,38 +108,38 @@
     <div class="card-content-ec space-y-8">
       <!-- Process Section -->
       <div>
-        <h3 class="font-mono text-lg text-purple-400 font-semibold mb-6">{{ page.process_subsection_header }}</h3>
+        <h3 class="font-mono text-lg text-blue-300 font-semibold mb-6">{{ page.process_subsection_header }}</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.process_principle_1_title }}</h4>
-            <p class="text-gray-200 text-sm">{{ page.process_principle_1_content }}</p>
+            <h4 class="font-mono text-sm text-blue-300 font-semibold mb-2">{{ page.process_principle_1_title }}</h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.process_principle_1_content }}</p>
           </div>
           <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.process_principle_2_title }}</h4>
-            <p class="text-gray-200 text-sm">{{ page.process_principle_2_content }}</p>
+            <h4 class="font-mono text-sm text-blue-300 font-semibold mb-2">{{ page.process_principle_2_title }}</h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.process_principle_2_content }}</p>
           </div>
           <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.process_principle_3_title }}</h4>
-            <p class="text-gray-200 text-sm">{{ page.process_principle_3_content }}</p>
+            <h4 class="font-mono text-sm text-blue-300 font-semibold mb-2">{{ page.process_principle_3_title }}</h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.process_principle_3_content }}</p>
           </div>
         </div>
       </div>
 
       <!-- Practice Section -->
       <div>
-        <h3 class="font-mono text-lg text-purple-400 font-semibold mb-6">{{ page.practice_subsection_header }}</h3>
+        <h3 class="font-mono text-lg text-blue-300 font-semibold mb-6">{{ page.practice_subsection_header }}</h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.practice_principle_1_title }}</h4>
-            <p class="text-gray-200 text-sm">{{ page.practice_principle_1_content }}</p>
+            <h4 class="font-mono text-sm text-blue-300 font-semibold mb-2">{{ page.practice_principle_1_title }}</h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.practice_principle_1_content }}</p>
           </div>
           <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.practice_principle_2_title }}</h4>
-            <p class="text-gray-200 text-sm">{{ page.practice_principle_2_content }}</p>
+            <h4 class="font-mono text-sm text-blue-300 font-semibold mb-2">{{ page.practice_principle_2_title }}</h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.practice_principle_2_content }}</p>
           </div>
           <div class="bg-gray-800 border border-gray-600 rounded-lg p-4">
-            <h4 class="font-mono text-sm text-purple-400 font-semibold mb-2">{{ page.practice_principle_3_title }}</h4>
-            <p class="text-gray-200 text-sm">{{ page.practice_principle_3_content }}</p>
+            <h4 class="font-mono text-sm text-blue-300 font-semibold mb-2">{{ page.practice_principle_3_title }}</h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.practice_principle_3_content }}</p>
           </div>
         </div>
       </div>
@@ -156,9 +156,9 @@
       </div>
     </div>
     <div class="card-content-ec space-y-6">
-      <div class="text-gray-200">{{ page.strategies_intro|richtext }}</div>
+      <div class="text-gray-700 dark:text-gray-300">{{ page.strategies_intro|richtext }}</div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Strategy 1 -->
         <div class="strategy-card bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
           <table class="strategy-table w-full">
@@ -172,31 +172,31 @@
             </thead>
             <tbody>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                <td class="label text-blue-300 font-mono text-xs p-3 border-b border-gray-600">
                   {{ page.strategy_label_focus }}
                 </td>
-                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_focus }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_focus }}</td>
               </tr>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                <td class="label text-blue-300 font-mono text-xs p-3 border-b border-gray-600">
                   {{ page.strategy_label_screening }}
                 </td>
-                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_screening }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_screening }}</td>
               </tr>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                <td class="label text-blue-300 font-mono text-xs p-3 border-b border-gray-600">
                   {{ page.strategy_label_management }}
                 </td>
-                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_management }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3 border-b border-gray-600">{{ page.strategy_1_management }}</td>
               </tr>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
-                <td class="text-gray-200 text-xs p-3">{{ page.strategy_1_ownership }}</td>
+                <td class="label text-blue-300 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3">{{ page.strategy_1_ownership }}</td>
               </tr>
             </tbody>
           </table>
           <div class="strategy-features p-4 border-t border-gray-600 space-y-3">
-            <p class="text-gray-200 text-sm">{{ page.strategy_1_description }}</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.strategy_1_description }}</p>
             <a href="{{ page.strategy_1_link }}" class="btn-ec-secondary inline-block">
               {{ page.strategy_1_link_text }}
             </a>
@@ -216,31 +216,31 @@
             </thead>
             <tbody>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                <td class="label text-blue-300 font-mono text-xs p-3 border-b border-gray-600">
                   {{ page.strategy_label_focus }}
                 </td>
-                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_focus }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_focus }}</td>
               </tr>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                <td class="label text-blue-300 font-mono text-xs p-3 border-b border-gray-600">
                   {{ page.strategy_label_screening }}
                 </td>
-                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_screening }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_screening }}</td>
               </tr>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                <td class="label text-blue-300 font-mono text-xs p-3 border-b border-gray-600">
                   {{ page.strategy_label_management }}
                 </td>
-                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_management }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3 border-b border-gray-600">{{ page.strategy_2_management }}</td>
               </tr>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
-                <td class="text-gray-200 text-xs p-3">{{ page.strategy_2_ownership }}</td>
+                <td class="label text-blue-300 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3">{{ page.strategy_2_ownership }}</td>
               </tr>
             </tbody>
           </table>
           <div class="strategy-features p-4 border-t border-gray-600 space-y-3">
-            <p class="text-gray-200 text-sm">{{ page.strategy_2_description }}</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.strategy_2_description }}</p>
             <a href="{{ page.strategy_2_link }}" class="btn-ec-secondary inline-block">
               {{ page.strategy_2_link_text }}
             </a>
@@ -260,31 +260,31 @@
             </thead>
             <tbody>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                <td class="label text-blue-300 font-mono text-xs p-3 border-b border-gray-600">
                   {{ page.strategy_label_focus }}
                 </td>
-                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_focus }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_focus }}</td>
               </tr>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                <td class="label text-blue-300 font-mono text-xs p-3 border-b border-gray-600">
                   {{ page.strategy_label_screening }}
                 </td>
-                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_screening }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_screening }}</td>
               </tr>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3 border-b border-gray-600">
+                <td class="label text-blue-300 font-mono text-xs p-3 border-b border-gray-600">
                   {{ page.strategy_label_management }}
                 </td>
-                <td class="text-gray-200 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_management }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3 border-b border-gray-600">{{ page.strategy_3_management }}</td>
               </tr>
               <tr>
-                <td class="label text-purple-400 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
-                <td class="text-gray-200 text-xs p-3">{{ page.strategy_3_ownership }}</td>
+                <td class="label text-blue-300 font-mono text-xs p-3">{{ page.strategy_label_ownership }}</td>
+                <td class="text-gray-700 dark:text-gray-300 text-xs p-3">{{ page.strategy_3_ownership }}</td>
               </tr>
             </tbody>
           </table>
           <div class="strategy-features p-4 border-t border-gray-600 space-y-3">
-            <p class="text-gray-200 text-sm">{{ page.strategy_3_description }}</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.strategy_3_description }}</p>
             <a href="{{ page.strategy_3_link }}" class="btn-ec-secondary inline-block">
               {{ page.strategy_3_link_text }}
             </a>
@@ -304,7 +304,7 @@
       </h2>
     </div>
     <div class="card-content-ec space-y-6">
-      <h3 class="text-center font-mono text-xl text-purple-400 font-semibold">How We Build Ethical Portfolios</h3>
+      <h3 class="text-center font-mono text-xl text-blue-300 font-semibold">How We Build Ethical Portfolios</h3>
 
       <div class="space-y-6">
         <div class="flex gap-4">
@@ -314,8 +314,8 @@
             1
           </div>
           <div class="flex-1">
-            <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_1_title }}</h4>
-            <p class="text-gray-200 text-sm">{{ page.process_step_1_content }}</p>
+            <h4 class="font-mono text-blue-300 font-semibold mb-2">{{ page.process_step_1_title }}</h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.process_step_1_content }}</p>
           </div>
         </div>
 
@@ -326,8 +326,8 @@
             2
           </div>
           <div class="flex-1">
-            <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_2_title }}</h4>
-            <p class="text-gray-200 text-sm">{{ page.process_step_2_content }}</p>
+            <h4 class="font-mono text-blue-300 font-semibold mb-2">{{ page.process_step_2_title }}</h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.process_step_2_content }}</p>
           </div>
         </div>
 
@@ -338,8 +338,8 @@
             3
           </div>
           <div class="flex-1">
-            <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_3_title }}</h4>
-            <p class="text-gray-200 text-sm">{{ page.process_step_3_content }}</p>
+            <h4 class="font-mono text-blue-300 font-semibold mb-2">{{ page.process_step_3_title }}</h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.process_step_3_content }}</p>
           </div>
         </div>
 
@@ -350,8 +350,8 @@
             4
           </div>
           <div class="flex-1">
-            <h4 class="font-mono text-purple-400 font-semibold mb-2">{{ page.process_step_4_title }}</h4>
-            <p class="text-gray-200 text-sm">{{ page.process_step_4_content }}</p>
+            <h4 class="font-mono text-blue-300 font-semibold mb-2">{{ page.process_step_4_title }}</h4>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{{ page.process_step_4_content }}</p>
           </div>
         </div>
       </div>
@@ -372,20 +372,20 @@
     <div class="card-content-ec">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 text-center">
-          <h3 class="font-mono text-lg text-purple-400 font-semibold mb-3">{{ page.serve_individual_title }}</h3>
-          <p class="text-gray-200 text-sm mb-4">{{ page.serve_individual_content }}</p>
+          <h3 class="font-mono text-lg text-blue-300 font-semibold mb-3">{{ page.serve_individual_title }}</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mb-4">{{ page.serve_individual_content }}</p>
           <a href="{{ page.serve_individual_link }}" class="btn-ec-secondary">{{ page.serve_individual_link_text }}</a>
         </div>
 
         <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 text-center">
-          <h3 class="font-mono text-lg text-purple-400 font-semibold mb-3">{{ page.serve_advisor_title }}</h3>
-          <p class="text-gray-200 text-sm mb-4">{{ page.serve_advisor_content }}</p>
+          <h3 class="font-mono text-lg text-blue-300 font-semibold mb-3">{{ page.serve_advisor_title }}</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mb-4">{{ page.serve_advisor_content }}</p>
           <a href="{{ page.serve_advisor_link }}" class="btn-ec-secondary">{{ page.serve_advisor_link_text }}</a>
         </div>
 
         <div class="bg-gray-800 border border-gray-600 rounded-lg p-6 text-center">
-          <h3 class="font-mono text-lg text-purple-400 font-semibold mb-3">{{ page.serve_institution_title }}</h3>
-          <p class="text-gray-200 text-sm mb-4">{{ page.serve_institution_content }}</p>
+          <h3 class="font-mono text-lg text-blue-300 font-semibold mb-3">{{ page.serve_institution_title }}</h3>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mb-4">{{ page.serve_institution_content }}</p>
           <a href="{{ page.serve_institution_link }}" class="btn-ec-secondary">
             {{ page.serve_institution_link_text }}
           </a>
@@ -400,8 +400,8 @@
   <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6">
     <div class="text-center space-y-4">
       <div class="badge-ec-success">{{ page.accepting_clients_icon }} {{ page.client_availability_text|upper }}</div>
-      <h2 class="font-mono text-2xl text-purple-400 font-semibold">{{ page.cta_title }}</h2>
-      <div class="text-gray-200 max-w-2xl mx-auto">{{ page.cta_description|richtext }}</div>
+      <h2 class="font-mono text-2xl text-blue-300 font-semibold">{{ page.cta_title }}</h2>
+      <div class="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">{{ page.cta_description|richtext }}</div>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="{{ page.cta_button_1_link }}" class="btn-ec-primary">{{ page.cta_button_1_text }}</a>
         <a href="{{ page.cta_button_2_link }}" class="btn-ec-secondary">{{ page.cta_button_2_text }}</a>
