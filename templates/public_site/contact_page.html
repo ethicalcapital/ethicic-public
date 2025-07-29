@@ -65,7 +65,7 @@
       >
         {% csrf_token %}
 
-        <!-- Name Field (combined name field matching HTMX form) -->
+        <!-- Name Field -->
         <div class="form-group-ec">
           <label for="name" class="form-label-ec">Full Name *</label>
           <input
@@ -107,12 +107,11 @@
             ⟳
           </span>
           <div id="email-feedback" class="mt-1 text-sm" role="status" aria-live="polite" aria-atomic="true"></div>
-          <p class="form-help-ec">We'll never share your email with anyone else.</p>
         </div>
 
         <!-- Company Field -->
         <div class="form-group-ec">
-          <label for="company" class="form-label-ec">Company</label>
+          <label for="company" class="form-label-ec">Company/Organization</label>
           <input
             type="text"
             id="company"
@@ -128,11 +127,12 @@
           <label for="subject" class="form-label-ec">Subject *</label>
           <select id="subject" name="subject" class="form-select-ec" :disabled="submitting" required>
             <option value="">Select a topic...</option>
-            <option value="investment_inquiry">Investment Inquiry</option>
-            <option value="portfolio_review">Portfolio Review</option>
-            <option value="esg_consulting">ESG Consulting</option>
-            <option value="speaking_request">Speaking Request</option>
-            <option value="media_inquiry">Media Inquiry</option>
+            <option value="investment-consultation">Investment Consultation</option>
+            <option value="portfolio-review">Portfolio Review</option>
+            <option value="ethical-screening">Ethical Screening Questions</option>
+            <option value="partnership">Partnership Inquiry</option>
+            <option value="press-media">Press & Media</option>
+            <option value="technical-support">Technical Support</option>
             <option value="other">Other</option>
           </select>
         </div>
@@ -154,12 +154,11 @@
         <div class="form-group-ec">
           <div
             class="cf-turnstile"
-            data-sitekey="{{ TURNSTILE_SITE_KEY }}"
+            data-sitekey="0x4AAAAAABk5jZxSl-TKV1hs"
             data-callback="onTurnstileSuccess"
-            data-expired-callback="onTurnstileExpired"
             data-error-callback="onTurnstileError"
+            data-theme="dark"
           ></div>
-          <input type="hidden" name="cf_turnstile_response" value="" />
         </div>
 
         <!-- Submit Button -->
@@ -167,31 +166,28 @@
           <button type="submit" class="btn-ec-primary" :disabled="submitting" aria-describedby="form-response">
             <span x-show="!submitting">Send Message</span>
             <span x-show="submitting" x-cloak>
-              <span class="inline-block animate-spin" role="status" aria-label="Loading">⟳</span>
+              <svg class="animate-spin h-5 w-5 mr-2 inline" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
               Sending...
             </span>
-          </button>
-          <button
-            type="reset"
-            class="btn-ec-secondary"
-            :disabled="submitting"
-            @click="$refs.formResponse && ($refs.formResponse.innerHTML = '')"
-            aria-label="Clear all form fields"
-          >
-            Clear Form
           </button>
         </div>
 
         <!-- Loading indicator -->
         <div
           id="form-loading"
-          class="htmx-indicator absolute inset-0 bg-gray-900 bg-opacity-95 flex items-center justify-center rounded-lg"
+          class="htmx-indicator bg-opacity-95 absolute inset-0 flex items-center justify-center rounded-lg bg-gray-900"
           role="status"
           aria-label="Form submission in progress"
         >
           <div class="text-center">
-            <div class="text-2xl mb-4 animate-spin" aria-hidden="true">⟳</div>
-            <p class="text-gray-200">Sending your message...</p>
+            <svg class="animate-spin h-12 w-12 mx-auto mb-4 text-purple-400" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-purple-200">Submitting your message...</p>
           </div>
         </div>
       </form>
@@ -208,292 +204,48 @@
     </div>
 
     <!-- Contact Information -->
-    <div class="space-y-6">
+    <div class="card-ec">
       <!-- Direct Contact -->
-      <div class="card-ec">
-        <div class="card-header-ec">
-          <h3 class="card-title-ec">Direct Contact</h3>
-        </div>
-        <div class="card-content-ec space-y-4">
-          <div>
-            <h4 class="font-mono text-sm text-purple-400 mb-2">Schedule a Meeting</h4>
-            <a
-              href="https://calendly.com/sloane-ortel"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-ec-primary inline-block"
-            >
-              📅 Book Calendar Slot
-            </a>
+      <div class="mb-6">
+        <h3 class="card-title-ec">Direct Contact</h3>
+        <div class="space-y-3">
+          <div class="flex items-center">
+            <span class="w-5 h-5 mr-3 text-purple-400">📧</span>
+            <div>
+              <p class="font-mono text-sm text-gray-300">Email</p>
+              <a href="mailto:hello@ethicic.com" class="text-purple-400 hover:text-purple-300 transition-colors">hello@ethicic.com</a>
+            </div>
           </div>
-
-          <div>
-            <h4 class="font-mono text-sm text-purple-400 mb-2">Email</h4>
-            <a href="mailto:sloane@ethicalcapital.com" class="text-gray-200 hover:text-purple-400 transition-colors">
-              sloane@ethicalcapital.com
-            </a>
+          <div class="flex items-center">
+            <span class="w-5 h-5 mr-3 text-purple-400">📞</span>
+            <div>
+              <p class="font-mono text-sm text-gray-300">Phone</p>
+              <a href="tel:+13034428844" class="text-purple-400 hover:text-purple-300 transition-colors">(303) 442-8844</a>
+            </div>
           </div>
-
-          <div>
-            <h4 class="font-mono text-sm text-purple-400 mb-2">Professional Networks</h4>
-            <div class="flex flex-wrap gap-2">
-              <a
-                href="https://linkedin.com/in/sloane-ortel"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-link-ec"
-              >
-                <span>🔗</span>
-                <span>LinkedIn</span>
-              </a>
-              <a
-                href="https://brokercheck.finra.org/individual/summary/7114756"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-link-ec"
-              >
-                <span>📋</span>
-                <span>BrokerCheck</span>
-              </a>
+          <div class="flex items-center">
+            <span class="w-5 h-5 mr-3 text-purple-400">💬</span>
+            <div>
+              <p class="font-mono text-sm text-gray-300">Response Time</p>
+              <p class="text-gray-400 text-sm">Within 24 hours</p>
             </div>
           </div>
         </div>
       </div>
-
+      
       <!-- Office Info -->
-      <div class="card-ec">
-        <div class="card-header-ec">
-          <h3 class="card-title-ec">Office Information</h3>
+      <div>
+        <h3 class="card-title-ec">Office Information</h3>
+        <div class="text-gray-400 text-sm space-y-2">
+          <p><strong class="text-gray-300">Ethical Capital</strong></p>
+          <p>Sloane Ortel, Principal</p>
+          <p>Boulder, Colorado</p>
+          <p class="text-xs pt-2 border-t border-gray-600">
+            Investment Adviser Representative<br />
+            CRD #316032
+          </p>
         </div>
-        <div class="card-content-ec space-y-3">
-          <div>
-            <span class="badge-ec-primary">Investment Adviser Representative</span>
-          </div>
-          <div class="text-sm text-gray-400">
-            <p>CRD #316032</p>
-          </div>
-          <div class="text-xs text-gray-500 pt-3 border-t border-gray-600">
-            <p>
-              Ethical Capital operates as a Registered Investment Adviser. All investment advice is provided in
-              accordance with applicable regulations.
-            </p>
-        </div>
-        <div class="grid-2col">
-            <!-- Contact Form -->
-            <div class="card-ec">
-                <div class="card-header-ec">
-                    <h2 class="card-title-ec">Send a Message</h2>
-                </div>
-                <!-- HTMX Contact Form with Alpine.js -->
-                <form id="contact-form"
-                      hx-post="/api/contact/"
-                      hx-target="#form-response"
-                      hx-indicator="#form-loading"
-                      hx-swap="innerHTML"
-                      class="form-ec relative"
-                      x-data="{ submitting: false, submissionId: null, handleSubmit() { this.submitting = true; }, handleResponse(event) { this.submitting = false; // Extract submission ID from response if available const response = event.detail.xhr.responseText; try { const data = JSON.parse(response); if (data.submission_id) { this.submissionId = data.submission_id; console.log('Form submitted with ID:', this.submissionId); // Optionally check status after a delay setTimeout(() => this.checkSubmissionStatus(), 2000); } } catch (e) { // Response might be HTML, not JSON } }, async checkSubmissionStatus() { if (!this.submissionId) return; try { const response = await fetch(`/api/submission-status/${this.submissionId}/`); const data = await response.json(); console.log('Submission status:', data); } catch (e) { console.log('Could not check submission status:', e); } } }"
-                      @htmx:before-request="handleSubmit()"
-                      @htmx:after-request="handleResponse()">
-                    {% csrf_token %}
-                    <!-- Name Field (combined name field matching HTMX form) -->
-                    <div class="form-group-ec">
-                        <label for="name" class="form-label-ec">Full Name *</label>
-                        <input type="text"
-                               id="name"
-                               name="name"
-                               class="form-input-ec"
-                               placeholder="Your full name"
-                               :disabled="submitting"
-                               required />
-                    </div>
-                    <!-- Email Field with inline validation -->
-                    <div class="form-group-ec">
-                        <label for="email" class="form-label-ec">Email Address *</label>
-                        <input type="email"
-                               id="email"
-                               name="email"
-                               class="form-input-ec"
-                               placeholder="your@email.com"
-                               autocomplete="email"
-                               required
-                               hx-post="/api/validate-email/"
-                               hx-trigger="blur changed"
-                               hx-target="#email-feedback"
-                               hx-indicator="#email-spinner"
-                               :disabled="submitting"
-                               aria-describedby="email-feedback"
-                               aria-invalid="false" />
-                        <span id="email-spinner"
-                              class="htmx-indicator ml-2 inline-block text-purple-400"
-                              role="status"
-                              aria-label="Validating email">⟳</span>
-                        <div id="email-feedback"
-                             class="mt-1 text-sm"
-                             role="status"
-                             aria-live="polite"
-                             aria-atomic="true"></div>
-                        <p class="form-help-ec">We'll never share your email with anyone else.</p>
-                    </div>
-                    <!-- Company Field -->
-                    <div class="form-group-ec">
-                        <label for="company" class="form-label-ec">Company</label>
-                        <input type="text"
-                               id="company"
-                               name="company"
-                               class="form-input-ec"
-                               placeholder="Your company or organization"
-                               :disabled="submitting" />
-                    </div>
-                    <!-- Subject -->
-                    <div class="form-group-ec">
-                        <label for="subject" class="form-label-ec">Subject *</label>
-                        <select id="subject"
-                                name="subject"
-                                class="form-select-ec"
-                                :disabled="submitting"
-                                required>
-                            <option value="">Select a topic...</option>
-                            <option value="investment_inquiry">Investment Inquiry</option>
-                            <option value="portfolio_review">Portfolio Review</option>
-                            <option value="esg_consulting">ESG Consulting</option>
-                            <option value="speaking_request">Speaking Request</option>
-                            <option value="media_inquiry">Media Inquiry</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <!-- Message -->
-                    <div class="form-group-ec">
-                        <label for="message" class="form-label-ec">Message *</label>
-                        <textarea id="message"
-                                  name="message"
-                                  class="form-textarea-ec"
-                                  placeholder="Tell us about your investment goals, timeline, or any specific questions you have..."
-                                  :disabled="submitting"
-                                  required></textarea>
-                    </div>
-                    <!-- Cloudflare Turnstile -->
-                    <div class="form-group-ec">
-                        <div class="cf-turnstile"
-                             data-sitekey="{{ TURNSTILE_SITE_KEY }}"
-                             data-callback="onTurnstileSuccess"
-                             data-expired-callback="onTurnstileExpired"
-                             data-error-callback="onTurnstileError"></div>
-                        <input type="hidden" name="cf_turnstile_response" value="" />
-                    </div>
-                    <!-- Submit Button -->
-                    <div class="flex gap-4">
-                        <button type="submit"
-                                class="btn-ec-primary"
-                                :disabled="submitting"
-                                aria-describedby="form-response">
-                            <span x-show="!submitting">Send Message</span>
-                            <span x-show="submitting" x-cloak>
-                                <span class="inline-block animate-spin" role="status" aria-label="Loading">⟳</span>
-                                Sending...
-                            </span>
-                        </button>
-                        <button type="reset"
-                                class="btn-ec-secondary"
-                                :disabled="submitting"
-                                @click="$refs.formResponse && ($refs.formResponse.innerHTML = '')"
-                                aria-label="Clear all form fields">Clear Form</button>
-                    </div>
-                    <!-- Loading indicator -->
-                    <div id="form-loading"
-                         class="htmx-indicator bg-opacity-95 absolute inset-0 flex items-center justify-center rounded-lg bg-gray-900"
-                         role="status"
-                         aria-label="Form submission in progress">
-                        <div class="text-center">
-                            <div class="mb-4 animate-spin text-2xl" aria-hidden="true">⟳</div>
-                            <p class="text-gray-200">Sending your message...</p>
-                        </div>
-                    </div>
-                </form>
-                <!-- Response container -->
-                <div id="form-response"
-                     x-ref="formResponse"
-                     class="mt-4"
-                     role="status"
-                     aria-live="polite"
-                     aria-atomic="true"></div>
-            </div>
-            <!-- Contact Information -->
-            <div class="space-y-6">
-                <!-- Direct Contact -->
-                <div class="card-ec">
-                    <div class="card-header-ec">
-                        <h3 class="card-title-ec">Direct Contact</h3>
-                    </div>
-                    <div class="card-content-ec space-y-4">
-                        <div>
-                            <h4 class="mb-2 font-mono text-sm text-purple-400">Schedule a Meeting</h4>
-                            <a href="https://calendly.com/sloane-ortel"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="btn-ec-primary inline-block">📅 Book Calendar Slot</a>
-                        </div>
-                        <div>
-                            <h4 class="mb-2 font-mono text-sm text-purple-400">Email</h4>
-                            <a href="mailto:sloane@ethicalcapital.com"
-                               class="text-gray-200 transition-colors hover:text-purple-400">
-                                sloane@ethicalcapital.com
-                            </a>
-                        </div>
-                        <div>
-                            <h4 class="mb-2 font-mono text-sm text-purple-400">Professional Networks</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <a href="https://linkedin.com/in/sloane-ortel"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="social-link-ec">
-                                    <span>🔗</span>
-                                    <span>LinkedIn</span>
-                                </a>
-                                <a href="https://brokercheck.finra.org/individual/summary/7114756"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="social-link-ec">
-                                    <span>📋</span>
-                                    <span>BrokerCheck</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Office Info -->
-                <div class="card-ec">
-                    <div class="card-header-ec">
-                        <h3 class="card-title-ec">Office Information</h3>
-                    </div>
-                    <div class="card-content-ec space-y-3">
-                        <div>
-                            <span class="badge-ec-primary">Investment Adviser Representative</span>
-                        </div>
-                        <div class="text-sm text-gray-400">
-                            <p>CRD #316032</p>
-                        </div>
-                        <div class="border-t border-gray-600 pt-3 text-xs text-gray-500">
-                            <p>
-                                Ethical Capital operates as a Registered Investment Adviser. All investment advice is provided in
-                                accordance with applicable regulations.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Response Time -->
-                <div class="card-ec">
-                    <div class="card-content-ec">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">⚡</span>
-                            <div>
-                                <h4 class="font-mono text-sm text-purple-400">Quick Response</h4>
-                                <p class="text-sm text-gray-400">Typically respond within 24 hours during business days</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -511,74 +263,43 @@
     if (hiddenField) {
       hiddenField.value = token;
     }
-    console.log("Turnstile verification successful");
-  }
-
-  function onTurnstileExpired() {
-    // Clear the token when expired
-    const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
-    if (hiddenField) {
-      hiddenField.value = "";
-    }
-    console.log("Turnstile token expired");
   }
 
   function onTurnstileError(error) {
-    // Clear the token on error
-    const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
-    if (hiddenField) {
-      hiddenField.value = "";
-    }
-    console.log("Turnstile error:", error);
+    console.error('Turnstile error:', error);
   }
 
-  // Custom CSS for form states
+  // Add custom styles for better form appearance
   const styleSheet = document.createElement("style");
-  styleSheet.textContent = `
-    /* HTMX Loading States */
-    .htmx-indicator {
-        display: none;
-    }
-
-    .htmx-request .htmx-indicator {
-        display: block;
-    }
-
-    .htmx-request #form-loading {
-        display: flex !important;
-    }
-
-    /* Email validation feedback */
-    #email-feedback.valid {
-        color: var(--color-success, #10b981);
-    }
-
-    #email-feedback.invalid {
-        color: var(--color-error, #ef4444);
-    }
-
-    /* Spinner animation */
-    @keyframes spin {
-        to { transform: rotate(360deg); }
-    }
-
-    .animate-spin {
-        animation: spin 1s linear infinite;
-    }
-
-    /* Form disabled state */
-    .form-input-ec:disabled,
-    .form-select-ec:disabled,
-    .form-textarea-ec:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
-
-    /* Turnstile styling */
+  styleSheet.innerText = `
     .cf-turnstile {
-        margin: 1rem 0;
+      margin: 1rem 0;
     }
-`;
+    
+    .form-group-ec {
+      margin-bottom: 1.5rem;
+    }
+    
+    .htmx-indicator {
+      opacity: 0;
+    }
+    
+    .htmx-request .htmx-indicator {
+      opacity: 1;
+    }
+    
+    .htmx-request.htmx-indicator {
+      opacity: 1;
+    }
+    
+    /* Ensure proper focus styles for accessibility */
+    .form-input-ec:focus,
+    .form-select-ec:focus,
+    .form-textarea-ec:focus {
+      outline: 2px solid #a855f7;
+      outline-offset: 2px;
+    }
+  `;
   document.head.appendChild(styleSheet);
-    </script>
+</script>
 {% endblock %}
