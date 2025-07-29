@@ -31,11 +31,11 @@
     <div class="grid-2col">
       <!-- Featured Content -->
       <div class="space-y-4">
-        <h2 class="font-mono text-2xl text-purple-400 font-semibold">
+        <h3 class="font-mono text-2xl text-purple-400 font-semibold">
           <a href="{{ featured_post.url_path }}" class="hover:text-purple-300 transition-colors">
             {{ featured_post.title }}
           </a>
-        </h2>
+        </h3>
 
         {% if featured_post.intro %}
         <p class="text-gray-200">{{ featured_post.intro }}</p>
@@ -88,7 +88,7 @@
   {% if posts %}
   <section class="card-ec mb-8">
     <div class="card-header-ec">
-      <h3 class="card-title-ec">Recent Articles</h3>
+      <h2 class="card-title-ec">Recent Articles</h2>
     </div>
     <div class="card-content-ec">
       <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -120,9 +120,9 @@
             {% endif %}
 
             <!-- Title -->
-            <h4 class="font-mono text-lg text-purple-400 font-semibold leading-tight">
+            <h3 class="font-mono text-lg text-purple-400 font-semibold leading-tight">
               <a href="{{ post.url_path }}" class="hover:text-purple-300 transition-colors">{{ post.title }}</a>
-            </h4>
+            </h3>
 
             <!-- Excerpt -->
             {% if post.intro %}
@@ -172,7 +172,7 @@
     <div class="card-content-ec">
       <div class="text-gray-400 space-y-4">
         <div class="text-4xl">📰</div>
-        <h3 class="font-mono text-lg text-purple-400">No Articles Yet</h3>
+        <h2 class="font-mono text-lg text-purple-400">No Articles Yet</h2>
         <p>We're working on bringing you insightful content about ethical investing.</p>
         <a href="/contact/" class="btn-ec-primary">Get Notified</a>
       </div>
@@ -182,7 +182,7 @@
 
   <!-- Newsletter Signup CTA -->
   <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6 text-center">
-    <h3 class="font-mono text-xl text-purple-400 font-semibold mb-4">Stay Updated on Market Insights</h3>
+    <h2 class="font-mono text-xl text-purple-400 font-semibold mb-4">Stay Updated on Market Insights</h2>
     <p class="text-gray-200 mb-6 max-w-2xl mx-auto">
       Get our latest research and analysis delivered to your inbox. No spam, just thoughtful investment commentary.
     </p>
