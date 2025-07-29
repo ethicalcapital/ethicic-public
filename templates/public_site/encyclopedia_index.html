@@ -3,355 +3,318 @@
 
 {% block title %}Investment Encyclopedia | Ethical Capital{% endblock %}
 
-{% block body_class %}encyclopedia-index{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/encyclopedia-page-fix.css' %}?v=1" />
-<style>
-  /* Encyclopedia Page Styling */
-  .encyclopedia-search {
-    margin-bottom: var(--space-6, 24px);
-  }
-
-  .encyclopedia-entry {
-    transition: all 0.2s ease;
-  }
-
-  .encyclopedia-entry:hover {
-    border-color: var(--theme-primary) !important;
-    box-shadow: 0 2px 8px var(--theme-shadow-variant);
-  }
-
-  /* Tag styling matching article tags */
-  .article-tag {
-    background: var(--theme-surface-variant);
-    color: var(--theme-on-surface-variant);
-    border: 1px solid var(--theme-border);
-    padding: var(--space-1, 4px) var(--space-2, 8px);
-    font-size: var(--font-xs, 12px);
-    font-weight: var(--font-medium, 500);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    border-radius: var(--radius-sm, 4px);
-    display: inline-block;
-    white-space: nowrap;
-  }
-
-  .article-tag:hover {
-    background: var(--theme-primary-alpha);
-    color: var(--theme-on-surface);
-    border-color: var(--theme-primary);
-  }
-
-  /* Details/Summary styling */
-  details summary::-webkit-details-marker {
-    display: none;
-  }
-
-  details summary:hover {
-    color: var(--theme-primary-hover) !important;
-  }
-
-  details summary:focus-visible {
-    outline: 2px solid var(--theme-primary);
-    outline-offset: 2px;
-  }
-
-  /* Search input styling */
-  .garden-input {
-    width: 100%;
-    padding: var(--space-3, 12px) var(--space-4, 16px);
-    border: 1px solid var(--theme-border);
-    border-radius: var(--radius-sm, 4px);
-    background: var(--theme-surface);
-    color: var(--theme-on-surface);
-    font-family: inherit;
-    font-size: var(--font-base, 16px);
-    transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  .garden-input:focus {
-    outline: none;
-    border-color: var(--theme-primary);
-    box-shadow: 0 0 0 2px var(--theme-primary-alpha);
-  }
-
-  .garden-input::placeholder {
-    color: var(--theme-on-surface-variant);
-    opacity: 0.8;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 640px) {
-    .entry-header {
-      flex-direction: column !important;
-      gap: var(--space-2, 8px);
-    }
-
-    .encyclopedia-entry {
-      padding: var(--space-3, 12px) !important;
-    }
-  }
-</style>
+{% block meta_description %}
+    Comprehensive investment encyclopedia with ESG terms, sustainable finance concepts, and ethical investing definitions to help you understand responsible investing.
 {% endblock %}
 
 {% block content %}
-<div class="garden-container">
-  <!-- Hero Section -->
-  <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
-    <div class="garden-panel__content garden-panel-content">
-      <h1 id="hero-heading" class="hero-title">{{ page.title }}</h1>
-      {% if page.intro_text %}
-      <div class="hero-subtitle">{{ page.intro_text|richtext }}</div>
-      {% endif %}
-    </div>
-  </section>
-
-  <!-- Main Content Panel -->
-  <section class="garden-panel" role="main">
-    <div class="garden-panel__header garden-panel-header">
-      <div class="panel-title">INVESTMENT TERMS & CONCEPTS</div>
-    </div>
-    <div class="garden-panel__content garden-panel-content">
-      <!-- Search Box -->
-      <div class="encyclopedia-search">
-        <div class="form-group">
-          <label for="encyclopedia-search" class="form-label">Search Encyclopedia</label>
-          <input
-            type="text"
-            id="encyclopedia-search"
-            placeholder="Search terms and definitions..."
-            class="garden-input"
-            aria-describedby="search-help"
-          />
-          <p id="search-help" class="help-text">Type to search through encyclopedia entries</p>
+<div class="container-ec">
+    <!-- Encyclopedia Hero Section -->
+    <section class="card-ec mb-8" role="banner" aria-labelledby="encyclopedia-heading">
+        <div class="card-header-ec">
+            <h1 id="encyclopedia-heading" class="card-title-ec">{{ page.title }}</h1>
         </div>
-      </div>
+        {% if page.intro_text %}
+        <div class="card-content-ec">
+            <div class="text-gray-200">{{ page.intro_text|richtext }}</div>
+        </div>
+        {% endif %}
+    </section>
 
-      <!-- Entry Count -->
-      <div class="entry-count">
-        {% if selected_letter %} Showing {{ entries.count }} term{{ entries.count|pluralize }} starting with "{{
-        selected_letter }}" {% else %} {{ entries.count }} term{{ entries.count|pluralize }} available {% endif %}
-      </div>
-
-      <!-- Encyclopedia Entries -->
-        </section>
-        <!-- Main Content Panel -->
-        <section class="garden-panel" role="main">
-            <div class="garden-panel__header garden-panel-header">
-                <div class="panel-title">INVESTMENT TERMS & CONCEPTS</div>
-            </div>
-            <div class="garden-panel__content garden-panel-content">
-                <!-- Search Box -->
-                <div class="encyclopedia-search">
-                    <div class="form-group">
-                        <label for="encyclopedia-search-mobile" class="form-label">Search Encyclopedia</label>
-                        <input type="text"
-                               id="encyclopedia-search-mobile"
-                               placeholder="Search terms and definitions..."
-                               class="garden-input"
-                               aria-describedby="search-help-mobile" />
-                        <p id="search-help-mobile" class="help-text">Type to search through encyclopedia entries</p>
-                    </div>
+    <!-- Search and Entries Section -->
+    <div class="grid-2col">
+        <!-- Main Encyclopedia Content -->
+        <div class="space-y-6">
+            <!-- Search Box -->
+            <div class="card-ec">
+                <div class="card-content-ec">
+                    <label for="encyclopedia-search" class="block text-sm font-medium text-purple-400 mb-2">
+                        Search Encyclopedia
+                    </label>
+                    <input
+                        type="text"
+                        id="encyclopedia-search"
+                        placeholder="Search terms and definitions..."
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
+                        aria-describedby="search-help"
+                    />
+                    <p id="search-help" class="mt-2 text-xs text-gray-400">
+                        Type to search through encyclopedia entries
+                    </p>
                 </div>
-                <!-- Entry Count -->
-                <div class="entry-count">
-                    {% if selected_letter %}
-                        Showing {{ entries.count }} term{{ entries.count|pluralize }} starting with "{{
-                        selected_letter }}"
-                    {% else %}
-                        {{ entries.count }} term{{ entries.count|pluralize }} available
+            </div>
+
+            <!-- Entry Count -->
+            <div class="text-sm text-gray-400 px-4" id="entry-count">
+                {% if selected_letter %}
+                    Showing {{ entries.count }} term{{ entries.count|pluralize }} starting with "{{ selected_letter }}"
+                {% else %}
+                    {{ entries.count }} term{{ entries.count|pluralize }} available
+                {% endif %}
+            </div>
+
+            <!-- Encyclopedia Entries -->
+            <div class="space-y-4" id="encyclopedia-entries">
+                {% for entry in entries %}
+                <div class="card-ec encyclopedia-entry" 
+                     data-title="{{ entry.title|lower }}"
+                     data-category="{{ entry.category|default:'' }}">
+                    <!-- Entry Header -->
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+                        <h3 class="text-xl font-semibold text-purple-400">{{ entry.title }}</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% if entry.category %}
+                            <span class="px-3 py-1 bg-purple-600 text-white text-xs font-semibold uppercase rounded-full">
+                                {{ entry.get_category_display }}
+                            </span>
+                            {% endif %}
+                            {% if entry.difficulty_level %}
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold uppercase rounded-full">
+                                {{ entry.get_difficulty_level_display }}
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="text-gray-200 mb-4 leading-relaxed">{{ entry.summary }}</div>
+
+                    <!-- Expandable Details -->
+                    {% if entry.detailed_content or entry.examples or entry.further_reading or entry.related_terms %}
+                    <details class="border-t border-gray-600 pt-4">
+                        <summary class="cursor-pointer text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-2 font-medium">
+                            <span class="expand-icon transition-transform">▶</span>
+                            <span class="toggle-text">Show More Details</span>
+                        </summary>
+                        <div class="mt-4 space-y-4">
+                            {% if entry.detailed_content %}
+                            <div>
+                                <h4 class="text-base font-semibold text-gray-100 mb-2">Detailed Explanation</h4>
+                                <div class="text-gray-300 leading-relaxed">{{ entry.detailed_content|safe }}</div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if entry.examples %}
+                            <div>
+                                <h4 class="text-base font-semibold text-gray-100 mb-2">Examples & Use Cases</h4>
+                                <div class="text-gray-300 leading-relaxed">{{ entry.examples|safe }}</div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if entry.further_reading %}
+                            <div>
+                                <h4 class="text-base font-semibold text-gray-100 mb-2">Further Reading</h4>
+                                <div class="text-gray-300 leading-relaxed">{{ entry.further_reading|safe }}</div>
+                            </div>
+                            {% endif %}
+                            
+                            {% if entry.related_terms %}
+                            <div>
+                                <h4 class="text-base font-semibold text-gray-100 mb-2">Related Terms</h4>
+                                <p class="text-gray-300 leading-relaxed">{{ entry.related_terms }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </details>
                     {% endif %}
                 </div>
-                <!-- Encyclopedia Entries -->
-                <div class="encyclopedia-entries">
-                    {% for entry in entries %}
-                        <div class="encyclopedia-entry"
-                             data-title="{{ entry.title|lower }}"
-                             data-category="{{ entry.category|default:'' }}">
-                            <!-- Entry Header with Title and Tags -->
-                            <div class="entry-header">
-                                <h3>{{ entry.title }}</h3>
-                                <div class="entry-tags">
-                                    {% if entry.category %}<span class="article-tag">{{ entry.get_category_display }}</span>{% endif %}
-                                    {% if entry.difficulty_level %}<span class="article-tag">{{ entry.get_difficulty_level_display }}</span>{% endif %}
-                                </div>
-                            </div>
-                            <!-- Summary - Always visible by default -->
-                            <div class="entry-summary">{{ entry.summary }}</div>
-                            <!-- Expandable detailed content (only show if additional content exists) -->
-                            {% if entry.detailed_content or entry.examples or entry.further_reading or entry.related_terms %}
-                                <details class="entry-details">
-                                    <summary>
-                                        <span class="toggle-text">Show</span>
-                                        <span class="expand-icon" aria-hidden="true">+</span>
-                                    </summary>
-                                    <div class="entry-details"
-                                         style="padding-top: var(--space-3, 12px);
-                                                border-top: 1px solid var(--theme-border);
-                                                margin-top: var(--space-2, 8px)">
-                                        {% if entry.detailed_content %}
-                                            <div style="margin-bottom: var(--space-4, 16px)">
-                                                <h4 style="font-size: var(--font-base, 16px);
-                                                           font-weight: var(--font-semibold, 600);
-                                                           margin: 0 0 var(--space-2, 8px) 0;
-                                                           color: var(--theme-on-surface)">Detailed Explanation</h4>
-                                                <div style="color: var(--theme-on-surface-variant); line-height: 1.6">{{ entry.detailed_content|safe }}</div>
-                                            </div>
-                                        {% endif %}
-                                        {% if entry.examples %}
-                                            <div style="margin-bottom: var(--space-4, 16px)">
-                                                <h4 style="font-size: var(--font-base, 16px);
-                                                           font-weight: var(--font-semibold, 600);
-                                                           margin: 0 0 var(--space-2, 8px) 0;
-                                                           color: var(--theme-on-surface)">Examples & Use Cases</h4>
-                                                <div style="color: var(--theme-on-surface-variant); line-height: 1.6">{{ entry.examples|safe }}</div>
-                                            </div>
-                                        {% endif %}
-                                        {% if entry.further_reading %}
-                                            <div style="margin-bottom: var(--space-4, 16px)">
-                                                <h4 style="font-size: var(--font-base, 16px);
-                                                           font-weight: var(--font-semibold, 600);
-                                                           margin: 0 0 var(--space-2, 8px) 0;
-                                                           color: var(--theme-on-surface)">Further Reading</h4>
-                                                <div style="color: var(--theme-on-surface-variant); line-height: 1.6">{{ entry.further_reading|safe }}</div>
-                                            </div>
-                                        {% endif %}
-                                        {% if entry.related_terms %}
-                                            <div>
-                                                <h4 style="font-size: var(--font-base, 16px);
-                                                           font-weight: var(--font-semibold, 600);
-                                                           margin: 0 0 var(--space-2, 8px) 0;
-                                                           color: var(--theme-on-surface)">Related Terms</h4>
-                                                <p style="color: var(--theme-on-surface-variant);
-                                                          line-height: 1.6;
-                                                          margin: 0">{{ entry.related_terms }}</p>
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                </details>
-                            {% endif %}
-                        </div>
-                    {% empty %}
-                        <div style="text-align: center;
-                                    padding: var(--space-8, 32px) var(--space-4, 16px);
-                                    background: var(--theme-surface-variant);
-                                    border-radius: var(--radius-md, 6px)">
-                            {% if selected_letter %}
-                                <h3 style="margin: 0 0 var(--space-3, 12px) 0;
-                                           color: var(--theme-on-surface)">No entries found</h3>
-                                <p style="color: var(--theme-on-surface-variant);
-                                          margin: 0 0 var(--space-4, 16px) 0">
-                                    No encyclopedia entries start with "{{ selected_letter }}".
-                                </p>
-                                <a href="{{ page.url }}" class="garden-action secondary">View all entries</a>
-                            {% else %}
-                                <h3 style="margin: 0 0 var(--space-3, 12px) 0;
-                                           color: var(--theme-on-surface)">Encyclopedia coming soon</h3>
-                                <p style="color: var(--theme-on-surface-variant);
-                                          margin: 0 0 var(--space-4, 16px) 0">
-                                    We're building our comprehensive investing encyclopedia. Check back soon for detailed explanations of
-                                    investment terms and concepts.
-                                </p>
-                                <a href="/contact/" class="garden-action primary">Contact us with questions</a>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
+                {% empty %}
+                <div class="card-ec text-center">
+                    <div class="card-content-ec space-y-4">
+                        {% if selected_letter %}
+                        <h3 class="text-xl font-semibold text-gray-100">No entries found</h3>
+                        <p class="text-gray-400">
+                            No encyclopedia entries start with "{{ selected_letter }}".
+                        </p>
+                        <a href="{{ page.url }}" class="btn-ec-secondary inline-block">View all entries</a>
+                        {% else %}
+                        <h3 class="text-xl font-semibold text-gray-100">Encyclopedia Coming Soon</h3>
+                        <p class="text-gray-400">
+                            We're building our comprehensive investing encyclopedia. Check back soon for detailed explanations of investment terms and concepts.
+                        </p>
+                        <a href="/contact/" class="btn-ec-primary inline-block">Contact us with questions</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Encyclopedia Sidebar -->
+        <div class="space-y-6">
+            <!-- Categories -->
+            <div class="card-ec">
+                <div class="card-header-ec">
+                    <h3 class="card-title-ec">Categories</h3>
+                </div>
+                <div class="card-content-ec">
+                    <nav aria-label="Encyclopedia Categories">
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="?category=esg" class="block py-1 text-sm text-purple-400 transition-colors hover:text-purple-300">
+                                    ESG & Sustainability
+                                </a>
+                            </li>
+                            <li>
+                                <a href="?category=basics" class="block py-1 text-sm text-purple-400 transition-colors hover:text-purple-300">
+                                    Investment Basics
+                                </a>
+                            </li>
+                            <li>
+                                <a href="?category=ethics" class="block py-1 text-sm text-purple-400 transition-colors hover:text-purple-300">
+                                    Ethical Investing
+                                </a>
+                            </li>
+                            <li>
+                                <a href="?category=analysis" class="block py-1 text-sm text-purple-400 transition-colors hover:text-purple-300">
+                                    Financial Analysis
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
-        </section>
+
+            <!-- Learning Resources -->
+            <div class="card-ec">
+                <div class="card-header-ec">
+                    <h3 class="card-title-ec">Learning Resources</h3>
+                </div>
+                <div class="card-content-ec space-y-3">
+                    <a href="/blog/" class="block py-1 text-sm text-purple-400 transition-colors hover:text-purple-300">
+                        Investment Blog
+                    </a>
+                    <a href="/faq/" class="block py-1 text-sm text-purple-400 transition-colors hover:text-purple-300">
+                        Frequently Asked Questions
+                    </a>
+                    <a href="/process/" class="block py-1 text-sm text-purple-400 transition-colors hover:text-purple-300">
+                        Our Investment Process
+                    </a>
+                    <a href="/strategies/" class="block py-1 text-sm text-purple-400 transition-colors hover:text-purple-300">
+                        Investment Strategies
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="card-ec">
+                <div class="card-content-ec space-y-4 text-center">
+                    <h4 class="font-mono font-semibold text-purple-400">Questions About Investing?</h4>
+                    <p class="text-sm text-gray-200">
+                        Our team is here to help explain investment concepts and answer your questions.
+                    </p>
+                    <div class="space-y-3">
+                        <a href="/contact/" class="btn-ec-primary block">Contact Us</a>
+                        <a href="mailto:sloane@ethicalcapital.com" class="text-sm text-purple-400 transition-colors hover:text-purple-300">
+                            sloane@ethicalcapital.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
 </div>
+
+<style>
+/* Enhanced details styling for better UX */
+details[open] .expand-icon {
+    transform: rotate(90deg);
+}
+
+.expand-icon {
+    transition: transform 0.2s ease;
+}
+
+/* Smooth animation for opening/closing */
+details[open] > div {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-  // Encyclopedia Search and Filter Functionality
-  document.addEventListener("DOMContentLoaded", function () {
+// Encyclopedia Search and Filter Functionality
+document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("encyclopedia-search");
-    const searchResults = document.getElementById("search-results");
     const entries = document.querySelectorAll(".encyclopedia-entry");
+    const entryCount = document.getElementById("entry-count");
 
     // Search functionality
     if (searchInput) {
-      searchInput.addEventListener("input", function () {
-        const query = this.value.toLowerCase();
+        searchInput.addEventListener("input", function () {
+            const query = this.value.toLowerCase();
 
-        if (query.length === 0) {
-          // Show all entries
-          entries.forEach((entry) => {
-            entry.style.display = "block";
-          });
-          if (searchResults) {
-            searchResults.style.display = "none";
-          }
-          updateCount();
-          return;
-        }
+            if (query.length === 0) {
+                // Show all entries
+                entries.forEach((entry) => {
+                    entry.style.display = "block";
+                });
+                updateCount();
+                return;
+            }
 
-        if (query.length < 2) {
-          return;
-        }
+            if (query.length < 2) {
+                return;
+            }
 
-        // Filter entries
-        entries.forEach((entry) => {
-          const title = entry.dataset.title || "";
-          const summary = entry.querySelector(".entry-summary");
-          const summaryText = summary ? summary.textContent.toLowerCase() : "";
+            // Filter entries
+            let visibleCount = 0;
+            entries.forEach((entry) => {
+                const title = entry.dataset.title || "";
+                const summaryElement = entry.querySelector(".text-gray-200");
+                const summaryText = summaryElement ? summaryElement.textContent.toLowerCase() : "";
 
-          if (title.includes(query) || summaryText.includes(query)) {
-            entry.style.display = "block";
-          } else {
-            entry.style.display = "none";
-          }
+                if (title.includes(query) || summaryText.includes(query)) {
+                    entry.style.display = "block";
+                    visibleCount++;
+                } else {
+                    entry.style.display = "none";
+                }
+            });
+
+            updateCount(`${visibleCount} matching term(s) for "${query}"`);
         });
-
-        updateCount(`matching term(s) for "${query}"`);
-      });
     }
 
-    function updateCount(suffix = "term(s) available") {
-      const visibleCount = Array.from(entries).filter((entry) => entry.style.display !== "none").length;
-
-      const countElement = document.querySelector(".entry-count");
-      if (countElement) {
-        countElement.textContent = `${visibleCount} ${suffix}`;
-      }
+    function updateCount(text = null) {
+        if (!entryCount) return;
+        
+        if (text) {
+            entryCount.textContent = text;
+        } else {
+            const visibleCount = Array.from(entries).filter((entry) => 
+                entry.style.display !== "none"
+            ).length;
+            entryCount.textContent = `${visibleCount} term${visibleCount !== 1 ? 's' : ''} available`;
+        }
     }
 
     // Initialize count
     updateCount();
 
-    // Clear search when clicking outside
-    document.addEventListener("click", function (e) {
-      if (searchInput && searchResults && !searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-        searchResults.style.display = "none";
-      }
-    });
-
-    // Update expand icons for detailed content toggles
-    const detailsElements = document.querySelectorAll("details.entry-details-toggle");
+    // Update toggle text for details elements
+    const detailsElements = document.querySelectorAll("details");
     detailsElements.forEach((details) => {
-      const summary = details.querySelector("summary.details-toggle-header");
-      const expandIcon = summary.querySelector(".expand-icon");
-      const toggleText = summary.querySelector(".toggle-text");
-
-      if (expandIcon && toggleText) {
-        // Update icon and text based on initial state
-        expandIcon.textContent = details.open ? "−" : "+";
-        toggleText.textContent = details.open ? "Show Less Details" : "Show More Details";
-
-        // Listen for toggle events
-        details.addEventListener("toggle", function () {
-          expandIcon.textContent = this.open ? "−" : "+";
-          toggleText.textContent = this.open ? "Show Less Details" : "Show More Details";
-          summary.setAttribute("aria-expanded", this.open);
-        });
-      }
+        const toggleText = details.querySelector(".toggle-text");
+        
+        if (toggleText) {
+            details.addEventListener("toggle", function () {
+                toggleText.textContent = this.open ? "Show Less Details" : "Show More Details";
+            });
+        }
     });
-  });
-    </script>
+});
+</script>
 {% endblock %}
