@@ -19,7 +19,7 @@
         <h2 class="card-title-ec">Send a Message</h2>
       </div>
 
-      <!-- HTMX Contact Form with Alpine.js -->
+      <!-- HTMX Contact Form -->
       <form
         id="contact-form"
         hx-post="/api/contact/"
@@ -27,47 +27,6 @@
         hx-indicator="#form-loading"
         hx-swap="innerHTML"
         class="form-ec relative"
-        x-data="{
-                      submitting: false,
-                      submissionId: null,
-                      handleSubmit() {
-                          this.submitting = true;
-                      },
-                      handleResponse(event) {
-                          this.submitting = false;
-                          // Fix: Check if event and event.detail exist
-                          if (!event || !event.detail || !event.detail.xhr) {
-                              console.log('HTMX response received but no event detail available');
-                              return;
-                          }
-                          // Extract submission ID from response if available
-                          const response = event.detail.xhr.responseText;
-                          try {
-                              const data = JSON.parse(response);
-                              if (data.submission_id) {
-                                  this.submissionId = data.submission_id;
-                                  console.log('Form submitted with ID:', this.submissionId);
-                                  // Optionally check status after a delay
-                                  setTimeout(() => this.checkSubmissionStatus(), 2000);
-                              }
-                          } catch (e) {
-                              // Response might be HTML, not JSON
-                              console.log('Response is not JSON:', e);
-                          }
-                      },
-                      async checkSubmissionStatus() {
-                          if (!this.submissionId) return;
-                          try {
-                              const response = await fetch(`/api/submission-status/${this.submissionId}/`);
-                              const data = await response.json();
-                              console.log('Submission status:', data);
-                          } catch (e) {
-                              console.log('Could not check submission status:', e);
-                          }
-                      }
-                  }"
-        @htmx:before-request="handleSubmit()"
-        @htmx:after-request="handleResponse($event)"
       >
         {% csrf_token %}
 
@@ -80,7 +39,6 @@
             name="name"
             class="form-input-ec"
             placeholder="Your full name"
-            :disabled="submitting"
             required
           />
         </div>
@@ -100,7 +58,6 @@
             hx-trigger="blur changed"
             hx-target="#email-feedback"
             hx-indicator="#email-spinner"
-            :disabled="submitting"
             aria-describedby="email-feedback"
             aria-invalid="false"
           />
@@ -124,7 +81,6 @@
             name="company"
             class="form-input-ec"
             placeholder="Your company or organization"
-            :disabled="submitting"
           />
         </div>
 
@@ -151,7 +107,6 @@
             name="message"
             class="form-textarea-ec"
             placeholder="Tell us about your investment goals, timeline, or any specific questions you have..."
-            :disabled="submitting"
             required
           ></textarea>
         </div>
@@ -165,19 +120,13 @@
             data-error-callback="onTurnstileError"
             data-theme="dark"
           ></div>
+          <input type="hidden" name="cf_turnstile_response" value="" />
         </div>
 
         <!-- Submit Button -->
         <div class="flex gap-4">
-          <button type="submit" class="btn-ec-primary" :disabled="submitting" aria-describedby="form-response">
-            <span x-show="!submitting">Send Message</span>
-            <span x-show="submitting" x-cloak>
-              <svg class="animate-spin h-5 w-5 mr-2 inline" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Sending...
-            </span>
+          <button type="submit" class="btn-ec-primary" aria-describedby="form-response">
+            Send Message
           </button>
         </div>
 
@@ -201,7 +150,6 @@
       <!-- Response container -->
       <div
         id="form-response"
-        x-ref="formResponse"
         class="mt-4"
         role="status"
         aria-live="polite"
