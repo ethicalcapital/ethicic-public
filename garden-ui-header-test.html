@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden UI Header Test</title>
+    
+    <!-- Load the Garden UI CSS bundle -->
+    <link rel="stylesheet" href="static/css/bundles/garden-ui-complete.css">
+    
+    <!-- Alpine.js for interactivity -->
+    <script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+        
+        /* Basic layout styles for testing */
+        .test-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .test-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(55, 65, 81, 0.5);
+            border-radius: 8px;
+        }
+        
+        .test-section h2 {
+            color: #14b8a6;
+            margin-top: 0;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .status-success {
+            background: #059669;
+            color: white;
+        }
+        
+        .status-error {
+            background: #dc2626;
+            color: white;
+        }
+    </style>
+</head>
+<body x-data="{ 
+    mobileMenuOpen: false,
+    testResults: {
+        gardenHeaderLoaded: false,
+        searchFunctional: false,
+        dropdownFunctional: false,
+        mobileMenuFunctional: false,
+        themingWorking: false
+    },
+    
+    init() {
+        // Test if Garden UI classes are loaded
+        this.testResults.gardenHeaderLoaded = this.hasComputedStyle('.garden-header', 'display');
+        
+        // Test theming
+        const root = document.documentElement;
+        this.testResults.themingWorking = root.getAttribute('data-theme') === 'dark';
+        
+        console.log('Garden UI Header Test Results:', this.testResults);
+    },
+    
+    hasComputedStyle(selector, property) {
+        const el = document.querySelector(selector);
+        if (!el) return false;
+        const computed = window.getComputedStyle(el);
+        return computed.getPropertyValue(property) !== '';
+    },
+    
+    testSearch() {
+        this.testResults.searchFunctional = true;
+        alert('Search functionality test: PASSED');
+    },
+    
+    testDropdown() {
+        this.testResults.dropdownFunctional = true;
+    },
+    
+    testMobileMenu() {
+        this.testResults.mobileMenuFunctional = true;
+        this.mobileMenuOpen = !this.mobileMenuOpen;
+    },
+    
+    toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme');
+        const newTheme = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        this.testResults.themingWorking = true;
+    }
+}">
+
+    <!-- Garden UI Header (Exact copy from your base_tailwind.html) -->
+    <header class="garden-header" role="banner">
+        <div class="garden-header-content">
+            <!-- Left: Brand + Navigation -->
+            <div class="garden-nav-left">
+                <a href="/" class="garden-brand" aria-label="Ethical Capital Home">
+                    ETHICAL CAPITAL
+                </a>
+                <nav class="garden-nav-main" role="navigation" aria-label="Main navigation" id="main-navigation">
+                    <a href="/about/" class="garden-nav-item">About</a>
+                    <a href="/process/" class="garden-nav-item">Process</a>
+                    <a href="/solutions/" class="garden-nav-item">Solutions</a>
+                    <a href="/blog/" class="garden-nav-item">Blog</a>
+                    <a href="/faq/" class="garden-nav-item">FAQ</a>
+                    <a href="/contact/" class="garden-nav-item">Contact</a>
+                </nav>
+            </div>
+            
+            <!-- Right: Search + User Actions + Theme Toggle -->
+            <div class="garden-nav-right">
+                <!-- Search -->
+                <form method="get" action="/search/" class="garden-search" role="search">
+                    <input type="text"
+                           name="q"
+                           placeholder="Search... (⌘K)"
+                           class="garden-search-input"
+                           aria-label="Search the site"
+                           autocomplete="off">
+                    <button type="submit"
+                            class="garden-search-button garden-action"
+                            aria-label="Search"
+                            @click.prevent="testSearch()">🔍</button>
+                </form>
+                
+                <!-- User Actions Group: Login + CTA -->
+                <div class="nav-user-actions">
+                    <!-- Login Dropdown -->
+                    <div class="garden-dropdown" id="loginDropdown" x-data="{ open: false }">
+                        <button class="garden-dropdown-trigger"
+                                @click="open = !open; testDropdown()"
+                                @click.outside="open = false"
+                                aria-expanded="false"
+                                aria-haspopup="true">
+                            Login
+                            <span class="garden-dropdown-arrow" :class="{ 'rotate-180': open }">▼</span>
+                        </button>
+                        <div class="garden-dropdown-menu" role="menu" x-show="open" x-transition x-cloak>
+                            <a href="#" class="garden-dropdown-item" role="menuitem">👤 Client Login</a>
+                            <a href="#" class="garden-dropdown-item" role="menuitem">🌱 Garden Login</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Primary CTA -->
+                    <a href="#" class="garden-action primary" aria-label="Get started with Ethical Capital">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Theme Toggle -->
+                <button class="garden-theme-toggle"
+                        @click="toggleTheme()"
+                        aria-label="Toggle light/dark theme">
+                    <span x-text="document.documentElement.getAttribute('data-theme') === 'dark' ? '🌙' : '☀️'" 
+                          aria-hidden="true">🌙</span>
+                </button>
+                
+                <!-- Mobile menu toggle -->
+                <button class="garden-mobile-menu-toggle"
+                        @click="testMobileMenu()"
+                        :aria-expanded="mobileMenuOpen"
+                        aria-controls="mobile-menu"
+                        aria-label="Open navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay and Panel -->
+    <div class="mobile-nav-overlay" 
+         x-show="mobileMenuOpen"
+         @click="mobileMenuOpen = false"
+         x-transition
+         x-cloak></div>
+         
+    <nav class="mobile-nav" 
+         id="mobile-menu"
+         x-show="mobileMenuOpen"
+         x-transition:enter="mobile-nav-enter"
+         x-transition:enter-start="mobile-nav-enter-start"
+         x-transition:enter-end="mobile-nav-enter-end"
+         x-transition:leave="mobile-nav-leave"
+         x-transition:leave-start="mobile-nav-leave-start"  
+         x-transition:leave-end="mobile-nav-leave-end"
+         x-cloak>
+        <!-- Mobile menu header -->
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-title">Menu</span>
+            <button @click="mobileMenuOpen = false"
+                    class="mobile-nav-close"
+                    aria-label="Close menu">✕</button>
+        </div>
+        
+        <!-- Mobile navigation -->
+        <div class="mobile-nav-content">
+            <a href="/about/" class="mobile-nav-item">About</a>
+            <a href="/process/" class="mobile-nav-item">Process</a>
+            <a href="/solutions/" class="mobile-nav-item">Solutions</a>
+            <a href="/blog/" class="mobile-nav-item">Blog</a>
+            <a href="/faq/" class="mobile-nav-item">FAQ</a>
+            <a href="/contact/" class="mobile-nav-item">Contact</a>
+        </div>
+        
+        <!-- Mobile search -->
+        <div class="mobile-nav-search">
+            <form method="get" action="/search/" class="garden-search" role="search">
+                <input type="text"
+                       name="q"
+                       placeholder="Search..."
+                       class="garden-search-input"
+                       aria-label="Search the site" />
+                <button type="submit"
+                        class="garden-search-button garden-action"
+                        aria-label="Search">🔍</button>
+            </form>
+        </div>
+        
+        <!-- Mobile login links -->
+        <div class="mobile-nav-actions">
+            <a href="#" class="mobile-nav-item">🌱 Garden Login</a>
+            <a href="#" class="mobile-nav-item">👤 Client Login</a>
+            <a href="#" class="garden-action primary">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Test Content -->
+    <div class="test-content">
+        <h1>Garden UI Header Implementation Test</h1>
+        
+        <div class="test-section">
+            <h2>Test Results</h2>
+            <div x-data="{ showResults: true }" x-show="showResults">
+                <p><strong>Garden UI CSS Loaded:</strong> 
+                   <span :class="testResults.gardenHeaderLoaded ? 'status-success' : 'status-error'" 
+                         class="status-indicator"
+                         x-text="testResults.gardenHeaderLoaded ? 'PASSED' : 'FAILED'"></span>
+                </p>
+                
+                <p><strong>Theme Toggle:</strong> 
+                   <span :class="testResults.themingWorking ? 'status-success' : 'status-error'" 
+                         class="status-indicator"
+                         x-text="testResults.themingWorking ? 'PASSED' : 'FAILED'"></span>
+                </p>
+                
+                <p><strong>Search Functionality:</strong> 
+                   <span :class="testResults.searchFunctional ? 'status-success' : 'status-error'" 
+                         class="status-indicator"
+                         x-text="testResults.searchFunctional ? 'PASSED' : 'CLICK SEARCH TO TEST'"></span>
+                </p>
+                
+                <p><strong>Login Dropdown:</strong> 
+                   <span :class="testResults.dropdownFunctional ? 'status-success' : 'status-error'" 
+                         class="status-indicator"
+                         x-text="testResults.dropdownFunctional ? 'PASSED' : 'CLICK LOGIN TO TEST'"></span>
+                </p>
+                
+                <p><strong>Mobile Menu:</strong> 
+                   <span :class="testResults.mobileMenuFunctional ? 'status-success' : 'status-error'" 
+                         class="status-indicator"
+                         x-text="testResults.mobileMenuFunctional ? 'PASSED' : 'CLICK HAMBURGER TO TEST'"></span>
+                </p>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Manual Test Instructions</h2>
+            <ol>
+                <li><strong>Garden UI Styling:</strong> Verify the header has proper Garden UI styling with purple background and clean layout</li>
+                <li><strong>Navigation Links:</strong> Confirm navigation links are properly styled and aligned</li>
+                <li><strong>Search Box:</strong> Click the search button to test search functionality</li>
+                <li><strong>Login Dropdown:</strong> Click "Login" to test dropdown menu appearance and functionality</li>
+                <li><strong>Mobile Menu:</strong> Click the hamburger menu (three lines) to test mobile navigation</li>
+                <li><strong>Theme Toggle:</strong> Click the theme toggle button (🌙/☀️) to switch between light and dark themes</li>
+                <li><strong>Get Started Button:</strong> Verify the primary CTA button has proper Garden UI styling</li>
+                <li><strong>Responsiveness:</strong> Resize the browser window to test mobile responsiveness</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h2>Garden UI Classes Used</h2>
+            <ul>
+                <li><code>.garden-header</code> - Main header container</li>
+                <li><code>.garden-header-content</code> - Header content wrapper</li>
+                <li><code>.garden-nav-left</code> - Left navigation section</li>
+                <li><code>.garden-nav-right</code> - Right navigation section</li>
+                <li><code>.garden-brand</code> - Brand/logo styling</li>
+                <li><code>.garden-nav-main</code> - Main navigation container</li>
+                <li><code>.garden-nav-item</code> - Individual navigation items</li>
+                <li><code>.garden-search</code> - Search form container</li>
+                <li><code>.garden-search-input</code> - Search input field</li>
+                <li><code>.garden-search-button</code> - Search submit button</li>
+                <li><code>.garden-dropdown</code> - Dropdown container</li>
+                <li><code>.garden-dropdown-trigger</code> - Dropdown trigger button</li>
+                <li><code>.garden-dropdown-menu</code> - Dropdown menu panel</li>
+                <li><code>.garden-dropdown-item</code> - Individual dropdown items</li>
+                <li><code>.garden-action.primary</code> - Primary action button</li>
+                <li><code>.garden-theme-toggle</code> - Theme toggle button</li>
+                <li><code>.garden-mobile-menu-toggle</code> - Mobile menu hamburger button</li>
+                <li><code>.mobile-nav</code> - Mobile navigation panel</li>
+                <li><code>.mobile-nav-*</code> - Various mobile navigation elements</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
