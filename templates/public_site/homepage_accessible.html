@@ -85,7 +85,6 @@
     <!-- Principles Section -->
     <div class="garden-container">
         <section class="garden-panel principles-panel"
-                 role="main"
                  aria-labelledby="principles-heading">
             <div class="garden-panel__header garden-panel-header">
                 <h2 id="principles-heading" class="panel-title">
@@ -93,25 +92,7 @@
                 </h2>
             </div>
             <div class="garden-panel__content garden-panel-content">
-                <!-- Process Section -->
-                <div class="principles-section">
-                    <h3 class="principles-section-header">{{ page.process_subsection_header }}</h3>
-                    <div class="principles-grid">
-                        <div class="principle-card">
-                            <h4 class="principle-title">{{ page.process_principle_1_title }}</h4>
-                            <p class="principle-content">{{ page.process_principle_1_content }}</p>
-                        </div>
-                        <div class="principle-card">
-                            <h4 class="principle-title">{{ page.process_principle_2_title }}</h4>
-                            <p class="principle-content">{{ page.process_principle_2_content }}</p>
-                        </div>
-                        <div class="principle-card">
-                            <h4 class="principle-title">{{ page.process_principle_3_title }}</h4>
-                            <p class="principle-content">{{ page.process_principle_3_content }}</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Practice Section -->
+                <!-- Core Principles Section -->
                 <div class="principles-section">
                     <h3 class="principles-section-header">{{ page.practice_subsection_header }}</h3>
                     <div class="principles-grid">
@@ -134,7 +115,7 @@
     </div>
     <!-- Strategies Section -->
     <div class="garden-container">
-        <section class="garden-panel" role="main" aria-labelledby="strategies-heading">
+        <section class="garden-panel" aria-labelledby="strategies-heading">
             <div class="garden-panel__header garden-panel-header">
                 <div class="panel-title">
                     {{ page.strategies_section_header|default:"THREE CORE STRATEGIES—MULTIPLE PATHS FORWARD" }}
@@ -143,16 +124,13 @@
             <div class="garden-panel__content garden-panel-content">
                 {{ page.strategies_intro|richtext }}
                 <div class="strategies-grid">
-                    <div class="strategy-card">
+                    <!-- Strategy 1: Detailed table format -->
+                    <div class="strategy-card strategy-card-detailed">
+                        <div class="strategy-header">
+                            <h3>{{ page.strategy_1_name }}</h3>
+                            <p class="strategy-subtitle">{{ page.strategy_1_subtitle }}</p>
+                        </div>
                         <table class="strategy-table">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">
-                                        {{ page.strategy_1_name }}
-                                        <div class="subtitle">{{ page.strategy_1_subtitle }}</div>
-                                    </th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 <tr>
                                     <td class="label">{{ page.strategy_label_focus }}</td>
@@ -174,75 +152,63 @@
                         </table>
                         <div class="strategy-features">
                             <p>{{ page.strategy_1_description }}</p>
-                            <a href="{{ page.strategy_1_link }}" class="garden-action">{{ page.strategy_1_link_text }}</a>
+                            <a href="{{ page.strategy_1_link }}" class="garden-action primary" aria-label="Learn more about {{ page.strategy_1_name }}">{{ page.strategy_1_link_text }}</a>
                         </div>
                     </div>
-                    <div class="strategy-card">
-                        <table class="strategy-table">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">
-                                        {{ page.strategy_2_name }}
-                                        <div class="subtitle">{{ page.strategy_2_subtitle }}</div>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="label">{{ page.strategy_label_focus }}</td>
-                                    <td>{{ page.strategy_2_focus }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="label">{{ page.strategy_label_screening }}</td>
-                                    <td>{{ page.strategy_2_screening }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="label">{{ page.strategy_label_management }}</td>
-                                    <td>{{ page.strategy_2_management }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="label">{{ page.strategy_label_ownership }}</td>
-                                    <td>{{ page.strategy_2_ownership }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    
+                    <!-- Strategy 2: List-based format -->
+                    <div class="strategy-card strategy-card-list">
+                        <div class="strategy-header">
+                            <h3>{{ page.strategy_2_name }}</h3>
+                            <p class="strategy-subtitle">{{ page.strategy_2_subtitle }}</p>
+                        </div>
+                        <div class="strategy-details">
+                            <div class="strategy-attribute">
+                                <strong>Investment Focus:</strong> {{ page.strategy_2_focus }}
+                            </div>
+                            <div class="strategy-attribute">
+                                <strong>Screening Approach:</strong> {{ page.strategy_2_screening }}
+                            </div>
+                            <div class="strategy-attribute">
+                                <strong>Portfolio Management:</strong> {{ page.strategy_2_management }}
+                            </div>
+                            <div class="strategy-attribute">
+                                <strong>Ownership Structure:</strong> {{ page.strategy_2_ownership }}
+                            </div>
+                        </div>
                         <div class="strategy-features">
                             <p>{{ page.strategy_2_description }}</p>
-                            <a href="{{ page.strategy_2_link }}" class="garden-action">{{ page.strategy_2_link_text }}</a>
+                            <a href="{{ page.strategy_2_link }}" class="garden-action secondary" aria-label="Explore {{ page.strategy_2_name }} details">{{ page.strategy_2_link_text }}</a>
                         </div>
                     </div>
-                    <div class="strategy-card">
-                        <table class="strategy-table">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">
-                                        {{ page.strategy_3_name }}
-                                        <div class="subtitle">{{ page.strategy_3_subtitle }}</div>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="label">{{ page.strategy_label_focus }}</td>
-                                    <td>{{ page.strategy_3_focus }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="label">{{ page.strategy_label_screening }}</td>
-                                    <td>{{ page.strategy_3_screening }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="label">{{ page.strategy_label_management }}</td>
-                                    <td>{{ page.strategy_3_management }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="label">{{ page.strategy_label_ownership }}</td>
-                                    <td>{{ page.strategy_3_ownership }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    
+                    <!-- Strategy 3: Card-based format -->
+                    <div class="strategy-card strategy-card-highlights">
+                        <div class="strategy-header">
+                            <h3>{{ page.strategy_3_name }}</h3>
+                            <p class="strategy-subtitle">{{ page.strategy_3_subtitle }}</p>
+                        </div>
+                        <div class="strategy-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-label">Focus</span>
+                                <span class="highlight-value">{{ page.strategy_3_focus }}</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-label">Screening</span>
+                                <span class="highlight-value">{{ page.strategy_3_screening }}</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-label">Management</span>
+                                <span class="highlight-value">{{ page.strategy_3_management }}</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-label">Ownership</span>
+                                <span class="highlight-value">{{ page.strategy_3_ownership }}</span>
+                            </div>
+                        </div>
                         <div class="strategy-features">
                             <p>{{ page.strategy_3_description }}</p>
-                            <a href="{{ page.strategy_3_link }}" class="garden-action">{{ page.strategy_3_link_text }}</a>
+                            <a href="{{ page.strategy_3_link }}" class="garden-action" aria-label="Discover {{ page.strategy_3_name }} approach">{{ page.strategy_3_link_text }}</a>
                         </div>
                     </div>
                 </div>
@@ -252,7 +218,6 @@
     <!-- Process Section - Updated -->
     <div class="garden-container">
         <section class="garden-panel"
-                 role="main"
                  aria-labelledby="process-section-heading">
             <div class="garden-panel__header garden-panel-header">
                 <h2 id="process-section-heading" class="panel-title">
@@ -299,7 +264,7 @@
     </div>
     <!-- Who We Serve Section -->
     <div class="garden-container">
-        <section class="garden-panel" role="main" aria-labelledby="serve-heading">
+        <section class="garden-panel" aria-labelledby="serve-heading">
             <div class="garden-panel__header garden-panel-header">
                 <div class="panel-title">{{ page.serve_section_header|default:"WHO WE SERVE" }}</div>
             </div>
