@@ -3793,7 +3793,7 @@ class FAQIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
 class FAQArticle(SafeUrlMixin, Page):
     """Individual FAQ article."""
 
-    template = "public_site/faq_page_tailwind.html"
+    template = "public_site/faq_article.html"
 
     # Article content
     summary = models.TextField(
