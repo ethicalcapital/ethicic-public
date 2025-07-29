@@ -8,6 +8,29 @@
     SEC-registered investment adviser
     specializing in ethical ESG investing. Three core strategies, 57% S&P 500 exclusions, fiduciary counsel since 2021.
 {% endblock %}
+{% block extra_css %}
+<style>
+/* Fix responsive strategy table display - ensure mobile cards are hidden on desktop */
+@media (min-width: 768px) {
+    .md\:hidden {
+        display: none !important;
+    }
+    .hidden.md\:block {
+        display: block !important;
+    }
+}
+
+/* Ensure mobile cards are visible on mobile */
+@media (max-width: 767px) {
+    .md\:hidden {
+        display: grid !important;
+    }
+    .hidden.md\:block {
+        display: none !important;
+    }
+}
+</style>
+{% endblock %}
     {% block content %}
         <!-- Hero Section with Enhanced Visual Design -->
         <div class="relative overflow-hidden bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800">
