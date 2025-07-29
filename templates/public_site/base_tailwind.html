@@ -418,7 +418,7 @@
                                        id="search-input"
                                        name="q"
                                        placeholder="Search..."
-                                       class="w-64 rounded-lg border border-purple-700 bg-purple-800 px-4 py-2 pr-10 text-white placeholder-purple-300 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                                       class="w-64 rounded-lg border border-purple-700 bg-purple-800 px-4 py-2 pr-12 text-white placeholder-purple-300 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
                                        aria-label="Search our website"
                                        autocomplete="off"
                                        x-model="query"
@@ -427,7 +427,7 @@
                                        hx-trigger="keyup changed delay:300ms"
                                        hx-target="#search-results" />
                                 <button type="submit"
-                                        class="absolute top-1/2 right-2 -translate-y-1/2 transform text-purple-300 hover:text-white"
+                                        class="absolute top-1/2 right-1 -translate-y-1/2 transform rounded-md bg-purple-600 px-2 py-1 text-white transition-colors hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400"
                                         aria-label="Submit search">
                                     <span x-show="searching" x-cloak class="animate-spin">⟳</span>
                                     <span x-show="!searching">🔍</span>

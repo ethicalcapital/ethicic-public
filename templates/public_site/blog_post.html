@@ -77,7 +77,7 @@
       </h1>
 
       {% if page.excerpt %}
-      <div class="article-excerpt text-lg text-gray-300 mb-6 leading-relaxed">
+      <div class="article-excerpt prose prose-lg mb-6 text-slate-200 dark:text-slate-200">
         {{ page.excerpt|richtext }}
       </div>
       {% endif %}
@@ -117,14 +117,14 @@
         {% for block in page.content %}
         {% if block.block_type != 'key_statistic' and block.block_type != 'ai_statistic' %}
         <div
-          class="content-block content-block-{{ block.block_type }} {% if block.block_type == 'rich_text' %}prose prose-lg prose-purple dark:prose-invert{% endif %}"
+          class="content-block content-block-{{ block.block_type }} {% if block.block_type == 'rich_text' %}prose{% endif %}"
         >
           {% include_block block %}
         </div>
         {% endif %}
         {% endfor %}
         {% elif page.body %}
-        <div class="content-block content-block-richtext prose prose-lg prose-purple dark:prose-invert">
+        <div class="content-block content-block-richtext prose">
           {{ page.body|richtext }}
         </div>
         {% endif %}
@@ -381,30 +381,39 @@
 
 {% block extra_css %}
 <style>
-/* Emergency text contrast fix for blog posts */
-.article-body p,
-.article-body div,
-.content-block p,
-.content-block div,
-.prose p,
-.prose div,
-.prose-purple p,
-.prose-purple div,
-.prose-lg p,
-.prose-lg div {
-  color: #1a1a1a !important;
+/* Enhanced blog post styling using base Tailwind prose system */
+.article-body .prose {
+  @apply max-w-none text-slate-300 dark:text-slate-300;
 }
 
-/* Ensure dark mode has proper contrast too */
-[data-theme="dark"] .article-body p,
-[data-theme="dark"] .article-body div,
-[data-theme="dark"] .content-block p,
-[data-theme="dark"] .content-block div,
-[data-theme="dark"] .prose p,
-[data-theme="dark"] .prose div,
-[data-theme="dark"] .prose-purple p,
-[data-theme="dark"] .prose-purple div {
-  color: #ffffff !important;
+/* Improve article typography hierarchy */
+.article-body .prose h1,
+.article-body .prose h2, 
+.article-body .prose h3,
+.article-body .prose h4 {
+  @apply text-slate-900 dark:text-slate-100;
+}
+
+/* First paragraph styling for better reading experience */
+.article-body .prose p:first-of-type {
+  @apply text-xl leading-relaxed font-medium text-slate-200 dark:text-slate-200;
+}
+
+/* Improve link styling in blog context */
+.article-body .prose a {
+  @apply text-teal-400 hover:text-teal-300;
+}
+
+/* Better spacing for blog content blocks */
+.content-block + .content-block {
+  @apply mt-8;
+}
+
+/* Ensure proper contrast for all text elements */
+.article-body .prose p,
+.article-body .prose li,
+.article-body .prose td {
+  @apply text-slate-300 dark:text-slate-300;
 }
 </style>
 {% endblock %}
