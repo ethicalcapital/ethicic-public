@@ -2274,6 +2274,8 @@ class BlogPost(SafeUrlMixin, Page):
 
 class FAQPage(SafeUrlMixin, Page):
     """FAQ/Support page."""
+    
+    template = "public_site/faq_page_tailwind.html"
 
     intro_text = RichTextField(
         blank=True,
