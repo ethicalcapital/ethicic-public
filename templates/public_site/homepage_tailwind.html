@@ -80,25 +80,28 @@
 </div>
 
 <!-- Investment Philosophy Section -->
-<div class="container-ec py-12">
-  <section class="card-ec mb-8" role="main" aria-labelledby="philosophy-heading">
-    <div class="card-header-ec">
-      <div class="panel-title-ec">{{ page.philosophy_section_header|default:"OUR INVESTMENT PHILOSOPHY" }}</div>
-    </div>
-    <div class="card-content-ec space-y-4">
-      <h2 id="philosophy-heading" class="font-mono text-2xl text-blue-300 font-semibold">
-        {{ page.philosophy_title }}
-      </h2>
-      <div class="text-gray-700 dark:text-gray-300 space-y-4">{{ page.philosophy_content|richtext }}</div>
-      <div class="p-4 bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg">
-        <p class="text-purple-300 font-medium">{{ page.philosophy_highlight }}</p>
+<div class="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 py-12">
+  <div class="container-ec">
+    <section class="card-ec mb-8" role="main" aria-labelledby="philosophy-heading">
+      <div class="card-header-ec">
+        <div class="panel-title-ec">{{ page.philosophy_section_header|default:"OUR INVESTMENT PHILOSOPHY" }}</div>
       </div>
-    </div>
-  </section>
+      <div class="card-content-ec space-y-4">
+        <h2 id="philosophy-heading" class="font-mono text-2xl text-blue-300 font-semibold">
+          {{ page.philosophy_title }}
+        </h2>
+        <div class="text-gray-700 dark:text-gray-300 space-y-4">{{ page.philosophy_content|richtext }}</div>
+        <div class="p-4 bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg">
+          <p class="text-purple-300 font-medium">{{ page.philosophy_highlight }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
 
 <!-- Principles Section -->
-<div class="container-ec py-12">
+<div class="bg-gradient-to-br from-purple-900/20 via-gray-900 to-purple-800/20 py-12">
+  <div class="container-ec">
   <section class="card-ec mb-8" role="main" aria-labelledby="principles-heading">
     <div class="card-header-ec">
       <h2 id="principles-heading" class="panel-title-ec">
@@ -145,10 +148,12 @@
       </div>
     </div>
   </section>
+  </div>
 </div>
 
 <!-- Strategies Section -->
-<div class="container-ec py-12">
+<div class="bg-gradient-to-br from-gray-800 via-gray-900 to-teal-900/30 py-12">
+  <div class="container-ec">
   <section class="card-ec mb-8" role="main" aria-labelledby="strategies-heading">
     <div class="card-header-ec">
       <div class="panel-title-ec">
@@ -293,10 +298,12 @@
       </div>
     </div>
   </section>
+  </div>
 </div>
 
 <!-- Process Section -->
-<div class="container-ec py-12">
+<div class="bg-gradient-to-br from-purple-900/30 via-gray-900 to-gray-800 py-12">
+  <div class="container-ec">
   <section class="card-ec mb-8" role="main" aria-labelledby="process-section-heading">
     <div class="card-header-ec">
       <h2 id="process-section-heading" class="panel-title-ec">
@@ -361,10 +368,12 @@
       </div>
     </div>
   </section>
+  </div>
 </div>
 
 <!-- Who We Serve Section -->
-<div class="container-ec py-12">
+<div class="bg-gradient-to-br from-gray-800 via-gray-900 to-purple-900/20 py-12">
+  <div class="container-ec">
   <section class="card-ec mb-8" role="main" aria-labelledby="serve-heading">
     <div class="card-header-ec">
       <div class="panel-title-ec">{{ page.serve_section_header|default:"WHO WE SERVE" }}</div>
@@ -393,10 +402,12 @@
       </div>
     </div>
   </section>
+  </div>
 </div>
 
 <!-- CTA Section -->
-<div class="container-ec py-12">
+<div class="bg-gradient-to-br from-purple-900/40 via-purple-800/30 to-gray-900 py-12">
+  <div class="container-ec">
   <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6">
     <div class="text-center space-y-4">
       <div class="badge-ec-success">{{ page.accepting_clients_icon }} {{ page.client_availability_text|upper }}</div>
@@ -408,6 +419,7 @@
       </div>
     </div>
   </section>
+  </div>
 </div>
 {% endblock %} {% block extra_js %}
 <script>
