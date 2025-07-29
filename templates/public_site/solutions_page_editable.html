@@ -1,5 +1,6 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load static %}
+<<<<<<< HEAD
 {% block title %}
     {{ page.title }} | Ethical Capital{%
     endblock %}
@@ -150,10 +151,176 @@
                         </div>
                     </div>
                 </section>
+=======
+
+{% block title %}{{ page.title }} | Ethical Capital{% endblock %}
+
+{% block meta_description %}{{ page.search_description }}{% endblock %}
+
+{% block body_class %}solutions-page{% endblock %}
+
+{% block content %}
+<div class="garden-container">
+  <!-- Hero Section -->
+  <section class="garden-panel garden-panel--hero hero-panel" role="banner" aria-labelledby="hero-heading">
+    <div class="garden-panel__content garden-panel-content">
+      <h1 id="hero-heading" class="hero-title">{{ page.hero_title|default:page.title }}</h1>
+      {% if page.hero_subtitle %}
+      <div class="hero-subtitle">{{ page.hero_subtitle }}</div>
+      {% endif %} {% if page.hero_description %}
+      <div class="hero-description">{{ page.hero_description|safe }}</div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Investment Strategies Grid -->
+  {% if page.strategy_cards.exists %}
+  <section class="garden-panel" role="main" aria-labelledby="strategies-heading">
+    <div class="garden-panel__header garden-panel-header">
+      <div class="panel-title">INVESTMENT STRATEGIES</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+      <h2 id="strategies-heading" class="section-title">{{ page.strategies_section_title }}</h2>
+      <p class="strategies-intro">{{ page.strategies_intro }}</p>
+
+      <div class="solutions-grid">
+        {% for card in page.strategy_cards.all %}
+        <div
+          class="solution-card"
+          role="article"
+          aria-labelledby="strategy-{{ forloop.counter }}-heading"
+          data-strategy="{{ card.title|slugify }}"
+        >
+          <div class="card-header">
+            <span class="card-icon" aria-hidden="true">{{ card.icon }}</span>
+            <h3 id="strategy-{{ forloop.counter }}-heading" class="card-title">{{ card.title }}</h3>
+          </div>
+          <div class="card-content">
+            <p class="card-description"><strong>{{ card.description }}</strong></p>
+            {% if card.features %}
+            <ul class="feature-list">
+              {% for feature in card.features.splitlines %} {% if feature %}
+              <li>{{ feature }}</li>
+              {% endif %} {% endfor %}
+            </ul>
+>>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
             {% endif %}
         </div>
+<<<<<<< HEAD
     {% endblock %}
     {% block extra_css %}
         <link rel="stylesheet"
               href="{% static 'css/layers/30-solutions-page.css' %}" />
     {% endblock %}
+=======
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Audience Sections -->
+  <section class="garden-panel" role="complementary" aria-labelledby="audiences-heading">
+    <div class="garden-panel__header garden-panel-header">
+      <div class="panel-title">WHO WE SERVE</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+      <h2 id="audiences-heading" class="visually-hidden">Our Clients</h2>
+
+      <div class="audience-grid">
+        <!-- For Individuals -->
+        {% if page.individuals_title or page.individuals_content %}
+        <div class="audience-section" aria-labelledby="individuals-heading">
+          <h3 id="individuals-heading" class="audience-title">{{ page.individuals_title }}</h3>
+          <div class="audience-content">{{ page.individuals_content|safe }}</div>
+          <div class="audience-actions">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdx1ex4pj5iYaj1v1Yxjt7iFbicqZbKWNuOZVyMlG8sKswbgQ/viewform?usp=header" class="garden-action primary" target="_blank" rel="noopener">Get Started</a>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- For Institutions -->
+        {% if page.institutions_title or page.institutions_content %}
+        <div class="audience-section" aria-labelledby="institutions-heading">
+          <h3 id="institutions-heading" class="audience-title">{{ page.institutions_title }}</h3>
+          <div class="audience-content">{{ page.institutions_content|safe }}</div>
+          <div class="audience-actions">
+            <a href="/institutions/" class="garden-action primary">Learn More</a>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- For Investment Advisers -->
+        {% if page.advisors_title or page.advisors_content %}
+        <div class="audience-section" aria-labelledby="advisors-heading">
+          <h3 id="advisors-heading" class="audience-title">{{ page.advisors_title }}</h3>
+          <div class="audience-content">{{ page.advisors_content|safe }}</div>
+          <div class="audience-actions">
+            <a href="/advisers/" class="garden-action primary">Partner With Us</a>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Ethical Capital -->
+  <section class="garden-panel" aria-labelledby="why-heading">
+    <div class="garden-panel__header garden-panel-header">
+      <div class="panel-title">WHY ETHICAL CAPITAL</div>
+    </div>
+    <div class="garden-panel__content garden-panel-content">
+      <h2 id="why-heading" class="section-title">A Different Approach to Ethical Investing</h2>
+
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-icon">🔍</div>
+          <h4>Rigorous Screening</h4>
+          <p>
+            We exclude 57% of the S&P 500 through comprehensive ethical criteria that go beyond standard ESG metrics.
+          </p>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon">📊</div>
+          <h4>Proven Performance</h4>
+          <p>
+            Our concentrated portfolios have delivered competitive returns while maintaining strict ethical standards.
+          </p>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon">🤝</div>
+          <h4>Fiduciary Always</h4>
+          <p>As a registered investment adviser, we're legally bound to act in your best interests at all times.</p>
+        </div>
+
+        <div class="why-item">
+          <div class="why-icon">💡</div>
+          <h4>Full Transparency</h4>
+          <p>Our screening criteria are open source. You'll always know exactly what you own and why.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  {% if page.cta_title or page.cta_description %}
+  <section class="garden-panel cta-panel" aria-labelledby="cta-heading">
+    <div class="garden-panel__content garden-panel-content">
+      <h2 id="cta-heading" class="cta-title">{{ page.cta_title }}</h2>
+      <div class="cta-description">{{ page.cta_description|safe }}</div>
+      <div class="cta-actions">
+        <a href="/consultation/" class="garden-action primary large">Start a Conversation</a>
+        <a href="/strategies/" class="garden-action secondary large">Explore Strategies</a>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/layers/30-solutions-page.css' %}" />
+{% endblock %}
+>>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)

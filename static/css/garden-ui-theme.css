@@ -7532,3 +7532,48 @@
     background-color: var(--garden-hover);
   }
 }
+
+/* ===== BLOG POST TEXT CONTRAST FIXES ===== */
+@layer components {
+  /* Fix prose text colors for better contrast */
+  .prose {
+    color: var(--color-text-primary) !important;
+  }
+
+  .prose p,
+  .prose div,
+  .prose span,
+  .prose-lg p,
+  .prose-lg div,
+  .prose-lg span {
+    color: var(--color-text-primary) !important;
+  }
+
+  .prose-purple {
+    color: var(--color-text-primary) !important;
+  }
+
+  .prose-purple p,
+  .prose-purple div,
+  .prose-purple span {
+    color: var(--color-text-primary) !important;
+  }
+
+  /* Ensure article body text is always readable */
+  .article-body,
+  .article-body p,
+  .article-body div,
+  .content-block,
+  .content-block p,
+  .content-block div,
+  .content-block-richtext,
+  .content-block-richtext p,
+  .content-block-richtext div {
+    color: var(--color-text-primary) !important;
+  }
+
+  /* Override any Tailwind prose colors that cause poor contrast */
+  .prose-purple p {
+    color: var(--color-text-primary) !important;
+  }
+}

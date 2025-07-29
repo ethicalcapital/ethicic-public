@@ -29,6 +29,7 @@ repos:
       # Run the formatter
       - id: ruff-format
 
+<<<<<<< HEAD
   # CSS formatting with Prettier and Tailwind plugin
   - repo: local
     hooks:
@@ -39,6 +40,19 @@ repos:
         files: \.(css|html|js|json|md|yml|yaml)$
         args: [--write]
         pass_filenames: true
+=======
+  # CSS linting with stylelint - DISABLED due to template formatting conflicts
+  # - repo: local
+  #   hooks:
+  #     - id: stylelint
+  #       name: Stylelint
+  #       entry: npx stylelint
+  #       language: system
+  #       files: \.css$
+  #       args: [--fix, --allow-empty-input]
+  #       pass_filenames: true
+  #       require_serial: true
+>>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
 
   # Django template linting with djlint
   - repo: local
