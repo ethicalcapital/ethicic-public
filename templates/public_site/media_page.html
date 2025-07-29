@@ -105,11 +105,56 @@
           </div>
           {% else %}
           <div class="text-center py-12">
-            <h3 class="text-xl font-semibold text-gray-100 mb-2">{{ page.empty_state_title }}</h3>
-            <div class="text-gray-400">{{ page.empty_state_message|safe }}</div>
+            <h3 class="text-xl font-semibold text-gray-100 mb-2">{{ page.empty_state_title|default:"No Media Coverage Yet" }}</h3>
+            <div class="text-gray-400">{{ page.empty_state_message|default:"We're building our media presence. Check back soon for press coverage and articles about Ethical Capital."|safe }}</div>
+            <div class="mt-6">
+              <a href="/contact/" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+                Contact Us for Media Inquiries
+              </a>
+            </div>
           </div>
           {% endif %}
         </div>
+        
+        <!-- Media Sidebar -->
+        <aside class="space-y-6" aria-label="Media sidebar">
+          <!-- Media Contact Section -->
+          <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+            <h3 class="text-lg font-bold text-gray-100 mb-4">MEDIA CONTACT</h3>
+            <p class="text-gray-400 mb-4">For press inquiries, interviews, and media materials.</p>
+            <div class="space-y-3">
+              <a href="/contact/" class="flex items-center gap-3 text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+                <span class="text-xl">✉️</span>
+                <span>Media Inquiries</span>
+              </a>
+              <a href="https://tidycal.com/ecic/interview" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+                <span class="text-xl">🎤</span>
+                <span>Schedule Interview</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Press Resources Section -->
+          <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+            <h3 class="text-lg font-bold text-gray-100 mb-4">PRESS RESOURCES</h3>
+            <p class="text-gray-400 mb-4">Access our methodology, research, and company information.</p>
+            <div class="space-y-2">
+              <a href="https://github.com/ethicalcapital/sage" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+                <span class="text-xl">🔬</span>
+                <span>Open Source Methodology</span>
+              </a>
+              <a href="/about/" class="flex items-center gap-3 text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+                <span class="text-xl">🏢</span>
+                <span>Company Background</span>
+              </a>
+              <a href="/disclosures/" class="flex items-center gap-3 text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
+                <span class="text-xl">📋</span>
+                <span>Regulatory Disclosures</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
     </section>
     <!-- Press Kit Section -->
     {% if page.press_kit_title or page.press_kit_description %}
