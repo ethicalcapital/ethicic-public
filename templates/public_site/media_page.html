@@ -23,9 +23,9 @@
       <h2 class="text-2xl font-bold text-gray-100">RECENT MEDIA MENTIONS</h2>
       <span class="text-sm text-gray-400" id="article-count">{{ page.media_items.all.count }} ARTICLES</span>
     </div>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr]">
       <!-- Media Articles Content -->
-      <div class="lg:col-span-2">
+      <div>
           {% if page.media_items.all %}
           <div class="space-y-6" id="articles-container">
             {% for item in page.media_items.all|slice:":6" %}
@@ -117,7 +117,7 @@
         </div>
         
         <!-- Media Sidebar -->
-        <aside class="space-y-6" aria-label="Media sidebar">
+        <aside class="space-y-6 sticky top-8 self-start" aria-label="Media sidebar">
           <!-- Media Contact Section -->
           <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
             <h3 class="text-lg font-bold text-gray-100 mb-4">MEDIA CONTACT</h3>

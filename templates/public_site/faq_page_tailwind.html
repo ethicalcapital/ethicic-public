@@ -33,7 +33,7 @@
                 {% endwith %}
             {% endif %}
             <!-- FAQ Content Section -->
-            <div class="grid-2col">
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr]">
                 <!-- Main FAQ Content -->
                 <div class="space-y-4">
                     {% for faq in page.faq_items.all %}
@@ -59,7 +59,7 @@
                     {% endfor %}
                 </div>
                 <!-- FAQ Sidebar -->
-                <div class="space-y-6">
+                <div class="space-y-6 sticky top-8 self-start">
                     <!-- Quick Navigation -->
                     <div class="card-ec">
                         <div class="card-header-ec">
