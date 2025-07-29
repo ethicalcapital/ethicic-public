@@ -1,60 +1,54 @@
 {% load crispy_forms_tags %}
-
 <div class="newsletter-widget" x-data="{ email: '', submitting: false }">
-  {% load wagtailsettings_tags %} {% get_settings "public_site.SiteConfiguration" as site_config %}
-  <h3 class="newsletter-title">{{ site_config.newsletter_title|default:"Stay Updated" }}</h3>
-  <p class="newsletter-description">
-    {{ site_config.newsletter_description|default:"Get our latest insights on ethical investing delivered to your
-    inbox." }}
-  </p>
-
-  <form
-    hx-post="/api/newsletter/"
-    hx-target="#newsletter-response"
-    hx-indicator="#newsletter-indicator"
-    hx-swap="innerHTML"
-    @htmx:before-request="submitting = true"
-    @htmx:after-request="submitting = false; if ($event.detail.successful) email = ''"
-    class="newsletter-form"
-    aria-label="Newsletter subscription form"
-  >
-    {% csrf_token %}
-
-    <div class="newsletter-input-group">
-      <input
-        type="email"
-        name="email"
-        x-model="email"
-        placeholder="Enter your email"
-        required
-        :disabled="submitting"
-        class="newsletter-input"
-        aria-label="Email address for newsletter subscription"
-        aria-describedby="newsletter-response newsletter-privacy"
-        autocomplete="email"
-      />
-
-      <button
-        type="submit"
-        :disabled="submitting || !email"
-        class="newsletter-submit"
-        aria-label="Subscribe to newsletter"
-      >
-        <span x-show="!submitting">Subscribe</span>
-        <span x-show="submitting" x-cloak>
-          <span id="newsletter-indicator" class="spinner" role="status" aria-label="Loading">⟳</span>
-        </span>
-      </button>
-    </div>
-  </form>
-
-  <div id="newsletter-response" role="status" aria-live="polite" aria-atomic="true"></div>
-
-  <p id="newsletter-privacy" class="newsletter-privacy">
-    {{ site_config.newsletter_privacy_text|default:"We respect your privacy. Unsubscribe at any time." }}
-  </p>
+    {% load wagtailsettings_tags %}
+    {% get_settings "public_site.SiteConfiguration" as site_config %}
+    <h3 class="newsletter-title">{{ site_config.newsletter_title|default:"Stay Updated" }}</h3>
+    <p class="newsletter-description">
+        {{ site_config.newsletter_description|default:"Get our latest insights on ethical investing delivered to your
+        inbox." }}
+    </p>
+    <form hx-post="/api/newsletter/"
+          hx-target="#newsletter-response"
+          hx-indicator="#newsletter-indicator"
+          hx-swap="innerHTML"
+          @htmx:before-request="submitting = true"
+          @htmx:after-request="submitting = false; if ($event.detail.successful) email = ''"
+          class="newsletter-form"
+          aria-label="Newsletter subscription form">
+        {% csrf_token %}
+        <div class="newsletter-input-group">
+            <input type="email"
+                   name="email"
+                   x-model="email"
+                   placeholder="Enter your email"
+                   required
+                   :disabled="submitting"
+                   class="newsletter-input"
+                   aria-label="Email address for newsletter subscription"
+                   aria-describedby="newsletter-response newsletter-privacy"
+                   autocomplete="email" />
+            <button type="submit"
+                    :disabled="submitting || !email"
+                    class="newsletter-submit"
+                    aria-label="Subscribe to newsletter">
+                <span x-show="!submitting">Subscribe</span>
+                <span x-show="submitting" x-cloak>
+                    <span id="newsletter-indicator"
+                          class="spinner"
+                          role="status"
+                          aria-label="Loading">⟳</span>
+                </span>
+            </button>
+        </div>
+    </form>
+    <div id="newsletter-response"
+         role="status"
+         aria-live="polite"
+         aria-atomic="true"></div>
+    <p id="newsletter-privacy" class="newsletter-privacy">
+        {{ site_config.newsletter_privacy_text|default:"We respect your privacy. Unsubscribe at any time." }}
+    </p>
 </div>
-
 <style>
   .newsletter-widget {
     background: var(--color-surface-variant);

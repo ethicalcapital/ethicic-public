@@ -78,7 +78,7 @@ class SafeUrlMixin:
                 if url_path and url_path != "/":
                     # Remove any leading duplicate slashes and ensure single leading slash
                     url_path = "/" + url_path.lstrip("/")
-                    if url_path != "None" and url_path != "/None":
+                    if url_path not in {"None", "/None"}:
                         return url_path
         except (AttributeError, Exception):
             pass
@@ -89,8 +89,7 @@ class SafeUrlMixin:
                 slug = self.slug.strip()
                 if slug and slug != "None":
                     # For most pages, we can construct the URL as /slug/
-                    constructed_url = f"/{slug}/"
-                    return constructed_url
+                    return f"/{slug}/"
         except (AttributeError, Exception):
             pass
 

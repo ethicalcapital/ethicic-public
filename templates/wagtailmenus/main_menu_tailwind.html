@@ -2,11 +2,8 @@
 Tailwind-based main menu template for desktop navigation
 Replaces Garden UI navigation with utility classes
 {% endcomment %}
-
 {% for item in menu_items %}
     <a href="{{ item.href }}"
        class="font-mono text-sm text-white hover:text-purple-200 transition-colors duration-200 {% if item.active_class %}text-purple-300{% endif %}"
-       {% if item.attr_title %}title="{{ item.attr_title }}"{% endif %}>
-        {{ item.text }}
-    </a>
+       {% if item.attr_title %}title="{{ item.attr_title }}"{% endif %}>{{ item.text }}</a>
 {% endfor %}

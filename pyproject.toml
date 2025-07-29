@@ -128,6 +128,11 @@ ignore = [
 ]
 exclude = [
     ".bzr",
+    "diagnose_connection.py",
+    "diagnose_image_upload.py",
+    "enhanced_link_checker.py",
+    "test_wagtail_image_upload.py",
+    "wagtail_403_solution.py",
     ".direnv",
     ".eggs",
     ".git",
@@ -156,6 +161,10 @@ exclude = [
 "__init__.py" = ["F401"]
 "settings.py" = ["E501"]
 "*/migrations/*" = ["E501"]
+"diagnose_*.py" = ["E402", "C901", "PLR0912", "PLR0915", "E501", "S110", "F401", "S103"]
+"enhanced_*.py" = ["E402", "C901", "PLR0911", "PLR0912", "PLR0915", "E501", "S110", "F401", "SIM102"]
+"wagtail_*.py" = ["E402", "C901", "PLR0912", "PLR0915", "E501", "S110", "F401", "S103"]
+"test_*.py" = ["E402", "C901", "PLR0912", "PLR0915", "E501", "S110", "F401"]
 
 [tool.ruff.isort]
 known-first-party = ["public_site", "ethicic"]

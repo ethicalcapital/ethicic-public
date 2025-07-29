@@ -605,11 +605,11 @@ class MediaItemsAPITest(BasePublicSiteTestCase, APITestMixin):
 
             MediaItem.objects.create(
                 page=self.media_page,
-                title=f"Media Item {i+1}",
-                description=f"<p>Description {i+1}</p>",
-                publication=f"Publication {i+1}",
+                title=f"Media Item {i + 1}",
+                description=f"<p>Description {i + 1}</p>",
+                publication=f"Publication {i + 1}",
                 publication_date=timezone.now().date() - timezone.timedelta(days=i),
-                external_url=f"https://example.com/article-{i+1}",
+                external_url=f"https://example.com/article-{i + 1}",
                 featured=(i == 0),
                 sort_order=i,
             )

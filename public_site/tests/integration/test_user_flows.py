@@ -7,7 +7,7 @@ from unittest.mock import Mock, patch
 
 from django.test import override_settings
 
-from public_site.models import SupportTicket, OnboardingPage
+from public_site.models import OnboardingPage, SupportTicket
 from public_site.tests.test_base import (
     APITestMixin,
     BasePublicSiteTestCase,
@@ -30,9 +30,9 @@ class ContactInquiryFlowTest(BasePublicSiteTestCase, FormTestMixin):
         # Step 1: User fills out and submits contact form
         contact_data = self.create_test_contact_data()
         contact_data["subject"] = "general"
-        contact_data[
-            "message"
-        ] = "I would like to learn more about your investment services."
+        contact_data["message"] = (
+            "I would like to learn more about your investment services."
+        )
 
         submit_response = self.submit_form("/contact/submit/", contact_data)
 
@@ -169,15 +169,13 @@ class NewsletterSubscriptionFlowTest(BasePublicSiteTestCase, FormTestMixin):
 @override_settings(TESTING=True)
 class OnboardingFlowTest(WagtailPublicSiteTestCase, FormTestMixin):
     """Test client onboarding flow."""
-    
+
     def setUp(self):
         super().setUp()
-        
+
         # Create onboarding page for redirect tests
         self.onboarding_page = OnboardingPage(
-            title="Onboarding",
-            slug="onboarding",
-            locale=self.locale
+            title="Onboarding", slug="onboarding", locale=self.locale
         )
         self.home_page.add_child(instance=self.onboarding_page)
 
@@ -450,9 +448,9 @@ class ErrorHandlingFlowTest(BasePublicSiteTestCase, FormTestMixin):
         """Test spam detection in contact flow."""
         # Attempt to submit spam content
         spam_data = self.create_test_contact_data()
-        spam_data[
-            "message"
-        ] = "Buy viagra now! Click here! Limited offer! Make money fast!"
+        spam_data["message"] = (
+            "Buy viagra now! Click here! Limited offer! Make money fast!"
+        )
 
         response = self.submit_form("/contact/submit/", spam_data)
 

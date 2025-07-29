@@ -1,6 +1,7 @@
 """
 Context processors for the public site
 """
+
 import os
 
 

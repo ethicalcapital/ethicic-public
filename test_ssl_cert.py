@@ -2,6 +2,7 @@
 """
 Test SSL certificate loading and database connection
 """
+
 import os
 import sys
 from pathlib import Path

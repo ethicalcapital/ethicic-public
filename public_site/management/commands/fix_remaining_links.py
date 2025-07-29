@@ -1,6 +1,7 @@
 """
 Management command to fix remaining broken link references
 """
+
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from wagtail.models import Page
@@ -68,13 +69,7 @@ class Command(BaseCommand):
                                 if (
                                     block.get("type") == "paragraph"
                                     and "value" in block
-                                ):
-                                    original_value = block["value"]
-                                    new_value = original_value
-                                    for old_url, new_url in url_mappings.items():
-                                        new_value = new_value.replace(old_url, new_url)
-                                    block["value"] = new_value
-                                elif (
+                                ) or (
                                     block.get("type") == "rich_text"
                                     and "value" in block
                                 ):
@@ -124,15 +119,7 @@ class Command(BaseCommand):
                                     if (
                                         block.get("type") == "paragraph"
                                         and "value" in block
-                                    ):
-                                        original_value = block["value"]
-                                        new_value = original_value
-                                        for old_url, new_url in url_mappings.items():
-                                            new_value = new_value.replace(
-                                                old_url, new_url
-                                            )
-                                        block["value"] = new_value
-                                    elif (
+                                    ) or (
                                         block.get("type") == "rich_text"
                                         and "value" in block
                                     ):
@@ -147,9 +134,9 @@ class Command(BaseCommand):
                             update_blocks(body_data)
                             page.body = json.dumps(body_data)
                             page.save()
-                        except:
+                        except Exception as e:
                             self.stdout.write(
-                                f"Could not update page {page.title} - complex body structure"
+                                f"Could not update page {page.title} - complex body structure: {e}"
                             )
 
         if dry_run:

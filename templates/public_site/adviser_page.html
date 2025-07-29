@@ -1,306 +1,281 @@
-{% extends "public_site/base_tailwind.html" %} {% block title %}For Investment Advisers - Ethical Capital Investment
-Collaborative{% endblock %} {% block meta_description %}Partner with Ethical Capital for specialized ethical investing
-expertise, rigorous analysis, and exceptional client outcomes.{% endblock %} {% block body_class %}adviser-page{%
-endblock %} {% block content %}
-<div class="garden-container">
-  <!-- Hero Section -->
-  <section class="garden-panel hero-panel" role="banner" aria-labelledby="hero-heading">
-    <div class="garden-panel__content">
-      <h1 id="hero-heading" class="hero-title">Partner with Ethical Capital</h1>
-      <p class="hero-subtitle">
-        {{ page.hero_subtitle|default:"Deep research expertise and proven strategies to help you serve clients with
-        complex values and sophisticated needs" }}
-      </p>
-
-      <div class="hero-description">
-        {{ page.hero_description|default:"As investment advisers ourselves, we understand the challenges of serving
-        clients who want their portfolios to align with their principles. We provide the specialized research, proven
-        strategies, and easy access you need to deliver exceptional outcomes."|safe }}
-      </div>
-    </div>
-  </section>
-
-  <!-- What We Offer Section -->
-  <section class="garden-panel" role="main" aria-labelledby="services-heading">
-    <div class="garden-panel__header">
-      <div class="panel-title">WHAT WE OFFER ADVISERS</div>
-    </div>
-    <div class="garden-panel__content">
-      <p class="section-intro">
-        We provide investment advisers with institutional-grade research capabilities and proven strategies to
-        confidently serve clients who prioritize ethical investing, without compromising on performance or
-        professionalism.
-      </p>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <h3 class="service-title">RESEARCH EXPERTISE</h3>
-          <p>
-            Institutional-grade research capabilities in ethical investing that go beyond standard ESG ratings. Our
-            proprietary
-            <a href="/process/" class="text-link">screening process</a>
-            excludes 57% of the S&P 500 based on rigorous ethical criteria.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <h3 class="service-title">PROVEN STRATEGIES</h3>
-          <p>
-            Three distinct
-            <a href="/strategies/" class="text-link">investment strategies</a>
-            designed to match any client's risk tolerance, income requirements, and ethical priorities while maintaining
-            institutional-grade performance standards.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <h3 class="service-title">EASY ACCESS</h3>
-          <p>
-            Available on the
-            <a
-              href="https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps"
-              target="_blank"
-              rel="noopener"
-              class="text-link"
-            >
-              Schwab Marketplace platform
-            </a>
-            for streamlined implementation. We handle operational complexity so you can focus on client relationships
-            and practice growth.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Partnership Benefits Section -->
-  <section class="garden-panel" role="complementary" aria-labelledby="benefits-heading">
-    <div class="garden-panel__header">
-      <div class="panel-title">WHY ADVISERS CHOOSE US</div>
-    </div>
-    <div class="garden-panel__content">
-      <p class="section-intro">
-        Leading investment advisers partner with us because we deliver the institutional-grade expertise and
-        transparency their sophisticated clients demand.
-      </p>
-
-      <div class="benefits-list">
-        <div class="benefit-item">
-          <h4>Rigorous Transparency</h4>
-          <p>
-            Our
-            <a
-              href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md"
-              target="_blank"
-              rel="noopener"
-              class="text-link"
-            >
-              screening criteria is open source
-            </a>
-            , giving you complete confidence in what you're recommending.
-          </p>
-        </div>
-
-        <div class="benefit-item">
-          <h4>Proprietary Research</h4>
-          <p>
-            Hand-screening of thousands of companies using our systematic approach that goes beyond third-party ESG
-            ratings.
-          </p>
-        </div>
-
-        <div class="benefit-item">
-          <h4>Proven Track Record</h4>
-          <p>
-            We've navigated complex ethical requirements without sacrificing performance since our founding in 2021.
-          </p>
-        </div>
-
-        <div class="benefit-item">
-          <h4>Educational Partnership</h4>
-          <p>
-            Ongoing consultation, ad hoc consultations, and insights to help you develop expertise and handle
-            challenging client scenarios.
-          </p>
-        </div>
-
-        <div class="benefit-item">
-          <h4>Schwab Platform Integration</h4>
-          <p>
-            Available on the
-            <a
-              href="https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps"
-              target="_blank"
-              rel="noopener"
-              class="text-link"
-            >
-              Schwab Marketplace platform
-            </a>
-            with streamlined implementation and SMA management support.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Overview Section -->
-  <section class="garden-panel" role="region" aria-labelledby="process-heading">
-    <div class="garden-panel__header">
-      <div class="panel-title">OUR COLLABORATIVE APPROACH</div>
-    </div>
-    <div class="garden-panel__content">
-      <div class="process-steps">
-        <div class="process-step">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h3 class="step-title">DISCOVERY & ALIGNMENT</h3>
-            <p>
-              We start by understanding your practice, client base, and specific needs for ethical investing
-              capabilities.
-            </p>
-          </div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h3 class="step-title">EDUCATION & ONBOARDING</h3>
-            <p>
-              Comprehensive training on our approach, strategies, and transparent methodology for implementing ethical
-              investing.
-            </p>
-          </div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h3 class="step-title">ONGOING PARTNERSHIP & CLIENT ACCESS</h3>
-            <p>
-              Continuous support, market insights, and consultation as your practice grows. Advisers receive a direct
-              link to schedule their clients with our Chief Investment Officer for strategy discussions.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="process-action">
-        <a href="/process/" class="garden-action secondary">LEARN ABOUT OUR FULL PROCESS</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Due Diligence Resources -->
-  <section class="garden-panel ddq-resources" role="complementary" aria-labelledby="ddq-heading">
-    <div class="garden-panel__header">
-      <div class="panel-title">DUE DILIGENCE RESOURCES</div>
-    </div>
-    <div class="garden-panel__content">
-      <h2 id="ddq-heading" class="section-title">Documentation for Investment Advisers</h2>
-      <p class="section-description">
-        Comprehensive documentation to support your due diligence process and adviser requirements.
-      </p>
-
-      <div class="resources-grid">
-        <div class="resource-category">
-          <h3>ESG & Responsible Investment</h3>
-          <div class="resource-list">
-            <a href="/pri-ddq/" class="resource-link">
-              <span class="resource-icon">🤝</span>
-              <div class="resource-info">
-                <div class="resource-title">PRI Due Diligence Questionnaire</div>
-                <div class="resource-desc">
-                  Comprehensive responses to Principles for Responsible Investment standard questions
+{% extends "public_site/base_tailwind.html" %}
+{% block title %}
+    For Investment Advisers - Ethical Capital Investment
+    Collaborative
+{% endblock %}
+{% block meta_description %}
+    Partner with Ethical Capital for specialized ethical investing
+    expertise, rigorous analysis, and exceptional client outcomes.
+{% endblock %}
+{% block body_class %}
+    adviser-page{%
+    endblock %}
+    {% block content %}
+        <div class="garden-container">
+            <!-- Hero Section -->
+            <section class="garden-panel hero-panel"
+                     role="banner"
+                     aria-labelledby="hero-heading">
+                <div class="garden-panel__content">
+                    <h1 id="hero-heading" class="hero-title">Partner with Ethical Capital</h1>
+                    <p class="hero-subtitle">
+                        {{ page.hero_subtitle|default:"Deep research expertise and proven strategies to help you serve clients with
+                        complex values and sophisticated needs" }}
+                    </p>
+                    <div class="hero-description">
+                        {{ page.hero_description|default:"As investment advisers ourselves, we understand the challenges of serving
+                        clients who want their portfolios to align with their principles. We provide the specialized research, proven
+                        strategies, and easy access you need to deliver exceptional outcomes."|safe }}
+                    </div>
                 </div>
-              </div>
-            </a>
-            <a
-              href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md"
-              class="resource-link"
-              target="_blank"
-              rel="noopener"
-            >
-              <span class="resource-icon">🔍</span>
-              <div class="resource-info">
-                <div class="resource-title">Open-Source Screening Policy</div>
-                <div class="resource-desc">Complete ethical screening methodology with version control</div>
-              </div>
-            </a>
-            <a href="/process/" class="resource-link">
-              <span class="resource-icon">⚙️</span>
-              <div class="resource-info">
-                <div class="resource-title">Investment Process Documentation</div>
-                <div class="resource-desc">Detailed four-step investment methodology and governance</div>
-              </div>
-            </a>
-          </div>
+            </section>
+            <!-- What We Offer Section -->
+            <section class="garden-panel" role="main" aria-labelledby="services-heading">
+                <div class="garden-panel__header">
+                    <div class="panel-title">WHAT WE OFFER ADVISERS</div>
+                </div>
+                <div class="garden-panel__content">
+                    <p class="section-intro">
+                        We provide investment advisers with institutional-grade research capabilities and proven strategies to
+                        confidently serve clients who prioritize ethical investing, without compromising on performance or
+                        professionalism.
+                    </p>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <h3 class="service-title">RESEARCH EXPERTISE</h3>
+                            <p>
+                                Institutional-grade research capabilities in ethical investing that go beyond standard ESG ratings. Our
+                                proprietary
+                                <a href="/process/" class="text-link">screening process</a>
+                                excludes 57% of the S&P 500 based on rigorous ethical criteria.
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <h3 class="service-title">PROVEN STRATEGIES</h3>
+                            <p>
+                                Three distinct
+                                <a href="/strategies/" class="text-link">investment strategies</a>
+                                designed to match any client's risk tolerance, income requirements, and ethical priorities while maintaining
+                                institutional-grade performance standards.
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <h3 class="service-title">EASY ACCESS</h3>
+                            <p>
+                                Available on the
+                                <a href="https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps"
+                                   target="_blank"
+                                   rel="noopener"
+                                   class="text-link">Schwab Marketplace platform</a>
+                                for streamlined implementation. We handle operational complexity so you can focus on client relationships
+                                and practice growth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Partnership Benefits Section -->
+            <section class="garden-panel"
+                     role="complementary"
+                     aria-labelledby="benefits-heading">
+                <div class="garden-panel__header">
+                    <div class="panel-title">WHY ADVISERS CHOOSE US</div>
+                </div>
+                <div class="garden-panel__content">
+                    <p class="section-intro">
+                        Leading investment advisers partner with us because we deliver the institutional-grade expertise and
+                        transparency their sophisticated clients demand.
+                    </p>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <h4>Rigorous Transparency</h4>
+                            <p>
+                                Our
+                                <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md"
+                                   target="_blank"
+                                   rel="noopener"
+                                   class="text-link">screening criteria is open source</a>
+                                , giving you complete confidence in what you're recommending.
+                            </p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Proprietary Research</h4>
+                            <p>
+                                Hand-screening of thousands of companies using our systematic approach that goes beyond third-party ESG
+                                ratings.
+                            </p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Proven Track Record</h4>
+                            <p>We've navigated complex ethical requirements without sacrificing performance since our founding in 2021.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Educational Partnership</h4>
+                            <p>
+                                Ongoing consultation, ad hoc consultations, and insights to help you develop expertise and handle
+                                challenging client scenarios.
+                            </p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4>Schwab Platform Integration</h4>
+                            <p>
+                                Available on the
+                                <a href="https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps"
+                                   target="_blank"
+                                   rel="noopener"
+                                   class="text-link">Schwab Marketplace platform</a>
+                                with streamlined implementation and SMA management support.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Process Overview Section -->
+            <section class="garden-panel" role="region" aria-labelledby="process-heading">
+                <div class="garden-panel__header">
+                    <div class="panel-title">OUR COLLABORATIVE APPROACH</div>
+                </div>
+                <div class="garden-panel__content">
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3 class="step-title">DISCOVERY & ALIGNMENT</h3>
+                                <p>
+                                    We start by understanding your practice, client base, and specific needs for ethical investing
+                                    capabilities.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3 class="step-title">EDUCATION & ONBOARDING</h3>
+                                <p>
+                                    Comprehensive training on our approach, strategies, and transparent methodology for implementing ethical
+                                    investing.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3 class="step-title">ONGOING PARTNERSHIP & CLIENT ACCESS</h3>
+                                <p>
+                                    Continuous support, market insights, and consultation as your practice grows. Advisers receive a direct
+                                    link to schedule their clients with our Chief Investment Officer for strategy discussions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="process-action">
+                        <a href="/process/" class="garden-action secondary">LEARN ABOUT OUR FULL PROCESS</a>
+                    </div>
+                </div>
+            </section>
+            <!-- Due Diligence Resources -->
+            <section class="garden-panel ddq-resources"
+                     role="complementary"
+                     aria-labelledby="ddq-heading">
+                <div class="garden-panel__header">
+                    <div class="panel-title">DUE DILIGENCE RESOURCES</div>
+                </div>
+                <div class="garden-panel__content">
+                    <h2 id="ddq-heading" class="section-title">Documentation for Investment Advisers</h2>
+                    <p class="section-description">
+                        Comprehensive documentation to support your due diligence process and adviser requirements.
+                    </p>
+                    <div class="resources-grid">
+                        <div class="resource-category">
+                            <h3>ESG & Responsible Investment</h3>
+                            <div class="resource-list">
+                                <a href="/pri-ddq/" class="resource-link">
+                                    <span class="resource-icon">🤝</span>
+                                    <div class="resource-info">
+                                        <div class="resource-title">PRI Due Diligence Questionnaire</div>
+                                        <div class="resource-desc">Comprehensive responses to Principles for Responsible Investment standard questions</div>
+                                    </div>
+                                </a>
+                                <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md"
+                                   class="resource-link"
+                                   target="_blank"
+                                   rel="noopener">
+                                    <span class="resource-icon">🔍</span>
+                                    <div class="resource-info">
+                                        <div class="resource-title">Open-Source Screening Policy</div>
+                                        <div class="resource-desc">Complete ethical screening methodology with version control</div>
+                                    </div>
+                                </a>
+                                <a href="/process/" class="resource-link">
+                                    <span class="resource-icon">⚙️</span>
+                                    <div class="resource-info">
+                                        <div class="resource-title">Investment Process Documentation</div>
+                                        <div class="resource-desc">Detailed four-step investment methodology and governance</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="resource-category">
+                            <h3>Regulatory & Compliance</h3>
+                            <div class="resource-list">
+                                <a href="/disclosures/form-adv/" class="resource-link">
+                                    <span class="resource-icon">📑</span>
+                                    <div class="resource-info">
+                                        <div class="resource-title">Form ADV</div>
+                                        <div class="resource-desc">SEC-required investment adviser disclosure and regulatory filing</div>
+                                    </div>
+                                </a>
+                                <a href="/disclosures/" class="resource-link">
+                                    <span class="resource-icon">⚠️</span>
+                                    <div class="resource-info">
+                                        <div class="resource-title">Risk Disclosures</div>
+                                        <div class="resource-desc">Important risk disclosures and legal notices</div>
+                                    </div>
+                                </a>
+                                <a href="/strategies/" class="resource-link">
+                                    <span class="resource-icon">📊</span>
+                                    <div class="resource-info">
+                                        <div class="resource-title">Strategy Performance Data</div>
+                                        <div class="resource-desc">Detailed performance reporting and strategy documentation</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Call to Action Section -->
+            <section class="garden-panel cta-panel"
+                     role="complementary"
+                     aria-labelledby="cta-heading">
+                <div class="garden-panel__header">
+                    <div class="panel-title">READY TO PARTNER?</div>
+                </div>
+                <div class="garden-panel__content">
+                    <h2 id="cta-heading" class="cta-title">Let's discuss how we can support your practice</h2>
+                    <div class="cta-description">
+                        <p>
+                            Join leading investment advisers who trust our multi-faceted approach to help them serve a broader range of
+                            clients with complex needs and values more effectively.
+                        </p>
+                    </div>
+                    <div class="cta-actions">
+                        <!-- Primary CTA - Schedule Consultation -->
+                        <button onclick="window.open('https://tidycal.com/ecic/adviser', '_blank')"
+                                class="garden-action adviser-cta-primary">SCHEDULE A CONSULTATION</button>
+                        <!-- Secondary CTA - Send Message -->
+                        <button onclick="window.location.href='/contact/'"
+                                class="garden-action adviser-cta-secondary">SEND A MESSAGE</button>
+                    </div>
+                </div>
+            </section>
         </div>
-
-        <div class="resource-category">
-          <h3>Regulatory & Compliance</h3>
-          <div class="resource-list">
-            <a href="/disclosures/form-adv/" class="resource-link">
-              <span class="resource-icon">📑</span>
-              <div class="resource-info">
-                <div class="resource-title">Form ADV</div>
-                <div class="resource-desc">SEC-required investment adviser disclosure and regulatory filing</div>
-              </div>
-            </a>
-            <a href="/disclosures/" class="resource-link">
-              <span class="resource-icon">⚠️</span>
-              <div class="resource-info">
-                <div class="resource-title">Risk Disclosures</div>
-                <div class="resource-desc">Important risk disclosures and legal notices</div>
-              </div>
-            </a>
-            <a href="/strategies/" class="resource-link">
-              <span class="resource-icon">📊</span>
-              <div class="resource-info">
-                <div class="resource-title">Strategy Performance Data</div>
-                <div class="resource-desc">Detailed performance reporting and strategy documentation</div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action Section -->
-  <section class="garden-panel cta-panel" role="complementary" aria-labelledby="cta-heading">
-    <div class="garden-panel__header">
-      <div class="panel-title">READY TO PARTNER?</div>
-    </div>
-    <div class="garden-panel__content">
-      <h2 id="cta-heading" class="cta-title">Let's discuss how we can support your practice</h2>
-
-      <div class="cta-description">
-        <p>
-          Join leading investment advisers who trust our multi-faceted approach to help them serve a broader range of
-          clients with complex needs and values more effectively.
-        </p>
-      </div>
-
-      <div class="cta-actions">
-        <!-- Primary CTA - Schedule Consultation -->
-        <button
-          onclick="window.open('https://tidycal.com/ecic/adviser', '_blank')"
-          class="garden-action adviser-cta-primary"
-        >
-          SCHEDULE A CONSULTATION
-        </button>
-
-        <!-- Secondary CTA - Send Message -->
-        <button onclick="window.location.href='/contact/'" class="garden-action adviser-cta-secondary">
-          SEND A MESSAGE
-        </button>
-      </div>
-    </div>
-  </section>
-</div>
-{% endblock %} {% block extra_css %} {% load static %}
-<link rel="stylesheet" href="{% static 'css/layers/40-adviser-page-clean.css' %}?v=4" />
-<style>
+    {% endblock %}
+    {% block extra_css %}
+        {% load static %}
+        <link rel="stylesheet"
+              href="{% static 'css/layers/40-adviser-page-clean.css' %}?v=4" />
+        <style>
   /* EMERGENCY BUTTON STYLING - HIGHEST PRIORITY */
   .adviser-page .cta-panel .garden-action {
     display: inline-block !important;
@@ -398,9 +373,10 @@ endblock %} {% block content %}
     transform: translateY(-2px) !important;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
   }
-</style>
-{% endblock %} {% block extra_js %}
-<script>
+        </style>
+    {% endblock %}
+    {% block extra_js %}
+        <script>
   // Add hover effects and force text colors
   document.addEventListener("DOMContentLoaded", function () {
     const ctaButtons = document.querySelectorAll(".cta-actions button");
@@ -460,5 +436,5 @@ endblock %} {% block content %}
 
     console.log("CTA button hover effects and color enforcement applied");
   });
-</script>
-{% endblock %}
+        </script>
+    {% endblock %}

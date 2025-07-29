@@ -1,15 +1,11 @@
 <blockquote class="quote-block quote-{{ value.style }}">
-  <div class="quote-content">
-    <p class="quote-text">{{ value.quote }}</p>
-
-    {% if value.attribution or value.citation %}
-    <footer class="quote-footer">
-      {% if value.attribution %}
-      <cite class="quote-attribution">{{ value.attribution }}</cite>
-      {% endif %} {% if value.citation %}
-      <span class="quote-citation">{{ value.citation }}</span>
-      {% endif %}
-    </footer>
-    {% endif %}
-  </div>
+    <div class="quote-content">
+        <p class="quote-text">{{ value.quote }}</p>
+        {% if value.attribution or value.citation %}
+            <footer class="quote-footer">
+                {% if value.attribution %}<cite class="quote-attribution">{{ value.attribution }}</cite>{% endif %}
+                {% if value.citation %}<span class="quote-citation">{{ value.citation }}</span>{% endif %}
+            </footer>
+        {% endif %}
+    </div>
 </blockquote>

@@ -1,256 +1,236 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load static %}
-
 {% block title %}{{ page.title }} | Ethical Capital{% endblock %}
-
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/about-page-v2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about-page-v2.css' %}">
 {% endblock %}
-
-{% block meta_description %}{{ page.search_description|default:"Learn about Ethical Capital's mission, values, and approach to institutional-grade ethical investing." }}{% endblock %}
-
+{% block meta_description %}
+    {{ page.search_description|default:"Learn about Ethical Capital's mission, values, and approach to institutional-grade ethical investing." }}
+{% endblock %}
 {% block body_class %}about-page-v2{% endblock %}
-
 {% block content %}
-<div class="garden-container">
-    <!-- HERO SECTION - Full Width -->
-    <section class="about-hero-section garden-panel" role="main" aria-labelledby="about-heading">
-        <div class="hero-grid">
-            <!-- Left: Larger Headshot -->
-            <div class="hero-image">
-                <img src="{{ page.headshot_image|default:'https://pub-324a685032214395a8bcad478c265d4b.r2.dev/headshot%20sketch_slim.png' }}"
-                     alt="{{ page.headshot_alt_text|default:'Sloane Ortel headshot' }}"
-                     class="headshot-large"
-                     loading="eager"
-                     width="400"
-                     height="500">
-            </div>
-
-            <!-- Right: Identity & Quote -->
-            <div class="hero-content">
-                <h1 class="hero-name">{{ page.name|upper }}</h1>
-                <div class="hero-title">{{ page.professional_title }}</div>
-                <div class="divider"></div>
-
-                <blockquote class="hero-quote">
-                    {{ page.philosophy_quote|safe }}
-                </blockquote>
-
-                <div class="hero-actions">
-                    {% if page.calendar_url %}
-                    <a href="{{ page.calendar_url }}" target="_blank" rel="noopener noreferrer" class="garden-action primary">
-                        📅 SCHEDULE MEETING
-                    </a>
-                    {% endif %}
-                    {% if page.email_link %}
-                    <a href="mailto:{{ page.email_link }}" class="garden-action secondary">
-                        ✉️ EMAIL
-                    </a>
-                    {% endif %}
+    <div class="garden-container">
+        <!-- HERO SECTION - Full Width -->
+        <section class="about-hero-section garden-panel"
+                 role="main"
+                 aria-labelledby="about-heading">
+            <div class="hero-grid">
+                <!-- Left: Larger Headshot -->
+                <div class="hero-image">
+                    <img src="{{ page.headshot_image|default:'https://pub-324a685032214395a8bcad478c265d4b.r2.dev/headshot%20sketch_slim.png' }}"
+                         alt="{{ page.headshot_alt_text|default:'Sloane Ortel headshot' }}"
+                         class="headshot-large"
+                         loading="eager"
+                         width="400"
+                         height="500">
                 </div>
-
-                <!-- Social Links -->
-                <div class="hero-social-links">
-                    {% if page.linkedin_url %}
-                    <a href="{{ page.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
-                        <span class="social-icon">🔗</span>
-                        <span class="social-name">LinkedIn</span>
-                    </a>
-                    {% endif %}
-
-                    {% if page.twitter_url %}
-                    <a href="{{ page.twitter_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
-                        <span class="social-icon">🐦</span>
-                        <span class="social-name">Twitter</span>
-                    </a>
-                    {% endif %}
-
-                    {% if page.bluesky_url %}
-                    <a href="{{ page.bluesky_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
-                        <span class="social-icon">🦋</span>
-                        <span class="social-name">Bluesky</span>
-                    </a>
-                    {% endif %}
-
-                    {% if page.instagram_url %}
-                    <a href="{{ page.instagram_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
-                        <span class="social-icon">📷</span>
-                        <span class="social-name">Instagram</span>
-                    </a>
-                    {% endif %}
-
-                    {% if page.tiktok_url %}
-                    <a href="{{ page.tiktok_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
-                        <span class="social-icon">🎵</span>
-                        <span class="social-name">TikTok</span>
-                    </a>
-                    {% endif %}
-
-                    {% if page.sec_info_url %}
-                    <a href="{{ page.sec_info_url }}" target="_blank" rel="noopener noreferrer" class="social-link-inline">
-                        <span class="social-icon">📋</span>
-                        <span class="social-name">BrokerCheck</span>
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TWO-PANEL LAYOUT: WHAT I DO NOW & BEYOND WORK -->
-    <section class="about-panels two-columns">
-        <!-- Panel 1: What I Do Now -->
-        <div class="garden-panel">
-            <div class="garden-panel__header">
-                <h2 class="panel-title">WHAT I DO NOW</h2>
-            </div>
-            <div class="garden-panel__content">
-                <div class="panel-section">
-                    <h3>Current Role</h3>
-                    {{ page.current_role_content|safe }}
-                </div>
-
-                <div class="panel-section">
-                    <h3>Philosophy</h3>
-                    {{ page.philosophy_content|safe }}
-                </div>
-
-                <div class="panel-section">
-                    <h3>Client Focus</h3>
-                    {{ page.client_focus_content|safe }}
-                </div>
-            </div>
-        </div>
-
-        <!-- Panel 2: Beyond Work -->
-        <div class="garden-panel">
-            <div class="garden-panel__header">
-                <h2 class="panel-title">BEYOND WORK</h2>
-            </div>
-            <div class="garden-panel__content">
-                {{ page.external_roles_content|safe }}
-
-                {% for hobby in page.hobbies %}
-                <div class="beyond-item">
-                    <span class="beyond-icon">{{ hobby.value.icon }}</span>
-                    <div class="beyond-content">
-                        <h4>{{ hobby.value.title }}</h4>
-                        <p>{{ hobby.value.description }}</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
-    <!-- EXPERIENCE SECTION - HORIZONTAL TIMELINE -->
-    <section class="experience-section garden-panel">
-        <div class="garden-panel__header">
-            <h2 class="panel-title">EXPERIENCE</h2>
-        </div>
-        <div class="garden-panel__content">
-            <div class="horizontal-timeline">
-                {% for item in page.experience_timeline %}
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>{{ item.value.year }}</h4>
-                        <p>{{ item.value.company }}</p>
-                        {% if item.value.description %}
-                        <p class="timeline-description">{{ item.value.description }}</p>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
-    <!-- WRITING & SPEAKING SECTION -->
-    <section class="writing-speaking-section garden-panel">
-        <div class="garden-panel__header">
-            <h2 class="panel-title">{{ page.speaking_writing_title|upper }}</h2>
-        </div>
-        <div class="garden-panel__content">
-            <div class="writing-speaking-grid">
-                <!-- Featured Posts -->
-                <div class="featured-posts">
-                    <h3>Featured Writing</h3>
-                    <div class="post-cards">
-                        {% for post in page.featured_posts %}
-                        <a href="{{ post.value.url }}" class="post-card">
-                            <h4>{{ post.value.title }}</h4>
-                            <p>{{ post.value.description }}</p>
-                        </a>
-                        {% empty %}
-                        {% if page.featured_post_1_title %}
-                        <a href="{{ page.featured_post_1_url }}" class="post-card">
-                            <h4>{{ page.featured_post_1_title }}</h4>
-                            <p>{{ page.featured_post_1_description }}</p>
-                        </a>
-                        {% endif %}
-
-                        {% if page.featured_post_2_title %}
-                        <a href="{{ page.featured_post_2_url }}" class="post-card">
-                            <h4>{{ page.featured_post_2_title }}</h4>
-                            <p>{{ page.featured_post_2_description }}</p>
-                        </a>
-                        {% endif %}
-
-                        {% if page.featured_post_3_title %}
-                        <a href="{{ page.featured_post_3_url }}" class="post-card">
-                            <h4>{{ page.featured_post_3_title }}</h4>
-                            <p>{{ page.featured_post_3_description }}</p>
-                        </a>
-                        {% endif %}
-
-                        {% if page.featured_post_4_title %}
-                        <a href="{{ page.featured_post_4_url }}" class="post-card">
-                            <h4>{{ page.featured_post_4_title }}</h4>
-                            <p>{{ page.featured_post_4_description }}</p>
-                        </a>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Speaking Engagements -->
-                <div class="speaking-section">
-                    <h3>Speaking Engagements</h3>
-
-                    <div class="speaking-topics">
-                        <h4>Topics I Cover:</h4>
-                        {{ page.speaking_topics|safe }}
-                    </div>
-
-                    <div class="speaker-cta">
-                        {% if page.speaker_bio_url %}
-                        <a href="{{ page.speaker_bio_url }}"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="garden-action secondary">
-                            📄 DOWNLOAD SPEAKER BIO
-                        </a>
-                        {% endif %}
-
+                <!-- Right: Identity & Quote -->
+                <div class="hero-content">
+                    <h1 class="hero-name">{{ page.name|upper }}</h1>
+                    <div class="hero-title">{{ page.professional_title }}</div>
+                    <div class="divider"></div>
+                    <blockquote class="hero-quote">
+                        {{ page.philosophy_quote|safe }}
+                    </blockquote>
+                    <div class="hero-actions">
                         {% if page.calendar_url %}
-                        <a href="{{ page.calendar_url }}"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="garden-action primary">
-                            📅 BOOK ME TO SPEAK
-                        </a>
+                            <a href="{{ page.calendar_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="garden-action primary">📅 SCHEDULE MEETING</a>
+                        {% endif %}
+                        {% if page.email_link %}<a href="mailto:{{ page.email_link }}" class="garden-action secondary">✉️ EMAIL</a>{% endif %}
+                    </div>
+                    <!-- Social Links -->
+                    <div class="hero-social-links">
+                        {% if page.linkedin_url %}
+                            <a href="{{ page.linkedin_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="social-link-inline">
+                                <span class="social-icon">🔗</span>
+                                <span class="social-name">LinkedIn</span>
+                            </a>
+                        {% endif %}
+                        {% if page.twitter_url %}
+                            <a href="{{ page.twitter_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="social-link-inline">
+                                <span class="social-icon">🐦</span>
+                                <span class="social-name">Twitter</span>
+                            </a>
+                        {% endif %}
+                        {% if page.bluesky_url %}
+                            <a href="{{ page.bluesky_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="social-link-inline">
+                                <span class="social-icon">🦋</span>
+                                <span class="social-name">Bluesky</span>
+                            </a>
+                        {% endif %}
+                        {% if page.instagram_url %}
+                            <a href="{{ page.instagram_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="social-link-inline">
+                                <span class="social-icon">📷</span>
+                                <span class="social-name">Instagram</span>
+                            </a>
+                        {% endif %}
+                        {% if page.tiktok_url %}
+                            <a href="{{ page.tiktok_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="social-link-inline">
+                                <span class="social-icon">🎵</span>
+                                <span class="social-name">TikTok</span>
+                            </a>
+                        {% endif %}
+                        {% if page.sec_info_url %}
+                            <a href="{{ page.sec_info_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="social-link-inline">
+                                <span class="social-icon">📋</span>
+                                <span class="social-name">BrokerCheck</span>
+                            </a>
                         {% endif %}
                     </div>
-
-                    {% if page.speaking_contact_note %}
-                    <div class="contact-note">
-                        {{ page.speaking_contact_note|safe }}
-                    </div>
-                    {% endif %}
                 </div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+        <!-- TWO-PANEL LAYOUT: WHAT I DO NOW & BEYOND WORK -->
+        <section class="about-panels two-columns">
+            <!-- Panel 1: What I Do Now -->
+            <div class="garden-panel">
+                <div class="garden-panel__header">
+                    <h2 class="panel-title">WHAT I DO NOW</h2>
+                </div>
+                <div class="garden-panel__content">
+                    <div class="panel-section">
+                        <h3>Current Role</h3>
+                        {{ page.current_role_content|safe }}
+                    </div>
+                    <div class="panel-section">
+                        <h3>Philosophy</h3>
+                        {{ page.philosophy_content|safe }}
+                    </div>
+                    <div class="panel-section">
+                        <h3>Client Focus</h3>
+                        {{ page.client_focus_content|safe }}
+                    </div>
+                </div>
+            </div>
+            <!-- Panel 2: Beyond Work -->
+            <div class="garden-panel">
+                <div class="garden-panel__header">
+                    <h2 class="panel-title">BEYOND WORK</h2>
+                </div>
+                <div class="garden-panel__content">
+                    {{ page.external_roles_content|safe }}
+                    {% for hobby in page.hobbies %}
+                        <div class="beyond-item">
+                            <span class="beyond-icon">{{ hobby.value.icon }}</span>
+                            <div class="beyond-content">
+                                <h4>{{ hobby.value.title }}</h4>
+                                <p>{{ hobby.value.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- EXPERIENCE SECTION - HORIZONTAL TIMELINE -->
+        <section class="experience-section garden-panel">
+            <div class="garden-panel__header">
+                <h2 class="panel-title">EXPERIENCE</h2>
+            </div>
+            <div class="garden-panel__content">
+                <div class="horizontal-timeline">
+                    {% for item in page.experience_timeline %}
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>{{ item.value.year }}</h4>
+                                <p>{{ item.value.company }}</p>
+                                {% if item.value.description %}<p class="timeline-description">{{ item.value.description }}</p>{% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- WRITING & SPEAKING SECTION -->
+        <section class="writing-speaking-section garden-panel">
+            <div class="garden-panel__header">
+                <h2 class="panel-title">{{ page.speaking_writing_title|upper }}</h2>
+            </div>
+            <div class="garden-panel__content">
+                <div class="writing-speaking-grid">
+                    <!-- Featured Posts -->
+                    <div class="featured-posts">
+                        <h3>Featured Writing</h3>
+                        <div class="post-cards">
+                            {% for post in page.featured_posts %}
+                                <a href="{{ post.value.url }}" class="post-card">
+                                    <h4>{{ post.value.title }}</h4>
+                                    <p>{{ post.value.description }}</p>
+                                </a>
+                            {% empty %}
+                                {% if page.featured_post_1_title %}
+                                    <a href="{{ page.featured_post_1_url }}" class="post-card">
+                                        <h4>{{ page.featured_post_1_title }}</h4>
+                                        <p>{{ page.featured_post_1_description }}</p>
+                                    </a>
+                                {% endif %}
+                                {% if page.featured_post_2_title %}
+                                    <a href="{{ page.featured_post_2_url }}" class="post-card">
+                                        <h4>{{ page.featured_post_2_title }}</h4>
+                                        <p>{{ page.featured_post_2_description }}</p>
+                                    </a>
+                                {% endif %}
+                                {% if page.featured_post_3_title %}
+                                    <a href="{{ page.featured_post_3_url }}" class="post-card">
+                                        <h4>{{ page.featured_post_3_title }}</h4>
+                                        <p>{{ page.featured_post_3_description }}</p>
+                                    </a>
+                                {% endif %}
+                                {% if page.featured_post_4_title %}
+                                    <a href="{{ page.featured_post_4_url }}" class="post-card">
+                                        <h4>{{ page.featured_post_4_title }}</h4>
+                                        <p>{{ page.featured_post_4_description }}</p>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Speaking Engagements -->
+                    <div class="speaking-section">
+                        <h3>Speaking Engagements</h3>
+                        <div class="speaking-topics">
+                            <h4>Topics I Cover:</h4>
+                            {{ page.speaking_topics|safe }}
+                        </div>
+                        <div class="speaker-cta">
+                            {% if page.speaker_bio_url %}
+                                <a href="{{ page.speaker_bio_url }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="garden-action secondary">📄 DOWNLOAD SPEAKER BIO</a>
+                            {% endif %}
+                            {% if page.calendar_url %}
+                                <a href="{{ page.calendar_url }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="garden-action primary">📅 BOOK ME TO SPEAK</a>
+                            {% endif %}
+                        </div>
+                        {% if page.speaking_contact_note %}<div class="contact-note">{{ page.speaking_contact_note|safe }}</div>{% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 {% endblock %}

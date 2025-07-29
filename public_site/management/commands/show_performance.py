@@ -38,21 +38,21 @@ class Command(BaseCommand):
 
             if strategy.performance_last_updated:
                 self.stdout.write(
-                    f'Last Updated: {strategy.performance_last_updated.strftime("%Y-%m-%d %H:%M")}'
+                    f"Last Updated: {strategy.performance_last_updated.strftime('%Y-%m-%d %H:%M')}"
                 )
 
             self.stdout.write("\nPerformance Metrics:")
             self.stdout.write(
-                f'  YTD Return:          {strategy.ytd_return or "N/A"} (vs {strategy.ytd_benchmark or "N/A"} benchmark)'
+                f"  YTD Return:          {strategy.ytd_return or 'N/A'} (vs {strategy.ytd_benchmark or 'N/A'} benchmark)"
             )
             self.stdout.write(
-                f'  1-Year Return:       {strategy.one_year_return or "N/A"} (vs {strategy.one_year_benchmark or "N/A"} benchmark)'
+                f"  1-Year Return:       {strategy.one_year_return or 'N/A'} (vs {strategy.one_year_benchmark or 'N/A'} benchmark)"
             )
             self.stdout.write(
-                f'  3-Year Return:       {strategy.three_year_return or "N/A"} (vs {strategy.three_year_benchmark or "N/A"} benchmark)'
+                f"  3-Year Return:       {strategy.three_year_return or 'N/A'} (vs {strategy.three_year_benchmark or 'N/A'} benchmark)"
             )
             self.stdout.write(
-                f'  Since Inception:     {strategy.since_inception_return or "N/A"} (vs {strategy.since_inception_benchmark or "N/A"} benchmark)'
+                f"  Since Inception:     {strategy.since_inception_return or 'N/A'} (vs {strategy.since_inception_benchmark or 'N/A'} benchmark)"
             )
 
             # Show latest few months of data
@@ -87,7 +87,7 @@ class Command(BaseCommand):
                         if month in year_data:
                             data = year_data[month]
                             self.stdout.write(
-                                f'  {month} {year}: {data.get("strategy", "N/A")} (vs {data.get("benchmark", "N/A")})'
+                                f"  {month} {year}: {data.get('strategy', 'N/A')} (vs {data.get('benchmark', 'N/A')})"
                             )
                             months_shown += 1
 

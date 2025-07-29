@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Test SSL connection to Ubicloud database"""
+
 import os
 import sys
 from urllib.parse import urlparse

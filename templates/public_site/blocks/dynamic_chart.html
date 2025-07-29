@@ -1,69 +1,61 @@
 {% load wagtailcore_tags %}
-
-<div class="dynamic-chart-block chart-type-{{ value.chart_type }}" data-chart-id="{{ chart_id }}">
-  <div class="chart-container">
-    {% if value.title %}
-    <h3 class="chart-title">{{ value.title }}</h3>
+<div class="dynamic-chart-block chart-type-{{ value.chart_type }}"
+     data-chart-id="{{ chart_id }}">
+    <div class="chart-container">
+        {% if value.title %}<h3 class="chart-title">{{ value.title }}</h3>{% endif %}
+        <div class="chart-wrapper"
+             data-responsive="{{ value.responsive|yesno:'true,false' }}">
+            <canvas id="{{ chart_id }}"
+                    aria-label="{% if value.title %}{{ value.title }}{% else %}Data visualization chart{% endif %}"
+                    role="img">
+                <!-- Fallback content for accessibility -->
+                <p>This chart displays data visualization. Please enable JavaScript to view the interactive chart.</p>
+            </canvas>
+        </div>
+        {% if value.data_source == "ai_extracted" %}
+            <div class="chart-ai-indicator">
+                <span class="ai-badge" aria-label="AI-generated chart">
+                    <span aria-hidden="true">🤖</span>
+                    AI-Generated
+                </span>
+                {% if value.auto_generate %}
+                    <span class="auto-generated-badge" aria-label="Automatically configured">Auto-Configured</span>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if value.chart_type == "performance_comparison" %}
+            <div class="chart-description" aria-label="Chart description">
+                <p>Performance comparison showing relative returns or metrics across different investments or time periods.</p>
+            </div>
+        {% elif value.chart_type == "allocation_breakdown" %}
+            <div class="chart-description" aria-label="Chart description">
+                <p>Portfolio allocation breakdown showing the distribution of investments across different categories.</p>
+            </div>
+        {% elif value.chart_type == "trend_analysis" %}
+            <div class="chart-description" aria-label="Chart description">
+                <p>Trend analysis showing performance or metrics over time.</p>
+            </div>
+        {% elif value.chart_type == "risk_metrics" %}
+            <div class="chart-description" aria-label="Chart description">
+                <p>Risk metrics dashboard displaying various risk measurements and indicators.</p>
+            </div>
+        {% endif %}
+    </div>
+    {% if value.show_legend and chart_config.data.datasets %}
+        <div class="chart-legend" aria-label="Chart legend">
+            <ul class="legend-list">
+                {% for dataset in chart_config.data.datasets %}
+                    <li class="legend-item">
+                        <span class="legend-color"
+                              data-color="{{ dataset.backgroundColor.0|default:'var(--color-primary) ' }}"
+                              aria-hidden="true"></span>
+                        <span class="legend-label">{{ dataset.label|default:'Data Series' }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     {% endif %}
-
-    <div class="chart-wrapper" data-responsive="{{ value.responsive|yesno:'true,false' }}">
-      <canvas
-        id="{{ chart_id }}"
-        aria-label="{% if value.title %}{{ value.title }}{% else %}Data visualization chart{% endif %}"
-        role="img"
-      >
-        <!-- Fallback content for accessibility -->
-        <p>This chart displays data visualization. Please enable JavaScript to view the interactive chart.</p>
-      </canvas>
-    </div>
-
-    {% if value.data_source == "ai_extracted" %}
-    <div class="chart-ai-indicator">
-      <span class="ai-badge" aria-label="AI-generated chart">
-        <span aria-hidden="true">🤖</span>
-        AI-Generated
-      </span>
-      {% if value.auto_generate %}
-      <span class="auto-generated-badge" aria-label="Automatically configured">Auto-Configured</span>
-      {% endif %}
-    </div>
-    {% endif %} {% if value.chart_type == "performance_comparison" %}
-    <div class="chart-description" aria-label="Chart description">
-      <p>Performance comparison showing relative returns or metrics across different investments or time periods.</p>
-    </div>
-    {% elif value.chart_type == "allocation_breakdown" %}
-    <div class="chart-description" aria-label="Chart description">
-      <p>Portfolio allocation breakdown showing the distribution of investments across different categories.</p>
-    </div>
-    {% elif value.chart_type == "trend_analysis" %}
-    <div class="chart-description" aria-label="Chart description">
-      <p>Trend analysis showing performance or metrics over time.</p>
-    </div>
-    {% elif value.chart_type == "risk_metrics" %}
-    <div class="chart-description" aria-label="Chart description">
-      <p>Risk metrics dashboard displaying various risk measurements and indicators.</p>
-    </div>
-    {% endif %}
-  </div>
-
-  {% if value.show_legend and chart_config.data.datasets %}
-  <div class="chart-legend" aria-label="Chart legend">
-    <ul class="legend-list">
-      {% for dataset in chart_config.data.datasets %}
-      <li class="legend-item">
-        <span
-          class="legend-color"
-          data-color="{{ dataset.backgroundColor.0|default:'var(--color-primary)' }}"
-          aria-hidden="true"
-        ></span>
-        <span class="legend-label">{{ dataset.label|default:'Data Series' }}</span>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
-
-  <script>
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('{{ chart_id }}');
         if (!ctx) return;
@@ -155,12 +147,11 @@
                 '<div class="chart-error">Unable to display chart. Please check the configuration.</div>';
         }
     });
-  </script>
-
-  {% if value.data_source == "manual_entry" and value.manual_data %}
-  <details class="chart-data-source">
-    <summary>Chart Data Source</summary>
-    <pre class="chart-raw-data"><code>{{ value.manual_data }}</code></pre>
-  </details>
-  {% endif %}
+    </script>
+    {% if value.data_source == "manual_entry" and value.manual_data %}
+        <details class="chart-data-source">
+            <summary>Chart Data Source</summary>
+            <pre class="chart-raw-data"><code>{{ value.manual_data }}</code></pre>
+        </details>
+    {% endif %}
 </div>

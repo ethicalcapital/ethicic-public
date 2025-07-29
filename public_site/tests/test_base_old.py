@@ -247,7 +247,7 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
         if not parent:
             try:
                 parent = self.create_test_blog_index()
-            except:
+            except Exception:
                 from unittest import SkipTest
 
                 raise SkipTest("Cannot create blog index for blog post creation")
@@ -358,11 +358,11 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
         for i in range(3):
             MediaItem.objects.create(
                 page=media_page,
-                title=f"Media Item {i+1}",
-                description=f"<p>Description for media item {i+1}</p>",
-                publication=f"Publication {i+1}",
+                title=f"Media Item {i + 1}",
+                description=f"<p>Description for media item {i + 1}</p>",
+                publication=f"Publication {i + 1}",
                 publication_date=timezone.now().date() - timedelta(days=i),
-                external_url=f"https://example.com/article-{i+1}",
+                external_url=f"https://example.com/article-{i + 1}",
                 featured=(i == 0),  # First item is featured
                 sort_order=i,
             )
@@ -471,6 +471,6 @@ class MockRequestFactory:
                 self.GET = kwargs.get("GET", {})
                 self.POST = kwargs.get("POST", {})
                 self.session = kwargs.get("session", {})
-                self.user = kwargs.get("user", None)
+                self.user = kwargs.get("user")
 
         return MockRequest()

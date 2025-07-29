@@ -1,33 +1,31 @@
-<div class="form-response error" x-data="{ show: true }" x-show="show" x-transition>
-  <div class="response-icon">⚠</div>
-  <div class="response-content">
-    <h4>{{ message }}</h4>
-    {% if details %}
-    <p>{{ details }}</p>
-    {% endif %} {% if errors %}
-    <div class="error-list">
-      {% for field, field_errors in errors.items %} {% for error in field_errors %}
-      <div class="error-item">
-        <strong>{{ field|title }}:</strong>
-        {{ error }}
-      </div>
-      {% endfor %} {% endfor %}
+<div class="form-response error"
+     x-data="{ show: true }"
+     x-show="show"
+     x-transition>
+    <div class="response-icon">⚠</div>
+    <div class="response-content">
+        <h4>{{ message }}</h4>
+        {% if details %}<p>{{ details }}</p>{% endif %}
+        {% if errors %}
+            <div class="error-list">
+                {% for field, field_errors in errors.items %}
+                    {% for error in field_errors %}
+                        <div class="error-item">
+                            <strong>{{ field|title }}:</strong>
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="response-actions">
+            <button type="button"
+                    @click="show = false; setTimeout(() => window.scrollTo(0, 0), 300)"
+                    class="garden-action secondary">Try Again</button>
+            <a href="/contact/" class="garden-action secondary">Contact Support</a>
+        </div>
     </div>
-    {% endif %}
-
-    <div class="response-actions">
-      <button
-        type="button"
-        @click="show = false; setTimeout(() => window.scrollTo(0, 0), 300)"
-        class="garden-action secondary"
-      >
-        Try Again
-      </button>
-      <a href="/contact/" class="garden-action secondary">Contact Support</a>
-    </div>
-  </div>
 </div>
-
 <style>
   .form-response.error {
     background-color: var(--color-error-alpha);

@@ -65,7 +65,7 @@ def safe_pageurl(context, page, fallback_url="#"):
             if url_path and url_path != "/":
                 # Remove any leading duplicate slashes and ensure single leading slash
                 url_path = "/" + url_path.lstrip("/")
-                if url_path != "None" and url_path != "/None":
+                if url_path not in {"None", "/None"}:
                     return url_path
     except (AttributeError, Exception):
         pass
@@ -76,8 +76,7 @@ def safe_pageurl(context, page, fallback_url="#"):
             slug = page.slug.strip()
             if slug and slug != "None":
                 # For most pages, we can construct the URL as /slug/
-                constructed_url = f"/{slug}/"
-                return constructed_url
+                return f"/{slug}/"
     except (AttributeError, Exception):
         pass
 
@@ -152,10 +151,7 @@ def is_valid_url(url):
         return False
 
     url = url.strip()
-    if not url or url == "None" or url == "#":
-        return False
-
-    return True
+    return not (not url or url in {"None", "#"})
 
 
 @register.simple_tag

@@ -1,151 +1,105 @@
 {% load crispy_forms_tags %}
-
-<form
-  id="contact-form"
-  hx-post="/api/contact/"
-  hx-target="#form-response"
-  hx-indicator="#form-loading"
-  hx-swap="innerHTML"
-  class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 space-y-6 relative"
-  x-data="{
-          submitting: false,
-          submissionId: null,
-          handleSubmit() {
-              this.submitting = true;
-          },
-          handleResponse(event) {
-              this.submitting = false;
-              // Extract submission ID from response if available
-              const response = event.detail.xhr.responseText;
-              try {
-                  const data = JSON.parse(response);
-                  if (data.submission_id) {
-                      this.submissionId = data.submission_id;
-                      console.log('Form submitted with ID:', this.submissionId);
-                      // Optionally check status after a delay
-                      setTimeout(() => this.checkSubmissionStatus(), 2000);
-                  }
-              } catch (e) {
-                  // Response might be HTML, not JSON
-              }
-          },
-          async checkSubmissionStatus() {
-              if (!this.submissionId) return;
-              try {
-                  const response = await fetch(`/api/submission-status/${this.submissionId}/`);
-                  const data = await response.json();
-                  console.log('Submission status:', data);
-              } catch (e) {
-                  console.log('Could not check submission status:', e);
-              }
-          }
-      }"
-  @htmx:before-request="handleSubmit()"
-  @htmx:after-request="handleResponse()"
->
-  {% csrf_token %}
-
-  <div class="space-y-6">
-    <!-- Name Field -->
-    <div class="space-y-2">{{ contact_form.name|as_crispy_field }}</div>
-
-    <!-- Email Field with inline validation -->
-    <div class="space-y-2">
-      <label for="{{ contact_form.email.id_for_label }}" class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
-        {{ contact_form.email.label }} {% if contact_form.email.field.required %}
-        <span class="text-red-500 ml-1" aria-label="required">*</span>
-        {% endif %}
-      </label>
-      <input
-        type="email"
-        name="{{ contact_form.email.name }}"
-        id="{{ contact_form.email.id_for_label }}"
-        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-        placeholder="{{ contact_form.email.widget.attrs.placeholder }}"
-        autocomplete="{{ contact_form.email.widget.attrs.autocomplete }}"
-        required
-        hx-post="/api/validate-email/"
-        hx-trigger="blur changed"
-        hx-target="#email-feedback"
-        hx-indicator="#email-spinner"
-        :disabled="submitting"
-        aria-describedby="email-feedback{% if contact_form.email.help_text %} email-help{% endif %}"
-        aria-invalid="false"
-      />
-      <span id="email-spinner" class="htmx-indicator ml-2 text-purple-600 animate-spin hidden" role="status" aria-label="Validating email">⟳</span>
-      <div id="email-feedback" class="text-sm mt-1" role="status" aria-live="polite" aria-atomic="true"></div>
-      {% if contact_form.email.help_text %}
-      <small id="email-help" class="form-text text-muted">{{ contact_form.email.help_text }}</small>
-      {% endif %}
+<form id="contact-form"
+      hx-post="/api/contact/"
+      hx-target="#form-response"
+      hx-indicator="#form-loading"
+      hx-swap="innerHTML"
+      class="relative space-y-6 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+      x-data="{ submitting: false, submissionId: null, handleSubmit() { this.submitting = true; }, handleResponse(event) { this.submitting = false; // Extract submission ID from response if available const response = event.detail.xhr.responseText; try { const data = JSON.parse(response); if (data.submission_id) { this.submissionId = data.submission_id; console.log('Form submitted with ID:', this.submissionId); // Optionally check status after a delay setTimeout(() => this.checkSubmissionStatus(), 2000); } } catch (e) { // Response might be HTML, not JSON } }, async checkSubmissionStatus() { if (!this.submissionId) return; try { const response = await fetch(`/api/submission-status/${this.submissionId}/`); const data = await response.json(); console.log('Submission status:', data); } catch (e) { console.log('Could not check submission status:', e); } } }"
+      @htmx:before-request="handleSubmit()"
+      @htmx:after-request="handleResponse()">
+    {% csrf_token %}
+    <div class="space-y-6">
+        <!-- Name Field -->
+        <div class="space-y-2">{{ contact_form.name|as_crispy_field }}</div>
+        <!-- Email Field with inline validation -->
+        <div class="space-y-2">
+            <label for="{{ contact_form.email.id_for_label }}"
+                   class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                {{ contact_form.email.label }}
+                {% if contact_form.email.field.required %}<span class="ml-1 text-red-500" aria-label="required">*</span>{% endif %}
+            </label>
+            <input type="email"
+                   name="{{ contact_form.email.name }}"
+                   id="{{ contact_form.email.id_for_label }}"
+                   class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                   placeholder="{{ contact_form.email.widget.attrs.placeholder }}"
+                   autocomplete="{{ contact_form.email.widget.attrs.autocomplete }}"
+                   required
+                   hx-post="/api/validate-email/"
+                   hx-trigger="blur changed"
+                   hx-target="#email-feedback"
+                   hx-indicator="#email-spinner"
+                   :disabled="submitting"
+                   aria-describedby="email-feedback{% if contact_form.email.help_text %} email-help{% endif %}"
+                   aria-invalid="false" />
+            <span id="email-spinner"
+                  class="htmx-indicator ml-2 hidden animate-spin text-purple-600"
+                  role="status"
+                  aria-label="Validating email">⟳</span>
+            <div id="email-feedback"
+                 class="mt-1 text-sm"
+                 role="status"
+                 aria-live="polite"
+                 aria-atomic="true"></div>
+            {% if contact_form.email.help_text %}
+                <small id="email-help" class="form-text text-muted">{{ contact_form.email.help_text }}</small>
+            {% endif %}
+        </div>
+        <!-- Company Field -->
+        <div class="space-y-2">{{ contact_form.company|as_crispy_field }}</div>
+        <!-- Subject Field -->
+        <div class="space-y-2">{{ contact_form.subject|as_crispy_field }}</div>
+        <!-- Message Field -->
+        <div class="space-y-2">{{ contact_form.message|as_crispy_field }}</div>
+        <!-- Cloudflare Turnstile -->
+        <div class="space-y-2">
+            <div class="cf-turnstile mx-auto"
+                 data-sitekey="{{ TURNSTILE_SITE_KEY }}"
+                 data-callback="onTurnstileSuccess"
+                 data-expired-callback="onTurnstileExpired"
+                 data-error-callback="onTurnstileError"></div>
+            {{ contact_form.cf_turnstile_response }}
+        </div>
+        <!-- Submit Button -->
+        <div class="flex flex-col gap-4 sm:flex-row">
+            <button type="submit"
+                    class="flex-1 rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700 disabled:cursor-not-allowed disabled:opacity-50"
+                    :disabled="submitting"
+                    aria-describedby="form-response">
+                <span x-show="!submitting">Send Message</span>
+                <span x-show="submitting"
+                      x-cloak
+                      class="flex items-center justify-center gap-2">
+                    <span class="animate-spin" role="status" aria-label="Loading">⟳</span>
+                    Sending...
+                </span>
+            </button>
+            <button type="reset"
+                    class="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+                    :disabled="submitting"
+                    @click="$refs.formResponse.innerHTML = ''"
+                    aria-label="Clear all form fields">Clear Form</button>
+        </div>
     </div>
-
-    <!-- Company Field -->
-    <div class="space-y-2">{{ contact_form.company|as_crispy_field }}</div>
-
-    <!-- Subject Field -->
-    <div class="space-y-2">{{ contact_form.subject|as_crispy_field }}</div>
-
-    <!-- Message Field -->
-    <div class="space-y-2">{{ contact_form.message|as_crispy_field }}</div>
-
-    <!-- Cloudflare Turnstile -->
-    <div class="space-y-2">
-      <div
-        class="cf-turnstile mx-auto"
-        data-sitekey="{{ TURNSTILE_SITE_KEY }}"
-        data-callback="onTurnstileSuccess"
-        data-expired-callback="onTurnstileExpired"
-        data-error-callback="onTurnstileError"
-      ></div>
-      {{ contact_form.cf_turnstile_response }}
+    <!-- Loading indicator -->
+    <div id="form-loading"
+         class="htmx-indicator absolute inset-0 z-50 flex hidden items-center justify-center rounded-xl bg-white/95 dark:bg-gray-800/95"
+         role="status"
+         aria-label="Form submission in progress">
+        <div class="text-center">
+            <div class="mb-4 animate-spin text-4xl text-purple-600" aria-hidden="true">⟳</div>
+            <p class="text-gray-700 dark:text-gray-300">Sending your message...</p>
+        </div>
     </div>
-
-    <!-- Submit Button -->
-    <div class="flex flex-col sm:flex-row gap-4">
-      <button type="submit" class="flex-1 px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors" :disabled="submitting" aria-describedby="form-response">
-        <span x-show="!submitting">Send Message</span>
-        <span x-show="submitting" x-cloak class="flex items-center justify-center gap-2">
-          <span class="animate-spin" role="status" aria-label="Loading">⟳</span>
-          Sending...
-        </span>
-      </button>
-
-      <button
-        type="reset"
-        class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-        :disabled="submitting"
-        @click="$refs.formResponse.innerHTML = ''"
-        aria-label="Clear all form fields"
-      >
-        Clear Form
-      </button>
-    </div>
-  </div>
-
-  <!-- Loading indicator -->
-  <div
-    id="form-loading"
-    class="htmx-indicator hidden absolute inset-0 bg-white/95 dark:bg-gray-800/95 flex items-center justify-center z-50 rounded-xl"
-    role="status"
-    aria-label="Form submission in progress"
-  >
-    <div class="text-center">
-      <div class="text-4xl text-purple-600 animate-spin mb-4" aria-hidden="true">⟳</div>
-      <p class="text-gray-700 dark:text-gray-300">Sending your message...</p>
-    </div>
-  </div>
 </form>
-
 <!-- Response container -->
-<div
-  id="form-response"
-  x-ref="formResponse"
-  class="mt-6"
-  role="status"
-  aria-live="polite"
-  aria-atomic="true"
-></div>
-
+<div id="form-response"
+     x-ref="formResponse"
+     class="mt-6"
+     role="status"
+     aria-live="polite"
+     aria-atomic="true"></div>
 <style>
   /* HTMX Loading States */
   .htmx-request #form-loading {
@@ -167,24 +121,24 @@
 
   /* Crispy Forms Integration with Tailwind */
   .crispy-field label {
-    @apply block text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2;
+    @apply mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-100;
   }
 
   .crispy-field input[type="text"],
   .crispy-field input[type="email"],
   .crispy-field select,
   .crispy-field textarea {
-    @apply w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100;
   }
 
   .crispy-field .required {
-    @apply text-red-500 ml-1;
+    @apply ml-1 text-red-500;
   }
 </style>
-
 <!-- Cloudflare Turnstile Script -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        async
+        defer></script>
 <script>
   // Turnstile callback functions
   function onTurnstileSuccess(token) {

@@ -1,10 +1,8 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load static %}
-
 {% block title %}Debug Width{% endblock %}
-
 {% block content %}
-<style>
+    <style>
     .debug-box {
         background: #f0f0f0;
         border: 2px solid red;
@@ -18,25 +16,21 @@
         border: 2px solid green;
         padding: 20px;
     }
-</style>
-
-<div class="garden-container debug-box">
-    <h2>Garden Container Test</h2>
-    <p>This div has class="garden-container"</p>
-    <div id="container-info"></div>
-</div>
-
-<div class="manual-width">
-    <h2>Manual 1200px Test</h2>
-    <p>This div has inline max-width: 1200px</p>
-</div>
-
-<div style="background: yellow; padding: 20px; margin: 20px;">
-    <h2>Debug Information</h2>
-    <div id="debug-info"></div>
-</div>
-
-<script>
+    </style>
+    <div class="garden-container debug-box">
+        <h2>Garden Container Test</h2>
+        <p>This div has class="garden-container"</p>
+        <div id="container-info"></div>
+    </div>
+    <div class="manual-width">
+        <h2>Manual 1200px Test</h2>
+        <p>This div has inline max-width: 1200px</p>
+    </div>
+    <div style="background: yellow; padding: 20px; margin: 20px;">
+        <h2>Debug Information</h2>
+        <div id="debug-info"></div>
+    </div>
+    <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Get the garden-container
     const container = document.querySelector('.garden-container');
@@ -85,5 +79,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script>
+    </script>
 {% endblock %}

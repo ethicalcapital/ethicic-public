@@ -1,93 +1,85 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags static %}
-
 {% block title %}{{ page.title }} - Ethical Capital{% endblock %}
-
 {% block body_class %}faq-page{% endblock %}
-
 {% block content %}
-<div class="garden-container">
-    <!-- FAQ Hero Section -->
-    <section class="garden-panel" role="banner" aria-labelledby="faq-heading">
-        <div class="garden-panel__header garden-panel-header">
-            <div class="panel-title">{{ page.title }}</div>
-        </div>
-        <div class="garden-panel__content garden-panel-content">
-            {% if page.intro_text %}
-                <div class="hero-description">
-                    {{ page.intro_text|richtext }}
-                </div>
-            {% endif %}
-        </div>
-    </section>
-
-    <!-- Featured FAQ Section -->
-    {% if page.faq_items.all|length > 0 %}
-        {% with featured_faq=page.faq_items.all.0 %}
-        <section class="featured-faq-section">
-            <div class="featured-badge">Featured</div>
-            <h3>{{ featured_faq.question }}</h3>
-            <p>{{ featured_faq.answer|richtext|truncatewords:30|striptags }}</p>
-            <a href="#faq-1" class="garden-action primary">Read Full Answer</a>
+    <div class="garden-container">
+        <!-- FAQ Hero Section -->
+        <section class="garden-panel" role="banner" aria-labelledby="faq-heading">
+            <div class="garden-panel__header garden-panel-header">
+                <div class="panel-title">{{ page.title }}</div>
+            </div>
+            <div class="garden-panel__content garden-panel-content">
+                {% if page.intro_text %}<div class="hero-description">{{ page.intro_text|richtext }}</div>{% endif %}
+            </div>
         </section>
-        {% endwith %}
-    {% endif %}
-
-    <!-- FAQ Content Section with Sidebar -->
-    <div class="faq-content-wrapper">
-        <div class="faq-main-content">
-            <div class="faq-content">
-                {% for faq in page.faq_items.all %}
-                    <details class="faq-item" id="faq-{{ forloop.counter }}" data-faq-id="{{ forloop.counter }}"
-                             x-data="{ open: false }"
-                             x-ref="faqItem{{ forloop.counter }}"
-                             @toggle="open = $event.target.open">
-                        <summary class="faq-question" :aria-expanded="open">
-                            <h3 class="question-title">{{ faq.question }}</h3>
-                            <span class="expand-icon" aria-hidden="true" x-text="open ? '−' : '+'"></span>
-                        </summary>
-                        <div class="faq-answer">
-                            {{ faq.answer|richtext }}
+        <!-- Featured FAQ Section -->
+        {% if page.faq_items.all|length > 0 %}
+            {% with featured_faq=page.faq_items.all.0 %}
+                <section class="featured-faq-section">
+                    <div class="featured-badge">Featured</div>
+                    <h3>{{ featured_faq.question }}</h3>
+                    <p>{{ featured_faq.answer|richtext|truncatewords:30|striptags }}</p>
+                    <a href="#faq-1" class="garden-action primary">Read Full Answer</a>
+                </section>
+            {% endwith %}
+        {% endif %}
+        <!-- FAQ Content Section with Sidebar -->
+        <div class="faq-content-wrapper">
+            <div class="faq-main-content">
+                <div class="faq-content">
+                    {% for faq in page.faq_items.all %}
+                        <details class="faq-item"
+                                 id="faq-{{ forloop.counter }}"
+                                 data-faq-id="{{ forloop.counter }}"
+                                 x-data="{ open: false }"
+                                 x-ref="faqItem{{ forloop.counter }}"
+                                 @toggle="open = $event.target.open">
+                            <summary class="faq-question" :aria-expanded="open">
+                                <h3 class="question-title">{{ faq.question }}</h3>
+                                <span class="expand-icon" aria-hidden="true" x-text="open ? '−' : '+'"></span>
+                            </summary>
+                            <div class="faq-answer">{{ faq.answer|richtext }}</div>
+                        </details>
+                    {% empty %}
+                        <div class="no-faqs empty-state">
+                            <h3>{{ page.empty_state_title }}</h3>
+                            {{ page.empty_state_message|richtext }}
+                            <a href="{{ page.empty_state_button_url }}"
+                               class="garden-action primary">{{ page.empty_state_button_text }}</a>
                         </div>
-                    </details>
-                {% empty %}
-                    <div class="no-faqs empty-state">
-                        <h3>{{ page.empty_state_title }}</h3>
-                        {{ page.empty_state_message|richtext }}
-                        <a href="{{ page.empty_state_button_url }}" class="garden-action primary">{{ page.empty_state_button_text }}</a>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <!-- FAQ Sidebar -->
-        <aside class="faq-sidebar">
-            <div class="faq-sidebar-section">
-                <h3 class="sidebar-title">Popular Questions</h3>
-                <ul class="popular-questions">
-                    {% for faq in page.faq_items.all|slice:":5" %}
-                        <li><a href="#faq-{{ forloop.counter }}">{{ faq.question|truncatewords:8 }}</a></li>
                     {% endfor %}
-                </ul>
-            </div>
-
-            <div class="faq-sidebar-section">
-                <div class="contact-cta">
-                    <h4>Still Have Questions?</h4>
-                    <p>Get personalized help from our team</p>
-                    <a href="/contact/" class="garden-action">Contact Us</a>
                 </div>
             </div>
-        </aside>
+            <!-- FAQ Sidebar -->
+            <aside class="faq-sidebar">
+                <div class="faq-sidebar-section">
+                    <h3 class="sidebar-title">Popular Questions</h3>
+                    <ul class="popular-questions">
+                        {% for faq in page.faq_items.all|slice:":5" %}
+                            <li>
+                                <a href="#faq-{{ forloop.counter }}">{{ faq.question|truncatewords:8 }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="faq-sidebar-section">
+                    <div class="contact-cta">
+                        <h4>Still Have Questions?</h4>
+                        <p>Get personalized help from our team</p>
+                        <a href="/contact/" class="garden-action">Contact Us</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </div>
-</div>
 {% endblock %}
-
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/faq-page-fixes.css' %}?v=2025-01-fix-visibility">
-<link rel="stylesheet" href="{% static 'css/blog-consistency-consolidated.css' %}?v=1">
+    <link rel="stylesheet"
+          href="{% static 'css/faq-page-fixes.css' %}?v=2025-01-fix-visibility">
+    <link rel="stylesheet"
+          href="{% static 'css/blog-consistency-consolidated.css' %}?v=1">
 {% endblock %}
-
 {% block extra_js %}
-<!-- 💀 LEGACY JAVASCRIPT ANNIHILATED - 21+ lines eliminated and replaced with Alpine.js -->
+    <!-- 💀 LEGACY JAVASCRIPT ANNIHILATED - 21+ lines eliminated and replaced with Alpine.js -->
 {% endblock %}

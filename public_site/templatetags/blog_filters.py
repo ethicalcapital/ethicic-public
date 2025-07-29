@@ -475,8 +475,7 @@ def reading_time(content):
 
     if reading_minutes == 1:
         return "1 min read"
-    else:
-        return f"{reading_minutes} min read"
+    return f"{reading_minutes} min read"
 
 
 @register.filter

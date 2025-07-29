@@ -1,193 +1,154 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load static %}
-
 {% block title %}{{ page.title }} | Ethical Capital Blog{% endblock %}
-
 {% block meta_description %}{{ page.search_description|default:page.excerpt|striptags|truncatewords:25 }}{% endblock %}
-
 {% block content %}
-<article class="container-ec py-8">
-    <!-- Article Header -->
-    <header class="max-w-4xl mx-auto mb-8">
-        <!-- Category Badge -->
-        {% if page.category %}
-        <div class="mb-4">
-            <span class="badge-ec-secondary">{{ page.category }}</span>
-        </div>
-        {% endif %}
-
-        <!-- Title -->
-        <h1 class="font-mono text-3xl md:text-4xl font-semibold text-white mb-4 leading-tight">
-            {{ page.title }}
-        </h1>
-
-        <!-- Intro/Excerpt -->
-        {% if page.excerpt %}
-        <p class="text-xl text-gray-300 mb-6 leading-relaxed">
-            {{ page.excerpt }}
-        </p>
-        {% endif %}
-
-        <!-- Meta Information -->
-        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400 pb-6 border-b border-gray-600">
-            <!-- Published Date -->
-            <div class="flex items-center space-x-2">
-                <span>📅</span>
-                <time datetime="{{ page.date|date:'Y-m-d' }}">
-                    {{ page.date|date:"F j, Y" }}
-                </time>
-            </div>
-
-            <!-- Reading Time -->
-            {% if page.reading_time %}
-            <div class="flex items-center space-x-2">
-                <span>⏱️</span>
-                <span>{{ page.reading_time }} min read</span>
-            </div>
+    <article class="container-ec py-8">
+        <!-- Article Header -->
+        <header class="max-w-4xl mx-auto mb-8">
+            <!-- Category Badge -->
+            {% if page.category %}
+                <div class="mb-4">
+                    <span class="badge-ec-secondary">{{ page.category }}</span>
+                </div>
             {% endif %}
-
-            <!-- Tags -->
-            {% if page.tags.all %}
-            <div class="flex items-center space-x-2">
-                <span>🏷️</span>
-                <div class="flex flex-wrap gap-1">
-                    {% for tag in page.tags.all %}
-                    <span class="badge-ec-primary">{{ tag.name }}</span>
-                    {% endfor %}
+            <!-- Title -->
+            <h1 class="font-mono text-3xl md:text-4xl font-semibold text-white mb-4 leading-tight">{{ page.title }}</h1>
+            <!-- Intro/Excerpt -->
+            {% if page.excerpt %}<p class="text-xl text-gray-300 mb-6 leading-relaxed">{{ page.excerpt }}</p>{% endif %}
+            <!-- Meta Information -->
+            <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400 pb-6 border-b border-gray-600">
+                <!-- Published Date -->
+                <div class="flex items-center space-x-2">
+                    <span>📅</span>
+                    <time datetime="{{ page.date|date:'Y-m-d' }}">
+                        {{ page.date|date:"F j, Y" }}
+                    </time>
+                </div>
+                <!-- Reading Time -->
+                {% if page.reading_time %}
+                    <div class="flex items-center space-x-2">
+                        <span>⏱️</span>
+                        <span>{{ page.reading_time }} min read</span>
+                    </div>
+                {% endif %}
+                <!-- Tags -->
+                {% if page.tags.all %}
+                    <div class="flex items-center space-x-2">
+                        <span>🏷️</span>
+                        <div class="flex flex-wrap gap-1">
+                            {% for tag in page.tags.all %}<span class="badge-ec-primary">{{ tag.name }}</span>{% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <!-- Author Info -->
+            <div class="flex items-center space-x-4 pt-6">
+                <img src="{% static 'images/sloane-headshot-small.jpg' %}"
+                     alt="Sloane Ortel"
+                     class="w-12 h-12 rounded border border-gray-600">
+                <div>
+                    <div class="font-mono text-sm text-purple-400">Sloane Ortel</div>
+                    <div class="text-xs text-gray-400">Investment Adviser Representative</div>
                 </div>
             </div>
+        </header>
+        <!-- Article Content -->
+        <div class="max-w-4xl mx-auto">
+            <!-- Featured Image -->
+            {% if page.featured_image %}
+                <div class="mb-8">
+                    <img src="{{ page.featured_image.url }}"
+                         alt="{{ page.featured_image.title|default:page.title }}"
+                         class="w-full rounded-lg border border-gray-600">
+                    {% if page.featured_image.caption %}
+                        <p class="text-sm text-gray-400 mt-2 text-center italic">{{ page.featured_image.caption }}</p>
+                    {% endif %}
+                </div>
             {% endif %}
-        </div>
-
-        <!-- Author Info -->
-        <div class="flex items-center space-x-4 pt-6">
-            <img src="{% static 'images/sloane-headshot-small.jpg' %}"
-                 alt="Sloane Ortel"
-                 class="w-12 h-12 rounded border border-gray-600">
-            <div>
-                <div class="font-mono text-sm text-purple-400">Sloane Ortel</div>
-                <div class="text-xs text-gray-400">Investment Adviser Representative</div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Article Content -->
-    <div class="max-w-4xl mx-auto">
-        <!-- Featured Image -->
-        {% if page.featured_image %}
-        <div class="mb-8">
-            <img src="{{ page.featured_image.url }}"
-                 alt="{{ page.featured_image.title|default:page.title }}"
-                 class="w-full rounded-lg border border-gray-600">
-            {% if page.featured_image.caption %}
-            <p class="text-sm text-gray-400 mt-2 text-center italic">
-                {{ page.featured_image.caption }}
-            </p>
-            {% endif %}
-        </div>
-        {% endif %}
-
-        <!-- Article Body -->
-        <div class="prose prose-lg prose-purple dark:prose-invert mx-auto">
-            {{ page.body|safe }}
-        </div>
-
-        <!-- Call-to-Action -->
-        <div class="mt-12 p-6 bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg">
-            <div class="text-center">
-                <h3 class="font-mono text-lg text-purple-300 mb-3">
-                    Ready to Align Your Investments with Your Values?
-                </h3>
-                <p class="text-gray-300 mb-4">
-                    Let's discuss how ethical investing can work for your portfolio.
-                </p>
-                <div class="flex gap-4 justify-center">
-                    <a href="/contact/" class="btn-ec-primary">
-                        Schedule Consultation
-                    </a>
-                    <a href="/process/" class="btn-ec-secondary">
-                        Learn Our Process
-                    </a>
+            <!-- Article Body -->
+            <div class="prose prose-lg prose-purple dark:prose-invert mx-auto">{{ page.body|safe }}</div>
+            <!-- Call-to-Action -->
+            <div class="mt-12 p-6 bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg">
+                <div class="text-center">
+                    <h3 class="font-mono text-lg text-purple-300 mb-3">Ready to Align Your Investments with Your Values?</h3>
+                    <p class="text-gray-300 mb-4">Let's discuss how ethical investing can work for your portfolio.</p>
+                    <div class="flex gap-4 justify-center">
+                        <a href="/contact/" class="btn-ec-primary">Schedule Consultation</a>
+                        <a href="/process/" class="btn-ec-secondary">Learn Our Process</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Article Footer -->
-    <footer class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-600">
-        <!-- Share Buttons -->
-        <div class="mb-8">
-            <h4 class="font-mono text-sm text-purple-400 mb-4">Share This Article</h4>
-            <div class="flex gap-3">
-                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ page.title|urlencode }}"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="social-link-ec">
-                    <span>🐦</span>
-                    <span>Twitter</span>
-                </a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="social-link-ec">
-                    <span>🔗</span>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="mailto:?subject={{ page.title|urlencode }}&body=I thought you might find this interesting: {{ request.build_absolute_uri }}"
-                   class="social-link-ec">
-                    <span>✉️</span>
-                    <span>Email</span>
-                </a>
+        <!-- Article Footer -->
+        <footer class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-600">
+            <!-- Share Buttons -->
+            <div class="mb-8">
+                <h4 class="font-mono text-sm text-purple-400 mb-4">Share This Article</h4>
+                <div class="flex gap-3">
+                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ page.title|urlencode }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-link-ec">
+                        <span>🐦</span>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-link-ec">
+                        <span>🔗</span>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="mailto:?subject={{ page.title|urlencode }}&body=I thought you might find this interesting: {{ request.build_absolute_uri }}"
+                       class="social-link-ec">
+                        <span>✉️</span>
+                        <span>Email</span>
+                    </a>
+                </div>
             </div>
-        </div>
-
-        <!-- Related Posts -->
-        {% if related_posts %}
-        <div class="mb-8">
-            <h4 class="font-mono text-sm text-purple-400 mb-4">Related Articles</h4>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {% for post in related_posts %}
-                <a href="{{ post.url }}" class="card-ec hover:border-purple-400 transition-colors block">
-                    <h5 class="font-mono text-sm text-purple-400 mb-2">{{ post.title }}</h5>
-                    <p class="text-sm text-gray-400 mb-2">{{ post.intro|truncatewords:15 }}</p>
-                    <div class="text-xs text-gray-500">{{ post.date|date:"M j, Y" }}</div>
-                </a>
-                {% endfor %}
+            <!-- Related Posts -->
+            {% if related_posts %}
+                <div class="mb-8">
+                    <h4 class="font-mono text-sm text-purple-400 mb-4">Related Articles</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {% for post in related_posts %}
+                            <a href="{{ post.url }}"
+                               class="card-ec hover:border-purple-400 transition-colors block">
+                                <h5 class="font-mono text-sm text-purple-400 mb-2">{{ post.title }}</h5>
+                                <p class="text-sm text-gray-400 mb-2">{{ post.intro|truncatewords:15 }}</p>
+                                <div class="text-xs text-gray-500">{{ post.date|date:"M j, Y" }}</div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            <!-- Navigation -->
+            <div class="flex justify-between items-center">
+                {% if page.get_prev_sibling %}
+                    <a href="{{ page.get_prev_sibling.url }}"
+                       class="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors">
+                        <span>←</span>
+                        <span class="text-sm">Previous Article</span>
+                    </a>
+                {% else %}
+                    <div></div>
+                {% endif %}
+                <a href="/blog/" class="btn-ec-secondary">All Articles</a>
+                {% if page.get_next_sibling %}
+                    <a href="{{ page.get_next_sibling.url }}"
+                       class="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors">
+                        <span class="text-sm">Next Article</span>
+                        <span>→</span>
+                    </a>
+                {% else %}
+                    <div></div>
+                {% endif %}
             </div>
-        </div>
-        {% endif %}
-
-        <!-- Navigation -->
-        <div class="flex justify-between items-center">
-            {% if page.get_prev_sibling %}
-            <a href="{{ page.get_prev_sibling.url }}"
-               class="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors">
-                <span>←</span>
-                <span class="text-sm">Previous Article</span>
-            </a>
-            {% else %}
-            <div></div>
-            {% endif %}
-
-            <a href="/blog/" class="btn-ec-secondary">
-                All Articles
-            </a>
-
-            {% if page.get_next_sibling %}
-            <a href="{{ page.get_next_sibling.url }}"
-               class="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors">
-                <span class="text-sm">Next Article</span>
-                <span>→</span>
-            </a>
-            {% else %}
-            <div></div>
-            {% endif %}
-        </div>
-    </footer>
-</article>
-
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json">
+        </footer>
+    </article>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -209,5 +170,5 @@
   "dateModified": "{{ page.last_published_at|date:'c' }}",
   "url": "{{ request.build_absolute_uri }}"
 }
-</script>
+    </script>
 {% endblock %}

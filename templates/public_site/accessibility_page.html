@@ -1,263 +1,268 @@
-{% extends "public_site/base_tailwind.html" %} {% load static wagtailcore_tags %} {% block title %}Accessibility
-Statement | {{ site_name }}{% endblock %} {% block meta_description %}Our commitment to digital accessibility and WCAG
-AA compliance. Learn about our accessibility features and how to request assistance.{% endblock %} {% block body_class
-%}accessibility-page{% endblock %} {% block content %}
-<div class="garden-container">
-  <section class="garden-panel">
-    <div class="garden-panel__header">
-      <h1 class="panel-title">ACCESSIBILITY STATEMENT</h1>
+{% extends "public_site/base_tailwind.html" %}
+{% load static wagtailcore_tags %}
+{% block title %}
+    Accessibility
+    Statement | {{ site_name }}
+{% endblock %}
+{% block meta_description %}
+    Our commitment to digital accessibility and WCAG
+    AA compliance. Learn about our accessibility features and how to request assistance.
+{% endblock %}
+{% block body_class
+    %}
+    accessibility-page
+{% endblock %}
+{% block content %}
+    <div class="garden-container">
+        <section class="garden-panel">
+            <div class="garden-panel__header">
+                <h1 class="panel-title">ACCESSIBILITY STATEMENT</h1>
+            </div>
+            <div class="garden-panel__content">
+                <div class="accessibility-intro">
+                    {% if page.intro_text %}
+                        {{ page.intro_text|richtext }}
+                    {% else %}
+                        <p>
+                            <strong>Ethical Capital is committed to ensuring digital accessibility for all users.</strong>
+                            We strive to provide an inclusive experience that allows everyone to access our investment services and
+                            educational content with ease and independence.
+                        </p>
+                        <p>
+                            This accessibility statement reflects our ongoing efforts to improve the accessibility of our website and
+                            outlines the measures we have taken to ensure compliance with accessibility standards.
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="accessibility-section">
+                    <h2>Accessibility Standards Compliance</h2>
+                    {% if page.standards_text %}
+                        {{ page.standards_text|richtext }}
+                    {% else %}
+                        <p>
+                            Our website has been designed and developed to meet
+                            <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong>
+                            standards. We have achieved comprehensive compliance across all key accessibility areas:
+                        </p>
+                        <ul>
+                            <li>
+                                <strong>Perceivable:</strong>
+                                All content is presentable to users in ways they can perceive
+                            </li>
+                            <li>
+                                <strong>Operable:</strong>
+                                All interface components are operable by all users
+                            </li>
+                            <li>
+                                <strong>Understandable:</strong>
+                                Information and UI operation are understandable
+                            </li>
+                            <li>
+                                <strong>Robust:</strong>
+                                Content works with assistive technologies
+                            </li>
+                        </ul>
+                        <p>
+                            <strong>Compliance Status:</strong>
+                            This website is fully compliant with WCAG 2.1 Level AA standards as of {{ "now"|date:"F Y" }}.
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="accessibility-section">
+                    <h2>Accessibility Features</h2>
+                    {% if page.features_text %}
+                        {{ page.features_text|richtext }}
+                    {% else %}
+                        <h3>Navigation and Interaction</h3>
+                        <ul>
+                            <li>Skip navigation links for keyboard users</li>
+                            <li>Consistent navigation structure across all pages</li>
+                            <li>Keyboard accessibility for all interactive elements</li>
+                            <li>Clear focus indicators with 3px outline for visibility</li>
+                            <li>Logical tab order throughout the site</li>
+                            <li>Touch targets meet minimum 44px requirement</li>
+                        </ul>
+                        <h3>Content and Media</h3>
+                        <ul>
+                            <li>Proper heading hierarchy (H1-H6) for screen reader navigation</li>
+                            <li>Descriptive alt text for all images</li>
+                            <li>High contrast color ratios (4.5:1 minimum)</li>
+                            <li>Responsive design supporting 200% zoom without horizontal scrolling</li>
+                            <li>Text resizing support up to 200% without loss of functionality</li>
+                        </ul>
+                        <h3>Forms and Dynamic Content</h3>
+                        <ul>
+                            <li>Form labels properly associated with input fields</li>
+                            <li>Error messages clearly linked to relevant form fields</li>
+                            <li>Real-time validation feedback with screen reader announcements</li>
+                            <li>ARIA live regions for dynamic content updates</li>
+                            <li>Loading states communicated to assistive technology</li>
+                        </ul>
+                        <h3>Assistive Technology Support</h3>
+                        <ul>
+                            <li>Screen reader compatibility (NVDA, JAWS, VoiceOver)</li>
+                            <li>Semantic HTML markup for proper content structure</li>
+                            <li>ARIA labels and landmarks for enhanced navigation</li>
+                            <li>Focus management for modal dialogs and overlays</li>
+                            <li>High contrast mode support</li>
+                            <li>Reduced motion support for users with vestibular disorders</li>
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="accessibility-section">
+                    <h2>Testing and Validation</h2>
+                    <p>Our accessibility implementation has been verified through:</p>
+                    <ul>
+                        <li>
+                            <strong>Automated testing</strong>
+                            using industry-standard accessibility scanners
+                        </li>
+                        <li>
+                            <strong>Manual testing</strong>
+                            with keyboard-only navigation
+                        </li>
+                        <li>
+                            <strong>Screen reader testing</strong>
+                            with NVDA, JAWS, and VoiceOver
+                        </li>
+                        <li>
+                            <strong>Color contrast analysis</strong>
+                            using professional accessibility tools
+                        </li>
+                        <li>
+                            <strong>Mobile accessibility testing</strong>
+                            across different devices and screen sizes
+                        </li>
+                        <li>
+                            <strong>Focus management testing</strong>
+                            for dynamic content and forms
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Last updated:</strong>
+                        {{ "now"|date:"F j, Y" }}
+                    </p>
+                </div>
+                <div class="accessibility-section">
+                    <h2>Feedback and Support</h2>
+                    {% if page.feedback_text %}
+                        {{ page.feedback_text|richtext }}
+                    {% else %}
+                        <p>
+                            We welcome your feedback on the accessibility of our website. If you encounter any accessibility barriers or
+                            have suggestions for improvement, please contact us:
+                        </p>
+                        <div class="contact-methods">
+                            <p>
+                                <strong>Email:</strong>
+                                <a href="mailto:accessibility@ethicic.com">accessibility@ethicic.com</a>
+                            </p>
+                            <p>
+                                <strong>Phone:</strong>
+                                <a href="tel:+1-555-0123">+1 (555) 012-3456</a>
+                            </p>
+                            <p>
+                                <strong>Mail:</strong>
+                                Ethical Capital
+                                <br />
+                                Accessibility Department
+                                <br />
+                                [Your Address]
+                            </p>
+                        </div>
+                        <p>
+                            We aim to respond to accessibility feedback within
+                            <strong>2 business days</strong>
+                            and will work with you to provide the information, item, or transaction in an accessible format.
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="accessibility-section">
+                    <h2>Technical Information</h2>
+                    {% if page.technical_text %}
+                        {{ page.technical_text|richtext }}
+                    {% else %}
+                        <h3>Assessment Approach</h3>
+                        <p>Ethical Capital assessed the accessibility of this website using the following approaches:</p>
+                        <ul>
+                            <li>
+                                <strong>Self-evaluation:</strong>
+                                Internal assessment by our development team
+                            </li>
+                            <li>
+                                <strong>External evaluation:</strong>
+                                Third-party accessibility audit
+                            </li>
+                            <li>
+                                <strong>User testing:</strong>
+                                Testing with users who rely on assistive technology
+                            </li>
+                        </ul>
+                        <h3>Technologies</h3>
+                        <p>This website relies on the following technologies to work:</p>
+                        <ul>
+                            <li>HTML5</li>
+                            <li>CSS3 with CSS Grid and Flexbox</li>
+                            <li>JavaScript (progressive enhancement)</li>
+                            <li>ARIA (Accessible Rich Internet Applications)</li>
+                        </ul>
+                        <h3>Browser and Assistive Technology Compatibility</h3>
+                        <p>This website is designed to be compatible with:</p>
+                        <ul>
+                            <li>
+                                <strong>Browsers:</strong>
+                                Chrome, Firefox, Safari, Edge (current and previous major versions)
+                            </li>
+                            <li>
+                                <strong>Screen readers:</strong>
+                                NVDA, JAWS, VoiceOver, TalkBack
+                            </li>
+                            <li>
+                                <strong>Other tools:</strong>
+                                Dragon NaturallySpeaking, ZoomText, voice control software
+                            </li>
+                        </ul>
+                    {% endif %}
+                </div>
+                {% if page.limitations_text %}
+                    <div class="accessibility-section">
+                        <h2>Known Limitations</h2>
+                        {{ page.limitations_text|richtext }}
+                    </div>
+                {% else %}
+                    <div class="accessibility-section">
+                        <h2>Ongoing Improvements</h2>
+                        <p>We continuously work to improve the accessibility of our website. Our current focus areas include:</p>
+                        <ul>
+                            <li>Regular accessibility audits and testing</li>
+                            <li>Staff training on accessibility best practices</li>
+                            <li>Incorporating accessibility considerations into our content creation process</li>
+                            <li>Staying current with evolving accessibility standards and best practices</li>
+                        </ul>
+                        <p>We are committed to maintaining and improving our accessibility standards as technology and guidelines evolve.</p>
+                    </div>
+                {% endif %}
+                <div class="accessibility-section">
+                    <h2>Formal Complaints</h2>
+                    <p>If you are not satisfied with our response to your accessibility concern, you may file a complaint with:</p>
+                    <ul>
+                        <li>
+                            <strong>U.S. Department of Justice:</strong>
+                            <a href="https://www.ada.gov/filing_complaint.htm"
+                               target="_blank"
+                               rel="noopener">ADA Complaint Process</a>
+                        </li>
+                        <li>
+                            <strong>Your state's disability rights organization</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
-    <div class="garden-panel__content">
-      <div class="accessibility-intro">
-        {% if page.intro_text %} {{ page.intro_text|richtext }} {% else %}
-        <p>
-          <strong>Ethical Capital is committed to ensuring digital accessibility for all users.</strong>
-          We strive to provide an inclusive experience that allows everyone to access our investment services and
-          educational content with ease and independence.
-        </p>
-
-        <p>
-          This accessibility statement reflects our ongoing efforts to improve the accessibility of our website and
-          outlines the measures we have taken to ensure compliance with accessibility standards.
-        </p>
-        {% endif %}
-      </div>
-
-      <div class="accessibility-section">
-        <h2>Accessibility Standards Compliance</h2>
-        {% if page.standards_text %} {{ page.standards_text|richtext }} {% else %}
-        <p>
-          Our website has been designed and developed to meet
-          <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong>
-          standards. We have achieved comprehensive compliance across all key accessibility areas:
-        </p>
-
-        <ul>
-          <li>
-            <strong>Perceivable:</strong>
-            All content is presentable to users in ways they can perceive
-          </li>
-          <li>
-            <strong>Operable:</strong>
-            All interface components are operable by all users
-          </li>
-          <li>
-            <strong>Understandable:</strong>
-            Information and UI operation are understandable
-          </li>
-          <li>
-            <strong>Robust:</strong>
-            Content works with assistive technologies
-          </li>
-        </ul>
-
-        <p>
-          <strong>Compliance Status:</strong>
-          This website is fully compliant with WCAG 2.1 Level AA standards as of {{ "now"|date:"F Y" }}.
-        </p>
-        {% endif %}
-      </div>
-
-      <div class="accessibility-section">
-        <h2>Accessibility Features</h2>
-        {% if page.features_text %} {{ page.features_text|richtext }} {% else %}
-        <h3>Navigation and Interaction</h3>
-        <ul>
-          <li>Skip navigation links for keyboard users</li>
-          <li>Consistent navigation structure across all pages</li>
-          <li>Keyboard accessibility for all interactive elements</li>
-          <li>Clear focus indicators with 3px outline for visibility</li>
-          <li>Logical tab order throughout the site</li>
-          <li>Touch targets meet minimum 44px requirement</li>
-        </ul>
-
-        <h3>Content and Media</h3>
-        <ul>
-          <li>Proper heading hierarchy (H1-H6) for screen reader navigation</li>
-          <li>Descriptive alt text for all images</li>
-          <li>High contrast color ratios (4.5:1 minimum)</li>
-          <li>Responsive design supporting 200% zoom without horizontal scrolling</li>
-          <li>Text resizing support up to 200% without loss of functionality</li>
-        </ul>
-
-        <h3>Forms and Dynamic Content</h3>
-        <ul>
-          <li>Form labels properly associated with input fields</li>
-          <li>Error messages clearly linked to relevant form fields</li>
-          <li>Real-time validation feedback with screen reader announcements</li>
-          <li>ARIA live regions for dynamic content updates</li>
-          <li>Loading states communicated to assistive technology</li>
-        </ul>
-
-        <h3>Assistive Technology Support</h3>
-        <ul>
-          <li>Screen reader compatibility (NVDA, JAWS, VoiceOver)</li>
-          <li>Semantic HTML markup for proper content structure</li>
-          <li>ARIA labels and landmarks for enhanced navigation</li>
-          <li>Focus management for modal dialogs and overlays</li>
-          <li>High contrast mode support</li>
-          <li>Reduced motion support for users with vestibular disorders</li>
-        </ul>
-        {% endif %}
-      </div>
-
-      <div class="accessibility-section">
-        <h2>Testing and Validation</h2>
-        <p>Our accessibility implementation has been verified through:</p>
-        <ul>
-          <li>
-            <strong>Automated testing</strong>
-            using industry-standard accessibility scanners
-          </li>
-          <li>
-            <strong>Manual testing</strong>
-            with keyboard-only navigation
-          </li>
-          <li>
-            <strong>Screen reader testing</strong>
-            with NVDA, JAWS, and VoiceOver
-          </li>
-          <li>
-            <strong>Color contrast analysis</strong>
-            using professional accessibility tools
-          </li>
-          <li>
-            <strong>Mobile accessibility testing</strong>
-            across different devices and screen sizes
-          </li>
-          <li>
-            <strong>Focus management testing</strong>
-            for dynamic content and forms
-          </li>
-        </ul>
-
-        <p>
-          <strong>Last updated:</strong>
-          {{ "now"|date:"F j, Y" }}
-        </p>
-      </div>
-
-      <div class="accessibility-section">
-        <h2>Feedback and Support</h2>
-        {% if page.feedback_text %} {{ page.feedback_text|richtext }} {% else %}
-        <p>
-          We welcome your feedback on the accessibility of our website. If you encounter any accessibility barriers or
-          have suggestions for improvement, please contact us:
-        </p>
-
-        <div class="contact-methods">
-          <p>
-            <strong>Email:</strong>
-            <a href="mailto:accessibility@ethicic.com">accessibility@ethicic.com</a>
-          </p>
-          <p>
-            <strong>Phone:</strong>
-            <a href="tel:+1-555-0123">+1 (555) 012-3456</a>
-          </p>
-          <p>
-            <strong>Mail:</strong>
-            Ethical Capital
-            <br />
-            Accessibility Department
-            <br />
-            [Your Address]
-          </p>
-        </div>
-
-        <p>
-          We aim to respond to accessibility feedback within
-          <strong>2 business days</strong>
-          and will work with you to provide the information, item, or transaction in an accessible format.
-        </p>
-        {% endif %}
-      </div>
-
-      <div class="accessibility-section">
-        <h2>Technical Information</h2>
-        {% if page.technical_text %} {{ page.technical_text|richtext }} {% else %}
-        <h3>Assessment Approach</h3>
-        <p>Ethical Capital assessed the accessibility of this website using the following approaches:</p>
-        <ul>
-          <li>
-            <strong>Self-evaluation:</strong>
-            Internal assessment by our development team
-          </li>
-          <li>
-            <strong>External evaluation:</strong>
-            Third-party accessibility audit
-          </li>
-          <li>
-            <strong>User testing:</strong>
-            Testing with users who rely on assistive technology
-          </li>
-        </ul>
-
-        <h3>Technologies</h3>
-        <p>This website relies on the following technologies to work:</p>
-        <ul>
-          <li>HTML5</li>
-          <li>CSS3 with CSS Grid and Flexbox</li>
-          <li>JavaScript (progressive enhancement)</li>
-          <li>ARIA (Accessible Rich Internet Applications)</li>
-        </ul>
-
-        <h3>Browser and Assistive Technology Compatibility</h3>
-        <p>This website is designed to be compatible with:</p>
-        <ul>
-          <li>
-            <strong>Browsers:</strong>
-            Chrome, Firefox, Safari, Edge (current and previous major versions)
-          </li>
-          <li>
-            <strong>Screen readers:</strong>
-            NVDA, JAWS, VoiceOver, TalkBack
-          </li>
-          <li>
-            <strong>Other tools:</strong>
-            Dragon NaturallySpeaking, ZoomText, voice control software
-          </li>
-        </ul>
-        {% endif %}
-      </div>
-
-      {% if page.limitations_text %}
-      <div class="accessibility-section">
-        <h2>Known Limitations</h2>
-        {{ page.limitations_text|richtext }}
-      </div>
-      {% else %}
-      <div class="accessibility-section">
-        <h2>Ongoing Improvements</h2>
-        <p>We continuously work to improve the accessibility of our website. Our current focus areas include:</p>
-        <ul>
-          <li>Regular accessibility audits and testing</li>
-          <li>Staff training on accessibility best practices</li>
-          <li>Incorporating accessibility considerations into our content creation process</li>
-          <li>Staying current with evolving accessibility standards and best practices</li>
-        </ul>
-
-        <p>
-          We are committed to maintaining and improving our accessibility standards as technology and guidelines evolve.
-        </p>
-      </div>
-      {% endif %}
-
-      <div class="accessibility-section">
-        <h2>Formal Complaints</h2>
-        <p>If you are not satisfied with our response to your accessibility concern, you may file a complaint with:</p>
-        <ul>
-          <li>
-            <strong>U.S. Department of Justice:</strong>
-            <a href="https://www.ada.gov/filing_complaint.htm" target="_blank" rel="noopener">ADA Complaint Process</a>
-          </li>
-          <li><strong>Your state's disability rights organization</strong></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</div>
-{% endblock %} {% block extra_css %}
-<style>
+{% endblock %}
+{% block extra_css %}
+    <style>
   .accessibility-page {
     padding: var(--space-8) 0;
   }
@@ -318,5 +323,5 @@ AA compliance. Learn about our accessibility features and how to request assista
       margin-bottom: var(--space-6);
     }
   }
-</style>
+    </style>
 {% endblock %}

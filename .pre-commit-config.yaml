@@ -21,7 +21,7 @@ repos:
 
   # Python linting with ruff
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.11
+    rev: v0.11.10
     hooks:
       # Run the linter
       - id: ruff
@@ -29,28 +29,26 @@ repos:
       # Run the formatter
       - id: ruff-format
 
-  # CSS linting with stylelint
+  # CSS formatting with Prettier and Tailwind plugin
   - repo: local
     hooks:
-      - id: stylelint
-        name: Stylelint
-        entry: npx stylelint
+      - id: prettier
+        name: Prettier
+        entry: npx prettier
         language: system
-        files: \.css$
-        args: [--fix, --allow-empty-input]
+        files: \.(css|html|js|json|md|yml|yaml)$
+        args: [--write]
         pass_filenames: true
-        require_serial: true
 
-  # JavaScript linting with ESLint
+  # Django template linting with djlint
   - repo: local
     hooks:
-      - id: eslint
-        name: ESLint
-        entry: npx eslint
+      - id: djlint
+        name: Django Template Linting
+        entry: uv run djlint
         language: system
-        files: \.js$
-        args: [--fix]
-        pass_filenames: true
+        files: \.html$
+        args: [--reformat, --lint]
         require_serial: true
 
   # Security checks - disabled due to version compatibility issues
@@ -65,14 +63,14 @@ repos:
     hooks:
       - id: django-check
         name: Django Check
-        entry: python manage.py check
+        entry: uv run python manage.py check
         language: system
         pass_filenames: false
         always_run: true
 
       - id: django-migrations-check
         name: Django Migrations Check
-        entry: python manage.py makemigrations --check --dry-run
+        entry: uv run python manage.py makemigrations --check --dry-run
         language: system
         pass_filenames: false
         always_run: true

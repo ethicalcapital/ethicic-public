@@ -1,479 +1,469 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags %}
-{% block title %}{{ page.title }} | Ethical Capital{% endblock %}
+{% block title %}
+    {{ page.title }} | Ethical
+    Capital
+{% endblock %}
 {% block body_class %}process-page{% endblock %}
 {% block content %}
-<div class="container-ec">
-  <!-- Hero Section -->
-  <section class="mb-8 bg-gradient-to-br from-blue-900 via-gray-900 to-blue-800 rounded-xl p-8 text-center" role="banner">
-    <div class="text-sm font-semibold text-blue-300 uppercase tracking-wide mb-4">{{ page.section_header }}</div>
-    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">{{ page.title }}</h1>
-  </section>
-
-  <!-- Process Steps -->
-  <section class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6" role="main" aria-labelledby="process-heading">
-    <div class="space-y-12">
-      <!-- Step 1: Ethical Screening -->
-      <div class="flex gap-6 items-start">
-        <div class="flex-shrink-0 w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
-          1
-        </div>
-        <div class="flex-1">
-          <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">{{ page.screening_title }}</h3>
-          <div class="prose prose-teal dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 mb-6">
-            {{ page.screening_description|richtext }}
-          </div>
-
-          <!-- Product-Based Exclusions Section -->
-          <div class="mb-8">
-            <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ page.product_exclusions_title }}</h4>
-            <div class="w-16 h-1 bg-purple-600 mb-4"></div>
-            <div class="text-gray-600 dark:text-gray-400 mb-6">{{ page.product_exclusions_subtitle|richtext }}</div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-              {% for exclusion in page.product_exclusions %}
-              <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-                <h5 class="font-semibold text-red-800 dark:text-red-200 mb-3">{{ exclusion.value.title }}</h5>
-                <ul class="space-y-1 text-sm text-red-700 dark:text-red-300">
-                  {% for item in exclusion.value.items %}
-                  <li class="flex items-start gap-2">
-                    <span class="text-red-500 mt-1">•</span>
-                    <span>{{ item }}</span>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-
-          <!-- Conduct-Based Exclusions Section -->
-          <div class="mb-8">
-            <h4 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ page.conduct_exclusions_title }}</h4>
-            <div class="w-16 h-1 bg-purple-600 mb-4"></div>
-            <div class="text-gray-600 dark:text-gray-400 mb-6">{{ page.conduct_exclusions_subtitle|richtext }}</div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-              {% for exclusion in page.conduct_exclusions %}
-              <div class="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4">
-                <h5 class="font-semibold text-orange-800 dark:text-orange-200 mb-3">{{ exclusion.value.title }}</h5>
-                <ul class="space-y-1 text-sm text-orange-700 dark:text-orange-300">
-                  {% for item in exclusion.value.items %}
-                  <li class="flex items-start gap-2">
-                    <span class="text-orange-500 mt-1">•</span>
-                    <span>{{ item }}</span>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">{{ page.methodology_title }}</h4>
-          <div class="text-gray-700 dark:text-gray-300 mb-6">{{ page.methodology_content|richtext }}</div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div class="bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/30 dark:to-purple-800/30 rounded-lg p-6 text-center">
-              <div class="text-3xl font-bold text-purple-800 dark:text-purple-200 mb-2">{{ page.exclusion_percentage }}</div>
-              <div class="text-sm text-purple-700 dark:text-purple-300">
-                of S&P 500 excluded
-                <br />
-                <span class="text-xs">({{ page.exclusion_date }})</span>
-              </div>
-            </div>
-            <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 rounded-lg p-6 text-center">
-              <div class="text-3xl font-bold text-blue-800 dark:text-blue-200 mb-2">Open Source</div>
-              <div class="text-sm text-blue-700 dark:text-blue-300">methodology</div>
-            </div>
-          </div>
-
-          <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
-            <h4 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-3">Open Source & Collaborative</h4>
-            <p class="text-green-700 dark:text-green-300 mb-4">
-              Our complete framework lives on GitHub under an MIT license with full version control—think of it as a
-              living document with a conversation attached. Want to suggest changes? Send us a pull request. See
-              something we missed? Raise an issue. Have ideas for improvement? Join the discussion forum. This
-              collaborative approach helps us catch blind spots and adapt to emerging patterns of harm we haven't
-              considered yet.
-            </p>
-            <a
-              href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
-            >
-              Join the Collaboration →
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 2: Intersectional Company Analysis -->
-      <div class="flex gap-6 items-start">
-        <div class="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
-          2
-        </div>
-        <div class="flex-1">
-          <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Intersectional Company Analysis</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-6">
-            We make sure these are real companies with sustainable business models through intersectional analysis
-            that maintains a holistic view. While we consider six key areas that matter for long-term success, our
-            analysis isn't limited to these. About 1-2% of stocks generate 99% of returns over multiple long-term
-            periods (
-            <a
-              href="https://wpcarey.asu.edu/department-finance/faculty-research/do-stocks-outperform-treasury-bills"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-blue-600 hover:text-blue-800 underline"
-            >
-              ASU research
-            </a>
-            ), and those amazing, successful companies are often unique in—you guessed it—unique ways. We don't want
-            to limit our analysis to some rubric because these are living organisms that evolve and adapt. Any single
-            factor can be dispositive, moving a company's Tick rating from 0 to 10 or vice versa:
-          </p>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">People</h4>
-              <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Staff retention rates</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Governance quality</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Company culture</span>
-                </li>
-              </ul>
-            </div>
-            <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">Product</h4>
-              <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Innovation potential</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Market share position</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Strategic KPIs</span>
-                </li>
-              </ul>
-            </div>
-            <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">Execution</h4>
-              <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>R&D returns</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Sales effectiveness</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Operational results</span>
-                </li>
-              </ul>
-            </div>
-            <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">Valuation</h4>
-              <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Price-to-earnings ratios</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Asset valuations</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Free cash flow</span>
-                </li>
-              </ul>
-            </div>
-            <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">Moat</h4>
-              <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Disruption resistance</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Competitive pressures</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Community engagement</span>
-                </li>
-              </ul>
-            </div>
-            <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">Risk</h4>
-              <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Adoption challenges</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Regulatory risks</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Capital loss potential</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 3: Strategy Design & Portfolio Customization -->
-      <div class="flex gap-6 items-start">
-        <div class="flex-shrink-0 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
-          3
-        </div>
-        <div class="flex-1">
-          <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Strategy Design & Portfolio Customization</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-6">
-            First, we design core strategies using only the top 1% of securities that pass our analysis. Then we meet
-            with you to customize the perfect mix of strategies for your specific needs, risk tolerance, and ethical
-            priorities. Position sizing comes directly from our scoring process, ensuring each holding earns its
-            place.
-          </p>
-
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Our Three Core Strategies</h4>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 border border-green-200 dark:border-green-700 rounded-lg p-6">
-              <h4 class="font-semibold text-green-800 dark:text-green-200 mb-3">Growth Strategy</h4>
-              <ul class="space-y-2 text-sm text-green-700 dark:text-green-300 mb-4">
-                <li class="flex items-start gap-2">
-                  <span class="text-green-500 mt-1">•</span>
-                  <span>Full ethical criteria implementation</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-500 mt-1">•</span>
-                  <span>~25 concentrated positions</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-500 mt-1">•</span>
-                  <span>Long-term growth focus</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-green-500 mt-1">•</span>
-                  <span>Our flagship strategy</span>
-                </li>
-              </ul>
-              <a href="/strategies/growth/" class="inline-flex items-center px-3 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg hover:bg-green-700 transition-colors">
-                Learn More →
-              </a>
-            </div>
-            <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 border border-blue-200 dark:border-blue-700 rounded-lg p-6">
-              <h4 class="font-semibold text-blue-800 dark:text-blue-200 mb-3">Income Strategy</h4>
-              <ul class="space-y-2 text-sm text-blue-700 dark:text-blue-300 mb-4">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Income-generating focus</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Ethical dividend companies</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Balanced risk approach</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Regular distributions</span>
-                </li>
-              </ul>
-              <a href="/strategies/income/" class="inline-flex items-center px-3 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors">
-                Learn More →
-              </a>
-            </div>
-            <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 border border-purple-200 dark:border-purple-700 rounded-lg p-6">
-              <h4 class="font-semibold text-purple-800 dark:text-purple-200 mb-3">Diversification Strategy</h4>
-              <ul class="space-y-2 text-sm text-purple-700 dark:text-purple-300 mb-4">
-                <li class="flex items-start gap-2">
-                  <span class="text-purple-500 mt-1">•</span>
-                  <span>Broader diversification</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-purple-500 mt-1">•</span>
-                  <span>Risk management focus</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-purple-500 mt-1">•</span>
-                  <span>Ethical foundation</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-purple-500 mt-1">•</span>
-                  <span>Portfolio stabilization</span>
-                </li>
-              </ul>
-              <a href="/strategies/diversification/" class="inline-flex items-center px-3 py-2 bg-purple-600 text-white text-sm font-semibold rounded-lg hover:bg-purple-700 transition-colors">
-                Learn More →
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 4: Decision Refinement & Continuous Improvement -->
-      <div class="flex gap-6 items-start">
-        <div class="flex-shrink-0 w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
-          4
-        </div>
-        <div class="flex-1">
-          <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Decision Refinement & Continuous Improvement</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-6">
-            We don't just monitor—we actively refine our decisions through rigorous analysis and systematic learning.
-            This isn't set-and-forget investing; it's a continuous cycle of improvement that makes our process
-            stronger over time.
-          </p>
-
-          <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6 mb-6">
-            <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Our Refinement Process</h4>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="space-y-3">
-                <div>
-                  <span class="font-semibold text-orange-600">Scenario Analysis:</span>
-                  <span class="text-gray-700 dark:text-gray-300">Testing how portfolios perform under different market conditions</span>
+    <div class="container-ec">
+        <!-- Hero Section -->
+        <section class="mb-8 rounded-xl bg-gradient-to-br from-blue-900 via-gray-900 to-blue-800 p-8 text-center"
+                 role="banner">
+            <div class="mb-4 text-sm font-semibold tracking-wide text-blue-300 uppercase">{{ page.section_header }}</div>
+            <h1 class="mb-6 text-4xl font-bold text-white md:text-5xl">{{ page.title }}</h1>
+        </section>
+        <!-- Process Steps -->
+        <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                 role="main"
+                 aria-labelledby="process-heading">
+            <div class="space-y-12">
+                <!-- Step 1: Ethical Screening -->
+                <div class="flex items-start gap-6">
+                    <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 text-xl font-bold text-white">
+                        1
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.screening_title }}</h3>
+                        <div class="prose prose-teal dark:prose-invert mb-6 max-w-none text-gray-700 dark:text-gray-300">
+                            {{ page.screening_description|richtext }}
+                        </div>
+                        <!-- Product-Based Exclusions Section -->
+                        <div class="mb-8">
+                            <h4 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{{ page.product_exclusions_title }}</h4>
+                            <div class="mb-4 h-1 w-16 bg-purple-600"></div>
+                            <div class="mb-6 text-gray-600 dark:text-gray-400">{{ page.product_exclusions_subtitle|richtext }}</div>
+                            <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                                {% for exclusion in page.product_exclusions %}
+                                    <div class="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
+                                        <h5 class="mb-3 font-semibold text-red-800 dark:text-red-200">{{ exclusion.value.title }}</h5>
+                                        <ul class="space-y-1 text-sm text-red-700 dark:text-red-300">
+                                            {% for item in exclusion.value.items %}
+                                                <li class="flex items-start gap-2">
+                                                    <span class="mt-1 text-red-500">•</span>
+                                                    <span>{{ item }}</span>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- Conduct-Based Exclusions Section -->
+                        <div class="mb-8">
+                            <h4 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{{ page.conduct_exclusions_title }}</h4>
+                            <div class="mb-4 h-1 w-16 bg-purple-600"></div>
+                            <div class="mb-6 text-gray-600 dark:text-gray-400">{{ page.conduct_exclusions_subtitle|richtext }}</div>
+                            <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                                {% for exclusion in page.conduct_exclusions %}
+                                    <div class="rounded-lg border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-900/20">
+                                        <h5 class="mb-3 font-semibold text-orange-800 dark:text-orange-200">{{ exclusion.value.title }}</h5>
+                                        <ul class="space-y-1 text-sm text-orange-700 dark:text-orange-300">
+                                            {% for item in exclusion.value.items %}
+                                                <li class="flex items-start gap-2">
+                                                    <span class="mt-1 text-orange-500">•</span>
+                                                    <span>{{ item }}</span>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <h4 class="mb-3 text-lg font-semibold text-gray-900 dark:text-gray-100">{{ page.methodology_title }}</h4>
+                        <div class="mb-6 text-gray-700 dark:text-gray-300">{{ page.methodology_content|richtext }}</div>
+                        <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+                            <div class="rounded-lg bg-gradient-to-br from-purple-100 to-purple-200 p-6 text-center dark:from-purple-900/30 dark:to-purple-800/30">
+                                <div class="mb-2 text-3xl font-bold text-purple-800 dark:text-purple-200">{{ page.exclusion_percentage }}</div>
+                                <div class="text-sm text-purple-700 dark:text-purple-300">
+                                    of S&P 500 excluded
+                                    <br />
+                                    <span class="text-xs">({{ page.exclusion_date }})</span>
+                                </div>
+                            </div>
+                            <div class="rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 p-6 text-center dark:from-blue-900/30 dark:to-blue-800/30">
+                                <div class="mb-2 text-3xl font-bold text-blue-800 dark:text-blue-200">Open Source</div>
+                                <div class="text-sm text-blue-700 dark:text-blue-300">methodology</div>
+                            </div>
+                        </div>
+                        <div class="rounded-lg border border-green-200 bg-green-50 p-6 dark:border-green-800 dark:bg-green-900/20">
+                            <h4 class="mb-3 text-lg font-semibold text-green-800 dark:text-green-200">Open Source & Collaborative</h4>
+                            <p class="mb-4 text-green-700 dark:text-green-300">
+                                Our complete framework lives on GitHub under an MIT license with full version control—think of it as a
+                                living document with a conversation attached. Want to suggest changes? Send us a pull request. See
+                                something we missed? Raise an issue. Have ideas for improvement? Join the discussion forum. This
+                                collaborative approach helps us catch blind spots and adapt to emerging patterns of harm we haven't
+                                considered yet.
+                            </p>
+                            <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-flex items-center rounded-lg bg-green-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-green-700">
+                                Join the Collaboration →
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <span class="font-semibold text-orange-600">Collaborative Review:</span>
-                  <span class="text-gray-700 dark:text-gray-300">Internal team analysis of investment decisions and outcomes</span>
+                <!-- Step 2: Intersectional Company Analysis -->
+                <div class="flex items-start gap-6">
+                    <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
+                        2
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">Intersectional Company Analysis</h3>
+                        <p class="mb-6 text-gray-700 dark:text-gray-300">
+                            We make sure these are real companies with sustainable business models through intersectional analysis that
+                            maintains a holistic view. While we consider six key areas that matter for long-term success, our analysis
+                            isn't limited to these. About 1-2% of stocks generate 99% of returns over multiple long-term periods (
+                            <a href="https://wpcarey.asu.edu/department-finance/faculty-research/do-stocks-outperform-treasury-bills"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="text-blue-600 underline hover:text-blue-800">ASU research</a>
+                            ), and those amazing, successful companies are often unique in—you guessed it—unique ways. We don't want to
+                            limit our analysis to some rubric because these are living organisms that evolve and adapt. Any single
+                            factor can be dispositive, moving a company's Tick rating from 0 to 10 or vice versa:
+                        </p>
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">People</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Staff retention rates</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Governance quality</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Company culture</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">Product</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Innovation potential</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Market share position</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Strategic KPIs</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">Execution</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>R&D returns</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Sales effectiveness</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Operational results</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">Valuation</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Price-to-earnings ratios</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Asset valuations</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Free cash flow</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">Moat</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Disruption resistance</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Competitive pressures</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Community engagement</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">Risk</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Adoption challenges</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Regulatory risks</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Capital loss potential</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <span class="font-semibold text-orange-600">Mental Model Assessment:</span>
-                  <span class="text-gray-700 dark:text-gray-300">Identifying and evaluating our decision-making frameworks</span>
+                <!-- Step 3: Strategy Design & Portfolio Customization -->
+                <div class="flex items-start gap-6">
+                    <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-600 text-xl font-bold text-white">
+                        3
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">Strategy Design & Portfolio Customization</h3>
+                        <p class="mb-6 text-gray-700 dark:text-gray-300">
+                            First, we design core strategies using only the top 1% of securities that pass our analysis. Then we meet
+                            with you to customize the perfect mix of strategies for your specific needs, risk tolerance, and ethical
+                            priorities. Position sizing comes directly from our scoring process, ensuring each holding earns its place.
+                        </p>
+                        <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">Our Three Core Strategies</h4>
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+                            <div class="rounded-lg border border-green-200 bg-gradient-to-br from-green-50 to-green-100 p-6 dark:border-green-700 dark:from-green-900/30 dark:to-green-800/30">
+                                <h4 class="mb-3 font-semibold text-green-800 dark:text-green-200">Growth Strategy</h4>
+                                <ul class="mb-4 space-y-2 text-sm text-green-700 dark:text-green-300">
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-green-500">•</span>
+                                        <span>Full ethical criteria implementation</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-green-500">•</span>
+                                        <span>~25 concentrated positions</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-green-500">•</span>
+                                        <span>Long-term growth focus</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-green-500">•</span>
+                                        <span>Our flagship strategy</span>
+                                    </li>
+                                </ul>
+                                <a href="/strategies/growth/"
+                                   class="inline-flex items-center rounded-lg bg-green-600 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-green-700">
+                                    Learn More →
+                                </a>
+                            </div>
+                            <div class="rounded-lg border border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100 p-6 dark:border-blue-700 dark:from-blue-900/30 dark:to-blue-800/30">
+                                <h4 class="mb-3 font-semibold text-blue-800 dark:text-blue-200">Income Strategy</h4>
+                                <ul class="mb-4 space-y-2 text-sm text-blue-700 dark:text-blue-300">
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Income-generating focus</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Ethical dividend companies</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Balanced risk approach</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-blue-500">•</span>
+                                        <span>Regular distributions</span>
+                                    </li>
+                                </ul>
+                                <a href="/strategies/income/"
+                                   class="inline-flex items-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700">
+                                    Learn More →
+                                </a>
+                            </div>
+                            <div class="rounded-lg border border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100 p-6 dark:border-purple-700 dark:from-purple-900/30 dark:to-purple-800/30">
+                                <h4 class="mb-3 font-semibold text-purple-800 dark:text-purple-200">Diversification Strategy</h4>
+                                <ul class="mb-4 space-y-2 text-sm text-purple-700 dark:text-purple-300">
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-purple-500">•</span>
+                                        <span>Broader diversification</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-purple-500">•</span>
+                                        <span>Risk management focus</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-purple-500">•</span>
+                                        <span>Ethical foundation</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="mt-1 text-purple-500">•</span>
+                                        <span>Portfolio stabilization</span>
+                                    </li>
+                                </ul>
+                                <a href="/strategies/diversification/"
+                                   class="inline-flex items-center rounded-lg bg-purple-600 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-purple-700">
+                                    Learn More →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="space-y-3">
-                <div>
-                  <span class="font-semibold text-orange-600">Weakness Analysis:</span>
-                  <span class="text-gray-700 dark:text-gray-300">Systematic evaluation of past investment decision weaknesses</span>
+                <!-- Step 4: Decision Refinement & Continuous Improvement -->
+                <div class="flex items-start gap-6">
+                    <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-orange-600 text-xl font-bold text-white">
+                        4
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">Decision Refinement & Continuous Improvement</h3>
+                        <p class="mb-6 text-gray-700 dark:text-gray-300">
+                            We don't just monitor—we actively refine our decisions through rigorous analysis and systematic learning.
+                            This isn't set-and-forget investing; it's a continuous cycle of improvement that makes our process stronger
+                            over time.
+                        </p>
+                        <div class="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                            <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">Our Refinement Process</h4>
+                            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                                <div class="space-y-3">
+                                    <div>
+                                        <span class="font-semibold text-orange-600">Scenario Analysis:</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Testing how portfolios perform under different market conditions</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-orange-600">Collaborative Review:</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Internal team analysis of investment decisions and outcomes</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-orange-600">Mental Model Assessment:</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Identifying and evaluating our decision-making frameworks</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div>
+                                        <span class="font-semibold text-orange-600">Weakness Analysis:</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Systematic evaluation of past investment decision weaknesses</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-orange-600">Regular Re-scoring:</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Continuous updates to company scores based on new information</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-orange-600">Criteria Evolution:</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Updating our ethical framework as new patterns emerge</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
+                            <span class="font-semibold text-blue-800 dark:text-blue-200">A Natural Cycle:</span>
+                            <span class="text-blue-700 dark:text-blue-300">
+                                We rebalance portfolios on the new moon—a systematic timing approach that removes emotional
+                                decision-making from our process while ensuring regular review cycles.
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <span class="font-semibold text-orange-600">Regular Re-scoring:</span>
-                  <span class="text-gray-700 dark:text-gray-300">Continuous updates to company scores based on new information</span>
-                </div>
-                <div>
-                  <span class="font-semibold text-orange-600">Criteria Evolution:</span>
-                  <span class="text-gray-700 dark:text-gray-300">Updating our ethical framework as new patterns emerge</span>
-                </div>
-              </div>
             </div>
-          </div>
-
-          <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-            <span class="font-semibold text-blue-800 dark:text-blue-200">A Natural Cycle:</span>
-            <span class="text-blue-700 dark:text-blue-300">
-              We rebalance portfolios on the new moon—a systematic timing approach that removes emotional
-              decision-making from our process while ensuring regular review cycles.
-            </span>
-          </div>
-        </div>
-      </div>
+            <!-- Key Insight Callout -->
+            <div class="mb-8 rounded-xl bg-gradient-to-r from-purple-600 to-purple-800 p-6 text-center text-white">
+                <span class="text-lg font-bold">KEY INSIGHT:</span>
+                <span class="text-purple-100">
+                    We help you take your first step or go all-in, whatever feels right for you. Mix our strategies to target your
+                    exact risk tolerance and income needs. The goal is progress, not perfection—helping you invest as ethically as
+                    possible within your real-world constraints.
+                </span>
+            </div>
+        </section>
+        <!-- Guiding Principles -->
+        <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                 role="main"
+                 aria-labelledby="principles-heading">
+            <!-- Tagline -->
+            <div class="mb-8 text-center">
+                <p class="text-xl font-medium text-gray-600 italic dark:text-gray-400">
+                    When ethics and excellence converge, sustainable investing outcomes follow.
+                </p>
+            </div>
+            <h2 class="mb-6 text-center text-3xl font-bold text-gray-900 dark:text-gray-100">{{ page.principles_title }}</h2>
+            <div class="mx-auto mb-8 max-w-3xl text-center text-gray-700 dark:text-gray-300">
+                {{ page.principles_content|richtext }}
+            </div>
+            <!-- Process Section -->
+            <div class="mb-8">
+                <h3 class="mb-6 text-center font-mono text-lg font-bold text-gray-900 dark:text-gray-100">// PROCESS</h3>
+                <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+                    <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ Institutional Rigor, Boutique Attention</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            We combine analytical depth with personalized service. Every holding is hand-researched, every client
+                            relationship carefully tended.
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ Radical Transparency</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            Our exclusion criteria are open source. Our process is documented. Our reasoning is clear. You deserve to
+                            understand exactly what you own and why.
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ High-Conviction Concentration</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            We maintain focused portfolios of 15-25 companies. Depth of research over breadth of holdings.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Practice Section -->
+            <div>
+                <h3 class="mb-6 text-center font-mono text-lg font-bold text-gray-900 dark:text-gray-100">// PRACTICE</h3>
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+                    <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ Continuous Evolution</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            Ethics is not static. As companies evolve and disappoint we adapt. Our screening is a living framework,
+                            refined through ongoing research and client dialogue.
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ Intellectual Honesty</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            We acknowledge uncertainty, learn from mistakes, and evolve our approach. Humility serves our clients better
+                            than false certainty.
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ Business-Focused Investing</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            We invest in companies, not stories. Real businesses with proven models, sustainable advantages, and ethical
+                            operations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="rounded-xl bg-gradient-to-r from-purple-600 to-purple-800 p-8 text-center text-white">
+            <div class="mb-4 text-sm font-semibold tracking-wide text-purple-300 uppercase">
+                {{ page.cta_section_header|default:"BEGIN YOUR ETHICAL INVESTMENT JOURNEY" }}
+            </div>
+            <h2 class="mb-4 text-3xl font-bold">{{ page.cta_title }}</h2>
+            <div class="mx-auto mb-8 max-w-2xl text-xl text-purple-100">{{ page.cta_description|richtext }}</div>
+            <a href="/onboarding/"
+               class="rounded-lg bg-white px-8 py-4 font-bold text-purple-600 transition-colors hover:bg-gray-100"
+               aria-label="Start the onboarding process">GET STARTED</a>
+        </section>
     </div>
-
-    <!-- Key Insight Callout -->
-    <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white text-center mb-8">
-      <span class="font-bold text-lg">KEY INSIGHT:</span>
-      <span class="text-purple-100">
-        We help you take your first step or go all-in, whatever feels right for you. Mix our strategies to target your
-        exact risk tolerance and income needs. The goal is progress, not perfection—helping you invest as ethically as
-        possible within your real-world constraints.
-      </span>
-    </div>
-  </section>
-
-  <!-- Guiding Principles -->
-  <section class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6" role="main" aria-labelledby="principles-heading">
-    <!-- Tagline -->
-    <div class="text-center mb-8">
-      <p class="text-xl font-medium text-gray-600 dark:text-gray-400 italic">When ethics and excellence converge, sustainable investing outcomes follow.</p>
-    </div>
-
-    <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 text-center mb-6">{{ page.principles_title }}</h2>
-    <div class="text-gray-700 dark:text-gray-300 text-center mb-8 max-w-3xl mx-auto">{{ page.principles_content|richtext }}</div>
-
-    <!-- Process Section -->
-    <div class="mb-8">
-      <h3 class="text-lg font-mono font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">// PROCESS</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-          <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">▸ Institutional Rigor, Boutique Attention</h4>
-          <p class="text-gray-700 dark:text-gray-300 text-sm">
-            We combine analytical depth with personalized service. Every holding is hand-researched, every client
-            relationship carefully tended.
-          </p>
-        </div>
-        <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-          <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">▸ Radical Transparency</h4>
-          <p class="text-gray-700 dark:text-gray-300 text-sm">
-            Our exclusion criteria are open source. Our process is documented. Our reasoning is clear. You deserve to
-            understand exactly what you own and why.
-          </p>
-        </div>
-        <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-          <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">▸ High-Conviction Concentration</h4>
-          <p class="text-gray-700 dark:text-gray-300 text-sm">We maintain focused portfolios of 15-25 companies. Depth of research over breadth of holdings.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Practice Section -->
-    <div>
-      <h3 class="text-lg font-mono font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">// PRACTICE</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-          <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">▸ Continuous Evolution</h4>
-          <p class="text-gray-700 dark:text-gray-300 text-sm">
-            Ethics is not static. As companies evolve and disappoint we adapt. Our screening is a living framework,
-            refined through ongoing research and client dialogue.
-          </p>
-        </div>
-        <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-          <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">▸ Intellectual Honesty</h4>
-          <p class="text-gray-700 dark:text-gray-300 text-sm">
-            We acknowledge uncertainty, learn from mistakes, and evolve our approach. Humility serves our clients better
-            than false certainty.
-          </p>
-        </div>
-        <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-          <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">▸ Business-Focused Investing</h4>
-          <p class="text-gray-700 dark:text-gray-300 text-sm">
-            We invest in companies, not stories. Real businesses with proven models, sustainable advantages, and ethical
-            operations.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-8 text-center text-white">
-    <div class="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-4">{{ page.cta_section_header|default:"BEGIN YOUR ETHICAL INVESTMENT JOURNEY" }}</div>
-    <h2 class="text-3xl font-bold mb-4">{{ page.cta_title }}</h2>
-    <div class="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">{{ page.cta_description|richtext }}</div>
-    <a href="/onboarding/" class="px-8 py-4 bg-white text-purple-600 font-bold rounded-lg hover:bg-gray-100 transition-colors" aria-label="Start the onboarding process">GET STARTED</a>
-  </section>
-</div>
-
 {% endblock %}

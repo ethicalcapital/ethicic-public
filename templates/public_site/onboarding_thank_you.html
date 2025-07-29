@@ -1,38 +1,37 @@
-{% extends "public_site/base_tailwind.html" %} {% block title %}{{ page_title }}{% endblock %} {% block body_class
-%}thank-you-page{% endblock %} {% block content %}
-<div class="garden-container">
-  <div class="thank-you-container">
-    <div class="success-icon">✓</div>
-
-    <h1>{{ heading }}</h1>
-
-    <p class="main-message">{{ message }}</p>
-
-    <div class="next-steps">
-      <h2>What Happens Next?</h2>
-      <ul>
-        {% for step in next_steps %}
-        <li>{{ step }}</li>
-        {% endfor %}
-      </ul>
+{% extends "public_site/base_tailwind.html" %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block body_class
+    %}
+    thank-you-page
+{% endblock %}
+{% block content %}
+    <div class="garden-container">
+        <div class="thank-you-container">
+            <div class="success-icon">✓</div>
+            <h1>{{ heading }}</h1>
+            <p class="main-message">{{ message }}</p>
+            <div class="next-steps">
+                <h2>What Happens Next?</h2>
+                <ul>
+                    {% for step in next_steps %}<li>{{ step }}</li>{% endfor %}
+                </ul>
+            </div>
+            <div class="contact-info">
+                <p>If you have any immediate questions, please don't hesitate to contact us at:</p>
+                <p>
+                    <strong>Email:</strong>
+                    <a href="mailto:hello@ec1c.com">hello@ec1c.com</a>
+                </p>
+                <p>
+                    <strong>Phone:</strong>
+                    <a href="tel:+1234567890">(123) 456-7890</a>
+                </p>
+            </div>
+            <div class="action-buttons">
+                <a href="/" class="garden-action">Return to Homepage</a>
+                <a href="/process/" class="garden-action secondary">Learn About Our Process</a>
+            </div>
+        </div>
     </div>
-
-    <div class="contact-info">
-      <p>If you have any immediate questions, please don't hesitate to contact us at:</p>
-      <p>
-        <strong>Email:</strong>
-        <a href="mailto:hello@ec1c.com">hello@ec1c.com</a>
-      </p>
-      <p>
-        <strong>Phone:</strong>
-        <a href="tel:+1234567890">(123) 456-7890</a>
-      </p>
-    </div>
-
-    <div class="action-buttons">
-      <a href="/" class="garden-action">Return to Homepage</a>
-      <a href="/process/" class="garden-action secondary">Learn About Our Process</a>
-    </div>
-  </div>
-</div>
-{% endblock %} {% block extra_css %} {% endblock %}
+{% endblock %}
+{% block extra_css %}{% endblock %}

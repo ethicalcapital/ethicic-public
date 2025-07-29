@@ -129,9 +129,9 @@ class AccessibleContactFormTest(TurnstileMixin, BasePublicSiteTestCase, FormTest
         self.assert_form_valid(form)
 
         # Multiple spam indicators
-        data[
-            "message"
-        ] = "Click here now! Limited time offer! Make money fast! Buy now!"
+        data["message"] = (
+            "Click here now! Limited time offer! Make money fast! Buy now!"
+        )
         form = AccessibleContactForm(data=data, request=self.mock_request)
         self.assert_form_invalid(form, {"message": "promotional content"})
 
@@ -140,16 +140,16 @@ class AccessibleContactFormTest(TurnstileMixin, BasePublicSiteTestCase, FormTest
         data = self.create_test_contact_data()
 
         # Two URLs is okay
-        data[
-            "message"
-        ] = "Check out http://example1.com and http://example2.com for more info."
+        data["message"] = (
+            "Check out http://example1.com and http://example2.com for more info."
+        )
         form = AccessibleContactForm(data=data, request=self.mock_request)
         self.assert_form_valid(form)
 
         # More than two URLs
-        data[
-            "message"
-        ] = "Visit http://example1.com, http://example2.com, and http://example3.com"
+        data["message"] = (
+            "Visit http://example1.com, http://example2.com, and http://example3.com"
+        )
         form = AccessibleContactForm(data=data, request=self.mock_request)
         self.assert_form_invalid(form, {"message": "limit external links"})
 

@@ -2,28 +2,28 @@
 
 @layer components {
   .btn-ec-primary {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded font-mono text-sm border;
-    @apply bg-purple-900 text-white border-purple-900;
+    @apply inline-flex items-center justify-center rounded border px-4 py-2 font-mono text-sm;
+    @apply border-purple-900 bg-purple-900 text-white;
 
     transition: all 0.25s ease;
   }
 
   .btn-ec-secondary {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded font-mono text-sm border;
-    @apply bg-teal-500 text-gray-900 border-teal-500;
+    @apply inline-flex items-center justify-center rounded border px-4 py-2 font-mono text-sm;
+    @apply border-teal-500 bg-teal-500 text-gray-900;
 
     transition: all 0.25s ease;
   }
 
   .panel-ec {
-    @apply bg-gray-800 border border-gray-600 rounded p-4;
+    @apply rounded border border-gray-600 bg-gray-800 p-4;
   }
 
   .container-ec {
-    @apply max-w-6xl mx-auto px-4;
+    @apply mx-auto max-w-6xl px-4;
   }
 
   .grid-2col {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+    @apply grid grid-cols-1 gap-6 md:grid-cols-2;
   }
 }

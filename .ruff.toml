@@ -1,0 +1,9 @@
+exclude = [
+    "diagnose_connection.py",
+    "diagnose_image_upload.py",
+    "enhanced_link_checker.py",
+    "fix_media_permissions.py",
+    "node_modules/",
+    "test_wagtail_image_upload.py",
+    "wagtail_403_solution.py",
+]

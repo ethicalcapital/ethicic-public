@@ -1,40 +1,34 @@
 <!-- Live Statistics Component with HTMX Polling -->
-<div
-  class="live-stats-widget"
-  hx-get="/api/live-stats/"
-  hx-trigger="load, every 30s"
-  hx-swap="innerHTML"
-  x-data="{ lastUpdate: new Date() }"
->
-  <!-- Initial content will be replaced by HTMX -->
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-value skeleton">--</div>
-      <div class="stat-label">Companies Screened</div>
+<div class="live-stats-widget"
+     hx-get="/api/live-stats/"
+     hx-trigger="load, every 30s"
+     hx-swap="innerHTML"
+     x-data="{ lastUpdate: new Date() }">
+    <!-- Initial content will be replaced by HTMX -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value skeleton">--</div>
+            <div class="stat-label">Companies Screened</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value skeleton">--</div>
+            <div class="stat-label">Excluded from S&P 500</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value skeleton">--</div>
+            <div class="stat-label">Active Holdings</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value skeleton">--</div>
+            <div class="stat-label">Years of Research</div>
+        </div>
     </div>
-
-    <div class="stat-card">
-      <div class="stat-value skeleton">--</div>
-      <div class="stat-label">Excluded from S&P 500</div>
+    <div class="update-indicator">
+        <span class="htmx-indicator">⟳ Updating...</span>
+        <span class="last-update"
+              x-text="'Last updated: ' + lastUpdate.toLocaleTimeString()"></span>
     </div>
-
-    <div class="stat-card">
-      <div class="stat-value skeleton">--</div>
-      <div class="stat-label">Active Holdings</div>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-value skeleton">--</div>
-      <div class="stat-label">Years of Research</div>
-    </div>
-  </div>
-
-  <div class="update-indicator">
-    <span class="htmx-indicator">⟳ Updating...</span>
-    <span class="last-update" x-text="'Last updated: ' + lastUpdate.toLocaleTimeString()"></span>
-  </div>
 </div>
-
 <style>
   .live-stats-widget {
     background: var(--color-surface);

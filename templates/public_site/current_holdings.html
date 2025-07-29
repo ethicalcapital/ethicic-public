@@ -1,247 +1,257 @@
-{% extends "public_site/base_tailwind.html" %} {% block title %}Current Holdings | Ethical Capital{% endblock %} {%
-block body_class %}current-holdings-page{% endblock %} {% block content %}
-<div class="container-ec">
-  <!-- Holdings Header -->
-  <section class="mb-8 bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800 rounded-xl p-8 text-center" role="banner" aria-labelledby="holdings-heading">
-    <div class="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-4">PORTFOLIO TRANSPARENCY</div>
-    <h1 id="holdings-heading" class="text-4xl md:text-5xl font-bold text-white mb-4">Current Holdings</h1>
-    <div class="text-lg text-purple-200 mb-6">As of Q4 2024</div>
-    <div class="text-lg text-purple-100 max-w-4xl mx-auto">
-      <p>
-        We believe in complete transparency with our clients and prospective investors. Below are our current top
-        holdings and portfolio statistics, updated quarterly to provide insight into our investment approach and
-        portfolio construction.
-      </p>
+{% extends "public_site/base_tailwind.html" %}
+{% block title %}Current Holdings | Ethical Capital{% endblock %}
+{%
+block body_class %}current-holdings-page
+{% endblock %}
+{% block content %}
+    <div class="container-ec">
+        <!-- Holdings Header -->
+        <section class="mb-8 rounded-xl bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800 p-8 text-center"
+                 role="banner"
+                 aria-labelledby="holdings-heading">
+            <div class="mb-4 text-sm font-semibold tracking-wide text-purple-300 uppercase">PORTFOLIO TRANSPARENCY</div>
+            <h1 id="holdings-heading"
+                class="mb-4 text-4xl font-bold text-white md:text-5xl">Current Holdings</h1>
+            <div class="mb-6 text-lg text-purple-200">As of Q4 2024</div>
+            <div class="mx-auto max-w-4xl text-lg text-purple-100">
+                <p>
+                    We believe in complete transparency with our clients and prospective investors. Below are our current top
+                    holdings and portfolio statistics, updated quarterly to provide insight into our investment approach and
+                    portfolio construction.
+                </p>
+            </div>
+        </section>
+        <!-- Top Holdings -->
+        <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                 role="complementary"
+                 aria-labelledby="top-holdings-heading">
+            <div class="mb-6 border-b border-gray-200 pb-4 dark:border-gray-700">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">TOP 5 HOLDINGS</h2>
+                <h3 id="top-holdings-heading" class="sr-only">Top Five Portfolio Holdings</h3>
+            </div>
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                    <div class="mb-4">
+                        <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Agricultural Mortgage Corporation</h4>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">(Farmer Mac)</div>
+                    </div>
+                    <div class="mb-3 flex items-center justify-between">
+                        <span class="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                            Lending
+                        </span>
+                        <span class="text-xl font-bold text-purple-600 dark:text-purple-400">~8.4%</span>
+                    </div>
+                    <p class="text-sm text-gray-700 dark:text-gray-300">Government-sponsored enterprise supporting agricultural lending</p>
+                </div>
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                    <div class="mb-4">
+                        <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Alexandria Real Estate</h4>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">(ARE)</div>
+                    </div>
+                    <div class="mb-3 flex items-center justify-between">
+                        <span class="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-800 dark:bg-green-900 dark:text-green-200">
+                            Real Estate
+                        </span>
+                        <span class="text-xl font-bold text-purple-600 dark:text-purple-400">~8.4%</span>
+                    </div>
+                    <p class="text-sm text-gray-700 dark:text-gray-300">Life science and technology real estate investment trust</p>
+                </div>
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                    <div class="mb-4">
+                        <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Duolingo</h4>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">(DUOL)</div>
+                    </div>
+                    <div class="mb-3 flex items-center justify-between">
+                        <span class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                            Innovation
+                        </span>
+                        <span class="text-xl font-bold text-purple-600 dark:text-purple-400">~8.4%</span>
+                    </div>
+                    <p class="text-sm text-gray-700 dark:text-gray-300">Leading language learning platform democratizing education</p>
+                </div>
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                    <div class="mb-4">
+                        <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Lemonade</h4>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">(LMND)</div>
+                    </div>
+                    <div class="mb-3 flex items-center justify-between">
+                        <span class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                            Innovation
+                        </span>
+                        <span class="text-xl font-bold text-purple-600 dark:text-purple-400">~8.4%</span>
+                    </div>
+                    <p class="text-sm text-gray-700 dark:text-gray-300">Technology-driven insurance company with social impact focus</p>
+                </div>
+                <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
+                    <div class="mb-4">
+                        <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Crocs</h4>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">(CROX)</div>
+                    </div>
+                    <div class="mb-3 flex items-center justify-between">
+                        <span class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                            Innovation
+                        </span>
+                        <span class="text-xl font-bold text-purple-600 dark:text-purple-400">~8.4%</span>
+                    </div>
+                    <p class="text-sm text-gray-700 dark:text-gray-300">Footwear company with sustainable manufacturing initiatives</p>
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio Statistics -->
+        <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                 role="complementary"
+                 aria-labelledby="stats-heading">
+            <div class="mb-6 border-b border-gray-200 pb-4 dark:border-gray-700">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">PORTFOLIO STATISTICS</h2>
+                <h3 id="stats-heading" class="sr-only">Portfolio Statistical Breakdown</h3>
+            </div>
+            <!-- Statistics Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <th class="px-2 py-3 text-left font-semibold text-gray-900 dark:text-gray-100">Metric</th>
+                            <th class="px-2 py-3 text-center font-semibold text-gray-900 dark:text-gray-100">Real Estate</th>
+                            <th class="px-2 py-3 text-center font-semibold text-gray-900 dark:text-gray-100">Infrastructure</th>
+                            <th class="px-2 py-3 text-center font-semibold text-gray-900 dark:text-gray-100">Innovation</th>
+                            <th class="px-2 py-3 text-center font-semibold text-gray-900 dark:text-gray-100">Lending</th>
+                            <th class="px-2 py-3 text-center font-semibold text-gray-900 dark:text-gray-100">Cash</th>
+                            <th class="px-2 py-3 text-center font-semibold text-purple-600 dark:text-purple-400">Portfolio Total</th>
+                            <th class="px-2 py-3 text-center font-semibold text-gray-600 dark:text-gray-400">Benchmark (MSCI ACWI)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-100 dark:border-gray-700">
+                            <td class="px-2 py-3 font-medium text-gray-900 dark:text-gray-100">Weight (%)</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">18.2</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">16.7</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">32.1</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">29.8</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">3.2</td>
+                            <td class="px-2 py-3 text-center font-bold text-purple-600 dark:text-purple-400">100.0</td>
+                            <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">—</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 dark:border-gray-700">
+                            <td class="px-2 py-3 font-medium text-gray-900 dark:text-gray-100">Dividend Yield (%)</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">4.2</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">3.8</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">0.7</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">5.1</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">5.2</td>
+                            <td class="px-2 py-3 text-center font-bold text-purple-600 dark:text-purple-400">2.8</td>
+                            <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">2.1</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 dark:border-gray-700">
+                            <td class="px-2 py-3 font-medium text-gray-900 dark:text-gray-100">PE Ratio</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">16.4</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">18.9</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">28.7</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">12.3</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">—</td>
+                            <td class="px-2 py-3 text-center font-bold text-purple-600 dark:text-purple-400">19.2</td>
+                            <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">16.8</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 dark:border-gray-700">
+                            <td class="px-2 py-3 font-medium text-gray-900 dark:text-gray-100">Revenue CAGR (3yr) (%)</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">8.1</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">12.4</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">24.6</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">6.7</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">—</td>
+                            <td class="px-2 py-3 text-center font-bold text-purple-600 dark:text-purple-400">13.2</td>
+                            <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">8.9</td>
+                        </tr>
+                        <tr>
+                            <td class="px-2 py-3 font-medium text-gray-900 dark:text-gray-100">FCF/Market Cap (%)</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">5.8</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">4.2</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">2.9</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">7.1</td>
+                            <td class="px-2 py-3 text-center text-gray-700 dark:text-gray-300">—</td>
+                            <td class="px-2 py-3 text-center font-bold text-purple-600 dark:text-purple-400">4.7</td>
+                            <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">4.1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Key Insights -->
+            <div class="mt-8 border-t border-gray-200 pt-6 dark:border-gray-700">
+                <h3 class="mb-6 text-xl font-bold text-gray-900 dark:text-gray-100">KEY PORTFOLIO CHARACTERISTICS</h3>
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                        <h4 class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">Diversification</h4>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Balanced exposure across four key sectors aligned with our ethical investment criteria
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                        <h4 class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">Income Generation</h4>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Portfolio dividend yield of 2.8% exceeds benchmark while maintaining growth focus
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                        <h4 class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">Growth Profile</h4>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Revenue CAGR of 13.2% reflects focus on companies with sustainable competitive advantages
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                        <h4 class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">Value Discipline</h4>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            PE ratio of 19.2x balanced against strong growth and free cash flow generation
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Methodology & Disclosures -->
+        <section class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                 role="complementary"
+                 aria-labelledby="methodology-heading">
+            <div class="mb-6 border-b border-gray-200 pb-4 dark:border-gray-700">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">METHODOLOGY & DISCLOSURES</h2>
+                <h3 id="methodology-heading" class="sr-only">Update Methodology and Important Disclosures</h3>
+            </div>
+            <div class="space-y-6">
+                <div>
+                    <h4 class="mb-3 text-lg font-semibold text-gray-900 dark:text-gray-100">Update Schedule</h4>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Holdings data is updated quarterly following the end of each calendar quarter. Current data reflects positions
+                        as of December 31, 2024. Individual position weights may fluctuate due to market movements between disclosure
+                        periods.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="mb-3 text-lg font-semibold text-gray-900 dark:text-gray-100">Data Sources</h4>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Portfolio statistics are calculated using proprietary analysis combined with data from FactSet, Bloomberg, and
+                        company filings. All metrics represent weighted averages based on current portfolio allocations.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="mb-3 text-lg font-semibold text-gray-900 dark:text-gray-100">Important Disclosures</h4>
+                    <ul class="list-inside list-disc space-y-2 text-gray-700 dark:text-gray-300">
+                        <li>Past performance does not guarantee future results</li>
+                        <li>Portfolio holdings and statistics subject to change without notice</li>
+                        <li>This information is for educational purposes and does not constitute investment advice</li>
+                        <li>Individual account holdings may vary based on client restrictions and timing of investments</li>
+                        <li>Benchmark data sourced from MSCI. MSCI data provided "as is" without any express or implied warranties</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="mb-3 text-lg font-semibold text-gray-900 dark:text-gray-100">Additional Resources</h4>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        For complete portfolio information, regulatory filings, and detailed investment criteria, please visit our
+                        <a href="/process/"
+                           class="text-purple-600 hover:underline dark:text-purple-400">investment process page</a>
+                        or
+                        <a href="/contact/"
+                           class="text-purple-600 hover:underline dark:text-purple-400">contact our team</a>
+                        directly.
+                    </p>
+                </div>
+            </div>
+        </section>
     </div>
-  </section>
-
-  <!-- Top Holdings -->
-  <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-8" role="complementary" aria-labelledby="top-holdings-heading">
-    <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
-      <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">TOP 5 HOLDINGS</h2>
-      <h3 id="top-holdings-heading" class="sr-only">Top Five Portfolio Holdings</h3>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-        <div class="mb-4">
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Agricultural Mortgage Corporation</h4>
-          <div class="text-sm text-gray-600 dark:text-gray-400">(Farmer Mac)</div>
-        </div>
-        <div class="flex justify-between items-center mb-3">
-          <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm font-medium">Lending</span>
-          <span class="text-xl font-bold text-purple-600 dark:text-purple-400">~8.4%</span>
-        </div>
-        <p class="text-sm text-gray-700 dark:text-gray-300">Government-sponsored enterprise supporting agricultural lending</p>
-      </div>
-
-      <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-        <div class="mb-4">
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Alexandria Real Estate</h4>
-          <div class="text-sm text-gray-600 dark:text-gray-400">(ARE)</div>
-        </div>
-        <div class="flex justify-between items-center mb-3">
-          <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">Real Estate</span>
-          <span class="text-xl font-bold text-purple-600 dark:text-purple-400">~8.4%</span>
-        </div>
-        <p class="text-sm text-gray-700 dark:text-gray-300">Life science and technology real estate investment trust</p>
-      </div>
-
-      <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-        <div class="mb-4">
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Duolingo</h4>
-          <div class="text-sm text-gray-600 dark:text-gray-400">(DUOL)</div>
-        </div>
-        <div class="flex justify-between items-center mb-3">
-          <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">Innovation</span>
-          <span class="text-xl font-bold text-purple-600 dark:text-purple-400">~8.4%</span>
-        </div>
-        <p class="text-sm text-gray-700 dark:text-gray-300">Leading language learning platform democratizing education</p>
-      </div>
-
-      <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-        <div class="mb-4">
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Lemonade</h4>
-          <div class="text-sm text-gray-600 dark:text-gray-400">(LMND)</div>
-        </div>
-        <div class="flex justify-between items-center mb-3">
-          <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">Innovation</span>
-          <span class="text-xl font-bold text-purple-600 dark:text-purple-400">~8.4%</span>
-        </div>
-        <p class="text-sm text-gray-700 dark:text-gray-300">Technology-driven insurance company with social impact focus</p>
-      </div>
-
-      <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-        <div class="mb-4">
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Crocs</h4>
-          <div class="text-sm text-gray-600 dark:text-gray-400">(CROX)</div>
-        </div>
-        <div class="flex justify-between items-center mb-3">
-          <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">Innovation</span>
-          <span class="text-xl font-bold text-purple-600 dark:text-purple-400">~8.4%</span>
-        </div>
-        <p class="text-sm text-gray-700 dark:text-gray-300">Footwear company with sustainable manufacturing initiatives</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio Statistics -->
-  <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-8" role="complementary" aria-labelledby="stats-heading">
-    <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
-      <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">PORTFOLIO STATISTICS</h2>
-      <h3 id="stats-heading" class="sr-only">Portfolio Statistical Breakdown</h3>
-    </div>
-
-    <!-- Statistics Table -->
-    <div class="overflow-x-auto">
-      <table class="w-full text-sm">
-        <thead>
-          <tr class="border-b border-gray-200 dark:border-gray-700">
-            <th class="text-left py-3 px-2 font-semibold text-gray-900 dark:text-gray-100">Metric</th>
-            <th class="text-center py-3 px-2 font-semibold text-gray-900 dark:text-gray-100">Real Estate</th>
-            <th class="text-center py-3 px-2 font-semibold text-gray-900 dark:text-gray-100">Infrastructure</th>
-            <th class="text-center py-3 px-2 font-semibold text-gray-900 dark:text-gray-100">Innovation</th>
-            <th class="text-center py-3 px-2 font-semibold text-gray-900 dark:text-gray-100">Lending</th>
-            <th class="text-center py-3 px-2 font-semibold text-gray-900 dark:text-gray-100">Cash</th>
-            <th class="text-center py-3 px-2 font-semibold text-purple-600 dark:text-purple-400">Portfolio Total</th>
-            <th class="text-center py-3 px-2 font-semibold text-gray-600 dark:text-gray-400">Benchmark (MSCI ACWI)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-b border-gray-100 dark:border-gray-700">
-            <td class="py-3 px-2 font-medium text-gray-900 dark:text-gray-100">Weight (%)</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">18.2</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">16.7</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">32.1</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">29.8</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">3.2</td>
-            <td class="text-center py-3 px-2 font-bold text-purple-600 dark:text-purple-400">100.0</td>
-            <td class="text-center py-3 px-2 text-gray-600 dark:text-gray-400">—</td>
-          </tr>
-          <tr class="border-b border-gray-100 dark:border-gray-700">
-            <td class="py-3 px-2 font-medium text-gray-900 dark:text-gray-100">Dividend Yield (%)</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">4.2</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">3.8</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">0.7</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">5.1</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">5.2</td>
-            <td class="text-center py-3 px-2 font-bold text-purple-600 dark:text-purple-400">2.8</td>
-            <td class="text-center py-3 px-2 text-gray-600 dark:text-gray-400">2.1</td>
-          </tr>
-          <tr class="border-b border-gray-100 dark:border-gray-700">
-            <td class="py-3 px-2 font-medium text-gray-900 dark:text-gray-100">PE Ratio</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">16.4</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">18.9</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">28.7</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">12.3</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">—</td>
-            <td class="text-center py-3 px-2 font-bold text-purple-600 dark:text-purple-400">19.2</td>
-            <td class="text-center py-3 px-2 text-gray-600 dark:text-gray-400">16.8</td>
-          </tr>
-          <tr class="border-b border-gray-100 dark:border-gray-700">
-            <td class="py-3 px-2 font-medium text-gray-900 dark:text-gray-100">Revenue CAGR (3yr) (%)</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">8.1</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">12.4</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">24.6</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">6.7</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">—</td>
-            <td class="text-center py-3 px-2 font-bold text-purple-600 dark:text-purple-400">13.2</td>
-            <td class="text-center py-3 px-2 text-gray-600 dark:text-gray-400">8.9</td>
-          </tr>
-          <tr>
-            <td class="py-3 px-2 font-medium text-gray-900 dark:text-gray-100">FCF/Market Cap (%)</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">5.8</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">4.2</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">2.9</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">7.1</td>
-            <td class="text-center py-3 px-2 text-gray-700 dark:text-gray-300">—</td>
-            <td class="text-center py-3 px-2 font-bold text-purple-600 dark:text-purple-400">4.7</td>
-            <td class="text-center py-3 px-2 text-gray-600 dark:text-gray-400">4.1</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Key Insights -->
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-      <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">KEY PORTFOLIO CHARACTERISTICS</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Diversification</h4>
-          <p class="text-gray-700 dark:text-gray-300">
-            Balanced exposure across four key sectors aligned with our ethical investment criteria
-          </p>
-        </div>
-        <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Income Generation</h4>
-          <p class="text-gray-700 dark:text-gray-300">
-            Portfolio dividend yield of 2.8% exceeds benchmark while maintaining growth focus
-          </p>
-        </div>
-        <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Growth Profile</h4>
-          <p class="text-gray-700 dark:text-gray-300">
-            Revenue CAGR of 13.2% reflects focus on companies with sustainable competitive advantages
-          </p>
-        </div>
-        <div class="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Value Discipline</h4>
-          <p class="text-gray-700 dark:text-gray-300">
-            PE ratio of 19.2x balanced against strong growth and free cash flow generation
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Methodology & Disclosures -->
-  <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6" role="complementary" aria-labelledby="methodology-heading">
-    <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
-      <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">METHODOLOGY & DISCLOSURES</h2>
-      <h3 id="methodology-heading" class="sr-only">Update Methodology and Important Disclosures</h3>
-    </div>
-
-    <div class="space-y-6">
-      <div>
-        <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">Update Schedule</h4>
-        <p class="text-gray-700 dark:text-gray-300">
-          Holdings data is updated quarterly following the end of each calendar quarter. Current data reflects
-          positions as of December 31, 2024. Individual position weights may fluctuate due to market movements between
-          disclosure periods.
-        </p>
-      </div>
-
-      <div>
-        <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">Data Sources</h4>
-        <p class="text-gray-700 dark:text-gray-300">
-          Portfolio statistics are calculated using proprietary analysis combined with data from FactSet, Bloomberg,
-          and company filings. All metrics represent weighted averages based on current portfolio allocations.
-        </p>
-      </div>
-
-      <div>
-        <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">Important Disclosures</h4>
-        <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-          <li>Past performance does not guarantee future results</li>
-          <li>Portfolio holdings and statistics subject to change without notice</li>
-          <li>This information is for educational purposes and does not constitute investment advice</li>
-          <li>Individual account holdings may vary based on client restrictions and timing of investments</li>
-          <li>
-            Benchmark data sourced from MSCI. MSCI data provided "as is" without any express or implied warranties
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">Additional Resources</h4>
-        <p class="text-gray-700 dark:text-gray-300">
-          For complete portfolio information, regulatory filings, and detailed investment criteria, please visit our
-          <a href="/process/" class="text-purple-600 dark:text-purple-400 hover:underline">investment process page</a>
-          or
-          <a href="/contact/" class="text-purple-600 dark:text-purple-400 hover:underline">contact our team</a>
-          directly.
-        </p>
-      </div>
-    </div>
-  </section>
-</div>
 {% endblock %}

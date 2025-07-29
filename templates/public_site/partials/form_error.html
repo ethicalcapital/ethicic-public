@@ -1,26 +1,24 @@
 <div class="alert alert-error" role="alert">
-  <div class="alert-icon">⚠</div>
-  <div class="alert-content">
-    <h3 class="alert-title">Form Submission Error</h3>
-    {% load wagtailsettings_tags %} {% get_settings "public_site.SiteConfiguration" as site_config %}
-    <p>
-      {{ message|default:site_config.contact_error_message|default:"Please correct the errors below and try again." }}
-    </p>
-
-    {% if errors %}
-    <ul class="error-list">
-      {% for field, field_errors in errors.items %} {% for error in field_errors %}
-      <li>
-        {% if field != '__all__' %}
-        <strong>{{ field|title }}:</strong>
-        {% endif %} {{ error }}
-      </li>
-      {% endfor %} {% endfor %}
-    </ul>
-    {% endif %}
-  </div>
+    <div class="alert-icon">⚠</div>
+    <div class="alert-content">
+        <h3 class="alert-title">Form Submission Error</h3>
+        {% load wagtailsettings_tags %}
+        {% get_settings "public_site.SiteConfiguration" as site_config %}
+        <p>{{ message|default:site_config.contact_error_message|default:"Please correct the errors below and try again." }}</p>
+        {% if errors %}
+            <ul class="error-list">
+                {% for field, field_errors in errors.items %}
+                    {% for error in field_errors %}
+                        <li>
+                            {% if field != '__all__' %}<strong>{{ field|title }}:</strong>{% endif %}
+                            {{ error }}
+                        </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
 </div>
-
 <style>
   .alert-error {
     background-color: var(--color-error-alpha);

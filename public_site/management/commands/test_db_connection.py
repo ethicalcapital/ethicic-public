@@ -1,6 +1,7 @@
 """
 Test database connections with SSL certificates
 """
+
 import os
 
 import psycopg2
@@ -105,11 +106,11 @@ class Command(BaseCommand):
 
                 # Debug connection parameters
                 self.stdout.write("  Connection parameters:")
-                self.stdout.write(f'    Host: {conn_params["host"]}')
-                self.stdout.write(f'    Port: {conn_params["port"]}')
-                self.stdout.write(f'    Database: {conn_params["database"]}')
-                self.stdout.write(f'    User: {conn_params["user"]}')
-                self.stdout.write(f'    SSL Mode: {conn_params["sslmode"]}')
+                self.stdout.write(f"    Host: {conn_params['host']}")
+                self.stdout.write(f"    Port: {conn_params['port']}")
+                self.stdout.write(f"    Database: {conn_params['database']}")
+                self.stdout.write(f"    User: {conn_params['user']}")
+                self.stdout.write(f"    SSL Mode: {conn_params['sslmode']}")
 
                 conn = psycopg2.connect(**conn_params)
                 cur = conn.cursor()
@@ -117,7 +118,7 @@ class Command(BaseCommand):
                 version = cur.fetchone()[0]
 
                 self.stdout.write(self.style.SUCCESS("✓ Raw connection successful"))
-                self.stdout.write(f'  PostgreSQL version: {version.split(",")[0]}')
+                self.stdout.write(f"  PostgreSQL version: {version.split(',')[0]}")
 
                 conn.close()
 

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Inline Test</title>
-    <link rel="stylesheet" href="/static/css/garden-ui-theme.css?v=2025070110">
-    <link rel="stylesheet" href="/static/css/core-styles.css?v=2025070110">
-    <style>
+<html lang="en">
+    <head>
+        <title>Inline Test</title>
+        <meta name="description" content="Inline test page for debugging">
+        <meta name="keywords" content="test, debug, inline">
+        <link rel="stylesheet" href="/static/css/garden-ui-theme.css?v=2025070110">
+        <link rel="stylesheet" href="/static/css/core-styles.css?v=2025070110">
+        <style>
         .test1 {
             max-width: 1200px;
             margin: 0 auto;
@@ -20,27 +22,26 @@
             border: 2px solid green;
         }
         body { margin: 20px; }
-    </style>
-</head>
-<body>
-    <h1>CSS Variable Test</h1>
-
-    <div class="test1">
-        <h2>Direct 1200px</h2>
-        <p>max-width: 1200px</p>
-    </div>
-
-    <div class="test2">
-        <h2>Using CSS Variable</h2>
-        <p>max-width: var(--content-width-normal)</p>
-    </div>
-
-    <div class="garden-container" style="background: #fff0e0; padding: 20px; border: 2px solid blue;">
-        <h2>Garden Container</h2>
-        <p>Using class="garden-container"</p>
-    </div>
-
-    <script>
+        </style>
+    </head>
+    <body>
+        <h1>CSS Variable Test</h1>
+        <div class="test1">
+            <h2>Direct 1200px</h2>
+            <p>max-width: 1200px</p>
+        </div>
+        <div class="test2">
+            <h2>Using CSS Variable</h2>
+            <p>max-width: var(--content-width-normal)</p>
+        </div>
+        <div class="garden-container"
+             style="background: #fff0e0;
+                    padding: 20px;
+                    border: 2px solid blue">
+            <h2>Garden Container</h2>
+            <p>Using class="garden-container"</p>
+        </div>
+        <script>
         window.onload = function() {
             const root = getComputedStyle(document.documentElement);
             const test2 = document.querySelector('.test2');
@@ -66,6 +67,6 @@
             `;
             document.body.appendChild(info);
         };
-    </script>
-</body>
+        </script>
+    </body>
 </html>

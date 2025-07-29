@@ -1,117 +1,134 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags static %}
-{% block title %}{{ page.title }} - FAQ - Ethical Capital{% endblock %}
+{% block title %}
+    {{ page.title }} -
+    FAQ - Ethical Capital
+{% endblock %}
 {% block content %}
-<div class="container-ec">
-  <!-- FAQ Article Layout -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <!-- Main Article Content (2/3 width) -->
-    <div class="lg:col-span-2">
-      <article class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-        <!-- Article Header -->
-        <header class="mb-8">
-          <!-- Breadcrumb Navigation -->
-          <nav class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 mb-4" aria-label="Breadcrumb">
-            <a href="/" class="hover:text-purple-600 transition-colors">Home</a>
-            <span>▶</span>
-            <a href="/faq/" class="hover:text-purple-600 transition-colors">FAQ</a>
-            <span>▶</span>
-            <span class="text-gray-900 dark:text-gray-100">{{ page.title }}</span>
-          </nav>
-
-          <div class="flex flex-wrap items-center gap-4 mb-4">
-            {% if page.category %}
-            <span class="px-3 py-1 bg-purple-600 text-white text-xs font-semibold uppercase rounded-full">{{ page.get_category_display }}</span>
-            {% endif %}
-            {% if page.last_published_at %}
-            <time class="text-sm text-gray-600 dark:text-gray-400" datetime="{{ page.last_published_at|date:'Y-m-d' }}">
-              Last Updated {{ page.last_published_at|date:"F j, Y" }}
-            </time>
-            {% endif %}
-          </div>
-
-          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">{{ page.title }}</h1>
-
-          {% if page.summary %}
-          <div class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{{ page.summary }}</div>
-          {% endif %}
-        </header>
-
-        <!-- Article Content -->
-        <main class="mb-8">
-          <div class="prose prose-lg prose-teal dark:prose-invert max-w-none">{{ page.content|richtext }}</div>
-        </main>
-
-        <!-- Article Footer -->
-        <footer class="border-t border-gray-200 dark:border-gray-700 pt-6">
-          <div class="flex flex-wrap gap-4 mb-8">
-            <a href="/faq/" class="px-4 py-2 bg-gray-600 text-white rounded-lg font-semibold hover:bg-purple-600 transition-colors">← Back to All FAQs</a>
-            <a href="/contact/" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors">Still Have Questions?</a>
-          </div>
-
-          <!-- Show related articles if available -->
-          {% if page.get_parent.get_articles %}
-          <div class="related-articles">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">Other FAQ Articles</h3>
-            <div class="grid grid-cols-1 gap-4">
-              {% for article in page.get_parent.get_articles|slice:":3" %} {% if article != page %}
-              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-gray-800">
-                <h4 class="text-base font-semibold mb-2">
-                  <a href="{{ article.url_path }}" class="text-purple-600 dark:text-purple-400 hover:underline">{{ article.title }}</a>
-                </h4>
-                {% if article.summary %}
-                <p class="text-gray-600 dark:text-gray-400 text-sm mb-2">{{ article.summary|truncatewords:15 }}</p>
-                {% endif %}
-                {% if article.category %}
-                <span class="inline-block bg-purple-600 text-white px-2 py-1 rounded text-xs font-semibold uppercase">{{ article.get_category_display }}</span>
-                {% endif %}
-              </div>
-              {% endif %} {% endfor %}
+    <div class="container-ec">
+        <!-- FAQ Article Layout -->
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <!-- Main Article Content (2/3 width) -->
+            <div class="lg:col-span-2">
+                <article class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+                    <!-- Article Header -->
+                    <header class="mb-8">
+                        <!-- Breadcrumb Navigation -->
+                        <nav class="mb-4 flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400"
+                             aria-label="Breadcrumb">
+                            <a href="/" class="transition-colors hover:text-purple-600">Home</a>
+                            <span>▶</span>
+                            <a href="/faq/" class="transition-colors hover:text-purple-600">FAQ</a>
+                            <span>▶</span>
+                            <span class="text-gray-900 dark:text-gray-100">{{ page.title }}</span>
+                        </nav>
+                        <div class="mb-4 flex flex-wrap items-center gap-4">
+                            {% if page.category %}
+                                <span class="rounded-full bg-purple-600 px-3 py-1 text-xs font-semibold text-white uppercase">
+                                    {{ page.get_category_display }}
+                                </span>
+                            {% endif %}
+                            {% if page.last_published_at %}
+                                <time class="text-sm text-gray-600 dark:text-gray-400"
+                                      datetime="{{ page.last_published_at|date:'Y-m-d' }}">
+                                    Last Updated {{ page.last_published_at|date:"F j, Y" }}
+                                </time>
+                            {% endif %}
+                        </div>
+                        <h1 class="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-gray-100">{{ page.title }}</h1>
+                        {% if page.summary %}
+                            <div class="mb-6 text-lg leading-relaxed text-gray-600 dark:text-gray-400">{{ page.summary }}</div>
+                        {% endif %}
+                    </header>
+                    <!-- Article Content -->
+                    <main class="mb-8">
+                        <div class="prose prose-lg prose-teal dark:prose-invert max-w-none">{{ page.content|richtext }}</div>
+                    </main>
+                    <!-- Article Footer -->
+                    <footer class="border-t border-gray-200 pt-6 dark:border-gray-700">
+                        <div class="mb-8 flex flex-wrap gap-4">
+                            <a href="/faq/"
+                               class="rounded-lg bg-gray-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-purple-600">
+                                ← Back to All FAQs
+                            </a>
+                            <a href="/contact/"
+                               class="rounded-lg bg-purple-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-purple-700">
+                                Still Have Questions?
+                            </a>
+                        </div>
+                        <!-- Show related articles if available -->
+                        {% if page.get_parent.get_articles %}
+                            <div class="related-articles">
+                                <h3 class="mb-4 text-xl font-bold text-gray-900 dark:text-gray-100">Other FAQ Articles</h3>
+                                <div class="grid grid-cols-1 gap-4">
+                                    {% for article in page.get_parent.get_articles|slice:":3" %}
+                                        {% if article != page %}
+                                            <div class="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+                                                <h4 class="mb-2 text-base font-semibold">
+                                                    <a href="{{ article.url_path }}"
+                                                       class="text-purple-600 hover:underline dark:text-purple-400">
+                                                        {{ article.title }}
+                                                    </a>
+                                                </h4>
+                                                {% if article.summary %}
+                                                    <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">{{ article.summary|truncatewords:15 }}</p>
+                                                {% endif %}
+                                                {% if article.category %}
+                                                    <span class="inline-block rounded bg-purple-600 px-2 py-1 text-xs font-semibold text-white uppercase">
+                                                        {{ article.get_category_display }}
+                                                    </span>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </footer>
+                </article>
             </div>
-          </div>
-          {% endif %}
-        </footer>
-      </article>
+            <!-- Sidebar (1/3 width) -->
+            <aside class="space-y-6" aria-label="FAQ sidebar">
+                <!-- FAQ Navigation Section -->
+                <div class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+                    <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-gray-100">FAQ NAVIGATION</h3>
+                    <p class="mb-4 text-gray-600 dark:text-gray-400">Browse all frequently asked questions and helpful resources.</p>
+                    <div class="space-y-2">
+                        <a href="/faq/"
+                           class="flex items-center gap-3 rounded-lg p-3 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                            <span class="text-xl">📚</span>
+                            <span>All FAQs</span>
+                        </a>
+                        <a href="/contact/"
+                           class="flex items-center gap-3 rounded-lg p-3 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                            <span class="text-xl">💬</span>
+                            <span>Ask a Question</span>
+                        </a>
+                        <a href="/process/"
+                           class="flex items-center gap-3 rounded-lg p-3 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                            <span class="text-xl">🔄</span>
+                            <span>Our Process</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Support Section -->
+                <div class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+                    <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-gray-100">NEED HELP?</h3>
+                    <p class="mb-4 text-gray-600 dark:text-gray-400">Can't find what you're looking for? We're here to help.</p>
+                    <div class="space-y-2">
+                        <a href="/contact/"
+                           class="flex items-center gap-3 rounded-lg p-3 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                            <span class="text-xl">✉️</span>
+                            <span>Contact Us</span>
+                        </a>
+                        <a href="/consultation/"
+                           class="flex items-center gap-3 rounded-lg p-3 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                            <span class="text-xl">📞</span>
+                            <span>Schedule Consultation</span>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </div>
-
-    <!-- Sidebar (1/3 width) -->
-    <aside class="space-y-6" aria-label="FAQ sidebar">
-      <!-- FAQ Navigation Section -->
-      <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">FAQ NAVIGATION</h3>
-        <p class="text-gray-600 dark:text-gray-400 mb-4">Browse all frequently asked questions and helpful resources.</p>
-        <div class="space-y-2">
-          <a href="/faq/" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span class="text-xl">📚</span>
-            <span>All FAQs</span>
-          </a>
-          <a href="/contact/" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span class="text-xl">💬</span>
-            <span>Ask a Question</span>
-          </a>
-          <a href="/process/" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span class="text-xl">🔄</span>
-            <span>Our Process</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Support Section -->
-      <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">NEED HELP?</h3>
-        <p class="text-gray-600 dark:text-gray-400 mb-4">Can't find what you're looking for? We're here to help.</p>
-        <div class="space-y-2">
-          <a href="/contact/" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span class="text-xl">✉️</span>
-            <span>Contact Us</span>
-          </a>
-          <a href="/consultation/" class="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span class="text-xl">📞</span>
-            <span>Schedule Consultation</span>
-          </a>
-        </div>
-      </div>
-    </aside>
-  </div>
-</div>
 {% endblock %}

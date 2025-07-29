@@ -510,12 +510,12 @@ class WagtailPublicSiteTestCase(BasePublicSiteTestCase):
         # Create test media items
         for i in range(5):
             MediaItem.objects.create(
-                title=f"Media Item {i+1}",
-                description=f"Description for media item {i+1}",
+                title=f"Media Item {i + 1}",
+                description=f"Description for media item {i + 1}",
                 publication="Test Publication",
                 publication_date=timezone.now().date(),
                 featured=(i == 0),  # First item is featured
-                external_url=f"https://example.com/item-{i+1}",
+                external_url=f"https://example.com/item-{i + 1}",
                 page=media_page,
             )
 

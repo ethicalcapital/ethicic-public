@@ -2,19 +2,33 @@
 {% load static %}
 {% load wagtailcore_tags %}
 <html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% if page %}{{ page.seo_title|default:page.title }}{% else %}Ethical Capital{% endif %}{% endblock %}</title>
-
-    <!-- Favicon and app icons -->
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
-
-    <!--
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+                {% if page %}
+                    {{ page.seo_title|default:page.title }}
+                {% else %}
+                    Ethical Capital
+                {% endif %}
+            {% endblock %}
+        </title>
+        <!-- Favicon and app icons -->
+        <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+        <link rel="apple-touch-icon"
+              sizes="180x180"
+              href="{% static 'images/apple-touch-icon.png' %}">
+        <link rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="{% static 'images/favicon-32x32.png' %}">
+        <link rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="{% static 'images/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
+        <!--
     ============================================================================
     GARDEN UI CSS BUNDLES - PRODUCTION OPTIMIZED
     ============================================================================
@@ -27,54 +41,59 @@
 
     For development, use base.html with individual modular files.
     For production, use this template with pre-built bundles.
-    -->
-
-    <!-- Garden UI CSS Bundles - Foundation (29.5KB) -->
-    <link rel="stylesheet" href="{% static 'css/bundles/garden-ui-foundation.css' %}?v={{ BUILD_VERSION|default:'1' }}">
-
-    <!-- Garden UI CSS Bundles - Core Components (103.5KB) -->
-    <link rel="stylesheet" href="{% static 'css/bundles/garden-ui-core.css' %}?v={{ BUILD_VERSION|default:'1' }}">
-
-    <!-- Garden UI CSS Bundles - Layout & Navigation (34.9KB) -->
-    <link rel="stylesheet" href="{% static 'css/bundles/garden-ui-layout.css' %}?v={{ BUILD_VERSION|default:'1' }}">
-
-    <!-- Remaining Legacy CSS (6 files vs 17 before) -->
-    <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v={{ BUILD_VERSION|default:'3' }}">
-    <link rel="stylesheet" href="{% static 'css/garden-layout-system.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/accessibility-consolidated.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/cta-tiffany-blue.css' %}?v=3">
-    <link rel="stylesheet" href="{% static 'css/onboarding-page.css' %}?v=3">
-    <link rel="stylesheet" href="{% static 'css/blog-consistency-consolidated.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/theme-overrides-clean.css' %}?v=1">
-
-    <!-- Meta tags for SEO and social sharing -->
-    <meta name="description" content="{% block meta_description %}{% if page %}{{ page.search_description|default:site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% else %}{{ site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% endif %}{% endblock %}">
-    <meta name="keywords" content="{% block meta_keywords %}{{ site_config.meta_keywords|default:'ethical investing, sustainable investing, ESG investing, socially responsible investing, investment advisory' }}{% endblock %}">
-
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="{% block og_title %}{% if page %}{{ page.seo_title|default:page.title|default:'Ethical Capital' }}{% else %}Ethical Capital{% endif %}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{% if page %}{{ page.search_description|default:site_config.meta_description }}{% else %}{{ site_config.meta_description }}{% endif %}{% endblock %}">
-    <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
-    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
-
-    <!-- Twitter Card tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{% block twitter_title %}{% if page %}{{ page.seo_title|default:page.title }}{% else %}Ethical Capital{% endif %}{% endblock %}">
-    <meta name="twitter:description" content="{% block twitter_description %}{% if page %}{{ page.search_description|default:site_config.meta_description }}{% else %}{{ site_config.meta_description }}{% endif %}{% endblock %}">
-
-    <!-- CSRF Token for JavaScript -->
-    {% csrf_token %}
-    <meta name="csrf-token" content="{{ csrf_token }}">
-
-    <!-- HTMX for server-driven interactivity -->
-    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
-
-    <!-- Alpine.js for lightweight client-side reactivity -->
-    <script defer src="https://unpkg.com/alpinejs@3.13.7/dist/cdn.min.js"></script>
-
-    <!-- PostHog snippet -->
-    <script>
+-->
+        <!-- Garden UI CSS Bundles - Foundation (29.5KB) -->
+        <link rel="stylesheet"
+              href="{% static 'css/bundles/garden-ui-foundation.css' %}?v={{ BUILD_VERSION|default:'1' }}">
+        <!-- Garden UI CSS Bundles - Core Components (103.5KB) -->
+        <link rel="stylesheet"
+              href="{% static 'css/bundles/garden-ui-core.css' %}?v={{ BUILD_VERSION|default:'1' }}">
+        <!-- Garden UI CSS Bundles - Layout & Navigation (34.9KB) -->
+        <link rel="stylesheet"
+              href="{% static 'css/bundles/garden-ui-layout.css' %}?v={{ BUILD_VERSION|default:'1' }}">
+        <!-- Remaining Legacy CSS (6 files vs 17 before) -->
+        <link rel="stylesheet"
+              href="{% static 'css/core-styles.css' %}?v={{ BUILD_VERSION|default:'3' }}">
+        <link rel="stylesheet"
+              href="{% static 'css/garden-layout-system.css' %}?v=1">
+        <link rel="stylesheet"
+              href="{% static 'css/accessibility-consolidated.css' %}?v=1">
+        <link rel="stylesheet" href="{% static 'css/cta-tiffany-blue.css' %}?v=3">
+        <link rel="stylesheet" href="{% static 'css/onboarding-page.css' %}?v=3">
+        <link rel="stylesheet"
+              href="{% static 'css/blog-consistency-consolidated.css' %}?v=1">
+        <link rel="stylesheet"
+              href="{% static 'css/theme-overrides-clean.css' %}?v=1">
+        <!-- Meta tags for SEO and social sharing -->
+        <meta name="description"
+              content="{% block meta_description %}{% if page %}{{ page.search_description|default:site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% else %}{{ site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% endif %}{% endblock %}">
+        <meta name="keywords"
+              content="{% block meta_keywords %}{{ site_config.meta_keywords|default:'ethical investing, sustainable investing, ESG investing, socially responsible investing, investment advisory' }}{% endblock %}">
+        <!-- Open Graph tags -->
+        <meta property="og:title"
+              content="{% block og_title %}{% if page %}{{ page.seo_title|default:page.title|default:'Ethical Capital' }}{% else %}Ethical Capital{% endif %}{% endblock %}">
+        <meta property="og:description"
+              content="{% block og_description %}{% if page %}{{ page.search_description|default:site_config.meta_description }}{% else %}{{ site_config.meta_description }}{% endif %}{% endblock %}">
+        <meta property="og:url"
+              content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
+        <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+        <meta property="og:image"
+              content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
+        <!-- Twitter Card tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title"
+              content="{% block twitter_title %}{% if page %}{{ page.seo_title|default:page.title }}{% else %}Ethical Capital{% endif %}{% endblock %}">
+        <meta name="twitter:description"
+              content="{% block twitter_description %}{% if page %}{{ page.search_description|default:site_config.meta_description }}{% else %}{{ site_config.meta_description }}{% endif %}{% endblock %}">
+        <!-- CSRF Token for JavaScript -->
+        {% csrf_token %}
+        <meta name="csrf-token" content="{{ csrf_token }}">
+        <!-- HTMX for server-driven interactivity -->
+        <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+        <!-- Alpine.js for lightweight client-side reactivity -->
+        <script defer src="https://unpkg.com/alpinejs@3.13.7/dist/cdn.min.js"></script>
+        <!-- PostHog snippet -->
+        <script>
         !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
         posthog.init('{{ POSTHOG_API_KEY }}',{
             api_host:'https://us.i.posthog.com',
@@ -82,32 +101,31 @@
             mask_all_element_attributes: true,
             mask_all_text: true
         })
-    </script>
-
-    <!-- WCAG AA Accessibility Enhancements for HTMX -->
-    <script src="{% static 'js/accessibility-htmx.js' %}?v=1"></script>
-
-    <!-- WCAG AA Focus Trapping for Modals and Overlays -->
-    <script src="{% static 'js/accessibility-focus-trap.js' %}?v=1"></script>
-
-    {% block extra_css %}{% endblock %}
-
-    <!-- Temporary inline styles to force new color scheme -->
-</head>
-<body class="public-site-context {% block body_class %}{% endblock %}">
-    <!-- Skip navigation links for screen readers -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <a href="#main-navigation" class="skip-link">Skip to navigation</a>
-
-    <!-- ARIA live regions for announcements -->
-    <div aria-live="polite" aria-atomic="true" class="sr-announcements" id="announcements"></div>
-    <div aria-live="assertive" aria-atomic="true" class="sr-only" id="urgent-announcements"></div>
-
-    <!-- Main page structure -->
-    {% block content %}{% endblock %}
-
-    <!-- Theme persistence and initialization script -->
-    <script>
+        </script>
+        <!-- WCAG AA Accessibility Enhancements for HTMX -->
+        <script src="{% static 'js/accessibility-htmx.js' %}?v=1"></script>
+        <!-- WCAG AA Focus Trapping for Modals and Overlays -->
+        <script src="{% static 'js/accessibility-focus-trap.js' %}?v=1"></script>
+        {% block extra_css %}{% endblock %}
+        <!-- Temporary inline styles to force new color scheme -->
+    </head>
+    <body class="public-site-context {% block body_class %}{% endblock %}">
+        <!-- Skip navigation links for screen readers -->
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <a href="#main-navigation" class="skip-link">Skip to navigation</a>
+        <!-- ARIA live regions for announcements -->
+        <div aria-live="polite"
+             aria-atomic="true"
+             class="sr-announcements"
+             id="announcements"></div>
+        <div aria-live="assertive"
+             aria-atomic="true"
+             class="sr-only"
+             id="urgent-announcements"></div>
+        <!-- Main page structure -->
+        {% block content %}{% endblock %}
+        <!-- Theme persistence and initialization script -->
+        <script>
         // Initialize theme from localStorage or system preference
         (function() {
             const savedTheme = localStorage.getItem('theme');
@@ -139,11 +157,9 @@
                 }
             });
         }
-    </script>
-
-    {% block extra_js %}{% endblock %}
-
-    <!--
+        </script>
+        {% block extra_js %}{% endblock %}
+        <!--
     ============================================================================
     PERFORMANCE SUMMARY - CSS BUNDLES
     ============================================================================
@@ -160,5 +176,5 @@
     To rebuild bundles: python manage.py build_css
     To use modular files: Switch to base.html template
     -->
-</body>
+    </body>
 </html>

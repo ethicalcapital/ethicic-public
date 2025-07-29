@@ -524,9 +524,9 @@ def onboarding_form_submit(request):
             with transaction.atomic():
                 # Create or update CRM Contact with highest priority for onboarding
                 full_name = f"{form_data['first_name']} {form_data['last_name']}"
-                form_data[
-                    "name"
-                ] = full_name  # Add for compatibility with create_or_update_contact
+                form_data["name"] = (
+                    full_name  # Add for compatibility with create_or_update_contact
+                )
 
                 contact, created = create_or_update_contact(
                     email=form_data["email"],

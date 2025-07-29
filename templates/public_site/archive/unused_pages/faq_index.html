@@ -1,202 +1,201 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags static %}
-
 {% block title %}{{ page.title }} - Ethical Capital{% endblock %}
-
 {% block content %}
-<div class="garden-container">
-<!-- FAQ Articles Section -->
-<section class="articles-section">
-    <div class="articles-content">
-        <div class="articles-container">
-        <!-- FAQ Articles Content -->
-        <div class="articles-main" class="full-width-important">
-
-        <!-- Featured FAQ Section -->
-        {% with articles=page.get_articles %}
-            {% if articles %}
-                {% with featured_article=articles.0 %}
-                <section class="featured-faq-section">
-                    <div class="section-title-wrapper">
-                        <h2 class="section-title">FEATURED QUESTION</h2>
-                    </div>
-                    <div class="featured-faq-container">
-                        <article class="featured-faq-item">
-                            <div class="featured-faq-content">
-                                <div class="featured-badge-container">
-                                    <span class="featured-badge">FEATURED</span>
-                                </div>
-
-                                {% if featured_article.category %}
-                                    <div class="featured-faq-meta">
-                                        <div class="featured-tags">
-                                            <span class="featured-tag">{{ featured_article.get_category_display }}</span>
+    <div class="garden-container">
+        <!-- FAQ Articles Section -->
+        <section class="articles-section">
+            <div class="articles-content">
+                <div class="articles-container">
+                    <!-- FAQ Articles Content -->
+                    <div class="articles-main" class="full-width-important">
+                        <!-- Featured FAQ Section -->
+                        {% with articles=page.get_articles %}
+                            {% if articles %}
+                                {% with featured_article=articles.0 %}
+                                    <section class="featured-faq-section">
+                                        <div class="section-title-wrapper">
+                                            <h2 class="section-title">FEATURED QUESTION</h2>
                                         </div>
-                                    </div>
-                                {% endif %}
-
-                                <h2 class="featured-faq-title">
-                                    <a href="{{ featured_article.url_path }}">{{ featured_article.title }}</a>
-                                </h2>
-
-                                {% if featured_article.summary %}
-                                    <p class="featured-faq-excerpt">{{ featured_article.summary|truncatewords:40 }}</p>
-                                {% endif %}
-
-                                <div class="featured-faq-actions">
-                                    <a href="{{ featured_article.url_path }}" class="garden-action primary large">READ FULL ANSWER</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-                {% endwith %}
-            {% endif %}
-        {% endwith %}
-
-        <!-- All FAQ Articles Section -->
-        <section class="faq-section faq-all-articles" class="full-width-important">
-            <div class="section-title-wrapper">
-                <h2 class="section-title">ALL QUESTIONS</h2>
-                <p class="section-subtitle">Browse all frequently asked questions organized by topic.</p>
-            </div>
-            {% with articles=page.get_articles %}
-                {% if articles %}
-                    <div class="articles-list faq-all-list" class="full-width-important">
-                        {% for article in articles %}
-                            {% if not forloop.first %}
-                            <article class="article-list-item faq-item" data-article-id="{{ article.id }}" class="full-width-important">
-                                <div class="article-list-content" class="article-content-flex">
-                                    <div class="article-list-text" class="article-text-full">
-                                        {% if article.category %}
-                                            <div class="article-list-meta" class="full-width-important">
-                                                <div class="article-list-tags" class="full-width-important">
-                                                    <span class="article-list-tag">{{ article.get_category_display|default:"General" }}</span>
+                                        <div class="featured-faq-container">
+                                            <article class="featured-faq-item">
+                                                <div class="featured-faq-content">
+                                                    <div class="featured-badge-container">
+                                                        <span class="featured-badge">FEATURED</span>
+                                                    </div>
+                                                    {% if featured_article.category %}
+                                                        <div class="featured-faq-meta">
+                                                            <div class="featured-tags">
+                                                                <span class="featured-tag">{{ featured_article.get_category_display }}</span>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+                                                    <h2 class="featured-faq-title">
+                                                        <a href="{{ featured_article.url_path }}">{{ featured_article.title }}</a>
+                                                    </h2>
+                                                    {% if featured_article.summary %}
+                                                        <p class="featured-faq-excerpt">{{ featured_article.summary|truncatewords:40 }}</p>
+                                                    {% endif %}
+                                                    <div class="featured-faq-actions">
+                                                        <a href="{{ featured_article.url_path }}"
+                                                           class="garden-action primary large">READ FULL ANSWER</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        {% endif %}
-
-                                        <h2 class="article-list-title" class="full-width-important">
-                                            <a href="{{ article.url_path }}" class="block-full-important">{{ article.title }}</a>
-                                        </h2>
-
-                                        {% if article.summary %}
-                                            <p class="article-list-excerpt" class="full-width-important">{{ article.summary|truncatewords:25 }}</p>
-                                        {% endif %}
-
-                                        <div class="article-list-actions" class="full-width-important">
-                                            <a href="{{ article.url_path }}" class="garden-action secondary small">READ ANSWER</a>
+                                            </article>
+                                        </div>
+                                    </section>
+                                {% endwith %}
+                            {% endif %}
+                        {% endwith %}
+                        <!-- All FAQ Articles Section -->
+                        <section class="faq-section faq-all-articles" class="full-width-important">
+                            <div class="section-title-wrapper">
+                                <h2 class="section-title">ALL QUESTIONS</h2>
+                                <p class="section-subtitle">Browse all frequently asked questions organized by topic.</p>
+                            </div>
+                            {% with articles=page.get_articles %}
+                                {% if articles %}
+                                    <div class="articles-list faq-all-list" class="full-width-important">
+                                        {% for article in articles %}
+                                            {% if not forloop.first %}
+                                                <article class="article-list-item faq-item"
+                                                         data-article-id="{{ article.id }}"
+                                                         class="full-width-important">
+                                                    <div class="article-list-content" class="article-content-flex">
+                                                        <div class="article-list-text" class="article-text-full">
+                                                            {% if article.category %}
+                                                                <div class="article-list-meta" class="full-width-important">
+                                                                    <div class="article-list-tags" class="full-width-important">
+                                                                        <span class="article-list-tag">{{ article.get_category_display|default:"General" }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            {% endif %}
+                                                            <h2 class="article-list-title" class="full-width-important">
+                                                                <a href="{{ article.url_path }}" class="block-full-important">{{ article.title }}</a>
+                                                            </h2>
+                                                            {% if article.summary %}
+                                                                <p class="article-list-excerpt" class="full-width-important">{{ article.summary|truncatewords:25 }}</p>
+                                                            {% endif %}
+                                                            <div class="article-list-actions" class="full-width-important">
+                                                                <a href="{{ article.url_path }}" class="garden-action secondary small">READ ANSWER</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="no-articles">
+                                        <h3>NO FAQ ARTICLES YET</h3>
+                                        <p>
+                                            We're building our FAQ section. In the meantime, please don't hesitate to contact us directly with any questions.
+                                        </p>
+                                        <div class="no-articles-cta">
+                                            <a href="/contact/" class="garden-action primary">CONTACT US</a>
                                         </div>
                                     </div>
+                                {% endif %}
+                            {% endwith %}
+                        </section>
+                    </div>
+                    <!-- End articles-main -->
+                    <!-- Sidebar -->
+                    <aside class="blog-sticky-sidebar" aria-label="FAQ sidebar">
+                        <!-- Contact Section -->
+                        <div class="sidebar-section contact-section">
+                            <div class="garden-panel">
+                                <div class="garden-panel__header garden-panel-header">
+                                    <div class="panel-title">GET HELP</div>
                                 </div>
-                            </article>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    <div class="no-articles">
-                        <h3>NO FAQ ARTICLES YET</h3>
-                        <p>We're building our FAQ section. In the meantime, please don't hesitate to contact us directly with any questions.</p>
-                        <div class="no-articles-cta">
-                            <a href="/contact/" class="garden-action primary">CONTACT US</a>
+                                <div class="garden-panel__content garden-panel-content">
+                                    <p class="sidebar-description">Still have questions? We're here to provide personalized assistance.</p>
+                                    {% if page.contact_email %}
+                                        <div class="contact-method">
+                                            <a href="mailto:{{ page.contact_email }}"
+                                               class="garden-action secondary full-width">EMAIL US</a>
+                                        </div>
+                                    {% endif %}
+                                    {% if page.meeting_link %}
+                                        <div class="contact-method">
+                                            <a href="{{ page.meeting_link }}"
+                                               class="garden-action primary full-width"
+                                               target="_blank"
+                                               rel="noopener">SCHEDULE MEETING</a>
+                                        </div>
+                                    {% endif %}
+                                    {% if page.contact_phone %}
+                                        <div class="contact-method">
+                                            <a href="tel:{{ page.contact_phone }}"
+                                               class="garden-action secondary full-width">CALL US</a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                {% endif %}
-            {% endwith %}
+                        <!-- Resources Section -->
+                        <div class="sidebar-section resources-section">
+                            <div class="garden-panel">
+                                <div class="garden-panel__header garden-panel-header">
+                                    <div class="panel-title">RESOURCES</div>
+                                </div>
+                                <div class="garden-panel__content garden-panel-content">
+                                    <div class="resource-links">
+                                        <a href="/encyclopedia/"
+                                           class="resource-link"
+                                           aria-label="Browse our investing encyclopedia">
+                                            <div class="resource-link-content">
+                                                <div class="resource-icon-wrapper">
+                                                    <span class="resource-icon">📚</span>
+                                                </div>
+                                                <div class="resource-text-wrapper">
+                                                    <span class="resource-text">Encyclopedia</span>
+                                                    <span class="resource-subtext">Browse investing terms</span>
+                                                </div>
+                                                <span class="resource-arrow">→</span>
+                                            </div>
+                                        </a>
+                                        <a href="/blog/"
+                                           class="resource-link"
+                                           aria-label="Read our latest insights">
+                                            <div class="resource-link-content">
+                                                <div class="resource-icon-wrapper">
+                                                    <span class="resource-icon">📖</span>
+                                                </div>
+                                                <div class="resource-text-wrapper">
+                                                    <span class="resource-text">Blog</span>
+                                                    <span class="resource-subtext">Latest insights</span>
+                                                </div>
+                                                <span class="resource-arrow">→</span>
+                                            </div>
+                                        </a>
+                                        <a href="/media/" class="resource-link" aria-label="View media coverage">
+                                            <div class="resource-link-content">
+                                                <div class="resource-icon-wrapper">
+                                                    <span class="resource-icon">📺</span>
+                                                </div>
+                                                <div class="resource-text-wrapper">
+                                                    <span class="resource-text">Media</span>
+                                                    <span class="resource-subtext">Press coverage</span>
+                                                </div>
+                                                <span class="resource-arrow">→</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
         </section>
-        </div> <!-- End articles-main -->
-
-        <!-- Sidebar -->
-        <aside class="blog-sticky-sidebar" aria-label="FAQ sidebar">
-            <!-- Contact Section -->
-            <div class="sidebar-section contact-section">
-                <div class="garden-panel">
-                    <div class="garden-panel__header garden-panel-header">
-                        <div class="panel-title">GET HELP</div>
-                    </div>
-                    <div class="garden-panel__content garden-panel-content">
-                        <p class="sidebar-description">Still have questions? We're here to provide personalized assistance.</p>
-
-                        {% if page.contact_email %}
-                            <div class="contact-method">
-                                <a href="mailto:{{ page.contact_email }}" class="garden-action secondary full-width">EMAIL US</a>
-                            </div>
-                        {% endif %}
-
-                        {% if page.meeting_link %}
-                            <div class="contact-method">
-                                <a href="{{ page.meeting_link }}" class="garden-action primary full-width" target="_blank" rel="noopener">SCHEDULE MEETING</a>
-                            </div>
-                        {% endif %}
-
-                        {% if page.contact_phone %}
-                            <div class="contact-method">
-                                <a href="tel:{{ page.contact_phone }}" class="garden-action secondary full-width">CALL US</a>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-
-            <!-- Resources Section -->
-            <div class="sidebar-section resources-section">
-                <div class="garden-panel">
-                    <div class="garden-panel__header garden-panel-header">
-                        <div class="panel-title">RESOURCES</div>
-                    </div>
-                    <div class="garden-panel__content garden-panel-content">
-                        <div class="resource-links">
-                            <a href="/encyclopedia/" class="resource-link" aria-label="Browse our investing encyclopedia">
-                                <div class="resource-link-content">
-                                    <div class="resource-icon-wrapper">
-                                        <span class="resource-icon">📚</span>
-                                    </div>
-                                    <div class="resource-text-wrapper">
-                                        <span class="resource-text">Encyclopedia</span>
-                                        <span class="resource-subtext">Browse investing terms</span>
-                                    </div>
-                                    <span class="resource-arrow">→</span>
-                                </div>
-                            </a>
-                            <a href="/blog/" class="resource-link" aria-label="Read our latest insights">
-                                <div class="resource-link-content">
-                                    <div class="resource-icon-wrapper">
-                                        <span class="resource-icon">📖</span>
-                                    </div>
-                                    <div class="resource-text-wrapper">
-                                        <span class="resource-text">Blog</span>
-                                        <span class="resource-subtext">Latest insights</span>
-                                    </div>
-                                    <span class="resource-arrow">→</span>
-                                </div>
-                            </a>
-                            <a href="/media/" class="resource-link" aria-label="View media coverage">
-                                <div class="resource-link-content">
-                                    <div class="resource-icon-wrapper">
-                                        <span class="resource-icon">📺</span>
-                                    </div>
-                                    <div class="resource-text-wrapper">
-                                        <span class="resource-text">Media</span>
-                                        <span class="resource-subtext">Press coverage</span>
-                                    </div>
-                                    <span class="resource-arrow">→</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        </div>
     </div>
-</section>
-</div>
 {% endblock %}
-
 {% block extra_css %}
-<!-- Unified blog styles - works for FAQ too -->
-<link rel="stylesheet" href="{% static 'css/blog-consistency-consolidated.css' %}?v=1">
-<style>
+    <!-- Unified blog styles - works for FAQ too -->
+    <link rel="stylesheet"
+          href="{% static 'css/blog-consistency-consolidated.css' %}?v=1">
+    <style>
 /* FAQ-specific styling additions */
 .faq-section {
     margin-bottom: var(--space-12);
@@ -337,11 +336,10 @@
 .resource-link:active .resource-link-content {
     transform: scale(0.98);
 }
-</style>
+    </style>
 {% endblock %}
-
 {% block extra_js %}
-<script>
+    <script>
 // FAQ Layout Management - Same comprehensive system as blog
 document.addEventListener('DOMContentLoaded', function() {
     // Comprehensive layout refresh that matches template inline styles
@@ -569,5 +567,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('✅ FAQ layout management system initialized');
 });
-</script>
+    </script>
 {% endblock %}

@@ -1,6 +1,7 @@
 """
 Management command to find specific references in content
 """
+
 from django.core.management.base import BaseCommand
 from wagtail.models import Page
 

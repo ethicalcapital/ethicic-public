@@ -1,109 +1,104 @@
-{% extends "public_site/base_tailwind.html" %} {% block title %}{{ page.hero_title }} | Ethical Capital{% endblock %} {%
-block body_class %}guide-page{% endblock %} {% block content %}
-<div class="garden-container">
-  <main class="guide-page">
-    <!-- Hero Section -->
-    <section class="hero garden-panel" role="banner">
-      <div class="panel-content hero-content">
-        <h1 class="hero-title">{{ page.hero_title }}</h1>
-        <p class="hero-subtitle">{{ page.hero_subtitle }}</p>
-      </div>
-    </section>
-
-    <!-- Main Content -->
-    <div class="main-content">
-      {% if page.guide_description %}
-      <section class="description garden-panel">
-        <div class="panel-header">{{ page.description_section_header }}</div>
-        <div class="panel-content">{{ page.guide_description|safe }}</div>
-      </section>
-      {% endif %}
-
-      <!-- Download Section -->
-      <section class="download-section garden-panel">
-        <div class="panel-header">{{ page.download_section_header }}</div>
-        <div class="panel-content">
-          {% if page.guide_document %}
-          <div class="download-option">
-            <div class="download-info">
-              <h3>{{ page.guide_document.title }}</h3>
-              <p>File size: {{ page.guide_document.file_size|filesizeformat }}</p>
-              <p>Format: {{ page.guide_document.file_extension|upper }}</p>
+{% extends "public_site/base_tailwind.html" %}
+{% block title %}{{ page.hero_title }} | Ethical Capital{% endblock %}
+{%
+block body_class %}guide-page
+{% endblock %}
+{% block content %}
+    <div class="garden-container">
+        <main class="guide-page">
+            <!-- Hero Section -->
+            <section class="hero garden-panel" role="banner">
+                <div class="panel-content hero-content">
+                    <h1 class="hero-title">{{ page.hero_title }}</h1>
+                    <p class="hero-subtitle">{{ page.hero_subtitle }}</p>
+                </div>
+            </section>
+            <!-- Main Content -->
+            <div class="main-content">
+                {% if page.guide_description %}
+                    <section class="description garden-panel">
+                        <div class="panel-header">{{ page.description_section_header }}</div>
+                        <div class="panel-content">{{ page.guide_description|safe }}</div>
+                    </section>
+                {% endif %}
+                <!-- Download Section -->
+                <section class="download-section garden-panel">
+                    <div class="panel-header">{{ page.download_section_header }}</div>
+                    <div class="panel-content">
+                        {% if page.guide_document %}
+                            <div class="download-option">
+                                <div class="download-info">
+                                    <h3>{{ page.guide_document.title }}</h3>
+                                    <p>File size: {{ page.guide_document.file_size|filesizeformat }}</p>
+                                    <p>Format: {{ page.guide_document.file_extension|upper }}</p>
+                                </div>
+                                <a href="{{ page.guide_document.url }}"
+                                   class="garden-action primary download- garden-action"
+                                   download="{{ page.guide_document.filename }}">Download PDF Guide</a>
+                            </div>
+                        {% elif page.external_guide_url %}
+                            <div class="download-option">
+                                <div class="download-info">
+                                    <h3>Investment Guide</h3>
+                                    <p>Access our comprehensive guide to ethical investing principles and strategies.</p>
+                                </div>
+                                <a href="{{ page.external_guide_url }}"
+                                   class="garden-action primary download- garden-action"
+                                   target="_blank"
+                                   rel="noopener">View Guide</a>
+                            </div>
+                        {% else %}
+                            <div class="coming-soon">
+                                <h3>Guide Coming Soon</h3>
+                                <p>
+                                    We're currently preparing a comprehensive investment guide. In the meantime, you can learn about our
+                                    approach on our
+                                    <a href="/process/">process page</a>
+                                    or
+                                    <a href="/contact/">contact us</a>
+                                    with any questions.
+                                </p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </section>
+                <!-- Additional Resources -->
+                <section class="resources garden-panel">
+                    <div class="panel-header">{{ page.resources_section_header }}</div>
+                    <div class="panel-content">
+                        <div class="resource-grid">
+                            {% for resource in page.resources %}
+                                <div class="resource-item">
+                                    <h4>{{ resource.value.title }}</h4>
+                                    <p>{{ resource.value.description }}</p>
+                                    <a href="{{ resource.value.button_url }}"
+                                       class="garden-action secondary">{{ resource.value.button_text }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+                <!-- Newsletter Signup -->
+                <section class="newsletter garden-panel">
+                    <div class="panel-header">{{ page.newsletter_section_header }}</div>
+                    <div class="panel-content">
+                        <div class="newsletter-signup">
+                            {{ page.newsletter_description|safe }}
+                            <form action="/newsletter/subscribe/" method="post" class="newsletter-form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="email"
+                                           name="email"
+                                           placeholder="Enter your email address"
+                                           required
+                                           class="email-input" />
+                                    <button type="submit" class="garden-action primary">Subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <a
-              href="{{ page.guide_document.url }}"
-              class="garden-action primary download- garden-action"
-              download="{{ page.guide_document.filename }}"
-            >
-              Download PDF Guide
-            </a>
-          </div>
-          {% elif page.external_guide_url %}
-          <div class="download-option">
-            <div class="download-info">
-              <h3>Investment Guide</h3>
-              <p>Access our comprehensive guide to ethical investing principles and strategies.</p>
-            </div>
-            <a
-              href="{{ page.external_guide_url }}"
-              class="garden-action primary download- garden-action"
-              target="_blank"
-              rel="noopener"
-            >
-              View Guide
-            </a>
-          </div>
-          {% else %}
-          <div class="coming-soon">
-            <h3>Guide Coming Soon</h3>
-            <p>
-              We're currently preparing a comprehensive investment guide. In the meantime, you can learn about our
-              approach on our
-              <a href="/process/">process page</a>
-              or
-              <a href="/contact/">contact us</a>
-              with any questions.
-            </p>
-          </div>
-          {% endif %}
-        </div>
-      </section>
-
-      <!-- Additional Resources -->
-      <section class="resources garden-panel">
-        <div class="panel-header">{{ page.resources_section_header }}</div>
-        <div class="panel-content">
-          <div class="resource-grid">
-            {% for resource in page.resources %}
-            <div class="resource-item">
-              <h4>{{ resource.value.title }}</h4>
-              <p>{{ resource.value.description }}</p>
-              <a href="{{ resource.value.button_url }}" class="garden-action secondary">
-                {{ resource.value.button_text }}
-              </a>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-      </section>
-
-      <!-- Newsletter Signup -->
-      <section class="newsletter garden-panel">
-        <div class="panel-header">{{ page.newsletter_section_header }}</div>
-        <div class="panel-content">
-          <div class="newsletter-signup">
-            {{ page.newsletter_description|safe }}
-            <form action="/newsletter/subscribe/" method="post" class="newsletter-form">
-              {% csrf_token %}
-              <div class="form-group">
-                <input type="email" name="email" placeholder="Enter your email address" required class="email-input" />
-                <button type="submit" class="garden-action primary">Subscribe</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
+        </main>
     </div>
-  </main>
-</div>
 {% endblock %}

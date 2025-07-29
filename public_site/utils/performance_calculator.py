@@ -2,6 +2,7 @@
 Performance calculation utilities for strategy pages.
 Handles compound return calculations from monthly data.
 """
+
 from datetime import UTC, date, datetime
 
 

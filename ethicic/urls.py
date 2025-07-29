@@ -100,7 +100,7 @@ def health_check(request):
             media_root = getattr(settings, "MEDIA_ROOT", "/var/lib/data")
             files = []
             if os.path.exists(media_root):
-                for root, dirs, filenames in os.walk(media_root):
+                for root, _dirs, filenames in os.walk(media_root):
                     for filename in filenames:
                         full_path = os.path.join(root, filename)
                         rel_path = os.path.relpath(full_path, media_root)

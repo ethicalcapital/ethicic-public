@@ -1,21 +1,21 @@
 <div class="alert alert-success" role="alert">
-  <div class="alert-icon">✓</div>
-  <div class="alert-content">
-    <h3 class="alert-title">Message Sent Successfully!</h3>
-    {% load wagtailsettings_tags %} {% get_settings "public_site.SiteConfiguration" as site_config %}
-    <p>
-      {{ message|default:site_config.contact_success_message|default:"Thank you for your message! We will get back to
-      you within 24 hours." }}
-    </p>
-    {% if ticket_id %}
-    <p class="ticket-info">
-      Your reference number is:
-      <strong>#{{ ticket_id }}</strong>
-    </p>
-    {% endif %}
-  </div>
+    <div class="alert-icon">✓</div>
+    <div class="alert-content">
+        <h3 class="alert-title">Message Sent Successfully!</h3>
+        {% load wagtailsettings_tags %}
+        {% get_settings "public_site.SiteConfiguration" as site_config %}
+        <p>
+            {{ message|default:site_config.contact_success_message|default:"Thank you for your message! We will get back to
+            you within 24 hours." }}
+        </p>
+        {% if ticket_id %}
+            <p class="ticket-info">
+                Your reference number is:
+                <strong>#{{ ticket_id }}</strong>
+            </p>
+        {% endif %}
+    </div>
 </div>
-
 <style>
   .alert {
     padding: 1.5rem;

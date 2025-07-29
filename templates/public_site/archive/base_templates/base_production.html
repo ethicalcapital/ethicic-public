@@ -1,59 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="{{ current_theme|default:'light' }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{ page_title|default:"Ethical Capital" }}{% endblock %}</title>
-
-    {% load static wagtailsettings_tags menu_tags %}
-    {% get_settings "public_site.SiteConfiguration" as site_config %}
-
-    <!-- Optimized font loading strategy -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-
-    <!-- Core CSS in optimized loading order -->
-    <link rel="stylesheet" href="{% static 'css/garden-ui-theme.css' %}?v={{ BUILD_VERSION|default:'2' }}">
-    <link rel="stylesheet" href="{% static 'css/core-styles.css' %}?v={{ BUILD_VERSION|default:'2' }}">
-    <link rel="stylesheet" href="{% static 'css/mobile-consolidated.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/header-layout-layers.css' %}?v=1">
-    <link rel="stylesheet" href="{% static 'css/cta-tiffany-blue.css' %}?v=2">
-
-    <!-- Meta tags for SEO and social sharing -->
-    <meta name="description" content="{% block meta_description %}{{ page.search_description|default:site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% endblock %}">
-    <meta name="keywords" content="{% block meta_keywords %}{{ site_config.meta_keywords|default:'ethical investing, sustainable investing, ESG investing, socially responsible investing, investment advisory' }}{% endblock %}">
-
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="{% block og_title %}{{ page.seo_title|default:page.title|default:'Ethical Capital' }}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{{ page.search_description|default:site_config.meta_description }}{% endblock %}">
-    <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
-    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{% static 'images/og-default.svg' %}{% endblock %}">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
-
-    <!-- CSRF Token for JavaScript -->
-    {% csrf_token %}
-    <meta name="csrf-token" content="{{ csrf_token }}">
-
-    <!-- HTMX for server-driven interactivity -->
-    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
-
-    <!-- Alpine.js for lightweight client-side reactivity -->
-    <script defer src="https://unpkg.com/alpinejs@3.13.7/dist/cdn.min.js"></script>
-
-    <!-- WCAG AA Accessibility Enhancements for HTMX -->
-    <script src="{% static 'js/accessibility-htmx.js' %}?v=1"></script>
-
-    <!-- WCAG AA Focus Trapping for Modals and Overlays -->
-    <script src="{% static 'js/accessibility-focus-trap.js' %}?v=1"></script>
-
-    {% block extra_css %}{% endblock %}
-
-    <!-- Temporary inline styles to force new color scheme -->
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}{{ page_title|default:"Ethical Capital" }}{% endblock %}
+        </title>
+        {% load static wagtailsettings_tags menu_tags %}
+        {% get_settings "public_site.SiteConfiguration" as site_config %}
+        <!-- Optimized font loading strategy -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+              rel="stylesheet">
+        <!-- Core CSS in optimized loading order -->
+        <link rel="stylesheet"
+              href="{% static 'css/garden-ui-theme.css' %}?v={{ BUILD_VERSION|default:'2' }}">
+        <link rel="stylesheet"
+              href="{% static 'css/core-styles.css' %}?v={{ BUILD_VERSION|default:'2' }}">
+        <link rel="stylesheet"
+              href="{% static 'css/mobile-consolidated.css' %}?v=1">
+        <link rel="stylesheet"
+              href="{% static 'css/header-layout-layers.css' %}?v=1">
+        <link rel="stylesheet" href="{% static 'css/cta-tiffany-blue.css' %}?v=2">
+        <!-- Meta tags for SEO and social sharing -->
+        <meta name="description"
+              content="{% block meta_description %}{{ page.search_description|default:site_config.meta_description|default:'Ethical Capital provides socially responsible investment advisory services with a focus on sustainable and ethical investing.' }}{% endblock %}">
+        <meta name="keywords"
+              content="{% block meta_keywords %}{{ site_config.meta_keywords|default:'ethical investing, sustainable investing, ESG investing, socially responsible investing, investment advisory' }}{% endblock %}">
+        <!-- Open Graph tags -->
+        <meta property="og:title"
+              content="{% block og_title %}{{ page.seo_title|default:page.title|default:'Ethical Capital' }}{% endblock %}">
+        <meta property="og:description"
+              content="{% block og_description %}{{ page.search_description|default:site_config.meta_description }}{% endblock %}">
+        <meta property="og:url"
+              content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
+        <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+        <meta property="og:image"
+              content="{% block og_image %}{% static 'images/og-default.svg' %}{% endblock %}">
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+        <!-- CSRF Token for JavaScript -->
+        {% csrf_token %}
+        <meta name="csrf-token" content="{{ csrf_token }}">
+        <!-- HTMX for server-driven interactivity -->
+        <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+        <!-- Alpine.js for lightweight client-side reactivity -->
+        <script defer src="https://unpkg.com/alpinejs@3.13.7/dist/cdn.min.js"></script>
+        <!-- WCAG AA Accessibility Enhancements for HTMX -->
+        <script src="{% static 'js/accessibility-htmx.js' %}?v=1"></script>
+        <!-- WCAG AA Focus Trapping for Modals and Overlays -->
+        <script src="{% static 'js/accessibility-focus-trap.js' %}?v=1"></script>
+        {% block extra_css %}{% endblock %}
+        <!-- Temporary inline styles to force new color scheme -->
+        <style>
         /* Lavender Blush background for light mode */
         [data-theme="light"] body,
         [data-theme="light"] .main-content,
@@ -147,241 +147,268 @@
             color: #111 !important;
             border: 2px solid #7bcdba !important;
         }
-    </style>
-</head>
-
-<body class="public-site-context {% block body_class %}{% endblock %}">
-    <!-- Skip navigation links for screen readers -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <a href="#main-navigation" class="skip-link">Skip to navigation</a>
-
-    <!-- ARIA live regions for announcements -->
-    <div aria-live="polite" aria-atomic="true" class="sr-announcements" id="announcements"></div>
-    <div aria-live="assertive" aria-atomic="true" class="sr-only" id="urgent-announcements"></div>
-
-    <!-- Clean Navigation Header -->
-    <header class="garden-header" role="banner" x-data="{ mobileMenuOpen: false }">
-        <div class="garden-header-content">
-            <div class="garden-nav-left">
-                <a href="/" class="garden-brand" aria-label="Ethical Capital Home">
-                    {{ site_config.company_name|default:"ETHICAL CAPITAL" }}
-                </a>
-
-                <!-- Mobile menu toggle -->
-                <button class="mobile-menu-toggle"
-                        @click="mobileMenuOpen = true"
-                        aria-label="Open navigation menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <!-- Desktop navigation -->
-                <nav class="desktop-nav" id="main-navigation">
-                    {% main_menu max_levels=1 template="wagtailmenus/main_menu.html" %}
-                </nav>
-            </div>
-
-            <!-- Right: Search + User Actions + Theme Toggle -->
-            <div class="garden-nav-right">
-                <!-- Search -->
-                <div class="garden-search-container" x-data="{ searchOpen: false, query: '', searching: false }"
-                     @htmx:before-request="searching = true"
-                     @htmx:after-request="searching = false">
-                    <form method="get" action="/search/" class="garden-search" role="search" id="search">
-                        <label for="search-input" class="sr-only">Search</label>
-                        <input type="text"
-                               id="search-input"
-                               name="q"
-                               placeholder="Search..."
-                               class="garden-search-input"
-                               aria-label="Search"
-                               autocomplete="off"
-                               x-model="query"
-                               @focus="searchOpen = true"
-                               hx-get="/search/live/"
-                               hx-trigger="keyup changed delay:300ms"
-                               hx-target="#search-results">
-                        <button type="submit"
-                                class="garden-search-btn"
-                                aria-label="Search">
-                            <span aria-hidden="true" x-show="searching" x-cloak>⟳</span>
-                            <span aria-hidden="true" x-show="!searching">🔍</span>
-                        </button>
-                    </form>
-
-                    <!-- Search results dropdown -->
-                    <div id="search-results"
-                         class="garden-search-results"
-                         x-show="searchOpen && query.length > 0"
-                         @click.outside="searchOpen = false"
-                         x-transition
-                         x-cloak>
-                        <!-- Results populated by HTMX -->
-                    </div>
+        </style>
+    </head>
+    <body class="public-site-context {% block body_class %}{% endblock %}">
+        <!-- Skip navigation links for screen readers -->
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <a href="#main-navigation" class="skip-link">Skip to navigation</a>
+        <!-- ARIA live regions for announcements -->
+        <div aria-live="polite"
+             aria-atomic="true"
+             class="sr-announcements"
+             id="announcements"></div>
+        <div aria-live="assertive"
+             aria-atomic="true"
+             class="sr-only"
+             id="urgent-announcements"></div>
+        <!-- Clean Navigation Header -->
+        <header class="garden-header"
+                role="banner"
+                x-data="{ mobileMenuOpen: false }">
+            <div class="garden-header-content">
+                <div class="garden-nav-left">
+                    <a href="/" class="garden-brand" aria-label="Ethical Capital Home">
+                        {{ site_config.company_name|default:"ETHICAL CAPITAL" }}
+                    </a>
+                    <!-- Mobile menu toggle -->
+                    <button class="mobile-menu-toggle"
+                            @click="mobileMenuOpen = true"
+                            aria-label="Open navigation menu">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </button>
+                    <!-- Desktop navigation -->
+                    <nav class="desktop-nav" id="main-navigation">
+                        {% main_menu max_levels=1 template="wagtailmenus/main_menu.html" %}
+                    </nav>
                 </div>
-
-                <!-- User Actions -->
-                <div class="garden-nav-actions">
-                    <!-- Login Dropdown -->
-                    <div class="garden-login-container" x-data="{ open: false }">
-                        <button class="garden-login-btn"
-                                @click="open = !open"
-                                @click.outside="open = false"
-                                aria-label="Login options">
-                            <span>Login</span>
-                            <span class="garden-dropdown-arrow">▼</span>
-                        </button>
-
-                        <div class="garden-login-dropdown"
-                             x-show="open"
+                <!-- Right: Search + User Actions + Theme Toggle -->
+                <div class="garden-nav-right">
+                    <!-- Search -->
+                    <div class="garden-search-container"
+                         x-data="{ searchOpen: false, query: '', searching: false }"
+                         @htmx:before-request="searching = true"
+                         @htmx:after-request="searching = false">
+                        <form method="get"
+                              action="/search/"
+                              class="garden-search"
+                              role="search"
+                              id="search">
+                            <label for="search-input" class="sr-only">Search</label>
+                            <input type="text"
+                                   id="search-input"
+                                   name="q"
+                                   placeholder="Search..."
+                                   class="garden-search-input"
+                                   aria-label="Search"
+                                   autocomplete="off"
+                                   x-model="query"
+                                   @focus="searchOpen = true"
+                                   hx-get="/search/live/"
+                                   hx-trigger="keyup changed delay:300ms"
+                                   hx-target="#search-results">
+                            <button type="submit" class="garden-search-btn" aria-label="Search">
+                                <span aria-hidden="true" x-show="searching" x-cloak>⟳</span>
+                                <span aria-hidden="true" x-show="!searching">🔍</span>
+                            </button>
+                        </form>
+                        <!-- Search results dropdown -->
+                        <div id="search-results"
+                             class="garden-search-results"
+                             x-show="searchOpen && query.length > 0"
+                             @click.outside="searchOpen = false"
                              x-transition
-                             @click="open = false"
                              x-cloak>
-                            <a href="/garden/" class="garden-login-item">
-                                <span class="login-icon">🌱</span>
-                                <div>
-                                    <div class="login-title">Garden Login</div>
-                                    <div class="login-desc">Research platform access</div>
-                                </div>
-                            </a>
-                            <a href="https://app.altruist.com/login" class="garden-login-item" target="_blank" rel="noopener">
-                                <span class="login-icon">👤</span>
-                                <div>
-                                    <div class="login-title">Client Login</div>
-                                    <div class="login-desc">Portfolio access via Altruist</div>
-                                </div>
-                            </a>
+                            <!-- Results populated by HTMX -->
                         </div>
                     </div>
-
-                    <!-- CTA Button -->
-                    <a href="/onboarding/" class="garden-action primary" aria-label="Get started with Ethical Capital">
-                        Get Started
-                    </a>
-
-                    <!-- Theme Toggle -->
-                    <button class="garden-theme-toggle"
-                            x-data="{
-                                isDark: localStorage.getItem('theme') === 'dark',
-                                toggle() {
-                                    this.isDark = !this.isDark;
-                                    const theme = this.isDark ? 'dark' : 'light';
-                                    document.documentElement.setAttribute('data-theme', theme);
-                                    localStorage.setItem('theme', theme);
-                                }
-                            }"
-                            @click="toggle()"
-                            aria-label="Toggle light/dark theme">
-                        <span x-text="isDark ? '🌙' : '☀️'"></span>
-                    </button>
+                    <!-- User Actions -->
+                    <div class="garden-nav-actions">
+                        <!-- Login Dropdown -->
+                        <div class="garden-login-container" x-data="{ open: false }">
+                            <button class="garden-login-btn"
+                                    @click="open = !open"
+                                    @click.outside="open = false"
+                                    aria-label="Login options">
+                                <span>Login</span>
+                                <span class="garden-dropdown-arrow">▼</span>
+                            </button>
+                            <div class="garden-login-dropdown"
+                                 x-show="open"
+                                 x-transition
+                                 @click="open = false"
+                                 x-cloak>
+                                <a href="/garden/" class="garden-login-item">
+                                    <span class="login-icon">🌱</span>
+                                    <div>
+                                        <div class="login-title">Garden Login</div>
+                                        <div class="login-desc">Research platform access</div>
+                                    </div>
+                                </a>
+                                <a href="https://app.altruist.com/login"
+                                   class="garden-login-item"
+                                   target="_blank"
+                                   rel="noopener">
+                                    <span class="login-icon">👤</span>
+                                    <div>
+                                        <div class="login-title">Client Login</div>
+                                        <div class="login-desc">Portfolio access via Altruist</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- CTA Button -->
+                        <a href="/onboarding/"
+                           class="garden-action primary"
+                           aria-label="Get started with Ethical Capital">Get Started</a>
+                        <!-- Theme Toggle -->
+                        <button class="garden-theme-toggle"
+                                x-data="{ isDark: localStorage.getItem('theme') === 'dark', toggle() { this.isDark = !this.isDark; const theme = this.isDark ? 'dark' : 'light'; document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); } }"
+                                @click="toggle()"
+                                aria-label="Toggle light/dark theme">
+                            <span x-text="isDark ? '🌙' : '☀️'"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Mobile navigation overlay -->
-        <nav class="mobile-nav" :class="{ 'open': mobileMenuOpen }" x-show="mobileMenuOpen" x-transition>
-            <button class="mobile-nav-close" @click="mobileMenuOpen = false" aria-label="Close navigation menu">
-                ×
-            </button>
-
-            {% main_menu max_levels=1 template="wagtailmenus/mobile_menu.html" %}
-
-            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
-                <a href="/garden/" class="mobile-nav-item" @click="mobileMenuOpen = false">Garden Login</a>
-                <a href="https://app.altruist.com/login" class="mobile-nav-item" @click="mobileMenuOpen = false">Client Login</a>
-                <a href="/onboarding/" class="mobile-nav-item mobile-nav-cta" @click="mobileMenuOpen = false">Get Started</a>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main content area -->
-    <main id="main-content" class="main-content">
-        <!-- Breadcrumbs -->
-        {% block breadcrumbs %}
-            {% if page and page.get_ancestors|length > 1 %}
-                <nav aria-label="Breadcrumb" class="breadcrumb-nav">
-                    <a href="/" class="breadcrumb-link">Home</a>
-                    {% for ancestor in page.get_ancestors|slice:"1:" %}
-                        <span class="breadcrumb-separator">▶</span>
-                        <a href="{{ ancestor.url }}" class="breadcrumb-link">{{ ancestor.title }}</a>
-                    {% endfor %}
-                    {% if page.title %}
-                        <span class="breadcrumb-separator">▶</span>
-                        <span class="breadcrumb-current">{{ page.title }}</span>
-                    {% endif %}
-                </nav>
+            <!-- Mobile navigation overlay -->
+            <nav class="mobile-nav"
+                 :class="{ 'open': mobileMenuOpen }"
+                 x-show="mobileMenuOpen"
+                 x-transition>
+                <button class="mobile-nav-close"
+                        @click="mobileMenuOpen = false"
+                        aria-label="Close navigation menu">×</button>
+                {% main_menu max_levels=1 template="wagtailmenus/mobile_menu.html" %}
+                <div style="margin-top: 2rem;
+                            padding-top: 2rem;
+                            border-top: 1px solid var(--color-border)">
+                    <a href="/garden/"
+                       class="mobile-nav-item"
+                       @click="mobileMenuOpen = false">Garden Login</a>
+                    <a href="https://app.altruist.com/login"
+                       class="mobile-nav-item"
+                       @click="mobileMenuOpen = false">Client Login</a>
+                    <a href="/onboarding/"
+                       class="mobile-nav-item mobile-nav-cta"
+                       @click="mobileMenuOpen = false">Get Started</a>
+                </div>
+            </nav>
+        </header>
+        <!-- Main content area -->
+        <main id="main-content" class="main-content">
+            <!-- Breadcrumbs -->
+            {% block breadcrumbs %}
+                {% if page and page.get_ancestors|length > 1 %}
+                    <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        {% for ancestor in page.get_ancestors|slice:"1:" %}
+                            <span class="breadcrumb-separator">▶</span>
+                            <a href="{{ ancestor.url }}" class="breadcrumb-link">{{ ancestor.title }}</a>
+                        {% endfor %}
+                        {% if page.title %}
+                            <span class="breadcrumb-separator">▶</span>
+                            <span class="breadcrumb-current">{{ page.title }}</span>
+                        {% endif %}
+                    </nav>
+                {% endif %}
+            {% endblock %}
+            <!-- Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message-banner {{ message.tags }}" role="alert">{{ message }}</div>
+                {% endfor %}
             {% endif %}
-        {% endblock %}
-
-        <!-- Messages -->
-        {% if messages %}
-            {% for message in messages %}
-                <div class="message-banner {{ message.tags }}" role="alert">
-                    {{ message }}
+            {% block content %}{% endblock %}
+        </main>
+        <!-- Footer -->
+        <footer class="garden-footer" role="contentinfo">
+            <div class="garden-footer-content">
+                <div class="garden-footer-grid">
+                    <div class="garden-footer-section">
+                        <h3>Company</h3>
+                        <ul class="garden-footer-links">
+                            <li>
+                                <a href="/about/" class="garden-footer-link">About</a>
+                            </li>
+                            <li>
+                                <a href="/media/" class="garden-footer-link">Media</a>
+                            </li>
+                            <li>
+                                <a href="/disclosures/" class="garden-footer-link">Disclosures</a>
+                            </li>
+                            <li>
+                                <a href="/accessibility/" class="garden-footer-link">Accessibility</a>
+                            </li>
+                            <li>
+                                <a href="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf"
+                                   class="garden-footer-link">Form ADV</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="garden-footer-section">
+                        <h3>Resources</h3>
+                        <ul class="garden-footer-links">
+                            <li>
+                                <a href="/blog/" class="garden-footer-link">Blog</a>
+                            </li>
+                            <li>
+                                <a href="/encyclopedia/" class="garden-footer-link">Encyclopedia</a>
+                            </li>
+                            <li>
+                                <a href="/faq/" class="garden-footer-link">FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="garden-footer-section">
+                        <h3>Investing</h3>
+                        <ul class="garden-footer-links">
+                            <li>
+                                <a href="/solutions/" class="garden-footer-link">Solutions</a>
+                            </li>
+                            <li>
+                                <a href="/pricing/" class="garden-footer-link">Pricing</a>
+                            </li>
+                            <li>
+                                <a href="/process/" class="garden-footer-link">Process</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="garden-footer-section">
+                        <h3>Connect</h3>
+                        <ul class="garden-footer-links">
+                            <li>
+                                <a href="/contact/" class="garden-footer-link">Contact</a>
+                            </li>
+                            <li>
+                                <a href="/newsletter/" class="garden-footer-link">Newsletter</a>
+                            </li>
+                            <li>
+                                <a href="/blog/" class="garden-footer-link">Blog</a>
+                            </li>
+                            <li>
+                                <a href="https://linkedin.com/company/ecic" class="garden-footer-link">LinkedIn</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            {% endfor %}
-        {% endif %}
-
-        {% block content %}{% endblock %}
-    </main>
-
-    <!-- Footer -->
-    <footer class="garden-footer" role="contentinfo">
-        <div class="garden-footer-content">
-            <div class="garden-footer-grid">
-                <div class="garden-footer-section">
-                    <h3>Company</h3>
-                    <ul class="garden-footer-links">
-                        <li><a href="/about/" class="garden-footer-link">About</a></li>
-                        <li><a href="/media/" class="garden-footer-link">Media</a></li>
-                        <li><a href="/disclosures/" class="garden-footer-link">Disclosures</a></li>
-                        <li><a href="/accessibility/" class="garden-footer-link">Accessibility</a></li>
-                        <li><a href="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf" class="garden-footer-link">Form ADV</a></li>
-                    </ul>
-                </div>
-
-                <div class="garden-footer-section">
-                    <h3>Resources</h3>
-                    <ul class="garden-footer-links">
-                        <li><a href="/blog/" class="garden-footer-link">Blog</a></li>
-                        <li><a href="/encyclopedia/" class="garden-footer-link">Encyclopedia</a></li>
-                        <li><a href="/faq/" class="garden-footer-link">FAQ</a></li>
-                    </ul>
-                </div>
-
-                <div class="garden-footer-section">
-                    <h3>Investing</h3>
-                    <ul class="garden-footer-links">
-                        <li><a href="/solutions/" class="garden-footer-link">Solutions</a></li>
-                        <li><a href="/pricing/" class="garden-footer-link">Pricing</a></li>
-                        <li><a href="/process/" class="garden-footer-link">Process</a></li>
-                    </ul>
-                </div>
-
-                <div class="garden-footer-section">
-                    <h3>Connect</h3>
-                    <ul class="garden-footer-links">
-                        <li><a href="/contact/" class="garden-footer-link">Contact</a></li>
-                        <li><a href="/newsletter/" class="garden-footer-link">Newsletter</a></li>
-                        <li><a href="/blog/" class="garden-footer-link">Blog</a></li>
-                        <li><a href="https://linkedin.com/company/ecic" class="garden-footer-link">LinkedIn</a></li>
-                    </ul>
+                <div class="garden-footer-bottom">
+                    <div class="garden-footer-legal">
+                        <p>© {{ current_year|default:"2025" }} Ethical Capital Investment Collaborative. All rights reserved.</p>
+                        <p>
+                            Investment advisory services offered through Ethical Capital Investment Management LLC, a Registered Investment Advisor. Past performance does not guarantee future results. All investments involve risk. Please see our ADV Part 2 for important disclosures.
+                        </p>
+                        <p>
+                            *Based on our analysis of S&P 500 constituents, approximately 57% failed one or more of our exclusion criteria. This percentage varies as companies and our criteria evolve.
+                        </p>
+                    </div>
                 </div>
             </div>
-
-            <div class="garden-footer-bottom">
-                <div class="garden-footer-legal">
-                    <p>© {{ current_year|default:"2025" }} Ethical Capital Investment Collaborative. All rights reserved.</p>
-                    <p>Investment advisory services offered through Ethical Capital Investment Management LLC, a Registered Investment Advisor. Past performance does not guarantee future results. All investments involve risk. Please see our ADV Part 2 for important disclosures.</p>
-                    <p>*Based on our analysis of S&P 500 constituents, approximately 57% failed one or more of our exclusion criteria. This percentage varies as companies and our criteria evolve.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Additional JavaScript for functionality -->
-    <script>
+        </footer>
+        <!-- Additional JavaScript for functionality -->
+        <script>
         // Simple vanilla JS fallback if Alpine.js fails
         document.addEventListener('DOMContentLoaded', function() {
             const toggle = document.querySelector('.mobile-menu-toggle');
@@ -405,8 +432,8 @@
                 });
             }
         });
-    </script>
-
-    {% block extra_js %}{% endblock %}
-</body>
+        </script>
+        {% block extra_js %}
+        {% endblock %}
+    </body>
 </html>

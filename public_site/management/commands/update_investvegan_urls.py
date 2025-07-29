@@ -5,7 +5,6 @@ This command systematically replaces broken investvegan.org URLs with appropriat
 ethicic.com equivalents or removes them if no equivalent exists.
 """
 
-
 from django.core.management.base import BaseCommand
 from django.db import transaction
 

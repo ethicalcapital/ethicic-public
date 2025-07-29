@@ -3,874 +3,755 @@
 {% load static %}
 {% block title %}Onboarding - Ethical Capital{% endblock %}
 {% block body_class %}onboarding-page comprehensive{% endblock %}
-{% block content %}
-<div class="container-ec">
-  <!-- Hero Section -->
-  <section class="mb-8 bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800 rounded-xl p-8 text-center" role="banner" aria-labelledby="hero-heading">
-    <div class="text-sm font-semibold text-purple-300 uppercase tracking-wide mb-4">ETHICAL CAPITAL ONBOARDING</div>
-    <h1 id="hero-heading" class="text-4xl md:text-5xl font-bold text-white mb-6">Welcome to Ethical Capital</h1>
-    <div class="max-w-4xl mx-auto text-lg text-purple-100 space-y-4">
-      <p>
-        I'm delighted to welcome you to Ethical Capital. Our client relationships are lifelong partnerships, so this
-        form is designed to quicken the "getting to know you" process so we can serve you with loyalty, prudence, and
-        care over the long term.
-      </p>
-      <p class="text-white font-semibold">But to be clear, we want to know you.</p>
-      <p>
-        That means: be human. You are encouraged to make jokes, share fears, and say "I don't know" without a moment's
-        hesitation.
-      </p>
-      <p>Thank you in advance for sharing a bit of yourself with us. And welcome!</p>
+{% block
+    content %}
+    <div class="container-ec">
+        <!-- Hero Section -->
+        <section class="mb-8 rounded-xl bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800 p-8 text-center"
+                 role="banner"
+                 aria-labelledby="hero-heading">
+            <div class="mb-4 text-sm font-semibold tracking-wide text-purple-300 uppercase">ETHICAL CAPITAL ONBOARDING</div>
+            <h1 id="hero-heading"
+                class="mb-6 text-4xl font-bold text-white md:text-5xl">Welcome to Ethical Capital</h1>
+            <div class="mx-auto max-w-4xl space-y-4 text-lg text-purple-100">
+                <p>
+                    I'm delighted to welcome you to Ethical Capital. Our client relationships are lifelong partnerships, so this
+                    form is designed to quicken the "getting to know you" process so we can serve you with loyalty, prudence, and
+                    care over the long term.
+                </p>
+                <p class="font-semibold text-white">But to be clear, we want to know you.</p>
+                <p>
+                    That means: be human. You are encouraged to make jokes, share fears, and say "I don't know" without a moment's
+                    hesitation.
+                </p>
+                <p>Thank you in advance for sharing a bit of yourself with us. And welcome!</p>
+            </div>
+        </section>
+        <main class="main-content">
+            <!-- Form Container -->
+            <div class="form-container" x-data="onboardingForm()">
+                <!-- Progress Indicator Panel -->
+                <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+                    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-gray-100">PROGRESS</h2>
+                    <div class="progress-container">
+                        <div class="mb-4 h-3 rounded-full bg-gray-200 dark:bg-gray-700">
+                            <div class="h-3 rounded-full bg-purple-600 transition-all duration-300"
+                                 :style="`width: ${progress}%`"></div>
+                        </div>
+                        <div class="mb-6 text-sm text-gray-600 dark:text-gray-400"
+                             x-text="progressText"></div>
+                        <!-- Step Dots -->
+                        <div class="flex items-center justify-center space-x-4">
+                            <template x-for="displayStep in actualTotalSteps" :key="displayStep">
+                                <div class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-sm font-semibold transition-all"
+                                     :class="{ 'bg-purple-600 text-white': displayStep === actualStepNumber, 'bg-purple-200 text-purple-800': displayStep < actualStepNumber, 'bg-gray-200 text-gray-500': displayStep > actualStepNumber }"
+                                     @click="goToDisplayStep(displayStep)"
+                                     x-text="displayStep"></div>
+                            </template>
+                        </div>
+                    </div>
+                </section>
+                <!-- Comprehensive Onboarding Form -->
+                <form id="onboardingForm"
+                      method="post"
+                      action="/onboarding/submit/"
+                      @submit.prevent="submitting = true; $el.submit()">
+                    {% csrf_token %}
+                    <!-- Section 1: About You -->
+                    <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                             :class="{ 'ring-2 ring-purple-500': currentStep === 1 }"
+                             data-step="1"
+                             x-show="currentStep === 1">
+                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">ABOUT YOU</h2>
+                        <div class="mb-6 rounded-lg border border-purple-200 bg-purple-50 p-4 dark:border-purple-800 dark:bg-purple-900/20">
+                            <p class="text-purple-800 dark:text-purple-200">
+                                We're so excited to get to know you! This section will gather the basic information about you that we need
+                                in order to open your account.
+                            </p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="email">
+                                    What's the best email to reach you at?
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <input type="email"
+                                       id="email"
+                                       name="email"
+                                       class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                       required />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="first_name">
+                                    What's your first name?
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <input type="text"
+                                       id="first_name"
+                                       name="first_name"
+                                       class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                       autocomplete="given-name"
+                                       required />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="middle_names">What are your middle names? (optional)</label>
+                                <input type="text"
+                                       id="middle_names"
+                                       name="middle_names"
+                                       class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                       autocomplete="additional-name"
+                                       placeholder="Enter all middle names separated by spaces" />
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Enter all middle names separated by spaces</div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="last_name">
+                                    What's your last name?
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <input type="text"
+                                       id="last_name"
+                                       name="last_name"
+                                       class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                       autocomplete="family-name"
+                                       required />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                    Would you prefer we call you by any other name?
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <div class="space-y-3">
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="preferred_name_choice"
+                                               value="nope"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               @change="$refs.preferredNameField.classList.add('hidden')"
+                                               checked />
+                                        <span class="text-gray-900 dark:text-gray-100">Nope</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="preferred_name_choice"
+                                               value="other"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               @change="$refs.preferredNameField.classList.remove('hidden')" />
+                                        <span class="text-gray-900 dark:text-gray-100">Other</span>
+                                    </label>
+                                </div>
+                                <div x-ref="preferredNameField" class="mt-3 hidden">
+                                    <input type="text"
+                                           name="preferred_name"
+                                           class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                           placeholder="Preferred name"
+                                           aria-label="Preferred name for client" />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                    What are your pronouns?
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="pronouns"
+                                               value="he/him"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               @change="$refs.pronounsOtherField.style.display = 'none'" />
+                                        <span class="text-gray-900 dark:text-gray-100">he/him</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="pronouns"
+                                               value="she/her"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               @change="$refs.pronounsOtherField.style.display = 'none'" />
+                                        <span class="text-gray-900 dark:text-gray-100">she/her</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="pronouns"
+                                               value="they/them"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               @change="$refs.pronounsOtherField.style.display = 'none'" />
+                                        <span class="text-gray-900 dark:text-gray-100">they/them</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="pronouns"
+                                               value="other"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               @change="$refs.pronounsOtherField.style.display = 'block'" />
+                                        <span class="text-gray-900 dark:text-gray-100">Other</span>
+                                    </label>
+                                </div>
+                                <div x-ref="pronounsOtherField" class="mt-3" style="display: none">
+                                    <input type="text"
+                                           name="pronouns_other"
+                                           class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                           placeholder="Please specify your pronouns"
+                                           aria-label="Custom pronouns" />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                    Are you adding a co-client to this account?
+                                </label>
+                                <div class="space-y-3">
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="add_co_client"
+                                               value="no"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               @change="addCoClient = false"
+                                               checked />
+                                        <span class="text-gray-900 dark:text-gray-100">No, just me</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="add_co_client"
+                                               value="yes"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               @change="addCoClient = true" />
+                                        <span class="text-gray-900 dark:text-gray-100">Yes, add a co-client</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Section Navigation -->
+                        <div class="mt-8 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-700">
+                            <div></div>
+                            <button type="button"
+                                    @click="nextStep()"
+                                    class="rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700">
+                                Next Step →
+                            </button>
+                        </div>
+                    </section>
+                    <!-- Section 2: Your Co-Client (Conditional) -->
+                    <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                             :class="{ 'ring-2 ring-purple-500': currentStep === 2 }"
+                             data-step="2"
+                             x-show="currentStep === 2 && addCoClient">
+                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">YOUR CO-CLIENT</h2>
+                        <div class="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
+                            <p class="text-blue-800 dark:text-blue-200">
+                                Please provide information about your co-client who will be added to this account.
+                            </p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="co_client_email">
+                                    Co-client's email address
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <input type="email"
+                                       id="co_client_email"
+                                       name="co_client_email"
+                                       class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                       :required="addCoClient" />
+                            </div>
+                            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                           for="co_client_first_name">
+                                        Co-client's first name
+                                        <span class="ml-1 text-red-500">*</span>
+                                    </label>
+                                    <input type="text"
+                                           id="co_client_first_name"
+                                           name="co_client_first_name"
+                                           class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                           :required="addCoClient" />
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                           for="co_client_last_name">
+                                        Co-client's last name
+                                        <span class="ml-1 text-red-500">*</span>
+                                    </label>
+                                    <input type="text"
+                                           id="co_client_last_name"
+                                           name="co_client_last_name"
+                                           class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                           :required="addCoClient" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Section Navigation -->
+                        <div class="mt-8 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-700">
+                            <button type="button"
+                                    @click="prevStep()"
+                                    class="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                                ← Previous
+                            </button>
+                            <button type="button"
+                                    @click="nextStep()"
+                                    class="rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700">
+                                Next Step →
+                            </button>
+                        </div>
+                    </section>
+                    <!-- Section 3: Contact Preferences -->
+                    <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                             :class="{ 'ring-2 ring-purple-500': currentStep === 3 }"
+                             data-step="3"
+                             x-show="currentStep === 3">
+                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">CONTACT PREFERENCES</h2>
+                        <div class="mb-6 rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-900/20">
+                            <p class="text-green-800 dark:text-green-200">
+                                How would you like us to reach you for important account updates and investment discussions?
+                            </p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="phone">
+                                    Phone number
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <input type="tel"
+                                       id="phone"
+                                       name="phone"
+                                       class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                       required />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                    Preferred contact method
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="preferred_contact"
+                                               value="email"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               required />
+                                        <span class="text-gray-900 dark:text-gray-100">Email</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="preferred_contact"
+                                               value="phone"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               required />
+                                        <span class="text-gray-900 dark:text-gray-100">Phone</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio"
+                                               name="preferred_contact"
+                                               value="both"
+                                               class="mr-3 text-purple-600 focus:ring-purple-500"
+                                               required />
+                                        <span class="text-gray-900 dark:text-gray-100">Both</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Section Navigation -->
+                        <div class="mt-8 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-700">
+                            <button type="button"
+                                    @click="prevStep()"
+                                    class="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                                ← Previous
+                            </button>
+                            <button type="button"
+                                    @click="nextStep()"
+                                    class="rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700">
+                                Next Step →
+                            </button>
+                        </div>
+                    </section>
+                    <!-- Section 4: Risk Assessment -->
+                    <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                             :class="{ 'ring-2 ring-purple-500': currentStep === 4 }"
+                             data-step="4"
+                             x-show="currentStep === 4">
+                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">RISK ASSESSMENT</h2>
+                        <div class="mb-6 rounded-lg border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-900/20">
+                            <p class="text-orange-800 dark:text-orange-200">
+                                Understanding your risk tolerance helps us recommend appropriate investment strategies.
+                            </p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                    How would you describe your risk tolerance?
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <div class="space-y-3">
+                                    <label class="flex items-start">
+                                        <input type="radio"
+                                               name="risk_tolerance"
+                                               value="conservative"
+                                               class="mt-1 mr-3 text-purple-600 focus:ring-purple-500"
+                                               required />
+                                        <div>
+                                            <span class="font-medium text-gray-900 dark:text-gray-100">Conservative</span>
+                                            <p class="text-sm text-gray-600 dark:text-gray-400">I prefer stable returns and am uncomfortable with volatility</p>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-start">
+                                        <input type="radio"
+                                               name="risk_tolerance"
+                                               value="moderate"
+                                               class="mt-1 mr-3 text-purple-600 focus:ring-purple-500"
+                                               required />
+                                        <div>
+                                            <span class="font-medium text-gray-900 dark:text-gray-100">Moderate</span>
+                                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                                I'm comfortable with some volatility for potentially higher returns
+                                            </p>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-start">
+                                        <input type="radio"
+                                               name="risk_tolerance"
+                                               value="aggressive"
+                                               class="mt-1 mr-3 text-purple-600 focus:ring-purple-500"
+                                               required />
+                                        <div>
+                                            <span class="font-medium text-gray-900 dark:text-gray-100">Aggressive</span>
+                                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                                I'm comfortable with high volatility for maximum growth potential
+                                            </p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="investment_timeline">
+                                    What is your investment timeline?
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <select id="investment_timeline"
+                                        name="investment_timeline"
+                                        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                        required>
+                                    <option value="">Select timeline...</option>
+                                    <option value="short">Less than 3 years</option>
+                                    <option value="medium">3-10 years</option>
+                                    <option value="long">More than 10 years</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Section Navigation -->
+                        <div class="mt-8 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-700">
+                            <button type="button"
+                                    @click="prevStep()"
+                                    class="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                                ← Previous
+                            </button>
+                            <button type="button"
+                                    @click="nextStep()"
+                                    class="rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700">
+                                Next Step →
+                            </button>
+                        </div>
+                    </section>
+                    <!-- Section 5: Values & Viewpoint -->
+                    <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                             :class="{ 'ring-2 ring-purple-500': currentStep === 5 }"
+                             data-step="5"
+                             x-show="currentStep === 5">
+                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">VALUES & VIEWPOINT</h2>
+                        <div class="mb-6 rounded-lg border border-purple-200 bg-purple-50 p-4 dark:border-purple-800 dark:bg-purple-900/20">
+                            <p class="text-purple-800 dark:text-purple-200">
+                                Tell us about your values and what's important to you in your investments.
+                            </p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="investment_goals">
+                                    What are your primary investment goals?
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <textarea id="investment_goals"
+                                          name="investment_goals"
+                                          rows="4"
+                                          class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                          placeholder="Tell us about your investment objectives, financial goals, and what you hope to achieve..."
+                                          required></textarea>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                    Which ESG factors are most important to you? (Select all that apply)
+                                </label>
+                                <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                               name="esg_factors"
+                                               value="environmental"
+                                               class="mr-3 rounded text-purple-600 focus:ring-purple-500" />
+                                        <span class="text-gray-900 dark:text-gray-100">Environmental sustainability</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                               name="esg_factors"
+                                               value="social"
+                                               class="mr-3 rounded text-purple-600 focus:ring-purple-500" />
+                                        <span class="text-gray-900 dark:text-gray-100">Social responsibility</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                               name="esg_factors"
+                                               value="governance"
+                                               class="mr-3 rounded text-purple-600 focus:ring-purple-500" />
+                                        <span class="text-gray-900 dark:text-gray-100">Corporate governance</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox"
+                                               name="esg_factors"
+                                               value="diversity"
+                                               class="mr-3 rounded text-purple-600 focus:ring-purple-500" />
+                                        <span class="text-gray-900 dark:text-gray-100">Diversity & inclusion</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Section Navigation -->
+                        <div class="mt-8 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-700">
+                            <button type="button"
+                                    @click="prevStep()"
+                                    class="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                                ← Previous
+                            </button>
+                            <button type="button"
+                                    @click="nextStep()"
+                                    class="rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700">
+                                Next Step →
+                            </button>
+                        </div>
+                    </section>
+                    <!-- Section 6: Financial Context -->
+                    <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                             :class="{ 'ring-2 ring-purple-500': currentStep === 6 }"
+                             data-step="6"
+                             x-show="currentStep === 6">
+                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">FINANCIAL CONTEXT</h2>
+                        <div class="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
+                            <p class="text-blue-800 dark:text-blue-200">
+                                Help us understand your financial situation to provide better recommendations.
+                            </p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="annual_income">
+                                    Approximate annual income
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <select id="annual_income"
+                                        name="annual_income"
+                                        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                        required>
+                                    <option value="">Select income range...</option>
+                                    <option value="under_50k">Under $50,000</option>
+                                    <option value="50k_100k">$50,000 - $100,000</option>
+                                    <option value="100k_250k">$100,000 - $250,000</option>
+                                    <option value="250k_500k">$250,000 - $500,000</option>
+                                    <option value="500k_1m">$500,000 - $1,000,000</option>
+                                    <option value="over_1m">Over $1,000,000</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="investment_amount">
+                                    Initial investment amount
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <select id="investment_amount"
+                                        name="investment_amount"
+                                        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                        required>
+                                    <option value="">Select amount range...</option>
+                                    <option value="under_100k">Under $100,000</option>
+                                    <option value="100k_250k">$100,000 - $250,000</option>
+                                    <option value="250k_500k">$250,000 - $500,000</option>
+                                    <option value="500k_1m">$500,000 - $1,000,000</option>
+                                    <option value="over_1m">Over $1,000,000</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="investment_experience">
+                                    Investment experience
+                                    <span class="ml-1 text-red-500">*</span>
+                                </label>
+                                <textarea id="investment_experience"
+                                          name="investment_experience"
+                                          rows="3"
+                                          class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                          placeholder="Tell us about your previous investment experience..."
+                                          required></textarea>
+                            </div>
+                        </div>
+                        <!-- Section Navigation -->
+                        <div class="mt-8 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-700">
+                            <button type="button"
+                                    @click="prevStep()"
+                                    class="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                                ← Previous
+                            </button>
+                            <button type="button"
+                                    @click="nextStep()"
+                                    class="rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700">
+                                Next Step →
+                            </button>
+                        </div>
+                    </section>
+                    <!-- Section 7: Your Financial Team -->
+                    <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                             :class="{ 'ring-2 ring-purple-500': currentStep === 7 }"
+                             data-step="7"
+                             x-show="currentStep === 7">
+                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">YOUR FINANCIAL TEAM</h2>
+                        <div class="mb-6 rounded-lg border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-800 dark:bg-yellow-900/20">
+                            <p class="text-yellow-800 dark:text-yellow-200">
+                                Tell us about your current financial advisors and professional relationships.
+                            </p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="current_advisor">Do you currently work with a financial advisor?</label>
+                                <textarea id="current_advisor"
+                                          name="current_advisor"
+                                          rows="3"
+                                          class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                          placeholder="Please share details about your current advisor relationships..."></textarea>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="other_professionals">
+                                    Other financial professionals (CPA, attorney, etc.)
+                                </label>
+                                <textarea id="other_professionals"
+                                          name="other_professionals"
+                                          rows="3"
+                                          class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                          placeholder="Tell us about your CPA, attorney, or other financial professionals..."></textarea>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="referral_source">How did you hear about Ethical Capital?</label>
+                                <input type="text"
+                                       id="referral_source"
+                                       name="referral_source"
+                                       class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                       placeholder="Referral source, search engine, social media, etc." />
+                            </div>
+                        </div>
+                        <!-- Section Navigation -->
+                        <div class="mt-8 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-700">
+                            <button type="button"
+                                    @click="prevStep()"
+                                    class="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                                ← Previous
+                            </button>
+                            <button type="button"
+                                    @click="nextStep()"
+                                    class="rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700">
+                                Next Step →
+                            </button>
+                        </div>
+                    </section>
+                    <!-- Section 8: Review & Submit -->
+                    <section class="mb-8 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+                             :class="{ 'ring-2 ring-purple-500': currentStep === 8 }"
+                             data-step="8"
+                             x-show="currentStep === 8">
+                        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">REVIEW & SUBMIT</h2>
+                        <div class="mb-6 rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-900/20">
+                            <p class="text-green-800 dark:text-green-200">
+                                Please review your information and add any final comments before submitting.
+                            </p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100"
+                                       for="additional_comments">Additional comments or questions</label>
+                                <textarea id="additional_comments"
+                                          name="additional_comments"
+                                          rows="4"
+                                          class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                                          placeholder="Any additional information you'd like to share with us..."></textarea>
+                            </div>
+                            <!-- Cloudflare Turnstile -->
+                            <div class="space-y-2">
+                                <div class="cf-turnstile mx-auto"
+                                     data-sitekey="{{ TURNSTILE_SITE_KEY }}"
+                                     data-callback="onTurnstileSuccess"
+                                     data-expired-callback="onTurnstileExpired"
+                                     data-error-callback="onTurnstileError"></div>
+                                <input type="hidden" name="cf_turnstile_response" value="" />
+                            </div>
+                            <!-- Terms and Privacy -->
+                            <div class="space-y-4">
+                                <label class="flex items-start">
+                                    <input type="checkbox"
+                                           name="agree_terms"
+                                           class="mt-1 mr-3 rounded text-purple-600 focus:ring-purple-500"
+                                           required />
+                                    <span class="text-sm text-gray-900 dark:text-gray-100">
+                                        I agree to the
+                                        <a href="/legal/terms/"
+                                           class="text-purple-600 underline hover:text-purple-800"
+                                           target="_blank">Terms of Service</a>
+                                        and
+                                        <a href="/legal/privacy/"
+                                           class="text-purple-600 underline hover:text-purple-800"
+                                           target="_blank">Privacy Policy</a>
+                                        <span class="ml-1 text-red-500">*</span>
+                                    </span>
+                                </label>
+                                <label class="flex items-start">
+                                    <input type="checkbox"
+                                           name="consent_contact"
+                                           class="mt-1 mr-3 rounded text-purple-600 focus:ring-purple-500"
+                                           required />
+                                    <span class="text-sm text-gray-900 dark:text-gray-100">
+                                        I consent to being contacted by Ethical Capital regarding my application and potential investment
+                                        services
+                                        <span class="ml-1 text-red-500">*</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Final Section Navigation -->
+                        <div class="mt-8 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-700">
+                            <button type="button"
+                                    @click="prevStep()"
+                                    class="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                                ← Previous
+                            </button>
+                            <button type="submit"
+                                    class="rounded-lg bg-green-600 px-8 py-4 font-bold text-white transition-colors hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
+                                    :disabled="submitting">
+                                <span x-show="!submitting">Submit Application</span>
+                                <span x-show="submitting" x-cloak class="flex items-center gap-2">
+                                    <span class="animate-spin">⟳</span>
+                                    Submitting...
+                                </span>
+                            </button>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </main>
     </div>
-  </section>
-
-  <main class="main-content">
-    <!-- Form Container -->
-    <div class="form-container" x-data="onboardingForm()">
-      <!-- Progress Indicator Panel -->
-      <section class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-        <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">PROGRESS</h2>
-        <div class="progress-container">
-          <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-3 mb-4">
-            <div class="bg-purple-600 h-3 rounded-full transition-all duration-300" :style="`width: ${progress}%`"></div>
-          </div>
-          <div class="text-sm text-gray-600 dark:text-gray-400 mb-6" x-text="progressText"></div>
-
-          <!-- Step Dots -->
-          <div class="flex justify-center items-center space-x-4">
-            <template x-for="displayStep in actualTotalSteps" :key="displayStep">
-              <div
-                class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold cursor-pointer transition-all"
-                :class="{
-                  'bg-purple-600 text-white': displayStep === actualStepNumber,
-                  'bg-purple-200 text-purple-800': displayStep < actualStepNumber,
-                  'bg-gray-200 text-gray-500': displayStep > actualStepNumber
-                }"
-                @click="goToDisplayStep(displayStep)"
-                x-text="displayStep"
-              ></div>
-            </template>
-          </div>
-        </div>
-      </section>      <!-- Comprehensive Onboarding Form -->
-      <form
-        id="onboardingForm"
-        method="post"
-        action="/onboarding/submit/"
-        @submit.prevent="submitting = true; $el.submit()"
-      >
-        {% csrf_token %}
-
-        <!-- Section 1: About You -->
-        <section
-          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
-          :class="{ 'ring-2 ring-purple-500': currentStep === 1 }"
-          data-step="1"
-          x-show="currentStep === 1"
-        >
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">ABOUT YOU</h2>
-          <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
-            <p class="text-purple-800 dark:text-purple-200">
-              We're so excited to get to know you! This section will gather the basic information about you that we need
-              in order to open your account.
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="email">
-                What's the best email to reach you at? <span class="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                required
-              />
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="first_name">
-                What's your first name? <span class="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                id="first_name"
-                name="first_name"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                autocomplete="given-name"
-                required
-              />
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="middle_names">
-                What are your middle names? (optional)
-              </label>
-              <input
-                type="text"
-                id="middle_names"
-                name="middle_names"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                autocomplete="additional-name"
-                placeholder="Enter all middle names separated by spaces"
-              />
-              <div class="text-sm text-gray-600 dark:text-gray-400">Enter all middle names separated by spaces</div>
-            </div>            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="last_name">
-                What's your last name? <span class="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                id="last_name"
-                name="last_name"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                autocomplete="family-name"
-                required
-              />
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                Would you prefer we call you by any other name? <span class="text-red-500 ml-1">*</span>
-              </label>
-              <div class="space-y-3">
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="preferred_name_choice"
-                    value="nope"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    @change="$refs.preferredNameField.classList.add('hidden')"
-                    checked
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Nope</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="preferred_name_choice"
-                    value="other"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    @change="$refs.preferredNameField.classList.remove('hidden')"
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Other</span>
-                </label>
-              </div>
-              <div x-ref="preferredNameField" class="mt-3 hidden">
-                <input
-                  type="text"
-                  name="preferred_name"
-                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="Preferred name"
-                  aria-label="Preferred name for client"
-                />
-              </div>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                What are your pronouns? <span class="text-red-500 ml-1">*</span>
-              </label>
-              <div class="grid grid-cols-2 gap-3">
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="pronouns"
-                    value="he/him"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    @change="$refs.pronounsOtherField.style.display = 'none'"
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">he/him</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="pronouns"
-                    value="she/her"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    @change="$refs.pronounsOtherField.style.display = 'none'"
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">she/her</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="pronouns"
-                    value="they/them"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    @change="$refs.pronounsOtherField.style.display = 'none'"
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">they/them</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="pronouns"
-                    value="other"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    @change="$refs.pronounsOtherField.style.display = 'block'"
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Other</span>
-                </label>
-              </div>              <div x-ref="pronounsOtherField" class="mt-3" style="display: none;">
-                <input
-                  type="text"
-                  name="pronouns_other"
-                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="Please specify your pronouns"
-                  aria-label="Custom pronouns"
-                />
-              </div>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                Are you adding a co-client to this account?
-              </label>
-              <div class="space-y-3">
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="add_co_client"
-                    value="no"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    @change="addCoClient = false"
-                    checked
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">No, just me</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="add_co_client"
-                    value="yes"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    @change="addCoClient = true"
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Yes, add a co-client</span>
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section Navigation -->
-          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <div></div>
-            <button
-              type="button"
-              @click="nextStep()"
-              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
-            >
-              Next Step →
-            </button>
-          </div>
-        </section>
-
-        <!-- Section 2: Your Co-Client (Conditional) -->
-        <section
-          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
-          :class="{ 'ring-2 ring-purple-500': currentStep === 2 }"
-          data-step="2"
-          x-show="currentStep === 2 && addCoClient"
-        >
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">YOUR CO-CLIENT</h2>
-          <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
-            <p class="text-blue-800 dark:text-blue-200">
-              Please provide information about your co-client who will be added to this account.
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="co_client_email">
-                Co-client's email address <span class="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="email"
-                id="co_client_email"
-                name="co_client_email"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                :required="addCoClient"
-              />
-            </div>            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="space-y-2">
-                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="co_client_first_name">
-                  Co-client's first name <span class="text-red-500 ml-1">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="co_client_first_name"
-                  name="co_client_first_name"
-                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  :required="addCoClient"
-                />
-              </div>
-              <div class="space-y-2">
-                <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="co_client_last_name">
-                  Co-client's last name <span class="text-red-500 ml-1">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="co_client_last_name"
-                  name="co_client_last_name"
-                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  :required="addCoClient"
-                />
-              </div>
-            </div>
-          </div>
-
-          <!-- Section Navigation -->
-          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button
-              type="button"
-              @click="prevStep()"
-              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              ← Previous
-            </button>
-            <button
-              type="button"
-              @click="nextStep()"
-              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
-            >
-              Next Step →
-            </button>
-          </div>
-        </section>
-
-        <!-- Section 3: Contact Preferences -->
-        <section
-          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
-          :class="{ 'ring-2 ring-purple-500': currentStep === 3 }"
-          data-step="3"
-          x-show="currentStep === 3"
-        >
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">CONTACT PREFERENCES</h2>
-          <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
-            <p class="text-green-800 dark:text-green-200">
-              How would you like us to reach you for important account updates and investment discussions?
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="phone">
-                Phone number <span class="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                required
-              />
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                Preferred contact method <span class="text-red-500 ml-1">*</span>
-              </label>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="preferred_contact"
-                    value="email"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    required
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Email</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="preferred_contact"
-                    value="phone"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    required
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Phone</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="radio"
-                    name="preferred_contact"
-                    value="both"
-                    class="mr-3 text-purple-600 focus:ring-purple-500"
-                    required
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Both</span>
-                </label>
-              </div>
-            </div>          </div>
-
-          <!-- Section Navigation -->
-          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button
-              type="button"
-              @click="prevStep()"
-              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              ← Previous
-            </button>
-            <button
-              type="button"
-              @click="nextStep()"
-              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
-            >
-              Next Step →
-            </button>
-          </div>
-        </section>
-
-        <!-- Section 4: Risk Assessment -->
-        <section
-          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
-          :class="{ 'ring-2 ring-purple-500': currentStep === 4 }"
-          data-step="4"
-          x-show="currentStep === 4"
-        >
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">RISK ASSESSMENT</h2>
-          <div class="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 mb-6">
-            <p class="text-orange-800 dark:text-orange-200">
-              Understanding your risk tolerance helps us recommend appropriate investment strategies.
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                How would you describe your risk tolerance? <span class="text-red-500 ml-1">*</span>
-              </label>
-              <div class="space-y-3">
-                <label class="flex items-start">
-                  <input
-                    type="radio"
-                    name="risk_tolerance"
-                    value="conservative"
-                    class="mr-3 mt-1 text-purple-600 focus:ring-purple-500"
-                    required
-                  />
-                  <div>
-                    <span class="text-gray-900 dark:text-gray-100 font-medium">Conservative</span>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">I prefer stable returns and am uncomfortable with volatility</p>
-                  </div>
-                </label>
-                <label class="flex items-start">
-                  <input
-                    type="radio"
-                    name="risk_tolerance"
-                    value="moderate"
-                    class="mr-3 mt-1 text-purple-600 focus:ring-purple-500"
-                    required
-                  />
-                  <div>
-                    <span class="text-gray-900 dark:text-gray-100 font-medium">Moderate</span>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">I'm comfortable with some volatility for potentially higher returns</p>
-                  </div>
-                </label>
-                <label class="flex items-start">
-                  <input
-                    type="radio"
-                    name="risk_tolerance"
-                    value="aggressive"
-                    class="mr-3 mt-1 text-purple-600 focus:ring-purple-500"
-                    required
-                  />
-                  <div>
-                    <span class="text-gray-900 dark:text-gray-100 font-medium">Aggressive</span>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">I'm comfortable with high volatility for maximum growth potential</p>
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_timeline">
-                What is your investment timeline? <span class="text-red-500 ml-1">*</span>
-              </label>
-              <select
-                id="investment_timeline"
-                name="investment_timeline"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                required
-              >
-                <option value="">Select timeline...</option>
-                <option value="short">Less than 3 years</option>
-                <option value="medium">3-10 years</option>
-                <option value="long">More than 10 years</option>
-              </select>
-            </div>
-          </div>          <!-- Section Navigation -->
-          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button
-              type="button"
-              @click="prevStep()"
-              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              ← Previous
-            </button>
-            <button
-              type="button"
-              @click="nextStep()"
-              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
-            >
-              Next Step →
-            </button>
-          </div>
-        </section>
-
-        <!-- Section 5: Values & Viewpoint -->
-        <section
-          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
-          :class="{ 'ring-2 ring-purple-500': currentStep === 5 }"
-          data-step="5"
-          x-show="currentStep === 5"
-        >
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">VALUES & VIEWPOINT</h2>
-          <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
-            <p class="text-purple-800 dark:text-purple-200">
-              Tell us about your values and what's important to you in your investments.
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_goals">
-                What are your primary investment goals? <span class="text-red-500 ml-1">*</span>
-              </label>
-              <textarea
-                id="investment_goals"
-                name="investment_goals"
-                rows="4"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Tell us about your investment objectives, financial goals, and what you hope to achieve..."
-                required
-              ></textarea>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                Which ESG factors are most important to you? (Select all that apply)
-              </label>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="esg_factors"
-                    value="environmental"
-                    class="mr-3 text-purple-600 focus:ring-purple-500 rounded"
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Environmental sustainability</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="esg_factors"
-                    value="social"
-                    class="mr-3 text-purple-600 focus:ring-purple-500 rounded"
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Social responsibility</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="esg_factors"
-                    value="governance"
-                    class="mr-3 text-purple-600 focus:ring-purple-500 rounded"
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Corporate governance</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="esg_factors"
-                    value="diversity"
-                    class="mr-3 text-purple-600 focus:ring-purple-500 rounded"
-                  />
-                  <span class="text-gray-900 dark:text-gray-100">Diversity & inclusion</span>
-                </label>
-              </div>
-            </div>
-          </div>          <!-- Section Navigation -->
-          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button
-              type="button"
-              @click="prevStep()"
-              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              ← Previous
-            </button>
-            <button
-              type="button"
-              @click="nextStep()"
-              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
-            >
-              Next Step →
-            </button>
-          </div>
-        </section>
-
-        <!-- Section 6: Financial Context -->
-        <section
-          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
-          :class="{ 'ring-2 ring-purple-500': currentStep === 6 }"
-          data-step="6"
-          x-show="currentStep === 6"
-        >
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">FINANCIAL CONTEXT</h2>
-          <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
-            <p class="text-blue-800 dark:text-blue-200">
-              Help us understand your financial situation to provide better recommendations.
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="annual_income">
-                Approximate annual income <span class="text-red-500 ml-1">*</span>
-              </label>
-              <select
-                id="annual_income"
-                name="annual_income"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                required
-              >
-                <option value="">Select income range...</option>
-                <option value="under_50k">Under $50,000</option>
-                <option value="50k_100k">$50,000 - $100,000</option>
-                <option value="100k_250k">$100,000 - $250,000</option>
-                <option value="250k_500k">$250,000 - $500,000</option>
-                <option value="500k_1m">$500,000 - $1,000,000</option>
-                <option value="over_1m">Over $1,000,000</option>
-              </select>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_amount">
-                Initial investment amount <span class="text-red-500 ml-1">*</span>
-              </label>
-              <select
-                id="investment_amount"
-                name="investment_amount"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                required
-              >
-                <option value="">Select amount range...</option>
-                <option value="under_100k">Under $100,000</option>
-                <option value="100k_250k">$100,000 - $250,000</option>
-                <option value="250k_500k">$250,000 - $500,000</option>
-                <option value="500k_1m">$500,000 - $1,000,000</option>
-                <option value="over_1m">Over $1,000,000</option>
-              </select>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_experience">
-                Investment experience <span class="text-red-500 ml-1">*</span>
-              </label>
-              <textarea
-                id="investment_experience"
-                name="investment_experience"
-                rows="3"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Tell us about your previous investment experience..."
-                required
-              ></textarea>
-            </div>
-          </div>          <!-- Section Navigation -->
-          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button
-              type="button"
-              @click="prevStep()"
-              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              ← Previous
-            </button>
-            <button
-              type="button"
-              @click="nextStep()"
-              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
-            >
-              Next Step →
-            </button>
-          </div>
-        </section>
-
-        <!-- Section 7: Your Financial Team -->
-        <section
-          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
-          :class="{ 'ring-2 ring-purple-500': currentStep === 7 }"
-          data-step="7"
-          x-show="currentStep === 7"
-        >
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">YOUR FINANCIAL TEAM</h2>
-          <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6">
-            <p class="text-yellow-800 dark:text-yellow-200">
-              Tell us about your current financial advisors and professional relationships.
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="current_advisor">
-                Do you currently work with a financial advisor?
-              </label>
-              <textarea
-                id="current_advisor"
-                name="current_advisor"
-                rows="3"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Please share details about your current advisor relationships..."
-              ></textarea>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="other_professionals">
-                Other financial professionals (CPA, attorney, etc.)
-              </label>
-              <textarea
-                id="other_professionals"
-                name="other_professionals"
-                rows="3"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Tell us about your CPA, attorney, or other financial professionals..."
-              ></textarea>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="referral_source">
-                How did you hear about Ethical Capital?
-              </label>
-              <input
-                type="text"
-                id="referral_source"
-                name="referral_source"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Referral source, search engine, social media, etc."
-              />
-            </div>
-          </div>          <!-- Section Navigation -->
-          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button
-              type="button"
-              @click="prevStep()"
-              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              ← Previous
-            </button>
-            <button
-              type="button"
-              @click="nextStep()"
-              class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
-            >
-              Next Step →
-            </button>
-          </div>
-        </section>
-
-        <!-- Section 8: Review & Submit -->
-        <section
-          class="mb-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6"
-          :class="{ 'ring-2 ring-purple-500': currentStep === 8 }"
-          data-step="8"
-          x-show="currentStep === 8"
-        >
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">REVIEW & SUBMIT</h2>
-          <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
-            <p class="text-green-800 dark:text-green-200">
-              Please review your information and add any final comments before submitting.
-            </p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="additional_comments">
-                Additional comments or questions
-              </label>
-              <textarea
-                id="additional_comments"
-                name="additional_comments"
-                rows="4"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Any additional information you'd like to share with us..."
-              ></textarea>
-            </div>
-
-            <!-- Cloudflare Turnstile -->
-            <div class="space-y-2">
-              <div
-                class="cf-turnstile mx-auto"
-                data-sitekey="{{ TURNSTILE_SITE_KEY }}"
-                data-callback="onTurnstileSuccess"
-                data-expired-callback="onTurnstileExpired"
-                data-error-callback="onTurnstileError"
-              ></div>
-              <input type="hidden" name="cf_turnstile_response" value="" />
-            </div>
-
-            <!-- Terms and Privacy -->
-            <div class="space-y-4">
-              <label class="flex items-start">
-                <input
-                  type="checkbox"
-                  name="agree_terms"
-                  class="mr-3 mt-1 text-purple-600 focus:ring-purple-500 rounded"
-                  required
-                />
-                <span class="text-sm text-gray-900 dark:text-gray-100">
-                  I agree to the <a href="/legal/terms/" class="text-purple-600 hover:text-purple-800 underline" target="_blank">Terms of Service</a>
-                  and <a href="/legal/privacy/" class="text-purple-600 hover:text-purple-800 underline" target="_blank">Privacy Policy</a>
-                  <span class="text-red-500 ml-1">*</span>
-                </span>
-              </label>
-
-              <label class="flex items-start">
-                <input
-                  type="checkbox"
-                  name="consent_contact"
-                  class="mr-3 mt-1 text-purple-600 focus:ring-purple-500 rounded"
-                  required
-                />
-                <span class="text-sm text-gray-900 dark:text-gray-100">
-                  I consent to being contacted by Ethical Capital regarding my application and potential investment services
-                  <span class="text-red-500 ml-1">*</span>
-                </span>
-              </label>
-            </div>
-          </div>          <!-- Final Section Navigation -->
-          <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button
-              type="button"
-              @click="prevStep()"
-              class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              ← Previous
-            </button>
-            <button
-              type="submit"
-              class="px-8 py-4 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              :disabled="submitting"
-            >
-              <span x-show="!submitting">Submit Application</span>
-              <span x-show="submitting" x-cloak class="flex items-center gap-2">
-                <span class="animate-spin">⟳</span>
-                Submitting...
-              </span>
-            </button>
-          </div>
-        </section>
-      </form>
-    </div>
-  </main>
-</div>
 {% endblock %}
-
 {% block extra_js %}
-<script>
+    <script>
   document.addEventListener("alpine:init", () => {
     Alpine.data("onboardingForm", () => ({
       currentStep: 1,
@@ -901,7 +782,8 @@
       },
       get progressText() {
         return `Step ${this.actualStepNumber} of ${this.actualTotalSteps}: ${this.stepNames[this.currentStep]}`;
-      },      nextStep() {
+      },
+      nextStep() {
         if (this.validateStep(this.currentStep)) {
           if (this.currentStep === 1 && this.addCoClient === false) {
             this.currentStep = 3; // Skip co-client section
@@ -942,7 +824,8 @@
           targetStep = displayStep >= 2 ? displayStep + 1 : displayStep;
         }
         this.goToStep(targetStep);
-      },      showValidationMessage(message, type = "error") {
+      },
+      showValidationMessage(message, type = "error") {
         // Remove any existing validation messages
         const existingMessage = document.querySelector(".validation-message");
         if (existingMessage) existingMessage.remove();
@@ -1013,7 +896,7 @@
         return isValid;
       },
     }));
-  });  // Turnstile callback functions
+  }); // Turnstile callback functions
   function onTurnstileSuccess(token) {
     // Store the token in the hidden field
     const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
@@ -1040,26 +923,28 @@
     }
     console.log("Turnstile error:", error);
   }
-</script>
-
-<!-- Cloudflare Turnstile Script -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-<style>
+    </script>
+    <!-- Cloudflare Turnstile Script -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer></script>
+    <style>
   /* Validation Message Styles */
   .validation-message {
-    @apply flex items-center gap-2 p-3 rounded-lg mb-4 border;
+    @apply mb-4 flex items-center gap-2 rounded-lg border p-3;
   }
 
   .validation-message.error {
-    @apply bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200;
+    @apply border-red-200 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-900/20 dark:text-red-200;
   }
 
   .validation-message.success {
-    @apply bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200;
+    @apply border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-900/20 dark:text-green-200;
   }
 
   /* Alpine.js x-cloak */
-  [x-cloak] { display: none !important; }
-</style>
+  [x-cloak] {
+    display: none !important;
+  }
+    </style>
 {% endblock %}

@@ -1,179 +1,164 @@
-{% extends "public_site/base_tailwind.html" %} {% block title %}{{ page.hero_title }} | Ethical Capital{% endblock %} {%
-block body_class %}criteria-page{% endblock %} {% block content %}
-<div class="garden-container">
-  <main class="criteria-page">
-    <!-- Hero Section -->
-    <section class="hero garden-panel" role="banner">
-      <div class="panel-content hero-content">
-        <h1 class="hero-title">{{ page.hero_title }}</h1>
-        <p class="hero-subtitle">{{ page.hero_subtitle }}</p>
-      </div>
-    </section>
-
-    <!-- Main Content -->
-    <div class="main-content">
-      {% if page.criteria_description %}
-      <section class="description garden-panel">
-        <div class="panel-header">Our Approach</div>
-        <div class="panel-content">{{ page.criteria_description|safe }}</div>
-      </section>
-      {% endif %}
-
-      <!-- GitHub Link Section -->
-      <section class="github-section garden-panel">
-        <div class="panel-header">{{ page.transparency_section_title }}</div>
-        <div class="panel-content">
-          <div class="github-link-container">
-            <div class="github-info">
-              <h3>Complete Screening Policy</h3>
-              {{ page.transparency_description|safe }} {% if page.transparency_benefits %}
-              <ul class="transparency-benefits">
-                {% for benefit in page.transparency_benefits.splitlines %} {% if benefit %}
-                <li>{{ benefit }}</li>
-                {% endif %} {% endfor %}
-              </ul>
-              {% endif %}
+{% extends "public_site/base_tailwind.html" %}
+{% block title %}{{ page.hero_title }} | Ethical Capital{% endblock %}
+{%
+block body_class %}criteria-page
+{% endblock %}
+{% block content %}
+    <div class="garden-container">
+        <main class="criteria-page">
+            <!-- Hero Section -->
+            <section class="hero garden-panel" role="banner">
+                <div class="panel-content hero-content">
+                    <h1 class="hero-title">{{ page.hero_title }}</h1>
+                    <p class="hero-subtitle">{{ page.hero_subtitle }}</p>
+                </div>
+            </section>
+            <!-- Main Content -->
+            <div class="main-content">
+                {% if page.criteria_description %}
+                    <section class="description garden-panel">
+                        <div class="panel-header">Our Approach</div>
+                        <div class="panel-content">{{ page.criteria_description|safe }}</div>
+                    </section>
+                {% endif %}
+                <!-- GitHub Link Section -->
+                <section class="github-section garden-panel">
+                    <div class="panel-header">{{ page.transparency_section_title }}</div>
+                    <div class="panel-content">
+                        <div class="github-link-container">
+                            <div class="github-info">
+                                <h3>Complete Screening Policy</h3>
+                                {{ page.transparency_description|safe }}
+                                {% if page.transparency_benefits %}
+                                    <ul class="transparency-benefits">
+                                        {% for benefit in page.transparency_benefits.splitlines %}
+                                            {% if benefit %}<li>{{ benefit }}</li>{% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                            <div class="github-action">
+                                <a href="{{ page.github_criteria_url }}"
+                                   class="garden-action primary github-garden-action"
+                                   target="_blank"
+                                   rel="noopener">
+                                    <span class="github-icon">📋</span>
+                                    View Screening Policy
+                                </a>
+                                <p class="github-note">Opens in new tab</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Key Exclusions Overview -->
+                {% if page.exclusion_categories.exists %}
+                    <section class="exclusions-overview garden-panel">
+                        <div class="panel-header">{{ page.exclusions_section_title }}</div>
+                        <div class="panel-content">
+                            <div class="exclusions-grid">
+                                {% for category in page.exclusion_categories.all %}
+                                    <div class="exclusion-category">
+                                        <h4>{{ category.icon }} {{ category.title }}</h4>
+                                        <p>{{ category.description }}</p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            {% if page.exclusions_note %}<div class="exclusions-note">{{ page.exclusions_note|safe }}</div>{% endif %}
+                        </div>
+                    </section>
+                {% endif %}
+                <!-- How It Works Section -->
+                <section class="how-it-works garden-panel">
+                    <div class="panel-header">How Our Screening Works</div>
+                    <div class="panel-content">
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Initial Universe</h4>
+                                    <p>We start with the global investment universe - thousands of publicly traded companies.</p>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Apply Exclusions</h4>
+                                    <p>
+                                        Our comprehensive criteria eliminate approximately 57% of the S&P 500 and similar proportions
+                                        globally.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Quality Analysis</h4>
+                                    <p>From the ethical universe, we identify companies with strong fundamentals and competitive advantages.</p>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Portfolio Construction</h4>
+                                    <p>We build concentrated portfolios of 15-25 positions from the highest-quality ethical companies.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Why Transparency Matters -->
+                <section class="transparency-matters garden-panel">
+                    <div class="panel-header">Why Transparency Matters</div>
+                    <div class="panel-content">
+                        <div class="transparency-grid">
+                            <div class="transparency-item">
+                                <h4>Accountability</h4>
+                                <p>
+                                    Open criteria mean we're accountable to our clients and the broader community for our screening
+                                    decisions.
+                                </p>
+                            </div>
+                            <div class="transparency-item">
+                                <h4>Evolution</h4>
+                                <p>Public documentation allows us to track how our criteria evolve as we learn and as the world changes.</p>
+                            </div>
+                            <div class="transparency-item">
+                                <h4>Collaboration</h4>
+                                <p>Other investors can use, adapt, and improve upon our work, advancing ethical investing for everyone.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Additional Resources -->
+                {% if page.additional_resources %}
+                    <section class="resources garden-panel">
+                        <div class="panel-header">Additional Resources</div>
+                        <div class="panel-content">{{ page.additional_resources|safe }}</div>
+                    </section>
+                {% endif %}
+                <!-- Call to Action -->
+                <section class="cta garden-panel">
+                    <div class="panel-content">
+                        <h3>Ready to Invest Ethically?</h3>
+                        <p>
+                            Our screening process is just the beginning. Let us build a portfolio that aligns with your values and
+                            financial goals.
+                        </p>
+                        <div class="cta-actions">
+                            <a href="/contact/" class="garden-action primary">Get Started</a>
+                            <a href="/strategies/" class="garden-action secondary">View Strategies</a>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <div class="github-action">
-              <a
-                href="{{ page.github_criteria_url }}"
-                class="garden-action primary github-garden-action"
-                target="_blank"
-                rel="noopener"
-              >
-                <span class="github-icon">📋</span>
-                View Screening Policy
-              </a>
-              <p class="github-note">Opens in new tab</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Key Exclusions Overview -->
-      {% if page.exclusion_categories.exists %}
-      <section class="exclusions-overview garden-panel">
-        <div class="panel-header">{{ page.exclusions_section_title }}</div>
-        <div class="panel-content">
-          <div class="exclusions-grid">
-            {% for category in page.exclusion_categories.all %}
-            <div class="exclusion-category">
-              <h4>{{ category.icon }} {{ category.title }}</h4>
-              <p>{{ category.description }}</p>
-            </div>
-            {% endfor %}
-          </div>
-
-          {% if page.exclusions_note %}
-          <div class="exclusions-note">{{ page.exclusions_note|safe }}</div>
-          {% endif %}
-        </div>
-      </section>
-      {% endif %}
-
-      <!-- How It Works Section -->
-      <section class="how-it-works garden-panel">
-        <div class="panel-header">How Our Screening Works</div>
-        <div class="panel-content">
-          <div class="process-steps">
-            <div class="process-step">
-              <div class="step-number">1</div>
-              <div class="step-content">
-                <h4>Initial Universe</h4>
-                <p>We start with the global investment universe - thousands of publicly traded companies.</p>
-              </div>
-            </div>
-
-            <div class="process-step">
-              <div class="step-number">2</div>
-              <div class="step-content">
-                <h4>Apply Exclusions</h4>
-                <p>
-                  Our comprehensive criteria eliminate approximately 57% of the S&P 500 and similar proportions
-                  globally.
-                </p>
-              </div>
-            </div>
-
-            <div class="process-step">
-              <div class="step-number">3</div>
-              <div class="step-content">
-                <h4>Quality Analysis</h4>
-                <p>
-                  From the ethical universe, we identify companies with strong fundamentals and competitive advantages.
-                </p>
-              </div>
-            </div>
-
-            <div class="process-step">
-              <div class="step-number">4</div>
-              <div class="step-content">
-                <h4>Portfolio Construction</h4>
-                <p>We build concentrated portfolios of 15-25 positions from the highest-quality ethical companies.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Why Transparency Matters -->
-      <section class="transparency-matters garden-panel">
-        <div class="panel-header">Why Transparency Matters</div>
-        <div class="panel-content">
-          <div class="transparency-grid">
-            <div class="transparency-item">
-              <h4>Accountability</h4>
-              <p>
-                Open criteria mean we're accountable to our clients and the broader community for our screening
-                decisions.
-              </p>
-            </div>
-
-            <div class="transparency-item">
-              <h4>Evolution</h4>
-              <p>
-                Public documentation allows us to track how our criteria evolve as we learn and as the world changes.
-              </p>
-            </div>
-
-            <div class="transparency-item">
-              <h4>Collaboration</h4>
-              <p>
-                Other investors can use, adapt, and improve upon our work, advancing ethical investing for everyone.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Additional Resources -->
-      {% if page.additional_resources %}
-      <section class="resources garden-panel">
-        <div class="panel-header">Additional Resources</div>
-        <div class="panel-content">{{ page.additional_resources|safe }}</div>
-      </section>
-      {% endif %}
-
-      <!-- Call to Action -->
-      <section class="cta garden-panel">
-        <div class="panel-content">
-          <h3>Ready to Invest Ethically?</h3>
-          <p>
-            Our screening process is just the beginning. Let us build a portfolio that aligns with your values and
-            financial goals.
-          </p>
-          <div class="cta-actions">
-            <a href="/contact/" class="garden-action primary">Get Started</a>
-            <a href="/strategies/" class="garden-action secondary">View Strategies</a>
-          </div>
-        </div>
-      </section>
+        </main>
     </div>
-  </main>
-</div>
-{% endblock %} {% block extra_css %} {% load static %}
-<link rel="stylesheet" href="{% static 'css/layers/30-criteria-page.css' %}" />
-<style>
+{% endblock %}
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet"
+          href="{% static 'css/layers/30-criteria-page.css' %}" />
+    <style>
   /* Criteria Page Specific Styles */
   .criteria-page .hero {
     background: var(--color-surface);
@@ -393,5 +378,5 @@ block body_class %}criteria-page{% endblock %} {% block content %}
       font-size: 2rem;
     }
   }
-</style>
+    </style>
 {% endblock %}

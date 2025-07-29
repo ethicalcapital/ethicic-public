@@ -1,541 +1,462 @@
 /* Strategy Page Formatting Fixes */
 .strategy-page {
-    background: var(--color-surface);
-    color: var(--color-text-primary);
+background: var(--color-surface);
+color: var(--color-text-primary);
 }
-
 /* Ensure consistent container width with homepage */
 .strategy-page .garden-container {
-    max-width: var(--content-width-normal, 1200px) !important; /* 1200px to match homepage */
-    margin: 0 auto !important; /* Ensure centering */
+max-width: var(--content-width-normal, 1200px) !important; /* 1200px to match homepage */
+margin: 0 auto !important; /* Ensure centering */
 }
-
 /* Explicit fallback for specificity issues */
 body.strategy-page .garden-container,
 .strategy-page main .garden-container,
 .strategy-page > .garden-container:first-child {
-    max-width: 1200px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    width: 100%;
-    box-sizing: border-box;
-    padding-left: 1rem;
-    padding-right: 1rem;
+max-width: 1200px !important;
+margin-left: auto !important;
+margin-right: auto !important;
+width: 100%;
+box-sizing: border-box;
+padding-left: 1rem;
+padding-right: 1rem;
 }
-
 /* Ensure it works on larger screens */
 @media (min-width: 1201px) {
-    body.strategy-page .garden-container {
-        max-width: 1200px !important;
-    }
+body.strategy-page .garden-container {
+max-width: 1200px !important;
 }
-
+}
 /* Fix text contrast globally */
 .strategy-page .garden-panel__content {
-    color: var(--color-text-primary) !important;
+color: var(--color-text-primary) !important;
 }
-
 .strategy-page p,
 .strategy-page li,
 .strategy-page div {
-    color: var(--color-text-primary) !important;
+color: var(--color-text-primary) !important;
 }
-
 /* Section headers styling */
 .strategy-page .section-subheading,
 .strategy-page .subsection-header {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--theme-primary);
-    margin: 2rem 0 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+font-size: 1.1rem;
+font-weight: 600;
+color: var(--theme-primary);
+margin: 2rem 0 1rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
 }
-
 /* Quick actions buttons */
 .strategy-page .quick-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
+display: flex;
+gap: 1rem;
+margin-top: 2rem;
+flex-wrap: wrap;
 }
-
 .strategy-page .quick-actions .garden-action {
-    padding: 0.5rem 1.25rem;
-    font-size: 0.875rem;
+padding: 0.5rem 1.25rem;
+font-size: 0.875rem;
 }
-
 /* Stats grid */
 .strategy-page .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin: 1.5rem 0;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1.5rem;
+margin: 1.5rem 0;
 }
-
 .strategy-page .stat-card {
-    background: var(--color-surface-secondary);
-    padding: 1.5rem;
-    border-radius: var(--radius-sm);
-    text-align: center;
+background: var(--color-surface-secondary);
+padding: 1.5rem;
+border-radius: var(--radius-sm);
+text-align: center;
 }
-
 .strategy-page .stat-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--theme-primary);
-    margin-bottom: 0.5rem;
+font-size: 2rem;
+font-weight: 700;
+color: var(--theme-primary);
+margin-bottom: 0.5rem;
 }
-
 .strategy-page .stat-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-secondary);
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: var(--color-text-secondary);
 }
-
 /* Performance table styling */
 .strategy-page .performance-table {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    margin: 1.5rem 0;
+background: var(--color-surface);
+border: 1px solid var(--color-border);
+border-radius: var(--radius-sm);
+overflow: hidden;
+margin: 1.5rem 0;
 }
-
 .strategy-page .table-header {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    background: var(--theme-primary);
-    color: var(--color-surface);
-    padding: 1rem;
-    font-weight: 600;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr;
+background: var(--theme-primary);
+color: var(--color-surface);
+padding: 1rem;
+font-weight: 600;
+font-size: 0.875rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
 }
-
 .strategy-page .table-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    padding: 1rem;
-    border-bottom: 1px solid var(--color-border);
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr;
+padding: 1rem;
+border-bottom: 1px solid var(--color-border);
 }
-
 .strategy-page .table-row:last-child {
-    border-bottom: none;
+border-bottom: none;
 }
-
 .strategy-page .cell {
-    color: var(--color-text-primary);
+color: var(--color-text-primary);
 }
-
 .strategy-page .positive {
-    color: var(--color-success);
-    font-weight: 600;
+color: var(--color-success);
+font-weight: 600;
 }
-
 /* Metrics grid */
 .strategy-page .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin: 2rem 0;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1.5rem;
+margin: 2rem 0;
 }
-
 .strategy-page .metric-card {
-    background: var(--color-surface-secondary);
-    padding: 1.5rem;
-    border-radius: var(--radius-sm);
-    text-align: center;
+background: var(--color-surface-secondary);
+padding: 1.5rem;
+border-radius: var(--radius-sm);
+text-align: center;
 }
-
 .strategy-page .metric-value {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
+font-size: 1.5rem;
+font-weight: 700;
+color: var(--color-text-primary);
+margin-bottom: 0.5rem;
 }
-
 .strategy-page .metric-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-secondary);
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: var(--color-text-secondary);
 }
-
 /* Portfolio stats */
 .strategy-page .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin: 2rem 0;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1.5rem;
+margin: 2rem 0;
 }
-
 .strategy-page .stat-box {
-    background: var(--color-surface-secondary);
-    padding: 1.5rem;
-    border-radius: var(--radius-sm);
-    text-align: center;
+background: var(--color-surface-secondary);
+padding: 1.5rem;
+border-radius: var(--radius-sm);
+text-align: center;
 }
-
 .strategy-page .stat-title {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-secondary);
-    margin-bottom: 0.5rem;
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: var(--color-text-secondary);
+margin-bottom: 0.5rem;
 }
-
 .strategy-page .stat-number {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--theme-primary);
+font-size: 1.25rem;
+font-weight: 700;
+color: var(--theme-primary);
 }
-
 /* Geographic table */
 .strategy-page .geographic-table {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    margin: 1.5rem 0;
+background: var(--color-surface);
+border: 1px solid var(--color-border);
+border-radius: var(--radius-sm);
+overflow: hidden;
+margin: 1.5rem 0;
 }
-
 .strategy-page .geographic-header {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    background: var(--theme-primary);
-    color: var(--color-surface);
-    padding: 0.75rem 1rem;
-    font-weight: 600;
-    font-size: 0.875rem;
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr;
+background: var(--theme-primary);
+color: var(--color-surface);
+padding: 0.75rem 1rem;
+font-weight: 600;
+font-size: 0.875rem;
 }
-
 .strategy-page .geographic-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--color-border);
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr;
+padding: 0.75rem 1rem;
+border-bottom: 1px solid var(--color-border);
 }
-
 .strategy-page .geographic-row:last-child {
-    border-bottom: none;
+border-bottom: none;
 }
-
 /* Sector positioning */
 .strategy-page .positioning-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin: 2rem 0;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+margin: 2rem 0;
 }
-
 .strategy-page .positioning-card {
-    background: var(--color-surface-secondary);
-    padding: 2rem;
-    border-radius: var(--radius-sm);
+background: var(--color-surface-secondary);
+padding: 2rem;
+border-radius: var(--radius-sm);
 }
-
 .strategy-page .positioning-card h4 {
-    color: var(--theme-primary);
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+color: var(--theme-primary);
+margin-bottom: 1rem;
+font-size: 1rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
 }
-
 .strategy-page .positioning-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+list-style: none;
+padding: 0;
+margin: 0;
 }
-
 .strategy-page .positioning-card li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--color-border);
-    color: var(--color-text-primary);
+padding: 0.5rem 0;
+border-bottom: 1px solid var(--color-border);
+color: var(--color-text-primary);
 }
-
 .strategy-page .positioning-card li:last-child {
-    border-bottom: none;
+border-bottom: none;
 }
-
 /* Holdings section */
 .strategy-page .holdings-grid {
-    display: grid;
-    gap: 2rem;
-    margin: 2rem 0;
+display: grid;
+gap: 2rem;
+margin: 2rem 0;
 }
-
 .strategy-page .holding-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    padding: 2rem;
+background: var(--color-surface);
+border: 1px solid var(--color-border);
+border-radius: var(--radius-sm);
+padding: 2rem;
 }
-
 .strategy-page .holding-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1rem;
+display: flex;
+align-items: baseline;
+gap: 1rem;
+margin-bottom: 1rem;
 }
-
 .strategy-page .company-name {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
+font-size: 1.25rem;
+font-weight: 600;
+color: var(--color-text-primary);
 }
-
 .strategy-page .company-ticker {
-    color: var(--color-text-secondary);
+color: var(--color-text-secondary);
 }
-
 .strategy-page .holding-weight {
-    margin-left: auto;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--theme-primary);
+margin-left: auto;
+font-size: 1.25rem;
+font-weight: 700;
+color: var(--theme-primary);
 }
-
 .strategy-page .vertical-tag {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
+display: inline-block;
+padding: 0.25rem 0.75rem;
+border-radius: var(--radius-sm);
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+margin-bottom: 1rem;
 }
-
 .strategy-page .vertical-tag.lending {
-    background: #e3f2fd;
-    color: #1976d2;
+background: #e3f2fd;
+color: #1976d2;
 }
-
 .strategy-page .vertical-tag.real-estate {
-    background: #f3e5f5;
-    color: #7b1fa2;
+background: #f3e5f5;
+color: #7b1fa2;
 }
-
 .strategy-page .vertical-tag.innovation {
-    background: #e8f5e9;
-    color: #388e3c;
+background: #e8f5e9;
+color: #388e3c;
 }
-
 .strategy-page .holding-thesis,
 .strategy-page .holding-financials {
-    margin: 1rem 0;
-    color: var(--color-text-primary);
+margin: 1rem 0;
+color: var(--color-text-primary);
 }
-
 .strategy-page .holding-thesis strong,
 .strategy-page .holding-financials strong {
-    color: var(--color-text-primary);
-    display: block;
-    margin-bottom: 0.5rem;
+color: var(--color-text-primary);
+display: block;
+margin-bottom: 0.5rem;
 }
-
 /* Allocation table */
 .strategy-page .allocation-table {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    margin: 2rem 0;
+background: var(--color-surface);
+border: 1px solid var(--color-border);
+border-radius: var(--radius-sm);
+overflow: hidden;
+margin: 2rem 0;
 }
-
 .strategy-page .allocation-header {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
-    background: var(--theme-primary);
-    color: var(--color-surface);
-    padding: 0.75rem 1rem;
-    font-weight: 600;
-    font-size: 0.75rem;
-    text-transform: uppercase;
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+background: var(--theme-primary);
+color: var(--color-surface);
+padding: 0.75rem 1rem;
+font-weight: 600;
+font-size: 0.75rem;
+text-transform: uppercase;
 }
-
 .strategy-page .allocation-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--color-border);
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+padding: 0.75rem 1rem;
+border-bottom: 1px solid var(--color-border);
 }
-
 .strategy-page .allocation-row:last-child {
-    border-bottom: none;
+border-bottom: none;
 }
-
 .strategy-page .total-row {
-    background: var(--color-surface-secondary);
-    font-weight: 600;
+background: var(--color-surface-secondary);
+font-weight: 600;
 }
-
 .strategy-page .benchmark-row {
-    background: var(--color-surface-secondary);
-    font-style: italic;
+background: var(--color-surface-secondary);
+font-style: italic;
 }
-
 /* Document grid */
 .strategy-page .documents-grid {
-    display: grid;
-    gap: 3rem;
-    margin-top: 2rem;
+display: grid;
+gap: 3rem;
+margin-top: 2rem;
 }
-
 .strategy-page .document-category h3 {
-    color: var(--theme-primary);
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+color: var(--theme-primary);
+margin-bottom: 1.5rem;
+font-size: 1.1rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
 }
-
 .strategy-page .document-list {
-    display: grid;
-    gap: 1rem;
+display: grid;
+gap: 1rem;
 }
-
 .strategy-page .document-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--color-surface-secondary);
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    transition: all 0.2s ease;
+display: flex;
+align-items: center;
+gap: 1rem;
+padding: 1rem;
+background: var(--color-surface-secondary);
+border-radius: var(--radius-sm);
+text-decoration: none;
+transition: all 0.2s ease;
 }
-
 .strategy-page .document-link:hover {
-    background: var(--color-surface);
-    border: 1px solid var(--theme-primary);
-    transform: translateY(-2px);
+background: var(--color-surface);
+border: 1px solid var(--theme-primary);
+transform: translateY(-2px);
 }
-
 .strategy-page .document-icon {
-    font-size: 2rem;
+font-size: 2rem;
 }
-
 .strategy-page .document-title {
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin-bottom: 0.25rem;
+font-weight: 600;
+color: var(--color-text-primary);
+margin-bottom: 0.25rem;
 }
-
 .strategy-page .document-desc {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
+font-size: 0.875rem;
+color: var(--color-text-secondary);
 }
-
 /* Process steps */
 .strategy-page .process-steps {
-    display: grid;
-    gap: 2rem;
-    margin: 2rem 0;
+display: grid;
+gap: 2rem;
+margin: 2rem 0;
 }
-
 .strategy-page .process-step {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
+display: flex;
+gap: 1.5rem;
+align-items: flex-start;
 }
-
 .strategy-page .step-number {
-    background: var(--theme-primary);
-    color: var(--color-surface);
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    flex-shrink: 0;
+background: var(--theme-primary);
+color: var(--color-surface);
+width: 2.5rem;
+height: 2.5rem;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 700;
+flex-shrink: 0;
 }
-
 .strategy-page .step-content h3 {
-    color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
+color: var(--color-text-primary);
+margin-bottom: 0.5rem;
 }
-
 .strategy-page .step-content p {
-    color: var(--color-text-primary);
+color: var(--color-text-primary);
 }
-
 /* Disclaimers */
 .strategy-page .performance-disclaimer {
-    background: var(--color-surface-secondary);
-    padding: 1.5rem;
-    border-radius: var(--radius-sm);
-    margin-top: 2rem;
+background: var(--color-surface-secondary);
+padding: 1.5rem;
+border-radius: var(--radius-sm);
+margin-top: 2rem;
 }
-
 .strategy-page .performance-disclaimer p {
-    color: var(--color-text-secondary);
-    font-size: 0.875rem;
-    margin: 0;
+color: var(--color-text-secondary);
+font-size: 0.875rem;
+margin: 0;
 }
-
 /* Responsive design */
 @media (max-width: 768px) {
-    .strategy-page .stats-grid,
-    .strategy-page .metrics-grid,
-    .strategy-page .stat-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .strategy-page .positioning-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .strategy-page .quick-actions {
-        flex-direction: column;
-    }
-
-    .strategy-page .quick-actions .garden-action {
-        width: 100%;
-        text-align: center;
-    }
+.strategy-page .stats-grid,
+.strategy-page .metrics-grid,
+.strategy-page .stat-grid {
+grid-template-columns: 1fr 1fr;
 }
-
+.strategy-page .positioning-grid {
+grid-template-columns: 1fr;
+}
+.strategy-page .quick-actions {
+flex-direction: column;
+}
+.strategy-page .quick-actions .garden-action {
+width: 100%;
+text-align: center;
+}
+}
 @media (max-width: 480px) {
-    .strategy-page .stats-grid,
-    .strategy-page .metrics-grid,
-    .strategy-page .stat-grid {
-        grid-template-columns: 1fr;
-    }
+.strategy-page .stats-grid,
+.strategy-page .metrics-grid,
+.strategy-page .stat-grid {
+grid-template-columns: 1fr;
 }
-
+}
 /* Final override to ensure container width is constrained */
 body.strategy-page .garden-container {
-    max-width: 1200px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    width: 100%;
-    box-sizing: border-box;
+max-width: 1200px !important;
+margin-left: auto !important;
+margin-right: auto !important;
+width: 100%;
+box-sizing: border-box;
 }
-
 /* Ensure no parent element overrides this */
 body.strategy-page main {
-    width: 100%;
+width: 100%;
 }
-
 /* Extra safety: ensure all sections stay within bounds */
 body.strategy-page .garden-panel {
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+max-width: 100%;
+margin-left: auto;
+margin-right: auto;
 }
-
 /* Ensure no section can break out of container */
 body.strategy-page section {
-    max-width: 100%;
-    overflow-x: hidden;
+max-width: 100%;
+overflow-x: hidden;
 }
-
 /* CRITICAL: Force ALL content to respect container width */
 body.strategy-page .allocation-table,
 body.strategy-page .performance-table,
@@ -545,23 +466,21 @@ body.strategy-page .documents-section,
 body.strategy-page .portfolio-details,
 body.strategy-page .investor-communications,
 body.strategy-page .holdings-section {
-    max-width: 100%;
-    overflow-x: auto;
+max-width: 100%;
+overflow-x: auto;
 }
-
 /* Ensure tables don't force page width */
 body.strategy-page .allocation-header,
 body.strategy-page .allocation-row {
-    width: 100%;
-    overflow-x: auto;
+width: 100%;
+overflow-x: auto;
 }
-
 /* Force responsive behavior on wider tables */
 @media (max-width: 1200px) {
-    body.strategy-page .allocation-table,
-    body.strategy-page .performance-table,
-    body.strategy-page .geographic-table {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
+body.strategy-page .allocation-table,
+body.strategy-page .performance-table,
+body.strategy-page .geographic-table {
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+}
 }

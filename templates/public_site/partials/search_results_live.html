@@ -1,16 +1,20 @@
 {% if search_results %}
-<div class="search-results-list">
-  {% for page in search_results %}
-  <a href="{{ page.url }}" class="search-result-item">
-    <div class="search-result-title">{{ page.title }}</div>
-    {% if page.search_description %}
-    <div class="search-result-excerpt">{{ page.search_description|truncatewords:20 }}</div>
+    <div class="search-results-list">
+        {% for page in search_results %}
+            <a href="{{ page.url }}" class="search-result-item">
+                <div class="search-result-title">{{ page.title }}</div>
+                {% if page.search_description %}
+                    <div class="search-result-excerpt">{{ page.search_description|truncatewords:20 }}</div>
+                {% endif %}
+            </a>
+        {% endfor %}
+        {% if show_more %}
+            <a href="/search/?q={{ query_string|urlencode }}"
+               class="search-result-item search-view-all">View all results →</a>
+        {% endif %}
+    </div>
+{% else %}
+    {% if query_string|length >= 2 %}
+        <div class="search-result-item search-no-results">No results found for "{{ query_string }}"</div>
     {% endif %}
-  </a>
-  {% endfor %} {% if show_more %}
-  <a href="/search/?q={{ query_string|urlencode }}" class="search-result-item search-view-all">View all results →</a>
-  {% endif %}
-</div>
-{% else %} {% if query_string|length >= 2 %}
-<div class="search-result-item search-no-results">No results found for "{{ query_string }}"</div>
-{% endif %} {% endif %}
+{% endif %}

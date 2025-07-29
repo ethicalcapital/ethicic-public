@@ -83,7 +83,7 @@ def fix_media_permissions():
         print("   ✅ Can write files")
 
         with open(test_file) as f:
-            content = f.read()
+            f.read()
         print("   ✅ Can read files")
 
         os.remove(test_file)

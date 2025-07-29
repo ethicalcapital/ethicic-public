@@ -1,34 +1,38 @@
-{% load wagtailcore_tags %} {% for item in media_items %}
-<article class="article-list-item{% if item.featured %} featured-item{% endif %}" data-item-id="{{ item.id }}">
-  {% if item.featured %}
-  <div class="featured-badge">FEATURED</div>
-  {% endif %}
-  <div class="article-list-text">
-    <div class="article-list-meta">
-      <div class="article-list-tags">
-        {% if item.publication %}
-        <span class="article-list-tag">{{ item.publication|upper }}</span>
-        {% endif %} {% if item.publication_date %}
-        <span class="article-list-date">{{ item.publication_date|date:"M j, Y"|upper }}</span>
-        {% endif %}
-      </div>
-    </div>
-
-    <h2 class="article-list-title">
-      {% if item.external_url %}
-      <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
-      {% else %} {{ item.title }} {% endif %}
-    </h2>
-
-    {% if item.description %}
-    <div class="article-list-description">{{ item.description|richtext }}</div>
-    {% endif %} {% if item.external_url %}
-    <div class="article-list-actions">
-      <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer" class="garden-action secondary small">
-        READ ON {{ item.publication|upper|default:"EXTERNAL SITE" }}
-      </a>
-    </div>
-    {% endif %}
-  </div>
-</article>
-{% endfor %} {{ next_page_trigger|safe }}
+{% load wagtailcore_tags %}
+{% for item in media_items %}
+    <article class="article-list-item{% if item.featured %} featured-item{% endif %}"
+             data-item-id="{{ item.id }}">
+        {% if item.featured %}<div class="featured-badge">FEATURED</div>{% endif %}
+        <div class="article-list-text">
+            <div class="article-list-meta">
+                <div class="article-list-tags">
+                    {% if item.publication %}<span class="article-list-tag">{{ item.publication|upper }}</span>{% endif %}
+                    {% if item.publication_date %}
+                        <span class="article-list-date">{{ item.publication_date|date:"M j, Y"|upper }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <h2 class="article-list-title">
+                {% if item.external_url %}
+                    <a href="{{ item.external_url }}"
+                       target="_blank"
+                       rel="noopener noreferrer">{{ item.title }}</a>
+                {% else %}
+                    {{ item.title }}
+                {% endif %}
+            </h2>
+            {% if item.description %}<div class="article-list-description">{{ item.description|richtext }}</div>{% endif %}
+            {% if item.external_url %}
+                <div class="article-list-actions">
+                    <a href="{{ item.external_url }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="garden-action secondary small">
+                        READ ON {{ item.publication|upper|default:"EXTERNAL SITE" }}
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </article>
+{% endfor %}
+{{ next_page_trigger|safe }}

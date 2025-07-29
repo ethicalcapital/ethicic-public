@@ -136,8 +136,7 @@ class EnhancedLinkChecker:
 
         # Must have valid URL structure
         if not (
-            url.startswith(("http://", "https://", "mailto:", "tel:", "ftp://"))
-            or url.startswith("/")
+            url.startswith(("http://", "https://", "mailto:", "tel:", "ftp://", "/"))
         ):
             # If it doesn't start with a protocol or root path, check if it looks like a relative URL
             if not re.match(r"^[a-zA-Z0-9._-]+(/[a-zA-Z0-9._-]*)*/?$", url):
@@ -162,9 +161,8 @@ class EnhancedLinkChecker:
 
         # Clean up the URL
         url = unquote(url)
-        url = re.sub(r"#.*$", "", url)  # Remove fragments for checking
+        return re.sub(r"#.*$", "", url)  # Remove fragments for checking
 
-        return url
 
     def extract_links_from_css(self, css_content: str, base_url: str) -> set[str]:
         """Extract URLs from CSS content"""
@@ -291,12 +289,11 @@ class EnhancedLinkChecker:
                         "url" in attr_name.lower()
                         or "link" in attr_name.lower()
                         or "href" in attr_name.lower()
-                    ):
-                        if self.is_valid_link(attr_value):
-                            normalized = self.normalize_url(attr_value, page_url)
-                            if normalized:
-                                links.add(normalized)
-                                self.link_types[normalized] = "data_attribute"
+                    ) and self.is_valid_link(attr_value):
+                        normalized = self.normalize_url(attr_value, page_url)
+                        if normalized:
+                            links.add(normalized)
+                            self.link_types[normalized] = "data_attribute"
 
         # 6. Extract URLs from plain text content (be conservative)
         text_content = soup.get_text()
@@ -524,7 +521,7 @@ class EnhancedLinkChecker:
             )
 
         # Create comprehensive report
-        report = {
+        return {
             "summary": {
                 "site_url": self.base_url,
                 "crawl_timestamp": datetime.now().isoformat(),
@@ -549,7 +546,6 @@ class EnhancedLinkChecker:
             },
         }
 
-        return report
 
     def _categorize_by_domain(self) -> dict[str, int]:
         """Categorize links by domain"""
@@ -618,20 +614,20 @@ def generate_markdown_summary(report: dict) -> None:
 
     markdown_content = f"""# Enhanced Link Check Report - ethicic.com
 
-**Generated**: {datetime.now().strftime('%Y-%m-%d at %I:%M %p %Z')}
-**Execution Time**: {summary['execution_time_seconds']} seconds
+**Generated**: {datetime.now().strftime("%Y-%m-%d at %I:%M %p %Z")}
+**Execution Time**: {summary["execution_time_seconds"]} seconds
 
 ## 📊 Summary
-- **Pages Crawled**: {summary['pages_crawled']}
-- **Total Unique Links**: {summary['unique_links_found']}
-- **Working Links**: {summary['working_links']} ({summary['success_rate']}%)
-- **Broken Links**: {summary['broken_links']}
-- **Redirects**: {summary['redirect_links']}
-- **Errors**: {summary['error_links']}
+- **Pages Crawled**: {summary["pages_crawled"]}
+- **Total Unique Links**: {summary["unique_links_found"]}
+- **Working Links**: {summary["working_links"]} ({summary["success_rate"]}%)
+- **Broken Links**: {summary["broken_links"]}
+- **Redirects**: {summary["redirect_links"]}
+- **Errors**: {summary["error_links"]}
 
 ## 🚨 Critical Issues by Category
 
-### Internal Site Issues ({len(broken_categories.get('internal_broken', []))})
+### Internal Site Issues ({len(broken_categories.get("internal_broken", []))})
 """
 
     # Add internal broken links
@@ -641,13 +637,13 @@ def generate_markdown_summary(report: dict) -> None:
     markdown_content += f"""
 ### External Domain Issues
 
-#### Investvegan.org Problems ({len(broken_categories.get('investvegan_broken', []))})
+#### Investvegan.org Problems ({len(broken_categories.get("investvegan_broken", []))})
 All references to the defunct investvegan.org domain are failing.
 
-#### Other External Issues ({len(broken_categories.get('external_404', [])) + len(broken_categories.get('dns_error', [])) + len(broken_categories.get('access_denied', []))})
-- 404 Not Found: {len(broken_categories.get('external_404', []))}
-- DNS Errors: {len(broken_categories.get('dns_error', []))}
-- Access Denied: {len(broken_categories.get('access_denied', []))}
+#### Other External Issues ({len(broken_categories.get("external_404", [])) + len(broken_categories.get("dns_error", [])) + len(broken_categories.get("access_denied", []))})
+- 404 Not Found: {len(broken_categories.get("external_404", []))}
+- DNS Errors: {len(broken_categories.get("dns_error", []))}
+- Access Denied: {len(broken_categories.get("access_denied", []))}
 
 ## 📈 Link Distribution
 """

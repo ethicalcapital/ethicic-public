@@ -1,106 +1,101 @@
 {% load wagtailcore_tags %}
-
-<div class="ai-content-analysis-block" data-confidence="{{ value.analysis_confidence }}">
-  <div class="ai-analysis-header">
-    <h3 class="ai-analysis-title">
-      <span class="ai-icon" aria-hidden="true">🤖</span>
-      AI Content Analysis
-    </h3>
-
-    {% if value.analysis_confidence > 0.8 %}
-    <span class="ai-confidence-indicator high" aria-label="High confidence analysis">High Confidence</span>
-    {% elif value.analysis_confidence > 0.6 %}
-    <span class="ai-confidence-indicator medium" aria-label="Medium confidence analysis">Medium Confidence</span>
-    {% else %}
-    <span class="ai-confidence-indicator low" aria-label="Low confidence analysis">Low Confidence</span>
-    {% endif %}
-  </div>
-
-  <div class="ai-analysis-content">
-    {% if value.content %}
-    <div class="ai-original-content">
-      <h4>Original Content</h4>
-      <div class="ai-content-text">{{ value.content|richtext }}</div>
+<div class="ai-content-analysis-block"
+     data-confidence="{{ value.analysis_confidence }}">
+    <div class="ai-analysis-header">
+        <h3 class="ai-analysis-title">
+            <span class="ai-icon" aria-hidden="true">🤖</span>
+            AI Content Analysis
+        </h3>
+        {% if value.analysis_confidence > 0.8 %}
+            <span class="ai-confidence-indicator high"
+                  aria-label="High confidence analysis">High Confidence</span>
+        {% elif value.analysis_confidence > 0.6 %}
+            <span class="ai-confidence-indicator medium"
+                  aria-label="Medium confidence analysis">Medium Confidence</span>
+        {% else %}
+            <span class="ai-confidence-indicator low"
+                  aria-label="Low confidence analysis">Low Confidence</span>
+        {% endif %}
     </div>
-    {% endif %} {% if value.ai_insights %}
-    <div class="ai-insights-section">
-      <h4>
-        <span aria-hidden="true">💡</span>
-        Key Insights
-      </h4>
-      <ul class="ai-insights-list">
-        {% for insight in value.ai_insights %}
-        <li class="ai-insight-item">{{ insight }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %} {% if value.extracted_statistics %}
-    <div class="ai-extracted-stats-section">
-      <h4>
-        <span aria-hidden="true">📊</span>
-        Extracted Statistics
-      </h4>
-
-      {% if high_confidence_stats %}
-      <div class="ai-high-confidence-stats">
-        <h5>High Confidence Statistics</h5>
-        <div class="ai-stats-grid">
-          {% for stat in high_confidence_stats %}
-          <div class="ai-extracted-stat high-confidence">
-            <div class="ai-stat-value">{{ stat.value }}</div>
-            <div class="ai-stat-label">{{ stat.label }}</div>
-            {% if stat.ai_context %}
-            <div class="ai-stat-context">{{ stat.ai_context|truncatewords:15 }}</div>
-            {% endif %}
-            <div class="ai-stat-metadata">
-              <span class="ai-confidence">{{ stat.ai_confidence|floatformat:0 }}% confidence</span>
-              {% if stat.statistic_category %}
-              <span class="ai-category">{{ stat.get_statistic_category_display }}</span>
-              {% endif %}
+    <div class="ai-analysis-content">
+        {% if value.content %}
+            <div class="ai-original-content">
+                <h4>Original Content</h4>
+                <div class="ai-content-text">{{ value.content|richtext }}</div>
             </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %} {% if summary_stats %}
-      <div class="ai-summary-stats">
-        <h5>Statistics by Category</h5>
-        {% for category, stats in summary_stats.items %}
-        <div class="ai-category-group">
-          <h6 class="ai-category-title">{{ category|title }}</h6>
-          <div class="ai-category-stats">
-            {% for stat in stats %}
-            <div class="ai-extracted-stat">
-              <span class="ai-stat-value">{{ stat.value }}</span>
-              <span class="ai-stat-label">{{ stat.label }}</span>
+        {% endif %}
+        {% if value.ai_insights %}
+            <div class="ai-insights-section">
+                <h4>
+                    <span aria-hidden="true">💡</span>
+                    Key Insights
+                </h4>
+                <ul class="ai-insights-list">
+                    {% for insight in value.ai_insights %}<li class="ai-insight-item">{{ insight }}</li>{% endfor %}
+                </ul>
             </div>
-            {% endfor %}
-          </div>
+        {% endif %}
+        {% if value.extracted_statistics %}
+            <div class="ai-extracted-stats-section">
+                <h4>
+                    <span aria-hidden="true">📊</span>
+                    Extracted Statistics
+                </h4>
+                {% if high_confidence_stats %}
+                    <div class="ai-high-confidence-stats">
+                        <h5>High Confidence Statistics</h5>
+                        <div class="ai-stats-grid">
+                            {% for stat in high_confidence_stats %}
+                                <div class="ai-extracted-stat high-confidence">
+                                    <div class="ai-stat-value">{{ stat.value }}</div>
+                                    <div class="ai-stat-label">{{ stat.label }}</div>
+                                    {% if stat.ai_context %}<div class="ai-stat-context">{{ stat.ai_context|truncatewords:15 }}</div>{% endif %}
+                                    <div class="ai-stat-metadata">
+                                        <span class="ai-confidence">{{ stat.ai_confidence|floatformat:0 }}% confidence</span>
+                                        {% if stat.statistic_category %}<span class="ai-category">{{ stat.get_statistic_category_display }}</span>{% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if summary_stats %}
+                    <div class="ai-summary-stats">
+                        <h5>Statistics by Category</h5>
+                        {% for category, stats in summary_stats.items %}
+                            <div class="ai-category-group">
+                                <h6 class="ai-category-title">{{ category|title }}</h6>
+                                <div class="ai-category-stats">
+                                    {% for stat in stats %}
+                                        <div class="ai-extracted-stat">
+                                            <span class="ai-stat-value">{{ stat.value }}</span>
+                                            <span class="ai-stat-label">{{ stat.label }}</span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if value.last_analyzed %}
+            <div class="ai-analysis-metadata">
+                <span class="ai-analysis-timestamp">
+                    <span aria-hidden="true">🕒</span>
+                    Last analyzed: {{ value.last_analyzed|date:"M j, Y g:i A" }}
+                </span>
+                {% if value.analysis_confidence %}
+                    <span class="ai-overall-confidence">Overall confidence: {{ value.analysis_confidence|floatformat:0 }}%</span>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+    {% if not value.extracted_statistics and not value.ai_insights %}
+        <div class="ai-no-analysis">
+            <span class="ai-placeholder-icon" aria-hidden="true">🔍</span>
+            <p>No meaningful statistics or insights detected in the provided content.</p>
+            <p class="ai-suggestion">Try including specific numbers, percentages, or quantitative data for better AI analysis.</p>
         </div>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </div>
-    {% endif %} {% if value.last_analyzed %}
-    <div class="ai-analysis-metadata">
-      <span class="ai-analysis-timestamp">
-        <span aria-hidden="true">🕒</span>
-        Last analyzed: {{ value.last_analyzed|date:"M j, Y g:i A" }}
-      </span>
-      {% if value.analysis_confidence %}
-      <span class="ai-overall-confidence">Overall confidence: {{ value.analysis_confidence|floatformat:0 }}%</span>
-      {% endif %}
-    </div>
     {% endif %}
-  </div>
-
-  {% if not value.extracted_statistics and not value.ai_insights %}
-  <div class="ai-no-analysis">
-    <span class="ai-placeholder-icon" aria-hidden="true">🔍</span>
-    <p>No meaningful statistics or insights detected in the provided content.</p>
-    <p class="ai-suggestion">
-      Try including specific numbers, percentages, or quantitative data for better AI analysis.
-    </p>
-  </div>
-  {% endif %}
 </div>

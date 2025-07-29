@@ -1,29 +1,26 @@
-{% comment %} Garden Action Component - Standalone Implementation Generates action buttons/links with Garden UI styling
-{% endcomment %} {% load static %} {# Set default values #} {% with text=text|default:"Action" %} {% with
-url=url|default:"#" %} {% with variant=variant|default:"primary" %} {% with aria_label=aria_label|default:text %} {%
-with class=class|default:"" %} {% with target=target|default:"" %}
-
-<a
-  href="{{ url }}"
-  class="garden-action {{ variant }} {{ class }}"
-  aria-label="{{ aria_label }}"
-  {%
-  if
-  target
-  %}target="{{ target }}"
-  {%
-  endif
-  %}
-  {%
-  if
-  target=""
-  ="_blank"
-  %}rel="noopener noreferrer"
-  {%
-  endif
-  %}
->
-  {{ text }}
-</a>
-
-{% endwith %} {% endwith %} {% endwith %} {% endwith %} {% endwith %} {% endwith %}
+{% comment %}Garden Action Component - Generates action buttons/links with Garden UI styling{% endcomment %}
+{% load
+static %}
+{% with text=text|default:"Action" url=url|default:"#" variant=variant|default:"primary"
+    aria_label=aria_label|default:text class=class|default:"" target=target|default:"" %}
+    <a
+        href="{{ url }}"
+        class="garden-action {{ variant }} {{ class }}"
+        aria-label="{{ aria_label }}"
+        {%
+        if
+        target
+        %}target="{{ target }}"
+        {%
+        endif
+        %}
+        {%
+        if
+        target=""
+        ="_blank"
+        %}rel="noopener noreferrer"
+        {%
+        endif
+        %}
+        >{{ text }}</a>
+{% endwith %}

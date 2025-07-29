@@ -1,73 +1,78 @@
-{% extends "public_site/base_tailwind.html" %} {% load static %} {% block title %}Page Not Found (404) - Ethical
-Capital{% endblock %} {% block meta_description %}The page you're looking for could not be found. Navigate back to our
-homepage or explore our ethical investment solutions.{% endblock %} {% block body_class %}error-page error-404{%
-endblock %} {% block content %}
-<div class="container-ec">
-  <!-- Error Hero Section -->
-  <section class="mb-8 bg-gradient-to-br from-red-900 via-gray-900 to-red-800 rounded-xl p-8 text-center">
-    <div class="text-8xl font-bold text-red-300 mb-4">404</div>
-    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">PAGE NOT FOUND</h1>
-    <p class="text-xl text-red-100 max-w-2xl mx-auto mb-4">
-      We're sorry, but the page you're looking for doesn't exist or may have been moved.
-    </p>
-    <p class="text-lg text-red-200 max-w-xl mx-auto">Here are some helpful options to get you back on track:</p>
-  </section>
-
-  <!-- Error Actions Grid -->
-  <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
-      <a href="/" class="block w-full px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors mb-3">
-        RETURN TO HOMEPAGE
-      </a>
-      <p class="text-gray-600 dark:text-gray-400">Go back to the main page</p>
-    </div>
-
-    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
-      <a href="/solutions/" class="block w-full px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors mb-3">
-        EXPLORE INVESTMENT SOLUTIONS
-      </a>
-      <p class="text-gray-600 dark:text-gray-400">Browse our ethical investment options</p>
-    </div>
-
-    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
-      <a href="/contact/" class="block w-full px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors mb-3">
-        CONTACT US
-      </a>
-      <p class="text-gray-600 dark:text-gray-400">Get in touch with our team</p>
-    </div>
-
-    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
-      <a href="/blog/" class="block w-full px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors mb-3">
-        READ OUR BLOG
-      </a>
-      <p class="text-gray-600 dark:text-gray-400">Learn about ethical investing insights</p>
-    </div>
-  </section>
-
-  <!-- Search Section -->
-  <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">Search Our Site</h2>
-    <p class="text-gray-600 dark:text-gray-400 text-center mb-6">Search for content on our website</p>
-
-    <form method="get" action="/search/" class="max-w-md mx-auto">
-      <div class="flex gap-2">
-        <input
-          type="search"
-          name="q"
-          placeholder="Search..."
-          class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-          aria-label="Search"
-        />
-        <button
-          type="submit"
-          class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
-        >
-          SEARCH
-        </button>
-      </div>
-    </form>
-
-    <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-4">Try searching for investment strategies, ESG criteria, or company analysis</p>
-  </section>
-</div>
+{% extends "public_site/base_tailwind.html" %}
+{% load static %}
+{% block title %}
+    Page Not Found (404) - Ethical
+    Capital
 {% endblock %}
+{% block meta_description %}
+    The page you're looking for could not be found. Navigate back to our
+    homepage or explore our ethical investment solutions.
+{% endblock %}
+{% block body_class %}
+    error-page error-404{%
+    endblock %}
+    {% block content %}
+        <div class="container-ec">
+            <!-- Error Hero Section -->
+            <section class="mb-8 rounded-xl bg-gradient-to-br from-red-900 via-gray-900 to-red-800 p-8 text-center">
+                <div class="mb-4 text-8xl font-bold text-red-300">404</div>
+                <h1 class="mb-4 text-4xl font-bold text-white md:text-5xl">PAGE NOT FOUND</h1>
+                <p class="mx-auto mb-4 max-w-2xl text-xl text-red-100">
+                    We're sorry, but the page you're looking for doesn't exist or may have been moved.
+                </p>
+                <p class="mx-auto max-w-xl text-lg text-red-200">Here are some helpful options to get you back on track:</p>
+            </section>
+            <!-- Error Actions Grid -->
+            <section class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div class="rounded-lg border border-gray-200 bg-white p-6 text-center dark:border-gray-700 dark:bg-gray-800">
+                    <a href="/"
+                       class="mb-3 block w-full rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700">
+                        RETURN TO HOMEPAGE
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400">Go back to the main page</p>
+                </div>
+                <div class="rounded-lg border border-gray-200 bg-white p-6 text-center dark:border-gray-700 dark:bg-gray-800">
+                    <a href="/solutions/"
+                       class="mb-3 block w-full rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                        EXPLORE INVESTMENT SOLUTIONS
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400">Browse our ethical investment options</p>
+                </div>
+                <div class="rounded-lg border border-gray-200 bg-white p-6 text-center dark:border-gray-700 dark:bg-gray-800">
+                    <a href="/contact/"
+                       class="mb-3 block w-full rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                        CONTACT US
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400">Get in touch with our team</p>
+                </div>
+                <div class="rounded-lg border border-gray-200 bg-white p-6 text-center dark:border-gray-700 dark:bg-gray-800">
+                    <a href="/blog/"
+                       class="mb-3 block w-full rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                        READ OUR BLOG
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400">Learn about ethical investing insights</p>
+                </div>
+            </section>
+            <!-- Search Section -->
+            <section class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+                <h2 class="mb-4 text-center text-2xl font-bold text-gray-900 dark:text-gray-100">Search Our Site</h2>
+                <p class="mb-6 text-center text-gray-600 dark:text-gray-400">Search for content on our website</p>
+                <form method="get" action="/search/" class="mx-auto max-w-md">
+                    <div class="flex gap-2">
+                        <input type="search"
+                               name="q"
+                               placeholder="Search..."
+                               class="flex-1 rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                               aria-label="Search" />
+                        <button type="submit"
+                                class="rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700">
+                            SEARCH
+                        </button>
+                    </div>
+                </form>
+                <p class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
+                    Try searching for investment strategies, ESG criteria, or company analysis
+                </p>
+            </section>
+        </div>
+    {% endblock %}

@@ -117,18 +117,16 @@ class Command(BaseCommand):
             )
             self.stdout.write("Run without --dry-run to actually move the pages")
         elif moved_pages:
-                self.stdout.write(
-                    self.style.SUCCESS(
-                        f"✅ Successfully moved {len(moved_pages)} pages:"
-                    )
-                )
-                for page_name, url in moved_pages:
-                    self.stdout.write(f"   • {page_name}: {url}")
-                self.stdout.write(
-                    "\n📝 These pages should now be accessible at their URLs!"
-                )
-            else:
-                self.stdout.write("ℹ️  No pages needed to be moved")
+            self.stdout.write(
+                self.style.SUCCESS(f"✅ Successfully moved {len(moved_pages)} pages:")
+            )
+            for page_name, url in moved_pages:
+                self.stdout.write(f"   • {page_name}: {url}")
+            self.stdout.write(
+                "\n📝 These pages should now be accessible at their URLs!"
+            )
+        else:
+            self.stdout.write("ℹ️  No pages needed to be moved")
 
         # Test URLs
         if not dry_run and moved_pages:

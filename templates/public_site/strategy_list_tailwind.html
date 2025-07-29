@@ -1,191 +1,199 @@
-{% extends "public_site/base_tailwind.html" %} {% load wagtailcore_tags static %} {% block title %}{{ page.title }} |
-Ethical Capital{% endblock %} {% block meta_description %}Explore Ethical Capital's comprehensive investment strategies:
-Growth, Income, and Diversification options for values-based investing with SEC-registered fiduciary guidance.{%
-endblock %} {% block content %}
-<div class="container-ec py-8">
-  <!-- Hero Section -->
-  <section class="card-ec mb-8" role="banner" aria-labelledby="hero-heading">
-    <div class="card-content-ec text-center space-y-4">
-      <h1 id="hero-heading" class="font-mono text-4xl font-bold text-white">{{ page.title }}</h1>
-      {% if page.intro_text %}
-      <div class="text-xl text-gray-300 max-w-4xl mx-auto">{{ page.intro_text|safe }}</div>
-      {% endif %} {% if page.description %}
-      <div class="text-gray-200 max-w-3xl mx-auto">{{ page.description|safe }}</div>
-      {% endif %}
-    </div>
-  </section>
-
-  <!-- Investment Strategies Grid -->
-  {% if strategies %}
-  <section class="card-ec mb-8" role="main" aria-labelledby="strategies-heading">
-    <div class="card-header-ec">
-      <div class="panel-title-ec">INVESTMENT STRATEGIES</div>
-    </div>
-    <div class="card-content-ec space-y-6">
-      <div class="text-center">
-        <h2 id="strategies-heading" class="font-mono text-2xl text-purple-400 font-semibold mb-4">
-          Available Investment Strategies
-        </h2>
-        <p class="text-gray-200 max-w-3xl mx-auto">
-          Our comprehensive suite of ethical investment strategies, each designed to meet specific investor objectives
-          while maintaining our commitment to values-based investing.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for strategy in strategies %}
-        <article
-          class="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden hover:border-purple-400 transition-colors"
-          aria-labelledby="strategy-{{ strategy.id }}-heading"
-          data-strategy="{{ strategy.slug }}"
-        >
-          <!-- Strategy Header -->
-          <div class="bg-purple-900 p-4 text-center">
-            <div class="text-2xl mb-2" aria-hidden="true">
-              {% if strategy.strategy_label == "Growth" %}🚀 {% elif strategy.strategy_label == "Income" %}💰 {% elif
-              strategy.strategy_label == "Diversification" %}⚖️ {% else %}📈{% endif %}
+{% extends "public_site/base_tailwind.html" %}
+{% load wagtailcore_tags static %}
+{% block title %}
+    {{ page.title }} |
+    Ethical Capital
+{% endblock %}
+{% block meta_description %}
+    Explore Ethical Capital's comprehensive investment
+    strategies: Growth, Income, and Diversification options for values-based investing with SEC-registered fiduciary
+    guidance.
+{% endblock %}
+{% block content %}
+    <div class="container-ec py-8">
+        <!-- Hero Section -->
+        <section class="card-ec mb-8" role="banner" aria-labelledby="hero-heading">
+            <div class="card-content-ec space-y-4 text-center">
+                <h1 id="hero-heading" class="font-mono text-4xl font-bold text-white">{{ page.title }}</h1>
+                {% if page.intro_text %}
+                    <div class="mx-auto max-w-4xl text-xl text-gray-300">{{ page.intro_text|safe }}</div>
+                {% endif %}
+                {% if page.description %}<div class="mx-auto max-w-3xl text-gray-200">{{ page.description|safe }}</div>{% endif %}
             </div>
-            <h3 id="strategy-{{ strategy.id }}-heading" class="font-mono text-lg font-semibold text-white">
-              {{ strategy.title }}
-            </h3>
-            {% if strategy.strategy_label %}
-            <div class="badge-ec-secondary mt-2">{{ strategy.strategy_label }}</div>
-            {% endif %}
-          </div>
-
-          <!-- Strategy Content -->
-          <div class="p-6 space-y-4">
-            {% if strategy.strategy_subtitle %}
-            <p class="text-purple-300 font-medium text-sm">{{ strategy.strategy_subtitle }}</p>
-            {% endif %} {% if strategy.strategy_description %}
-            <div class="text-gray-200 text-sm">{{ strategy.strategy_description|safe }}</div>
-            {% endif %}
-
-            <!-- Strategy Details Grid -->
-            <div class="space-y-3 text-xs">
-              {% if strategy.strategy_focus %}
-              <div class="grid grid-cols-3 gap-2">
-                <div class="text-purple-400 font-mono">Focus:</div>
-                <div class="col-span-2 text-gray-200">{{ strategy.strategy_focus }}</div>
-              </div>
-              {% endif %} {% if strategy.strategy_screening %}
-              <div class="grid grid-cols-3 gap-2 border-t border-gray-600 pt-3">
-                <div class="text-purple-400 font-mono">Screening:</div>
-                <div class="col-span-2 text-gray-200">{{ strategy.strategy_screening }}</div>
-              </div>
-              {% endif %} {% if strategy.strategy_management %}
-              <div class="grid grid-cols-3 gap-2 border-t border-gray-600 pt-3">
-                <div class="text-purple-400 font-mono">Management:</div>
-                <div class="col-span-2 text-gray-200">{{ strategy.strategy_management }}</div>
-              </div>
-              {% endif %} {% if strategy.strategy_ownership %}
-              <div class="grid grid-cols-3 gap-2 border-t border-gray-600 pt-3">
-                <div class="text-purple-400 font-mono">Ownership:</div>
-                <div class="col-span-2 text-gray-200">{{ strategy.strategy_ownership }}</div>
-              </div>
-              {% endif %}
+        </section>
+        <!-- Investment Strategies Grid -->
+        {% if strategies %}
+            <section class="card-ec mb-8" role="main" aria-labelledby="strategies-heading">
+                <div class="card-header-ec">
+                    <div class="panel-title-ec">INVESTMENT STRATEGIES</div>
+                </div>
+                <div class="card-content-ec space-y-6">
+                    <div class="text-center">
+                        <h2 id="strategies-heading"
+                            class="mb-4 font-mono text-2xl font-semibold text-purple-400">
+                            Available Investment Strategies
+                        </h2>
+                        <p class="mx-auto max-w-3xl text-gray-200">
+                            Our comprehensive suite of ethical investment strategies, each designed to meet specific investor objectives
+                            while maintaining our commitment to values-based investing.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {% for strategy in strategies %}
+                            <article class="overflow-hidden rounded-lg border border-gray-600 bg-gray-800 transition-colors hover:border-purple-400"
+                                     aria-labelledby="strategy-{{ strategy.id }}-heading"
+                                     data-strategy="{{ strategy.slug }}">
+                                <!-- Strategy Header -->
+                                <div class="bg-purple-900 p-4 text-center">
+                                    <div class="mb-2 text-2xl" aria-hidden="true">
+                                        {% if strategy.strategy_label == "Growth" %}
+                                            🚀
+                                        {% elif strategy.strategy_label == "Income" %}
+                                            💰
+                                        {% elif
+                                            strategy.strategy_label == "Diversification" %}
+                                            ⚖️
+                                        {% else %}
+                                            📈
+                                        {% endif %}
+                                    </div>
+                                    <h3 id="strategy-{{ strategy.id }}-heading"
+                                        class="font-mono text-lg font-semibold text-white">{{ strategy.title }}</h3>
+                                    {% if strategy.strategy_label %}<div class="badge-ec-secondary mt-2">{{ strategy.strategy_label }}</div>{% endif %}
+                                </div>
+                                <!-- Strategy Content -->
+                                <div class="space-y-4 p-6">
+                                    {% if strategy.strategy_subtitle %}
+                                        <p class="text-sm font-medium text-purple-300">{{ strategy.strategy_subtitle }}</p>
+                                    {% endif %}
+                                    {% if strategy.strategy_description %}
+                                        <div class="text-sm text-gray-200">{{ strategy.strategy_description|safe }}</div>
+                                    {% endif %}
+                                    <!-- Strategy Details Grid -->
+                                    <div class="space-y-3 text-xs">
+                                        {% if strategy.strategy_focus %}
+                                            <div class="grid grid-cols-3 gap-2">
+                                                <div class="font-mono text-purple-400">Focus:</div>
+                                                <div class="col-span-2 text-gray-200">{{ strategy.strategy_focus }}</div>
+                                            </div>
+                                        {% endif %}
+                                        {% if strategy.strategy_screening %}
+                                            <div class="grid grid-cols-3 gap-2 border-t border-gray-600 pt-3">
+                                                <div class="font-mono text-purple-400">Screening:</div>
+                                                <div class="col-span-2 text-gray-200">{{ strategy.strategy_screening }}</div>
+                                            </div>
+                                        {% endif %}
+                                        {% if strategy.strategy_management %}
+                                            <div class="grid grid-cols-3 gap-2 border-t border-gray-600 pt-3">
+                                                <div class="font-mono text-purple-400">Management:</div>
+                                                <div class="col-span-2 text-gray-200">{{ strategy.strategy_management }}</div>
+                                            </div>
+                                        {% endif %}
+                                        {% if strategy.strategy_ownership %}
+                                            <div class="grid grid-cols-3 gap-2 border-t border-gray-600 pt-3">
+                                                <div class="font-mono text-purple-400">Ownership:</div>
+                                                <div class="col-span-2 text-gray-200">{{ strategy.strategy_ownership }}</div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <!-- Performance Metrics -->
+                                    {% if strategy.performance_data %}
+                                        <div class="rounded border border-gray-600 bg-gray-700 p-3">
+                                            <h4 class="mb-2 font-mono text-xs font-semibold text-purple-400">Performance Highlights</h4>
+                                            <div class="text-xs text-gray-200">{{ strategy.performance_data|safe }}</div>
+                                        </div>
+                                    {% endif %}
+                                    <!-- Key Features -->
+                                    {% if strategy.key_features %}
+                                        <div class="space-y-2">
+                                            <h4 class="font-mono text-xs font-semibold text-purple-400">Key Features:</h4>
+                                            <div class="text-xs text-gray-200">{{ strategy.key_features|safe }}</div>
+                                        </div>
+                                    {% endif %}
+                                    <!-- Action Button -->
+                                    <div class="border-t border-gray-600 pt-4">
+                                        <a href="{{ strategy.url }}"
+                                           class="btn-ec-secondary block w-full text-center">
+                                            Learn More About {{ strategy.strategy_label|default:"This Strategy" }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- Investment Minimums -->
+                                {% if strategy.minimum_investment %}
+                                    <div class="px-6 pb-4">
+                                        <div class="text-center">
+                                            <div class="text-xs text-gray-400">Minimum Investment</div>
+                                            <div class="font-mono text-sm font-semibold text-purple-400">{{ strategy.minimum_investment }}</div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% else %}
+            <section class="card-ec text-center">
+                <div class="card-content-ec">
+                    <p class="text-gray-400">No investment strategies are currently available.</p>
+                    <div class="mt-4">
+                        <a href="/contact/" class="btn-ec-primary">Contact Us for Custom Solutions</a>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+        <!-- Strategy Comparison Section -->
+        {% if strategies|length > 1 %}
+            <section class="card-ec mb-8">
+                <div class="card-header-ec">
+                    <h3 class="card-title-ec">Strategy Comparison</h3>
+                </div>
+                <div class="card-content-ec">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-gray-600">
+                                    <th class="p-3 text-left font-mono text-purple-400">Strategy</th>
+                                    <th class="p-3 text-left font-mono text-purple-400">Focus</th>
+                                    <th class="p-3 text-left font-mono text-purple-400">Risk Level</th>
+                                    <th class="p-3 text-left font-mono text-purple-400">Time Horizon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for strategy in strategies %}
+                                    <tr class="border-b border-gray-700 transition-colors hover:bg-gray-800">
+                                        <td class="p-3">
+                                            <a href="{{ strategy.url }}"
+                                               class="font-medium text-purple-400 hover:text-purple-300">
+                                                {{ strategy.title }}
+                                            </a>
+                                        </td>
+                                        <td class="p-3 text-gray-200">{{ strategy.strategy_focus|default:"—" }}</td>
+                                        <td class="p-3 text-gray-200">{{ strategy.risk_level|default:"—" }}</td>
+                                        <td class="p-3 text-gray-200">{{ strategy.time_horizon|default:"—" }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+        <!-- CTA Section -->
+        <section class="bg-opacity-30 rounded-lg border border-purple-800 bg-purple-900 p-6 text-center">
+            <h3 class="mb-4 font-mono text-xl font-semibold text-purple-400">Ready to Build Your Ethical Portfolio?</h3>
+            <p class="mx-auto mb-6 max-w-2xl text-gray-200">
+                Schedule a consultation to discuss which investment strategy aligns best with your values and financial goals.
+            </p>
+            <div class="flex flex-col justify-center gap-4 sm:flex-row">
+                <a href="/contact/" class="btn-ec-primary">Schedule Consultation</a>
+                <a href="/process/" class="btn-ec-secondary">Learn Our Process</a>
             </div>
-
-            <!-- Performance Metrics -->
-            {% if strategy.performance_data %}
-            <div class="bg-gray-700 border border-gray-600 rounded p-3">
-              <h4 class="font-mono text-xs text-purple-400 font-semibold mb-2">Performance Highlights</h4>
-              <div class="text-xs text-gray-200">{{ strategy.performance_data|safe }}</div>
-            </div>
-            {% endif %}
-
-            <!-- Key Features -->
-            {% if strategy.key_features %}
-            <div class="space-y-2">
-              <h4 class="font-mono text-xs text-purple-400 font-semibold">Key Features:</h4>
-              <div class="text-xs text-gray-200">{{ strategy.key_features|safe }}</div>
-            </div>
-            {% endif %}
-
-            <!-- Action Button -->
-            <div class="pt-4 border-t border-gray-600">
-              <a href="{{ strategy.url }}" class="btn-ec-secondary w-full text-center block">
-                Learn More About {{ strategy.strategy_label|default:"This Strategy" }}
-              </a>
-            </div>
-          </div>
-
-          <!-- Investment Minimums -->
-          {% if strategy.minimum_investment %}
-          <div class="px-6 pb-4">
-            <div class="text-center">
-              <div class="text-xs text-gray-400">Minimum Investment</div>
-              <div class="font-mono text-sm text-purple-400 font-semibold">{{ strategy.minimum_investment }}</div>
-            </div>
-          </div>
-          {% endif %}
-        </article>
-        {% endfor %}
-      </div>
+        </section>
     </div>
-  </section>
-  {% else %}
-  <section class="card-ec text-center">
-    <div class="card-content-ec">
-      <p class="text-gray-400">No investment strategies are currently available.</p>
-      <div class="mt-4">
-        <a href="/contact/" class="btn-ec-primary">Contact Us for Custom Solutions</a>
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
-  <!-- Strategy Comparison Section -->
-  {% if strategies|length > 1 %}
-  <section class="card-ec mb-8">
-    <div class="card-header-ec">
-      <h3 class="card-title-ec">Strategy Comparison</h3>
-    </div>
-    <div class="card-content-ec">
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-b border-gray-600">
-              <th class="text-left p-3 font-mono text-purple-400">Strategy</th>
-              <th class="text-left p-3 font-mono text-purple-400">Focus</th>
-              <th class="text-left p-3 font-mono text-purple-400">Risk Level</th>
-              <th class="text-left p-3 font-mono text-purple-400">Time Horizon</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for strategy in strategies %}
-            <tr class="border-b border-gray-700 hover:bg-gray-800 transition-colors">
-              <td class="p-3">
-                <a href="{{ strategy.url }}" class="text-purple-400 hover:text-purple-300 font-medium">
-                  {{ strategy.title }}
-                </a>
-              </td>
-              <td class="p-3 text-gray-200">{{ strategy.strategy_focus|default:"—" }}</td>
-              <td class="p-3 text-gray-200">{{ strategy.risk_level|default:"—" }}</td>
-              <td class="p-3 text-gray-200">{{ strategy.time_horizon|default:"—" }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
-  <!-- CTA Section -->
-  <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6 text-center">
-    <h3 class="font-mono text-xl text-purple-400 font-semibold mb-4">Ready to Build Your Ethical Portfolio?</h3>
-    <p class="text-gray-200 mb-6 max-w-2xl mx-auto">
-      Schedule a consultation to discuss which investment strategy aligns best with your values and financial goals.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="/contact/" class="btn-ec-primary">Schedule Consultation</a>
-      <a href="/process/" class="btn-ec-secondary">Learn Our Process</a>
-    </div>
-  </section>
-</div>
-{% endblock %} {% block extra_js %}
-<script>
+{% endblock %}
+{% block extra_js %}
+    <script>
   // Strategy comparison functionality
   document.addEventListener("DOMContentLoaded", function () {
     // Add hover effects for strategy cards
@@ -219,5 +227,5 @@ endblock %} {% block content %}
       });
     });
   });
-</script>
+    </script>
 {% endblock %}

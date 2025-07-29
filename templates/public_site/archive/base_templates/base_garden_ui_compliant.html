@@ -1,203 +1,200 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="{{ current_theme }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Ethical Capital{% endblock %}</title>
-
-    {% load static %}
-    <!-- Preload critical fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <link href="{% static 'css/garden-ui-theme.css' %}" rel="stylesheet">
-    <link href="{% static 'css/garden-fonts.css' %}" rel="stylesheet">
-
-    <!-- Garden UI Component Styles -->
-    <link href="{% static 'css/garden-panel.css' %}" rel="stylesheet">
-    <link href="{% static 'css/garden-form.css' %}" rel="stylesheet">
-    <link href="{% static 'css/garden-data-table.css' %}" rel="stylesheet">
-    <link href="{% static 'css/garden-navigation.css' %}" rel="stylesheet">
-    <link href="{% static 'css/garden-widgets.css' %}" rel="stylesheet">
-
-    <!-- Critical Button Contrast Fix - Must load last to override conflicts -->
-    <link href="{% static 'css/button-contrast-fix.css' %}" rel="stylesheet">
-
-    <!-- Public Site Consolidated Styles - All public site CSS in one file -->
-    <!-- TEMPORARILY COMMENTED OUT TO TEST DECORATIVE QUOTE MARK -->
-    <!-- <link href="{% static 'css/public-site-consolidated.css' %}?v=2025-css-consolidation" rel="stylesheet"> -->
-
-    <!-- TEMPORARY: Load individual layer files for testing -->
-    <!-- Layers architecture removed - using consolidated CSS -->
-
-    <!-- Button Visibility Fix - Must load last to ensure proper override -->
-    <link href="{% static 'css/button-visibility-fix.css' %}?v=2025-button-fix" rel="stylesheet">
-
-    <!-- Header Layout Fix - Prevents search overlap and improves button styling -->
-    <link href="{% static 'css/header-layout-fix.css' %}?v=2025-header-fix" rel="stylesheet">
-
-    <!-- Primary Button Contrast Fix - Ensures visibility on all backgrounds -->
-    <link href="{% static 'css/primary-button-contrast-fix.css' %}?v=2025-contrast-fix" rel="stylesheet">
-
-    <!-- Favicon -->
-    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
-    <link rel="icon" href="{% static 'favicon-16x16.png' %}" sizes="16x16" type="image/png">
-    <link rel="icon" href="{% static 'favicon-32x32.png' %}" sizes="32x32" type="image/png">
-    <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}" sizes="180x180">
-    <link rel="icon" href="{% static 'android-chrome-192x192.png' %}" sizes="192x192" type="image/png">
-    <link rel="icon" href="{% static 'android-chrome-512x512.png' %}" sizes="512x512" type="image/png">
-    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
-    <link rel="manifest" href="{% static 'manifest.json' %}?v=1.0">
-
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="{% block meta_description %}Ethical Capital - Institutional-Grade Ethical Investing{% endblock %}">
-    <meta name="keywords" content="{% block meta_keywords %}investment intelligence, compliance, portfolio management, financial advisory{% endblock %}">
-
-    <!-- CSRF Token for JavaScript -->
-    {% csrf_token %}
-    <meta name="csrf-token" content="{{ csrf_token }}">
-
-    <!-- Performance Optimization -->
-    <meta name="theme-color" content="var(--garden-accent)">
-
-
-    {% block extra_css %}{% endblock %}
-</head>
-<body>
-    <!-- Skip navigation link for screen readers -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- ARIA live region for announcements -->
-    <div aria-live="polite" aria-atomic="true" class="sr-announcements" id="announcements"></div>
-
-    <!-- Garden UI Compliant Navigation Header -->
-    <header class="garden-header" role="banner">
-        <div class="garden-header-content">
-            <!-- Left: Brand + Navigation -->
-            <div class="garden-nav-left">
-                <a href="/" class="garden-brand" aria-label="Ethical Capital Home">
-                    ETHICAL CAPITAL
-                </a>
-
-                <nav class="garden-nav-main" role="navigation" aria-label="Main navigation">
-                    <a href="/about/" class="garden-nav-item">About</a>
-                    <a href="/process/" class="garden-nav-item">Process</a>
-                    <a href="/solutions/" class="garden-nav-item">Solutions</a>
-                    <a href="/blog/" class="garden-nav-item">Blog</a>
-                    <a href="/faq/" class="garden-nav-item">FAQ</a>
-                </nav>
-            </div>
-
-            <!-- Right: Search + User Actions + Theme Toggle -->
-            <div class="garden-nav-right">
-                <!-- Search -->
-                <form method="get" action="/search/" class="garden-search" role="search">
-                    <input type="text"
-                           name="q"
-                           placeholder="Search... (⌘K)"
-                           class="garden-search-input"
-                           aria-label="Search the site"
-                           autocomplete="off">
-                    <button type="submit" class="garden-search- garden-action" aria-label="Search">
-                        🔍
-                    </button>
-                </form>
-
-                <!-- User Actions Group: Login + CTA -->
-                <div class="nav-user-actions">
-                    <!-- Login Dropdown -->
-                    <div class="garden-dropdown" id="loginDropdown">
-                        <button class="garden-dropdown-trigger" onclick="toggleDropdown()" aria-expanded="false" aria-haspopup="true">
-                            Login
-                            <span class="garden-dropdown-arrow">▼</span>
-                        </button>
-                        <div class="garden-dropdown-menu" role="menu">
-                            <a href="https://app.altruist.com/login" class="garden-dropdown-item" role="menuitem">
-                                👤 Client Login
-                            </a>
-                            <a href="/garden/" class="garden-dropdown-item" role="menuitem">
-                                🌱 Garden Login
-                            </a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}Ethical Capital{% endblock %}
+        </title>
+        {% load static %}
+        <!-- Preload critical fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap"
+              rel="stylesheet">
+        <link href="{% static 'css/garden-ui-theme.css' %}" rel="stylesheet">
+        <link href="{% static 'css/garden-fonts.css' %}" rel="stylesheet">
+        <!-- Garden UI Component Styles -->
+        <link href="{% static 'css/garden-panel.css' %}" rel="stylesheet">
+        <link href="{% static 'css/garden-form.css' %}" rel="stylesheet">
+        <link href="{% static 'css/garden-data-table.css' %}" rel="stylesheet">
+        <link href="{% static 'css/garden-navigation.css' %}" rel="stylesheet">
+        <link href="{% static 'css/garden-widgets.css' %}" rel="stylesheet">
+        <!-- Critical Button Contrast Fix - Must load last to override conflicts -->
+        <link href="{% static 'css/button-contrast-fix.css' %}" rel="stylesheet">
+        <!-- Public Site Consolidated Styles - All public site CSS in one file -->
+        <!-- TEMPORARILY COMMENTED OUT TO TEST DECORATIVE QUOTE MARK -->
+        <!-- <link href="{% static 'css/public-site-consolidated.css' %}?v=2025-css-consolidation"
+       rel="stylesheet"> -->
+        <!-- TEMPORARY: Load individual layer files for testing -->
+        <!-- Layers architecture removed - using consolidated CSS -->
+        <!-- Button Visibility Fix - Must load last to ensure proper override -->
+        <link href="{% static 'css/button-visibility-fix.css' %}?v=2025-button-fix"
+              rel="stylesheet">
+        <!-- Header Layout Fix - Prevents search overlap and improves button styling -->
+        <link href="{% static 'css/header-layout-fix.css' %}?v=2025-header-fix"
+              rel="stylesheet">
+        <!-- Primary Button Contrast Fix - Ensures visibility on all backgrounds -->
+        <link href="{% static 'css/primary-button-contrast-fix.css' %}?v=2025-contrast-fix"
+              rel="stylesheet">
+        <!-- Favicon -->
+        <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+        <link rel="icon"
+              href="{% static 'favicon-16x16.png' %}"
+              sizes="16x16"
+              type="image/png">
+        <link rel="icon"
+              href="{% static 'favicon-32x32.png' %}"
+              sizes="32x32"
+              type="image/png">
+        <link rel="apple-touch-icon"
+              href="{% static 'apple-touch-icon.png' %}"
+              sizes="180x180">
+        <link rel="icon"
+              href="{% static 'android-chrome-192x192.png' %}"
+              sizes="192x192"
+              type="image/png">
+        <link rel="icon"
+              href="{% static 'android-chrome-512x512.png' %}"
+              sizes="512x512"
+              type="image/png">
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+        <link rel="manifest" href="{% static 'manifest.json' %}?v=1.0">
+        <!-- SEO Meta Tags -->
+        <meta name="description"
+              content="{% block meta_description %}Ethical Capital - Institutional-Grade Ethical Investing{% endblock %}">
+        <meta name="keywords"
+              content="{% block meta_keywords %}investment intelligence, compliance, portfolio management, financial advisory{% endblock %}">
+        <!-- CSRF Token for JavaScript -->
+        {% csrf_token %}
+        <meta name="csrf-token" content="{{ csrf_token }}">
+        <!-- Performance Optimization -->
+        <meta name="theme-color" content="var(--garden-accent)">
+        {% block extra_css %}{% endblock %}
+    </head>
+    <body>
+        <!-- Skip navigation link for screen readers -->
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <!-- ARIA live region for announcements -->
+        <div aria-live="polite"
+             aria-atomic="true"
+             class="sr-announcements"
+             id="announcements"></div>
+        <!-- Garden UI Compliant Navigation Header -->
+        <header class="garden-header" role="banner">
+            <div class="garden-header-content">
+                <!-- Left: Brand + Navigation -->
+                <div class="garden-nav-left">
+                    <a href="/" class="garden-brand" aria-label="Ethical Capital Home">ETHICAL CAPITAL</a>
+                    <nav class="garden-nav-main"
+                         role="navigation"
+                         aria-label="Main navigation">
+                        <a href="/about/" class="garden-nav-item">About</a>
+                        <a href="/process/" class="garden-nav-item">Process</a>
+                        <a href="/solutions/" class="garden-nav-item">Solutions</a>
+                        <a href="/blog/" class="garden-nav-item">Blog</a>
+                        <a href="/faq/" class="garden-nav-item">FAQ</a>
+                    </nav>
+                </div>
+                <!-- Right: Search + User Actions + Theme Toggle -->
+                <div class="garden-nav-right">
+                    <!-- Search -->
+                    <form method="get" action="/search/" class="garden-search" role="search">
+                        <input type="text"
+                               name="q"
+                               placeholder="Search... (⌘K)"
+                               class="garden-search-input"
+                               aria-label="Search the site"
+                               autocomplete="off">
+                        <button type="submit"
+                                class="garden-search- garden-action"
+                                aria-label="Search">🔍</button>
+                    </form>
+                    <!-- User Actions Group: Login + CTA -->
+                    <div class="nav-user-actions">
+                        <!-- Login Dropdown -->
+                        <div class="garden-dropdown" id="loginDropdown">
+                            <button class="garden-dropdown-trigger"
+                                    onclick="toggleDropdown()"
+                                    aria-expanded="false"
+                                    aria-haspopup="true">
+                                Login
+                                <span class="garden-dropdown-arrow">▼</span>
+                            </button>
+                            <div class="garden-dropdown-menu" role="menu">
+                                <a href="https://app.altruist.com/login"
+                                   class="garden-dropdown-item"
+                                   role="menuitem">👤 Client Login</a>
+                                <a href="/garden/" class="garden-dropdown-item" role="menuitem">🌱 Garden Login</a>
+                            </div>
                         </div>
+                        <!-- Primary CTA -->
+                        <a href="/onboarding/" class="garden-action primary">Get Started</a>
                     </div>
-
-                    <!-- Primary CTA -->
-                    <a href="/onboarding/" class="garden-action primary">
-                        Get Started
-                    </a>
-                </div>
-
-                <!-- Theme Toggle - Site Utility -->
-                <button class="garden-theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark theme">
-                    <span id="theme-icon">☾</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main content area -->
-    <main class="main-content" id="main-content" role="main">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="message-banner {{ message.tags }}" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-
-        {% block content %}{% endblock %}
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer" role="contentinfo">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Company</h3>
-                <div class="footer-links">
-                    <a href="/about/" class="footer-link">About</a>
-                    <a href="/process/" class="footer-link">Process</a>
-                    <a href="/contact/" class="footer-link">Contact</a>
-                    <a href="/disclosures/" class="footer-link">Legal</a>
+                    <!-- Theme Toggle - Site Utility -->
+                    <button class="garden-theme-toggle"
+                            onclick="toggleTheme()"
+                            aria-label="Toggle light/dark theme">
+                        <span id="theme-icon">☾</span>
+                    </button>
                 </div>
             </div>
-
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <div class="footer-links">
-                    <a href="/blog/" class="footer-link">Blog</a>
-                    <a href="/encyclopedia/" class="footer-link">Encyclopedia</a>
-                    <a href="/faq/" class="footer-link">FAQ</a>
+        </header>
+        <!-- Main content area -->
+        <main class="main-content" id="main-content" role="main">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message-banner {{ message.tags }}" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% block content %}{% endblock %}
+        </main>
+        <!-- Footer -->
+        <footer class="site-footer" role="contentinfo">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <div class="footer-links">
+                        <a href="/about/" class="footer-link">About</a>
+                        <a href="/process/" class="footer-link">Process</a>
+                        <a href="/contact/" class="footer-link">Contact</a>
+                        <a href="/disclosures/" class="footer-link">Legal</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <div class="footer-links">
+                        <a href="/blog/" class="footer-link">Blog</a>
+                        <a href="/encyclopedia/" class="footer-link">Encyclopedia</a>
+                        <a href="/faq/" class="footer-link">FAQ</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Platform</h3>
+                    <div class="footer-links">
+                        <a href="/platform/" class="footer-link">Dashboard</a>
+                        <a href="/platform/portfolio/" class="footer-link">Portfolio</a>
+                        <a href="/platform/research/" class="footer-link">Research Tools</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="footer-links">
+                        <a href="mailto:hello@ethicic.com" class="footer-link">Email</a>
+                        <a href="/contact/" class="footer-link">Schedule Call</a>
+                    </div>
                 </div>
             </div>
-
-            <div class="footer-section">
-                <h3>Platform</h3>
-                <div class="footer-links">
-                    <a href="/platform/" class="footer-link">Dashboard</a>
-                    <a href="/platform/portfolio/" class="footer-link">Portfolio</a>
-                    <a href="/platform/research/" class="footer-link">Research Tools</a>
-                </div>
+            <div class="footer-bottom">
+                <p>
+                    © {% now "Y" %} Ethical Capital. All rights reserved. |
+                    <a href="/disclosures/privacy/" class="footer-link">Privacy Policy</a> |
+                    <a href="/disclosures/terms/" class="footer-link">Terms of Service</a>
+                </p>
             </div>
-
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <div class="footer-links">
-                    <a href="mailto:hello@ethicic.com" class="footer-link">Email</a>
-                    <a href="/contact/" class="footer-link">Schedule Call</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; {% now "Y" %} Ethical Capital. All rights reserved. |
-            <a href="/disclosures/privacy/" class="footer-link">Privacy Policy</a> |
-            <a href="/disclosures/terms/" class="footer-link">Terms of Service</a></p>
-        </div>
-    </footer>
-
-    <!-- Essential JavaScript -->
-    <script>
+        </footer>
+        <!-- Essential JavaScript -->
+        <script>
         // Theme management using Garden UI
         function toggleTheme() {
             const html = document.documentElement;
@@ -275,8 +272,8 @@
                 announcements.textContent = '';
             }, 1000);
         }
-    </script>
-
-    {% block extra_js %}{% endblock %}
-</body>
+        </script>
+        {% block extra_js %}
+        {% endblock %}
+    </body>
 </html>

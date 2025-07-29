@@ -1,208 +1,205 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags static %}
-
 {% block title %}{{ page.title }} | Ethical Capital{% endblock %}
-
 {% block body_class %}strategy-list{% endblock %}
-
 {% block content %}
-<div class="garden-container">
-<!-- Hero Section -->
-<section class="garden-panel garden-panel--hero hero-panel" role="banner" aria-labelledby="hero-heading">
-    <div class="garden-panel__content garden-panel-content">
-        <h1 id="hero-heading" class="hero-title">{{ page.title }}</h1>
-        {% if page.intro_text %}
-            <div class="hero-subtitle">{{ page.intro_text|safe }}</div>
-        {% endif %}
-        {% if page.description %}
-            <div class="hero-description">{{ page.description|safe }}</div>
-        {% endif %}
-    </div>
-</section>
-
-<!-- Investment Strategies Grid -->
-{% if strategies %}
-<section class="garden-panel" role="main" aria-labelledby="strategies-heading">
-    <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">INVESTMENT STRATEGIES</div>
-    </div>
-    <div class="garden-panel__content garden-panel-content">
-        <h2 id="strategies-heading" class="section-title">Available Investment Strategies</h2>
-        <p class="strategies-intro">Our comprehensive suite of ethical investment strategies, each designed to meet specific investor objectives while maintaining our commitment to values-based investing.</p>
-
-        <div class="solutions-grid">
-            {% for strategy in strategies %}
-            <div class="solution-card strategy-card" role="article" aria-labelledby="strategy-{{ strategy.id }}-heading" data-strategy="{{ strategy.slug }}">
-                <div class="card-header">
-                    <span class="card-icon" aria-hidden="true">
-                        {% if strategy.strategy_label == "Growth" %}🚀
-                        {% elif strategy.strategy_label == "Income" %}💰
-                        {% elif strategy.strategy_label == "Diversification" %}⚖️
-                        {% else %}📈{% endif %}
-                    </span>
-                    <h3 id="strategy-{{ strategy.id }}-heading" class="card-title">{{ strategy.title }}</h3>
-                    {% if strategy.strategy_label %}
-                        <span class="strategy-label">{{ strategy.strategy_label }}</span>
-                    {% endif %}
+    <div class="garden-container">
+        <!-- Hero Section -->
+        <section class="garden-panel garden-panel--hero hero-panel"
+                 role="banner"
+                 aria-labelledby="hero-heading">
+            <div class="garden-panel__content garden-panel-content">
+                <h1 id="hero-heading" class="hero-title">{{ page.title }}</h1>
+                {% if page.intro_text %}<div class="hero-subtitle">{{ page.intro_text|safe }}</div>{% endif %}
+                {% if page.description %}<div class="hero-description">{{ page.description|safe }}</div>{% endif %}
+            </div>
+        </section>
+        <!-- Investment Strategies Grid -->
+        {% if strategies %}
+            <section class="garden-panel" role="main" aria-labelledby="strategies-heading">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">INVESTMENT STRATEGIES</div>
                 </div>
-
-                <div class="card-content">
-                    {% if strategy.strategy_subtitle %}
-                        <p class="card-description"><strong>{{ strategy.strategy_subtitle }}</strong></p>
-                    {% endif %}
-
-                    <!-- Performance Stats -->
-                    <div class="strategy-stats">
-                        <div class="stat-row">
-                            <span class="stat-label">YTD Return:</span>
-                            <span class="stat-value stat-positive">{{ strategy.ytd_return|default:"--" }}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">1 Year:</span>
-                            <span class="stat-value stat-positive">{{ strategy.one_year_return|default:"--" }}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">3 Year:</span>
-                            <span class="stat-value stat-positive">{{ strategy.three_year_return|default:"--" }}</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">Since Inception:</span>
-                            <span class="stat-value stat-positive">{{ strategy.since_inception_return|default:"--" }}</span>
-                        </div>
+                <div class="garden-panel__content garden-panel-content">
+                    <h2 id="strategies-heading" class="section-title">Available Investment Strategies</h2>
+                    <p class="strategies-intro">
+                        Our comprehensive suite of ethical investment strategies, each designed to meet specific investor objectives while maintaining our commitment to values-based investing.
+                    </p>
+                    <div class="solutions-grid">
+                        {% for strategy in strategies %}
+                            <div class="solution-card strategy-card"
+                                 role="article"
+                                 aria-labelledby="strategy-{{ strategy.id }}-heading"
+                                 data-strategy="{{ strategy.slug }}">
+                                <div class="card-header">
+                                    <span class="card-icon" aria-hidden="true">
+                                        {% if strategy.strategy_label == "Growth" %}
+                                            🚀
+                                        {% elif strategy.strategy_label == "Income" %}
+                                            💰
+                                        {% elif strategy.strategy_label == "Diversification" %}
+                                            ⚖️
+                                        {% else %}
+                                            📈
+                                        {% endif %}
+                                    </span>
+                                    <h3 id="strategy-{{ strategy.id }}-heading" class="card-title">{{ strategy.title }}</h3>
+                                    {% if strategy.strategy_label %}<span class="strategy-label">{{ strategy.strategy_label }}</span>{% endif %}
+                                </div>
+                                <div class="card-content">
+                                    {% if strategy.strategy_subtitle %}
+                                        <p class="card-description">
+                                            <strong>{{ strategy.strategy_subtitle }}</strong>
+                                        </p>
+                                    {% endif %}
+                                    <!-- Performance Stats -->
+                                    <div class="strategy-stats">
+                                        <div class="stat-row">
+                                            <span class="stat-label">YTD Return:</span>
+                                            <span class="stat-value stat-positive">{{ strategy.ytd_return|default:"--" }}</span>
+                                        </div>
+                                        <div class="stat-row">
+                                            <span class="stat-label">1 Year:</span>
+                                            <span class="stat-value stat-positive">{{ strategy.one_year_return|default:"--" }}</span>
+                                        </div>
+                                        <div class="stat-row">
+                                            <span class="stat-label">3 Year:</span>
+                                            <span class="stat-value stat-positive">{{ strategy.three_year_return|default:"--" }}</span>
+                                        </div>
+                                        <div class="stat-row">
+                                            <span class="stat-label">Since Inception:</span>
+                                            <span class="stat-value stat-positive">{{ strategy.since_inception_return|default:"--" }}</span>
+                                        </div>
+                                    </div>
+                                    <!-- Strategy Details -->
+                                    <ul class="feature-list">
+                                        {% if strategy.risk_level %}<li>Risk Level: {{ strategy.risk_level }}</li>{% endif %}
+                                        {% if strategy.holdings_count %}<li>Holdings: {{ strategy.holdings_count }}</li>{% endif %}
+                                        {% if strategy.ethical_implementation %}<li>{{ strategy.ethical_implementation }}</li>{% endif %}
+                                        {% if strategy.best_for %}<li>Best For: {{ strategy.best_for }}</li>{% endif %}
+                                        {% if strategy.inception_date %}<li>Inception: {{ strategy.inception_date|date:"M Y" }}</li>{% endif %}
+                                    </ul>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="{{ strategy.url_path }}"
+                                       class="garden-action primary"
+                                       aria-label="Learn more about {{ strategy.title }}">VIEW DETAILS →</a>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-
-                    <!-- Strategy Details -->
-                    <ul class="feature-list">
-                        {% if strategy.risk_level %}
-                            <li>Risk Level: {{ strategy.risk_level }}</li>
-                        {% endif %}
-                        {% if strategy.holdings_count %}
-                            <li>Holdings: {{ strategy.holdings_count }}</li>
-                        {% endif %}
-                        {% if strategy.ethical_implementation %}
-                            <li>{{ strategy.ethical_implementation }}</li>
-                        {% endif %}
-                        {% if strategy.best_for %}
-                            <li>Best For: {{ strategy.best_for }}</li>
-                        {% endif %}
-                        {% if strategy.inception_date %}
-                            <li>Inception: {{ strategy.inception_date|date:"M Y" }}</li>
-                        {% endif %}
-                    </ul>
                 </div>
-
-                <div class="card-footer">
-                    <a href="{{ strategy.url_path }}" class="garden-action primary" aria-label="Learn more about {{ strategy.title }}">VIEW DETAILS →</a>
+            </section>
+        {% else %}
+            <section class="garden-panel">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">NO STRATEGIES AVAILABLE</div>
                 </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-{% else %}
-<section class="garden-panel">
-    <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">NO STRATEGIES AVAILABLE</div>
-    </div>
-    <div class="garden-panel__content garden-panel-content">
-        <p>No investment strategies are currently available. Please check back later or <a href="/contact/">contact us</a> for more information.</p>
-    </div>
-</section>
-{% endif %}
-
-<!-- Strategy Comparison -->
-{% if strategies.count > 1 %}
-<section class="garden-panel" role="region" aria-labelledby="comparison-heading">
-    <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">{{ page.comparison_title|default:"STRATEGY COMPARISON" }}</div>
-    </div>
-    <div class="garden-panel__content garden-panel-content">
-        <h2 id="comparison-heading" class="section-title">Compare Our Strategies</h2>
-        {% if page.comparison_description %}
-            <div class="comparison-intro">{{ page.comparison_description|safe }}</div>
+                <div class="garden-panel__content garden-panel-content">
+                    <p>
+                        No investment strategies are currently available. Please check back later or <a href="/contact/">contact us</a> for more information.
+                    </p>
+                </div>
+            </section>
         {% endif %}
-
-        <div class="comparison-table">
-            <div class="comparison-header">
-                <div class="comparison-label">STRATEGY</div>
-                <div class="comparison-label">YTD</div>
-                <div class="comparison-label">1 YEAR</div>
-                <div class="comparison-label">3 YEAR</div>
-                <div class="comparison-label">RISK LEVEL</div>
-                <div class="comparison-label">HOLDINGS</div>
-            </div>
-
-            {% for strategy in strategies %}
-            <div class="comparison-row">
-                <div class="comparison-strategy">
-                    <a href="{{ strategy.url_path }}" class="strategy-name">{{ strategy.title }}</a>
-                    <div class="strategy-meta">{{ strategy.strategy_subtitle }}</div>
+        <!-- Strategy Comparison -->
+        {% if strategies.count > 1 %}
+            <section class="garden-panel"
+                     role="region"
+                     aria-labelledby="comparison-heading">
+                <div class="garden-panel__header garden-panel-header">
+                    <div class="panel-title">{{ page.comparison_title|default:"STRATEGY COMPARISON" }}</div>
                 </div>
-                <div class="comparison-value stat-positive">{{ strategy.ytd_return|default:"--" }}</div>
-                <div class="comparison-value stat-positive">{{ strategy.one_year_return|default:"--" }}</div>
-                <div class="comparison-value stat-positive">{{ strategy.three_year_return|default:"--" }}</div>
-                <div class="comparison-value">{{ strategy.risk_level|default:"--" }}</div>
-                <div class="comparison-value">{{ strategy.holdings_count|default:"--" }}</div>
+                <div class="garden-panel__content garden-panel-content">
+                    <h2 id="comparison-heading" class="section-title">Compare Our Strategies</h2>
+                    {% if page.comparison_description %}
+                        <div class="comparison-intro">{{ page.comparison_description|safe }}</div>
+                    {% endif %}
+                    <div class="comparison-table">
+                        <div class="comparison-header">
+                            <div class="comparison-label">STRATEGY</div>
+                            <div class="comparison-label">YTD</div>
+                            <div class="comparison-label">1 YEAR</div>
+                            <div class="comparison-label">3 YEAR</div>
+                            <div class="comparison-label">RISK LEVEL</div>
+                            <div class="comparison-label">HOLDINGS</div>
+                        </div>
+                        {% for strategy in strategies %}
+                            <div class="comparison-row">
+                                <div class="comparison-strategy">
+                                    <a href="{{ strategy.url_path }}" class="strategy-name">{{ strategy.title }}</a>
+                                    <div class="strategy-meta">{{ strategy.strategy_subtitle }}</div>
+                                </div>
+                                <div class="comparison-value stat-positive">{{ strategy.ytd_return|default:"--" }}</div>
+                                <div class="comparison-value stat-positive">{{ strategy.one_year_return|default:"--" }}</div>
+                                <div class="comparison-value stat-positive">{{ strategy.three_year_return|default:"--" }}</div>
+                                <div class="comparison-value">{{ strategy.risk_level|default:"--" }}</div>
+                                <div class="comparison-value">{{ strategy.holdings_count|default:"--" }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+        <!-- Strategy Resources -->
+        <section class="garden-panel"
+                 role="region"
+                 aria-labelledby="resources-heading">
+            <div class="garden-panel__header garden-panel-header">
+                <div class="panel-title">{{ page.resources_section_title }}</div>
             </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-{% endif %}
-
-<!-- Strategy Resources -->
-<section class="garden-panel" role="region" aria-labelledby="resources-heading">
-    <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">{{ page.resources_section_title }}</div>
-    </div>
-    <div class="garden-panel__content garden-panel-content">
-        <h2 id="resources-heading" class="section-title">{{ page.resources_section_subtitle }}</h2>
-        {{ page.resources_section_description|safe }}
-
-        <div class="delivery-grid">
-            {% for resource in page.resources %}
-            <div class="delivery-item">
-                <h3 class="delivery-title">{{ resource.value.title }}</h3>
-                <p>{{ resource.value.description }}</p>
-                <ul class="delivery-features">
-                    {% for link in resource.value.links %}
-                    <li><a href="{{ link.url }}" class="resource-link"{% if link.url|slice:":4" == "http" %} target="_blank" rel="noopener"{% endif %}>{{ link.text }}</a></li>
+            <div class="garden-panel__content garden-panel-content">
+                <h2 id="resources-heading" class="section-title">{{ page.resources_section_subtitle }}</h2>
+                {{ page.resources_section_description|safe }}
+                <div class="delivery-grid">
+                    {% for resource in page.resources %}
+                        <div class="delivery-item">
+                            <h3 class="delivery-title">{{ resource.value.title }}</h3>
+                            <p>{{ resource.value.description }}</p>
+                            <ul class="delivery-features">
+                                {% for link in resource.value.links %}
+                                    <li>
+                                        <a href="{{ link.url }}"
+                                           class="resource-link"
+                                           {% if link.url|slice:":4" == "http" %}target="_blank" rel="noopener"{% endif %}>{{ link.text }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<!-- Call to Action -->
-<section class="garden-panel cta-panel" role="region" aria-labelledby="cta-heading">
-    <div class="garden-panel__header garden-panel-header">
-        <div class="panel-title">{{ page.cta_section_title }}</div>
-    </div>
-    <div class="garden-panel__content garden-panel-content">
-        <div class="cta-content">
-            <h2 id="cta-heading" class="cta-title">{{ page.cta_title }}</h2>
-            <div class="cta-description">{{ page.cta_description|safe }}</div>
-
-            <div class="cta-actions">
-                {% for button in page.cta_buttons %}
-                <a href="{{ button.value.url }}" class="garden-action {{ button.value.style }}" aria-label="{{ button.value.text }}">{{ button.value.text }}</a>
-                {% endfor %}
+        </section>
+        <!-- Call to Action -->
+        <section class="garden-panel cta-panel"
+                 role="region"
+                 aria-labelledby="cta-heading">
+            <div class="garden-panel__header garden-panel-header">
+                <div class="panel-title">{{ page.cta_section_title }}</div>
             </div>
-        </div>
+            <div class="garden-panel__content garden-panel-content">
+                <div class="cta-content">
+                    <h2 id="cta-heading" class="cta-title">{{ page.cta_title }}</h2>
+                    <div class="cta-description">{{ page.cta_description|safe }}</div>
+                    <div class="cta-actions">
+                        {% for button in page.cta_buttons %}
+                            <a href="{{ button.value.url }}"
+                               class="garden-action {{ button.value.style }}"
+                               aria-label="{{ button.value.text }}">{{ button.value.text }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-</section>
-</div>
 {% endblock %}
-
 {% block extra_css %}
-<!-- Garden UI compliant stylesheets -->
-<link rel="stylesheet" href="{% static 'css/blog-components-consolidated.css' %}?v=1">
+    <!-- Garden UI compliant stylesheets -->
+    <link rel="stylesheet"
+          href="{% static 'css/blog-components-consolidated.css' %}?v=1">
 {% endblock %}
-
 {% block extra_js %}
-<script>
+    <script>
 // Enhanced accessibility and dynamic highlighting for strategies page
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -265,5 +262,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-</script>
+    </script>
 {% endblock %}
