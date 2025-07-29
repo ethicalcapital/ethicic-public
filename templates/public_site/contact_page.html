@@ -3,7 +3,7 @@
 {% block title %}Contact Ethical Capital{% endblock %}
 
 {% block content %}
-<div class="container-ec py-8">
+<div class="container-ec">
   <!-- Page Header -->
   <div class="text-center mb-8">
     <h1 class="font-mono text-3xl font-semibold text-white mb-4">Get In Touch</h1>
@@ -35,6 +35,11 @@
                       },
                       handleResponse(event) {
                           this.submitting = false;
+                          // Fix: Check if event and event.detail exist
+                          if (!event || !event.detail || !event.detail.xhr) {
+                              console.log('HTMX response received but no event detail available');
+                              return;
+                          }
                           // Extract submission ID from response if available
                           const response = event.detail.xhr.responseText;
                           try {
@@ -47,6 +52,7 @@
                               }
                           } catch (e) {
                               // Response might be HTML, not JSON
+                              console.log('Response is not JSON:', e);
                           }
                       },
                       async checkSubmissionStatus() {
@@ -61,7 +67,7 @@
                       }
                   }"
         @htmx:before-request="handleSubmit()"
-        @htmx:after-request="handleResponse()"
+        @htmx:after-request="handleResponse($event)"
       >
         {% csrf_token %}
 
@@ -220,14 +226,7 @@
             <span class="w-5 h-5 mr-3 text-purple-400">📞</span>
             <div>
               <p class="font-mono text-sm text-gray-300">Phone</p>
-              <a href="tel:+13034428844" class="text-purple-400 hover:text-purple-300 transition-colors">(303) 442-8844</a>
-            </div>
-          </div>
-          <div class="flex items-center">
-            <span class="w-5 h-5 mr-3 text-purple-400">💬</span>
-            <div>
-              <p class="font-mono text-sm text-gray-300">Response Time</p>
-              <p class="text-gray-400 text-sm">Within 24 hours</p>
+              <a href="tel:+13476259000" class="text-purple-400 hover:text-purple-300 transition-colors">(347) 625-9000</a>
             </div>
           </div>
         </div>
@@ -239,7 +238,7 @@
         <div class="text-gray-400 text-sm space-y-2">
           <p><strong class="text-gray-300">Ethical Capital</strong></p>
           <p>Sloane Ortel, Principal</p>
-          <p>Boulder, Colorado</p>
+          <p>90 N 400 E<br>Provo, UT 84606</p>
           <p class="text-xs pt-2 border-t border-gray-600">
             Investment Adviser Representative<br />
             CRD #316032
