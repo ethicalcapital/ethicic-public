@@ -399,14 +399,32 @@
   @apply text-slate-900 dark:text-slate-100;
 }
 
-/* Enhanced paragraph spacing for better readability */
-.article-body .prose p {
-  @apply mb-10 leading-relaxed;
+/* CRITICAL FIX: Enhanced paragraph spacing with higher specificity */
+body .article-body .prose p,
+.blog-post-page .article-body .prose p,
+.content-block-richtext p {
+  margin-bottom: 2.5rem !important; /* mb-10 equivalent */
+  line-height: 1.75 !important; /* leading-relaxed */
+  margin-top: 0 !important;
 }
 
 /* First paragraph styling for better reading experience */
-.article-body .prose p:first-of-type {
-  @apply text-xl leading-relaxed font-medium text-slate-200 dark:text-slate-200 mb-10;
+body .article-body .prose p:first-of-type,
+.blog-post-page .article-body .prose p:first-of-type,
+.content-block-richtext p:first-of-type {
+  font-size: 1.25rem !important; /* text-xl */
+  line-height: 1.75 !important; /* leading-relaxed */
+  font-weight: 500 !important; /* font-medium */
+  color: rgb(226 232 240) !important; /* text-slate-200 */
+  margin-bottom: 2.5rem !important; /* mb-10 */
+  margin-top: 0 !important;
+}
+
+/* Ensure proper spacing between all prose elements */
+body .article-body .prose > * + *,
+.blog-post-page .article-body .prose > * + *,
+.content-block-richtext > * + * {
+  margin-top: 1.5rem !important;
 }
 
 /* Improve link styling in blog context */
@@ -416,22 +434,28 @@
 
 /* Better spacing for blog content blocks */
 .content-block + .content-block {
-  @apply mt-12;
+  margin-top: 3rem !important; /* mt-12 */
 }
 
 /* Enhanced spacing for lists */
-.article-body .prose ul,
-.article-body .prose ol {
-  @apply my-8;
+body .article-body .prose ul,
+body .article-body .prose ol,
+.content-block-richtext ul,
+.content-block-richtext ol {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
 }
 
-.article-body .prose li {
-  @apply mb-4;
+body .article-body .prose li,
+.content-block-richtext li {
+  margin-bottom: 1rem !important;
 }
 
 /* Better blockquote spacing */
-.article-body .prose blockquote {
-  @apply my-10;
+body .article-body .prose blockquote,
+.content-block-richtext blockquote {
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
 }
 
 /* Ensure proper contrast for all text elements */
