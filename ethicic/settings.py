@@ -48,8 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
     "django.contrib.humanize",
-    # CSS Processing
-    "django_tailwind_cli",
+    # CSS Processing managed via PostCSS build pipeline
     # Wagtail dependencies
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
