@@ -7,7 +7,7 @@
 /* global MutationObserver */
 
 (function (window, document) {
-  "use strict";
+  'use strict';
 
   // Global Garden namespace with backward compatibility
   window.Garden = window.Garden || {};
@@ -17,21 +17,21 @@
   const CONFIG = {
     debug: window.Garden.debug || window.DEWEY.debug || false,
     hotkeys: {
-      search: "/",
-      help: "?",
-      escape: "Escape",
-      up: "j",
-      down: "k",
-      left: "h",
-      right: "l",
-      enter: "Enter",
-      plus: "=",
-      minus: "-",
+      search: '/',
+      help: '?',
+      escape: 'Escape',
+      up: 'j',
+      down: 'k',
+      left: 'h',
+      right: 'l',
+      enter: 'Enter',
+      plus: '=',
+      minus: '-',
     },
     selectors: {
-      sidebar: "#sidebar",
-      searchInput: "#search-input",
-      navigableItems: ".nav-item, .data-table tr, .list-item",
+      sidebar: '#sidebar',
+      searchInput: '#search-input',
+      navigableItems: '.nav-item, .data-table tr, .list-item',
       focusable: 'input, button, select, textarea, a[href], [tabindex]:not([tabindex="-1"])',
     },
   };
@@ -120,15 +120,15 @@
     init: function () {
       this.bindEvents();
       this.updateItems();
-      Utils.log("Keyboard navigation initialized");
+      Utils.log('Keyboard navigation initialized');
     },
 
     bindEvents: function () {
-      document.addEventListener("keydown", this.handleKeyDown.bind(this));
-      document.addEventListener("click", this.handleClick.bind(this));
+      document.addEventListener('keydown', this.handleKeyDown.bind(this));
+      document.addEventListener('click', this.handleClick.bind(this));
 
       // Update items when DOM changes
-      if (typeof MutationObserver !== "undefined") {
+      if (typeof MutationObserver !== 'undefined') {
         const observer = new MutationObserver(
           Utils.debounce(() => {
             this.updateItems();
@@ -147,7 +147,7 @@
       this.items = this.items.filter((item) => {
         return item.offsetParent !== null; // Visible items only
       });
-      Utils.log("Navigation items updated", this.items.length);
+      Utils.log('Navigation items updated', this.items.length);
     },
 
     getKeyAction: function (key) {
@@ -211,34 +211,34 @@
       }
 
       const tagName = element.tagName.toLowerCase();
-      const type = element.type ? element.type.toLowerCase() : "";
+      const type = element.type ? element.type.toLowerCase() : '';
 
       // Comprehensive list of input types where users can type
       const typingInputTypes = [
-        "text",
-        "email",
-        "password",
-        "search",
-        "url",
-        "number",
-        "tel",
-        "date",
-        "datetime-local",
-        "month",
-        "time",
-        "week",
-        "color", // color picker can have manual input in some browsers
+        'text',
+        'email',
+        'password',
+        'search',
+        'url',
+        'number',
+        'tel',
+        'date',
+        'datetime-local',
+        'month',
+        'time',
+        'week',
+        'color', // color picker can have manual input in some browsers
       ];
 
       return (
-        (tagName === "input" && typingInputTypes.includes(type)) ||
-        tagName === "textarea" ||
-        tagName === "select" || // Select elements should also disable keyboard nav
-        element.contentEditable === "true" ||
+        (tagName === 'input' && typingInputTypes.includes(type)) ||
+        tagName === 'textarea' ||
+        tagName === 'select' || // Select elements should also disable keyboard nav
+        element.contentEditable === 'true' ||
         element.isContentEditable === true ||
         // Check for ARIA role that indicates editable content
-        element.getAttribute("role") === "textbox" ||
-        element.getAttribute("role") === "searchbox"
+        element.getAttribute('role') === 'textbox' ||
+        element.getAttribute('role') === 'searchbox'
       );
     },
 
@@ -262,29 +262,29 @@
     setActive: function (index) {
       // Remove previous active state
       this.items.forEach((item) => {
-        Utils.removeClass(item, "keyboard-active");
-        item.setAttribute("tabindex", "-1");
+        Utils.removeClass(item, 'keyboard-active');
+        item.setAttribute('tabindex', '-1');
       });
 
       this.currentIndex = Math.max(0, Math.min(index, this.items.length - 1));
       const activeItem = this.items[this.currentIndex];
 
       if (activeItem) {
-        Utils.addClass(activeItem, "keyboard-active");
-        activeItem.setAttribute("tabindex", "0");
+        Utils.addClass(activeItem, 'keyboard-active');
+        activeItem.setAttribute('tabindex', '0');
         activeItem.focus();
         this.scrollIntoView(activeItem);
         this.active = true;
       }
 
-      Utils.log("Active item set", this.currentIndex);
+      Utils.log('Active item set', this.currentIndex);
     },
 
     activate: function () {
       const activeItem = this.items[this.currentIndex];
       if (activeItem) {
-        const link = activeItem.querySelector("a");
-        const button = activeItem.querySelector("button");
+        const link = activeItem.querySelector('a');
+        const button = activeItem.querySelector('button');
 
         if (link) {
           link.click();
@@ -299,8 +299,8 @@
     scrollIntoView: function (element) {
       if (element && element.scrollIntoView) {
         element.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
+          behavior: 'smooth',
+          block: 'nearest',
         });
       }
     },
@@ -313,7 +313,7 @@
 
       if (searchInput) {
         searchInput.focus();
-        Utils.log("Search focused");
+        Utils.log('Search focused');
       } else {
         // Create temporary search overlay
         this.createSearchOverlay();
@@ -321,8 +321,8 @@
     },
 
     createSearchOverlay: function () {
-      const overlay = document.createElement("div");
-      overlay.id = "search-overlay";
+      const overlay = document.createElement('div');
+      overlay.id = 'search-overlay';
       overlay.style.cssText = `
                 position: fixed;
                 top: 0;
@@ -336,7 +336,7 @@
                 z-index: 9999;
             `;
 
-      const searchBox = document.createElement("div");
+      const searchBox = document.createElement('div');
       searchBox.style.cssText = `
                 background: var(--color-surface);
                 padding: var(--space-6);
@@ -345,9 +345,9 @@
                 min-width: 400px;
             `;
 
-      const input = document.createElement("input");
-      input.type = "search";
-      input.placeholder = "Search...";
+      const input = document.createElement('input');
+      input.type = 'search';
+      input.placeholder = 'Search...';
       input.style.cssText = `
                 width: 100%;
                 font-size: var(--font-lg);
@@ -367,24 +367,24 @@
         document.body.removeChild(overlay);
       };
 
-      overlay.addEventListener("click", function (e) {
+      overlay.addEventListener('click', function (e) {
         if (e.target === overlay) {
           closeOverlay();
         }
       });
 
-      input.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
           closeOverlay();
         }
       });
 
-      Utils.log("Search overlay created");
+      Utils.log('Search overlay created');
     },
 
     showHelp: function () {
-      const helpOverlay = document.createElement("div");
-      helpOverlay.id = "help-overlay";
+      const helpOverlay = document.createElement('div');
+      helpOverlay.id = 'help-overlay';
       helpOverlay.style.cssText = `
                 position: fixed;
                 top: 0;
@@ -398,7 +398,7 @@
                 z-index: 9999;
             `;
 
-      const helpBox = document.createElement("div");
+      const helpBox = document.createElement('div');
       helpBox.style.cssText = `
                 background: var(--color-surface);
                 padding: var(--space-6);
@@ -436,19 +436,19 @@
         document.body.removeChild(helpOverlay);
       };
 
-      helpBox.querySelector("button").addEventListener("click", closeHelp);
-      helpOverlay.addEventListener("click", function (e) {
+      helpBox.querySelector('button').addEventListener('click', closeHelp);
+      helpOverlay.addEventListener('click', function (e) {
         if (e.target === helpOverlay) {
           closeHelp();
         }
       });
 
-      Utils.log("Help overlay shown");
+      Utils.log('Help overlay shown');
     },
 
     escape: function () {
       // Close any overlays
-      const overlays = document.querySelectorAll("#search-overlay, #help-overlay");
+      const overlays = document.querySelectorAll('#search-overlay, #help-overlay');
       overlays.forEach((overlay) => {
         if (overlay.parentNode) {
           overlay.parentNode.removeChild(overlay);
@@ -465,13 +465,13 @@
         window.getSelection().removeAllRanges();
       }
 
-      Utils.log("Escape action performed");
+      Utils.log('Escape action performed');
     },
 
     adjustValue: function (direction) {
       const activeElement = document.activeElement;
 
-      if (activeElement && activeElement.type === "number") {
+      if (activeElement && activeElement.type === 'number') {
         const currentValue = parseFloat(activeElement.value) || 0;
         const step = parseFloat(activeElement.step) || 1;
         const newValue = currentValue + direction * step;
@@ -483,10 +483,10 @@
         activeElement.value = Math.max(min, Math.min(max, newValue));
 
         // Trigger change event
-        const event = new Event("change", { bubbles: true });
+        const event = new Event('change', { bubbles: true });
         activeElement.dispatchEvent(event);
 
-        Utils.log("Value adjusted", activeElement.value);
+        Utils.log('Value adjusted', activeElement.value);
       }
     },
   };
@@ -502,27 +502,27 @@
       if (window.performance && window.performance.mark) {
         window.performance.mark(name);
       }
-      Utils.log("Performance mark", name);
+      Utils.log('Performance mark', name);
     },
 
     measure: function (name, startMark, endMark) {
       if (window.performance && window.performance.measure) {
         window.performance.measure(name, startMark, endMark);
       }
-      Utils.log("Performance measure", name);
+      Utils.log('Performance measure', name);
     },
 
     measurePageLoad: function () {
-      window.addEventListener("load", function () {
+      window.addEventListener('load', function () {
         if (window.performance && window.performance.timing) {
           const timing = window.performance.timing;
           const loadTime = timing.loadEventEnd - timing.navigationStart;
 
-          Utils.log("Page load time", loadTime + "ms");
+          Utils.log('Page load time', loadTime + 'ms');
 
           // Update status in footer
           setTimeout(() => {
-            const statusElement = document.getElementById("connection-status");
+            const statusElement = document.getElementById('connection-status');
             if (statusElement) {
               statusElement.textContent = `Loaded in ${loadTime}ms`;
             }
@@ -535,16 +535,16 @@
       // Track keyboard response times
       let keydownTime = 0;
 
-      document.addEventListener("keydown", function () {
+      document.addEventListener('keydown', function () {
         keydownTime = performance.now();
       });
 
-      document.addEventListener("keyup", function () {
+      document.addEventListener('keyup', function () {
         if (keydownTime) {
           const responseTime = performance.now() - keydownTime;
           if (responseTime > 100) {
             // Log slow responses
-            Utils.log("Slow keyboard response", responseTime + "ms");
+            Utils.log('Slow keyboard response', responseTime + 'ms');
           }
         }
       });
@@ -567,7 +567,7 @@
         this.enhanceNumberInput(input);
       });
 
-      Utils.log("Form enhanced", form);
+      Utils.log('Form enhanced', form);
     },
 
     validate: function (form) {
@@ -577,32 +577,32 @@
 
       if (!isValid) {
         // Focus first invalid field
-        const firstInvalid = form.querySelector(":invalid");
+        const firstInvalid = form.querySelector(':invalid');
         if (firstInvalid && firstInvalid.focus) {
           firstInvalid.focus();
         }
       }
 
-      Utils.log("Form validation", { form, isValid });
+      Utils.log('Form validation', { form, isValid });
       return isValid;
     },
 
     enhanceNumberInput: function (input) {
-      if (!input || input.getAttribute("data-enhanced")) return;
+      if (!input || input.getAttribute('data-enhanced')) return;
 
-      input.setAttribute("data-enhanced", "true");
+      input.setAttribute('data-enhanced', 'true');
 
       // Add visual indicator for keyboard shortcuts
-      const wrapper = document.createElement("div");
-      wrapper.style.position = "relative";
-      wrapper.style.display = "inline-block";
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'relative';
+      wrapper.style.display = 'inline-block';
 
       if (input.parentNode) {
         input.parentNode.insertBefore(wrapper, input);
         wrapper.appendChild(input);
 
-        const hint = document.createElement("span");
-        hint.textContent = "+/-";
+        const hint = document.createElement('span');
+        hint.textContent = '+/-';
         hint.style.cssText = `
           position: absolute;
           right: 8px;
@@ -625,17 +625,17 @@
     },
 
     enhanceFormValidation: function () {
-      const forms = document.querySelectorAll("form");
+      const forms = document.querySelectorAll('form');
 
       forms.forEach((form) => {
-        form.addEventListener("submit", function (e) {
+        form.addEventListener('submit', function (e) {
           const isValid = form.checkValidity();
 
           if (!isValid) {
             e.preventDefault();
 
             // Focus first invalid field
-            const firstInvalid = form.querySelector(":invalid");
+            const firstInvalid = form.querySelector(':invalid');
             if (firstInvalid) {
               firstInvalid.focus();
             }
@@ -647,12 +647,12 @@
 
   // Initialize everything when DOM is ready
   function init() {
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", init);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
       return;
     }
 
-    Utils.log("Garden Core initializing...");
+    Utils.log('Garden Core initializing...');
 
     KeyboardNav.init();
     Performance.init();
@@ -666,7 +666,7 @@
       }
     }, 100);
 
-    Utils.log("Garden Core initialized");
+    Utils.log('Garden Core initialized');
 
     // Expose public API - both Garden and DEWEY namespaces
     window.Garden.keyboard = KeyboardNav;
@@ -685,7 +685,7 @@
   init();
 
   // Export for CommonJS (testing)
-  if (typeof module !== "undefined" && module.exports) {
+  if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
       Garden: window.Garden,
       DEWEY: window.DEWEY,

@@ -1,6 +1,6 @@
-{% extends "public_site/base_tailwind.html" %} 
-{% load wagtailcore_tags static %} 
-{% block title %}{{ page.title }} - FAQ - Ethical Capital{% endblock %} 
+{% extends "public_site/base_tailwind.html" %}
+{% load wagtailcore_tags static %}
+{% block title %}{{ page.title }} - FAQ - Ethical Capital{% endblock %}
 {% block content %}
 <div class="container-ec">
   <!-- FAQ Article Layout -->
@@ -22,7 +22,7 @@
           <div class="flex flex-wrap items-center gap-4 mb-4">
             {% if page.category %}
             <span class="px-3 py-1 bg-purple-600 text-white text-xs font-semibold uppercase rounded-full">{{ page.get_category_display }}</span>
-            {% endif %} 
+            {% endif %}
             {% if page.last_published_at %}
             <time class="text-sm text-gray-600 dark:text-gray-400" datetime="{{ page.last_published_at|date:'Y-m-d' }}">
               Last Updated {{ page.last_published_at|date:"F j, Y" }}
@@ -61,7 +61,7 @@
                 </h4>
                 {% if article.summary %}
                 <p class="text-gray-600 dark:text-gray-400 text-sm mb-2">{{ article.summary|truncatewords:15 }}</p>
-                {% endif %} 
+                {% endif %}
                 {% if article.category %}
                 <span class="inline-block bg-purple-600 text-white px-2 py-1 rounded text-xs font-semibold uppercase">{{ article.get_category_display }}</span>
                 {% endif %}

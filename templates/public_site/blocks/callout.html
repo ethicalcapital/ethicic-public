@@ -1,6 +1,6 @@
 {% load wagtailcore_tags %}
 
-<div class="flex gap-3 p-4 rounded-lg border-l-4 
+<div class="flex gap-3 p-4 rounded-lg border-l-4
   {% if value.type == 'info' %}bg-blue-50 dark:bg-blue-900/20 border-blue-500 text-blue-900 dark:text-blue-100
   {% elif value.type == 'tip' %}bg-green-50 dark:bg-green-900/20 border-green-500 text-green-900 dark:text-green-100
   {% elif value.type == 'warning' %}bg-yellow-50 dark:bg-yellow-900/20 border-yellow-500 text-yellow-900 dark:text-yellow-100
@@ -9,7 +9,7 @@
   {% elif value.type == 'success' %}bg-green-50 dark:bg-green-900/20 border-green-500 text-green-900 dark:text-green-100
   {% elif value.type == 'error' %}bg-red-50 dark:bg-red-900/20 border-red-500 text-red-900 dark:text-red-100
   {% else %}bg-gray-50 dark:bg-gray-800 border-gray-500 text-gray-900 dark:text-gray-100{% endif %} my-4">
-  
+
   <div class="flex-shrink-0 text-xl">
     {% if value.type == "info" %}
     <span aria-hidden="true">ℹ️</span>

@@ -6,7 +6,7 @@ endblock %} {% block content %}
 <div class="relative bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800 overflow-hidden">
   <!-- Background Pattern -->
   <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-y-12"></div>
-  
+
   <div class="container-ec py-16 md:py-24 relative z-10">
     <section role="banner" aria-labelledby="hero-heading">
       <div class="text-center space-y-8">
@@ -14,7 +14,7 @@ endblock %} {% block content %}
         <div class="text-sm text-purple-300 font-mono uppercase tracking-widest opacity-80">
           {{ page.hero_tagline|default:"WE'RE NOT LIKE OTHER FIRMS. GOOD." }}
         </div>
-        
+
         <!-- Main Headline with Enhanced Typography -->
         <h1
           id="hero-heading"
@@ -24,7 +24,7 @@ endblock %} {% block content %}
             {{ page.hero_title }}
           </span>
         </h1>
-        
+
         <!-- Subtitle with Better Spacing -->
         <div class="text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed font-light">
           {{ page.hero_subtitle|richtext }}
@@ -32,11 +32,11 @@ endblock %} {% block content %}
 
         <!-- Enhanced CTAs -->
         <div class="flex flex-col sm:flex-row gap-6 justify-center mt-12">
-          <a href="{{ page.hero_cta_1_link }}" 
+          <a href="{{ page.hero_cta_1_link }}"
              class="px-8 py-4 bg-white text-purple-900 font-semibold rounded-lg hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
             {{ page.hero_cta_1_text }}
           </a>
-          <a href="{{ page.hero_cta_2_link }}" 
+          <a href="{{ page.hero_cta_2_link }}"
              class="px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-purple-900 transition-all duration-300 transform hover:scale-105">
             {{ page.hero_cta_2_text }}
           </a>
@@ -54,7 +54,7 @@ endblock %} {% block content %}
           <div class="text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
             <div class="relative mb-6">
               <div class="w-full bg-purple-800/30 rounded-full h-3 shadow-inner overflow-hidden">
-                <div class="bg-gradient-to-r from-teal-400 to-purple-300 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg" 
+                <div class="bg-gradient-to-r from-teal-400 to-purple-300 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
                      style="width: 57%"></div>
               </div>
             </div>
@@ -62,7 +62,7 @@ endblock %} {% block content %}
             <div class="text-sm text-purple-200 uppercase tracking-wider font-medium">S&P 500 EXCLUDED</div>
             <div class="text-xs text-purple-300 mt-1">{{ page.hero_stats_date }}</div>
           </div>
-          
+
           <div class="text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
             <div class="font-mono text-3xl font-bold text-white mb-2">
               <span id="years-counter">3+</span> YEARS

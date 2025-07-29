@@ -20,12 +20,12 @@ const GardenForm = {
   init(formId, options = {}) {
     const form = document.getElementById(formId);
     if (!form) {
-      console.warn("GardenForm: Form not found:", formId);
+      console.warn('GardenForm: Form not found:', formId);
       return;
     }
 
     const config = {
-      ajax: form.dataset.ajax === "true" || options.ajax,
+      ajax: form.dataset.ajax === 'true' || options.ajax,
       successCallback: options.onSuccess,
       errorCallback: options.onError,
       beforeSubmit: options.beforeSubmit,
@@ -50,7 +50,7 @@ const GardenForm = {
     const form = document.getElementById(formId);
     const config = this.forms.get(formId);
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       // Call beforeSubmit callback if provided
@@ -60,7 +60,7 @@ const GardenForm = {
 
       const formData = new FormData(form);
       const submitButton = form.querySelector('button[type="submit"]');
-      const originalText = submitButton ? submitButton.innerHTML : "";
+      const originalText = submitButton ? submitButton.innerHTML : '';
 
       try {
         // Show loading state
@@ -70,7 +70,7 @@ const GardenForm = {
           method: form.method,
           body: formData,
           headers: {
-            "X-Requested-With": "XMLHttpRequest",
+            'X-Requested-With': 'XMLHttpRequest',
           },
         });
 
@@ -82,8 +82,8 @@ const GardenForm = {
           this.handleError(formId, data);
         }
       } catch (error) {
-        console.error("Form submission error:", error);
-        this.showMessage(formId, "An error occurred. Please try again.", "error");
+        console.error('Form submission error:', error);
+        this.showMessage(formId, 'An error occurred. Please try again.', 'error');
       } finally {
         // Restore button state
         this.setLoadingState(submitButton, false, originalText);
@@ -105,7 +105,7 @@ const GardenForm = {
 
     // Show success message
     if (data.message) {
-      this.showMessage(formId, data.message, "success");
+      this.showMessage(formId, data.message, 'success');
     }
 
     // Handle redirect
@@ -139,7 +139,7 @@ const GardenForm = {
 
     // Show general error message
     if (data.message) {
-      this.showMessage(formId, data.message, "error");
+      this.showMessage(formId, data.message, 'error');
     }
 
     // Call error callback if provided
@@ -151,7 +151,7 @@ const GardenForm = {
   /**
    * Set loading state for submit button
    */
-  setLoadingState(button, loading, originalText = "") {
+  setLoadingState(button, loading, originalText = '') {
     if (!button) return;
 
     if (loading) {
@@ -170,16 +170,16 @@ const GardenForm = {
     const form = document.getElementById(formId);
 
     // Remove existing messages
-    const existingMessage = form.querySelector(".form-message");
+    const existingMessage = form.querySelector('.form-message');
     if (existingMessage) {
       existingMessage.remove();
     }
 
     // Create new message
-    const messageDiv = document.createElement("div");
+    const messageDiv = document.createElement('div');
     messageDiv.className = `form-message form-message-${type}`;
     messageDiv.innerHTML = `
-      <span class="message-icon">${type === "success" ? "✓" : "⚠"}</span>
+      <span class="message-icon">${type === 'success' ? '✓' : '⚠'}</span>
       <span class="message-text">${message}</span>
     `;
 
@@ -187,7 +187,7 @@ const GardenForm = {
     form.insertBefore(messageDiv, form.firstChild);
 
     // Auto-remove success messages
-    if (type === "success") {
+    if (type === 'success') {
       setTimeout(() => {
         messageDiv.remove();
       }, 5000);
@@ -213,22 +213,22 @@ const GardenForm = {
         : [errors[fieldName]];
 
       errorMessages.forEach((errorMessage) => {
-        const errorDiv = document.createElement("div");
-        errorDiv.className = "field-error";
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'field-error';
         errorDiv.textContent = errorMessage;
 
         // Add error to field wrapper
-        const fieldWrapper = field.closest(".garden-field-wrapper");
+        const fieldWrapper = field.closest('.garden-field-wrapper');
         if (fieldWrapper) {
           fieldWrapper.appendChild(errorDiv);
-          fieldWrapper.classList.add("field-has-error");
+          fieldWrapper.classList.add('field-has-error');
         } else {
           // Fallback: add after field
           field.parentNode.insertBefore(errorDiv, field.nextSibling);
         }
 
         // Add error class to field
-        field.classList.add("error");
+        field.classList.add('error');
       });
     });
   },
@@ -240,15 +240,15 @@ const GardenForm = {
     const form = document.getElementById(formId);
 
     // Remove error elements
-    form.querySelectorAll(".field-error").forEach((error) => error.remove());
+    form.querySelectorAll('.field-error').forEach((error) => error.remove());
 
     // Remove error classes
-    form.querySelectorAll(".error").forEach((element) => {
-      element.classList.remove("error");
+    form.querySelectorAll('.error').forEach((element) => {
+      element.classList.remove('error');
     });
 
-    form.querySelectorAll(".field-has-error").forEach((wrapper) => {
-      wrapper.classList.remove("field-has-error");
+    form.querySelectorAll('.field-has-error').forEach((wrapper) => {
+      wrapper.classList.remove('field-has-error');
     });
   },
 
@@ -257,16 +257,16 @@ const GardenForm = {
    */
   setupValidation(formId) {
     const form = document.getElementById(formId);
-    const fields = form.querySelectorAll(".garden-input");
+    const fields = form.querySelectorAll('.garden-input');
 
     fields.forEach((field) => {
       // Real-time validation on blur
-      field.addEventListener("blur", () => {
+      field.addEventListener('blur', () => {
         this.validateField(field);
       });
 
       // Clear errors on input
-      field.addEventListener("input", () => {
+      field.addEventListener('input', () => {
         this.clearFieldError(field);
       });
     });
@@ -279,16 +279,16 @@ const GardenForm = {
     const isValid = field.checkValidity();
 
     if (!isValid) {
-      field.classList.add("error");
+      field.classList.add('error');
 
       // Show validation message if not already shown
-      const wrapper = field.closest(".garden-field-wrapper");
-      if (wrapper && !wrapper.querySelector(".field-error")) {
-        const errorDiv = document.createElement("div");
-        errorDiv.className = "field-error";
+      const wrapper = field.closest('.garden-field-wrapper');
+      if (wrapper && !wrapper.querySelector('.field-error')) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'field-error';
         errorDiv.textContent = field.validationMessage;
         wrapper.appendChild(errorDiv);
-        wrapper.classList.add("field-has-error");
+        wrapper.classList.add('field-has-error');
       }
     }
 
@@ -299,13 +299,13 @@ const GardenForm = {
    * Clear error for a specific field
    */
   clearFieldError(field) {
-    field.classList.remove("error");
+    field.classList.remove('error');
 
-    const wrapper = field.closest(".garden-field-wrapper");
+    const wrapper = field.closest('.garden-field-wrapper');
     if (wrapper) {
-      const errors = wrapper.querySelectorAll(".field-error");
+      const errors = wrapper.querySelectorAll('.field-error');
       errors.forEach((error) => error.remove());
-      wrapper.classList.remove("field-has-error");
+      wrapper.classList.remove('field-has-error');
     }
   },
 
@@ -314,7 +314,7 @@ const GardenForm = {
    */
   validateForm(formId) {
     const form = document.getElementById(formId);
-    const fields = form.querySelectorAll(".garden-input");
+    const fields = form.querySelectorAll('.garden-input');
     let isValid = true;
 
     fields.forEach((field) => {
@@ -337,18 +337,18 @@ const GardenForm = {
 };
 
 // Auto-initialize forms with data-auto-init attribute
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   const autoForms = document.querySelectorAll('[data-auto-init="garden-form"]');
   autoForms.forEach((form) => {
     const formId = form.id;
     const options = {
-      ajax: form.dataset.ajax === "true",
+      ajax: form.dataset.ajax === 'true',
     };
     GardenForm.init(formId, options);
   });
 });
 
 // Export for module use
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = GardenForm;
 }

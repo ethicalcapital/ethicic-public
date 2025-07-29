@@ -1,8 +1,8 @@
-{% extends "public_site/base_tailwind.html" %} 
-{% load wagtailcore_tags %} 
-{% load static %} 
-{% block title %}Onboarding - Ethical Capital{% endblock %} 
-{% block body_class %}onboarding-page comprehensive{% endblock %} 
+{% extends "public_site/base_tailwind.html" %}
+{% load wagtailcore_tags %}
+{% load static %}
+{% block title %}Onboarding - Ethical Capital{% endblock %}
+{% block body_class %}onboarding-page comprehensive{% endblock %}
 {% block content %}
 <div class="container-ec">
   <!-- Hero Section -->
@@ -81,12 +81,12 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="email">
                 What's the best email to reach you at? <span class="text-red-500 ml-1">*</span>
               </label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent" 
-                required 
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                required
               />
             </div>
 
@@ -258,9 +258,9 @@
           <!-- Section Navigation -->
           <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
             <div></div>
-            <button 
-              type="button" 
-              @click="nextStep()" 
+            <button
+              type="button"
+              @click="nextStep()"
               class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
             >
               Next Step →
@@ -287,10 +287,10 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="co_client_email">
                 Co-client's email address <span class="text-red-500 ml-1">*</span>
               </label>
-              <input 
-                type="email" 
-                id="co_client_email" 
-                name="co_client_email" 
+              <input
+                type="email"
+                id="co_client_email"
+                name="co_client_email"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 :required="addCoClient"
               />
@@ -324,16 +324,16 @@
 
           <!-- Section Navigation -->
           <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button 
-              type="button" 
-              @click="prevStep()" 
+            <button
+              type="button"
+              @click="prevStep()"
               class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               ← Previous
             </button>
-            <button 
-              type="button" 
-              @click="nextStep()" 
+            <button
+              type="button"
+              @click="nextStep()"
               class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
             >
               Next Step →
@@ -360,10 +360,10 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="phone">
                 Phone number <span class="text-red-500 ml-1">*</span>
               </label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 required
               />
@@ -409,16 +409,16 @@
 
           <!-- Section Navigation -->
           <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button 
-              type="button" 
-              @click="prevStep()" 
+            <button
+              type="button"
+              @click="prevStep()"
               class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               ← Previous
             </button>
-            <button 
-              type="button" 
-              @click="nextStep()" 
+            <button
+              type="button"
+              @click="nextStep()"
               class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
             >
               Next Step →
@@ -492,9 +492,9 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_timeline">
                 What is your investment timeline? <span class="text-red-500 ml-1">*</span>
               </label>
-              <select 
-                id="investment_timeline" 
-                name="investment_timeline" 
+              <select
+                id="investment_timeline"
+                name="investment_timeline"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 required
               >
@@ -506,16 +506,16 @@
             </div>
           </div>          <!-- Section Navigation -->
           <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button 
-              type="button" 
-              @click="prevStep()" 
+            <button
+              type="button"
+              @click="prevStep()"
               class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               ← Previous
             </button>
-            <button 
-              type="button" 
-              @click="nextStep()" 
+            <button
+              type="button"
+              @click="nextStep()"
               class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
             >
               Next Step →
@@ -542,9 +542,9 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_goals">
                 What are your primary investment goals? <span class="text-red-500 ml-1">*</span>
               </label>
-              <textarea 
-                id="investment_goals" 
-                name="investment_goals" 
+              <textarea
+                id="investment_goals"
+                name="investment_goals"
                 rows="4"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 placeholder="Tell us about your investment objectives, financial goals, and what you hope to achieve..."
@@ -597,16 +597,16 @@
             </div>
           </div>          <!-- Section Navigation -->
           <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button 
-              type="button" 
-              @click="prevStep()" 
+            <button
+              type="button"
+              @click="prevStep()"
               class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               ← Previous
             </button>
-            <button 
-              type="button" 
-              @click="nextStep()" 
+            <button
+              type="button"
+              @click="nextStep()"
               class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
             >
               Next Step →
@@ -633,9 +633,9 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="annual_income">
                 Approximate annual income <span class="text-red-500 ml-1">*</span>
               </label>
-              <select 
-                id="annual_income" 
-                name="annual_income" 
+              <select
+                id="annual_income"
+                name="annual_income"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 required
               >
@@ -653,9 +653,9 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_amount">
                 Initial investment amount <span class="text-red-500 ml-1">*</span>
               </label>
-              <select 
-                id="investment_amount" 
-                name="investment_amount" 
+              <select
+                id="investment_amount"
+                name="investment_amount"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 required
               >
@@ -672,9 +672,9 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="investment_experience">
                 Investment experience <span class="text-red-500 ml-1">*</span>
               </label>
-              <textarea 
-                id="investment_experience" 
-                name="investment_experience" 
+              <textarea
+                id="investment_experience"
+                name="investment_experience"
                 rows="3"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 placeholder="Tell us about your previous investment experience..."
@@ -683,16 +683,16 @@
             </div>
           </div>          <!-- Section Navigation -->
           <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button 
-              type="button" 
-              @click="prevStep()" 
+            <button
+              type="button"
+              @click="prevStep()"
               class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               ← Previous
             </button>
-            <button 
-              type="button" 
-              @click="nextStep()" 
+            <button
+              type="button"
+              @click="nextStep()"
               class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
             >
               Next Step →
@@ -719,9 +719,9 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="current_advisor">
                 Do you currently work with a financial advisor?
               </label>
-              <textarea 
-                id="current_advisor" 
-                name="current_advisor" 
+              <textarea
+                id="current_advisor"
+                name="current_advisor"
                 rows="3"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 placeholder="Please share details about your current advisor relationships..."
@@ -732,9 +732,9 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="other_professionals">
                 Other financial professionals (CPA, attorney, etc.)
               </label>
-              <textarea 
-                id="other_professionals" 
-                name="other_professionals" 
+              <textarea
+                id="other_professionals"
+                name="other_professionals"
                 rows="3"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 placeholder="Tell us about your CPA, attorney, or other financial professionals..."
@@ -745,26 +745,26 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="referral_source">
                 How did you hear about Ethical Capital?
               </label>
-              <input 
-                type="text" 
-                id="referral_source" 
-                name="referral_source" 
+              <input
+                type="text"
+                id="referral_source"
+                name="referral_source"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 placeholder="Referral source, search engine, social media, etc."
               />
             </div>
           </div>          <!-- Section Navigation -->
           <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button 
-              type="button" 
-              @click="prevStep()" 
+            <button
+              type="button"
+              @click="prevStep()"
               class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               ← Previous
             </button>
-            <button 
-              type="button" 
-              @click="nextStep()" 
+            <button
+              type="button"
+              @click="nextStep()"
               class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
             >
               Next Step →
@@ -791,9 +791,9 @@
               <label class="block text-sm font-semibold text-gray-900 dark:text-gray-100" for="additional_comments">
                 Additional comments or questions
               </label>
-              <textarea 
-                id="additional_comments" 
-                name="additional_comments" 
+              <textarea
+                id="additional_comments"
+                name="additional_comments"
                 rows="4"
                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 placeholder="Any additional information you'd like to share with us..."
@@ -822,12 +822,12 @@
                   required
                 />
                 <span class="text-sm text-gray-900 dark:text-gray-100">
-                  I agree to the <a href="/legal/terms/" class="text-purple-600 hover:text-purple-800 underline" target="_blank">Terms of Service</a> 
+                  I agree to the <a href="/legal/terms/" class="text-purple-600 hover:text-purple-800 underline" target="_blank">Terms of Service</a>
                   and <a href="/legal/privacy/" class="text-purple-600 hover:text-purple-800 underline" target="_blank">Privacy Policy</a>
                   <span class="text-red-500 ml-1">*</span>
                 </span>
               </label>
-              
+
               <label class="flex items-start">
                 <input
                   type="checkbox"
@@ -843,15 +843,15 @@
             </div>
           </div>          <!-- Final Section Navigation -->
           <div class="flex justify-between items-center pt-6 border-t border-gray-200 dark:border-gray-700 mt-8">
-            <button 
-              type="button" 
-              @click="prevStep()" 
+            <button
+              type="button"
+              @click="prevStep()"
               class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               ← Previous
             </button>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               class="px-8 py-4 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               :disabled="submitting"
             >
@@ -1050,11 +1050,11 @@
   .validation-message {
     @apply flex items-center gap-2 p-3 rounded-lg mb-4 border;
   }
-  
+
   .validation-message.error {
     @apply bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200;
   }
-  
+
   .validation-message.success {
     @apply bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200;
   }

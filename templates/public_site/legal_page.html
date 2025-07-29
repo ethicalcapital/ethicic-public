@@ -128,7 +128,7 @@ Ethical Capital{% endblock %} {% block content %}
       // Create TOC item
       const tocItem = document.createElement("div");
       tocItem.className = "mb-2";
-      
+
       if (level > 2) {
         tocItem.className += " ml-" + ((level - 2) * 4); // Indent nested items
       }
@@ -140,7 +140,7 @@ Ethical Capital{% endblock %} {% block content %}
       if (level > 2) {
         tocLink.className += " text-xs";
       }
-      
+
       tocLink.addEventListener("click", function (e) {
         e.preventDefault();
         scrollToHeading(heading);

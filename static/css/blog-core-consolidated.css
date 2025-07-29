@@ -96,12 +96,15 @@
   .blog-content h1 {
     font-size: var(--font-2xl);
   }
+
   .blog-content h2 {
     font-size: var(--font-xl);
   }
+
   .blog-content h3 {
     font-size: var(--font-lg);
   }
+
   .blog-content h4 {
     font-size: var(--font-base);
   }

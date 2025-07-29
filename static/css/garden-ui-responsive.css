@@ -270,12 +270,15 @@
     .hidden-xs {
       display: none;
     }
+
     .block-xs {
       display: block;
     }
+
     .flex-xs {
       display: flex;
     }
+
     .grid-xs {
       display: grid;
     }
@@ -286,12 +289,15 @@
     .hidden-sm {
       display: none;
     }
+
     .block-sm {
       display: block;
     }
+
     .flex-sm {
       display: flex;
     }
+
     .grid-sm {
       display: grid;
     }
@@ -302,12 +308,15 @@
     .hidden-md {
       display: none;
     }
+
     .block-md {
       display: block;
     }
+
     .flex-md {
       display: flex;
     }
+
     .grid-md {
       display: grid;
     }
@@ -318,12 +327,15 @@
     .hidden-lg {
       display: none;
     }
+
     .block-lg {
       display: block;
     }
+
     .flex-lg {
       display: flex;
     }
+
     .grid-lg {
       display: grid;
     }
@@ -334,12 +346,15 @@
     .hidden-xl {
       display: none;
     }
+
     .block-xl {
       display: block;
     }
+
     .flex-xl {
       display: flex;
     }
+
     .grid-xl {
       display: grid;
     }
@@ -362,6 +377,7 @@
       padding-top: var(--space-3);
       padding-bottom: var(--space-3);
     }
+
     .m-mobile {
       margin: var(--space-3);
     }
@@ -384,9 +400,11 @@
     .text-mobile-sm {
       font-size: var(--font-sm);
     }
+
     .text-mobile-base {
       font-size: var(--font-base);
     }
+
     .text-mobile-lg {
       font-size: var(--font-lg);
     }
