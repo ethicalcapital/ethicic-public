@@ -1,17 +1,5 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags static %}
-<<<<<<< HEAD
-{% block title %}
-    Investment
-    Encyclopedia | Ethical Capital
-{% endblock %}
-{% block body_class %}encyclopedia-index{% endblock %}
-{% block extra_css
-    %}
-    <link rel="stylesheet"
-          href="{% static 'css/encyclopedia-page-fix.css' %}?v=1" />
-    <style>
-=======
 
 {% block title %}Investment Encyclopedia | Ethical Capital{% endblock %}
 
@@ -20,7 +8,6 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/encyclopedia-page-fix.css' %}?v=1" />
 <style>
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
   /* Encyclopedia Page Styling */
   .encyclopedia-search {
     margin-bottom: var(--space-6, 24px);
@@ -107,19 +94,6 @@
       padding: var(--space-3, 12px) !important;
     }
   }
-<<<<<<< HEAD
-    </style>
-{% endblock %}
-{% block content %}
-    <div class="garden-container">
-        <!-- Hero Section -->
-        <section class="garden-panel hero-panel"
-                 role="banner"
-                 aria-labelledby="hero-heading">
-            <div class="garden-panel__content garden-panel-content">
-                <h1 id="hero-heading" class="hero-title">{{ page.title }}</h1>
-                {% if page.intro_text %}<div class="hero-subtitle">{{ page.intro_text|richtext }}</div>{% endif %}
-=======
 </style>
 {% endblock %}
 
@@ -179,7 +153,6 @@
               {% endif %} {% if entry.difficulty_level %}
               <span class="article-tag">{{ entry.get_difficulty_level_display }}</span>
               {% endif %}
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
             </div>
         </section>
         <!-- Main Content Panel -->
@@ -307,18 +280,12 @@
             </div>
         </section>
     </div>
-<<<<<<< HEAD
-{% endblock %}
-{% block extra_js %}
-    <script>
-=======
   </section>
 </div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
   // Encyclopedia Search and Filter Functionality
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("encyclopedia-search");

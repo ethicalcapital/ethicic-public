@@ -1,10 +1,5 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags %}
-<<<<<<< HEAD
-{% block title %}
-    {% if query_string %}
-        Search Results for "{{ query_string }}" | Ethical Capital
-=======
 
 {% block title %}
 {% if query_string %}
@@ -28,7 +23,6 @@ Search | Ethical Capital
     <p class="text-xl text-blue-100 max-w-2xl mx-auto">Found {{ total_results }} result{{ total_results|pluralize }} across all pages</p>
     {% elif query_string %}
     <p class="text-xl text-red-200 max-w-2xl mx-auto">No results found for "{{ query_string }}"</p>
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
     {% else %}
         Search | Ethical Capital
     {% endif %}
@@ -189,12 +183,6 @@ Search | Ethical Capital
             </main>
         {% endif %}
     </div>
-<<<<<<< HEAD
-{% endblock %}
-{% block extra_js %}
-    <!-- 💀 LEGACY JAVASCRIPT ANNIHILATED - 58+ lines eliminated and replaced with Alpine.js -->
-    <script>
-=======
     {% endif %} {% else %}
     <!-- No Results -->
     <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-8 text-center">
@@ -230,7 +218,6 @@ Search | Ethical Capital
 {% block extra_js %}
 <!-- 💀 LEGACY JAVASCRIPT ANNIHILATED - 58+ lines eliminated and replaced with Alpine.js -->
 <script>
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
   // Global keyboard shortcut for search (/)
   document.addEventListener("keydown", function (e) {
     if (e.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName)) {

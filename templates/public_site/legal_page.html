@@ -1,105 +1,5 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags static %}
-<<<<<<< HEAD
-{% block title %}
-    {{ page.title }} -
-    Ethical Capital
-{% endblock %}
-{% block content %}
-    <div class="container-ec">
-        <!-- Hero Section -->
-        <section class="mb-8 rounded-xl bg-gradient-to-br from-purple-900 via-gray-900 to-purple-800 p-8 text-center"
-                 role="banner"
-                 aria-labelledby="hero-heading">
-            <h1 id="hero-heading"
-                class="mb-4 text-4xl font-bold text-white md:text-5xl">{{ page.title }}</h1>
-            {% if page.intro_text %}
-                <div class="mx-auto max-w-3xl text-xl text-purple-100">{{ page.intro_text|richtext }}</div>
-            {% endif %}
-        </section>
-        <!-- Legal Content with Sidebar Layout -->
-        <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-3">
-            <!-- Main Content Area -->
-            <main class="lg:col-span-2">
-                <section class="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
-                         role="main"
-                         aria-labelledby="legal-heading">
-                    <div class="mb-6 border-b border-gray-200 pb-4 dark:border-gray-700">
-                        <h2 class="text-2xl font-bold text-gray-100">LEGAL DOCUMENTATION</h2>
-                    </div>
-                    <div class="prose prose-gray dark:prose-invert max-w-none">
-                        <!-- Legal Content -->
-                        <div class="legal-body" id="legal-content">{{ page.content|richtext }}</div>
-                    </div>
-                </section>
-            </main>
-            <!-- Sticky Right Sidebar -->
-            <aside class="space-y-6">
-                <!-- Action Buttons -->
-                <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-                    <div class="space-y-3">
-                        <a href="/contact/"
-                           class="block w-full rounded-lg bg-gray-600 px-4 py-3 text-center font-semibold text-white transition-colors hover:bg-purple-600">
-                            QUESTIONS?
-                        </a>
-                        <a href="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf"
-                           class="block w-full rounded-lg border border-gray-300 px-4 py-3 text-center font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
-                           target="_blank"
-                           rel="noopener">VIEW FORM ADV</a>
-                    </div>
-                </div>
-                <!-- Legal Document Metadata -->
-                <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-                    <h3 class="mb-4 text-lg font-semibold text-gray-100">Document Information</h3>
-                    <div class="space-y-3 text-sm">
-                        {% if page.effective_date %}
-                            <div>
-                                <span class="mb-1 block text-xs font-medium tracking-wide text-gray-600 uppercase dark:text-gray-400">
-                                    Effective Date:
-                                </span>
-                                <time datetime="{{ page.effective_date|date:'Y-m-d' }}"
-                                      class="text-gray-100">
-                                    {{ page.effective_date|date:"F j, Y" }}
-                                </time>
-                            </div>
-                        {% endif %}
-                        {% if page.updated_at|default:None %}
-                            <div>
-                                <span class="mb-1 block text-xs font-medium tracking-wide text-gray-600 uppercase dark:text-gray-400">
-                                    Last Updated:
-                                </span>
-                                <time datetime="{{ page.updated_at|date:'Y-m-d' }}"
-                                      class="text-gray-100">
-                                    {{ page.updated_at|date:"F j, Y" }}
-                                </time>
-                            </div>
-                        {% elif page.last_published_at %}
-                            <div>
-                                <span class="mb-1 block text-xs font-medium tracking-wide text-gray-600 uppercase dark:text-gray-400">
-                                    Last Updated:
-                                </span>
-                                <time datetime="{{ page.last_published_at|date:'Y-m-d' }}"
-                                      class="text-gray-100">
-                                    {{ page.last_published_at|date:"F j, Y" }}
-                                </time>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <!-- Table of Contents -->
-                <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-                    <h3 class="mb-4 text-lg font-semibold text-gray-100">Table of Contents</h3>
-                    <div class="toc-content text-sm" id="table-of-contents">
-                        <!-- Table of contents will be generated by JavaScript -->
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </div>
-{% endblock %}
-{% block extra_js %}
-    <script>
-=======
 
 {% block title %}{{ page.title }} - Ethical Capital{% endblock %}
 
@@ -184,7 +84,6 @@
 
 {% block extra_js %}
 <script>
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
   document.addEventListener("DOMContentLoaded", function () {
     // Generate table of contents automatically
     generateTableOfContents();

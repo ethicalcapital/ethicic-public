@@ -1,34 +1,5 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load static wagtailcore_tags %}
-<<<<<<< HEAD
-{% block title %}
-    {{ page.title }} |
-    Ethical Capital
-{% endblock %}
-{% block body_class %}strategy-page{% endblock %}
-{% block content %}
-    <div class="garden-container">
-        <!-- Strategy Header -->
-        <section class="garden-panel strategy-header-panel"
-                 role="banner"
-                 aria-labelledby="strategy-heading">
-            <div class="garden-panel__header garden-panel-header">
-                <div class="panel-title">{{ page.title|upper }}</div>
-                {% if page.strategy_label %}<div class="strategy-badge">{{ page.strategy_label }}</div>{% endif %}
-            </div>
-            <div class="garden-panel__content garden-panel-content">
-                <h1 id="strategy-heading" class="strategy-title">{{ page.title }}</h1>
-                {% if page.strategy_subtitle %}<div class="strategy-subtitle">{{ page.strategy_subtitle }}</div>{% endif %}
-                {% if page.strategy_description %}
-                    <div class="strategy-description">{{ page.strategy_description|richtext }}</div>
-                {% endif %}
-                <!-- Quick Access Actions -->
-                <div class="quick-actions">
-                    <a href="#performance" class="garden-action secondary">View Performance</a>
-                    <a href="#portfolio" class="garden-action secondary">Portfolio Details</a>
-                    <a href="#documents" class="garden-action primary">Documents & Reports</a>
-                    <a href="/onboarding/" class="garden-action secondary">Get Started</a>
-=======
 
 {% block title %}{{ page.title }} | Ethical Capital{% endblock %}
 
@@ -245,7 +216,6 @@
                 {% if page.healthcare_exclusion_note %}
                 <div class="exclusion-note">
                   <p>{{ page.healthcare_exclusion_note }}</p>
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
                 </div>
             </div>
         </section>
@@ -615,16 +585,6 @@
                 </section>
             </aside>
         </div>
-<<<<<<< HEAD
-    </div>
-{% endblock %}
-{% block extra_css %}
-    <link rel="stylesheet"
-          href="{% static 'css/layers/30-strategy-page.css' %}?v=9-right-rail-buttons" />
-    <link rel="stylesheet"
-          href="{% static 'css/strategy-right-rail-buttons.css' %}?v=1" />
-    <style>
-=======
       </section>
 
       <!-- Commentary -->
@@ -769,7 +729,6 @@
 <link rel="stylesheet" href="{% static 'css/layers/30-strategy-page.css' %}?v=9-right-rail-buttons" />
 <link rel="stylesheet" href="{% static 'css/strategy-right-rail-buttons.css' %}?v=1" />
 <style>
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
   /* Use the same styles from the original template */
   {% include "public_site/strategy_page_styles.html" %}
 
@@ -909,18 +868,11 @@
   .strategy-page .stats-grid {
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
-<<<<<<< HEAD
-    </style>
-{% endblock %}
-{% block extra_js %}
-    <script>
-=======
 </style>
 {% endblock %}
 
 {% block extra_js %}
 <script>
->>>>>>> 6ca6df9 (Fix Django template syntax errors and improve site functionality)
   function requestDocument(documentType) {
     // Show document request modal
     const modal = document.createElement("div");
