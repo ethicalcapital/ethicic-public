@@ -106,7 +106,7 @@
             data-error-callback="onTurnstileError"
             data-theme="dark"
           ></div>
-          <input type="hidden" name="cf_turnstile_response" value="" />
+          <input type="hidden" name="cf-turnstile-response" value="" />
         </div>
 
         <!-- Submit Button -->
@@ -132,7 +132,7 @@
         // Turnstile callback functions
         function onTurnstileSuccess(token) {
           // Store the token in the hidden field
-          const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
+          const hiddenField = document.querySelector('input[name="cf-turnstile-response"]');
           if (hiddenField) {
             hiddenField.value = token;
           }

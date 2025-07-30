@@ -159,7 +159,7 @@ def contact_form_submit(request):
                 company=contact_data.get("company", ""),
                 subject=f"{contact_data['subject']} - {contact_data.get('company', 'Individual')}",
                 message=contact_data["message"],
-                ticket_type="contact",
+                ticket_type="question",
                 status="open",
             )
 
@@ -838,7 +838,7 @@ def contact_api(request):
                 company=contact_data.get("company", ""),
                 subject=f"{contact_data['subject']} - {contact_data.get('company', 'Individual')}",
                 message=contact_data["message"],
-                ticket_type="contact",
+                ticket_type="question",
                 status="open",
             )
 
