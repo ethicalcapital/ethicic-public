@@ -160,7 +160,7 @@ def contact_form_submit(request):
                 subject=f"{contact_data['subject']} - {contact_data.get('company', 'Individual')}",
                 message=contact_data["message"],
                 ticket_type="contact",
-                status="new",
+                status="open",
             )
 
             logger.info(
@@ -673,7 +673,7 @@ def onboarding_form_submit(request):
                 subject=f"Onboarding Application - {full_name}",
                 message="\n".join(message_parts),
                 ticket_type="onboarding",
-                status="new",
+                status="open",
             )
 
             logger.info(
@@ -839,7 +839,7 @@ def contact_api(request):
                 subject=f"{contact_data['subject']} - {contact_data.get('company', 'Individual')}",
                 message=contact_data["message"],
                 ticket_type="contact",
-                status="new",
+                status="open",
             )
 
             # Send notification email (if configured)
@@ -1402,7 +1402,7 @@ Message:
 {message}""",
                 ticket_type="garden_interest",
                 priority="high",
-                status="new",
+                status="open",
             )
         except Exception as e:
             logger.warning("Could not create support ticket for Garden interest: %s", e)

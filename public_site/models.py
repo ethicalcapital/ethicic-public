@@ -4628,9 +4628,9 @@ class SupportTicket(models.Model):
     # Status and priority
     status = models.CharField(
         max_length=20,
-        default="new",
+        default="open",
         choices=[
-            ("new", "New"),
+            ("open", "Open"),
             ("in_progress", "In Progress"),
             ("resolved", "Resolved"),
             ("closed", "Closed"),
