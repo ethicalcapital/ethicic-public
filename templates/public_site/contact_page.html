@@ -2,6 +2,7 @@
 
 {% block title %}Contact Ethical Capital{% endblock %}
 
+
 {% block content %}
 <div class="container-ec">
   <!-- Page Header -->
@@ -124,6 +125,23 @@
         aria-live="polite"
         aria-atomic="true"
       ></div>
+
+      <!-- Cloudflare Turnstile Script and callbacks -->
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+      <script>
+        // Turnstile callback functions
+        function onTurnstileSuccess(token) {
+          // Store the token in the hidden field
+          const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
+          if (hiddenField) {
+            hiddenField.value = token;
+          }
+        }
+
+        function onTurnstileError(error) {
+          console.error('Turnstile error:', error);
+        }
+      </script>
     </div>
 
     <!-- Contact Information -->
@@ -165,24 +183,4 @@
     </div>
   </div>
 </div>
-{% endblock %}
-
-{% block extra_js %}
-<!-- Cloudflare Turnstile Script -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-<script>
-  // Turnstile callback functions
-  function onTurnstileSuccess(token) {
-    // Store the token in the hidden field
-    const hiddenField = document.querySelector('input[name="cf_turnstile_response"]');
-    if (hiddenField) {
-      hiddenField.value = token;
-    }
-  }
-
-  function onTurnstileError(error) {
-    console.error('Turnstile error:', error);
-  }
-</script>
 {% endblock %}
