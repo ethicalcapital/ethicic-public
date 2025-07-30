@@ -19,7 +19,7 @@
         <h2 class="card-title-ec">Send a Message</h2>
       </div>
 
-      <!-- Simple Contact Form -->
+      <!-- HTMX Contact Form -->
       <form
         id="contact-form"
         hx-post="/api/contact/"
@@ -42,7 +42,7 @@
           />
         </div>
 
-        <!-- Email Field -->
+        <!-- Email Field with inline validation -->
         <div class="mb-6">
           <label for="email" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Email Address *</label>
           <input
@@ -53,7 +53,22 @@
             placeholder="your@email.com"
             autocomplete="email"
             required
+            hx-post="/api/validate-email/"
+            hx-trigger="blur changed"
+            hx-target="#email-feedback"
+            hx-indicator="#email-spinner"
+            aria-describedby="email-feedback"
+            aria-invalid="false"
           />
+          <span
+            id="email-spinner"
+            class="htmx-indicator inline-block ml-2 text-purple-400"
+            role="status"
+            aria-label="Validating email"
+          >
+            ⟳
+          </span>
+          <div id="email-feedback" class="mt-1 text-sm" role="status" aria-live="polite" aria-atomic="true"></div>
         </div>
 
         <!-- Company Field -->
@@ -71,7 +86,7 @@
         <!-- Subject -->
         <div class="mb-6">
           <label for="subject" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Subject *</label>
-          <select id="subject" name="subject" class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none" required>
+          <select id="subject" name="subject" class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none" :disabled="submitting" required>
             <option value="">Select a topic...</option>
             <option value="general">General Inquiry</option>
             <option value="investment_inquiry">Investment Services</option>
@@ -113,6 +128,23 @@
           <button type="submit" class="btn-ec-primary" aria-describedby="form-response">
             Send Message
           </button>
+        </div>
+
+        <!-- Loading indicator -->
+        <div
+          id="form-loading"
+          class="htmx-indicator bg-opacity-95 absolute inset-0 items-center justify-center rounded-lg bg-gray-900"
+          role="status"
+          aria-label="Form submission in progress"
+          style="display: none;"
+        >
+          <div class="text-center">
+            <svg class="animate-spin h-12 w-12 mx-auto mb-4 text-purple-400" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-purple-200">Submitting your message...</p>
+          </div>
         </div>
       </form>
 
@@ -184,5 +216,41 @@
   function onTurnstileError(error) {
     console.error('Turnstile error:', error);
   }
+
+  // Add custom styles for better form appearance
+  const styleSheet = document.createElement("style");
+  styleSheet.innerText = `
+    .cf-turnstile {
+      margin: 1rem 0;
+    }
+    
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+    
+    .htmx-indicator {
+      opacity: 0;
+      display: none !important;
+    }
+    
+    .htmx-request .htmx-indicator {
+      opacity: 1;
+      display: flex !important;
+    }
+    
+    .htmx-request.htmx-indicator {
+      opacity: 1;
+      display: flex !important;
+    }
+    
+    /* Ensure proper focus styles for accessibility */
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid #a855f7;
+      outline-offset: 2px;
+    }
+  `;
+  document.head.appendChild(styleSheet);
 </script>
 {% endblock %}
