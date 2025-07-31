@@ -1,0 +1,291 @@
+{% extends "pdf/base_pdf.html" %}
+
+{% block title %}Strategy Performance Report - Ethical Capital{% endblock %}
+
+{% block content %}
+<!-- Cover Page -->
+<div class="pdf-header">
+    <h1>{{ data.firm_overview.firm_name }}</h1>
+    <div class="subtitle">Strategy Performance Report</div>
+    <div class="date">{{ data.generated_date }}</div>
+</div>
+
+<!-- Firm Overview -->
+<div class="pdf-section page-break-inside-avoid">
+    <h2>Investment Management Overview</h2>
+    
+    {% if data.firm_overview.description %}
+    <p>{{ data.firm_overview.description|safe }}</p>
+    {% endif %}
+    
+    {% if data.firm_overview.philosophy %}
+    <div class="mt-4">
+        <h3>Investment Philosophy</h3>
+        {{ data.firm_overview.philosophy|safe }}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Performance Summary -->
+{% if data.strategies %}
+<div class="pdf-section page-break">
+    <h2>Performance Summary</h2>
+    
+    <table class="performance-table">
+        <thead>
+            <tr>
+                <th>Strategy</th>
+                <th>Benchmark</th>
+                <th>YTD</th>
+                <th>1 Year</th>
+                <th>3 Year</th>
+                <th>Since Inception</th>
+                <th>Inception Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for strategy in data.strategies %}
+            <tr>
+                <td><strong>{{ strategy.title }}</strong></td>
+                <td>{{ strategy.benchmark_name }}</td>
+                <td class="{% if strategy.performance.ytd.strategy and strategy.performance.ytd.strategy != '-' and strategy.performance.ytd.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                    {{ strategy.performance.ytd.strategy|default:"-" }}
+                </td>
+                <td class="{% if strategy.performance.one_year.strategy and strategy.performance.one_year.strategy != '-' and strategy.performance.one_year.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                    {{ strategy.performance.one_year.strategy|default:"-" }}
+                </td>
+                <td class="{% if strategy.performance.three_year.strategy and strategy.performance.three_year.strategy != '-' and strategy.performance.three_year.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                    {{ strategy.performance.three_year.strategy|default:"-" }}
+                </td>
+                <td class="{% if strategy.performance.since_inception.strategy and strategy.performance.since_inception.strategy != '-' and strategy.performance.since_inception.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                    {{ strategy.performance.since_inception.strategy|default:"-" }}
+                </td>
+                <td>{{ strategy.inception_date|date:"M Y"|default:"-" }}</td>
+            </tr>
+            <!-- Benchmark row -->
+            <tr class="text-gray-600">
+                <td><em>{{ strategy.benchmark_name }}</em></td>
+                <td>-</td>
+                <td>{{ strategy.performance.ytd.benchmark|default:"-" }}</td>
+                <td>{{ strategy.performance.one_year.benchmark|default:"-" }}</td>
+                <td>{{ strategy.performance.three_year.benchmark|default:"-" }}</td>
+                <td>{{ strategy.performance.since_inception.benchmark|default:"-" }}</td>
+                <td>-</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="callout mt-4">
+        <p><strong>Note:</strong> Performance data is presented net of management fees. Benchmark returns shown in italics below each strategy.</p>
+    </div>
+</div>
+
+<!-- Detailed Strategy Information -->
+{% for strategy in data.strategies %}
+<div class="pdf-section page-break">
+    <div class="strategy-card">
+        {% if strategy.label %}
+        <div class="label">{{ strategy.label }}</div>
+        {% endif %}
+        
+        <h2>{{ strategy.title }}</h2>
+        
+        {% if strategy.subtitle %}
+        <p class="text-gray-600 mb-4 text-lg">{{ strategy.subtitle }}</p>
+        {% endif %}
+        
+        <!-- Strategy Overview -->
+        {% if strategy.description %}
+        <div class="mb-6">
+            <h3>Strategy Overview</h3>
+            {{ strategy.description|safe }}
+        </div>
+        {% endif %}
+        
+        <!-- Strategy Characteristics Grid -->
+        <div class="grid grid-cols-2 mb-6">
+            <div>
+                <h4>Investment Approach</h4>
+                {% if strategy.risk_level %}
+                <p><strong>Risk Level:</strong> {{ strategy.risk_level }}</p>
+                {% endif %}
+                {% if strategy.ethical_implementation %}
+                <p><strong>ESG Implementation:</strong> {{ strategy.ethical_implementation }}</p>
+                {% endif %}
+                {% if strategy.holdings_count %}
+                <p><strong>Typical Holdings:</strong> {{ strategy.holdings_count }}</p>
+                {% endif %}
+                {% if strategy.cash_allocation %}
+                <p><strong>Cash Allocation:</strong> {{ strategy.cash_allocation }}</p>
+                {% endif %}
+            </div>
+            <div>
+                <h4>Benchmark & Suitability</h4>
+                {% if strategy.benchmark_name %}
+                <p><strong>Primary Benchmark:</strong> {{ strategy.benchmark_name }}</p>
+                {% endif %}
+                {% if strategy.best_for %}
+                <p><strong>Best Suited For:</strong> {{ strategy.best_for }}</p>
+                {% endif %}
+                {% if strategy.inception_date %}
+                <p><strong>Strategy Inception:</strong> {{ strategy.inception_date|date:"F j, Y" }}</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Detailed Performance Analysis -->
+        <div class="mb-6">
+            <h3>Performance Analysis</h3>
+            
+            <table class="performance-table">
+                <thead>
+                    <tr>
+                        <th>Period</th>
+                        <th>{{ strategy.title }}</th>
+                        <th>{{ strategy.benchmark_name }}</th>
+                        <th>Excess Return</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if strategy.performance.ytd.strategy and strategy.performance.ytd.strategy != "-" %}
+                    <tr>
+                        <td>Year-to-Date</td>
+                        <td class="{% if strategy.performance.ytd.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                            {{ strategy.performance.ytd.strategy }}
+                        </td>
+                        <td>{{ strategy.performance.ytd.benchmark }}</td>
+                        <td class="{% if strategy.performance.ytd.difference|cut:'%'|floatformat:2|add:0 > 0 %}positive{% else %}negative{% endif %}">
+                            {{ strategy.performance.ytd.difference }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    
+                    {% if strategy.performance.one_year.strategy and strategy.performance.one_year.strategy != "-" %}
+                    <tr>
+                        <td>1 Year</td>
+                        <td class="{% if strategy.performance.one_year.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                            {{ strategy.performance.one_year.strategy }}
+                        </td>
+                        <td>{{ strategy.performance.one_year.benchmark }}</td>
+                        <td class="{% if strategy.performance.one_year.difference|cut:'%'|floatformat:2|add:0 > 0 %}positive{% else %}negative{% endif %}">
+                            {{ strategy.performance.one_year.difference }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    
+                    {% if strategy.performance.three_year.strategy and strategy.performance.three_year.strategy != "-" %}
+                    <tr>
+                        <td>3 Year (Annualized)</td>
+                        <td class="{% if strategy.performance.three_year.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                            {{ strategy.performance.three_year.strategy }}
+                        </td>
+                        <td>{{ strategy.performance.three_year.benchmark }}</td>
+                        <td class="{% if strategy.performance.three_year.difference|cut:'%'|floatformat:2|add:0 > 0 %}positive{% else %}negative{% endif %}">
+                            {{ strategy.performance.three_year.difference }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    
+                    {% if strategy.performance.since_inception.strategy and strategy.performance.since_inception.strategy != "-" %}
+                    <tr>
+                        <td>Since Inception (Annualized)</td>
+                        <td class="{% if strategy.performance.since_inception.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                            {{ strategy.performance.since_inception.strategy }}
+                        </td>
+                        <td>{{ strategy.performance.since_inception.benchmark }}</td>
+                        <td class="{% if strategy.performance.since_inception.difference|cut:'%'|floatformat:2|add:0 > 0 %}positive{% else %}negative{% endif %}">
+                            {{ strategy.performance.since_inception.difference }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            
+            {% if strategy.performance_last_updated %}
+            <p class="text-gray-600 mt-2"><em>Performance data as of {{ strategy.performance_last_updated|date:"F j, Y" }}</em></p>
+            {% endif %}
+        </div>
+        
+        <!-- Portfolio Composition -->
+        {% if strategy.portfolio_content %}
+        <div class="mb-6 page-break-inside-avoid">
+            <h3>Portfolio Composition</h3>
+            {{ strategy.portfolio_content|safe }}
+        </div>
+        {% endif %}
+        
+        <!-- Investment Process -->
+        {% if strategy.process.content %}
+        <div class="mb-6 page-break-inside-avoid">
+            <h3>{{ strategy.process.title|default:"Investment Process" }}</h3>
+            {{ strategy.process.content|safe }}
+        </div>
+        {% endif %}
+        
+        <!-- Current Commentary -->
+        {% if strategy.commentary.content %}
+        <div class="mb-6 page-break-inside-avoid">
+            <h3>{{ strategy.commentary.title|default:"Current Market Commentary" }}</h3>
+            {{ strategy.commentary.content|safe }}
+        </div>
+        {% endif %}
+        
+        <!-- Strategy Notes -->
+        {% if strategy.notes.overweights or strategy.notes.exclusions %}
+        <div class="mb-6">
+            <h3>Strategy Implementation Notes</h3>
+            {% if strategy.notes.overweights %}
+            <p><strong>Sector Overweights:</strong> {{ strategy.notes.overweights }}</p>
+            {% endif %}
+            {% if strategy.notes.exclusions %}
+            <p><strong>Key Exclusions:</strong> {{ strategy.notes.exclusions }}</p>
+            {% endif %}
+            {% if strategy.notes.healthcare_exclusion %}
+            <div class="callout warning mt-4">
+                <p><strong>Healthcare Sector Note:</strong> {{ strategy.notes.healthcare_exclusion }}</p>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <!-- Documents and Resources -->
+        {% if strategy.documents.content %}
+        <div class="mb-6 page-break-inside-avoid">
+            <h3>{{ strategy.documents.title|default:"Related Documents" }}</h3>
+            {{ strategy.documents.content|safe }}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+<!-- Contact Information -->
+<div class="contact-info page-break">
+    <h4>For More Information</h4>
+    <p><strong>Ethical Capital</strong></p>
+    <p>Email: info@ethicic.com | Website: www.ethicic.com</p>
+    <p>For detailed information about fees, investment minimums, and account opening procedures, please contact our client services team or refer to our Form ADV Part 2A brochure.</p>
+</div>
+{% endblock %}
+
+{% block disclaimer %}
+<div class="disclaimer">
+    <p><strong>Performance and Risk Disclaimers:</strong></p>
+    <p><strong>Past performance is not indicative of future results.</strong> All investments involve risk, including potential loss of principal. The performance data presented represents composite returns for each strategy and may not reflect the performance of individual client accounts due to differences in timing of investments, cash flows, fees, and other factors.</p>
+    
+    <p><strong>Benchmark Information:</strong> Benchmark returns are provided for comparison purposes only. You cannot invest directly in an index. Benchmark returns do not reflect management fees, transaction costs, or other expenses that would reduce returns in an actual investment.</p>
+    
+    <p><strong>Fee Impact:</strong> Performance data shown is net of management fees but does not include potential custody fees or other account-level fees that may apply to individual client accounts. Fees have a compounding effect on investment returns over time.</p>
+    
+    <p><strong>ESG Considerations:</strong> Our ethical screening and ESG integration approach may result in the exclusion of certain securities or sectors, which could cause our strategies to perform differently from broader market indices or other investment approaches.</p>
+    
+    <p><strong>Regulatory Information:</strong> Ethical Capital is a registered investment adviser with the Utah Division of Securities. Registration does not imply any level of skill or training. Please refer to our Form ADV Part 2A for complete information about our services, fees, investment approach, and important risk disclosures.</p>
+    
+    <p><strong>Data Sources:</strong> Performance and benchmark data are obtained from sources we believe to be reliable, but we cannot guarantee their accuracy or completeness. All performance calculations are subject to audit and may be revised.</p>
+    
+    <p>{% if data.performance_disclaimer %}{{ data.performance_disclaimer }}{% endif %}</p>
+</div>
+{% endblock %}
+{% endblock %}

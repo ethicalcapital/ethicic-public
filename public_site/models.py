@@ -5770,7 +5770,7 @@ class SiteConfiguration(ClusterableModel, BaseSiteSetting):
         help_text="Main tagline for SEO and social media",
     )
     company_description = models.TextField(
-        default="SEC-registered investment advisor specializing in ethical portfolio management and concentrated sustainable investing strategies.",
+        default="Utah-registered investment advisor specializing in ethical portfolio management and concentrated sustainable investing strategies.",
         help_text="Company description for meta tags and schema markup",
     )
 

@@ -1521,7 +1521,7 @@ class Migration(migrations.Migration):
             model_name="siteconfiguration",
             name="company_description",
             field=models.TextField(
-                default="SEC-registered investment advisor specializing in ethical portfolio management and concentrated sustainable investing strategies.",
+                default="Utah-registered investment advisor specializing in ethical portfolio management and concentrated sustainable investing strategies.",
                 help_text="Company description for meta tags and schema markup",
             ),
         ),

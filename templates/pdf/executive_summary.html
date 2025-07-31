@@ -1,0 +1,214 @@
+{% extends "pdf/base_pdf.html" %}
+
+{% block title %}Executive Summary - Ethical Capital{% endblock %}
+
+{% block content %}
+<!-- Cover Page -->
+<div class="pdf-header">
+    <h1>{{ data.firm_overview.firm_name }}</h1>
+    <div class="subtitle">{{ data.firm_overview.tagline }}</div>
+    <div class="date">Executive Summary | {{ data.generated_date }}</div>
+</div>
+
+<!-- Firm Overview Section -->
+<div class="pdf-section page-break-inside-avoid">
+    <h2>Firm Overview</h2>
+    
+    {% if data.firm_overview.description %}
+    <p>{{ data.firm_overview.description|safe }}</p>
+    {% endif %}
+    
+    {% if data.firm_overview.philosophy %}
+    <div class="mt-6">
+        <h3>Investment Philosophy</h3>
+        <div class="two-column">
+            {{ data.firm_overview.philosophy|safe }}
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if data.firm_overview.key_statistics %}
+    <div class="key-stats mt-6">
+        {% for stat in data.firm_overview.key_statistics %}
+        <div class="key-stat">
+            <span class="value">{{ stat.value }}</span>
+            <span class="label">{{ stat.label }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Investment Strategies Section -->
+{% if data.key_strategies %}
+<div class="pdf-section page-break">
+    <h2>Key Investment Strategies</h2>
+    
+    {% for strategy in data.key_strategies %}
+    <div class="strategy-card">
+        {% if strategy.label %}
+        <div class="label">{{ strategy.label }}</div>
+        {% endif %}
+        
+        <h3>{{ strategy.title }}</h3>
+        
+        {% if strategy.subtitle %}
+        <p class="text-gray-600 mb-4">{{ strategy.subtitle }}</p>
+        {% endif %}
+        
+        {% if strategy.description %}
+        <div class="mb-4">
+            {{ strategy.description|safe }}
+        </div>
+        {% endif %}
+        
+        <!-- Strategy Characteristics -->
+        <div class="grid grid-cols-2 mb-4">
+            <div>
+                {% if strategy.risk_level %}
+                <p><strong>Risk Level:</strong> {{ strategy.risk_level }}</p>
+                {% endif %}
+                {% if strategy.ethical_implementation %}
+                <p><strong>ESG Implementation:</strong> {{ strategy.ethical_implementation }}</p>
+                {% endif %}
+                {% if strategy.holdings_count %}
+                <p><strong>Holdings:</strong> {{ strategy.holdings_count }}</p>
+                {% endif %}
+            </div>
+            <div>
+                {% if strategy.best_for %}
+                <p><strong>Best For:</strong> {{ strategy.best_for }}</p>
+                {% endif %}
+                {% if strategy.benchmark_name %}
+                <p><strong>Benchmark:</strong> {{ strategy.benchmark_name }}</p>
+                {% endif %}
+                {% if strategy.cash_allocation %}
+                <p><strong>Cash Allocation:</strong> {{ strategy.cash_allocation }}</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Performance Summary -->
+        {% if strategy.performance %}
+        <div class="performance-summary">
+            <h4>Performance Summary</h4>
+            <table class="performance-table">
+                <thead>
+                    <tr>
+                        <th>Period</th>
+                        <th>Strategy</th>
+                        <th>Benchmark</th>
+                        <th>Difference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if strategy.performance.ytd.strategy and strategy.performance.ytd.strategy != "-" %}
+                    <tr>
+                        <td>Year-to-Date</td>
+                        <td class="{% if strategy.performance.ytd.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                            {{ strategy.performance.ytd.strategy }}
+                        </td>
+                        <td>{{ strategy.performance.ytd.benchmark }}</td>
+                        <td class="{% if strategy.performance.ytd.difference|cut:'%'|floatformat:2|add:0 > 0 %}positive{% else %}negative{% endif %}">
+                            {{ strategy.performance.ytd.difference }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    
+                    {% if strategy.performance.one_year.strategy and strategy.performance.one_year.strategy != "-" %}
+                    <tr>
+                        <td>1 Year</td>
+                        <td class="{% if strategy.performance.one_year.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                            {{ strategy.performance.one_year.strategy }}
+                        </td>
+                        <td>{{ strategy.performance.one_year.benchmark }}</td>
+                        <td class="{% if strategy.performance.one_year.difference|cut:'%'|floatformat:2|add:0 > 0 %}positive{% else %}negative{% endif %}">
+                            {{ strategy.performance.one_year.difference }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    
+                    {% if strategy.performance.since_inception.strategy and strategy.performance.since_inception.strategy != "-" %}
+                    <tr>
+                        <td>Since Inception{% if strategy.inception_date %} ({{ strategy.inception_date|date:"M Y" }}){% endif %}</td>
+                        <td class="{% if strategy.performance.since_inception.strategy|cut:'%'|floatformat:2|add:0 > 0 %}positive{% endif %}">
+                            {{ strategy.performance.since_inception.strategy }}
+                        </td>
+                        <td>{{ strategy.performance.since_inception.benchmark }}</td>
+                        <td class="{% if strategy.performance.since_inception.difference|cut:'%'|floatformat:2|add:0 > 0 %}positive{% else %}negative{% endif %}">
+                            {{ strategy.performance.since_inception.difference }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Team Information Section -->
+{% if data.team_info.team_members %}
+<div class="pdf-section page-break">
+    <h2>Leadership Team</h2>
+    
+    {% for member in data.team_info.team_members %}
+    <div class="team-member mb-6 page-break-inside-avoid">
+        <h3>{{ member.name }}</h3>
+        {% if member.title %}
+        <p class="text-primary font-medium">{{ member.title }}</p>
+        {% endif %}
+        {% if member.bio %}
+        <div class="mt-2">{{ member.bio|safe }}</div>
+        {% endif %}
+        {% if member.credentials %}
+        <p class="text-gray-600 mt-2"><strong>Credentials:</strong> {{ member.credentials }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Company History -->
+{% if data.team_info.company_history %}
+<div class="pdf-section">
+    <h2>Company History</h2>
+    <div class="two-column">
+        {{ data.team_info.company_history|safe }}
+    </div>
+    
+    {% if data.team_info.timeline %}
+    <div class="mt-6">
+        <h3>Key Milestones</h3>
+        <ul>
+            {% for milestone in data.team_info.timeline %}
+            <li><strong>{{ milestone.year }}:</strong> {{ milestone.description }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+
+<!-- Contact Information -->
+<div class="contact-info page-break">
+    <h4>Contact Information</h4>
+    <p><strong>Ethical Capital</strong></p>
+    <p>Email: info@ethicic.com</p>
+    <p>Website: www.ethicic.com</p>
+    <p>This executive summary provides an overview of our investment approach and key strategies. For detailed information about specific strategies, performance data, and investment processes, please refer to our comprehensive strategy brochures and Form ADV Part 2A.</p>
+</div>
+{% endblock %}
+
+{% block disclaimer %}
+<div class="disclaimer">
+    <p><strong>Important Disclaimers:</strong></p>
+    <p>This executive summary is for informational purposes only and does not constitute investment advice or an offer to sell securities. Past performance is not indicative of future results. All investments involve risk, including potential loss of principal.</p>
+    <p>Performance data represents composite returns and may not reflect the experience of individual client accounts. Actual client returns may differ due to timing of investments, fees, and other factors.</p>
+    <p>Ethical Capital is a registered investment adviser with the Utah Division of Securities. Please refer to our Form ADV Part 2A for important additional disclosures about our services, fees, and investment approach.</p>
+    <p>The information contained herein has been prepared by Ethical Capital and is believed to be reliable, but we make no representation as to its accuracy or completeness.</p>
+</div>
+{% endblock %}
+{% endblock %}

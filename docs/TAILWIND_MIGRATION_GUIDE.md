@@ -91,7 +91,7 @@ static/css/
 ```html
 <span class="badge-ec-primary">Investment Advisory</span>
 <span class="badge-ec-secondary">ESG Focused</span>
-<span class="badge-ec-success">SEC Registered</span>
+<span class="badge-ec-success">Utah Registered</span>
 <span class="badge-ec-warning">Beta Feature</span>
 <span class="badge-ec-error">Deprecated</span>
 ```

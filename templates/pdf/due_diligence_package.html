@@ -1,0 +1,301 @@
+{% extends "pdf/base_pdf.html" %}
+
+{% block title %}Due Diligence Package - Ethical Capital{% endblock %}
+
+{% block content %}
+<!-- Cover Page -->
+<div class="pdf-header">
+    <h1>{{ data.firm_overview.firm_name }}</h1>
+    <div class="subtitle">Due Diligence Package</div>
+    <div class="date">{{ data.generated_date }}</div>
+    {% if data.ddq_content.updated_at %}
+    <div class="date">Last Updated: {{ data.ddq_content.updated_at }}</div>
+    {% endif %}
+</div>
+
+<!-- Table of Contents -->
+<div class="pdf-section page-break-inside-avoid">
+    <h2>Contents</h2>
+    <ul class="mt-4">
+        <li>Firm Overview & Investment Philosophy</li>
+        <li>Leadership Team & Organization</li>
+        <li>Investment Strategies & Performance</li>
+        <li>ESG & Responsible Investment Approach</li>
+        <li>Due Diligence Questionnaire Responses</li>
+        <li>Risk Management & Compliance</li>
+        <li>Operational Information</li>
+    </ul>
+</div>
+
+<!-- Firm Overview -->
+<div class="pdf-section page-break">
+    <h2>Firm Overview</h2>
+    
+    {% if data.firm_overview.description %}
+    <p>{{ data.firm_overview.description|safe }}</p>
+    {% endif %}
+    
+    {% if data.firm_overview.philosophy %}
+    <div class="mt-6">
+        <h3>Investment Philosophy</h3>
+        {{ data.firm_overview.philosophy|safe }}
+    </div>
+    {% endif %}
+    
+    <!-- Key Statistics -->
+    {% if data.firm_overview.key_statistics %}
+    <div class="key-stats mt-6">
+        {% for stat in data.firm_overview.key_statistics %}
+        <div class="key-stat">
+            <span class="value">{{ stat.value }}</span>
+            <span class="label">{{ stat.label }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Leadership Team -->
+{% if data.team_info.team_members %}
+<div class="pdf-section page-break">
+    <h2>Leadership Team</h2>
+    
+    {% for member in data.team_info.team_members %}
+    <div class="team-member mb-6 page-break-inside-avoid">
+        <h3>{{ member.name }}</h3>
+        {% if member.title %}
+        <p class="text-primary font-medium mb-2">{{ member.title }}</p>
+        {% endif %}
+        {% if member.bio %}
+        <div class="mb-2">{{ member.bio|safe }}</div>
+        {% endif %}
+        {% if member.credentials %}
+        <p class="text-gray-600"><strong>Professional Credentials:</strong> {{ member.credentials }}</p>
+        {% endif %}
+        {% if member.experience %}
+        <p class="text-gray-600"><strong>Years of Experience:</strong> {{ member.experience }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Investment Strategies Summary -->
+{% if data.strategies %}
+<div class="pdf-section page-break">
+    <h2>Investment Strategies</h2>
+    
+    <table class="performance-table mb-6">
+        <thead>
+            <tr>
+                <th>Strategy</th>
+                <th>Risk Level</th>
+                <th>Holdings</th>
+                <th>Inception</th>
+                <th>AUM (Est.)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for strategy in data.strategies %}
+            <tr>
+                <td><strong>{{ strategy.title }}</strong></td>
+                <td>{{ strategy.risk_level|default:"-" }}</td>
+                <td>{{ strategy.holdings_count|default:"-" }}</td>
+                <td>{{ strategy.inception_date|date:"M Y"|default:"-" }}</td>
+                <td>{{ strategy.aum|default:"-" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% for strategy in data.strategies %}
+    <div class="strategy-card mb-6">
+        <h3>{{ strategy.title }}</h3>
+        {% if strategy.subtitle %}
+        <p class="text-gray-600 mb-2">{{ strategy.subtitle }}</p>
+        {% endif %}
+        {% if strategy.description %}
+        <div class="mb-4">{{ strategy.description|safe }}</div>
+        {% endif %}
+        
+        <div class="grid grid-cols-2">
+            <div>
+                {% if strategy.ethical_implementation %}
+                <p><strong>ESG Integration:</strong> {{ strategy.ethical_implementation }}</p>
+                {% endif %}
+                {% if strategy.best_for %}
+                <p><strong>Suitable For:</strong> {{ strategy.best_for }}</p>
+                {% endif %}
+            </div>
+            <div>
+                {% if strategy.benchmark_name %}
+                <p><strong>Benchmark:</strong> {{ strategy.benchmark_name }}</p>
+                {% endif %}
+                {% if strategy.cash_allocation %}
+                <p><strong>Cash Allocation:</strong> {{ strategy.cash_allocation }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- ESG Approach Overview -->
+<div class="pdf-section page-break">
+    <h2>ESG & Responsible Investment Approach</h2>
+    
+    {% if data.ddq_content.executive_summary %}
+    <div class="mb-6">
+        <h3>Executive Summary</h3>
+        {{ data.ddq_content.executive_summary|safe }}
+    </div>
+    {% endif %}
+    
+    <div class="callout success mb-6">
+        <p><strong>ESG Integration Philosophy:</strong> We believe that environmental, social, and governance (ESG) factors are material to long-term investment performance and risk management. Our approach integrates ESG considerations throughout our investment process while maintaining our fiduciary duty to generate competitive returns for our clients.</p>
+    </div>
+</div>
+
+<!-- Due Diligence Questionnaire Responses -->
+<div class="pdf-section page-break">
+    <h2>PRI Due Diligence Questionnaire Responses</h2>
+    
+    {% if data.ddq_content.sections %}
+        {% for section_key, section_data in data.ddq_content.sections.items %}
+            {% if section_data.content %}
+            <div class="mb-8 page-break-inside-avoid">
+                <h3>{{ section_data.title }}</h3>
+                <div class="two-column">
+                    {{ section_data.content|safe }}
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+
+<!-- Risk Management -->
+<div class="pdf-section page-break">
+    <h2>Risk Management Framework</h2>
+    
+    <div class="mb-6">
+        <h3>Investment Risk Controls</h3>
+        <ul>
+            <li><strong>Portfolio Construction:</strong> Systematic diversification across sectors, geographies, and market capitalizations</li>
+            <li><strong>Position Limits:</strong> Maximum position sizes to prevent concentration risk</li>
+            <li><strong>ESG Risk Assessment:</strong> Evaluation of ESG-related risks in security selection and portfolio construction</li>
+            <li><strong>Liquidity Management:</strong> Regular assessment of portfolio liquidity and cash flow requirements</li>
+            <li><strong>Performance Monitoring:</strong> Daily portfolio monitoring and monthly performance attribution</li>
+        </ul>
+    </div>
+    
+    <div class="mb-6">
+        <h3>Operational Risk Management</h3>
+        <ul>
+            <li><strong>Compliance Oversight:</strong> Regular compliance reviews and regulatory filing management</li>
+            <li><strong>Cybersecurity:</strong> Multi-layered security protocols and regular security assessments</li>
+            <li><strong>Business Continuity:</strong> Comprehensive disaster recovery and business continuity planning</li>
+            <li><strong>Third-Party Risk:</strong> Due diligence and ongoing monitoring of key service providers</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Operational Information -->
+<div class="pdf-section page-break">
+    <h2>Operational Information</h2>
+    
+    <div class="grid grid-cols-2 mb-6">
+        <div>
+            <h3>Regulatory Status</h3>
+            <ul>
+                <li>Utah Registered Investment Adviser</li>
+                <li>Form ADV Part 1 & 2A Filed</li>
+                <li>State Registration: As Required</li>
+                <li>FINRA/SIPC: Not Applicable</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Key Service Providers</h3>
+            <ul>
+                <li><strong>Custodian:</strong> [To be disclosed separately]</li>
+                <li><strong>Administrator:</strong> [To be disclosed separately]</li>
+                <li><strong>Auditor:</strong> [To be disclosed separately]</li>
+                <li><strong>Legal Counsel:</strong> [To be disclosed separately]</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="mb-6">
+        <h3>Reporting & Communication</h3>
+        <ul>
+            <li><strong>Performance Reporting:</strong> Monthly performance reports and quarterly comprehensive reviews</li>
+            <li><strong>ESG Reporting:</strong> Quarterly ESG impact reports and annual sustainability report</li>
+            <li><strong>Market Commentary:</strong> Regular market updates and investment outlook communications</li>
+            <li><strong>Client Access:</strong> Online portal for account access and document retrieval</li>
+        </ul>
+    </div>
+    
+    <div class="mb-6">
+        <h3>Investment Minimums & Fees</h3>
+        <div class="callout">
+            <p><strong>Note:</strong> Investment minimums, fee schedules, and account requirements are detailed in our Form ADV Part 2A and separate fee schedules. Please contact our client services team for current information specific to your investment objectives and account size.</p>
+        </div>
+    </div>
+</div>
+
+<!-- References and Additional Resources -->
+<div class="pdf-section page-break">
+    <h2>References & Additional Resources</h2>
+    
+    <div class="mb-6">
+        <h3>Regulatory Filings</h3>
+        <ul>
+            <li>Form ADV Part 1 & 2A (Available on SEC IAPD)</li>
+            <li>Form PF (Confidential Regulatory Filing)</li>
+            <li>State Registration Documents (As Applicable)</li>
+        </ul>
+    </div>
+    
+    <div class="mb-6">
+        <h3>Additional Documentation Available Upon Request</h3>
+        <ul>
+            <li>Detailed Strategy Fact Sheets</li>
+            <li>Historical Performance Tear Sheets</li>
+            <li>Sample Client Reporting Package</li>
+            <li>Investment Committee Meeting Minutes (Redacted)</li>
+            <li>Business Continuity Plan Summary</li>
+            <li>Cybersecurity Assessment Summary</li>
+        </ul>
+    </div>
+    
+    <div class="contact-info">
+        <h4>Due Diligence Contact</h4>
+        <p><strong>Ethical Capital</strong></p>
+        <p>Email: info@ethicic.com</p>
+        <p>Website: www.ethicic.com</p>
+        <p>For additional due diligence materials, client references, or specific questions about our investment process, please contact our client services team. We are committed to providing transparent and comprehensive information to support your due diligence process.</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block disclaimer %}
+<div class="disclaimer">
+    <p><strong>Due Diligence Package Disclaimers:</strong></p>
+    
+    <p><strong>Confidential Information:</strong> This due diligence package contains confidential and proprietary information about Ethical Capital and should not be distributed to third parties without our express written consent.</p>
+    
+    <p><strong>Forward-Looking Statements:</strong> This document may contain forward-looking statements about our investment approach, market outlook, and business plans. These statements are based on current expectations and assumptions and are subject to risks and uncertainties that may cause actual results to differ materially.</p>
+    
+    <p><strong>Not an Offer:</strong> This document is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy securities. Any investment decision should be made only after reviewing our Form ADV Part 2A and other relevant documentation.</p>
+    
+    <p><strong>Performance Information:</strong> Past performance is not indicative of future results. All performance data is subject to revision and audit. Individual client results may vary significantly from composite performance due to timing, fees, and other factors.</p>
+    
+    <p><strong>ESG Disclosures:</strong> Our ESG integration approach may result in performance that differs from traditional investment approaches or broad market indices. ESG criteria are inherently subjective and may change over time.</p>
+    
+    <p><strong>Regulatory Compliance:</strong> All information is current as of the date indicated and is subject to change. We recommend verifying current regulatory status and filings through appropriate regulatory databases.</p>
+    
+    <p><strong>Independent Verification:</strong> Prospective clients are encouraged to independently verify all information contained in this package and to conduct their own due diligence review.</p>
+</div>
+{% endblock %}
+{% endblock %}
