@@ -411,6 +411,26 @@
           max-width: 95vw;
         }
       }
+      
+      /* Footer grid override to ensure 5 columns */
+      @media (min-width: 768px) {
+        .footer-grid {
+          grid-template-columns: repeat(5, 1fr) !important;
+          display: grid !important;
+        }
+      }
+      @media (min-width: 640px) and (max-width: 767px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr) !important;
+          display: grid !important;
+        }
+      }
+      @media (max-width: 639px) {
+        .footer-grid {
+          grid-template-columns: 1fr !important;
+          display: grid !important;
+        }
+      }
         </style>
         <!-- EMERGENCY TEXT VISIBILITY FIX - HIGHEST PRIORITY OVERRIDES -->
         <style>
@@ -742,7 +762,7 @@
         <!-- Footer -->
         <footer class="border-t border-gray-600 bg-gray-800 mt-8" style="padding-top: 4rem !important;">
             <div class="container-ec pb-8">
-                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5">
+                <div class="footer-grid grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5">
                     <!-- Company Info -->
                     <div>
                         <h3 class="mb-4 font-mono text-sm text-purple-400 uppercase">Ethical Capital</h3>
