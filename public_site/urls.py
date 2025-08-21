@@ -3,9 +3,18 @@ Complete URL routing for Wagtail-based public site with form handling and API en
 """
 
 from django.urls import path, include
-from django.views.generic import RedirectView
+from django.generic import RedirectView
 
-from . import views
+from .views import (
+    contact_form_submit, contact_success, newsletter_signup,
+    test_clean_nav, test_form, onboarding_form_submit, onboarding_thank_you,
+    contact_api, newsletter_api, site_status_api, media_items_api,
+    garden_overview, garden_interest_registration,
+    site_search, site_search_live, live_stats_api, notifications_count_api,
+    notifications_api, mark_notifications_read_api, validate_email_api,
+    theme_api, check_submission_status, get_site_navigation, get_footer_links,
+    disclosures_page
+)
 
 app_name = "public_site"
 
@@ -14,75 +23,75 @@ urlpatterns = [
     # FORM SUBMISSION ENDPOINTS
     # ============================================================================
     # Contact form submission
-    path("contact/submit/", views.contact_form_submit, name="contact_submit"),
-    path("contact/success/", views.contact_success, name="contact_success"),
+    path("contact/submit/", contact_form_submit, name="contact_submit"),
+    path("contact/success/", contact_success, name="contact_success"),
     # Contact page is handled by Wagtail routing
     # Newsletter signup
-    path("newsletter/signup/", views.newsletter_signup, name="newsletter_subscribe"),
+    path("newsletter/signup/", newsletter_signup, name="newsletter_subscribe"),
     # Test clean navigation
-    path("test-clean-nav/", views.test_clean_nav, name="test_clean_nav"),
+    path("test-clean-nav/", test_clean_nav, name="test_clean_nav"),
     # Test form inputs
-    path("test-form/", views.test_form, name="test_form"),
+    path("test-form/", test_form, name="test_form"),
     # Onboarding form
-    path("onboarding/submit/", views.onboarding_form_submit, name="onboarding_submit"),
+    path("onboarding/submit/", onboarding_form_submit, name="onboarding_submit"),
     path(
-        "onboarding/thank-you/", views.onboarding_thank_you, name="onboarding_thank_you"
+        "onboarding/thank-you/", onboarding_thank_you, name="onboarding_thank_you"
     ),
     # Onboarding page is handled by Wagtail routing
     # ============================================================================
     # JSON API ENDPOINTS (for AJAX forms and integrations)
     # ============================================================================
     # Contact form API
-    path("api/contact/", views.contact_api, name="api_contact"),
+    path("api/contact/", contact_api, name="api_contact"),
     # Newsletter signup API
-    path("api/newsletter/", views.newsletter_api, name="api_newsletter"),
+    path("api/newsletter/", newsletter_api, name="api_newsletter"),
     # Site status and health check API
-    path("api/status/", views.site_status_api, name="api_status"),
+    path("api/status/", site_status_api, name="api_status"),
     # Media items API for infinite scroll
-    path("api/media-items/", views.media_items_api, name="api_media_items"),
+    path("api/media-items/", media_items_api, name="api_media_items"),
     # Support categories API removed for standalone deployment
     # ============================================================================
     # GARDEN PLATFORM ACCESS
     # ============================================================================
     # Garden platform redirect - removed for standalone deployment
     # Garden platform overview and access
-    path("garden/", views.garden_overview, name="garden_overview"),
+    path("garden/", garden_overview, name="garden_overview"),
     path(
         "api/garden/interest/",
-        views.garden_interest_registration,
+        garden_interest_registration,
         name="garden_interest_registration",
     ),
     # ============================================================================
     # SEARCH FUNCTIONALITY
     # ============================================================================
     # Site-wide search using Wagtail search
-    path("search/", views.site_search, name="search"),
-    path("search/live/", views.site_search_live, name="search_live"),
+    path("search/", site_search, name="search"),
+    path("search/live/", site_search_live, name="search_live"),
     # HTMX polling endpoints
-    path("api/live-stats/", views.live_stats_api, name="api_live_stats"),
+    path("api/live-stats/", live_stats_api, name="api_live_stats"),
     path(
         "api/notifications/count/",
-        views.notifications_count_api,
+        notifications_count_api,
         name="api_notifications_count",
     ),
-    path("api/notifications/", views.notifications_api, name="api_notifications"),
+    path("api/notifications/", notifications_api, name="api_notifications"),
     path(
         "api/notifications/mark-all-read/",
-        views.mark_notifications_read_api,
+        mark_notifications_read_api,
         name="api_notifications_mark_read",
     ),
     # Form validation endpoints
-    path("api/validate-email/", views.validate_email_api, name="api_validate_email"),
+    path("api/validate-email/", validate_email_api, name="api_validate_email"),
     # Theme preference API
-    path("api/theme/set/", views.theme_api, name="api_theme"),
+    path("api/theme/set/", theme_api, name="api_theme"),
     # Form submission status checking
     path(
         "api/submission-status/<str:submission_id>/",
-        views.check_submission_status,
+        check_submission_status,
         name="api_submission_status",
     ),
     # Current Holdings transparency page - temporarily disabled for testing
-    # path("holdings/", views.current_holdings, name="current_holdings"),
+    # path("holdings/", current_holdings, name="current_holdings"),
     # Note: Media files are served by Django/WhiteNoise and configured in main urls.py
     # ============================================================================
     # URL REDIRECTS - Ethicic.com to EC1C.com Migration
@@ -223,14 +232,14 @@ urlpatterns = [
     # UTILITY AND HELPER ENDPOINTS
     # ============================================================================
     # Site navigation helper (for dynamic menus)
-    path("api/navigation/", views.get_site_navigation, name="api_navigation"),
+    path("api/navigation/", get_site_navigation, name="api_navigation"),
     # Footer links helper (for dynamic footers)
-    path("api/footer-links/", views.get_footer_links, name="api_footer"),
+    path("api/footer-links/", get_footer_links, name="api_footer"),
     # ============================================================================
     # DISCLOSURES PAGE
     # ============================================================================
     # Disclosures page (loads from database or fallback content)
-    path("disclosures/", views.disclosures_page, name="disclosures"),
+    path("disclosures/", disclosures_page, name="disclosures"),
     # ============================================================================
     # AI-POWERED CONTENT ANALYSIS ENDPOINTS
     # ============================================================================
