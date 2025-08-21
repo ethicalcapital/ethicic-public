@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ethical Capital - Investment Materials{% endblock %}</title>
+    <link rel="stylesheet" href="{{ css_file_path }}">
+    <style>
+        /* Additional inline styles for PDF generation can go here */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+        
+        {% block footer %}
+        <div class="pdf-footer">
+            <p><strong>Ethical Capital</strong> | Ethical Investment Management</p>
+            <p>SEC-Regulated Investment Advisory | {{ contact_info }}</p>
+        </div>
+        {% endblock %}
+        
+        {% block disclaimer %}
+        <div class="disclaimer">
+            <p><strong>Important Disclaimers:</strong></p>
+            <p>{{ performance_disclaimer|default:"Past performance is not indicative of future results. All investments involve risk, including potential loss of principal. This material is for informational purposes only and should not be construed as investment advice." }}</p>
+        </div>
+        {% endblock %}
+    </div>
+</body>
+</html>

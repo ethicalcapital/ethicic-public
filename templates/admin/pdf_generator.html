@@ -1,0 +1,168 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static %}
+
+{% block title %}PDF Brochure Generator{% endblock %}
+
+{% block content %}
+<div class="content-main">
+    <h1>PDF Brochure Generator</h1>
+    
+    <div class="results">
+        <table class="resultstable">
+            <thead>
+                <tr>
+                    <th>Brochure Type</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Executive Summary</strong></td>
+                    <td>Firm overview, philosophy, key strategies, and team information</td>
+                    <td>
+                        <a href="{% url 'pdf:executive_summary' %}" class="button default" target="_blank">
+                            Download PDF
+                        </a>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>Strategy Performance Report</strong></td>
+                    <td>All strategies with live performance data and detailed analysis</td>
+                    <td>
+                        <a href="{% url 'pdf:strategy_performance_all' %}" class="button default" target="_blank">
+                            Download PDF
+                        </a>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>Due Diligence Package</strong></td>
+                    <td>Comprehensive DDQ responses, firm information, and compliance details</td>
+                    <td>
+                        <a href="{% url 'pdf:ddq_package' %}" class="button default" target="_blank">
+                            Download PDF
+                        </a>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>Investment Overview</strong></td>
+                    <td>Custom prospect brochure with overview, strategies, and team</td>
+                    <td>
+                        <a href="{% url 'pdf:custom_prospect' %}" class="button default" target="_blank">
+                            Download PDF
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    {% if strategies %}
+    <h2>Strategy-Specific Performance Reports</h2>
+    
+    <div class="results">
+        <table class="resultstable">
+            <thead>
+                <tr>
+                    <th>Strategy</th>
+                    <th>Risk Level</th>
+                    <th>Inception Date</th>
+                    <th>YTD Performance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for strategy in strategies %}
+                <tr>
+                    <td><strong>{{ strategy.title }}</strong></td>
+                    <td>{{ strategy.risk_level|default:"-" }}</td>
+                    <td>{{ strategy.inception_date|date:"M Y"|default:"-" }}</td>
+                    <td>
+                        {% if strategy.performance.ytd.strategy and strategy.performance.ytd.strategy != "-" %}
+                            <span style="color: {% if strategy.performance.ytd.strategy|cut:'%'|floatformat:2|add:0 > 0 %}green{% else %}red{% endif %}">
+                                {{ strategy.performance.ytd.strategy }}
+                            </span>
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'pdf:strategy_performance' strategy.slug %}" class="button default" target="_blank">
+                            Download PDF
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    
+    <div class="help">
+        <h3>Usage Instructions</h3>
+        <ul>
+            <li><strong>Executive Summary:</strong> Best for initial client meetings and general firm overview</li>
+            <li><strong>Strategy Performance:</strong> Detailed performance analysis for existing clients and prospects</li>
+            <li><strong>Due Diligence Package:</strong> Comprehensive materials for institutional clients and RFPs</li>
+            <li><strong>Investment Overview:</strong> Customizable prospect materials for specific client presentations</li>
+        </ul>
+        
+        <p><strong>Note:</strong> All PDFs are generated with live data from the database and include the most current performance information available.</p>
+    </div>
+</div>
+
+<style>
+.resultstable {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.resultstable th {
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.resultstable td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.button.default {
+    background-color: #417690;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.button.default:hover {
+    background-color: #205067;
+}
+
+.help {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 30px;
+}
+
+.help h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.help ul {
+    margin-bottom: 15px;
+}
+
+.help li {
+    margin-bottom: 8px;
+}
+</style>
+{% endblock %}

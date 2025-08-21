@@ -7,10 +7,12 @@ from typing import ClassVar
 
 from django.utils.html import format_html
 from wagtail import hooks
+from wagtail.admin.panels import TabbedInterface, ObjectList
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet
 
 from .models import (
+    BlogPost,
     MediaItem,
     SupportTicket,
 )
@@ -158,6 +160,89 @@ def global_admin_css():
             margin-top: 0.5rem;
         }
     </style>"""
+
+
+@hooks.register("insert_global_admin_js")
+def global_admin_js():
+    """Ensure StreamField JS is properly initialized."""
+    return """<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fix for StreamField count initialization
+            // This addresses the 'content-count' missing field error for BlogPost
+            const initStreamFieldCounts = () => {
+                // Look for all StreamField elements
+                const streamFields = document.querySelectorAll('.stream-field, [data-streamfield], .block-field[data-contentpath="content"]');
+                
+                streamFields.forEach(function(field) {
+                    // Try to determine the field name
+                    let fieldName = field.getAttribute('data-streamfield') || 
+                                  field.getAttribute('data-contentpath') ||
+                                  field.getAttribute('data-field') ||
+                                  (field.id && field.id.replace('id_', '').replace('-container', ''));
+                    
+                    if (fieldName) {
+                        const countInputName = fieldName + '-count';
+                        const countInput = document.querySelector(`input[name="${countInputName}"]`);
+                        
+                        if (!countInput) {
+                            // Create the count input if it doesn't exist
+                            const hiddenInput = document.createElement('input');
+                            hiddenInput.type = 'hidden';
+                            hiddenInput.name = countInputName;
+                            hiddenInput.id = 'id_' + countInputName;
+                            
+                            // Count existing blocks
+                            const blocks = field.querySelectorAll('.sequence-member, .stream-field__list-item, [data-contentpath^="' + fieldName + '."]');
+                            hiddenInput.value = blocks.length.toString();
+                            
+                            // Insert before the field or in the form
+                            if (field.parentNode) {
+                                field.parentNode.insertBefore(hiddenInput, field);
+                            } else {
+                                const form = document.querySelector('form[action*="/edit/"], form[action*="/add/"]');
+                                if (form) {
+                                    form.appendChild(hiddenInput);
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // Special handling for content field if we're on a BlogPost page
+                if (window.location.pathname.includes('/blogpost/')) {
+                    const contentCountInput = document.querySelector('input[name="content-count"]');
+                    if (!contentCountInput) {
+                        const hiddenInput = document.createElement('input');
+                        hiddenInput.type = 'hidden';
+                        hiddenInput.name = 'content-count';
+                        hiddenInput.id = 'id_content-count';
+                        hiddenInput.value = '0';
+                        
+                        const form = document.querySelector('form[action*="/edit/"], form[action*="/add/"]');
+                        if (form) {
+                            form.appendChild(hiddenInput);
+                        }
+                    }
+                }
+            };
+            
+            // Run on page load
+            initStreamFieldCounts();
+            
+            // Run again after a short delay to catch dynamically loaded content
+            setTimeout(initStreamFieldCounts, 500);
+            
+            // Also run when the DOM changes (for dynamically loaded fields)
+            const observer = new MutationObserver(function(mutations) {
+                initStreamFieldCounts();
+            });
+            
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    </script>"""
 
 
 @hooks.register("construct_homepage_panels")

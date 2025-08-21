@@ -456,6 +456,15 @@
             /* Navigation and branding keep existing colors */
             header *, nav *, .btn-ec-primary *, .btn-ec-secondary * {
                 color: inherit !important;
+                pointer-events: auto !important;
+            }
+            
+            /* Ensure navigation links are always clickable */
+            nav a, #main-navigation a, header nav a {
+                pointer-events: auto !important;
+                cursor: pointer !important;
+                z-index: 9999 !important;
+                position: relative !important;
             }
             
             /* Override ANY black or dark text with light colors */
@@ -617,7 +626,7 @@
                             {{ site_config.company_name|default:"ETHICAL CAPITAL" }}
                         </a>
                         <!-- Desktop Navigation -->
-                        <nav class="hidden space-x-6 md:flex" id="main-navigation">
+                        <nav class="hidden space-x-6 md:flex relative z-50" id="main-navigation" style="pointer-events: auto;">
                             {% main_menu max_levels=1 template="wagtailmenus/main_menu_tailwind.html" %}
                         </nav>
                     </div>
@@ -850,7 +859,7 @@
                                    class="text-gray-400 transition-colors hover:text-purple-400">Newsletter</a>
                             </li>
                             <li>
-                                <a href="https://linkedin.com/company/ecic"
+                                <a href="https://www.linkedin.com/company/ethicalcapitalcollective/"
                                    class="text-gray-400 transition-colors hover:text-purple-400" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                             </li>
                         </ul>
