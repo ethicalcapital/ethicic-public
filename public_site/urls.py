@@ -85,11 +85,6 @@ urlpatterns = [
     # path("holdings/", views.current_holdings, name="current_holdings"),
     # Note: Media files are served by Django/WhiteNoise and configured in main urls.py
     # ============================================================================
-    # PDF BROCHURE GENERATION
-    # ============================================================================
-    # PDF brochure generation and download endpoints
-    path("pdf/", include("public_site.urls.pdf_urls")),
-    # ============================================================================
     # URL REDIRECTS - Ethicic.com to EC1C.com Migration
     # ============================================================================
     # People page redirects to about

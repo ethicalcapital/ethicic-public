@@ -57,10 +57,6 @@ dependencies = [
     # Security and monitoring
     "django-cors-headers==4.4.0",
     "sentry-sdk==2.14.0",
-    # PDF Generation
-    "weasyprint==62.3",
-    "reportlab==4.2.5",
-    
     # Cloud storage
     "django-storages==1.14.4",
     "boto3==1.35.65",
