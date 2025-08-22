@@ -26,14 +26,28 @@ function testManualException() {
         // Intentionally cause an error
         JSON.parse('invalid json');
     } catch (error) {
-        if (window.posthog && window.posthog.captureException) {
-            window.posthog.captureException(error, {
+        if (window.posthog) {
+            // Use the $exception event format
+            window.posthog.capture('$exception', {
+                $exception_type: error.name,
+                $exception_message: error.message,
+                $exception_personURL: window.location.href,
+                $exception_list: [{
+                    type: error.name,
+                    value: error.message,
+                    stacktrace: {
+                        frames: error.stack ? error.stack.split('\n').map(line => ({
+                            raw: line
+                        })) : []
+                    }
+                }],
+                $exception_stack_trace_raw: error.stack,
                 manual_capture: true,
                 test_error: true
             });
             console.log('Manual exception captured and sent to PostHog');
         } else {
-            console.error('PostHog not available or captureException not supported');
+            console.error('PostHog not available');
         }
     }
 }

@@ -420,30 +420,87 @@
                         password: true,
                         email: true 
                     }
+                },
+                // Debug mode for development
+                debug: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1',
+                // Callback to verify events are being sent
+                on_xhr_error: function(error) {
+                    console.error('PostHog XHR Error:', error);
+                },
+                loaded: function(posthog) {
+                    console.log('PostHog loaded successfully');
                 }
             })
             
-            // Set up enhanced error tracking
+            // Set up enhanced error tracking using $exception event
             window.addEventListener('error', function(event) {
-                if (window.posthog && window.posthog.captureException) {
-                    // Use PostHog's built-in exception capture
-                    window.posthog.captureException(event.error || new Error(event.message), {
+                if (window.posthog) {
+                    // Extract error details
+                    const errorDetails = {
+                        $exception_type: event.error ? event.error.name : 'Error',
+                        $exception_message: event.message,
                         $exception_source: event.filename,
                         $exception_lineno: event.lineno,
                         $exception_colno: event.colno,
                         $exception_personURL: window.location.href
-                    });
+                    };
+                    
+                    // Add stack trace if available
+                    if (event.error && event.error.stack) {
+                        errorDetails.$exception_list = [{
+                            type: event.error.name,
+                            value: event.error.message,
+                            stacktrace: {
+                                frames: event.error.stack.split('\n').map(line => ({
+                                    raw: line
+                                }))
+                            }
+                        }];
+                        errorDetails.$exception_stack_trace_raw = event.error.stack;
+                    }
+                    
+                    // Send $exception event to PostHog
+                    window.posthog.capture('$exception', errorDetails);
+                    
+                    // Log for debugging
+                    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                        console.log('PostHog error captured:', errorDetails);
+                    }
                 }
             });
             
             // Capture unhandled promise rejections
             window.addEventListener('unhandledrejection', function(event) {
-                if (window.posthog && window.posthog.captureException) {
+                if (window.posthog) {
                     const error = event.reason instanceof Error ? event.reason : new Error(String(event.reason));
-                    window.posthog.captureException(error, {
+                    
+                    const errorDetails = {
                         $exception_type: 'UnhandledPromiseRejection',
+                        $exception_message: error.message || String(event.reason),
                         $exception_personURL: window.location.href
-                    });
+                    };
+                    
+                    // Add stack trace if available
+                    if (error.stack) {
+                        errorDetails.$exception_list = [{
+                            type: 'UnhandledPromiseRejection',
+                            value: error.message || String(event.reason),
+                            stacktrace: {
+                                frames: error.stack.split('\n').map(line => ({
+                                    raw: line
+                                }))
+                            }
+                        }];
+                        errorDetails.$exception_stack_trace_raw = error.stack;
+                    }
+                    
+                    // Send $exception event to PostHog
+                    window.posthog.capture('$exception', errorDetails);
+                    
+                    // Log for debugging
+                    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                        console.log('PostHog error captured:', errorDetails);
+                    }
                 }
             });
         </script>
