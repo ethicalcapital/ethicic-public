@@ -265,9 +265,9 @@
       --garden-text-muted: var(--theme-text-secondary);
 
       /* Maya Blue for dark mode CTAs */
-      --color-cta: #4fbbba; /* Light Tiffany for dark mode */
-      --color-cta-hover: #5cc7c6; /* Brighter on hover */
-      --color-cta-active: #3fa8a7; /* Darker on press */
+      --color-cta: #00ABB9; /* Your preferred teal */
+      --color-cta-hover: #00c2d1; /* Brighter on hover */
+      --color-cta-active: #009aa7; /* Darker on press */
       --color-cta-text: #111; /* Dark text for contrast */
 
       /* Garden color system */
@@ -373,11 +373,11 @@
       --garden-text-muted: var(--theme-text-secondary);
 
       /* Tiffany Blue for CTAs */
-      --color-cta: #2d7a68; /* Dark Tiffany Blue - WCAG AA compliant (4.57:1) */
-      --color-cta-hover: #236354; /* Darker on hover */
-      --color-cta-active: #1a4d41; /* Darkest on press */
-      --color-cta-text: #fff; /* White text for readability (5.13:1) */
-      --color-cta-alpha-30: rgb(45 122 104 / 30%);
+      --color-cta: #00ABB9; /* Your preferred teal */
+      --color-cta-hover: #00c2d1; /* Brighter on hover */
+      --color-cta-active: #009aa7; /* Darker on press */
+      --color-cta-text: #fff; /* White text for readability */
+      --color-cta-alpha-30: rgb(0 171 185 / 30%);
 
       /* Garden color system */
       --garden-color-white: #fff;

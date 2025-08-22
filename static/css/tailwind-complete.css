@@ -357,15 +357,15 @@
   /* CSS Variables for Ethical Capital Design System */
   :root {
     /* Purple Brand Colors */
-    --ec-purple-primary: #c4b5fd; /* purple-300 for better contrast */
-    --ec-purple-light: #8b5cf6; /* purple-600 */
-    --ec-purple-dark: #553c9a; /* purple-800 */
+    --ec-purple-primary: #581c87; /* Primary purple (matches live site) */
+    --ec-purple-light: #6b46c1; /* Lighter purple */
+    --ec-purple-dark: #1f0322; /* Very dark purple */
     --ec-purple-bg: #f3f4f6; /* gray-100 */
 
     /* Teal Accent Colors */
-    --ec-teal-primary: #14b8a6; /* teal-500 */
-    --ec-teal-light: #2dd4bf; /* teal-400 */
-    --ec-teal-dark: #0f766e; /* teal-600 */
+    --ec-teal-primary: #00ABB9; /* Your preferred teal */
+    --ec-teal-light: #00c2d1; /* Lighter teal */
+    --ec-teal-dark: #009aa7; /* Darker teal */
 
     /* Neutral Colors */
     --ec-gray-50: #f9fafb;

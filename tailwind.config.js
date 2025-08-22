@@ -7,14 +7,15 @@ module.exports = {
       colors: {
         // Ethical Capital Brand Colors from Garden UI tokens
         "ec-purple": {
-          DEFAULT: "#1f0322", // Primary dark purple
-          light: "#2a0430", // Hover state
-          pale: "rgb(31 3 34 / 0.15)", // Alpha variant
+          DEFAULT: "#581c87", // Primary purple (matches live site)
+          dark: "#1f0322", // Very dark purple for accents
+          light: "#6b46c1", // Lighter purple
+          pale: "rgb(88 28 135 / 0.15)", // 15% opacity
         },
         "ec-teal": {
-          DEFAULT: "#4fbbba", // CTA teal
-          hover: "#5cc7c6", // Hover state
-          active: "#3fa8a7", // Active state
+          DEFAULT: "#00ABB9", // CTA teal - your preferred color
+          hover: "#00c2d1", // Hover state (lighter)
+          active: "#009aa7", // Active state (darker)
         },
         // Semantic colors aligned with Garden UI
         primary: {
