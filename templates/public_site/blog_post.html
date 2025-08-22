@@ -102,8 +102,9 @@
     <!-- Featured Image (from tailwind template) -->
     {% if page.featured_image %}
     <div class="card-content-ec mb-8">
+      {% image page.featured_image width-1200 as featured_img %}
       <img
-        src="{{ page.featured_image.url }}"
+        src="{{ featured_img.url }}"
         alt="{{ page.featured_image.title|default:page.title }}"
         class="w-full rounded-lg border border-gray-600"
       />

@@ -312,19 +312,50 @@ WHITENOISE_MIMETYPES = {
     ".woff2": "font/woff2",
 }
 
-# Media files - Local Disk Storage
+# Media files configuration
 MEDIA_URL = "/media/"
 MEDIA_ROOT = "/var/lib/data"
 
-# Use local storage for both development and production
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-    },
-}
+# Storage configuration - use R2 for media files in production
+USE_R2 = env.bool("USE_R2", default=False)
+
+if USE_R2:
+    # Cloudflare R2 settings (S3-compatible)
+    AWS_ACCESS_KEY_ID = env("R2_ACCESS_KEY_ID", default=None)
+    AWS_SECRET_ACCESS_KEY = env("R2_SECRET_ACCESS_KEY", default=None)
+    AWS_STORAGE_BUCKET_NAME = "images"
+    AWS_S3_ENDPOINT_URL = "https://483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com"
+    AWS_S3_REGION_NAME = "auto"  # R2 uses 'auto' for region
+    AWS_S3_CUSTOM_DOMAIN = None  # Can be set if using custom domain
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": "max-age=86400",
+    }
+    AWS_DEFAULT_ACL = None  # R2 doesn't use ACLs
+    AWS_QUERYSTRING_AUTH = False
+    AWS_S3_FILE_OVERWRITE = False  # Preserve existing files
+    
+    # Override MEDIA_URL for R2
+    MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/images/"
+    
+    # Storage backends
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        },
+    }
+else:
+    # Use local storage for development
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        },
+    }
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
