@@ -436,6 +436,45 @@
     text-decoration: none;
   }
 
+  /* New ETHICAL Logo Styles */
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+  }
+
+  .logo-underline {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+  }
+
+  .logo-underline span {
+    height: 2px;
+    width: 100%;
+    background: #b57edc; /* Lavender */
+    transition: all 0.3s ease;
+  }
+
+  /* Subtle hover effect */
+  .logo-container:hover .logo-underline span:nth-child(1) {
+    transform: translateY(-1px);
+  }
+  .logo-container:hover .logo-underline span:nth-child(3) {
+    transform: translateY(1px);
+  }
+
   .header-nav-links-ec {
     display: flex;
     gap: 2rem;
@@ -493,19 +532,19 @@
   }
 
   .panel-title-ec {
-    font-family: var(--font-family-heading);
+    font-family: 'Outfit', sans-serif; /* Changed from heading font for better readability */
     font-size: 1.25rem;
-    font-weight: 600;
-    color: #cbd5e1; /* Improved contrast for readability */
+    font-weight: 700;
+    color: #FFFFFF; /* Pure white for maximum contrast */
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin: 0;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Enhanced readability */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Enhanced shadow for readability */
   }
 
   /* Dark theme override for panel titles */
   [data-theme="dark"] .panel-title-ec {
-    color: #f1f5f9; /* Even brighter for dark backgrounds */
+    color: #FFFFFF; /* Pure white for maximum contrast */
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
   }
 
@@ -574,6 +613,17 @@
     outline-offset: 2px;
   }
 
+  /* Ensure all buttons have focus outlines for accessibility */
+  button:focus,
+  a[role="button"]:focus,
+  .btn-ec-primary:focus,
+  .btn-ec-secondary:focus,
+  .btn-ec-outline:focus,
+  .get-started-btn-ec:focus {
+    outline: 3px solid;
+    outline-offset: 2px;
+  }
+
   .btn-ec-outline {
     display: inline-flex;
     align-items: center;
@@ -604,7 +654,7 @@
 
   /* Hero Section */
   .hero-section-ec {
-    background: linear-gradient(135deg, var(--ec-purple-primary) 0%, var(--ec-purple-dark) 100%);
+    background: linear-gradient(135deg, #2a0430 0%, #1f0322 50%, #3d2970 100%);
     color: white;
     padding: 4rem 0;
     text-align: center;
@@ -657,19 +707,39 @@
   }
 
   .stat-value-ec {
-    font-family: var(--font-family-heading);
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--ec-purple-primary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--ec-teal-primary); /* Changed to teal for emphasis */
     display: block;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   .stat-label-ec {
+    font-family: 'Outfit', sans-serif;
     font-size: 0.875rem;
-    color: var(--ec-gray-600);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     margin-top: 0.5rem;
+  }
+
+  /* Enhanced stats panel styles */
+  .stats-panel {
+    background: rgba(31, 3, 34, 0.6); /* Semi-transparent dark purple */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(181, 126, 220, 0.2);
+    border-radius: 0.75rem;
+    padding: 2rem;
+  }
+
+  .stats-panel h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
   }
 
   /* Progress Bars - Enhanced for Production Match */

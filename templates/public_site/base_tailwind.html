@@ -12,7 +12,7 @@
         <!-- Optimized font loading strategy -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:ital,wght@0,100..900;1,100..900&family=Outfit:wght@400;600;700;900&display=swap"
               rel="stylesheet" />
         <!-- Centralized Typography Configuration -->
         <link rel="stylesheet" href="{% static 'css/typography-config.css' %}?v=1" />
@@ -659,9 +659,14 @@
                     <div class="flex items-center space-x-8">
                         <!-- Brand -->
                         <a href="/"
-                           class="font-mono text-lg font-semibold text-white transition-colors hover:text-purple-200"
+                           class="logo-container"
                            aria-label="Ethical Capital Home">
-                            {{ site_config.company_name|default:"ETHICAL CAPITAL" }}
+                            <span class="logo-text">ETHICAL</span>
+                            <div class="logo-underline">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </a>
                         <!-- Desktop Navigation -->
                         <nav class="hidden space-x-6 md:flex relative z-50"
