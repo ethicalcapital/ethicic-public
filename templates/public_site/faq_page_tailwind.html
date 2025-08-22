@@ -26,7 +26,7 @@
             {% with featured_faq=page.faq_items.all.0 %}
                 <section class="bg-opacity-30 mb-8 rounded-lg border border-purple-800 bg-purple-900 p-6">
                     <div class="badge-ec-primary mb-4">Featured</div>
-                    <h3 class="mb-3 font-mono text-xl font-semibold text-purple-400">{{ featured_faq.question }}</h3>
+                    <h3 class="mb-3 heading-h3 text-purple-400">{{ featured_faq.question }}</h3>
                     <p class="mb-4 text-gray-200">{{ featured_faq.answer|richtext|truncatewords:30|striptags }}</p>
                     <a href="#faq-1" class="btn-ec-primary">Read Full Answer</a>
                 </section>
@@ -42,7 +42,7 @@
                              data-faq-id="{{ forloop.counter }}">
                         <summary class="-m-2 cursor-pointer rounded p-2 transition-colors hover:bg-gray-700">
                             <div class="flex items-center justify-between">
-                                <h3 class="pr-4 font-mono font-semibold text-purple-400">{{ faq.question }}</h3>
+                                <h3 class="pr-4 heading-h3 text-purple-400">{{ faq.question }}</h3>
                                 <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-purple-900 font-mono text-sm font-bold text-white">
                                     +
                                 </span>
@@ -83,7 +83,7 @@
                 <!-- Contact CTA -->
                 <div class="card-ec">
                     <div class="card-content-ec space-y-4 text-center">
-                        <h4 class="font-mono font-semibold text-purple-400">Still Have Questions?</h4>
+                        <h4 class="heading-h4 text-purple-400">Still Have Questions?</h4>
                         <p class="text-sm text-gray-200">Can't find what you're looking for? Our team is here to help.</p>
                         <div class="space-y-3">
                             <a href="/contact/" class="btn-ec-primary block">Contact Us</a>

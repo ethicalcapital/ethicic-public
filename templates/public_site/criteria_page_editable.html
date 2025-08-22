@@ -7,14 +7,14 @@
             <!-- Hero Section -->
             <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800 p-8 text-center"
                      role="banner">
-                <h1 class="mb-4 font-mono text-4xl font-bold text-white lg:text-5xl">{{ page.hero_title }}</h1>
+                <h1 class="mb-4 heading-h1 text-4xl font-bold text-white lg:text-5xl">{{ page.hero_title }}</h1>
                 <p class="mx-auto max-w-3xl text-xl text-gray-300">{{ page.hero_subtitle }}</p>
             </section>
             <!-- Description Section -->
             {% if page.criteria_description %}
                 <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                     <div class="border-b border-gray-600 bg-gray-700 p-4">
-                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">Our Approach</h2>
+                        <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">Our Approach</h2>
                     </div>
                     <div class="p-6">
                         <div class="prose text-gray-300">{{ page.criteria_description|safe }}</div>
@@ -24,12 +24,12 @@
             <!-- GitHub Transparency Section -->
             <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                 <div class="border-b border-gray-600 bg-gray-700 p-4">
-                    <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.transparency_section_title }}</h2>
+                    <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">{{ page.transparency_section_title }}</h2>
                 </div>
                 <div class="p-6">
                     <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-center">
                         <div class="lg:col-span-2">
-                            <h3 class="mb-4 font-mono text-xl font-semibold text-white">Complete Screening Policy</h3>
+                            <h3 class="mb-4 heading-h3 text-xl font-semibold text-white">Complete Screening Policy</h3>
                             <div class="prose text-gray-300">{{ page.transparency_description|safe }}</div>
                             {% if page.transparency_benefits %}
                                 <ul class="mt-4 space-y-2">
@@ -61,13 +61,13 @@
             {% if page.exclusion_categories.exists %}
                 <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                     <div class="border-b border-gray-600 bg-gray-700 p-4">
-                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.exclusions_section_title }}</h2>
+                        <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">{{ page.exclusions_section_title }}</h2>
                     </div>
                     <div class="p-6">
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                             {% for category in page.exclusion_categories.all %}
                                 <div class="rounded-lg border border-gray-600 bg-gray-700 p-4">
-                                    <h4 class="mb-3 font-mono text-lg font-semibold text-purple-400">{{ category.icon }} {{ category.title }}</h4>
+                                    <h4 class="mb-3 heading-h4 text-lg font-semibold text-purple-400">{{ category.icon }} {{ category.title }}</h4>
                                     <p class="text-sm text-gray-300">{{ category.description }}</p>
                                 </div>
                             {% endfor %}
@@ -83,7 +83,7 @@
             <!-- How It Works Section -->
             <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                 <div class="border-b border-gray-600 bg-gray-700 p-4">
-                    <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">How Our Screening Works</h2>
+                    <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">How Our Screening Works</h2>
                 </div>
                 <div class="p-6">
                     <div class="space-y-6">
@@ -92,7 +92,7 @@
                                 1
                             </div>
                             <div>
-                                <h4 class="mb-2 font-mono font-semibold text-white">Initial Universe</h4>
+                                <h4 class="mb-2 heading-h4 font-semibold text-white">Initial Universe</h4>
                                 <p class="text-gray-300">We start with the global investment universe - thousands of publicly traded companies.</p>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                 2
                             </div>
                             <div>
-                                <h4 class="mb-2 font-mono font-semibold text-white">Apply Exclusions</h4>
+                                <h4 class="mb-2 heading-h4 font-semibold text-white">Apply Exclusions</h4>
                                 <p class="text-gray-300">
                                     Our comprehensive criteria eliminate approximately 57% of the S&P 500 and similar proportions globally.
                                 </p>
@@ -112,7 +112,7 @@
                                 3
                             </div>
                             <div>
-                                <h4 class="mb-2 font-mono font-semibold text-white">Quality Analysis</h4>
+                                <h4 class="mb-2 heading-h4 font-semibold text-white">Quality Analysis</h4>
                                 <p class="text-gray-300">
                                     From the ethical universe, we identify companies with strong fundamentals and competitive advantages.
                                 </p>
@@ -123,7 +123,7 @@
                                 4
                             </div>
                             <div>
-                                <h4 class="mb-2 font-mono font-semibold text-white">Portfolio Construction</h4>
+                                <h4 class="mb-2 heading-h4 font-semibold text-white">Portfolio Construction</h4>
                                 <p class="text-gray-300">
                                     We build concentrated portfolios of 15-25 positions from the highest-quality ethical companies.
                                 </p>
@@ -135,24 +135,24 @@
             <!-- Why Transparency Matters -->
             <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                 <div class="border-b border-gray-600 bg-gray-700 p-4">
-                    <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">Why Transparency Matters</h2>
+                    <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">Why Transparency Matters</h2>
                 </div>
                 <div class="p-6">
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                         <div>
-                            <h4 class="mb-3 font-mono font-semibold text-purple-400">Accountability</h4>
+                            <h4 class="mb-3 heading-h4 font-semibold text-purple-400">Accountability</h4>
                             <p class="text-gray-300">
                                 Open criteria mean we're accountable to our clients and the broader community for our screening decisions.
                             </p>
                         </div>
                         <div>
-                            <h4 class="mb-3 font-mono font-semibold text-purple-400">Evolution</h4>
+                            <h4 class="mb-3 heading-h4 font-semibold text-purple-400">Evolution</h4>
                             <p class="text-gray-300">
                                 Public documentation allows us to track how our criteria evolve as we learn and as the world changes.
                             </p>
                         </div>
                         <div>
-                            <h4 class="mb-3 font-mono font-semibold text-purple-400">Collaboration</h4>
+                            <h4 class="mb-3 heading-h4 font-semibold text-purple-400">Collaboration</h4>
                             <p class="text-gray-300">
                                 Other investors can use, adapt, and improve upon our work, advancing ethical investing for everyone.
                             </p>
@@ -164,7 +164,7 @@
             {% if page.additional_resources %}
                 <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                     <div class="border-b border-gray-600 bg-gray-700 p-4">
-                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">Additional Resources</h2>
+                        <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">Additional Resources</h2>
                     </div>
                     <div class="p-6">
                         <div class="prose text-gray-300">{{ page.additional_resources|safe }}</div>
@@ -173,7 +173,7 @@
             {% endif %}
             <!-- Call to Action -->
             <section class="rounded-lg border border-purple-800 bg-purple-900/20 p-8 text-center">
-                <h3 class="mb-4 font-mono text-2xl font-semibold text-white">Ready to Invest Ethically?</h3>
+                <h3 class="mb-4 heading-h3 text-2xl font-semibold text-white">Ready to Invest Ethically?</h3>
                 <p class="mb-6 text-lg text-purple-200">
                     Our screening process is just the beginning. Let us build a portfolio that aligns with your values and financial goals.
                 </p>

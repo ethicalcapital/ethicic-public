@@ -9,7 +9,7 @@
                  role="banner"
                  aria-labelledby="strategy-heading">
             <div class="relative border-b border-gray-600 bg-gray-700 p-6">
-                <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.title|upper }}</h2>
+                <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">{{ page.title|upper }}</h2>
                 {% if page.strategy_label %}
                     <div class="absolute top-3 right-4 rounded bg-purple-900 px-4 py-2 text-sm font-semibold text-white border-2 border-white">
                         {{ page.strategy_label }}
@@ -18,7 +18,7 @@
             </div>
             <div class="p-6">
                 <h1 id="strategy-heading"
-                    class="mb-4 font-mono text-3xl font-bold text-white">{{ page.title }}</h1>
+                    class="mb-4 heading-h1 text-3xl font-bold text-white">{{ page.title }}</h1>
                 {% if page.strategy_subtitle %}<div class="mb-4 text-xl text-purple-300">{{ page.strategy_subtitle }}</div>{% endif %}
                 {% if page.strategy_description %}
                     <div class="mb-6 prose text-gray-300">{{ page.strategy_description|richtext }}</div>
@@ -44,7 +44,7 @@
                          role="complementary"
                          aria-labelledby="performance-heading">
                     <div class="border-b border-gray-600 bg-gray-700 p-4">
-                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">PERFORMANCE SUMMARY</h2>
+                        <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">PERFORMANCE SUMMARY</h2>
                         {% if page.get_performance_as_of_text %}
                             <div class="text-sm text-gray-400 mt-1">{{ page.get_performance_as_of_text }}</div>
                         {% endif %}
@@ -70,7 +70,7 @@
                         </div>
                         <!-- Performance Table with Benchmark -->
                         <div id="performance" class="mt-8">
-                            <h3 class="mb-4 font-mono text-lg font-semibold text-blue-300 uppercase">
+                            <h3 class="mb-4 heading-h3 text-lg font-semibold text-blue-300 uppercase">
                                 PERFORMANCE VS {{ page.benchmark_name|default:"BENCHMARK" }}
                             </h3>
                             {% if page.get_performance_as_of_text %}
@@ -122,7 +122,7 @@
                         {% if page.risk_metrics.exists %}
                             {% with risk_metric=page.risk_metrics.first %}
                                 <div class="mt-8">
-                                    <h3 class="mb-4 font-mono text-lg font-semibold text-blue-300 uppercase">RISK & QUALITY METRICS</h3>
+                                    <h3 class="mb-4 heading-h3 text-lg font-semibold text-blue-300 uppercase">RISK & QUALITY METRICS</h3>
                                     <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
                                         {% if risk_metric.standard_deviation %}
                                             <div class="rounded-lg border border-gray-600 bg-gray-700 p-4 text-center">
@@ -158,13 +158,13 @@
                 <section id="portfolio"
                          class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                     <div class="border-b border-gray-600 bg-gray-700 p-4">
-                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">PORTFOLIO DETAILS</h2>
+                        <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">PORTFOLIO DETAILS</h2>
                     </div>
                     <div class="p-6 space-y-8">
                         <!-- Geographic Allocation -->
                         {% if page.geographic_allocations.exists %}
                             <div>
-                                <h3 class="mb-4 font-mono text-lg font-semibold text-blue-300 uppercase">GEOGRAPHIC COMPOSITION</h3>
+                                <h3 class="mb-4 heading-h3 text-lg font-semibold text-blue-300 uppercase">GEOGRAPHIC COMPOSITION</h3>
                                 <div class="overflow-x-auto">
                                     <table class="w-full rounded-lg border border-gray-600 bg-gray-700">
                                         <thead>
@@ -194,13 +194,13 @@
                         <!-- Sector Positioning -->
                         {% if page.sector_positions.exists %}
                             <div>
-                                <h3 class="mb-4 font-mono text-lg font-semibold text-blue-300 uppercase">SECTOR POSITIONING</h3>
+                                <h3 class="mb-4 heading-h3 text-lg font-semibold text-blue-300 uppercase">SECTOR POSITIONING</h3>
                                 <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                                     {% regroup page.sector_positions.all by position_type as position_groups %}
                                     {% for group in position_groups %}
                                         {% if group.grouper == 'overweight' %}
                                             <div class="rounded-lg border border-green-600 bg-green-900/20 p-4">
-                                                <h4 class="mb-3 font-mono text-sm font-semibold text-green-400 uppercase">OVERWEIGHTS</h4>
+                                                <h4 class="mb-3 heading-h4 text-sm font-semibold text-green-400 uppercase">OVERWEIGHTS</h4>
                                                 <ul class="space-y-1">
                                                     {% for sector in group.list %}<li class="text-sm text-gray-300">{{ sector.sector_name }}</li>{% endfor %}
                                                 </ul>
@@ -208,7 +208,7 @@
                                             </div>
                                         {% elif group.grouper == 'exclusion' %}
                                             <div class="rounded-lg border border-red-600 bg-red-900/20 p-4">
-                                                <h4 class="mb-3 font-mono text-sm font-semibold text-red-400 uppercase">EXCLUSIONS</h4>
+                                                <h4 class="mb-3 heading-h4 text-sm font-semibold text-red-400 uppercase">EXCLUSIONS</h4>
                                                 <ul class="space-y-1">
                                                     {% for sector in group.list %}
                                                         <li class="text-sm text-gray-300">
@@ -235,7 +235,7 @@
                 {% if page.commentary_content %}
                     <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                         <div class="border-b border-gray-600 bg-gray-700 p-4">
-                            <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.commentary_title|upper }}</h2>
+                            <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">{{ page.commentary_title|upper }}</h2>
                         </div>
                         <div class="p-6">
                             <div class="prose text-gray-300">{{ page.commentary_content|richtext }}</div>
@@ -246,7 +246,7 @@
                 {% if page.process_content %}
                     <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                         <div class="border-b border-gray-600 bg-gray-700 p-4">
-                            <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.process_title|upper }}</h2>
+                            <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">{{ page.process_title|upper }}</h2>
                         </div>
                         <div class="p-6">
                             <div class="prose text-gray-300">{{ page.process_content|richtext }}</div>
@@ -257,7 +257,7 @@
                 <section id="documents"
                          class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                     <div class="border-b border-gray-600 bg-gray-700 p-4">
-                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.documents_title|upper }}</h2>
+                        <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">{{ page.documents_title|upper }}</h2>
                     </div>
                     <div class="p-6">
                         {% if page.documents_content %}
@@ -268,7 +268,7 @@
                                 {% regroup page.documents.all by get_category_display as document_categories %}
                                 {% for category in document_categories %}
                                     <div>
-                                        <h3 class="mb-3 font-mono text-lg font-semibold text-blue-300">{{ category.grouper }}</h3>
+                                        <h3 class="mb-3 heading-h3 text-lg font-semibold text-blue-300">{{ category.grouper }}</h3>
                                         <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
                                             {% for doc in category.list %}
                                                 <a href="{% if doc.document_url %}{{ doc.document_url }}{% else %}javascript:requestDocument('{{ doc.title|slugify }}'){% endif %}"
@@ -294,7 +294,7 @@
                 <!-- Quick Access Actions in Right Rail -->
                 <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800 lg:sticky lg:top-8">
                     <div class="border-b border-gray-600 bg-gray-700 p-4">
-                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">QUICK ACCESS</h2>
+                        <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">QUICK ACCESS</h2>
                     </div>
                     <div class="p-4 space-y-3">
                         <a href="#performance"
@@ -312,7 +312,7 @@
                 <!-- Portfolio Characteristics -->
                 <section class="rounded-lg border border-gray-600 bg-gray-800">
                     <div class="border-b border-gray-600 bg-gray-700 p-4">
-                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">PORTFOLIO CHARACTERISTICS</h2>
+                        <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">PORTFOLIO CHARACTERISTICS</h2>
                     </div>
                     <div class="p-4">
                         <div class="space-y-4">

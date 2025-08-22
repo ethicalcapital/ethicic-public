@@ -24,7 +24,7 @@
                 </div>
                 <!-- Right: Identity & Quote -->
                 <div class="pt-3">
-                    <h1 class="mb-2 font-mono text-3xl font-semibold text-white">{{ page.name|upper }}</h1>
+                    <h1 class="mb-2 heading-h1 text-3xl font-semibold text-white">{{ page.name|upper }}</h1>
                     <div class="panel-title-ec">{{ page.professional_title }}</div>
                     <div class="mb-4 h-0.5 w-20 bg-purple-400"></div>
                     <blockquote class="mb-6 border-l-3 border-purple-400 pl-4 font-sans text-xl text-purple-400 italic">
@@ -110,7 +110,7 @@
                         <div class="flex gap-3">
                             <span class="flex-shrink-0 text-xl">{{ hobby.value.icon }}</span>
                             <div>
-                                <h4 class="mb-1 font-mono text-sm text-purple-400">{{ hobby.value.title }}</h4>
+                                <h4 class="mb-1 heading-h4 text-sm text-purple-400">{{ hobby.value.title }}</h4>
                                 <p class="m-0 text-sm text-gray-200">{{ hobby.value.description }}</p>
                             </div>
                         </div>
@@ -129,14 +129,14 @@
                         {% for post in page.featured_posts %}
                             <a href="{{ post.value.url }}"
                                class="block rounded border border-gray-600 bg-gray-700 p-4 transition-all duration-200 hover:translate-x-1 hover:border-purple-400">
-                                <h4 class="mb-2 font-mono text-sm text-purple-400">{{ post.value.title }}</h4>
+                                <h4 class="mb-2 heading-h4 text-sm text-purple-400">{{ post.value.title }}</h4>
                                 <p class="m-0 text-sm text-gray-200">{{ post.value.description }}</p>
                             </a>
                         {% empty %}
                             {% if page.featured_post_1_title %}
                                 <a href="{{ page.featured_post_1_url }}"
                                    class="block rounded border border-gray-600 bg-gray-700 p-4 transition-all duration-200 hover:translate-x-1 hover:border-purple-400">
-                                    <h4 class="mb-2 font-mono text-sm text-purple-400">{{ page.featured_post_1_title }}</h4>
+                                    <h4 class="mb-2 heading-h4 text-sm text-purple-400">{{ page.featured_post_1_title }}</h4>
                                     <p class="m-0 text-sm text-gray-200">{{ page.featured_post_1_description }}</p>
                                 </a>
                             {% endif %}

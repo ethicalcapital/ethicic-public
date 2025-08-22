@@ -12,7 +12,7 @@
                     ETHICAL INVESTMENT SOLUTIONS
                 </div>
                 <h1 id="hero-heading"
-                    class="mb-6 font-mono text-4xl font-bold leading-tight text-slate-900 dark:text-slate-100 md:text-5xl">
+                    class="mb-6 heading-h1 text-4xl font-bold leading-tight text-slate-900 dark:text-slate-100 md:text-5xl">
                     {{ page.hero_title|default:page.title }}
                 </h1>
                 {% if page.hero_subtitle %}
@@ -29,7 +29,7 @@
                 </div>
                 <div class="card-content-ec">
                     <h2 id="strategies-heading"
-                        class="mb-4 font-mono text-2xl font-semibold text-purple-200">
+                        class="mb-4 heading-h2 text-purple-200">
                         {{ page.strategies_section_title }}
                     </h2>
                     <p class="mb-8 text-lg text-slate-600 dark:text-slate-400">{{ page.strategies_intro }}</p>
@@ -42,7 +42,7 @@
                                 <div class="mb-4 flex items-start space-x-3">
                                     <span class="text-2xl" aria-hidden="true">{{ card.icon }}</span>
                                     <h3 id="strategy-{{ forloop.counter }}-heading"
-                                        class="font-mono text-lg font-semibold text-slate-900 dark:text-slate-100">
+                                        class="heading-h3 text-slate-900 dark:text-slate-100">
                                         {{ card.title }}
                                     </h3>
                                 </div>
@@ -89,7 +89,7 @@
                         <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-600 dark:bg-gray-800"
                              aria-labelledby="individuals-heading">
                             <h3 id="individuals-heading"
-                                class="mb-4 font-mono text-xl font-semibold text-purple-200">
+                                class="mb-4 heading-h3 text-purple-200">
                                 {{ page.individuals_title }}
                             </h3>
                             <div class="mb-6 space-y-4 text-slate-600 dark:text-slate-400">{{ page.individuals_content|safe }}</div>
@@ -106,7 +106,7 @@
                         <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-600 dark:bg-gray-800"
                              aria-labelledby="institutions-heading">
                             <h3 id="institutions-heading"
-                                class="mb-4 font-mono text-xl font-semibold text-purple-200">
+                                class="mb-4 heading-h3 text-purple-200">
                                 {{ page.institutions_title }}
                             </h3>
                             <div class="mb-6 space-y-4 text-slate-600 dark:text-slate-400">{{ page.institutions_content|safe }}</div>
@@ -120,7 +120,7 @@
                         <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-600 dark:bg-gray-800"
                              aria-labelledby="advisors-heading">
                             <h3 id="advisors-heading"
-                                class="mb-4 font-mono text-xl font-semibold text-purple-200">
+                                class="mb-4 heading-h3 text-purple-200">
                                 {{ page.advisors_title }}
                             </h3>
                             <div class="mb-6 space-y-4 text-slate-600 dark:text-slate-400">{{ page.advisors_content|safe }}</div>
@@ -139,34 +139,34 @@
             </div>
             <div class="card-content-ec">
                 <h2 id="why-heading"
-                    class="mb-8 font-mono text-2xl font-semibold text-purple-200">
+                    class="mb-8 heading-h2 text-purple-200">
                     A Different Approach to Ethical Investing
                 </h2>
                 <div class="grid gap-6 md:grid-cols-2">
                     <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-600 dark:bg-gray-800">
                         <div class="mb-4 text-3xl">🔍</div>
-                        <h4 class="mb-3 font-mono text-lg font-semibold text-slate-900 dark:text-slate-100">Rigorous Screening</h4>
+                        <h4 class="mb-3 heading-h4 text-slate-900 dark:text-slate-100">Rigorous Screening</h4>
                         <p class="text-slate-600 dark:text-slate-400">
                             We exclude 57% of the S&P 500 through comprehensive ethical criteria that go beyond standard ESG metrics.
                         </p>
                     </div>
                     <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-600 dark:bg-gray-800">
                         <div class="mb-4 text-3xl">📊</div>
-                        <h4 class="mb-3 font-mono text-lg font-semibold text-slate-900 dark:text-slate-100">Proven Performance</h4>
+                        <h4 class="mb-3 heading-h4 text-slate-900 dark:text-slate-100">Proven Performance</h4>
                         <p class="text-slate-600 dark:text-slate-400">
                             Our concentrated portfolios have delivered competitive returns while maintaining strict ethical standards.
                         </p>
                     </div>
                     <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-600 dark:bg-gray-800">
                         <div class="mb-4 text-3xl">🤝</div>
-                        <h4 class="mb-3 font-mono text-lg font-semibold text-slate-900 dark:text-slate-100">Fiduciary Always</h4>
+                        <h4 class="mb-3 heading-h4 text-slate-900 dark:text-slate-100">Fiduciary Always</h4>
                         <p class="text-slate-600 dark:text-slate-400">
                             As a registered investment adviser, we're legally bound to act in your best interests at all times.
                         </p>
                     </div>
                     <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-600 dark:bg-gray-800">
                         <div class="mb-4 text-3xl">💡</div>
-                        <h4 class="mb-3 font-mono text-lg font-semibold text-slate-900 dark:text-slate-100">Full Transparency</h4>
+                        <h4 class="mb-3 heading-h4 text-slate-900 dark:text-slate-100">Full Transparency</h4>
                         <p class="text-slate-600 dark:text-slate-400">
                             Our screening criteria are open source. You'll always know exactly what you own and why.
                         </p>
@@ -179,7 +179,7 @@
             <section class="card-ec" aria-labelledby="cta-heading">
                 <div class="text-center">
                     <h2 id="cta-heading"
-                        class="mb-6 font-mono text-3xl font-bold text-slate-900 dark:text-slate-100">
+                        class="mb-6 heading-h2 text-slate-900 dark:text-slate-100">
                         {{ page.cta_title }}
                     </h2>
                     <div class="prose mx-auto mb-8">{{ page.cta_description|safe }}</div>

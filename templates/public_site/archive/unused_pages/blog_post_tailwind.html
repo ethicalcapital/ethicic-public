@@ -13,7 +13,7 @@
                 </div>
             {% endif %}
             <!-- Title -->
-            <h1 class="font-mono text-3xl md:text-4xl font-semibold text-white mb-4 leading-tight">{{ page.title }}</h1>
+            <h1 class="heading-h1 text-3xl md:text-4xl font-semibold text-white mb-4 leading-tight">{{ page.title }}</h1>
             <!-- Intro/Excerpt -->
             {% if page.excerpt %}<p class="text-xl text-gray-300 mb-6 leading-relaxed">{{ page.excerpt }}</p>{% endif %}
             <!-- Meta Information -->
@@ -71,7 +71,7 @@
             <!-- Call-to-Action -->
             <div class="mt-12 p-6 bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg">
                 <div class="text-center">
-                    <h3 class="font-mono text-lg text-purple-300 mb-3">Ready to Align Your Investments with Your Values?</h3>
+                    <h3 class="heading-h3 text-lg text-purple-300 mb-3">Ready to Align Your Investments with Your Values?</h3>
                     <p class="text-gray-300 mb-4">Let's discuss how ethical investing can work for your portfolio.</p>
                     <div class="flex gap-4 justify-center">
                         <a href="/contact/" class="btn-ec-primary">Schedule Consultation</a>
@@ -84,7 +84,7 @@
         <footer class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-600">
             <!-- Share Buttons -->
             <div class="mb-8">
-                <h4 class="font-mono text-sm text-purple-400 mb-4">Share This Article</h4>
+                <h4 class="heading-h4 text-sm text-purple-400 mb-4">Share This Article</h4>
                 <div class="flex gap-3">
                     <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ page.title|urlencode }}"
                        target="_blank"
@@ -110,7 +110,7 @@
             <!-- Related Posts -->
             {% if related_posts %}
                 <div class="mb-8">
-                    <h4 class="font-mono text-sm text-purple-400 mb-4">Related Articles</h4>
+                    <h4 class="heading-h4 text-sm text-purple-400 mb-4">Related Articles</h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {% for post in related_posts %}
                             <a href="{{ post.url }}"

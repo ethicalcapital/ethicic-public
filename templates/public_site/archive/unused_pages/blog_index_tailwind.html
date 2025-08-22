@@ -10,7 +10,7 @@
         <section class="card-ec mb-8" role="banner" aria-labelledby="hero-heading">
             <div class="card-content-ec text-center space-y-4">
                 {% if display_title and display_title.strip and display_title.strip|lower != "hide" and display_title.strip|lower != "blank" %}
-                    <h1 id="hero-heading" class="font-mono text-4xl font-bold text-gray-100">{{ display_title }}</h1>
+                    <h1 id="hero-heading" class="heading-h1 text-4xl font-bold text-gray-100">{{ display_title }}</h1>
                 {% endif %}
                 {% if page.intro %}
                     <div class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">{{ page.intro|richtext }}</div>
@@ -25,7 +25,7 @@
                     <div class="grid-2col">
                         <!-- Featured Content -->
                         <div class="space-y-4">
-                            <h2 class="font-mono text-2xl text-purple-400 font-semibold">
+                            <h2 class="heading-h2 text-2xl text-purple-400 font-semibold">
                                 <a href="{{ featured_post.url }}"
                                    class="hover:text-purple-300 transition-colors">{{ featured_post.title }}</a>
                             </h2>
@@ -98,7 +98,7 @@
                                         </div>
                                     {% endif %}
                                     <!-- Title -->
-                                    <h4 class="font-mono text-lg text-purple-400 font-semibold leading-tight">
+                                    <h4 class="heading-h4 text-lg text-purple-400 font-semibold leading-tight">
                                         <a href="{{ post.url }}" class="hover:text-purple-300 transition-colors">{{ post.title }}</a>
                                     </h4>
                                     <!-- Excerpt -->
@@ -141,7 +141,7 @@
                 <div class="card-content-ec">
                     <div class="text-gray-400 space-y-4">
                         <div class="text-4xl">📰</div>
-                        <h3 class="font-mono text-lg text-purple-400">No Articles Yet</h3>
+                        <h3 class="heading-h3 text-lg text-purple-400">No Articles Yet</h3>
                         <p>We're working on bringing you insightful content about ethical investing.</p>
                         <a href="/contact/" class="btn-ec-primary">Get Notified</a>
                     </div>
@@ -150,7 +150,7 @@
         {% endif %}
         <!-- Newsletter Signup CTA -->
         <section class="bg-purple-900 bg-opacity-30 border border-purple-800 rounded-lg p-6 text-center">
-            <h3 class="font-mono text-xl text-purple-400 font-semibold mb-4">Stay Updated on Market Insights</h3>
+            <h3 class="heading-h3 text-xl text-purple-400 font-semibold mb-4">Stay Updated on Market Insights</h3>
             <p class="text-gray-200 mb-6 max-w-2xl mx-auto">
                 Get our latest research and analysis delivered to your inbox. No spam, just thoughtful investment commentary.
             </p>

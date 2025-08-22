@@ -11,7 +11,7 @@
                      aria-labelledby="fees-heading">
                 <div class="border-b border-gray-600 bg-gray-700 p-4">
                     <h1 id="fees-heading"
-                        class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.section_header }}</h1>
+                        class="heading-h1 text-lg font-semibold text-blue-300 uppercase">{{ page.section_header }}</h1>
                 </div>
                 <div class="p-6">
                     <div class="mb-8 prose text-gray-300">{{ page.section_intro|richtext }}</div>
@@ -21,7 +21,7 @@
                                 {{ page.individual_badge }}
                             </div>
                             <div class="mb-6">
-                                <h3 class="mb-2 font-mono text-xl font-bold text-white">{{ page.individual_title }}</h3>
+                                <h3 class="mb-2 heading-h3 text-xl font-bold text-white">{{ page.individual_title }}</h3>
                                 <p class="text-gray-400">{{ page.individual_subtitle }}</p>
                             </div>
                             <div class="mb-6 text-center">
@@ -38,7 +38,7 @@
                                 {{ page.institutional_badge }}
                             </div>
                             <div class="mb-6">
-                                <h3 class="mb-2 font-mono text-xl font-bold text-white">{{ page.institutional_title }}</h3>
+                                <h3 class="mb-2 heading-h3 text-xl font-bold text-white">{{ page.institutional_title }}</h3>
                                 <p class="text-gray-400">{{ page.institutional_subtitle }}</p>
                             </div>
                             <div class="mb-6 text-center">
@@ -54,15 +54,15 @@
                     </div>
                     <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
                         <div class="rounded-lg border border-gray-600 bg-gray-700 p-6">
-                            <h4 class="mb-3 font-mono font-semibold text-white">{{ page.fee_calculation_title }}</h4>
+                            <h4 class="mb-3 heading-h4 font-semibold text-white">{{ page.fee_calculation_title }}</h4>
                             <div class="prose text-sm text-gray-300">{{ page.fee_calculation_text|richtext }}</div>
                         </div>
                         <div class="rounded-lg border border-gray-600 bg-gray-700 p-6">
-                            <h4 class="mb-3 font-mono font-semibold text-white">{{ page.minimum_investment_title }}</h4>
+                            <h4 class="mb-3 heading-h4 font-semibold text-white">{{ page.minimum_investment_title }}</h4>
                             <div class="prose text-sm text-gray-300">{{ page.minimum_investment_text|richtext }}</div>
                         </div>
                         <div class="rounded-lg border border-gray-600 bg-gray-700 p-6">
-                            <h4 class="mb-3 font-mono font-semibold text-white">{{ page.pricing_rationale_title }}</h4>
+                            <h4 class="mb-3 heading-h4 font-semibold text-white">{{ page.pricing_rationale_title }}</h4>
                             <div class="prose text-sm text-gray-300">{{ page.pricing_rationale_text|richtext }}</div>
                         </div>
                     </div>
@@ -72,14 +72,14 @@
             <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800"
                      role="complementary">
                 <div class="border-b border-gray-600 bg-gray-700 p-4">
-                    <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.workshop_section_header }}</h2>
+                    <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">{{ page.workshop_section_header }}</h2>
                 </div>
                 <div class="p-6">
                     <div class="mb-6 prose text-gray-300">{{ page.workshop_intro|richtext }}</div>
                     <div class="mb-6 prose text-gray-300">{{ page.workshop_nonprofit_note|richtext }}</div>
                     {% if page.show_workshop_form %}
                         <div class="rounded-lg border border-gray-600 bg-gray-700 p-6">
-                            <h3 class="mb-4 font-mono text-lg font-semibold text-white">{{ page.workshop_form_title }}</h3>
+                            <h3 class="mb-4 heading-h3 text-lg font-semibold text-white">{{ page.workshop_form_title }}</h3>
                             <form method="post"
                                   action="/workshop-request/"
                                   class="space-y-4"
@@ -142,14 +142,14 @@
             <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800"
                      role="complementary">
                 <div class="border-b border-gray-600 bg-gray-700 p-4">
-                    <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.services_section_header }}</h2>
+                    <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">{{ page.services_section_header }}</h2>
                 </div>
                 <div class="p-6">
                     <div class="mb-6 prose text-gray-300">{{ page.services_intro|richtext }}</div>
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {% for service in page.additional_services %}
                             <div class="rounded-lg border border-gray-600 bg-gray-700 p-6">
-                                <h4 class="mb-3 font-mono font-semibold text-white">{{ service.value.title }}</h4>
+                                <h4 class="mb-3 heading-h4 font-semibold text-white">{{ service.value.title }}</h4>
                                 <p class="mb-4 text-gray-300">{{ service.value.description }}</p>
                                 {% if service.value.fee_text %}
                                     <div class="mb-4 rounded bg-gray-600 p-2 text-sm text-gray-300">{{ service.value.fee_text }}</div>
@@ -167,7 +167,7 @@
                      role="complementary"
                      aria-labelledby="cta-heading">
                 <h2 id="cta-heading"
-                    class="mb-4 font-mono text-2xl font-semibold text-white">{{ page.cta_title }}</h2>
+                    class="mb-4 heading-h2 text-2xl font-semibold text-white">{{ page.cta_title }}</h2>
                 <div class="mb-6 prose text-purple-200">{{ page.cta_description|richtext }}</div>
                 <div class="mb-6 flex flex-col justify-center gap-4 sm:flex-row">
                     <a href="/blog/" class="btn-ec-primary">EXPLORE THE BLOG</a>

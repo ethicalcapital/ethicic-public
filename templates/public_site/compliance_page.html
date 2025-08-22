@@ -8,13 +8,13 @@
                  role="banner"
                  aria-labelledby="hero-heading">
             <h1 id="hero-heading"
-                class="mb-4 font-mono text-4xl font-bold text-white">{{ page.title }}</h1>
+                class="mb-4 heading-h1 text-4xl font-bold text-white">{{ page.title }}</h1>
             {% if page.intro_text %}<div class="prose text-xl text-gray-300">{{ page.intro_text|richtext }}</div>{% endif %}
         </section>
         <!-- Compliance Content Section -->
         <section class="rounded-lg border border-gray-600 bg-gray-800" role="main">
             <div class="border-b border-gray-600 bg-gray-700 p-4">
-                <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">COMPLIANCE DOCUMENTATION</h2>
+                <h2 class="heading-h2 text-lg font-semibold text-blue-300 uppercase">COMPLIANCE DOCUMENTATION</h2>
             </div>
             <div class="p-6">
                 {% if page.document_type %}
