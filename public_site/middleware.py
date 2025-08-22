@@ -4,6 +4,7 @@ PostHog Error Tracking Middleware
 import traceback
 from django.conf import settings
 from django.utils.deprecation import MiddlewareMixin
+import logging
 
 
 class PostHogErrorMiddleware(MiddlewareMixin):
@@ -83,7 +84,6 @@ class PostHogErrorMiddleware(MiddlewareMixin):
         except Exception as posthog_error:
             # Log PostHog errors
             logger.error(f"Failed to send error to PostHog: {posthog_error}")
-            import traceback
             logger.error(f"PostHog error traceback: {traceback.format_exc()}")
             
         return None

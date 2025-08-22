@@ -1929,6 +1929,8 @@ def test_error_info_view(request):
 @require_http_methods(["GET"])
 def test_posthog_simple(request):
     """Test basic PostHog functionality"""
+    import posthog
+    
     # Security check
     secret = request.GET.get('secret')
     if secret != 'test-posthog-2025':
