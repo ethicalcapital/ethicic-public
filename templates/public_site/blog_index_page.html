@@ -30,7 +30,7 @@
                                    class="hover:text-purple-300 transition-colors">{{ featured_post.title }}</a>
                             </h3>
                             {% if featured_post.intro %}<p class="text-gray-200">{{ featured_post.intro }}</p>{% endif %}
-                            <div class="flex items-center gap-4 text-sm text-gray-400">
+                            <div class="flex items-center gap-4 text-sm text-gray-300">
                                 <span>📅 {{ featured_post.publish_date|date:"F j, Y" }}</span>
                                 {% if featured_post.reading_time %}<span>⏱️ {{ featured_post.reading_time }} min read</span>{% endif %}
                             </div>
@@ -56,7 +56,7 @@
                                     {% for block in key_stats|slice:":3" %}
                                         <div class="text-center">
                                             <div class="font-mono text-2xl font-bold text-purple-200">{{ block.value.value }}</div>
-                                            <div class="text-sm text-gray-400">{{ block.value.label }}</div>
+                                            <div class="text-sm text-gray-300">{{ block.value.label }}</div>
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -102,7 +102,7 @@
                                     <!-- Excerpt -->
                                     {% if post.intro %}<p class="text-gray-200 text-sm line-clamp-3">{{ post.intro|truncatewords:20 }}</p>{% endif %}
                                     <!-- Meta -->
-                                    <div class="flex items-center justify-between text-xs text-gray-400 pt-2 border-t border-gray-600">
+                                    <div class="flex items-center justify-between text-xs text-gray-300 pt-2 border-t border-gray-600">
                                         <span>{{ post.publish_date|date:"M j, Y" }}</span>
                                         {% if post.reading_time %}<span>{{ post.reading_time }} min read</span>{% endif %}
                                     </div>

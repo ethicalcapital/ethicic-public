@@ -24,8 +24,11 @@
         {% if page.get_children.live %}
             <section class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {% for faq_page in page.get_children.live %}
-                    <article class="rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-purple-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-purple-500">
-                        <div class="space-y-4">
+                    <article class="relative rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-purple-400 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800 dark:hover:border-purple-500 cursor-pointer group">
+                        <a href="{{ faq_page.url }}" class="absolute inset-0 z-10" aria-label="View {{ faq_page.title }} FAQ category">
+                            <span class="sr-only">View {{ faq_page.title }} FAQ category</span>
+                        </a>
+                        <div class="space-y-4 relative z-0">
                             <!-- Category Icon/Badge -->
                             <div class="flex items-center justify-between">
                                 <span class="rounded-full bg-purple-600 px-3 py-1 text-sm font-semibold text-white">{{ faq_page.title }}</span>
@@ -52,11 +55,10 @@
                                     </ul>
                                 </div>
                             {% endif %}
-                            <!-- Action Button -->
-                            <a href="{{ faq_page.url }}"
-                               class="block w-full rounded-lg border border-purple-600 px-4 py-2 text-center font-semibold text-purple-400 transition-colors hover:bg-purple-900/20 hover:border-purple-500">
+                            <!-- Action Button (visual only, card is clickable) -->
+                            <div class="block w-full rounded-lg border border-purple-600 px-4 py-2 text-center font-semibold text-purple-400 transition-colors group-hover:bg-purple-900/20 group-hover:border-purple-500 relative z-20 pointer-events-none">
                                 View FAQ Category
-                            </a>
+                            </div>
                         </div>
                     </article>
                 {% endfor %}
@@ -307,18 +309,7 @@
       searchInput.focus();
     }
 
-    // Handle FAQ category hover effects
-    const faqCards = document.querySelectorAll("article");
-    faqCards.forEach((card) => {
-      card.addEventListener("mouseenter", function () {
-        this.style.transform = "translateY(-2px)";
-        this.style.transition = "transform 0.2s ease";
-      });
-
-      card.addEventListener("mouseleave", function () {
-        this.style.transform = "translateY(0)";
-      });
-    });
+    // FAQ cards are now fully clickable via CSS, no JS needed for hover effects
 
     // Search input enhancements
     if (searchInput) {

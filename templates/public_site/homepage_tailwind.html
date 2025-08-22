@@ -78,11 +78,12 @@
                     <!-- Enhanced Hero Stats -->
                     <div class="mx-auto grid max-w-2xl grid-cols-1 gap-8 md:grid-cols-2 mb-8">
                         <div class="stats-panel">
-                            <div class="relative mb-6">
+                            <div class="relative mb-6" role="meter" aria-label="Percentage of S&P 500 companies excluded" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100">
                                 <div class="h-3 w-full overflow-hidden rounded-full bg-purple-800/30 shadow-inner">
                                     <div class="h-3 rounded-full bg-gradient-to-r from-teal-400 to-purple-300 shadow-lg transition-all duration-1000 ease-out"
-                                         style="width: 57%"></div>
+                                         style="width: 57%" aria-hidden="true"></div>
                                 </div>
+                                <span class="sr-only">57% of S&P 500 companies are excluded from our investment universe</span>
                             </div>
                             <div class="stat-value-ec">{{ page.excluded_percentage }}</div>
                             <div class="stat-label-ec">S&P 500 EXCLUDED</div>
