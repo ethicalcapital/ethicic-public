@@ -1,0 +1,165 @@
+/*!
+ * Garden Shared Header Patterns
+ * Common header structure and styling for both Garden Financial Platform and Ethicic Public Site
+ * This enables consistent branding while allowing site-specific customizations
+ */
+
+/* ===== SHARED HEADER FOUNDATION */
+.garden-header-shared {
+  /* Layout */
+  position: relative;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--garden-space-4);
+  
+  /* Branding colors */
+  background-color: var(--garden-brand-purple, #581c87);
+  border-bottom: 1px solid var(--garden-brand-purple-light, #9333ea);
+  color: white;
+  
+  /* Typography */
+  font-family: var(--garden-brand-font-sans);
+  
+  /* Responsive */
+  flex-wrap: nowrap;
+}
+
+/* ===== SHARED LOGO/BRAND SECTION */
+.garden-header-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--garden-space-4);
+  flex-shrink: 0;
+}
+
+.garden-header-logo {
+  font-size: var(--garden-brand-text-sm, 0.875rem);
+  font-weight: var(--garden-brand-font-semibold, 600);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  transition: opacity var(--garden-brand-duration-fast, 0.15s);
+}
+
+.garden-header-logo:hover {
+  opacity: 0.8;
+}
+
+/* ===== SHARED NAVIGATION SECTION */
+.garden-header-navigation {
+  display: flex;
+  align-items: center;
+  gap: var(--garden-space-6);
+  flex: 1;
+  justify-content: center;
+  
+  /* Hide on mobile, show on desktop */
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .garden-header-navigation {
+    display: flex;
+  }
+}
+
+.garden-header-nav-item {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: var(--garden-brand-text-xs, 0.75rem);
+  font-weight: var(--garden-brand-font-medium, 500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--garden-space-2) var(--garden-space-3);
+  border-radius: var(--garden-brand-radius-sm, 0.25rem);
+  transition: all var(--garden-brand-duration-fast, 0.15s);
+  white-space: nowrap;
+}
+
+.garden-header-nav-item:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.garden-header-nav-item.active {
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== SHARED ACTIONS SECTION */
+.garden-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--garden-space-2);
+  flex-shrink: 0;
+}
+
+.garden-header-action-btn {
+  padding: var(--garden-space-2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--garden-brand-radius-sm, 0.25rem);
+  color: white;
+  text-decoration: none;
+  font-size: var(--garden-brand-text-xs, 0.75rem);
+  font-weight: var(--garden-brand-font-medium, 500);
+  transition: all var(--garden-brand-duration-fast, 0.15s);
+  cursor: pointer;
+}
+
+.garden-header-action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== MOBILE MENU SHARED PATTERNS */
+.garden-header-mobile-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--garden-space-1);
+  padding: var(--garden-space-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  
+  /* Show on mobile, hide on desktop */
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .garden-header-mobile-toggle {
+    display: none;
+  }
+}
+
+.garden-header-mobile-toggle span {
+  display: block;
+  height: 2px;
+  width: 24px;
+  background: white;
+  transition: all var(--garden-brand-duration-fast, 0.15s);
+}
+
+/* ===== RESPONSIVE BEHAVIORS */
+@media (max-width: 767px) {
+  .garden-header-shared {
+    padding: var(--garden-space-3);
+  }
+  
+  .garden-header-logo {
+    font-size: var(--garden-brand-text-xs, 0.75rem);
+  }
+}
+
+/* ===== THEME VARIATIONS */
+/* Allow sites to override for light/dark themes */
+[data-theme="light"] .garden-header-shared {
+  /* Sites can override for light theme if needed */
+}
+
+[data-theme="dark"] .garden-header-shared {
+  /* Already optimized for dark theme */
+}

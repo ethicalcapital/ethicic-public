@@ -181,19 +181,25 @@
                     <div class="text-gray-900 dark:text-gray-300">{{ page.strategies_intro|richtext }}</div>
                     <!-- Strategy Comparison Table - Desktop & Tablet -->
                     <div class="hidden md:block overflow-x-auto">
-                        <table class="w-full border border-gray-600 bg-gray-800 rounded-lg overflow-hidden table-fixed">
+                        <table class="w-full border border-gray-600 bg-gray-800 rounded-lg overflow-hidden" style="table-layout: fixed;">
+                            <colgroup>
+                                <col style="width: 160px;">
+                                <col style="width: calc((100% - 160px) / 3);">
+                                <col style="width: calc((100% - 160px) / 3);">
+                                <col style="width: calc((100% - 160px) / 3);">
+                            </colgroup>
                             <thead>
                                 <tr>
-                                    <th class="bg-gray-700 p-4 text-left w-40"></th>
-                                    <th class="bg-purple-900 p-4 text-center w-1/3">
+                                    <th class="bg-gray-700 p-4 text-left"></th>
+                                    <th class="bg-purple-900 p-4 text-center">
                                         <h3 class="font-body text-lg font-bold text-white">{{ page.strategy_1_name|cut:" Strategy" }}</h3>
                                         <div class="subtitle mt-1 text-sm text-white">{{ page.strategy_1_subtitle }}</div>
                                     </th>
-                                    <th class="bg-purple-900 p-4 text-center w-1/3">
+                                    <th class="bg-purple-900 p-4 text-center">
                                         <h3 class="font-body text-lg font-bold text-white">{{ page.strategy_2_name|cut:" Strategy" }}</h3>
                                         <div class="subtitle mt-1 text-sm text-white">{{ page.strategy_2_subtitle }}</div>
                                     </th>
-                                    <th class="bg-purple-900 p-4 text-center w-1/3">
+                                    <th class="bg-purple-900 p-4 text-center">
                                         <h3 class="font-body text-lg font-bold text-white">{{ page.strategy_3_name|cut:" Strategy" }}</h3>
                                         <div class="subtitle mt-1 text-sm text-white">{{ page.strategy_3_subtitle }}</div>
                                     </th>
@@ -229,17 +235,17 @@
                                     <td class="p-4 border-l border-gray-600">
                                         <p class="text-sm text-gray-200 mb-3">{{ page.strategy_1_description }}</p>
                                         <a href="{{ page.strategy_1_link }}"
-                                           class="btn-ec-secondary inline-block">{{ page.strategy_1_link_text }}</a>
+                                           class="btn-ec-secondary block w-full text-center">{{ page.strategy_1_link_text }}</a>
                                     </td>
                                     <td class="p-4 border-l border-gray-600">
                                         <p class="text-sm text-gray-200 mb-3">{{ page.strategy_2_description }}</p>
                                         <a href="{{ page.strategy_2_link }}"
-                                           class="btn-ec-secondary inline-block">{{ page.strategy_2_link_text }}</a>
+                                           class="btn-ec-secondary block w-full text-center">{{ page.strategy_2_link_text }}</a>
                                     </td>
                                     <td class="p-4 border-l border-gray-600">
                                         <p class="text-sm text-gray-200 mb-3">{{ page.strategy_3_description }}</p>
                                         <a href="{{ page.strategy_3_link }}"
-                                           class="btn-ec-secondary inline-block">{{ page.strategy_3_link_text }}</a>
+                                           class="btn-ec-secondary block w-full text-center">{{ page.strategy_3_link_text }}</a>
                                     </td>
                                 </tr>
                             </tbody>

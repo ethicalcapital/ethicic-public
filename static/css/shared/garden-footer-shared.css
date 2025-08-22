@@ -1,0 +1,180 @@
+/*!
+ * Garden Shared Footer Patterns
+ * Common footer structure and styling for both Garden Financial Platform and Ethicic Public Site
+ * This enables consistent branding while allowing site-specific content
+ */
+
+/* ===== SHARED FOOTER FOUNDATION */
+.garden-footer-shared {
+  /* Layout */
+  margin-top: auto; /* Push to bottom of flex container */
+  border-top: 1px solid var(--garden-brand-gray-600, #4b5563);
+  background-color: var(--garden-brand-gray-800, #1f2937);
+  color: var(--garden-brand-text-secondary-dark, #d1d5db);
+  
+  /* Typography */
+  font-family: var(--garden-brand-font-sans);
+  font-size: var(--garden-brand-text-sm, 0.875rem);
+  
+  /* Spacing */
+  padding-top: var(--garden-space-16, 4rem);
+  padding-bottom: var(--garden-space-8, 2rem);
+}
+
+/* ===== SHARED FOOTER CONTAINER */
+.garden-footer-container {
+  max-width: var(--content-width-normal, 1200px);
+  margin: 0 auto;
+  padding-left: var(--garden-space-4, 1rem);
+  padding-right: var(--garden-space-4, 1rem);
+}
+
+/* ===== SHARED FOOTER GRID */
+.garden-footer-grid {
+  display: grid;
+  gap: var(--garden-space-8, 2rem);
+  
+  /* Responsive grid layout */
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .garden-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .garden-footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .garden-footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===== SHARED FOOTER SECTIONS */
+.garden-footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--garden-space-4, 1rem);
+}
+
+.garden-footer-section-title {
+  color: var(--garden-brand-purple-pale, #c084fc);
+  font-size: var(--garden-brand-text-sm, 0.875rem);
+  font-weight: var(--garden-brand-font-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--garden-space-2, 0.5rem);
+}
+
+.garden-footer-section-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--garden-space-2, 0.5rem);
+}
+
+.garden-footer-section-link {
+  color: var(--garden-brand-gray-400, #9ca3af);
+  text-decoration: none;
+  transition: color var(--garden-brand-duration-fast, 0.15s);
+  line-height: 1.5;
+}
+
+.garden-footer-section-link:hover {
+  color: var(--garden-brand-purple-pale, #c084fc);
+}
+
+/* ===== SHARED FOOTER BOTTOM BAR */
+.garden-footer-bottom {
+  margin-top: var(--garden-space-12, 3rem);
+  padding-top: var(--garden-space-8, 2rem);
+  border-top: 1px solid var(--garden-brand-gray-600, #4b5563);
+  text-align: center;
+}
+
+.garden-footer-bottom-text {
+  color: var(--garden-brand-gray-500, #6b7280);
+  font-size: var(--garden-brand-text-xs, 0.75rem);
+  line-height: 1.5;
+}
+
+/* ===== COMPANY BRANDING SECTION */
+.garden-footer-company {
+  grid-column: 1 / -1; /* Span full width */
+  margin-bottom: var(--garden-space-8, 2rem);
+  padding-bottom: var(--garden-space-8, 2rem);
+  border-bottom: 1px solid var(--garden-brand-gray-700, #374151);
+}
+
+@media (min-width: 1024px) {
+  .garden-footer-company {
+    grid-column: 1 / 2; /* First column on desktop */
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.garden-footer-company-name {
+  color: white;
+  font-size: var(--garden-brand-text-lg, 1.125rem);
+  font-weight: var(--garden-brand-font-bold, 700);
+  margin-bottom: var(--garden-space-4, 1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.garden-footer-company-description {
+  color: var(--garden-brand-gray-400, #9ca3af);
+  line-height: 1.6;
+  margin-bottom: var(--garden-space-4, 1rem);
+}
+
+.garden-footer-company-legal {
+  color: var(--garden-brand-gray-500, #6b7280);
+  font-size: var(--garden-brand-text-xs, 0.75rem);
+  line-height: 1.5;
+}
+
+/* ===== RESPONSIVE BEHAVIORS */
+@media (max-width: 640px) {
+  .garden-footer-shared {
+    padding-top: var(--garden-space-12, 3rem);
+  }
+  
+  .garden-footer-container {
+    padding-left: var(--garden-space-4, 1rem);
+    padding-right: var(--garden-space-4, 1rem);
+  }
+  
+  .garden-footer-grid {
+    gap: var(--garden-space-6, 1.5rem);
+  }
+}
+
+/* ===== THEME VARIATIONS */
+[data-theme="light"] .garden-footer-shared {
+  background-color: var(--garden-brand-gray-100, #f3f4f6);
+  color: var(--garden-brand-text-primary-light, #111827);
+  border-top-color: var(--garden-brand-gray-300, #d1d5db);
+}
+
+[data-theme="light"] .garden-footer-section-title {
+  color: var(--garden-brand-purple, #581c87);
+}
+
+[data-theme="light"] .garden-footer-section-link {
+  color: var(--garden-brand-gray-600, #4b5563);
+}
+
+[data-theme="light"] .garden-footer-section-link:hover {
+  color: var(--garden-brand-purple, #581c87);
+}
