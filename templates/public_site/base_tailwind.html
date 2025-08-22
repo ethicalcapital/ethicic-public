@@ -656,8 +656,7 @@
              id="urgent-announcements"></div>
         <!-- Shared Header with Public Site Branding -->
         <header class="garden-header-shared border-b border-purple-800 bg-purple-900 dark:border-purple-800 dark:bg-purple-900"
-                role="banner"
-                x-data="{ mobileMenuOpen: false }">
+                role="banner">
             <div class="container-ec">
                 <div class="garden-header-brand">
                     <!-- Brand -->
@@ -744,74 +743,10 @@
                                 <span x-text="isDark ? '🌙' : '☀️'" aria-hidden="true"></span>
                             </button>
                         </div>
-                        <!-- Mobile menu toggle -->
-                        <button class="flex flex-col space-y-1 p-2 md:hidden"
-                                @click="mobileMenuOpen = true"
-                                :aria-expanded="mobileMenuOpen"
-                                aria-label="Open navigation menu">
-                            <span class="block h-0.5 w-6 bg-white"></span>
-                            <span class="block h-0.5 w-6 bg-white"></span>
-                            <span class="block h-0.5 w-6 bg-white"></span>
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
-            <!-- Mobile Menu Overlay -->
-            <div class="bg-opacity-50 fixed inset-0 z-50 bg-black md:hidden"
-                 x-show="mobileMenuOpen"
-                 @click="mobileMenuOpen = false"
-                 x-transition
-                 x-cloak></div>
-            <!-- Mobile Menu Panel -->
-            <div class="fixed top-0 right-0 z-50 h-full w-80 transform border-l border-gray-600 bg-gray-800 transition-transform md:hidden"
-                 x-show="mobileMenuOpen"
-                 x-transition:enter="transition-transform duration-300"
-                 x-transition:enter-start="translate-x-full"
-                 x-transition:enter-end="translate-x-0"
-                 x-transition:leave="transition-transform duration-300"
-                 x-transition:leave-start="translate-x-0"
-                 x-transition:leave-end="translate-x-full"
-                 x-cloak>
-                <!-- Mobile menu header -->
-                <div class="flex items-center justify-between border-b border-gray-600 p-4">
-                    <span class="font-mono text-lg text-white">Menu</span>
-                    <button @click="mobileMenuOpen = false"
-                            class="text-gray-400 hover:text-white">
-                        <span class="sr-only">Close menu</span>
-                        ✕
-                    </button>
-                </div>
-                <!-- Mobile navigation -->
-                <nav class="space-y-4 p-4">
-                    {% main_menu max_levels=1 template="wagtailmenus/main_menu_mobile_tailwind.html" %}
-                </nav>
-                <!-- Mobile search -->
-                <div class="border-t border-gray-600 p-4">
-                    <form method="get" action="/search/" role="search" class="relative">
-                        <input type="text"
-                               name="q"
-                               placeholder="Search..."
-                               class="w-full rounded-lg border border-gray-600 bg-gray-700 px-4 py-2 pr-12 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-400 focus:outline-none"
-                               aria-label="Search our website" />
-                        <button type="submit"
-                                class="absolute top-1/2 right-1 -translate-y-1/2 transform rounded bg-purple-600 px-2 py-1 text-white transition-colors hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                                aria-label="Submit search">🔍</button>
-                    </form>
-                </div>
-                <!-- Mobile login link -->
-                <div class="border-t border-gray-600 p-4">
-                    <a href="https://app.altruist.com/login"
-                       class="flex items-center space-x-3 rounded-lg bg-gray-700 p-3 hover:bg-gray-600"
-                       target="_blank">
-                        <span class="text-xl">👤</span>
-                        <div>
-                            <div class="font-mono text-sm text-purple-400">Client Login</div>
-                            <div class="text-xs text-gray-400">Portfolio access</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
         </header>
         <!-- Main Content -->
         <main id="main-content" class="flex-1 pt-8 pb-24" role="main">
@@ -824,14 +759,16 @@
                 <div class="garden-footer-grid footer-grid grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5">
                     <!-- Company Info -->
                     <div class="garden-footer-section garden-footer-company">
-                        <div class="logo-container mb-4">
-                            <span class="logo-text text-white">ETHICAL</span>
+                        <a href="/"
+                           class="logo-container mb-4"
+                           aria-label="Ethical Capital Home">
+                            <span class="logo-text">ETHICAL</span>
                             <div class="logo-underline">
                                 <span></span>
                                 <span></span>
                                 <span></span>
                             </div>
-                        </div>
+                        </a>
                         <p class="garden-footer-company-description">
                             Socially responsible investment advisory services with a focus on sustainable and ethical investing.
                         </p>

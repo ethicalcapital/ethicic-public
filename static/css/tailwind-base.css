@@ -295,6 +295,18 @@
     transform: translateY(-1px);
   }
 
+  /* Mobile Navigation Always Visible */
+  .garden-header-navigation {
+    display: flex !important; /* Override any hide classes */
+  }
+
+  /* Hide search on very small screens */
+  @media (max-width: 639px) {
+    .garden-header-actions > div:first-child {
+      display: none;
+    }
+  }
+
   /* Responsive adjustments */
   @media (max-width: 1023px) {
     .garden-header-shared .container-ec {
@@ -324,6 +336,11 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.5rem;
+    }
+
+    .garden-header-navigation a {
+      font-size: 0.75rem;
+      padding: 0.375rem 0.75rem;
     }
 
     .garden-header-actions {
