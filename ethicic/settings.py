@@ -563,6 +563,9 @@ if POSTHOG_API_KEY:
     # Enable debug mode in development
     posthog.debug = DEBUG
     
+    # Enable exception autocapture for Python SDK
+    posthog.exception_autocapture = True
+    
     # Log initialization
     if not DEBUG:
         import logging
