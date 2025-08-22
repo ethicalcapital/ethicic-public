@@ -3,7 +3,7 @@ Complete URL routing for Wagtail-based public site with form handling and API en
 """
 
 from django.urls import path, include
-from django.generic import RedirectView
+from django.views.generic import RedirectView
 
 from .views import (
     contact_form_submit, contact_success, newsletter_signup,
