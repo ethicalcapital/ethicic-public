@@ -42,9 +42,11 @@ class PostHogErrorMiddleware(MiddlewareMixin):
             
             # Log that we're capturing an error
             logger.info(f"Capturing exception {type(exception).__name__} for PostHog")
+            logger.debug(f"PostHog project_api_key: {posthog.project_api_key[:10]}...") 
+            logger.debug(f"PostHog host: {posthog.host}")
             
             # Capture the exception using $exception event format
-            posthog.capture(
+            result = posthog.capture(
                 user_id or 'anonymous',
                 '$exception',
                 {
@@ -70,11 +72,19 @@ class PostHogErrorMiddleware(MiddlewareMixin):
                 }
             )
             
+            # Log capture result
+            logger.info(f"PostHog capture result: {result}")
+            
+            # Force flush to ensure event is sent immediately
+            posthog.flush()
+            
             # Log successful capture
             logger.info(f"Successfully sent {type(exception).__name__} to PostHog")
-        except Exception:
-            # Don't let PostHog errors break the application
-            pass
+        except Exception as posthog_error:
+            # Log PostHog errors
+            logger.error(f"Failed to send error to PostHog: {posthog_error}")
+            import traceback
+            logger.error(f"PostHog error traceback: {traceback.format_exc()}")
             
         return None
     

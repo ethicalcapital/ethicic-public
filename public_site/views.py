@@ -1921,3 +1921,73 @@ def test_error_info_view(request):
             'error_types': ['exception', 'zerodivision', 'attribute', 'key', 'type']
         }
     })
+
+
+# Simple PostHog test view
+
+
+@require_http_methods(["GET"])
+def test_posthog_simple(request):
+    """Test basic PostHog functionality"""
+    # Security check
+    secret = request.GET.get('secret')
+    if secret != 'test-posthog-2025':
+        return JsonResponse({'error': 'Unauthorized'}, status=403)
+    
+    try:
+        # Test 1: Send a simple event
+        result1 = posthog.capture(
+            'test-user',
+            'test_event',
+            {
+                'test': True,
+                'source': 'django_backend'
+            }
+        )
+        
+        # Test 2: Send an exception event with minimal properties
+        result2 = posthog.capture(
+            'test-user',
+            '$exception',
+            {
+                '$exception_type': 'TestError',
+                '$exception_message': 'This is a test error from Django'
+            }
+        )
+        
+        # Test 3: Send exception with Sentry-like format
+        result3 = posthog.capture(
+            'test-user',
+            '$exception',
+            {
+                'exception': {
+                    'values': [{
+                        'type': 'TestError',
+                        'value': 'Test error with Sentry format'
+                    }]
+                }
+            }
+        )
+        
+        # Flush to ensure events are sent
+        posthog.flush()
+        
+        return JsonResponse({
+            'status': 'success',
+            'results': {
+                'simple_event': str(result1),
+                'exception_minimal': str(result2),
+                'exception_sentry': str(result3)
+            },
+            'posthog_config': {
+                'api_key_prefix': posthog.project_api_key[:10] if posthog.project_api_key else None,
+                'host': posthog.host
+            }
+        })
+        
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'error': str(e),
+            'type': type(e).__name__
+        }, status=500)
