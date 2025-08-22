@@ -3307,6 +3307,44 @@ class StrategyPage(SafeUrlMixin, Page):
             # Fallback if utility is not available
             pass
 
+    def get_latest_performance_date(self):
+        """Get the latest date for which performance data is available."""
+        if not self.monthly_returns:
+            return None
+        
+        try:
+            # Find the latest year and month in the data
+            latest_year = max(int(year) for year in self.monthly_returns.keys())
+            year_data = self.monthly_returns.get(str(latest_year), {})
+            
+            if not year_data:
+                return None
+            
+            # Convert month names to numbers for sorting
+            month_order = {
+                'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+                'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+            }
+            
+            months_with_data = [month for month in year_data.keys() if month in month_order]
+            if not months_with_data:
+                return None
+                
+            latest_month = max(months_with_data, key=lambda m: month_order[m])
+            
+            # Return a formatted date string
+            from datetime import date
+            return date(latest_year, month_order[latest_month], 1)
+        except (ValueError, KeyError):
+            return None
+
+    def get_performance_as_of_text(self):
+        """Get formatted 'as of' text for performance data."""
+        latest_date = self.get_latest_performance_date()
+        if latest_date:
+            return latest_date.strftime("As of %B %Y")
+        return ""
+
     class Meta:
         verbose_name = "Strategy Page"
 
