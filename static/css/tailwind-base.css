@@ -201,6 +201,60 @@
     transform: translateY(1px);
   }
 
+  /* Responsive header layout */
+  @media (max-width: 1279px) {
+    .garden-header-shared .container-ec {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .garden-header-brand {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Wrapper for nav and actions */
+    .garden-header-nav-wrapper {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .garden-header-navigation {
+      display: flex !important;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .garden-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+
+  /* Fix for larger screens to prevent wrapping */
+  @media (min-width: 1280px) {
+    .garden-header-shared .container-ec {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .garden-header-navigation {
+      flex: 1;
+      display: flex !important;
+    }
+  }
+
   /* Form Components */
   .form-ec {
     @apply space-y-6;

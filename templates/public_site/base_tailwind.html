@@ -672,14 +672,15 @@
                         </div>
                     </a>
                 </div>
-                <!-- Navigation Section -->
-                <nav class="garden-header-navigation"
-                     id="main-navigation"
-                     style="pointer-events: auto">
-                    {% main_menu max_levels=1 template="wagtailmenus/main_menu_tailwind.html" %}
-                </nav>
-                <!-- Actions Section -->
-                <div class="garden-header-actions">
+                <div class="garden-header-nav-wrapper">
+                    <!-- Navigation Section -->
+                    <nav class="garden-header-navigation"
+                         id="main-navigation"
+                         style="pointer-events: auto">
+                        {% main_menu max_levels=1 template="wagtailmenus/main_menu_tailwind.html" %}
+                    </nav>
+                    <!-- Actions Section -->
+                    <div class="garden-header-actions">
                         <!-- Search -->
                         <div class="hidden lg:block"
                              x-data="{ searchOpen: false, query: '', searching: false }"
@@ -755,6 +756,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             <!-- Mobile Menu Overlay -->
             <div class="bg-opacity-50 fixed inset-0 z-50 bg-black md:hidden"
                  x-show="mobileMenuOpen"
@@ -822,7 +824,14 @@
                 <div class="garden-footer-grid footer-grid grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5">
                     <!-- Company Info -->
                     <div class="garden-footer-section garden-footer-company">
-                        <h3 class="garden-footer-company-name">Ethical Capital</h3>
+                        <div class="logo-container mb-4">
+                            <span class="logo-text text-white">ETHICAL</span>
+                            <div class="logo-underline">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
                         <p class="garden-footer-company-description">
                             Socially responsible investment advisory services with a focus on sustainable and ethical investing.
                         </p>
