@@ -317,12 +317,12 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = "/var/lib/data"
 
 # Storage configuration - use R2 for media files in production
-USE_R2 = env.bool("USE_R2", default=False)
+USE_R2 = os.getenv("USE_R2", "False").lower() == "true"
 
 if USE_R2:
     # Cloudflare R2 settings (S3-compatible)
-    AWS_ACCESS_KEY_ID = env("R2_ACCESS_KEY_ID", default=None)
-    AWS_SECRET_ACCESS_KEY = env("R2_SECRET_ACCESS_KEY", default=None)
+    AWS_ACCESS_KEY_ID = os.getenv("R2_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("R2_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = "images"
     AWS_S3_ENDPOINT_URL = "https://483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com"
     AWS_S3_REGION_NAME = "auto"  # R2 uses 'auto' for region
