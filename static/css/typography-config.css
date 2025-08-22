@@ -9,8 +9,8 @@
   /* Body text - clean, modern sans-serif */
   --font-family-body: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
   
-  /* Headings - elegant serif for authority */
-  --font-family-heading: "Libre Baskerville", Georgia, Cambria, "Times New Roman", Times, serif;
+  /* Headings - bold sans-serif for impact */
+  --font-family-heading: "Bebas Neue", Impact, "Arial Black", sans-serif;
   
   /* UI elements - use body font for consistency */
   --font-family-ui: var(--font-family-body);
@@ -131,6 +131,7 @@
 /* Legacy utility classes */
 .font-sans { font-family: var(--font-family-body); }
 .font-serif { font-family: var(--font-family-heading); }
+.font-heading { font-family: var(--font-family-heading); }
 
 /* Remove monospace utility */
 .font-mono { font-family: var(--font-family-body); }

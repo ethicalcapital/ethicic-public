@@ -83,12 +83,10 @@ module.exports = {
           "sans-serif",
         ],
         serif: [
-          "Libre Baskerville",
-          "Georgia",
-          "Cambria",
-          "Times New Roman",
-          "Times",
-          "serif",
+          "Bebas Neue",
+          "Impact",
+          "Arial Black",
+          "sans-serif",
         ],
       },
       fontSize: {
