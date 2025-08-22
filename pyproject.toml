@@ -60,6 +60,7 @@ dependencies = [
     # Cloud storage
     "django-storages==1.14.4",
     "boto3==1.35.65",
+    "posthog>=6.6.1",
 ]
 
 [project.optional-dependencies]

@@ -52,7 +52,9 @@
                              data-category="{{ entry.category|default:'' }}">
                             <!-- Entry Header -->
                             <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
-                                <h3 class="text-xl font-semibold text-purple-400">{{ entry.title }}</h3>
+                                <h3 class="text-xl font-semibold">
+                                    <a href="{{ entry.url }}" class="text-purple-400 hover:text-purple-300 transition-colors">{{ entry.title }}</a>
+                                </h3>
                                 <div class="flex flex-wrap gap-2">
                                     {% if entry.category %}
                                         <span class="px-3 py-1 bg-purple-600 text-white text-xs font-semibold uppercase rounded-full">
@@ -68,6 +70,15 @@
                             </div>
                             <!-- Summary -->
                             <div class="text-gray-200 mb-4 leading-relaxed">{{ entry.summary }}</div>
+                            <!-- Read More Link -->
+                            <div class="mb-4">
+                                <a href="{{ entry.url }}" class="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors font-medium">
+                                    Read Full Definition
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
                             <!-- Expandable Details -->
                             {% if entry.detailed_content or entry.examples or entry.further_reading or entry.related_terms %}
                                 <details class="border-t border-gray-600 pt-4">

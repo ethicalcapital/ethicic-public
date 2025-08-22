@@ -4589,7 +4589,7 @@ class EncyclopediaIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
             },
         )
 
-    @path("<str:letter>/")
+    @path(r"^([A-Za-z])/$")
     def entries_by_letter(self, request, letter):
         """Filter entries by first letter."""
         letter = letter.upper()
