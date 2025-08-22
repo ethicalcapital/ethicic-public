@@ -31,8 +31,9 @@ from .views import (
     get_site_navigation,
     get_footer_links,
     disclosures_page,
+    test_error_tracking_view,
+    test_error_info_view,
 )
-from .views.test_error_tracking import test_error_tracking_view, test_error_info_view
 
 app_name = "public_site"
 

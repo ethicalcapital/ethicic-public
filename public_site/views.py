@@ -1857,3 +1857,67 @@ def check_submission_status(request, submission_id):
     except Exception as e:
         logger.error(f"Error checking submission status: {e}")
         return JsonResponse({"error": "Unable to check submission status"}, status=500)
+# Test error tracking views for PostHog
+
+
+@require_http_methods(["GET"])
+def test_error_tracking_view(request):
+    """Test error tracking by generating an error"""
+    # Security check - only allow with secret parameter
+    secret = request.GET.get('secret')
+    if secret != 'test-posthog-errors-2025':
+        return JsonResponse({'error': 'Unauthorized'}, status=403)
+    
+    # Get error type to generate
+    error_type = request.GET.get('type', 'exception')
+    
+    # If we're in debug mode, just return info
+    if settings.DEBUG:
+        return JsonResponse({
+            'status': 'DEBUG mode active',
+            'message': 'Errors are not sent to PostHog in DEBUG mode',
+            'posthog_configured': bool(settings.POSTHOG_API_KEY),
+            'posthog_host': settings.POSTHOG_HOST
+        })
+    
+    # Generate the requested error type
+    try:
+        if error_type == 'exception':
+            raise Exception("Test error from error tracking view")
+        elif error_type == 'zerodivision':
+            result = 1 / 0
+        elif error_type == 'attribute':
+            obj = None
+            obj.some_attribute
+        elif error_type == 'key':
+            data = {}
+            value = data['missing_key']
+        elif error_type == 'type':
+            result = "string" + 123
+        else:
+            return JsonResponse({'error': 'Unknown error type'}, status=400)
+    except Exception as e:
+        # The middleware should catch this and send to PostHog
+        raise  # Re-raise to let middleware handle it
+    
+    # This should never be reached
+    return JsonResponse({'status': 'No error generated'})
+
+
+@require_http_methods(["GET"])
+def test_error_info_view(request):
+    """Get information about error tracking configuration"""
+    import posthog
+    
+    return JsonResponse({
+        'debug_mode': settings.DEBUG,
+        'posthog_configured': bool(settings.POSTHOG_API_KEY),
+        'posthog_host': settings.POSTHOG_HOST,
+        'posthog_api_key_suffix': f"...{settings.POSTHOG_API_KEY[-4:]}" if settings.POSTHOG_API_KEY else None,
+        'middleware_active': 'public_site.middleware.PostHogErrorMiddleware' in settings.MIDDLEWARE,
+        'posthog_initialized': bool(getattr(posthog, 'project_api_key', None)),
+        'instructions': {
+            'test_error': '/test-error-tracking/?secret=test-posthog-errors-2025&type=exception',
+            'error_types': ['exception', 'zerodivision', 'attribute', 'key', 'type']
+        }
+    })
