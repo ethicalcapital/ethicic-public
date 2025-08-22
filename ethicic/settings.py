@@ -554,11 +554,17 @@ POSTHOG_API_KEY = os.getenv("POSTHOG_API_KEY", "phc_iPeP4HP7NhtEKJmbwwFt65mjlVJj
 POSTHOG_HOST = os.getenv("POSTHOG_HOST", "https://us.i.posthog.com")
 
 # Initialize PostHog for error tracking
-if POSTHOG_API_KEY and not DEBUG:
+if POSTHOG_API_KEY:
     import posthog
     
     posthog.project_api_key = POSTHOG_API_KEY
     posthog.host = POSTHOG_HOST
     
-    # Enable error tracking
+    # Enable debug mode in development
     posthog.debug = DEBUG
+    
+    # Log initialization
+    if not DEBUG:
+        import logging
+        logger = logging.getLogger('public_site')
+        logger.info(f"PostHog initialized with API key ending in ...{POSTHOG_API_KEY[-4:]} to {POSTHOG_HOST}")

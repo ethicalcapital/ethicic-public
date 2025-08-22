@@ -32,6 +32,7 @@ from .views import (
     get_footer_links,
     disclosures_page,
 )
+from .views.test_error_tracking import test_error_tracking_view, test_error_info_view
 
 app_name = "public_site"
 
@@ -255,6 +256,11 @@ urlpatterns = [
     # ============================================================================
     # Disclosures page (loads from database or fallback content)
     path("disclosures/", disclosures_page, name="disclosures"),
+    # ============================================================================
+    # ERROR TRACKING TEST ENDPOINTS (Production only)
+    # ============================================================================
+    path("test-error-tracking/", test_error_tracking_view, name="test_error_tracking"),
+    path("test-error-info/", test_error_info_view, name="test_error_info"),
     # ============================================================================
     # AI-POWERED CONTENT ANALYSIS ENDPOINTS
     # ============================================================================

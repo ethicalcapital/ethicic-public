@@ -16,6 +16,9 @@ class PostHogErrorMiddleware(MiddlewareMixin):
             
         try:
             import posthog
+            import logging
+            
+            logger = logging.getLogger('public_site')
             
             # Get user info if available
             user_id = None
@@ -36,6 +39,9 @@ class PostHogErrorMiddleware(MiddlewareMixin):
                     'raw': f"  File \"{frame.f_code.co_filename}\", line {tb.tb_lineno}, in {frame.f_code.co_name}"
                 })
                 tb = tb.tb_next
+            
+            # Log that we're capturing an error
+            logger.info(f"Capturing exception {type(exception).__name__} for PostHog")
             
             # Capture the exception using $exception event format
             posthog.capture(
@@ -63,6 +69,9 @@ class PostHogErrorMiddleware(MiddlewareMixin):
                     'django_view': getattr(request, 'resolver_match', {}).view_name if hasattr(request, 'resolver_match') else None,
                 }
             )
+            
+            # Log successful capture
+            logger.info(f"Successfully sent {type(exception).__name__} to PostHog")
         except Exception:
             # Don't let PostHog errors break the application
             pass

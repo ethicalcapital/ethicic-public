@@ -267,12 +267,10 @@ class MediaItemSnippetViewSet(SnippetViewSet):
     menu_icon = "doc-full"
     menu_order = 200
 
-    def get_page_title(self, obj):
+    def get_page_title(obj):
         """Display the parent page title."""
         if obj is None:
             return "No page"
         return obj.page.title if obj.page else "No page"
-
-    # Add the method to the model for display
-    MediaItem.get_page_title = get_page_title
-    MediaItem.get_page_title.short_description = "Page"
+    
+    get_page_title.short_description = "Page"
