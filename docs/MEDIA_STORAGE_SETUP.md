@@ -6,16 +6,32 @@ Featured images and other media files are not displaying in production on Kinsta
 ## Solution
 Configure Cloudflare R2 storage for media files (S3-compatible).
 
+## Important: R2 Public Access
+
+R2 buckets are private by default. To serve images publicly, you need one of these options:
+
+### Option 1: R2 Public Buckets (Recommended)
+1. In Cloudflare dashboard, go to R2 > your bucket > Settings
+2. Under "Public access", enable "Allow public access"
+3. Copy the public URL (format: `https://pub-{hash}.r2.dev`)
+4. Set the R2_PUBLIC_URL environment variable
+
+### Option 2: Custom Domain
+1. Set up a custom domain for your R2 bucket in Cloudflare
+2. Use that domain as R2_PUBLIC_URL
+
+### Option 3: Cloudflare Workers (Advanced)
+Create a Worker to proxy R2 requests with proper access control
+
 ## Setup Instructions
 
 ### 1. R2 Bucket Setup
-The R2 bucket is already configured:
+The R2 bucket is configured:
 - Bucket name: `images`
-- Endpoint: `https://483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com`
+- API Endpoint: `https://483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com`
+- Public URL: Must be configured (see above)
 
 ### 2. Set Environment Variables in Kinsta
-
-Add these environment variables to your Kinsta app:
 
 ```bash
 # Enable R2 storage
@@ -24,6 +40,10 @@ USE_R2=true
 # R2 credentials (already set in Kinsta)
 R2_ACCESS_KEY_ID=your-r2-access-key
 R2_SECRET_ACCESS_KEY=your-r2-secret-key
+
+# R2 public URL (REQUIRED - get from Cloudflare dashboard)
+# Example: https://pub-abc123.r2.dev
+R2_PUBLIC_URL=your-r2-public-url
 ```
 
 ### 3. Upload Existing Media Files

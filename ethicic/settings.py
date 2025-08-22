@@ -326,21 +326,40 @@ if USE_R2:
     AWS_STORAGE_BUCKET_NAME = "images"
     AWS_S3_ENDPOINT_URL = "https://483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com"
     AWS_S3_REGION_NAME = "auto"  # R2 uses 'auto' for region
-    AWS_S3_CUSTOM_DOMAIN = None  # Can be set if using custom domain
+    
+    # For R2 public access, we need to use the public URL pattern
+    # R2 public URLs are: https://pub-{hash}.r2.dev/{bucket}/{key}
+    # Or custom domain if configured
+    R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", f"{AWS_S3_ENDPOINT_URL}/images")
+    AWS_S3_CUSTOM_DOMAIN = None  # R2 doesn't use this
+    
     AWS_S3_OBJECT_PARAMETERS = {
         "CacheControl": "max-age=86400",
     }
     AWS_DEFAULT_ACL = None  # R2 doesn't use ACLs
     AWS_QUERYSTRING_AUTH = False
     AWS_S3_FILE_OVERWRITE = False  # Preserve existing files
+    AWS_S3_USE_SSL = True
+    AWS_S3_VERIFY = True
     
-    # Override MEDIA_URL for R2
-    MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/images/"
+    # Override MEDIA_URL for R2 public access
+    MEDIA_URL = f"{R2_PUBLIC_URL}/"
     
     # Storage backends
     STORAGES = {
         "default": {
             "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+            "OPTIONS": {
+                "access_key": AWS_ACCESS_KEY_ID,
+                "secret_key": AWS_SECRET_ACCESS_KEY,
+                "bucket_name": AWS_STORAGE_BUCKET_NAME,
+                "endpoint_url": AWS_S3_ENDPOINT_URL,
+                "region_name": AWS_S3_REGION_NAME,
+                "default_acl": AWS_DEFAULT_ACL,
+                "querystring_auth": AWS_QUERYSTRING_AUTH,
+                "file_overwrite": AWS_S3_FILE_OVERWRITE,
+                "object_parameters": AWS_S3_OBJECT_PARAMETERS,
+            }
         },
         "staticfiles": {
             "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",

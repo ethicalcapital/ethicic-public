@@ -1,88 +1,52 @@
 """
-Test R2 storage connectivity and configuration
+Test R2 storage configuration and URL generation.
 """
 
-import os
-
-from django.conf import settings
-from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
 from django.core.management.base import BaseCommand
+from django.conf import settings
+from django.core.files.storage import default_storage
+from wagtail.images.models import Image
 
 
 class Command(BaseCommand):
-    help = "Test R2 storage configuration and connectivity"
+    help = "Test R2 storage configuration"
 
     def handle(self, *args, **options):
-        self.stdout.write("🔍 Testing R2 storage configuration...")
-
-        # Check settings
-        self.stdout.write("📋 Current storage settings:")
-        if hasattr(settings, "STORAGES"):
-            storage_config = settings.STORAGES.get("default", {})
-            self.stdout.write(
-                f"  Storage Backend: {storage_config.get('BACKEND', 'Not set')}"
-            )
-            self.stdout.write(
-                f"  Storage Options: {list(storage_config.get('OPTIONS', {}).keys())}"
-            )
-        else:
-            self.stdout.write("  ❌ STORAGES not configured")
-
-        self.stdout.write(f"  MEDIA_URL: {settings.MEDIA_URL}")
-
-        # Check environment variables
-        self.stdout.write("🔐 R2 credentials:")
-        access_key = os.getenv("R2_ACCESS_KEY_ID")
-        secret_key = os.getenv("R2_SECRET_ACCESS_KEY")
-        self.stdout.write(
-            f"  R2_ACCESS_KEY_ID: {'✅ Set' if access_key else '❌ Missing'}"
-        )
-        self.stdout.write(
-            f"  R2_SECRET_ACCESS_KEY: {'✅ Set' if secret_key else '❌ Missing'}"
-        )
-
-        # Test storage connection
-        try:
-            self.stdout.write("📁 Testing file operations...")
-
-            # Create a test file
-            test_content = "This is a test file for R2 storage"
-            test_file = ContentFile(test_content.encode("utf-8"))
-
-            # Save the file
-            file_name = "test_r2_connection.txt"
-            saved_name = default_storage.save(file_name, test_file)
-            self.stdout.write(f"✅ File saved as: {saved_name}")
-
-            # Check if file exists
-            if default_storage.exists(saved_name):
-                self.stdout.write("✅ File exists in storage")
-
-                # Get file URL
-                file_url = default_storage.url(saved_name)
-                self.stdout.write(f"🔗 File URL: {file_url}")
-
-                # Try to read the file back
-                stored_file = default_storage.open(saved_name)
-                content = stored_file.read().decode("utf-8")
-                if content == test_content:
-                    self.stdout.write("✅ File content matches")
-                else:
-                    self.stdout.write("❌ File content mismatch")
-                stored_file.close()
-
-                # Clean up
-                default_storage.delete(saved_name)
-                self.stdout.write("🗑️ Test file cleaned up")
-
-            else:
-                self.stdout.write("❌ File not found in storage after save")
-
-        except Exception as e:
-            self.stdout.write(f"❌ Storage test failed: {str(e)}")
-            import traceback
-
-            self.stdout.write(f"Full error: {traceback.format_exc()}")
-
-        self.stdout.write("✅ R2 storage test complete")
+        self.stdout.write("\n=== R2 Storage Configuration Test ===\n")
+        
+        # Check configuration
+        self.stdout.write(f"USE_R2: {getattr(settings, 'USE_R2', False)}")
+        self.stdout.write(f"MEDIA_URL: {settings.MEDIA_URL}")
+        
+        if hasattr(settings, 'AWS_S3_ENDPOINT_URL'):
+            self.stdout.write(f"AWS_S3_ENDPOINT_URL: {settings.AWS_S3_ENDPOINT_URL}")
+            self.stdout.write(f"AWS_STORAGE_BUCKET_NAME: {settings.AWS_STORAGE_BUCKET_NAME}")
+            self.stdout.write(f"R2_PUBLIC_URL: {getattr(settings, 'R2_PUBLIC_URL', 'Not set')}")
+        
+        # Check storage backend
+        self.stdout.write(f"\nDefault storage backend: {default_storage.__class__.__name__}")
+        
+        # Test with an actual image
+        images = Image.objects.all()[:1]
+        if images:
+            image = images[0]
+            self.stdout.write(f"\nTesting with image: {image.title}")
+            self.stdout.write(f"File name: {image.file.name}")
+            self.stdout.write(f"File URL: {image.file.url}")
+            
+            # Test rendition
+            try:
+                rendition = image.get_rendition('width-400')
+                self.stdout.write(f"Rendition URL: {rendition.url}")
+                self.stdout.write(f"Full rendition URL: {rendition.file.url}")
+            except Exception as e:
+                self.stdout.write(f"Error creating rendition: {e}")
+        
+        # Show what URL pattern we're expecting
+        self.stdout.write("\n=== Expected URL Patterns ===")
+        self.stdout.write("For R2 public access, URLs should be one of:")
+        self.stdout.write("1. https://{account-id}.r2.cloudflarestorage.com/{bucket}/{key}")
+        self.stdout.write("2. https://pub-{hash}.r2.dev/{key}")
+        self.stdout.write("3. Custom domain if configured")
+        
+        self.stdout.write("\n=== End Test ===\n")
