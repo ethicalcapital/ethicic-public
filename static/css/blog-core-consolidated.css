@@ -5,7 +5,7 @@
  */
 
 @layer components {
-  /* ===== CORE BLOG LAYOUT ===== */
+  /* ===== CORE BLOG LAYOUT */
 
   /* Blog container and base structure */
   .blog-container {
@@ -33,7 +33,7 @@
     text-align: center;
   }
 
-  /* ===== BLOG POST CONTENT ===== */
+  /* ===== BLOG POST CONTENT */
 
   .blog-post {
     background: var(--color-surface);
@@ -73,7 +73,7 @@
     color: var(--color-primary);
   }
 
-  /* ===== BLOG CONTENT STYLING ===== */
+  /* ===== BLOG CONTENT STYLING */
 
   .blog-content {
     color: var(--color-text-primary);
@@ -170,7 +170,7 @@
     color: var(--color-primary-hover);
   }
 
-  /* ===== BLOG TAGS ===== */
+  /* ===== BLOG TAGS */
 
   .blog-tags {
     display: flex;
@@ -195,7 +195,7 @@
     color: var(--color-on-primary);
   }
 
-  /* ===== NEWSLETTER SECTION ===== */
+  /* ===== NEWSLETTER SECTION */
 
   .article-newsletter-cta {
     background: var(--color-primary-alpha-10);
@@ -272,7 +272,7 @@
 }
 
 @layer responsive {
-  /* ===== MOBILE OPTIMIZATIONS ===== */
+  /* ===== MOBILE OPTIMIZATIONS */
 
   @media (width <= 768px) {
     .blog-container {
@@ -306,7 +306,7 @@
 }
 
 @layer themes {
-  /* ===== DARK MODE SUPPORT ===== */
+  /* ===== DARK MODE SUPPORT */
 
   [data-theme="dark"] .blog-post {
     background: var(--color-surface);

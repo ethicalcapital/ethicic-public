@@ -10,7 +10,7 @@
  */
 
 @layer components {
-  /* ===== HEADER DROPDOWN SUPPORT ===== */
+  /* ===== HEADER DROPDOWN SUPPORT */
 
   /* Ensure header supports dropdown components */
   .garden-header {
@@ -32,7 +32,7 @@
     overflow: visible;
   }
 
-  /* ===== SEARCH COMPONENTS ===== */
+  /* ===== SEARCH COMPONENTS */
 
   /* Main search container */
   .garden-search,
@@ -151,7 +151,7 @@
     stroke-width: 2;
   }
 
-  /* ===== SEARCH RESULTS ===== */
+  /* ===== SEARCH RESULTS */
 
   /* Search results dropdown */
   .garden-search-results,
@@ -235,7 +235,7 @@
     font-weight: var(--font-medium);
   }
 
-  /* ===== LOGIN DROPDOWN COMPONENT ===== */
+  /* ===== LOGIN DROPDOWN COMPONENT */
 
   /* Login container - positioned for dropdown */
   .garden-login-container {
@@ -314,7 +314,7 @@
     pointer-events: none;
   }
 
-  /* ===== DROPDOWN CONTENT STYLING ===== */
+  /* ===== DROPDOWN CONTENT STYLING */
 
   /* Login items - actual implementation */
   .garden-login-item {
@@ -438,7 +438,7 @@
 }
 
 @layer themes {
-  /* ===== THEME SUPPORT ===== */
+  /* ===== THEME SUPPORT */
 
   /* Dark theme adjustments for search */
   [data-theme="dark"] .garden-search-input,
@@ -464,7 +464,7 @@
 }
 
 @layer responsive {
-  /* ===== RESPONSIVE DESIGN ===== */
+  /* ===== RESPONSIVE DESIGN */
 
   @media (width <= 768px) {
     .garden-header .garden-search-container {
@@ -526,7 +526,7 @@
 }
 
 @layer accessibility {
-  /* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+  /* ===== ACCESSIBILITY ENHANCEMENTS */
 
   /* Screen reader support for search */
   .garden-search-label,

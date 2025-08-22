@@ -6,10 +6,13 @@
  * Contains: CSS Layers, Design Tokens, Theme Definitions, Reset Styles
  */
 
-/* ===== CSS LAYERS ===== */
+/* Typography configuration is now centralized in typography-config.css */
+/* These font variables reference the centralized configuration loaded in base template */
+
+/* ===== CSS LAYERS */
 @layer reset, tokens, themes, base, components, utilities;
 
-/* ===== CORE DESIGN TOKENS ===== */
+/* ===== CORE DESIGN TOKENS */
 @layer tokens {
   :root {
     --color-primary: var(--theme-primary);
@@ -114,36 +117,7 @@
     --color-shadow-40: #0006;
     --color-shadow-50: #00000080;
     --color-shadow-80: #000c;
-    --font-mono: var(--font-sans);
-    --font-sans:
-      "Inter", "Source Sans Pro", -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Helvetica Neue", arial,
-      sans-serif;
-    --font-body: "Inter", "Source Sans Pro", system-ui, -apple-system, sans-serif;
-    --font-heading: var(--font-sans);
-    --font-ui: var(--font-sans);
-    --font-code: var(--font-sans);
-    --font-data: var(--font-sans);
-    --font-terminal: var(--font-sans);
-    --font-xs: 12px;
-    --font-sm: 14px;
-    --font-base: 16px; /* Minimum accessible body text size */
-    --font-md: 18px;
-    --font-lg: 20px;
-    --font-xl: 24px;
-    --font-2xl: 30px;
-    --font-3xl: 36px;
-
-    /* Additional text sizes */
-    --text-lg: 20px;
-    --text-xl: 24px;
-    --text-4xl: 36px;
-    --font-size-lg: 20px;
-    --font-size-xl: 24px;
-    --font-light: 300;
-    --font-normal: 400;
-    --font-medium: 500;
-    --font-semibold: 600;
-    --font-bold: 700;
+    /* Font variables now imported from typography-config.css */
     --space-1: 4px;
     --space-2: 8px;
     --space-3: 12px;
@@ -180,7 +154,7 @@
     --z-popover: 1060;
     --z-tooltip: 1070;
 
-    /* ===== RESPONSIVE BREAKPOINTS ===== */
+    /* ===== RESPONSIVE BREAKPOINTS */
     /* Standardized breakpoint system for consistent responsive design */
     --breakpoint-xs: 480px; /* Mobile phones (portrait) */
     --breakpoint-sm: 640px; /* Large mobile (landscape) / Small tablet */
@@ -241,9 +215,9 @@
     --syntax-selector: var(--color-primary);
   }
 
-  /* ===== THEME DEFINITIONS ===== */
+  /* ===== THEME DEFINITIONS */
   @layer themes {
-    /* ===== PURPLE DARK THEME (Default) ===== */
+    /* ===== PURPLE DARK THEME (Default) */
     :root,
     [data-theme="purple-dark"] {
       --theme-primary: #1f0322; /* Dark purple */
@@ -352,7 +326,7 @@
       --terminal-hover: var(--theme-hover);
     }
 
-    /* ===== PURPLE LIGHT THEME ===== */
+    /* ===== PURPLE LIGHT THEME */
     [data-theme="light"],
     [data-theme="purple-light"] {
       --theme-primary: #b57edc; /* Lavender */
@@ -508,7 +482,7 @@
       --garden-surface: var(--theme-surface);
     }
 
-    /* ===== AUTO THEME (Follows system preference) ===== */
+    /* ===== AUTO THEME (Follows system preference) */
     @media (prefers-color-scheme: light) {
       [data-theme="auto"] {
         --theme-primary: var(--garden-accent);
@@ -535,7 +509,7 @@
       }
     }
 
-    /* ===== EXAMPLE EXTENSIBLE THEMES (Demonstrates future flexibility) ===== */
+    /* ===== EXAMPLE EXTENSIBLE THEMES (Demonstrates future flexibility) */
 
     /* Blue Theme - Shows how easy it is to add new brand colors */
     [data-theme="blue-light"] {

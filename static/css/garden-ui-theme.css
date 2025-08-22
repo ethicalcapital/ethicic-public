@@ -4,10 +4,13 @@
  * Purple accent (var(--garden-accent)) with sophisticated theming
  */
 
-/* ===== CSS LAYERS ===== */
+/* Typography configuration is now centralized in typography-config.css */
+/* These font variables reference the centralized configuration loaded in base template */
+
+/* ===== CSS LAYERS */
 @layer reset, tokens, themes, base, components, utilities;
 
-/* ===== CORE DESIGN TOKENS ===== */
+/* ===== CORE DESIGN TOKENS */
 @layer tokens {
   :root {
     --color-primary: var(--theme-primary);
@@ -113,35 +116,7 @@
     --color-shadow-40: #00000066;
     --color-shadow-50: #00000080;
     --color-shadow-80: #000000cc;
-    --font-mono: var(--font-sans);
-    --font-sans:
-      "Inter", "Source Sans Pro", -apple-system, blinkmacsystemfont, "Segoe UI", "Roboto", "Helvetica Neue", arial,
-      sans-serif;
-    --font-body: "Inter", "Source Sans Pro", system-ui, -apple-system, sans-serif;
-    --font-heading: var(--font-sans);
-    --font-ui: var(--font-sans);
-    --font-code: var(--font-sans);
-    --font-data: var(--font-sans);
-    --font-terminal: var(--font-sans);
-    --font-xs: 12px;
-    --font-sm: 14px;
-    --font-base: 16px; /* Minimum accessible body text size */
-    --font-md: 18px;
-    --font-lg: 20px;
-    --font-xl: 24px;
-    --font-2xl: 30px;
-    --font-3xl: 36px;
-    /* Additional text sizes */
-    --text-lg: 20px;
-    --text-xl: 24px;
-    --text-4xl: 36px;
-    --font-size-lg: 20px;
-    --font-size-xl: 24px;
-    --font-light: 300;
-    --font-normal: 400;
-    --font-medium: 500;
-    --font-semibold: 600;
-    --font-bold: 700;
+    /* Font variables now imported from typography-config.css */
     --space-1: 4px;
     --space-2: 8px;
     --space-3: 12px;
@@ -178,7 +153,7 @@
     --z-popover: 1060;
     --z-tooltip: 1070;
 
-    /* ===== RESPONSIVE BREAKPOINTS ===== */
+    /* ===== RESPONSIVE BREAKPOINTS */
     /* Standardized breakpoint system for consistent responsive design */
     --breakpoint-xs: 480px; /* Mobile phones (portrait) */
     --breakpoint-sm: 640px; /* Large mobile (landscape) / Small tablet */
@@ -239,9 +214,9 @@
     --syntax-selector: var(--color-primary);
   }
 
-  /* ===== THEME DEFINITIONS ===== */
+  /* ===== THEME DEFINITIONS */
   @layer themes {
-    /* ===== PURPLE DARK THEME (Default) ===== */
+    /* ===== PURPLE DARK THEME (Default) */
     :root,
     [data-theme="purple-dark"] {
       --theme-primary: #1f0322; /* Dark purple */
@@ -351,7 +326,7 @@
       --terminal-hover: var(--theme-hover);
     }
 
-    /* ===== PURPLE LIGHT THEME ===== */
+    /* ===== PURPLE LIGHT THEME */
     [data-theme="light"],
     [data-theme="purple-light"] {
       --theme-primary: #b57edc; /* Lavender */
@@ -508,7 +483,7 @@
       --garden-surface: var(--theme-surface);
     }
 
-    /* ===== AUTO THEME (Follows system preference) ===== */
+    /* ===== AUTO THEME (Follows system preference) */
     @media (prefers-color-scheme: light) {
       [data-theme="auto"] {
         --theme-primary: var(--garden-accent);
@@ -535,7 +510,7 @@
       }
     }
 
-    /* ===== EXAMPLE EXTENSIBLE THEMES (Demonstrates future flexibility) ===== */
+    /* ===== EXAMPLE EXTENSIBLE THEMES (Demonstrates future flexibility) */
 
     /* Blue Theme - Shows how easy it is to add new brand colors */
     [data-theme="blue-light"] {
@@ -824,7 +799,7 @@
     }
   }
 
-  /* ===== RESET & BASE STYLES ===== */
+  /* ===== RESET & BASE STYLES */
   @layer reset {
     *,
     *::before,
@@ -862,9 +837,9 @@
     }
   }
 
-  /* ===== DEWEY UI COMPONENTS ===== */
+  /* ===== DEWEY UI COMPONENTS */
   @layer components {
-    /* ===== COMPREHENSIVE PANEL SYSTEM ===== */
+    /* ===== COMPREHENSIVE PANEL SYSTEM */
     /* Consolidated from garden-platform.css for single source of truth */
 
     /* Base Panel Styles */
@@ -1175,7 +1150,7 @@
       flex-direction: column;
     }
 
-    /* ===== SEMANTIC BUTTON SYSTEM WITH BRACKETS ===== */
+    /* ===== SEMANTIC BUTTON SYSTEM WITH BRACKETS */
     /* Base button styles - shared by all variants */
     .garden-action {
       padding: var(--space-2) var(--space-4);
@@ -1623,7 +1598,7 @@
       transform: translateY(-1px);
     }
 
-    /* === WORKBENCH BUTTONS - Garden UI Compliant === */
+    /* === WORKBENCH BUTTONS - Garden UI Compliant */
     /* Custom workbench styles removed - using standardized garden-action system */
 
     /* Universal Button Base - Apply to all button-like elements */
@@ -1921,7 +1896,7 @@
       border-top: 1px solid var(--garden-border);
     }
 
-    /* ===== LAYOUT UTILITIES ===== */
+    /* ===== LAYOUT UTILITIES */
     @layer utilities {
       .workbench-container {
         font-family: var(--font-mono);
@@ -2386,7 +2361,7 @@
       }
     }
 
-    /* ===== THEME TOGGLE SYSTEM ===== */
+    /* ===== THEME TOGGLE SYSTEM */
     /* Default standalone theme toggle for pages without navigation */
     .theme-toggle.standalone {
       position: fixed;
@@ -2439,7 +2414,7 @@
 
     /* ========================================================================
    FORM SYSTEM - Complete Form Component Styling
-   ======================================================================== */
+   */
 
     @layer components {
       /* Form Container */
@@ -2677,7 +2652,7 @@
 
     /* ========================================================================
    TYPOGRAPHY SYSTEM - Universal Font Classes and Utilities
-   ======================================================================== */
+   */
 
     @layer components {
       /* Font utility classes for semantic usage */
@@ -2806,7 +2781,7 @@
 
     /* ========================================================================
    NAVIGATION SYSTEM - Breadcrumb and Context Menu Components
-   ======================================================================== */
+   */
 
     @layer components {
       /* Breadcrumb Navigation */
@@ -3020,7 +2995,7 @@
       transform: none !important;
     }
 
-    /* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+    /* ===== ACCESSIBILITY IMPROVEMENTS */
 
     /* Ensure all purple/accent backgrounds have sufficient contrast */
     [style*="background-color: var(--garden-accent)"],
@@ -3196,7 +3171,7 @@
       }
     }
 
-    /* ===== COMPONENT-SPECIFIC STYLES ===== */
+    /* ===== COMPONENT-SPECIFIC STYLES */
 
     /* Universal Data Table Styles */
     .garden-data-table {
@@ -3529,7 +3504,7 @@
       font-family: var(--font-mono);
     }
 
-    /* ===== MARKDOWN CONTENT STYLES ===== */
+    /* ===== MARKDOWN CONTENT STYLES */
     @layer components {
       .markdown-content {
         line-height: var(--line-height-relaxed);
@@ -3718,7 +3693,7 @@
         font-size: var(--font-xs);
       }
 
-      /* ===== TERMINAL UI COMPATIBILITY LAYER ===== */
+      /* ===== TERMINAL UI COMPATIBILITY LAYER */
       /* Ensures garden UI has all terminal functionality */
 
       /* Alternative Grid Layout System */
@@ -4029,7 +4004,7 @@
       }
     }
 
-    /* ===== AI SETTINGS FIXES ===== */
+    /* ===== AI SETTINGS FIXES */
     /* AI Settings Button Fix - Override any rotation */
     #aiSettings {
       transform: none !important;
@@ -4064,7 +4039,7 @@
       animation: none !important;
     }
 
-    /* ===== UTILITY CLASSES FOR INLINE STYLE CLEANUP ===== */
+    /* ===== UTILITY CLASSES FOR INLINE STYLE CLEANUP */
     @layer utilities {
       /* Evidence/Insight Item Patterns */
       .evidence-header {
@@ -5636,7 +5611,7 @@
 
       /* ========================================================================
    KPI CARD COMPONENTS - For key statistics blocks
-   ======================================================================== */
+   */
 
       .kpi-card {
         background: var(--color-surface);
@@ -5794,7 +5769,7 @@
 
       /* ========================================================================
    TEXT WRAPPING UTILITIES - For elegant responsive text display
-   ======================================================================== */
+   */
 
       .text-wrap-elegant {
         word-break: break-all;
@@ -5925,7 +5900,7 @@
         margin-top: 16px;
       }
 
-      /* ===== INTEGRATION FORM COMPONENTS ===== */
+      /* ===== INTEGRATION FORM COMPONENTS */
 
       /* Main layout containers */
       .integration-workbench-container {
@@ -6108,7 +6083,7 @@
         margin-bottom: 0;
       }
 
-      /* ===== CALENDAR WIDGET COMPONENTS ===== */
+      /* ===== CALENDAR WIDGET COMPONENTS */
 
       /* Calendar widget container */
       .calendar-widget-content {
@@ -6246,7 +6221,7 @@
       /* ========================================================================
    RESPONSIVE DESIGN UTILITIES
    Standardized responsive classes using Garden UI breakpoint system
-   ======================================================================== */
+   */
 
       /* Responsive Container Classes */
       .container {
@@ -6335,7 +6310,7 @@
 
       /* Mobile Navigation Utilities - Moved to responsive-utilities-layered.css */
 
-      /* ===== HITL QUEUE STYLES ===== */
+      /* ===== HITL QUEUE STYLES */
       /* Evidence item styles for queue items */
       .evidence-list {
         display: flex;
@@ -6688,7 +6663,7 @@
 
       /* ========================================================================
    HITL QUEUE SPECIFIC STYLES - Full-Width Table Layout
-   ======================================================================== */
+   */
 
       /* Wrapper to break out of constrained layout but preserve header */
       .hitl-queue-wrapper {
@@ -7352,7 +7327,7 @@
 
   /* ========================================================================
    MOBILE NAVIGATION SYSTEM - Responsive Navigation Components
-   ======================================================================== */
+   */
 
   /* Mobile hamburger menu button */
   .garden-hamburger,
@@ -7533,7 +7508,7 @@
   }
 }
 
-/* ===== BLOG POST TEXT CONTRAST FIXES ===== */
+/* ===== BLOG POST TEXT CONTRAST FIXES */
 @layer components {
   /* Fix prose text colors for better contrast */
   .prose {

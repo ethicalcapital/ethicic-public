@@ -4,7 +4,7 @@
  */
 
 @layer components {
-  /* ===== BUTTON FOUNDATION ===== */
+  /* ===== BUTTON FOUNDATION */
 
   /* Base button styles - applies to all Garden buttons */
   .garden-action,
@@ -51,7 +51,7 @@
     text-overflow: ellipsis;
   }
 
-  /* ===== BUTTON VARIANTS ===== */
+  /* ===== BUTTON VARIANTS */
 
   /* Primary buttons - Purple background, white text */
   .garden-action.primary,
@@ -103,7 +103,7 @@
     border-color: var(--color-primary);
   }
 
-  /* ===== BUTTON STATES ===== */
+  /* ===== BUTTON STATES */
 
   /* Focus state for accessibility */
   .garden-action:focus-visible,
@@ -150,7 +150,7 @@
     }
   }
 
-  /* ===== SPECIFIC USE CASES ===== */
+  /* ===== SPECIFIC USE CASES */
 
   /* CTA Panel buttons */
   .cta-panel .garden-action,
@@ -192,7 +192,7 @@
     flex-shrink: 0;
   }
 
-  /* ===== BUTTON GROUPS ===== */
+  /* ===== BUTTON GROUPS */
 
   /* Button group spacing */
   .garden-button-group {
@@ -206,7 +206,7 @@
     margin: 0; /* Reset any inherited margins */
   }
 
-  /* ===== RESPONSIVE DESIGN ===== */
+  /* ===== RESPONSIVE DESIGN */
 
   /* Mobile optimizations */
   @media (width <= 768px) {
@@ -262,7 +262,7 @@
     }
   }
 
-  /* ===== THEME SUPPORT ===== */
+  /* ===== THEME SUPPORT */
 
   /* Dark theme adjustments for secondary buttons */
   [data-theme="dark"] .garden-action.secondary,
@@ -280,7 +280,7 @@
     box-shadow: 0 2px 8px rgb(157 123 218 / 20%);
   }
 
-  /* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+  /* ===== ACCESSIBILITY ENHANCEMENTS */
 
   /* High contrast mode support */
   @media (prefers-contrast: high) {
@@ -320,7 +320,7 @@
 }
 
 @layer utilities {
-  /* ===== EMERGENCY OVERRIDES ===== */
+  /* ===== EMERGENCY OVERRIDES */
   /* High-specificity fixes when component layer isn't sufficient */
 
   /* Force button alignment in problematic containers */

@@ -5,7 +5,7 @@
  */
 
 @layer components {
-  /* ===== BLOG HERO SECTION ===== */
+  /* ===== BLOG HERO SECTION */
 
   .blog-hero {
     background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
@@ -48,7 +48,7 @@
     margin-right: auto;
   }
 
-  /* ===== ARTICLE CARDS ===== */
+  /* ===== ARTICLE CARDS */
 
   .blog-articles-grid {
     display: grid;
@@ -126,7 +126,7 @@
     color: var(--color-primary);
   }
 
-  /* ===== BLOG SIDEBAR ===== */
+  /* ===== BLOG SIDEBAR */
 
   .blog-layout {
     display: grid;
@@ -213,7 +213,7 @@
     color: var(--color-primary);
   }
 
-  /* ===== BLOG PANELS ===== */
+  /* ===== BLOG PANELS */
 
   .blog-panel {
     background: var(--color-surface);
@@ -240,7 +240,7 @@
     padding: var(--space-6);
   }
 
-  /* ===== FEATURED ARTICLES ===== */
+  /* ===== FEATURED ARTICLES */
 
   .featured-articles {
     background: var(--color-primary-alpha-5);
@@ -277,7 +277,7 @@
     box-shadow: var(--shadow-md);
   }
 
-  /* ===== BLOG NAVIGATION ===== */
+  /* ===== BLOG NAVIGATION */
 
   .blog-pagination {
     display: flex;
@@ -319,7 +319,7 @@
 }
 
 @layer responsive {
-  /* ===== MOBILE OPTIMIZATIONS ===== */
+  /* ===== MOBILE OPTIMIZATIONS */
 
   @media (width <= 1024px) {
     .blog-layout {
@@ -371,7 +371,7 @@
 }
 
 @layer themes {
-  /* ===== DARK MODE SUPPORT ===== */
+  /* ===== DARK MODE SUPPORT */
 
   [data-theme="dark"] .blog-hero {
     background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));

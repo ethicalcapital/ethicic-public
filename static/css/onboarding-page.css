@@ -5,7 +5,7 @@
  */
 
 @layer components {
-  /* ===== FORM FOUNDATION ===== */
+  /* ===== FORM FOUNDATION */
 
   /* Form Section Styling */
   .onboarding-page.comprehensive .form-section {
@@ -603,7 +603,7 @@
   }
 }
 
-/* ===== MOBILE OPTIMIZATION ===== */
+/* ===== MOBILE OPTIMIZATION */
 
 /* Hero Section Mobile Optimization */
 @media (width <= 767px) {

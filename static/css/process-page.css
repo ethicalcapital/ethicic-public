@@ -5,7 +5,7 @@
  */
 
 @layer components {
-  /* ===== BASE PROCESS PAGE STYLES ===== */
+  /* ===== BASE PROCESS PAGE STYLES */
 
   .process-page {
     color: var(--garden-color-gray-900);
@@ -74,7 +74,7 @@
     color: var(--garden-color-gray-800);
   }
 
-  /* ===== PANEL COMPONENTS ===== */
+  /* ===== PANEL COMPONENTS */
 
   .garden-panel {
     margin-bottom: 3rem;
@@ -99,7 +99,7 @@
     color: var(--garden-color-white);
   }
 
-  /* ===== EXCLUSIONS SECTION ===== */
+  /* ===== EXCLUSIONS SECTION */
 
   .exclusions-section {
     margin-bottom: 3rem;
@@ -163,7 +163,7 @@
     margin-bottom: 0.25rem;
   }
 
-  /* ===== SCREENING COMPONENTS ===== */
+  /* ===== SCREENING COMPONENTS */
 
   .screening-stats {
     display: grid;
@@ -212,7 +212,7 @@
     margin-top: 0.25rem;
   }
 
-  /* ===== CRITERIA SECTION ===== */
+  /* ===== CRITERIA SECTION */
 
   .criteria-grid {
     display: grid;
@@ -248,7 +248,7 @@
     margin-bottom: 0.5rem;
   }
 
-  /* ===== PRINCIPLES SECTION ===== */
+  /* ===== PRINCIPLES SECTION */
 
   .principles-section {
     margin-top: 3rem;
@@ -303,7 +303,7 @@
     line-height: 1.5;
   }
 
-  /* ===== STRATEGY AND METHODOLOGY ===== */
+  /* ===== STRATEGY AND METHODOLOGY */
 
   .strategy-overview {
     margin-top: 2rem;
@@ -352,7 +352,7 @@
     color: var(--theme-primary);
   }
 
-  /* ===== POLICY TRANSPARENCY ===== */
+  /* ===== POLICY TRANSPARENCY */
 
   .policy-transparency {
     background: var(--garden-color-gray-50);
@@ -384,7 +384,7 @@
     text-decoration-thickness: 2px;
   }
 
-  /* ===== INSIGHT CALLOUT ===== */
+  /* ===== INSIGHT CALLOUT */
 
   .insight-callout {
     background: var(--color-surface-variant);
@@ -398,7 +398,7 @@
     color: var(--theme-primary);
   }
 
-  /* ===== CTA SECTION ===== */
+  /* ===== CTA SECTION */
 
   .cta-panel {
     background: var(--theme-primary);
@@ -447,7 +447,7 @@
     color: var(--garden-color-white);
   }
 
-  /* ===== UTILITY STYLES ===== */
+  /* ===== UTILITY STYLES */
 
   .tagline-text {
     font-size: 1.125rem;
@@ -462,7 +462,7 @@
 }
 
 @layer themes {
-  /* ===== PROCESS PAGE DARK THEME ===== */
+  /* ===== PROCESS PAGE DARK THEME */
 
   /* Process steps - dark theme styling */
   [data-theme="dark"] .process-page .process-step,
@@ -480,7 +480,7 @@
     border-width: 2px;
   }
 
-  /* ===== PANEL COMPONENTS ===== */
+  /* ===== PANEL COMPONENTS */
 
   /* Panel content backgrounds */
   [data-theme="dark"] .process-page .garden-panel-content,
@@ -497,7 +497,7 @@
     color: var(--garden-fg);
   }
 
-  /* ===== EXCLUSIONS SECTION ===== */
+  /* ===== EXCLUSIONS SECTION */
 
   /* Exclusions section containers */
   [data-theme="dark"] .process-page .exclusions-section,
@@ -526,7 +526,7 @@
     border: 1px solid var(--color-border);
   }
 
-  /* ===== SCREENING COMPONENTS ===== */
+  /* ===== SCREENING COMPONENTS */
 
   /* Screening stats container */
   [data-theme="dark"] .process-page .screening-stats,
@@ -546,7 +546,7 @@
     color: var(--garden-fg);
   }
 
-  /* ===== EXCLUSION CARDS ===== */
+  /* ===== EXCLUSION CARDS */
 
   /* Individual exclusion cards */
   [data-theme="dark"] .process-page .exclusion-card,
@@ -571,7 +571,7 @@
     color: var(--color-text-primary);
   }
 
-  /* ===== INTERACTIVE ELEMENTS ===== */
+  /* ===== INTERACTIVE ELEMENTS */
 
   /* Process step buttons */
   [data-theme="dark"] .process-page .step-button,
@@ -598,7 +598,7 @@
     color: var(--color-primary-hover);
   }
 
-  /* ===== TEXT ELEMENTS ===== */
+  /* ===== TEXT ELEMENTS */
 
   /* Process step titles */
   [data-theme="dark"] .process-page .step-title,
@@ -624,7 +624,7 @@
     color: var(--color-text-secondary);
   }
 
-  /* ===== FORM ELEMENTS ===== */
+  /* ===== FORM ELEMENTS */
 
   /* Process form inputs */
   [data-theme="dark"] .process-page .garden-input,
@@ -646,7 +646,7 @@
     color: var(--garden-fg);
   }
 
-  /* ===== TABLES AND DATA ===== */
+  /* ===== TABLES AND DATA */
 
   /* Process data tables */
   [data-theme="dark"] .process-page .data-table,
@@ -675,7 +675,7 @@
     background: var(--color-surface-variant);
   }
 
-  /* ===== PROGRESS INDICATORS ===== */
+  /* ===== PROGRESS INDICATORS */
 
   /* Process progress bars */
   [data-theme="dark"] .process-page .progress-bar,
@@ -703,7 +703,7 @@
     border-color: var(--color-primary);
   }
 
-  /* ===== ACCESSIBILITY SUPPORT ===== */
+  /* ===== ACCESSIBILITY SUPPORT */
 
   /* High contrast mode adjustments */
   @media (prefers-contrast: high) {

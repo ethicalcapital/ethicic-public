@@ -4,7 +4,7 @@
  * Extracted from garden-ui-public.css for better maintainability
  */
 
-/* ===== SEMANTIC BUTTON SYSTEM WITH BRACKETS ===== */
+/* ===== SEMANTIC BUTTON SYSTEM WITH BRACKETS */
 /* Base button styles - shared by all variants */
 .garden-action {
   padding: var(--space-2) var(--space-4);
@@ -452,7 +452,7 @@
   transform: translateY(-1px);
 }
 
-/* === WORKBENCH BUTTONS - Garden UI Compliant === */
+/* === WORKBENCH BUTTONS - Garden UI Compliant */
 /* Custom workbench styles removed - using standardized garden-action system */
 
 /* Universal Button Base - Apply to all button-like elements */

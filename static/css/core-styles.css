@@ -1,4 +1,4 @@
-/* ===== CSS RESET & BASE ===== */
+/* ===== CSS RESET & BASE */
 
 html {
   margin: 0;
@@ -95,7 +95,7 @@ select:focus {
   box-shadow: 0 0 0 3px var(--garden-accent);
 }
 
-/* ===== FORMS ===== */
+/* ===== FORMS */
 input {
   width: 100%;
   padding: 0.75rem;
@@ -631,9 +631,9 @@ td {
   color: var(--garden-color-gray-200);
 }
 
-/* ===== GARDEN ACTION STYLES (ORDERED BY SPECIFICITY) ===== */
+/* ===== GARDEN ACTION STYLES (ORDERED BY SPECIFICITY) */
 
-/* ===== GARDEN ACTION STYLES (ORDERED BY SPECIFICITY) ===== */
+/* ===== GARDEN ACTION STYLES (ORDERED BY SPECIFICITY) */
 .garden-action {
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -668,7 +668,7 @@ td {
   color: var(--garden-color-white);
 }
 
-/* ===== MOBILE NAVIGATION STYLES ===== */
+/* ===== MOBILE NAVIGATION STYLES */
 .garden-mobile-menu-toggle {
   /* Base styles without display property */
   flex-direction: column;

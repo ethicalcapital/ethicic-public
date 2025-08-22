@@ -7,10 +7,10 @@
  * Reduced from 7469 to 5878 lines (21% reduction, ~1591 lines removed)
  */
 
-/* ===== CSS LAYERS ===== */
+/* ===== CSS LAYERS */
 @layer reset, tokens, themes, base, components, utilities;
 
-/* ===== CORE DESIGN TOKENS ===== */
+/* ===== CORE DESIGN TOKENS */
 @layer tokens {
   :root {
     --color-primary: var(--theme-primary);
@@ -181,7 +181,7 @@
     --z-popover: 1060;
     --z-tooltip: 1070;
 
-    /* ===== RESPONSIVE BREAKPOINTS ===== */
+    /* ===== RESPONSIVE BREAKPOINTS */
     /* Standardized breakpoint system for consistent responsive design */
     --breakpoint-xs: 480px; /* Mobile phones (portrait) */
     --breakpoint-sm: 640px; /* Large mobile (landscape) / Small tablet */
@@ -242,9 +242,9 @@
     --syntax-selector: var(--color-primary);
   }
 
-  /* ===== THEME DEFINITIONS ===== */
+  /* ===== THEME DEFINITIONS */
   @layer themes {
-    /* ===== PURPLE DARK THEME (Default) ===== */
+    /* ===== PURPLE DARK THEME (Default) */
     :root,
     [data-theme="purple-dark"] {
       --theme-primary: #1f0322; /* Dark purple */
@@ -353,7 +353,7 @@
       --terminal-hover: var(--theme-hover);
     }
 
-    /* ===== PURPLE LIGHT THEME ===== */
+    /* ===== PURPLE LIGHT THEME */
     [data-theme="light"],
     [data-theme="purple-light"] {
       --theme-primary: #b57edc; /* Lavender */
@@ -509,7 +509,7 @@
       --garden-surface: var(--theme-surface);
     }
 
-    /* ===== AUTO THEME (Follows system preference) ===== */
+    /* ===== AUTO THEME (Follows system preference) */
     @media (prefers-color-scheme: light) {
       [data-theme="auto"] {
         --theme-primary: var(--garden-accent);
@@ -536,7 +536,7 @@
       }
     }
 
-    /* ===== EXAMPLE EXTENSIBLE THEMES (Demonstrates future flexibility) ===== */
+    /* ===== EXAMPLE EXTENSIBLE THEMES (Demonstrates future flexibility) */
 
     /* Blue Theme - Shows how easy it is to add new brand colors */
     [data-theme="blue-light"] {
@@ -825,7 +825,7 @@
     }
   }
 
-  /* ===== RESET & BASE STYLES ===== */
+  /* ===== RESET & BASE STYLES */
   @layer reset {
     *,
     *::before,
@@ -863,9 +863,9 @@
     }
   }
 
-  /* ===== DEWEY UI COMPONENTS ===== */
+  /* ===== DEWEY UI COMPONENTS */
   @layer components {
-    /* ===== LAYOUT UTILITIES ===== */
+    /* ===== LAYOUT UTILITIES */
     @layer utilities {
       .workbench-container {
         font-family: var(--font-mono);
@@ -1330,7 +1330,7 @@
       }
     }
 
-    /* ===== THEME TOGGLE SYSTEM ===== */
+    /* ===== THEME TOGGLE SYSTEM */
     /* Default standalone theme toggle for pages without navigation */
     .theme-toggle.standalone {
       position: fixed;
@@ -1383,7 +1383,7 @@
 
     /* ========================================================================
    FORM SYSTEM - Complete Form Component Styling
-   ======================================================================== */
+   */
 
     @layer components {
       /* Form Container */
@@ -1618,7 +1618,7 @@
 
     /* ========================================================================
    TYPOGRAPHY SYSTEM - Universal Font Classes and Utilities
-   ======================================================================== */
+   */
 
     @layer components {
       /* Font utility classes for semantic usage */
@@ -1747,7 +1747,7 @@
 
     /* ========================================================================
    NAVIGATION SYSTEM - Breadcrumb and Context Menu Components
-   ======================================================================== */
+   */
 
     @layer components {
       /* Breadcrumb Navigation */
@@ -1961,7 +1961,7 @@
       transform: none !important;
     }
 
-    /* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+    /* ===== ACCESSIBILITY IMPROVEMENTS */
 
     /* Ensure all purple/accent backgrounds have sufficient contrast */
     [style*="background-color: var(--garden-accent)"],
@@ -2137,7 +2137,7 @@
       }
     }
 
-    /* ===== COMPONENT-SPECIFIC STYLES ===== */
+    /* ===== COMPONENT-SPECIFIC STYLES */
 
     /* Universal Data Table Styles */
     .garden-data-table {
@@ -2470,7 +2470,7 @@
       font-family: var(--font-mono);
     }
 
-    /* ===== MARKDOWN CONTENT STYLES ===== */
+    /* ===== MARKDOWN CONTENT STYLES */
     @layer components {
       .markdown-content {
         line-height: var(--line-height-relaxed);
@@ -2659,7 +2659,7 @@
         font-size: var(--font-xs);
       }
 
-      /* ===== TERMINAL UI COMPATIBILITY LAYER ===== */
+      /* ===== TERMINAL UI COMPATIBILITY LAYER */
       /* Ensures garden UI has all terminal functionality */
 
       /* Alternative Grid Layout System */
@@ -2970,7 +2970,7 @@
       }
     }
 
-    /* ===== UTILITY CLASSES FOR INLINE STYLE CLEANUP ===== */
+    /* ===== UTILITY CLASSES FOR INLINE STYLE CLEANUP */
     @layer utilities {
       /* Evidence/Insight Item Patterns */
       .evidence-header {
@@ -4093,7 +4093,7 @@
 
     /* ========================================================================
    KPI CARD COMPONENTS - For key statistics blocks
-   ======================================================================== */
+   */
 
     .kpi-card {
       background: var(--color-surface);
@@ -4251,7 +4251,7 @@
 
     /* ========================================================================
    TEXT WRAPPING UTILITIES - For elegant responsive text display
-   ======================================================================== */
+   */
 
     .text-wrap-elegant {
       word-break: break-all;

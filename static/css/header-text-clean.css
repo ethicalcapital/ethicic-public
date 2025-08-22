@@ -4,7 +4,7 @@
  */
 
 @layer components {
-  /* ===== HEADER TEXT FOUNDATION ===== */
+  /* ===== HEADER TEXT FOUNDATION */
 
   /* Base header text styling using theme variables */
   .garden-header {
@@ -33,7 +33,7 @@
     opacity: 0.9;
   }
 
-  /* ===== SEARCH INPUT STYLING ===== */
+  /* ===== SEARCH INPUT STYLING */
 
   /* Search input requires special handling for readability */
   .garden-header .garden-search-input,
@@ -64,7 +64,7 @@
     color: var(--garden-fg);
   }
 
-  /* ===== MOBILE MENU ELEMENTS ===== */
+  /* ===== MOBILE MENU ELEMENTS */
 
   /* Mobile menu toggle bars */
   .garden-header .mobile-menu-toggle span {
@@ -72,7 +72,7 @@
     transition: background-color var(--duration-fast) var(--ease-out);
   }
 
-  /* ===== LOGIN DROPDOWN OVERRIDES ===== */
+  /* ===== LOGIN DROPDOWN OVERRIDES */
 
   /* Login dropdown should use normal text colors, not header colors */
   .garden-login-dropdown,
@@ -90,7 +90,7 @@
     color: var(--color-text-secondary);
   }
 
-  /* ===== PANEL HEADERS ===== */
+  /* ===== PANEL HEADERS */
 
   /* Panel headers should use surface colors, not header colors */
   .garden-panel__header,
@@ -106,7 +106,7 @@
     font-weight: var(--font-semibold);
   }
 
-  /* ===== ACCESSIBILITY SUPPORT ===== */
+  /* ===== ACCESSIBILITY SUPPORT */
 
   /* High contrast mode adjustments */
   @media (prefers-contrast: high) {
@@ -140,7 +140,7 @@
 }
 
 @layer utilities {
-  /* ===== EMERGENCY OVERRIDES ===== */
+  /* ===== EMERGENCY OVERRIDES */
   /* Use utilities layer for any needed high-specificity fixes */
 
   /* Force header text visibility when needed */

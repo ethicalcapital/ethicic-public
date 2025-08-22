@@ -4,7 +4,7 @@
  */
 
 @layer utilities {
-  /* ===== ACCESSIBILITY SKIP LINKS ===== */
+  /* ===== ACCESSIBILITY SKIP LINKS */
 
   /* Skip link for keyboard navigation accessibility */
   .skip-link {
@@ -37,7 +37,7 @@
     outline-offset: 2px;
   }
 
-  /* ===== FOOTER COMPONENT ===== */
+  /* ===== FOOTER COMPONENT */
 
   /* Main footer container */
   .garden-footer {
@@ -69,7 +69,7 @@
     margin-bottom: var(--space-8);
   }
 
-  /* ===== FOOTER SECTIONS ===== */
+  /* ===== FOOTER SECTIONS */
 
   /* Individual footer sections */
   .garden-footer-section {
@@ -97,7 +97,7 @@
     opacity: 0.9;
   }
 
-  /* ===== FOOTER LINKS ===== */
+  /* ===== FOOTER LINKS */
 
   /* Footer navigation lists */
   .garden-footer-nav,
@@ -145,7 +145,7 @@
     border-radius: var(--radius-sm);
   }
 
-  /* ===== FOOTER BOTTOM SECTION ===== */
+  /* ===== FOOTER BOTTOM SECTION */
 
   /* Footer bottom/legal section */
   .garden-footer-bottom,
@@ -182,7 +182,7 @@
     opacity: 0.8;
   }
 
-  /* ===== SOCIAL MEDIA LINKS ===== */
+  /* ===== SOCIAL MEDIA LINKS */
 
   /* Social media section */
   .garden-footer-social {
@@ -223,7 +223,7 @@
     outline-offset: 2px;
   }
 
-  /* ===== RESPONSIVE DESIGN ===== */
+  /* ===== RESPONSIVE DESIGN */
 
   @media (width <= 768px) {
     .garden-footer {
@@ -268,7 +268,7 @@
     }
   }
 
-  /* ===== THEME SUPPORT ===== */
+  /* ===== THEME SUPPORT */
 
   /* Dark theme adjustments */
   [data-theme="dark"] .garden-footer {

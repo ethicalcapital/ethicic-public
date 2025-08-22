@@ -12,21 +12,17 @@
         <!-- Optimized font loading strategy -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
               rel="stylesheet" />
+        <!-- Centralized Typography Configuration -->
+        <link rel="stylesheet" href="{% static 'css/typography-config.css' %}?v=1" />
         <!-- Tailwind CSS with Ethical Capital Design System -->
         <link rel="stylesheet" href="{% static 'css/dist/tailwind.min.css' %}?v=2" />
         <!-- Enhanced Typography using Tailwind CSS -->
         <style>
       .prose {
         @apply max-w-none text-lg leading-relaxed font-normal tracking-tight text-slate-300;
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
+        font-family: var(--font-family-body);
       }
 
       .prose > * + * {
@@ -40,7 +36,8 @@
       .prose h4,
       .prose h5,
       .prose h6 {
-        @apply scroll-mt-8 font-sans leading-tight font-bold tracking-tighter text-slate-900 dark:text-slate-100;
+        @apply scroll-mt-8 leading-tight font-bold tracking-tighter text-slate-900 dark:text-slate-100;
+        font-family: var(--font-family-heading);
       }
 
       .prose h1 {

@@ -1,5 +1,8 @@
 /* Tailwind CSS utilities and components defined below */
 
+/* Typography configuration is now centralized in typography-config.css */
+/* These font variables reference the centralized configuration loaded in base template */
+
 @layer base {
   /* Add essential Tailwind utilities */
   .bg-purple-900 {
@@ -18,8 +21,8 @@
     font-size: 1.125rem;
   }
 
-  .font-mono {
-    font-family: var(--font-mono);
+  .font-serif {
+    font-family: var(--font-serif);
   }
 
   .font-semibold {
@@ -102,6 +105,10 @@
 
   .font-sans {
     font-family: var(--font-sans);
+  }
+
+  .font-serif {
+    font-family: var(--font-serif);
   }
 
   .py-8 {
@@ -372,9 +379,7 @@
     --ec-gray-800: #1f2937;
     --ec-gray-900: #111827;
 
-    /* Typography */
-    --font-mono: "JetBrains Mono", "Menlo", "Monaco", "Courier New", monospace;
-    --font-sans: "Inter", -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
+    /* Typography variables imported from typography-config.css */
   }
 
   /* Dark mode variables */

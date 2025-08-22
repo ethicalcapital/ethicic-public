@@ -4,7 +4,7 @@
  * Extracted from garden-ui-core.css for better maintainability
  */
 
-/* ===== LAYOUT UTILITIES ===== */
+/* ===== LAYOUT UTILITIES */
 @layer utilities {
   .workbench-container {
     font-family: var(--font-mono);
@@ -469,7 +469,7 @@
   }
 }
 
-/* ===== THEME TOGGLE SYSTEM ===== */
+/* ===== THEME TOGGLE SYSTEM */
 /* Default standalone theme toggle for pages without navigation */
 .theme-toggle.standalone {
   position: fixed;
@@ -521,4 +521,3 @@
 }
 
 /* ========================================================================
-*/

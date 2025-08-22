@@ -10,7 +10,7 @@
  */
 
 @layer components {
-  /* ===== HEADER LAYOUT FOUNDATION ===== */
+  /* ===== HEADER LAYOUT FOUNDATION */
 
   .garden-header {
     padding: 0.5rem 1rem;
@@ -31,7 +31,7 @@
     justify-content: space-between;
   }
 
-  /* ===== NAVIGATION LAYOUT ===== */
+  /* ===== NAVIGATION LAYOUT */
 
   .garden-nav-left {
     display: flex;
@@ -64,7 +64,7 @@
     overflow: visible;
   }
 
-  /* ===== NAVIGATION ELEMENTS ===== */
+  /* ===== NAVIGATION ELEMENTS */
 
   .garden-nav-item {
     color: var(--garden-header-text, var(--color-on-primary));
@@ -86,7 +86,7 @@
     flex-shrink: 0;
   }
 
-  /* ===== HEADER LINKS ===== */
+  /* ===== HEADER LINKS */
 
   .garden-header .garden-brand,
   .garden-header .garden-nav-item,
@@ -107,7 +107,7 @@
     opacity: 0.9;
   }
 
-  /* ===== SEARCH COMPONENTS ===== */
+  /* ===== SEARCH COMPONENTS */
 
   .garden-search {
     display: flex;
@@ -147,7 +147,7 @@
     font-size: 0.875rem;
   }
 
-  /* ===== THEME TOGGLE ===== */
+  /* ===== THEME TOGGLE */
 
   .garden-theme-toggle {
     width: 44px;
@@ -166,7 +166,7 @@
     flex-shrink: 0;
   }
 
-  /* ===== LOGIN COMPONENTS ===== */
+  /* ===== LOGIN COMPONENTS */
 
   .garden-login-container {
     position: relative;
@@ -208,14 +208,14 @@
     color: var(--color-text-secondary);
   }
 
-  /* ===== MOBILE MENU ELEMENTS ===== */
+  /* ===== MOBILE MENU ELEMENTS */
 
   .garden-header .mobile-menu-toggle span {
     background-color: var(--garden-header-text, var(--color-on-primary));
     transition: background-color var(--duration-fast) var(--ease-out);
   }
 
-  /* ===== PANEL HEADERS ===== */
+  /* ===== PANEL HEADERS */
 
   .garden-panel__header,
   .garden-panel-header,
@@ -232,7 +232,7 @@
 }
 
 @layer themes {
-  /* ===== THEME-SPECIFIC SEARCH STYLING ===== */
+  /* ===== THEME-SPECIFIC SEARCH STYLING */
 
   [data-theme="light"] .garden-header .garden-search-input,
   [data-theme="light"] .garden-header .mobile-search-input,
@@ -251,7 +251,7 @@
 }
 
 @layer responsive {
-  /* ===== MOBILE RESPONSIVE BEHAVIOR ===== */
+  /* ===== MOBILE RESPONSIVE BEHAVIOR */
 
   @media (width <= 768px) {
     .garden-nav-main {
@@ -280,7 +280,7 @@
 }
 
 @layer accessibility {
-  /* ===== ACCESSIBILITY SUPPORT ===== */
+  /* ===== ACCESSIBILITY SUPPORT */
 
   /* High contrast mode adjustments */
   @media (prefers-contrast: high) {
@@ -314,7 +314,7 @@
 }
 
 @layer utilities {
-  /* ===== EMERGENCY OVERRIDES ===== */
+  /* ===== EMERGENCY OVERRIDES */
 
   /* Force header text visibility when needed */
   .garden-header.force-white-text,

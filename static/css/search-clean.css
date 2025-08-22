@@ -4,7 +4,7 @@
  */
 
 @layer components {
-  /* ===== SEARCH CONTAINER ===== */
+  /* ===== SEARCH CONTAINER */
 
   /* Main search container */
   .garden-search,
@@ -21,7 +21,7 @@
     max-width: 300px;
   }
 
-  /* ===== SEARCH INPUT ===== */
+  /* ===== SEARCH INPUT */
 
   /* Search input field */
   .garden-search-input,
@@ -69,7 +69,7 @@
     opacity: 1;
   }
 
-  /* ===== SEARCH BUTTON/ICON ===== */
+  /* ===== SEARCH BUTTON/ICON */
 
   /* Search button */
   .garden-search-button,
@@ -127,7 +127,7 @@
     stroke-width: 2;
   }
 
-  /* ===== SEARCH RESULTS ===== */
+  /* ===== SEARCH RESULTS */
 
   /* Search results dropdown */
   .garden-search-results,
@@ -211,7 +211,7 @@
     font-weight: var(--font-medium);
   }
 
-  /* ===== RESPONSIVE DESIGN ===== */
+  /* ===== RESPONSIVE DESIGN */
 
   @media (width <= 768px) {
     .garden-header .garden-search-container {
@@ -251,7 +251,7 @@
     }
   }
 
-  /* ===== THEME SUPPORT ===== */
+  /* ===== THEME SUPPORT */
 
   /* Dark theme adjustments */
   [data-theme="dark"] .garden-search-input,
@@ -313,7 +313,7 @@
     }
   }
 
-  /* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+  /* ===== ACCESSIBILITY ENHANCEMENTS */
 
   /* Screen reader support */
   .garden-search-label,

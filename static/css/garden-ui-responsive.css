@@ -15,7 +15,7 @@
 /* Eliminates !important wars with proper responsive design */
 
 @layer layout {
-  /* ===== BASE CONTAINER SYSTEM ===== */
+  /* ===== BASE CONTAINER SYSTEM */
 
   /* Default desktop container constraints */
   .main-content,
@@ -39,7 +39,7 @@
     padding: 0 1rem;
   }
 
-  /* ===== PAGE-SPECIFIC CONTAINER CONSISTENCY ===== */
+  /* ===== PAGE-SPECIFIC CONTAINER CONSISTENCY */
 
   .homepage-page .main-content,
   .about-page .main-content,
@@ -63,7 +63,7 @@
     max-width: 100%;
   }
 
-  /* ===== HERO PANEL LAYOUT ===== */
+  /* ===== HERO PANEL LAYOUT */
 
   .hero-panel {
     width: 100%;
@@ -82,7 +82,7 @@
     text-align: center;
   }
 
-  /* ===== FOOTER LAYOUT ===== */
+  /* ===== FOOTER LAYOUT */
 
   .garden-footer {
     width: 100%;
@@ -95,7 +95,7 @@
     padding: 0 1rem;
   }
 
-  /* ===== HEADER POSITIONING ===== */
+  /* ===== HEADER POSITIONING */
 
   .garden-header {
     position: sticky;
@@ -104,7 +104,7 @@
     background: var(--color-primary);
   }
 
-  /* ===== OVERFLOW PREVENTION ===== */
+  /* ===== OVERFLOW PREVENTION */
 
   body,
   html {
@@ -118,7 +118,7 @@
 }
 
 @layer responsive {
-  /* ===== TABLET ADJUSTMENTS ===== */
+  /* ===== TABLET ADJUSTMENTS */
   @media (width >= 769px) and (width <= 1024px) {
     .garden-container {
       max-width: 95%;
@@ -134,7 +134,7 @@
     }
   }
 
-  /* ===== MOBILE OPTIMIZATIONS ===== */
+  /* ===== MOBILE OPTIMIZATIONS */
   @media (width <= 768px) {
     /* Mobile-first: Full width containers for better UX */
     .garden-container {
@@ -210,7 +210,7 @@
     }
   }
 
-  /* ===== EXTRA SMALL MOBILE ===== */
+  /* ===== EXTRA SMALL MOBILE */
   @media (width <= 480px) {
     .garden-container,
     .blog-post-page .garden-container,
@@ -232,7 +232,7 @@
 }
 
 @layer content {
-  /* ===== MOBILE CONTENT OPTIMIZATION ===== */
+  /* ===== MOBILE CONTENT OPTIMIZATION */
   @media (width <= 768px) {
     /* Ensure images are responsive within containers */
     .garden-container img,
@@ -465,7 +465,7 @@
  */
 
 @layer components {
-  /* ===== MOBILE MENU TOGGLE BUTTON ===== */
+  /* ===== MOBILE MENU TOGGLE BUTTON */
 
   .mobile-menu-toggle {
     display: none;
@@ -510,7 +510,7 @@
     transform: rotate(-45deg) translate(7px, -6px);
   }
 
-  /* ===== MOBILE NAVIGATION OVERLAY ===== */
+  /* ===== MOBILE NAVIGATION OVERLAY */
 
   .mobile-nav {
     position: fixed;
@@ -582,7 +582,7 @@
     color: var(--color-on-primary);
   }
 
-  /* ===== MOBILE SEARCH ===== */
+  /* ===== MOBILE SEARCH */
 
   .mobile-search-container {
     margin: var(--space-6) 0;
@@ -608,7 +608,7 @@
 }
 
 @layer responsive {
-  /* ===== MOBILE BREAKPOINTS ===== */
+  /* ===== MOBILE BREAKPOINTS */
 
   @media (width <= 768px) {
     /* Show mobile menu toggle */
@@ -681,7 +681,7 @@
     }
   }
 
-  /* ===== DESKTOP BEHAVIOR ===== */
+  /* ===== DESKTOP BEHAVIOR */
   @media (width >= 769px) {
     /* Hide mobile elements on desktop */
     .mobile-menu-toggle,
@@ -691,7 +691,7 @@
     }
   }
 
-  /* ===== EXTRA SMALL MOBILE ===== */
+  /* ===== EXTRA SMALL MOBILE */
   @media (width <= 480px) {
     .garden-header-content {
       padding: 0 var(--space-1);
@@ -719,7 +719,7 @@
 }
 
 @layer themes {
-  /* ===== DARK MODE MOBILE ===== */
+  /* ===== DARK MODE MOBILE */
 
   [data-theme="dark"] .mobile-nav {
     background: var(--color-surface);

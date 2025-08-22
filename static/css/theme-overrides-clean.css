@@ -2,7 +2,7 @@
 /* Replaces inline styles in base.html with proper CSS architecture */
 
 @layer themes {
-  /* ===== LIGHT THEME OVERRIDES ===== */
+  /* ===== LIGHT THEME OVERRIDES */
 
   /* Lavender Blush background for light mode */
   [data-theme="light"] body,
@@ -44,7 +44,7 @@
     color: #fff;
   }
 
-  /* ===== DARK THEME OVERRIDES ===== */
+  /* ===== DARK THEME OVERRIDES */
 
   /* Dark purple for header and footer */
   [data-theme="dark"] .garden-header,
@@ -66,7 +66,7 @@
     border-color: #3fb4ff;
   }
 
-  /* ===== HIGH SPECIFICITY CTA OVERRIDES ===== */
+  /* ===== HIGH SPECIFICITY CTA OVERRIDES */
 
   /* Tiffany Blue for CTA-specific buttons only (not navigation) - highest specificity */
   html[data-theme="light"] body .hero-panel .cta-actions a.garden-action.primary,
@@ -79,7 +79,7 @@
     border: 2px solid #2d7a68;
   }
 
-  /* ===== FOOTER STYLING ===== */
+  /* ===== FOOTER STYLING */
 
   /* Footer styling - consistent with site theme */
   [data-theme="light"] .garden-footer {
@@ -92,7 +92,7 @@
     border-top: 4px solid #3d2970;
   }
 
-  /* ===== BODY AND BACKGROUND COLORS ===== */
+  /* ===== BODY AND BACKGROUND COLORS */
 
   /* Dark theme body */
   [data-theme="dark"] body {

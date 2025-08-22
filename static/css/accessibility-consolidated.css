@@ -6,7 +6,7 @@
  */
 
 @layer utilities {
-  /* ===== SCREEN READER SUPPORT ===== */
+  /* ===== SCREEN READER SUPPORT */
 
   /* Screen reader only content */
   .sr-only {
@@ -63,7 +63,7 @@
     transform: translateY(0);
   }
 
-  /* ===== TOUCH TARGET COMPLIANCE ===== */
+  /* ===== TOUCH TARGET COMPLIANCE */
 
   /* WCAG AA minimum 44px touch targets */
   .garden-action,
@@ -117,7 +117,7 @@
     min-height: 44px;
   }
 
-  /* ===== CONTRAST COMPLIANCE ===== */
+  /* ===== CONTRAST COMPLIANCE */
 
   /* Header navigation contrast */
   .garden-header .garden-search-btn,
@@ -219,7 +219,7 @@
     font-weight: var(--font-medium);
   }
 
-  /* ===== FOCUS MANAGEMENT ===== */
+  /* ===== FOCUS MANAGEMENT */
 
   /* Enhanced focus indicators */
   *:focus {
@@ -246,7 +246,7 @@
     outline-offset: 2px;
   }
 
-  /* ===== MOTION PREFERENCES ===== */
+  /* ===== MOTION PREFERENCES */
 
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -259,7 +259,7 @@
     }
   }
 
-  /* ===== HIGH CONTRAST MODE ===== */
+  /* ===== HIGH CONTRAST MODE */
 
   @media (prefers-contrast: high) {
     .garden-action {
@@ -277,7 +277,7 @@
 }
 
 @layer themes {
-  /* ===== DARK MODE ACCESSIBILITY ===== */
+  /* ===== DARK MODE ACCESSIBILITY */
 
   [data-theme="dark"] .skip-link {
     background: var(--color-primary);
@@ -303,7 +303,7 @@
     border-color: var(--color-border);
   }
 
-  /* ===== LIGHT MODE ACCESSIBILITY ===== */
+  /* ===== LIGHT MODE ACCESSIBILITY */
 
   [data-theme="light"] .garden-action.primary {
     background: var(--color-primary);
@@ -314,4 +314,3 @@
     color: var(--color-primary);
     border-color: var(--color-primary);
   }
-}

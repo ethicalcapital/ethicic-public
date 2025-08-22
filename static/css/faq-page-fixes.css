@@ -4,10 +4,10 @@
  * Replaces messy faq-page-fixes.css with proper structure
  */
 
-/* ===== CSS LAYERS ===== */
+/* ===== CSS LAYERS */
 @layer components, pages, overrides;
 
-/* ===== LAYER: COMPONENTS ===== */
+/* ===== LAYER: COMPONENTS */
 /* Low specificity (0,0,1,0) - base component styles */
 @layer components {
   /* Category filter buttons - base styles */
@@ -52,7 +52,7 @@
   }
 }
 
-/* ===== LAYER: PAGES ===== */
+/* ===== LAYER: PAGES */
 /* Medium specificity (0,0,2,0) - page-specific styles */
 @layer pages {
   /* SPECIFICITY 0,0,2,0 - Two class selectors */
@@ -161,7 +161,7 @@
   }
 }
 
-/* ===== LAYER: OVERRIDES ===== */
+/* ===== LAYER: OVERRIDES */
 /* Dark mode overrides - highest specificity */
 @layer overrides {
   /* SPECIFICITY 0,0,1,1 - Attribute selector + class */
@@ -182,7 +182,7 @@
   }
 }
 
-/* ===== UTILITY MIGRATION NOTES ===== */
+/* ===== UTILITY MIGRATION NOTES */
 /*
 Future improvements:
 - Convert .garden-action styles to utility classes

@@ -4,7 +4,7 @@
  */
 
 @layer components {
-  /* ===== HOME PAGE STYLES ===== */
+  /* ===== HOME PAGE STYLES */
   /* Clean homepage layout using Garden UI theme variables */
 
   /* Generic panel adjacency rules */
@@ -302,7 +302,7 @@
     }
   }
 
-  /* ===== STRATEGY SECTION ===== */
+  /* ===== STRATEGY SECTION */
 
   .strategy-card {
     background: var(--color-surface);
@@ -365,7 +365,7 @@
     color: var(--color-primary);
   }
 
-  /* ===== STRATEGY CARD THEME INTEGRATION ===== */
+  /* ===== STRATEGY CARD THEME INTEGRATION */
 
   @layer themes {
     /* Ultra-high specificity fix for strategy card headers */
@@ -460,7 +460,7 @@
     color: var(--color-on-primary);
   }
 
-  /* ===== PHILOSOPHY SECTION ===== */
+  /* ===== PHILOSOPHY SECTION */
 
   .philosophy-content {
     max-width: 800px;
@@ -475,7 +475,7 @@
     margin: var(--space-6) 0;
   }
 
-  /* ===== PRINCIPLES SECTION ===== */
+  /* ===== PRINCIPLES SECTION */
 
   .principles-section {
     margin: var(--space-12) 0;
@@ -508,7 +508,7 @@
     margin-bottom: var(--space-4);
   }
 
-  /* ===== SERVE SECTION ===== */
+  /* ===== SERVE SECTION */
 
   .serve-grid {
     display: grid;
@@ -547,7 +547,7 @@
     transform: scaleY(1);
   }
 
-  /* ===== HERO STATS ===== */
+  /* ===== HERO STATS */
 
   .hero-stats {
     display: flex;
@@ -620,7 +620,7 @@
     position: relative;
   }
 
-  /* ===== ACCESSIBILITY SUPPORT ===== */
+  /* ===== ACCESSIBILITY SUPPORT */
 
   @media (prefers-reduced-motion: reduce) {
     .process-step,
@@ -639,4 +639,3 @@
       transform: none;
     }
   }
-}

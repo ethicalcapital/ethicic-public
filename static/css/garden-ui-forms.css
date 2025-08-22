@@ -4,8 +4,8 @@
  * Extracted from garden-ui-core.css for better maintainability
  */
 
-/* ===== FORM SYSTEM - Complete Form Component Styling ===== */
-======================================================================== */ @layer components {
+/* ===== FORM SYSTEM - Complete Form Component Styling */
+@layer components {
   /* Form Container */
   .garden-form {
     max-width: 600px;

@@ -5,7 +5,7 @@
  */
 
 @layer components {
-  /* ===== MOBILE MENU TOGGLE BUTTON ===== */
+  /* ===== MOBILE MENU TOGGLE BUTTON */
 
   .mobile-menu-toggle {
     display: none;
@@ -50,7 +50,7 @@
     transform: rotate(-45deg) translate(7px, -6px);
   }
 
-  /* ===== MOBILE NAVIGATION OVERLAY ===== */
+  /* ===== MOBILE NAVIGATION OVERLAY */
 
   .mobile-nav {
     position: fixed;
@@ -122,7 +122,7 @@
     color: var(--color-on-primary);
   }
 
-  /* ===== MOBILE SEARCH ===== */
+  /* ===== MOBILE SEARCH */
 
   .mobile-search-container {
     margin: var(--space-6) 0;
@@ -148,7 +148,7 @@
 }
 
 @layer responsive {
-  /* ===== MOBILE BREAKPOINTS ===== */
+  /* ===== MOBILE BREAKPOINTS */
 
   @media (width <= 768px) {
     /* Show mobile menu toggle */
@@ -221,7 +221,7 @@
     }
   }
 
-  /* ===== DESKTOP BEHAVIOR ===== */
+  /* ===== DESKTOP BEHAVIOR */
   @media (width >= 769px) {
     /* Hide mobile elements on desktop */
     .mobile-menu-toggle,
@@ -231,7 +231,7 @@
     }
   }
 
-  /* ===== EXTRA SMALL MOBILE ===== */
+  /* ===== EXTRA SMALL MOBILE */
   @media (width <= 480px) {
     .garden-header-content {
       padding: 0 var(--space-1);
@@ -259,7 +259,7 @@
 }
 
 @layer themes {
-  /* ===== DARK MODE MOBILE ===== */
+  /* ===== DARK MODE MOBILE */
 
   [data-theme="dark"] .mobile-nav {
     background: var(--color-surface);

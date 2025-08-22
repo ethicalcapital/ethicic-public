@@ -5,7 +5,7 @@
  */
 
 @layer components {
-  /* ===== FAQ BLOG-STYLE HERO ===== */
+  /* ===== FAQ BLOG-STYLE HERO */
 
   .faq-page .garden-panel:first-of-type,
   .media-page .hero-section {
@@ -46,7 +46,7 @@
     text-shadow: 0 2px 4px rgb(0 0 0 / 10%);
   }
 
-  /* ===== FAQ CONTENT STYLING ===== */
+  /* ===== FAQ CONTENT STYLING */
 
   .faq-page .garden-panel:not(:first-of-type) {
     background: var(--color-surface);
@@ -70,7 +70,7 @@
     line-height: var(--line-relaxed);
   }
 
-  /* ===== FAQ ACCORDION STYLING ===== */
+  /* ===== FAQ ACCORDION STYLING */
 
   .faq-item {
     border: 1px solid var(--color-border);
@@ -122,7 +122,7 @@
     margin-bottom: 0;
   }
 
-  /* ===== MEDIA PAGE STYLING ===== */
+  /* ===== MEDIA PAGE STYLING */
 
   .media-page .content-section {
     background: var(--color-surface);
@@ -187,7 +187,7 @@
     text-decoration: underline;
   }
 
-  /* ===== SHARED TYPOGRAPHY ===== */
+  /* ===== SHARED TYPOGRAPHY */
 
   .faq-page h1,
   .faq-page h2,
@@ -236,7 +236,7 @@
 }
 
 @layer responsive {
-  /* ===== MOBILE OPTIMIZATIONS ===== */
+  /* ===== MOBILE OPTIMIZATIONS */
 
   @media (width <= 768px) {
     .faq-page .garden-panel:first-of-type,
@@ -272,7 +272,7 @@
 }
 
 @layer themes {
-  /* ===== DARK MODE SUPPORT ===== */
+  /* ===== DARK MODE SUPPORT */
 
   [data-theme="dark"] .faq-page .garden-panel:first-of-type,
   [data-theme="dark"] .media-page .hero-section {

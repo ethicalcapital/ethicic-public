@@ -1,0 +1,146 @@
+/*!
+ * Centralized Typography Configuration
+ * All font definitions and typography variables in one place
+ * Update fonts here to change them across the entire site
+ */
+
+:root {
+  /* ===== PRIMARY FONT FAMILIES */
+  /* Body text - clean, modern sans-serif */
+  --font-family-body: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  
+  /* Headings - elegant serif for authority */
+  --font-family-heading: "Libre Baskerville", Georgia, Cambria, "Times New Roman", Times, serif;
+  
+  /* UI elements - use body font for consistency */
+  --font-family-ui: var(--font-family-body);
+  
+  /* Data tables and numbers - use body font */
+  --font-family-data: var(--font-family-body);
+  
+  /* Code blocks - use body font (no monospace) */
+  --font-family-code: var(--font-family-body);
+  
+  /* Terminal/console - use body font */
+  --font-family-terminal: var(--font-family-body);
+  
+  /* ===== LEGACY VARIABLE MAPPINGS */
+  /* Map old variables to new ones for backward compatibility */
+  --font-sans: var(--font-family-body);
+  --font-serif: var(--font-family-heading);
+  --font-body: var(--font-family-body);
+  --font-heading: var(--font-family-heading);
+  --font-ui: var(--font-family-ui);
+  --font-code: var(--font-family-code);
+  --font-data: var(--font-family-data);
+  --font-terminal: var(--font-family-terminal);
+  
+  /* Remove monospace completely */
+  --font-mono: var(--font-family-body);
+  
+  /* ===== FONT SIZES */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px - minimum accessible size */
+  --font-size-md: 1.125rem;   /* 18px */
+  --font-size-lg: 1.25rem;    /* 20px */
+  --font-size-xl: 1.5rem;     /* 24px */
+  --font-size-2xl: 1.875rem;  /* 30px */
+  --font-size-3xl: 2.25rem;   /* 36px */
+  --font-size-4xl: 3rem;      /* 48px */
+  
+  /* Legacy size mappings */
+  --font-xs: var(--font-size-xs);
+  --font-sm: var(--font-size-sm);
+  --font-base: var(--font-size-base);
+  --font-md: var(--font-size-md);
+  --font-lg: var(--font-size-lg);
+  --font-xl: var(--font-size-xl);
+  --font-2xl: var(--font-size-2xl);
+  --font-3xl: var(--font-size-3xl);
+  --text-lg: var(--font-size-lg);
+  --text-xl: var(--font-size-xl);
+  --text-4xl: var(--font-size-4xl);
+  
+  /* ===== FONT WEIGHTS */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Legacy weight mappings */
+  --font-light: var(--font-weight-light);
+  --font-normal: var(--font-weight-normal);
+  --font-medium: var(--font-weight-medium);
+  --font-semibold: var(--font-weight-semibold);
+  --font-bold: var(--font-weight-bold);
+  
+  /* ===== LINE HEIGHTS */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 1.75;
+  
+  /* Legacy line height mappings */
+  --line-none: var(--line-height-none);
+  --line-tight: var(--line-height-tight);
+  --line-snug: var(--line-height-snug);
+  --line-normal: var(--line-height-normal);
+  --line-relaxed: var(--line-height-relaxed);
+  --line-loose: var(--line-height-loose);
+  --leading-none: var(--line-height-none);
+  --leading-tight: var(--line-height-tight);
+  --leading-snug: var(--line-height-snug);
+  --leading-normal: var(--line-height-normal);
+  --leading-relaxed: var(--line-height-relaxed);
+  --leading-loose: var(--line-height-loose);
+  
+  /* ===== LETTER SPACING */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+  
+  /* ===== TYPOGRAPHY PRESETS */
+  /* Heading styles */
+  --typography-h1: var(--font-weight-bold) var(--font-size-3xl)/var(--line-height-tight) var(--font-family-heading);
+  --typography-h2: var(--font-weight-semibold) var(--font-size-2xl)/var(--line-height-tight) var(--font-family-heading);
+  --typography-h3: var(--font-weight-semibold) var(--font-size-xl)/var(--line-height-snug) var(--font-family-heading);
+  --typography-h4: var(--font-weight-semibold) var(--font-size-lg)/var(--line-height-snug) var(--font-family-heading);
+  
+  /* Body styles */
+  --typography-body: var(--font-weight-normal) var(--font-size-base)/var(--line-height-relaxed) var(--font-family-body);
+  --typography-body-lg: var(--font-weight-normal) var(--font-size-lg)/var(--line-height-relaxed) var(--font-family-body);
+  --typography-body-sm: var(--font-weight-normal) var(--font-size-sm)/var(--line-height-normal) var(--font-family-body);
+  
+  /* UI styles */
+  --typography-ui: var(--font-weight-medium) var(--font-size-sm)/var(--line-height-normal) var(--font-family-ui);
+  --typography-ui-sm: var(--font-weight-medium) var(--font-size-xs)/var(--line-height-tight) var(--font-family-ui);
+}
+
+/* ===== UTILITY CLASSES */
+.font-body { font-family: var(--font-family-body); }
+.font-heading { font-family: var(--font-family-heading); }
+.font-ui { font-family: var(--font-family-ui); }
+
+/* Legacy utility classes */
+.font-sans { font-family: var(--font-family-body); }
+.font-serif { font-family: var(--font-family-heading); }
+
+/* Remove monospace utility */
+.font-mono { font-family: var(--font-family-body); }
+
+/* ===== RESPONSIVE TYPOGRAPHY */
+@media (max-width: 768px) {
+  :root {
+    /* Slightly smaller sizes on mobile for better readability */
+    --font-size-3xl: 2rem;      /* 32px */
+    --font-size-2xl: 1.5rem;    /* 24px */
+    --font-size-xl: 1.25rem;    /* 20px */
+  }
+}

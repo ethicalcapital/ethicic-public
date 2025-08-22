@@ -4,8 +4,8 @@
  * Extracted from garden-ui-core.css for better maintainability
  */
 
-/* ===== TYPOGRAPHY SYSTEM - Universal Font Classes and Utilities ===== */
-======================================================================== */ @layer components {
+/* ===== TYPOGRAPHY SYSTEM - Universal Font Classes and Utilities */
+@layer components {
   /* Font utility classes for semantic usage */
   .font-mono,
   .font-code,
@@ -130,5 +130,3 @@
   }
 }
 
-/* ========================================================================
-*/
