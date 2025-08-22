@@ -6,6 +6,9 @@
  * Contains: CSS Layers, Design Tokens, Theme Definitions, Reset Styles
  */
 
+/* Import shared Garden brand tokens for consistency with Garden platform */
+@import url('shared/garden-brand-tokens.css');
+
 /* Typography configuration is now centralized in typography-config.css */
 /* These font variables reference the centralized configuration loaded in base template */
 

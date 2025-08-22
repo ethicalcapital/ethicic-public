@@ -1,0 +1,207 @@
+/*!
+ * Garden Component Base Classes
+ * Shared component patterns for Garden Financial Platform and Ethicic Public Site
+ * These classes use the design tokens from garden-brand-tokens.css
+ * 
+ * Only include base component patterns that both sites should share
+ * Site-specific implementations should remain in their respective CSS files
+ */
+
+/* ===== BUTTON COMPONENT BASE */
+/* Standard action button that both sites can use and extend */
+.garden-action {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--garden-space-2);
+  
+  /* Spacing */
+  padding: var(--garden-space-2) var(--garden-space-4);
+  min-height: 40px;
+  
+  /* Typography */
+  font-family: var(--garden-brand-font-sans);
+  font-size: var(--garden-brand-text-sm);
+  font-weight: var(--garden-brand-font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  
+  /* Visual */
+  border-radius: var(--garden-brand-radius-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  
+  /* Animation */
+  transition: all var(--garden-brand-duration-fast) var(--garden-brand-easing);
+  
+  /* States */
+  position: relative;
+  user-select: none;
+}
+
+/* Primary action variant */
+.garden-action.primary {
+  background-color: var(--garden-brand-purple);
+  color: white;
+  border-color: var(--garden-brand-purple);
+}
+
+.garden-action.primary:hover {
+  background-color: var(--garden-brand-purple-hover);
+  border-color: var(--garden-brand-purple-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--garden-brand-shadow-md);
+}
+
+.garden-action.primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary action variant */
+.garden-action.secondary {
+  background-color: transparent;
+  color: var(--garden-brand-purple);
+  border-color: var(--garden-brand-gray-300);
+}
+
+.garden-action.secondary:hover {
+  background-color: var(--garden-brand-gray-50);
+  border-color: var(--garden-brand-purple);
+}
+
+/* Focus states for accessibility */
+.garden-action:focus-visible {
+  outline: 2px solid var(--garden-brand-purple);
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.garden-action:disabled,
+.garden-action.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== PANEL/CARD COMPONENT BASE */
+/* Standard container that both sites can use */
+.garden-panel {
+  /* Layout */
+  display: block;
+  
+  /* Spacing */
+  padding: var(--garden-space-6);
+  
+  /* Visual */
+  background-color: white;
+  border: 1px solid var(--garden-brand-gray-200);
+  border-radius: var(--garden-brand-radius-lg);
+  
+  /* Shadow */
+  box-shadow: var(--garden-brand-shadow-sm);
+  
+  /* Animation */
+  transition: box-shadow var(--garden-brand-duration-normal) var(--garden-brand-easing);
+}
+
+/* Panel hover state (optional) */
+.garden-panel.interactive:hover {
+  box-shadow: var(--garden-brand-shadow-md);
+}
+
+/* Panel header */
+.garden-panel-header {
+  margin: calc(-1 * var(--garden-space-6)) calc(-1 * var(--garden-space-6)) var(--garden-space-4);
+  padding: var(--garden-space-4) var(--garden-space-6);
+  border-bottom: 1px solid var(--garden-brand-gray-200);
+  border-radius: var(--garden-brand-radius-lg) var(--garden-brand-radius-lg) 0 0;
+  background-color: var(--garden-brand-gray-50);
+}
+
+/* Panel title */
+.garden-panel-title {
+  font-family: var(--garden-brand-font-sans);
+  font-size: var(--garden-brand-text-lg);
+  font-weight: var(--garden-brand-font-semibold);
+  color: var(--garden-brand-gray-900);
+  margin: 0;
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  .garden-panel {
+    background-color: var(--garden-brand-gray-800);
+    border-color: var(--garden-brand-gray-700);
+    color: var(--garden-brand-text-primary-dark);
+  }
+  
+  .garden-panel-header {
+    background-color: var(--garden-brand-gray-900);
+    border-color: var(--garden-brand-gray-700);
+  }
+  
+  .garden-panel-title {
+    color: var(--garden-brand-text-primary-dark);
+  }
+  
+  .garden-action.secondary {
+    color: var(--garden-brand-purple-light);
+    border-color: var(--garden-brand-gray-600);
+  }
+  
+  .garden-action.secondary:hover {
+    background-color: var(--garden-brand-gray-700);
+    border-color: var(--garden-brand-purple-light);
+  }
+}
+
+/* ===== FORM INPUT BASE */
+/* Standard form input styling */
+.garden-input {
+  /* Layout */
+  display: block;
+  width: 100%;
+  
+  /* Spacing */
+  padding: var(--garden-space-2) var(--garden-space-3);
+  
+  /* Typography */
+  font-family: var(--garden-brand-font-sans);
+  font-size: var(--garden-brand-text-base);
+  line-height: var(--garden-brand-leading-normal);
+  
+  /* Visual */
+  background-color: white;
+  border: 1px solid var(--garden-brand-gray-300);
+  border-radius: var(--garden-brand-radius-md);
+  color: var(--garden-brand-gray-900);
+  
+  /* Animation */
+  transition: border-color var(--garden-brand-duration-fast) var(--garden-brand-easing),
+              box-shadow var(--garden-brand-duration-fast) var(--garden-brand-easing);
+}
+
+.garden-input:hover {
+  border-color: var(--garden-brand-gray-400);
+}
+
+.garden-input:focus {
+  outline: none;
+  border-color: var(--garden-brand-purple);
+  box-shadow: 0 0 0 3px rgb(var(--garden-brand-purple-rgb) / 0.1);
+}
+
+/* Dark theme input adjustments */
+@media (prefers-color-scheme: dark) {
+  .garden-input {
+    background-color: var(--garden-brand-gray-900);
+    border-color: var(--garden-brand-gray-600);
+    color: var(--garden-brand-text-primary-dark);
+  }
+  
+  .garden-input:hover {
+    border-color: var(--garden-brand-gray-500);
+  }
+}

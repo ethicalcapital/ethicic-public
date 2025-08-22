@@ -1,0 +1,116 @@
+/*!
+ * Garden Brand Design Tokens
+ * Shared design foundation for Garden Financial Platform and Ethicic Public Site
+ * This file contains only the core brand tokens that both sites should share
+ * 
+ * DO NOT include implementation-specific styles here
+ * Only design tokens (colors, spacing, typography variables)
+ */
+
+:root {
+  /* ===== BRAND COLORS - CORE PALETTE */
+  /* Primary purple from existing purple-900 */
+  --garden-brand-purple: #581c87;
+  --garden-brand-purple-hover: #6b46c1;
+  --garden-brand-purple-active: #7c3aed;
+  --garden-brand-purple-light: #9333ea;
+  --garden-brand-purple-pale: #c084fc;
+  --garden-brand-purple-rgb: 88, 28, 135;
+  
+  /* Secondary teal from existing teal-500 */
+  --garden-brand-teal: #14b8a6;
+  --garden-brand-teal-hover: #0d9488;
+  --garden-brand-teal-active: #0f766e;
+  --garden-brand-teal-light: #2dd4bf;
+  --garden-brand-teal-pale: #5eead4;
+  --garden-brand-teal-rgb: 20, 184, 166;
+  
+  /* Background grays - dark theme foundation */
+  --garden-brand-gray-900: #111827;
+  --garden-brand-gray-800: #1f2937;
+  --garden-brand-gray-700: #374151;
+  --garden-brand-gray-600: #4b5563;
+  --garden-brand-gray-500: #6b7280;
+  --garden-brand-gray-400: #9ca3af;
+  --garden-brand-gray-300: #d1d5db;
+  --garden-brand-gray-200: #e5e7eb;
+  --garden-brand-gray-100: #f3f4f6;
+  --garden-brand-gray-50: #f9fafb;
+  
+  /* Text colors for optimal contrast */
+  --garden-brand-text-primary-light: #111827;
+  --garden-brand-text-primary-dark: #f3f4f6;
+  --garden-brand-text-secondary-light: #4b5563;
+  --garden-brand-text-secondary-dark: #d1d5db;
+  --garden-brand-text-tertiary-light: #6b7280;
+  --garden-brand-text-tertiary-dark: #9ca3af;
+  
+  /* ===== SPACING SCALE - CONSISTENT RHYTHM */
+  --garden-space-1: 4px;
+  --garden-space-2: 8px;
+  --garden-space-3: 12px;
+  --garden-space-4: 16px;
+  --garden-space-5: 20px;
+  --garden-space-6: 24px;
+  --garden-space-7: 28px;
+  --garden-space-8: 32px;
+  --garden-space-10: 40px;
+  --garden-space-12: 48px;
+  --garden-space-16: 64px;
+  --garden-space-20: 80px;
+  --garden-space-24: 96px;
+  --garden-space-32: 128px;
+  
+  /* ===== TYPOGRAPHY TOKENS - BRAND FONTS */
+  /* Font families */
+  --garden-brand-font-sans: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --garden-brand-font-heading: "Bebas Neue", Impact, "Arial Black", sans-serif;
+  --garden-brand-font-mono: "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+  
+  /* Font sizes */
+  --garden-brand-text-xs: 0.75rem;    /* 12px */
+  --garden-brand-text-sm: 0.875rem;   /* 14px */
+  --garden-brand-text-base: 1rem;     /* 16px */
+  --garden-brand-text-lg: 1.125rem;   /* 18px */
+  --garden-brand-text-xl: 1.25rem;    /* 20px */
+  --garden-brand-text-2xl: 1.5rem;    /* 24px */
+  --garden-brand-text-3xl: 1.875rem;  /* 30px */
+  --garden-brand-text-4xl: 2.25rem;   /* 36px */
+  --garden-brand-text-5xl: 3rem;      /* 48px */
+  
+  /* Font weights */
+  --garden-brand-font-light: 300;
+  --garden-brand-font-normal: 400;
+  --garden-brand-font-medium: 500;
+  --garden-brand-font-semibold: 600;
+  --garden-brand-font-bold: 700;
+  
+  /* Line heights */
+  --garden-brand-leading-none: 1;
+  --garden-brand-leading-tight: 1.25;
+  --garden-brand-leading-snug: 1.375;
+  --garden-brand-leading-normal: 1.5;
+  --garden-brand-leading-relaxed: 1.625;
+  --garden-brand-leading-loose: 1.75;
+  
+  /* ===== BORDER RADIUS - CONSISTENT CURVES */
+  --garden-brand-radius-none: 0;
+  --garden-brand-radius-sm: 0.25rem;   /* 4px */
+  --garden-brand-radius-md: 0.375rem;  /* 6px */
+  --garden-brand-radius-lg: 0.5rem;    /* 8px */
+  --garden-brand-radius-xl: 0.75rem;   /* 12px */
+  --garden-brand-radius-2xl: 1rem;     /* 16px */
+  --garden-brand-radius-full: 9999px;
+  
+  /* ===== SHADOWS - DEPTH SYSTEM */
+  --garden-brand-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --garden-brand-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --garden-brand-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --garden-brand-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* ===== TRANSITIONS - ANIMATION TIMING */
+  --garden-brand-duration-fast: 150ms;
+  --garden-brand-duration-normal: 250ms;
+  --garden-brand-duration-slow: 350ms;
+  --garden-brand-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
