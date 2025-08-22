@@ -4589,9 +4589,14 @@ class EncyclopediaIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
             },
         )
 
-    @path(r"^([A-Za-z])/$")
+    @path("<str:letter>/")
     def entries_by_letter(self, request, letter):
         """Filter entries by first letter."""
+        # Only allow single letters to avoid capturing entry slugs
+        if len(letter) != 1 or not letter.isalpha():
+            from django.http import Http404
+            raise Http404("Letter must be a single alphabetic character")
+            
         letter = letter.upper()
         entries = self.get_entries_by_letter(letter)
         available_letters = self.get_available_letters()
