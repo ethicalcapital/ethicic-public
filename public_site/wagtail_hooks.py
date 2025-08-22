@@ -164,7 +164,7 @@ def global_admin_css():
 
 @hooks.register("insert_global_admin_js")
 def global_admin_js():
-    """Add JavaScript for improved admin experience."""
+    """Add JavaScript for improved admin experience and StreamField support."""
     return """<script>
         document.addEventListener('DOMContentLoaded', function() {
             // Ensure collapsed panels can be expanded
@@ -177,6 +177,33 @@ def global_admin_js():
                         panel.classList.toggle('collapsed');
                     });
                 }
+            });
+            
+            // Fix for missing content-count field in StreamField
+            function ensureStreamFieldCount() {
+                const form = document.querySelector('form.page-edit-form, form[action*="/pages/"]');
+                if (!form) return;
+                
+                // Check if we have a content StreamField
+                const contentField = form.querySelector('[data-contentpath="content"], [name^="content-"]');
+                if (contentField && !form.querySelector('input[name="content-count"]')) {
+                    const countInput = document.createElement('input');
+                    countInput.type = 'hidden';
+                    countInput.name = 'content-count';
+                    countInput.value = '0';
+                    form.appendChild(countInput);
+                }
+            }
+            
+            // Run immediately and on form changes
+            ensureStreamFieldCount();
+            
+            // Also ensure it's there before form submission
+            const forms = document.querySelectorAll('form.page-edit-form, form[action*="/pages/"]');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    ensureStreamFieldCount();
+                });
             });
         });
     </script>"""

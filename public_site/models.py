@@ -8,6 +8,7 @@ from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from taggit.models import TaggedItemBase
 from wagtail import blocks
+from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
@@ -1904,10 +1905,22 @@ class BlogIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
         verbose_name = "Blog Index Page"
 
 
+class BlogPostForm(WagtailAdminPageForm):
+    """Custom form for BlogPost to ensure StreamField works properly."""
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Ensure the content field is properly initialized
+        if 'content' in self.fields:
+            # Make sure the widget knows about the field name
+            self.fields['content'].widget.attrs['data-streamfield'] = 'content'
+
+
 class BlogPost(SafeUrlMixin, Page):
     """Individual blog post with rich StreamField content."""
 
     template = "public_site/blog_post.html"
+    base_form_class = BlogPostForm
 
     excerpt = models.CharField(
         max_length=300,
@@ -1918,205 +1931,12 @@ class BlogPost(SafeUrlMixin, Page):
     # New StreamField for rich content with AI-powered blocks
     content = StreamField(
         [
-            (
-                "rich_text",
-                blocks.RichTextBlock(
-                    features=[
-                        "h2",
-                        "h3",
-                        "h4",
-                        "bold",
-                        "italic",
-                        "link",
-                        "ol",
-                        "ul",
-                        "document-link",
-                    ],
-                    help_text="Rich text content with basic formatting",
-                ),
-            ),
-            (
-                "key_statistic",
-                blocks.StructBlock(
-                    [
-                        (
-                            "value",
-                            blocks.CharBlock(
-                                max_length=50, help_text="The statistic value"
-                            ),
-                        ),
-                        (
-                            "label",
-                            blocks.CharBlock(
-                                max_length=100, help_text="Statistic label"
-                            ),
-                        ),
-                        (
-                            "description",
-                            blocks.TextBlock(
-                                required=False, help_text="Optional description"
-                            ),
-                        ),
-                        (
-                            "ai_confidence",
-                            blocks.DecimalBlock(
-                                default=0.0,
-                                max_digits=3,
-                                decimal_places=2,
-                                required=False,
-                            ),
-                        ),
-                        ("ai_context", blocks.TextBlock(required=False)),
-                        (
-                            "significance_level",
-                            blocks.ChoiceBlock(
-                                choices=[
-                                    ("high", "High Significance"),
-                                    ("medium", "Medium Significance"),
-                                    ("low", "Low Significance"),
-                                ],
-                                default="medium",
-                                required=False,
-                            ),
-                        ),
-                        (
-                            "statistic_category",
-                            blocks.ChoiceBlock(
-                                choices=[
-                                    ("performance", "Performance/Returns"),
-                                    ("valuation", "Valuation Metrics"),
-                                    ("risk", "Risk Metrics"),
-                                    ("allocation", "Portfolio Allocation"),
-                                    ("fundamental", "Fundamental Analysis"),
-                                    ("market", "Market Data"),
-                                ],
-                                default="performance",
-                                required=False,
-                            ),
-                        ),
-                        (
-                            "visualization_type",
-                            blocks.ChoiceBlock(
-                                choices=[
-                                    ("bar", "Bar Chart"),
-                                    (
-                                        "performance_comparison",
-                                        "Performance Comparison",
-                                    ),
-                                    ("allocation_pie", "Allocation Pie Chart"),
-                                    ("trend_line", "Trend Line"),
-                                    ("gauge", "Gauge/Meter"),
-                                    ("callout", "Highlighted Callout"),
-                                ],
-                                default="callout",
-                                required=False,
-                            ),
-                        ),
-                        (
-                            "time_period",
-                            blocks.ChoiceBlock(
-                                choices=[
-                                    ("daily", "Daily"),
-                                    ("weekly", "Weekly"),
-                                    ("monthly", "Monthly"),
-                                    ("quarterly", "Quarterly"),
-                                    ("annual", "Annual"),
-                                    ("ytd", "Year-to-Date"),
-                                    ("since_inception", "Since Inception"),
-                                    ("custom", "Custom Period"),
-                                ],
-                                required=False,
-                            ),
-                        ),
-                        (
-                            "chart_title",
-                            blocks.CharBlock(max_length=100, required=False),
-                        ),
-                        ("chart_config", blocks.TextBlock(required=False)),
-                        (
-                            "related_entities",
-                            blocks.ListBlock(
-                                blocks.CharBlock(max_length=100), required=False
-                            ),
-                        ),
-                    ],
-                    template="public_site/blocks/key_statistic.html",
-                    icon="success",
-                    label="Key Statistic",
-                ),
-            ),
-            (
-                "table",
-                blocks.StructBlock(
-                    [
-                        (
-                            "caption",
-                            blocks.CharBlock(
-                                required=False, help_text="Table title or caption"
-                            ),
-                        ),
-                        (
-                            "description",
-                            blocks.RichTextBlock(
-                                required=False,
-                                help_text="Optional description or context",
-                            ),
-                        ),
-                        (
-                            "table",
-                            TableBlock(
-                                help_text="Add table data - first row will be used as headers"
-                            ),
-                        ),
-                        (
-                            "source",
-                            blocks.CharBlock(
-                                required=False, help_text="Data source attribution"
-                            ),
-                        ),
-                    ],
-                    template="public_site/blocks/table_block.html",
-                    icon="table",
-                    label="Data Table",
-                ),
-            ),
+            ("rich_text", blocks.RichTextBlock()),
             ("image", ImageChooserBlock()),
-            (
-                "callout",
-                blocks.StructBlock(
-                    [
-                        (
-                            "type",
-                            blocks.ChoiceBlock(
-                                choices=[
-                                    ("info", "Info"),
-                                    ("warning", "Warning"),
-                                    ("success", "Success"),
-                                    ("error", "Error"),
-                                ]
-                            ),
-                        ),
-                        ("title", blocks.CharBlock(required=False)),
-                        ("content", blocks.RichTextBlock()),
-                    ],
-                    icon="help",
-                ),
-            ),
-            (
-                "quote",
-                blocks.StructBlock(
-                    [
-                        ("quote", blocks.TextBlock()),
-                        ("author", blocks.CharBlock(required=False)),
-                        ("source", blocks.CharBlock(required=False)),
-                    ],
-                    icon="openquote",
-                ),
-            ),
         ],
         blank=True,
         use_json_field=True,
-        help_text="Rich content with AI-enhanced statistics, charts, and analysis blocks",
+        help_text="Add content blocks to your blog post",
     )
 
     # Keep old body field for backwards compatibility during migration
