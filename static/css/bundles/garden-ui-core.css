@@ -1017,7 +1017,6 @@
  * Form components, inputs, validation states, and form layouts
  * Extracted from garden-ui-core.css for better maintainability
  */
- */
 @layer components {
 .garden-form {
  max-width: 600px;
@@ -1234,7 +1233,6 @@
  }
 }
 
- */
 @layer components {
  .font-mono,
  .font-code,
@@ -1865,6 +1863,8 @@ button, input, optgroup, select, textarea {
 }
 
 @layer components {
+}
+
 @layer utilities {
 .workbench-container {
  font-family: var(--font-mono);
