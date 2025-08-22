@@ -19,6 +19,8 @@
         <!-- Shared Garden Brand Tokens -->
         <link rel="stylesheet" href="{% static 'css/shared/garden-brand-tokens.css' %}?v=1" />
         <link rel="stylesheet" href="{% static 'css/shared/garden-component-base.css' %}?v=1" />
+        <link rel="stylesheet" href="{% static 'css/shared/garden-header-shared.css' %}?v=1" />
+        <link rel="stylesheet" href="{% static 'css/shared/garden-footer-shared.css' %}?v=1" />
         <!-- Tailwind CSS with Ethical Capital Design System -->
         <link rel="stylesheet" href="{% static 'css/dist/tailwind.min.css' %}?v=2" />
         <!-- Enhanced Typography using Tailwind CSS -->
@@ -652,34 +654,32 @@
              aria-atomic="true"
              class="sr-only"
              id="urgent-announcements"></div>
-        <!-- Tailwind Navigation Header -->
-        <header class="relative z-40 border-b border-purple-800 bg-purple-900 dark:border-purple-800 dark:bg-purple-900"
+        <!-- Shared Header with Public Site Branding -->
+        <header class="garden-header-shared border-b border-purple-800 bg-purple-900 dark:border-purple-800 dark:bg-purple-900"
                 role="banner"
                 x-data="{ mobileMenuOpen: false }">
             <div class="container-ec">
-                <div class="flex items-center justify-between py-4">
-                    <!-- Left: Brand and Navigation -->
-                    <div class="flex items-center space-x-8">
-                        <!-- Brand -->
-                        <a href="/"
-                           class="logo-container"
-                           aria-label="Ethical Capital Home">
-                            <span class="logo-text">ETHICAL</span>
-                            <div class="logo-underline">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                        <!-- Desktop Navigation -->
-                        <nav class="hidden space-x-6 md:flex relative z-50"
-                             id="main-navigation"
-                             style="pointer-events: auto">
-                            {% main_menu max_levels=1 template="wagtailmenus/main_menu_tailwind.html" %}
-                        </nav>
-                    </div>
-                    <!-- Right: Search, Login, Mobile Menu -->
-                    <div class="flex items-center space-x-2 lg:space-x-4">
+                <div class="garden-header-brand">
+                    <!-- Brand -->
+                    <a href="/"
+                       class="logo-container garden-header-logo"
+                       aria-label="Ethical Capital Home">
+                        <span class="logo-text">ETHICAL</span>
+                        <div class="logo-underline">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Navigation Section -->
+                <nav class="garden-header-navigation"
+                     id="main-navigation"
+                     style="pointer-events: auto">
+                    {% main_menu max_levels=1 template="wagtailmenus/main_menu_tailwind.html" %}
+                </nav>
+                <!-- Actions Section -->
+                <div class="garden-header-actions">
                         <!-- Search -->
                         <div class="hidden lg:block"
                              x-data="{ searchOpen: false, query: '', searching: false }"
@@ -815,54 +815,54 @@
         <main id="main-content" class="flex-1 pt-8 pb-24" role="main">
             {% block content %}{% endblock %}
         </main>
-        <!-- Footer -->
-        <footer class="border-t border-gray-600 bg-gray-800 mt-8"
+        <!-- Shared Footer -->
+        <footer class="garden-footer-shared border-t border-gray-600 bg-gray-800 mt-8"
                 style="padding-top: 4rem !important">
-            <div class="container-ec pb-8">
-                <div class="footer-grid grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5">
+            <div class="garden-footer-container pb-8">
+                <div class="garden-footer-grid footer-grid grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5">
                     <!-- Company Info -->
-                    <div>
-                        <h3 class="mb-4 heading-h3 text-sm text-purple-400 uppercase">Ethical Capital</h3>
-                        <p class="mb-4 text-sm text-gray-400">
+                    <div class="garden-footer-section garden-footer-company">
+                        <h3 class="garden-footer-company-name">Ethical Capital</h3>
+                        <p class="garden-footer-company-description">
                             Socially responsible investment advisory services with a focus on sustainable and ethical investing.
                         </p>
-                        <div class="text-xs text-gray-500">
+                        <div class="garden-footer-company-legal">
                             <p>Utah Registered Investment Adviser</p>
                             <p>CRD #316032</p>
                         </div>
                     </div>
                     <!-- Company -->
-                    <div>
-                        <h3 class="mb-4 heading-h3 text-sm text-purple-400 uppercase">Company</h3>
-                        <ul class="space-y-2 text-sm">
+                    <div class="garden-footer-section">
+                        <h3 class="garden-footer-section-title">Company</h3>
+                        <ul class="garden-footer-section-list">
                             <li>
                                 <a href="/about/"
-                                   class="text-gray-400 transition-colors hover:text-purple-400">About</a>
+                                   class="garden-footer-section-link">About</a>
                             </li>
                             <li>
                                 <a href="/media/"
-                                   class="text-gray-400 transition-colors hover:text-purple-400">Media</a>
+                                   class="garden-footer-section-link">Media</a>
                             </li>
                             <li>
                                 <a href="/disclosures/"
-                                   class="text-gray-400 transition-colors hover:text-purple-400">Disclosures</a>
+                                   class="garden-footer-section-link">Disclosures</a>
                             </li>
                             <li>
                                 <a href="/accessibility/"
-                                   class="text-gray-400 transition-colors hover:text-purple-400">Accessibility</a>
+                                   class="garden-footer-section-link">Accessibility</a>
                             </li>
                             <li>
                                 <a href="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf"
-                                   class="text-gray-400 transition-colors hover:text-purple-400"
+                                   class="garden-footer-section-link"
                                    target="_blank"
                                    rel="noopener noreferrer">Form ADV</a>
                             </li>
                         </ul>
                     </div>
                     <!-- Resources -->
-                    <div>
-                        <h3 class="mb-4 heading-h3 text-sm text-purple-400 uppercase">Resources</h3>
-                        <ul class="space-y-2 text-sm">
+                    <div class="garden-footer-section">
+                        <h3 class="garden-footer-section-title">Resources</h3>
+                        <ul class="garden-footer-section-list">
                             <li>
                                 <a href="/blog/"
                                    class="text-gray-400 transition-colors hover:text-purple-400">Blog</a>

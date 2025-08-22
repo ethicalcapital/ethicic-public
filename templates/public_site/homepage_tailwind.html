@@ -230,22 +230,28 @@
                                     <td class="p-3 text-sm text-gray-200 border-l border-gray-600">{{ page.strategy_2_ownership }}</td>
                                     <td class="p-3 text-sm text-gray-200 border-l border-gray-600">{{ page.strategy_3_ownership }}</td>
                                 </tr>
-                                <tr class="border-t border-gray-600">
-                                    <td class="bg-gray-700 p-4"></td>
-                                    <td class="p-4 border-l border-gray-600">
-                                        <p class="text-sm text-gray-200 mb-3">{{ page.strategy_1_description }}</p>
-                                        <a href="{{ page.strategy_1_link }}"
-                                           class="btn-ec-secondary block w-full text-center">{{ page.strategy_1_link_text }}</a>
+                                <tr class="border-t border-gray-600" style="height: 200px;">
+                                    <td class="bg-gray-700 p-3 font-body text-xs text-white font-semibold align-top">Summary:</td>
+                                    <td class="p-4 border-l border-gray-600 align-top" style="vertical-align: top;">
+                                        <div class="flex flex-col h-full justify-between">
+                                            <p class="text-sm text-gray-200 mb-3">{{ page.strategy_1_description }}</p>
+                                            <a href="{{ page.strategy_1_link }}"
+                                               class="btn-ec-secondary block w-full text-center">{{ page.strategy_1_link_text }}</a>
+                                        </div>
                                     </td>
-                                    <td class="p-4 border-l border-gray-600">
-                                        <p class="text-sm text-gray-200 mb-3">{{ page.strategy_2_description }}</p>
-                                        <a href="{{ page.strategy_2_link }}"
-                                           class="btn-ec-secondary block w-full text-center">{{ page.strategy_2_link_text }}</a>
+                                    <td class="p-4 border-l border-gray-600 align-top" style="vertical-align: top;">
+                                        <div class="flex flex-col h-full justify-between">
+                                            <p class="text-sm text-gray-200 mb-3">{{ page.strategy_2_description }}</p>
+                                            <a href="{{ page.strategy_2_link }}"
+                                               class="btn-ec-secondary block w-full text-center">{{ page.strategy_2_link_text }}</a>
+                                        </div>
                                     </td>
-                                    <td class="p-4 border-l border-gray-600">
-                                        <p class="text-sm text-gray-200 mb-3">{{ page.strategy_3_description }}</p>
-                                        <a href="{{ page.strategy_3_link }}"
-                                           class="btn-ec-secondary block w-full text-center">{{ page.strategy_3_link_text }}</a>
+                                    <td class="p-4 border-l border-gray-600 align-top" style="vertical-align: top;">
+                                        <div class="flex flex-col h-full justify-between">
+                                            <p class="text-sm text-gray-200 mb-3">{{ page.strategy_3_description }}</p>
+                                            <a href="{{ page.strategy_3_link }}"
+                                               class="btn-ec-secondary block w-full text-center">{{ page.strategy_3_link_text }}</a>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
