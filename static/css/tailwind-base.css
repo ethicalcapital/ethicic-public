@@ -425,15 +425,15 @@
   }
 
   .card-header-ec {
-    @apply mb-4 border-b border-gray-600 pb-4;
+    @apply mb-4 border-b border-gray-200 pb-4 dark:border-gray-600;
   }
 
   .card-title-ec {
-    @apply font-mono text-lg font-semibold text-purple-400;
+    @apply font-mono text-lg font-semibold text-purple-600 dark:text-purple-400;
   }
 
   .card-content-ec {
-    @apply text-gray-300;
+    @apply text-gray-700 dark:text-gray-300;
   }
 
   /* Badge Components */
