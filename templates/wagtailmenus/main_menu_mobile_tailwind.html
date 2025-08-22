@@ -4,7 +4,7 @@ Replaces Garden UI mobile navigation with utility classes
 {% endcomment %}
 {% for item in menu_items %}
     <a href="{{ item.href }}"
-       class="block font-mono text-sm text-white hover:text-purple-300 py-2 px-3 rounded-lg hover:bg-gray-700 transition-all duration-200 relative z-50 {% if item.active_class %}text-purple-300 bg-gray-700{% endif %}"
+       class="block font-mono text-sm text-white hover:text-purple-300 py-2 px-3 rounded-lg hover:bg-gray-700 transition-all duration-200 relative z-[55] {% if item.active_class %}text-purple-300 bg-gray-700{% endif %}"
        style="pointer-events: auto; cursor: pointer;"
        {% if item.attr_title %}title="{{ item.attr_title }}"{% endif %}
        @click="mobileMenuOpen = false">{{ item.text }}</a>

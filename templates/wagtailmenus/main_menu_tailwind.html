@@ -4,7 +4,7 @@ Replaces Garden UI navigation with utility classes
 {% endcomment %}
 {% for item in menu_items %}
     <a href="{{ item.href }}"
-       class="font-sans text-lg font-medium text-white hover:text-purple-200 transition-colors duration-200 relative z-50 {% if item.active_class %}text-purple-300{% endif %}"
+       class="font-sans text-lg font-medium text-white hover:text-purple-200 transition-colors duration-200 relative z-[55] {% if item.active_class %}text-purple-300{% endif %}"
        style="pointer-events: auto; cursor: pointer;"
        {% if item.attr_title %}title="{{ item.attr_title }}"{% endif %}>{{ item.text }}</a>
 {% endfor %}

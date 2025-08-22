@@ -88,6 +88,9 @@ module.exports = {
           "Arial Black",
           "sans-serif",
         ],
+        heading: ["var(--font-family-heading)", "sans-serif"],
+        body: ["var(--font-family-body)", "sans-serif"],
+        ui: ["var(--font-family-ui)", "sans-serif"],
       },
       fontSize: {
         xs: ["var(--font-xs)", { lineHeight: "var(--line-tight)" }],
