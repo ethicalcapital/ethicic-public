@@ -585,17 +585,20 @@
            class="sr-only z-50 rounded bg-gray-900 px-4 py-2 text-white focus:not-sr-only focus:absolute focus:top-4 focus:left-4">
             Skip to main content
         </a>
-        
         <!-- Site Notice -->
         <div class="bg-gray-800 border-b border-gray-600 text-center py-3 px-4">
-            <div class="font-bold text-sm md:text-base text-white">
-                🇵🇸 We stand with Palestine
-            </div>
+            <div class="font-bold text-sm md:text-base text-white">🇵🇸 We stand with Palestine</div>
             <div class="text-xs mt-1 text-gray-400 font-mono">
-                (and we're remodeling our website - please pardon our "dust" while work is underway). 
-                <a href="https://tidycal.com/ecic" class="text-teal-400 hover:text-teal-300 underline" target="_blank" rel="noopener noreferrer">Click here to schedule a meeting</a> 
-                and 
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdx1ex4pj5iYaj1v1Yxjt7iFbicqZbKWNuOZVyMlG8sKswbgQ/viewform?usp=header" class="text-teal-400 hover:text-teal-300 underline" target="_blank" rel="noopener noreferrer">click here to become a client</a>
+                (and we're remodeling our website - please pardon our "dust" while work is underway).
+                <a href="https://tidycal.com/ecic"
+                   class="text-teal-400 hover:text-teal-300 underline"
+                   target="_blank"
+                   rel="noopener noreferrer">Click here to schedule a meeting</a>
+                and
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdx1ex4pj5iYaj1v1Yxjt7iFbicqZbKWNuOZVyMlG8sKswbgQ/viewform?usp=header"
+                   class="text-teal-400 hover:text-teal-300 underline"
+                   target="_blank"
+                   rel="noopener noreferrer">click here to become a client</a>
             </div>
         </div>
         <a href="#main-navigation"
@@ -626,7 +629,9 @@
                             {{ site_config.company_name|default:"ETHICAL CAPITAL" }}
                         </a>
                         <!-- Desktop Navigation -->
-                        <nav class="hidden space-x-6 md:flex relative z-50" id="main-navigation" style="pointer-events: auto;">
+                        <nav class="hidden space-x-6 md:flex relative z-50"
+                             id="main-navigation"
+                             style="pointer-events: auto">
                             {% main_menu max_levels=1 template="wagtailmenus/main_menu_tailwind.html" %}
                         </nav>
                     </div>
@@ -746,9 +751,7 @@
                                aria-label="Search our website" />
                         <button type="submit"
                                 class="absolute top-1/2 right-1 -translate-y-1/2 transform rounded bg-purple-600 px-2 py-1 text-white transition-colors hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                                aria-label="Submit search">
-                            🔍
-                        </button>
+                                aria-label="Submit search">🔍</button>
                     </form>
                 </div>
                 <!-- Mobile login link -->
@@ -770,7 +773,8 @@
             {% block content %}{% endblock %}
         </main>
         <!-- Footer -->
-        <footer class="border-t border-gray-600 bg-gray-800 mt-8" style="padding-top: 4rem !important;">
+        <footer class="border-t border-gray-600 bg-gray-800 mt-8"
+                style="padding-top: 4rem !important">
             <div class="container-ec pb-8">
                 <div class="footer-grid grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5">
                     <!-- Company Info -->
@@ -806,7 +810,9 @@
                             </li>
                             <li>
                                 <a href="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf"
-                                   class="text-gray-400 transition-colors hover:text-purple-400" target="_blank" rel="noopener noreferrer">Form ADV</a>
+                                   class="text-gray-400 transition-colors hover:text-purple-400"
+                                   target="_blank"
+                                   rel="noopener noreferrer">Form ADV</a>
                             </li>
                         </ul>
                     </div>
@@ -860,7 +866,9 @@
                             </li>
                             <li>
                                 <a href="https://www.linkedin.com/company/ethicalcapitalcollective/"
-                                   class="text-gray-400 transition-colors hover:text-purple-400" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                                   class="text-gray-400 transition-colors hover:text-purple-400"
+                                   target="_blank"
+                                   rel="noopener noreferrer">LinkedIn</a>
                             </li>
                         </ul>
                     </div>

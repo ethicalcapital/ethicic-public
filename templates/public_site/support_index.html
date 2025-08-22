@@ -1,155 +1,155 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags %}
 {% block title %}FAQ | {{ block.super }}{% endblock %}
-    {% block body_class %}support-index{% endblock %}
-    {% block content %}
-        <div class="garden-container">
-            <!-- Condensed FAQ Header -->
-            <section class="faq-header-condensed"
-                     role="banner"
-                     aria-labelledby="faq-heading">
-                <div class="faq-header-content">
-                    <h1 id="faq-heading" class="faq-title">{{ page.title|default:"FAQ" }}</h1>
-                    <div class="faq-search">
-                        <input type="text"
-                               id="support-search"
-                               placeholder="Search FAQ articles..."
-                               class="search-input" />
-                    </div>
+{% block body_class %}support-index{% endblock %}
+{% block content %}
+    <div class="garden-container">
+        <!-- Condensed FAQ Header -->
+        <section class="faq-header-condensed"
+                 role="banner"
+                 aria-labelledby="faq-heading">
+            <div class="faq-header-content">
+                <h1 id="faq-heading" class="faq-title">{{ page.title|default:"FAQ" }}</h1>
+                <div class="faq-search">
+                    <input type="text"
+                           id="support-search"
+                           placeholder="Search FAQ articles..."
+                           class="search-input" />
                 </div>
-            </section>
-            <!-- Main Content -->
-            <main class="main-content">
-                <div class="faq-container">
-                    <!-- Pinned Question -->
-                    {% for article in articles %}
-                        {% if article.id == 86 %}
-                            <section class="pinned-question-section">
-                                <div class="pinned-badge">📌 IMPORTANT</div>
-                                <article class="pinned-question-card">
-                                    <h2 class="pinned-question-title">
-                                        <a href="{% pageurl article %}">{{ article.title }}</a>
-                                    </h2>
-                                    <p class="pinned-question-summary">{{ article.summary }}</p>
-                                    <a href="{% pageurl article %}" class="pinned-read-link">Read full answer →</a>
-                                </article>
+            </div>
+        </section>
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="faq-container">
+                <!-- Pinned Question -->
+                {% for article in articles %}
+                    {% if article.id == 86 %}
+                        <section class="pinned-question-section">
+                            <div class="pinned-badge">📌 IMPORTANT</div>
+                            <article class="pinned-question-card">
+                                <h2 class="pinned-question-title">
+                                    <a href="{% pageurl article %}">{{ article.title }}</a>
+                                </h2>
+                                <p class="pinned-question-summary">{{ article.summary }}</p>
+                                <a href="{% pageurl article %}" class="pinned-read-link">Read full answer →</a>
+                            </article>
+                        </section>
+                    {% endif %}
+                {% endfor %}
+                <!-- Two-Column Layout -->
+                <div class="faq-layout">
+                    <!-- Main FAQ Content Column -->
+                    <div class="faq-content-column">
+                        {% regroup articles by get_category_display as category_list %}
+                        {% for category in category_list %}
+                            <section class="category-section" id="category-{{ category.grouper|slugify }}">
+                                <div class="category-header">
+                                    <h2 class="category-title">{{ category.grouper }}</h2>
+                                    <span class="category-badge">{{ category.list|length }}</span>
+                                </div>
+                                <div class="faq-articles">
+                                    {% for article in category.list %}
+                                        {% if article.id != 86 %}
+                                            <article class="faq-article-card"
+                                                     data-title="{{ article.title|lower }}"
+                                                     data-summary="{{ article.summary|lower }}">
+                                                {% if article.featured %}<div class="featured-indicator">★</div>{% endif %}
+                                                <div class="article-header">
+                                                    <h3 class="faq-question">
+                                                        <a href="{% pageurl article %}">{{ article.title }}</a>
+                                                    </h3>
+                                                    {% if article.featured %}<span class="featured-label">Popular</span>{% endif %}
+                                                </div>
+                                                <p class="faq-preview">{{ article.summary }}</p>
+                                                <div class="article-meta">
+                                                    <a href="{% pageurl article %}" class="read-more-link">Read full answer →</a>
+                                                </div>
+                                            </article>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
                             </section>
-                        {% endif %}
-                    {% endfor %}
-                    <!-- Two-Column Layout -->
-                    <div class="faq-layout">
-                        <!-- Main FAQ Content Column -->
-                        <div class="faq-content-column">
-                            {% regroup articles by get_category_display as category_list %}
-                            {% for category in category_list %}
-                                <section class="category-section" id="category-{{ category.grouper|slugify }}">
-                                    <div class="category-header">
-                                        <h2 class="category-title">{{ category.grouper }}</h2>
-                                        <span class="category-badge">{{ category.list|length }}</span>
-                                    </div>
-                                    <div class="faq-articles">
-                                        {% for article in category.list %}
-                                            {% if article.id != 86 %}
-                                                <article class="faq-article-card"
-                                                         data-title="{{ article.title|lower }}"
-                                                         data-summary="{{ article.summary|lower }}">
-                                                    {% if article.featured %}<div class="featured-indicator">★</div>{% endif %}
-                                                    <div class="article-header">
-                                                        <h3 class="faq-question">
-                                                            <a href="{% pageurl article %}">{{ article.title }}</a>
-                                                        </h3>
-                                                        {% if article.featured %}<span class="featured-label">Popular</span>{% endif %}
-                                                    </div>
-                                                    <p class="faq-preview">{{ article.summary }}</p>
-                                                    <div class="article-meta">
-                                                        <a href="{% pageurl article %}" class="read-more-link">Read full answer →</a>
-                                                    </div>
-                                                </article>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                </section>
-                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <!-- Sidebar Column -->
+                    <div class="faq-sidebar-column">
+                        <!-- Contact Card -->
+                        <div class="sidebar-card contact-card">
+                            <div class="card-header">
+                                <h3>Still have questions?</h3>
+                            </div>
+                            <div class="card-content">
+                                <p>Can't find what you're looking for? The best way to get answers is to schedule time on our calendar.</p>
+                                <div class="contact-options">
+                                    {% if page.meeting_link %}
+                                        <a href="{{ page.meeting_link }}"
+                                           target="_blank"
+                                           class="contact-option meeting-option featured-contact">
+                                            <span class="contact-icon">📅</span>
+                                            <div class="contact-details">
+                                                <strong>Schedule a call</strong>
+                                                <small>Best option - Book consultation</small>
+                                            </div>
+                                        </a>
+                                    {% endif %}
+                                    {% if page.contact_email %}
+                                        <a href="mailto:{{ page.contact_email }}"
+                                           class="contact-option email-option">
+                                            <span class="contact-icon">📧</span>
+                                            <div class="contact-details">
+                                                <strong>Email us</strong>
+                                                <small>{{ page.contact_email }}</small>
+                                            </div>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-                        <!-- Sidebar Column -->
-                        <div class="faq-sidebar-column">
-                            <!-- Contact Card -->
-                            <div class="sidebar-card contact-card">
-                                <div class="card-header">
-                                    <h3>Still have questions?</h3>
-                                </div>
-                                <div class="card-content">
-                                    <p>Can't find what you're looking for? The best way to get answers is to schedule time on our calendar.</p>
-                                    <div class="contact-options">
-                                        {% if page.meeting_link %}
-                                            <a href="{{ page.meeting_link }}"
-                                               target="_blank"
-                                               class="contact-option meeting-option featured-contact">
-                                                <span class="contact-icon">📅</span>
-                                                <div class="contact-details">
-                                                    <strong>Schedule a call</strong>
-                                                    <small>Best option - Book consultation</small>
-                                                </div>
-                                            </a>
-                                        {% endif %}
-                                        {% if page.contact_email %}
-                                            <a href="mailto:{{ page.contact_email }}"
-                                               class="contact-option email-option">
-                                                <span class="contact-icon">📧</span>
-                                                <div class="contact-details">
-                                                    <strong>Email us</strong>
-                                                    <small>{{ page.contact_email }}</small>
-                                                </div>
-                                            </a>
-                                        {% endif %}
-                                    </div>
-                                </div>
+                        <!-- Featured Articles -->
+                        <div class="sidebar-card featured-card">
+                            <div class="card-header">
+                                <h3>Most Popular</h3>
                             </div>
-                            <!-- Featured Articles -->
-                            <div class="sidebar-card featured-card">
-                                <div class="card-header">
-                                    <h3>Most Popular</h3>
-                                </div>
-                                <div class="card-content">
-                                    <div class="featured-articles">
-                                        {% for article in articles %}
-                                            {% if article.featured %}
-                                                <a href="{% pageurl article %}" class="featured-article-link">
-                                                    <div class="featured-article-item">
-                                                        <span class="featured-star">★</span>
-                                                        <div class="featured-text">
-                                                            <strong>{{ article.title }}</strong>
-                                                            <small>{{ article.get_category_display }}</small>
-                                                        </div>
+                            <div class="card-content">
+                                <div class="featured-articles">
+                                    {% for article in articles %}
+                                        {% if article.featured %}
+                                            <a href="{% pageurl article %}" class="featured-article-link">
+                                                <div class="featured-article-item">
+                                                    <span class="featured-star">★</span>
+                                                    <div class="featured-text">
+                                                        <strong>{{ article.title }}</strong>
+                                                        <small>{{ article.get_category_display }}</small>
                                                     </div>
-                                                </a>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
+                                                </div>
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                             </div>
-                            <!-- Stats Card -->
-                            <div class="sidebar-card stats-card">
-                                <div class="card-content">
-                                    <div class="stat-item">
-                                        <span class="stat-number">{{ articles.count }}</span>
-                                        <span class="stat-label">FAQ Articles</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-number">{{ category_list|length }}</span>
-                                        <span class="stat-label">Categories</span>
-                                    </div>
+                        </div>
+                        <!-- Stats Card -->
+                        <div class="sidebar-card stats-card">
+                            <div class="card-content">
+                                <div class="stat-item">
+                                    <span class="stat-number">{{ articles.count }}</span>
+                                    <span class="stat-label">FAQ Articles</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">{{ category_list|length }}</span>
+                                    <span class="stat-label">Categories</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
-    {% endblock %}
-    {% block extra_css %}{% endblock %}
-    {% block extra_js %}
-        <script>
+            </div>
+        </main>
+    </div>
+{% endblock %}
+{% block extra_css %}{% endblock %}
+{% block extra_js %}
+    <script>
   // Enhanced FAQ functionality with search and animations
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("support-search");
@@ -247,5 +247,5 @@
       observer.observe(card);
     });
   });
-        </script>
-    {% endblock %}
+    </script>
+{% endblock %}

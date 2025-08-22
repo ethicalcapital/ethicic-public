@@ -293,8 +293,9 @@ def newsletter_signup(request):
                             }
                         )
                         contact.notes = (
-                            contact.notes or ""
-                        ) + f"\nRe-subscribed to newsletter on {timezone.now().date()}"
+                            (contact.notes or "")
+                            + f"\nRe-subscribed to newsletter on {timezone.now().date()}"
+                        )
                         contact.save()
 
                 logger.info(
@@ -1524,9 +1525,11 @@ def media_items_api(request):
                     "title": item.title,
                     "description": description,
                     "publication": item.publication,
-                    "publication_date": item.publication_date.isoformat()
-                    if item.publication_date
-                    else None,
+                    "publication_date": (
+                        item.publication_date.isoformat()
+                        if item.publication_date
+                        else None
+                    ),
                     "external_url": item.external_url,
                     "featured": item.featured,
                 }

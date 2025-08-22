@@ -2,18 +2,35 @@
 Complete URL routing for Wagtail-based public site with form handling and API endpoints
 """
 
-from django.urls import path, include
+from django.urls import path
 from django.views.generic import RedirectView
 
 from .views import (
-    contact_form_submit, contact_success, newsletter_signup,
-    test_clean_nav, test_form, onboarding_form_submit, onboarding_thank_you,
-    contact_api, newsletter_api, site_status_api, media_items_api,
-    garden_overview, garden_interest_registration,
-    site_search, site_search_live, live_stats_api, notifications_count_api,
-    notifications_api, mark_notifications_read_api, validate_email_api,
-    theme_api, check_submission_status, get_site_navigation, get_footer_links,
-    disclosures_page
+    contact_form_submit,
+    contact_success,
+    newsletter_signup,
+    test_clean_nav,
+    test_form,
+    onboarding_form_submit,
+    onboarding_thank_you,
+    contact_api,
+    newsletter_api,
+    site_status_api,
+    media_items_api,
+    garden_overview,
+    garden_interest_registration,
+    site_search,
+    site_search_live,
+    live_stats_api,
+    notifications_count_api,
+    notifications_api,
+    mark_notifications_read_api,
+    validate_email_api,
+    theme_api,
+    check_submission_status,
+    get_site_navigation,
+    get_footer_links,
+    disclosures_page,
 )
 
 app_name = "public_site"
@@ -34,9 +51,7 @@ urlpatterns = [
     path("test-form/", test_form, name="test_form"),
     # Onboarding form
     path("onboarding/submit/", onboarding_form_submit, name="onboarding_submit"),
-    path(
-        "onboarding/thank-you/", onboarding_thank_you, name="onboarding_thank_you"
-    ),
+    path("onboarding/thank-you/", onboarding_thank_you, name="onboarding_thank_you"),
     # Onboarding page is handled by Wagtail routing
     # ============================================================================
     # JSON API ENDPOINTS (for AJAX forms and integrations)

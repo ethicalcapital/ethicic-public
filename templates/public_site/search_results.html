@@ -1,14 +1,12 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags %}
-
 {% block title %}
-{% if query_string %}
-Search Results for "{{ query_string }}" | Ethical Capital
-{% else %}
-Search | Ethical Capital
-{% endif %}
+    {% if query_string %}
+        Search Results for "{{ query_string }}" | Ethical Capital
+    {% else %}
+        Search | Ethical Capital
+    {% endif %}
 {% endblock %}
-
 {% block body_class %}search-results-page{% endblock %}
 {% block content %}
     <div class="container-ec">
@@ -114,9 +112,7 @@ Search | Ethical Capital
                                     ← PREVIOUS
                                 </a>
                             {% endif %}
-                            <span class="text-gray-400">
-                                Page {{ search_results.number }} of {{ search_results.paginator.num_pages }}
-                            </span>
+                            <span class="text-gray-400">Page {{ search_results.number }} of {{ search_results.paginator.num_pages }}</span>
                             {% if search_results.has_next %}
                                 <a href="?q={{ query_string }}&page={{ search_results.next_page_number }}"
                                    class="rounded-lg bg-gray-100 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">
@@ -166,10 +162,9 @@ Search | Ethical Capital
         {% endif %}
     </div>
 {% endblock %}
-
 {% block extra_js %}
-<!-- 💀 LEGACY JAVASCRIPT ANNIHILATED - 58+ lines eliminated and replaced with Alpine.js -->
-<script>
+    <!-- 💀 LEGACY JAVASCRIPT ANNIHILATED - 58+ lines eliminated and replaced with Alpine.js -->
+    <script>
   // Global keyboard shortcut for search (/)
   document.addEventListener("keydown", function (e) {
     if (e.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName)) {

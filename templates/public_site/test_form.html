@@ -1,57 +1,65 @@
 {% extends "public_site/base_tailwind.html" %}
-
 {% block title %}Form Test{% endblock %}
-
 {% block content %}
-<div class="container-ec">
-  <h1 class="text-2xl font-bold text-white mb-8">Form Input Test</h1>
-  
-  <!-- Basic HTML Form Test -->
-  <div class="bg-gray-800 p-6 rounded-lg mb-8">
-    <h2 class="text-xl text-white mb-4">Basic HTML Form (No Classes)</h2>
-    <form>
-      <div class="mb-4">
-        <label class="block text-white mb-2">Name:</label>
-        <input type="text" placeholder="Type here..." style="padding: 8px; border: 1px solid #ccc;">
-      </div>
-      <div class="mb-4">
-        <label class="block text-white mb-2">Email:</label>
-        <input type="email" placeholder="email@example.com" style="padding: 8px; border: 1px solid #ccc;">
-      </div>
-      <button type="submit" style="padding: 8px 16px; background: #6b46c1; color: white;">Submit</button>
-    </form>
-  </div>
-
-  <!-- Tailwind Classes Test -->
-  <div class="bg-gray-800 p-6 rounded-lg mb-8">
-    <h2 class="text-xl text-white mb-4">Tailwind Classes Form</h2>
-    <form>
-      <div class="mb-4">
-        <label class="block text-white mb-2">Name:</label>
-        <input type="text" placeholder="Type here..." class="w-full p-3 border border-gray-600 bg-gray-700 text-white rounded">
-      </div>
-      <div class="mb-4">
-        <label class="block text-white mb-2">Email:</label>
-        <input type="email" placeholder="email@example.com" class="w-full p-3 border border-gray-600 bg-gray-700 text-white rounded">
-      </div>
-      <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded">Submit</button>
-    </form>
-  </div>
-
-  <!-- EC Form Classes Test -->
-  <div class="bg-gray-800 p-6 rounded-lg">
-    <h2 class="text-xl text-white mb-4">EC Form Classes</h2>
-    <form>
-      <div class="form-group-ec">
-        <label class="form-label-ec">Name:</label>
-        <input type="text" placeholder="Type here..." class="form-input-ec">
-      </div>
-      <div class="form-group-ec">
-        <label class="form-label-ec">Email:</label>
-        <input type="email" placeholder="email@example.com" class="form-input-ec">
-      </div>
-      <button type="submit" class="btn-ec-primary">Submit</button>
-    </form>
-  </div>
-</div>
+    <div class="container-ec">
+        <h1 class="text-2xl font-bold text-white mb-8">Form Input Test</h1>
+        <!-- Basic HTML Form Test -->
+        <div class="bg-gray-800 p-6 rounded-lg mb-8">
+            <h2 class="text-xl text-white mb-4">Basic HTML Form (No Classes)</h2>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-white mb-2">Name:</label>
+                    <input type="text"
+                           placeholder="Type here..."
+                           style="padding: 8px;
+                                  border: 1px solid #ccc">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-white mb-2">Email:</label>
+                    <input type="email"
+                           placeholder="email@example.com"
+                           style="padding: 8px;
+                                  border: 1px solid #ccc">
+                </div>
+                <button type="submit"
+                        style="padding: 8px 16px;
+                               background: #6b46c1;
+                               color: white">Submit</button>
+            </form>
+        </div>
+        <!-- Tailwind Classes Test -->
+        <div class="bg-gray-800 p-6 rounded-lg mb-8">
+            <h2 class="text-xl text-white mb-4">Tailwind Classes Form</h2>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-white mb-2">Name:</label>
+                    <input type="text"
+                           placeholder="Type here..."
+                           class="w-full p-3 border border-gray-600 bg-gray-700 text-white rounded">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-white mb-2">Email:</label>
+                    <input type="email"
+                           placeholder="email@example.com"
+                           class="w-full p-3 border border-gray-600 bg-gray-700 text-white rounded">
+                </div>
+                <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded">Submit</button>
+            </form>
+        </div>
+        <!-- EC Form Classes Test -->
+        <div class="bg-gray-800 p-6 rounded-lg">
+            <h2 class="text-xl text-white mb-4">EC Form Classes</h2>
+            <form>
+                <div class="form-group-ec">
+                    <label class="form-label-ec">Name:</label>
+                    <input type="text" placeholder="Type here..." class="form-input-ec">
+                </div>
+                <div class="form-group-ec">
+                    <label class="form-label-ec">Email:</label>
+                    <input type="email" placeholder="email@example.com" class="form-input-ec">
+                </div>
+                <button type="submit" class="btn-ec-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

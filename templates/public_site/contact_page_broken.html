@@ -1,209 +1,201 @@
 {% extends "public_site/base_tailwind.html" %}
-
 {% block title %}Contact Ethical Capital{% endblock %}
-
 {% block content %}
-<div class="container-ec">
-  <!-- Page Header -->
-  <div class="text-center mb-8">
-    <h1 class="font-mono text-3xl font-semibold text-white mb-4">Get In Touch</h1>
-    <p class="text-gray-400 max-w-2xl mx-auto">
-      Ready to explore ethical investing? Reach out to discuss how we can align your investments with your values.
-    </p>
-  </div>
-
-  <div class="grid-2col">
-    <!-- Contact Form -->
-    <div class="card-ec">
-      <div class="card-header-ec">
-        <h2 class="card-title-ec">Send a Message</h2>
-      </div>
-
-      <!-- HTMX Contact Form -->
-      <form
-        id="contact-form"
-        hx-post="/api/contact/"
-        hx-target="#form-response"
-        hx-swap="innerHTML"
-        class="space-y-6"
-      >
-        {% csrf_token %}
-
-        <!-- Name Field -->
-        <div class="mb-6">
-          <label for="name" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Full Name *</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
-            placeholder="Your full name"
-            required
-          />
+    <div class="container-ec">
+        <!-- Page Header -->
+        <div class="text-center mb-8">
+            <h1 class="font-mono text-3xl font-semibold text-white mb-4">Get In Touch</h1>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Ready to explore ethical investing? Reach out to discuss how we can align your investments with your values.
+            </p>
         </div>
-
-        <!-- Email Field with inline validation -->
-        <div class="mb-6">
-          <label for="email" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Email Address *</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
-            placeholder="your@email.com"
-            autocomplete="email"
-            required
-            hx-post="/api/validate-email/"
-            hx-trigger="blur changed"
-            hx-target="#email-feedback"
-            hx-indicator="#email-spinner"
-            aria-describedby="email-feedback"
-            aria-invalid="false"
-          />
-          <span
-            id="email-spinner"
-            class="htmx-indicator inline-block ml-2 text-purple-400"
-            role="status"
-            aria-label="Validating email"
-          >
-            ⟳
-          </span>
-          <div id="email-feedback" class="mt-1 text-sm" role="status" aria-live="polite" aria-atomic="true"></div>
-        </div>
-
-        <!-- Company Field -->
-        <div class="mb-6">
-          <label for="company" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Company/Organization</label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
-            placeholder="Your company or organization"
-          />
-        </div>
-
-        <!-- Subject -->
-        <div class="mb-6">
-          <label for="subject" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Subject *</label>
-          <select id="subject" name="subject" class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none" :disabled="submitting" required>
-            <option value="">Select a topic...</option>
-            <option value="general">General Inquiry</option>
-            <option value="investment_inquiry">Investment Services</option>
-            <option value="partnership">Partnership Opportunities</option>
-            <option value="adviser_partnership">Adviser Partnership</option>
-            <option value="institutional">Institutional Services</option>
-            <option value="compliance">Compliance Questions</option>
-            <option value="support">Support</option>
-          </select>
-        </div>
-
-        <!-- Message -->
-        <div class="mb-6">
-          <label for="message" class="block font-mono text-sm font-semibold text-purple-400 mb-2">Message *</label>
-          <textarea
-            id="message"
-            name="message"
-            class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
-            rows="4"
-            placeholder="Tell us about your investment goals, timeline, or any specific questions you have..."
-            required
-          ></textarea>
-        </div>
-
-        <!-- Cloudflare Turnstile -->
-        <div class="mb-6">
-          <div
-            class="cf-turnstile"
-            data-sitekey="0x4AAAAAABk5jZxSl-TKV1hs"
-            data-callback="onTurnstileSuccess"
-            data-error-callback="onTurnstileError"
-            data-theme="dark"
-          ></div>
-          <input type="hidden" name="cf_turnstile_response" value="" />
-        </div>
-
-        <!-- Submit Button -->
-        <div class="flex gap-4">
-          <button type="submit" class="btn-ec-primary" aria-describedby="form-response">
-            Send Message
-          </button>
-        </div>
-
-        <!-- Loading indicator -->
-        <div
-          id="form-loading"
-          class="htmx-indicator bg-opacity-95 absolute inset-0 items-center justify-center rounded-lg bg-gray-900"
-          role="status"
-          aria-label="Form submission in progress"
-          style="display: none;"
-        >
-          <div class="text-center">
-            <svg class="animate-spin h-12 w-12 mx-auto mb-4 text-purple-400" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            <p class="text-purple-200">Submitting your message...</p>
-          </div>
-        </div>
-      </form>
-
-      <!-- Response container -->
-      <div
-        id="form-response"
-        class="mt-4"
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-      ></div>
-    </div>
-
-    <!-- Contact Information -->
-    <div class="card-ec">
-      <!-- Direct Contact -->
-      <div class="mb-6">
-        <h3 class="card-title-ec">Direct Contact</h3>
-        <div class="space-y-3">
-          <div class="flex items-center">
-            <span class="w-5 h-5 mr-3 text-purple-400">📧</span>
-            <div>
-              <p class="font-mono text-sm text-gray-300">Email</p>
-              <a href="mailto:hello@ethicic.com" class="text-purple-400 hover:text-purple-300 transition-colors">hello@ethicic.com</a>
+        <div class="grid-2col">
+            <!-- Contact Form -->
+            <div class="card-ec">
+                <div class="card-header-ec">
+                    <h2 class="card-title-ec">Send a Message</h2>
+                </div>
+                <!-- HTMX Contact Form -->
+                <form id="contact-form"
+                      hx-post="/api/contact/"
+                      hx-target="#form-response"
+                      hx-swap="innerHTML"
+                      class="space-y-6">
+                    {% csrf_token %}
+                    <!-- Name Field -->
+                    <div class="mb-6">
+                        <label for="name"
+                               class="block font-mono text-sm font-semibold text-purple-400 mb-2">Full Name *</label>
+                        <input type="text"
+                               id="name"
+                               name="name"
+                               class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                               placeholder="Your full name"
+                               required />
+                    </div>
+                    <!-- Email Field with inline validation -->
+                    <div class="mb-6">
+                        <label for="email"
+                               class="block font-mono text-sm font-semibold text-purple-400 mb-2">
+                            Email Address *
+                        </label>
+                        <input type="email"
+                               id="email"
+                               name="email"
+                               class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                               placeholder="your@email.com"
+                               autocomplete="email"
+                               required
+                               hx-post="/api/validate-email/"
+                               hx-trigger="blur changed"
+                               hx-target="#email-feedback"
+                               hx-indicator="#email-spinner"
+                               aria-describedby="email-feedback"
+                               aria-invalid="false" />
+                        <span id="email-spinner"
+                              class="htmx-indicator inline-block ml-2 text-purple-400"
+                              role="status"
+                              aria-label="Validating email">⟳</span>
+                        <div id="email-feedback"
+                             class="mt-1 text-sm"
+                             role="status"
+                             aria-live="polite"
+                             aria-atomic="true"></div>
+                    </div>
+                    <!-- Company Field -->
+                    <div class="mb-6">
+                        <label for="company"
+                               class="block font-mono text-sm font-semibold text-purple-400 mb-2">
+                            Company/Organization
+                        </label>
+                        <input type="text"
+                               id="company"
+                               name="company"
+                               class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                               placeholder="Your company or organization" />
+                    </div>
+                    <!-- Subject -->
+                    <div class="mb-6">
+                        <label for="subject"
+                               class="block font-mono text-sm font-semibold text-purple-400 mb-2">Subject *</label>
+                        <select id="subject"
+                                name="subject"
+                                class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                                :disabled="submitting"
+                                required>
+                            <option value="">Select a topic...</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="investment_inquiry">Investment Services</option>
+                            <option value="partnership">Partnership Opportunities</option>
+                            <option value="adviser_partnership">Adviser Partnership</option>
+                            <option value="institutional">Institutional Services</option>
+                            <option value="compliance">Compliance Questions</option>
+                            <option value="support">Support</option>
+                        </select>
+                    </div>
+                    <!-- Message -->
+                    <div class="mb-6">
+                        <label for="message"
+                               class="block font-mono text-sm font-semibold text-purple-400 mb-2">Message *</label>
+                        <textarea id="message"
+                                  name="message"
+                                  class="w-full rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                                  rows="4"
+                                  placeholder="Tell us about your investment goals, timeline, or any specific questions you have..."
+                                  required></textarea>
+                    </div>
+                    <!-- Cloudflare Turnstile -->
+                    <div class="mb-6">
+                        <div class="cf-turnstile"
+                             data-sitekey="0x4AAAAAABk5jZxSl-TKV1hs"
+                             data-callback="onTurnstileSuccess"
+                             data-error-callback="onTurnstileError"
+                             data-theme="dark"></div>
+                        <input type="hidden" name="cf_turnstile_response" value="" />
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="flex gap-4">
+                        <button type="submit" class="btn-ec-primary" aria-describedby="form-response">Send Message</button>
+                    </div>
+                    <!-- Loading indicator -->
+                    <div id="form-loading"
+                         class="htmx-indicator bg-opacity-95 absolute inset-0 items-center justify-center rounded-lg bg-gray-900"
+                         role="status"
+                         aria-label="Form submission in progress"
+                         style="display: none">
+                        <div class="text-center">
+                            <svg class="animate-spin h-12 w-12 mx-auto mb-4 text-purple-400"
+                                 fill="none"
+                                 viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                            <p class="text-purple-200">Submitting your message...</p>
+                        </div>
+                    </div>
+                </form>
+                <!-- Response container -->
+                <div id="form-response"
+                     class="mt-4"
+                     role="status"
+                     aria-live="polite"
+                     aria-atomic="true"></div>
             </div>
-          </div>
-          <div class="flex items-center">
-            <span class="w-5 h-5 mr-3 text-purple-400">📞</span>
-            <div>
-              <p class="font-mono text-sm text-gray-300">Phone</p>
-              <a href="tel:+13476259000" class="text-purple-400 hover:text-purple-300 transition-colors">(347) 625-9000</a>
+            <!-- Contact Information -->
+            <div class="card-ec">
+                <!-- Direct Contact -->
+                <div class="mb-6">
+                    <h3 class="card-title-ec">Direct Contact</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <span class="w-5 h-5 mr-3 text-purple-400">📧</span>
+                            <div>
+                                <p class="font-mono text-sm text-gray-300">Email</p>
+                                <a href="mailto:hello@ethicic.com"
+                                   class="text-purple-400 hover:text-purple-300 transition-colors">hello@ethicic.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-5 h-5 mr-3 text-purple-400">📞</span>
+                            <div>
+                                <p class="font-mono text-sm text-gray-300">Phone</p>
+                                <a href="tel:+13476259000"
+                                   class="text-purple-400 hover:text-purple-300 transition-colors">(347) 625-9000</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Office Info -->
+                <div>
+                    <h3 class="card-title-ec">Office Information</h3>
+                    <div class="text-gray-400 text-sm space-y-2">
+                        <p>
+                            <strong class="text-gray-300">Ethical Capital</strong>
+                        </p>
+                        <p>Sloane Ortel, Principal</p>
+                        <p>
+                            90 N 400 E
+                            <br>
+                            Provo, UT 84606
+                        </p>
+                        <p class="text-xs pt-2 border-t border-gray-600">
+                            Investment Adviser Representative
+                            <br />
+                            CRD #316032
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      
-      <!-- Office Info -->
-      <div>
-        <h3 class="card-title-ec">Office Information</h3>
-        <div class="text-gray-400 text-sm space-y-2">
-          <p><strong class="text-gray-300">Ethical Capital</strong></p>
-          <p>Sloane Ortel, Principal</p>
-          <p>90 N 400 E<br>Provo, UT 84606</p>
-          <p class="text-xs pt-2 border-t border-gray-600">
-            Investment Adviser Representative<br />
-            CRD #316032
-          </p>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
 {% endblock %}
-
 {% block extra_js %}
-<!-- Cloudflare Turnstile Script -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-<script>
+    <!-- Cloudflare Turnstile Script -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer></script>
+    <script>
   // Turnstile callback functions
   function onTurnstileSuccess(token) {
     // Store the token in the hidden field
@@ -252,5 +244,5 @@
     }
   `;
   document.head.appendChild(styleSheet);
-</script>
+    </script>
 {% endblock %}

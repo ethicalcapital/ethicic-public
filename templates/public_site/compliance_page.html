@@ -7,12 +7,10 @@
         <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800 p-8 text-center"
                  role="banner"
                  aria-labelledby="hero-heading">
-            <h1 id="hero-heading" class="mb-4 font-mono text-4xl font-bold text-white">{{ page.title }}</h1>
-            {% if page.intro_text %}
-            <div class="prose text-xl text-gray-300">{{ page.intro_text|richtext }}</div>
-            {% endif %}
+            <h1 id="hero-heading"
+                class="mb-4 font-mono text-4xl font-bold text-white">{{ page.title }}</h1>
+            {% if page.intro_text %}<div class="prose text-xl text-gray-300">{{ page.intro_text|richtext }}</div>{% endif %}
         </section>
-        
         <!-- Compliance Content Section -->
         <section class="rounded-lg border border-gray-600 bg-gray-800" role="main">
             <div class="border-b border-gray-600 bg-gray-700 p-4">
@@ -20,19 +18,17 @@
             </div>
             <div class="p-6">
                 {% if page.document_type %}
-                <div class="mb-6 flex flex-wrap gap-4 rounded-lg border border-gray-600 bg-gray-700 p-4">
-                    <span class="rounded bg-purple-900 px-3 py-1 text-sm font-semibold text-white">{{ page.get_document_type_display }}</span>
-                    {% if page.version %}
-                    <span class="rounded bg-gray-600 px-3 py-1 text-sm text-gray-300">Version {{ page.version }}</span>
-                    {% endif %}
-                    {% if page.effective_date %}
-                    <span class="rounded bg-gray-600 px-3 py-1 text-sm text-gray-300">Effective: {{ page.effective_date|date:"F j, Y" }}</span>
-                    {% endif %}
-                </div>
+                    <div class="mb-6 flex flex-wrap gap-4 rounded-lg border border-gray-600 bg-gray-700 p-4">
+                        <span class="rounded bg-purple-900 px-3 py-1 text-sm font-semibold text-white">{{ page.get_document_type_display }}</span>
+                        {% if page.version %}
+                            <span class="rounded bg-gray-600 px-3 py-1 text-sm text-gray-300">Version {{ page.version }}</span>
+                        {% endif %}
+                        {% if page.effective_date %}
+                            <span class="rounded bg-gray-600 px-3 py-1 text-sm text-gray-300">Effective: {{ page.effective_date|date:"F j, Y" }}</span>
+                        {% endif %}
+                    </div>
                 {% endif %}
-                
                 <div class="prose prose-lg text-gray-300">{{ page.content|richtext }}</div>
-                
                 <div class="mt-8 rounded-lg border border-purple-800 bg-purple-900/20 p-4">
                     <p class="text-sm text-purple-300">
                         <strong>Disclaimer:</strong> This document is provided for informational purposes only. Please consult with your financial advisor or legal counsel for specific advice.

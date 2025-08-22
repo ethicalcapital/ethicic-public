@@ -242,21 +242,23 @@ else:
             "PASSWORD": os.getenv("DB_PASSWORD", "password"),
             "HOST": os.getenv("DB_HOST", "localhost"),
             "PORT": os.getenv("DB_PORT", "5432"),
-            "OPTIONS": {
-                "sslmode": os.getenv("DB_SSLMODE", "prefer"),
-                "sslcert": os.getenv("DB_SSLCERT", ""),
-                "sslkey": os.getenv("DB_SSLKEY", ""),
-                "sslrootcert": os.getenv("DB_SSLROOTCERT", ""),
-            }
-            if any(
-                [
-                    os.getenv("DB_SSLMODE"),
-                    os.getenv("DB_SSLCERT"),
-                    os.getenv("DB_SSLKEY"),
-                    os.getenv("DB_SSLROOTCERT"),
-                ]
-            )
-            else {},
+            "OPTIONS": (
+                {
+                    "sslmode": os.getenv("DB_SSLMODE", "prefer"),
+                    "sslcert": os.getenv("DB_SSLCERT", ""),
+                    "sslkey": os.getenv("DB_SSLKEY", ""),
+                    "sslrootcert": os.getenv("DB_SSLROOTCERT", ""),
+                }
+                if any(
+                    [
+                        os.getenv("DB_SSLMODE"),
+                        os.getenv("DB_SSLCERT"),
+                        os.getenv("DB_SSLKEY"),
+                        os.getenv("DB_SSLROOTCERT"),
+                    ]
+                )
+                else {}
+            ),
         }
     }
 
@@ -324,15 +326,17 @@ if USE_R2:
     AWS_ACCESS_KEY_ID = os.getenv("R2_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.getenv("R2_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = "images"
-    AWS_S3_ENDPOINT_URL = "https://483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com"
+    AWS_S3_ENDPOINT_URL = (
+        "https://483f91afa8e97683223b69b57fd773ae.r2.cloudflarestorage.com"
+    )
     AWS_S3_REGION_NAME = "auto"  # R2 uses 'auto' for region
-    
+
     # For R2 public access with custom domain
     R2_PUBLIC_URL = os.getenv("R2_PUBLIC_URL", "https://images.ec1c.com")
-    
+
     # Use AWS_S3_CUSTOM_DOMAIN for django-storages to generate correct URLs
     AWS_S3_CUSTOM_DOMAIN = R2_PUBLIC_URL.replace("https://", "").replace("http://", "")
-    
+
     AWS_S3_OBJECT_PARAMETERS = {
         "CacheControl": "max-age=86400",
     }
@@ -341,10 +345,10 @@ if USE_R2:
     AWS_S3_FILE_OVERWRITE = False  # Preserve existing files
     AWS_S3_USE_SSL = True
     AWS_S3_VERIFY = True
-    
+
     # Override MEDIA_URL to use the custom domain
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
-    
+
     # Storage backends
     STORAGES = {
         "default": {
@@ -486,6 +490,7 @@ redis_available = False
 if REDIS_URL and REDIS_URL.strip():
     try:
         import redis
+
         # Test Redis connection
         r = redis.from_url(REDIS_URL)
         r.ping()
@@ -523,7 +528,7 @@ else:
             "LOCATION": "unique-snowflake",
         }
     }
-    
+
     # Use database sessions as fallback
     SESSION_ENGINE = "django.contrib.sessions.backends.db"
 

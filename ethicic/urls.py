@@ -68,9 +68,9 @@ def health_check(request):
                 "storage_backend": getattr(settings, "STORAGES", {})
                 .get("default", {})
                 .get("BACKEND", "NOT_SET"),
-                "storages_config": "SET"
-                if hasattr(settings, "STORAGES")
-                else "MISSING",
+                "storages_config": (
+                    "SET" if hasattr(settings, "STORAGES") else "MISSING"
+                ),
                 "local_storage_test": storage_test,
             }
         )
@@ -359,9 +359,9 @@ def debug_static(request):
                 {
                     "path": file_path,
                     "exists": os.path.exists(full_path),
-                    "size": os.path.getsize(full_path)
-                    if os.path.exists(full_path)
-                    else 0,
+                    "size": (
+                        os.path.getsize(full_path) if os.path.exists(full_path) else 0
+                    ),
                 }
             )
 
@@ -382,9 +382,11 @@ def debug_static(request):
                         {
                             "path": f"css/{file_name}",
                             "exists": os.path.exists(full_path),
-                            "size": os.path.getsize(full_path)
-                            if os.path.exists(full_path)
-                            else 0,
+                            "size": (
+                                os.path.getsize(full_path)
+                                if os.path.exists(full_path)
+                                else 0
+                            ),
                         }
                     )
 

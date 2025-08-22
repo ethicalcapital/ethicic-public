@@ -152,10 +152,11 @@
                         </table>
                         <div class="strategy-features">
                             <p>{{ page.strategy_1_description }}</p>
-                            <a href="{{ page.strategy_1_link }}" class="garden-action primary" aria-label="Learn more about {{ page.strategy_1_name }}">{{ page.strategy_1_link_text }}</a>
+                            <a href="{{ page.strategy_1_link }}"
+                               class="garden-action primary"
+                               aria-label="Learn more about {{ page.strategy_1_name }}">{{ page.strategy_1_link_text }}</a>
                         </div>
                     </div>
-                    
                     <!-- Strategy 2: List-based format -->
                     <div class="strategy-card strategy-card-list">
                         <div class="strategy-header">
@@ -178,10 +179,11 @@
                         </div>
                         <div class="strategy-features">
                             <p>{{ page.strategy_2_description }}</p>
-                            <a href="{{ page.strategy_2_link }}" class="garden-action secondary" aria-label="Explore {{ page.strategy_2_name }} details">{{ page.strategy_2_link_text }}</a>
+                            <a href="{{ page.strategy_2_link }}"
+                               class="garden-action secondary"
+                               aria-label="Explore {{ page.strategy_2_name }} details">{{ page.strategy_2_link_text }}</a>
                         </div>
                     </div>
-                    
                     <!-- Strategy 3: Card-based format -->
                     <div class="strategy-card strategy-card-highlights">
                         <div class="strategy-header">
@@ -208,7 +210,9 @@
                         </div>
                         <div class="strategy-features">
                             <p>{{ page.strategy_3_description }}</p>
-                            <a href="{{ page.strategy_3_link }}" class="garden-action" aria-label="Discover {{ page.strategy_3_name }} approach">{{ page.strategy_3_link_text }}</a>
+                            <a href="{{ page.strategy_3_link }}"
+                               class="garden-action"
+                               aria-label="Discover {{ page.strategy_3_name }} approach">{{ page.strategy_3_link_text }}</a>
                         </div>
                     </div>
                 </div>
@@ -217,8 +221,7 @@
     </div>
     <!-- Process Section - Updated -->
     <div class="garden-container">
-        <section class="garden-panel"
-                 aria-labelledby="process-section-heading">
+        <section class="garden-panel" aria-labelledby="process-section-heading">
             <div class="garden-panel__header garden-panel-header">
                 <h2 id="process-section-heading" class="panel-title">
                     {{ page.process_section_header|default:"OUR SIGNATURE PROCESS" }}

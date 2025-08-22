@@ -5,23 +5,22 @@
     <div class="container-ec">
         <main class="py-8">
             <!-- Hero Section -->
-            <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800 p-8 text-center" role="banner">
+            <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800 p-8 text-center"
+                     role="banner">
                 <h1 class="mb-4 font-mono text-4xl font-bold text-white lg:text-5xl">{{ page.hero_title }}</h1>
                 <p class="mx-auto max-w-3xl text-xl text-gray-300">{{ page.hero_subtitle }}</p>
             </section>
-
             <!-- Description Section -->
             {% if page.criteria_description %}
-            <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
-                <div class="border-b border-gray-600 bg-gray-700 p-4">
-                    <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">Our Approach</h2>
-                </div>
-                <div class="p-6">
-                    <div class="prose text-gray-300">{{ page.criteria_description|safe }}</div>
-                </div>
-            </section>
+                <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
+                    <div class="border-b border-gray-600 bg-gray-700 p-4">
+                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">Our Approach</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="prose text-gray-300">{{ page.criteria_description|safe }}</div>
+                    </div>
+                </section>
             {% endif %}
-
             <!-- GitHub Transparency Section -->
             <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                 <div class="border-b border-gray-600 bg-gray-700 p-4">
@@ -33,16 +32,16 @@
                             <h3 class="mb-4 font-mono text-xl font-semibold text-white">Complete Screening Policy</h3>
                             <div class="prose text-gray-300">{{ page.transparency_description|safe }}</div>
                             {% if page.transparency_benefits %}
-                            <ul class="mt-4 space-y-2">
-                                {% for benefit in page.transparency_benefits.splitlines %}
-                                    {% if benefit %}
-                                    <li class="flex items-start space-x-2">
-                                        <span class="mt-2 h-1.5 w-1.5 rounded-full bg-purple-400 flex-shrink-0"></span>
-                                        <span class="text-gray-300">{{ benefit }}</span>
-                                    </li>
-                                    {% endif %}
-                                {% endfor %}
-                            </ul>
+                                <ul class="mt-4 space-y-2">
+                                    {% for benefit in page.transparency_benefits.splitlines %}
+                                        {% if benefit %}
+                                            <li class="flex items-start space-x-2">
+                                                <span class="mt-2 h-1.5 w-1.5 rounded-full bg-purple-400 flex-shrink-0"></span>
+                                                <span class="text-gray-300">{{ benefit }}</span>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
                             {% endif %}
                         </div>
                         <div class="text-center">
@@ -58,31 +57,29 @@
                     </div>
                 </div>
             </section>
-
             <!-- Key Exclusions Overview -->
             {% if page.exclusion_categories.exists %}
-            <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
-                <div class="border-b border-gray-600 bg-gray-700 p-4">
-                    <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.exclusions_section_title }}</h2>
-                </div>
-                <div class="p-6">
-                    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {% for category in page.exclusion_categories.all %}
-                        <div class="rounded-lg border border-gray-600 bg-gray-700 p-4">
-                            <h4 class="mb-3 font-mono text-lg font-semibold text-purple-400">{{ category.icon }} {{ category.title }}</h4>
-                            <p class="text-sm text-gray-300">{{ category.description }}</p>
+                <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
+                    <div class="border-b border-gray-600 bg-gray-700 p-4">
+                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">{{ page.exclusions_section_title }}</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            {% for category in page.exclusion_categories.all %}
+                                <div class="rounded-lg border border-gray-600 bg-gray-700 p-4">
+                                    <h4 class="mb-3 font-mono text-lg font-semibold text-purple-400">{{ category.icon }} {{ category.title }}</h4>
+                                    <p class="text-sm text-gray-300">{{ category.description }}</p>
+                                </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
+                        {% if page.exclusions_note %}
+                            <div class="mt-6 rounded-lg border-l-4 border-purple-500 bg-purple-900/20 p-4">
+                                <div class="prose text-sm text-purple-300">{{ page.exclusions_note|safe }}</div>
+                            </div>
+                        {% endif %}
                     </div>
-                    {% if page.exclusions_note %}
-                    <div class="mt-6 rounded-lg border-l-4 border-purple-500 bg-purple-900/20 p-4">
-                        <div class="prose text-sm text-purple-300">{{ page.exclusions_note|safe }}</div>
-                    </div>
-                    {% endif %}
-                </div>
-            </section>
+                </section>
             {% endif %}
-
             <!-- How It Works Section -->
             <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                 <div class="border-b border-gray-600 bg-gray-700 p-4">
@@ -91,37 +88,50 @@
                 <div class="p-6">
                     <div class="space-y-6">
                         <div class="flex items-start space-x-4">
-                            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-900 font-mono text-lg font-bold text-white">1</div>
+                            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-900 font-mono text-lg font-bold text-white">
+                                1
+                            </div>
                             <div>
                                 <h4 class="mb-2 font-mono font-semibold text-white">Initial Universe</h4>
                                 <p class="text-gray-300">We start with the global investment universe - thousands of publicly traded companies.</p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-4">
-                            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-900 font-mono text-lg font-bold text-white">2</div>
+                            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-900 font-mono text-lg font-bold text-white">
+                                2
+                            </div>
                             <div>
                                 <h4 class="mb-2 font-mono font-semibold text-white">Apply Exclusions</h4>
-                                <p class="text-gray-300">Our comprehensive criteria eliminate approximately 57% of the S&P 500 and similar proportions globally.</p>
+                                <p class="text-gray-300">
+                                    Our comprehensive criteria eliminate approximately 57% of the S&P 500 and similar proportions globally.
+                                </p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-4">
-                            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-900 font-mono text-lg font-bold text-white">3</div>
+                            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-900 font-mono text-lg font-bold text-white">
+                                3
+                            </div>
                             <div>
                                 <h4 class="mb-2 font-mono font-semibold text-white">Quality Analysis</h4>
-                                <p class="text-gray-300">From the ethical universe, we identify companies with strong fundamentals and competitive advantages.</p>
+                                <p class="text-gray-300">
+                                    From the ethical universe, we identify companies with strong fundamentals and competitive advantages.
+                                </p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-4">
-                            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-900 font-mono text-lg font-bold text-white">4</div>
+                            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-900 font-mono text-lg font-bold text-white">
+                                4
+                            </div>
                             <div>
                                 <h4 class="mb-2 font-mono font-semibold text-white">Portfolio Construction</h4>
-                                <p class="text-gray-300">We build concentrated portfolios of 15-25 positions from the highest-quality ethical companies.</p>
+                                <p class="text-gray-300">
+                                    We build concentrated portfolios of 15-25 positions from the highest-quality ethical companies.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
             <!-- Why Transparency Matters -->
             <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
                 <div class="border-b border-gray-600 bg-gray-700 p-4">
@@ -131,36 +141,42 @@
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                         <div>
                             <h4 class="mb-3 font-mono font-semibold text-purple-400">Accountability</h4>
-                            <p class="text-gray-300">Open criteria mean we're accountable to our clients and the broader community for our screening decisions.</p>
+                            <p class="text-gray-300">
+                                Open criteria mean we're accountable to our clients and the broader community for our screening decisions.
+                            </p>
                         </div>
                         <div>
                             <h4 class="mb-3 font-mono font-semibold text-purple-400">Evolution</h4>
-                            <p class="text-gray-300">Public documentation allows us to track how our criteria evolve as we learn and as the world changes.</p>
+                            <p class="text-gray-300">
+                                Public documentation allows us to track how our criteria evolve as we learn and as the world changes.
+                            </p>
                         </div>
                         <div>
                             <h4 class="mb-3 font-mono font-semibold text-purple-400">Collaboration</h4>
-                            <p class="text-gray-300">Other investors can use, adapt, and improve upon our work, advancing ethical investing for everyone.</p>
+                            <p class="text-gray-300">
+                                Other investors can use, adapt, and improve upon our work, advancing ethical investing for everyone.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
-
             <!-- Additional Resources -->
             {% if page.additional_resources %}
-            <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
-                <div class="border-b border-gray-600 bg-gray-700 p-4">
-                    <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">Additional Resources</h2>
-                </div>
-                <div class="p-6">
-                    <div class="prose text-gray-300">{{ page.additional_resources|safe }}</div>
-                </div>
-            </section>
+                <section class="mb-8 rounded-lg border border-gray-600 bg-gray-800">
+                    <div class="border-b border-gray-600 bg-gray-700 p-4">
+                        <h2 class="font-mono text-lg font-semibold text-blue-300 uppercase">Additional Resources</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="prose text-gray-300">{{ page.additional_resources|safe }}</div>
+                    </div>
+                </section>
             {% endif %}
-
             <!-- Call to Action -->
             <section class="rounded-lg border border-purple-800 bg-purple-900/20 p-8 text-center">
                 <h3 class="mb-4 font-mono text-2xl font-semibold text-white">Ready to Invest Ethically?</h3>
-                <p class="mb-6 text-lg text-purple-200">Our screening process is just the beginning. Let us build a portfolio that aligns with your values and financial goals.</p>
+                <p class="mb-6 text-lg text-purple-200">
+                    Our screening process is just the beginning. Let us build a portfolio that aligns with your values and financial goals.
+                </p>
                 <div class="flex flex-col justify-center gap-4 sm:flex-row">
                     <a href="/contact/" class="btn-ec-primary">Get Started</a>
                     <a href="/solutions/" class="btn-ec-secondary">View Strategies</a>

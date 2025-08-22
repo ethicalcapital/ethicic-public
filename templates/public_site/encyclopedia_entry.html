@@ -37,9 +37,7 @@
                     {% endif %}
                 </div>
                 <h1 class="mb-4 text-4xl font-bold text-gray-100">{{ page.title }}</h1>
-                {% if page.summary %}
-                    <div class="text-xl leading-relaxed text-gray-400">{{ page.summary }}</div>
-                {% endif %}
+                {% if page.summary %}<div class="text-xl leading-relaxed text-gray-400">{{ page.summary }}</div>{% endif %}
             </div>
         </section>
         <!-- Main Content -->

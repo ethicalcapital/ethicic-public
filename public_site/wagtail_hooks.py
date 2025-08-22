@@ -7,12 +7,10 @@ from typing import ClassVar
 
 from django.utils.html import format_html
 from wagtail import hooks
-from wagtail.admin.panels import TabbedInterface, ObjectList
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet
 
 from .models import (
-    BlogPost,
     MediaItem,
     SupportTicket,
 )

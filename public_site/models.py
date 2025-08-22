@@ -12,7 +12,6 @@ from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
-from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.fields import RichTextField, StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Orderable, Page
@@ -1826,9 +1825,9 @@ class BlogIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
                 {
                     "posts": page_obj,
                     "has_next": page_obj.has_next(),
-                    "next_page_num": page_obj.next_page_number()
-                    if page_obj.has_next()
-                    else None,
+                    "next_page_num": (
+                        page_obj.next_page_number() if page_obj.has_next() else None
+                    ),
                 },
                 request=request,
             )
@@ -1907,13 +1906,13 @@ class BlogIndexPage(SafeUrlMixin, RoutablePageMixin, Page):
 
 class BlogPostForm(WagtailAdminPageForm):
     """Custom form for BlogPost to ensure StreamField works properly."""
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Ensure the content field is properly initialized
-        if 'content' in self.fields:
+        if "content" in self.fields:
             # Make sure the widget knows about the field name
-            self.fields['content'].widget.attrs['data-streamfield'] = 'content'
+            self.fields["content"].widget.attrs["data-streamfield"] = "content"
 
 
 class BlogPost(SafeUrlMixin, Page):
@@ -2076,7 +2075,7 @@ class BlogPost(SafeUrlMixin, Page):
 
 class FAQPage(SafeUrlMixin, Page):
     """FAQ/Support page."""
-    
+
     template = "public_site/faq_page_tailwind.html"
 
     intro_text = RichTextField(
@@ -3311,29 +3310,42 @@ class StrategyPage(SafeUrlMixin, Page):
         """Get the latest date for which performance data is available."""
         if not self.monthly_returns:
             return None
-        
+
         try:
             # Find the latest year and month in the data
             latest_year = max(int(year) for year in self.monthly_returns.keys())
             year_data = self.monthly_returns.get(str(latest_year), {})
-            
+
             if not year_data:
                 return None
-            
+
             # Convert month names to numbers for sorting
             month_order = {
-                'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
-                'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+                "Jan": 1,
+                "Feb": 2,
+                "Mar": 3,
+                "Apr": 4,
+                "May": 5,
+                "Jun": 6,
+                "Jul": 7,
+                "Aug": 8,
+                "Sep": 9,
+                "Oct": 10,
+                "Nov": 11,
+                "Dec": 12,
             }
-            
-            months_with_data = [month for month in year_data.keys() if month in month_order]
+
+            months_with_data = [
+                month for month in year_data.keys() if month in month_order
+            ]
             if not months_with_data:
                 return None
-                
+
             latest_month = max(months_with_data, key=lambda m: month_order[m])
-            
+
             # Return a formatted date string
             from datetime import date
+
             return date(latest_year, month_order[latest_month], 1)
         except (ValueError, KeyError):
             return None

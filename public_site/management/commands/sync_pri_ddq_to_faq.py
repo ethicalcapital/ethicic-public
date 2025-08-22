@@ -176,9 +176,11 @@ class Command(BaseCommand):
                     category=q["category"],
                     keywords="PRI DDQ responsible investment ESG",
                     priority=5,  # Medium priority
-                    summary=q["answer"][:450] + "..."
-                    if len(q["answer"]) > 450
-                    else q["answer"],
+                    summary=(
+                        q["answer"][:450] + "..."
+                        if len(q["answer"]) > 450
+                        else q["answer"]
+                    ),
                 )
                 support_index.add_child(instance=article)
                 article.save()

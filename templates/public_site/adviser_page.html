@@ -1,266 +1,261 @@
 {% extends "public_site/base_tailwind.html" %}
 {% load wagtailcore_tags static %}
-
 {% block title %}For Investment Advisers | Ethical Capital{% endblock %}
-
 {% block meta_description %}
     Partner with Ethical Capital for specialized ethical investing expertise, rigorous analysis, and exceptional client outcomes. Available on Schwab Marketplace.
 {% endblock %}
-
 {% block content %}
-<div class="container-ec">
-    <!-- Hero Section -->
-    <section class="card-ec mb-8" role="banner" aria-labelledby="hero-heading">
-        <div class="card-header-ec">
-            <h1 id="hero-heading" class="card-title-ec">
-                {{ page.hero_title|default:"Partner with Ethical Capital" }}
-            </h1>
-        </div>
-        <div class="card-content-ec space-y-6">
-            <p class="text-xl text-gray-200 leading-relaxed">
-                {{ page.hero_subtitle|default:"Deep research expertise and proven strategies to help you serve clients with complex values and sophisticated needs" }}
-            </p>
-            <div class="text-gray-300 leading-relaxed">
-                {{ page.hero_description|default:"As investment advisers ourselves, we understand the challenges of serving clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and easy access you need to deliver exceptional outcomes."|safe }}
+    <div class="container-ec">
+        <!-- Hero Section -->
+        <section class="card-ec mb-8" role="banner" aria-labelledby="hero-heading">
+            <div class="card-header-ec">
+                <h1 id="hero-heading" class="card-title-ec">{{ page.hero_title|default:"Partner with Ethical Capital" }}</h1>
             </div>
-        </div>
-    </section>
-
-    <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr]">
-        <!-- Main Content -->
-        <div class="space-y-8">
-            <!-- What We Offer Section -->
-            <section class="card-ec" role="main" aria-labelledby="services-heading">
-                <div class="card-header-ec">
-                    <h2 id="services-heading" class="panel-title-ec">WHAT WE OFFER ADVISERS</h2>
-                </div>
-                <div class="card-content-ec space-y-6">
-                    <p class="text-gray-200 leading-relaxed">
-                        We provide investment advisers with institutional-grade research capabilities and proven strategies to confidently serve clients who prioritize ethical investing, without compromising on performance or professionalism.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-                        <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-purple-400 mb-3">RESEARCH EXPERTISE</h3>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                Institutional-grade research capabilities in ethical investing that go beyond standard ESG ratings. Our proprietary 
-                                <a href="/process/" class="text-purple-400 hover:text-purple-300 underline">screening process</a>
-                                excludes 57% of the S&P 500 based on rigorous ethical criteria.
-                            </p>
-                        </div>
-                        
-                        <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-purple-400 mb-3">PROVEN STRATEGIES</h3>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                Three distinct 
-                                <a href="/strategies/" class="text-purple-400 hover:text-purple-300 underline">investment strategies</a>
-                                designed to match any client's risk tolerance, income requirements, and ethical priorities while maintaining institutional-grade performance standards.
-                            </p>
-                        </div>
-                        
-                        <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
-                            <h3 class="text-lg font-semibold text-purple-400 mb-3">EASY ACCESS</h3>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                Available on the 
-                                <a href="https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps" target="_blank" rel="noopener" class="text-purple-400 hover:text-purple-300 underline">Schwab Marketplace platform</a>
-                                for streamlined implementation. We handle operational complexity so you can focus on client relationships and practice growth.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Partnership Benefits Section -->
-            <section class="card-ec" role="complementary" aria-labelledby="benefits-heading">
-                <div class="card-header-ec">
-                    <h2 id="benefits-heading" class="panel-title-ec">WHY ADVISERS CHOOSE US</h2>
-                </div>
-                <div class="card-content-ec space-y-6">
-                    <p class="text-gray-200 leading-relaxed">
-                        Leading investment advisers partner with us because we deliver the institutional-grade expertise and transparency their sophisticated clients demand.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div class="border-l-4 border-purple-600 pl-6">
-                            <h4 class="text-base font-semibold text-gray-100 mb-2">Rigorous Transparency</h4>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                Our <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener" class="text-purple-400 hover:text-purple-300 underline">screening criteria is open source</a>, giving you complete confidence in what you're recommending.
-                            </p>
-                        </div>
-                        
-                        <div class="border-l-4 border-purple-600 pl-6">
-                            <h4 class="text-base font-semibold text-gray-100 mb-2">Proprietary Research</h4>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                Hand-screening of thousands of companies using our systematic approach that goes beyond third-party ESG ratings.
-                            </p>
-                        </div>
-                        
-                        <div class="border-l-4 border-purple-600 pl-6">
-                            <h4 class="text-base font-semibold text-gray-100 mb-2">Proven Track Record</h4>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                We've navigated complex ethical requirements without sacrificing performance since our founding in 2021.
-                            </p>
-                        </div>
-                        
-                        <div class="border-l-4 border-purple-600 pl-6">
-                            <h4 class="text-base font-semibold text-gray-100 mb-2">Educational Partnership</h4>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                Ongoing consultation, ad hoc consultations, and insights to help you develop expertise and handle challenging client scenarios.
-                            </p>
-                        </div>
-                        
-                        <div class="border-l-4 border-purple-600 pl-6">
-                            <h4 class="text-base font-semibold text-gray-100 mb-2">Schwab Platform Integration</h4>
-                            <p class="text-gray-300 text-sm leading-relaxed">
-                                Available on the <a href="https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps" target="_blank" rel="noopener" class="text-purple-400 hover:text-purple-300 underline">Schwab Marketplace platform</a> with streamlined implementation and SMA management support.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Process Overview Section -->
-            <section class="card-ec" role="region" aria-labelledby="process-heading">
-                <div class="card-header-ec">
-                    <h2 id="process-heading" class="panel-title-ec">OUR COLLABORATIVE APPROACH</h2>
-                </div>
-                <div class="card-content-ec space-y-6">
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 font-mono text-lg font-bold text-white">
-                                1
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-base font-semibold text-gray-100 mb-2">DISCOVERY & ALIGNMENT</h3>
-                                <p class="text-gray-300 text-sm leading-relaxed">
-                                    We start by understanding your practice, client base, and specific needs for ethical investing capabilities.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 font-mono text-lg font-bold text-white">
-                                2
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-base font-semibold text-gray-100 mb-2">EDUCATION & ONBOARDING</h3>
-                                <p class="text-gray-300 text-sm leading-relaxed">
-                                    Comprehensive training on our approach, strategies, and transparent methodology for implementing ethical investing.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 font-mono text-lg font-bold text-white">
-                                3
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-base font-semibold text-gray-100 mb-2">ONGOING PARTNERSHIP & CLIENT ACCESS</h3>
-                                <p class="text-gray-300 text-sm leading-relaxed">
-                                    Continuous support, market insights, and consultation as your practice grows. Advisers receive a direct link to schedule their clients with our Chief Investment Officer for strategy discussions.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="pt-4">
-                        <a href="/process/" class="btn-ec-secondary">LEARN ABOUT OUR FULL PROCESS</a>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Sidebar -->
-        <div class="space-y-6 sticky top-8 self-start">
-            <!-- Due Diligence Resources -->
-            <div class="card-ec">
-                <div class="card-header-ec">
-                    <h3 class="card-title-ec">Due Diligence Resources</h3>
-                </div>
-                <div class="card-content-ec space-y-4">
-                    <p class="text-gray-400 text-sm">
-                        Comprehensive documentation to support your due diligence process and adviser requirements.
-                    </p>
-                    
-                    <div class="space-y-3">
-                        <h4 class="text-sm font-semibold text-purple-400 uppercase">ESG & Responsible Investment</h4>
-                        <div class="space-y-2">
-                            <a href="/pri-ddq/" class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
-                                <span class="text-lg">🤝</span>
-                                <div>
-                                    <div class="text-sm font-medium text-gray-200">PRI Due Diligence</div>
-                                    <div class="text-xs text-gray-400">Comprehensive responses to Principles for Responsible Investment</div>
-                                </div>
-                            </a>
-                            
-                            <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md" target="_blank" rel="noopener" class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
-                                <span class="text-lg">🔍</span>
-                                <div>
-                                    <div class="text-sm font-medium text-gray-200">Open-Source Screening</div>
-                                    <div class="text-xs text-gray-400">Complete ethical screening methodology</div>
-                                </div>
-                            </a>
-                            
-                            <a href="/process/" class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
-                                <span class="text-lg">⚙️</span>
-                                <div>
-                                    <div class="text-sm font-medium text-gray-200">Investment Process</div>
-                                    <div class="text-xs text-gray-400">Detailed four-step methodology</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-3">
-                        <h4 class="text-sm font-semibold text-purple-400 uppercase">Regulatory & Compliance</h4>
-                        <div class="space-y-2">
-                            <a href="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf" target="_blank" rel="noopener" class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
-                                <span class="text-lg">📑</span>
-                                <div>
-                                    <div class="text-sm font-medium text-gray-200">Form ADV</div>
-                                    <div class="text-xs text-gray-400">SEC-required investment adviser disclosure</div>
-                                </div>
-                            </a>
-                            
-                            <a href="/disclosures/" class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
-                                <span class="text-lg">⚠️</span>
-                                <div>
-                                    <div class="text-sm font-medium text-gray-200">Risk Disclosures</div>
-                                    <div class="text-xs text-gray-400">Important risk disclosures and legal notices</div>
-                                </div>
-                            </a>
-                            
-                            <a href="/strategies/" class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
-                                <span class="text-lg">📊</span>
-                                <div>
-                                    <div class="text-sm font-medium text-gray-200">Strategy Performance</div>
-                                    <div class="text-xs text-gray-400">Detailed performance reporting</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+            <div class="card-content-ec space-y-6">
+                <p class="text-xl text-gray-200 leading-relaxed">
+                    {{ page.hero_subtitle|default:"Deep research expertise and proven strategies to help you serve clients with complex values and sophisticated needs" }}
+                </p>
+                <div class="text-gray-300 leading-relaxed">
+                    {{ page.hero_description|default:"As investment advisers ourselves, we understand the challenges of serving clients who want their portfolios to align with their principles. We provide the specialized research, proven strategies, and easy access you need to deliver exceptional outcomes."|safe }}
                 </div>
             </div>
-
-            <!-- Contact CTA -->
-            <div class="card-ec">
-                <div class="card-content-ec space-y-4 text-center">
-                    <h4 class="font-mono font-semibold text-purple-400">Ready to Partner?</h4>
-                    <p class="text-sm text-gray-200">
-                        Join leading investment advisers who trust our approach to help them serve clients with complex needs and values.
-                    </p>
-                    <div class="space-y-3">
-                        <a href="https://tidycal.com/ecic/adviser" target="_blank" rel="noopener" class="btn-ec-primary block">
-                            Schedule Consultation
-                        </a>
-                        <a href="/contact/" class="btn-ec-secondary block">
-                            Send Message
-                        </a>
+        </section>
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-[2fr_1fr]">
+            <!-- Main Content -->
+            <div class="space-y-8">
+                <!-- What We Offer Section -->
+                <section class="card-ec" role="main" aria-labelledby="services-heading">
+                    <div class="card-header-ec">
+                        <h2 id="services-heading" class="panel-title-ec">WHAT WE OFFER ADVISERS</h2>
+                    </div>
+                    <div class="card-content-ec space-y-6">
+                        <p class="text-gray-200 leading-relaxed">
+                            We provide investment advisers with institutional-grade research capabilities and proven strategies to confidently serve clients who prioritize ethical investing, without compromising on performance or professionalism.
+                        </p>
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+                            <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                                <h3 class="text-lg font-semibold text-purple-400 mb-3">RESEARCH EXPERTISE</h3>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Institutional-grade research capabilities in ethical investing that go beyond standard ESG ratings. Our proprietary
+                                    <a href="/process/"
+                                       class="text-purple-400 hover:text-purple-300 underline">screening process</a>
+                                    excludes 57% of the S&P 500 based on rigorous ethical criteria.
+                                </p>
+                            </div>
+                            <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                                <h3 class="text-lg font-semibold text-purple-400 mb-3">PROVEN STRATEGIES</h3>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Three distinct
+                                    <a href="/strategies/"
+                                       class="text-purple-400 hover:text-purple-300 underline">investment strategies</a>
+                                    designed to match any client's risk tolerance, income requirements, and ethical priorities while maintaining institutional-grade performance standards.
+                                </p>
+                            </div>
+                            <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                                <h3 class="text-lg font-semibold text-purple-400 mb-3">EASY ACCESS</h3>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Available on the
+                                    <a href="https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps"
+                                       target="_blank"
+                                       rel="noopener"
+                                       class="text-purple-400 hover:text-purple-300 underline">Schwab Marketplace platform</a>
+                                    for streamlined implementation. We handle operational complexity so you can focus on client relationships and practice growth.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Partnership Benefits Section -->
+                <section class="card-ec"
+                         role="complementary"
+                         aria-labelledby="benefits-heading">
+                    <div class="card-header-ec">
+                        <h2 id="benefits-heading" class="panel-title-ec">WHY ADVISERS CHOOSE US</h2>
+                    </div>
+                    <div class="card-content-ec space-y-6">
+                        <p class="text-gray-200 leading-relaxed">
+                            Leading investment advisers partner with us because we deliver the institutional-grade expertise and transparency their sophisticated clients demand.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-purple-600 pl-6">
+                                <h4 class="text-base font-semibold text-gray-100 mb-2">Rigorous Transparency</h4>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Our <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md"
+    target="_blank"
+    rel="noopener"
+    class="text-purple-400 hover:text-purple-300 underline">screening criteria is open source</a>, giving you complete confidence in what you're recommending.
+                                </p>
+                            </div>
+                            <div class="border-l-4 border-purple-600 pl-6">
+                                <h4 class="text-base font-semibold text-gray-100 mb-2">Proprietary Research</h4>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Hand-screening of thousands of companies using our systematic approach that goes beyond third-party ESG ratings.
+                                </p>
+                            </div>
+                            <div class="border-l-4 border-purple-600 pl-6">
+                                <h4 class="text-base font-semibold text-gray-100 mb-2">Proven Track Record</h4>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    We've navigated complex ethical requirements without sacrificing performance since our founding in 2021.
+                                </p>
+                            </div>
+                            <div class="border-l-4 border-purple-600 pl-6">
+                                <h4 class="text-base font-semibold text-gray-100 mb-2">Educational Partnership</h4>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Ongoing consultation, ad hoc consultations, and insights to help you develop expertise and handle challenging client scenarios.
+                                </p>
+                            </div>
+                            <div class="border-l-4 border-purple-600 pl-6">
+                                <h4 class="text-base font-semibold text-gray-100 mb-2">Schwab Platform Integration</h4>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Available on the <a href="https://advisorservices.schwab.com/serving-your-clients/products/managed-accounts-tamps"
+    target="_blank"
+    rel="noopener"
+    class="text-purple-400 hover:text-purple-300 underline">Schwab Marketplace platform</a> with streamlined implementation and SMA management support.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Process Overview Section -->
+                <section class="card-ec" role="region" aria-labelledby="process-heading">
+                    <div class="card-header-ec">
+                        <h2 id="process-heading" class="panel-title-ec">OUR COLLABORATIVE APPROACH</h2>
+                    </div>
+                    <div class="card-content-ec space-y-6">
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 font-mono text-lg font-bold text-white">
+                                    1
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-base font-semibold text-gray-100 mb-2">DISCOVERY & ALIGNMENT</h3>
+                                    <p class="text-gray-300 text-sm leading-relaxed">
+                                        We start by understanding your practice, client base, and specific needs for ethical investing capabilities.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 font-mono text-lg font-bold text-white">
+                                    2
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-base font-semibold text-gray-100 mb-2">EDUCATION & ONBOARDING</h3>
+                                    <p class="text-gray-300 text-sm leading-relaxed">
+                                        Comprehensive training on our approach, strategies, and transparent methodology for implementing ethical investing.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 font-mono text-lg font-bold text-white">
+                                    3
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-base font-semibold text-gray-100 mb-2">ONGOING PARTNERSHIP & CLIENT ACCESS</h3>
+                                    <p class="text-gray-300 text-sm leading-relaxed">
+                                        Continuous support, market insights, and consultation as your practice grows. Advisers receive a direct link to schedule their clients with our Chief Investment Officer for strategy discussions.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                            <a href="/process/" class="btn-ec-secondary">LEARN ABOUT OUR FULL PROCESS</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- Sidebar -->
+            <div class="space-y-6 sticky top-8 self-start">
+                <!-- Due Diligence Resources -->
+                <div class="card-ec">
+                    <div class="card-header-ec">
+                        <h3 class="card-title-ec">Due Diligence Resources</h3>
+                    </div>
+                    <div class="card-content-ec space-y-4">
+                        <p class="text-gray-400 text-sm">
+                            Comprehensive documentation to support your due diligence process and adviser requirements.
+                        </p>
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-semibold text-purple-400 uppercase">ESG & Responsible Investment</h4>
+                            <div class="space-y-2">
+                                <a href="/pri-ddq/"
+                                   class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
+                                    <span class="text-lg">🤝</span>
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-200">PRI Due Diligence</div>
+                                        <div class="text-xs text-gray-400">Comprehensive responses to Principles for Responsible Investment</div>
+                                    </div>
+                                </a>
+                                <a href="https://github.com/ethicalcapital/sage/blob/main/screening_policy.md"
+                                   target="_blank"
+                                   rel="noopener"
+                                   class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
+                                    <span class="text-lg">🔍</span>
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-200">Open-Source Screening</div>
+                                        <div class="text-xs text-gray-400">Complete ethical screening methodology</div>
+                                    </div>
+                                </a>
+                                <a href="/process/"
+                                   class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
+                                    <span class="text-lg">⚙️</span>
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-200">Investment Process</div>
+                                        <div class="text-xs text-gray-400">Detailed four-step methodology</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-semibold text-purple-400 uppercase">Regulatory & Compliance</h4>
+                            <div class="space-y-2">
+                                <a href="https://reports.adviserinfo.sec.gov/reports/ADV/316032/PDF/316032.pdf"
+                                   target="_blank"
+                                   rel="noopener"
+                                   class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
+                                    <span class="text-lg">📑</span>
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-200">Form ADV</div>
+                                        <div class="text-xs text-gray-400">SEC-required investment adviser disclosure</div>
+                                    </div>
+                                </a>
+                                <a href="/disclosures/"
+                                   class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
+                                    <span class="text-lg">⚠️</span>
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-200">Risk Disclosures</div>
+                                        <div class="text-xs text-gray-400">Important risk disclosures and legal notices</div>
+                                    </div>
+                                </a>
+                                <a href="/strategies/"
+                                   class="flex items-start gap-3 p-2 rounded hover:bg-gray-700 transition-colors">
+                                    <span class="text-lg">📊</span>
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-200">Strategy Performance</div>
+                                        <div class="text-xs text-gray-400">Detailed performance reporting</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact CTA -->
+                <div class="card-ec">
+                    <div class="card-content-ec space-y-4 text-center">
+                        <h4 class="font-mono font-semibold text-purple-400">Ready to Partner?</h4>
+                        <p class="text-sm text-gray-200">
+                            Join leading investment advisers who trust our approach to help them serve clients with complex needs and values.
+                        </p>
+                        <div class="space-y-3">
+                            <a href="https://tidycal.com/ecic/adviser"
+                               target="_blank"
+                               rel="noopener"
+                               class="btn-ec-primary block">Schedule Consultation</a>
+                            <a href="/contact/" class="btn-ec-secondary block">Send Message</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
