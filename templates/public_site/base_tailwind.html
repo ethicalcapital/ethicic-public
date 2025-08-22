@@ -407,6 +407,47 @@
                 defaults: '2025-05-24',
                 person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
             })
+            
+            // Set up error tracking
+            window.addEventListener('error', function(event) {
+                if (window.posthog) {
+                    posthog.capture('$exception', {
+                        $exception_type: event.error ? event.error.name : 'Error',
+                        $exception_message: event.message,
+                        $exception_source: event.filename,
+                        $exception_lineno: event.lineno,
+                        $exception_colno: event.colno,
+                        $exception_stack: event.error ? event.error.stack : 'No stack trace available',
+                        $exception_personURL: window.location.href,
+                        type: event.error ? event.error.name : 'Error',
+                        value: event.message,
+                        stacktrace: event.error ? event.error.stack : undefined,
+                        mechanism: {
+                            type: 'onerror',
+                            handled: false
+                        }
+                    });
+                }
+            });
+            
+            // Capture unhandled promise rejections
+            window.addEventListener('unhandledrejection', function(event) {
+                if (window.posthog) {
+                    posthog.capture('$exception', {
+                        $exception_type: 'UnhandledPromiseRejection',
+                        $exception_message: event.reason ? String(event.reason) : 'Unknown promise rejection',
+                        $exception_stack: event.reason && event.reason.stack ? event.reason.stack : 'No stack trace available',
+                        $exception_personURL: window.location.href,
+                        type: 'UnhandledPromiseRejection',
+                        value: event.reason ? String(event.reason) : 'Unknown promise rejection',
+                        stacktrace: event.reason && event.reason.stack ? event.reason.stack : undefined,
+                        mechanism: {
+                            type: 'onunhandledrejection',
+                            handled: false
+                        }
+                    });
+                }
+            });
         </script>
         <!-- Page width fix: 68% max-width for desktop -->
         <style>

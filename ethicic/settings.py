@@ -87,6 +87,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "public_site.middleware.PostHogErrorMiddleware",  # PostHog error tracking
 ]
 
 ROOT_URLCONF = "ethicic.urls"
@@ -547,3 +548,17 @@ MAIN_PLATFORM_API_URL = os.getenv(
 # Cloudflare Turnstile Configuration
 TURNSTILE_SITE_KEY = os.getenv("TURNSTILE_SITE_KEY")
 TURNSTILE_SECRET_KEY = os.getenv("TURNSTILE_SECRET_KEY")
+
+# PostHog Configuration
+POSTHOG_API_KEY = os.getenv("POSTHOG_API_KEY", "phc_iPeP4HP7NhtEKJmbwwFt65mjlVJjJb1MLe8RXYwIszc")
+POSTHOG_HOST = os.getenv("POSTHOG_HOST", "https://us.i.posthog.com")
+
+# Initialize PostHog for error tracking
+if POSTHOG_API_KEY and not DEBUG:
+    import posthog
+    
+    posthog.project_api_key = POSTHOG_API_KEY
+    posthog.host = POSTHOG_HOST
+    
+    # Enable error tracking
+    posthog.debug = DEBUG
