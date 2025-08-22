@@ -2223,33 +2223,15 @@ class BlogPost(SafeUrlMixin, Page):
 
     content_panels: ClassVar[list] = [
         *Page.content_panels,
-        MultiFieldPanel(
-            [FieldPanel("excerpt"), FieldPanel("featured_image")],
-            heading="Post Overview",
-            help_text="Basic post information and featured image for social sharing",
-        ),
-        MultiFieldPanel(
-            [FieldPanel("content")],
-            heading="Main Content",
-            help_text="Use this StreamField for rich content with images, videos, quotes, and other blocks",
-        ),
-        MultiFieldPanel(
-            [FieldPanel("body")],
-            heading="Legacy Content (Deprecated)",
-            help_text="Old rich text field - use Main Content above for new posts",
-            classname="collapsed",
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel("tags"),
-                FieldPanel("author"),
-                FieldPanel("publish_date"),
-                FieldPanel("featured"),
-                FieldPanel("reading_time"),
-            ],
-            heading="Post Metadata",
-            help_text="Author, publishing details, and categorization",
-        ),
+        FieldPanel("excerpt"),
+        FieldPanel("featured_image"),
+        FieldPanel("content"),
+        FieldPanel("body"),
+        FieldPanel("tags"),
+        FieldPanel("author"),
+        FieldPanel("publish_date"),
+        FieldPanel("featured"),
+        FieldPanel("reading_time"),
     ]
 
     # Wagtail admin panel configurations
