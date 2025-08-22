@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- Template: base_tailwind.html with theme toggle - deployed at 2025-01-27 -->
-<html lang="en" data-theme="{{ current_theme|default:'light' }}">
+<!-- Template: base_tailwind.html - dark mode only - deployed at 2025-01-28 -->
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -735,14 +735,6 @@
                            rel="noopener"
                            aria-label="Get started with Ethical Capital">Get Started</a>
                         <!-- Theme Toggle (temporarily hidden) -->
-                        <div style="display: none;">
-                            <button class="rounded-lg border border-gray-600 bg-gray-700 p-2 text-white transition-colors hover:border-gray-500 hover:bg-gray-600"
-                                    x-data="{ isDark: false, init() { const currentTheme = document.documentElement.getAttribute('data-theme'); const savedTheme = localStorage.getItem('theme'); const theme = savedTheme || currentTheme || 'light'; this.isDark = theme === 'dark'; document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); }, toggle() { this.isDark = !this.isDark; const theme = this.isDark ? 'dark' : 'light'; document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); fetch('/api/theme/set/', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRFToken': document.querySelector('[name=csrf-token]')?.content || '' }, body: JSON.stringify({ theme }) }).catch(e => console.log('Theme save failed:', e)); } }"
-                                    @click="toggle()"
-                                    aria-label="Toggle light/dark theme">
-                                <span x-text="isDark ? '🌙' : '☀️'" aria-hidden="true"></span>
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>

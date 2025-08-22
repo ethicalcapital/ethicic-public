@@ -29,32 +29,32 @@
                             <!-- Category Icon/Badge -->
                             <div class="flex items-center justify-between">
                                 <span class="rounded-full bg-purple-600 px-3 py-1 text-sm font-semibold text-white">{{ faq_page.title }}</span>
-                                <span class="text-sm text-purple-600 dark:text-purple-400">
+                                <span class="text-sm text-purple-400">
                                     {% if faq_page.faq_items.count %}
                                         {{ faq_page.faq_items.count }} Q&A
                                     {% else %}
-                                        New
+                                        <span class="badge-ec-secondary">New</span>
                                     {% endif %}
                                 </span>
                             </div>
                             <!-- Description -->
                             {% if faq_page.intro_text %}
-                                <p class="text-sm text-gray-600 dark:text-gray-300">{{ faq_page.intro_text|richtext|striptags|truncatewords:25 }}</p>
+                                <p class="text-sm text-gray-300">{{ faq_page.intro_text|richtext|striptags|truncatewords:25 }}</p>
                             {% endif %}
                             <!-- Preview Questions -->
                             {% if faq_page.faq_items.all %}
                                 <div class="space-y-2">
-                                    <h4 class="heading-h4 text-xs font-semibold text-purple-600 uppercase dark:text-purple-400">Sample Questions:</h4>
+                                    <h4 class="heading-h4 text-xs font-semibold text-purple-400 uppercase">Sample Questions:</h4>
                                     <ul class="space-y-1">
                                         {% for faq in faq_page.faq_items.all|slice:":3" %}
-                                            <li class="text-xs text-gray-500 dark:text-gray-400">• {{ faq.question|truncatewords:8 }}</li>
+                                            <li class="text-xs text-gray-400">• {{ faq.question|truncatewords:8 }}</li>
                                         {% endfor %}
                                     </ul>
                                 </div>
                             {% endif %}
                             <!-- Action Button -->
                             <a href="{{ faq_page.url }}"
-                               class="block w-full rounded-lg border border-gray-300 px-4 py-2 text-center font-semibold text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                               class="block w-full rounded-lg border border-purple-600 px-4 py-2 text-center font-semibold text-purple-400 transition-colors hover:bg-purple-900/20 hover:border-purple-500">
                                 View FAQ Category
                             </a>
                         </div>

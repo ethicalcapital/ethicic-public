@@ -24,20 +24,20 @@
                         1
                     </div>
                     <div class="flex-1">
-                        <h3 class="mb-4 text-2xl font-bold text-gray-100">{{ page.screening_title }}</h3>
-                        <div class="prose prose-teal dark:prose-invert mb-6 max-w-none text-gray-300">
+                        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">{{ page.screening_title }}</h3>
+                        <div class="prose prose-teal dark:prose-invert mb-6 max-w-none text-gray-700 dark:text-gray-300">
                             {{ page.screening_description|richtext }}
                         </div>
                         <!-- Product-Based Exclusions Section -->
                         <div class="mb-8">
-                            <h4 class="mb-2 text-xl font-bold text-gray-100">{{ page.product_exclusions_title }}</h4>
+                            <h4 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{{ page.product_exclusions_title }}</h4>
                             <div class="mb-4 h-1 w-16 bg-purple-600"></div>
                             <div class="mb-6 text-gray-400">{{ page.product_exclusions_subtitle|richtext }}</div>
                             <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                                 {% for exclusion in page.product_exclusions %}
-                                    <div class="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
-                                        <h5 class="mb-3 font-semibold text-red-900 dark:text-red-200">{{ exclusion.value.title }}</h5>
-                                        <ul class="space-y-1 text-sm text-red-900 dark:text-red-300">
+                                    <div class="rounded-lg border border-red-700 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
+                                        <h5 class="mb-3 font-semibold text-red-950 dark:text-red-200">{{ exclusion.value.title }}</h5>
+                                        <ul class="space-y-1 text-sm text-red-950 dark:text-red-300">
                                             {% for item in exclusion.value.items %}
                                                 <li class="flex items-start gap-2">
                                                     <span class="mt-1 text-red-600">•</span>
@@ -51,14 +51,14 @@
                         </div>
                         <!-- Conduct-Based Exclusions Section -->
                         <div class="mb-8">
-                            <h4 class="mb-2 text-xl font-bold text-gray-100">{{ page.conduct_exclusions_title }}</h4>
+                            <h4 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{{ page.conduct_exclusions_title }}</h4>
                             <div class="mb-4 h-1 w-16 bg-purple-600"></div>
                             <div class="mb-6 text-gray-400">{{ page.conduct_exclusions_subtitle|richtext }}</div>
                             <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                                 {% for exclusion in page.conduct_exclusions %}
-                                    <div class="rounded-lg border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-900/20">
-                                        <h5 class="mb-3 font-semibold text-orange-900 dark:text-orange-200">{{ exclusion.value.title }}</h5>
-                                        <ul class="space-y-1 text-sm text-orange-900 dark:text-orange-300">
+                                    <div class="rounded-lg border border-orange-700 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-900/20">
+                                        <h5 class="mb-3 font-semibold text-orange-950 dark:text-orange-200">{{ exclusion.value.title }}</h5>
+                                        <ul class="space-y-1 text-sm text-orange-950 dark:text-orange-300">
                                             {% for item in exclusion.value.items %}
                                                 <li class="flex items-start gap-2">
                                                     <span class="mt-1 text-orange-600">•</span>
@@ -70,25 +70,25 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <h4 class="mb-3 text-lg font-semibold text-gray-100">{{ page.methodology_title }}</h4>
-                        <div class="mb-6 text-gray-300">{{ page.methodology_content|richtext }}</div>
+                        <h4 class="mb-3 text-lg font-semibold text-gray-900 dark:text-gray-100">{{ page.methodology_title }}</h4>
+                        <div class="mb-6 text-gray-700 dark:text-gray-300">{{ page.methodology_content|richtext }}</div>
                         <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
                             <div class="rounded-lg bg-gradient-to-br from-purple-100 to-purple-200 p-6 text-center dark:from-purple-900/30 dark:to-purple-800/30">
-                                <div class="mb-2 text-3xl font-bold text-purple-900 dark:text-purple-200">{{ page.exclusion_percentage }}</div>
-                                <div class="text-sm text-purple-900 dark:text-purple-300">
+                                <div class="mb-2 text-3xl font-bold text-purple-950 dark:text-purple-200">{{ page.exclusion_percentage }}</div>
+                                <div class="text-sm text-purple-950 dark:text-purple-300">
                                     of S&P 500 excluded
                                     <br />
                                     <span class="text-xs">({{ page.exclusion_date }})</span>
                                 </div>
                             </div>
                             <div class="rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 p-6 text-center dark:from-blue-900/30 dark:to-blue-800/30">
-                                <div class="mb-2 text-3xl font-bold text-blue-900 dark:text-blue-200">Open Source</div>
-                                <div class="text-sm text-blue-900 dark:text-blue-300">methodology</div>
+                                <div class="mb-2 text-3xl font-bold text-blue-950 dark:text-blue-200">Open Source</div>
+                                <div class="text-sm text-blue-950 dark:text-blue-300">methodology</div>
                             </div>
                         </div>
-                        <div class="rounded-lg border border-green-200 bg-green-50 p-6 dark:border-green-800 dark:bg-green-900/20">
-                            <h4 class="mb-3 text-lg font-semibold text-green-900 dark:text-green-200">Open Source & Collaborative</h4>
-                            <p class="mb-4 text-green-900 dark:text-green-300">
+                        <div class="rounded-lg border border-green-700 bg-green-50 p-6 dark:border-green-800 dark:bg-green-900/20">
+                            <h4 class="mb-3 text-lg font-semibold text-green-950 dark:text-green-200">Open Source & Collaborative</h4>
+                            <p class="mb-4 text-green-950 dark:text-green-300">
                                 Our complete framework lives on GitHub under an MIT license with full version control—think of it as a
                                 living document with a conversation attached. Want to suggest changes? Send us a pull request. See
                                 something we missed? Raise an issue. Have ideas for improvement? Join the discussion forum. This
@@ -110,8 +110,8 @@
                         2
                     </div>
                     <div class="flex-1">
-                        <h3 class="mb-4 text-2xl font-bold text-gray-100">Intersectional Company Analysis</h3>
-                        <p class="mb-6 text-gray-300">
+                        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">Intersectional Company Analysis</h3>
+                        <p class="mb-6 text-gray-700 dark:text-gray-300">
                             We make sure these are real companies with sustainable business models through intersectional analysis that
                             maintains a holistic view. While we consider six key areas that matter for long-term success, our analysis
                             isn't limited to these. About 1-2% of stocks generate 99% of returns over multiple long-term periods (
@@ -124,9 +124,9 @@
                             factor can be dispositive, moving a company's Tick rating from 0 to 10 or vice versa:
                         </p>
                         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
-                                <h4 class="mb-3 font-semibold text-gray-100">People</h4>
-                                <ul class="space-y-1 text-sm text-gray-300">
+                            <div class="rounded-lg border border-gray-300 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">People</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
                                     <li class="flex items-start gap-2">
                                         <span class="mt-1 text-blue-700">•</span>
                                         <span>Staff retention rates</span>
@@ -141,9 +141,9 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
-                                <h4 class="mb-3 font-semibold text-gray-100">Product</h4>
-                                <ul class="space-y-1 text-sm text-gray-300">
+                            <div class="rounded-lg border border-gray-300 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">Product</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
                                     <li class="flex items-start gap-2">
                                         <span class="mt-1 text-blue-700">•</span>
                                         <span>Innovation potential</span>
@@ -159,8 +159,8 @@
                                 </ul>
                             </div>
                             <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
-                                <h4 class="mb-3 font-semibold text-gray-100">Execution</h4>
-                                <ul class="space-y-1 text-sm text-gray-300">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">Execution</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
                                     <li class="flex items-start gap-2">
                                         <span class="mt-1 text-blue-700">•</span>
                                         <span>R&D returns</span>
@@ -176,8 +176,8 @@
                                 </ul>
                             </div>
                             <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
-                                <h4 class="mb-3 font-semibold text-gray-100">Valuation</h4>
-                                <ul class="space-y-1 text-sm text-gray-300">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">Valuation</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
                                     <li class="flex items-start gap-2">
                                         <span class="mt-1 text-blue-700">•</span>
                                         <span>Price-to-earnings ratios</span>
@@ -193,8 +193,8 @@
                                 </ul>
                             </div>
                             <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
-                                <h4 class="mb-3 font-semibold text-gray-100">Moat</h4>
-                                <ul class="space-y-1 text-sm text-gray-300">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">Moat</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
                                     <li class="flex items-start gap-2">
                                         <span class="mt-1 text-blue-700">•</span>
                                         <span>Disruption resistance</span>
@@ -210,8 +210,8 @@
                                 </ul>
                             </div>
                             <div class="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700">
-                                <h4 class="mb-3 font-semibold text-gray-100">Risk</h4>
-                                <ul class="space-y-1 text-sm text-gray-300">
+                                <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">Risk</h4>
+                                <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
                                     <li class="flex items-start gap-2">
                                         <span class="mt-1 text-blue-700">•</span>
                                         <span>Adoption challenges</span>
@@ -235,13 +235,13 @@
                         3
                     </div>
                     <div class="flex-1">
-                        <h3 class="mb-4 text-2xl font-bold text-gray-100">Strategy Design & Portfolio Customization</h3>
-                        <p class="mb-6 text-gray-300">
+                        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">Strategy Design & Portfolio Customization</h3>
+                        <p class="mb-6 text-gray-700 dark:text-gray-300">
                             First, we design core strategies using only the top 1% of securities that pass our analysis. Then we meet
                             with you to customize the perfect mix of strategies for your specific needs, risk tolerance, and ethical
                             priorities. Position sizing comes directly from our scoring process, ensuring each holding earns its place.
                         </p>
-                        <h4 class="mb-4 text-lg font-semibold text-gray-100">Our Three Core Strategies</h4>
+                        <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">Our Three Core Strategies</h4>
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                             <div class="rounded-lg border border-green-200 bg-gradient-to-br from-green-50 to-green-100 p-6 dark:border-green-700 dark:from-green-900/30 dark:to-green-800/30">
                                 <h4 class="mb-3 font-semibold text-green-900 dark:text-green-200">Growth Strategy</h4>
@@ -327,41 +327,41 @@
                         4
                     </div>
                     <div class="flex-1">
-                        <h3 class="mb-4 text-2xl font-bold text-gray-100">Decision Refinement & Continuous Improvement</h3>
-                        <p class="mb-6 text-gray-300">
+                        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">Decision Refinement & Continuous Improvement</h3>
+                        <p class="mb-6 text-gray-700 dark:text-gray-300">
                             We don't just monitor—we actively refine our decisions through rigorous analysis and systematic learning.
                             This isn't set-and-forget investing; it's a continuous cycle of improvement that makes our process stronger
                             over time.
                         </p>
                         <div class="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
-                            <h4 class="mb-4 text-lg font-semibold text-gray-100">Our Refinement Process</h4>
+                            <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">Our Refinement Process</h4>
                             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                                 <div class="space-y-3">
                                     <div>
                                         <span class="font-semibold text-orange-600">Scenario Analysis:</span>
-                                        <span class="text-gray-300">Testing how portfolios perform under different market conditions</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Testing how portfolios perform under different market conditions</span>
                                     </div>
                                     <div>
                                         <span class="font-semibold text-orange-600">Collaborative Review:</span>
-                                        <span class="text-gray-300">Internal team analysis of investment decisions and outcomes</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Internal team analysis of investment decisions and outcomes</span>
                                     </div>
                                     <div>
                                         <span class="font-semibold text-orange-600">Mental Model Assessment:</span>
-                                        <span class="text-gray-300">Identifying and evaluating our decision-making frameworks</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Identifying and evaluating our decision-making frameworks</span>
                                     </div>
                                 </div>
                                 <div class="space-y-3">
                                     <div>
                                         <span class="font-semibold text-orange-600">Weakness Analysis:</span>
-                                        <span class="text-gray-300">Systematic evaluation of past investment decision weaknesses</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Systematic evaluation of past investment decision weaknesses</span>
                                     </div>
                                     <div>
                                         <span class="font-semibold text-orange-600">Regular Re-scoring:</span>
-                                        <span class="text-gray-300">Continuous updates to company scores based on new information</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Continuous updates to company scores based on new information</span>
                                     </div>
                                     <div>
                                         <span class="font-semibold text-orange-600">Criteria Evolution:</span>
-                                        <span class="text-gray-300">Updating our ethical framework as new patterns emerge</span>
+                                        <span class="text-gray-700 dark:text-gray-300">Updating our ethical framework as new patterns emerge</span>
                                     </div>
                                 </div>
                             </div>
@@ -396,29 +396,29 @@
                     When ethics and excellence converge, sustainable investing outcomes follow.
                 </p>
             </div>
-            <h2 class="mb-6 text-center text-3xl font-bold text-gray-100">{{ page.principles_title }}</h2>
-            <div class="mx-auto mb-8 max-w-3xl text-center text-gray-300">{{ page.principles_content|richtext }}</div>
+            <h2 class="mb-6 text-center text-3xl font-bold text-gray-900 dark:text-gray-100">{{ page.principles_title }}</h2>
+            <div class="mx-auto mb-8 max-w-3xl text-center text-gray-700 dark:text-gray-300">{{ page.principles_content|richtext }}</div>
             <!-- Process Section -->
             <div class="mb-8">
-                <h3 class="mb-6 text-center heading-h3 text-lg font-bold text-gray-100">// PROCESS</h3>
+                <h3 class="mb-6 text-center heading-h3 text-lg font-bold text-gray-900 dark:text-gray-100">// PROCESS</h3>
                 <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
                     <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
-                        <h4 class="mb-3 font-semibold text-gray-100">▸ Institutional Rigor, Boutique Attention</h4>
-                        <p class="text-sm text-gray-300">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ Institutional Rigor, Boutique Attention</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
                             We combine analytical depth with personalized service. Every holding is hand-researched, every client
                             relationship carefully tended.
                         </p>
                     </div>
                     <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
-                        <h4 class="mb-3 font-semibold text-gray-100">▸ Radical Transparency</h4>
-                        <p class="text-sm text-gray-300">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ Radical Transparency</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
                             Our exclusion criteria are open source. Our process is documented. Our reasoning is clear. You deserve to
                             understand exactly what you own and why.
                         </p>
                     </div>
                     <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
-                        <h4 class="mb-3 font-semibold text-gray-100">▸ High-Conviction Concentration</h4>
-                        <p class="text-sm text-gray-300">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ High-Conviction Concentration</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
                             We maintain focused portfolios of 15-25 companies. Depth of research over breadth of holdings.
                         </p>
                     </div>
@@ -426,25 +426,25 @@
             </div>
             <!-- Practice Section -->
             <div>
-                <h3 class="mb-6 text-center heading-h3 text-lg font-bold text-gray-100">// PRACTICE</h3>
+                <h3 class="mb-6 text-center heading-h3 text-lg font-bold text-gray-900 dark:text-gray-100">// PRACTICE</h3>
                 <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                     <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
-                        <h4 class="mb-3 font-semibold text-gray-100">▸ Continuous Evolution</h4>
-                        <p class="text-sm text-gray-300">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ Continuous Evolution</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
                             Ethics is not static. As companies evolve and disappoint we adapt. Our screening is a living framework,
                             refined through ongoing research and client dialogue.
                         </p>
                     </div>
                     <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
-                        <h4 class="mb-3 font-semibold text-gray-100">▸ Intellectual Honesty</h4>
-                        <p class="text-sm text-gray-300">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ Intellectual Honesty</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
                             We acknowledge uncertainty, learn from mistakes, and evolve our approach. Humility serves our clients better
                             than false certainty.
                         </p>
                     </div>
                     <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-600 dark:bg-gray-700">
-                        <h4 class="mb-3 font-semibold text-gray-100">▸ Business-Focused Investing</h4>
-                        <p class="text-sm text-gray-300">
+                        <h4 class="mb-3 font-semibold text-gray-900 dark:text-gray-100">▸ Business-Focused Investing</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
                             We invest in companies, not stories. Real businesses with proven models, sustainable advantages, and ethical
                             operations.
                         </p>
