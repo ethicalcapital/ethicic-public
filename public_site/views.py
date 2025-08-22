@@ -1993,3 +1993,88 @@ def test_posthog_simple(request):
             'error': str(e),
             'type': type(e).__name__
         }, status=500)
+
+
+@require_http_methods(["GET"])
+def test_posthog_exception_formats(request):
+    """Test different PostHog exception formats to see which works"""
+    import posthog
+    
+    # Security check
+    secret = request.GET.get('secret')
+    if secret != 'test-formats-2025':
+        return JsonResponse({'error': 'Unauthorized'}, status=403)
+    
+    results = []
+    
+    try:
+        # Format 1: Using captureException method (if available)
+        try:
+            error = Exception("Test error using captureException")
+            posthog.captureException(error)
+            results.append("captureException: Success")
+        except AttributeError:
+            results.append("captureException: Method not available")
+        
+        # Format 2: Standard $exception format
+        result2 = posthog.capture(
+            str(request.user.id) if request.user.is_authenticated else 'anonymous',
+            '$exception',
+            {
+                '$exception_type': 'TestError',
+                '$exception_message': 'Test error with standard format',
+                '$exception_list': [{
+                    'type': 'TestError',
+                    'value': 'Test error with standard format',
+                    'stacktrace': {
+                        'frames': [{
+                            'filename': 'test.py',
+                            'function': 'test_function',
+                            'lineno': 42
+                        }]
+                    }
+                }]
+            }
+        )
+        results.append(f"Standard format: {result2[0]}")
+        
+        # Format 3: With fingerprint for grouping
+        result3 = posthog.capture(
+            str(request.user.id) if request.user.is_authenticated else 'anonymous',
+            '$exception',
+            {
+                '$exception_type': 'TestError',
+                '$exception_message': 'Test error with fingerprint',
+                '$exception_fingerprint': ['test-error-group'],
+                '$exception_list': [{
+                    'type': 'TestError',
+                    'value': 'Test error with fingerprint'
+                }]
+            }
+        )
+        results.append(f"With fingerprint: {result3[0]}")
+        
+        # Format 4: Minimal format
+        result4 = posthog.capture(
+            str(request.user.id) if request.user.is_authenticated else 'anonymous',
+            '$exception',
+            {
+                'exception': 'Minimal test error'
+            }
+        )
+        results.append(f"Minimal format: {result4[0]}")
+        
+        # Flush all events
+        posthog.flush()
+        
+        return JsonResponse({
+            'status': 'success',
+            'results': results,
+            'message': 'Check PostHog dashboard in Events and Error Tracking sections'
+        })
+        
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'error': str(e)
+        }, status=500)

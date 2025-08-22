@@ -34,6 +34,7 @@ from .views import (
     test_error_tracking_view,
     test_error_info_view,
     test_posthog_simple,
+    test_posthog_exception_formats,
 )
 
 app_name = "public_site"
@@ -264,6 +265,7 @@ urlpatterns = [
     path("test-error-tracking/", test_error_tracking_view, name="test_error_tracking"),
     path("test-error-info/", test_error_info_view, name="test_error_info"),
     path("test-posthog/", test_posthog_simple, name="test_posthog"),
+    path("test-posthog-formats/", test_posthog_exception_formats, name="test_posthog_formats"),
     # ============================================================================
     # AI-POWERED CONTENT ANALYSIS ENDPOINTS
     # ============================================================================
