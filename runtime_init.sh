@@ -22,8 +22,8 @@ echo "Environment: PORT=${PORT:-8080}, DB_URL=${DB_URL:-NOT_SET}"
         find staticfiles -type f -delete 2>/dev/null || true
     fi
 
-    echo "🎨 Building Tailwind CSS..."
-    python manage.py tailwind build 2>&1 || echo "⚠️  Tailwind build failed"
+    echo "🎨 Building CSS..."
+    python manage.py build_css 2>&1 || echo "⚠️  CSS build failed"
 
     echo "📁 Collecting static files..."
     python manage.py collectstatic --noinput --clear 2>&1 || {
