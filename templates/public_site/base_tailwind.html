@@ -504,8 +504,151 @@
         }
       }
         </style>
-        <!-- Intelligent Text Visibility System -->
-        <link rel="stylesheet" href="{% static 'css/intelligent-text-visibility.css' %}?v=1" />
+        <!-- EMERGENCY TEXT VISIBILITY FIX - HIGHEST PRIORITY OVERRIDES -->
+        <style>
+            /* EMERGENCY: Nuclear-level text visibility fixes with maximum specificity */
+            body * {
+                color: #d1d5db !important; /* Force light gray text */
+            }
+            
+            /* Specific overrides for content areas */
+            .card-content-ec *,
+            .panel-ec *,
+            .space-y-4 *,
+            p, div, span {
+                color: #d1d5db !important; /* Light gray */
+            }
+            
+            /* Headers remain bright */
+            h1, h2, h3, h4, h5, h6 {
+                color: #f3f4f6 !important; /* Brighter for headers */
+            }
+            
+            /* Navigation and branding keep existing colors */
+            header *, nav *, .btn-ec-primary *, .btn-ec-secondary * {
+                color: inherit !important;
+                pointer-events: auto !important;
+            }
+            
+            /* Ensure navigation links are always clickable */
+            nav a, #main-navigation a, header nav a {
+                pointer-events: auto !important;
+                cursor: pointer !important;
+                z-index: 9999 !important;
+                position: relative !important;
+            }
+            
+            /* Override ANY black or dark text with light colors */
+            html body *:not(.btn-ec-primary):not(.btn-ec-secondary):not(button):not(.text-white):not(header *):not(.bg-white *),
+            html body .text-gray-900,
+            html body .text-black,
+            html body .text-slate-900,
+            html body .prose,
+            html body .prose *,
+            html body p,
+            html body div:not(.btn-ec-primary):not(.btn-ec-secondary),
+            html body span,
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6,
+            html body li,
+            html body td,
+            html body th,
+            html body label,
+            html body .card-content-ec,
+            html body .card-content-ec *,
+            html body .panel-content,
+            html body .panel-content *,
+            html body .garden-panel-content,
+            html body .garden-panel-content *,
+            html body section *:not(.btn-ec-primary):not(.btn-ec-secondary):not(button):not(.text-white):not(header *),
+            html body main *:not(.btn-ec-primary):not(.btn-ec-secondary):not(button):not(.text-white):not(header *),
+            html body article *:not(.btn-ec-primary):not(.btn-ec-secondary):not(button):not(.text-white):not(header *) {
+                color: #e2e8f0 !important; /* Force light gray for all text */
+            }
+            
+            /* Double down on strategy cards and content areas */
+            html body .strategy-card *,
+            html body .strategy-details *,
+            html body .strategy-features *,
+            html body .card-ec *,
+            html body .hero-stats *:not(.text-white),
+            html body .flex *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white) {
+                color: #e2e8f0 !important;
+            }
+            
+            /* Nuclear heading overrides */
+            html body h1,
+            html body h2,
+            html body h3,
+            html body h4,
+            html body h5,
+            html body h6,
+            html body .text-blue-300,
+            html body .text-purple-300,
+            html body .text-teal-300,
+            html body .panel-title-ec,
+            html body .font-mono {
+                color: #cbd5e1 !important; /* Bright headings */
+            }
+            
+            /* Links must be visible */
+            html body a:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white) {
+                color: #94a3b8 !important;
+            }
+            
+            html body a:hover:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white) {
+                color: #f1f5f9 !important;
+            }
+            
+            /* Preserve button styling but ensure visibility */
+            html body .btn-ec-primary {
+                color: #ffffff !important;
+                background-color: #581c87 !important;
+            }
+            
+            html body .btn-ec-secondary {
+                color: #111827 !important;
+                background-color: #14b8a6 !important;
+            }
+            
+            /* White text stays white */
+            html body .text-white,
+            html body .text-purple-100,
+            html body .text-gray-100,
+            html body header *,
+            html body .bg-purple-900 .text-white,
+            html body .bg-gray-800 .text-white {
+                color: #ffffff !important;
+            }
+            
+            /* Ultimate override for any lingering dark text */
+            html body *[style*="color: #000000"],
+            html body *[style*="color: #000"],
+            html body *[style*="color: black"],
+            html body *[style*="color: rgb(0,0,0)"],
+            html body *[style*="color: rgb(0, 0, 0)"],
+            html body .text-slate-800,
+            html body .text-gray-800 {
+                color: #e2e8f0 !important;
+            }
+            
+            /* Make sure everything in content areas is visible */
+            html body main *,
+            html body #main-content *,
+            html body .container-ec * {
+                /* Only apply if not already light colored */
+            }
+            
+            html body main *:not([class*="text-white"]):not([class*="text-gray-100"]):not([class*="text-purple-100"]):not(.btn-ec-primary):not(.btn-ec-secondary),
+            html body #main-content *:not([class*="text-white"]):not([class*="text-gray-100"]):not([class*="text-purple-100"]):not(.btn-ec-primary):not(.btn-ec-secondary),
+            html body .container-ec *:not([class*="text-white"]):not([class*="text-gray-100"]):not([class*="text-purple-100"]):not(.btn-ec-primary):not(.btn-ec-secondary) {
+                color: #e2e8f0 !important;
+            }
+        </style>
     </head>
     <body class="{% block body_class %}{% endblock %} block flex min-h-screen flex-col bg-gray-900 font-sans text-gray-100">
         <!-- Skip navigation links for screen readers -->
