@@ -2078,3 +2078,141 @@ def test_posthog_exception_formats(request):
             'status': 'error',
             'error': str(e)
         }, status=500)
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def performance_chart_data_api(request):
+    """API endpoint for investment performance chart data"""
+    try:
+        from .models import StrategyPage
+        from .utils.performance_calculator import parse_percentage, compound_returns
+        from datetime import date, datetime
+        
+        # Get strategy slug from query parameter
+        strategy_slug = request.GET.get('strategy', 'growth')
+        
+        try:
+            strategy = StrategyPage.objects.get(slug=strategy_slug)
+        except StrategyPage.DoesNotExist:
+            # Fall back to first available strategy
+            strategy = StrategyPage.objects.first()
+            if not strategy:
+                return JsonResponse({'error': 'No strategies available'}, status=404)
+        
+        if not strategy.monthly_returns:
+            return JsonResponse({'error': 'No performance data available'}, status=404)
+        
+        # Process monthly returns into cumulative growth data
+        chart_data = []
+        benchmark_data = []
+        labels = []
+        
+        # Starting investment amount
+        investment_amount = 10000
+        cumulative_strategy = investment_amount
+        cumulative_benchmark = investment_amount
+        
+        # Sort years and months chronologically
+        months_order = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        
+        # Get all year/month combinations sorted chronologically
+        data_points = []
+        for year_str, year_data in strategy.monthly_returns.items():
+            year = int(year_str)
+            for month_name, month_data in year_data.items():
+                if month_name in months_order:
+                    month_index = months_order.index(month_name)
+                    data_points.append((year, month_index, month_name, month_data))
+        
+        # Sort by year and month
+        data_points.sort(key=lambda x: (x[0], x[1]))
+        
+        # Add starting point
+        if data_points:
+            first_year, first_month_idx, first_month, _ = data_points[0]
+            start_date = date(first_year, first_month_idx + 1, 1)
+            # Add a point one month before the first data point for the starting $10k
+            if first_month_idx > 0:
+                prev_month_idx = first_month_idx - 1
+                prev_year = first_year
+            else:
+                prev_month_idx = 11
+                prev_year = first_year - 1
+            
+            prev_month_name = months_order[prev_month_idx]
+            labels.append(f"{prev_month_name} {prev_year}")
+            chart_data.append(investment_amount)
+            benchmark_data.append(investment_amount)
+        
+        # Process each month's data
+        for year, month_index, month_name, month_data in data_points:
+            strategy_return_str = month_data.get('strategy', '0%')
+            benchmark_return_str = month_data.get('benchmark', '0%')
+            
+            # Parse percentage returns
+            strategy_return = parse_percentage(strategy_return_str)
+            benchmark_return = parse_percentage(benchmark_return_str)
+            
+            # Apply returns to cumulative values
+            cumulative_strategy *= (1 + strategy_return)
+            cumulative_benchmark *= (1 + benchmark_return)
+            
+            # Create label
+            labels.append(f"{month_name} {year}")
+            chart_data.append(round(cumulative_strategy, 2))
+            benchmark_data.append(round(cumulative_benchmark, 2))
+        
+        # Prepare response data
+        response_data = {
+            'strategy_name': strategy.title,
+            'strategy_label': getattr(strategy, 'strategy_label', 'Strategy'),
+            'inception_date': strategy.inception_date.isoformat() if strategy.inception_date else None,
+            'labels': labels,
+            'datasets': [
+                {
+                    'label': f'{strategy.title} Strategy',
+                    'data': chart_data,
+                    'borderColor': '#8B5CF6',  # Tailwind purple-500
+                    'backgroundColor': 'rgba(139, 92, 246, 0.1)',
+                    'fill': False,
+                    'tension': 0.2,
+                    'borderWidth': 3,
+                    'pointBackgroundColor': '#8B5CF6',
+                    'pointBorderColor': '#FFFFFF',
+                    'pointBorderWidth': 2,
+                    'pointRadius': 4,
+                    'pointHoverRadius': 6
+                },
+                {
+                    'label': 'Benchmark (S&P 500)',
+                    'data': benchmark_data,
+                    'borderColor': '#64748B',  # Tailwind slate-500
+                    'backgroundColor': 'rgba(100, 116, 139, 0.1)',
+                    'fill': False,
+                    'tension': 0.2,
+                    'borderWidth': 2,
+                    'pointBackgroundColor': '#64748B',
+                    'pointBorderColor': '#FFFFFF',
+                    'pointBorderWidth': 2,
+                    'pointRadius': 3,
+                    'pointHoverRadius': 5,
+                    'borderDash': [5, 5]
+                }
+            ],
+            'performance_summary': {
+                'final_strategy_value': round(cumulative_strategy, 2),
+                'final_benchmark_value': round(cumulative_benchmark, 2),
+                'strategy_total_return': round(((cumulative_strategy / investment_amount) - 1) * 100, 2),
+                'benchmark_total_return': round(((cumulative_benchmark / investment_amount) - 1) * 100, 2),
+                'outperformance': round(cumulative_strategy - cumulative_benchmark, 2),
+                'outperformance_percent': round((cumulative_strategy / cumulative_benchmark - 1) * 100, 2)
+            }
+        }
+        
+        return JsonResponse(response_data)
+        
+    except Exception as e:
+        logger.error(f"Error in performance_chart_data_api: {str(e)}")
+        return JsonResponse({'error': 'Failed to fetch performance data'}, status=500)

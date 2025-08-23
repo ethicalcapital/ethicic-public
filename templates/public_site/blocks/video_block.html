@@ -1,0 +1,98 @@
+{% load wagtailcore_tags %}
+
+<!-- YouTube Video Embed Block -->
+<div class="video-block-container" role="region" aria-label="Video content">
+  {% if value %}
+    <div class="responsive-video-wrapper">
+      <!-- Responsive video container with 16:9 aspect ratio -->
+      <div class="aspect-video w-full bg-slate-800 rounded-lg overflow-hidden shadow-lg border border-slate-600">
+        <div class="video-embed h-full w-full">
+          {% if value.url %}
+            {{ value|embed:"max_width:1200" }}
+          {% else %}
+            <!-- Fallback for invalid/missing video URL -->
+            <div class="flex items-center justify-center h-full bg-slate-800 text-slate-300">
+              <div class="text-center space-y-3">
+                <svg class="w-16 h-16 mx-auto text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                </svg>
+                <div class="text-lg font-medium">Video Unavailable</div>
+                <div class="text-sm text-slate-400">The video content could not be loaded</div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      
+      {% if value.title %}
+        <!-- Video caption/title -->
+        <div class="mt-3 text-center">
+          <p class="text-sm text-slate-400 font-medium">{{ value.title }}</p>
+        </div>
+      {% endif %}
+    </div>
+  {% else %}
+    <!-- Fallback for empty video block -->
+    <div class="video-block-placeholder aspect-video w-full bg-slate-800 rounded-lg overflow-hidden shadow-lg border border-slate-600 flex items-center justify-center">
+      <div class="text-center space-y-3 text-slate-300">
+        <svg class="w-16 h-16 mx-auto text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+        </svg>
+        <div class="text-lg font-medium">No Video Selected</div>
+        <div class="text-sm text-slate-400">Add a video URL in the editor</div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<style>
+/* Enhanced video block styling with Tailwind CSS approach */
+.video-block-container {
+  margin: 2rem 0;
+}
+
+/* Ensure proper video embed responsive behavior */
+.video-embed iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+/* YouTube-specific enhancements */
+.video-embed iframe[src*="youtube.com"],
+.video-embed iframe[src*="youtu.be"] {
+  background: #000;
+}
+
+/* Vimeo-specific enhancements */
+.video-embed iframe[src*="vimeo.com"] {
+  background: #1ab7ea;
+}
+
+/* Loading state for slow connections */
+.video-embed iframe {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.video-embed iframe:loaded {
+  opacity: 1;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .video-embed iframe {
+    transition: none;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .video-block-placeholder,
+  .responsive-video-wrapper .aspect-video {
+    background-color: rgb(30 41 59); /* slate-800 */
+    border-color: rgb(71 85 105); /* slate-600 */
+  }
+}
+</style>

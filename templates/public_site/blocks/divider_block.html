@@ -1,0 +1,36 @@
+<!-- Horizontal Divider Block -->
+<div class="divider-block my-8">
+  <hr class="border-t border-slate-600 dark:border-slate-400" aria-hidden="true">
+</div>
+
+<style>
+/* Enhanced divider styling with Tailwind approach */
+.divider-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.divider-block hr {
+  width: 100%;
+  max-width: 200px;
+  border: none;
+  border-top: 1px solid rgb(71 85 105); /* slate-600 */
+  opacity: 0.6;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .divider-block hr {
+    border-top-color: rgb(148 163 184); /* slate-400 */
+  }
+}
+
+/* Responsive spacing */
+@media (max-width: 640px) {
+  .divider-block {
+    margin: 1.5rem 0;
+  }
+}
+</style>

@@ -1,0 +1,36 @@
+{% comment %}
+Performance Chart Component
+Reusable component for displaying investment performance visualization
+
+Usage:
+{% include 'components/performance_chart.html' with chart_id='performance-chart-1' default_strategy='growth' height=400 %}
+
+Parameters:
+- chart_id: Unique ID for the chart container (required)
+- default_strategy: Strategy to load initially ('growth', 'income', 'diversification') - default: 'growth'
+- height: Chart height in pixels - default: 400
+- title: Custom chart title - default: 'Investment Performance'
+- show_strategy_selector: Show strategy selection buttons - default: True
+- containerClass: Additional CSS classes for the container - default: ''
+{% endcomment %}
+
+{% load static %}
+
+<div id="{{ chart_id|default:'performance-chart' }}" 
+     class="performance-chart-container {{ containerClass|default:'' }}"
+     data-performance-chart="true"
+     data-default-strategy="{{ default_strategy|default:'growth' }}"
+     data-height="{{ height|default:400 }}">
+    <!-- Chart will be initialized by performance-chart.js -->
+</div>
+
+{% comment %}
+Note: Make sure to include the required CSS and JS files in your template:
+- Chart.js is loaded dynamically by the component
+- performance-chart.js must be included in your template
+
+Example in your main template:
+{% block extra_js %}
+    <script src="{% static 'js/performance-chart.js' %}"></script>
+{% endblock %}
+{% endcomment %}

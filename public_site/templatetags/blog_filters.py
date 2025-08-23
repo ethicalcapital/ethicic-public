@@ -4,6 +4,7 @@ Implements the monospace info-dense aesthetic enhancements from WIP/blog.md guid
 """
 
 import re
+from urllib.parse import parse_qs, urlparse
 
 from django import template
 from django.utils.html import strip_tags
@@ -516,3 +517,128 @@ def blog_stats_summary(blog_index_page):
             "since_year": None,
             "latest_date": None,
         }
+
+
+@register.simple_tag
+def youtube_embed_url(url, start_time=None, autoplay=False):
+    """Convert a YouTube URL to an embed URL with optional parameters.
+    
+    Supports various YouTube URL formats:
+    - https://www.youtube.com/watch?v=VIDEO_ID
+    - https://youtu.be/VIDEO_ID  
+    - https://youtube.com/watch?v=VIDEO_ID
+    - https://m.youtube.com/watch?v=VIDEO_ID
+    
+    Args:
+        url: YouTube video URL
+        start_time: Start time in seconds (optional)
+        autoplay: Enable autoplay (optional, default False)
+    
+    Returns:
+        YouTube embed URL with parameters
+    """
+    if not url:
+        return ""
+        
+    # Extract video ID from various YouTube URL formats
+    video_id = extract_youtube_id(url)
+    if not video_id:
+        return ""
+    
+    # Build embed URL
+    embed_url = f"https://www.youtube.com/embed/{video_id}"
+    
+    # Add parameters
+    params = []
+    if start_time and isinstance(start_time, int) and start_time > 0:
+        params.append(f"start={start_time}")
+    
+    if autoplay:
+        params.append("autoplay=1")
+    
+    # Add privacy-enhanced mode and other recommended parameters
+    params.extend([
+        "rel=0",  # Don't show related videos
+        "modestbranding=1",  # Minimal YouTube branding
+        "fs=1",  # Allow fullscreen
+        "cc_load_policy=1",  # Show closed captions by default
+        "iv_load_policy=3",  # Don't show video annotations
+    ])
+    
+    if params:
+        embed_url += "?" + "&".join(params)
+    
+    return embed_url
+
+
+def extract_youtube_id(url):
+    """Extract YouTube video ID from various URL formats.
+    
+    Args:
+        url: YouTube URL in various formats
+        
+    Returns:
+        Video ID string or None if not found
+    """
+    if not url:
+        return None
+    
+    # Clean the URL
+    url = str(url).strip()
+    
+    # Parse the URL
+    parsed = urlparse(url)
+    
+    # Handle youtube.com/watch URLs
+    if parsed.netloc in ['www.youtube.com', 'youtube.com', 'm.youtube.com']:
+        if parsed.path == '/watch':
+            query_params = parse_qs(parsed.query)
+            return query_params.get('v', [None])[0]
+        elif parsed.path.startswith('/embed/'):
+            return parsed.path.split('/embed/')[1].split('?')[0]
+    
+    # Handle youtu.be URLs
+    elif parsed.netloc == 'youtu.be':
+        return parsed.path.lstrip('/')
+    
+    # Handle youtube.com/v/ URLs (legacy format)
+    elif parsed.netloc in ['www.youtube.com', 'youtube.com']:
+        if parsed.path.startswith('/v/'):
+            return parsed.path.split('/v/')[1].split('?')[0]
+    
+    return None
+
+
+@register.filter
+def youtube_thumbnail(url, quality='maxresdefault'):
+    """Get YouTube thumbnail URL from video URL.
+    
+    Args:
+        url: YouTube video URL
+        quality: Thumbnail quality (maxresdefault, hqdefault, mqdefault, sddefault)
+        
+    Returns:
+        YouTube thumbnail URL
+    """
+    video_id = extract_youtube_id(url)
+    if not video_id:
+        return ""
+    
+    return f"https://img.youtube.com/vi/{video_id}/{quality}.jpg"
+
+
+@register.filter  
+def is_youtube_url(url):
+    """Check if URL is a valid YouTube URL.
+    
+    Args:
+        url: URL to check
+        
+    Returns:
+        Boolean indicating if URL is from YouTube
+    """
+    if not url:
+        return False
+        
+    video_id = extract_youtube_id(url)
+    return video_id is not None

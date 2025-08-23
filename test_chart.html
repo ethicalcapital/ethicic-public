@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Chart Test - Ethicic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .stats-panel {
+            background: rgba(139, 92, 246, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .stat-value-ec {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #E5E7EB;
+            line-height: 1;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .stat-label-ec {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #A78BFA;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-teal-400 bg-clip-text text-transparent">
+                Investment Performance Visualization Test
+            </h1>
+            <p class="text-gray-300 text-lg">Testing the interactive "Growth of $10,000" chart component</p>
+        </div>
+        
+        <!-- Stats Preview -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="stats-panel">
+                <div class="stat-value-ec">57%</div>
+                <div class="stat-label-ec">S&P 500 EXCLUDED</div>
+            </div>
+            <div class="stats-panel">
+                <div class="stat-value-ec">3+</div>
+                <div class="stat-label-ec">YEARS OF COUNSEL</div>
+            </div>
+            <div class="stats-panel">
+                <div class="stat-value-ec">$10K</div>
+                <div class="stat-label-ec">MINIMUM INVESTMENT</div>
+            </div>
+        </div>
+        
+        <!-- Performance Chart Section -->
+        <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 p-8 shadow-2xl">
+            <div id="test-performance-chart" 
+                 class="performance-chart-container"
+                 data-performance-chart="true"
+                 data-default-strategy="growth"
+                 data-height="450">
+                <!-- Chart will be initialized by performance-chart.js -->
+                <div class="text-center py-8">
+                    <div class="inline-flex items-center px-4 py-2 bg-purple-900 rounded-lg">
+                        <div class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                        <span class="text-white text-sm">Loading chart component...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Controls -->
+        <div class="mt-8 bg-gray-800 rounded-lg p-6">
+            <h3 class="text-lg font-semibold mb-4">Test Controls</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button onclick="testChart('growth')" 
+                        class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded transition-colors">
+                    Load Growth Strategy
+                </button>
+                <button onclick="testChart('income')" 
+                        class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition-colors">
+                    Load Income Strategy
+                </button>
+                <button onclick="testChart('diversification')" 
+                        class="bg-teal-600 hover:bg-teal-700 px-4 py-2 rounded transition-colors">
+                    Load Diversification Strategy
+                </button>
+            </div>
+            <div class="mt-4">
+                <button onclick="testAPI()" 
+                        class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded transition-colors">
+                    Test API Direct
+                </button>
+                <button onclick="location.reload()" 
+                        class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded transition-colors">
+                    Reload Page
+                </button>
+            </div>
+        </div>
+        
+        <!-- API Test Results -->
+        <div id="api-results" class="mt-6 bg-gray-800 rounded-lg p-6 hidden">
+            <h3 class="text-lg font-semibold mb-4">API Test Results</h3>
+            <pre id="api-output" class="bg-gray-900 p-4 rounded text-sm overflow-auto max-h-96"></pre>
+        </div>
+    </div>
+    
+    <!-- Performance Chart JavaScript -->
+    <script>
+        // Inline version of the performance chart for testing
+        class PerformanceChart {
+            constructor(containerId, options = {}) {
+                this.containerId = containerId;
+                this.container = document.getElementById(containerId);
+                this.chart = null;
+                this.isLoading = false;
+                
+                this.options = {
+                    apiEndpoint: '/api/performance-chart/',
+                    defaultStrategy: 'growth',
+                    height: 450,
+                    responsive: true,
+                    showLegend: true,
+                    showTooltips: true,
+                    animationDuration: 750,
+                    ...options
+                };
+                
+                if (this.container) {
+                    this.init();
+                }
+            }
+            
+            init() {
+                this.createContainerStructure();
+                this.loadChartJS().then(() => {
+                    this.loadChart(this.options.defaultStrategy);
+                });
+            }
+            
+            createContainerStructure() {
+                this.container.innerHTML = `
+                    <div class="performance-chart-wrapper relative">
+                        <div class="chart-header mb-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Growth of $10,000 Investment</h3>
+                            <p class="text-sm text-gray-300 mb-4">Cumulative performance vs S&P 500 benchmark</p>
+                            <div class="strategy-selector flex flex-wrap gap-2 mb-4">
+                                <button class="strategy-btn px-3 py-1 text-xs bg-purple-800 text-white rounded hover:bg-purple-700 transition-colors" 
+                                        data-strategy="growth">Growth Strategy</button>
+                                <button class="strategy-btn px-3 py-1 text-xs bg-gray-600 text-white rounded hover:bg-gray-500 transition-colors" 
+                                        data-strategy="income">Income Strategy</button>
+                                <button class="strategy-btn px-3 py-1 text-xs bg-gray-600 text-white rounded hover:bg-gray-500 transition-colors" 
+                                        data-strategy="diversification">Diversification Strategy</button>
+                            </div>
+                        </div>
+                        <div class="chart-loading hidden text-center py-8">
+                            <div class="inline-flex items-center px-4 py-2 bg-purple-900 rounded-lg">
+                                <div class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                                <span class="text-white text-sm">Loading performance data...</span>
+                            </div>
+                        </div>
+                        <div class="chart-error hidden text-center py-8">
+                            <div class="bg-red-900 border border-red-700 rounded-lg p-4">
+                                <p class="text-red-200 text-sm">Unable to load performance data. Please try again later.</p>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="height: ${this.options.height}px;">
+                            <canvas id="${this.containerId}-canvas"></canvas>
+                        </div>
+                        <div class="performance-summary hidden mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="summary-item bg-gray-800 rounded-lg p-3 text-center">
+                                <div class="text-lg font-bold text-green-400 strategy-final-value">-</div>
+                                <div class="text-xs text-gray-300">Strategy Value</div>
+                            </div>
+                            <div class="summary-item bg-gray-800 rounded-lg p-3 text-center">
+                                <div class="text-lg font-bold text-gray-400 benchmark-final-value">-</div>
+                                <div class="text-xs text-gray-300">Benchmark Value</div>
+                            </div>
+                            <div class="summary-item bg-gray-800 rounded-lg p-3 text-center">
+                                <div class="text-lg font-bold text-blue-400 outperformance-value">-</div>
+                                <div class="text-xs text-gray-300">Outperformance</div>
+                            </div>
+                            <div class="summary-item bg-gray-800 rounded-lg p-3 text-center">
+                                <div class="text-lg font-bold text-purple-400 total-return-value">-</div>
+                                <div class="text-xs text-gray-300">Total Return</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add event listeners for strategy selector
+                this.container.querySelectorAll('.strategy-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const strategy = e.target.dataset.strategy;
+                        this.loadChart(strategy);
+                        
+                        // Update button states
+                        this.container.querySelectorAll('.strategy-btn').forEach(b => {
+                            b.classList.remove('bg-purple-800');
+                            b.classList.add('bg-gray-600');
+                        });
+                        e.target.classList.remove('bg-gray-600');
+                        e.target.classList.add('bg-purple-800');
+                    });
+                });
+            }
+            
+            async loadChartJS() {
+                if (window.Chart) {
+                    return Promise.resolve();
+                }
+                
+                return new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js';
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                });
+            }
+            
+            async loadChart(strategy = 'growth') {
+                if (this.isLoading) return;
+                
+                this.isLoading = true;
+                this.showLoading();
+                
+                try {
+                    const url = `${this.options.apiEndpoint}?strategy=${encodeURIComponent(strategy)}`;
+                    const response = await fetch(url);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const data = await response.json();
+                    
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    
+                    this.createChart(data);
+                    this.updateSummary(data.performance_summary, data.strategy_name);
+                    
+                } catch (error) {
+                    console.error('Error loading chart data:', error);
+                    this.showError(error.message);
+                } finally {
+                    this.isLoading = false;
+                    this.hideLoading();
+                }
+            }
+            
+            createChart(data) {
+                const canvas = document.getElementById(`${this.containerId}-canvas`);
+                const ctx = canvas.getContext('2d');
+                
+                if (this.chart) {
+                    this.chart.destroy();
+                }
+                
+                this.chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.labels,
+                        datasets: data.datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: false
+                            },
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    color: '#D1D5DB',
+                                    padding: 20,
+                                    usePointStyle: true,
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                enabled: true,
+                                mode: 'index',
+                                intersect: false,
+                                backgroundColor: 'rgba(17, 24, 39, 0.95)',
+                                titleColor: '#F9FAFB',
+                                bodyColor: '#E5E7EB',
+                                borderColor: '#6B7280',
+                                borderWidth: 1,
+                                cornerRadius: 8,
+                                padding: 12,
+                                displayColors: true,
+                                callbacks: {
+                                    title: function(tooltipItems) {
+                                        return tooltipItems[0].label;
+                                    },
+                                    label: function(context) {
+                                        const value = context.parsed.y;
+                                        const formatted = new Intl.NumberFormat('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                            minimumFractionDigits: 0,
+                                            maximumFractionDigits: 0
+                                        }).format(value);
+                                        return `${context.dataset.label}: ${formatted}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Time Period',
+                                    color: '#9CA3AF',
+                                    font: {
+                                        size: 11
+                                    }
+                                },
+                                ticks: {
+                                    color: '#9CA3AF',
+                                    maxTicksLimit: 8,
+                                    font: {
+                                        size: 10
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(75, 85, 99, 0.3)',
+                                    drawBorder: false
+                                }
+                            },
+                            y: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Investment Value ($)',
+                                    color: '#9CA3AF',
+                                    font: {
+                                        size: 11
+                                    }
+                                },
+                                ticks: {
+                                    color: '#9CA3AF',
+                                    callback: function(value) {
+                                        return new Intl.NumberFormat('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                            minimumFractionDigits: 0,
+                                            maximumFractionDigits: 0
+                                        }).format(value);
+                                    },
+                                    font: {
+                                        size: 10
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(75, 85, 99, 0.3)',
+                                    drawBorder: false
+                                }
+                            }
+                        },
+                        interaction: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        elements: {
+                            point: {
+                                hoverRadius: 8
+                            }
+                        },
+                        animation: {
+                            duration: this.options.animationDuration,
+                            easing: 'easeInOutQuart'
+                        }
+                    }
+                });
+            }
+            
+            updateSummary(summary, strategyName) {
+                if (!summary) return;
+                
+                const summaryContainer = this.container.querySelector('.performance-summary');
+                
+                const formatCurrency = (value) => {
+                    return new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0
+                    }).format(value);
+                };
+                
+                const formatPercent = (value) => {
+                    const sign = value >= 0 ? '+' : '';
+                    return `${sign}${value.toFixed(1)}%`;
+                };
+                
+                summaryContainer.querySelector('.strategy-final-value').textContent = formatCurrency(summary.final_strategy_value);
+                summaryContainer.querySelector('.benchmark-final-value').textContent = formatCurrency(summary.final_benchmark_value);
+                summaryContainer.querySelector('.outperformance-value').textContent = formatCurrency(summary.outperformance);
+                summaryContainer.querySelector('.total-return-value').textContent = formatPercent(summary.strategy_total_return);
+                
+                summaryContainer.classList.remove('hidden');
+                
+                const header = this.container.querySelector('.chart-header h3');
+                if (header && strategyName) {
+                    header.textContent = `Growth of $10,000: ${strategyName} Strategy`;
+                }
+            }
+            
+            showLoading() {
+                this.container.querySelector('.chart-loading').classList.remove('hidden');
+                this.container.querySelector('.chart-error').classList.add('hidden');
+                this.container.querySelector('.performance-summary').classList.add('hidden');
+            }
+            
+            hideLoading() {
+                this.container.querySelector('.chart-loading').classList.add('hidden');
+            }
+            
+            showError(message = 'Unable to load chart data') {
+                const errorContainer = this.container.querySelector('.chart-error');
+                errorContainer.querySelector('p').textContent = message;
+                errorContainer.classList.remove('hidden');
+                this.container.querySelector('.chart-loading').classList.add('hidden');
+                this.container.querySelector('.performance-summary').classList.add('hidden');
+            }
+            
+            updateChart(strategy) {
+                this.loadChart(strategy);
+            }
+            
+            destroy() {
+                if (this.chart) {
+                    this.chart.destroy();
+                    this.chart = null;
+                }
+            }
+        }
+        
+        // Global chart instance
+        let chartInstance;
+        
+        // Initialize chart when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            chartInstance = new PerformanceChart('test-performance-chart');
+        });
+        
+        // Test functions
+        function testChart(strategy) {
+            if (chartInstance) {
+                chartInstance.updateChart(strategy);
+            }
+        }
+        
+        async function testAPI() {
+            const resultsDiv = document.getElementById('api-results');
+            const outputPre = document.getElementById('api-output');
+            
+            resultsDiv.classList.remove('hidden');
+            outputPre.textContent = 'Testing API...';
+            
+            try {
+                const response = await fetch('/api/performance-chart/?strategy=growth');
+                const data = await response.json();
+                
+                outputPre.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                outputPre.textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

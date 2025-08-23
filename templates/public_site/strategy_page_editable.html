@@ -118,6 +118,14 @@
                                 <div class="mt-4 prose text-sm text-gray-400">{{ page.performance_disclaimer|richtext }}</div>
                             {% endif %}
                         </div>
+                        
+                        <!-- Interactive Performance Chart -->
+                        <div class="mt-8">
+                            <h3 class="mb-4 heading-h3 text-lg font-semibold text-blue-300 uppercase">CUMULATIVE PERFORMANCE VISUALIZATION</h3>
+                            <div class="rounded-lg border border-gray-600 bg-gray-700 p-6">
+                                {% include 'components/performance_chart.html' with chart_id='strategy-performance-chart' default_strategy=page.slug height=400 %}
+                            </div>
+                        </div>
                         <!-- Risk Metrics -->
                         {% if page.risk_metrics.exists %}
                             {% with risk_metric=page.risk_metrics.first %}
@@ -354,6 +362,7 @@
     </div>
 {% endblock %}
 {% block extra_js %}
+    <script src="{% static 'js/performance-chart.js' %}"></script>
     <script>
   function requestDocument(documentType) {
     // Show document request modal

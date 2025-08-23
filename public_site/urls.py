@@ -35,6 +35,7 @@ from .views import (
     test_error_info_view,
     test_posthog_simple,
     test_posthog_exception_formats,
+    performance_chart_data_api,
 )
 
 app_name = "public_site"
@@ -68,6 +69,8 @@ urlpatterns = [
     path("api/status/", site_status_api, name="api_status"),
     # Media items API for infinite scroll
     path("api/media-items/", media_items_api, name="api_media_items"),
+    # Performance chart data API
+    path("api/performance-chart/", performance_chart_data_api, name="api_performance_chart"),
     # Support categories API removed for standalone deployment
     # ============================================================================
     # GARDEN PLATFORM ACCESS

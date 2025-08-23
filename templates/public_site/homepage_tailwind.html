@@ -97,6 +97,13 @@
                             <div class="stat-label-ec">OF FIDUCIARY COUNSEL</div>
                         </div>
                     </div>
+                    
+                    <!-- Investment Performance Visualization -->
+                    <div class="mx-auto max-w-4xl mt-12">
+                        <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 p-6 shadow-2xl">
+                            {% include 'components/performance_chart.html' with chart_id='hero-performance-chart' default_strategy='growth' height=350 %}
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -448,6 +455,7 @@
     </div>
 {% endblock %}
 {% block extra_js %}
+    <script src="{% static 'js/performance-chart.js' %}"></script>
     <script>
   // Calculate years since October 2021
   document.addEventListener("DOMContentLoaded", function () {

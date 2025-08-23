@@ -77,9 +77,35 @@ class EmbedVideoBlock(EmbedBlock):
     """Video embed block."""
 
     class Meta:
-        template = "blocks/video_block.html"
+        template = "public_site/blocks/video_block.html"
         icon = "media"
         label = "Video"
+
+
+class YouTubeVideoBlock(blocks.StructBlock):
+    """Enhanced YouTube video block with additional options."""
+    
+    youtube_url = blocks.URLBlock(
+        help_text="Enter YouTube video URL (e.g., https://www.youtube.com/watch?v=VIDEO_ID or https://youtu.be/VIDEO_ID)"
+    )
+    title = blocks.CharBlock(
+        required=False,
+        help_text="Optional title/caption for the video"
+    )
+    start_time = blocks.IntegerBlock(
+        required=False,
+        help_text="Start time in seconds (optional)"
+    )
+    autoplay = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Enable autoplay (not recommended for accessibility)"
+    )
+    
+    class Meta:
+        template = "public_site/blocks/youtube_video_block.html"
+        icon = "media"
+        label = "YouTube Video"
 
 
 class DocumentBlock(blocks.StructBlock):
@@ -152,7 +178,7 @@ class SimpleTableBlock(TableBlock):
     """Table block for data presentation."""
 
     class Meta:
-        template = "blocks/table_block.html"
+        template = "public_site/blocks/table_block.html"
         icon = "table"
         label = "Table"
 
@@ -161,7 +187,7 @@ class DividerBlock(blocks.StaticBlock):
     """Horizontal divider."""
 
     class Meta:
-        template = "blocks/divider_block.html"
+        template = "public_site/blocks/divider_block.html"
         icon = "horizontalrule"
         label = "Divider"
         admin_text = "Horizontal line separator"
@@ -182,6 +208,7 @@ class BlogStreamField(StreamField):
             ("rich_text", RichTextBlock()),
             ("image", ImageBlock()),
             ("video", EmbedVideoBlock()),
+            ("youtube_video", YouTubeVideoBlock()),
             ("document", DocumentBlock()),
             ("quote", QuoteBlock()),
             ("callout", CalloutBlock()),
