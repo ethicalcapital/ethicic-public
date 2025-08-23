@@ -1,0 +1,285 @@
+/*
+ * Chromium-Specific Browser Compatibility Fixes
+ * Ensures identical rendering between Chrome and Chromium
+ * Preserves the existing Chrome appearance while fixing Chromium inconsistencies
+ */
+
+/* Browser detection classes are added by browser-compatibility.js */
+
+/* ===== HOMEPAGE BUTTON FIXES ===== */
+/* Ensure Schedule Consultation button is white with purple text */
+.browser-chromium a[href="/consultation/"] {
+    background-color: rgb(255, 255, 255) !important;
+    color: rgb(88, 28, 135) !important;
+    border: 2px solid rgb(255, 255, 255) !important;
+    border-color: rgb(255, 255, 255) !important;
+}
+
+.browser-chromium a[href="/consultation/"]:hover {
+    background-color: rgb(250, 245, 255) !important;
+    border-color: rgb(196, 181, 253) !important;
+    color: rgb(88, 28, 135) !important;
+}
+
+/* Ensure View Our Process button is transparent with white border */
+.browser-chromium a[href="/process/"] {
+    background-color: transparent !important;
+    color: rgb(255, 255, 255) !important;
+    border: 2px solid rgb(255, 255, 255) !important;
+    border-color: rgb(255, 255, 255) !important;
+}
+
+.browser-chromium a[href="/process/"]:hover {
+    background-color: rgb(255, 255, 255) !important;
+    color: rgb(88, 28, 135) !important;
+    border-color: rgb(255, 255, 255) !important;
+}
+
+/* ===== STRATEGY PAGE BUTTON FIXES ===== */
+/* Ensure .btn-ec-secondary buttons have consistent teal background */
+.browser-chromium .btn-ec-secondary {
+    background-color: rgb(20, 184, 166) !important;
+    color: rgb(17, 24, 39) !important;
+    border: 0px none rgb(17, 24, 39) !important;
+    border-color: rgb(17, 24, 39) !important;
+}
+
+.browser-chromium .btn-ec-secondary:hover {
+    background-color: rgb(13, 148, 136) !important;
+    color: rgb(255, 255, 255) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* ===== CONTACT PAGE BUTTON FIXES ===== */
+/* Ensure Send Message button has purple background */
+.browser-chromium button[type="submit"],
+.browser-chromium .btn-ec-primary {
+    background-color: rgb(88, 28, 135) !important;
+    color: rgb(255, 255, 255) !important;
+    border: 2px solid rgb(88, 28, 135) !important;
+    border-color: rgb(88, 28, 135) !important;
+}
+
+.browser-chromium button[type="submit"]:hover,
+.browser-chromium .btn-ec-primary:hover {
+    background-color: rgb(76, 29, 149) !important;
+    border-color: rgb(76, 29, 149) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+/* ===== NAVIGATION BUTTON CONSISTENCY ===== */
+/* Fix navigation CTA buttons in header */
+.browser-chromium nav a[href*="consultation"],
+.browser-chromium nav a[href*="contact"] {
+    background-color: rgb(20, 184, 166) !important;
+    color: rgb(17, 24, 39) !important;
+    border-color: rgb(20, 184, 166) !important;
+}
+
+.browser-chromium nav a[href*="consultation"]:hover,
+.browser-chromium nav a[href*="contact"]:hover {
+    background-color: rgb(13, 148, 136) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+/* ===== FORM ELEMENT CONSISTENCY ===== */
+/* Ensure form inputs render consistently */
+.browser-chromium input[type="text"],
+.browser-chromium input[type="email"],
+.browser-chromium textarea,
+.browser-chromium select {
+    background-color: rgb(55, 65, 81) !important;
+    color: rgb(255, 255, 255) !important;
+    border: 1px solid rgb(75, 85, 99) !important;
+    border-radius: 0.375rem !important;
+}
+
+.browser-chromium input[type="text"]:focus,
+.browser-chromium input[type="email"]:focus,
+.browser-chromium textarea:focus,
+.browser-chromium select:focus {
+    border-color: rgb(59, 130, 246) !important;
+    box-shadow: 0 0 0 1px rgb(59, 130, 246) !important;
+    outline: none !important;
+}
+
+/* ===== TYPOGRAPHY CONSISTENCY ===== */
+/* Force consistent font rendering */
+.browser-chromium * {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+}
+
+/* Ensure heading fonts are consistent */
+.browser-chromium h1,
+.browser-chromium h2,
+.browser-chromium h3,
+.browser-chromium h4,
+.browser-chromium h5,
+.browser-chromium h6 {
+    font-family: "Bebas Neue", Impact, "Arial Black", sans-serif !important;
+    font-feature-settings: "kern" 1 !important;
+}
+
+/* Ensure body text is consistent */
+.browser-chromium body,
+.browser-chromium p,
+.browser-chromium span,
+.browser-chromium div {
+    font-family: Raleway, -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-feature-settings: "kern" 1 !important;
+}
+
+/* ===== LAYOUT CONSISTENCY ===== */
+/* Fix flexbox inconsistencies */
+.browser-chromium .flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.browser-chromium .items-center {
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+
+.browser-chromium .justify-between {
+    -webkit-box-pack: justify !important;
+    -ms-flex-pack: justify !important;
+    justify-content: space-between !important;
+}
+
+.browser-chromium .justify-center {
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+}
+
+/* ===== CONTAINER ALIGNMENT FIXES ===== */
+/* Fix container width and centering issues */
+.browser-chromium .container,
+.browser-chromium .max-w-7xl,
+.browser-chromium .max-w-6xl {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+}
+
+/* Fix responsive spacing */
+.browser-chromium .space-x-8 > * + * {
+    margin-left: 2rem !important;
+}
+
+.browser-chromium .space-x-10 > * + * {
+    margin-left: 2.5rem !important;
+}
+
+@media (min-width: 1024px) {
+    .browser-chromium .lg\:space-x-10 > * + * {
+        margin-left: 2.5rem !important;
+    }
+}
+
+/* ===== BOX MODEL CONSISTENCY ===== */
+/* Ensure consistent box-sizing */
+.browser-chromium *,
+.browser-chromium *::before,
+.browser-chromium *::after {
+    box-sizing: border-box !important;
+}
+
+/* ===== SHADOW AND BORDER CONSISTENCY ===== */
+/* Fix shadow rendering differences */
+.browser-chromium .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.browser-chromium .shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Fix border radius consistency */
+.browser-chromium .rounded-lg {
+    border-radius: 0.5rem !important;
+}
+
+.browser-chromium .rounded-2xl {
+    border-radius: 1rem !important;
+}
+
+/* ===== TRANSITION CONSISTENCY ===== */
+/* Ensure smooth transitions */
+.browser-chromium .transition-colors {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-duration: 200ms !important;
+}
+
+.browser-chromium .transition-all {
+    transition-property: all !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-duration: 300ms !important;
+}
+
+/* ===== PERFORMANCE CHART CONSISTENCY ===== */
+/* Ensure performance charts render identically */
+.browser-chromium [data-performance-chart] {
+    background-color: transparent !important;
+    border-radius: 0.5rem !important;
+}
+
+.browser-chromium .chart-container {
+    width: 100% !important;
+    height: 400px !important;
+    position: relative !important;
+}
+
+/* ===== ACCESSIBILITY CONSISTENCY ===== */
+/* Maintain focus indicators */
+.browser-chromium *:focus {
+    outline: 2px solid rgb(59, 130, 246) !important;
+    outline-offset: 2px !important;
+}
+
+.browser-chromium *:focus-visible {
+    outline: 2px solid rgb(59, 130, 246) !important;
+    outline-offset: 2px !important;
+}
+
+/* ===== MEDIA QUERY CONSISTENCY ===== */
+/* Fix responsive behavior differences */
+@media (max-width: 767px) {
+    .browser-chromium .md\:hidden {
+        display: none !important;
+    }
+    
+    .browser-chromium .md\:flex {
+        display: block !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .browser-chromium .md\:flex {
+        display: flex !important;
+    }
+    
+    .browser-chromium .md\:hidden {
+        display: block !important;
+    }
+}
+
+/* ===== Z-INDEX CONSISTENCY ===== */
+/* Fix stacking context issues */
+.browser-chromium .z-50 {
+    z-index: 50 !important;
+}
+
+.browser-chromium .z-40 {
+    z-index: 40 !important;
+}
+
+.browser-chromium .z-30 {
+    z-index: 30 !important;
+}
