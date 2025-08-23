@@ -681,11 +681,11 @@
              aria-atomic="true"
              class="sr-only"
              id="urgent-announcements"></div>
-        <!-- Shared Header with Mobile-First Responsive Design -->
+        <!-- Shared Header with Consistent Container Width -->
         <header class="border-b border-purple-800 bg-purple-900"
                 role="banner"
                 x-data="{ mobileMenuOpen: false }">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="container-ec">
                 <div class="flex h-16 items-center justify-between">
                     
                     <!-- Logo/Brand - Always Visible -->
@@ -702,15 +702,15 @@
                         </a>
                     </div>
 
-                    <!-- Desktop Navigation - Hidden on mobile/tablet -->
-                    <nav class="hidden lg:flex lg:items-center lg:space-x-8"
+                    <!-- Desktop Navigation - Show at md+ breakpoint -->
+                    <nav class="hidden md:flex md:items-center md:space-x-6 lg:space-x-8"
                          id="main-navigation"
                          aria-label="Main navigation">
                         {% main_menu max_levels=1 template="wagtailmenus/main_menu_tailwind.html" %}
                     </nav>
 
-                    <!-- Desktop Actions - Responsive Sizing -->
-                    <div class="hidden md:flex md:items-center md:space-x-3">
+                    <!-- Desktop Actions - Responsive Sizing with better spacing -->
+                    <div class="hidden md:flex md:items-center md:space-x-2 lg:space-x-3">
                         <!-- Search - Responsive Width -->
                         <div class="relative"
                              x-data="{ searchOpen: false, query: '', searching: false }"
@@ -725,7 +725,7 @@
                                        id="search-input"
                                        name="q"
                                        placeholder="Search..."
-                                       class="w-32 md:w-40 lg:w-48 xl:w-64 rounded-lg border border-purple-700 bg-purple-800 px-3 py-2 pr-10 text-sm text-white placeholder-purple-300 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
+                                       class="w-24 md:w-32 lg:w-40 xl:w-48 rounded-lg border border-purple-700 bg-purple-800 px-3 py-2 pr-10 text-sm text-white placeholder-purple-300 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
                                        autocomplete="off"
                                        x-model="query"
                                        @focus="searchOpen = true"
@@ -750,18 +750,18 @@
                             </div>
                         </div>
                         
-                        <!-- Login Button - Responsive Text -->
+                        <!-- Login Button - Compact -->
                         <a href="https://app.altruist.com/login"
-                           class="flex items-center rounded-lg border border-gray-600 bg-gray-700 px-2 lg:px-3 py-2 text-sm text-white transition-colors hover:border-gray-500 hover:bg-gray-600"
+                           class="flex items-center rounded-lg border border-gray-600 bg-gray-700 px-2 py-2 text-xs lg:text-sm text-white transition-colors hover:border-gray-500 hover:bg-gray-600 whitespace-nowrap"
                            target="_blank"
                            rel="noopener"
                            aria-label="Client login">
                             Login
                         </a>
                         
-                        <!-- CTA Button - Responsive -->
+                        <!-- CTA Button - Compact -->
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdx1ex4pj5iYaj1v1Yxjt7iFbicqZbKWNuOZVyMlG8sKswbgQ/viewform?usp=header"
-                           class="btn-ec-secondary px-3 lg:px-4 py-2 text-sm lg:text-base font-semibold rounded-lg transform transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                           class="btn-ec-secondary px-2 lg:px-3 py-2 text-xs lg:text-sm font-semibold rounded-lg transition-all duration-200 whitespace-nowrap"
                            target="_blank"
                            rel="noopener">
                             Get Started
