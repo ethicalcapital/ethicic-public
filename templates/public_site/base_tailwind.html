@@ -103,8 +103,8 @@
                     }
                 },
                 loaded: function(posthog) {
-                    // Only log success in development
-                    if (posthog.get_config('debug')) {
+                    // Only log success in development (check for localhost/debug environment)
+                    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.includes('.local')) {
                         console.log('PostHog loaded successfully');
                     }
                     // PostHog will automatically capture exceptions - no need for explicit enableExceptionAutocapture
