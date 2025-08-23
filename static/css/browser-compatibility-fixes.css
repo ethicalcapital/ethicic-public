@@ -1,0 +1,240 @@
+/*
+ * Cross-Browser Compatibility Fixes for Chrome vs Chromium
+ * Addresses common rendering differences between browsers
+ */
+
+/* ===== FONT RENDERING CONSISTENCY ===== */
+/* Force consistent font rendering across Chrome/Chromium */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure consistent font fallbacks */
+.font-heading, h1, h2, h3, h4, h5, h6 {
+  font-family: "Bebas Neue", Impact, "Arial Black", sans-serif;
+  font-display: swap;
+  font-feature-settings: "kern" 1;
+}
+
+.font-sans, body, nav {
+  font-family: Raleway, -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-display: swap;
+  font-feature-settings: "kern" 1;
+}
+
+/* ===== FLEXBOX CONSISTENCY ===== */
+/* Ensure consistent flexbox behavior */
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-col {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.items-center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.justify-between {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.justify-center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+/* ===== SPACING CONSISTENCY ===== */
+/* Tailwind space-x utilities with browser-specific fallbacks */
+.space-x-8 > * + * {
+  margin-left: 2rem;
+}
+
+.space-x-10 > * + * {
+  margin-left: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .lg\:space-x-10 > * + * {
+    margin-left: 2.5rem;
+  }
+}
+
+/* ===== TRANSFORM CONSISTENCY ===== */
+/* Ensure transforms work consistently */
+.transform {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* ===== BACKDROP FILTER FALLBACKS ===== */
+/* Provide fallbacks for backdrop-filter */
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur()) {
+  .backdrop-blur-sm {
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+}
+
+/* ===== NAVIGATION SPECIFIC FIXES ===== */
+/* Ensure navigation spacing is consistent */
+nav.hidden.md\:flex {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  nav.hidden.md\:flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
+/* Navigation link spacing fix */
+nav.md\:space-x-8 > a + a {
+  margin-left: 2rem;
+}
+
+@media (min-width: 1024px) {
+  nav.lg\:space-x-10 > a + a {
+    margin-left: 2.5rem;
+  }
+}
+
+/* ===== GRADIENT CONSISTENCY ===== */
+/* Ensure gradients render consistently */
+.bg-gradient-to-r {
+  background-image: -webkit-linear-gradient(left, var(--tw-gradient-from), var(--tw-gradient-to));
+  background-image: linear-gradient(to right, var(--tw-gradient-from), var(--tw-gradient-to));
+}
+
+/* ===== BORDER RADIUS CONSISTENCY ===== */
+/* Ensure consistent border radius rendering */
+.rounded-lg {
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+}
+
+/* ===== BOX SHADOW CONSISTENCY ===== */
+/* Ensure shadows render consistently */
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== TRANSITION CONSISTENCY ===== */
+/* Ensure smooth transitions across browsers */
+.transition-colors {
+  -webkit-transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition-duration: 200ms;
+  transition-duration: 200ms;
+}
+
+/* ===== GRID CONSISTENCY ===== */
+/* Ensure CSS Grid works consistently */
+.grid {
+  display: -ms-grid;
+  display: grid;
+}
+
+.grid-cols-1 {
+  -ms-grid-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    -ms-grid-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ===== ASPECT RATIO FALLBACK ===== */
+/* Fallback for aspect-ratio property */
+@supports not (aspect-ratio: 16/9) {
+  .aspect-video {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .aspect-video > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* ===== CHROME/CHROMIUM SPECIFIC FIXES ===== */
+/* Fix for Chrome autofill styling differences */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--tw-bg-opacity) inset;
+  -webkit-text-fill-color: currentColor;
+}
+
+/* Fix for Chrome/Chromium scrollbar differences */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== PRINT STYLES CONSISTENCY ===== */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
