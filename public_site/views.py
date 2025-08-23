@@ -2090,7 +2090,7 @@ def performance_chart_data_api(request):
         from datetime import date, datetime
         
         # Get strategy slug from query parameter
-        strategy_slug = request.GET.get('strategy', 'growth')
+        strategy_slug = request.GET.get('strategy', 'growth') if hasattr(request, 'GET') and request.GET else 'growth'
         
         try:
             strategy = StrategyPage.objects.get(slug=strategy_slug)
