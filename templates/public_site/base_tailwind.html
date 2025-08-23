@@ -439,17 +439,44 @@
             // PostHog's enableExceptionAutocapture() will handle error tracking automatically
             // No need for manual error event listeners since we enabled autocapture
         </script>
-        <!-- Page width fix: 68% max-width for desktop -->
+        <!-- Responsive container and layout fixes -->
         <style>
       .container-ec {
         max-width: 68vw;
         margin: 0 auto;
         padding: 0 1rem;
       }
-      @media (max-width: 768px) {
+      
+      /* Mobile-first responsive container */
+      @media (max-width: 640px) {
         .container-ec {
           max-width: 95vw;
+          padding: 0 0.75rem;
         }
+      }
+      
+      @media (min-width: 641px) and (max-width: 768px) {
+        .container-ec {
+          max-width: 90vw;
+          padding: 0 1rem;
+        }
+      }
+      
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .container-ec {
+          max-width: 75vw;
+        }
+      }
+      
+      /* Prevent horizontal scrolling issues */
+      body {
+        overflow-x: hidden;
+      }
+      
+      /* Fix any overflow issues with long text */
+      * {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
       }
       
       /* Footer grid override to ensure 5 columns */
@@ -654,49 +681,51 @@
              aria-atomic="true"
              class="sr-only"
              id="urgent-announcements"></div>
-        <!-- Shared Header with Public Site Branding -->
-        <header class="garden-header-shared border-b border-purple-800 bg-purple-900 dark:border-purple-800 dark:bg-purple-900"
-                role="banner">
-            <div class="container-ec">
-                <div class="garden-header-brand">
-                    <!-- Brand -->
-                    <a href="/"
-                       class="logo-container garden-header-logo"
-                       aria-label="Ethical Capital Home">
-                        <span class="logo-text">ETHICAL</span>
-                        <div class="logo-underline">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </a>
-                </div>
-                <div class="garden-header-nav-wrapper">
-                    <!-- Navigation Section -->
-                    <nav class="garden-header-navigation"
+        <!-- Shared Header with Mobile-First Responsive Design -->
+        <header class="border-b border-purple-800 bg-purple-900"
+                role="banner"
+                x-data="{ mobileMenuOpen: false }">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    
+                    <!-- Logo/Brand - Always Visible -->
+                    <div class="flex items-center flex-shrink-0">
+                        <a href="/"
+                           class="logo-container garden-header-logo text-white font-bold text-lg tracking-wide"
+                           aria-label="Ethical Capital Home">
+                            <span class="logo-text">ETHICAL</span>
+                            <div class="logo-underline">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Desktop Navigation - Hidden on mobile/tablet -->
+                    <nav class="hidden lg:flex lg:items-center lg:space-x-8"
                          id="main-navigation"
-                         style="pointer-events: auto">
+                         aria-label="Main navigation">
                         {% main_menu max_levels=1 template="wagtailmenus/main_menu_tailwind.html" %}
                     </nav>
-                    <!-- Actions Section -->
-                    <div class="garden-header-actions">
-                        <!-- Search -->
-                        <div class="hidden lg:block"
+
+                    <!-- Desktop Actions - Responsive Sizing -->
+                    <div class="hidden md:flex md:items-center md:space-x-3">
+                        <!-- Search - Responsive Width -->
+                        <div class="relative"
                              x-data="{ searchOpen: false, query: '', searching: false }"
                              @htmx:before-request="searching = true"
                              @htmx:after-request="searching = false">
                             <form method="get"
                                   action="/search/"
                                   class="relative"
-                                  role="search"
-                                  id="search">
+                                  role="search">
                                 <label for="search-input" class="sr-only">Search our website</label>
                                 <input type="text"
                                        id="search-input"
                                        name="q"
                                        placeholder="Search..."
-                                       class="w-48 xl:w-64 rounded-lg border border-purple-700 bg-purple-800 px-4 py-2 pr-12 text-white placeholder-purple-300 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
-                                       aria-label="Search our website"
+                                       class="w-32 md:w-40 lg:w-48 xl:w-64 rounded-lg border border-purple-700 bg-purple-800 px-3 py-2 pr-10 text-sm text-white placeholder-purple-300 focus:border-transparent focus:ring-2 focus:ring-purple-400 focus:outline-none"
                                        autocomplete="off"
                                        x-model="query"
                                        @focus="searchOpen = true"
@@ -704,15 +733,15 @@
                                        hx-trigger="keyup changed delay:300ms"
                                        hx-target="#search-results" />
                                 <button type="submit"
-                                        class="absolute top-1/2 right-1 -translate-y-1/2 transform rounded bg-purple-600 px-2 py-1 text-white transition-colors hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                                        class="absolute right-1 top-1/2 -translate-y-1/2 rounded bg-purple-600 p-1.5 text-white transition-colors hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400"
                                         aria-label="Submit search">
-                                    <span x-show="searching" x-cloak class="animate-spin">⟳</span>
-                                    <span x-show="!searching">🔍</span>
+                                    <span x-show="searching" x-cloak class="animate-spin text-xs">⟳</span>
+                                    <span x-show="!searching" class="text-xs">🔍</span>
                                 </button>
                             </form>
                             <!-- Search results dropdown -->
                             <div id="search-results"
-                                 class="absolute top-full left-0 z-[60] mt-2 max-h-64 w-full overflow-y-auto rounded-lg border border-gray-600 bg-gray-800 shadow-lg"
+                                 class="absolute top-full left-0 z-50 mt-2 max-h-64 w-full overflow-y-auto rounded-lg border border-gray-600 bg-gray-800 shadow-lg"
                                  x-show="searchOpen && query.length > 0"
                                  @click.outside="searchOpen = false"
                                  x-transition
@@ -720,25 +749,90 @@
                                 <!-- Results populated by HTMX -->
                             </div>
                         </div>
-                        <!-- Login Button -->
+                        
+                        <!-- Login Button - Responsive Text -->
                         <a href="https://app.altruist.com/login"
-                           class="hidden md:flex items-center space-x-1 rounded-lg border border-gray-600 bg-gray-700 px-2 lg:px-3 py-2 text-white transition-colors hover:border-gray-500 hover:bg-gray-600"
+                           class="flex items-center rounded-lg border border-gray-600 bg-gray-700 px-2 lg:px-3 py-2 text-sm text-white transition-colors hover:border-gray-500 hover:bg-gray-600"
                            target="_blank"
                            rel="noopener"
                            aria-label="Client login">
-                            <span class="text-sm lg:text-base">Login</span>
+                            Login
                         </a>
-                        <!-- Enhanced CTA Button -->
+                        
+                        <!-- CTA Button - Responsive -->
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdx1ex4pj5iYaj1v1Yxjt7iFbicqZbKWNuOZVyMlG8sKswbgQ/viewform?usp=header"
-                           class="btn-ec-secondary transform transition-all duration-200 hover:scale-105 hover:shadow-lg text-sm lg:text-base px-3 lg:px-4 py-2 font-semibold"
+                           class="btn-ec-secondary px-3 lg:px-4 py-2 text-sm lg:text-base font-semibold rounded-lg transform transition-all duration-200 hover:scale-105 hover:shadow-lg"
                            target="_blank"
-                           rel="noopener"
-                           aria-label="Get started with Ethical Capital">Get Started</a>
-                        <!-- Theme Toggle (temporarily hidden) -->
+                           rel="noopener">
+                            Get Started
+                        </a>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <div class="flex items-center md:hidden">
+                        <button type="button"
+                                class="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-purple-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500"
+                                aria-controls="mobile-menu"
+                                aria-expanded="false"
+                                @click="mobileMenuOpen = !mobileMenuOpen">
+                            <span class="sr-only">Open main menu</span>
+                            <!-- Hamburger icon -->
+                            <svg class="h-6 w-6" x-show="!mobileMenuOpen" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                            <!-- Close icon -->
+                            <svg class="h-6 w-6" x-show="mobileMenuOpen" x-cloak fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Mobile menu -->
+            <div class="md:hidden" 
+                 x-show="mobileMenuOpen" 
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100 scale-100"
+                 x-transition:leave-end="opacity-0 scale-95"
+                 id="mobile-menu"
+                 x-cloak>
+                <div class="space-y-1 px-2 pb-3 pt-2 bg-purple-800 border-t border-purple-700">
+                    <!-- Mobile navigation items -->
+                    {% main_menu max_levels=1 template="wagtailmenus/main_menu_mobile_tailwind.html" %}
+                    
+                    <!-- Mobile search -->
+                    <div class="px-3 py-2">
+                        <form method="get" action="/search/" class="flex">
+                            <input type="text"
+                                   name="q"
+                                   placeholder="Search..."
+                                   class="flex-1 rounded-l-lg border border-purple-600 bg-purple-700 px-3 py-2 text-sm text-white placeholder-purple-300 focus:border-purple-400 focus:outline-none focus:ring-1 focus:ring-purple-400" />
+                            <button type="submit"
+                                    class="rounded-r-lg bg-purple-600 px-3 py-2 text-white hover:bg-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-400">
+                                🔍
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Mobile login/CTA -->
+                    <div class="px-3 py-2 space-y-2">
+                        <a href="https://app.altruist.com/login"
+                           class="block rounded-lg border border-gray-600 bg-gray-700 px-3 py-2 text-center text-sm text-white"
+                           target="_blank">
+                            Login
+                        </a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdx1ex4pj5iYaj1v1Yxjt7iFbicqZbKWNuOZVyMlG8sKswbgQ/viewform?usp=header"
+                           class="btn-ec-secondary block px-3 py-2 text-center text-sm font-semibold rounded-lg"
+                           target="_blank">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
         </header>
         <!-- Main Content -->
         <main id="main-content" class="flex-1 pt-8 pb-24" role="main">

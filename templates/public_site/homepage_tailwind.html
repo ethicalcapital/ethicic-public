@@ -44,28 +44,28 @@
         <div class="container-ec relative z-10 py-16 md:py-24">
             <section role="banner" aria-labelledby="hero-heading">
                 <div class="space-y-8 text-center">
-                    <!-- Prominent Tagline -->
-                    <div class="font-heading text-xl font-bold tracking-wider text-white uppercase md:text-2xl pt-8">
+                    <!-- Prominent Tagline - Responsive Text -->
+                    <div class="font-heading text-lg font-bold tracking-wider text-white uppercase sm:text-xl md:text-2xl pt-4 sm:pt-6 md:pt-8">
                         {{ page.hero_tagline|default:"WE'RE NOT LIKE OTHER FIRMS. GOOD." }}
                     </div>
-                    <!-- Main Headline with Enhanced Typography -->
+                    <!-- Main Headline - Mobile-First Responsive Typography -->
                     <h1 id="hero-heading"
-                        class="font-heading text-4xl leading-tight font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+                        class="font-heading text-2xl leading-tight font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl px-2 sm:px-0">
                         <span class="bg-gradient-to-r from-white via-purple-100 to-teal-200 bg-clip-text text-transparent">
                             {{ page.hero_title }}
                         </span>
                     </h1>
-                    <!-- Subtitle with Better Spacing -->
-                    <div class="mx-auto max-w-4xl text-xl leading-relaxed font-light text-purple-100 md:text-2xl">
+                    <!-- Subtitle - Responsive Sizing and Spacing -->
+                    <div class="mx-auto max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl text-base leading-relaxed font-light text-purple-100 sm:text-lg md:text-xl lg:text-2xl px-4 sm:px-0">
                         {{ page.hero_subtitle|richtext }}
                     </div>
-                    <!-- Enhanced CTAs -->
-                    <div class="mt-12 flex flex-col justify-center gap-6 sm:flex-row">
+                    <!-- Enhanced CTAs - Responsive -->
+                    <div class="mt-8 sm:mt-12 flex flex-col justify-center gap-4 sm:gap-6 sm:flex-row px-4 sm:px-0">
                         <a href="{{ page.hero_cta_1_link }}"
-                           class="transform rounded-lg bg-white border-2 border-white px-8 py-4 font-semibold text-purple-900 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-purple-50 hover:border-purple-200"
+                           class="transform rounded-lg bg-white border-2 border-white px-6 sm:px-8 py-3 sm:py-4 font-semibold text-purple-900 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-purple-50 hover:border-purple-200 text-sm sm:text-base"
                            style="color: #581c87 !important">{{ page.hero_cta_1_text }}</a>
                         <a href="{{ page.hero_cta_2_link }}"
-                           class="transform rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-white hover:text-purple-900">
+                           class="transform rounded-lg border-2 border-white px-6 sm:px-8 py-3 sm:py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-white hover:text-purple-900 text-sm sm:text-base">
                             {{ page.hero_cta_2_text }}
                         </a>
                     </div>
