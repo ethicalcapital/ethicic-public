@@ -1,0 +1,224 @@
+/**
+ * Enhanced Typography using Tailwind CSS - Security Compliant
+ * Moved from inline styles for CSP compliance
+ */
+
+.prose {
+  @apply max-w-none text-lg leading-relaxed font-normal tracking-tight text-slate-300;
+  font-family: var(--font-family-body);
+}
+
+.prose > * + * {
+  @apply mt-7;
+}
+
+/* Brand-Aligned Headers */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply scroll-mt-8 leading-tight font-bold tracking-tighter text-slate-900 dark:text-slate-100;
+  font-family: var(--font-family-heading);
+}
+
+.prose h1 {
+  @apply mt-0 mb-4 text-4xl;
+  background: linear-gradient(to right, theme('colors.teal.400'), theme('colors.purple.600'));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Fallback for browsers that don't support background-clip: text */
+  background-clip: border-box;
+  color: theme('colors.teal.400');
+}
+
+/* Modern browsers with background-clip support */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .prose h1 {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.prose h2 {
+  @apply relative mt-10 mb-3 pb-2 text-3xl;
+}
+
+.prose h2::after {
+  @apply absolute bottom-0 left-0 h-1 w-12 rounded-full;
+  content: "";
+  background: linear-gradient(to right, theme('colors.teal.400'), theme('colors.purple.600'));
+  /* Fallback for older browsers */
+  background-color: theme('colors.teal.400');
+}
+
+.prose h3 {
+  @apply mt-8 mb-2 text-2xl text-purple-900 dark:text-teal-400;
+}
+
+.prose h4 {
+  @apply mt-7 mb-2 text-xl font-semibold;
+}
+
+/* Enhanced Text Elements */
+.prose p {
+  @apply mb-6 text-justify;
+  /* Cross-browser hyphenation support */
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  /* Fallback for browsers without hyphenation support */
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.prose p:first-of-type {
+  @apply text-xl leading-relaxed font-medium text-slate-200;
+}
+
+.prose a {
+  @apply border-b-2 border-teal-600 font-medium text-teal-400 no-underline transition-all duration-300;
+  /* Enhanced hover effects with fallbacks */
+  text-decoration: none;
+  border-bottom: 2px solid theme('colors.teal.600');
+}
+
+.prose a:hover {
+  @apply border-teal-400 text-teal-300;
+  border-radius: 4px;
+  background-color: rgba(6, 95, 70, 0.2); /* Fallback for bg-teal-900/20 */
+  background-color: rgba(6, 95, 70, 0.2);
+  margin-left: -0.25rem;
+  margin-right: -0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.prose strong {
+  @apply px-1 font-semibold text-slate-900 dark:text-slate-100;
+  border-radius: 4px;
+  /* Cross-browser gradient support with fallbacks */
+  background-color: theme('colors.purple.50'); /* Fallback */
+  background-image: linear-gradient(to right, theme('colors.purple.50'), theme('colors.teal.50'));
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose strong {
+    background-color: rgba(88, 28, 135, 0.2); /* Fallback for dark mode */
+    background-image: linear-gradient(to right, rgba(88, 28, 135, 0.2), rgba(6, 95, 70, 0.2));
+  }
+}
+
+.prose em {
+  @apply text-slate-600 italic dark:text-slate-400;
+}
+
+/* Beautiful Blockquotes */
+.prose blockquote {
+  @apply relative my-10 rounded-xl border-none bg-gradient-to-r from-teal-50/80 to-purple-50/60 p-8 text-lg leading-relaxed text-slate-600 italic shadow-lg shadow-teal-200/50 dark:from-teal-900/20 dark:to-purple-900/20 dark:text-slate-300 dark:shadow-teal-900/20;
+}
+
+.prose blockquote::before {
+  @apply absolute -top-2 left-5 text-6xl leading-none text-teal-300 dark:text-teal-600;
+  content: '"';
+  font-family: Georgia, serif;
+}
+
+/* Lists */
+.prose ul,
+.prose ol {
+  @apply my-8 pl-0;
+}
+
+.prose ul li,
+.prose ol li {
+  @apply relative my-4 pl-8 leading-relaxed;
+}
+
+.prose ul li::before {
+  @apply absolute top-3 left-0 h-1.5 w-1.5 rounded-full bg-gradient-to-r from-teal-400 to-purple-600;
+  content: "";
+}
+
+.prose ol {
+  counter-reset: item;
+}
+
+.prose ol li::before {
+  @apply absolute top-0 left-0 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-teal-400 to-purple-600 text-sm font-semibold text-white;
+  content: counter(item);
+  counter-increment: item;
+}
+
+/* Code */
+.prose code {
+  @apply border border-teal-200 bg-gradient-to-r from-teal-50 to-purple-50 px-2 py-1 text-sm text-purple-900 dark:border-teal-700 dark:from-teal-900/30 dark:to-purple-900/30 dark:text-teal-400;
+  border-radius: 4px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Monaco, Consolas, monospace;
+}
+
+.prose pre {
+  @apply my-10 overflow-x-auto rounded-xl border border-teal-200/20 bg-gradient-to-r from-slate-800 to-slate-900 p-8 text-sm leading-relaxed text-slate-200 shadow-2xl;
+}
+
+.prose pre code {
+  @apply border-none bg-transparent p-0 text-sm text-inherit;
+}
+
+/* Images & Tables */
+.prose img {
+  @apply my-10 rounded-xl shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl;
+}
+
+.prose table {
+  @apply my-10 w-full border-separate border-spacing-0 overflow-hidden rounded-xl border border-teal-200/20 bg-white shadow-lg dark:bg-slate-800;
+}
+
+.prose th,
+.prose td {
+  @apply border-b border-teal-200/20 px-5 py-4 text-left;
+}
+
+.prose th {
+  @apply bg-gradient-to-r from-teal-50 to-purple-50 text-sm font-semibold tracking-wider text-slate-900 uppercase dark:from-teal-900/30 dark:to-purple-900/30 dark:text-slate-100;
+}
+
+.prose tbody tr:hover {
+  @apply bg-teal-50/50 dark:bg-teal-900/10;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .prose {
+    @apply max-w-full text-base;
+  }
+
+  .prose h1 {
+    @apply text-3xl;
+  }
+  .prose h2 {
+    @apply text-2xl;
+  }
+  .prose h3 {
+    @apply text-xl;
+  }
+
+  .prose blockquote {
+    @apply my-8 p-6;
+  }
+
+  .prose pre {
+    @apply my-8 p-6;
+  }
+
+  .prose ul li,
+  .prose ol li {
+    @apply pl-6;
+  }
+}

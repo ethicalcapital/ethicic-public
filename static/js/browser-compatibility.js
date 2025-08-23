@@ -161,11 +161,24 @@
         ensureChartCompatibility();
         improveMobileMenuCompatibility();
         
-        // Add browser-specific class to body
+        // Add browser-specific class to body with validation
+        const allowedBrowserClasses = ['browser-chrome', 'browser-chromium', 'browser-webkit', 'browser-firefox', 'browser-safari', 'browser-edge'];
+        
+        function addValidatedClass(className) {
+            if (allowedBrowserClasses.includes(className) && /^[a-zA-Z0-9-_]+$/.test(className)) {
+                document.body.classList.add(className);
+                return true;
+            }
+            console.warn('Security: Attempted to add invalid CSS class:', className);
+            return false;
+        }
+        
         if (isChrome && !isChromium) {
-            document.body.classList.add('browser-chrome');
+            addValidatedClass('browser-chrome');
         } else if (isChromium) {
-            document.body.classList.add('browser-chromium');
+            addValidatedClass('browser-chromium');
+        } else if (isWebKit) {
+            addValidatedClass('browser-webkit');
         }
         
         console.log('Cross-browser compatibility fixes initialized');

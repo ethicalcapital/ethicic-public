@@ -1,0 +1,63 @@
+/**
+ * Responsive container and layout fixes - Security Compliant
+ * Moved from inline styles for CSP compliance
+ */
+
+.container-ec {
+  max-width: 68vw;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Mobile-first responsive container */
+@media (max-width: 640px) {
+  .container-ec {
+    max-width: 95vw;
+    padding: 0 0.75rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .container-ec {
+    max-width: 90vw;
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container-ec {
+    max-width: 75vw;
+  }
+}
+
+/* Prevent horizontal scrolling issues */
+body {
+  overflow-x: hidden;
+}
+
+/* Fix any overflow issues with long text */
+* {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Footer grid override to ensure 5 columns */
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+    display: grid !important;
+    justify-items: center !important;
+  }
+}
+@media (min-width: 640px) and (max-width: 767px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    display: grid !important;
+  }
+}
+@media (max-width: 639px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+  }
+}

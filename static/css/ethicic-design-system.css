@@ -1,0 +1,648 @@
+/*!
+ * Ethical Capital Design System
+ * Tailwind-first design system that replaces Garden UI dependencies and security fixes
+ * Built on top of Tailwind CSS foundation with clean CSS cascade
+ * 
+ * Replaces:
+ * - surgical-text-fixes.css
+ * - prose-typography.css 
+ * - responsive-layout-container.css
+ * - emergency-text-visibility-secure.css
+ * - Garden UI component files
+ */
+
+/* ===== CSS CUSTOM PROPERTIES - BRAND TOKENS ===== */
+:root {
+  /* Brand colors - aligned with Tailwind config */
+  --color-ec-purple: #581c87;
+  --color-ec-purple-hover: #6b46c1;
+  --color-ec-purple-light: #9333ea;
+  --color-ec-teal: #14b8a6;
+  --color-ec-teal-hover: #0d9488;
+  --color-ec-teal-light: #2dd4bf;
+  
+  /* Container system */
+  --container-ec-width: 1200px;
+  --container-ec-padding: 1.5rem;
+  
+  /* Typography system */
+  --font-family-heading: "Bebas Neue", Impact, "Arial Black", sans-serif;
+  --font-family-body: "Raleway", ui-sans-serif, system-ui, sans-serif;
+  --font-family-ui: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Gradients */
+  --gradient-brand: linear-gradient(to right, #2dd4bf, #9333ea);
+  --gradient-brand-light: linear-gradient(to right, rgba(45, 212, 191, 0.1), rgba(147, 51, 234, 0.1));
+}
+
+/* ===== CONTAINER SYSTEM - REPLACES RESPONSIVE-LAYOUT-CONTAINER.CSS ===== */
+.container-ec {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: var(--container-ec-width);
+}
+
+@media (min-width: 640px) {
+  .container-ec {
+    max-width: 640px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-ec {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-ec {
+    max-width: 1024px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-ec {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-ec {
+    max-width: 1536px;
+  }
+}
+
+/* ===== BRAND COMPONENTS - REPLACES GARDEN UI COMPONENTS ===== */
+
+/* Logo component */
+.logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-text {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.025em;
+}
+
+.logo-underline {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.logo-underline span {
+  display: block;
+  height: 0.25rem;
+  background: var(--gradient-brand);
+  border-radius: 9999px;
+}
+
+.logo-underline span:nth-child(1) { width: 0.75rem; }
+.logo-underline span:nth-child(2) { width: 1.5rem; }
+.logo-underline span:nth-child(3) { width: 1rem; }
+
+/* Button system - preserve brand styling */
+.btn-ec-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: var(--color-ec-purple);
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  transition: all 200ms ease;
+}
+
+.btn-ec-primary:hover {
+  background-color: var(--color-ec-purple-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(88, 28, 135, 0.3);
+}
+
+.btn-ec-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(88, 28, 135, 0.5);
+}
+
+.btn-ec-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111827;
+  background-color: var(--color-ec-teal);
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  transition: all 200ms ease;
+}
+
+.btn-ec-secondary:hover {
+  background-color: var(--color-ec-teal-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+}
+
+.btn-ec-secondary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.5);
+}
+
+/* ===== ENHANCED TYPOGRAPHY - REPLACES PROSE-TYPOGRAPHY.CSS ===== */
+
+/* Prose component for rich text content */
+.prose-ec {
+  max-width: none;
+  font-size: 1.125rem;
+  line-height: 1.625;
+  color: #cbd5e1;
+  font-family: var(--font-family-body);
+}
+
+.prose-ec > * + * {
+  margin-top: 1.75rem;
+}
+
+/* Brand-aligned headers */
+.prose-ec h1,
+.prose-ec h2,
+.prose-ec h3,
+.prose-ec h4,
+.prose-ec h5,
+.prose-ec h6 {
+  scroll-margin-top: 2rem;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #f1f5f9;
+  font-family: var(--font-family-heading);
+}
+
+.prose-ec h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Fallback for browsers without background-clip support */
+@supports not (-webkit-background-clip: text) {
+  .prose-ec h1 {
+    color: var(--color-ec-teal-light);
+  }
+}
+
+.prose-ec h2 {
+  position: relative;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.875rem;
+}
+
+.prose-ec h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0.25rem;
+  width: 3rem;
+  border-radius: 9999px;
+  background: var(--gradient-brand);
+}
+
+.prose-ec h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--color-ec-teal-light);
+}
+
+.prose-ec h4 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Enhanced text elements */
+.prose-ec p {
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  hyphens: auto;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.prose-ec p:first-of-type {
+  font-size: 1.25rem;
+  line-height: 1.625;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.prose-ec a {
+  font-weight: 500;
+  color: var(--color-ec-teal-light);
+  text-decoration: none;
+  border-bottom: 2px solid rgba(45, 212, 191, 0.6);
+  transition: all 300ms ease;
+}
+
+.prose-ec a:hover {
+  color: #5eead4;
+  border-bottom-color: var(--color-ec-teal-light);
+  background-color: rgba(6, 95, 70, 0.2);
+  margin-left: -0.25rem;
+  margin-right: -0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.prose-ec strong {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  border-radius: 0.25rem;
+  background: var(--gradient-brand-light);
+}
+
+.prose-ec em {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* Beautiful blockquotes */
+.prose-ec blockquote {
+  position: relative;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(to right, rgba(6, 95, 70, 0.2), rgba(88, 28, 135, 0.2));
+  padding: 2rem;
+  font-size: 1.125rem;
+  line-height: 1.625;
+  color: #cbd5e1;
+  font-style: italic;
+  box-shadow: 0 10px 15px -3px rgba(6, 95, 70, 0.2);
+}
+
+.prose-ec blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem;
+  left: 1.25rem;
+  font-size: 3.75rem;
+  line-height: 1;
+  color: rgba(45, 212, 191, 0.6);
+  font-family: Georgia, serif;
+}
+
+/* Lists with gradient elements */
+.prose-ec ul {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 0;
+}
+
+.prose-ec ul li {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  line-height: 1.625;
+}
+
+.prose-ec ul li::before {
+  content: "";
+  position: absolute;
+  top: 0.75rem;
+  left: 0;
+  height: 0.375rem;
+  width: 0.375rem;
+  border-radius: 9999px;
+  background: var(--gradient-brand);
+}
+
+.prose-ec ol {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 0;
+  counter-reset: item;
+}
+
+.prose-ec ol li {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  line-height: 1.625;
+}
+
+.prose-ec ol li::before {
+  content: counter(item);
+  counter-increment: item;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  height: 1.5rem;
+  width: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--gradient-brand);
+}
+
+/* Code styling */
+.prose-ec code {
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  background: linear-gradient(to right, rgba(6, 95, 70, 0.3), rgba(88, 28, 135, 0.3));
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-ec-teal-light);
+  border-radius: 0.25rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.prose-ec pre {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  background: linear-gradient(to right, #1e293b, #0f172a);
+  padding: 2rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: #e2e8f0;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.prose-ec pre code {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+  color: inherit;
+}
+
+/* Tables */
+.prose-ec table {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  background-color: #1e293b;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.prose-ec th,
+.prose-ec td {
+  border-bottom: 1px solid rgba(45, 212, 191, 0.2);
+  padding: 1.25rem;
+  text-align: left;
+}
+
+.prose-ec th {
+  background: linear-gradient(to right, rgba(6, 95, 70, 0.3), rgba(88, 28, 135, 0.3));
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #f1f5f9;
+  text-transform: uppercase;
+}
+
+.prose-ec tbody tr:hover {
+  background-color: rgba(6, 95, 70, 0.1);
+}
+
+/* ===== TEXT VISIBILITY FIXES - REPLACES SURGICAL-TEXT-FIXES.CSS ===== */
+
+/* Text visibility on light backgrounds - clean approach without !important */
+.bg-white,
+.bg-gray-100,
+.bg-slate-100 {
+  color: #1f2937;
+}
+
+.bg-white *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white):not([class*="text-"]),
+.bg-gray-100 *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white):not([class*="text-"]),
+.bg-slate-100 *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white):not([class*="text-"]) {
+  color: #1f2937;
+}
+
+/* Headers on light backgrounds */
+.bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6,
+.bg-gray-100 h1, .bg-gray-100 h2, .bg-gray-100 h3, .bg-gray-100 h4, .bg-gray-100 h5, .bg-gray-100 h6,
+.bg-slate-100 h1, .bg-slate-100 h2, .bg-slate-100 h3, .bg-slate-100 h4, .bg-slate-100 h5, .bg-slate-100 h6 {
+  color: #111827;
+}
+
+/* Links on light backgrounds */
+.bg-white a:not(.btn-ec-primary):not(.btn-ec-secondary),
+.bg-gray-100 a:not(.btn-ec-primary):not(.btn-ec-secondary),
+.bg-slate-100 a:not(.btn-ec-primary):not(.btn-ec-secondary) {
+  color: #3b82f6;
+}
+
+.bg-white a:hover:not(.btn-ec-primary):not(.btn-ec-secondary),
+.bg-gray-100 a:hover:not(.btn-ec-primary):not(.btn-ec-secondary),
+.bg-slate-100 a:hover:not(.btn-ec-primary):not(.btn-ec-secondary) {
+  color: #1d4ed8;
+}
+
+/* Form elements on light backgrounds */
+.bg-white input, .bg-white textarea, .bg-white select, .bg-white label,
+.bg-gray-100 input, .bg-gray-100 textarea, .bg-gray-100 select, .bg-gray-100 label,
+.bg-slate-100 input, .bg-slate-100 textarea, .bg-slate-100 select, .bg-slate-100 label {
+  color: #1f2937;
+}
+
+/* Strategy cards and content areas */
+.strategy-card.bg-white,
+.strategy-card.bg-gray-100,
+.strategy-card.bg-slate-100 {
+  color: #1f2937;
+}
+
+.strategy-card.bg-white *:not(.btn-ec-primary):not(.btn-ec-secondary):not([class*="text-"]),
+.strategy-card.bg-gray-100 *:not(.btn-ec-primary):not(.btn-ec-secondary):not([class*="text-"]),
+.strategy-card.bg-slate-100 *:not(.btn-ec-primary):not(.btn-ec-secondary):not([class*="text-"]) {
+  color: #1f2937;
+}
+
+/* Process sections and panels */
+.process-section.bg-white,
+.process-section.bg-gray-100,
+.investment-philosophy.bg-white,
+.client-focus.bg-white {
+  color: #1f2937;
+}
+
+.process-section.bg-white *:not(.btn-ec-primary):not(.btn-ec-secondary):not([class*="text-"]),
+.process-section.bg-gray-100 *:not(.btn-ec-primary):not(.btn-ec-secondary):not([class*="text-"]),
+.investment-philosophy.bg-white *:not(.btn-ec-primary):not(.btn-ec-secondary):not([class*="text-"]),
+.client-focus.bg-white *:not(.btn-ec-primary):not(.btn-ec-secondary):not([class*="text-"]) {
+  color: #1f2937;
+}
+
+/* ===== RESPONSIVE DESIGN - MOBILE FIRST ===== */
+
+@media (max-width: 767px) {
+  .prose-ec {
+    font-size: 1rem;
+  }
+  
+  .prose-ec h1 {
+    font-size: 1.875rem;
+  }
+  
+  .prose-ec h2 {
+    font-size: 1.5rem;
+  }
+  
+  .prose-ec h3 {
+    font-size: 1.25rem;
+  }
+  
+  .prose-ec blockquote {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+  }
+  
+  .prose-ec pre {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+  }
+  
+  .prose-ec ul li,
+  .prose-ec ol li {
+    padding-left: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .prose-ec {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prose-ec {
+    font-size: 1.25rem;
+  }
+}
+
+/* ===== PRESERVE EXISTING ELEMENTS ===== */
+
+/* Navigation and header - no changes */
+header,
+header *,
+nav,
+nav *,
+.navigation,
+.navigation *,
+#main-navigation,
+#main-navigation * {
+  /* Preserve existing styling exactly */
+}
+
+/* Footer elements - preserve Garden UI footer styling temporarily */
+.garden-footer-shared,
+.garden-footer-container,
+.garden-footer-grid,
+.garden-footer-section,
+.garden-footer-section-title,
+.garden-footer-section-list,
+.garden-footer-section-link,
+.garden-footer-company,
+.garden-footer-company-description,
+.garden-footer-company-legal {
+  /* Preserve existing footer styling for compatibility */
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+/* Responsive text visibility */
+.text-visible-auto {
+  color: inherit;
+}
+
+.text-visible-light {
+  color: #1f2937;
+}
+
+.text-visible-dark {
+  color: #f3f4f6;
+}
+
+/* Container utilities */
+.container-responsive {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    max-width: 640px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-responsive {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    max-width: 1024px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-responsive {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-responsive {
+    max-width: 1536px;
+  }
+}
