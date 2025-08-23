@@ -1,0 +1,174 @@
+/*
+ * Surgical Text Visibility Fixes
+ * Preserves existing dark theme design while fixing specific white-on-white text issues
+ * NO background color changes - only text color adjustments where needed
+ */
+
+/* ===== PRESERVE EXISTING DESIGN SYSTEM ===== */
+/* Keep all existing background colors intact - this is critical */
+/* Only adjust text colors in problematic areas */
+
+/* ===== SPECIFIC WHITE-ON-WHITE FIXES ===== */
+/* Strategy cards that have light backgrounds need dark text */
+.strategy-card.bg-white *,
+.strategy-card[style*="background: white"] *,
+.strategy-card[style*="background: #fff"] *,
+.strategy-card[style*="background-color: white"] *,
+.strategy-card[style*="background-color: #ffffff"] * {
+    color: #1f2937 !important; /* Dark text for white strategy cards */
+}
+
+/* Investment philosophy section if it has white background */
+.investment-philosophy.bg-white *,
+.investment-philosophy[style*="background: white"] *,
+.investment-philosophy[style*="background-color: white"] * {
+    color: #1f2937 !important;
+}
+
+/* Process cards or sections with white backgrounds */
+.process-card.bg-white *,
+.process-section.bg-white *,
+.client-focus.bg-white * {
+    color: #1f2937 !important;
+}
+
+/* ===== FORM FIXES (preserve dark theme but fix visibility) ===== */
+/* Only fix forms that are actually on white backgrounds */
+.bg-white form,
+.bg-white .form-container,
+.bg-white input,
+.bg-white textarea,
+.bg-white select,
+form.bg-white,
+.form-container.bg-white {
+    color: #1f2937 !important;
+}
+
+/* Form labels on white backgrounds */
+.bg-white label,
+label.bg-white {
+    color: #374151 !important;
+}
+
+/* ===== MODAL/POPUP FIXES (only if they have white backgrounds) ===== */
+.modal.bg-white *,
+.popup.bg-white *,
+.dialog.bg-white *,
+[role="dialog"].bg-white * {
+    color: #1f2937 !important;
+}
+
+/* ===== CARD COMPONENT FIXES ===== */
+/* Only target cards that actually have white/light backgrounds */
+.card.bg-white *,
+.card.bg-gray-100 *,
+.card.bg-slate-100 *,
+.panel.bg-white *,
+.panel.bg-gray-100 * {
+    color: #1f2937 !important;
+}
+
+/* ===== PRESERVE DARK THEME ELEMENTS ===== */
+/* Ensure dark theme elements stay unchanged */
+body,
+.bg-gray-900,
+.bg-slate-900,
+.bg-purple-900,
+main,
+section:not(.bg-white):not(.bg-gray-100),
+.hero-section,
+.stats-section,
+footer {
+    /* No changes - preserve existing styling */
+}
+
+/* ===== EMERGENCY EXCEPTIONS ===== */
+/* Override the aggressive emergency CSS for specific white background cases */
+.bg-white *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white):not(header *) {
+    color: #1f2937 !important; /* Dark text for white backgrounds */
+}
+
+.bg-gray-100 *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white):not(header *) {
+    color: #1f2937 !important; /* Dark text for light gray backgrounds */
+}
+
+.bg-slate-100 *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white):not(header *) {
+    color: #1f2937 !important; /* Dark text for light slate backgrounds */
+}
+
+/* ===== CONTENT AREA SPECIFIC FIXES ===== */
+/* Only target specific content areas that have problematic backgrounds */
+[style*="background-color: #ffffff"] *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white),
+[style*="background-color: white"] *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white),
+[style*="background: white"] *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white),
+[style*="background: #fff"] *:not(.btn-ec-primary):not(.btn-ec-secondary):not(.text-white) {
+    color: #1f2937 !important;
+}
+
+/* ===== PRESERVE BUTTON STYLING ===== */
+/* Keep existing button colors exactly as they are */
+.btn-ec-primary,
+.btn-ec-secondary,
+button,
+input[type="submit"] {
+    /* No changes - preserve existing button styling */
+}
+
+/* ===== PRESERVE NAVIGATION ===== */
+/* Keep navigation exactly as it is */
+header,
+nav,
+.navigation,
+.main-menu {
+    /* No changes - preserve existing navigation styling */
+}
+
+/* ===== HIGH SPECIFICITY OVERRIDES FOR WHITE BACKGROUND ELEMENTS ===== */
+/* Target elements that are definitely on white backgrounds */
+html body .bg-white .strategy-card *,
+html body .bg-white .content-card *,
+html body .bg-white .investment-philosophy *,
+html body .bg-white .process-section *,
+html body .bg-white .client-focus *,
+html body [style*="background-color: white"] *,
+html body [style*="background-color: #ffffff"] * {
+    color: #1f2937 !important;
+}
+
+/* Headers on white backgrounds should be darker */
+html body .bg-white h1,
+html body .bg-white h2,
+html body .bg-white h3,
+html body .bg-white h4,
+html body .bg-white h5,
+html body .bg-white h6,
+html body [style*="background-color: white"] h1,
+html body [style*="background-color: white"] h2,
+html body [style*="background-color: white"] h3,
+html body [style*="background-color: white"] h4,
+html body [style*="background-color: white"] h5,
+html body [style*="background-color: white"] h6 {
+    color: #111827 !important; /* Very dark for white background headers */
+}
+
+/* ===== LINKS ON WHITE BACKGROUNDS ===== */
+/* Links on white backgrounds should be blue instead of gray */
+html body .bg-white a:not(.btn-ec-primary):not(.btn-ec-secondary),
+html body [style*="background-color: white"] a:not(.btn-ec-primary):not(.btn-ec-secondary) {
+    color: #3b82f6 !important; /* Blue links on white */
+}
+
+html body .bg-white a:hover:not(.btn-ec-primary):not(.btn-ec-secondary),
+html body [style*="background-color: white"] a:hover:not(.btn-ec-primary):not(.btn-ec-secondary) {
+    color: #1d4ed8 !important; /* Darker blue on hover */
+}
+
+/* ===== DEBUGGING HELPER ===== */
+/* Uncomment to identify white background elements */
+/*
+.bg-white,
+[style*="background-color: white"],
+[style*="background: white"] {
+    outline: 2px solid red !important;
+}
+*/
