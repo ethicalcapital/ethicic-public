@@ -1,6 +1,16 @@
+# ⚠️ DEPRECATED - DO NOT USE FOR NEW DEVELOPMENT
+
+**This repository is deprecated and maintained only as a feature inventory.**
+
+See [DEPRECATED.md](DEPRECATED.md) for a comprehensive inventory of features and lessons learned.
+
+---
+
 # Ethical Capital Public Website
 
 This is the standalone public website for Ethical Capital, built with Django and Wagtail CMS.
+
+**Note**: This codebase is no longer actively maintained. It exists solely for historical reference and feature documentation.
 
 ## Features
 
